@@ -1,0 +1,579 @@
+{
+"courses": [
+{
+"id": "u-fractions",
+"name": "Fractions unit (Math)",
+"skills": [
+"equiv",
+"simplify",
+"addlike",
+"adduni",
+"multfrac"
+]
+},
+{
+"id": "u-equations",
+"name": "Equations unit (Math)",
+"skills": [
+"onestepadd",
+"onestepmul",
+"twostep"
+]
+},
+{
+"id": "ela--1",
+"name": "English / ELA: Elementary (PK-5)",
+"skills": [
+"ela_pk",
+"ela_0",
+"ela_1",
+"ela_2",
+"ela_3",
+"ela_4",
+"ela_5",
+"ela_pk_n1",
+"ela_pk_n2",
+"ela_0_n1",
+"ela_0_n2",
+"ela_1_n1",
+"ela_1_n2",
+"ela_2_n1",
+"ela_2_n2",
+"ela_3_n1",
+"ela_3_n2",
+"ela_4_n1",
+"ela_4_n2",
+"ela_5_n1",
+"ela_5_n2"
+]
+},
+{
+"id": "ela-6",
+"name": "English / ELA: Middle school (6-8)",
+"skills": [
+"ela_6",
+"ela_7",
+"ela_8",
+"ela_6_n1",
+"ela_6_n2",
+"ela_7_n1",
+"ela_7_n2",
+"ela_8_n1",
+"ela_8_n2"
+]
+},
+{
+"id": "ela-9",
+"name": "English / ELA: High school (9-12)",
+"skills": [
+"ela_9",
+"ela_10",
+"ela_11",
+"ela_12",
+"ela_9_n1",
+"ela_9_n2",
+"ela_10_n1",
+"ela_10_n2",
+"ela_11_n1",
+"ela_11_n2",
+"ela_12_n1",
+"ela_12_n2"
+]
+},
+{
+"id": "ela-13",
+"name": "English / ELA: College and test prep",
+"skills": [
+"ela_13",
+"ela_13_n1",
+"ela_13_n2"
+]
+},
+{
+"id": "sci--1",
+"name": "Science: Elementary (PK-5)",
+"skills": [
+"sci_pk",
+"sci_0",
+"sci_1",
+"sci_2",
+"sci_3",
+"sci_4",
+"sci_5",
+"sci_pk_n1",
+"sci_pk_n2",
+"sci_0_n1",
+"sci_0_n2",
+"sci_1_n1",
+"sci_1_n2",
+"sci_2_n1",
+"sci_2_n2",
+"sci_3_n1",
+"sci_3_n2",
+"sci_4_n1",
+"sci_4_n2",
+"sci_5_n1",
+"sci_5_n2"
+]
+},
+{
+"id": "sci-6",
+"name": "Science: Middle school (6-8)",
+"skills": [
+"sci_6",
+"sci_7",
+"sci_8",
+"sci_6_n1",
+"sci_6_n2",
+"sci_7_n1",
+"sci_7_n2",
+"sci_8_n1",
+"sci_8_n2"
+]
+},
+{
+"id": "sci-9",
+"name": "Science: High school (9-12)",
+"skills": [
+"sci_9",
+"sci_10",
+"sci_11",
+"sci_12",
+"sci_9_n1",
+"sci_9_n2",
+"sci_10_n1",
+"sci_10_n2",
+"sci_11_n1",
+"sci_11_n2",
+"sci_12_n1",
+"sci_12_n2"
+]
+},
+{
+"id": "sci-13",
+"name": "Science: College and test prep",
+"skills": [
+"sci_13",
+"sci_13_n1",
+"sci_13_n2"
+]
+},
+{
+"id": "soc--1",
+"name": "Social Studies: Elementary (PK-5)",
+"skills": [
+"soc_pk",
+"soc_0",
+"soc_1",
+"soc_2",
+"soc_3",
+"soc_4",
+"soc_5",
+"soc_pk_n1",
+"soc_pk_n2",
+"soc_0_n1",
+"soc_0_n2",
+"soc_1_n1",
+"soc_1_n2",
+"soc_2_n1",
+"soc_2_n2",
+"soc_3_n1",
+"soc_3_n2",
+"soc_4_n1",
+"soc_4_n2",
+"soc_5_n1",
+"soc_5_n2"
+]
+},
+{
+"id": "soc-6",
+"name": "Social Studies: Middle school (6-8)",
+"skills": [
+"soc_6",
+"soc_7",
+"soc_8",
+"soc_6_n1",
+"soc_6_n2",
+"soc_7_n1",
+"soc_7_n2",
+"soc_8_n1",
+"soc_8_n2"
+]
+},
+{
+"id": "soc-9",
+"name": "Social Studies: High school (9-12)",
+"skills": [
+"soc_9",
+"soc_10",
+"soc_11",
+"soc_12",
+"soc_9_n1",
+"soc_9_n2",
+"soc_10_n1",
+"soc_10_n2",
+"soc_11_n1",
+"soc_11_n2",
+"soc_12_n1",
+"soc_12_n2"
+]
+},
+{
+"id": "soc-13",
+"name": "Social Studies: College and test prep",
+"skills": [
+"soc_13",
+"soc_13_n1",
+"soc_13_n2"
+]
+},
+{
+"id": "cs--1",
+"name": "Computer Science: Elementary (PK-5)",
+"skills": [
+"cs_pk",
+"cs_0",
+"cs_1",
+"cs_2",
+"cs_3",
+"cs_4",
+"cs_5",
+"cs_pk_n1",
+"cs_0_n1",
+"cs_1_n1",
+"cs_2_n1",
+"cs_3_n1",
+"cs_4_n1",
+"cs_5_n1"
+]
+},
+{
+"id": "cs-6",
+"name": "Computer Science: Middle school (6-8)",
+"skills": [
+"cs_6",
+"cs_7",
+"cs_8",
+"cs_6_n1",
+"cs_7_n1",
+"cs_8_n1"
+]
+},
+{
+"id": "cs-9",
+"name": "Computer Science: High school (9-12)",
+"skills": [
+"cs_9",
+"cs_10",
+"cs_11",
+"cs_12",
+"cs_9_n1",
+"cs_10_n1",
+"cs_11_n1",
+"cs_12_n1"
+]
+},
+{
+"id": "cs-13",
+"name": "Computer Science: College and test prep",
+"skills": [
+"cs_13",
+"cs_13_n1"
+]
+},
+{
+"id": "fin--1",
+"name": "Financial Literacy: Elementary (PK-5)",
+"skills": [
+"fin_0",
+"fin_2",
+"fin_4",
+"fin_3_n1",
+"fin_5_n1"
+]
+},
+{
+"id": "fin-6",
+"name": "Financial Literacy: Middle school (6-8)",
+"skills": [
+"fin_6",
+"fin_8",
+"fin_7_n1"
+]
+},
+{
+"id": "fin-9",
+"name": "Financial Literacy: High school (9-12)",
+"skills": [
+"fin_10",
+"fin_12",
+"fin_9_n1",
+"fin_11_n1"
+]
+},
+{
+"id": "es--1",
+"name": "Spanish: Elementary (PK-5)",
+"skills": [
+"es_pk",
+"es_0",
+"es_2",
+"es_4",
+"es_1_n1",
+"es_3_n1",
+"es_5_n1"
+]
+},
+{
+"id": "es-6",
+"name": "Spanish: Middle school (6-8)",
+"skills": [
+"es_6",
+"es_8",
+"es_7_n1"
+]
+},
+{
+"id": "es-9",
+"name": "Spanish: High school (9-12)",
+"skills": [
+"es_10",
+"es_12",
+"es_9_n1",
+"es_11_n1"
+]
+},
+{
+"id": "math-g0",
+"name": "Math: Kindergarten",
+"skills": [
+"kadd",
+"kcount",
+"ksub",
+"kbond"
+]
+},
+{
+"id": "math-g1",
+"name": "Math: Grade 1",
+"skills": [
+"g1add",
+"g1sub",
+"g1tens",
+"g1skip"
+]
+},
+{
+"id": "math-g2",
+"name": "Math: Grade 2",
+"skills": [
+"g2sub",
+"g2add",
+"g2place",
+"g2coins"
+]
+},
+{
+"id": "math-g3",
+"name": "Math: Grade 3",
+"skills": [
+"mult",
+"g3div",
+"g3x10",
+"g3perim",
+"g3area",
+"g3round"
+]
+},
+{
+"id": "math-g4",
+"name": "Math: Grade 4",
+"skills": [
+"factors",
+"equiv",
+"addlike",
+"g4mult",
+"g4div",
+"g4add",
+"g4comp",
+"g4lcm"
+]
+},
+{
+"id": "math-g5",
+"name": "Math: Grade 5",
+"skills": [
+"simplify",
+"multfrac",
+"adduni",
+"g5decadd",
+"g5decmul",
+"g5vol",
+"g5ooo",
+"g5pow10",
+"g5fdiv"
+]
+},
+{
+"id": "math-g6",
+"name": "Math: Grade 6",
+"skills": [
+"onestepadd",
+"onestepmul",
+"g6ratio1",
+"g6ratio2",
+"g6ratio3",
+"g6decsub",
+"g6decdiv",
+"g6fwhole",
+"g6fdiv",
+"g6rate1",
+"g6rate2",
+"g6pctfrac",
+"g6pctdec",
+"g6pctwhole",
+"g6exp",
+"g6ooo",
+"g6negadd",
+"g6abs",
+"g6eval",
+"g6like",
+"g6ineq",
+"g6tri",
+"g6para",
+"g6trap",
+"g6dist",
+"g6cube",
+"g6box",
+"g6mean",
+"g6median",
+"g6mode",
+"g6range"
+]
+},
+{
+"id": "math-g7",
+"name": "Math: Grade 7",
+"skills": [
+"twostep",
+"percent",
+"g7negmul",
+"g7dist",
+"g7pctchg",
+"g7tip",
+"g7prop",
+"g7supp",
+"g7tri",
+"g7circ",
+"g7circa",
+"g7prob"
+]
+},
+{
+"id": "math-g8",
+"name": "Math: Grade 8",
+"skills": [
+"slope",
+"g8pyth",
+"g8exp",
+"g8sci",
+"g8sqrt",
+"g8cbrt",
+"g8lin",
+"g8cyl",
+"g8sys"
+]
+},
+{
+"id": "math-g9",
+"name": "Math: Grade 9",
+"skills": [
+"lineq",
+"g9foil",
+"g9disc",
+"g9arith",
+"g9geom",
+"g9abs",
+"g9exp",
+"g9ineq"
+]
+},
+{
+"id": "math-g10",
+"name": "Math: Grade 10",
+"skills": [
+"quadeval",
+"g10dist",
+"g10mid",
+"g10poly",
+"g10sim",
+"g10sin",
+"g10sph",
+"g10arc"
+]
+},
+{
+"id": "math-g11",
+"name": "Math: Grade 11",
+"skills": [
+"logs",
+"g11arser",
+"g11geoser",
+"g11expeq",
+"g11logp",
+"g11rem",
+"g11comb",
+"g11perm",
+"g11rad"
+]
+},
+{
+"id": "math-g12",
+"name": "Math: Grade 12",
+"skills": [
+"deriv",
+"g12d2",
+"g12chain",
+"g12lim",
+"g12int",
+"g12vert",
+"g12inf"
+]
+},
+{
+"id": "math-g13",
+"name": "Math: College / Test prep",
+"skills": [
+"integral",
+"g13det",
+"g13dot",
+"g13ev",
+"g13mod",
+"g13sum",
+"g13ci"
+]
+}
+],
+"milestones": [
+{
+"id": "m10",
+"label": "First 10 questions"
+},
+{
+"id": "m100",
+"label": "100 questions"
+},
+{
+"id": "m500",
+"label": "500 questions"
+},
+{
+"id": "m1",
+"label": "First skill mastered"
+},
+{
+"id": "m5",
+"label": "5 practice days"
+}
+]
+}

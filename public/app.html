@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lumen: Master every skill. Understand every concept.</title>
+<script>try{var _l=JSON.parse(localStorage.getItem("lumen_lite")||"0");if(_l)document.documentElement.dataset.lite="1";else{var l=document.createElement("link");l.rel="stylesheet";l.href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap";document.head.appendChild(l)}}catch(e){}</script>
+<style>
+:root{--bg:#EEF3F8;--panel:#fff;--ink:#1B2A41;--mute:#5B6B82;--line:#D5DEE9;--lamp:#F2A900;--lamp-soft:#FCEFC7;--teal:#0F8B8D;--coral:#C8414F;--node:#D5DEE9;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121B2B;--panel:#1B2740;--ink:#EAF0F8;--mute:#9DB0CB;--line:#2F3E5C;--lamp-soft:#3A3319;--node:#33425F;--teal:#3CC1C3;--coral:#F07884}}
+:root[data-theme="dark"]{--bg:#121B2B;--panel:#1B2740;--ink:#EAF0F8;--mute:#9DB0CB;--line:#2F3E5C;--lamp-soft:#3A3319;--node:#33425F;--teal:#3CC1C3;--coral:#F07884}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 "Atkinson Hyperlegible",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque","Atkinson Hyperlegible",sans-serif;line-height:1.15;margin:0}
+header{padding:28px 24px 8px;max-width:1180px;margin:0 auto}
+header h1{font-size:clamp(34px,6vw,56px);font-weight:700;letter-spacing:-.02em}
+header p{margin:6px 0 0;color:var(--mute);max-width:60ch}
+.app{display:grid;grid-template-columns:1.15fr .85fr;gap:24px;max-width:1180px;margin:0 auto;padding:16px 24px 48px}
+@media(max-width:880px){.app{grid-template-columns:1fr;padding:12px 14px 40px}header{padding:20px 14px 4px}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px}
+.card h2{font-size:22px;margin-bottom:10px}
+svg{width:100%;height:auto;display:block}
+.node{cursor:pointer;outline:none}
+.node:focus-visible circle.n,.node:hover circle.n{stroke:var(--ink);stroke-width:3}
+.node text{fill:var(--ink);font:12px "Atkinson Hyperlegible",sans-serif;text-anchor:middle}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:10px;font-size:14px;color:var(--mute)}
+.legend span:before{content:"";display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:-1px;background:var(--c)}
+button{font:inherit;font-weight:700;border:0;border-radius:12px;padding:11px 18px;background:var(--ink);color:var(--bg);cursor:pointer}
+button.alt{background:transparent;color:var(--ink);border:2px solid var(--line)}
+button.lamp{background:var(--lamp);color:#1B2A41}
+button:focus-visible,input:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.pill{display:inline-block;padding:3px 12px;border-radius:99px;background:var(--lamp-soft);font-size:14px;font-weight:700}
+.bar{height:12px;border-radius:99px;background:var(--line);overflow:hidden;margin:6px 0 14px}
+.bar i{display:block;height:100%;background:var(--lamp);transition:width .4s}
+.q{font-size:30px;font-family:"Bricolage Grotesque",sans-serif;margin:14px 0;min-height:60px}
+.fr{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 .15em;font-size:.85em;line-height:1.1}
+.fr i{font-style:normal;padding:0 .25em}.fr i:first-child{border-bottom:2px solid currentColor}
+input[type=text]{font:inherit;font-size:22px;width:150px;padding:10px 14px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink)}
+.tutor{margin-top:14px;padding:14px 16px;border-radius:14px;background:var(--lamp-soft);border-left:5px solid var(--lamp)}
+.tutor b{display:block;font-size:14px;margin-bottom:2px}
+.good{border-left-color:var(--teal)}.warn{border-left-color:var(--coral)}
+.meter{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:15px;color:var(--mute);margin-top:6px}
+.meter b{color:var(--ink)}
+.sol{font-size:15px;color:var(--mute);margin-top:8px}
+@media(prefers-reduced-motion:reduce){.bar i{transition:none}}
+
+.app[hidden],.views[hidden]{display:none}
+.wrap2,.views{max-width:1180px;margin:0 auto;padding:0 24px}
+.views{padding:16px 24px 56px}
+#tabs{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:10px 0}
+.tb{background:transparent;color:var(--ink);border:2px solid var(--line)}.tb.on{background:var(--ink);color:var(--bg)}
+.prev{margin-left:auto;font-size:14px;color:var(--mute)}
+select,input[type=email],input[type=number],textarea,input:not([type]){font:inherit;font-size:16px;padding:9px 12px;border-radius:10px;border:2px solid var(--line);background:var(--bg);color:var(--ink)}
+.chip{padding:6px 12px;border-radius:99px;border:2px solid var(--line);background:transparent;color:var(--ink);font-size:14px}.chip.on{background:var(--lamp);border-color:var(--lamp);color:#1B2A41}
+.gb{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding-bottom:6px}
+.tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:14px}
+.tier.cur{border:2px solid var(--teal)}.price{font:700 28px "Bricolage Grotesque",sans-serif}
+.tier ul{padding-left:18px;color:var(--mute);font-size:15px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:10px}
+.stats b{display:block;font:700 26px "Bricolage Grotesque",sans-serif}.stats span{color:var(--mute);font-size:14px}
+.vs{width:100%;border-collapse:collapse;font-size:15px;background:var(--panel)}.vs th,.vs td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl{overflow-x:auto;margin-top:10px}.bar.sm{height:8px;margin:4px 0;min-width:80px}
+.split{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline}
+.cls{margin-top:16px}.cls h4{margin:18px 0 6px;font-family:"Bricolage Grotesque",sans-serif;font-size:18px}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:12px;display:none;z-index:9}
+pre.rp{white-space:pre-wrap;font:inherit;background:var(--bg);padding:12px;border-radius:10px}
+
+[data-lite] *{transition:none!important;animation:none!important;box-shadow:none!important}
+[data-lite] body,[data-lite] h1,[data-lite] h2,[data-lite] h3,[data-lite] h4,[data-lite] .q,[data-lite] .price{font-family:system-ui,sans-serif}
+[data-lite] #map circle[filter]{display:none}
+.post{margin-top:12px}.post.hid{opacity:.55;border-style:dashed}.reply{border-left:3px solid var(--line);padding:2px 0 2px 12px;margin:8px 0}
+.reply p{margin:2px 0}textarea{width:100%;min-height:70px}
+.cert{border:6px double var(--lamp);border-radius:12px;padding:22px;text-align:center;background:var(--panel);margin-top:12px}
+.cert h3{font-size:26px}.cert .nm{font:700 30px "Bricolage Grotesque",sans-serif;margin:8px 0}
+.badges{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}.badges .card{text-align:center;padding:14px}.badges .off{opacity:.5}
+.fund{display:grid;grid-template-columns:200px 1fr 50px;gap:10px;align-items:center}@media(max-width:560px){.fund{grid-template-columns:1fr 1fr 44px}}
+.mc{flex-basis:100%;display:grid;gap:8px}.opt{display:flex;gap:10px;align-items:center;padding:12px 14px;border:2px solid var(--line);border-radius:12px;cursor:pointer;background:var(--bg)}.opt.ok{border-color:var(--teal)}.opt input{width:20px;height:20px}.subs{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:6px}.units{display:grid;grid-template-columns:1fr 1fr;gap:6px 40px}@media(max-width:700px){.units{grid-template-columns:1fr}}button.skill{display:flex;gap:10px;align-items:center;width:100%;text-align:left;background:transparent;color:var(--ink);border:0;border-bottom:1px solid var(--line);border-radius:0;padding:9px 4px;font-weight:400}.dot{width:12px;height:12px;border-radius:50%;flex:none;border:1px solid var(--line)}</style>
+</head>
+<body>
+<header>
+<h1>Lumen</h1>
+<p>Master every skill. Understand every concept. Pick a glowing skill on the map, learn the idea, then practice until it sticks.</p>
+</header>
+<div class="wrap2"><nav id="tabs" aria-label="Sections"></nav><div id="gradebar"></div></div>
+<main class="app">
+<section class="card" aria-label="Knowledge map">
+<h2>Your knowledge map</h2>
+<svg id="map" viewBox="0 0 640 430" role="group" aria-label="Skill map with prerequisites"></svg>
+<div class="legend" id="legend"></div>
+<p class="sol">Arrows point from a building block to the skill it unlocks. Nothing is locked: you can open any skill, and Lumen will suggest a building block if you get stuck.</p>
+</section>
+<section class="card" id="panel" aria-live="polite"></section>
+</main>
+<main id="views" class="views" hidden aria-live="polite"></main><div id="toast" role="status"></div>
+<script type="text/x-lumen">
+const rnd=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+const gcd=(a,b)=>b?gcd(b,a%b):a;
+const F=(n,d)=>`<span class="fr"><i>${n}</i><i>${d}</i></span>`;
+const LV=['Not started','Attempted','Familiar','Proficient','Mastered'];
+const LC=['var(--node)','#F8E2A0','#F5C34B','#F2A900','#F2A900'];
+const SK={
+mult:{n:'Multiplication facts',l:['Multiplication','facts'],pre:[],x:70,y:80,c:'Multiplying is repeated grouping. 6 × 4 means six groups of four, and you can split a group to make it easier.'},
+factors:{n:'Greatest common factor',l:['Greatest common','factor'],pre:[],x:70,y:230,c:'A factor divides a number with nothing left over. The greatest common factor is the biggest one two numbers share.'},
+onestepadd:{n:'Solve x + a = b',l:['Solve','x + a = b'],pre:[],x:70,y:350,c:'An equation is a balance. Whatever you do to one side, do to the other. To undo adding, subtract.'},
+equiv:{n:'Equivalent fractions',l:['Equivalent','fractions'],pre:['mult'],x:230,y:80,c:'Multiply the top and bottom by the same number and the fraction keeps its size. You are cutting the same pieces smaller.'},
+simplify:{n:'Simplify fractions',l:['Simplify','fractions'],pre:['factors','equiv'],x:230,y:230,c:'Divide the top and bottom by their greatest common factor to get the same value in lowest terms.'},
+onestepmul:{n:'Solve ax = b',l:['Solve','ax = b'],pre:['mult','onestepadd'],x:230,y:350,c:'ax means a times x. To undo multiplying, divide both sides by a.'},
+addlike:{n:'Add fractions, same denominator',l:['Add fractions','same denominator'],pre:['equiv'],x:390,y:80,c:'When pieces are the same size, add the pieces and keep the denominator. 2 eighths + 3 eighths = 5 eighths.'},
+multfrac:{n:'Multiply fractions',l:['Multiply','fractions'],pre:['mult','simplify'],x:390,y:230,c:'Multiply the tops, multiply the bottoms, then simplify. It means taking a part of a part.'},
+twostep:{n:'Solve ax + b = c',l:['Solve','ax + b = c'],pre:['onestepmul'],x:390,y:350,c:'Undo in reverse order: first remove the added number, then divide by the multiplier.'},
+adduni:{n:'Add fractions, unlike denominators',l:['Add fractions','unlike denominators'],pre:['addlike','simplify'],x:550,y:150,c:'Pieces must be the same size before you add them. Rewrite both fractions with a common denominator, then add.'}
+};
+const ORDER=Object.keys(SK);
+/* Problem generators: q = question, a = [num,den], h = 3-step hint ladder, s = worked solution, m = misconception check, exact = lowest terms required */
+const G={
+mult(d){const a=rnd(3,5+d*2),b=rnd(6,8+d*2);return{q:`${a} × ${b} = ?`,a:[a*b,1],h:[`Picture ${a} groups with ${b} in each. How could you count faster than one at a time?`,`Try splitting ${b} into 5 and ${b-5}.`,`${a} × 5 = ${a*5}. Now work out ${a} × ${b-5} and put the two parts together.`],s:`${a}×5 = ${a*5} and ${a}×${b-5} = ${a*(b-5)}, so the total is ${a*b}.`}},
+factors(d){let g=rnd(2,4+d),m,n;do{m=rnd(2,5);n=rnd(2,6)}while(m==n||gcd(m,n)!=1);const a=g*m,b=g*n;return{q:`Greatest common factor of ${a} and ${b}?`,a:[g,1],h:[`Which numbers divide ${a} evenly? Start with the small ones.`,`Now list the factors of ${b}. Which appear in both lists?`,`Check whether ${g} divides both ${a} and ${b}. Is there a larger number that does?`],s:`${a} = ${g}×${m} and ${b} = ${g}×${n}, and ${m} and ${n} share no factor, so the GCF is ${g}.`}},
+equiv(d){const b=rnd(2,6),a=rnd(1,b-1),k=rnd(2,3+d);return{q:`${F(a,b)} = ${F('?',b*k)}`,a:[a*k,1],h:[`What did the denominator ${b} get multiplied by to become ${b*k}?`,`The fraction only keeps its value if the top is multiplied by the same number.`,`The multiplier is ${k}. What is ${a} × ${k}?`],s:`${b} × ${k} = ${b*k}, so ${a} × ${k} = ${a*k}.`}},
+simplify(d){let p,q;do{q=rnd(3,9);p=rnd(1,q-1)}while(gcd(p,q)!=1);const g=rnd(2,3+d);return{q:`Simplify ${F(p*g,q*g)}`,a:[p,q],exact:1,h:[`Is there a number that divides both ${p*g} and ${q*g}?`,`Look for the biggest one. That is the greatest common factor.`,`Try dividing both by ${g}. Can the result go any lower?`],s:`Both are divisible by ${g}: ${p*g}÷${g} = ${p} and ${q*g}÷${g} = ${q}. Answer ${p}/${q}.`}},
+addlike(d){const den=rnd(5,9+d*2),a=rnd(1,den-3),b=rnd(1,den-1-a);return{q:`${F(a,den)} + ${F(b,den)} = ?`,a:[a+b,den],m:u=>eq(u,[a+b,den*2])?"That added the denominators too. The denominator names the piece size. Does adding pieces change their size?":null,h:[`Are the pieces the same size here?`,`If you have ${a} pieces and get ${b} more, how many pieces now?`,`The size of the pieces stays ${F(1,den)}. How many of them do you have?`],s:`${a} + ${b} = ${a+b} pieces of size 1/${den}, so ${a+b}/${den}.`}},
+adduni(d){const b=rnd(2,5),c=d==1?b*rnd(2,3):[2,3,4,5,6].filter(x=>x!=b)[rnd(0,3)],a=rnd(1,b-1),e=rnd(1,c-1);return{q:`${F(a,b)} + ${F(e,c)} = ?`,a:[a*c+e*b,b*c],m:u=>eq(u,[a+e,b+c])?"That adds the tops and the bottoms. Are halves and thirds the same size piece? What would make them the same size?":null,h:[`Are ${F(1,b)} pieces and ${F(1,c)} pieces the same size?`,`Find a number both ${b} and ${c} divide into. Rewrite each fraction with it.`,`${b} × ${c} = ${b*c} works. Make ${F(a,b)} and ${F(e,c)} into twelfths-style pieces of size 1/${b*c}, then add.`],s:`${a}/${b} = ${a*c}/${b*c} and ${e}/${c} = ${e*b}/${b*c}. Sum: ${a*c+e*b}/${b*c}.`}},
+multfrac(d){const b=rnd(2,5+d),a=rnd(1,b-1),c=rnd(2,5+d),e=rnd(1,c-1);return{q:`${F(a,b)} × ${F(e,c)} = ?`,a:[a*e,b*c],h:[`This is a part of a part. What do you do with the tops?`,`Multiply the tops together, then the bottoms together.`,`Tops: ${a} × ${e}. Bottoms: ${b} × ${c}. Can it simplify?`],s:`${a}×${e} = ${a*e} and ${b}×${c} = ${b*c}, giving ${a*e}/${b*c}.`}},
+onestepadd(d){const x=rnd(3,10+d*5),a=rnd(2,9+d*3);return{q:`x + ${a} = ${x+a}. x = ?`,a:[x,1],h:[`What is added to x on the left side?`,`What undoes adding ${a}?`,`Subtract ${a} from both sides: ${x+a} − ${a}.`],s:`x = ${x+a} − ${a} = ${x}.`}},
+onestepmul(d){const a=rnd(2,6+d),x=rnd(2,9);return{q:`${a}x = ${a*x}. x = ?`,a:[x,1],h:[`${a}x means ${a} times x. What undoes multiplying?`,`Divide both sides by ${a}.`,`What is ${a*x} ÷ ${a}?`],s:`x = ${a*x} ÷ ${a} = ${x}.`}},
+twostep(d){const a=rnd(2,5),x=rnd(2,9),b=rnd(1,8+d*2);return{q:`${a}x + ${b} = ${a*x+b}. x = ?`,a:[x,1],h:[`Which operation was applied last to x? Undo that one first.`,`Subtract ${b} from both sides to leave ${a}x alone.`,`That leaves ${a}x = ${a*x}. Now divide by ${a}.`],s:`${a*x+b} − ${b} = ${a*x}, then ${a*x} ÷ ${a} = ${x}.`}}
+};
+function parse(s){s=s.trim().replace(/\s+/g,'');let m=s.match(/^(-?\d+)\/(\d+)$/);if(m&&+m[2])return[+m[1],+m[2]];m=s.match(/^-?\d+$/);return m?[+s,1]:null}
+function eq(u,a){return u[0]*a[1]===a[0]*u[1]}
+
+/* Learner state: p = chance the skill is known (Bayesian knowledge tracing), att = questions answered */
+let S={};ORDER.forEach(k=>S[k]={p:.2,att:0,mastered:false,review:false});
+if(BOOT.state.S)S=Object.assign(S,BOOT.state.S);
+const save=()=>SYNC();
+const level=k=>{const s=S[k];return !s.att?0:s.mastered?4:s.p>=.85&&s.att>=6?3:s.p>=.55?2:1};
+function update(k,ok,hint){const s=S[k],g=hint?.5:.2,sl=.1,L=.18,p=s.p;
+let post=ok?p*(1-sl)/(p*(1-sl)+(1-p)*g):p*sl/(p*sl+(1-p)*(1-g));
+if(!ok)post=p+(post-p)*.5; /* a miss lowers confidence gently */
+s.p=Math.min(.99,Math.max(.05,post+(1-post)*L));s.att++;save()}
+function recommend(){const up=k=>SK[k].pre.every(x=>level(x)>=2);
+return ORDER.find(k=>level(k)<3&&up(k))||ORDER.find(k=>level(k)<4)||ORDER[0]}
+
+let cur=null,view='home',sel=null;
+function drawMap(){const el=document.getElementById('map');let h='<defs><filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="6"/></filter></defs>';
+ORDER.forEach(k=>SK[k].pre.forEach(p=>{const a=SK[p],b=SK[k],on=level(p)>=2;h+=`<line x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}" stroke="${on?'var(--lamp)':'var(--line)'}" stroke-width="${on?3:2}"/>`}));
+const rec=recommend();
+ORDER.forEach(k=>{const n=SK[k],lv=level(k);
+h+=`<g class="node" tabindex="0" role="button" aria-label="${n.n}, ${LV[lv]}${k==rec?', recommended next':''}" onclick="openSkill('${k}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openSkill('${k}')}">`;
+if(lv>=3)h+=`<circle cx="${n.x}" cy="${n.y}" r="30" fill="var(--lamp)" opacity=".55" filter="url(#glow)"/>`;
+if(k==rec)h+=`<circle cx="${n.x}" cy="${n.y}" r="31" fill="none" stroke="var(--teal)" stroke-width="3" stroke-dasharray="5 4"/>`;
+h+=`<circle class="n" cx="${n.x}" cy="${n.y}" r="23" fill="${LC[lv]}" stroke="${S[k].review?'var(--coral)':lv==4?'var(--teal)':'var(--panel)'}" stroke-width="${lv==4||S[k].review?4:2}"/>`;
+if(lv==4)h+=`<path d="M${n.x-8} ${n.y}l5 6l11-12" stroke="#1B2A41" stroke-width="3" fill="none"/>`;
+h+=`<text x="${n.x}" y="${n.y+42}">${n.l[0]}</text><text x="${n.x}" y="${n.y+56}">${n.l[1]}</text></g>`});
+el.innerHTML=h;
+document.getElementById('legend').innerHTML=LV.map((l,i)=>`<span style="--c:${LC[i]}">${l}</span>`).join('')+'<span style="--c:var(--teal)">Recommended</span>'}
+
+function render(){drawMap();const P=document.getElementById('panel');
+if(view==='home'){const r=recommend(),n=SK[r];
+P.innerHTML=`<h2>Today's mission</h2><p>Your recommended next skill is <b>${n.n}</b>. Each mission is five problems, with a tutor beside every one.</p>
+<div class="row"><button class="lamp" onclick="openSkill('${r}')">Start with a lesson</button><button class="alt" onclick="startPractice('${r}','practice')">Skip to practice</button></div>
+<div class="tutor"><b>How progress works</b>Your progress bar only goes up. Your mastery level rises as you answer correctly across problems, and a single miss never wipes it out. Proficient skills become Mastered after a spaced retention check.</div>`;return}
+if(view==='lesson'){const n=SK[sel],lv=level(sel),pre=n.pre.filter(x=>level(x)<2);
+P.innerHTML=`<span class="pill">${LV[lv]}</span><h2 style="margin-top:8px">${n.n}</h2>
+<div class="tutor"><b>The idea</b>${n.c}</div>
+${pre.length?`<div class="tutor warn"><b>Building blocks to check first</b>${pre.map(x=>`<a href="#" onclick="openSkill('${x}');return false">${SK[x].n}</a>`).join(', ')} still need practice. You can try this skill anyway.</div>`:''}
+<div class="row"><button class="lamp" onclick="startPractice('${sel}','practice')">Practice this skill</button>${lv==3?(retOk(sel)?`<button class="alt" onclick="startPractice('${sel}','check')">Take the retention check</button>`:`<span class="sol">Retention check unlocks in ${Math.max(1,Math.ceil((S[sel].profAt+retDays()*864e5-Date.now())/864e5))} day(s). Spaced review makes learning last.</span>`):''}<button class="alt" onclick="view='home';render()">Back</button></div>
+<div class="meter"><span>Mastery</span><b>${LV[lv]} (${Math.round(S[sel].p*100)}% confidence)</b><span>Questions</span><b>${S[sel].att}</b></div>
+${S[sel].review?'<p class="sol">A recent miss on a mastered skill flagged this for a quick check-in.</p>':''}`;return}
+if(view==='summary'){const n=SK[cur.k],lv=level(cur.k),r=recommend();
+const done=cur.mode==='check';
+P.innerHTML=`<h2>${done?(cur.ok==cur.total?'Retention check passed':'Retention check finished'):'Mission complete'}</h2>
+<div class="tutor good"><b>${n.n}</b>${done?(cur.ok==cur.total?'You remembered it after a break. That is real mastery.':'Some of it slipped. That is normal, and a little more practice will bring it back.'):`You answered ${cur.ok} of ${cur.total} correctly and you grew your skill by sticking with it. Level now: ${LV[lv]}.`}</div>
+<div class="bar" aria-hidden="true"><i style="width:100%"></i></div>
+<div class="row"><button class="lamp" onclick="openSkill('${r}')">Next: ${SK[r].n}</button><button class="alt" onclick="startPractice('${cur.k}','practice')">Practice again</button><button class="alt" onclick="view='home';render()">Back to map</button></div>`;return}
+/* practice */
+const n=SK[cur.k],lv=level(cur.k),q=cur.q;
+P.innerHTML=`<span class="pill">${cur.mode==='check'?'Retention check':LV[lv]}</span> <span class="sol">${n.n}</span>
+<div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="${cur.total}" aria-valuenow="${Math.min(cur.total,cur.prog).toFixed(1)}" aria-label="Mission progress"><i style="width:${Math.min(100,cur.prog/cur.total*100)}%"></i></div>
+<div class="q">${q.q}</div>
+<div class="row" style="margin-top:0"><input id="ans" type="text" inputmode="text" autocomplete="off" aria-label="Your answer" placeholder="3/4 or 12" ${cur.done?'disabled':''} onkeydown="if(event.key==='Enter')${cur.done?'nextQ()':'submit()'}">
+${cur.done?'<button class="lamp" onclick="nextQ()">Next</button>':'<button onclick="submit()">Check</button>'}
+${cur.done||cur.mode==='check'?'':`<button class="alt" onclick="hint()">${cur.hint?'Another hint':'Ask the tutor'}</button>`}</div>
+<div id="fb">${cur.fb||''}</div>
+${cur.guard?`<div class="tutor warn"><b>Let's look at the building blocks</b>This one is tricky, so let's pause the drilling. <a href="#" onclick="openSkill('${cur.guard}');return false">Review ${SK[cur.guard].n}</a> and come back.</div>`:''}
+<div class="row"><button class="alt" onclick="view='home';render()">Leave mission</button></div>`;
+const i=document.getElementById('ans');if(i&&!cur.done)i.focus()}
+
+function openSkill(k){sel=k;view='lesson';render()}
+function startPractice(k,mode){cur={k,mode,n:0,total:mode==='check'?3:5,prog:0,ok:0,misses:0};newQ();view='practice';render()}
+function newQ(){const s=S[cur.k],d=s.p<.4?1:s.p<.7?2:3;cur.q=G[cur.k](d);cur.hint=0;cur.tries=0;cur.done=false;cur.used=false;cur.fb='';cur.guard=null}
+function tutor(t,c,title){return `<div class="tutor ${c||''}"><b>${title||'Tutor'}</b>${t}</div>`}
+function hint(){if(cur.hint<3){cur.fb=tutor(cur.q.h[cur.hint]);cur.hint++;cur.used=true}else{cur.fb=tutor(`Here is the worked solution. ${cur.q.s}`,'','Worked steps');cur.done=true;cur.tries=9}render()}
+function submit(){const raw=document.getElementById('ans').value,u=parse(raw);
+if(!u){cur.fb=tutor('Enter a whole number or a fraction like 3/4.','warn','Check your answer');render();return}
+const q=cur.q,s=S[cur.k];let ok=eq(u,q.a);
+if(ok&&q.exact&&!(gcd(Math.abs(u[0]),u[1])==1&&u[0]==q.a[0]&&u[1]==q.a[1])){cur.fb=tutor('That is the right value, but it can still go lower. Is there another common factor?','warn','Almost');render();return}
+if(ok){if(cur.tries==0){update(cur.k,true,cur.used);cur.ok++}
+cur.prog+=cur.tries==0?(cur.used?.7:1):.5;cur.misses=0;cur.done=true;
+cur.fb=tutor(cur.tries==0&&!cur.used?'Correct. You worked that out yourself.':'Correct. Sticking with it paid off.','good','Nice work');
+if(cur.mode==='practice'&&level(cur.k)==3&&s.review){s.review=false}}
+else{cur.tries++;cur.misses++;
+if(cur.tries==1){update(cur.k,false,false);cur.prog+=.3;
+if(s.mastered&&cur.mode==='practice'){s.review=true;save()}}
+const m=q.m&&q.m(u);
+if(cur.tries>=2){cur.fb=tutor(`Let's look at it together. ${q.s}`,'warn','Worked steps');cur.done=true}
+else cur.fb=tutor((m||'Not quite. Walk me through your first step. What did you do first?')+' Try again, or ask for a hint.','warn','Not yet');
+if(cur.misses>=3&&cur.mode==='practice'){const w=SK[cur.k].pre.filter(x=>level(x)<3).sort((a,b)=>S[a].p-S[b].p)[0];cur.guard=w||null;if(!w)cur.fb+=tutor('Take a breath. Ask for a hint and we will go one step at a time.','','Take a breath')}}
+render()}
+function nextQ(){cur.n++;
+if(cur.mode==='check'&&cur.n>=cur.total){if(cur.ok==cur.total){S[cur.k].mastered=true;S[cur.k].review=false;save()}view='summary';render();return}
+if(cur.n>=cur.total){view='summary';render();return}
+newQ();render()}
+render();
+</script>
+
+<script type="text/x-lumen">
+/* ===== Grades, teacher tools, plans, owner console (demo data layer) ===== */
+const $=id=>document.getElementById(id);
+const esc=x=>String(x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const $$=c=>'$'+(c/100).toFixed(2);
+const GLIST=[-1,0,1,2,3,4,5,6,7,8,9,10,11,12,13];
+const GLAB=n=>n<0?'Pre-K':n==0?'Kindergarten':n==13?'College / Test prep':'Grade '+n;
+const GN=n=>n<0?'PK':n==0?'K':n==13?'College':''+n;
+const day=()=>new Date().toISOString().slice(0,10);
+const UNITS={fractions:['Fractions unit',['equiv','simplify','addlike','adduni','multfrac']],equations:['Equations unit',['onestepadd','onestepmul','twostep']]};
+const D0={role:'owner',grades:[4,5,6],gr:{mult:3,factors:4,equiv:4,addlike:4,simplify:5,multfrac:5,adduni:5,onestepadd:6,onestepmul:6,twostep:7},gf:'all',ot:'users',flags:{'AI tutor feedback':true,'Live Classroom':true,'Gem Challenges':true,'Offline mode':false},users:[{id:1,name:'You (Owner)',email:'owner@lumen.example',role:'owner'}]};
+let ST={...D0,...(BOOT.state.prefs||{}),days:BOOT.state.days||[],secs:BOOT.state.secs||0};Object.assign(ST.gr,BOOT.settings.gr||{});ST.flags=BOOT.settings.flags||ST.flags;ST.retDays=BOOT.settings.retDays;ST.imp=BOOT.settings.impact;ST.role=BOOT.role;
+const sv=()=>SYNC();
+let tab='learn',liveT=null,liveId=null;
+function msg(t){const e=$('toast');e.textContent=t;e.style.display='block';clearTimeout(msg.t);msg.t=setTimeout(()=>e.style.display='none',3500)}
+
+/* Grade levels: skills are filtered to within one grade of any assigned grade */
+const inBand=k=>ST.grades.includes('all')||ST.grades.some(g=>Math.abs(ST.gr[k]-g)<=1);
+const _draw=drawMap;drawMap=function(){_draw();document.querySelectorAll('#map .node').forEach((g,i)=>{if(!inBand(ORDER[i]))g.style.opacity=.3})};
+recommend=function(){const L=ORDER.filter(inBand),A=L.length?L:ORDER,up=k=>SK[k].pre.every(x=>!inBand(x)||level(x)>=2);return A.find(k=>level(k)<3&&up(k))||A.find(k=>level(k)<4)||A[0]};
+function gradeBar(){$('gradebar').innerHTML=tab==='learn'?`<div class="gb"><b>Your grades</b>${['all',...GLIST].map(g=>`<button class="chip ${ST.grades.includes(g)?'on':''}" aria-pressed="${ST.grades.includes(g)}" onclick="togG('${g}')">${g==='all'?'All':GN(g)}</button>`).join('')}<span class="sol">Pick several for advanced or catch-up work. The map shows skills within one grade of your picks.</span></div>`:''}
+function togG(g){g=g==='all'?'all':+g;let a=ST.grades.filter(x=>x!=='all');if(g==='all')a=['all'];else a=a.includes(g)?a.filter(x=>x!==g):[...a,g];if(!a.length)a=['all'];ST.grades=a;sv();gradeBar();render()}
+
+
+/* Navigation and roles (role preview is a demo control; real roles are enforced server-side) */
+let can=t=>t=='teacher'?ST.role!='student':t=='owner'?ST.role=='owner':true;
+function nav(){const T=[['learn','Learn'],['courses','Courses'],['teacher','Teacher'],['community','Community'],['downloads','Downloads'],['library','Library'],['certs','Certificates'],['impact','Impact'],['owner','Owner console']];
+$('tabs').innerHTML=T.filter(([k])=>can(k)).map(([k,l])=>`<button class="tb ${tab===k?'on':''}" onclick="showTab('${k}')">${l}</button>`).join('')+`<button class="chip ${ST.lite?'on':''}" aria-pressed="${!!ST.lite}" onclick="setLite(!ST.lite)">Lite mode</button><label class="prev">Preview as <select onchange="ST.role=this.value;sv();showTab(tab)">${['owner','teacher','student'].map(r=>`<option ${ST.role===r?'selected':''}>${r}</option>`).join('')}</select></label>`}
+function showTab(t){tab=can(t)?t:'learn';if(tab!=='teacher'&&liveT){clearInterval(liveT);liveT=null;liveId=null}nav();gradeBar();document.querySelector('.app').hidden=tab!=='learn';const v=$('views');v.hidden=tab==='learn';if(tab==='learn')render();else v.innerHTML=VIEWS[tab]()}
+const r2=()=>showTab(tab);
+
+/* ---------- Teacher dashboard ---------- */
+const cl=id=>ST.classes.find(c=>c.id==id);
+const cap=()=>Infinity;
+const gemTot=c=>c.students.reduce((a,s)=>a+s.gems,0);
+function tView(){const cls=ST.classes.filter(c=>ST.gf==='all'||c.grade==ST.gf);
+return `<h2>Teacher dashboard</h2><div class="card"><h3>Create a class</h3><div class="row"><input id="cn" placeholder="Class name" aria-label="Class name"><select id="cg" aria-label="Grade">${GLIST.map(g=>`<option value="${g}" ${g==5?'selected':''}>${GLAB(g)}</option>`).join('')}</select><input id="cc" placeholder="Region or country" aria-label="Region or country"><button class="lamp" onclick="addClass()">Create class</button></div></div>
+<div class="row"><label>Filter classes by grade <select onchange="ST.gf=this.value;sv();r2()"><option value="all">All grades</option>${GLIST.map(g=>`<option value="${g}" ${ST.gf==g?'selected':''}>${GLAB(g)}</option>`).join('')}</select></label></div>
+${cls.length?cls.map(classCard).join(''):'<p class="sol">No classes yet. Create one above, then add students with an email, a join code, or a CSV file.</p>'}`}
+function classCard(c){const last=c.asg[c.asg.length-1],avg=last&&c.students.length?Math.round(c.students.reduce((a,s)=>a+(s.p[last.id]||0),0)/c.students.length):0,need=last?c.students.filter(s=>(s.p[last.id]||0)<30).map(s=>esc(s.name)):[];
+const skillsIn=ORDER.filter(k=>Math.abs(ST.gr[k]-c.grade)<=1);
+return `<div class="card cls"><div class="split"><h3>${esc(c.name)} <span class="pill">${GLAB(c.grade)}</span></h3><span>Join code <b>${c.code}</b></span></div>
+<h4>Add students</h4><div class="row"><input id="em${c.id}" type="email" placeholder="student@email.com" aria-label="Student email"><button onclick="addStu(${c.id})">Invite by email</button><label class="sol">Bulk upload (name,email per line)<br><input type="file" accept=".csv,.txt" onchange="fileIn(${c.id},this)"></label></div><p class="sol">Students can also join by entering the code above. Email sending is simulated in this demo.</p>
+<h4>Assign work</h4><div class="row"><select id="as${c.id}" aria-label="What to assign"><optgroup label="Skills">${skillsIn.map(k=>`<option value="s:${k}">${SK[k].n} (${SUBN[SK[k].sub]}, Gr ${GN(ST.gr[k])})</option>`).join('')}</optgroup><optgroup label="Units">${Object.entries(UNITS).map(([k,u])=>`<option value="u:${k}">${u[0]}</option>`).join('')}</optgroup></select><select id="at${c.id}" aria-label="Assign to"><option value="all">Whole class</option>${c.students.map((s,i)=>`<option value="${i}">${esc(s.name)}</option>`).join('')}</select><button class="lamp" onclick="assign(${c.id})">Assign</button></div>
+${c.asg.map(a=>`<p class="sol">${esc(a.title)} to ${a.target==='all'?'whole class':esc((c.students[a.target]||{}).name||'student')}</p>`).join('')}
+<h4>Progress${ST.flags['Live Classroom']?` <button class="alt" onclick="live(${c.id})">${liveId===c.id?'Stop live view':'Start live view (simulated)'}</button>`:''}</h4>
+<p class="sol">${last?`Class average on latest assignment: ${avg}%. ${need.length?'Needs help: '+need.join(', ')+'.':'Everyone is on track.'}`:'Assign something to see progress.'}</p>
+<div class="tbl"><table class="vs"><tr><th>Student</th><th>Grades</th><th>Latest assignment</th><th>Gems</th><th>Questions</th></tr>${c.students.map((s,i)=>`<tr><td>${esc(s.name)}<div class="sol">${esc(s.email)}</div></td><td>${s.grades.map(g=>`<button class="chip on" onclick="rmG(${c.id},${i},${g})" aria-label="Remove ${GLAB(g)}">${GN(g)} ×</button>`).join('')}<select onchange="addG(${c.id},${i},this.value)" aria-label="Add grade"><option value="">+</option>${GLIST.map(g=>`<option value="${g}">${GN(g)}</option>`).join('')}</select></td><td><div class="bar sm"><i id="pb${c.id}_${i}" style="width:${last?(s.p[last.id]||0):0}%"></i></div></td><td id="gm${c.id}_${i}">${s.gems}</td><td>${s.q}</td></tr>`).join('')}</table></div>
+${ST.flags['Gem Challenges']?`<h4>Gem Challenge</h4>${c.ch?`<p>Goal: ${c.ch.goal} gems as a class. Reward: <b>${esc(c.ch.reward)}</b></p><div class="bar"><i id="ch${c.id}" style="width:${Math.min(100,(gemTot(c)-c.ch.base)/c.ch.goal*100)}%"></i></div><p class="sol"><span id="chn${c.id}">${Math.max(0,gemTot(c)-c.ch.base)}</span> of ${c.ch.goal} gems</p>`:`<div class="row"><input id="cg2${c.id}" type="number" min="10" placeholder="Gem goal" aria-label="Gem goal"><input id="cr${c.id}" placeholder="Reward (extra recess)" aria-label="Reward"><button onclick="setCh(${c.id})">Start challenge</button></div>`}`:''}
+<h4>Parent report</h4><div class="row"><select id="rp${c.id}" aria-label="Student">${c.students.map((s,i)=>`<option value="${i}">${esc(s.name)}</option>`).join('')}</select><button onclick="report(${c.id})">Preview</button><button class="alt" onclick="try{navigator.clipboard.writeText($('rpt${c.id}').textContent);msg('Copied.')}catch(e){}">Copy</button><label><input type="checkbox" ${(ST.sched||{})[c.id]?'checked':''} onchange="ST.sched=ST.sched||{};ST.sched[${c.id}]=this.checked;sv()"> Send weekly to parents</label></div><pre class="rp" id="rpt${c.id}">Choose a student and select Preview.</pre></div>`}
+function addClass(){const n=$('cn').value.trim();if(!n)return msg('Enter a class name.');ST.classes.push({id:Date.now(),name:n,grade:+$('cg').value,code:Math.random().toString(36).slice(2,8).toUpperCase(),region:($('cc')||{value:''}).value.trim(),students:[],asg:[],ch:null});sv();r2()}
+function mkS(c,name,email){if(c.students.some(s=>s.email===email)||c.students.length>=cap())return 0;c.students.push({name,email,grades:[c.grade],p:{},gems:0,q:0});return 1}
+function addStu(id){const c=cl(id),e=$('em'+id).value.trim().toLowerCase();if(!/^\S+@\S+\.\S+$/.test(e))return msg('Enter a valid email address.');if(!mkS(c,e.split('@')[0],e))return msg('Already added.');sv();r2();msg('Invite ready for '+e+' (demo: no email sent).')}
+function fileIn(id,el){const f=el.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const c=cl(id);let n=0;String(r.result).split(/\r?\n/).forEach(l=>{const [a,b]=l.split(',').map(x=>x.trim());const e=(b||a||'').toLowerCase();if(/^\S+@\S+\.\S+$/.test(e))n+=mkS(c,b?a:e.split('@')[0],e)});sv();r2();msg(n+' students added.')};r.readAsText(f)}
+function addG(id,i,g){if(g==='')return;const s=cl(id).students[i];if(!s.grades.includes(+g))s.grades.push(+g);sv();r2()}
+function rmG(id,i,g){const s=cl(id).students[i];if(s.grades.length>1)s.grades=s.grades.filter(x=>x!==g);sv();r2()}
+function assign(id){const c=cl(id),[ty,key]=$('as'+id).value.split(':'),t=$('at'+id).value;c.asg.push({id:Date.now(),title:ty=='u'?UNITS[key][0]:SK[key].n,skills:ty=='u'?UNITS[key][1]:[key],target:t==='all'?'all':+t});sv();r2();msg('Assigned.')}
+function live(id){if(liveT){clearInterval(liveT);liveT=null;const same=liveId===id;liveId=null;if(same)return r2()}liveId=id;liveT=setInterval(()=>tick(id),1500);r2()}
+function tick(id){const c=cl(id);if(!c||!c.asg.length||tab!=='teacher')return;const a=c.asg[c.asg.length-1];c.students.forEach((s,i)=>{if(a.target!=='all'&&a.target!==i)return;if(Math.random()<.6){s.p[a.id]=Math.min(100,(s.p[a.id]||0)+rnd(2,9));s.q++;s.gems+=rnd(0,3)}const b=$(`pb${id}_${i}`);if(b)b.style.width=(s.p[a.id]||0)+'%';const g=$(`gm${id}_${i}`);if(g)g.textContent=s.gems});if(c.ch){const e=$('ch'+id);if(e){e.style.width=Math.min(100,(gemTot(c)-c.ch.base)/c.ch.goal*100)+'%';$('chn'+id).textContent=Math.max(0,gemTot(c)-c.ch.base)}}sv()}
+function setCh(id){const c=cl(id);c.ch={goal:Math.max(10,+$('cg2'+id).value||100),reward:$('cr'+id).value.trim()||'Class celebration',base:gemTot(c)};sv();r2()}
+function report(id){const c=cl(id),i=+$('rp'+id).value,s=c.students[i];if(!s)return;const a=c.asg.filter(x=>x.target==='all'||x.target===i),d=a.filter(x=>(s.p[x.id]||0)>=100).length;$('rpt'+id).textContent=`Weekly update for ${s.name}\n\nThis week ${s.name} answered ${s.q} practice questions and earned ${s.gems} gems.\n${a.length?`Assignments complete: ${d} of ${a.length}.\n`:''}Steady effort adds up. Ask ${s.name} to show you their knowledge map.\n\n${c.name}`}
+
+/* ---------- Owner console ---------- */
+function oView(){const t=O[ST.ot]?ST.ot:'users';return `<h2>Owner console</h2><div class="row">${[['users','Users'],['mod','Moderation'],['impact','Impact page'],['flags','Feature flags'],['grades','Grade mapping']].map(([k,l])=>`<button class="chip ${t===k?'on':''}" onclick="ST.ot='${k}';r2()">${l}</button>`).join('')}</div><div style="margin-top:16px">${O[t]()}</div>`}
+const O={users(){return `<div class="tbl"><table class="vs"><tr><th>User</th><th>Role</th><th>Status</th><th></th></tr>${ST.users.map(u=>u.role=='owner'?`<tr><td>${esc(u.name)}<div class="sol">${esc(u.email)}</div></td><td>owner</td><td>Active</td><td class="sol">Protected: cannot be demoted, locked or deleted.</td></tr>`:`<tr><td>${esc(u.name)}<div class="sol">${esc(u.email)}</div></td><td><select onchange="modUser(${u.id},'role',this.value)" aria-label="Role">${['student','parent','teacher','school_admin'].map(r=>`<option ${u.role==r?'selected':''}>${r}</option>`).join('')}</select></td><td>${u.locked?'Locked':'Active'}</td><td><button class="alt" onclick="modUser(${u.id},'lock')">${u.locked?'Unlock':'Lock'}</button></td></tr>`).join('')}</table></div>`},
+flags(){return Object.keys(ST.flags).map(k=>`<p><label><input type="checkbox" ${ST.flags[k]?'checked':''} onchange="ST.flags['${k}']=this.checked;sv()"> ${k}</label></p>`).join('')},
+grades(){return `<p class="sol">Choose the grade each skill belongs to. This controls the Learn map, recommendations and teacher assignments.</p><div class="tbl"><table class="vs"><tr><th>Skill</th><th>Grade</th></tr>${ORDER.map(k=>`<tr><td>${SK[k].n} <span class="sol">${SUBN[SK[k].sub]}</span></td><td><select onchange="ST.gr['${k}']=+this.value;sv()" aria-label="Grade for ${SK[k].n}">${GLIST.map(g=>`<option value="${g}" ${ST.gr[k]==g?'selected':''}>${GLAB(g)}</option>`).join('')}</select></td></tr>`).join('')}</table></div>`}};
+function modUser(id,k,v){const u=ST.users.find(x=>x.id==id);if(!u||u.role==='owner')return msg('The Owner account is protected.');if(k=='lock')u.locked=!u.locked;else u.role=v;sv();r2()}
+
+/* ===== Community, impact, downloads, library, certificates, Lite mode ===== */
+const SUBJ=['Math','English / ELA','Science','Social Studies','Computer Science','Financial Literacy','Spanish'];
+ST.classes=ST.classes||[];ST.posts=ST.posts||[];ST.groups=ST.groups||[];ST.certs=ST.certs||[];ST.me=ST.me||{name:'',full:''};ST.secs=ST.secs||0;ST.days=ST.days||[];ST.cs=ST.cs||{view:'qa',subj:'all',grade:'all',group:null};
+ST.block=ST.block||['stupid','idiot','dumb','hate you','shut up'];
+ST.imp=ST.imp||{mission:'Lumen gives every learner, everywhere, free access to clear lessons, unlimited practice and a patient tutor, so that no student is held back by cost or connection.',team:[],partners:[],funds:[['Content creation',40],['Hosting and infrastructure',25],['Accessibility and translation',20],['Reserve',15]],raised:0,goal:0};
+const VIEWS={courses:coView,teacher:tView,owner:oView,community:cmView,downloads:()=>resView('off'),library:()=>resView('lib'),certs:ctView,impact:imView};
+const _ud=update;update=function(...a){_ud(...a);const d=day();if(!ST.days.includes(d))ST.days.push(d);sv()};
+setInterval(()=>{if(tab==='learn'&&view==='practice'&&!document.hidden){ST.secs+=5;if(ST.secs%60==0)sv()}},5000);
+const gSel=(id,v)=>`<select id="${id}" aria-label="Grade">${GLIST.map(g=>`<option value="${g}" ${g==v?'selected':''}>${GLAB(g)}</option>`).join('')}</select>`;
+const sSel=(id,v)=>`<select id="${id}" aria-label="Subject">${SUBJ.map(x=>`<option ${x==v?'selected':''}>${x}</option>`).join('')}</select>`;
+
+/* Lite mode: text-first, no glow or animation, system fonts, remembered */
+function setLite(v){ST.lite=v;sv();document.documentElement.dataset.lite=v?'1':'';nav();render();msg(v?'Lite mode on: no animations, glow or web fonts.':'Lite mode off. Reload to restore web fonts.')}
+if(ST.lite)document.documentElement.dataset.lite='1';
+
+/* ---------- Community ---------- */
+let isMod=()=>ST.role==='owner'||ST.role==='teacher',who=()=>ST.me.name;
+function clean(t){const l=t.toLowerCase();if(/[\w.+-]+@[\w-]+\.[\w.]+/.test(t)||/\+?\d[\d\s().-]{8,}\d/.test(t))return "Posts can't include emails or phone numbers. Remove them to protect your privacy.";return ST.block.some(b=>b&&l.includes(b))?"That includes language we don't allow here. Please rephrase it kindly.":''}
+function setName(){const v=$('dn').value.trim().slice(0,20),e=clean(v);if(!v||e)return msg(e||'Enter a display name.');ST.me.name=v;sv();msg('Saved.')}
+function cmView(){const c=ST.cs,V=c.view,f=p=>(c.subj==='all'||p.subject===c.subj)&&(c.grade==='all'||p.grade==c.grade)&&(!p.hidden||isMod());let body;
+if(V=='groups')body=groupView();else{const L=ST.posts.filter(p=>!p.group&&p.type==(V=='qa'?'q':'d')&&f(p)).sort((a,b)=>(b.pinned?1:0)-(a.pinned?1:0)||(V=='qa'?b.votes.length-a.votes.length:0)||b.ts-a.ts);body=newForm(V=='qa'?'q':'d')+(L.length?L.map(postCard).join(''):'<p class="sol">Nothing here yet. Be the first to post.</p>')}
+return `<h2>Community</h2><div class="row"><label>Display name <input id="dn" value="${esc(ST.me.name)}" placeholder="Pick a nickname" maxlength="20"></label><button class="alt" onclick="setName()">Save</button></div><p class="sol">Use a nickname, not your full name. Never share emails, phone numbers or where you live. Posts are checked automatically, and three reports hide a post until a teacher or the Owner reviews it.</p>
+<div class="row">${[['qa','Questions &amp; answers'],['disc','Discussion boards'],['groups','Study groups']].map(([k,l])=>`<button class="chip ${V===k?'on':''}" onclick="ST.cs.view='${k}';ST.cs.group=null;sv();r2()">${l}</button>`).join('')}
+<select aria-label="Subject filter" onchange="ST.cs.subj=this.value;sv();r2()"><option value="all">All subjects</option>${SUBJ.map(x=>`<option ${c.subj==x?'selected':''}>${x}</option>`).join('')}</select><select aria-label="Grade filter" onchange="ST.cs.grade=this.value;sv();r2()"><option value="all">All grades</option>${GLIST.map(g=>`<option value="${g}" ${c.grade==g?'selected':''}>${GLAB(g)}</option>`).join('')}</select></div>${body}`}
+function newForm(type,gid){return `<div class="card" style="margin-top:12px"><h3>${type=='q'?'Ask a question':'Start a discussion'}</h3><div class="row">${gid?'':sSel('ps',ST.cs.subj=='all'?'Math':ST.cs.subj)+gSel('pg',ST.cs.grade=='all'?(ST.grades.find(g=>g!=='all')||5):+ST.cs.grade)}</div><div class="row"><input id="pt" placeholder="Title" style="flex:1" aria-label="Title"></div><div class="row"><textarea id="pb" placeholder="Add detail: what have you tried?" aria-label="Details"></textarea></div><div class="row"><button class="lamp" onclick="post('${type}',${gid||0})">Post</button></div></div>`}
+function post(type,gid){const w=who();if(!w)return msg('Save a display name first.');const t=$('pt').value.trim(),b=$('pb').value.trim();if(t.length<5||b.length<10)return msg('Add a title (5+ characters) and some detail (10+).');const e=clean(t+' '+b);if(e)return msg(e);const g=gid?ST.groups.find(x=>x.id==gid):null;ST.posts.push({id:Date.now(),type,group:gid||null,subject:g?g.subject:$('ps').value,grade:g?g.grade:+$('pg').value,title:t,body:b,author:w,ts:Date.now(),votes:[],replies:[],reports:[],hidden:false});sv();r2()}
+function postCard(p){const w=who();return `<div class="card post ${p.hidden?'hid':''}"><div class="split"><h3>${esc(p.title)}</h3><span class="sol">${esc(p.subject)}, ${GLAB(p.grade)}</span></div><p>${esc(p.body)}</p><p class="sol">${esc(p.author)}, ${new Date(p.ts).toLocaleDateString()}${p.pinned?', pinned':''}${p.locked?', locked':''}${p.hidden?', hidden':''}</p>
+<div class="row" style="margin-top:6px">${p.type=='q'?`<button class="chip ${p.votes.includes(w)?'on':''}" aria-label="Upvote" onclick="vote(${p.id})">▲ ${p.votes.length}</button>`:''}<button class="chip" onclick="rep(${p.id},'p')">Report</button>${isMod()?`<button class="chip" onclick="mod(${p.id},'hide')">${p.hidden?'Restore':'Hide'}</button><button class="chip" onclick="mod(${p.id},'pin')">${p.pinned?'Unpin':'Pin'}</button><button class="chip" onclick="mod(${p.id},'lock')">${p.locked?'Unlock':'Lock'}</button><button class="chip" onclick="mod(${p.id},'del')">Delete</button>`:''}</div>
+${p.replies.filter(r=>!r.hidden||isMod()).map(r=>`<div class="reply"><p>${esc(r.body)}</p><p class="sol">${esc(r.author)} <button class="chip" onclick="rep(${p.id},${r.id})">Report</button>${isMod()?` <button class="chip" onclick="modR(${p.id},${r.id})">${r.hidden?'Restore':'Hide'}</button>`:''}</p></div>`).join('')}
+${p.locked?'':`<div class="row"><input id="pr${p.id}" placeholder="Write a reply" aria-label="Reply" style="flex:1"><button onclick="reply(${p.id})">Reply</button></div>`}</div>`}
+function reply(id){const w=who();if(!w)return msg('Save a display name first.');const p=ST.posts.find(x=>x.id==id),b=$('pr'+id).value.trim();if(b.length<2)return;const e=clean(b);if(e)return msg(e);p.replies.push({id:Date.now(),author:w,body:b,reports:[],hidden:false});sv();r2()}
+function vote(id){const w=who();if(!w)return msg('Save a display name first.');const v=ST.posts.find(x=>x.id==id).votes,i=v.indexOf(w);i<0?v.push(w):v.splice(i,1);sv();r2()}
+function rep(pid,rid){const w=who();if(!w)return msg('Save a display name first.');const p=ST.posts.find(x=>x.id==pid),t=rid=='p'?p:p.replies.find(x=>x.id==rid);if(!t.reports.includes(w))t.reports.push(w);if(t.reports.length>=3)t.hidden=true;sv();r2();msg('Thanks. A moderator will review this.')}
+function mod(id,a){const p=ST.posts.find(x=>x.id==id);if(!isMod()||!p)return;if(a=='del')ST.posts=ST.posts.filter(x=>x!==p);else if(a=='hide')p.hidden=!p.hidden;else if(a=='pin')p.pinned=!p.pinned;else p.locked=!p.locked;sv();r2()}
+function modR(pid,rid){if(!isMod())return;const r=ST.posts.find(x=>x.id==pid).replies.find(x=>x.id==rid);r.hidden=!r.hidden;sv();r2()}
+function groupView(){const g=ST.groups.find(x=>x.id==ST.cs.group),w=who();
+if(g){const m=g.members.includes(w);return `<div class="row"><button class="alt" onclick="ST.cs.group=null;r2()">Back to groups</button>${m?`<button class="alt" onclick="joinG(${g.id})">Leave group</button>`:`<button class="lamp" onclick="joinG(${g.id})">Join group</button>`}</div><h3 style="margin-top:12px">${esc(g.name)}</h3><p class="sol">${esc(g.subject)}, ${GLAB(g.grade)}, ${g.members.length} members</p>${m?newForm('d',g.id):'<p class="sol">Join the group to post.</p>'}${ST.posts.filter(p=>p.group==g.id&&(!p.hidden||isMod())).map(postCard).join('')}`}
+const L=ST.groups.filter(x=>(ST.cs.subj==='all'||x.subject===ST.cs.subj)&&(ST.cs.grade==='all'||x.grade==ST.cs.grade));
+return `<div class="card" style="margin-top:12px"><h3>Create a study group</h3><div class="row"><input id="gn" placeholder="Group name" aria-label="Group name">${sSel('gs','Math')}${gSel('gg',5)}<button class="lamp" onclick="mkG()">Create</button></div></div>${L.length?L.map(x=>`<div class="card post"><div class="split"><h3>${esc(x.name)}</h3><span class="sol">${esc(x.subject)}, ${GLAB(x.grade)}, ${x.members.length} members</span></div><div class="row"><button onclick="ST.cs.group=${x.id};r2()">Open</button><button class="alt" onclick="joinG(${x.id})">${x.members.includes(w)?'Leave':'Join'}</button></div></div>`).join(''):'<p class="sol">No study groups yet. Create the first one.</p>'}`}
+function mkG(){const w=who();if(!w)return msg('Save a display name first.');const n=$('gn').value.trim(),e=clean(n);if(n.length<3||e)return msg(e||'Give the group a name (3+ characters).');ST.groups.push({id:Date.now(),name:n,subject:$('gs').value,grade:+$('gg').value,members:[w]});sv();r2()}
+function joinG(id){const w=who();if(!w)return msg('Save a display name first.');const g=ST.groups.find(x=>x.id==id),i=g.members.indexOf(w);i<0?g.members.push(w):g.members.splice(i,1);sv();r2()}
+
+/* ---------- Impact page (figures come from this device until the backend totals every learner) ---------- */
+function imView(){const I=ST.imp,qs=ORDER.reduce((a,k)=>a+S[k].att,0),stu=new Set(ST.classes.flatMap(c=>c.students.map(x=>x.email))),learners=stu.size+(qs>0?1:0),regions=new Set(ST.classes.map(c=>c.region).filter(Boolean)),ans=ST.posts.filter(p=>p.type=='q'&&p.replies.some(r=>r.author!==p.author)),helped=new Set([...stu,...ans.map(p=>p.author)]).size,hrs=(ST.secs/3600).toFixed(1);
+return `<h2>Our impact</h2><div class="stats"><div class="card"><b>${learners}</b><span>Active learners</span></div><div class="card"><b>${hrs}</b><span>Hours of learning</span></div><div class="card"><b>${regions.size}</b><span>Regions or countries</span></div><div class="card"><b>${helped}</b><span>Students helped</span></div></div>
+<p class="sol">Live counts from data on this device. After the backend is connected they become totals across all learners. Students helped means students in classes plus students whose question got a peer answer.</p>
+<div class="card" style="margin-top:14px"><h3>Mission</h3><p>${esc(I.mission)}</p></div>
+<div class="card" style="margin-top:14px"><h3>Leadership and team</h3>${I.team.length?'<ul>'+I.team.map(t=>`<li><b>${esc(t[0])}</b>${t[1]?', '+esc(t[1]):''}</li>`).join('')+'</ul>':'<p class="sol">The Owner can add team members in the Owner console.</p>'}</div>
+<div class="card" style="margin-top:14px"><h3>Partner organizations</h3>${I.partners.length?'<ul>'+I.partners.map(t=>`<li>${esc(t)}</li>`).join('')+'</ul>':'<p class="sol">No partners listed yet.</p>'}</div>
+<div class="card" style="margin-top:14px"><h3>How donations are used</h3>${I.goal?`<div class="bar"><i style="width:${Math.min(100,I.raised/I.goal*100)}%"></i></div><p class="sol">${$$(I.raised*100)} raised of ${$$(I.goal*100)} goal</p>`:''}<p class="sol">Planned allocation of every dollar:</p>${I.funds.map(f=>`<div class="fund"><span>${esc(f[0])}</span><div class="bar sm"><i style="width:${f[1]}%"></i></div><b>${f[1]}%</b></div>`).join('')}</div>`}
+O.impact=function(){const I=ST.imp;return `<p class="sol">Edit what the public Impact page shows. Funds are percentages and should total 100.</p><div class="card"><label>Mission<textarea id="im">${esc(I.mission)}</textarea></label><label>Team, one per line as Name, Role<textarea id="it">${esc(I.team.map(t=>t.join(', ')).join('\n'))}</textarea></label><label>Partner organizations, one per line<textarea id="ip">${esc(I.partners.join('\n'))}</textarea></label><label>Funds, one per line as Label, Percent<textarea id="if">${esc(I.funds.map(f=>f.join(', ')).join('\n'))}</textarea></label><div class="row"><label>Raised ($)<input id="ir" type="number" min="0" value="${I.raised}"></label><label>Goal ($)<input id="ig" type="number" min="0" value="${I.goal}"></label></div><div class="row"><button class="lamp" onclick="saveImp()">Save</button></div></div>`};
+function saveImp(){const L=id=>$(id).value.split('\n').map(x=>x.trim()).filter(Boolean),funds=L('if').map(l=>{const i=l.lastIndexOf(',');return [l.slice(0,i).trim(),Math.max(0,Math.min(100,+l.slice(i+1)||0))]}),tot=funds.reduce((a,f)=>a+f[1],0);if(funds.length&&tot!==100)return msg(`Funds total ${tot}%. They must total 100%.`);ST.imp={mission:$('im').value.trim(),team:L('it').map(l=>{const i=l.indexOf(',');return i<0?[l,'']:[l.slice(0,i).trim(),l.slice(i+1).trim()]}),partners:L('ip'),funds,raised:+$('ir').value||0,goal:+$('ig').value||0};sv();msg('Impact page updated.')}
+O.mod=function(){const Q=ST.posts.filter(p=>p.hidden||p.reports.length);return `<h3>Blocked words</h3><p class="sol">Posts containing these are rejected automatically. Emails and phone numbers are always blocked.</p><div class="row"><textarea id="bw" aria-label="Blocked words">${esc(ST.block.join(', '))}</textarea><button class="lamp" onclick="ST.block=$('bw').value.split(',').map(x=>x.trim().toLowerCase()).filter(Boolean);sv();msg('Saved.')">Save</button></div><h3 style="margin-top:18px">Review queue</h3>${Q.length?Q.map(p=>`<div class="card post"><b>${esc(p.title)}</b> <span class="sol">by ${esc(p.author)}, ${p.reports.length} reports${p.hidden?', hidden':''}</span><p>${esc(p.body)}</p><div class="row"><button onclick="qa(${p.id},1)">Keep visible</button><button class="alt" onclick="qa(${p.id},0)">Delete</button></div></div>`).join(''):'<p class="sol">Nothing to review.</p>'}`};
+function qa(id,keep){const p=ST.posts.find(x=>x.id==id);if(ST.role!=='owner'||!p)return;if(keep){p.hidden=false;p.reports=[]}else ST.posts=ST.posts.filter(x=>x!==p);sv();r2()}
+
+/* ---------- Downloads and Open library: real files generated from the skill problem generators ---------- */
+const plain=h=>h.replace(/<ul>/g,'\n').replace(/<\/li>/g,'\n').replace(/<span class="fr"><i>(.*?)<\/i><i>(.*?)<\/i><\/span>/g,'($1/$2)').replace(/<[^>]+>/g,'').replace(/−/g,'-'),ans=a=>a[1]==1?''+a[0]:a[0]+'/'+a[1];
+const pr=(k,n,d)=>{const o=[],z=new Set();for(let i=0;i<n*10&&o.length<n;i++){const q=G[k](d);if(!z.has(q.q)){z.add(q.q);o.push(q)}}return o};
+function content(kind,k){const n=SK[k],g=GLAB(ST.gr[k]),A=(P,o=0)=>P.map((q,i)=>['p',`${i+1+o}.  ${qt(q)}`]),K=(P,o=0)=>P.map((q,i)=>['p',`${i+1+o}.  ${an(q)}`]),hd=['p',g+'      Name: __________________      Date: ____________'];
+if(kind=='worksheet'){const P=[...pr(k,6,1),...pr(k,6,2),...pr(k,4,3)].filter((q,i,a)=>a.findIndex(z=>z.q===q.q)===i);return{file:k+'-worksheet',doc:[['T',n.n+' worksheet'],hd,...A(P),['pb'],['h','Answer key'],...K(P)]}}
+if(kind=='packet'){const E=pr(k,2,1),P=pr(k,8,2);return{file:k+'-lesson-packet',doc:[['T',n.n+' lesson packet'],hd,['h','The idea'],['p',n.c],['h','Worked examples'],...E.flatMap(e=>[['p','Problem: '+qt(e)],['p','Solution: '+plain(e.s)]]),['h','Try it yourself'],...A(P),['pb'],['h','Answer key'],...K(P)]}}
+if(kind=='plan'){const W=pr(k,2,1),I=pr(k,4,2),X=pr(k,6,2),T=pr(k,2,2),H=pr(k,3,3),ex=G[k](1);return{file:k+'-lesson-plan',doc:[['T',n.n+': lesson plan'],['p',g+'. About 45 minutes. Materials: pencils, paper, whiteboard or projector.'],['h','Objective'],['p','Students will practice and explain: '+n.n+'.'],['h','Warm-up (5 min)'],...A(W),['h','Direct instruction (10 min)'],['p',n.c],['p','Model: '+qt(ex)],['p',plain(ex.s)],['h','Guided practice (10 min)'],['p','Work these together. Ask students to explain each step before you confirm it.'],...A(I),['h','Independent practice (15 min)'],...A(X),['h','Exit ticket (5 min)'],...A(T),['h','Differentiation'],['p','Support: give the first hint, "'+plain(ex.h[0])+'", then let students try again. Extension: use these harder problems.'],...A(H),['pb'],['h','Answer key'],['p','Warm-up'],...K(W),['p','Guided'],...K(I),['p','Independent'],...K(X),['p','Exit ticket'],...K(T),['p','Extension'],...K(H)]}}
+if(kind=='activity'){const P=pr(k,12,2);return{file:k+'-activity-cards',doc:[['T',n.n+': partner problem cards'],['p',g],['h','How to play'],['p','1. Cut out the cards and shuffle them. 2. Partners take turns drawing a card. 3. Solve it aloud, explaining each step. 4. Your partner checks it against the answer key. 5. Swap roles. Play until the cards run out.'],['h','Cards'],...P.map((q,i)=>['p',`[ Card ${i+1} ]   ${qt(q)}`]),['pb'],['h','Answer key'],...K(P)]}}
+if(kind=='slides'){const ex=G[k](1),Y=pr(k,3,2),T=pr(k,2,2);return{file:k+'-slides',slides:[[n.n,[g,'Free lesson slides']],['Warm-up',['Try this one on your own:',qt(pr(k,1,1)[0])]],['The idea',[n.c]],['Worked example',[qt(ex),plain(ex.s)]],['Your turn',Y.map(q=>qt(q))],['Exit ticket',T.map(q=>qt(q))],['Remember',[n.c]]]}}}
+const tx=x=>plain(x).replace(/[^\x00-\xFF]/g,'');
+function saveBlob(b,name){const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),4000)}
+/* Built-in PDF writer: no downloads or libraries, so it works offline */
+function pdfDoc(land){const W=land?792:612,H=land?612:792,pg=[[]],cv=document.createElement('canvas').getContext('2d'),e=t=>t.replace(/[\\()]/g,'\\$&');
+const d={W,H,w:(t,z,b)=>{cv.font=(b?'bold ':'')+z+'px Arial';return cv.measureText(t).width},
+wrap(t,z,b,max){const o=[];String(t).split('\n').forEach(q=>{let l='';q.split(' ').forEach(w=>{const n=l?l+' '+w:w;if(d.w(n,z,b)>max&&l){o.push(l);l=w}else l=n});o.push(l)});return o},
+text(t,x,y,z,b,c){if(c)x-=d.w(t,z,b)/2;pg[pg.length-1].push(`BT /F${b?2:1} ${z} Tf ${x.toFixed(1)} ${(H-y).toFixed(1)} Td (${e(t)}) Tj ET`)},
+rect(x,y,w,h,lw,col){pg[pg.length-1].push(`${col} RG ${lw} w ${x} ${H-y-h} ${w} ${h} re S`)},
+add(){pg.push([])},
+bytes(){let s='%PDF-1.4\n';const off=[],n=pg.length,obj=(i,b)=>{off[i]=s.length;s+=`${i} 0 obj\n${b}\nendobj\n`};
+obj(1,'<</Type/Catalog/Pages 2 0 R>>');obj(2,`<</Type/Pages/Kids[${pg.map((_,i)=>`${5+i*2} 0 R`).join(' ')}]/Count ${n}>>`);obj(3,'<</Type/Font/Subtype/Type1/BaseFont/Helvetica/Encoding/WinAnsiEncoding>>');obj(4,'<</Type/Font/Subtype/Type1/BaseFont/Helvetica-Bold/Encoding/WinAnsiEncoding>>');
+pg.forEach((c,i)=>{const body=c.join('\n');obj(5+i*2,`<</Type/Page/Parent 2 0 R/MediaBox[0 0 ${W} ${H}]/Resources<</Font<</F1 3 0 R/F2 4 0 R>>>>/Contents ${6+i*2} 0 R>>`);obj(6+i*2,`<</Length ${body.length}>>\nstream\n${body}\nendstream`)});
+const x=s.length,N=5+n*2;s+=`xref\n0 ${N}\n0000000000 65535 f \n`+off.slice(1).map(v=>String(v).padStart(10,'0')+' 00000 n \n').join('')+`trailer\n<</Size ${N}/Root 1 0 R>>\nstartxref\n${x}\n%%EOF`;
+const u=new Uint8Array(s.length);for(let i=0;i<s.length;i++)u[i]=s.charCodeAt(i)&255;return u}};return d}
+function pdfBytes(c){const d=pdfDoc(!!c.slides),W=d.W,H=d.H;
+if(c.slides)c.slides.forEach((sl,i)=>{if(i)d.add();let y=90;d.wrap(tx(sl[0]),34,1,W-120).forEach(l=>{d.text(l,60,y,34,1);y+=42});y=Math.max(y+20,160);
+let z=24,L;for(const f of [24,20,17,14,12]){z=f;L=sl[1].map(l=>d.wrap(tx(l),z,0,W-120));if(y+L.reduce((a,b)=>a+b.length*(z+8)+10,0)<=H-40)break}
+L.forEach(g=>{g.forEach(m=>{d.text(m,60,y,z,0);y+=z+8});y+=10})});
+else{let y=64;for(const [t,x] of c.doc){if(t=='pb'){d.add();y=64;continue}const z=t=='T'?22:t=='h'?15:12,b=t=='T'||t=='h',lh=t=='T'?28:t=='h'?22:17;d.wrap(tx(x),z,b,W-108).forEach(l=>{if(y>H-54){d.add();y=64}d.text(l,54,y,z,b);y+=lh});y+=t=='h'?4:2}}
+return d.bytes()}
+function dl(kind,k){const c=content(kind,k);try{saveBlob(new Blob([pdfBytes(c)],{type:'application/pdf'}),c.file+'.pdf')}catch(e){const h='<!doctype html><meta charset="utf-8"><title>'+esc(c.file)+'</title><body style="font:16px/1.6 sans-serif;max-width:720px;margin:2em auto">'+(c.slides?c.slides.map(q=>`<h2>${esc(q[0])}</h2>`+q[1].map(l=>`<p>${esc(l)}</p>`).join('')+'<hr>').join(''):c.doc.map(([t,x])=>t=='T'?`<h1>${esc(plain(x))}</h1>`:t=='h'?`<h2>${esc(plain(x))}</h2>`:t=='pb'?'<hr style="page-break-after:always">':`<p>${esc(plain(x))}</p>`).join(''));saveBlob(new Blob([h],{type:'text/html'}),c.file+'.html');msg('Saved as a printable page. Open it and choose Print.')}}
+function spoken(k){const n=SK[k],p=G[k](1);return `${n.n}. ${n.c} Here is an example. ${qt(p)}. ${plain(p.s)} Now pause and try one yourself. ${qt(G[k](2))}.`.replace(/\((\d+)\/(\d+)\)/g,'$1 over $2').replace(/×/g,' times ').replace(/÷/g,' divided by ').replace(/\+/g,' plus ').replace(/=/g,' equals ').replace(/\?/g,' what ')}
+function listen(k){if(!('speechSynthesis' in window))return msg("This device can't read aloud.");speechSynthesis.cancel();speechSynthesis.speak(new SpeechSynthesisUtterance(spoken(k)))}
+function script(k){saveBlob(new Blob([spoken(k)],{type:'text/plain'}),k+'-audio-script.txt')}
+function resView(mode){const r=ST.rs=ST.rs||{subj:'Math',grade:'all'},T=mode=='off'?[['worksheet','Worksheet (PDF)'],['packet','Lesson packet (PDF)']]:[['plan','Lesson plan (PDF)'],['slides','Slide deck (PDF)'],['worksheet','Worksheet (PDF)'],['activity','Classroom activity (PDF)']];
+const L=ORDER.filter(k=>SK[k].sub===SUBID[r.subj]&&(r.grade=='all'||ST.gr[k]==r.grade)).sort((a,b)=>ST.gr[a]-ST.gr[b]);
+return `<h2>${mode=='off'?'Offline downloads':'Open resource library'}</h2><p class="sol">${mode=='off'?'Download once, then use without an internet connection. Printable worksheets, lesson packets and audio lessons.':'Free lesson plans, slide decks, worksheets and classroom activities. Print them, copy them, share them.'} Every file is generated fresh, with new problems and an answer key.</p>
+<div class="row"><select aria-label="Subject" onchange="ST.rs.subj=this.value;r2()">${SUBJ.map(x=>`<option ${r.subj==x?'selected':''}>${x}</option>`).join('')}</select><select aria-label="Grade" onchange="ST.rs.grade=this.value;r2()"><option value="all">All grades</option>${GLIST.map(g=>`<option value="${g}" ${r.grade==g?'selected':''}>${GLAB(g)}</option>`).join('')}</select></div>
+${L.length?L.map(k=>`<div class="card post"><div class="split"><h3>${SK[k].n}</h3><span class="sol">${GLAB(ST.gr[k])}</span></div><div class="row">${T.map(([t,l])=>`<button class="alt" onclick="dl('${t}','${k}')">${l}</button>`).join('')}${mode=='off'?`<button class="alt" onclick="listen('${k}')">Listen</button><button class="alt" onclick="script('${k}')">Audio script (text)</button>`:''}</div></div>`).join(''):`<p class="sol">No ${r.subj} resources at this grade yet. Try another grade.</p>`}
+${mode=='off'?'<p class="sol">Listen uses your device\'s built-in voice, which works offline on most devices. Recorded MP3 lessons need to be produced and added to the site separately.</p>':''}`}
+
+/* ---------- Certificates and badges ---------- */
+const qsum=()=>ORDER.reduce((a,k)=>a+S[k].att,0);
+const COURSES=[...Object.entries(UNITS).map(([k,u])=>({id:'u-'+k,name:u[0]+' (Math)',skills:u[1]})),{id:'c-math',name:'Math course: Fractions and Equations',skills:ORDER}];
+const MIL=[['m10','First 10 questions',()=>qsum()>=10],['m100','100 questions',()=>qsum()>=100],['m500','500 questions',()=>qsum()>=500],['m1','First skill mastered',()=>ORDER.some(k=>level(k)==4)],['m5','5 practice days',()=>ST.days.length>=5]];
+const chk=t=>{let h=2166136261;for(const c of t){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return(h>>>0).toString(36).toUpperCase().padStart(4,'0').slice(-4)};
+const newId=()=>{const r=()=>Math.random().toString(36).slice(2,6).toUpperCase().padEnd(4,'X'),a=r(),b=r();return `LUM-${a}-${b}-${chk(a+b)}`};
+const okId=id=>{const m=/^LUM-(\w{4})-(\w{4})-(\w{4})$/.exec(id.trim().toUpperCase());return !!m&&chk(m[1]+m[2])===m[3]};
+const link=c=>location.origin+'/c/'+c.id;
+function claim(key,course,kind){if(!ST.me.full)return msg('Enter the name for your certificate first.');if(ST.certs.some(c=>c.key==key))return;ST.certs.push({key,id:newId(),name:ST.me.full,course,kind,date:new Date().toISOString().slice(0,10)});sv();r2()}
+function certHtml(c){return `<div class="cert"><p class="sol">${c.kind=='badge'?'Milestone badge':'Certificate of completion'}</p><div class="nm">${esc(c.name)}</div><p>${c.kind=='badge'?'earned':'completed'}</p><h3>${esc(c.course)}</h3><p class="sol">${c.date}, Verification ID <b>${c.id}</b></p></div>`}
+function ctView(){let top='';const m=location.hash.match(/^#cert=(.+)$/);
+if(m){try{const a=JSON.parse(decodeURIComponent(escape(atob(m[1]))));top=`<h3>Shared certificate</h3>${certHtml({id:a[0],name:a[1],course:a[2],date:a[3],kind:'course'})}<p class="sol">${okId(a[0])?'This ID is correctly formed. Confirming that Lumen issued it requires the registry on the server.':'This ID is not valid.'}</p>`}catch(e){top='<p class="sol">That certificate link is damaged.</p>'}}
+const mine=ST.certs,have=k=>mine.some(c=>c.key==k);
+return `<h2>Certificates and badges</h2>${top}<div class="row"><label>Name on certificates <input id="fn" value="${esc(ST.me.full)}" placeholder="Your name" maxlength="40"></label><button class="alt" onclick="ST.me.full=$('fn').value.trim();sv();msg('Saved.')">Save</button></div>
+<h3 style="margin-top:16px">Courses and units</h3>${COURSES.map(c=>{const n=c.skills.filter(k=>level(k)>=3).length;return `<div class="card post"><div class="split"><b>${c.name}</b><span class="sol">${n} of ${c.skills.length} skills Proficient</span></div><div class="bar sm"><i style="width:${n/c.skills.length*100}%"></i></div>${have(c.id)?'<span class="pill">Certificate earned</span>':earned(c)?`<button class="lamp" onclick="claim('${c.id}','${esc(c.name)}','course')">Get certificate</button>`:'<span class="sol">Reach Proficient on every skill to earn this.</span>'}</div>`}).join('')}
+<h3 style="margin-top:16px">Milestone badges</h3><div class="badges">${MIL.map(([id,l,f])=>{const ok=f();return `<div class="card ${ok||have(id)?'':'off'}"><b>${l}</b><div>${have(id)?'<span class="pill">Earned</span>':ok?`<button class="lamp" onclick="claim('${id}','${l}','badge')">Claim</button>`:'Locked'}</div></div>`}).join('')}</div>
+<h3 style="margin-top:16px">Your certificates</h3>${mine.length?mine.map((c,i)=>certHtml(c)+`<div class="row" style="justify-content:center"><button onclick="certPdf(${i})">Download PDF</button><button class="alt" onclick="copyL(${i})">Copy share link</button>${navigator.share?`<button class="alt" onclick="navigator.share({title:'My Lumen certificate',url:link(ST.certs[${i}])})">Share</button>`:''}</div>`).join(''):'<p class="sol">Earned certificates and badges appear here.</p>'}
+<h3 style="margin-top:16px">Verify an ID</h3><div class="row"><input id="vi" placeholder="LUM-XXXX-XXXX-XXXX" aria-label="Verification ID"><button onclick="verify()">Check</button></div><p class="sol" id="vr"></p>`}
+const earned=c=>c.skills.every(k=>level(k)>=3);
+function copyL(i){const l=link(ST.certs[i]);try{navigator.clipboard.writeText(l);msg('Link copied.')}catch(e){prompt('Copy this link',l)}}
+function verify(){const id=$('vi').value.trim().toUpperCase(),c=ST.certs.find(x=>x.id==id);$('vr').textContent=c?`Valid. Issued to ${c.name} for ${c.course} on ${c.date}.`:okId(id)?'The ID is correctly formed, but this device has no record of it. Confirming it needs the server registry.':'That ID is not valid.'}
+function certPdf(i){const c=ST.certs[i],d=pdfDoc(1),W=d.W,gold='0.949 0.663 0';d.rect(30,30,W-60,552,6,gold);d.rect(42,42,W-84,528,1.5,gold);d.text('LUMEN',W/2,100,20,1,1);d.text(c.kind=='badge'?'Milestone Badge':'Certificate of Completion',W/2,160,34,1,1);d.text('This certifies that',W/2,220,16,0,1);let z=40;const nm=tx(c.name);while(d.w(nm,z,1)>W-120&&z>16)z-=2;d.text(nm,W/2,280,z,1,1);d.text(c.kind=='badge'?'has earned':'has successfully completed',W/2,326,16,0,1);let y=376;d.wrap(tx(c.course),26,1,600).forEach(l=>{d.text(l,W/2,y,26,1,1);y+=32});d.text('Date: '+c.date,W/2,450,13,0,1);d.text('Verification ID: '+c.id,W/2,474,13,0,1);const L=link(c);for(let j=0,yy=520;j<L.length;j+=120,yy+=11)d.text(L.slice(j,j+120),W/2,yy,8,0,1);saveBlob(new Blob([d.bytes()],{type:'application/pdf'}),'lumen-'+c.id+'.pdf')}
+
+/* ===== More grades and subjects ===== */
+const SUBN={math:'Math',ela:'English / ELA',sci:'Science',soc:'Social Studies',cs:'Computer Science',fin:'Financial Literacy',es:'Spanish'};
+const SUBID=Object.fromEntries(Object.entries(SUBN).map(([k,v])=>[v,k]));
+ORDER.forEach(k=>{SK[k].sub='math'});
+const sg=n=>n<0?'- '+(-n):'+ '+n;
+const NM=[['pkcount',-1,'Counting objects',[],'Say one number for each thing. The last number you say tells how many there are.'],['kadd',0,'Adding within 10',['pkcount'],'Adding puts groups together. Count up from the bigger number.'],['g1add',1,'Adding within 20',['kadd'],'Make a ten first, then add the rest.'],['g2sub',2,'Subtracting within 100',['g1add'],'Subtract the tens, then the ones. Or count up from the smaller number.'],['percent',7,'Percent of a number',['multfrac'],'Percent means out of 100. 10% is one tenth, 25% is one quarter, 50% is half.'],['slope',8,'Slope of a line',['twostep'],'Slope is rise over run: the change in y divided by the change in x.'],['lineq',9,'Equations with x on both sides',['twostep'],'Collect the x terms on one side and the numbers on the other, then solve.'],['quadeval',10,'Evaluating quadratics',['lineq'],'Replace x with the number. Square first, then multiply, then add.'],['logs',11,'Logarithms',['quadeval'],'log base b of n asks: b to what power equals n?'],['deriv',12,'Power rule derivatives',['quadeval'],'The derivative of a*x^n is a*n*x^(n-1). Then put in the x value.'],['integral',13,'Definite integrals',['deriv'],'The integral of a*x from 0 to b is a*b^2/2.']];
+NM.forEach(([id,g,n,pre,c])=>{SK[id]={n,sub:'math',pre,c};ORDER.push(id);if(ST.gr[id]==null)ST.gr[id]=g});
+Object.assign(G,{
+pkcount(d){const n=rnd(1,Math.min(10,4+d*2));return{q:'How many circles? '+Array(n).fill('O').join(' '),a:[n,1],h:['Point to each circle and count out loud.','Touch each circle only once as you count.','The last number you say is the answer.'],s:`There are ${n} circles.`}},
+kadd(){const a=rnd(1,5),b=rnd(1,5);return{q:`${a} + ${b} = ?`,a:[a+b,1],h:[`Start at ${a} and count up ${b} more.`,`Hold up ${a} fingers, then ${b} more.`,'Count all the fingers together.'],s:`${a} + ${b} = ${a+b}.`}},
+g1add(){const a=rnd(6,11),b=rnd(3,9);return{q:`${a} + ${b} = ?`,a:[a+b,1],h:[`How many more to make 10 from ${a}?`,`Split ${b} into the part that makes 10 and the rest.`,'Add the leftover to 10.'],s:`${a} + ${b} = ${a+b}.`}},
+g2sub(){const a=rnd(30,99),b=rnd(11,a-10);return{q:`${a} - ${b} = ?`,a:[a-b,1],h:['Split the number you are taking away into tens and ones.',`Take away the tens of ${b} first.`,'Then take away the ones.'],s:`${a} - ${b} = ${a-b}.`}},
+percent(){const p=[5,10,20,25,50][rnd(0,4)],n=rnd(1,10)*20;return{q:`What is ${p}% of ${n}?`,a:[n*p/100,1],h:['Percent means out of 100.',`${p}% = ${p}/100. Multiply by ${n}.`,`${n} x ${p} = ${n*p}. Now divide by 100.`],s:`${n} x ${p}/100 = ${n*p/100}.`}},
+slope(){const m=[-4,-3,-2,-1,1,2,3,4][rnd(0,7)],x1=rnd(-3,3),y1=rnd(-4,4),dx=rnd(1,3),x2=x1+dx,y2=y1+m*dx;return{q:`Slope of the line through (${x1}, ${y1}) and (${x2}, ${y2})?`,a:[m,1],h:['Slope is rise over run.',`Find the change in y (${y2} - ${y1}) and the change in x (${x2} - ${x1}).`,'Divide the change in y by the change in x.'],s:`(${y2} - ${y1}) / (${x2} - ${x1}) = ${m*dx} / ${dx} = ${m}.`}},
+lineq(){const x=rnd(2,8),a=rnd(3,7),c=rnd(1,a-1),b=rnd(-5,9),D=b+(a-c)*x;return{q:`${a}x ${sg(b)} = ${c}x ${sg(D)}. x = ?`,a:[x,1],h:['Get all the x terms on one side.',`Subtract ${c}x from both sides.`,'Then move the plain numbers to the other side and divide.'],s:`${a-c}x = ${D-b}, so x = ${x}.`}},
+quadeval(){const a=rnd(1,3),b=rnd(-4,4),c=rnd(-5,5),x=rnd(-3,3);return{q:`f(x) = ${a}x^2 ${sg(b)}x ${sg(c)}. Find f(${x}).`,a:[a*x*x+b*x+c,1],h:[`Replace every x with ${x}.`,`Square ${x} first. Mind the sign.`,'Then multiply and add the terms.'],s:`${a}(${x*x}) + (${b})(${x}) + (${c}) = ${a*x*x+b*x+c}.`}},
+logs(){const b=rnd(2,5),k=rnd(2,4);return{q:`log base ${b} of ${b**k} = ?`,a:[k,1],h:[`Ask: ${b} to what power makes ${b**k}?`,`Try ${b}^2, ${b}^3 and so on.`,`${b} x ${b} = ${b*b}. Keep multiplying until you reach ${b**k}.`],s:`${b}^${k} = ${b**k}, so the log is ${k}.`}},
+deriv(){const a=rnd(1,5),n=rnd(2,4),c=rnd(1,3);return{q:`If f(x) = ${a}x^${n}, find f'(${c}).`,a:[a*n*c**(n-1),1],h:['Use the power rule: bring the exponent down and lower it by one.',`f'(x) = ${a*n}x^${n-1}.`,`Now put in x = ${c}.`],s:`f'(x) = ${a*n}x^${n-1}, so f'(${c}) = ${a*n*c**(n-1)}.`}},
+integral(){const a=2*rnd(1,3),b=rnd(1,4);return{q:`Evaluate the integral from 0 to ${b} of ${a}x dx.`,a:[a*b*b/2,1],h:['Find the antiderivative of ax first.',`It is ${a/2}x^2.`,`Evaluate at ${b} and subtract the value at 0.`],s:`${a/2}(${b})^2 = ${a*b*b/2}.`}}});
+const BANK=[
+['ela',-1,'Letter sounds',"Which letter does ball start with?|B;Which letter does cat start with?|C;Which letter does dog start with?|D;Which letter does sun start with?|S;Which letter does fish start with?|F"],
+['ela',0,'Rhyming words',"Which word rhymes with cat?|hat;Which word rhymes with dog?|log;Which word rhymes with sun?|run;Which word rhymes with bed?|red;Which word rhymes with pen?|ten"],
+['ela',1,'Making plurals',"More than one dog is?|dogs;More than one box is?|boxes;More than one bus is?|buses;More than one cat is?|cats;More than one dish is?|dishes"],
+['ela',2,'Synonyms',"Which word means the same as happy?|glad;Which word means the same as big?|large;Which word means the same as small?|tiny;Which word means the same as fast?|quick;Which word means the same as sad?|unhappy"],
+['ela',3,'Finding verbs',"Which word is the verb? The dog runs fast.|runs;Which word is the verb? The ball bounced high.|bounced;Which word is the verb? Birds sing songs.|sing;Which word is the verb? She reads books.|reads;Which word is the verb? We eat lunch.|eat"],
+['ela',4,'Homophones',"Which word means the number 2?|two;Which word means also?|too;Which word means belonging to them?|their;Which word means in that place?|there;Which word means a large body of salt water?|sea"],
+['ela',5,'Figurative language',"What is as brave as a lion?|simile;What is it is raining cats and dogs?|idiom;What is time is a thief?|metaphor;What is the wind whispered?|personification;What is the word buzz?|onomatopoeia"],
+['ela',6,'Prefixes',"What does the prefix un- mean?|not;What does the prefix re- mean?|again;What does the prefix pre- mean?|before;What does the prefix mis- mean?|wrongly;What does the prefix sub- mean?|under"],
+['ela',7,'Story elements',"What is the main character called?|protagonist;What is the struggle between opposing forces called?|conflict;What is the time and place of a story called?|setting;What is the central message of a story called?|theme;What is the most exciting point of a story called?|climax"],
+['ela',8,'Argument writing',"What is a statement you argue is true?|claim;What are facts that support a claim?|evidence;What explains how evidence supports a claim?|reasoning;What is an opposing view called?|counterclaim;What is a writer's attitude toward a subject?|tone"],
+['ela',9,'Rhetorical appeals',"Which appeal uses emotion?|pathos;Which appeal uses logic and facts?|logos;Which appeal uses credibility?|ethos;What is the writer's reason for writing?|purpose;What is the group a writer addresses?|audience"],
+['ela',10,'Literary devices',"What is a hint about future events?|foreshadowing;What is a contrast between expectation and reality?|irony;What is a person or object standing for an idea?|symbol;What is a scene from the past?|flashback;What is extreme exaggeration for effect?|hyperbole"],
+['ela',11,'Famous authors',"Who wrote Hamlet?|Shakespeare;Who wrote The Great Gatsby?|F. Scott Fitzgerald;Who wrote To Kill a Mockingbird?|Harper Lee;Who wrote Moby-Dick?|Herman Melville;Who wrote Pride and Prejudice?|Jane Austen"],
+['ela',12,'Poetic forms',"Which poem has 14 lines?|sonnet;Which Japanese poem has 5-7-5 syllables?|haiku;Which poem has no regular rhyme or meter?|free verse;Which poem tells a story and is often sung?|ballad;Which poem mourns someone's death?|elegy"],
+['ela',13,'SAT vocabulary',"What does ubiquitous mean?|found everywhere;What does ephemeral mean?|short-lived;What does candid mean?|honest;What does meticulous mean?|very careful;What does benevolent mean?|kind"],
+['sci',-1,'Five senses',"Which body part do you see with?|eyes;Which body part do you hear with?|ears;Which body part do you smell with?|nose;Which body part do you taste with?|tongue;Which body part feels touch?|skin"],
+['sci',0,'Weather',"What falls from clouds as drops?|rain;What star warms the Earth?|Sun;What is moving air called?|wind;What are white frozen flakes called?|snow;What is a bright flash in a storm?|lightning"],
+['sci',1,'Animal groups',"A frog is a?|amphibian;A snake is a?|reptile;A dog is a?|mammal;An eagle is a?|bird;A salmon is a?|fish"],
+['sci',2,'States of matter',"Ice is a?|solid;Water is a?|liquid;Steam is a?|gas;Lightning and stars are made of?|plasma"],
+['sci',3,'Plant parts',"Which part takes in water from soil?|roots;Which part makes food using sunlight?|leaves;Which part holds the plant up?|stem;Which part makes seeds?|flower;Which part protects seeds and helps spread them?|fruit"],
+['sci',4,'Forms of energy',"A rolling ball has which energy?|kinetic;A book on a high shelf has which energy?|potential;A campfire gives off which energy?|thermal;Food stores which energy?|chemical;Solar panels collect which energy?|light"],
+['sci',5,'Planets',"Which planet is closest to the Sun?|Mercury;Which is the largest planet?|Jupiter;Which planet is called the red planet?|Mars;Which planet has famous rings?|Saturn;Which planet do we live on?|Earth"],
+['sci',6,'Cell parts',"Which part is the control center of the cell?|nucleus;Which part releases energy for the cell?|mitochondria;Which part makes food from light in plants?|chloroplast;Which part controls what enters and leaves?|cell membrane;Which part builds proteins?|ribosome"],
+['sci',7,'Earth layers',"Which is the outermost layer of Earth?|crust;Which thick layer is beneath the crust?|mantle;Which layer is liquid metal?|outer core;Which layer is the solid center?|inner core"],
+['sci',8,'Chemical symbols',"What is the symbol for oxygen?|O;What is the symbol for gold?|Au;What is the symbol for sodium?|Na;What is the symbol for iron?|Fe;What is the symbol for hydrogen?|H"],
+['sci',9,'Genetics',"What is a change in DNA called?|mutation;What are different forms of a gene called?|alleles;What is the physical trait you can see called?|phenotype;What is an organism's genetic makeup called?|genotype;What type of cell division makes gametes?|meiosis"],
+['sci',10,'Chemical reactions',"What are the starting substances called?|reactants;What are the new substances formed called?|products;What speeds up a reaction without being used up?|catalyst;What kind of reaction releases heat?|exothermic;What kind of reaction absorbs heat?|endothermic"],
+['sci',11,'Physics basics',"In F = ma, what does a stand for?|acceleration;What is the SI unit of force?|newton;What is the SI unit of energy?|joule;What is the rate of doing work?|power;What is speed with direction called?|velocity"],
+['sci',12,'Ecology',"What do we call organisms that make their own food?|producers;What do we call organisms that eat other organisms?|consumers;What do we call organisms that break down dead matter?|decomposers;What do we call animals that eat only plants?|herbivores;What do we call animals that eat only meat?|carnivores"],
+['sci',13,'Biomolecules',"Enzymes are mostly made of?|proteins;DNA is a type of?|nucleic acid;Starch is a type of?|carbohydrate;Fats and oils are?|lipids"],
+['soc',-1,'Community helpers',"Who puts out fires?|firefighter;Who teaches at school?|teacher;Who helps sick people?|doctor;Who delivers mail?|mail carrier;Who helps keep us safe?|police officer"],
+['soc',0,'Maps and directions',"What shows places on paper?|map;What is a round model of Earth?|globe;Which direction is opposite of south?|north;In which direction does the sun rise?|east;In which direction does the sun set?|west"],
+['soc',1,'Famous Americans',"Who was the first US president?|George Washington;Who mostly wrote the Declaration of Independence?|Thomas Jefferson;Who gave the I Have a Dream speech?|Martin Luther King Jr.;Who refused to give up her bus seat?|Rosa Parks;Who led the US during the Civil War?|Abraham Lincoln"],
+['soc',2,'Continents and oceans',"Which is the largest ocean?|Pacific;On which continent is Egypt?|Africa;Which is the coldest continent?|Antarctica;On which continent is the United States?|North America;Which is the smallest continent?|Australia"],
+['soc',3,'Branches of government',"Which branch makes laws?|legislative;Which branch carries out laws?|executive;Which branch interprets laws?|judicial;Which group makes laws for the US?|Congress;Who leads the executive branch?|president"],
+['soc',4,'State capitals',"What is the capital of California?|Sacramento;What is the capital of Texas?|Austin;What is the capital of New York?|Albany;What is the capital of Florida?|Tallahassee;What is the capital of Illinois?|Springfield"],
+['soc',5,'US history dates',"In what year was the Declaration of Independence signed?|1776;In what year did Columbus first sail to the Americas?|1492;In what year did the Civil War begin?|1861;In what year was the Constitution signed?|1787;In what year did World War II end?|1945"],
+['soc',6,'Ancient civilizations',"Which civilization grew along the Nile?|Egypt;Which civilization built the Colosseum?|Rome;Where did democracy begin?|Greece;Which civilization built Machu Picchu?|Inca;Which civilization lived between the Tigris and Euphrates rivers?|Mesopotamia"],
+['soc',7,'World geography',"What is the longest river in Africa?|Nile;What is the largest hot desert?|Sahara;What is the tallest mountain above sea level?|Mount Everest;What is the largest rainforest?|Amazon;What is the deepest ocean trench?|Mariana Trench"],
+['soc',8,'US amendments',"Which amendment protects free speech?|1st;Which amendment ended slavery?|13th;Which amendment gave women the right to vote?|19th;Which amendment lowered the voting age to 18?|26th;Which amendment protects the right to bear arms?|2nd"],
+['soc',9,'World history dates',"In what year did the French Revolution begin?|1789;In what year did World War I begin?|1914;In what year did the Berlin Wall fall?|1989;In what year was the Magna Carta signed?|1215;In what year did the Western Roman Empire fall?|476"],
+['soc',10,'Economics',"What is rising prices over time called?|inflation;What is a tax on imported goods called?|tariff;What is the total value of goods a country produces called?|GDP;What is a market with only one seller called?|monopoly;What is it called when a government spends more than it collects?|deficit"],
+['soc',11,'US presidents',"Who issued the Emancipation Proclamation?|Abraham Lincoln;Who led the US through the Great Depression and most of World War II?|Franklin D. Roosevelt;Who was president during the Cuban Missile Crisis?|John F. Kennedy;Who resigned the presidency in 1974?|Richard Nixon;Who made the Louisiana Purchase?|Thomas Jefferson"],
+['soc',12,'Civics numbers',"How many US senators are there?|100;How many voting members are in the House?|435;How many electoral votes win the presidency?|270;How many years is a Senate term?|6;How many years is a House term?|2"],
+['soc',13,'Political systems',"What is rule by the people called?|democracy;What is rule by one person with total power called?|dictatorship;What is rule by a small group called?|oligarchy;What is rule by a king or queen called?|monarchy;What is rule by religious leaders called?|theocracy"],
+['cs',-1,'Computer parts',"Which do you type on?|keyboard;Which do you click with?|mouse;Which do you look at?|screen;Which do you listen with?|headphones;Which do you take pictures with?|camera"],
+['cs',0,'Code directions',"What is the opposite of up?|down;What is the opposite of left?|right;What is the opposite of forward?|backward;What is the opposite of start?|stop;What is the opposite of on?|off"],
+['cs',1,'Inside the computer',"Which part is the computer's brain?|CPU;Where are files saved long term?|hard drive;Which part shows pictures?|monitor;Which part moves the pointer?|mouse;Which part gives the computer short-term memory?|RAM"],
+['cs',2,'Coding words',"What is repeating steps again and again?|loop;What is a set of steps to solve a problem?|algorithm;What is a mistake in code?|bug;What is finding and fixing mistakes?|debugging;What is a name that stores a value?|variable"],
+['cs',3,'The internet',"What stores websites?|server;What is the worldwide network of computers?|internet;What program lets you browse the web?|browser;What is a web page's address called?|URL;What protects a computer from viruses?|antivirus"],
+['cs',4,'Decisions in code',"Which word starts a decision in code?|if;What is a value that is true or false?|boolean;What runs when the if is false?|else;What repeats code many times?|loop;What stores data for later use?|variable"],
+['cs',5,'Data types',"What is text in quotes called?|string;What is a whole number called?|integer;What is true or false called?|boolean;What is a number with a decimal called?|float;What is an ordered collection of items called?|list"],
+['cs',6,'Binary numbers',"What is binary 101 in decimal?|5;What is binary 110 in decimal?|6;What is binary 1000 in decimal?|8;What is binary 11 in decimal?|3;What is binary 1111 in decimal?|15"],
+['cs',7,'Functions',"What is a reusable block of code called?|function;What are values passed into a function called?|parameters;What is text in code ignored by the computer called?|comment;What does a function send back?|return value;What is an error in program logic called?|bug"],
+['cs',8,'Web languages',"Which language structures a web page?|HTML;Which language styles a web page?|CSS;Which language adds interactivity?|JavaScript;Which language queries databases?|SQL;Which protocol transfers web pages?|HTTP"],
+['cs',9,'Cybersecurity',"What is tricking people into giving up information called?|phishing;What is malware that locks files for money called?|ransomware;What is an extra login check called?|two-factor authentication;What scrambles data so others cannot read it?|encryption;What filters network traffic?|firewall"],
+['cs',10,'Algorithms',"What search halves a sorted list each step?|binary search;What is a function calling itself called?|recursion;What measures how an algorithm scales?|Big O notation;What structure is last in, first out?|stack;What puts items in order?|sorting"],
+['cs',11,'Data structures',"Which structure is first in, first out?|queue;Which structure is last in, first out?|stack;Which structure stores key-value pairs?|dictionary;Which structure links nodes with pointers?|linked list;Which structure is hierarchical with a root?|tree"],
+['cs',12,'Machine learning',"What is learning from labeled examples?|supervised learning;What is finding patterns in unlabeled data?|unsupervised learning;What is learning from rewards?|reinforcement learning;What is memorizing training data instead of generalizing?|overfitting;What is a layered model inspired by the brain?|neural network"],
+['cs',13,'Complexity',"What is the time complexity of binary search?|O(log n);What is the time complexity of linear search?|O(n);What is the worst case of bubble sort?|O(n^2);What is the time complexity of array access by index?|O(1);What is the time complexity of merge sort?|O(n log n)"],
+['fin',0,'Coins',"Which coin is worth 1 cent?|penny;Which coin is worth 5 cents?|nickel;Which coin is worth 10 cents?|dime;Which coin is worth 25 cents?|quarter"],
+['fin',2,'Saving money',"What is money you keep for later?|savings;What is money you earn?|income;What is money you spend?|expenses;What keeps your money safe?|bank;What is something you save up for?|goal"],
+['fin',4,'Budgets',"What is a plan for spending money?|budget;What is money coming in?|income;What is money going out?|expenses;What is money left after expenses?|surplus;What is spending more than you earn?|deficit"],
+['fin',6,'Borrowing',"What is borrowed money you must repay?|loan;What is the extra cost of borrowing?|interest;What lets you borrow up to a limit?|credit card;What number shows how reliably you repay?|credit score;What is the amount you owe?|debt"],
+['fin',8,'Paychecks and taxes',"What is pay before deductions?|gross pay;What is pay after deductions?|net pay;What is tax on earnings?|income tax;What is tax added at checkout?|sales tax;What is tax on land and buildings?|property tax"],
+['fin',10,'Investing',"What is a share of ownership in a company?|stock;What is a loan to a company or government?|bond;What is a basket of many investments?|mutual fund;What is spreading risk across investments?|diversification;What is rising prices over time?|inflation"],
+['fin',12,'Interest',"What is interest earned on interest?|compound interest;What is interest only on the original amount?|simple interest;What is the yearly cost of borrowing as a percent?|APR;What is a retirement account with tax benefits?|IRA;What is an employer's retirement plan?|401(k)"],
+['fin',13,'College money',"Which form applies for federal student aid?|FAFSA;What is the monthly cost of insurance?|premium;What do you pay before insurance starts paying?|deductible;What is money you must repay for school?|student loan;What is free money for school that is not repaid?|scholarship"],
+['es',-1,'Colors',"How do you say red in Spanish?|rojo;How do you say blue in Spanish?|azul;How do you say green in Spanish?|verde;How do you say yellow in Spanish?|amarillo;How do you say black in Spanish?|negro"],
+['es',0,'Numbers',"How do you say one in Spanish?|uno;How do you say two in Spanish?|dos;How do you say three in Spanish?|tres;How do you say four in Spanish?|cuatro;How do you say five in Spanish?|cinco"],
+['es',2,'Animals',"How do you say dog in Spanish?|perro;How do you say cat in Spanish?|gato;How do you say bird in Spanish?|pájaro;How do you say fish in Spanish?|pez;How do you say horse in Spanish?|caballo"],
+['es',4,'Family',"How do you say mother in Spanish?|madre;How do you say father in Spanish?|padre;How do you say sister in Spanish?|hermana;How do you say brother in Spanish?|hermano;How do you say grandmother in Spanish?|abuela"],
+['es',6,'Greetings',"How do you say good morning in Spanish?|buenos días;How do you say thank you in Spanish?|gracias;How do you say please in Spanish?|por favor;How do you say goodbye in Spanish?|adiós;How do you say how are you in Spanish?|cómo estás"],
+['es',8,'Common verbs',"How do you say to eat in Spanish?|comer;How do you say to speak in Spanish?|hablar;How do you say to live in Spanish?|vivir;How do you say to drink in Spanish?|beber;How do you say to write in Spanish?|escribir"],
+['es',10,'Present tense',"Conjugate hablar for yo|hablo;Conjugate hablar for tú|hablas;Conjugate hablar for nosotros|hablamos;Conjugate hablar for ella|habla;Conjugate hablar for ellos|hablan"],
+['es',12,'Past and future',"Say I ate (preterite of comer)|comí;Say I was eating (imperfect of comer)|comía;Say I will eat (future of comer)|comeré;Say I would eat (conditional of comer)|comería;Say I have eaten (present perfect of comer)|he comido"],
+['es',13,'Connecting words',"How do you say although in Spanish?|aunque;How do you say however in Spanish?|sin embargo;How do you say therefore in Spanish?|por lo tanto;How do you say while in Spanish?|mientras;How do you say unless in Spanish?|a menos que"]];
+const lastBy={};
+BANK.forEach(([sub,g,name,txt])=>{const id=sub+'_'+(g<0?'pk':g),pairs=txt.split(';').map(x=>x.split('|')),pool=[...new Set(pairs.map(x=>x[1]))];
+SK[id]={n:name,sub,pre:lastBy[sub]?[lastBy[sub]]:[],c:'Study these facts, then practice:<ul>'+pairs.map(x=>`<li>${x[0]} <b>${x[1]}</b></li>`).join('')+'</ul>'};ORDER.push(id);if(ST.gr[id]==null)ST.gr[id]=g;lastBy[sub]=id;
+G[id]=()=>{const [q,a]=pairs[rnd(0,pairs.length-1)],ch=[a,...pool.filter(x=>x!==a).sort(()=>Math.random()-.5).slice(0,3)].sort(()=>Math.random()-.5);return{q,choices:ch,a:[ch.indexOf(a),1],h:['Read the question slowly. What is it asking?','Cross out any choices you are sure are wrong.',`Check the study sheet. The answer starts with "${a[0]}".`],s:`The answer is ${a}.`}}});
+
+/* ===== Math course: units, lessons and many skill types ===== */
+const R=rnd,P=a=>a[rnd(0,a.length-1)],dec=(n,k)=>(n/10**k).toFixed(k),NEWM=[];
+const nC=(n,k)=>{let r=1;for(let i=1;i<=k;i++)r=r*(n-k+i)/i;return Math.round(r)},nP=(n,r)=>{let x=1;for(let i=0;i<r;i++)x*=n-i;return x};
+const M=(id,g,u,l,n,t,f)=>{SK[id]={n,sub:'math',pre:[],unit:u,lesson:l,c:t};ORDER.push(id);NEWM.push(id);if(ST.gr[id]==null)ST.gr[id]=g;G[id]=()=>{const [q,a,so]=f();return{q,a:Array.isArray(a)?a:[a,1],h:['What is the problem asking you to find?',t,'Work it step by step, then check your answer by estimating.'],s:so}}};
+const TAG={pkcount:['Counting and numbers','Counting objects'],kadd:['Add and subtract within 10','Adding'],g1add:['Add and subtract within 20','Adding'],g2sub:['Add and subtract within 100','Subtracting'],mult:['Multiplication and division','Multiplication facts'],factors:['Factors and multiples','Greatest common factor'],equiv:['Fractions','Equivalent fractions'],simplify:['Fractions','Simplifying fractions'],addlike:['Fractions','Adding fractions'],adduni:['Fractions','Adding fractions'],multfrac:['Fractions','Multiplying fractions'],onestepadd:['Equations and inequalities','One-step equations'],onestepmul:['Equations and inequalities','One-step equations'],twostep:['Equations and inequalities','Two-step equations'],percent:['Proportional relationships','Percent problems'],slope:['Linear equations','Slope'],lineq:['Linear equations','Equations with x on both sides'],quadeval:['Quadratics','Evaluating quadratics'],logs:['Exponentials and logarithms','Logarithms'],deriv:['Derivatives','Power rule'],integral:['Integrals','Definite integrals']};
+Object.entries(TAG).forEach(([k,[u,l]])=>{SK[k].unit=u;SK[k].lesson=l});
+const UORD=['Ratios','Arithmetic with rational numbers','Rates and percentages','Exponents and order of operations','Negative numbers','Variables and expressions','Equations and inequalities','Plane figures','Coordinate plane','3D figures','Data and statistics'];
+M('kcount',0,'Counting and numbers','Counting on','Counting to 20','Counting on means saying the next number each time.',()=>{const a=R(1,19);return[`What number comes after ${a}?`,a+1,`${a+1} comes right after ${a}.`]});
+M('ksub',0,'Add and subtract within 10','Subtracting','Subtracting within 10','Subtracting means taking away. Count back from the bigger number.',()=>{const a=R(3,10),b=R(1,a-1);return[`${a} - ${b} = ?`,a-b,`${a} - ${b} = ${a-b}.`]});
+M('kbond',0,'Add and subtract within 10','Making 10','Making 10','Number pairs that make 10: 1 and 9, 2 and 8, 3 and 7, 4 and 6, 5 and 5.',()=>{const a=R(1,9);return[`${a} + ? = 10`,10-a,`${a} + ${10-a} = 10.`]});
+M('g1sub',1,'Add and subtract within 20','Subtracting','Subtracting within 20','Count back, or think of the addition fact that matches.',()=>{const a=R(11,20),b=R(2,9);return[`${a} - ${b} = ?`,a-b,`${a} - ${b} = ${a-b}.`]});
+M('g1tens',1,'Place value','Tens and ones','Tens and ones','A ten is a group of 10 ones. 3 tens and 4 ones is 34.',()=>{const t=R(1,9),o=R(0,9);return[`${t} tens and ${o} ones = ?`,t*10+o,`${t*10} + ${o} = ${t*10+o}.`]});
+M('g1skip',1,'Place value','Skip counting','Skip counting','Add the same amount each time to find the next number.',()=>{const k=P([2,5,10]),a=k*R(1,5);return[`Count by ${k}s: ${a}, ${a+k}, ${a+2*k}, ?`,a+3*k,`Add ${k} each time. The next number is ${a+3*k}.`]});
+M('g2add',2,'Add and subtract within 100','Adding','Adding within 100','Add the tens, then the ones. Regroup when the ones make 10 or more.',()=>{const a=R(11,60),b=R(11,39);return[`${a} + ${b} = ?`,a+b,`${a} + ${b} = ${a+b}.`]});
+M('g2place',2,'Place value','Hundreds, tens and ones','Hundreds, tens and ones','Where a digit sits tells its value. 3 hundreds is 300.',()=>{const h=R(1,9),t=R(0,9),o=R(0,9);return[`${h} hundreds, ${t} tens and ${o} ones = ?`,h*100+t*10+o,`${h*100} + ${t*10} + ${o} = ${h*100+t*10+o}.`]});
+M('g2coins',2,'Money','Counting coins','Counting coins','A quarter is 25 cents, a dime is 10, a nickel is 5, a penny is 1.',()=>{const q=R(1,3),d=R(1,4),n=R(1,3);return[`${q} quarters, ${d} dimes and ${n} nickels. How many cents in all?`,25*q+10*d+5*n,`${25*q} + ${10*d} + ${5*n} = ${25*q+10*d+5*n}.`]});
+M('g3div',3,'Multiplication and division','Division facts','Division facts','Division is the opposite of multiplication. What times the divisor makes the number?',()=>{const b=R(2,9),q=R(2,9);return[`${b*q} ÷ ${b} = ?`,q,`${b} × ${q} = ${b*q}, so ${b*q} ÷ ${b} = ${q}.`]});
+M('g3x10',3,'Multiplication and division','Multiples of 10','Multiplying by multiples of 10','Multiply the digits, then add the zero.',()=>{const a=R(2,9),t=R(2,9);return[`${a} × ${t*10} = ?`,a*t*10,`${a} × ${t} = ${a*t}, then add a zero: ${a*t*10}.`]});
+M('g3perim',3,'Area and perimeter','Perimeter','Perimeter of rectangles','Perimeter is the distance around. Add all four sides.',()=>{const l=R(3,12),w=R(2,l);return[`A rectangle is ${l} by ${w}. What is its perimeter?`,2*(l+w),`2 × (${l} + ${w}) = ${2*(l+w)}.`]});
+M('g3area',3,'Area and perimeter','Area','Area of rectangles','Area is the space inside. Multiply length by width.',()=>{const l=R(3,12),w=R(2,l);return[`A rectangle is ${l} by ${w}. What is its area?`,l*w,`${l} × ${w} = ${l*w}.`]});
+M('g3round',3,'Place value','Rounding','Rounding to the nearest ten','Look at the ones digit. 5 or more rounds up.',()=>{const n=R(101,999);return[`Round ${n} to the nearest ten.`,Math.round(n/10)*10,`${n} rounds to ${Math.round(n/10)*10}.`]});
+M('g4mult',4,'Multi-digit arithmetic','Multiplying','Multi-digit multiplication','Break the big number into tens and ones, multiply each, then add.',()=>{const a=R(12,99),b=R(2,9);return[`${a} × ${b} = ?`,a*b,`${a} × ${b} = ${a*b}.`]});
+M('g4div',4,'Multi-digit arithmetic','Dividing','Long division','Divide step by step, starting from the left digit.',()=>{const b=R(2,9),q=R(11,60);return[`${b*q} ÷ ${b} = ?`,q,`${b} × ${q} = ${b*q}.`]});
+M('g4add',4,'Multi-digit arithmetic','Adding','Adding large numbers','Line up the place values and add from the right.',()=>{const a=R(1000,6000),b=R(1000,3999);return[`${a} + ${b} = ?`,a+b,`${a} + ${b} = ${a+b}.`]});
+M('g4comp',4,'Angles','Angle measure','Complementary angles','Complementary angles add up to 90 degrees.',()=>{const x=R(10,80);return[`Two angles add to 90 degrees. One is ${x} degrees. Find the other.`,90-x,`90 - ${x} = ${90-x}.`]});
+M('g4lcm',4,'Factors and multiples','Multiples','Least common multiple','List multiples of each number until one matches.',()=>{const [a,b]=P([[2,3],[4,6],[3,5],[4,10],[6,8],[5,6],[3,4],[6,9]]);return[`What is the least common multiple of ${a} and ${b}?`,a*b/gcd(a,b),`The smallest shared multiple is ${a*b/gcd(a,b)}.`]});
+M('g5decadd',5,'Decimals','Adding decimals','Adding decimals','Line up the decimal points, then add.',()=>{const a=R(11,99),b=R(11,99);return[`${dec(a,1)} + ${dec(b,1)} = ?`,[a+b,10],`${dec(a,1)} + ${dec(b,1)} = ${dec(a+b,1)}.`]});
+M('g5decmul',5,'Decimals','Multiplying decimals','Multiplying decimals','Multiply as whole numbers, then count the decimal places.',()=>{const a=R(2,9),b=R(2,9);return[`0.${a} × 0.${b} = ?`,[a*b,100],`${a} × ${b} = ${a*b}, with two decimal places: ${dec(a*b,2)}.`]});
+M('g5vol',5,'Volume','Volume of boxes','Volume of a box','Volume = length × width × height.',()=>{const l=R(2,9),w=R(2,9),h=R(2,9);return[`A box is ${l} by ${w} by ${h}. What is its volume?`,l*w*h,`${l} × ${w} × ${h} = ${l*w*h}.`]});
+M('g5ooo',5,'Order of operations','Order of operations','Order of operations','Multiply and divide before you add and subtract.',()=>{const a=R(2,9),b=R(2,9),c=R(2,9);return[`${a} + ${b} × ${c} = ?`,a+b*c,`${b} × ${c} = ${b*c}, then add ${a}: ${a+b*c}.`]});
+M('g5pow10',5,'Place value','Powers of 10','Multiplying by powers of 10','Each zero in 10, 100 or 1000 shifts the digits one place.',()=>{const n=R(2,99),p=P([10,100,1000]);return[`${n} × ${p} = ?`,n*p,`${n} × ${p} = ${n*p}.`]});
+M('g5fdiv',5,'Fractions','Dividing fractions','Dividing by unit fractions','How many pieces of size 1/d fit in a whole number? Multiply by d.',()=>{const n=R(2,6),d=R(2,6);return[`${n} ÷ (1/${d}) = ?`,n*d,`${n} × ${d} = ${n*d}.`]});
+M('g6ratio1',6,'Ratios','Intro to ratios','Writing ratios','A ratio compares two amounts. Write part to whole as a fraction.',()=>{const a=R(1,7),b=R(1,7);return[`A bowl has ${a} apples and ${b} oranges. What fraction of the fruit is apples?`,[a,a+b],`${a} apples out of ${a+b} fruit is ${a}/${a+b}.`]});
+M('g6ratio2',6,'Ratios','Equivalent ratios','Equivalent ratios','Multiply both parts of a ratio by the same number.',()=>{const a=R(1,6),b=R(2,9),k=R(2,6);return[`${a} : ${b} = ${a*k} : ?`,b*k,`Multiply by ${k}: ${b} × ${k} = ${b*k}.`]});
+M('g6ratio3',6,'Ratios','Ratio word problems','Ratio word problems','Find the multiplier first, then apply it to the other part.',()=>{const a=R(2,5),b=R(2,5),k=R(2,6);return[`A recipe uses ${a} cups of flour for every ${b} cups of sugar. How much sugar goes with ${a*k} cups of flour?`,b*k,`The recipe is scaled by ${k}, so ${b} × ${k} = ${b*k}.`]});
+M('g6decsub',6,'Arithmetic with rational numbers','Subtracting decimals','Subtracting decimals','Line up the decimal points, then subtract.',()=>{const a=R(200,999),b=R(100,a-1);return[`${dec(a,2)} - ${dec(b,2)} = ?`,[a-b,100],`${dec(a,2)} - ${dec(b,2)} = ${dec(a-b,2)}.`]});
+M('g6decdiv',6,'Arithmetic with rational numbers','Dividing decimals','Dividing decimals','Multiply both numbers by 10 to make whole numbers, then divide.',()=>{const x=R(2,9),y=R(2,9);return[`${dec(x*y,1)} ÷ ${dec(x,1)} = ?`,y,`${x*y} ÷ ${x} = ${y}.`]});
+M('g6fwhole',6,'Arithmetic with rational numbers','Dividing fractions and whole numbers','Fraction ÷ whole number','Dividing by n is the same as multiplying by 1/n.',()=>{const b=R(2,6),a=R(1,b-1),n=R(2,5);return[`${a}/${b} ÷ ${n} = ?`,[a,b*n],`${a}/${b} × 1/${n} = ${a}/${b*n}.`]});
+M('g6fdiv',6,'Arithmetic with rational numbers','Dividing fractions by fractions','Fraction ÷ fraction','Flip the second fraction and multiply.',()=>{const b=R(2,6),a=R(1,b-1),d=R(2,6),c=R(1,d-1);return[`${a}/${b} ÷ ${c}/${d} = ?`,[a*d,b*c],`${a}/${b} × ${d}/${c} = ${a*d}/${b*c}.`]});
+M('g6rate1',6,'Rates and percentages','Intro to rates','Unit rates','A unit rate tells how much for 1. Divide the total by the number of items.',()=>{const n=R(2,9),p=R(2,9);return[`${n} notebooks cost $${n*p}. What is the cost of one notebook in dollars?`,p,`${n*p} ÷ ${n} = ${p}.`]});
+M('g6rate2',6,'Rates and percentages','Rate problems','Rate problems','Find the rate for 1 unit, then multiply.',()=>{const v=R(20,60),t=R(2,5),x=R(1,3);return[`A car goes ${v*t} miles in ${t} hours. How many miles in ${t+x} hours at the same speed?`,v*(t+x),`Speed is ${v} miles per hour, so ${v} × ${t+x} = ${v*(t+x)}.`]});
+M('g6pctfrac',6,'Rates and percentages','Percents and fractions','Fractions as percents','Percent means out of 100. Scale the fraction to a denominator of 100.',()=>{const d=P([2,4,5,10,20,25,50]),n=R(1,d-1);return[`Write ${n}/${d} as a percent (number only).`,100*n/d,`${n}/${d} = ${100*n/d}/100 = ${100*n/d}%.`]});
+M('g6pctdec',6,'Rates and percentages','Percents and decimals','Percents as decimals','Divide the percent by 100.',()=>{const p=R(5,95);return[`Write ${p}% as a decimal.`,[p,100],`${p} ÷ 100 = ${dec(p,2)}.`]});
+M('g6pctwhole',6,'Rates and percentages','Percent problems','Finding the whole','If a part is p% of the whole, the whole = part ÷ p × 100.',()=>{const p=P([10,20,25,50]),W=R(2,10)*20;return[`${W*p/100} is ${p}% of what number?`,W,`${W*p/100} ÷ ${p/100} = ${W}.`]});
+M('g6exp',6,'Exponents and order of operations','Exponents','Evaluating exponents','An exponent tells how many times to multiply the base.',()=>{const b=R(2,6),e=R(2,3);return[`${b}^${e} = ?`,b**e,`${b}^${e} = ${b**e}.`]});
+M('g6ooo',6,'Exponents and order of operations','Order of operations','Order of operations with parentheses','Parentheses first, then exponents, then multiply or divide, then add or subtract.',()=>{const a=R(2,9),b=R(2,9),c=R(2,5),d=R(1,9);return[`(${a} + ${b}) × ${c} - ${d} = ?`,(a+b)*c-d,`${a+b} × ${c} = ${(a+b)*c}, minus ${d} is ${(a+b)*c-d}.`]});
+M('g6negadd',6,'Negative numbers','Adding with negatives','Adding with negative numbers','Move left on the number line for negatives and right for positives.',()=>{const a=R(-9,-1),b=R(1,9);return[`(${a}) + ${b} = ?`,a+b,`Start at ${a} and move ${b} right: ${a+b}.`]});
+M('g6abs',6,'Negative numbers','Absolute value','Absolute value','Absolute value is the distance from zero, so it is never negative.',()=>{const n=R(-20,-1);return[`|${n}| = ?`,-n,`${n} is ${-n} away from zero.`]});
+M('g6eval',6,'Variables and expressions','Evaluating expressions','Evaluating expressions','Replace the variable with the number, then calculate.',()=>{const a=R(2,9),b=R(1,9),x=R(2,9);return[`Evaluate ${a}x + ${b} when x = ${x}.`,a*x+b,`${a} × ${x} + ${b} = ${a*x+b}.`]});
+M('g6like',6,'Variables and expressions','Equivalent expressions','Combining like terms','Add the coefficients of terms with the same variable.',()=>{const a=R(2,9),b=R(2,9);return[`${a}x + ${b}x = ?x`,a+b,`${a} + ${b} = ${a+b}, so ${a+b}x.`]});
+M('g6ineq',6,'Equations and inequalities','Inequalities','Solving inequalities','Solve like an equation, then find the whole numbers that fit.',()=>{const a=R(2,9),b=a+R(2,12);return[`What is the smallest whole number x that makes x + ${a} > ${b} true?`,b-a+1,`x > ${b-a}, so the smallest whole number is ${b-a+1}.`]});
+M('g6tri',6,'Plane figures','Area of triangles','Area of triangles','Area of a triangle = base × height ÷ 2.',()=>{const b=2*R(2,8),h=R(3,9);return[`A triangle has base ${b} and height ${h}. What is its area?`,b*h/2,`${b} × ${h} ÷ 2 = ${b*h/2}.`]});
+M('g6para',6,'Plane figures','Area of parallelograms','Area of parallelograms','Area = base × height.',()=>{const b=R(3,12),h=R(2,9);return[`A parallelogram has base ${b} and height ${h}. What is its area?`,b*h,`${b} × ${h} = ${b*h}.`]});
+M('g6trap',6,'Plane figures','Area of trapezoids','Area of trapezoids','Area = (base 1 + base 2) × height ÷ 2.',()=>{const a=R(3,9),b=R(3,9),h=2*R(2,5);return[`A trapezoid has bases ${a} and ${b} and height ${h}. What is its area?`,(a+b)*h/2,`(${a} + ${b}) × ${h} ÷ 2 = ${(a+b)*h/2}.`]});
+M('g6dist',6,'Coordinate plane','Distances','Distance on the coordinate plane','Points with the same x are on a vertical line. Subtract the y values.',()=>{const x=R(-6,6),y1=R(-8,-1),y2=R(1,9);return[`How far apart are (${x}, ${y1}) and (${x}, ${y2})?`,y2-y1,`${y2} - (${y1}) = ${y2-y1}.`]});
+M('g6cube',6,'3D figures','Surface area','Surface area of a cube','A cube has 6 equal square faces. Find one face, then multiply by 6.',()=>{const e=R(2,9);return[`What is the surface area of a cube with side ${e}?`,6*e*e,`6 × ${e} × ${e} = ${6*e*e}.`]});
+M('g6box',6,'3D figures','Surface area','Surface area of a box','Add the areas of all six faces: 2(lw + lh + wh).',()=>{const l=R(2,8),w=R(2,8),h=R(2,8);return[`A box is ${l} by ${w} by ${h}. What is its surface area?`,2*(l*w+l*h+w*h),`2 × (${l*w} + ${l*h} + ${w*h}) = ${2*(l*w+l*h+w*h)}.`]});
+M('g6mean',6,'Data and statistics','Mean','Mean','Mean = sum of the values ÷ how many values.',()=>{const v=[R(3,15),R(3,15),R(3,15),R(3,15)],t0=v.reduce((a,b)=>a+b,0);let x=R(3,15);x+=(5-(t0+x)%5)%5;v.push(x);const t=t0+x;return[`Find the mean of ${v.join(', ')}.`,t/5,`${t} ÷ 5 = ${t/5}.`]});
+M('g6median',6,'Data and statistics','Median','Median','Put the numbers in order. The median is the middle one.',()=>{const v=[];while(v.length<5){const n=R(1,30);if(!v.includes(n))v.push(n)}const o=[...v].sort((a,b)=>a-b);return[`Find the median of ${v.join(', ')}.`,o[2],`In order: ${o.join(', ')}. The middle is ${o[2]}.`]});
+M('g6mode',6,'Data and statistics','Mode','Mode','The mode is the value that appears most often.',()=>{const m=R(1,20);let a,b,c;do{a=R(1,20);b=R(1,20);c=R(1,20)}while(new Set([m,a,b,c]).size<4);const v=[m,a,m,b,c,m].sort(()=>Math.random()-.5);return[`Find the mode of ${v.join(', ')}.`,m,`${m} appears three times.`]});
+M('g6range',6,'Data and statistics','Range','Range','Range = largest value - smallest value.',()=>{const v=Array.from({length:5},()=>R(1,40)),hi=Math.max(...v),lo=Math.min(...v);return[`Find the range of ${v.join(', ')}.`,hi-lo,`${hi} - ${lo} = ${hi-lo}.`]});
+M('g7negmul',7,'Rational numbers','Multiplying negatives','Multiplying negative numbers','A negative times a positive is negative. Two negatives make a positive.',()=>{const a=R(-9,-2),b=R(2,9);return Math.random()<.5?[`(${a}) × ${b} = ?`,a*b,`${-a} × ${b} = ${-a*b}, and the answer is negative: ${a*b}.`]:[`(${a}) × (${-b}) = ?`,-a*b,`Two negatives make a positive: ${-a*b}.`]});
+M('g7dist',7,'Expressions','Distributive property','Distributive property','Multiply the number outside by each term inside.',()=>{const a=R(2,9),b=R(2,9);return[`${a}(x + ${b}) = ${a}x + ?`,a*b,`${a} × ${b} = ${a*b}.`]});
+M('g7pctchg',7,'Proportional relationships','Percent change','Percent increase','Percent change = change ÷ original × 100.',()=>{const o=R(2,9)*20,p=P([10,20,25,50]),n=o+o*p/100;return[`A price goes from $${o} to $${n}. What is the percent increase (number only)?`,p,`The change is ${n-o}. ${n-o} ÷ ${o} = ${p}%.`]});
+M('g7tip',7,'Proportional relationships','Tips and tax','Tips and sales tax','Find the percent of the price by multiplying.',()=>{const pr=R(2,10)*20,p=P([10,15,20,25]);return[`What is a ${p}% tip on a $${pr} bill (in dollars)?`,pr*p/100,`${pr} × ${p/100} = ${pr*p/100}.`]});
+M('g7prop',7,'Proportional relationships','Proportional relationships','Constant of proportionality','y = kx. Find k by dividing y by x.',()=>{const a=R(2,6),k=R(2,9),c=R(7,15);return[`y is proportional to x. When x = ${a}, y = ${a*k}. Find y when x = ${c}.`,k*c,`k = ${k}, so y = ${k} × ${c} = ${k*c}.`]});
+M('g7supp',7,'Geometry','Angles','Supplementary angles','Supplementary angles add up to 180 degrees.',()=>{const x=R(20,160);return[`Two angles add to 180 degrees. One is ${x} degrees. Find the other.`,180-x,`180 - ${x} = ${180-x}.`]});
+M('g7tri',7,'Geometry','Angles','Angles in a triangle','The three angles of a triangle add up to 180 degrees.',()=>{const a=R(30,80),b=R(30,80);return[`A triangle has angles of ${a} and ${b} degrees. Find the third angle.`,180-a-b,`180 - ${a} - ${b} = ${180-a-b}.`]});
+M('g7circ',7,'Geometry','Circles','Circumference','Circumference = 2 × pi × radius. Give the number that multiplies pi.',()=>{const r=R(2,12);return[`A circle has radius ${r}. Its circumference is ? × pi. Find ?.`,2*r,`2 × ${r} = ${2*r}, so ${2*r}pi.`]});
+M('g7circa',7,'Geometry','Circles','Area of a circle','Area = pi × radius × radius. Give the number that multiplies pi.',()=>{const r=R(2,12);return[`A circle has radius ${r}. Its area is ? × pi. Find ?.`,r*r,`${r} × ${r} = ${r*r}, so ${r*r}pi.`]});
+M('g7prob',7,'Probability','Simple probability','Simple probability','Probability = favorable outcomes ÷ all outcomes.',()=>{const r=R(1,7),b=R(1,7);return[`A bag has ${r} red and ${b} blue marbles. What is the probability of picking red? (fraction)`,[r,r+b],`${r} out of ${r+b}: ${r}/${r+b}.`]});
+M('g8pyth',8,'Pythagorean theorem','Right triangles','Pythagorean theorem','a² + b² = c². The hypotenuse is the longest side.',()=>{const [a,b,c]=P([[3,4,5],[5,12,13],[8,15,17],[7,24,25]]),k=R(1,3);return[`A right triangle has legs ${a*k} and ${b*k}. Find the hypotenuse.`,c*k,`${a*k}² + ${b*k}² = ${c*k}², so the hypotenuse is ${c*k}.`]});
+M('g8exp',8,'Exponents and radicals','Exponent rules','Product of powers','When multiplying powers with the same base, add the exponents.',()=>{const a=R(2,6),b=R(2,6);return[`x^${a} × x^${b} = x^?`,a+b,`${a} + ${b} = ${a+b}.`]});
+M('g8sci',8,'Exponents and radicals','Scientific notation','Scientific notation','In m × 10^e, e counts how many places the decimal moved.',()=>{const m=R(1,9),e=R(2,6);return[`${m*10**e} = ${m} × 10^?`,e,`${m*10**e} has ${e} zeros after the ${m}, so e = ${e}.`]});
+M('g8sqrt',8,'Exponents and radicals','Roots','Square roots','The square root of n is the number that multiplies by itself to make n.',()=>{const n=R(2,15);return[`What is the square root of ${n*n}?`,n,`${n} × ${n} = ${n*n}.`]});
+M('g8cbrt',8,'Exponents and radicals','Roots','Cube roots','The cube root of n is the number that, multiplied three times, makes n.',()=>{const n=R(2,6);return[`What is the cube root of ${n**3}?`,n,`${n} × ${n} × ${n} = ${n**3}.`]});
+M('g8lin',8,'Linear equations','Linear functions','Evaluating linear functions','Replace x with the number, multiply by the slope, then add the intercept.',()=>{const m=R(2,6),b=R(-5,9),x=R(-3,6);return[`If y = ${m}x ${sg(b)}, find y when x = ${x}.`,m*x+b,`${m} × ${x} ${sg(b)} = ${m*x+b}.`]});
+M('g8cyl',8,'Volume','Cylinders','Volume of cylinders','Volume = pi × r × r × h. Give the number that multiplies pi.',()=>{const r=R(2,6),h=R(2,9);return[`A cylinder has radius ${r} and height ${h}. Its volume is ? × pi. Find ?.`,r*r*h,`${r} × ${r} × ${h} = ${r*r*h}.`]});
+M('g8sys',8,'Systems of equations','Systems','Systems of equations','Add the two equations to cancel y.',()=>{const x=R(5,12),y=R(1,x-1);return[`x + y = ${x+y} and x - y = ${x-y}. Find x.`,x,`Adding the equations gives 2x = ${2*x}, so x = ${x}.`]});
+M('g9foil',9,'Quadratics','Multiplying binomials','Multiplying binomials','(x + a)(x + b) = x² + (a + b)x + ab.',()=>{const a=R(1,9),b=R(1,9);return[`(x + ${a})(x + ${b}) = x^2 + ?x + ${a*b}. Find ?.`,a+b,`${a} + ${b} = ${a+b}.`]});
+M('g9disc',9,'Quadratics','Discriminant','The discriminant','The discriminant is b² - 4ac.',()=>{const a=R(1,4),b=R(-6,6),c=R(-5,5);return[`Find b^2 - 4ac for ${a}x^2 ${sg(b)}x ${sg(c)}.`,b*b-4*a*c,`${b*b} - ${4*a*c} = ${b*b-4*a*c}.`]});
+M('g9arith',9,'Sequences','Arithmetic sequences','Arithmetic sequences','nth term = first term + (n - 1) × difference.',()=>{const a=R(2,9),d=R(2,6),n=R(5,12);return[`An arithmetic sequence starts at ${a} and goes up by ${d}. What is term ${n}?`,a+(n-1)*d,`${a} + ${n-1} × ${d} = ${a+(n-1)*d}.`]});
+M('g9geom',9,'Sequences','Geometric sequences','Geometric sequences','Multiply by the common ratio each time.',()=>{const a=R(1,4),r=R(2,3),n=R(3,6);return[`A sequence starts at ${a} and is multiplied by ${r} each time. What is term ${n}?`,a*r**(n-1),`${a} × ${r}^${n-1} = ${a*r**(n-1)}.`]});
+M('g9abs',9,'Linear equations','Absolute value equations','Absolute value equations','|x - a| = b means x is b away from a, in both directions.',()=>{const a=R(1,9),b=R(1,9);return[`Solve |x - ${a}| = ${b}. Give the larger solution.`,a+b,`x = ${a} + ${b} = ${a+b} (or ${a-b}).`]});
+M('g9exp',9,'Exponential functions','Exponential growth','Exponential growth','Doubling means multiply by 2 each period.',()=>{const q=R(2,9),n=R(2,6);return[`A population of ${q} doubles every year. How many after ${n} years?`,q*2**n,`${q} × 2^${n} = ${q*2**n}.`]});
+M('g9ineq',9,'Linear equations','Inequalities','Linear inequalities','Divide both sides, then find the smallest whole number that fits.',()=>{const a=R(2,6),k=R(2,9),b=a*k+R(1,a-1);return[`What is the smallest whole number x with ${a}x > ${b}?`,k+1,`x > ${b}/${a}, so x = ${k+1}.`]});
+M('g10dist',10,'Coordinate geometry','Distance','Distance formula','Use the Pythagorean theorem on the horizontal and vertical changes.',()=>{const k=R(1,4);return[`What is the distance between (0, 0) and (${3*k}, ${4*k})?`,5*k,`The square root of ${9*k*k} + ${16*k*k} is ${5*k}.`]});
+M('g10mid',10,'Coordinate geometry','Midpoint','Midpoint formula','Average the x values and average the y values.',()=>{const a=R(-8,8),b=R(-8,8);return[`What is the x-coordinate of the midpoint of (${a}, 1) and (${b}, 5)?`,[a+b,2],`(${a} + ${b}) ÷ 2 = ${(a+b)/2}.`]});
+M('g10poly',10,'Polygons','Interior angles','Interior angles of polygons','Sum of interior angles = (n - 2) × 180.',()=>{const n=R(5,12);return[`What is the sum of the interior angles of a polygon with ${n} sides?`,(n-2)*180,`(${n} - 2) × 180 = ${(n-2)*180}.`]});
+M('g10sim',10,'Similarity','Similar triangles','Similar triangles','Similar triangles have sides in the same ratio.',()=>{const a=R(2,6),k=R(2,4),b=R(3,9);return[`Two triangles are similar. A side of ${a} matches a side of ${a*k}. Another side of the first triangle is ${b}. How long is the matching side of the second?`,b*k,`The scale factor is ${k}, so ${b} × ${k} = ${b*k}.`]});
+M('g10sin',10,'Trigonometry','Right triangle trig','Sine ratio','sin A = opposite ÷ hypotenuse.',()=>{const [o,a,h]=P([[3,4,5],[5,12,13],[8,15,17],[7,24,25]]);return[`In a right triangle the side opposite angle A is ${o} and the hypotenuse is ${h}. What is sin A? (fraction)`,[o,h],`sin A = ${o}/${h}.`]});
+M('g10sph',10,'Solids','Spheres','Volume of spheres','Volume = (4/3) × pi × r × r × r. Give the number that multiplies pi.',()=>{const r=3*R(1,2);return[`A sphere has radius ${r}. Its volume is ? × pi. Find ?.`,4*r**3/3,`(4/3) × ${r}^3 = ${4*r**3/3}.`]});
+M('g10arc',10,'Circles','Arc length','Arc length','Arc length = angle ÷ 360 × 2 × pi × r. Give the number that multiplies pi.',()=>{const t=P([60,90,120,180]),r=R(3,12);return[`A ${t} degree arc has radius ${r}. Its length is ? × pi. Find ? (a fraction or whole number).`,[t*2*r,360],`${t}/360 × 2 × ${r} = ${t*2*r}/360.`]});
+M('g11arser',11,'Series','Arithmetic series','Arithmetic series','Sum = n × (first + last) ÷ 2.',()=>{const a=R(1,9),d=R(1,5),n=R(5,12),l=a+(n-1)*d;return[`What is the sum of the first ${n} terms: first term ${a}, common difference ${d}?`,n*(a+l)/2,`The last term is ${l}. ${n} × (${a} + ${l}) ÷ 2 = ${n*(a+l)/2}.`]});
+M('g11geoser',11,'Series','Geometric series','Geometric series','Sum = a(r^n - 1) ÷ (r - 1).',()=>{const a=R(1,5),n=R(3,7);return[`What is the sum of the first ${n} terms of a geometric series with first term ${a} and ratio 2?`,a*(2**n-1),`${a} × (2^${n} - 1) = ${a*(2**n-1)}.`]});
+M('g11expeq',11,'Exponentials and logarithms','Exponential equations','Exponential equations','Rewrite both sides with the same base.',()=>{const b=R(2,5),k=R(2,5);return[`${b}^x = ${b**k}. x = ?`,k,`${b}^${k} = ${b**k}.`]});
+M('g11logp',11,'Exponentials and logarithms','Log properties','Properties of logarithms','The log of a product is the sum of the logs.',()=>{const a=R(1,5),b=R(1,5);return[`log base 2 of ${2**a} + log base 2 of ${2**b} = ?`,a+b,`${a} + ${b} = ${a+b}.`]});
+M('g11rem',11,'Polynomials','Remainder theorem','Remainder theorem','The remainder when dividing by (x - a) is the value at x = a.',()=>{const a=R(1,5),b=R(-5,5),c=R(-6,6);return[`What is the remainder when x^2 ${sg(b)}x ${sg(c)} is divided by x - ${a}?`,a*a+b*a+c,`Evaluate at x = ${a}: ${a*a+b*a+c}.`]});
+M('g11comb',11,'Probability and counting','Combinations','Combinations','nCk counts groups where order does not matter.',()=>{const n=R(5,9),k=R(2,4);return[`How many ways can you choose ${k} items from ${n}?`,nC(n,k),`${n} choose ${k} = ${nC(n,k)}.`]});
+M('g11perm',11,'Probability and counting','Permutations','Permutations','nPr counts arrangements where order matters.',()=>{const n=R(4,8),r=R(2,3);return[`How many ways can you arrange ${r} of ${n} different items in order?`,nP(n,r),`${nP(n,r)} arrangements.`]});
+M('g11rad',11,'Trigonometry','Radians','Radians and degrees','pi radians = 180 degrees.',()=>{const [n,d]=P([[1,2],[1,3],[1,4],[1,6],[2,3],[3,4],[5,6]]);return[`Convert ${n===1?'':n}pi/${d} radians to degrees.`,180*n/d,`${n}/${d} × 180 = ${180*n/d}.`]});
+M('g12d2',12,'Derivatives','Polynomial derivatives','Derivatives of polynomials','Differentiate each term, then substitute.',()=>{const a=R(1,5),b=R(1,9),c=R(1,4);return[`If f(x) = ${a}x^2 + ${b}x, find f'(${c}).`,2*a*c+b,`f'(x) = ${2*a}x + ${b}, so f'(${c}) = ${2*a*c+b}.`]});
+M('g12chain',12,'Derivatives','Chain rule','Chain rule','Differentiate the outside, then multiply by the derivative of the inside.',()=>{const a=R(2,4),b=R(1,3),n=R(2,4);return[`If f(x) = (${a}x + ${b})^${n}, find f'(0).`,n*b**(n-1)*a,`f'(x) = ${n}(${a}x + ${b})^${n-1} × ${a}. At 0 this is ${n*b**(n-1)*a}.`]});
+M('g12lim',12,'Limits','Limits','Limits by factoring','Factor the top, cancel, then substitute.',()=>{const a=R(1,9);return[`Find the limit as x approaches ${a} of (x^2 - ${a*a}) / (x - ${a}).`,2*a,`It simplifies to x + ${a}, which is ${2*a}.`]});
+M('g12int',12,'Integrals','Definite integrals','Integrals of x squared','The antiderivative of 3x^2 is x^3.',()=>{const b=R(2,5);return[`Evaluate the integral from 0 to ${b} of 3x^2 dx.`,b**3,`${b}^3 = ${b**3}.`]});
+M('g12vert',12,'Derivatives','Optimization','Vertex of a parabola','The vertex of ax² + bx + c has x = -b ÷ (2a).',()=>{const a=R(1,4),h=R(-4,4),c=R(-5,5);return[`Find the x-coordinate of the vertex of y = ${a}x^2 ${sg(2*a*h)}x ${sg(c)}.`,-h,`x = ${-2*a*h} ÷ ${2*a} = ${-h}.`]});
+M('g12inf',12,'Series','Infinite series','Infinite geometric series','Sum = first term ÷ (1 - ratio).',()=>{const a=R(1,6),r=R(2,5);return[`What is the sum of the infinite series with first term ${a} and ratio 1/${r}? (fraction)`,[a*r,r-1],`${a} ÷ (1 - 1/${r}) = ${a*r}/${r-1}.`]});
+M('g13det',13,'Linear algebra','Matrices','Determinant of a 2 by 2 matrix','For [[a, b], [c, d]], the determinant is ad - bc.',()=>{const a=R(-5,9),b=R(-5,9),c=R(-5,9),d=R(-5,9);return[`What is the determinant of [[${a}, ${b}], [${c}, ${d}]]?`,a*d-b*c,`${a}×${d} - ${b}×${c} = ${a*d-b*c}.`]});
+M('g13dot',13,'Linear algebra','Vectors','Dot product','Multiply matching components, then add.',()=>{const v=Array.from({length:6},()=>R(-5,9)),t=v[0]*v[3]+v[1]*v[4]+v[2]*v[5];return[`What is the dot product of (${v[0]}, ${v[1]}, ${v[2]}) and (${v[3]}, ${v[4]}, ${v[5]})?`,t,`${v[0]*v[3]} + ${v[1]*v[4]} + ${v[2]*v[5]} = ${t}.`]});
+M('g13ev',13,'Statistics','Expected value','Expected value','Multiply each outcome by its probability, then add.',()=>{const v1=R(1,20),v2=R(1,20),q=R(1,9),t=v1*q+v2*(10-q);return[`You win $${v1} with probability 0.${q} and $${v2} otherwise. What are the expected winnings?`,[t,10],`${v1}(0.${q}) + ${v2}(0.${10-q}) = ${dec(t,1)}.`]});
+M('g13mod',13,'Discrete math','Modular arithmetic','Modular arithmetic','a mod n is the remainder after dividing a by n.',()=>{const n=R(3,9),a=R(20,200);return[`${a} mod ${n} = ?`,a%n,`${a} = ${Math.floor(a/n)} × ${n} + ${a%n}.`]});
+M('g13sum',13,'Discrete math','Sums','Sum of the first n numbers','1 + 2 + ... + n = n(n + 1) ÷ 2.',()=>{const n=R(10,40);return[`1 + 2 + ... + ${n} = ?`,n*(n+1)/2,`${n} × ${n+1} ÷ 2 = ${n*(n+1)/2}.`]});
+M('g13ci',13,'Finance and growth','Compound interest','Compound interest','A = P(1 + r)^t.',()=>{const q=R(1,9)*1000,r=P([10,20]);return[`$${q} earns ${r}% interest compounded yearly for 2 years. What is the final amount in dollars?`,q*(100+r)**2/10000,`${q} × ${(100+r)/100}^2 = ${q*(100+r)**2/10000}.`]});
+{const seen={};NEWM.forEach(k=>{const key=ST.gr[k]+'|'+SK[k].unit;if(seen[key])SK[k].pre=[seen[key]];seen[key]=k});SK.g6ineq.pre=['onestepmul']}
+const _pa=parse;parse=function(x){const m=String(x).trim().match(/^(-?)(\d*)\.(\d+)$/);if(m){const d=10**m[3].length;return[(m[1]?-1:1)*(+(m[2]||0)*d+ +m[3]),d]}return _pa(x)};
+
+/* ===== Deeper non-math subjects: units, lessons and larger fact banks ===== */
+const UB={ela:['Foundational skills','Foundational skills','Grammar and usage','Vocabulary','Grammar and usage','Vocabulary','Vocabulary','Vocabulary','Reading','Writing','Writing','Reading','Reading','Poetry and drama','Test prep'],
+sci:['Life science','Earth and space science','Life science','Physical science','Life science','Physical science','Earth and space science','Life science','Earth and space science','Chemistry','Biology','Chemistry','Physics','Biology','Chemistry'],
+soc:['Civics and government','Geography','History','Geography','Civics and government','Geography','History','History','Geography','Civics and government','History','Economics','History','Civics and government','Civics and government'],
+cs:['Computing systems','Programming','Computing systems','Programming','Data and the internet','Programming','Programming','Computing systems','Programming','Data and the internet','Data and the internet','Algorithms','Algorithms','AI and ethics','Algorithms']};
+ORDER.forEach(k=>{const n=SK[k];if(n.sub==='math'||n.unit)return;const g=ST.gr[k];n.unit=UB[n.sub]?UB[n.sub][g+1]:n.sub==='fin'?(g==6||g==13?'Credit and debt':g>=10?'Saving and investing':'Money basics'):(g<=8?'Vocabulary':'Grammar');n.lesson=n.n});
+const tn={},lu={};
+const T=(sub,g,unit,lesson,name,tm,txt)=>{const gt=g<0?'pk':g,key=sub+'_'+gt;tn[key]=(tn[key]||0)+1;const id=key+'_n'+tn[key],pairs=txt.split(';').map(x=>x.split('|')),pool=[...new Set(pairs.map(x=>x[1]))],uk=sub+'|'+unit,fill=k=>tm.split('{q}').join(k);
+SK[id]={n:name,sub,unit,lesson,pre:lu[uk]?[lu[uk]]:[],c:'Study these facts, then practice:<ul>'+pairs.map(x=>`<li>${fill(x[0])} <b>${x[1]}</b></li>`).join('')+'</ul>'};lu[uk]=id;ORDER.push(id);if(ST.gr[id]==null)ST.gr[id]=g;
+G[id]=()=>{const [k,a]=pairs[rnd(0,pairs.length-1)],ch=[a,...pool.filter(x=>x!==a).sort(()=>Math.random()-.5).slice(0,3)].sort(()=>Math.random()-.5);return{q:fill(k),choices:ch,a:[ch.indexOf(a),1],h:['Read the question slowly. What is it asking?','Cross out any choices you are sure are wrong.',`Check the study sheet. The answer starts with "${a[0]}".`],s:`The answer is ${a}.`}}};
+/* English / ELA */
+T("ela",-1,"Foundational skills","Letters","Uppercase and lowercase","Which lowercase letter matches {q}?","A|a;B|b;D|d;E|e;G|g;H|h;M|m;R|r");
+T("ela",-1,"Foundational skills","Sounds","Beginning sounds","Which letter does {q} start with?","apple|A;egg|E;igloo|I;orange|O;umbrella|U;moon|M;tiger|T;pig|P");
+T("ela",0,"Foundational skills","Syllables","Counting syllables","How many syllables are in {q}?","cat|1;apple|2;banana|3;caterpillar|4;dog|1;table|2;elephant|3;alligator|4");
+T("ela",0,"Vocabulary","Opposites","Opposites","What is the opposite of {q}?","hot|cold;up|down;big|small;day|night;happy|sad;open|closed;fast|slow;wet|dry");
+T("ela",1,"Grammar and usage","Past tense","Past tense verbs","What is the past tense of {q}?","walk|walked;jump|jumped;play|played;look|looked;help|helped;clean|cleaned;want|wanted;call|called");
+T("ela",1,"Vocabulary","Compound words","Compound words","Which word completes the compound word {q}?","sun___|flower;rain___|bow;cup___|cake;foot___|ball;snow___|man;butter___|fly;air___|plane;bed___|room");
+T("ela",2,"Grammar and usage","Irregular plurals","Irregular plurals","What is the plural of {q}?","child|children;foot|feet;mouse|mice;man|men;tooth|teeth;woman|women;goose|geese;person|people");
+T("ela",2,"Grammar and usage","Contractions","Contractions","What is the contraction for {q}?","do not|don't;can not|can't;is not|isn't;I am|I'm;we are|we're;they will|they'll;she is|she's;would not|wouldn't");
+T("ela",3,"Vocabulary","Antonyms","Antonyms","What is the opposite of {q}?","brave|cowardly;ancient|modern;generous|selfish;rough|smooth;early|late;empty|full;polite|rude;strong|weak");
+T("ela",3,"Grammar and usage","Parts of speech","Parts of speech","What part of speech is {q}?","quickly|adverb;happy|adjective;table|noun;run|verb;under|preposition;and|conjunction;she|pronoun;wow|interjection");
+T("ela",4,"Grammar and usage","Punctuation","Punctuation marks","Which punctuation mark is used for {q}?","the end of a question|question mark;the end of a statement|period;showing strong feeling|exclamation point;showing possession|apostrophe;separating items in a list|comma;introducing a list|colon;quoting speech|quotation marks;joining two related sentences|semicolon");
+T("ela",4,"Vocabulary","Word roots","Greek and Latin roots","What does the root {q} mean?","aqua|water;bio|life;geo|earth;photo|light;graph|write;aud|hear;port|carry;tele|far");
+T("ela",5,"Reading","Text structure","Text structures","Which text structure is described: {q}?","events in time order|sequence;a problem and its answer|problem and solution;how two things are alike and different|compare and contrast;why something happens|cause and effect;a topic described with details|description");
+T("ela",5,"Grammar and usage","Verb tenses","Verb tenses","Which tense is: {q}?","I walked|past;I walk|present;I will walk|future;I have walked|present perfect;I had walked|past perfect;I will have walked|future perfect;I am walking|present progressive;I was walking|past progressive");
+T("ela",6,"Grammar and usage","Pronouns","Pronoun types","What kind of pronoun is {q}?","myself|reflexive;this|demonstrative;mine|possessive;anyone|indefinite;they|personal;each other|reciprocal");
+T("ela",6,"Reading","Point of view","Point of view","Which point of view is this: {q}?","The narrator says I and we|first person;The narrator says you|second person;The narrator says he, she and they|third person;A narrator who knows every character's thoughts|omniscient;A narrator who knows only one character's thoughts|limited");
+T("ela",7,"Grammar and usage","Sentence structure","Sentence types","What type of sentence is: {q}?","I ran home|simple;I ran home, and she stayed|compound;Because it rained, we stayed in|complex;Because it rained, we stayed in, and they left|compound-complex");
+T("ela",7,"Vocabulary","Connotation","Word choice","Which word has a more positive connotation: {q}?","cheap or thrifty|thrifty;stubborn or determined|determined;nosy or curious|curious;skinny or slender|slender;bossy or assertive|assertive;childish or youthful|youthful;gossip or conversation|conversation;sneaky or clever|clever");
+T("ela",8,"Reading","Plot","Plot structure","Which part of the plot is: {q}?","the introduction of characters and setting|exposition;events that build the conflict|rising action;the turning point|climax;events after the climax|falling action;the ending|resolution");
+T("ela",8,"Grammar and usage","Mood","Verb mood","Which mood is this verb: {q}?","Close the door|imperative;She is here|indicative;If I were rich|subjunctive;She would go if she could|conditional");
+T("ela",9,"Reading","Literary terms","Literary terms","Which term means {q}?","a story's overall feeling|mood;the author's attitude|tone;an idea repeated through a work|motif;the narrator's viewpoint|point of view;the author's word choice and style|diction;the order of events in a story|plot");
+T("ela",9,"Writing","Essay writing","Essay parts","Which essay part is: {q}?","the main claim of an essay|thesis;a sentence that opens a paragraph|topic sentence;a quotation or fact supporting a claim|evidence;the opening paragraph|introduction;the closing paragraph|conclusion;an explanation of how evidence supports a claim|analysis");
+T("ela",10,"Poetry and drama","Drama","Drama terms","Which drama term means {q}?","a speech to oneself on stage|soliloquy;a conversation between characters|dialogue;a note on how to perform|stage direction;a section of a play|act;words spoken to the audience alone|aside");
+T("ela",10,"Reading","Logical fallacies","Logical fallacies","Which fallacy is: {q}?","attacking the person instead of the argument|ad hominem;assuming only two options exist|false dilemma;a weak argument made up to defeat|straw man;claiming one step leads to disaster|slippery slope;everyone does it so it must be right|bandwagon;a conclusion that restates the premise|circular reasoning");
+T("ela",11,"Reading","American literature","American literature","Who wrote {q}?","The Scarlet Letter|Nathaniel Hawthorne;The Catcher in the Rye|J. D. Salinger;Of Mice and Men|John Steinbeck;The Crucible|Arthur Miller;Beloved|Toni Morrison;Their Eyes Were Watching God|Zora Neale Hurston;Walden|Henry David Thoreau;The Old Man and the Sea|Ernest Hemingway");
+T("ela",11,"Reading","British literature","British literature","Who wrote {q}?","Frankenstein|Mary Shelley;Jane Eyre|Charlotte Bronte;Great Expectations|Charles Dickens;1984|George Orwell;Lord of the Flies|William Golding;The Canterbury Tales|Geoffrey Chaucer;Paradise Lost|John Milton;Wuthering Heights|Emily Bronte");
+T("ela",12,"Writing","Rhetorical analysis","Rhetorical devices","Which device is: {q}?","repeating a word at the start of clauses|anaphora;a question asked for effect, not an answer|rhetorical question;three items in a series|tricolon;reversing the order of two phrases|chiasmus;understatement for effect|litotes;using an exaggeration|hyperbole");
+T("ela",12,"Reading","World literature","World literature","Who wrote {q}?","Don Quixote|Miguel de Cervantes;The Divine Comedy|Dante Alighieri;Crime and Punishment|Fyodor Dostoevsky;One Hundred Years of Solitude|Gabriel Garcia Marquez;Things Fall Apart|Chinua Achebe;The Odyssey|Homer;The Metamorphosis|Franz Kafka;Les Miserables|Victor Hugo");
+T("ela",13,"Test prep","SAT grammar","SAT grammar rules","Fill in the blank. {q}","its or it's: The dog wagged ___ tail|its;its or it's: ___ a sunny day|it's;their, there or they're: ___ going home|they're;their, there or they're: Put it over ___|there;their, there or they're: It is ___ car|their;your or you're: ___ welcome|you're;affect or effect: The rain will ___ our plans|affect;than or then: She is taller ___ me|than");
+T("ela",13,"Test prep","SAT vocabulary","More SAT vocabulary","What does {q} mean?","pragmatic|practical;verbose|wordy;ambiguous|unclear;frugal|thrifty;pensive|thoughtful;austere|strict and plain;lucid|clear;fastidious|hard to please");
+/* Science */
+T("sci",-1,"Life science","Animals","Animal babies","What is a baby {q} called?","dog|puppy;cat|kitten;cow|calf;horse|foal;sheep|lamb;frog|tadpole;duck|duckling;bear|cub");
+T("sci",-1,"Life science","Animals","Animal sounds","What sound does a {q} make?","cow|moo;dog|woof;cat|meow;duck|quack;pig|oink;sheep|baa;horse|neigh;lion|roar");
+T("sci",0,"Earth and space science","Seasons","Seasons","Which season is {q}?","when leaves fall|autumn;when it is coldest|winter;when flowers bloom|spring;when it is hottest|summer");
+T("sci",0,"Life science","Habitats","Animal homes","Where does a {q} live?","fish|water;bird|nest;bear|den;bee|hive;ant|anthill;rabbit|burrow;spider|web;horse|stable");
+T("sci",1,"Life science","Body systems","Parts of the body","Which body part is used for {q}?","pumping blood|heart;breathing|lungs;thinking|brain;digesting food|stomach;holding the body up|bones;moving the body|muscles");
+T("sci",1,"Earth and space science","Sun, moon and stars","The sky","What is {q}?","the bright star in our sky by day|the Sun;the object that glows at night and changes shape|the Moon;tiny lights in the night sky|stars;the path Earth takes around the Sun|an orbit");
+T("sci",2,"Physical science","Matter","Properties of matter","Which property is: {q}?","how hot or cold something is|temperature;how heavy something is|weight;the space something takes up|volume;how something feels, smooth or rough|texture;whether something floats|buoyancy;the color of something|color");
+T("sci",2,"Earth and space science","Landforms","Landforms","Which landform is: {q}?","a very high landform|mountain;a low area between mountains|valley;land surrounded by water|island;flat land at a low height|plain;a large dry sandy area|desert;moving freshwater flowing to the sea|river");
+T("sci",3,"Life science","Life cycles","Life cycles","What stage comes after {q}?","egg in a butterfly life cycle|larva;larva in a butterfly life cycle|pupa;pupa in a butterfly life cycle|adult;egg in a frog life cycle|tadpole;tadpole in a frog life cycle|froglet;seed in a plant life cycle|seedling");
+T("sci",3,"Physical science","Forces","Forces and motion","Which force is: {q}?","pulls objects toward Earth|gravity;slows things that rub together|friction;pushes or pulls using magnets|magnetism;pushes up on a floating object|buoyancy;the push or pull on an object|force");
+T("sci",4,"Earth and space science","Rocks","Rocks and minerals","Which term is: {q}?","rock formed from cooled lava or magma|igneous;rock formed from layers of sediment|sedimentary;rock formed from heat and pressure|metamorphic;a naturally occurring solid with a crystal structure|mineral;the process that turns old rock into new rock|rock cycle");
+T("sci",4,"Physical science","Electricity","Electricity","Which term is: {q}?","a complete path for electricity|circuit;a material that lets electricity flow|conductor;a material that blocks electricity|insulator;the flow of electric charge|current;a device that stores chemical energy to make electricity|battery;a part that opens or closes a circuit|switch");
+T("sci",5,"Earth and space science","Water cycle","The water cycle","Which water cycle step is: {q}?","water turning to vapor|evaporation;vapor turning to droplets|condensation;water falling from clouds|precipitation;water flowing over land into rivers|runoff;plants releasing water vapor|transpiration");
+T("sci",5,"Earth and space science","Weather and climate","Weather instruments","Which tool measures {q}?","temperature|thermometer;air pressure|barometer;wind speed|anemometer;rainfall|rain gauge;humidity|hygrometer;wind direction|weather vane");
+T("sci",6,"Life science","Classification","Classification","Which term is: {q}?","the kingdom of mushrooms and yeast|fungi;the kingdom of plants|Plantae;the kingdom of animals|Animalia;organisms without a nucleus|prokaryotes;organisms with a nucleus|eukaryotes;the most specific classification level|species");
+T("sci",6,"Earth and space science","Plate tectonics","Plate tectonics","Which term is: {q}?","huge slabs of Earth's crust|plates;a crack where plates slip and cause earthquakes|fault;the point on the surface above an earthquake's origin|epicenter;a mountain that erupts lava|volcano;a measure of earthquake strength|magnitude;when one plate slides under another|subduction");
+T("sci",7,"Chemistry","Atoms","Atomic structure","Which particle or term is: {q}?","positive charge in the nucleus|proton;neutral particle in the nucleus|neutron;negative charge orbiting the nucleus|electron;the center of an atom|nucleus;the number of protons|atomic number");
+T("sci",7,"Earth and space science","Astronomy","Moon phases","Which term is: {q}?","fully lit moon|full moon;moon not visible|new moon;right half lit and growing|first quarter;left half lit and shrinking|last quarter;lit area growing larger|waxing;lit area shrinking|waning");
+T("sci",8,"Chemistry","Periodic table","Periodic table groups","Which term is: {q}?","the column of unreactive gases|noble gases;the very reactive metals in group 1|alkali metals;the reactive nonmetals in group 17|halogens;the center block of metals|transition metals;horizontal rows|periods;vertical columns|groups");
+T("sci",8,"Physical science","Motion","Speed","What is the speed of an object that travels {q}?","100 m in 10 s|10 m/s;60 m in 5 s|12 m/s;90 m in 3 s|30 m/s;50 m in 25 s|2 m/s;80 m in 4 s|20 m/s;45 m in 9 s|5 m/s;120 m in 8 s|15 m/s");
+T("sci",9,"Biology","Cell biology","Cell processes","Which process is: {q}?","making food from sunlight|photosynthesis;releasing energy from food|cellular respiration;cell division for growth|mitosis;movement of water across a membrane|osmosis;movement of molecules from high to low concentration|diffusion;making proteins from RNA|translation");
+T("sci",9,"Biology","Evolution","Evolution","Which term is: {q}?","survival of the best adapted|natural selection;a trait that helps survival|adaptation;the variety of life|biodiversity;when a species disappears forever|extinction;the formation of new species|speciation;remains of ancient life|fossils");
+T("sci",10,"Chemistry","Bonding","Chemical bonds","Which bond is: {q}?","electrons shared between atoms|covalent;electrons transferred between atoms|ionic;a sea of shared electrons in metals|metallic;a weak attraction between water molecules|hydrogen");
+T("sci",10,"Chemistry","Acids and bases","The pH scale","What is the pH category of {q}?","battery acid|strong acid;bleach|strong base;lemon juice|weak acid;pure water|neutral;baking soda solution|weak base");
+T("sci",11,"Physics","Electricity","Ohm's law","What is the current for {q}?","12 V and 4 ohms|3 A;10 V and 5 ohms|2 A;20 V and 4 ohms|5 A;24 V and 6 ohms|4 A;18 V and 3 ohms|6 A;8 V and 8 ohms|1 A");
+T("sci",11,"Physics","Waves","Waves","Which wave term is: {q}?","the distance between two crests|wavelength;the number of waves per second|frequency;the height of a wave|amplitude;bending around obstacles|diffraction;bouncing off a surface|reflection;bending when speed changes|refraction");
+T("sci",12,"Biology","Genetics","DNA and RNA","What is {q}?","the sugar in DNA|deoxyribose;the base that pairs with adenine in DNA|thymine;the base that pairs with cytosine|guanine;the RNA base that replaces thymine|uracil;the process of copying DNA|replication;the process of making RNA from DNA|transcription");
+T("sci",12,"Earth and space science","Climate","Climate change","Which term is: {q}?","gases that trap heat|greenhouse gases;the long-term average of weather|climate;the rise in global temperatures|global warming;energy from sun, wind or water|renewable energy;burning coal, oil or gas|fossil fuels");
+T("sci",13,"Chemistry","Organic chemistry","Functional groups","Which functional group has the formula {q}?","-OH|alcohol;-COOH|carboxylic acid;-NH2|amine;-CHO|aldehyde;-O-|ether");
+T("sci",13,"Physics","Modern physics","Modern physics","Who is associated with {q}?","the theory of relativity|Einstein;the uncertainty principle|Heisenberg;the law of universal gravitation|Newton;the discovery of the electron|J. J. Thomson;the nuclear model of the atom|Rutherford;the periodic table|Mendeleev");
+/* Social Studies */
+T("soc",-1,"Geography","Community places","Places in a community","Where do you go to {q}?","learn|school;borrow books|library;see a doctor|clinic;buy food|store;mail a letter|post office;play on swings|park");
+T("soc",-1,"Civics and government","Our country","Our country","Which goes with: {q}?","our flag's colors|red, white and blue;the bird on many US symbols|bald eagle;the leader of our country|president;the country we live in|United States");
+T("soc",0,"Economics","Jobs","Jobs people do","Who {q}?","grows food|farmer;builds houses|builder;flies planes|pilot;cuts hair|barber;bakes bread|baker;fixes teeth|dentist");
+T("soc",0,"History","Holidays","Holidays","Which holiday is celebrated with {q}?","fireworks on July 4|Independence Day;pumpkins and costumes|Halloween;turkey and giving thanks|Thanksgiving;a decorated tree and gifts|Christmas;hearts and cards|Valentine's Day;lights for eight nights|Hanukkah");
+T("soc",1,"Geography","Maps","Map skills","What is {q}?","a key that explains map symbols|legend;the part of a map that shows direction|compass rose;a picture that stands for a place|symbol;a map of the whole world|world map;a model of Earth|globe");
+T("soc",1,"Civics and government","Rules and laws","Rules and laws","What is {q}?","a rule made by government|law;a vote to choose leaders|election;doing what is fair|fairness;being accountable for your actions|responsibility;being a good member of a community|citizenship;a person chosen to lead|leader");
+T("soc",2,"Geography","Landforms","Bodies of water","Which is {q}?","water surrounded by land|lake;a large body of salt water|ocean;water flowing across land|river;a part of an ocean partly surrounded by land|bay;land surrounded by water on three sides|peninsula;land surrounded by water|island");
+T("soc",2,"History","American symbols","American symbols","Which US symbol is {q}?","a bell that rang for independence|Liberty Bell;a statue given by France|Statue of Liberty;the building where Congress meets|Capitol;the home of the president|White House;a song of the nation|national anthem");
+T("soc",3,"Geography","Regions of the US","US regions","Which US region is {q} in?","California|West;Maine|Northeast;Texas|Southwest;Ohio|Midwest;Georgia|Southeast");
+T("soc",3,"Economics","Markets","Goods and services","What is {q}?","an action done for others|service;a person who buys|consumer;a person who makes or sells|producer;the amount of something wanted|demand;the amount available|supply;trading goods for goods|barter");
+T("soc",4,"History","Early America","Explorers and early colonies","Which answer fits: {q}?","the Italian explorer who sailed for Spain in 1492|Columbus;the Shoshone woman who helped Lewis and Clark|Sacagawea;the English colony founded in 1607|Jamestown;the ship of the Pilgrims|Mayflower;the explorers sent west by Jefferson|Lewis and Clark");
+T("soc",4,"Geography","Latitude and longitude","Latitude and longitude","Which term is: {q}?","lines running east and west|latitude;lines running north and south|longitude;the northern half of Earth|Northern Hemisphere;the western half of Earth|Western Hemisphere;the 0 degree longitude line|prime meridian;the 0 degree latitude line|equator");
+T("soc",5,"History","Colonial America","The 13 colonies","Which colony was {q}?","founded by William Penn|Pennsylvania;founded by Roger Williams|Rhode Island;the first English settlement in 1607|Virginia;home of the Pilgrims at Plymouth|Massachusetts;founded by Lord Baltimore|Maryland;the last colony, founded in 1732|Georgia");
+T("soc",5,"History","American Revolution","American Revolution","Which is {q}?","the 1773 tax protest in Boston Harbor|Boston Tea Party;the document declaring independence|Declaration of Independence;the first battles in 1775|Lexington and Concord;the commander of the Continental Army|George Washington;the battle that ended the war in 1781|Yorktown;the 1783 treaty ending the war|Treaty of Paris");
+T("soc",6,"History","Ancient Greece and Rome","Ancient Greece","Which is {q}?","the city-state known for democracy|Athens;the city-state known for warriors|Sparta;the philosopher who taught Plato|Socrates;the games held every four years|Olympics;the king who conquered much of Asia|Alexander the Great;the epic poet of the Iliad|Homer");
+T("soc",6,"History","Ancient Egypt and Mesopotamia","Ancient Egypt","What is {q}?","the Egyptian writing system|hieroglyphics;a king of ancient Egypt|pharaoh;a tomb shaped like a triangle|pyramid;the river of Egypt|Nile;preserving bodies after death|mummification;the stone that helped decode hieroglyphics|Rosetta Stone");
+T("soc",7,"Geography","Climate zones","Biomes","Which biome is {q}?","cold with frozen, treeless ground|tundra;hot and wet with tall trees|tropical rainforest;dry with little rain|desert;grass with few trees|grassland;cone-bearing trees in cold regions|taiga;trees that lose leaves in fall|deciduous forest");
+T("soc",7,"History","World religions","World religions","Which religion is associated with {q}?","the Quran|Islam;the Bible|Christianity;the Torah|Judaism;the Vedas|Hinduism;the Tripitaka|Buddhism");
+T("soc",8,"History","Civil War and Reconstruction","Civil War","What is {q}?","the war between North and South|Civil War;the president of the Union|Abraham Lincoln;the Confederate general|Robert E. Lee;the Union general who became president|Ulysses S. Grant;the 1863 order freeing enslaved people in rebel states|Emancipation Proclamation;the 1863 turning-point battle|Gettysburg");
+T("soc",8,"Civics and government","Constitution","Constitutional principles","Which principle is: {q}?","power shared by national and state governments|federalism;each branch limiting the others|checks and balances;power divided into three branches|separation of powers;government gets power from the people|popular sovereignty;laws apply to everyone|rule of law");
+T("soc",9,"History","World history","Renaissance and Reformation","Who is {q}?","the artist who painted the Mona Lisa|Leonardo da Vinci;the German who sparked the Reformation|Martin Luther;the European inventor of the printing press|Johannes Gutenberg;the artist of the Sistine Chapel ceiling|Michelangelo;the astronomer who said Earth orbits the Sun|Copernicus;the author of The Prince|Machiavelli");
+T("soc",9,"Geography","Population","Population and migration","Which term is: {q}?","people moving into a country|immigration;people moving out of a country|emigration;the number of people per square mile|population density;a large city and its suburbs|metropolitan area;movement of people from rural areas to cities|urbanization");
+T("soc",10,"Economics","Markets","Supply and demand","{q}?","What happens to price when demand rises and supply stays the same|price rises;What happens to price when supply rises and demand stays the same|price falls;What happens to demand when price rises|demand falls;What happens to supply when price rises|supply rises;What results when the price is set too low|shortage;What results when the price is set too high|surplus");
+T("soc",10,"Civics and government","Political theory","Enlightenment thinkers","Which thinker wrote {q}?","Leviathan|Thomas Hobbes;Two Treatises of Government|John Locke;The Spirit of the Laws|Montesquieu;The Social Contract|Rousseau");
+T("soc",11,"History","Twentieth century","World War II","What is {q}?","the 1941 attack that brought the US into the war|Pearl Harbor;the 1944 Allied invasion of France|D-Day;the Nazi genocide of Jews|Holocaust;the leader of Nazi Germany|Adolf Hitler;the British prime minister during most of the war|Winston Churchill;the weapons used on Japan in 1945|atomic bombs");
+T("soc",11,"History","Twentieth century","Cold War","What is {q}?","the 1961 wall dividing a German city|Berlin Wall;the 1962 nuclear standoff|Cuban Missile Crisis;the policy of stopping the spread of communism|containment;the 1957 Soviet satellite|Sputnik;the Western alliance formed in 1949|NATO;the Soviet-led alliance|Warsaw Pact");
+T("soc",12,"Civics and government","Supreme Court","Supreme Court cases","Which case was {q}?","the 1803 case establishing judicial review|Marbury v. Madison;the 1954 case ending school segregation|Brown v. Board of Education;the 1966 case requiring rights warnings|Miranda v. Arizona;the 1896 case upholding separate but equal|Plessy v. Ferguson;the 1857 case denying citizenship to enslaved people|Dred Scott v. Sandford;the 1963 case guaranteeing a lawyer|Gideon v. Wainwright");
+T("soc",12,"Economics","Macroeconomics","Macroeconomics","What is {q}?","the central bank of the US|Federal Reserve;the government's use of taxing and spending|fiscal policy;controlling the money supply|monetary policy;a period of falling economic output|recession;the share of jobless people seeking work|unemployment rate;total government borrowing|national debt");
+T("soc",13,"History","Anthropology and sociology","Social sciences","Which field studies {q}?","human societies|sociology;the mind and behavior|psychology;human cultures and origins|anthropology;governments and power|political science;production and trade|economics;past events|history");
+T("soc",13,"Civics and government","AP Government","Founding documents","Which document is {q}?","the first US constitution before 1787|Articles of Confederation;essays supporting ratification|Federalist Papers;the first ten amendments|Bill of Rights;the 1215 English charter limiting the king|Magna Carta;the 1776 document by Jefferson|Declaration of Independence;the 1787 framework of government|Constitution");
+/* Computer Science */
+T("cs",-1,"Computing systems","Devices","Technology at home","Which device {q}?","cooks food|microwave;shows videos|television;plays music|speaker;takes pictures|camera;calls friends|phone;washes clothes|washing machine");
+T("cs",0,"Computing systems","Robots","Parts of a robot","Which part of a robot {q}?","senses the world|sensor;moves the robot|motor;thinks and decides|controller;gives it power|battery;tells it what to do|program");
+T("cs",1,"Programming","Debugging","Programs and bugs","What is {q}?","the order steps happen in|sequence;a mistake in a program|bug;a set of instructions|program;fixing mistakes|debugging;an instruction like move forward|command;repeating steps|loop");
+T("cs",2,"Data and the internet","Digital citizenship","Staying safe online","What should you do when {q}?","someone asks for your password|never share it;you make a password|use letters and numbers;a pop-up asks you to click|ask an adult first;you post a photo|think before you post;someone is unkind online|block and tell an adult");
+T("cs",3,"Data and the internet","Data","Charts and data","Which chart is best for {q}?","showing parts of a whole|pie chart;comparing amounts|bar graph;showing change over time|line graph;showing groups in rows and columns|table;showing a relationship between two variables|scatter plot");
+T("cs",4,"Programming","Loops and events","Events and loops","What is {q}?","something that starts code, like a click|event;a block repeated a set number of times|for loop;a block repeated while a condition is true|while loop;a name that holds data|variable;a named block of code you can reuse|function;a decision in code|conditional");
+T("cs",5,"Programming","Languages","Programming languages","Which language is {q}?","used for web page behavior|JavaScript;block-based and made at MIT|Scratch;popular for data science|Python;used to structure web pages|HTML;used for iPhone apps|Swift;used for Android apps|Kotlin");
+T("cs",6,"Data and the internet","Networks","Networks","Which term is {q}?","a unique number for a device on a network|IP address;a device that connects networks|router;the system that turns names into IP addresses|DNS;a small piece of data sent over a network|packet;a wireless network standard|Wi-Fi;a network in one building|LAN");
+T("cs",7,"Programming","Python","Python basics","What does {q} do in Python?","print()|shows output;input()|gets user input;len()|counts items;range()|makes a sequence of numbers;def|defines a function;if|makes a decision");
+T("cs",8,"Data and the internet","Databases","Databases","What is {q}?","a table row|record;a table column|field;a unique ID for a record|primary key;a question asked of a database|query;an organized collection of data|database");
+T("cs",9,"Computing systems","Operating systems","Computer hardware","Which part is {q}?","the main circuit board|motherboard;temporary working memory|RAM;long-term storage that stays when power is off|storage drive;the chip that processes instructions|CPU;the chip that draws images|GPU;software that manages the computer|operating system");
+T("cs",10,"Programming","Object-oriented programming","Object-oriented programming","Which concept is {q}?","a blueprint for objects|class;an instance of a class|object;a class that builds on another|inheritance;hiding internal details|encapsulation;one interface with many forms|polymorphism;a function inside a class|method");
+T("cs",11,"Algorithms","Sorting","Sorting algorithms","Which sort is {q}?","repeatedly swapping neighbors|bubble sort;picking the smallest each pass|selection sort;splitting in half and merging|merge sort;choosing a pivot|quick sort;inserting each item into place|insertion sort");
+T("cs",12,"AI and ethics","Ethics","Ethics of technology","Which term is {q}?","unfair results from skewed data|algorithmic bias;the right to control personal data|privacy;fake media made by AI|deepfake;protecting systems from attack|cybersecurity;information gathered about users|data collection");
+T("cs",13,"Algorithms","Graphs","Graph algorithms","Which algorithm is {q}?","finding shortest paths with weights|Dijkstra;exploring level by level|breadth-first search;going deep before backing up|depth-first search;finding a minimum spanning tree|Kruskal;ordering tasks with dependencies|topological sort");
+/* Financial Literacy and Spanish */
+T("fin",3,"Money basics","Making change","Making change","What is your change if you {q}?","pay $5 for a $3 item|$2;pay $10 for a $7 item|$3;pay $20 for a $15 item|$5;pay $10 for a $4 item|$6;pay $20 for a $13 item|$7;pay $5 for a $1 item|$4");
+T("fin",5,"Saving and investing","Interest","Simple interest","How much simple interest does {q} earn in one year?","$100 at 5%|$5;$200 at 10%|$20;$500 at 2%|$10;$1,000 at 3%|$30;$300 at 4%|$12;$50 at 2%|$1");
+T("fin",7,"Money basics","Banking","Banking basics","What is {q}?","money you take out of an account|withdrawal;money you put into an account|deposit;a card that takes money from your account|debit card;a written order to pay from your account|check;a monthly summary from your bank|statement;a fee for spending more than you have|overdraft fee");
+T("fin",9,"Credit and debt","Insurance","Insurance","Which insurance covers {q}?","doctor visits|health insurance;car accidents|auto insurance;a house fire|homeowners insurance;a renter's belongings|renters insurance;income lost after a death|life insurance;income lost to a long illness|disability insurance");
+T("fin",11,"Saving and investing","Retirement","Retirement accounts","Which account is {q}?","an employer retirement plan|401(k);an individual retirement account|IRA;an IRA with tax-free qualified withdrawals|Roth IRA;a savings plan for health costs|HSA;a plan for college savings|529 plan;a government retirement benefit|Social Security");
+T("es",1,"Vocabulary","Food","Food words","How do you say {q} in Spanish?","apple|manzana;bread|pan;water|agua;milk|leche;rice|arroz;cheese|queso");
+T("es",3,"Vocabulary","School","School words","How do you say {q} in Spanish?","book|libro;pencil|lápiz;teacher|maestro;school|escuela;desk|escritorio;door|puerta");
+T("es",5,"Vocabulary","Days","Days of the week","How do you say {q} in Spanish?","Monday|lunes;Tuesday|martes;Wednesday|miércoles;Thursday|jueves;Friday|viernes;Saturday|sábado");
+T("es",7,"Vocabulary","Ser and estar","Ser or estar","Fill in the blank: {q}","Yo ___ estudiante|soy;Ella ___ cansada|está;Nosotros ___ amigos|somos;Tú ___ alto|eres;Ellos ___ en casa|están;Él ___ de México|es");
+T("es",9,"Grammar","Past tense","Preterite","What is the preterite of hablar for {q}?","yo|hablé;tú|hablaste;él|habló;nosotros|hablamos;ellos|hablaron");
+T("es",11,"Grammar","Subjunctive","Present subjunctive","What is the present subjunctive of hablar for {q}?","yo|hable;tú|hables;nosotros|hablemos;ellos|hablen");
+/* Spaced review: a retention check unlocks only after a gap, set by the Owner */
+const retDays=()=>ST.retDays??3,retOk=k=>{const t=S[k].profAt;return !t||Date.now()-t>=retDays()*864e5};
+const _ud3=update;update=function(k,...a){_ud3(k,...a);const z=S[k];if(level(k)>=3&&!z.profAt){z.profAt=Date.now();sv()}};
+ORDER.forEach(k=>{if(!S[k])S[k]={p:.2,att:0,mastered:false,review:false}});
+if(!ST.v3){ST.grades=['all'];ST.v3=1}ST.subj=ST.subj||'math';sv();
+const qt=q=>plain(q.q)+(q.choices?'\n      '+q.choices.map((c,i)=>'ABCD'[i]+') '+c).join('      '):''),an=q=>q.choices?'ABCD'[q.a[0]]+') '+q.choices[q.a[0]]:ans(q.a);
+
+/* Learn: subject picker, grade-column map, multiple-choice practice */
+recommend=function(){let L=ORDER.filter(k=>SK[k].sub===ST.subj&&inBand(k));if(!L.length)L=ORDER.filter(k=>SK[k].sub===ST.subj);const up=k=>SK[k].pre.every(x=>!inBand(x)||level(x)>=2);return L.find(k=>level(k)<3&&up(k))||L.find(k=>level(k)<4)||L[0]||ORDER[0]};
+const _gb=gradeBar;gradeBar=function(){_gb();if(tab==='learn')$('gradebar').insertAdjacentHTML('afterbegin',`<div class="subs"><b>Subject</b>${Object.entries(SUBN).map(([k,v])=>`<button class="chip ${ST.subj===k?'on':''}" aria-pressed="${ST.subj===k}" onclick="ST.subj='${k}';sv();view='home';gradeBar();render()">${v}</button>`).join('')}</div>`)};
+const lab=n=>n.l||(w=>[w.slice(0,Math.ceil(w.length/2)).join(' '),w.slice(Math.ceil(w.length/2)).join(' ')])(n.n.split(' '));
+drawMap=function(){const el=$('map'),all=ORDER.filter(k=>SK[k].sub===ST.subj&&(ST.grades.includes('all')||inBand(k))).sort((a,b)=>ST.gr[a]-ST.gr[b]),gs=[...new Set(all.map(k=>ST.gr[k]))].sort((a,b)=>a-b),pos={},rows=gs.map(()=>0);
+let col=0;const gx={};gs.forEach(g=>{const ks=all.filter(k=>ST.gr[k]==g);gx[g]=col;ks.forEach((k,i)=>{pos[k]={x:75+(col+Math.floor(i/4))*150,y:90+(i%4)*125}});col+=Math.ceil(ks.length/4)});
+const W=Math.max(640,col*150+20),Hh=Math.max(300,60+Math.min(4,Math.max(1,...gs.map(g=>all.filter(k=>ST.gr[k]==g).length)))*125);el.setAttribute('viewBox',`0 0 ${W} ${Hh}`);el.style.minWidth=W>900?W+'px':'';el.parentNode.style.overflowX='auto';
+let h='<defs><filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="6"/></filter></defs>';
+if(!all.length)h+='<text x="20" y="60" fill="var(--mute)" font-size="16">No skills here yet for these grades. Pick other grades above.</text>';
+gs.forEach((g)=>{h+=`<text x="${75+gx[g]*150}" y="26" text-anchor="middle" font-weight="700" font-size="14" fill="var(--mute)">${GLAB(g)}</text>`});
+all.forEach(k=>SK[k].pre.forEach(q=>{if(pos[q]){const a=pos[q],b=pos[k],on=level(q)>=2;h+=`<line x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}" stroke="${on?'var(--lamp)':'var(--line)'}" stroke-width="${on?3:2}"/>`}}));
+const rec=recommend();
+all.forEach(k=>{const n=SK[k],lv=level(k),{x,y}=pos[k],L=lab(n);
+h+=`<g class="node" tabindex="0" role="button" aria-label="${n.n}, ${GLAB(ST.gr[k])}, ${LV[lv]}${k==rec?', recommended next':''}" onclick="openSkill('${k}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openSkill('${k}')}">`;
+if(lv>=3)h+=`<circle cx="${x}" cy="${y}" r="30" fill="var(--lamp)" opacity=".55" filter="url(#glow)"/>`;
+if(k==rec)h+=`<circle cx="${x}" cy="${y}" r="31" fill="none" stroke="var(--teal)" stroke-width="3" stroke-dasharray="5 4"/>`;
+h+=`<circle class="n" cx="${x}" cy="${y}" r="23" fill="${LC[lv]}" stroke="${S[k].review?'var(--coral)':lv==4?'var(--teal)':'var(--panel)'}" stroke-width="${lv==4||S[k].review?4:2}"/>`;
+if(lv==4)h+=`<path d="M${x-8} ${y}l5 6l11-12" stroke="#1B2A41" stroke-width="3" fill="none"/>`;
+h+=`<text x="${x}" y="${y+42}">${esc(L[0])}</text><text x="${x}" y="${y+56}">${esc(L[1])}</text></g>`});
+el.innerHTML=h;$('legend').innerHTML=LV.map((l,i)=>`<span style="--c:${LC[i]}">${l}</span>`).join('')+'<span style="--c:var(--teal)">Recommended</span>'};
+const _r=render;render=function(){_r();if(view==='practice'&&cur&&cur.q&&cur.q.choices){const i=$('ans');if(!i)return;const q=cur.q,d=cur.done,b=document.createElement('div');b.className='mc';b.setAttribute('role','radiogroup');b.setAttribute('aria-label','Choose one answer');b.innerHTML=q.choices.map((c,x)=>`<label class="opt${d&&x===q.a[0]?' ok':''}"><input type="radio" name="mc" value="${x}" ${cur.pick===x?'checked':''} ${d?'disabled':''}> ${esc(c)}</label>`).join('')+`<input type="hidden" id="ans" value="${cur.pick==null?'':cur.pick}">`;i.replaceWith(b);b.querySelectorAll('input[type=radio]').forEach(r=>r.onchange=()=>{cur.pick=+r.value;$('ans').value=r.value})}};
+const _nq=newQ;newQ=function(){_nq();cur.pick=null};
+const _sb=submit;submit=function(){if(cur.q.choices&&cur.pick==null){cur.fb=tutor('Choose an answer first.','warn','Check your answer');render();return}_sb()};
+
+/* Certificates: one per subject for each school stage */
+const BANDS=[['Elementary (PK-5)',-1,5],['Middle school (6-8)',6,8],['High school (9-12)',9,12],['College and test prep',13,13]];
+COURSES.length=0;Object.entries(UNITS).forEach(([k,u])=>COURSES.push({id:'u-'+k,name:u[0]+' (Math)',skills:u[1]}));
+Object.keys(SUBN).forEach(sub=>BANDS.forEach(([nm,lo,hi])=>{const sk=ORDER.filter(k=>SK[k].sub===sub&&ST.gr[k]>=lo&&ST.gr[k]<=hi);if(sk.length>=2)COURSES.push({id:sub+'-'+lo,name:SUBN[sub]+': '+nm,skills:sk})}));
+
+/* ---------- Courses: units, lessons and skills, like a course outline ---------- */
+function coView(){const sub=ST.cs2||ST.subj||'math',g=ST.cg??6;ST.cs2=sub;const ks=ORDER.filter(k=>SK[k].sub===sub&&ST.gr[k]==g),U=[];
+ks.forEach(k=>{const n=SK[k],u=n.unit||SUBN[sub],l=n.lesson||n.n;let a=U.find(x=>x[0]===u);if(!a)U.push(a=[u,[]]);let b=a[1].find(x=>x[0]===l);if(!b)a[1].push(b=[l,[]]);b[1].push(k)});
+if(sub==='math'&&g===6)U.sort((a,b)=>{const i=UORD.indexOf(a[0]),j=UORD.indexOf(b[0]);return(i<0?99:i)-(j<0?99:j)});
+return `<h2>Courses</h2><div class="row"><select aria-label="Subject" onchange="ST.cs2=this.value;r2()">${Object.entries(SUBN).map(([k,v])=>`<option value="${k}" ${sub==k?'selected':''}>${v}</option>`).join('')}</select><select aria-label="Grade" onchange="ST.cg=+this.value;r2()">${GLIST.map(x=>`<option value="${x}" ${g==x?'selected':''}>${GLAB(x)}</option>`).join('')}</select></div><p class="sol">${ks.length} skills in ${GLAB(g)} ${SUBN[sub]}. Select any skill to open its lesson and practice.</p>
+${U.length?U.map((u,i)=>{const all=u[1].flatMap(l=>l[1]),done=all.filter(k=>level(k)>=3).length;return `<div class="card post"><div class="split"><h3>Unit ${i+1}: ${esc(u[0])}</h3><span class="sol">${done} of ${all.length} skills Proficient</span></div><div class="units">${u[1].map(l=>`<div><h4>${esc(l[0])}</h4>${l[1].map(k=>`<button class="skill" onclick="goSkill('${k}')"><span class="dot" style="background:${LC[level(k)]}"></span>${esc(SK[k].n)}</button>`).join('')}</div>`).join('')}</div></div>`}).join(''):'<p class="sol">No skills at this grade yet.</p>'}`}
+function goSkill(k){ST.subj=SK[k].sub;sv();showTab('learn');openSkill(k)}
+for(let i=COURSES.length-1;i>=0;i--)if(COURSES[i].id.startsWith('math-'))COURSES.splice(i,1);
+GLIST.forEach(g=>{const sk=ORDER.filter(k=>SK[k].sub==='math'&&ST.gr[k]==g);if(sk.length>=2)COURSES.push({id:'math-g'+g,name:'Math: '+GLAB(g),skills:sk})});
+const _of=O.flags;O.flags=function(){return _of()+`<p><label>Days before a retention check unlocks <input type="number" min="0" max="30" value="${ST.retDays??3}" onchange="ST.retDays=Math.max(0,+this.value||0);sv()"></label></p>`};
+showTab(location.hash.startsWith('#cert=')?'certs':'learn');
+</script>
+<style>
+.auth{max-width:440px;margin:24px auto 64px;padding:0 16px}.auth .card{margin-top:16px}.auth label{display:block;margin-top:12px;font-weight:700;font-size:15px}.auth label input:not([type=checkbox]),.auth label select{display:block;width:100%;margin-top:4px}
+.auth [hidden]{display:none!important}.auth input[type=password]{font:inherit;font-size:16px;padding:9px 12px;border-radius:10px;border:2px solid var(--line);background:var(--bg);color:var(--ink)}
+.auth .ck{font-weight:400;display:flex;gap:8px;align-items:flex-start}.auth .err{color:var(--coral);font-weight:700;min-height:1.4em;margin:10px 0 0}
+.acct{display:flex;gap:8px;align-items:center;margin-left:auto;font-size:14px;color:var(--mute)}.acct b{color:var(--ink)}
+.creds{width:100%;border-collapse:collapse;margin-top:8px;font-size:15px}.creds td,.creds th{border:1px solid var(--line);padding:6px 10px;text-align:left}
+@media print{body *{visibility:hidden}.printme,.printme *{visibility:visible}.printme{position:absolute;left:0;top:0;width:100%}}
+</style>
+<script>
+/* ===== Server connection: sign-in, loading and saving the account's data ===== */
+const BOOT={state:{},settings:{},curriculum:{courses:[],milestones:[]},user:null,role:'student'};
+async function api(method,path,body){
+  const r=await fetch(path,{method,credentials:'same-origin',headers:body===undefined?{}:{'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body)});
+  let j={};try{j=await r.json()}catch(e){}
+  if(r.status===401&&path!=='/api/login'&&path!=='/api/me'){location.reload();throw new Error('Please sign in again.')}
+  if(!r.ok)throw new Error(j.error||'Something went wrong. Please try again.');
+  return j;
+}
+let _syncT=null,_ownerT=null;
+function stateBody(){
+  const P={};['grades','subj','me','lite','cs','rs','cs2','cg','ot','gf','v3','sched'].forEach(k=>{if(ST[k]!==undefined)P[k]=ST[k]});
+  return {S,gems:BOOT.state.gems||0,days:ST.days||[],secs:ST.secs||0,prefs:P};
+}
+function SYNC(){
+  if(typeof ST==='undefined'||typeof S==='undefined')return;
+  clearTimeout(_syncT);_syncT=setTimeout(()=>{_syncT=null;api('PUT','/api/state',stateBody()).catch(e=>msg('Your progress could not be saved: '+e.message))},1200);
+  if(BOOT.user.role==='owner'&&typeof tab!=='undefined'&&tab==='owner'){clearTimeout(_ownerT);_ownerT=setTimeout(()=>api('PUT','/api/owner/settings',{flags:ST.flags,retDays:ST.retDays??3,gr:ST.gr,block:ST.block}).catch(e=>msg('Settings not saved: '+e.message)),800)}
+}
+addEventListener('pagehide',()=>{if(_syncT){clearTimeout(_syncT);_syncT=null;try{fetch('/api/state',{method:'PUT',keepalive:true,credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify(stateBody())})}catch(e){}}});
+
+function authPage(mode){
+  const e=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  document.querySelector('.wrap2').hidden=true;document.querySelector('.app').hidden=true;const v=document.getElementById('views');v.hidden=false;
+  v.innerHTML=`<div class="auth">${mode==='login'?`
+  <h2>Sign in</h2><form class="card" id="af"><label>Username<input name="username" autocomplete="username" required></label><label>Password<input name="password" type="password" autocomplete="current-password" required></label><p class="err" id="ae" role="alert"></p><button class="lamp" type="submit">Sign in</button></form>
+  <p>New to Lumen? <a href="#" id="sw">Create a free account</a></p><p class="sol">Students under 13: your teacher or parent gives you a username and password.</p>`:`
+  <h2>Create a free account</h2><form class="card" id="af">
+  <label>I am a<select name="role" id="ar"><option value="student">Learner (13 or older)</option><option value="parent">Parent or guardian</option><option value="teacher">Teacher</option></select></label>
+  <label>Username<input name="username" autocomplete="username" required minlength="3" maxlength="20" pattern="[A-Za-z0-9_]+" title="Letters, numbers and underscores"></label>
+  <label>Display name (shown to others, not your full name)<input name="display" required minlength="2" maxlength="20"></label>
+  <label id="em" hidden>Email<input name="email" type="email" autocomplete="email"></label>
+  <label>Password (8+ characters)<input name="password" type="password" autocomplete="new-password" required minlength="8" maxlength="100"></label>
+  <label class="ck" id="ag"><input type="checkbox" name="age13"> I am 13 or older</label>
+  <p class="err" id="ae" role="alert"></p><button class="lamp" type="submit">Create account</button></form>
+  <p>Already have an account? <a href="#" id="sw">Sign in</a></p>
+  <p class="sol">Under 13? Ask a teacher or parent to create your login. Lumen never sells student data and shows no ads.</p>`}</div>`;
+  document.getElementById('sw').onclick=ev=>{ev.preventDefault();authPage(mode==='login'?'signup':'login')};
+  const ar=document.getElementById('ar');if(ar)ar.onchange=()=>{const s=ar.value==='student';document.getElementById('em').hidden=s;document.querySelector('#em input').required=!s;document.getElementById('ag').hidden=!s};
+  document.getElementById('af').onsubmit=async ev=>{ev.preventDefault();const f=Object.fromEntries(new FormData(ev.target));if(mode==='signup')f.age13=!!f.age13;
+    const b=ev.target.querySelector('button');b.disabled=true;
+    try{await api('POST',mode==='login'?'/api/login':'/api/signup',f);location.reload()}catch(err){document.getElementById('ae').textContent=err.message;b.disabled=false}};
+  v.querySelector('input,select').focus();
+}
+
+(async()=>{
+  let me;
+  try{me=await api('GET','/api/me')}catch(e){return authPage(location.hash==='#signup'?'signup':'login')}
+  try{
+    const [st,set,cur]=await Promise.all([api('GET','/api/state'),api('GET','/api/settings'),api('GET','/api/curriculum')]);
+    Object.assign(BOOT,{state:st||{},settings:set||{},curriculum:cur,user:me.user,role:me.user.role==='owner'?'owner':['teacher','school_admin'].includes(me.user.role)?'teacher':'student'});
+  }catch(e){document.getElementById('panel').textContent='Lumen could not load your account. Check your connection and reload the page.';return}
+  for(const s of document.querySelectorAll('script[type="text/x-lumen"]')){const n=document.createElement('script');n.textContent=s.textContent;document.body.appendChild(n)}
+})();
+</script>
+<script type="text/x-lumen">
+/* ===== Server-backed views. These replace the demo data layer of the prototype. ===== */
+const ME=BOOT.user;
+const busy=async(fn)=>{try{await fn()}catch(e){msg(e.message)}};
+const reload=t=>LOAD[t]?LOAD[t]().then(()=>showTab(t)).catch(e=>msg(e.message)):showTab(t);
+
+/* Navigation: tabs follow the signed-in account's real role */
+can=t=>t=='teacher'?BOOT.role!=='student':t=='owner'?BOOT.role==='owner':t=='classes'?BOOT.role==='student':true;
+nav=function(){const T=[['learn','Learn'],['courses','Courses'],['classes','My classes'],['teacher','Teacher'],['community','Community'],['downloads','Downloads'],['library','Library'],['certs','Certificates'],['impact','Impact'],['owner','Owner console']];
+$('tabs').innerHTML=T.filter(([k])=>can(k)).map(([k,l])=>`<button class="tb ${tab===k?'on':''}" onclick="go('${k}')">${l}</button>`).join('')+`<button class="chip ${ST.lite?'on':''}" aria-pressed="${!!ST.lite}" onclick="setLite(!ST.lite)">Lite mode</button><span class="acct">Signed in as <b>${esc(ME.display)}</b> (${esc(ME.role==='student'?'learner':ME.role.replace('_',' '))})<button class="alt" onclick="logout()">Sign out</button></span>`};
+async function logout(){if(_syncT){clearTimeout(_syncT);_syncT=null;try{await api('PUT','/api/state',stateBody())}catch(e){}}await api('POST','/api/logout',{}).catch(()=>{});location.href='/'}
+const _setLite=setLite;setLite=function(v){try{localStorage.setItem('lumen_lite',v?'1':'0')}catch(e){}_setLite(v)};
+const LOAD={
+  teacher:async()=>{ST.classes=(await api('GET','/api/classes')).classes||[]},
+  classes:async()=>{ST.joined=(await api('GET','/api/classes')).joined||[]},
+  community:async()=>{const r=await api('GET','/api/community');ST.posts=r.posts;ST.groups=r.groups},
+  certs:async()=>{ST.certs=(await api('GET','/api/certs')).certs||[]},
+  impact:async()=>{BOOT.impact=await api('GET','/api/impact')},
+  owner:async()=>{const [u,s]=await Promise.all([api('GET','/api/owner/users'),api('GET','/api/owner/settings')]);ST.users=u.users;ST.block=s.block;ST.flags=s.flags;ST.retDays=s.retDays;ST.imp=s.impact;
+    const imp=await api('GET','/api/community');ST.posts=imp.posts},
+};
+function go(t){if(liveT&&t!=='teacher'){clearInterval(liveT);liveT=null;liveId=null}reload(t)}
+const r2s=()=>reload(tab);
+
+/* Learner gems: one per first-try correct answer, used by class Gem Challenges */
+const _ud4=update;update=function(k,ok,...a){_ud4(k,ok,...a);if(ok)BOOT.state.gems=(BOOT.state.gems||0)+1;SYNC()};
+
+/* ---------- My classes (learners) ---------- */
+VIEWS.classes=function(){const J=ST.joined||[];
+return `<h2>My classes</h2><div class="card"><h3>Join a class</h3><div class="row"><input id="jc" placeholder="Class code" aria-label="Class code" maxlength="10" style="text-transform:uppercase"><button class="lamp" onclick="joinClass()">Join</button></div><p class="sol">Your teacher gives you the code.</p></div>
+${J.length?J.map(c=>`<div class="card post"><div class="split"><h3>${esc(c.name)}</h3><span class="sol">Teacher: ${esc(c.teacher)}</span></div>${c.assigned.length?c.assigned.map(a=>{const ks=a.skills.filter(k=>SK[k]),d=ks.filter(k=>level(k)>=3).length;return `<h4>${esc(a.title)}</h4><div class="bar sm"><i style="width:${ks.length?d/ks.length*100:0}%"></i></div><p class="sol">${d} of ${ks.length} skills Proficient</p><div class="row">${ks.map(k=>`<button class="alt" onclick="goSkill('${k}')">${esc(SK[k].n)} · ${LV[level(k)]}</button>`).join('')}</div>`}).join(''):'<p class="sol">No assignments yet.</p>'}</div>`).join(''):'<p class="sol">You have not joined a class yet.</p>'}`};
+function joinClass(){busy(async()=>{const r=await api('POST','/api/classes/join',{code:$('jc').value});msg('You joined '+r.name+'.');reload('classes')})}
+
+/* ---------- Teacher dashboard ---------- */
+addClass=function(){const n=$('cn').value.trim();if(!n)return msg('Enter a class name.');busy(async()=>{await api('POST','/api/classes',{name:n,grade:+$('cg').value,region:($('cc')||{value:''}).value.trim()});reload('teacher')})};
+const _classCard=classCard;
+classCard=function(c){return _classCard(c)
+  .replace(/<h4>Add students<\/h4>[\s\S]*?simulated in this demo\.<\/p>/,`<h4>Add students</h4><p class="sol">Type one student name per line. Lumen creates a username and password for each, so students under 13 never need an email. Students 13 or older can also sign up and join with the code above.</p>
+<div class="row"><textarea id="sn${c.id}" placeholder="Ava Smith&#10;Ben Lee" aria-label="Student names, one per line"></textarea></div><div class="row"><button class="lamp" onclick="addStu(${c.id})">Create student logins</button><label class="sol">Or upload a list (one name per line)<br><input type="file" accept=".csv,.txt" onchange="fileIn(${c.id},this)"></label></div>
+${c.students.length?`<div class="row"><select id="rs${c.id}" aria-label="Student">${c.students.map(s=>`<option value="${s.uid}">${esc(s.name)} (${esc(s.email)})</option>`).join('')}</select><button class="alt" onclick="resetPw(${c.id})">Reset password</button></div>`:''}<div id="cred${c.id}"></div>`)
+  .replace('Start live view (simulated)','Start live view')
+  .replace(/<label><input type="checkbox"[^>]*>\s*Send weekly to parents<\/label>/,'')};
+function credsBox(id,list){$('cred'+id).innerHTML=`<div class="card printme" style="margin-top:10px"><h3>Student logins</h3><p class="sol">Print or copy these now. Passwords are not shown again (you can reset them later). Sign in at ${esc(location.origin)}/app</p><table class="creds"><tr><th>Name</th><th>Username</th><th>Password</th></tr>${list.map(s=>`<tr><td>${esc(s.name)}</td><td>${esc(s.username)}</td><td>${esc(s.password)}</td></tr>`).join('')}</table><div class="row"><button onclick="print()">Print</button></div></div>`}
+async function mkStudents(id,names){const r=await api('POST',`/api/classes/${id}/students`,{names});await LOAD.teacher();showTab('teacher');credsBox(id,r.created)}
+addStu=function(id){const names=$('sn'+id).value.split(/\r?\n/).map(x=>x.trim()).filter(Boolean);if(!names.length)return msg('Type at least one student name.');busy(()=>mkStudents(id,names))};
+fileIn=function(id,el){const f=el.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const names=String(r.result).split(/\r?\n/).map(l=>l.split(',')[0].trim()).filter(Boolean);if(!names.length)return msg('That file has no names.');busy(()=>mkStudents(id,names))};r.readAsText(f)};
+function resetPw(id){const uid=$('rs'+id).value;if(!confirm('Reset this student\'s password? Their old password stops working.'))return;busy(async()=>{const r=await api('POST',`/api/users/${uid}/reset-password`,{});credsBox(id,r.created)})}
+const setGrades=(id,i,g)=>busy(async()=>{await api('PATCH',`/api/classes/${id}/students/${cl(id).students[i].uid}`,{grades:g});reload('teacher')});
+addG=function(id,i,g){if(g==='')return;const s=cl(id).students[i];if(!s.grades.includes(+g))setGrades(id,i,[...s.grades,+g])};
+rmG=function(id,i,g){const s=cl(id).students[i];if(s.grades.length>1)setGrades(id,i,s.grades.filter(x=>x!==g))};
+assign=function(id){const c=cl(id),[ty,key]=$('as'+id).value.split(':'),t=$('at'+id).value;
+  busy(async()=>{await api('POST',`/api/classes/${id}/assign`,{title:ty=='u'?UNITS[key][0]:SK[key].n,skills:ty=='u'?UNITS[key][1]:[key],target:t==='all'?'all':c.students[+t].uid});msg('Assigned.');reload('teacher')})};
+setCh=function(id){busy(async()=>{await api('POST',`/api/classes/${id}/challenge`,{goal:Math.max(10,+$('cg2'+id).value||100),reward:$('cr'+id)&&$('cr'+id).value?$('cr'+id).value.trim():'Class celebration'});reload('teacher')})};
+/* Live view: re-reads real progress from the server every few seconds */
+live=function(id){if(liveT){clearInterval(liveT);liveT=null;const same=liveId===id;liveId=null;if(same)return showTab('teacher')}liveId=id;liveT=setInterval(()=>tick(id),4000);showTab('teacher')};
+tick=async function(id){if(tab!=='teacher')return;try{await LOAD.teacher()}catch(e){return}const c=cl(id);if(!c||!c.asg.length)return;const a=c.asg[c.asg.length-1];
+  c.students.forEach((s,i)=>{const b=$(`pb${id}_${i}`);if(b)b.style.width=(s.p[a.id]||0)+'%';const g=$(`gm${id}_${i}`);if(g)g.textContent=s.gems});
+  if(c.ch){const e=$('ch'+id);if(e){e.style.width=Math.min(100,(gemTot(c)-c.ch.base)/c.ch.goal*100)+'%';$('chn'+id).textContent=Math.max(0,gemTot(c)-c.ch.base)}}};
+VIEWS.teacher=tView;
+
+/* ---------- Community ---------- */
+isMod=()=>ME.role==='owner'||(ME.role==='teacher'&&ME.verified);
+who=()=>ME.display;ST.me.name=ME.display;
+setName=function(){const v=$('dn').value.trim().slice(0,20),e=clean(v);if(!v||e)return msg(e||'Enter a display name.');busy(async()=>{const r=await api('PATCH','/api/me',{display:v});ME.display=r.display;ST.me.name=r.display;msg('Saved.');reload('community')})};
+post=function(type,gid){const t=$('pt').value.trim(),b=$('pb').value.trim();if(t.length<5||b.length<10)return msg('Add a title (5+ characters) and some detail (10+).');const e=clean(t+' '+b);if(e)return msg(e);
+  busy(async()=>{await api('POST','/api/posts',{type,group:gid||null,subject:gid?undefined:$('ps').value,grade:gid?undefined:+$('pg').value,title:t,body:b});reload('community')})};
+reply=function(id){const b=$('pr'+id).value.trim();if(b.length<2)return;const e=clean(b);if(e)return msg(e);busy(async()=>{await api('POST',`/api/posts/${id}/reply`,{body:b});reload('community')})};
+vote=id=>busy(async()=>{await api('POST',`/api/posts/${id}/vote`,{});reload('community')});
+rep=(pid,rid)=>busy(async()=>{await api('POST',`/api/posts/${pid}/report`,{rid:rid=='p'?'p':rid});msg('Thanks. A moderator will review this.');reload(tab)});
+mod=(id,a)=>busy(async()=>{if(a=='del'){if(!confirm('Delete this post and its replies?'))return;await api('DELETE',`/api/posts/${id}`,{})}else await api('PATCH',`/api/posts/${id}`,{action:a});reload(tab)});
+modR=(pid,rid)=>busy(async()=>{await api('PATCH',`/api/replies/${rid}`,{});reload(tab)});
+mkG=function(){const n=$('gn').value.trim(),e=clean(n);if(n.length<3||e)return msg(e||'Give the group a name (3+ characters).');busy(async()=>{await api('POST','/api/groups',{name:n,subject:$('gs').value,grade:+$('gg').value});reload('community')})};
+joinG=id=>busy(async()=>{await api('POST',`/api/groups/${id}/join`,{});reload('community')});
+qa=(id,keep)=>busy(async()=>{if(keep)await api('POST',`/api/posts/${id}/keep`,{});else await api('DELETE',`/api/posts/${id}`,{});reload('owner')});
+/* Group membership comes back as display names */
+const _gv=groupView;groupView=function(){return _gv()};
+const _cmView=cmView;cmView=function(){return _cmView().replace(/<p class="sol">Use a nickname[\s\S]*?<\/p>/,'<p class="sol">Your display name is shown on posts. Use a nickname, not your full name. Never share emails, phone numbers or where you live. Three reports hide a post until a moderator reviews it.</p>')};
+VIEWS.community=cmView;
+
+/* ---------- Certificates: issued and verified by the server ---------- */
+COURSES.length=0;(BOOT.curriculum.courses||[]).forEach(c=>COURSES.push({...c,skills:c.skills.filter(k=>SK[k])}));
+claim=function(key){if(!ST.me.full)return msg('Enter the name for your certificate first.');busy(async()=>{if(_syncT){clearTimeout(_syncT);_syncT=null;await api('PUT','/api/state',stateBody())}await api('POST','/api/certs/claim',{key,full:ST.me.full});msg('Certificate issued.');reload('certs')})};
+verify=function(){const id=$('vi').value.trim().toUpperCase();if(!id)return;api('GET','/api/certs/'+encodeURIComponent(id)).then(c=>{$('vr').textContent=`Valid. Issued to ${c.name} for ${c.course} on ${c.date}.`}).catch(()=>{$('vr').textContent='No certificate has that ID.'})};
+VIEWS.certs=ctView;
+
+/* ---------- Impact: totals across every learner on the server ---------- */
+imView=function(){const I=BOOT.impact.content,s=BOOT.impact.stats;
+return `<h2>Our impact</h2><div class="stats"><div class="card"><b>${s.learners}</b><span>Active learners</span></div><div class="card"><b>${s.hours}</b><span>Hours of learning</span></div><div class="card"><b>${s.answered}</b><span>Questions answered</span></div><div class="card"><b>${s.regions}</b><span>Regions or countries</span></div><div class="card"><b>${s.helped}</b><span>Students helped</span></div></div>
+<p class="sol">Live totals across all Lumen learners. Students helped counts students in classes plus students whose question got a peer answer.</p>
+<div class="card" style="margin-top:14px"><h3>Mission</h3><p>${esc(I.mission)}</p></div>
+<div class="card" style="margin-top:14px"><h3>Leadership and team</h3>${I.team.length?'<ul>'+I.team.map(t=>`<li><b>${esc(t[0])}</b>${t[1]?', '+esc(t[1]):''}</li>`).join('')+'</ul>':'<p class="sol">The Owner can add team members in the Owner console.</p>'}</div>
+<div class="card" style="margin-top:14px"><h3>Partner organizations</h3>${I.partners.length?'<ul>'+I.partners.map(t=>`<li>${esc(t)}</li>`).join('')+'</ul>':'<p class="sol">No partners listed yet.</p>'}</div>
+<div class="card" style="margin-top:14px"><h3>How donations are used</h3>${I.goal?`<div class="bar"><i style="width:${Math.min(100,I.raised/I.goal*100)}%"></i></div><p class="sol">${$$(I.raised*100)} raised of ${$$(I.goal*100)} goal</p>`:''}<p class="sol">Planned allocation of every dollar:</p>${I.funds.map(f=>`<div class="fund"><span>${esc(f[0])}</span><div class="bar sm"><i style="width:${f[1]}%"></i></div><b>${f[1]}%</b></div>`).join('')}</div>`};
+VIEWS.impact=imView;
+const _saveImp=saveImp;saveImp=function(){const before=ST.imp;_saveImp();if(ST.imp!==before)busy(async()=>{await api('PUT','/api/owner/settings',{impact:ST.imp});msg('Impact page updated.')})};
+
+/* ---------- Owner console: real accounts ---------- */
+O.users=function(){return `<p class="sol">Verified teachers can moderate the community. Locked accounts cannot sign in.</p><div class="tbl"><table class="vs"><tr><th>User</th><th>Role</th><th>Status</th><th></th></tr>${ST.users.map(u=>u.role=='owner'?`<tr><td>${esc(u.display)}<div class="sol">${esc(u.username)}</div></td><td>owner</td><td>Active</td><td class="sol">Protected: cannot be changed.</td></tr>`:`<tr><td>${esc(u.display)}<div class="sol">${esc(u.username)}${u.email?' · '+esc(u.email):''}</div></td><td><select onchange="modUser(${u.id},{role:this.value})" aria-label="Role">${['student','parent','teacher','school_admin'].map(r=>`<option ${u.role==r?'selected':''}>${r}</option>`).join('')}</select></td><td>${u.locked?'Locked':'Active'}${u.role==='teacher'?(u.verified?', verified':', not verified'):''}</td><td><button class="alt" onclick="modUser(${u.id},{locked:${!u.locked}})">${u.locked?'Unlock':'Lock'}</button>${u.role==='teacher'?` <button class="alt" onclick="modUser(${u.id},{verified:${!u.verified}})">${u.verified?'Unverify':'Verify teacher'}</button>`:''}</td></tr>`).join('')}</table></div>`};
+modUser=function(id,patch){busy(async()=>{await api('PATCH','/api/owner/users/'+id,patch);reload('owner')})};
+VIEWS.owner=oView;
+
+/* Start on the right tab, now with server data */
+gradeBar();go(tab==='learn'?'learn':tab);
+</script>
+
+</body>
+</html>

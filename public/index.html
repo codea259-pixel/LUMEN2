@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lumen: Master every skill. Understand every concept.</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EEF3F8;--panel:#fff;--ink:#1B2A41;--mute:#546580;--line:#D5DEE9;--lamp:#F2A900;--soft:#FCEFC7;--teal:#0F8B8D;--node:#D5DEE9;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121B2B;--panel:#1B2740;--ink:#EAF0F8;--mute:#A3B5CF;--line:#2F3E5C;--soft:#3A3319;--node:#33425F;--teal:#3CC1C3}}
+:root[data-theme="dark"]{--bg:#121B2B;--panel:#1B2740;--ink:#EAF0F8;--mute:#A3B5CF;--line:#2F3E5C;--soft:#3A3319;--node:#33425F;--teal:#3CC1C3}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.6 "Atkinson Hyperlegible",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque","Atkinson Hyperlegible",sans-serif;line-height:1.1;margin:0;letter-spacing:-.02em}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+nav b{font:800 26px "Bricolage Grotesque",sans-serif}
+nav a.btn{padding:9px 16px;font-size:16px}
+.btn{display:inline-block;text-decoration:none;font-weight:700;padding:14px 24px;border-radius:14px;background:var(--lamp);color:#1B2A41}
+.btn.alt{background:transparent;border:2px solid var(--line);color:var(--ink)}
+.btn:focus-visible,.chain button:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+.hero{padding:40px 0 56px}
+.hero h1{font-size:clamp(42px,8.5vw,96px);font-weight:800;max-width:14ch}
+.hero p{max-width:52ch;color:var(--mute);font-size:21px;margin:20px 0 28px}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.chain{display:flex;align-items:center;margin-top:48px;overflow-x:auto;padding:14px 4px}
+.chain button{flex:none;width:76px;height:76px;border-radius:50%;border:3px solid var(--panel);background:var(--node);color:var(--ink);font:700 14px "Atkinson Hyperlegible",sans-serif;cursor:pointer;transition:background .3s,box-shadow .3s}
+.chain button.on{background:var(--lamp);color:#1B2A41;box-shadow:0 0 34px 6px rgba(242,169,0,.55)}
+.chain i{flex:none;width:36px;height:4px;background:var(--line);transition:background .3s}
+.chain i.on{background:var(--lamp)}
+.hint{color:var(--mute);font-size:15px;margin:6px 0 0}
+section{padding:56px 0;border-top:1px solid var(--line)}
+section h2{font-size:clamp(30px,5vw,46px);max-width:20ch;margin-bottom:14px}
+.lead{color:var(--mute);max-width:60ch;margin:0 0 30px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;counter-reset:s;padding:0;list-style:none;margin:0}
+.steps li{counter-increment:s;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px}
+.steps li:before{content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--soft);font-weight:700;margin-bottom:12px}
+.steps h3{font-size:22px;margin-bottom:6px}
+.steps p{margin:0;color:var(--mute);font-size:16px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.two h3{font-size:26px;margin-bottom:8px}
+.two ul{margin:12px 0 0;padding-left:20px;color:var(--mute)}
+.two li{margin:6px 0}
+.vs{width:100%;border-collapse:collapse;font-size:16px;background:var(--panel);border-radius:16px;overflow:hidden}
+.vs th,.vs td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+.vs th{font-family:"Bricolage Grotesque",sans-serif;font-size:18px}
+.vs td:first-child{font-weight:700}
+.tbl{overflow-x:auto}
+.free{background:var(--soft);border-radius:24px;padding:44px 32px}
+.free h2{max-width:22ch}
+.free ul{columns:2;padding-left:20px;margin:16px 0 28px}
+.free li{margin:6px 0;break-inside:avoid}
+footer{padding:36px 0 48px;color:var(--mute);font-size:15px;border-top:1px solid var(--line)}
+@media(max-width:860px){.steps{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr;gap:28px}.free ul{columns:1}}
+@media(max-width:520px){.steps{grid-template-columns:1fr}body{font-size:17px}}
+@media(prefers-reduced-motion:reduce){.chain button,.chain i{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav aria-label="Main"><b>Lumen</b><a class="btn" href="/app">Start learning</a></nav>
+
+<header class="hero">
+<h1>Master every skill. Understand every concept.</h1>
+<p>Lumen is a free learning platform for Pre-K through Grade 12 and beyond. Learn an idea from a short lesson, practice it until it sticks, and get a tutor who asks questions instead of handing over answers.</p>
+<div class="row"><a class="btn" href="/app">Start learning</a><a class="btn alt" href="#how">See how it works</a></div>
+<div class="chain" id="chain" role="group" aria-label="Skill chain you can light up"></div>
+<p class="hint">Tap a skill to light it up. Each one builds on the last.</p>
+</header>
+</div>
+
+<div class="wrap">
+<section id="how">
+<h2>One loop, from first idea to lasting skill</h2>
+<p class="lead">Other platforms give you either explanations or drills. Lumen puts both in a single mission.</p>
+<ol class="steps">
+<li><h3>Learn</h3><p>A short explanation of the idea, in plain language, before you practice.</p></li>
+<li><h3>Practice</h3><p>Unlimited problems adjust after every answer, and each one has a tutor beside it.</p></li>
+<li><h3>Check</h3><p>A spaced retention check, days later, confirms you still know it.</p></li>
+<li><h3>Advance</h3><p>Your knowledge map shows what you've mastered and what to learn next.</p></li>
+</ol>
+</section>
+
+<section>
+<h2>Progress that rewards sticking with it</h2>
+<p class="lead">Your progress bar only goes up. One wrong answer never erases what you've learned, and when something is tricky, Lumen steps back to the building blocks instead of drilling harder.</p>
+<div class="two">
+<div><h3>A tutor that asks, not tells</h3><p style="color:var(--mute)">When you're stuck, the tutor offers a nudge, then a clearer hint, then the first step. You do the thinking, so it stays with you.</p></div>
+<div><h3>A map of what you know</h3><p style="color:var(--mute)">See every skill, how they connect, and the shortest path to your goal, from fractions to calculus.</p></div>
+</div>
+</section>
+
+<section>
+<h2>Made for the whole classroom and the kitchen table</h2>
+<div class="two" style="margin-top:24px">
+<div><h3>Teachers</h3><ul><li>Create classes and student logins in one step</li><li>Assign skills or units to the whole class or one student</li><li>See each student's progress on every assignment</li></ul></div>
+<div><h3>Parents and learners</h3><ul><li>Printable worksheets, lesson packets and certificates</li><li>Read-aloud lessons and a Lite mode for slow connections</li><li>Works on phones, tablets and computers</li></ul></div>
+</div>
+</section>
+
+<section>
+<h2>How Lumen compares</h2>
+<div class="tbl"><table class="vs"><thead><tr><th></th><th>Khan Academy</th><th>IXL</th><th>Lumen</th></tr></thead><tbody>
+<tr><td>Cost</td><td>Free</td><td>Subscription</td><td>Free</td></tr>
+<tr><td>Lessons</td><td>Yes</td><td>Limited</td><td>Yes, linked to each skill's practice</td></tr>
+<tr><td>Deep skill practice</td><td>Some</td><td>Yes</td><td>Yes, with a tutor in every problem</td></tr>
+<tr><td>Score after a miss</td><td>Levels</td><td>Can drop sharply</td><td>Progress never goes down</td></tr>
+</tbody></table></div>
+</section>
+
+<section>
+<div class="free">
+<h2>Every feature, free for every learner. No ads, ever.</h2>
+<ul><li>All lessons and practice</li><li>Knowledge map and mastery tracking</li><li>Teacher dashboards and classes</li><li>Certificates anyone can verify</li></ul>
+<p style="color:var(--mute);margin:0 0 24px">Every learner and teacher gets every feature. Student data is never sold.</p>
+<a class="btn" href="/app">Start learning</a>
+</div>
+</section>
+<footer>Lumen · Master every skill. Understand every concept.</footer>
+</div>
+
+<script>
+const names=['Multiply','Equivalent fractions','Simplify','Add fractions','Equations'];
+const c=document.getElementById('chain');let on=0;
+function draw(){c.innerHTML=names.map((n,i)=>(i?`<i class="${i<=on?'on':''}"></i>`:'')+`<button class="${i<=on?'on':''}" data-i="${i}" aria-pressed="${i<=on}" aria-label="${n}">${n.split(' ')[0]}</button>`).join('')}
+c.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const i=+b.dataset.i;on=(on===i&&i>0)?i-1:i;draw();c.querySelector(`[data-i="${on}"]`).focus()});
+draw();
+</script>
+</body>
+</html>
