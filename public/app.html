@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Bose Academy: Master every skill. Understand every concept.</title>
+<script src="firebase-config.js"></script>
 <script>try{var _l=JSON.parse(localStorage.getItem("lumen_lite")||"0");if(_l)document.documentElement.dataset.lite="1";else{var l=document.createElement("link");l.rel="stylesheet";l.href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap";document.head.appendChild(l)}}catch(e){}</script>
 <style>
 :root{--bg:#EEF3F8;--panel:#fff;--ink:#1B2A41;--mute:#5B6B82;--line:#D5DEE9;--lamp:#F2A900;--lamp-soft:#FCEFC7;--teal:#0F8B8D;--coral:#C8414F;--node:#D5DEE9;
@@ -386,7 +387,7 @@ const MIL=[['m10','First 10 questions',()=>qsum()>=10],['m100','100 questions',(
 const chk=t=>{let h=2166136261;for(const c of t){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return(h>>>0).toString(36).toUpperCase().padStart(4,'0').slice(-4)};
 const newId=()=>{const r=()=>Math.random().toString(36).slice(2,6).toUpperCase().padEnd(4,'X'),a=r(),b=r();return `BOSE-${a}-${b}-${chk(a+b)}`};
 const okId=id=>{const m=/^BOSE-(\w{4})-(\w{4})-(\w{4})$/.exec(id.trim().toUpperCase());return !!m&&chk(m[1]+m[2])===m[3]};
-const link=c=>location.origin+'/c/'+c.id;
+const link=c=>BOOT.fb?location.href.split('#')[0]+'#verify='+c.id:location.origin+'/c/'+c.id;
 function claim(key,course,kind){if(!ST.me.full)return msg('Enter the name for your certificate first.');if(ST.certs.some(c=>c.key==key))return;ST.certs.push({key,id:newId(),name:ST.me.full,course,kind,date:new Date().toISOString().slice(0,10)});sv();r2()}
 function certHtml(c){return `<div class="cert"><p class="sol">${c.kind=='badge'?'Milestone badge':'Certificate of completion'}</p><div class="nm">${esc(c.name)}</div><p>${c.kind=='badge'?'earned':'completed'}</p><h3>${esc(c.course)}</h3><p class="sol">${c.date}, Verification ID <b>${c.id}</b></p></div>`}
 function ctView(){let top='';const m=location.hash.match(/^#cert=(.+)$/);
@@ -799,6 +800,192 @@ GLIST.forEach(g=>{const sk=ORDER.filter(k=>SK[k].sub==='math'&&ST.gr[k]==g);if(s
 const _of=O.flags;O.flags=function(){return _of()+`<p><label>Days before a retention check unlocks <input type="number" min="0" max="30" value="${ST.retDays??3}" onchange="ST.retDays=Math.max(0,+this.value||0);sv()"></label></p>`};
 showTab(location.hash.startsWith('#cert=')?'certs':'learn');
 </script>
+<script>
+/* ===== Firebase mode: accounts and saved progress without our own server (for example on GitHub Pages).
+   It answers the same requests as server/server.js, so the rest of the app does not change.
+   Who may read or change what is enforced by firestore.rules, not by this file. ===== */
+const FBM=(()=>{
+  const SDK=window.FIREBASE_SDK_BASE||'https://www.gstatic.com/firebasejs/10.12.2/';
+  const DEF={flags:{'AI tutor feedback':true,'Live Classroom':true,'Gem Challenges':true,'Offline mode':false},retDays:3,gr:{},
+    block:['stupid','idiot','dumb','hate you','shut up'],
+    impact:{mission:'Bose Academy gives every learner, everywhere, free access to clear lessons, unlimited practice and a patient tutor, so that no student is held back by cost or connection.',team:[],partners:[],funds:[['Content creation',40],['Hosting and infrastructure',25],['Accessibility and translation',20],['Reserve',15]],raised:0,goal:0}};
+  const ROLES=['student','parent','teacher'];
+  let auth,db,FV,site={},me=null,profile=null,creator=null,lastSaved=null;
+  const H={n:0,num:{},str:{}};
+  const num=s=>{if(s==null)return s;s=String(s);if(!(s in H.num)){H.n++;H.num[s]=H.n;H.str[H.n]=s}return H.num[s]};
+  const sid=x=>H.str[x]||String(x);
+  class E extends Error{constructor(status,m){super(m);this.status=status}}
+  const load=src=>new Promise((ok,no)=>{const s=document.createElement('script');s.src=SDK+src;s.onload=ok;s.onerror=()=>no(new Error('Could not load sign-in. Check your connection.'));document.head.appendChild(s)});
+  const emailOf=u=>`${u.toLowerCase()}@accounts.bose.academy`;
+  const now=()=>Date.now(),day=()=>new Date().toISOString().slice(0,10);
+  const rand=(n,a='ABCDEFGHJKLMNPQRSTUVWXYZ23456789')=>Array.from(crypto.getRandomValues(new Uint8Array(n)),b=>a[b%a.length]).join('');
+  const str=(v,lo,hi,what='Text')=>{v=String(v??'').trim();if(v.length<lo||v.length>hi)throw new E(400,`${what} must be ${lo} to ${hi} characters.`);return v};
+  const doc=(c,id)=>db.collection(c).doc(String(id));
+  const lvl=s=>!s||!s.att?0:s.mastered?4:(s.p>=.85&&s.att>=6)?3:s.p>=.55?2:1;
+  const isOwner=()=>!!me&&site.ownerUid===me.uid;
+  const isMod=()=>isOwner()||(profile&&profile.role==='teacher'&&profile.verified);
+  const isTeacher=()=>isOwner()||(profile&&['teacher','school_admin'].includes(profile.role));
+  const need=(ok=true)=>{if(!me||!profile)throw new E(401,'Please sign in.');if(profile.locked)throw new E(403,'This account is locked. Ask your teacher or the site owner.');if(!ok)throw new E(403,'Not allowed.')};
+  const stateOf=async uid=>{try{const d=await doc('state',uid).get();return d.exists?JSON.parse(d.data().json||'{}'):{}}catch(e){return{}}};
+  const friendly=e=>{const c=e&&e.code||'';
+    if(/invalid-credential|wrong-password|user-not-found|invalid-email/.test(c))return new E(401,'Wrong username or password.');
+    if(/email-already-in-use/.test(c))return new E(409,'That username is taken.');
+    if(/too-many-requests/.test(c))return new E(429,'Too many attempts. Please wait a few minutes.');
+    if(/weak-password/.test(c))return new E(400,'Passwords need at least 8 characters.');
+    if(/permission-denied/.test(c))return new E(403,'Not allowed.');
+    if(/network|unavailable/.test(c))return new E(503,'No connection. Check your internet and try again.');
+    return e instanceof E?e:new E(500,e&&e.message||'Something went wrong. Please try again.')};
+  const userOut=()=>({id:me.uid,username:profile.username,display:profile.display,role:isOwner()?'owner':profile.role,verified:!!profile.verified});
+
+  async function start(){
+    await load('firebase-app-compat.js');await Promise.all([load('firebase-auth-compat.js'),load('firebase-firestore-compat.js')]);
+    const app=firebase.initializeApp(window.FIREBASE_CONFIG);auth=app.auth();db=app.firestore();FV=firebase.firestore.FieldValue;
+    if(window.FIREBASE_EMULATOR){auth.useEmulator('http://localhost:9099',{disableWarnings:true});db.useEmulator('localhost',8080)}
+    me=await new Promise(ok=>{const off=auth.onAuthStateChanged(u=>{off();ok(u)})});
+    try{const s=await doc('config','site').get();site=s.exists?s.data():{}}catch(e){site={}}
+    if(me){const p=await doc('users',me.uid).get();profile=p.exists?p.data():null;
+      if(!site.ownerUid){try{await doc('config','site').set({ownerUid:me.uid},{merge:true});site.ownerUid=me.uid}catch(e){/* only the account named in the rules can claim the site */}}}
+  }
+
+  /* Each request the app makes, answered with Firestore */
+  const R=[];const route=(m,p,fn)=>R.push([m,new RegExp('^'+p.replace(/:(\w+)/g,'(?<$1>[^/]+)')+'$'),fn]);
+
+  route('GET','/api/me',async()=>{if(!me)throw new E(401,'Please sign in.');if(!profile)throw new E(428,'Finish setting up your account.');if(profile.locked){await auth.signOut();throw new E(401,'This account is locked.')}return{user:userOut()}});
+  route('POST','/api/signup',async b=>{
+    const role=b.role;if(!ROLES.includes(role))throw new E(400,'Choose learner, parent or teacher.');
+    const username=str(b.username,3,20,'Usernames').toLowerCase();if(!/^[a-z0-9_]+$/.test(username))throw new E(400,'Usernames use letters, numbers and underscores only.');
+    const password=String(b.password||'');if(password.length<8||password.length>100)throw new E(400,'Passwords need at least 8 characters.');
+    const display=str(b.display,2,20,'Display names');const bad=typeof clean==='function'?clean(display):'';if(bad)throw new E(400,bad);
+    if(role==='student'&&!b.age13)throw new E(400,'Learners must be 13 or older, or ask a teacher or parent to set up the account.');
+    let email=null;if(role!=='student'){email=str(b.email,5,100,'Email');if(!/^\S+@\S+\.\S+$/.test(email))throw new E(400,'Enter a valid email address.')}
+    const cred=await auth.createUserWithEmailAndPassword(emailOf(username),password);const uid=cred.user.uid;
+    await doc('users',uid).set({username,display,role,verified:false,locked:false,created:now()});
+    await doc('state',uid).set({json:'{}',updated:now(),readers:[]});
+    if(email)await doc('private',uid).set({email});
+    return{ok:true}});
+  route('POST','/api/login',async b=>{const u=String(b.username||'').trim().toLowerCase();if(!/^[a-z0-9_]{3,20}$/.test(u))throw new E(401,'Wrong username or password.');
+    await auth.signInWithEmailAndPassword(emailOf(u),String(b.password||''));
+    const p=await doc('users',auth.currentUser.uid).get();if(p.exists&&p.data().locked){await auth.signOut();throw new E(403,'This account is locked. Ask your teacher or the site owner.')}return{ok:true}});
+  route('POST','/api/google',async()=>{const pr=new firebase.auth.GoogleAuthProvider();
+    if(window.FIREBASE_TEST_GOOGLE)await auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(JSON.stringify(window.FIREBASE_TEST_GOOGLE)));else await auth.signInWithPopup(pr);
+    const p=await doc('users',auth.currentUser.uid).get();if(p.exists&&p.data().locked){await auth.signOut();throw new E(403,'This account is locked. Ask your teacher or the site owner.')}return{ok:true}});
+  route('POST','/api/finish',async b=>{if(!me)throw new E(401,'Please sign in.');if(profile)return{ok:true};const role=b.role;if(!ROLES.includes(role))throw new E(400,'Choose learner, parent or teacher.');
+    const display=str(b.display,2,20,'Display names');if(role==='student'&&!b.age13)throw new E(400,'Learners must be 13 or older, or ask a teacher or parent to set up the account.');
+    const username=((me.email||'user').split('@')[0].toLowerCase().replace(/[^a-z0-9_]/g,'').slice(0,14)||'user')+rand(3,'23456789');
+    await doc('users',me.uid).set({username,display,role,verified:false,locked:false,created:now(),google:true});
+    await doc('state',me.uid).set({json:'{}',updated:now(),readers:[]},{merge:true});if(me.email)await doc('private',me.uid).set({email:me.email});return{ok:true}});
+  route('POST','/api/logout',async()=>{await auth.signOut();return{ok:true}});
+  route('PATCH','/api/me',async b=>{need();const d=str(b.display,2,20,'Display names');await doc('users',me.uid).update({display:d});profile.display=d;return{display:d}});
+  route('GET','/api/settings',async()=>({flags:{...DEF.flags,...site.flags},retDays:site.retDays??DEF.retDays,gr:site.gr||{},impact:site.impact||DEF.impact}));
+  route('GET','/api/curriculum',async()=>{try{const r=await fetch('server/curriculum.json');if(r.ok)return r.json()}catch(e){}return{courses:[],milestones:[]}});
+  route('GET','/api/state',async()=>{need();const s=await stateOf(me.uid);lastSaved=s;return s});
+  route('PUT','/api/state',async b=>{need();const json=JSON.stringify(b);if(json.length>400000)throw new E(413,'Too large.');
+    await doc('state',me.uid).set({json,updated:now()},{merge:true});
+    /* public Impact counters */
+    try{const q=x=>Object.values((x&&x.S)||{}).reduce((a,s)=>a+(s.att||0),0),was=lastSaved?q(lastSaved):0,n=q(b),dq=Math.max(0,Math.min(50,n-was)),ds=Math.max(0,Math.min(3600,(b.secs||0)-((lastSaved&&lastSaved.secs)||0)));
+      if(dq||ds){const inc={answered:FV.increment(dq),secs:FV.increment(ds)};if(was===0&&n>0)inc.learners=FV.increment(1);await doc('stats','global').set(inc,{merge:true})}}catch(e){}
+    lastSaved=b;return{ok:true}});
+
+  /* Community */
+  const nm=(uids,names)=>(uids||[]).map(u=>u===me.uid?profile.display:(names&&names[u])||'member');
+  route('GET','/api/community',async()=>{need();const mod=isMod();
+    const pq=mod?db.collection('posts'):db.collection('posts').where('hidden','==',false);const rq=mod?db.collection('replies'):db.collection('replies').where('hidden','==',false);
+    const [ps,rs,gs]=await Promise.all([pq.limit(300).get(),rq.limit(1000).get(),db.collection('groups').limit(200).get()]);
+    const reps={};rs.forEach(d=>{const r=d.data();(reps[r.postId]=reps[r.postId]||[]).push({id:num(d.id),author:r.authorName,body:r.body,hidden:!!r.hidden,ts:r.ts,reports:mod?nm(r.reports):[]})});
+    const posts=[];ps.forEach(d=>{const p=d.data();posts.push({id:num(d.id),type:p.type,group:p.grp?num(p.grp):null,subject:p.subject,grade:p.grade,title:p.title,body:p.body,author:p.authorName,ts:p.ts,hidden:!!p.hidden,pinned:!!p.pinned,locked:!!p.locked,votes:nm(p.votes),reports:mod?nm(p.reports):[],replies:(reps[d.id]||[]).sort((a,b)=>a.ts-b.ts)})});
+    posts.sort((a,b)=>b.ts-a.ts);const groups=[];gs.forEach(d=>{const g=d.data();groups.push({id:num(d.id),name:g.name,subject:g.subject,grade:g.grade,members:nm(g.members,g.memberNames)})});
+    return{posts,groups}});
+  route('POST','/api/posts',async b=>{need();const t=str(b.title,5,120,'Titles'),body=str(b.body,10,2000,'Posts');let grp=null,subject=String(b.subject||'Math').slice(0,40),grade=+b.grade||5;
+    if(b.group){const g=await doc('groups',sid(b.group)).get();if(!g.exists||!(g.data().members||[]).includes(me.uid))throw new E(403,'Join the group to post.');grp=g.id;subject=g.data().subject;grade=g.data().grade}
+    await db.collection('posts').add({grp,type:b.type==='q'?'q':'d',subject,grade,title:t,body,authorId:me.uid,authorName:profile.display,ts:now(),hidden:false,pinned:false,locked:false,votes:[],reports:[]});return{ok:true}});
+  route('POST','/api/posts/:id/reply',async(b,p)=>{need();const body=str(b.body,2,2000,'Replies');const d=await doc('posts',sid(p.id)).get();if(!d.exists)throw new E(404,'Post not found.');if(d.data().locked)throw new E(403,'This thread is locked.');
+    await db.collection('replies').add({postId:sid(p.id),authorId:me.uid,authorName:profile.display,body,ts:now(),hidden:false,reports:[]});return{ok:true}});
+  route('POST','/api/posts/:id/vote',async(b,p)=>{need();const r=doc('posts',sid(p.id)),d=await r.get();if(!d.exists)throw new E(404,'Post not found.');
+    await r.update({votes:(d.data().votes||[]).includes(me.uid)?FV.arrayRemove(me.uid):FV.arrayUnion(me.uid)});return{ok:true}});
+  route('POST','/api/posts/:id/report',async(b,p)=>{need();const r=b.rid&&b.rid!=='p'?doc('replies',sid(b.rid)):doc('posts',sid(p.id)),d=await r.get();if(!d.exists)throw new E(404,'Not found.');
+    const reps=d.data().reports||[];if(reps.includes(me.uid))return{ok:true};await r.update(reps.length+1>=3?{reports:FV.arrayUnion(me.uid),hidden:true}:{reports:FV.arrayUnion(me.uid)});return{ok:true}});
+  route('PATCH','/api/posts/:id',async(b,p)=>{need(isMod());const col={hide:'hidden',pin:'pinned',lock:'locked'}[b.action];if(!col)throw new E(400,'Unknown action.');const r=doc('posts',sid(p.id)),d=await r.get();await r.update({[col]:!d.data()[col]});return{ok:true}});
+  route('POST','/api/posts/:id/keep',async(b,p)=>{need(isOwner());await doc('posts',sid(p.id)).update({hidden:false,reports:[]});return{ok:true}});
+  route('DELETE','/api/posts/:id',async(b,p)=>{need(isMod());const rs=await db.collection('replies').where('postId','==',sid(p.id)).get();await Promise.all(rs.docs.map(d=>d.ref.delete()));await doc('posts',sid(p.id)).delete();return{ok:true}});
+  route('PATCH','/api/replies/:id',async(b,p)=>{need(isMod());const r=doc('replies',sid(p.id)),d=await r.get();await r.update({hidden:!d.data().hidden});return{ok:true}});
+  route('POST','/api/groups',async b=>{need();const n=str(b.name,3,40,'Group names');await db.collection('groups').add({name:n,subject:String(b.subject).slice(0,40),grade:+b.grade,members:[me.uid],memberNames:{[me.uid]:profile.display}});return{ok:true}});
+  route('POST','/api/groups/:id/join',async(b,p)=>{need();const r=doc('groups',sid(p.id)),d=await r.get();if(!d.exists)throw new E(404,'Not found.');const inG=(d.data().members||[]).includes(me.uid);
+    await r.update(inG?{members:FV.arrayRemove(me.uid),['memberNames.'+me.uid]:FV.delete()}:{members:FV.arrayUnion(me.uid),['memberNames.'+me.uid]:profile.display});return{ok:true}});
+
+  /* Classes */
+  const pct=(st,skills)=>Math.round(100*skills.reduce((a,k)=>{const s=(st.S||{})[k];return a+(lvl(s)>=3?1:s&&s.att?Math.min(.99,s.p/.85):0)},0)/Math.max(1,skills.length));
+  async function classOut(cd){const c=cd.data(),mem=c.members||[];
+    const [asg,users,states]=await Promise.all([cd.ref.collection('assignments').get(),Promise.all(mem.map(u=>doc('users',u).get())),Promise.all(mem.map(stateOf))]);
+    const A=asg.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>a.ts-b.ts);
+    return{id:num(cd.id),name:c.name,grade:c.grade,region:c.region||'',code:c.code,ch:c.challenge||null,
+      asg:A.map(a=>({id:num(a.id),title:a.title,skills:a.skills,target:a.target?mem.indexOf(a.target):'all'})),
+      students:mem.map((u,i)=>{const p=users[i].exists?users[i].data():{},st=states[i];return{uid:num(u),name:p.display||'student',email:p.username||'',grades:(c.memberGrades||{})[u]||[c.grade],gems:+st.gems||0,
+        q:Object.values(st.S||{}).reduce((a,s)=>a+(s.att||0),0),p:Object.fromEntries(A.map(a=>[num(a.id),pct(st,a.skills)]))}})}}
+  const ownClass=async id=>{const d=await doc('classes',sid(id)).get();if(!d.exists||(d.data().teacherId!==me.uid&&!isOwner()))throw new E(404,'Class not found.');return d};
+  route('GET','/api/classes',async()=>{need();
+    if(isTeacher()){const q=isOwner()?db.collection('classes'):db.collection('classes').where('teacherId','==',me.uid);const cs=await q.get();return{classes:await Promise.all(cs.docs.sort((a,b)=>a.data().created-b.data().created).map(classOut))}}
+    const cs=await db.collection('classes').where('members','array-contains',me.uid).get();
+    return{joined:await Promise.all(cs.docs.map(async d=>{const a=await d.ref.collection('assignments').get();return{id:num(d.id),name:d.data().name,teacher:d.data().teacherName,
+      assigned:a.docs.map(x=>({id:x.id,...x.data()})).filter(x=>!x.target||x.target===me.uid).sort((x,y)=>y.ts-x.ts).map(x=>({id:num(x.id),title:x.title,skills:x.skills}))}}))}});
+  route('POST','/api/classes',async b=>{need(isTeacher());const name=str(b.name,2,60,'Class names');let code;
+    for(let i=0;i<6;i++){code=rand(6);if(!(await doc('joinCodes',code).get()).exists)break}
+    const r=db.collection('classes').doc();await r.set({teacherId:me.uid,teacherName:profile.display,name,grade:+b.grade,region:String(b.region||'').slice(0,60),code,members:[],memberGrades:{},challenge:null,created:now()});
+    await doc('joinCodes',code).set({classId:r.id,teacherId:me.uid});return{ok:true}});
+  route('POST','/api/classes/join',async b=>{need(profile.role==='student');const code=String(b.code||'').trim().toUpperCase();const j=await doc('joinCodes',code).get();if(!j.exists)throw new E(404,'No class has that code.');
+    await doc('classes',j.data().classId).update({members:FV.arrayUnion(me.uid)});await doc('state',me.uid).set({readers:FV.arrayUnion(j.data().teacherId)},{merge:true});
+    const c=await doc('classes',j.data().classId).get();return{ok:true,name:c.data().name}});
+  route('POST','/api/classes/:id/students',async(b,p)=>{need(isTeacher());const cd=await ownClass(p.id),c=cd.data();
+    const names=(Array.isArray(b.names)?b.names:[]).map(n=>String(n).trim()).filter(Boolean).slice(0,60);if(!names.length)throw new E(400,'Enter at least one student name.');
+    if(!creator)creator=firebase.initializeApp(window.FIREBASE_CONFIG,'creator');const ca=creator.auth(),cdb=creator.firestore();
+    if(window.FIREBASE_EMULATOR&&!creator._emu){ca.useEmulator('http://localhost:9099',{disableWarnings:true});cdb.useEmulator('localhost',8080);creator._emu=1}
+    const created=[];
+    for(const n of names){const first=(n.split(/\s+/)[0].replace(/[^\p{L}\p{N}]/gu,'').slice(0,14))||'Student',base=first.toLowerCase().replace(/[^a-z0-9]/g,'')||'student',pw=rand(8,'abcdefghjkmnpqrstuvwxyz23456789');
+      let un,uid;for(let i=0;i<8&&!uid;i++){un=base+rand(3,'23456789');try{uid=(await ca.createUserWithEmailAndPassword(emailOf(un),pw)).user.uid}catch(e){if(!/email-already-in-use/.test(e.code||''))throw e}}
+      if(!uid)throw new E(500,'Could not create a login. Try again.');
+      await cdb.collection('users').doc(uid).set({username:un,display:first,role:'student',verified:false,locked:false,managedBy:me.uid,created:now()});
+      await cdb.collection('state').doc(uid).set({json:'{}',updated:now(),readers:[me.uid]});await ca.signOut();
+      await cd.ref.update({members:FV.arrayUnion(uid),['memberGrades.'+uid]:[c.grade]});created.push({name:first,username:un,password:pw})}
+    return{created}});
+  route('PATCH','/api/classes/:id/students/:uid',async(b,p)=>{need(isTeacher());const cd=await ownClass(p.id);const g=(Array.isArray(b.grades)?b.grades:[]).map(Number).filter(x=>x>=-1&&x<=13).slice(0,6);if(!g.length)throw new E(400,'Pick a grade.');
+    await cd.ref.update({['memberGrades.'+sid(p.uid)]:g});return{ok:true}});
+  route('POST','/api/classes/:id/assign',async(b,p)=>{need(isTeacher());const cd=await ownClass(p.id);const skills=(Array.isArray(b.skills)?b.skills:[]).map(String).slice(0,40);if(!skills.length)throw new E(400,'Nothing to assign.');
+    const target=b.target&&b.target!=='all'?sid(b.target):null;if(target&&!(cd.data().members||[]).includes(target))throw new E(400,'That student is not in this class.');
+    await cd.ref.collection('assignments').add({title:str(b.title,2,120,'Titles'),skills,target,ts:now()});return{ok:true}});
+  route('POST','/api/classes/:id/challenge',async(b,p)=>{need(isTeacher());const cd=await ownClass(p.id);const st=await Promise.all((cd.data().members||[]).map(stateOf));
+    await cd.ref.update({challenge:{goal:Math.max(10,+b.goal||100),reward:String(b.reward||'Class celebration').slice(0,80),base:st.reduce((a,s)=>a+(+s.gems||0),0)}});return{ok:true}});
+  route('POST','/api/users/:id/reset-password',async()=>{throw new E(400,"Password resets need the hosted version of the site. For now, create a new login for this student.")});
+
+  /* Certificates */
+  route('GET','/api/certs',async()=>{need();const q=await db.collection('certs').where('uid','==',me.uid).get();return{certs:q.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>a.date<b.date?-1:1)}});
+  route('POST','/api/certs/claim',async b=>{need();const key=String(b.key||''),full=str(b.full,2,40,'Names'),st=await stateOf(me.uid),Sx=st.S||{},cur=await (await fetch('server/curriculum.json')).json();
+    const course=cur.courses.find(x=>x.id===key),mil=cur.milestones.find(x=>x.id===key);let ok=false,label,kind='course';
+    if(course){ok=course.skills.every(k=>lvl(Sx[k])>=3);label=course.name}
+    else if(mil){const q=Object.values(Sx).reduce((a,s)=>a+(s.att||0),0);ok={m10:q>=10,m100:q>=100,m500:q>=500,m1:Object.values(Sx).some(s=>lvl(s)===4),m5:(st.days||[]).length>=5}[key];label=mil.label;kind='badge'}
+    else throw new E(400,'Unknown certificate.');if(!ok)throw new E(403,'You have not earned this yet.');
+    const have=await db.collection('certs').where('uid','==',me.uid).where('key','==',key).get();if(!have.empty)return{id:have.docs[0].id,...have.docs[0].data()};
+    const id='BOSE-'+rand(4)+'-'+rand(4)+'-'+rand(4),c={uid:me.uid,name:full,course:label,kind,key,date:day()};await doc('certs',id).set(c);return{id,...c}});
+  route('GET','/api/certs/:id',async(b,p)=>{const d=await doc('certs',String(p.id).toUpperCase()).get();if(!d.exists)throw new E(404,'No certificate has that ID.');const c=d.data();return{valid:true,id:d.id,name:c.name,course:c.course,kind:c.kind,date:c.date}});
+
+  /* Impact (public) and the owner console */
+  route('GET','/api/impact',async()=>{let s={};try{const d=await doc('stats','global').get();s=d.exists?d.data():{}}catch(e){}
+    return{stats:{learners:s.learners||0,hours:+((s.secs||0)/3600).toFixed(1),regions:0,helped:0,answered:s.answered||0},content:site.impact||DEF.impact}});
+  route('GET','/api/owner/users',async()=>{need(isOwner());const q=await db.collection('users').limit(500).get();
+    return{users:q.docs.map(d=>{const u=d.data();return{id:num(d.id),username:u.username,display:u.display,email:null,role:d.id===site.ownerUid?'owner':u.role,verified:!!u.verified,locked:!!u.locked,created:u.created}}).sort((a,b)=>(b.created||0)-(a.created||0))}});
+  route('PATCH','/api/owner/users/:id',async(b,p)=>{need(isOwner());p.id=sid(p.id);if(p.id===site.ownerUid)throw new E(403,'The Owner account is protected and cannot be changed.');const up={};
+    if(b.role!==undefined){if(![...ROLES,'school_admin'].includes(b.role))throw new E(400,'Invalid role.');up.role=b.role}
+    if(typeof b.locked==='boolean')up.locked=b.locked;if(typeof b.verified==='boolean')up.verified=b.verified;await doc('users',p.id).update(up);return{ok:true}});
+  route('GET','/api/owner/settings',async()=>{need(isOwner());return{block:site.block||DEF.block,flags:{...DEF.flags,...site.flags},retDays:site.retDays??DEF.retDays,gr:site.gr||{},impact:site.impact||DEF.impact}});
+  route('PUT','/api/owner/settings',async b=>{need(isOwner());const up={};['block','flags','gr','impact'].forEach(k=>{if(b[k]!==undefined)up[k]=b[k]});if(b.retDays!==undefined)up.retDays=Math.max(0,Math.min(60,+b.retDays||0));
+    await doc('config','site').set(up,{merge:true});Object.assign(site,up);return{ok:true}});
+  route('POST','/api/tutor',async()=>{throw new E(503,'The AI tutor needs the hosted version of the site.')});
+
+  async function api(method,path,body){for(const [m,re,fn] of R){if(m!==method)continue;const mt=re.exec(path);if(!mt)continue;
+      try{return await fn(body||{},mt.groups||{})}catch(e){throw friendly(e)}}
+    throw new E(404,'Not found.')}
+  return{start,api,uid:()=>me&&me.uid,isOwner};
+})();
+</script>
+
 <style>
 .auth{max-width:440px;margin:24px auto 64px;padding:0 16px}.auth .card{margin-top:16px}.auth label{display:block;margin-top:12px;font-weight:700;font-size:15px}.auth label input:not([type=checkbox]),.auth label select{display:block;width:100%;margin-top:4px}
 .auth [hidden]{display:none!important}.auth input[type=password]{font:inherit;font-size:16px;padding:9px 12px;border-radius:10px;border:2px solid var(--line);background:var(--bg);color:var(--ink)}
@@ -811,6 +998,7 @@ showTab(location.hash.startsWith('#cert=')?'certs':'learn');
 /* ===== Server connection: sign-in, loading and saving the account's data ===== */
 const BOOT={state:{},settings:{},curriculum:{courses:[],milestones:[]},user:null,role:'student'};
 async function api(method,path,body){
+  if(BOOT.fb)return FBM.api(method,path,body);
   if(BOOT.local)throw new Error('This part of Bose Academy needs an account on the full Bose Academy site.');
   const r=await fetch(path,{method,credentials:'same-origin',headers:body===undefined?{}:{'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body)});
   let j={};try{j=await r.json()}catch(e){}
@@ -828,18 +1016,29 @@ function saveLocal(){_syncT=null;try{localStorage.setItem('lumen_local',JSON.str
 function SYNC(){
   if(typeof ST==='undefined'||typeof S==='undefined')return;
   if(BOOT.local){clearTimeout(_syncT);_syncT=setTimeout(saveLocal,400);return}
-  clearTimeout(_syncT);_syncT=setTimeout(()=>{_syncT=null;api('PUT','/api/state',stateBody()).catch(e=>msg('Your progress could not be saved: '+e.message))},1200);
+  clearTimeout(_syncT);_syncT=setTimeout(()=>{_syncT=null;api('PUT','/api/state',stateBody()).catch(e=>msg('Your progress could not be saved: '+e.message))},BOOT.fb?3000:1200);
   if(BOOT.user.role==='owner'&&typeof tab!=='undefined'&&tab==='owner'){clearTimeout(_ownerT);_ownerT=setTimeout(()=>api('PUT','/api/owner/settings',{flags:ST.flags,retDays:ST.retDays??3,gr:ST.gr,block:ST.block}).catch(e=>msg('Settings not saved: '+e.message)),800)}
 }
-addEventListener('pagehide',()=>{if(BOOT.local){if(_syncT)saveLocal();return}if(_syncT){clearTimeout(_syncT);_syncT=null;try{fetch('/api/state',{method:'PUT',keepalive:true,credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify(stateBody())})}catch(e){}}});
+addEventListener('pagehide',()=>{if(BOOT.local){if(_syncT)saveLocal();return}if(BOOT.fb){if(_syncT){clearTimeout(_syncT);_syncT=null;api('PUT','/api/state',stateBody()).catch(()=>{})}return}if(_syncT){clearTimeout(_syncT);_syncT=null;try{fetch('/api/state',{method:'PUT',keepalive:true,credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify(stateBody())})}catch(e){}}});
 
 function authPage(mode){
   const e=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   document.querySelector('.wrap2').hidden=true;document.querySelector('.app').hidden=true;const v=document.getElementById('views');v.hidden=false;
+  const G=BOOT.fb?`<button type="button" class="alt" id="gsi" style="width:100%;margin-top:14px;display:flex;gap:10px;justify-content:center;align-items:center"><svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.6l6.7-6.7C35.6 2.4 30.2 0 24 0 14.6 0 6.6 5.4 2.7 13.3l7.8 6C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.6c0-1.6-.1-3.1-.4-4.6H24v9h12.4c-.5 2.9-2.2 5.3-4.6 6.9l7.5 5.8c4.4-4 6.8-10 6.8-17.1z"/><path fill="#FBBC05" d="M10.5 28.7c-.5-1.4-.8-3-.8-4.7s.3-3.2.8-4.7l-7.8-6C1 16.6 0 20.2 0 24s1 7.4 2.7 10.7l7.8-6z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.5-5.8c-2.1 1.4-4.8 2.3-8.4 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.8 6C6.6 42.6 14.6 48 24 48z"/></svg>Continue with Google</button><p class="sol" style="text-align:center;margin:10px 0 0">or use a username</p>`:'';
+  if(mode==='finish'){v.innerHTML=`<div class="auth"><h2>Finish setting up</h2><p class="sol">You're signed in with Google. Tell us a little about you.</p><form class="card" id="af">
+  <label>I am a<select name="role" id="ar"><option value="student">Learner (13 or older)</option><option value="parent">Parent or guardian</option><option value="teacher">Teacher</option></select></label>
+  <label>Display name (shown to others, not your full name)<input name="display" required minlength="2" maxlength="20"></label>
+  <label class="ck" id="ag"><input type="checkbox" name="age13"> I am 13 or older</label>
+  <p class="err" id="ae" role="alert"></p><button class="lamp" type="submit">Continue</button></form><p><a href="#" id="so">Sign out</a></p></div>`;
+    const ar=document.getElementById('ar');ar.onchange=()=>{document.getElementById('ag').hidden=ar.value!=='student'};
+    document.getElementById('so').onclick=async ev=>{ev.preventDefault();await api('POST','/api/logout',{}).catch(()=>{});location.reload()};
+    document.getElementById('af').onsubmit=async ev=>{ev.preventDefault();const f=Object.fromEntries(new FormData(ev.target));f.age13=!!f.age13;const b=ev.target.querySelector('button');b.disabled=true;
+      try{await api('POST','/api/finish',f);location.reload()}catch(err){document.getElementById('ae').textContent=err.message;b.disabled=false}};
+    v.querySelector('select').focus();return}
   v.innerHTML=`<div class="auth">${mode==='login'?`
-  <h2>Sign in</h2><form class="card" id="af"><label>Username<input name="username" autocomplete="username" required></label><label>Password<input name="password" type="password" autocomplete="current-password" required></label><p class="err" id="ae" role="alert"></p><button class="lamp" type="submit">Sign in</button></form>
+  <h2>Sign in</h2>${G}<form class="card" id="af"><label>Username<input name="username" autocomplete="username" required></label><label>Password<input name="password" type="password" autocomplete="current-password" required></label><p class="err" id="ae" role="alert"></p><button class="lamp" type="submit">Sign in</button></form>
   <p>New to Bose Academy? <a href="#" id="sw">Create a free account</a></p><p class="sol">Students under 13: your teacher or parent gives you a username and password.</p>`:`
-  <h2>Create a free account</h2><form class="card" id="af">
+  <h2>Create a free account</h2>${G}<form class="card" id="af">
   <label>I am a<select name="role" id="ar"><option value="student">Learner (13 or older)</option><option value="parent">Parent or guardian</option><option value="teacher">Teacher</option></select></label>
   <label>Username<input name="username" autocomplete="username" required minlength="3" maxlength="20" pattern="[A-Za-z0-9_]+" title="Letters, numbers and underscores"></label>
   <label>Display name (shown to others, not your full name)<input name="display" required minlength="2" maxlength="20"></label>
@@ -849,6 +1048,7 @@ function authPage(mode){
   <p class="err" id="ae" role="alert"></p><button class="lamp" type="submit">Create account</button></form>
   <p>Already have an account? <a href="#" id="sw">Sign in</a></p>
   <p class="sol">Under 13? Ask a teacher or parent to create your login. Bose Academy never sells student data and shows no ads.</p>`}</div>`;
+  const gb=document.getElementById('gsi');if(gb)gb.onclick=async()=>{gb.disabled=true;try{await api('POST','/api/google',{});location.reload()}catch(err){document.getElementById('ae').textContent=/popup-closed|cancelled/.test(err.message)?'':err.message;gb.disabled=false}};
   document.getElementById('sw').onclick=ev=>{ev.preventDefault();authPage(mode==='login'?'signup':'login')};
   const ar=document.getElementById('ar');if(ar)ar.onchange=()=>{const s=ar.value==='student';document.getElementById('em').hidden=s;document.querySelector('#em input').required=!s;document.getElementById('ag').hidden=!s};
   document.getElementById('af').onsubmit=async ev=>{ev.preventDefault();const f=Object.fromEntries(new FormData(ev.target));if(mode==='signup')f.age13=!!f.age13;
@@ -857,9 +1057,22 @@ function authPage(mode){
   v.querySelector('input,select').focus();
 }
 
+/* Public certificate check: app.html#verify=ID (no sign-in needed) */
+async function verifyPage(id){document.querySelector('.wrap2').hidden=true;document.querySelector('.app').hidden=true;const v=document.getElementById('views');v.hidden=false;
+  const e=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));let h;
+  try{const c=await api('GET','/api/certs/'+encodeURIComponent(id));h=`<p class="sol">${c.kind==='badge'?'Milestone badge':'Certificate of completion'}</p><h2 style="font-size:32px;margin:6px 0">${e(c.name)}</h2><p>${c.kind==='badge'?'earned':'completed'}</p><h3>${e(c.course)}</h3><p class="sol">${e(c.date)} · Verification ID <b>${e(c.id)}</b></p><p style="color:var(--teal);font-weight:700">Verified: issued by Bose Academy.</p>`}
+  catch(err){h=`<h2>Certificate not found</h2><p class="sol">No certificate has the ID ${e(id)}.</p>`}
+  v.innerHTML=`<div class="auth"><div class="card" style="text-align:center;border:6px double var(--lamp)"><b>BOSE ACADEMY</b>${h}</div><p style="text-align:center"><a href="./">Go to Bose Academy</a></p></div>`}
+
 (async()=>{
-  let me;
-  try{me=await api('GET','/api/me')}catch(e){if(e.status===401)return authPage(location.hash==='#signup'?'signup':'login');me=null}
+  let me=null,mode='server';
+  let finish=false;
+  try{me=await api('GET','/api/me')}catch(e){if(e.status!==401)mode=null}
+  /* No server here (for example GitHub Pages): use Firebase when it is set up in firebase-config.js */
+  if(!mode&&window.FIREBASE_CONFIG){try{await FBM.start();BOOT.fb=true;mode='firebase';try{me=await api('GET','/api/me')}catch(e){finish=e.status===428}}catch(e){console.error(e);mode=null}}
+  const vm=location.hash.match(/^#verify=([A-Za-z0-9-]{8,30})$/);if(vm&&mode)return verifyPage(vm[1]);
+  if(finish)return authPage('finish');
+  if(mode&&!me)return authPage(location.hash==='#signup'?'signup':'login');
   if(!me){let st={};try{st=JSON.parse(localStorage.getItem('lumen_local')||'{}')}catch(e){}
     Object.assign(BOOT,{local:true,state:st,settings:{flags:{'AI tutor feedback':false},retDays:3,gr:{},impact:null},curriculum:{courses:[],milestones:[]},user:{id:0,display:'Learner',role:'student',verified:false},role:'student'})}
   else try{
@@ -923,7 +1136,7 @@ assign=function(id){const c=cl(id),[ty,key]=$('as'+id).value.split(':'),t=$('at'
   busy(async()=>{await api('POST',`/api/classes/${id}/assign`,{title:ty=='u'?UNITS[key][0]:SK[key].n,skills:ty=='u'?UNITS[key][1]:[key],target:t==='all'?'all':c.students[+t].uid});msg('Assigned.');reload('teacher')})};
 setCh=function(id){busy(async()=>{await api('POST',`/api/classes/${id}/challenge`,{goal:Math.max(10,+$('cg2'+id).value||100),reward:$('cr'+id)&&$('cr'+id).value?$('cr'+id).value.trim():'Class celebration'});reload('teacher')})};
 /* Live view: re-reads real progress from the server every few seconds */
-live=function(id){if(liveT){clearInterval(liveT);liveT=null;const same=liveId===id;liveId=null;if(same)return showTab('teacher')}liveId=id;liveT=setInterval(()=>tick(id),4000);showTab('teacher')};
+live=function(id){if(liveT){clearInterval(liveT);liveT=null;const same=liveId===id;liveId=null;if(same)return showTab('teacher')}liveId=id;liveT=setInterval(()=>tick(id),BOOT.fb?20000:4000);showTab('teacher')};
 tick=async function(id){if(tab!=='teacher')return;try{await LOAD.teacher()}catch(e){return}const c=cl(id);if(!c||!c.asg.length)return;const a=c.asg[c.asg.length-1];
   c.students.forEach((s,i)=>{const b=$(`pb${id}_${i}`);if(b)b.style.width=(s.p[a.id]||0)+'%';const g=$(`gm${id}_${i}`);if(g)g.textContent=s.gems});
   if(c.ch){const e=$('ch'+id);if(e){e.style.width=Math.min(100,(gemTot(c)-c.ch.base)/c.ch.goal*100)+'%';$('chn'+id).textContent=Math.max(0,gemTot(c)-c.ch.base)}}};

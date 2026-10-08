@@ -4,7 +4,7 @@ import sys
 import os
 D=os.path.dirname(os.path.abspath(__file__))
 src, out = os.path.join(D,'base.html'), os.path.join(D,'..','public','app.html')
-layers = [os.path.join(D,f) for f in ('bridge.html','ui.html')]
+layers = [os.path.join(D,f) for f in ('firebase.html','bridge.html','ui.html')]
 h = open(src, encoding='utf-8').read()
 def rep(old, new, count=1):
     global h
@@ -19,8 +19,9 @@ rep("const save=()=>{try{localStorage.setItem('lumen1',JSON.stringify(S))}catch(
 rep("let ST=D0;try{const t=JSON.parse(localStorage.getItem('lumen2')||'null');if(t)ST={...D0,...t}}catch(e){}", "let ST={...D0,...(BOOT.state.prefs||{}),days:BOOT.state.days||[],secs:BOOT.state.secs||0};Object.assign(ST.gr,BOOT.settings.gr||{});ST.flags=BOOT.settings.flags||ST.flags;ST.retDays=BOOT.settings.retDays;ST.imp=BOOT.settings.impact;ST.role=BOOT.role;")
 rep("const sv=()=>{try{localStorage.setItem('lumen2',JSON.stringify(ST))}catch(e){}};", "const sv=()=>SYNC();")
 # Certificate links point at the server's public verification page
-rep("const link=c=>location.href.split('#')[0]+'#cert='+btoa(unescape(encodeURIComponent(JSON.stringify([c.id,c.name,c.course,c.date]))));", "const link=c=>location.origin+'/c/'+c.id;")
+rep("const link=c=>location.href.split('#')[0]+'#cert='+btoa(unescape(encodeURIComponent(JSON.stringify([c.id,c.name,c.course,c.date]))));", "const link=c=>BOOT.fb?location.href.split('#')[0]+'#verify='+c.id:location.origin+'/c/'+c.id;")
 # Main scripts run only after the signed-in user's data has loaded
+rep('concept.</title>', 'concept.</title>\n<script src="firebase-config.js"></script>')
 rep('<script>\nconst rnd=', '<script type="text/x-lumen">\nconst rnd=')
 rep('<script>\n/* ===== Grades, teacher tools', '<script type="text/x-lumen">\n/* ===== Grades, teacher tools')
 rep("const can=t=>", "let can=t=>")

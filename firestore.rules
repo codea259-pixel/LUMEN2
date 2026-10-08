@@ -1,0 +1,129 @@
+rules_version = '2';
+
+// Security rules for Bose Academy on Firebase.
+// Paste this whole file into Firebase console > Firestore Database > Rules, then click Publish.
+// Before publishing, replace PASTE_OWNER_GMAIL with the Google account (Gmail) that owns the site.
+// Only that Google account, signed in with "Continue with Google", becomes the owner.
+
+service cloud.firestore {
+  match /databases/{db}/documents {
+
+    function signedIn() { return request.auth != null; }
+    function isOwner() { return signedIn() && request.auth.token.email == 'PASTE_OWNER_GMAIL' && request.auth.token.email_verified == true; }
+    function hasProfile() { return signedIn() && exists(/databases/$(db)/documents/users/$(request.auth.uid)); }
+    function me() { return get(/databases/$(db)/documents/users/$(request.auth.uid)).data; }
+    function active() { return isOwner() || (hasProfile() && me().locked != true); }
+    function isTeacher() { return isOwner() || (active() && me().role in ['teacher', 'school_admin']); }
+    function isMod() { return isOwner() || (active() && me().role == 'teacher' && me().verified == true); }
+    function changedOnly(keys) { return request.resource.data.diff(resource.data).affectedKeys().hasOnly(keys); }
+    // the list field gained or lost exactly the signed-in user, nothing else
+    function toggledSelf(f) {
+      let after = request.resource.data.get(f, []).toSet();
+      let before = resource.data.get(f, []).toSet();
+      return after.difference(before).union(before.difference(after)) == [request.auth.uid].toSet();
+    }
+    function addedSelf(f) {
+      let after = request.resource.data.get(f, []).toSet();
+      let before = resource.data.get(f, []).toSet();
+      return after.difference(before) == [request.auth.uid].toSet() && before.difference(after).size() == 0;
+    }
+    function okText(f, lo, hi) { return request.resource.data[f] is string && request.resource.data[f].size() >= lo && request.resource.data[f].size() <= hi; }
+
+    // Site settings: anyone can read; only the owner can change them (the owner also claims the site here once)
+    match /config/site {
+      allow read: if true;
+      allow write: if isOwner();
+    }
+
+    // Public profiles: username, display name, role. Nobody can make themselves owner, verified or unlocked.
+    match /users/{uid} {
+      allow read: if signedIn() && (request.auth.uid == uid || isTeacher());
+      allow create: if signedIn() && request.auth.uid == uid
+        && request.resource.data.role in ['student', 'parent', 'teacher']
+        && request.resource.data.verified == false && request.resource.data.locked == false
+        && okText('display', 2, 20) && okText('username', 3, 20);
+      allow update: if isOwner()
+        || (request.auth.uid == uid && active() && changedOnly(['display']) && okText('display', 2, 20));
+    }
+
+    // Private details (email): only the person and the owner
+    match /private/{uid} {
+      allow read, write: if signedIn() && (request.auth.uid == uid || isOwner());
+    }
+
+    // Saved progress: the learner writes their own; their teachers (listed in readers) and the owner can read it
+    match /state/{uid} {
+      allow read: if signedIn() && (request.auth.uid == uid || isOwner() || request.auth.uid in resource.data.get('readers', []));
+      allow create, update: if signedIn() && request.auth.uid == uid
+        && request.resource.data.get('json', '').size() < 400000;
+    }
+
+    // Classes: the teacher manages them; students can only add themselves with a join code
+    match /classes/{cid} {
+      function cls() { return get(/databases/$(db)/documents/classes/$(cid)).data; }
+      allow read: if signedIn() && (resource.data.teacherId == request.auth.uid || request.auth.uid in resource.data.members || isOwner());
+      allow create: if isTeacher() && request.resource.data.teacherId == request.auth.uid && request.resource.data.members.size() == 0;
+      allow update: if signedIn() && (
+        ((resource.data.teacherId == request.auth.uid && isTeacher()) || isOwner())
+        || (active() && me().role == 'student' && changedOnly(['members']) && addedSelf('members')));
+      allow delete: if signedIn() && (resource.data.teacherId == request.auth.uid || isOwner());
+
+      match /assignments/{aid} {
+        allow read: if signedIn() && (cls().teacherId == request.auth.uid || request.auth.uid in cls().members || isOwner());
+        allow write: if signedIn() && (cls().teacherId == request.auth.uid || isOwner());
+      }
+    }
+    match /joinCodes/{code} {
+      allow read: if signedIn();
+      allow create: if isTeacher() && request.resource.data.teacherId == request.auth.uid;
+    }
+
+    // Community posts and replies
+    match /posts/{pid} {
+      allow read: if active() && (resource.data.hidden == false || isMod());
+      allow create: if active() && request.resource.data.authorId == request.auth.uid
+        && request.resource.data.hidden == false && request.resource.data.pinned == false && request.resource.data.locked == false
+        && request.resource.data.votes.size() == 0 && request.resource.data.reports.size() == 0
+        && okText('title', 5, 120) && okText('body', 10, 2000);
+      allow update: if isMod() || (active() && (
+        (changedOnly(['votes']) && toggledSelf('votes'))
+        || (changedOnly(['reports']) && addedSelf('reports'))
+        || (changedOnly(['reports', 'hidden']) && addedSelf('reports') && request.resource.data.hidden == true && request.resource.data.reports.size() >= 3)));
+      allow delete: if isMod();
+    }
+    match /replies/{rid} {
+      allow read: if active() && (resource.data.hidden == false || isMod());
+      allow create: if active() && request.resource.data.authorId == request.auth.uid
+        && request.resource.data.hidden == false && request.resource.data.reports.size() == 0 && okText('body', 2, 2000)
+        && get(/databases/$(db)/documents/posts/$(request.resource.data.postId)).data.locked != true;
+      allow update: if isMod() || (active() && (
+        (changedOnly(['reports']) && addedSelf('reports'))
+        || (changedOnly(['reports', 'hidden']) && addedSelf('reports') && request.resource.data.hidden == true && request.resource.data.reports.size() >= 3)));
+      allow delete: if isMod();
+    }
+
+    // Study groups: anyone signed in can join or leave
+    match /groups/{gid} {
+      allow read: if active();
+      allow create: if active() && request.resource.data.members == [request.auth.uid] && okText('name', 3, 40);
+      allow update: if active() && changedOnly(['members', 'memberNames']) && toggledSelf('members');
+    }
+
+    // Certificates: anyone with the ID can verify one; people create only their own
+    match /certs/{id} {
+      allow get: if true;
+      allow list: if signedIn() && resource.data.uid == request.auth.uid;
+      allow create: if active() && request.resource.data.uid == request.auth.uid && okText('name', 2, 40);
+    }
+
+    // Public Impact counters (only ever go up)
+    match /stats/global {
+      allow read: if true;
+      allow create: if signedIn();
+      allow update: if signedIn()
+        && request.resource.data.get('answered', 0) >= resource.data.get('answered', 0)
+        && request.resource.data.get('secs', 0) >= resource.data.get('secs', 0)
+        && request.resource.data.get('learners', 0) >= resource.data.get('learners', 0);
+    }
+  }
+}

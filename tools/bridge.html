@@ -10,6 +10,7 @@
 /* ===== Server connection: sign-in, loading and saving the account's data ===== */
 const BOOT={state:{},settings:{},curriculum:{courses:[],milestones:[]},user:null,role:'student'};
 async function api(method,path,body){
+  if(BOOT.fb)return FBM.api(method,path,body);
   if(BOOT.local)throw new Error('This part of Bose Academy needs an account on the full Bose Academy site.');
   const r=await fetch(path,{method,credentials:'same-origin',headers:body===undefined?{}:{'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body)});
   let j={};try{j=await r.json()}catch(e){}
@@ -27,18 +28,29 @@ function saveLocal(){_syncT=null;try{localStorage.setItem('lumen_local',JSON.str
 function SYNC(){
   if(typeof ST==='undefined'||typeof S==='undefined')return;
   if(BOOT.local){clearTimeout(_syncT);_syncT=setTimeout(saveLocal,400);return}
-  clearTimeout(_syncT);_syncT=setTimeout(()=>{_syncT=null;api('PUT','/api/state',stateBody()).catch(e=>msg('Your progress could not be saved: '+e.message))},1200);
+  clearTimeout(_syncT);_syncT=setTimeout(()=>{_syncT=null;api('PUT','/api/state',stateBody()).catch(e=>msg('Your progress could not be saved: '+e.message))},BOOT.fb?3000:1200);
   if(BOOT.user.role==='owner'&&typeof tab!=='undefined'&&tab==='owner'){clearTimeout(_ownerT);_ownerT=setTimeout(()=>api('PUT','/api/owner/settings',{flags:ST.flags,retDays:ST.retDays??3,gr:ST.gr,block:ST.block}).catch(e=>msg('Settings not saved: '+e.message)),800)}
 }
-addEventListener('pagehide',()=>{if(BOOT.local){if(_syncT)saveLocal();return}if(_syncT){clearTimeout(_syncT);_syncT=null;try{fetch('/api/state',{method:'PUT',keepalive:true,credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify(stateBody())})}catch(e){}}});
+addEventListener('pagehide',()=>{if(BOOT.local){if(_syncT)saveLocal();return}if(BOOT.fb){if(_syncT){clearTimeout(_syncT);_syncT=null;api('PUT','/api/state',stateBody()).catch(()=>{})}return}if(_syncT){clearTimeout(_syncT);_syncT=null;try{fetch('/api/state',{method:'PUT',keepalive:true,credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify(stateBody())})}catch(e){}}});
 
 function authPage(mode){
   const e=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   document.querySelector('.wrap2').hidden=true;document.querySelector('.app').hidden=true;const v=document.getElementById('views');v.hidden=false;
+  const G=BOOT.fb?`<button type="button" class="alt" id="gsi" style="width:100%;margin-top:14px;display:flex;gap:10px;justify-content:center;align-items:center"><svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.6l6.7-6.7C35.6 2.4 30.2 0 24 0 14.6 0 6.6 5.4 2.7 13.3l7.8 6C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.6c0-1.6-.1-3.1-.4-4.6H24v9h12.4c-.5 2.9-2.2 5.3-4.6 6.9l7.5 5.8c4.4-4 6.8-10 6.8-17.1z"/><path fill="#FBBC05" d="M10.5 28.7c-.5-1.4-.8-3-.8-4.7s.3-3.2.8-4.7l-7.8-6C1 16.6 0 20.2 0 24s1 7.4 2.7 10.7l7.8-6z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.5-5.8c-2.1 1.4-4.8 2.3-8.4 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.8 6C6.6 42.6 14.6 48 24 48z"/></svg>Continue with Google</button><p class="sol" style="text-align:center;margin:10px 0 0">or use a username</p>`:'';
+  if(mode==='finish'){v.innerHTML=`<div class="auth"><h2>Finish setting up</h2><p class="sol">You're signed in with Google. Tell us a little about you.</p><form class="card" id="af">
+  <label>I am a<select name="role" id="ar"><option value="student">Learner (13 or older)</option><option value="parent">Parent or guardian</option><option value="teacher">Teacher</option></select></label>
+  <label>Display name (shown to others, not your full name)<input name="display" required minlength="2" maxlength="20"></label>
+  <label class="ck" id="ag"><input type="checkbox" name="age13"> I am 13 or older</label>
+  <p class="err" id="ae" role="alert"></p><button class="lamp" type="submit">Continue</button></form><p><a href="#" id="so">Sign out</a></p></div>`;
+    const ar=document.getElementById('ar');ar.onchange=()=>{document.getElementById('ag').hidden=ar.value!=='student'};
+    document.getElementById('so').onclick=async ev=>{ev.preventDefault();await api('POST','/api/logout',{}).catch(()=>{});location.reload()};
+    document.getElementById('af').onsubmit=async ev=>{ev.preventDefault();const f=Object.fromEntries(new FormData(ev.target));f.age13=!!f.age13;const b=ev.target.querySelector('button');b.disabled=true;
+      try{await api('POST','/api/finish',f);location.reload()}catch(err){document.getElementById('ae').textContent=err.message;b.disabled=false}};
+    v.querySelector('select').focus();return}
   v.innerHTML=`<div class="auth">${mode==='login'?`
-  <h2>Sign in</h2><form class="card" id="af"><label>Username<input name="username" autocomplete="username" required></label><label>Password<input name="password" type="password" autocomplete="current-password" required></label><p class="err" id="ae" role="alert"></p><button class="lamp" type="submit">Sign in</button></form>
+  <h2>Sign in</h2>${G}<form class="card" id="af"><label>Username<input name="username" autocomplete="username" required></label><label>Password<input name="password" type="password" autocomplete="current-password" required></label><p class="err" id="ae" role="alert"></p><button class="lamp" type="submit">Sign in</button></form>
   <p>New to Bose Academy? <a href="#" id="sw">Create a free account</a></p><p class="sol">Students under 13: your teacher or parent gives you a username and password.</p>`:`
-  <h2>Create a free account</h2><form class="card" id="af">
+  <h2>Create a free account</h2>${G}<form class="card" id="af">
   <label>I am a<select name="role" id="ar"><option value="student">Learner (13 or older)</option><option value="parent">Parent or guardian</option><option value="teacher">Teacher</option></select></label>
   <label>Username<input name="username" autocomplete="username" required minlength="3" maxlength="20" pattern="[A-Za-z0-9_]+" title="Letters, numbers and underscores"></label>
   <label>Display name (shown to others, not your full name)<input name="display" required minlength="2" maxlength="20"></label>
@@ -48,6 +60,7 @@ function authPage(mode){
   <p class="err" id="ae" role="alert"></p><button class="lamp" type="submit">Create account</button></form>
   <p>Already have an account? <a href="#" id="sw">Sign in</a></p>
   <p class="sol">Under 13? Ask a teacher or parent to create your login. Bose Academy never sells student data and shows no ads.</p>`}</div>`;
+  const gb=document.getElementById('gsi');if(gb)gb.onclick=async()=>{gb.disabled=true;try{await api('POST','/api/google',{});location.reload()}catch(err){document.getElementById('ae').textContent=/popup-closed|cancelled/.test(err.message)?'':err.message;gb.disabled=false}};
   document.getElementById('sw').onclick=ev=>{ev.preventDefault();authPage(mode==='login'?'signup':'login')};
   const ar=document.getElementById('ar');if(ar)ar.onchange=()=>{const s=ar.value==='student';document.getElementById('em').hidden=s;document.querySelector('#em input').required=!s;document.getElementById('ag').hidden=!s};
   document.getElementById('af').onsubmit=async ev=>{ev.preventDefault();const f=Object.fromEntries(new FormData(ev.target));if(mode==='signup')f.age13=!!f.age13;
@@ -56,9 +69,22 @@ function authPage(mode){
   v.querySelector('input,select').focus();
 }
 
+/* Public certificate check: app.html#verify=ID (no sign-in needed) */
+async function verifyPage(id){document.querySelector('.wrap2').hidden=true;document.querySelector('.app').hidden=true;const v=document.getElementById('views');v.hidden=false;
+  const e=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));let h;
+  try{const c=await api('GET','/api/certs/'+encodeURIComponent(id));h=`<p class="sol">${c.kind==='badge'?'Milestone badge':'Certificate of completion'}</p><h2 style="font-size:32px;margin:6px 0">${e(c.name)}</h2><p>${c.kind==='badge'?'earned':'completed'}</p><h3>${e(c.course)}</h3><p class="sol">${e(c.date)} · Verification ID <b>${e(c.id)}</b></p><p style="color:var(--teal);font-weight:700">Verified: issued by Bose Academy.</p>`}
+  catch(err){h=`<h2>Certificate not found</h2><p class="sol">No certificate has the ID ${e(id)}.</p>`}
+  v.innerHTML=`<div class="auth"><div class="card" style="text-align:center;border:6px double var(--lamp)"><b>BOSE ACADEMY</b>${h}</div><p style="text-align:center"><a href="./">Go to Bose Academy</a></p></div>`}
+
 (async()=>{
-  let me;
-  try{me=await api('GET','/api/me')}catch(e){if(e.status===401)return authPage(location.hash==='#signup'?'signup':'login');me=null}
+  let me=null,mode='server';
+  let finish=false;
+  try{me=await api('GET','/api/me')}catch(e){if(e.status!==401)mode=null}
+  /* No server here (for example GitHub Pages): use Firebase when it is set up in firebase-config.js */
+  if(!mode&&window.FIREBASE_CONFIG){try{await FBM.start();BOOT.fb=true;mode='firebase';try{me=await api('GET','/api/me')}catch(e){finish=e.status===428}}catch(e){console.error(e);mode=null}}
+  const vm=location.hash.match(/^#verify=([A-Za-z0-9-]{8,30})$/);if(vm&&mode)return verifyPage(vm[1]);
+  if(finish)return authPage('finish');
+  if(mode&&!me)return authPage(location.hash==='#signup'?'signup':'login');
   if(!me){let st={};try{st=JSON.parse(localStorage.getItem('lumen_local')||'{}')}catch(e){}
     Object.assign(BOOT,{local:true,state:st,settings:{flags:{'AI tutor feedback':false},retDays:3,gr:{},impact:null},curriculum:{courses:[],milestones:[]},user:{id:0,display:'Learner',role:'student',verified:false},role:'student'})}
   else try{
@@ -122,7 +148,7 @@ assign=function(id){const c=cl(id),[ty,key]=$('as'+id).value.split(':'),t=$('at'
   busy(async()=>{await api('POST',`/api/classes/${id}/assign`,{title:ty=='u'?UNITS[key][0]:SK[key].n,skills:ty=='u'?UNITS[key][1]:[key],target:t==='all'?'all':c.students[+t].uid});msg('Assigned.');reload('teacher')})};
 setCh=function(id){busy(async()=>{await api('POST',`/api/classes/${id}/challenge`,{goal:Math.max(10,+$('cg2'+id).value||100),reward:$('cr'+id)&&$('cr'+id).value?$('cr'+id).value.trim():'Class celebration'});reload('teacher')})};
 /* Live view: re-reads real progress from the server every few seconds */
-live=function(id){if(liveT){clearInterval(liveT);liveT=null;const same=liveId===id;liveId=null;if(same)return showTab('teacher')}liveId=id;liveT=setInterval(()=>tick(id),4000);showTab('teacher')};
+live=function(id){if(liveT){clearInterval(liveT);liveT=null;const same=liveId===id;liveId=null;if(same)return showTab('teacher')}liveId=id;liveT=setInterval(()=>tick(id),BOOT.fb?20000:4000);showTab('teacher')};
 tick=async function(id){if(tab!=='teacher')return;try{await LOAD.teacher()}catch(e){return}const c=cl(id);if(!c||!c.asg.length)return;const a=c.asg[c.asg.length-1];
   c.students.forEach((s,i)=>{const b=$(`pb${id}_${i}`);if(b)b.style.width=(s.p[a.id]||0)+'%';const g=$(`gm${id}_${i}`);if(g)g.textContent=s.gems});
   if(c.ch){const e=$('ch'+id);if(e){e.style.width=Math.min(100,(gemTot(c)-c.ch.base)/c.ch.goal*100)+'%';$('chn'+id).textContent=Math.max(0,gemTot(c)-c.ch.base)}}};

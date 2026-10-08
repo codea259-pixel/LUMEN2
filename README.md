@@ -29,6 +29,18 @@ Open http://localhost:3000. The Owner account is created the first time the serv
 
 GitHub Pages can't run the server, so `index.html` and `app.html` at the repo root are copies made by `python3 tools/build.py`. On Pages the app runs in demo mode: Learn, Courses, the knowledge map, practice, Library, Downloads and Settings work, and progress is saved in the visitor's browser. Accounts, classes, community and certificates need the full site below.
 
+## Accounts on GitHub Pages with Firebase (free)
+
+With Firebase set up, the GitHub Pages site gets real accounts: sign-up, sign-in (username or "Continue with Google"), progress saved to the account, teacher classes, community, certificates and the owner console. Firebase's free plan covers it.
+
+1. Create a project at console.firebase.google.com (Analytics not needed).
+2. **Authentication → Sign-in method:** enable **Email/Password** and **Google**. Under **Settings → Authorized domains**, add `bose.academy` and `codea259-pixel.github.io`.
+3. **Firestore Database → Create database** (production mode).
+4. **Firestore → Rules:** paste `firestore.rules`, replace `PASTE_OWNER_GMAIL` with the owner's Gmail address, and publish. Keep the Gmail out of the repo.
+5. **Project settings → Your apps → Web app:** copy the `firebaseConfig` object into `firebase-config.js` at the repo root (these values are public).
+
+The owner signs in with "Continue with Google" using that Gmail. `tools/e2e-firebase.cjs` tests all of this against the Firebase emulators. Not available in this mode: password resets for teacher-made student logins and the Claude-powered Ask Lumi (it uses built-in guiding questions instead).
+
 ## Put it on the internet
 
 Any host that runs a Docker container with a persistent disk works (Render, Railway, Fly.io, a VPS):
