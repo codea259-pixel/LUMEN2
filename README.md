@@ -25,6 +25,10 @@ OWNER_USERNAME=yourname OWNER_PASSWORD='a-long-password-12+' npm start
 
 Open http://localhost:3000. The Owner account is created the first time the server starts with those two variables. After that, remove `OWNER_PASSWORD`. You can also create it with `npm run create-owner -- yourname 'a-long-password'`.
 
+## GitHub Pages (demo mode)
+
+GitHub Pages can't run the server, so `index.html` and `app.html` at the repo root are copies made by `python3 tools/build.py`. On Pages the app runs in demo mode: Learn, Courses, the knowledge map, practice, Library, Downloads and Settings work, and progress is saved in the visitor's browser. Accounts, classes, community and certificates need the full site below.
+
 ## Put it on the internet
 
 Any host that runs a Docker container with a persistent disk works (Render, Railway, Fly.io, a VPS):

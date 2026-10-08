@@ -189,16 +189,16 @@ const _nq2=nextQ;nextQ=function(){const k=cur&&cur.k,wasM=k&&S[k].mastered,mode=
   document.addEventListener('click',e=>{const m=$('pmenu');if(!m.hidden&&!e.target.closest('#pmenu,#avatarBtn'))m.hidden=true});
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('pmenu').hidden){$('pmenu').hidden=true;$('avatarBtn').focus()}});
 })();
-const PRIMARY=()=>[['learn','Learn'],['courses','Courses'],...(BOOT.role==='student'?[['classes','My classes']]:[['teacher','Teacher']]),['community','Community'],['library','Library']];
-can=t=>t=='teacher'?BOOT.role!=='student':t=='owner'?BOOT.role==='owner':t=='classes'?BOOT.role==='student':true;
+const PRIMARY=()=>BOOT.local?[['learn','Learn'],['courses','Courses'],['library','Library']]:[['learn','Learn'],['courses','Courses'],...(BOOT.role==='student'?[['classes','My classes']]:[['teacher','Teacher']]),['community','Community'],['library','Library']];
+can=t=>BOOT.local&&['teacher','owner','classes','community','certs','impact'].includes(t)?false:t=='teacher'?BOOT.role!=='student':t=='owner'?BOOT.role==='owner':t=='classes'?BOOT.role==='student':true;
 nav=function(){$('tabs').innerHTML=PRIMARY().map(([k,l])=>`<button class="tb ${tab===k?'on':''}" ${tab===k?'aria-current="page"':''} onclick="go('${k}')">${l}</button>`).join('');
   $('bnav').innerHTML=[...PRIMARY().filter(([k])=>k!=='teacher'&&k!=='classes').slice(0,4),['profile','Profile']].map(([k,l])=>`<button class="${tab===k||(k==='profile'&&['certs','downloads','impact','settings','owner'].includes(tab))?'on':''}" onclick="${k==='profile'?'toggleMenu()':`go('${k}')`}">${icon(k)}${l}</button>`).join('');
   renderMe();document.documentElement.dataset.subj=ST.subj||'math'};
 function renderMe(){if(!$('me'))return;const s=streak();
   $('me').innerHTML=`<span class="chipstat" title="Skills Proficient or better in ${esc(SUBN[ST.subj]||'')} at your level">📈 ${masteryPct()}%<small> mastery</small></span><span class="chipstat" title="Day streak">🔥 ${s}<small> day${s===1?'':'s'}</small></span><span class="chipstat" title="Points">⭐ ${XP()}<small> XP</small></span><button class="avatar" id="avatarBtn" aria-haspopup="menu" aria-expanded="${!$('pmenu').hidden}" aria-label="Profile and settings" onclick="toggleMenu()">${esc((ME.display||'?')[0].toUpperCase())}</button>`}
 function toggleMenu(){const m=$('pmenu');m.hidden=!m.hidden;if(!m.hidden){
-  const it=[['certs','🏅','Certificates and badges'],['downloads','⬇️','Downloads'],['impact','🌍','Impact'],['settings','⚙️','Settings and accessibility'],...(BOOT.role==='owner'?[['owner','🛠️','Owner console']]:[])];
-  m.innerHTML=`<div class="who"><b>${esc(ME.display)}</b><span>${esc(ME.role==='student'?'Learner':ME.role.replace('_',' ').replace(/^./,c=>c.toUpperCase()))} · ⭐ ${XP()} XP · 🔥 ${streak()}</span></div>${it.map(([k,i,l])=>`<button role="menuitem" onclick="$('pmenu').hidden=true;go('${k}')"><span aria-hidden="true">${i}</span>${l}</button>`).join('')}<hr><button role="menuitem" onclick="logout()"><span aria-hidden="true">↩</span>Sign out</button>`;
+  const it=BOOT.local?[['downloads','⬇️','Downloads'],['settings','⚙️','Settings and accessibility']]:[['certs','🏅','Certificates and badges'],['downloads','⬇️','Downloads'],['impact','🌍','Impact'],['settings','⚙️','Settings and accessibility'],...(BOOT.role==='owner'?[['owner','🛠️','Owner console']]:[])];
+  m.innerHTML=`<div class="who"><b>${esc(ME.display)}</b><span>${esc(ME.role==='student'?'Learner':ME.role.replace('_',' ').replace(/^./,c=>c.toUpperCase()))} · ⭐ ${XP()} XP · 🔥 ${streak()}</span></div>${it.map(([k,i,l])=>`<button role="menuitem" onclick="$('pmenu').hidden=true;go('${k}')"><span aria-hidden="true">${i}</span>${l}</button>`).join('')}${BOOT.local?'<hr><p class="sol" style="padding:0 12px">Demo mode: progress is saved in this browser only.</p>':'<hr><button role="menuitem" onclick="logout()"><span aria-hidden="true">↩</span>Sign out</button>'}`;
   m.querySelector('button').focus()}const b=$('avatarBtn');if(b)b.setAttribute('aria-expanded',!m.hidden)}
 
 /* ---------- Welcome, Today's Mission and selectors ---------- */
@@ -218,8 +218,8 @@ gradeBar=function(){const gb=$('gradebar');if(tab!=='learn'){gb.innerHTML='';ret
 function missionState(){const r=recommend(),act=cur&&cur.k===r&&cur.mode==='practice'&&cur.n<cur.total&&view!=='summary';if(!ST.daily||ST.daily.d!==today())ST.daily={d:today(),n:0};
   return{r,act,done:act?cur.n:Math.min(5,ST.daily.n),total:5}}
 function dashHtml(){const n=ME.display||'',fresh=!ORDER.some(k=>S[k].att),m=missionState(),k=m.r,sk=SK[k],lv=level(k);
-  const greet=fresh?`Welcome to Lumen, ${esc(n)}! 👋`:`Welcome back, ${esc(n)}! 👋`;
-  return `<div class="hello rise"><div><h1>${greet}</h1><p>${fresh?'Pick a subject and grade below, then start your first mission.':'Ready to keep learning?'}</p></div>
+  const greet=BOOT.local?(fresh?'Welcome to Lumen! 👋':'Welcome back! 👋'):fresh?`Welcome to Lumen, ${esc(n)}! 👋`:`Welcome back, ${esc(n)}! 👋`;
+  return `<div class="hello rise"><div><h1>${greet}</h1><p>${fresh?'Pick a subject and grade below, then start your first mission.':'Ready to keep learning?'}</p>${BOOT.local?'<p class="sol">Demo mode: your progress is saved in this browser. Accounts, classes, community and certificates are on the full Lumen site.</p>':''}</div>
   <div class="stats3"><div class="stat"><b>🔥 ${streak()}</b><span>day streak</span></div><div class="stat"><b>⭐ ${XP()}</b><span>XP earned</span></div><div class="stat"><b>${masteryPct()}%</b><span>${esc(SUBC[ST.subj])} mastered</span></div></div></div>
   <article class="mission rise" aria-labelledby="mtitle"><div><div class="lbl">🎯 Today's mission</div><h2 id="mtitle">${esc(sk.n)}</h2><p class="d">${esc(/^Study these facts/.test(sk.c)?`Learn the key ideas in ${sk.n.toLowerCase()} with a short study sheet, then practice with quick questions.`:firstSentence(sk.c))}</p>
   <div class="bar" role="progressbar" aria-label="Mission progress" aria-valuemin="0" aria-valuemax="5" aria-valuenow="${m.done}"><i style="width:${m.done/5*100}%"></i></div>
