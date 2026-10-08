@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Lumen: Master every skill. Understand every concept.</title>
+<title>Bose Academy: Master every skill. Understand every concept.</title>
 <script>try{var _l=JSON.parse(localStorage.getItem("lumen2")||"{}").lite;if(_l)document.documentElement.dataset.lite="1";else{var l=document.createElement("link");l.rel="stylesheet";l.href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap";document.head.appendChild(l)}}catch(e){}</script>
 <style>
 :root{--bg:#EEF3F8;--panel:#fff;--ink:#1B2A41;--mute:#5B6B82;--line:#D5DEE9;--lamp:#F2A900;--lamp-soft:#FCEFC7;--teal:#0F8B8D;--coral:#C8414F;--node:#D5DEE9;
@@ -81,7 +81,7 @@ pre.rp{white-space:pre-wrap;font:inherit;background:var(--bg);padding:12px;borde
 </head>
 <body>
 <header>
-<h1>Lumen</h1>
+<h1>Bose Academy</h1>
 <p>Master every skill. Understand every concept. Pick a glowing skill on the map, learn the idea, then practice until it sticks.</p>
 </header>
 <div class="wrap2"><nav id="tabs" aria-label="Sections"></nav><div id="gradebar"></div></div>
@@ -90,7 +90,7 @@ pre.rp{white-space:pre-wrap;font:inherit;background:var(--bg);padding:12px;borde
 <h2>Your knowledge map</h2>
 <svg id="map" viewBox="0 0 640 430" role="group" aria-label="Skill map with prerequisites"></svg>
 <div class="legend" id="legend"></div>
-<p class="sol">Arrows point from a building block to the skill it unlocks. Nothing is locked: you can open any skill, and Lumen will suggest a building block if you get stuck.</p>
+<p class="sol">Arrows point from a building block to the skill it unlocks. Nothing is locked: you can open any skill, and Lumi will suggest a building block if you get stuck.</p>
 </section>
 <section class="card" id="panel" aria-live="polite"></section>
 </main>
@@ -225,7 +225,7 @@ const GLAB=n=>n<0?'Pre-K':n==0?'Kindergarten':n==13?'College / Test prep':'Grade
 const GN=n=>n<0?'PK':n==0?'K':n==13?'College':''+n;
 const day=()=>new Date().toISOString().slice(0,10);
 const UNITS={fractions:['Fractions unit',['equiv','simplify','addlike','adduni','multfrac']],equations:['Equations unit',['onestepadd','onestepmul','twostep']]};
-const D0={role:'owner',grades:[4,5,6],gr:{mult:3,factors:4,equiv:4,addlike:4,simplify:5,multfrac:5,adduni:5,onestepadd:6,onestepmul:6,twostep:7},gf:'all',ot:'users',flags:{'AI tutor feedback':true,'Live Classroom':true,'Gem Challenges':true,'Offline mode':false},users:[{id:1,name:'You (Owner)',email:'owner@lumen.example',role:'owner'}]};
+const D0={role:'owner',grades:[4,5,6],gr:{mult:3,factors:4,equiv:4,addlike:4,simplify:5,multfrac:5,adduni:5,onestepadd:6,onestepmul:6,twostep:7},gf:'all',ot:'users',flags:{'AI tutor feedback':true,'Live Classroom':true,'Gem Challenges':true,'Offline mode':false},users:[{id:1,name:'You (Owner)',email:'owner@example.org',role:'owner'}]};
 let ST=D0;try{const t=JSON.parse(localStorage.getItem('lumen2')||'null');if(t)ST={...D0,...t}}catch(e){}
 const sv=()=>{try{localStorage.setItem('lumen2',JSON.stringify(ST))}catch(e){}};
 let tab='learn',liveT=null,liveId=null;
@@ -288,7 +288,7 @@ function modUser(id,k,v){const u=ST.users.find(x=>x.id==id);if(!u||u.role==='own
 const SUBJ=['Math','English / ELA','Science','Social Studies','Computer Science','Financial Literacy','Spanish'];
 ST.classes=ST.classes||[];ST.posts=ST.posts||[];ST.groups=ST.groups||[];ST.certs=ST.certs||[];ST.me=ST.me||{name:'',full:''};ST.secs=ST.secs||0;ST.days=ST.days||[];ST.cs=ST.cs||{view:'qa',subj:'all',grade:'all',group:null};
 ST.block=ST.block||['stupid','idiot','dumb','hate you','shut up'];
-ST.imp=ST.imp||{mission:'Lumen gives every learner, everywhere, free access to clear lessons, unlimited practice and a patient tutor, so that no student is held back by cost or connection.',team:[],partners:[],funds:[['Content creation',40],['Hosting and infrastructure',25],['Accessibility and translation',20],['Reserve',15]],raised:0,goal:0};
+ST.imp=ST.imp||{mission:'Bose Academy gives every learner, everywhere, free access to clear lessons, unlimited practice and a patient tutor, so that no student is held back by cost or connection.',team:[],partners:[],funds:[['Content creation',40],['Hosting and infrastructure',25],['Accessibility and translation',20],['Reserve',15]],raised:0,goal:0};
 const VIEWS={courses:coView,teacher:tView,owner:oView,community:cmView,downloads:()=>resView('off'),library:()=>resView('lib'),certs:ctView,impact:imView};
 const _ud=update;update=function(...a){_ud(...a);const d=day();if(!ST.days.includes(d))ST.days.push(d);sv()};
 setInterval(()=>{if(tab==='learn'&&view==='practice'&&!document.hidden){ST.secs+=5;if(ST.secs%60==0)sv()}},5000);
@@ -384,23 +384,23 @@ const qsum=()=>ORDER.reduce((a,k)=>a+S[k].att,0);
 const COURSES=[...Object.entries(UNITS).map(([k,u])=>({id:'u-'+k,name:u[0]+' (Math)',skills:u[1]})),{id:'c-math',name:'Math course: Fractions and Equations',skills:ORDER}];
 const MIL=[['m10','First 10 questions',()=>qsum()>=10],['m100','100 questions',()=>qsum()>=100],['m500','500 questions',()=>qsum()>=500],['m1','First skill mastered',()=>ORDER.some(k=>level(k)==4)],['m5','5 practice days',()=>ST.days.length>=5]];
 const chk=t=>{let h=2166136261;for(const c of t){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return(h>>>0).toString(36).toUpperCase().padStart(4,'0').slice(-4)};
-const newId=()=>{const r=()=>Math.random().toString(36).slice(2,6).toUpperCase().padEnd(4,'X'),a=r(),b=r();return `LUM-${a}-${b}-${chk(a+b)}`};
-const okId=id=>{const m=/^LUM-(\w{4})-(\w{4})-(\w{4})$/.exec(id.trim().toUpperCase());return !!m&&chk(m[1]+m[2])===m[3]};
+const newId=()=>{const r=()=>Math.random().toString(36).slice(2,6).toUpperCase().padEnd(4,'X'),a=r(),b=r();return `BOSE-${a}-${b}-${chk(a+b)}`};
+const okId=id=>{const m=/^BOSE-(\w{4})-(\w{4})-(\w{4})$/.exec(id.trim().toUpperCase());return !!m&&chk(m[1]+m[2])===m[3]};
 const link=c=>location.href.split('#')[0]+'#cert='+btoa(unescape(encodeURIComponent(JSON.stringify([c.id,c.name,c.course,c.date]))));
 function claim(key,course,kind){if(!ST.me.full)return msg('Enter the name for your certificate first.');if(ST.certs.some(c=>c.key==key))return;ST.certs.push({key,id:newId(),name:ST.me.full,course,kind,date:new Date().toISOString().slice(0,10)});sv();r2()}
 function certHtml(c){return `<div class="cert"><p class="sol">${c.kind=='badge'?'Milestone badge':'Certificate of completion'}</p><div class="nm">${esc(c.name)}</div><p>${c.kind=='badge'?'earned':'completed'}</p><h3>${esc(c.course)}</h3><p class="sol">${c.date}, Verification ID <b>${c.id}</b></p></div>`}
 function ctView(){let top='';const m=location.hash.match(/^#cert=(.+)$/);
-if(m){try{const a=JSON.parse(decodeURIComponent(escape(atob(m[1]))));top=`<h3>Shared certificate</h3>${certHtml({id:a[0],name:a[1],course:a[2],date:a[3],kind:'course'})}<p class="sol">${okId(a[0])?'This ID is correctly formed. Confirming that Lumen issued it requires the registry on the server.':'This ID is not valid.'}</p>`}catch(e){top='<p class="sol">That certificate link is damaged.</p>'}}
+if(m){try{const a=JSON.parse(decodeURIComponent(escape(atob(m[1]))));top=`<h3>Shared certificate</h3>${certHtml({id:a[0],name:a[1],course:a[2],date:a[3],kind:'course'})}<p class="sol">${okId(a[0])?'This ID is correctly formed. Confirming that Bose Academy issued it requires the registry on the server.':'This ID is not valid.'}</p>`}catch(e){top='<p class="sol">That certificate link is damaged.</p>'}}
 const mine=ST.certs,have=k=>mine.some(c=>c.key==k);
 return `<h2>Certificates and badges</h2>${top}<div class="row"><label>Name on certificates <input id="fn" value="${esc(ST.me.full)}" placeholder="Your name" maxlength="40"></label><button class="alt" onclick="ST.me.full=$('fn').value.trim();sv();msg('Saved.')">Save</button></div>
 <h3 style="margin-top:16px">Courses and units</h3>${COURSES.map(c=>{const n=c.skills.filter(k=>level(k)>=3).length;return `<div class="card post"><div class="split"><b>${c.name}</b><span class="sol">${n} of ${c.skills.length} skills Proficient</span></div><div class="bar sm"><i style="width:${n/c.skills.length*100}%"></i></div>${have(c.id)?'<span class="pill">Certificate earned</span>':earned(c)?`<button class="lamp" onclick="claim('${c.id}','${esc(c.name)}','course')">Get certificate</button>`:'<span class="sol">Reach Proficient on every skill to earn this.</span>'}</div>`}).join('')}
 <h3 style="margin-top:16px">Milestone badges</h3><div class="badges">${MIL.map(([id,l,f])=>{const ok=f();return `<div class="card ${ok||have(id)?'':'off'}"><b>${l}</b><div>${have(id)?'<span class="pill">Earned</span>':ok?`<button class="lamp" onclick="claim('${id}','${l}','badge')">Claim</button>`:'Locked'}</div></div>`}).join('')}</div>
-<h3 style="margin-top:16px">Your certificates</h3>${mine.length?mine.map((c,i)=>certHtml(c)+`<div class="row" style="justify-content:center"><button onclick="certPdf(${i})">Download PDF</button><button class="alt" onclick="copyL(${i})">Copy share link</button>${navigator.share?`<button class="alt" onclick="navigator.share({title:'My Lumen certificate',url:link(ST.certs[${i}])})">Share</button>`:''}</div>`).join(''):'<p class="sol">Earned certificates and badges appear here.</p>'}
-<h3 style="margin-top:16px">Verify an ID</h3><div class="row"><input id="vi" placeholder="LUM-XXXX-XXXX-XXXX" aria-label="Verification ID"><button onclick="verify()">Check</button></div><p class="sol" id="vr"></p>`}
+<h3 style="margin-top:16px">Your certificates</h3>${mine.length?mine.map((c,i)=>certHtml(c)+`<div class="row" style="justify-content:center"><button onclick="certPdf(${i})">Download PDF</button><button class="alt" onclick="copyL(${i})">Copy share link</button>${navigator.share?`<button class="alt" onclick="navigator.share({title:'My Bose Academy certificate',url:link(ST.certs[${i}])})">Share</button>`:''}</div>`).join(''):'<p class="sol">Earned certificates and badges appear here.</p>'}
+<h3 style="margin-top:16px">Verify an ID</h3><div class="row"><input id="vi" placeholder="BOSE-XXXX-XXXX-XXXX" aria-label="Verification ID"><button onclick="verify()">Check</button></div><p class="sol" id="vr"></p>`}
 const earned=c=>c.skills.every(k=>level(k)>=3);
 function copyL(i){const l=link(ST.certs[i]);try{navigator.clipboard.writeText(l);msg('Link copied.')}catch(e){prompt('Copy this link',l)}}
 function verify(){const id=$('vi').value.trim().toUpperCase(),c=ST.certs.find(x=>x.id==id);$('vr').textContent=c?`Valid. Issued to ${c.name} for ${c.course} on ${c.date}.`:okId(id)?'The ID is correctly formed, but this device has no record of it. Confirming it needs the server registry.':'That ID is not valid.'}
-function certPdf(i){const c=ST.certs[i],d=pdfDoc(1),W=d.W,gold='0.949 0.663 0';d.rect(30,30,W-60,552,6,gold);d.rect(42,42,W-84,528,1.5,gold);d.text('LUMEN',W/2,100,20,1,1);d.text(c.kind=='badge'?'Milestone Badge':'Certificate of Completion',W/2,160,34,1,1);d.text('This certifies that',W/2,220,16,0,1);let z=40;const nm=tx(c.name);while(d.w(nm,z,1)>W-120&&z>16)z-=2;d.text(nm,W/2,280,z,1,1);d.text(c.kind=='badge'?'has earned':'has successfully completed',W/2,326,16,0,1);let y=376;d.wrap(tx(c.course),26,1,600).forEach(l=>{d.text(l,W/2,y,26,1,1);y+=32});d.text('Date: '+c.date,W/2,450,13,0,1);d.text('Verification ID: '+c.id,W/2,474,13,0,1);const L=link(c);for(let j=0,yy=520;j<L.length;j+=120,yy+=11)d.text(L.slice(j,j+120),W/2,yy,8,0,1);saveBlob(new Blob([d.bytes()],{type:'application/pdf'}),'lumen-'+c.id+'.pdf')}
+function certPdf(i){const c=ST.certs[i],d=pdfDoc(1),W=d.W,gold='0.949 0.663 0';d.rect(30,30,W-60,552,6,gold);d.rect(42,42,W-84,528,1.5,gold);d.text('BOSE ACADEMY',W/2,100,20,1,1);d.text(c.kind=='badge'?'Milestone Badge':'Certificate of Completion',W/2,160,34,1,1);d.text('This certifies that',W/2,220,16,0,1);let z=40;const nm=tx(c.name);while(d.w(nm,z,1)>W-120&&z>16)z-=2;d.text(nm,W/2,280,z,1,1);d.text(c.kind=='badge'?'has earned':'has successfully completed',W/2,326,16,0,1);let y=376;d.wrap(tx(c.course),26,1,600).forEach(l=>{d.text(l,W/2,y,26,1,1);y+=32});d.text('Date: '+c.date,W/2,450,13,0,1);d.text('Verification ID: '+c.id,W/2,474,13,0,1);const L=link(c);for(let j=0,yy=520;j<L.length;j+=120,yy+=11)d.text(L.slice(j,j+120),W/2,yy,8,0,1);saveBlob(new Blob([d.bytes()],{type:'application/pdf'}),'bose-academy-'+c.id+'.pdf')}
 
 /* ===== More grades and subjects ===== */
 const SUBN={math:'Math',ela:'English / ELA',sci:'Science',soc:'Social Studies',cs:'Computer Science',fin:'Financial Literacy',es:'Spanish'};

@@ -10,7 +10,7 @@
 /* ===== Server connection: sign-in, loading and saving the account's data ===== */
 const BOOT={state:{},settings:{},curriculum:{courses:[],milestones:[]},user:null,role:'student'};
 async function api(method,path,body){
-  if(BOOT.local)throw new Error('This part of Lumen needs an account on the full Lumen site.');
+  if(BOOT.local)throw new Error('This part of Bose Academy needs an account on the full Bose Academy site.');
   const r=await fetch(path,{method,credentials:'same-origin',headers:body===undefined?{}:{'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body)});
   let j={};try{j=await r.json()}catch(e){}
   if(r.status===401&&path!=='/api/login'&&path!=='/api/me'){location.reload();throw new Error('Please sign in again.')}
@@ -37,7 +37,7 @@ function authPage(mode){
   document.querySelector('.wrap2').hidden=true;document.querySelector('.app').hidden=true;const v=document.getElementById('views');v.hidden=false;
   v.innerHTML=`<div class="auth">${mode==='login'?`
   <h2>Sign in</h2><form class="card" id="af"><label>Username<input name="username" autocomplete="username" required></label><label>Password<input name="password" type="password" autocomplete="current-password" required></label><p class="err" id="ae" role="alert"></p><button class="lamp" type="submit">Sign in</button></form>
-  <p>New to Lumen? <a href="#" id="sw">Create a free account</a></p><p class="sol">Students under 13: your teacher or parent gives you a username and password.</p>`:`
+  <p>New to Bose Academy? <a href="#" id="sw">Create a free account</a></p><p class="sol">Students under 13: your teacher or parent gives you a username and password.</p>`:`
   <h2>Create a free account</h2><form class="card" id="af">
   <label>I am a<select name="role" id="ar"><option value="student">Learner (13 or older)</option><option value="parent">Parent or guardian</option><option value="teacher">Teacher</option></select></label>
   <label>Username<input name="username" autocomplete="username" required minlength="3" maxlength="20" pattern="[A-Za-z0-9_]+" title="Letters, numbers and underscores"></label>
@@ -47,7 +47,7 @@ function authPage(mode){
   <label class="ck" id="ag"><input type="checkbox" name="age13"> I am 13 or older</label>
   <p class="err" id="ae" role="alert"></p><button class="lamp" type="submit">Create account</button></form>
   <p>Already have an account? <a href="#" id="sw">Sign in</a></p>
-  <p class="sol">Under 13? Ask a teacher or parent to create your login. Lumen never sells student data and shows no ads.</p>`}</div>`;
+  <p class="sol">Under 13? Ask a teacher or parent to create your login. Bose Academy never sells student data and shows no ads.</p>`}</div>`;
   document.getElementById('sw').onclick=ev=>{ev.preventDefault();authPage(mode==='login'?'signup':'login')};
   const ar=document.getElementById('ar');if(ar)ar.onchange=()=>{const s=ar.value==='student';document.getElementById('em').hidden=s;document.querySelector('#em input').required=!s;document.getElementById('ag').hidden=!s};
   document.getElementById('af').onsubmit=async ev=>{ev.preventDefault();const f=Object.fromEntries(new FormData(ev.target));if(mode==='signup')f.age13=!!f.age13;
@@ -64,7 +64,7 @@ function authPage(mode){
   else try{
     const [st,set,cur]=await Promise.all([api('GET','/api/state'),api('GET','/api/settings'),api('GET','/api/curriculum')]);
     Object.assign(BOOT,{state:st||{},settings:set||{},curriculum:cur,user:me.user,role:me.user.role==='owner'?'owner':['teacher','school_admin'].includes(me.user.role)?'teacher':'student'});
-  }catch(e){document.getElementById('panel').textContent='Lumen could not load your account. Check your connection and reload the page.';return}
+  }catch(e){document.getElementById('panel').textContent='Bose Academy could not load your account. Check your connection and reload the page.';return}
   for(const s of document.querySelectorAll('script[type="text/x-lumen"]')){const n=document.createElement('script');n.textContent=s.textContent;document.body.appendChild(n)}
 })();
 </script>
@@ -105,7 +105,7 @@ function joinClass(){busy(async()=>{const r=await api('POST','/api/classes/join'
 addClass=function(){const n=$('cn').value.trim();if(!n)return msg('Enter a class name.');busy(async()=>{await api('POST','/api/classes',{name:n,grade:+$('cg').value,region:($('cc')||{value:''}).value.trim()});reload('teacher')})};
 const _classCard=classCard;
 classCard=function(c){return _classCard(c)
-  .replace(/<h4>Add students<\/h4>[\s\S]*?simulated in this demo\.<\/p>/,`<h4>Add students</h4><p class="sol">Type one student name per line. Lumen creates a username and password for each, so students under 13 never need an email. Students 13 or older can also sign up and join with the code above.</p>
+  .replace(/<h4>Add students<\/h4>[\s\S]*?simulated in this demo\.<\/p>/,`<h4>Add students</h4><p class="sol">Type one student name per line. Bose Academy creates a username and password for each, so students under 13 never need an email. Students 13 or older can also sign up and join with the code above.</p>
 <div class="row"><textarea id="sn${c.id}" placeholder="Ava Smith&#10;Ben Lee" aria-label="Student names, one per line"></textarea></div><div class="row"><button class="lamp" onclick="addStu(${c.id})">Create student logins</button><label class="sol">Or upload a list (one name per line)<br><input type="file" accept=".csv,.txt" onchange="fileIn(${c.id},this)"></label></div>
 ${c.students.length?`<div class="row"><select id="rs${c.id}" aria-label="Student">${c.students.map(s=>`<option value="${s.uid}">${esc(s.name)} (${esc(s.email)})</option>`).join('')}</select><button class="alt" onclick="resetPw(${c.id})">Reset password</button></div>`:''}<div id="cred${c.id}"></div>`)
   .replace('Start live view (simulated)','Start live view')
@@ -156,7 +156,7 @@ VIEWS.certs=ctView;
 /* ---------- Impact: totals across every learner on the server ---------- */
 imView=function(){const I=BOOT.impact.content,s=BOOT.impact.stats;
 return `<h2>Our impact</h2><div class="stats"><div class="card"><b>${s.learners}</b><span>Active learners</span></div><div class="card"><b>${s.hours}</b><span>Hours of learning</span></div><div class="card"><b>${s.answered}</b><span>Questions answered</span></div><div class="card"><b>${s.regions}</b><span>Regions or countries</span></div><div class="card"><b>${s.helped}</b><span>Students helped</span></div></div>
-<p class="sol">Live totals across all Lumen learners. Students helped counts students in classes plus students whose question got a peer answer.</p>
+<p class="sol">Live totals across all Bose Academy learners. Students helped counts students in classes plus students whose question got a peer answer.</p>
 <div class="card" style="margin-top:14px"><h3>Mission</h3><p>${esc(I.mission)}</p></div>
 <div class="card" style="margin-top:14px"><h3>Leadership and team</h3>${I.team.length?'<ul>'+I.team.map(t=>`<li><b>${esc(t[0])}</b>${t[1]?', '+esc(t[1]):''}</li>`).join('')+'</ul>':'<p class="sol">The Owner can add team members in the Owner console.</p>'}</div>
 <div class="card" style="margin-top:14px"><h3>Partner organizations</h3>${I.partners.length?'<ul>'+I.partners.map(t=>`<li>${esc(t)}</li>`).join('')+'</ul>':'<p class="sol">No partners listed yet.</p>'}</div>

@@ -1,4 +1,4 @@
-# Lumen
+# Bose Academy
 
 Master every skill. Understand every concept. A free learning site for Pre-K through college, with lessons, unlimited practice, a knowledge map, classes for teachers, a moderated community, and certificates anyone can verify.
 
@@ -39,13 +39,13 @@ Any host that runs a Docker container with a persistent disk works (Render, Rail
 4. Optionally set `SESSION_SECRET` to a long random string (otherwise one is generated and kept in `/data`).
 5. Serve it over HTTPS (the hosts above do this for you). Sign-in cookies are marked secure in production.
 
-## Ask Lumen (AI tutor)
+## Ask Lumi (AI tutor)
 
-Practice questions have an **Ask Lumen** button. With `ANTHROPIC_API_KEY` set on the server, Lumen uses Claude as a Socratic tutor that asks guiding questions and is instructed never to reveal or confirm answers (model: `LUMEN_TUTOR_MODEL`, default `claude-haiku-5-5`; limited to 30 messages per student per 10 minutes). Without a key, or with the "AI tutor feedback" flag off in the Owner console, it falls back to built-in guiding questions from each problem's hint ladder.
+Practice questions have an **Ask Lumi** button. With `ANTHROPIC_API_KEY` set on the server, Lumi uses Claude as a Socratic tutor that asks guiding questions and is instructed never to reveal or confirm answers (model: `LUMEN_TUTOR_MODEL`, default `claude-haiku-5-5`; limited to 30 messages per student per 10 minutes). Without a key, or with the "AI tutor feedback" flag off in the Owner console, it falls back to built-in guiding questions from each problem's hint ladder.
 
 ## Accounts
 
 - **Learners 13+** sign up themselves.
-- **Under 13**: a teacher creates logins from the Teacher tab (type the names, Lumen makes usernames and passwords, no email needed).
+- **Under 13**: a teacher creates logins from the Teacher tab (type the names, Bose Academy makes usernames and passwords, no email needed).
 - **Teachers and parents** sign up with an email. The Owner can mark teachers as verified, which lets them moderate the community.
 - **Owner**: created on the server only, never through the website.

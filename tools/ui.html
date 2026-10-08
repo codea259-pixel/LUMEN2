@@ -1,5 +1,5 @@
 <style>
-/* ===== Lumen design layer: calm base, subject colors used sparingly ===== */
+/* ===== Bose Academy design layer: calm base, subject colors used sparingly ===== */
 :root{--bg:#F6F8FB;--panel:#fff;--ink:#16243A;--mute:#5A6A80;--line:#E2E8F0;--node:#E3E8EF;--lamp:#F2A900;--lamp-soft:#FDF3D1;--teal:#0F8B8D;--coral:#C8414F;
 --sc:#F2A900;--sc-on:#16243A;--sc-text:#8A6100;--sc-soft:color-mix(in srgb,var(--sc) 16%,var(--panel));
 --shadow:0 1px 2px rgba(22,36,58,.06),0 4px 16px rgba(22,36,58,.06);--shadow-up:0 2px 4px rgba(22,36,58,.08),0 10px 28px rgba(22,36,58,.10);--r:18px;--fs:1}
@@ -40,6 +40,8 @@ header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--b
 .menu button:hover,.menu button:focus-visible{background:var(--bg)}
 .menu hr{border:0;border-top:1px solid var(--line);margin:6px 0}
 #bnav{display:none}
+.brand{white-space:nowrap}
+@media(max-width:520px){#me .chipstat:not(:nth-child(2)){display:none}.brand{font-size:1.2rem}.topin{gap:8px}}
 @media(max-width:860px){
   #tabs{display:none}.topin{padding:8px 14px;gap:10px}.chipstat small{display:none}
   #bnav{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--panel);border-top:1px solid var(--line);padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px));justify-content:space-around}
@@ -153,7 +155,7 @@ svg.orb{display:inline-block;vertical-align:middle;flex:none}
 .set input[type=checkbox]{width:22px;height:22px;accent-color:var(--teal)}
 </style>
 <script type="text/x-lumen">
-/* ===== Lumen design layer: navigation, welcome, mission, map, practice, rewards, settings ===== */
+/* ===== Bose Academy design layer: navigation, welcome, mission, map, practice, rewards, settings ===== */
 const SUBC={math:'Math',ela:'English',sci:'Science',soc:'Social Studies',cs:'Computer Science',fin:'Financial Literacy',es:'Spanish'};
 const today=()=>new Date().toISOString().slice(0,10);
 const strip=h=>String(h).replace(/<li>/g,' ').replace(/<span class="fr"><i>(.*?)<\/i><i>(.*?)<\/i><\/span>/g,'$1/$2').replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim();
@@ -181,7 +183,7 @@ const _nq2=nextQ;nextQ=function(){const k=cur&&cur.k,wasM=k&&S[k].mastered,mode=
 
 /* ---------- Header, navigation and profile menu ---------- */
 (function buildChrome(){const h=document.querySelector('header');h.className='top';
-  h.innerHTML=`<div class="topin"><a class="brand" href="#" onclick="go('learn');return false" aria-label="Lumen home">${orb(30)}Lumen</a></div>`;
+  h.innerHTML=`<div class="topin"><a class="brand" href="#" onclick="go('learn');return false" aria-label="Bose Academy home">${orb(30)}Bose Academy</a></div>`;
   h.querySelector('.topin').appendChild($('tabs'));h.querySelector('.topin').insertAdjacentHTML('beforeend','<div id="me"></div><div class="menu" id="pmenu" hidden role="menu"></div>');
   document.querySelector('.app').insertAdjacentHTML('beforebegin','<section id="dash" aria-label="Welcome"></section>');
   document.body.insertAdjacentHTML('beforeend','<nav id="bnav" aria-label="Main"></nav>');
@@ -218,14 +220,14 @@ gradeBar=function(){const gb=$('gradebar');if(tab!=='learn'){gb.innerHTML='';ret
 function missionState(){const r=recommend(),act=cur&&cur.k===r&&cur.mode==='practice'&&cur.n<cur.total&&view!=='summary';if(!ST.daily||ST.daily.d!==today())ST.daily={d:today(),n:0};
   return{r,act,done:act?cur.n:Math.min(5,ST.daily.n),total:5}}
 function dashHtml(){const n=ME.display||'',fresh=!ORDER.some(k=>S[k].att),m=missionState(),k=m.r,sk=SK[k],lv=level(k);
-  const greet=BOOT.local?(fresh?'Welcome to Lumen! 👋':'Welcome back! 👋'):fresh?`Welcome to Lumen, ${esc(n)}! 👋`:`Welcome back, ${esc(n)}! 👋`;
-  return `<div class="hello rise"><div><h1>${greet}</h1><p>${fresh?'Pick a subject and grade below, then start your first mission.':'Ready to keep learning?'}</p>${BOOT.local?'<p class="sol">Demo mode: your progress is saved in this browser. Accounts, classes, community and certificates are on the full Lumen site.</p>':''}</div>
+  const greet=BOOT.local?(fresh?'Welcome to Bose Academy! 👋':'Welcome back! 👋'):fresh?`Welcome to Bose Academy, ${esc(n)}! 👋`:`Welcome back, ${esc(n)}! 👋`;
+  return `<div class="hello rise"><div><h1>${greet}</h1><p>${fresh?'Pick a subject and grade below, then start your first mission.':'Ready to keep learning?'}</p>${BOOT.local?'<p class="sol">Demo mode: your progress is saved in this browser. Accounts, classes, community and certificates are on the full Bose Academy site.</p>':''}</div>
   <div class="stats3"><div class="stat"><b>🔥 ${streak()}</b><span>day streak</span></div><div class="stat"><b>⭐ ${XP()}</b><span>XP earned</span></div><div class="stat"><b>${masteryPct()}%</b><span>${esc(SUBC[ST.subj])} mastered</span></div></div></div>
   <article class="mission rise" aria-labelledby="mtitle"><div><div class="lbl">🎯 Today's mission</div><h2 id="mtitle">${esc(sk.n)}</h2><p class="d">${esc(/^Study these facts/.test(sk.c)?`Learn the key ideas in ${sk.n.toLowerCase()} with a short study sheet, then practice with quick questions.`:firstSentence(sk.c))}</p>
   <div class="bar" role="progressbar" aria-label="Mission progress" aria-valuemin="0" aria-valuemax="5" aria-valuenow="${m.done}"><i style="width:${m.done/5*100}%"></i></div>
   <div class="meta"><span><b>${m.done} / 5</b> complete</span><span>⏱ ~5 minutes</span><span>${esc(SUBN[sk.sub])} · ${GLAB(ST.gr[k])}</span><span>${LV[lv]}</span></div>
   <div class="row"><button class="go" onclick="missionGo()">${m.act?'Continue mission':'Start mission'} →</button><button class="alt" onclick="openSkill('${k}')">Start with a lesson</button><button class="alt" onclick="startPractice('${k}','practice')">Skip to practice</button></div></div>
-  <div class="side">${orb(64)}<div class="bubble"><b>💡 Lumen's hint</b>${fresh?'Every skill starts with a short idea. Read it, then try five problems. Mistakes are how we learn.':`What do you already know about ${esc(sk.n.toLowerCase())}?`}</div></div></article>`}
+  <div class="side">${orb(64)}<div class="bubble"><b>💡 Lumi's hint</b>${fresh?'Every skill starts with a short idea. Read it, then try five problems. Mistakes are how we learn.':`What do you already know about ${esc(sk.n.toLowerCase())}?`}</div></div></article>`}
 function missionGo(){const m=missionState();if(m.act){view='practice';render()}else startPractice(m.r,'practice')}
 
 /* ---------- Knowledge map ---------- */
@@ -257,9 +259,9 @@ drawMap=function(){const el=$('map'),all=ORDER.filter(k=>SK[k].sub===ST.subj&&(S
   $('legend').innerHTML=`<span>${sw('var(--node)','var(--node)')}Not started</span><span>${sw('var(--sc-soft)','var(--sc)')}Practiced</span><span>${sw('var(--sc)','var(--sc)')}✓ Proficient</span><span>${sw('var(--lamp)','#B07B00')}★ Mastered</span><span>${sw('var(--panel)','var(--mute)','stroke-dasharray="3 3"')}🔒 Building blocks first</span><span>${sw('var(--sc-soft)','var(--sc)','opacity=".6"')}Glow = recommended</span>`};
 
 /* ---------- Render: dashboard, skill info panel, practice and celebrations ---------- */
-tutor=function(t,c,title){return `<div class="tutor ${c||''}">${orb(34,c==='warn'?'think':c==='good'?'wow':'happy')}<div class="tx"><b>${title||"💡 Lumen's hint"}</b>${t}</div></div>`};
+tutor=function(t,c,title){return `<div class="tutor ${c||''}">${orb(34,c==='warn'?'think':c==='good'?'wow':'happy')}<div class="tx"><b>${title||"💡 Lumi's hint"}</b>${t}</div></div>`};
 const HL=['Hint 1 · Gentle nudge','Hint 2 · Concept reminder','Hint 3 · Guided help','Show worked steps'];
-const _hint=hint;hint=function(){const i=cur.hint;_hint();if(i<3)cur.fb=cur.fb.replace("💡 Lumen's hint",'💡 '+HL[i]);render()};
+const _hint=hint;hint=function(){const i=cur.hint;_hint();if(i<3)cur.fb=cur.fb.replace("💡 Lumi's hint",'💡 '+HL[i]);render()};
 const _r2=render;render=function(){_r2();document.documentElement.dataset.subj=ST.subj||'math';const P=$('panel'),D=$('dash');
   if(tab!=='learn'){D.hidden=true;$('gradebar').hidden=false;return}
   const was=D.hidden||!D.innerHTML;D.hidden=view==='practice';$('gradebar').hidden=view==='practice';if(!D.hidden){D.innerHTML=dashHtml();if(!was)D.querySelectorAll('.rise').forEach(e=>e.classList.remove('rise'))}renderMe();
@@ -275,7 +277,7 @@ function infoHtml(k){const n=SK[k],z=S[k],lv=level(k),pre=n.pre.filter(x=>SK[x])
   <div class="lv5" style="grid-template-columns:repeat(4,1fr)" aria-hidden="true">${[1,2,3,4].map(i=>`<i class="${i<=lv?(lv===4?'gold':'on'):''}"></i>`).join('')}</div>
   <p class="sol" style="margin-top:0"><b style="color:var(--ink)">${LV[lv]}</b> · ${Math.round(z.p*100)}% confidence · ${z.att} question${z.att===1?'':'s'}${z.review?' · <b style="color:var(--coral)">Needs a quick review</b>':''}</p>
   ${tutor(n.c,'','The idea')}
-  ${st==='locked'?`<div class="tutor warn">${orb(34,'think')}<div class="tx"><b>Building blocks first</b>This skill builds on ones you haven't practiced yet. You can still try it, and Lumen will point you back if you get stuck.</div></div>`:''}
+  ${st==='locked'?`<div class="tutor warn">${orb(34,'think')}<div class="tx"><b>Building blocks first</b>This skill builds on ones you haven't practiced yet. You can still try it, and Lumi will point you back if you get stuck.</div></div>`:''}
   ${pre.length?`<h3>Builds on</h3><div class="chips">${pre.map(chip).join('')}</div>`:''}
   ${next.length?`<h3>Unlocks next</h3><div class="chips">${next.slice(0,6).map(chip).join('')}</div>`:''}
   <div class="kv"><span>Estimated time</span><b>~5 minutes for 5 problems</b><span>Retention check</span><b>~2 minutes, ${retDays()} day(s) after Proficient</b></div>
@@ -285,11 +287,11 @@ function decoratePractice(P){const n=SK[cur.k],pill=P.querySelector('.pill');
   const hb=[...P.querySelectorAll('button.alt')].find(b=>/tutor|hint/i.test(b.textContent));
   const row=document.createElement('div');row.className='helpbar';
   if(hb){hb.textContent=HL[Math.min(cur.hint,3)];row.appendChild(hb)}
-  if(!cur.done&&cur.mode!=='check')row.insertAdjacentHTML('beforeend',`<button class="alt" onclick="askOpen()">🤖 Ask Lumen</button>`);
+  if(!cur.done&&cur.mode!=='check')row.insertAdjacentHTML('beforeend',`<button class="alt" onclick="askOpen()">🤖 Ask Lumi</button>`);
   row.insertAdjacentHTML('beforeend',`<button class="alt" onclick="speak(strip(cur.q.q)+(cur.q.choices?'. Choices: '+cur.q.choices.join(', '):''))" aria-label="Read the question aloud">🔊 Read aloud</button>`);
   if(SR&&!cur.done&&!cur.q.choices)row.insertAdjacentHTML('beforeend',`<button class="alt mic" aria-pressed="false" onclick="dictate(this)" aria-label="Answer by voice">🎤 Say answer</button>`);
   const fb=$('fb');fb.parentNode.insertBefore(row,fb);
-  if(cur.chat){const c=document.createElement('div');c.className='chat';c.setAttribute('aria-live','polite');c.innerHTML=`<div>${cur.chat.map(m=>`<div class="m ${m.role==='user'?'you':'lumen'}">${m.role==='user'?'':'<b>Lumen: </b>'}${esc(m.text)}</div>`).join('')}</div><form onsubmit="askSend(event)"><input id="askq" placeholder="Tell Lumen what you're thinking…" aria-label="Message to Lumen" maxlength="400" autocomplete="off"><button class="go">Send</button></form><p class="sol" style="margin:6px 0 0">Lumen asks questions to help you think. It won't give the answer away.</p>`;fb.parentNode.insertBefore(c,fb.nextSibling)}
+  if(cur.chat){const c=document.createElement('div');c.className='chat';c.setAttribute('aria-live','polite');c.innerHTML=`<div>${cur.chat.map(m=>`<div class="m ${m.role==='user'?'you':'lumen'}">${m.role==='user'?'':'<b>Lumi: </b>'}${esc(m.text)}</div>`).join('')}</div><form onsubmit="askSend(event)"><input id="askq" placeholder="Tell Lumi what you're thinking…" aria-label="Message to Lumi" maxlength="400" autocomplete="off"><button class="go">Send</button></form><p class="sol" style="margin:6px 0 0">Lumi asks questions to help you think. It won't give the answer away.</p>`;fb.parentNode.insertBefore(c,fb.nextSibling)}
   const lv=P.querySelector('#panel > .row:last-child button.alt');if(lv&&/Leave/.test(lv.textContent))lv.textContent='Save and leave';
   if(cur.focusAsk){cur.focusAsk=0;$('askq')&&$('askq').focus()}}
 function summaryHtml(){const n=SK[cur.k],lv=level(cur.k),r=recommend(),c=cur.celebrate,xp=cur.xp||0,parts=c==='mastered'||cur.newProf?Array.from({length:18},(_,i)=>{const a=i/18*Math.PI*2,d=70+Math.random()*60;return `<i class="spark" style="--x:${Math.cos(a)*d}px;--y:${Math.sin(a)*d-20}px;background:${['var(--lamp)','var(--sc)','var(--teal)'][i%3]};animation-delay:${i*15}ms"></i>`}).join(''):'';
@@ -307,7 +309,7 @@ function dictate(b){if(!SR)return;const r=new SR();r.lang='en-US';r.interimResul
   r.onresult=e=>{let t=e.results[0][0].transcript.toLowerCase().replace(/ over | divided by /g,'/').replace(/\b(zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)\b/g,m=>W[m]).replace(/minus |negative /g,'-').replace(/[^\d\/.\-]/g,'');const i=$('ans');if(i){i.value=t;i.focus()}msg(t?'Heard: '+t:"Sorry, I didn't catch a number.")};
   r.onend=()=>b.setAttribute('aria-pressed','false');r.onerror=()=>msg('Voice input is not available right now.');r.start()}
 
-/* ---------- Ask Lumen: Socratic tutor (Claude on the server when configured, guided questions otherwise) ---------- */
+/* ---------- Ask Lumi: Socratic tutor (Claude on the server when configured, guided questions otherwise) ---------- */
 function askOpen(){if(!cur.chat){cur.chat=[{role:'assistant',text:`Hi! Let's think about this together. What is the question asking you to find?`}]}cur.focusAsk=1;render()}
 async function askSend(e){e.preventDefault();const t=$('askq').value.trim();if(!t)return;cur.chat.push({role:'user',text:t});render();let a;
   try{if(ST.flags['AI tutor feedback']===false)throw 0;const r=await api('POST','/api/tutor',{skill:SK[cur.k].n,question:strip(cur.q.q),choices:cur.q.choices||null,answer:cur.q.choices?cur.q.choices[cur.q.a[0]]:(cur.q.a[1]==1?''+cur.q.a[0]:cur.q.a[0]+'/'+cur.q.a[1]),concept:strip(SK[cur.k].c).slice(0,400),messages:cur.chat.slice(-10)});a=r.reply}

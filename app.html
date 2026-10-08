@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Lumen: Master every skill. Understand every concept.</title>
+<title>Bose Academy: Master every skill. Understand every concept.</title>
 <script>try{var _l=JSON.parse(localStorage.getItem("lumen_lite")||"0");if(_l)document.documentElement.dataset.lite="1";else{var l=document.createElement("link");l.rel="stylesheet";l.href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap";document.head.appendChild(l)}}catch(e){}</script>
 <style>
 :root{--bg:#EEF3F8;--panel:#fff;--ink:#1B2A41;--mute:#5B6B82;--line:#D5DEE9;--lamp:#F2A900;--lamp-soft:#FCEFC7;--teal:#0F8B8D;--coral:#C8414F;--node:#D5DEE9;
@@ -81,7 +81,7 @@ pre.rp{white-space:pre-wrap;font:inherit;background:var(--bg);padding:12px;borde
 </head>
 <body>
 <header>
-<h1>Lumen</h1>
+<h1>Bose Academy</h1>
 <p>Master every skill. Understand every concept. Pick a glowing skill on the map, learn the idea, then practice until it sticks.</p>
 </header>
 <div class="wrap2"><nav id="tabs" aria-label="Sections"></nav><div id="gradebar"></div></div>
@@ -90,7 +90,7 @@ pre.rp{white-space:pre-wrap;font:inherit;background:var(--bg);padding:12px;borde
 <h2>Your knowledge map</h2>
 <svg id="map" viewBox="0 0 640 430" role="group" aria-label="Skill map with prerequisites"></svg>
 <div class="legend" id="legend"></div>
-<p class="sol">Arrows point from a building block to the skill it unlocks. Nothing is locked: you can open any skill, and Lumen will suggest a building block if you get stuck.</p>
+<p class="sol">Arrows point from a building block to the skill it unlocks. Nothing is locked: you can open any skill, and Lumi will suggest a building block if you get stuck.</p>
 </section>
 <section class="card" id="panel" aria-live="polite"></section>
 </main>
@@ -225,7 +225,7 @@ const GLAB=n=>n<0?'Pre-K':n==0?'Kindergarten':n==13?'College / Test prep':'Grade
 const GN=n=>n<0?'PK':n==0?'K':n==13?'College':''+n;
 const day=()=>new Date().toISOString().slice(0,10);
 const UNITS={fractions:['Fractions unit',['equiv','simplify','addlike','adduni','multfrac']],equations:['Equations unit',['onestepadd','onestepmul','twostep']]};
-const D0={role:'owner',grades:[4,5,6],gr:{mult:3,factors:4,equiv:4,addlike:4,simplify:5,multfrac:5,adduni:5,onestepadd:6,onestepmul:6,twostep:7},gf:'all',ot:'users',flags:{'AI tutor feedback':true,'Live Classroom':true,'Gem Challenges':true,'Offline mode':false},users:[{id:1,name:'You (Owner)',email:'owner@lumen.example',role:'owner'}]};
+const D0={role:'owner',grades:[4,5,6],gr:{mult:3,factors:4,equiv:4,addlike:4,simplify:5,multfrac:5,adduni:5,onestepadd:6,onestepmul:6,twostep:7},gf:'all',ot:'users',flags:{'AI tutor feedback':true,'Live Classroom':true,'Gem Challenges':true,'Offline mode':false},users:[{id:1,name:'You (Owner)',email:'owner@example.org',role:'owner'}]};
 let ST={...D0,...(BOOT.state.prefs||{}),days:BOOT.state.days||[],secs:BOOT.state.secs||0};Object.assign(ST.gr,BOOT.settings.gr||{});ST.flags=BOOT.settings.flags||ST.flags;ST.retDays=BOOT.settings.retDays;ST.imp=BOOT.settings.impact;ST.role=BOOT.role;
 const sv=()=>SYNC();
 let tab='learn',liveT=null,liveId=null;
@@ -288,7 +288,7 @@ function modUser(id,k,v){const u=ST.users.find(x=>x.id==id);if(!u||u.role==='own
 const SUBJ=['Math','English / ELA','Science','Social Studies','Computer Science','Financial Literacy','Spanish'];
 ST.classes=ST.classes||[];ST.posts=ST.posts||[];ST.groups=ST.groups||[];ST.certs=ST.certs||[];ST.me=ST.me||{name:'',full:''};ST.secs=ST.secs||0;ST.days=ST.days||[];ST.cs=ST.cs||{view:'qa',subj:'all',grade:'all',group:null};
 ST.block=ST.block||['stupid','idiot','dumb','hate you','shut up'];
-ST.imp=ST.imp||{mission:'Lumen gives every learner, everywhere, free access to clear lessons, unlimited practice and a patient tutor, so that no student is held back by cost or connection.',team:[],partners:[],funds:[['Content creation',40],['Hosting and infrastructure',25],['Accessibility and translation',20],['Reserve',15]],raised:0,goal:0};
+ST.imp=ST.imp||{mission:'Bose Academy gives every learner, everywhere, free access to clear lessons, unlimited practice and a patient tutor, so that no student is held back by cost or connection.',team:[],partners:[],funds:[['Content creation',40],['Hosting and infrastructure',25],['Accessibility and translation',20],['Reserve',15]],raised:0,goal:0};
 const VIEWS={courses:coView,teacher:tView,owner:oView,community:cmView,downloads:()=>resView('off'),library:()=>resView('lib'),certs:ctView,impact:imView};
 const _ud=update;update=function(...a){_ud(...a);const d=day();if(!ST.days.includes(d))ST.days.push(d);sv()};
 setInterval(()=>{if(tab==='learn'&&view==='practice'&&!document.hidden){ST.secs+=5;if(ST.secs%60==0)sv()}},5000);
@@ -384,23 +384,23 @@ const qsum=()=>ORDER.reduce((a,k)=>a+S[k].att,0);
 const COURSES=[...Object.entries(UNITS).map(([k,u])=>({id:'u-'+k,name:u[0]+' (Math)',skills:u[1]})),{id:'c-math',name:'Math course: Fractions and Equations',skills:ORDER}];
 const MIL=[['m10','First 10 questions',()=>qsum()>=10],['m100','100 questions',()=>qsum()>=100],['m500','500 questions',()=>qsum()>=500],['m1','First skill mastered',()=>ORDER.some(k=>level(k)==4)],['m5','5 practice days',()=>ST.days.length>=5]];
 const chk=t=>{let h=2166136261;for(const c of t){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return(h>>>0).toString(36).toUpperCase().padStart(4,'0').slice(-4)};
-const newId=()=>{const r=()=>Math.random().toString(36).slice(2,6).toUpperCase().padEnd(4,'X'),a=r(),b=r();return `LUM-${a}-${b}-${chk(a+b)}`};
-const okId=id=>{const m=/^LUM-(\w{4})-(\w{4})-(\w{4})$/.exec(id.trim().toUpperCase());return !!m&&chk(m[1]+m[2])===m[3]};
+const newId=()=>{const r=()=>Math.random().toString(36).slice(2,6).toUpperCase().padEnd(4,'X'),a=r(),b=r();return `BOSE-${a}-${b}-${chk(a+b)}`};
+const okId=id=>{const m=/^BOSE-(\w{4})-(\w{4})-(\w{4})$/.exec(id.trim().toUpperCase());return !!m&&chk(m[1]+m[2])===m[3]};
 const link=c=>location.origin+'/c/'+c.id;
 function claim(key,course,kind){if(!ST.me.full)return msg('Enter the name for your certificate first.');if(ST.certs.some(c=>c.key==key))return;ST.certs.push({key,id:newId(),name:ST.me.full,course,kind,date:new Date().toISOString().slice(0,10)});sv();r2()}
 function certHtml(c){return `<div class="cert"><p class="sol">${c.kind=='badge'?'Milestone badge':'Certificate of completion'}</p><div class="nm">${esc(c.name)}</div><p>${c.kind=='badge'?'earned':'completed'}</p><h3>${esc(c.course)}</h3><p class="sol">${c.date}, Verification ID <b>${c.id}</b></p></div>`}
 function ctView(){let top='';const m=location.hash.match(/^#cert=(.+)$/);
-if(m){try{const a=JSON.parse(decodeURIComponent(escape(atob(m[1]))));top=`<h3>Shared certificate</h3>${certHtml({id:a[0],name:a[1],course:a[2],date:a[3],kind:'course'})}<p class="sol">${okId(a[0])?'This ID is correctly formed. Confirming that Lumen issued it requires the registry on the server.':'This ID is not valid.'}</p>`}catch(e){top='<p class="sol">That certificate link is damaged.</p>'}}
+if(m){try{const a=JSON.parse(decodeURIComponent(escape(atob(m[1]))));top=`<h3>Shared certificate</h3>${certHtml({id:a[0],name:a[1],course:a[2],date:a[3],kind:'course'})}<p class="sol">${okId(a[0])?'This ID is correctly formed. Confirming that Bose Academy issued it requires the registry on the server.':'This ID is not valid.'}</p>`}catch(e){top='<p class="sol">That certificate link is damaged.</p>'}}
 const mine=ST.certs,have=k=>mine.some(c=>c.key==k);
 return `<h2>Certificates and badges</h2>${top}<div class="row"><label>Name on certificates <input id="fn" value="${esc(ST.me.full)}" placeholder="Your name" maxlength="40"></label><button class="alt" onclick="ST.me.full=$('fn').value.trim();sv();msg('Saved.')">Save</button></div>
 <h3 style="margin-top:16px">Courses and units</h3>${COURSES.map(c=>{const n=c.skills.filter(k=>level(k)>=3).length;return `<div class="card post"><div class="split"><b>${c.name}</b><span class="sol">${n} of ${c.skills.length} skills Proficient</span></div><div class="bar sm"><i style="width:${n/c.skills.length*100}%"></i></div>${have(c.id)?'<span class="pill">Certificate earned</span>':earned(c)?`<button class="lamp" onclick="claim('${c.id}','${esc(c.name)}','course')">Get certificate</button>`:'<span class="sol">Reach Proficient on every skill to earn this.</span>'}</div>`}).join('')}
 <h3 style="margin-top:16px">Milestone badges</h3><div class="badges">${MIL.map(([id,l,f])=>{const ok=f();return `<div class="card ${ok||have(id)?'':'off'}"><b>${l}</b><div>${have(id)?'<span class="pill">Earned</span>':ok?`<button class="lamp" onclick="claim('${id}','${l}','badge')">Claim</button>`:'Locked'}</div></div>`}).join('')}</div>
-<h3 style="margin-top:16px">Your certificates</h3>${mine.length?mine.map((c,i)=>certHtml(c)+`<div class="row" style="justify-content:center"><button onclick="certPdf(${i})">Download PDF</button><button class="alt" onclick="copyL(${i})">Copy share link</button>${navigator.share?`<button class="alt" onclick="navigator.share({title:'My Lumen certificate',url:link(ST.certs[${i}])})">Share</button>`:''}</div>`).join(''):'<p class="sol">Earned certificates and badges appear here.</p>'}
-<h3 style="margin-top:16px">Verify an ID</h3><div class="row"><input id="vi" placeholder="LUM-XXXX-XXXX-XXXX" aria-label="Verification ID"><button onclick="verify()">Check</button></div><p class="sol" id="vr"></p>`}
+<h3 style="margin-top:16px">Your certificates</h3>${mine.length?mine.map((c,i)=>certHtml(c)+`<div class="row" style="justify-content:center"><button onclick="certPdf(${i})">Download PDF</button><button class="alt" onclick="copyL(${i})">Copy share link</button>${navigator.share?`<button class="alt" onclick="navigator.share({title:'My Bose Academy certificate',url:link(ST.certs[${i}])})">Share</button>`:''}</div>`).join(''):'<p class="sol">Earned certificates and badges appear here.</p>'}
+<h3 style="margin-top:16px">Verify an ID</h3><div class="row"><input id="vi" placeholder="BOSE-XXXX-XXXX-XXXX" aria-label="Verification ID"><button onclick="verify()">Check</button></div><p class="sol" id="vr"></p>`}
 const earned=c=>c.skills.every(k=>level(k)>=3);
 function copyL(i){const l=link(ST.certs[i]);try{navigator.clipboard.writeText(l);msg('Link copied.')}catch(e){prompt('Copy this link',l)}}
 function verify(){const id=$('vi').value.trim().toUpperCase(),c=ST.certs.find(x=>x.id==id);$('vr').textContent=c?`Valid. Issued to ${c.name} for ${c.course} on ${c.date}.`:okId(id)?'The ID is correctly formed, but this device has no record of it. Confirming it needs the server registry.':'That ID is not valid.'}
-function certPdf(i){const c=ST.certs[i],d=pdfDoc(1),W=d.W,gold='0.949 0.663 0';d.rect(30,30,W-60,552,6,gold);d.rect(42,42,W-84,528,1.5,gold);d.text('LUMEN',W/2,100,20,1,1);d.text(c.kind=='badge'?'Milestone Badge':'Certificate of Completion',W/2,160,34,1,1);d.text('This certifies that',W/2,220,16,0,1);let z=40;const nm=tx(c.name);while(d.w(nm,z,1)>W-120&&z>16)z-=2;d.text(nm,W/2,280,z,1,1);d.text(c.kind=='badge'?'has earned':'has successfully completed',W/2,326,16,0,1);let y=376;d.wrap(tx(c.course),26,1,600).forEach(l=>{d.text(l,W/2,y,26,1,1);y+=32});d.text('Date: '+c.date,W/2,450,13,0,1);d.text('Verification ID: '+c.id,W/2,474,13,0,1);const L=link(c);for(let j=0,yy=520;j<L.length;j+=120,yy+=11)d.text(L.slice(j,j+120),W/2,yy,8,0,1);saveBlob(new Blob([d.bytes()],{type:'application/pdf'}),'lumen-'+c.id+'.pdf')}
+function certPdf(i){const c=ST.certs[i],d=pdfDoc(1),W=d.W,gold='0.949 0.663 0';d.rect(30,30,W-60,552,6,gold);d.rect(42,42,W-84,528,1.5,gold);d.text('BOSE ACADEMY',W/2,100,20,1,1);d.text(c.kind=='badge'?'Milestone Badge':'Certificate of Completion',W/2,160,34,1,1);d.text('This certifies that',W/2,220,16,0,1);let z=40;const nm=tx(c.name);while(d.w(nm,z,1)>W-120&&z>16)z-=2;d.text(nm,W/2,280,z,1,1);d.text(c.kind=='badge'?'has earned':'has successfully completed',W/2,326,16,0,1);let y=376;d.wrap(tx(c.course),26,1,600).forEach(l=>{d.text(l,W/2,y,26,1,1);y+=32});d.text('Date: '+c.date,W/2,450,13,0,1);d.text('Verification ID: '+c.id,W/2,474,13,0,1);const L=link(c);for(let j=0,yy=520;j<L.length;j+=120,yy+=11)d.text(L.slice(j,j+120),W/2,yy,8,0,1);saveBlob(new Blob([d.bytes()],{type:'application/pdf'}),'bose-academy-'+c.id+'.pdf')}
 
 /* ===== More grades and subjects ===== */
 const SUBN={math:'Math',ela:'English / ELA',sci:'Science',soc:'Social Studies',cs:'Computer Science',fin:'Financial Literacy',es:'Spanish'};
@@ -811,7 +811,7 @@ showTab(location.hash.startsWith('#cert=')?'certs':'learn');
 /* ===== Server connection: sign-in, loading and saving the account's data ===== */
 const BOOT={state:{},settings:{},curriculum:{courses:[],milestones:[]},user:null,role:'student'};
 async function api(method,path,body){
-  if(BOOT.local)throw new Error('This part of Lumen needs an account on the full Lumen site.');
+  if(BOOT.local)throw new Error('This part of Bose Academy needs an account on the full Bose Academy site.');
   const r=await fetch(path,{method,credentials:'same-origin',headers:body===undefined?{}:{'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body)});
   let j={};try{j=await r.json()}catch(e){}
   if(r.status===401&&path!=='/api/login'&&path!=='/api/me'){location.reload();throw new Error('Please sign in again.')}
@@ -838,7 +838,7 @@ function authPage(mode){
   document.querySelector('.wrap2').hidden=true;document.querySelector('.app').hidden=true;const v=document.getElementById('views');v.hidden=false;
   v.innerHTML=`<div class="auth">${mode==='login'?`
   <h2>Sign in</h2><form class="card" id="af"><label>Username<input name="username" autocomplete="username" required></label><label>Password<input name="password" type="password" autocomplete="current-password" required></label><p class="err" id="ae" role="alert"></p><button class="lamp" type="submit">Sign in</button></form>
-  <p>New to Lumen? <a href="#" id="sw">Create a free account</a></p><p class="sol">Students under 13: your teacher or parent gives you a username and password.</p>`:`
+  <p>New to Bose Academy? <a href="#" id="sw">Create a free account</a></p><p class="sol">Students under 13: your teacher or parent gives you a username and password.</p>`:`
   <h2>Create a free account</h2><form class="card" id="af">
   <label>I am a<select name="role" id="ar"><option value="student">Learner (13 or older)</option><option value="parent">Parent or guardian</option><option value="teacher">Teacher</option></select></label>
   <label>Username<input name="username" autocomplete="username" required minlength="3" maxlength="20" pattern="[A-Za-z0-9_]+" title="Letters, numbers and underscores"></label>
@@ -848,7 +848,7 @@ function authPage(mode){
   <label class="ck" id="ag"><input type="checkbox" name="age13"> I am 13 or older</label>
   <p class="err" id="ae" role="alert"></p><button class="lamp" type="submit">Create account</button></form>
   <p>Already have an account? <a href="#" id="sw">Sign in</a></p>
-  <p class="sol">Under 13? Ask a teacher or parent to create your login. Lumen never sells student data and shows no ads.</p>`}</div>`;
+  <p class="sol">Under 13? Ask a teacher or parent to create your login. Bose Academy never sells student data and shows no ads.</p>`}</div>`;
   document.getElementById('sw').onclick=ev=>{ev.preventDefault();authPage(mode==='login'?'signup':'login')};
   const ar=document.getElementById('ar');if(ar)ar.onchange=()=>{const s=ar.value==='student';document.getElementById('em').hidden=s;document.querySelector('#em input').required=!s;document.getElementById('ag').hidden=!s};
   document.getElementById('af').onsubmit=async ev=>{ev.preventDefault();const f=Object.fromEntries(new FormData(ev.target));if(mode==='signup')f.age13=!!f.age13;
@@ -865,7 +865,7 @@ function authPage(mode){
   else try{
     const [st,set,cur]=await Promise.all([api('GET','/api/state'),api('GET','/api/settings'),api('GET','/api/curriculum')]);
     Object.assign(BOOT,{state:st||{},settings:set||{},curriculum:cur,user:me.user,role:me.user.role==='owner'?'owner':['teacher','school_admin'].includes(me.user.role)?'teacher':'student'});
-  }catch(e){document.getElementById('panel').textContent='Lumen could not load your account. Check your connection and reload the page.';return}
+  }catch(e){document.getElementById('panel').textContent='Bose Academy could not load your account. Check your connection and reload the page.';return}
   for(const s of document.querySelectorAll('script[type="text/x-lumen"]')){const n=document.createElement('script');n.textContent=s.textContent;document.body.appendChild(n)}
 })();
 </script>
@@ -906,7 +906,7 @@ function joinClass(){busy(async()=>{const r=await api('POST','/api/classes/join'
 addClass=function(){const n=$('cn').value.trim();if(!n)return msg('Enter a class name.');busy(async()=>{await api('POST','/api/classes',{name:n,grade:+$('cg').value,region:($('cc')||{value:''}).value.trim()});reload('teacher')})};
 const _classCard=classCard;
 classCard=function(c){return _classCard(c)
-  .replace(/<h4>Add students<\/h4>[\s\S]*?simulated in this demo\.<\/p>/,`<h4>Add students</h4><p class="sol">Type one student name per line. Lumen creates a username and password for each, so students under 13 never need an email. Students 13 or older can also sign up and join with the code above.</p>
+  .replace(/<h4>Add students<\/h4>[\s\S]*?simulated in this demo\.<\/p>/,`<h4>Add students</h4><p class="sol">Type one student name per line. Bose Academy creates a username and password for each, so students under 13 never need an email. Students 13 or older can also sign up and join with the code above.</p>
 <div class="row"><textarea id="sn${c.id}" placeholder="Ava Smith&#10;Ben Lee" aria-label="Student names, one per line"></textarea></div><div class="row"><button class="lamp" onclick="addStu(${c.id})">Create student logins</button><label class="sol">Or upload a list (one name per line)<br><input type="file" accept=".csv,.txt" onchange="fileIn(${c.id},this)"></label></div>
 ${c.students.length?`<div class="row"><select id="rs${c.id}" aria-label="Student">${c.students.map(s=>`<option value="${s.uid}">${esc(s.name)} (${esc(s.email)})</option>`).join('')}</select><button class="alt" onclick="resetPw(${c.id})">Reset password</button></div>`:''}<div id="cred${c.id}"></div>`)
   .replace('Start live view (simulated)','Start live view')
@@ -957,7 +957,7 @@ VIEWS.certs=ctView;
 /* ---------- Impact: totals across every learner on the server ---------- */
 imView=function(){const I=BOOT.impact.content,s=BOOT.impact.stats;
 return `<h2>Our impact</h2><div class="stats"><div class="card"><b>${s.learners}</b><span>Active learners</span></div><div class="card"><b>${s.hours}</b><span>Hours of learning</span></div><div class="card"><b>${s.answered}</b><span>Questions answered</span></div><div class="card"><b>${s.regions}</b><span>Regions or countries</span></div><div class="card"><b>${s.helped}</b><span>Students helped</span></div></div>
-<p class="sol">Live totals across all Lumen learners. Students helped counts students in classes plus students whose question got a peer answer.</p>
+<p class="sol">Live totals across all Bose Academy learners. Students helped counts students in classes plus students whose question got a peer answer.</p>
 <div class="card" style="margin-top:14px"><h3>Mission</h3><p>${esc(I.mission)}</p></div>
 <div class="card" style="margin-top:14px"><h3>Leadership and team</h3>${I.team.length?'<ul>'+I.team.map(t=>`<li><b>${esc(t[0])}</b>${t[1]?', '+esc(t[1]):''}</li>`).join('')+'</ul>':'<p class="sol">The Owner can add team members in the Owner console.</p>'}</div>
 <div class="card" style="margin-top:14px"><h3>Partner organizations</h3>${I.partners.length?'<ul>'+I.partners.map(t=>`<li>${esc(t)}</li>`).join('')+'</ul>':'<p class="sol">No partners listed yet.</p>'}</div>
@@ -975,7 +975,7 @@ gradeBar();go(tab==='learn'?'learn':tab);
 </script>
 
 <style>
-/* ===== Lumen design layer: calm base, subject colors used sparingly ===== */
+/* ===== Bose Academy design layer: calm base, subject colors used sparingly ===== */
 :root{--bg:#F6F8FB;--panel:#fff;--ink:#16243A;--mute:#5A6A80;--line:#E2E8F0;--node:#E3E8EF;--lamp:#F2A900;--lamp-soft:#FDF3D1;--teal:#0F8B8D;--coral:#C8414F;
 --sc:#F2A900;--sc-on:#16243A;--sc-text:#8A6100;--sc-soft:color-mix(in srgb,var(--sc) 16%,var(--panel));
 --shadow:0 1px 2px rgba(22,36,58,.06),0 4px 16px rgba(22,36,58,.06);--shadow-up:0 2px 4px rgba(22,36,58,.08),0 10px 28px rgba(22,36,58,.10);--r:18px;--fs:1}
@@ -1016,6 +1016,8 @@ header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--b
 .menu button:hover,.menu button:focus-visible{background:var(--bg)}
 .menu hr{border:0;border-top:1px solid var(--line);margin:6px 0}
 #bnav{display:none}
+.brand{white-space:nowrap}
+@media(max-width:520px){#me .chipstat:not(:nth-child(2)){display:none}.brand{font-size:1.2rem}.topin{gap:8px}}
 @media(max-width:860px){
   #tabs{display:none}.topin{padding:8px 14px;gap:10px}.chipstat small{display:none}
   #bnav{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--panel);border-top:1px solid var(--line);padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px));justify-content:space-around}
@@ -1129,7 +1131,7 @@ svg.orb{display:inline-block;vertical-align:middle;flex:none}
 .set input[type=checkbox]{width:22px;height:22px;accent-color:var(--teal)}
 </style>
 <script type="text/x-lumen">
-/* ===== Lumen design layer: navigation, welcome, mission, map, practice, rewards, settings ===== */
+/* ===== Bose Academy design layer: navigation, welcome, mission, map, practice, rewards, settings ===== */
 const SUBC={math:'Math',ela:'English',sci:'Science',soc:'Social Studies',cs:'Computer Science',fin:'Financial Literacy',es:'Spanish'};
 const today=()=>new Date().toISOString().slice(0,10);
 const strip=h=>String(h).replace(/<li>/g,' ').replace(/<span class="fr"><i>(.*?)<\/i><i>(.*?)<\/i><\/span>/g,'$1/$2').replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim();
@@ -1157,7 +1159,7 @@ const _nq2=nextQ;nextQ=function(){const k=cur&&cur.k,wasM=k&&S[k].mastered,mode=
 
 /* ---------- Header, navigation and profile menu ---------- */
 (function buildChrome(){const h=document.querySelector('header');h.className='top';
-  h.innerHTML=`<div class="topin"><a class="brand" href="#" onclick="go('learn');return false" aria-label="Lumen home">${orb(30)}Lumen</a></div>`;
+  h.innerHTML=`<div class="topin"><a class="brand" href="#" onclick="go('learn');return false" aria-label="Bose Academy home">${orb(30)}Bose Academy</a></div>`;
   h.querySelector('.topin').appendChild($('tabs'));h.querySelector('.topin').insertAdjacentHTML('beforeend','<div id="me"></div><div class="menu" id="pmenu" hidden role="menu"></div>');
   document.querySelector('.app').insertAdjacentHTML('beforebegin','<section id="dash" aria-label="Welcome"></section>');
   document.body.insertAdjacentHTML('beforeend','<nav id="bnav" aria-label="Main"></nav>');
@@ -1194,14 +1196,14 @@ gradeBar=function(){const gb=$('gradebar');if(tab!=='learn'){gb.innerHTML='';ret
 function missionState(){const r=recommend(),act=cur&&cur.k===r&&cur.mode==='practice'&&cur.n<cur.total&&view!=='summary';if(!ST.daily||ST.daily.d!==today())ST.daily={d:today(),n:0};
   return{r,act,done:act?cur.n:Math.min(5,ST.daily.n),total:5}}
 function dashHtml(){const n=ME.display||'',fresh=!ORDER.some(k=>S[k].att),m=missionState(),k=m.r,sk=SK[k],lv=level(k);
-  const greet=BOOT.local?(fresh?'Welcome to Lumen! 👋':'Welcome back! 👋'):fresh?`Welcome to Lumen, ${esc(n)}! 👋`:`Welcome back, ${esc(n)}! 👋`;
-  return `<div class="hello rise"><div><h1>${greet}</h1><p>${fresh?'Pick a subject and grade below, then start your first mission.':'Ready to keep learning?'}</p>${BOOT.local?'<p class="sol">Demo mode: your progress is saved in this browser. Accounts, classes, community and certificates are on the full Lumen site.</p>':''}</div>
+  const greet=BOOT.local?(fresh?'Welcome to Bose Academy! 👋':'Welcome back! 👋'):fresh?`Welcome to Bose Academy, ${esc(n)}! 👋`:`Welcome back, ${esc(n)}! 👋`;
+  return `<div class="hello rise"><div><h1>${greet}</h1><p>${fresh?'Pick a subject and grade below, then start your first mission.':'Ready to keep learning?'}</p>${BOOT.local?'<p class="sol">Demo mode: your progress is saved in this browser. Accounts, classes, community and certificates are on the full Bose Academy site.</p>':''}</div>
   <div class="stats3"><div class="stat"><b>🔥 ${streak()}</b><span>day streak</span></div><div class="stat"><b>⭐ ${XP()}</b><span>XP earned</span></div><div class="stat"><b>${masteryPct()}%</b><span>${esc(SUBC[ST.subj])} mastered</span></div></div></div>
   <article class="mission rise" aria-labelledby="mtitle"><div><div class="lbl">🎯 Today's mission</div><h2 id="mtitle">${esc(sk.n)}</h2><p class="d">${esc(/^Study these facts/.test(sk.c)?`Learn the key ideas in ${sk.n.toLowerCase()} with a short study sheet, then practice with quick questions.`:firstSentence(sk.c))}</p>
   <div class="bar" role="progressbar" aria-label="Mission progress" aria-valuemin="0" aria-valuemax="5" aria-valuenow="${m.done}"><i style="width:${m.done/5*100}%"></i></div>
   <div class="meta"><span><b>${m.done} / 5</b> complete</span><span>⏱ ~5 minutes</span><span>${esc(SUBN[sk.sub])} · ${GLAB(ST.gr[k])}</span><span>${LV[lv]}</span></div>
   <div class="row"><button class="go" onclick="missionGo()">${m.act?'Continue mission':'Start mission'} →</button><button class="alt" onclick="openSkill('${k}')">Start with a lesson</button><button class="alt" onclick="startPractice('${k}','practice')">Skip to practice</button></div></div>
-  <div class="side">${orb(64)}<div class="bubble"><b>💡 Lumen's hint</b>${fresh?'Every skill starts with a short idea. Read it, then try five problems. Mistakes are how we learn.':`What do you already know about ${esc(sk.n.toLowerCase())}?`}</div></div></article>`}
+  <div class="side">${orb(64)}<div class="bubble"><b>💡 Lumi's hint</b>${fresh?'Every skill starts with a short idea. Read it, then try five problems. Mistakes are how we learn.':`What do you already know about ${esc(sk.n.toLowerCase())}?`}</div></div></article>`}
 function missionGo(){const m=missionState();if(m.act){view='practice';render()}else startPractice(m.r,'practice')}
 
 /* ---------- Knowledge map ---------- */
@@ -1233,9 +1235,9 @@ drawMap=function(){const el=$('map'),all=ORDER.filter(k=>SK[k].sub===ST.subj&&(S
   $('legend').innerHTML=`<span>${sw('var(--node)','var(--node)')}Not started</span><span>${sw('var(--sc-soft)','var(--sc)')}Practiced</span><span>${sw('var(--sc)','var(--sc)')}✓ Proficient</span><span>${sw('var(--lamp)','#B07B00')}★ Mastered</span><span>${sw('var(--panel)','var(--mute)','stroke-dasharray="3 3"')}🔒 Building blocks first</span><span>${sw('var(--sc-soft)','var(--sc)','opacity=".6"')}Glow = recommended</span>`};
 
 /* ---------- Render: dashboard, skill info panel, practice and celebrations ---------- */
-tutor=function(t,c,title){return `<div class="tutor ${c||''}">${orb(34,c==='warn'?'think':c==='good'?'wow':'happy')}<div class="tx"><b>${title||"💡 Lumen's hint"}</b>${t}</div></div>`};
+tutor=function(t,c,title){return `<div class="tutor ${c||''}">${orb(34,c==='warn'?'think':c==='good'?'wow':'happy')}<div class="tx"><b>${title||"💡 Lumi's hint"}</b>${t}</div></div>`};
 const HL=['Hint 1 · Gentle nudge','Hint 2 · Concept reminder','Hint 3 · Guided help','Show worked steps'];
-const _hint=hint;hint=function(){const i=cur.hint;_hint();if(i<3)cur.fb=cur.fb.replace("💡 Lumen's hint",'💡 '+HL[i]);render()};
+const _hint=hint;hint=function(){const i=cur.hint;_hint();if(i<3)cur.fb=cur.fb.replace("💡 Lumi's hint",'💡 '+HL[i]);render()};
 const _r2=render;render=function(){_r2();document.documentElement.dataset.subj=ST.subj||'math';const P=$('panel'),D=$('dash');
   if(tab!=='learn'){D.hidden=true;$('gradebar').hidden=false;return}
   const was=D.hidden||!D.innerHTML;D.hidden=view==='practice';$('gradebar').hidden=view==='practice';if(!D.hidden){D.innerHTML=dashHtml();if(!was)D.querySelectorAll('.rise').forEach(e=>e.classList.remove('rise'))}renderMe();
@@ -1251,7 +1253,7 @@ function infoHtml(k){const n=SK[k],z=S[k],lv=level(k),pre=n.pre.filter(x=>SK[x])
   <div class="lv5" style="grid-template-columns:repeat(4,1fr)" aria-hidden="true">${[1,2,3,4].map(i=>`<i class="${i<=lv?(lv===4?'gold':'on'):''}"></i>`).join('')}</div>
   <p class="sol" style="margin-top:0"><b style="color:var(--ink)">${LV[lv]}</b> · ${Math.round(z.p*100)}% confidence · ${z.att} question${z.att===1?'':'s'}${z.review?' · <b style="color:var(--coral)">Needs a quick review</b>':''}</p>
   ${tutor(n.c,'','The idea')}
-  ${st==='locked'?`<div class="tutor warn">${orb(34,'think')}<div class="tx"><b>Building blocks first</b>This skill builds on ones you haven't practiced yet. You can still try it, and Lumen will point you back if you get stuck.</div></div>`:''}
+  ${st==='locked'?`<div class="tutor warn">${orb(34,'think')}<div class="tx"><b>Building blocks first</b>This skill builds on ones you haven't practiced yet. You can still try it, and Lumi will point you back if you get stuck.</div></div>`:''}
   ${pre.length?`<h3>Builds on</h3><div class="chips">${pre.map(chip).join('')}</div>`:''}
   ${next.length?`<h3>Unlocks next</h3><div class="chips">${next.slice(0,6).map(chip).join('')}</div>`:''}
   <div class="kv"><span>Estimated time</span><b>~5 minutes for 5 problems</b><span>Retention check</span><b>~2 minutes, ${retDays()} day(s) after Proficient</b></div>
@@ -1261,11 +1263,11 @@ function decoratePractice(P){const n=SK[cur.k],pill=P.querySelector('.pill');
   const hb=[...P.querySelectorAll('button.alt')].find(b=>/tutor|hint/i.test(b.textContent));
   const row=document.createElement('div');row.className='helpbar';
   if(hb){hb.textContent=HL[Math.min(cur.hint,3)];row.appendChild(hb)}
-  if(!cur.done&&cur.mode!=='check')row.insertAdjacentHTML('beforeend',`<button class="alt" onclick="askOpen()">🤖 Ask Lumen</button>`);
+  if(!cur.done&&cur.mode!=='check')row.insertAdjacentHTML('beforeend',`<button class="alt" onclick="askOpen()">🤖 Ask Lumi</button>`);
   row.insertAdjacentHTML('beforeend',`<button class="alt" onclick="speak(strip(cur.q.q)+(cur.q.choices?'. Choices: '+cur.q.choices.join(', '):''))" aria-label="Read the question aloud">🔊 Read aloud</button>`);
   if(SR&&!cur.done&&!cur.q.choices)row.insertAdjacentHTML('beforeend',`<button class="alt mic" aria-pressed="false" onclick="dictate(this)" aria-label="Answer by voice">🎤 Say answer</button>`);
   const fb=$('fb');fb.parentNode.insertBefore(row,fb);
-  if(cur.chat){const c=document.createElement('div');c.className='chat';c.setAttribute('aria-live','polite');c.innerHTML=`<div>${cur.chat.map(m=>`<div class="m ${m.role==='user'?'you':'lumen'}">${m.role==='user'?'':'<b>Lumen: </b>'}${esc(m.text)}</div>`).join('')}</div><form onsubmit="askSend(event)"><input id="askq" placeholder="Tell Lumen what you're thinking…" aria-label="Message to Lumen" maxlength="400" autocomplete="off"><button class="go">Send</button></form><p class="sol" style="margin:6px 0 0">Lumen asks questions to help you think. It won't give the answer away.</p>`;fb.parentNode.insertBefore(c,fb.nextSibling)}
+  if(cur.chat){const c=document.createElement('div');c.className='chat';c.setAttribute('aria-live','polite');c.innerHTML=`<div>${cur.chat.map(m=>`<div class="m ${m.role==='user'?'you':'lumen'}">${m.role==='user'?'':'<b>Lumi: </b>'}${esc(m.text)}</div>`).join('')}</div><form onsubmit="askSend(event)"><input id="askq" placeholder="Tell Lumi what you're thinking…" aria-label="Message to Lumi" maxlength="400" autocomplete="off"><button class="go">Send</button></form><p class="sol" style="margin:6px 0 0">Lumi asks questions to help you think. It won't give the answer away.</p>`;fb.parentNode.insertBefore(c,fb.nextSibling)}
   const lv=P.querySelector('#panel > .row:last-child button.alt');if(lv&&/Leave/.test(lv.textContent))lv.textContent='Save and leave';
   if(cur.focusAsk){cur.focusAsk=0;$('askq')&&$('askq').focus()}}
 function summaryHtml(){const n=SK[cur.k],lv=level(cur.k),r=recommend(),c=cur.celebrate,xp=cur.xp||0,parts=c==='mastered'||cur.newProf?Array.from({length:18},(_,i)=>{const a=i/18*Math.PI*2,d=70+Math.random()*60;return `<i class="spark" style="--x:${Math.cos(a)*d}px;--y:${Math.sin(a)*d-20}px;background:${['var(--lamp)','var(--sc)','var(--teal)'][i%3]};animation-delay:${i*15}ms"></i>`}).join(''):'';
@@ -1283,7 +1285,7 @@ function dictate(b){if(!SR)return;const r=new SR();r.lang='en-US';r.interimResul
   r.onresult=e=>{let t=e.results[0][0].transcript.toLowerCase().replace(/ over | divided by /g,'/').replace(/\b(zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)\b/g,m=>W[m]).replace(/minus |negative /g,'-').replace(/[^\d\/.\-]/g,'');const i=$('ans');if(i){i.value=t;i.focus()}msg(t?'Heard: '+t:"Sorry, I didn't catch a number.")};
   r.onend=()=>b.setAttribute('aria-pressed','false');r.onerror=()=>msg('Voice input is not available right now.');r.start()}
 
-/* ---------- Ask Lumen: Socratic tutor (Claude on the server when configured, guided questions otherwise) ---------- */
+/* ---------- Ask Lumi: Socratic tutor (Claude on the server when configured, guided questions otherwise) ---------- */
 function askOpen(){if(!cur.chat){cur.chat=[{role:'assistant',text:`Hi! Let's think about this together. What is the question asking you to find?`}]}cur.focusAsk=1;render()}
 async function askSend(e){e.preventDefault();const t=$('askq').value.trim();if(!t)return;cur.chat.push({role:'user',text:t});render();let a;
   try{if(ST.flags['AI tutor feedback']===false)throw 0;const r=await api('POST','/api/tutor',{skill:SK[cur.k].n,question:strip(cur.q.q),choices:cur.q.choices||null,answer:cur.q.choices?cur.q.choices[cur.q.a[0]]:(cur.q.a[1]==1?''+cur.q.a[0]:cur.q.a[0]+'/'+cur.q.a[1]),concept:strip(SK[cur.k].c).slice(0,400),messages:cur.chat.slice(-10)});a=r.reply}
