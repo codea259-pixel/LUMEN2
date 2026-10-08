@@ -1,0 +1,338 @@
+<style>
+/* ===== Lumen design layer: calm base, subject colors used sparingly ===== */
+:root{--bg:#F6F8FB;--panel:#fff;--ink:#16243A;--mute:#5A6A80;--line:#E2E8F0;--node:#E3E8EF;--lamp:#F2A900;--lamp-soft:#FDF3D1;--teal:#0F8B8D;--coral:#C8414F;
+--sc:#F2A900;--sc-on:#16243A;--sc-text:#8A6100;--sc-soft:color-mix(in srgb,var(--sc) 16%,var(--panel));
+--shadow:0 1px 2px rgba(22,36,58,.06),0 4px 16px rgba(22,36,58,.06);--shadow-up:0 2px 4px rgba(22,36,58,.08),0 10px 28px rgba(22,36,58,.10);--r:18px;--fs:1}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1726;--panel:#18233A;--ink:#EAF0F8;--mute:#A0B1CA;--line:#2B3A57;--node:#2E3D5A;--shadow:0 1px 2px rgba(0,0,0,.3);--shadow-up:0 8px 24px rgba(0,0,0,.35)}}
+:root[data-theme="dark"]{--bg:#0F1726;--panel:#18233A;--ink:#EAF0F8;--mute:#A0B1CA;--line:#2B3A57;--node:#2E3D5A}
+[data-subj=math]{--sc:#F2A900;--sc-on:#16243A;--sc-text:#8A6100}
+[data-subj=ela]{--sc:#2563EB;--sc-on:#fff;--sc-text:#1D4ED8}
+[data-subj=sci]{--sc:#059669;--sc-on:#fff;--sc-text:#047857}
+[data-subj=soc]{--sc:#7C3AED;--sc-on:#fff;--sc-text:#6D28D9}
+[data-subj=cs]{--sc:#C2410C;--sc-on:#fff;--sc-text:#C2410C}
+[data-subj=fin]{--sc:#0F766E;--sc-on:#fff;--sc-text:#0F766E}
+[data-subj=es]{--sc:#C93545;--sc-on:#fff;--sc-text:#BE123C}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) [data-subj],:root:not([data-theme="light"])[data-subj]{--sc-text:color-mix(in srgb,var(--sc) 55%,#fff)}}
+html{font-size:calc(100% * var(--fs))}
+body{background:var(--bg);font-size:1.0625rem}
+[data-font=easy] body,[data-font=easy] h1,[data-font=easy] h2,[data-font=easy] h3,[data-font=easy] h4,[data-font=easy] .q,[data-font=easy] button,[data-font=easy] input,[data-font=easy] select{font-family:"Lexend","Atkinson Hyperlegible",system-ui,sans-serif!important;letter-spacing:.01em;word-spacing:.06em}
+[data-contrast=high]{--bg:#fff;--panel:#fff;--ink:#000;--mute:#1F2937;--line:#111827;--node:#D1D5DB}
+[data-contrast=high] .card,[data-contrast=high] .mission,[data-contrast=high] .stat{border:2px solid #000!important;box-shadow:none!important}
+[data-motion=reduce] *{transition:none!important;animation:none!important}
+
+/* Top bar */
+header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:0}
+.topin{max-width:1180px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;gap:18px}
+.brand{display:flex;align-items:center;gap:8px;font:800 1.45rem "Bricolage Grotesque",sans-serif;color:var(--ink);text-decoration:none;letter-spacing:-.02em}
+#tabs{display:flex;gap:4px;padding:0;flex-wrap:nowrap}
+#tabs .tb{border:0;background:transparent;color:var(--mute);padding:9px 14px;border-radius:10px;font-weight:700}
+#tabs .tb:hover{color:var(--ink);background:var(--panel)}
+#tabs .tb.on{background:var(--panel);color:var(--ink);box-shadow:var(--shadow)}
+#me{margin-left:auto;display:flex;align-items:center;gap:8px}
+.chipstat{display:inline-flex;align-items:center;gap:5px;padding:6px 11px;border-radius:99px;background:var(--panel);border:1px solid var(--line);font-weight:700;font-size:.875rem;color:var(--ink);white-space:nowrap}
+.chipstat small{color:var(--mute);font-weight:400}
+.avatar{width:38px;height:38px;border-radius:50%;padding:0;display:grid;place-items:center;background:var(--sc);color:var(--sc-on);font-weight:800;border:2px solid var(--panel);box-shadow:var(--shadow)}
+.menu{position:absolute;right:16px;top:58px;background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-up);padding:8px;min-width:240px;z-index:30}
+.menu[hidden]{display:none}
+.menu .who{padding:8px 12px 10px;border-bottom:1px solid var(--line);margin-bottom:6px}
+.menu .who b{display:block}.menu .who span{color:var(--mute);font-size:.875rem}
+.menu button{display:flex;width:100%;text-align:left;background:transparent;color:var(--ink);padding:10px 12px;border-radius:10px;font-weight:400;gap:10px}
+.menu button:hover,.menu button:focus-visible{background:var(--bg)}
+.menu hr{border:0;border-top:1px solid var(--line);margin:6px 0}
+#bnav{display:none}
+@media(max-width:860px){
+  #tabs{display:none}.topin{padding:8px 14px;gap:10px}.chipstat small{display:none}
+  #bnav{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--panel);border-top:1px solid var(--line);padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px));justify-content:space-around}
+  #bnav button{background:transparent;color:var(--mute);display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 8px;font-size:.75rem;min-width:56px;min-height:48px;border-radius:12px}
+  #bnav button.on{color:var(--ink);background:var(--bg)}#bnav svg{width:22px;height:22px}
+  body{padding-bottom:76px}
+  #toast{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+}
+
+/* Cards, buttons, micro-interactions */
+.card{border-radius:var(--r);box-shadow:var(--shadow);border:1px solid var(--line);transition:box-shadow .2s,transform .2s}
+button{transition:transform .15s,box-shadow .15s,background .15s}
+button:not(:disabled):hover{transform:translateY(-1px)}
+button:not(:disabled):active{transform:translateY(0)}
+button.lamp:hover,button.go:hover{box-shadow:var(--shadow-up)}
+button.go{background:var(--sc);color:var(--sc-on)}
+button:focus-visible,select:focus-visible,a:focus-visible,input:focus-visible,.node:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+.bar i{background:var(--sc)}
+.bar{background:color-mix(in srgb,var(--line) 80%,transparent)}
+.pill{background:var(--sc-soft);color:var(--sc-text)}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.rise{animation:rise .35s ease both}
+
+/* Welcome and stats */
+#dash{max-width:1180px;margin:0 auto;padding:20px 24px 0}
+#gradebar{max-width:1180px;margin:0 auto;padding:0 24px}#gradebar:empty{display:none}
+svg.orb{display:inline-block;vertical-align:middle;flex:none}
+@media(max-width:880px){#dash,#gradebar{padding-left:14px;padding-right:14px}}
+#dash[hidden]{display:none}
+.hello{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+.hello h1{font-size:clamp(1.6rem,3.4vw,2.2rem);font-weight:800;letter-spacing:-.02em}
+.hello p{margin:2px 0 0;color:var(--mute)}
+.stats3{display:flex;gap:10px;flex-wrap:wrap}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:8px 14px;min-width:96px;box-shadow:var(--shadow)}
+.stat b{display:block;font:800 1.25rem "Bricolage Grotesque",sans-serif}.stat span{font-size:.8rem;color:var(--mute)}
+
+/* Today's mission */
+.mission{position:relative;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;background:linear-gradient(135deg,var(--sc-soft),var(--panel) 70%);border:1px solid color-mix(in srgb,var(--sc) 35%,var(--line));border-radius:24px;padding:26px 28px;box-shadow:var(--shadow);overflow:hidden}
+.mission .lbl{font-weight:800;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;color:var(--sc-text)}
+.mission h2{font-size:clamp(1.6rem,3.6vw,2.3rem);margin:6px 0 4px;letter-spacing:-.02em}
+.mission p.d{margin:0 0 14px;color:var(--mute);max-width:56ch}
+.mission .meta{display:flex;gap:14px;flex-wrap:wrap;font-size:.9rem;color:var(--mute);margin:6px 0 16px}
+.mission .bar{height:12px;max-width:420px;margin:8px 0 2px}
+.mission .row{margin-top:0}
+.mission .go{font-size:1.05rem;padding:13px 22px}
+.mission .side{display:flex;flex-direction:column;align-items:center;gap:10px;max-width:240px}
+.bubble{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:12px 14px;font-size:.92rem;box-shadow:var(--shadow)}
+.bubble b{display:block;font-size:.8rem;color:var(--sc-text);margin-bottom:2px}
+@media(max-width:700px){.mission{grid-template-columns:1fr;padding:20px}.mission .side{flex-direction:row;max-width:none;align-items:flex-start}.hello{align-items:flex-start}}
+
+/* Selectors */
+.filters{display:flex;gap:10px;flex-wrap:wrap;align-items:center;padding:16px 0 4px}
+.filters label{display:flex;align-items:center;gap:6px;font-weight:700;font-size:.92rem}
+.filters select{font-weight:700;padding:8px 12px;border-radius:12px;background:var(--panel)}
+.filters details{font-size:.92rem}.filters summary{cursor:pointer;color:var(--mute);padding:8px 4px}
+.filters details[open]{flex-basis:100%}
+.filters .gb{padding-top:6px}
+.app{padding-top:12px}
+.app .card h2{display:flex;align-items:center;gap:8px}
+
+/* Knowledge map */
+.mapwrap{overflow:auto;max-height:640px;border-radius:12px}
+#map .edge{fill:none;stroke:var(--line);stroke-width:2}
+#map .edge.on{stroke:var(--sc);stroke-width:2.5;opacity:.7}
+#map .node circle.n{transition:r .2s}
+#map .node:hover circle.n,#map .node:focus-visible circle.n{stroke:var(--ink);stroke-width:3}
+#map .node.sel circle.n{stroke:var(--ink);stroke-width:3.5}
+#map .node text{font-size:11.5px;fill:var(--ink)}
+#map .gl{fill:var(--mute);font-weight:700;font-size:13px}
+@keyframes pulse{0%,100%{opacity:.25}50%{opacity:.6}}
+#map .rec-glow{animation:pulse 2.4s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){#map .rec-glow{animation:none}.rise{animation:none}}
+.legend span:before{display:none}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend svg{width:18px;height:18px}
+
+/* Skill info panel */
+.lv5{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin:8px 0 4px}
+.lv5 i{height:8px;border-radius:99px;background:var(--line)}.lv5 i.on{background:var(--sc)}.lv5 i.gold{background:var(--lamp)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.chips button{background:var(--bg);color:var(--ink);border:1px solid var(--line);font-weight:400;font-size:.875rem;padding:6px 10px;border-radius:99px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:.92rem;margin-top:12px}.kv span{color:var(--mute)}
+.info h3{font-size:1rem;margin-top:16px}
+
+/* Practice */
+.qhead{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.qhead .qn{font-weight:800;color:var(--sc-text)}
+.tutor{background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--sc);border-radius:14px;display:flex;gap:12px;align-items:flex-start}
+.tutor .tx{flex:1}.tutor .tx b{display:inline}.tutor .tx>b:first-child{display:block;font-size:.85rem}.tutor svg.orb{flex:none;width:34px;height:34px}
+.tutor.good{border-left-color:var(--teal)}.tutor.warn{border-left-color:var(--coral)}
+.xp{display:inline-block;margin-left:8px;padding:2px 9px;border-radius:99px;background:var(--lamp-soft);color:#7A5600;font-weight:800;font-size:.85rem;animation:rise .3s ease both}
+.helpbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.helpbar button{font-size:.92rem;padding:9px 14px}
+.chat{margin-top:12px;border:1px solid var(--line);border-radius:14px;padding:12px;background:var(--bg)}
+.chat .m{margin:6px 0;padding:8px 12px;border-radius:12px;max-width:90%;font-size:.95rem}
+.chat .m.you{background:var(--panel);margin-left:auto;border:1px solid var(--line)}
+.chat .m.lumen{background:var(--sc-soft)}
+.chat form{display:flex;gap:8px;margin-top:8px}.chat input{flex:1;font-size:1rem!important;width:auto!important}
+.mic[aria-pressed=true]{background:var(--coral);color:#fff}
+
+/* Celebration */
+.celebrate{position:relative;text-align:center;padding:10px 0 4px;overflow:hidden}
+.celebrate h2{font-size:1.8rem;margin:6px 0}
+.spark{position:absolute;width:8px;height:8px;border-radius:2px;top:40%;left:50%;opacity:0;animation:spark 1.1s ease-out forwards}
+@keyframes spark{0%{opacity:1;transform:translate(0,0) rotate(0)}100%{opacity:0;transform:translate(var(--x),var(--y)) rotate(200deg)}}
+@media(prefers-reduced-motion:reduce){.spark{display:none}}
+.views{padding-top:20px}
+.set{display:grid;gap:14px;max-width:640px}
+.set label.sw{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid var(--line)}
+.set label.sw span small{display:block;color:var(--mute);font-size:.85rem}
+.set input[type=checkbox]{width:22px;height:22px;accent-color:var(--teal)}
+</style>
+<script type="text/x-lumen">
+/* ===== Lumen design layer: navigation, welcome, mission, map, practice, rewards, settings ===== */
+const SUBC={math:'Math',ela:'English',sci:'Science',soc:'Social Studies',cs:'Computer Science',fin:'Financial Literacy',es:'Spanish'};
+const today=()=>new Date().toISOString().slice(0,10);
+const strip=h=>String(h).replace(/<li>/g,' ').replace(/<span class="fr"><i>(.*?)<\/i><i>(.*?)<\/i><\/span>/g,'$1/$2').replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim();
+const firstSentence=t=>{const s=strip(t);const m=s.match(/^.{20,}?[.!?](\s|$)/);return m?m[0].trim():s.slice(0,140)};
+function orb(size=40,mood='happy'){const id='og'+Math.random().toString(36).slice(2,7),m=mood==='think'?'M15 27q5 2 10 0':mood==='wow'?'M17 26a3 3 0 0 0 6 0z':'M14 25q6 5 12 0';
+  return `<svg class="orb" width="${size}" height="${size}" style="width:${size}px;height:${size}px" viewBox="0 0 40 40" aria-hidden="true"><defs><radialGradient id="${id}" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#FFF6D6"/><stop offset=".55" stop-color="#FFD25A"/><stop offset="1" stop-color="#F2A900"/></radialGradient></defs><circle cx="20" cy="20" r="19" fill="#F2A900" opacity=".18"/><circle cx="20" cy="21" r="14" fill="url(#${id})"/><ellipse cx="15.5" cy="19" rx="1.8" ry="2.2" fill="#16243A"/><ellipse cx="24.5" cy="19" rx="1.8" ry="2.2" fill="#16243A"/><path d="${m}" stroke="#16243A" stroke-width="1.8" fill="${mood==='wow'?'#16243A':'none'}" stroke-linecap="round"/><path d="M20 3v3M8 8l2 2M32 8l-2 2" stroke="#F2A900" stroke-width="2" stroke-linecap="round"/></svg>`}
+const IC={learn:'<path d="M4 6l8-3 8 3-8 3z M7 8v5c0 1.5 2.5 3 5 3s5-1.5 5-3V8"/>',courses:'<path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z M5 17a3 3 0 0 1 3-3h11"/>',community:'<circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-3 3-5 6-5s6 2 6 5 M15 14c3 0 6 1.5 6 4.5"/>',library:'<path d="M5 4v16 M10 4v16 M15 5l4 15"/>',classes:'<rect x="4" y="5" width="16" height="12" rx="2"/><path d="M8 21h8 M12 17v4"/>',teacher:'<rect x="4" y="5" width="16" height="12" rx="2"/><path d="M8 21h8 M12 17v4"/>',profile:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>'};
+const icon=k=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${IC[k]||IC.learn}</svg>`;
+
+/* ---------- Points, streak, mastery ---------- */
+const XP=()=>BOOT.state.xp||0;
+function addXP(n,why){BOOT.state.xp=XP()+n;if(cur)cur.xp=(cur.xp||0)+n;renderMe();SYNC();return `<span class="xp" aria-label="${n} points${why?' for '+why:''}">+${n} XP</span>`}
+function streak(){const d=new Set(ST.days||[]);let n=0,t=new Date();if(!d.has(today()))t.setDate(t.getDate()-1);while(d.has(t.toISOString().slice(0,10))){n++;t.setDate(t.getDate()-1)}return n}
+const bandSkills=()=>{let L=ORDER.filter(k=>SK[k].sub===ST.subj&&inBand(k));return L.length?L:ORDER.filter(k=>SK[k].sub===ST.subj)};
+const masteryPct=()=>{const L=bandSkills();return L.length?Math.round(100*L.filter(k=>level(k)>=3).length/L.length):0};
+function bumpDaily(){if(!ST.daily||ST.daily.d!==today())ST.daily={d:today(),n:0};ST.daily.n++}
+const _ud5=update;update=function(k,ok,hinted,...a){const before=level(k);_ud5(k,ok,hinted,...a);bumpDaily();
+  if(ok)cur&&(cur.pendXP=(cur.pendXP||'')+addXP(hinted?6:10,'a correct answer'));
+  if(before<3&&level(k)>=3){cur&&(cur.pendXP=(cur.pendXP||'')+addXP(50,'reaching Proficient'));cur&&(cur.newProf=true)}};
+const _sb2=submit;submit=function(){if(!cur)return _sb2();const wasDone=cur.done,tries=cur.tries;cur.pendXP='';_sb2();
+  if(!wasDone&&cur.done&&tries>0&&/good/.test(cur.fb||''))cur.pendXP+=addXP(3,'sticking with it');
+  if(cur.pendXP){cur.fb=(cur.fb||'').replace(/<\/div><\/div>\s*$/,`${cur.pendXP}</div></div>`);render()}};
+const _nq2=nextQ;nextQ=function(){const k=cur&&cur.k,wasM=k&&S[k].mastered,mode=cur&&cur.mode;_nq2();
+  if(view==='summary'&&cur){if(mode==='check'&&!wasM&&S[k].mastered){cur.celebrate='mastered';addXP(100,'mastering a skill')}else if(mode==='practice'){cur.celebrate='mission';addXP(20,'finishing a mission')}render()}};
+
+/* ---------- Header, navigation and profile menu ---------- */
+(function buildChrome(){const h=document.querySelector('header');h.className='top';
+  h.innerHTML=`<div class="topin"><a class="brand" href="#" onclick="go('learn');return false" aria-label="Lumen home">${orb(30)}Lumen</a></div>`;
+  h.querySelector('.topin').appendChild($('tabs'));h.querySelector('.topin').insertAdjacentHTML('beforeend','<div id="me"></div><div class="menu" id="pmenu" hidden role="menu"></div>');
+  document.querySelector('.app').insertAdjacentHTML('beforebegin','<section id="dash" aria-label="Welcome"></section>');
+  document.body.insertAdjacentHTML('beforeend','<nav id="bnav" aria-label="Main"></nav>');
+  $('dash').parentNode.insertBefore($('gradebar'),$('dash').nextSibling);
+  document.addEventListener('click',e=>{const m=$('pmenu');if(!m.hidden&&!e.target.closest('#pmenu,#avatarBtn'))m.hidden=true});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('pmenu').hidden){$('pmenu').hidden=true;$('avatarBtn').focus()}});
+})();
+const PRIMARY=()=>[['learn','Learn'],['courses','Courses'],...(BOOT.role==='student'?[['classes','My classes']]:[['teacher','Teacher']]),['community','Community'],['library','Library']];
+can=t=>t=='teacher'?BOOT.role!=='student':t=='owner'?BOOT.role==='owner':t=='classes'?BOOT.role==='student':true;
+nav=function(){$('tabs').innerHTML=PRIMARY().map(([k,l])=>`<button class="tb ${tab===k?'on':''}" ${tab===k?'aria-current="page"':''} onclick="go('${k}')">${l}</button>`).join('');
+  $('bnav').innerHTML=[...PRIMARY().filter(([k])=>k!=='teacher'&&k!=='classes').slice(0,4),['profile','Profile']].map(([k,l])=>`<button class="${tab===k||(k==='profile'&&['certs','downloads','impact','settings','owner'].includes(tab))?'on':''}" onclick="${k==='profile'?'toggleMenu()':`go('${k}')`}">${icon(k)}${l}</button>`).join('');
+  renderMe();document.documentElement.dataset.subj=ST.subj||'math'};
+function renderMe(){if(!$('me'))return;const s=streak();
+  $('me').innerHTML=`<span class="chipstat" title="Skills Proficient or better in ${esc(SUBN[ST.subj]||'')} at your level">📈 ${masteryPct()}%<small> mastery</small></span><span class="chipstat" title="Day streak">🔥 ${s}<small> day${s===1?'':'s'}</small></span><span class="chipstat" title="Points">⭐ ${XP()}<small> XP</small></span><button class="avatar" id="avatarBtn" aria-haspopup="menu" aria-expanded="${!$('pmenu').hidden}" aria-label="Profile and settings" onclick="toggleMenu()">${esc((ME.display||'?')[0].toUpperCase())}</button>`}
+function toggleMenu(){const m=$('pmenu');m.hidden=!m.hidden;if(!m.hidden){
+  const it=[['certs','🏅','Certificates and badges'],['downloads','⬇️','Downloads'],['impact','🌍','Impact'],['settings','⚙️','Settings and accessibility'],...(BOOT.role==='owner'?[['owner','🛠️','Owner console']]:[])];
+  m.innerHTML=`<div class="who"><b>${esc(ME.display)}</b><span>${esc(ME.role==='student'?'Learner':ME.role.replace('_',' ').replace(/^./,c=>c.toUpperCase()))} · ⭐ ${XP()} XP · 🔥 ${streak()}</span></div>${it.map(([k,i,l])=>`<button role="menuitem" onclick="$('pmenu').hidden=true;go('${k}')"><span aria-hidden="true">${i}</span>${l}</button>`).join('')}<hr><button role="menuitem" onclick="logout()"><span aria-hidden="true">↩</span>Sign out</button>`;
+  m.querySelector('button').focus()}const b=$('avatarBtn');if(b)b.setAttribute('aria-expanded',!m.hidden)}
+
+/* ---------- Welcome, Today's Mission and selectors ---------- */
+const myGrade=()=>ST.myGrade??(ST.grades.find(g=>g!=='all')??5);
+function applyLevel(){const g=myGrade(),L=ST.lvl||'mine';ST.grades=L==='all'?['all']:L==='review'?[Math.max(-1,g-2)]:L==='stretch'?[Math.min(13,g+2)]:[g]}
+function setSubj(v){ST.subj=v;view='home';sv();gradeBar();render();nav()}
+function setGrade(v){ST.myGrade=+v;if(ST.lvl==='custom')ST.lvl='mine';applyLevel();view='home';sv();gradeBar();render();renderMe()}
+function setLvl(v){ST.lvl=v;applyLevel();view='home';sv();gradeBar();render();renderMe()}
+const _togG=togG;togG=function(g){_togG(g);ST.lvl='custom';sv();gradeBar();render();renderMe()};
+gradeBar=function(){const gb=$('gradebar');if(tab!=='learn'){gb.innerHTML='';return}
+  if(ST.lvl===undefined){const fresh=!ORDER.some(k=>S[k].att);ST.lvl=ST.grades.includes('all')?(fresh?'mine':'all'):'custom';if(ST.lvl==='mine')applyLevel()}
+  const g=myGrade(),L=ST.lvl;
+  gb.innerHTML=`<div class="filters" role="group" aria-label="What to learn"><label>Subject <select onchange="setSubj(this.value)">${Object.entries(SUBN).map(([k,v])=>`<option value="${k}" ${ST.subj===k?'selected':''}>${v}</option>`).join('')}</select></label>
+  <label>Grade <select onchange="setGrade(this.value)">${GLIST.map(x=>`<option value="${x}" ${g==x?'selected':''}>${GLAB(x)}</option>`).join('')}</select></label>
+  <label>Learning level <select onchange="setLvl(this.value)"><option value="mine" ${L==='mine'?'selected':''}>My level</option><option value="review" ${L==='review'?'selected':''}>Review earlier grades</option><option value="stretch" ${L==='stretch'?'selected':''}>Stretch ahead</option><option value="all" ${L==='all'?'selected':''}>All grades</option>${L==='custom'?'<option value="custom" selected>Custom</option>':''}</select></label>
+  <details ${L==='custom'?'open':''}><summary>Advanced filters</summary><div class="gb">${['all',...GLIST].map(x=>`<button class="chip ${ST.grades.includes(x)?'on':''}" aria-pressed="${ST.grades.includes(x)}" onclick="togG('${x}')">${x==='all'?'All':GN(x)}</button>`).join('')}</div><p class="sol">Pick any mix of grades. The map shows skills within one grade of each pick.</p></details></div>`};
+function missionState(){const r=recommend(),act=cur&&cur.k===r&&cur.mode==='practice'&&cur.n<cur.total&&view!=='summary';if(!ST.daily||ST.daily.d!==today())ST.daily={d:today(),n:0};
+  return{r,act,done:act?cur.n:Math.min(5,ST.daily.n),total:5}}
+function dashHtml(){const n=ME.display||'',fresh=!ORDER.some(k=>S[k].att),m=missionState(),k=m.r,sk=SK[k],lv=level(k);
+  const greet=fresh?`Welcome to Lumen, ${esc(n)}! 👋`:`Welcome back, ${esc(n)}! 👋`;
+  return `<div class="hello rise"><div><h1>${greet}</h1><p>${fresh?'Pick a subject and grade below, then start your first mission.':'Ready to keep learning?'}</p></div>
+  <div class="stats3"><div class="stat"><b>🔥 ${streak()}</b><span>day streak</span></div><div class="stat"><b>⭐ ${XP()}</b><span>XP earned</span></div><div class="stat"><b>${masteryPct()}%</b><span>${esc(SUBC[ST.subj])} mastered</span></div></div></div>
+  <article class="mission rise" aria-labelledby="mtitle"><div><div class="lbl">🎯 Today's mission</div><h2 id="mtitle">${esc(sk.n)}</h2><p class="d">${esc(/^Study these facts/.test(sk.c)?`Learn the key ideas in ${sk.n.toLowerCase()} with a short study sheet, then practice with quick questions.`:firstSentence(sk.c))}</p>
+  <div class="bar" role="progressbar" aria-label="Mission progress" aria-valuemin="0" aria-valuemax="5" aria-valuenow="${m.done}"><i style="width:${m.done/5*100}%"></i></div>
+  <div class="meta"><span><b>${m.done} / 5</b> complete</span><span>⏱ ~5 minutes</span><span>${esc(SUBN[sk.sub])} · ${GLAB(ST.gr[k])}</span><span>${LV[lv]}</span></div>
+  <div class="row"><button class="go" onclick="missionGo()">${m.act?'Continue mission':'Start mission'} →</button><button class="alt" onclick="openSkill('${k}')">Start with a lesson</button><button class="alt" onclick="startPractice('${k}','practice')">Skip to practice</button></div></div>
+  <div class="side">${orb(64)}<div class="bubble"><b>💡 Lumen's hint</b>${fresh?'Every skill starts with a short idea. Read it, then try five problems. Mistakes are how we learn.':`What do you already know about ${esc(sk.n.toLowerCase())}?`}</div></div></article>`}
+function missionGo(){const m=missionState();if(m.act){view='practice';render()}else startPractice(m.r,'practice')}
+
+/* ---------- Knowledge map ---------- */
+const nodeState=k=>{const lv=level(k);if(lv===4)return'mastered';if(lv===3)return'proficient';if(lv>=1)return'practiced';return k!==recommend()&&SK[k].pre.some(p=>SK[p]&&SK[p].sub===ST.subj&&(ST.grades.includes('all')||inBand(p))&&level(p)<2)?'locked':'new'};
+const STATE_LABEL={mastered:'Mastered',proficient:'Proficient',practiced:'Practiced',locked:'Builds on skills not yet practiced',new:'Not started'};
+function nodeSvg(k,x,y,rec){const st=nodeState(k),z=S[k],sk=SK[k],L=lab(sk),r=22;let h='';
+  if(k===rec)h+=`<circle class="rec-glow" cx="${x}" cy="${y}" r="34" fill="var(--sc)" filter="url(#glow)"/>`;
+  const fill={mastered:'var(--lamp)',proficient:'var(--sc)',practiced:'var(--sc-soft)',locked:'var(--panel)',new:'var(--node)'}[st];
+  const stroke=z.review?'var(--coral)':{mastered:'#B07B00',proficient:'var(--sc)',practiced:'var(--sc)',locked:'var(--mute)',new:'var(--panel)'}[st];
+  h+=`<circle class="n" cx="${x}" cy="${y}" r="${r}" fill="${fill}" stroke="${stroke}" stroke-width="${z.review?3.5:2}" ${st==='locked'?'stroke-dasharray="4 4" opacity=".75"':''}/>`;
+  if(st==='practiced'){const p=Math.min(1,z.p/.85),a=p*2*Math.PI-1e-3,ex=x+r*Math.sin(a),ey=y-r*Math.cos(a);h+=`<path d="M${x} ${y-r}A${r} ${r} 0 ${a>Math.PI?1:0} 1 ${ex.toFixed(1)} ${ey.toFixed(1)}" stroke="var(--sc)" stroke-width="5" fill="none" stroke-linecap="round"/>`}
+  if(st==='mastered')h+=`<path d="M${x} ${y-10}l3 6.5 7 .8-5.2 4.8 1.4 7-6.2-3.5-6.2 3.5 1.4-7-5.2-4.8 7-.8z" fill="#16243A"/>`;
+  if(st==='proficient')h+=`<path d="M${x-8} ${y}l5 6l11-12" stroke="var(--sc-on)" stroke-width="3" fill="none" stroke-linecap="round"/>`;
+  if(st==='locked')h+=`<path d="M${x-6} ${y-1}h12v9h-12z M${x-4} ${y-1}v-3a4 4 0 0 1 8 0v3" stroke="var(--mute)" stroke-width="1.8" fill="none"/>`;
+  if(z.review)h+=`<circle cx="${x+16}" cy="${y-16}" r="7" fill="var(--coral)"/><text x="${x+16}" y="${y-12.5}" style="fill:#fff;font-weight:800;font-size:11px">!</text>`;
+  return `<g class="node${sel===k&&view==='lesson'?' sel':''}" tabindex="0" role="button" aria-label="${esc(sk.n)}, ${GLAB(ST.gr[k])}, ${STATE_LABEL[st]}${z.review?', needs review':''}${k===rec?', recommended next':''}" onclick="openSkill('${k}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openSkill('${k}')}">${h}<text x="${x}" y="${y+40}">${esc(L[0])}</text><text x="${x}" y="${y+54}">${esc(L[1])}</text></g>`}
+drawMap=function(){const el=$('map'),all=ORDER.filter(k=>SK[k].sub===ST.subj&&(ST.grades.includes('all')||inBand(k))).sort((a,b)=>ST.gr[a]-ST.gr[b]),gs=[...new Set(all.map(k=>ST.gr[k]))].sort((a,b)=>a-b),pos={};
+  if(!el.parentNode.classList.contains('mapwrap')){const w=document.createElement('div');w.className='mapwrap';el.parentNode.insertBefore(w,el);w.appendChild(w.ownerDocument.adoptNode(el))}
+  const narrow=el.parentNode.clientWidth<600;let W,H;
+  if(narrow){const per=3,cw=110;let y=30;gs.forEach(g=>{const ks=all.filter(k=>ST.gr[k]==g);pos['g'+g]={x:16,y};y+=24;ks.forEach((k,i)=>{pos[k]={x:60+(i%per)*cw,y:y+30+Math.floor(i/per)*112}});y+=Math.ceil(ks.length/per)*112+20});W=Math.max(340,60+per*cw-40);H=Math.max(260,y)}
+  else{let col=0;gs.forEach(g=>{const ks=all.filter(k=>ST.gr[k]==g);pos['g'+g]={x:75+col*150,y:26,mid:75+(col+(Math.ceil(ks.length/4)-1)/2)*150};ks.forEach((k,i)=>{pos[k]={x:75+(col+Math.floor(i/4))*150,y:90+(i%4)*125}});col+=Math.ceil(ks.length/4)});W=Math.max(640,col*150+20);H=Math.max(300,60+Math.min(4,Math.max(1,...gs.map(g=>all.filter(k=>ST.gr[k]==g).length)))*125)}
+  el.setAttribute('viewBox',`0 0 ${W} ${H}`);el.style.width=narrow?'100%':(W>700?W+'px':'100%');el.style.minWidth='';
+  let h='<defs><filter id="glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="7"/></filter></defs>';
+  if(!all.length)h+='<text x="20" y="60" fill="var(--mute)" font-size="16">No skills here yet for these grades. Try another grade or learning level.</text>';
+  gs.forEach(g=>{const p=pos['g'+g];h+=narrow?`<text class="gl" x="${p.x}" y="${p.y}">${GLAB(g)}</text>`:`<text class="gl" x="${p.mid}" y="${p.y}" text-anchor="middle">${GLAB(g)}</text>`});
+  all.forEach(k=>SK[k].pre.forEach(q=>{if(pos[q]){const a=pos[q],b=pos[k],mx=(a.x+b.x)/2;h+=`<path class="edge${level(q)>=2?' on':''}" d="${narrow?`M${a.x} ${a.y}C${a.x} ${(a.y+b.y)/2} ${b.x} ${(a.y+b.y)/2} ${b.x} ${b.y}`:`M${a.x} ${a.y}C${mx} ${a.y} ${mx} ${b.y} ${b.x} ${b.y}`}"/>`}}));
+  const rec=recommend();all.forEach(k=>{h+=nodeSvg(k,pos[k].x,pos[k].y,rec)});el.innerHTML=h;
+  const sw=(f,s,extra='')=>`<svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="${f}" stroke="${s}" stroke-width="2" ${extra}/></svg>`;
+  $('legend').innerHTML=`<span>${sw('var(--node)','var(--node)')}Not started</span><span>${sw('var(--sc-soft)','var(--sc)')}Practiced</span><span>${sw('var(--sc)','var(--sc)')}✓ Proficient</span><span>${sw('var(--lamp)','#B07B00')}★ Mastered</span><span>${sw('var(--panel)','var(--mute)','stroke-dasharray="3 3"')}🔒 Building blocks first</span><span>${sw('var(--sc-soft)','var(--sc)','opacity=".6"')}Glow = recommended</span>`};
+
+/* ---------- Render: dashboard, skill info panel, practice and celebrations ---------- */
+tutor=function(t,c,title){return `<div class="tutor ${c||''}">${orb(34,c==='warn'?'think':c==='good'?'wow':'happy')}<div class="tx"><b>${title||"💡 Lumen's hint"}</b>${t}</div></div>`};
+const HL=['Hint 1 · Gentle nudge','Hint 2 · Concept reminder','Hint 3 · Guided help','Show worked steps'];
+const _hint=hint;hint=function(){const i=cur.hint;_hint();if(i<3)cur.fb=cur.fb.replace("💡 Lumen's hint",'💡 '+HL[i]);render()};
+const _r2=render;render=function(){_r2();document.documentElement.dataset.subj=ST.subj||'math';const P=$('panel'),D=$('dash');
+  if(tab!=='learn'){D.hidden=true;$('gradebar').hidden=false;return}
+  const was=D.hidden||!D.innerHTML;D.hidden=view==='practice';$('gradebar').hidden=view==='practice';if(!D.hidden){D.innerHTML=dashHtml();if(!was)D.querySelectorAll('.rise').forEach(e=>e.classList.remove('rise'))}renderMe();
+  if(view==='home'){P.innerHTML=`<h2>${orb(30)} Skill details</h2><p>Tap any skill on the map to see what it builds on, what it unlocks, and how close you are to mastering it.</p>
+    <div class="tutor"><div class="tx"><b>How progress works</b>Your progress bar only goes up. Each answer updates your mastery estimate a little, so one mistake is just learning data. Skills become <b>Proficient</b> after steady correct work across two sessions, and <b>Mastered</b> after a short retention check a few days later.</div></div>`}
+  else if(view==='lesson')P.innerHTML=infoHtml(sel);
+  else if(view==='practice')decoratePractice(P);
+  else if(view==='summary')P.innerHTML=summaryHtml();};
+function infoHtml(k){const n=SK[k],z=S[k],lv=level(k),pre=n.pre.filter(x=>SK[x]),next=ORDER.filter(x=>SK[x].pre.includes(k)),st=nodeState(k);
+  const chip=x=>`<button onclick="openSkill('${x}')">${{mastered:'★',proficient:'✓',practiced:'◐',locked:'🔒',new:'○'}[nodeState(x)]} ${esc(SK[x].n)}</button>`;
+  const ret=lv===3?(retOk(k)?`<button class="alt" onclick="startPractice('${k}','check')">Take the retention check</button>`:`<p class="sol">Retention check unlocks in ${Math.max(1,Math.ceil((z.profAt+retDays()*864e5-Date.now())/864e5))} day(s). A gap helps learning last.</p>`):'';
+  return `<div class="info rise"><span class="pill">${esc(SUBN[n.sub])} · ${GLAB(ST.gr[k])}</span>${n.unit?` <span class="sol">${esc(n.unit)}</span>`:''}<h2 style="margin-top:8px">${esc(n.n)}</h2>
+  <div class="lv5" style="grid-template-columns:repeat(4,1fr)" aria-hidden="true">${[1,2,3,4].map(i=>`<i class="${i<=lv?(lv===4?'gold':'on'):''}"></i>`).join('')}</div>
+  <p class="sol" style="margin-top:0"><b style="color:var(--ink)">${LV[lv]}</b> · ${Math.round(z.p*100)}% confidence · ${z.att} question${z.att===1?'':'s'}${z.review?' · <b style="color:var(--coral)">Needs a quick review</b>':''}</p>
+  ${tutor(n.c,'','The idea')}
+  ${st==='locked'?`<div class="tutor warn">${orb(34,'think')}<div class="tx"><b>Building blocks first</b>This skill builds on ones you haven't practiced yet. You can still try it, and Lumen will point you back if you get stuck.</div></div>`:''}
+  ${pre.length?`<h3>Builds on</h3><div class="chips">${pre.map(chip).join('')}</div>`:''}
+  ${next.length?`<h3>Unlocks next</h3><div class="chips">${next.slice(0,6).map(chip).join('')}</div>`:''}
+  <div class="kv"><span>Estimated time</span><b>~5 minutes for 5 problems</b><span>Retention check</span><b>~2 minutes, ${retDays()} day(s) after Proficient</b></div>
+  <div class="row"><button class="go" onclick="startPractice('${k}','practice')">Practice →</button>${ret}<button class="alt" onclick="listen('${k}')" aria-label="Read this lesson aloud">🔊 Listen</button><button class="alt" onclick="view='home';render()">Back</button></div></div>`}
+function decoratePractice(P){const n=SK[cur.k],pill=P.querySelector('.pill');
+  if(pill){const h=document.createElement('div');h.className='qhead';h.innerHTML=`<span class="qn">${cur.mode==='check'?'Retention check · ':''}Question ${Math.min(cur.n+1,cur.total)} of ${cur.total}</span><span class="sol" style="margin:0">${esc(n.n)}</span>`;pill.nextElementSibling&&pill.nextElementSibling.remove();pill.replaceWith(h)}
+  const hb=[...P.querySelectorAll('button.alt')].find(b=>/tutor|hint/i.test(b.textContent));
+  const row=document.createElement('div');row.className='helpbar';
+  if(hb){hb.textContent=HL[Math.min(cur.hint,3)];row.appendChild(hb)}
+  if(!cur.done&&cur.mode!=='check')row.insertAdjacentHTML('beforeend',`<button class="alt" onclick="askOpen()">🤖 Ask Lumen</button>`);
+  row.insertAdjacentHTML('beforeend',`<button class="alt" onclick="speak(strip(cur.q.q)+(cur.q.choices?'. Choices: '+cur.q.choices.join(', '):''))" aria-label="Read the question aloud">🔊 Read aloud</button>`);
+  if(SR&&!cur.done&&!cur.q.choices)row.insertAdjacentHTML('beforeend',`<button class="alt mic" aria-pressed="false" onclick="dictate(this)" aria-label="Answer by voice">🎤 Say answer</button>`);
+  const fb=$('fb');fb.parentNode.insertBefore(row,fb);
+  if(cur.chat){const c=document.createElement('div');c.className='chat';c.setAttribute('aria-live','polite');c.innerHTML=`<div>${cur.chat.map(m=>`<div class="m ${m.role==='user'?'you':'lumen'}">${m.role==='user'?'':'<b>Lumen: </b>'}${esc(m.text)}</div>`).join('')}</div><form onsubmit="askSend(event)"><input id="askq" placeholder="Tell Lumen what you're thinking…" aria-label="Message to Lumen" maxlength="400" autocomplete="off"><button class="go">Send</button></form><p class="sol" style="margin:6px 0 0">Lumen asks questions to help you think. It won't give the answer away.</p>`;fb.parentNode.insertBefore(c,fb.nextSibling)}
+  const lv=P.querySelector('#panel > .row:last-child button.alt');if(lv&&/Leave/.test(lv.textContent))lv.textContent='Save and leave';
+  if(cur.focusAsk){cur.focusAsk=0;$('askq')&&$('askq').focus()}}
+function summaryHtml(){const n=SK[cur.k],lv=level(cur.k),r=recommend(),c=cur.celebrate,xp=cur.xp||0,parts=c==='mastered'||cur.newProf?Array.from({length:18},(_,i)=>{const a=i/18*Math.PI*2,d=70+Math.random()*60;return `<i class="spark" style="--x:${Math.cos(a)*d}px;--y:${Math.sin(a)*d-20}px;background:${['var(--lamp)','var(--sc)','var(--teal)'][i%3]};animation-delay:${i*15}ms"></i>`}).join(''):'';
+  const title=c==='mastered'?'Skill mastered!':cur.mode==='check'?'Retention check finished':cur.newProf?'You reached Proficient!':'Mission complete';
+  const body=c==='mastered'?`You remembered <b>${esc(n.n)}</b> after a break. That's real, lasting mastery.`:cur.mode==='check'?'Some of it slipped, and that\'s normal. A little more practice will bring it back.':`You answered ${cur.ok} of ${cur.total} on the first try and kept going on the rest. ${esc(n.n)} is now <b>${LV[lv]}</b>.`;
+  return `<div class="celebrate rise">${parts}${orb(72,c==='mastered'||cur.newProf?'wow':'happy')}<h2>${title}</h2><p>${body}</p>${xp?`<p><span class="xp" style="font-size:1rem">+${xp} XP this mission</span></p>`:''}${c==='mastered'?'<p class="pill">★ Mastered badge added to your map</p>':''}</div>
+  <div class="bar" aria-hidden="true"><i style="width:100%"></i></div>
+  <div class="row"><button class="go" onclick="openSkill('${r}')">Next: ${esc(SK[r].n)} →</button><button class="alt" onclick="startPractice('${cur.k}','practice')">Practice again</button><button class="alt" onclick="view='home';render()">Back to map</button></div>`}
+
+/* ---------- Voice: read aloud and answer by speaking ---------- */
+function speak(t){if(!('speechSynthesis' in window))return msg("This device can't read aloud.");speechSynthesis.cancel();speechSynthesis.speak(new SpeechSynthesisUtterance(t.replace(/×/g,' times ').replace(/÷/g,' divided by ').replace(/(\d)\/(\d)/g,'$1 over $2')))}
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+function dictate(b){if(!SR)return;const r=new SR();r.lang='en-US';r.interimResults=false;b.setAttribute('aria-pressed','true');
+  const W={zero:0,one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10,eleven:11,twelve:12};
+  r.onresult=e=>{let t=e.results[0][0].transcript.toLowerCase().replace(/ over | divided by /g,'/').replace(/\b(zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)\b/g,m=>W[m]).replace(/minus |negative /g,'-').replace(/[^\d\/.\-]/g,'');const i=$('ans');if(i){i.value=t;i.focus()}msg(t?'Heard: '+t:"Sorry, I didn't catch a number.")};
+  r.onend=()=>b.setAttribute('aria-pressed','false');r.onerror=()=>msg('Voice input is not available right now.');r.start()}
+
+/* ---------- Ask Lumen: Socratic tutor (Claude on the server when configured, guided questions otherwise) ---------- */
+function askOpen(){if(!cur.chat){cur.chat=[{role:'assistant',text:`Hi! Let's think about this together. What is the question asking you to find?`}]}cur.focusAsk=1;render()}
+async function askSend(e){e.preventDefault();const t=$('askq').value.trim();if(!t)return;cur.chat.push({role:'user',text:t});render();let a;
+  try{if(ST.flags['AI tutor feedback']===false)throw 0;const r=await api('POST','/api/tutor',{skill:SK[cur.k].n,question:strip(cur.q.q),choices:cur.q.choices||null,answer:cur.q.choices?cur.q.choices[cur.q.a[0]]:(cur.q.a[1]==1?''+cur.q.a[0]:cur.q.a[0]+'/'+cur.q.a[1]),concept:strip(SK[cur.k].c).slice(0,400),messages:cur.chat.slice(-10)});a=r.reply}
+  catch(err){a=scripted(t)}
+  if(view==='practice'&&cur.chat){cur.chat.push({role:'assistant',text:a});cur.focusAsk=1;render()}}
+function scripted(t){const q=cur.q,u=parse(t),m=u&&q.m&&q.m(u);cur.sk=(cur.sk||0)+1;
+  if(m)return strip(m);
+  if(u&&!q.choices)return eq(u,q.a)?'That sounds promising! Type it into the answer box and check it.':'Hmm, how did you get that? Try explaining your first step, then check it against the question.';
+  const L=[q.h[0],'What would you try first? Even a guess is a good start.',q.h[1],'What do you already know that connects to this?',q.h[2]];return strip(L[(cur.sk-1)%L.length])}
+
+/* ---------- Settings and accessibility ---------- */
+function applyA11y(){const a=ST.a11y||{},r=document.documentElement;r.style.setProperty('--fs',a.size||1);r.dataset.font=a.font?'easy':'';r.dataset.contrast=a.contrast?'high':'';r.dataset.motion=a.motion?'reduce':'';
+  if(a.font&&!document.getElementById('lexend')&&!ST.lite){const l=document.createElement('link');l.id='lexend';l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&display=swap';document.head.appendChild(l)}}
+function setA(k,v){ST.a11y={...(ST.a11y||{}),[k]:v};applyA11y();sv()}
+VIEWS.settings=function(){const a=ST.a11y||{};return `<h2>Settings and accessibility</h2><div class="card set" style="margin-top:14px">
+  <label class="sw"><span>Text size<small>Make everything larger or smaller.</small></span><select onchange="setA('size',+this.value)">${[[0.9,'Small'],[1,'Normal'],[1.15,'Large'],[1.3,'Extra large']].map(([v,l])=>`<option value="${v}" ${(a.size||1)==v?'selected':''}>${l}</option>`).join('')}</select></label>
+  <label class="sw"><span>Easier-reading font<small>Wider letters and spacing (Lexend), which many readers with dyslexia find easier.</small></span><input type="checkbox" ${a.font?'checked':''} onchange="setA('font',this.checked)"></label>
+  <label class="sw"><span>High contrast<small>Stronger borders and black text.</small></span><input type="checkbox" ${a.contrast?'checked':''} onchange="setA('contrast',this.checked)"></label>
+  <label class="sw"><span>Reduce motion<small>Turn off animations and particles.</small></span><input type="checkbox" ${a.motion?'checked':''} onchange="setA('motion',this.checked)"></label>
+  <label class="sw"><span>Lite mode<small>For slow connections: no web fonts, glow or animation.</small></span><input type="checkbox" ${ST.lite?'checked':''} onchange="setLite(this.checked)"></label>
+  <p class="sol">Read-aloud buttons appear on lessons and questions. Voice answers appear on questions when your browser supports speech input. Mastery is always shown with icons and words, never color alone.</p></div>`};
+const _show2=showTab;showTab=function(t){_show2(t);$('pmenu')&&($('pmenu').hidden=true);if(t!=='learn')$('dash').hidden=true;scrollTo({top:0})};
+const _open=openSkill;openSkill=function(k){_open(k);if(innerWidth<880)$('panel').scrollIntoView({behavior:ST.a11y&&ST.a11y.motion?'auto':'smooth',block:'start'})};
+const _sp=startPractice;startPractice=function(k,m){_sp(k,m);if(innerWidth<880)$('panel').scrollIntoView({block:'start'})};
+
+/* Start */
+applyA11y();nav();gradeBar();go(tab);
+</script>

@@ -1,0 +1,168 @@
+<style>
+.auth{max-width:440px;margin:24px auto 64px;padding:0 16px}.auth .card{margin-top:16px}.auth label{display:block;margin-top:12px;font-weight:700;font-size:15px}.auth label input:not([type=checkbox]),.auth label select{display:block;width:100%;margin-top:4px}
+.auth [hidden]{display:none!important}.auth input[type=password]{font:inherit;font-size:16px;padding:9px 12px;border-radius:10px;border:2px solid var(--line);background:var(--bg);color:var(--ink)}
+.auth .ck{font-weight:400;display:flex;gap:8px;align-items:flex-start}.auth .err{color:var(--coral);font-weight:700;min-height:1.4em;margin:10px 0 0}
+.acct{display:flex;gap:8px;align-items:center;margin-left:auto;font-size:14px;color:var(--mute)}.acct b{color:var(--ink)}
+.creds{width:100%;border-collapse:collapse;margin-top:8px;font-size:15px}.creds td,.creds th{border:1px solid var(--line);padding:6px 10px;text-align:left}
+@media print{body *{visibility:hidden}.printme,.printme *{visibility:visible}.printme{position:absolute;left:0;top:0;width:100%}}
+</style>
+<script>
+/* ===== Server connection: sign-in, loading and saving the account's data ===== */
+const BOOT={state:{},settings:{},curriculum:{courses:[],milestones:[]},user:null,role:'student'};
+async function api(method,path,body){
+  const r=await fetch(path,{method,credentials:'same-origin',headers:body===undefined?{}:{'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body)});
+  let j={};try{j=await r.json()}catch(e){}
+  if(r.status===401&&path!=='/api/login'&&path!=='/api/me'){location.reload();throw new Error('Please sign in again.')}
+  if(!r.ok)throw new Error(j.error||'Something went wrong. Please try again.');
+  return j;
+}
+let _syncT=null,_ownerT=null;
+function stateBody(){
+  const P={};['grades','subj','me','lite','cs','rs','cs2','cg','ot','gf','v3','sched','myGrade','lvl','a11y','daily','onboarded'].forEach(k=>{if(ST[k]!==undefined)P[k]=ST[k]});
+  return {S,gems:BOOT.state.gems||0,xp:BOOT.state.xp||0,days:ST.days||[],secs:ST.secs||0,prefs:P};
+}
+function SYNC(){
+  if(typeof ST==='undefined'||typeof S==='undefined')return;
+  clearTimeout(_syncT);_syncT=setTimeout(()=>{_syncT=null;api('PUT','/api/state',stateBody()).catch(e=>msg('Your progress could not be saved: '+e.message))},1200);
+  if(BOOT.user.role==='owner'&&typeof tab!=='undefined'&&tab==='owner'){clearTimeout(_ownerT);_ownerT=setTimeout(()=>api('PUT','/api/owner/settings',{flags:ST.flags,retDays:ST.retDays??3,gr:ST.gr,block:ST.block}).catch(e=>msg('Settings not saved: '+e.message)),800)}
+}
+addEventListener('pagehide',()=>{if(_syncT){clearTimeout(_syncT);_syncT=null;try{fetch('/api/state',{method:'PUT',keepalive:true,credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify(stateBody())})}catch(e){}}});
+
+function authPage(mode){
+  const e=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  document.querySelector('.wrap2').hidden=true;document.querySelector('.app').hidden=true;const v=document.getElementById('views');v.hidden=false;
+  v.innerHTML=`<div class="auth">${mode==='login'?`
+  <h2>Sign in</h2><form class="card" id="af"><label>Username<input name="username" autocomplete="username" required></label><label>Password<input name="password" type="password" autocomplete="current-password" required></label><p class="err" id="ae" role="alert"></p><button class="lamp" type="submit">Sign in</button></form>
+  <p>New to Lumen? <a href="#" id="sw">Create a free account</a></p><p class="sol">Students under 13: your teacher or parent gives you a username and password.</p>`:`
+  <h2>Create a free account</h2><form class="card" id="af">
+  <label>I am a<select name="role" id="ar"><option value="student">Learner (13 or older)</option><option value="parent">Parent or guardian</option><option value="teacher">Teacher</option></select></label>
+  <label>Username<input name="username" autocomplete="username" required minlength="3" maxlength="20" pattern="[A-Za-z0-9_]+" title="Letters, numbers and underscores"></label>
+  <label>Display name (shown to others, not your full name)<input name="display" required minlength="2" maxlength="20"></label>
+  <label id="em" hidden>Email<input name="email" type="email" autocomplete="email"></label>
+  <label>Password (8+ characters)<input name="password" type="password" autocomplete="new-password" required minlength="8" maxlength="100"></label>
+  <label class="ck" id="ag"><input type="checkbox" name="age13"> I am 13 or older</label>
+  <p class="err" id="ae" role="alert"></p><button class="lamp" type="submit">Create account</button></form>
+  <p>Already have an account? <a href="#" id="sw">Sign in</a></p>
+  <p class="sol">Under 13? Ask a teacher or parent to create your login. Lumen never sells student data and shows no ads.</p>`}</div>`;
+  document.getElementById('sw').onclick=ev=>{ev.preventDefault();authPage(mode==='login'?'signup':'login')};
+  const ar=document.getElementById('ar');if(ar)ar.onchange=()=>{const s=ar.value==='student';document.getElementById('em').hidden=s;document.querySelector('#em input').required=!s;document.getElementById('ag').hidden=!s};
+  document.getElementById('af').onsubmit=async ev=>{ev.preventDefault();const f=Object.fromEntries(new FormData(ev.target));if(mode==='signup')f.age13=!!f.age13;
+    const b=ev.target.querySelector('button');b.disabled=true;
+    try{await api('POST',mode==='login'?'/api/login':'/api/signup',f);location.reload()}catch(err){document.getElementById('ae').textContent=err.message;b.disabled=false}};
+  v.querySelector('input,select').focus();
+}
+
+(async()=>{
+  let me;
+  try{me=await api('GET','/api/me')}catch(e){return authPage(location.hash==='#signup'?'signup':'login')}
+  try{
+    const [st,set,cur]=await Promise.all([api('GET','/api/state'),api('GET','/api/settings'),api('GET','/api/curriculum')]);
+    Object.assign(BOOT,{state:st||{},settings:set||{},curriculum:cur,user:me.user,role:me.user.role==='owner'?'owner':['teacher','school_admin'].includes(me.user.role)?'teacher':'student'});
+  }catch(e){document.getElementById('panel').textContent='Lumen could not load your account. Check your connection and reload the page.';return}
+  for(const s of document.querySelectorAll('script[type="text/x-lumen"]')){const n=document.createElement('script');n.textContent=s.textContent;document.body.appendChild(n)}
+})();
+</script>
+<script type="text/x-lumen">
+/* ===== Server-backed views. These replace the demo data layer of the prototype. ===== */
+const ME=BOOT.user;
+const busy=async(fn)=>{try{await fn()}catch(e){msg(e.message)}};
+const reload=t=>LOAD[t]?LOAD[t]().then(()=>showTab(t)).catch(e=>msg(e.message)):showTab(t);
+
+/* Navigation: tabs follow the signed-in account's real role */
+can=t=>t=='teacher'?BOOT.role!=='student':t=='owner'?BOOT.role==='owner':t=='classes'?BOOT.role==='student':true;
+nav=function(){const T=[['learn','Learn'],['courses','Courses'],['classes','My classes'],['teacher','Teacher'],['community','Community'],['downloads','Downloads'],['library','Library'],['certs','Certificates'],['impact','Impact'],['owner','Owner console']];
+$('tabs').innerHTML=T.filter(([k])=>can(k)).map(([k,l])=>`<button class="tb ${tab===k?'on':''}" onclick="go('${k}')">${l}</button>`).join('')+`<button class="chip ${ST.lite?'on':''}" aria-pressed="${!!ST.lite}" onclick="setLite(!ST.lite)">Lite mode</button><span class="acct">Signed in as <b>${esc(ME.display)}</b> (${esc(ME.role==='student'?'learner':ME.role.replace('_',' '))})<button class="alt" onclick="logout()">Sign out</button></span>`};
+async function logout(){if(_syncT){clearTimeout(_syncT);_syncT=null;try{await api('PUT','/api/state',stateBody())}catch(e){}}await api('POST','/api/logout',{}).catch(()=>{});location.href='/'}
+const _setLite=setLite;setLite=function(v){try{localStorage.setItem('lumen_lite',v?'1':'0')}catch(e){}_setLite(v)};
+const LOAD={
+  teacher:async()=>{ST.classes=(await api('GET','/api/classes')).classes||[]},
+  classes:async()=>{ST.joined=(await api('GET','/api/classes')).joined||[]},
+  community:async()=>{const r=await api('GET','/api/community');ST.posts=r.posts;ST.groups=r.groups},
+  certs:async()=>{ST.certs=(await api('GET','/api/certs')).certs||[]},
+  impact:async()=>{BOOT.impact=await api('GET','/api/impact')},
+  owner:async()=>{const [u,s]=await Promise.all([api('GET','/api/owner/users'),api('GET','/api/owner/settings')]);ST.users=u.users;ST.block=s.block;ST.flags=s.flags;ST.retDays=s.retDays;ST.imp=s.impact;
+    const imp=await api('GET','/api/community');ST.posts=imp.posts},
+};
+function go(t){if(liveT&&t!=='teacher'){clearInterval(liveT);liveT=null;liveId=null}reload(t)}
+const r2s=()=>reload(tab);
+
+/* Learner gems: one per first-try correct answer, used by class Gem Challenges */
+const _ud4=update;update=function(k,ok,...a){_ud4(k,ok,...a);if(ok)BOOT.state.gems=(BOOT.state.gems||0)+1;SYNC()};
+
+/* ---------- My classes (learners) ---------- */
+VIEWS.classes=function(){const J=ST.joined||[];
+return `<h2>My classes</h2><div class="card"><h3>Join a class</h3><div class="row"><input id="jc" placeholder="Class code" aria-label="Class code" maxlength="10" style="text-transform:uppercase"><button class="lamp" onclick="joinClass()">Join</button></div><p class="sol">Your teacher gives you the code.</p></div>
+${J.length?J.map(c=>`<div class="card post"><div class="split"><h3>${esc(c.name)}</h3><span class="sol">Teacher: ${esc(c.teacher)}</span></div>${c.assigned.length?c.assigned.map(a=>{const ks=a.skills.filter(k=>SK[k]),d=ks.filter(k=>level(k)>=3).length;return `<h4>${esc(a.title)}</h4><div class="bar sm"><i style="width:${ks.length?d/ks.length*100:0}%"></i></div><p class="sol">${d} of ${ks.length} skills Proficient</p><div class="row">${ks.map(k=>`<button class="alt" onclick="goSkill('${k}')">${esc(SK[k].n)} · ${LV[level(k)]}</button>`).join('')}</div>`}).join(''):'<p class="sol">No assignments yet.</p>'}</div>`).join(''):'<p class="sol">You have not joined a class yet.</p>'}`};
+function joinClass(){busy(async()=>{const r=await api('POST','/api/classes/join',{code:$('jc').value});msg('You joined '+r.name+'.');reload('classes')})}
+
+/* ---------- Teacher dashboard ---------- */
+addClass=function(){const n=$('cn').value.trim();if(!n)return msg('Enter a class name.');busy(async()=>{await api('POST','/api/classes',{name:n,grade:+$('cg').value,region:($('cc')||{value:''}).value.trim()});reload('teacher')})};
+const _classCard=classCard;
+classCard=function(c){return _classCard(c)
+  .replace(/<h4>Add students<\/h4>[\s\S]*?simulated in this demo\.<\/p>/,`<h4>Add students</h4><p class="sol">Type one student name per line. Lumen creates a username and password for each, so students under 13 never need an email. Students 13 or older can also sign up and join with the code above.</p>
+<div class="row"><textarea id="sn${c.id}" placeholder="Ava Smith&#10;Ben Lee" aria-label="Student names, one per line"></textarea></div><div class="row"><button class="lamp" onclick="addStu(${c.id})">Create student logins</button><label class="sol">Or upload a list (one name per line)<br><input type="file" accept=".csv,.txt" onchange="fileIn(${c.id},this)"></label></div>
+${c.students.length?`<div class="row"><select id="rs${c.id}" aria-label="Student">${c.students.map(s=>`<option value="${s.uid}">${esc(s.name)} (${esc(s.email)})</option>`).join('')}</select><button class="alt" onclick="resetPw(${c.id})">Reset password</button></div>`:''}<div id="cred${c.id}"></div>`)
+  .replace('Start live view (simulated)','Start live view')
+  .replace(/<label><input type="checkbox"[^>]*>\s*Send weekly to parents<\/label>/,'')};
+function credsBox(id,list){$('cred'+id).innerHTML=`<div class="card printme" style="margin-top:10px"><h3>Student logins</h3><p class="sol">Print or copy these now. Passwords are not shown again (you can reset them later). Sign in at ${esc(location.origin)}/app</p><table class="creds"><tr><th>Name</th><th>Username</th><th>Password</th></tr>${list.map(s=>`<tr><td>${esc(s.name)}</td><td>${esc(s.username)}</td><td>${esc(s.password)}</td></tr>`).join('')}</table><div class="row"><button onclick="print()">Print</button></div></div>`}
+async function mkStudents(id,names){const r=await api('POST',`/api/classes/${id}/students`,{names});await LOAD.teacher();showTab('teacher');credsBox(id,r.created)}
+addStu=function(id){const names=$('sn'+id).value.split(/\r?\n/).map(x=>x.trim()).filter(Boolean);if(!names.length)return msg('Type at least one student name.');busy(()=>mkStudents(id,names))};
+fileIn=function(id,el){const f=el.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const names=String(r.result).split(/\r?\n/).map(l=>l.split(',')[0].trim()).filter(Boolean);if(!names.length)return msg('That file has no names.');busy(()=>mkStudents(id,names))};r.readAsText(f)};
+function resetPw(id){const uid=$('rs'+id).value;if(!confirm('Reset this student\'s password? Their old password stops working.'))return;busy(async()=>{const r=await api('POST',`/api/users/${uid}/reset-password`,{});credsBox(id,r.created)})}
+const setGrades=(id,i,g)=>busy(async()=>{await api('PATCH',`/api/classes/${id}/students/${cl(id).students[i].uid}`,{grades:g});reload('teacher')});
+addG=function(id,i,g){if(g==='')return;const s=cl(id).students[i];if(!s.grades.includes(+g))setGrades(id,i,[...s.grades,+g])};
+rmG=function(id,i,g){const s=cl(id).students[i];if(s.grades.length>1)setGrades(id,i,s.grades.filter(x=>x!==g))};
+assign=function(id){const c=cl(id),[ty,key]=$('as'+id).value.split(':'),t=$('at'+id).value;
+  busy(async()=>{await api('POST',`/api/classes/${id}/assign`,{title:ty=='u'?UNITS[key][0]:SK[key].n,skills:ty=='u'?UNITS[key][1]:[key],target:t==='all'?'all':c.students[+t].uid});msg('Assigned.');reload('teacher')})};
+setCh=function(id){busy(async()=>{await api('POST',`/api/classes/${id}/challenge`,{goal:Math.max(10,+$('cg2'+id).value||100),reward:$('cr'+id)&&$('cr'+id).value?$('cr'+id).value.trim():'Class celebration'});reload('teacher')})};
+/* Live view: re-reads real progress from the server every few seconds */
+live=function(id){if(liveT){clearInterval(liveT);liveT=null;const same=liveId===id;liveId=null;if(same)return showTab('teacher')}liveId=id;liveT=setInterval(()=>tick(id),4000);showTab('teacher')};
+tick=async function(id){if(tab!=='teacher')return;try{await LOAD.teacher()}catch(e){return}const c=cl(id);if(!c||!c.asg.length)return;const a=c.asg[c.asg.length-1];
+  c.students.forEach((s,i)=>{const b=$(`pb${id}_${i}`);if(b)b.style.width=(s.p[a.id]||0)+'%';const g=$(`gm${id}_${i}`);if(g)g.textContent=s.gems});
+  if(c.ch){const e=$('ch'+id);if(e){e.style.width=Math.min(100,(gemTot(c)-c.ch.base)/c.ch.goal*100)+'%';$('chn'+id).textContent=Math.max(0,gemTot(c)-c.ch.base)}}};
+VIEWS.teacher=tView;
+
+/* ---------- Community ---------- */
+isMod=()=>ME.role==='owner'||(ME.role==='teacher'&&ME.verified);
+who=()=>ME.display;ST.me.name=ME.display;
+setName=function(){const v=$('dn').value.trim().slice(0,20),e=clean(v);if(!v||e)return msg(e||'Enter a display name.');busy(async()=>{const r=await api('PATCH','/api/me',{display:v});ME.display=r.display;ST.me.name=r.display;msg('Saved.');reload('community')})};
+post=function(type,gid){const t=$('pt').value.trim(),b=$('pb').value.trim();if(t.length<5||b.length<10)return msg('Add a title (5+ characters) and some detail (10+).');const e=clean(t+' '+b);if(e)return msg(e);
+  busy(async()=>{await api('POST','/api/posts',{type,group:gid||null,subject:gid?undefined:$('ps').value,grade:gid?undefined:+$('pg').value,title:t,body:b});reload('community')})};
+reply=function(id){const b=$('pr'+id).value.trim();if(b.length<2)return;const e=clean(b);if(e)return msg(e);busy(async()=>{await api('POST',`/api/posts/${id}/reply`,{body:b});reload('community')})};
+vote=id=>busy(async()=>{await api('POST',`/api/posts/${id}/vote`,{});reload('community')});
+rep=(pid,rid)=>busy(async()=>{await api('POST',`/api/posts/${pid}/report`,{rid:rid=='p'?'p':rid});msg('Thanks. A moderator will review this.');reload(tab)});
+mod=(id,a)=>busy(async()=>{if(a=='del'){if(!confirm('Delete this post and its replies?'))return;await api('DELETE',`/api/posts/${id}`,{})}else await api('PATCH',`/api/posts/${id}`,{action:a});reload(tab)});
+modR=(pid,rid)=>busy(async()=>{await api('PATCH',`/api/replies/${rid}`,{});reload(tab)});
+mkG=function(){const n=$('gn').value.trim(),e=clean(n);if(n.length<3||e)return msg(e||'Give the group a name (3+ characters).');busy(async()=>{await api('POST','/api/groups',{name:n,subject:$('gs').value,grade:+$('gg').value});reload('community')})};
+joinG=id=>busy(async()=>{await api('POST',`/api/groups/${id}/join`,{});reload('community')});
+qa=(id,keep)=>busy(async()=>{if(keep)await api('POST',`/api/posts/${id}/keep`,{});else await api('DELETE',`/api/posts/${id}`,{});reload('owner')});
+/* Group membership comes back as display names */
+const _gv=groupView;groupView=function(){return _gv()};
+const _cmView=cmView;cmView=function(){return _cmView().replace(/<p class="sol">Use a nickname[\s\S]*?<\/p>/,'<p class="sol">Your display name is shown on posts. Use a nickname, not your full name. Never share emails, phone numbers or where you live. Three reports hide a post until a moderator reviews it.</p>')};
+VIEWS.community=cmView;
+
+/* ---------- Certificates: issued and verified by the server ---------- */
+COURSES.length=0;(BOOT.curriculum.courses||[]).forEach(c=>COURSES.push({...c,skills:c.skills.filter(k=>SK[k])}));
+claim=function(key){if(!ST.me.full)return msg('Enter the name for your certificate first.');busy(async()=>{if(_syncT){clearTimeout(_syncT);_syncT=null;await api('PUT','/api/state',stateBody())}await api('POST','/api/certs/claim',{key,full:ST.me.full});msg('Certificate issued.');reload('certs')})};
+verify=function(){const id=$('vi').value.trim().toUpperCase();if(!id)return;api('GET','/api/certs/'+encodeURIComponent(id)).then(c=>{$('vr').textContent=`Valid. Issued to ${c.name} for ${c.course} on ${c.date}.`}).catch(()=>{$('vr').textContent='No certificate has that ID.'})};
+VIEWS.certs=ctView;
+
+/* ---------- Impact: totals across every learner on the server ---------- */
+imView=function(){const I=BOOT.impact.content,s=BOOT.impact.stats;
+return `<h2>Our impact</h2><div class="stats"><div class="card"><b>${s.learners}</b><span>Active learners</span></div><div class="card"><b>${s.hours}</b><span>Hours of learning</span></div><div class="card"><b>${s.answered}</b><span>Questions answered</span></div><div class="card"><b>${s.regions}</b><span>Regions or countries</span></div><div class="card"><b>${s.helped}</b><span>Students helped</span></div></div>
+<p class="sol">Live totals across all Lumen learners. Students helped counts students in classes plus students whose question got a peer answer.</p>
+<div class="card" style="margin-top:14px"><h3>Mission</h3><p>${esc(I.mission)}</p></div>
+<div class="card" style="margin-top:14px"><h3>Leadership and team</h3>${I.team.length?'<ul>'+I.team.map(t=>`<li><b>${esc(t[0])}</b>${t[1]?', '+esc(t[1]):''}</li>`).join('')+'</ul>':'<p class="sol">The Owner can add team members in the Owner console.</p>'}</div>
+<div class="card" style="margin-top:14px"><h3>Partner organizations</h3>${I.partners.length?'<ul>'+I.partners.map(t=>`<li>${esc(t)}</li>`).join('')+'</ul>':'<p class="sol">No partners listed yet.</p>'}</div>
+<div class="card" style="margin-top:14px"><h3>How donations are used</h3>${I.goal?`<div class="bar"><i style="width:${Math.min(100,I.raised/I.goal*100)}%"></i></div><p class="sol">${$$(I.raised*100)} raised of ${$$(I.goal*100)} goal</p>`:''}<p class="sol">Planned allocation of every dollar:</p>${I.funds.map(f=>`<div class="fund"><span>${esc(f[0])}</span><div class="bar sm"><i style="width:${f[1]}%"></i></div><b>${f[1]}%</b></div>`).join('')}</div>`};
+VIEWS.impact=imView;
+const _saveImp=saveImp;saveImp=function(){const before=ST.imp;_saveImp();if(ST.imp!==before)busy(async()=>{await api('PUT','/api/owner/settings',{impact:ST.imp});msg('Impact page updated.')})};
+
+/* ---------- Owner console: real accounts ---------- */
+O.users=function(){return `<p class="sol">Verified teachers can moderate the community. Locked accounts cannot sign in.</p><div class="tbl"><table class="vs"><tr><th>User</th><th>Role</th><th>Status</th><th></th></tr>${ST.users.map(u=>u.role=='owner'?`<tr><td>${esc(u.display)}<div class="sol">${esc(u.username)}</div></td><td>owner</td><td>Active</td><td class="sol">Protected: cannot be changed.</td></tr>`:`<tr><td>${esc(u.display)}<div class="sol">${esc(u.username)}${u.email?' · '+esc(u.email):''}</div></td><td><select onchange="modUser(${u.id},{role:this.value})" aria-label="Role">${['student','parent','teacher','school_admin'].map(r=>`<option ${u.role==r?'selected':''}>${r}</option>`).join('')}</select></td><td>${u.locked?'Locked':'Active'}${u.role==='teacher'?(u.verified?', verified':', not verified'):''}</td><td><button class="alt" onclick="modUser(${u.id},{locked:${!u.locked}})">${u.locked?'Unlock':'Lock'}</button>${u.role==='teacher'?` <button class="alt" onclick="modUser(${u.id},{verified:${!u.verified}})">${u.verified?'Unverify':'Verify teacher'}</button>`:''}</td></tr>`).join('')}</table></div>`};
+modUser=function(id,patch){busy(async()=>{await api('PATCH','/api/owner/users/'+id,patch);reload('owner')})};
+VIEWS.owner=oView;
+
+/* Start on the right tab, now with server data */
+gradeBar();go(tab==='learn'?'learn':tab);
+</script>

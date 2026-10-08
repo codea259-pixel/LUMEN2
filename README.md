@@ -10,6 +10,7 @@ Master every skill. Understand every concept. A free learning site for Pre-K thr
 | `public/app.html` | The learning app (`/app`): sign-in, Learn, Courses, classes, Community, Downloads, Library, Certificates, Impact, Owner console |
 | `server/server.js` | The server: accounts, saved progress, classes, community, certificates, owner tools. No dependencies. |
 | `server/curriculum.json` | Courses and milestone badges the server checks before issuing certificates |
+| `tools/` | Sources for `public/app.html`: `base.html` (the prototype), `bridge.html` (server connection), `ui.html` (design layer). Edit these, then run `python3 tools/build.py`. `tools/e2e.cjs` is a full browser test. |
 | `prototype/` | The earlier single-file prototype, kept for reference |
 
 Data is stored in a SQLite file (`lumen.db`) inside `DATA_DIR`. Back that folder up.
@@ -33,6 +34,10 @@ Any host that runs a Docker container with a persistent disk works (Render, Rail
 3. Set `OWNER_USERNAME` and `OWNER_PASSWORD` for the first start, then remove the password.
 4. Optionally set `SESSION_SECRET` to a long random string (otherwise one is generated and kept in `/data`).
 5. Serve it over HTTPS (the hosts above do this for you). Sign-in cookies are marked secure in production.
+
+## Ask Lumen (AI tutor)
+
+Practice questions have an **Ask Lumen** button. With `ANTHROPIC_API_KEY` set on the server, Lumen uses Claude as a Socratic tutor that asks guiding questions and is instructed never to reveal or confirm answers (model: `LUMEN_TUTOR_MODEL`, default `claude-haiku-5-5`; limited to 30 messages per student per 10 minutes). Without a key, or with the "AI tutor feedback" flag off in the Owner console, it falls back to built-in guiding questions from each problem's hint ladder.
 
 ## Accounts
 
