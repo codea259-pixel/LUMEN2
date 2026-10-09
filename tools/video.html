@@ -1,0 +1,80 @@
+<style>
+/* ===== Lesson videos: a chalkboard that builds up step by step while Lumi narrates ===== */
+.vid{position:fixed;inset:0;z-index:50;background:rgba(10,16,28,.82);display:grid;place-items:center;padding:16px}
+.vid[hidden]{display:none}
+.vbox{width:min(980px,100%);background:#0F1B2D;border-radius:18px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.stage{position:relative;aspect-ratio:16/9;max-height:72vh;overflow:auto;padding:28px 34px 20px;color:#EAF0F8;
+  background:radial-gradient(ellipse at 30% 20%,#1C2D47,#0F1B2D 70%);font:1.25rem/1.5 "Atkinson Hyperlegible",system-ui,sans-serif}
+@media(max-width:600px){.stage{aspect-ratio:auto;min-height:56vh;padding:18px;font-size:1.05rem}}
+.stage h2{font:800 clamp(1.6rem,4vw,2.6rem) "Bricolage Grotesque",sans-serif;color:#fff;margin:0 0 6px}
+.stage .kicker{color:var(--sc);font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:.85rem}
+.vline{margin:10px 0;animation:chalk .5s ease both}
+.vline.big{font:700 clamp(1.4rem,3.4vw,2.1rem) "Bricolage Grotesque",sans-serif;color:#fff}
+.vline .num{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--sc);color:var(--sc-on);font-weight:800;font-size:.85rem;margin-right:10px;vertical-align:2px}
+.vline .hl{color:#FFD25A;font-weight:700}
+.vline ul{margin:6px 0;padding-left:22px}.vline li{margin:4px 0}
+.stage .fr i:first-child{border-bottom-color:#EAF0F8}
+@keyframes chalk{from{opacity:0;transform:translateY(6px);filter:blur(2px)}to{opacity:1;transform:none;filter:none}}
+@media(prefers-reduced-motion:reduce){.vline{animation:none}}
+[data-motion=reduce] .vline{animation:none}
+.vlumi{position:absolute;right:18px;bottom:14px;opacity:.95}
+.vlumi.talk svg{animation:bob 1.2s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-4px)}}
+@media(prefers-reduced-motion:reduce){.vlumi.talk svg{animation:none}}
+.vcap{background:#000;color:#fff;padding:10px 18px;min-height:3.2em;font-size:1rem;line-height:1.45}
+.vcap[hidden]{display:none}
+.vctl{display:flex;align-items:center;gap:8px;padding:10px 12px;background:#0B1422}
+.vctl button{background:transparent;color:#EAF0F8;border:1px solid #2B3A57;padding:8px 12px;font-size:.9rem;border-radius:10px}
+.vctl button:hover{background:#1B2740}
+.vctl .go{background:var(--sc);color:var(--sc-on);border:0}
+.vprog{flex:1;display:flex;gap:3px;min-width:60px}
+@media(max-width:600px){.vctl{flex-wrap:wrap}.vprog{order:-1;flex-basis:100%;margin-bottom:4px}.vctl button{padding:7px 10px}}.vprog i{flex:1;height:6px;border-radius:99px;background:#2B3A57}.vprog i.on{background:var(--sc)}
+</style>
+<div class="vid" id="vid" hidden role="dialog" aria-modal="true" aria-label="Lesson video">
+  <div class="vbox"><div class="stage" id="vstage" aria-live="polite"></div><div class="vcap" id="vcap"></div>
+  <div class="vctl"><button id="vplay" class="go" onclick="vToggle()" aria-label="Pause">❚❚ Pause</button><button onclick="vRestart()" aria-label="Restart">↺</button>
+  <div class="vprog" id="vprog" aria-hidden="true"></div>
+  <button id="vmute" onclick="vMute()" aria-pressed="false">🔊 Voice on</button><button id="vcc" onclick="vCC()" aria-pressed="true">CC</button><button onclick="vClose()" aria-label="Close video">✕</button></div></div>
+</div>
+<script type="text/x-lumen">
+/* ===== Lesson videos for every skill, built from the skill's idea, a fresh worked example and its steps.
+   Narration uses the device's own voice (free, works offline); captions show the same words. ===== */
+let VP=null;
+const sayable=t=>strip(t).replace(/×/g,' times ').replace(/÷/g,' divided by ').replace(/−/g,' minus ').replace(/(\d)\s*\/\s*(\d)/g,'$1 over $2').replace(/\^2/g,' squared').replace(/\^(\d)/g,' to the power $1').replace(/\s=\s?\?/g,' equals what').replace(/=/g,' equals ').replace(/\?/g,'?');
+function buildVideo(k){const n=SK[k],q=G[k](1),sc=[];
+  sc.push({clear:1,board:`<div class="kicker">${esc(SUBN[n.sub])} · ${GLAB(ST.gr[k])}</div><h2>${esc(n.n)}</h2>`,say:`Hi, I'm Lumi. Let's learn ${n.n}.`});
+  if(/^Study these facts/.test(n.c)){const items=[...n.c.matchAll(/<li>(.*?)<\/li>/g)].map(m=>m[1]);
+    sc.push({board:'<div class="vline">Here are the key ideas:</div>',say:'Here are the key ideas.'});
+    items.slice(0,6).forEach(it=>sc.push({board:`<div class="vline">• ${it.replace(/<b>(.*?)<\/b>/,'<span class="hl">$1</span>')}</div>`,say:sayable(it)}))}
+  else sc.push({board:`<div class="vline"><span class="hl">The idea:</span> ${n.c}</div>`,say:sayable(n.c)});
+  sc.push({clear:1,board:`<div class="kicker">Worked example</div><div class="vline big">${q.q}</div>${q.choices?`<div class="vline">${q.choices.map((c,i)=>`${'ABCD'[i]}. ${esc(c)}`).join('&nbsp;&nbsp;&nbsp; ')}</div>`:''}`,
+    say:`Let's try one together. ${sayable(q.q)}${q.choices?' The choices are: '+q.choices.join(', ')+'.':''}`});
+  if(!q.choices){q.h.forEach((h,i)=>sc.push({board:`<div class="vline"><span class="num">${i+1}</span>${h}</div>`,say:sayable(h)}));
+    sc.push({board:`<div class="vline"><span class="hl">So:</span> ${q.s}</div>`,say:'So, '+sayable(q.s)})}
+  else sc.push({board:`<div class="vline"><span class="num">✓</span>The answer is <span class="hl">${esc(q.choices[q.a[0]])}</span>.</div>`,say:`The answer is ${q.choices[q.a[0]]}.`});
+  sc.push({clear:1,board:`<div class="kicker">Your turn</div><h2>Now you try</h2><div class="vline">Practice ${esc(n.n.toLowerCase())} with a tutor beside every question.</div><div class="vline"><button class="go" onclick="vClose();startPractice('${k}','practice')">Start practicing →</button></div>`,say:`Now it's your turn. Press start practicing when you're ready.`,end:1});
+  return sc}
+function watch(k){if(VP)vStop();VP={k,sc:buildVideo(k),i:0,playing:true,mute:!('speechSynthesis' in window),cc:true,shown:-1};
+  const v=$('vid');v.hidden=false;$('vprog').innerHTML=VP.sc.map(()=>'<i></i>').join('');$('vstage').innerHTML=`<div class="vlumi" id="vlumi">${orb(56)}</div>`;
+  vUI();vScene();setTimeout(()=>$('vplay').focus(),50)}
+function vScene(){const P=VP;if(!P)return;const s=P.sc[P.i];if(!s)return;const st=$('vstage');
+  if(P.shown<P.i){if(s.clear)st.innerHTML=`<div class="vlumi" id="vlumi">${orb(56)}</div>`;st.insertAdjacentHTML('beforeend',`<div class="vline-wrap">${s.board}</div>`);P.shown=P.i;st.scrollTop=st.scrollHeight}
+  $('vcap').textContent=strip(s.say);[...$('vprog').children].forEach((x,j)=>x.classList.toggle('on',j<=P.i));
+  if(!P.playing)return;const done=()=>{if(VP!==P||!P.playing)return;clearTimeout(P.t);if(s.end){P.playing=false;vUI();return}P.i++;vScene()};
+  const wait=Math.max(2200,s.say.length*62);$('vlumi')&&$('vlumi').classList.add('talk');
+  if(!P.mute&&'speechSynthesis' in window){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(sayable(s.say));u.rate=.95;u.onend=()=>setTimeout(done,450);u.onerror=()=>{P.t=setTimeout(done,wait)};speechSynthesis.speak(u);
+    P.t=setTimeout(done,wait*2.2)/* safety net: some browsers never fire onend */}
+  else P.t=setTimeout(done,wait)}
+function vStop(){if(!VP)return;clearTimeout(VP.t);try{speechSynthesis.cancel()}catch(e){}}
+function vToggle(){const P=VP;if(!P)return;if(P.playing){P.playing=false;vStop();$('vlumi')&&$('vlumi').classList.remove('talk')}else{P.playing=true;if(P.sc[P.i].end){P.i=0;P.shown=-1}vScene()}vUI()}
+function vRestart(){if(!VP)return;vStop();VP.i=0;VP.shown=-1;VP.playing=true;vScene();vUI()}
+function vMute(){if(!VP)return;if(!('speechSynthesis' in window))return msg("This device can't read aloud. Captions are on.");VP.mute=!VP.mute;vStop();if(VP.playing)vScene();vUI()}
+function vCC(){if(!VP)return;VP.cc=!VP.cc;vUI()}
+function vUI(){const P=VP;$('vplay').innerHTML=P.playing?'❚❚ Pause':'▶ Play';$('vplay').setAttribute('aria-label',P.playing?'Pause':'Play');
+  $('vmute').textContent=P.mute?'🔇 Voice off':'🔊 Voice on';$('vmute').setAttribute('aria-pressed',String(P.mute));$('vcc').setAttribute('aria-pressed',String(P.cc));$('vcap').hidden=!P.cc}
+function vClose(){vStop();VP=null;$('vid').hidden=true}
+document.addEventListener('keydown',e=>{if(!VP||$('vid').hidden)return;if(e.key==='Escape')vClose();else if(e.key===' '&&e.target.tagName!=='BUTTON'){e.preventDefault();vToggle()}});
+/* "Watch the lesson" on every skill panel and on Today's Mission */
+const _info2=infoHtml;infoHtml=function(k){return _info2(k).replace('<div class="row"><button class="go" onclick="startPractice(',`<div class="row"><button class="alt" onclick="watch('${k}')">▶ Watch the lesson</button></div><div class="row"><button class="go" onclick="startPractice(`)};
+const _dash2=dashHtml;dashHtml=function(){return _dash2().replace(`<button class="alt" onclick="openSkill('`,`<button class="alt" onclick="watch(missionState().r)">▶ Watch the lesson</button><button class="alt" onclick="openSkill('`)};
+if(tab==='learn')render();
+</script>

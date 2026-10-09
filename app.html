@@ -1008,7 +1008,7 @@ async function api(method,path,body){
 }
 let _syncT=null,_ownerT=null;
 function stateBody(){
-  const P={};['grades','subj','me','lite','cs','rs','cs2','cg','ot','gf','v3','sched','myGrade','lvl','a11y','daily','onboarded'].forEach(k=>{if(ST[k]!==undefined)P[k]=ST[k]});
+  const P={};['grades','subj','me','lite','cs','rs','cs2','cg','ot','gf','v3','sched','myGrade','lvl','a11y','daily','onboarded','diag'].forEach(k=>{if(ST[k]!==undefined)P[k]=ST[k]});
   return {S,gems:BOOT.state.gems||0,xp:BOOT.state.xp||0,days:ST.days||[],secs:ST.secs||0,prefs:P};
 }
 /* Demo mode: no server (for example on GitHub Pages), so progress stays in this browser */
@@ -1526,6 +1526,202 @@ const _sp=startPractice;startPractice=function(k,m){_sp(k,m);if(innerWidth<880)$
 
 /* Start */
 applyA11y();nav();gradeBar();go(tab);
+</script>
+
+<style>
+/* ===== Find my level, Mastery Challenge, worked examples ===== */
+.tools2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+@media(max-width:700px){.tools2{grid-template-columns:1fr}}
+.tool{display:flex;gap:14px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:16px 18px;box-shadow:var(--shadow)}
+.tool .ic{flex:none;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:22px;background:var(--sc-soft)}
+.tool h3{font-size:1.05rem;margin:0 0 2px}.tool p{margin:0 0 10px;color:var(--mute);font-size:.92rem}
+.tool button{padding:8px 14px;font-size:.92rem}
+.qz-opts{display:grid;gap:8px;margin-top:10px}
+.qz-opts button{text-align:left;background:var(--bg);color:var(--ink);border:2px solid var(--line);font-weight:400}
+.qz-opts button.ok{border-color:var(--teal);background:color-mix(in srgb,var(--teal) 12%,var(--panel))}
+.qz-opts button.no{border-color:var(--coral)}
+.ladder{display:grid;grid-template-columns:repeat(var(--n),1fr);gap:3px;margin:14px 0 6px;align-items:end;height:90px}
+.ladder i{display:block;border-radius:6px 6px 0 0;background:var(--line);position:relative}
+.ladder i.hit{background:var(--sc)}.ladder i.me{outline:3px solid var(--ink);outline-offset:1px}
+.ladder-l{display:grid;grid-template-columns:repeat(var(--n),1fr);gap:3px;font-size:.7rem;color:var(--mute);text-align:center}
+.steps2{margin:10px 0 0;padding:0;list-style:none;counter-reset:st}
+.steps2 li{counter-increment:st;display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-top:1px solid var(--line)}
+.steps2 li:before{content:counter(st);flex:none;width:24px;height:24px;border-radius:50%;background:var(--sc-soft);color:var(--sc-text);font-weight:800;font-size:.8rem;display:grid;place-items:center}
+.ex-q{font:700 1.4rem "Bricolage Grotesque",sans-serif;margin:8px 0}
+</style>
+<script type="text/x-lumen">
+/* ===== Find my level (adaptive placement, like IXL's diagnostic), Mastery Challenge (mixed spaced review,
+   like Khan's mastery challenges) and step-by-step worked examples ===== */
+let QZ=null,WX=null;
+const subSkills=sub=>ORDER.filter(k=>SK[k].sub===sub);
+const gradesOf=sub=>[...new Set(subSkills(sub).map(k=>ST.gr[k]))].sort((a,b)=>a-b);
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const ansText=q=>q.choices?q.choices[q.a[0]]:(q.a[1]==1?''+q.a[0]:q.a[0]+'/'+q.a[1]);
+function isRight(q,raw){if(q.choices)return +raw===q.a[0];const u=parse(String(raw));if(!u||!eq(u,q.a))return false;
+  return !q.exact||(gcd(Math.abs(u[0]),u[1])==1&&u[0]==q.a[0]&&u[1]==q.a[1])}
+/* record an answer as real evidence, without the practice screen's own bookkeeping */
+function evidence(k,ok){const keep=cur;cur=null;try{update(k,ok,false)}finally{cur=keep}}
+
+/* ---------- Find my level ---------- */
+function startDiag(){const sub=ST.subj,G=gradesOf(sub);if(!G.length)return msg('No skills in this subject yet.');
+  let i=G.findIndex(g=>g>=myGrade());if(i<0)i=G.length-1;
+  QZ={kind:'diag',sub,G,i,step:Math.max(1,Math.round(G.length/4)),dir:0,total:Math.min(12,Math.max(6,subSkills(sub).length)),n:0,asked:[],log:[]};nextDiag();view='quiz';render()}
+function nextDiag(){const Z=QZ,g=Z.G[Z.i];let pool=subSkills(Z.sub).filter(k=>ST.gr[k]==g&&!Z.asked.includes(k));
+  if(!pool.length)pool=subSkills(Z.sub).filter(k=>ST.gr[k]==g);
+  const k=pick(pool);Z.asked.push(k);Z.k=k;Z.q=G[k](2);Z.done=false;Z.pick=null}
+function answerDiag(ok){const Z=QZ;Z.log.push({k:Z.k,g:Z.G[Z.i],ok});evidence(Z.k,ok);Z.n++;
+  const d=ok?1:-1;if(Z.dir&&d!==Z.dir)Z.step=Math.max(1,Math.floor(Z.step/2));Z.dir=d;Z.i=Math.max(0,Math.min(Z.G.length-1,Z.i+d*Z.step))}
+function diagResult(){const Z=QZ,by={};Z.log.forEach(r=>{(by[r.g]=by[r.g]||{ok:0,n:0}).n++;if(r.ok)by[r.g].ok++});
+  /* level = highest grade answered mostly right, never above a grade with a right answer */
+  let est=Z.G[0];Z.G.forEach(g=>{const b=by[g];if(b&&b.ok/b.n>=.5)est=g});
+  const strong=Z.log.filter(r=>r.ok).map(r=>r.k),weak=Z.log.filter(r=>!r.ok).map(r=>r.k);
+  const next=subSkills(Z.sub).filter(k=>Math.abs(ST.gr[k]-est)<=0&&level(k)<3&&!strong.includes(k)).slice(0,4);
+  return{est,by,strong,weak,next}}
+
+/* ---------- Mastery Challenge ---------- */
+const challengePool=sub=>subSkills(sub).filter(k=>S[k].att>0);
+function startChallenge(){const sub=ST.subj,pool=challengePool(sub);if(pool.length<2)return msg('Practice at least two skills first, then come back for a challenge.');
+  /* skills flagged for review first, then the ones you know least, then a sprinkle of strong ones */
+  const order=[...pool].sort((a,b)=>(S[b].review?1:0)-(S[a].review?1:0)||S[a].p-S[b].p);
+  const items=[];for(let i=0;items.length<6&&i<12;i++)items.push(order[i%order.length]);
+  QZ={kind:'challenge',sub,items:items.sort(()=>Math.random()-.5),n:0,total:items.length,log:[]};nextChallenge();view='quiz';render()}
+function nextChallenge(){const Z=QZ;Z.k=Z.items[Z.n];Z.q=G[Z.k](level(Z.k)>=3?3:2);Z.done=false;Z.pick=null}
+function answerChallenge(ok){const Z=QZ,k=Z.k,s=S[k];Z.log.push({k,ok});evidence(k,ok);
+  if(!ok&&level(k)>=3)s.review=true;if(ok&&s.review&&level(k)>=3)s.review=false;Z.n++;sv()}
+
+/* ---------- the quiz screen shared by both ---------- */
+function qzCheck(raw){const Z=QZ;if(Z.done)return;if(raw===''||raw==null)return msg(Z.q.choices?'Choose an answer.':'Type an answer first.');
+  if(!Z.q.choices&&!parse(String(raw)))return msg('Enter a whole number, a decimal or a fraction like 3/4.');
+  const ok=isRight(Z.q,raw);Z.done=true;Z.ok=ok;Z.pick=raw;if(Z.kind==='diag')answerDiag(ok);else answerChallenge(ok);render()}
+function qzNext(){const Z=QZ;if(Z.n>=Z.total){Z.finished=true;finishQuiz();render();return}if(Z.kind==='diag')nextDiag();else nextChallenge();render()}
+function finishQuiz(){const Z=QZ;if(Z.rewarded)return;Z.rewarded=true;
+  if(Z.kind==='diag'){Z.res=diagResult();ST.diag=ST.diag||{};ST.diag[Z.sub]={grade:Z.res.est,date:today()};addXP(30,'finding your level')}
+  else{const c=Z.log.filter(r=>r.ok).length;addXP(c*8+(c===Z.total?20:0),'the mastery challenge')}sv()}
+function quizHtml(){const Z=QZ;
+  if(Z.finished)return Z.kind==='diag'?diagDone():challengeDone();
+  const q=Z.q,sk=SK[Z.k],title=Z.kind==='diag'?'🧭 Find my level':'🔁 Mastery Challenge';
+  const fb=Z.done?(Z.ok?tutor('Correct.','good','Nice work'):tutor(`The answer is <b>${esc(ansText(q))}</b>. ${q.choices?'':strip(q.s)}`,'warn',Z.kind==='diag'?'Not this time':'Worth a review')):'';
+  const input=q.choices?`<div class="qz-opts" role="group" aria-label="Choose one answer">${q.choices.map((c,i)=>`<button class="${Z.done?(i===q.a[0]?'ok':+Z.pick===i?'no':''):''}" ${Z.done?'disabled':''} onclick="qzCheck(${i})">${'ABCD'[i]}. ${esc(c)}</button>`).join('')}</div>`
+    :`<div class="row" style="margin-top:0"><input id="qza" type="text" autocomplete="off" aria-label="Your answer" placeholder="3/4 or 12" ${Z.done?'disabled value="'+esc(Z.pick)+'"':''} onkeydown="if(event.key==='Enter')qzCheck(this.value.trim())">${Z.done?'':'<button onclick="qzCheck($(\'qza\').value.trim())">Check</button>'}</div>`;
+  return `<div class="qhead"><span class="qn">${title} · Question ${Math.min(Z.n+(Z.done?0:1),Z.total)} of ${Z.total}</span><span class="sol" style="margin:0">${Z.kind==='diag'?GLAB(ST.gr[Z.k])+' · ':''}${esc(sk.n)}</span></div>
+  <div class="bar"><i style="width:${(Z.n/Z.total)*100}%"></i></div>
+  <div class="q">${q.q}</div>${input}${fb}
+  <div class="row">${Z.done?`<button class="go" onclick="qzNext()">${Z.n>=Z.total?'See results':'Next'} →</button>`:''}<button class="alt" onclick="QZ=null;view='home';render()">Stop</button></div>
+  ${Z.kind==='diag'?'<p class="sol">No hints during the check. It adjusts after every answer to find where you are, so some questions will feel hard. That is the point.</p>':''}`}
+function diagDone(){const Z=QZ,R=Z.res,G=Z.G,mx=Math.max(1,...G.map(g=>(R.by[g]||{}).n||0));
+  const chips=a=>[...new Set(a)].map(k=>`<button onclick="goSkill('${k}')">${esc(SK[k].n)}</button>`).join('');
+  return `<div class="celebrate rise">${orb(60,'wow')}<h2>You're working at about ${GLAB(R.est)}</h2><p>in ${esc(SUBN[Z.sub])}, based on ${Z.log.length} questions.</p></div>
+  <div class="ladder" style="--n:${G.length}" aria-hidden="true">${G.map(g=>{const b=R.by[g];return `<i class="${b&&b.ok?'hit':''} ${g==R.est?'me':''}" style="height:${b?20+70*(b.n/mx):6}px" title="${GLAB(g)}"></i>`}).join('')}</div>
+  <div class="ladder-l" style="--n:${G.length}">${G.map(g=>`<span>${GN(g)}</span>`).join('')}</div>
+  ${R.strong.length?`<h3 style="margin-top:14px">Strengths</h3><div class="chips">${chips(R.strong)}</div>`:''}
+  ${R.weak.length?`<h3 style="margin-top:14px">Work on these</h3><div class="chips">${chips(R.weak)}</div>`:''}
+  ${R.next.length?`<h3 style="margin-top:14px">Good next skills</h3><div class="chips">${chips(R.next)}</div>`:''}
+  <div class="row"><button class="go" onclick="useLevel(${R.est})">Set ${GLAB(R.est)} as my level</button><button class="alt" onclick="QZ=null;view='home';render()">Back to map</button></div>`}
+function useLevel(g){ST.lvl='mine';QZ=null;setGrade(g);msg('Your map now centres on '+GLAB(g)+'.')}
+function challengeDone(){const Z=QZ,c=Z.log.filter(r=>r.ok).length,miss=[...new Set(Z.log.filter(r=>!r.ok).map(r=>r.k))];
+  return `<div class="celebrate rise">${orb(60,c===Z.total?'wow':'happy')}<h2>${c===Z.total?'Perfect challenge!':'Challenge complete'}</h2><p>${c} of ${Z.total} right across ${new Set(Z.log.map(r=>r.k)).size} skills.</p></div>
+  ${miss.length?`<div class="tutor warn">${orb(34,'think')}<div class="tx"><b>Quick review</b>These slipped a little, so they're marked for review on your map: ${miss.map(k=>`<a href="#" onclick="goSkill('${k}');return false">${esc(SK[k].n)}</a>`).join(', ')}.</div></div>`:tutor('Everything held up. Mixed review like this is what makes learning last.','good','Strong memory')}
+  <div class="row"><button class="go" onclick="startChallenge()">Another challenge</button><button class="alt" onclick="QZ=null;view='home';render()">Back to map</button></div>`}
+
+/* ---------- worked examples (math skills with step-by-step hints) ---------- */
+function showExample(k){WX={k,q:G[k](1),step:0};sel=k;view='lesson';render();const e=$('wx');if(e)e.scrollIntoView({block:'nearest'})}
+function exampleHtml(){const q=WX.q,steps=[...q.h,'So: '+strip(q.s)],shown=steps.slice(0,WX.step);
+  return `<div id="wx" class="tutor" style="display:block;margin-top:16px"><b>👣 Worked example</b><div class="ex-q">${q.q}</div>
+  <ol class="steps2">${shown.map(s=>`<li><span>${s}</span></li>`).join('')}</ol>
+  ${WX.step<steps.length?`<div class="row"><button class="go" onclick="WX.step++;render()">${WX.step?'Next step':'Show the first step'}</button><button class="alt" onclick="WX.step=${steps.length};render()">Show all steps</button></div>`
+    :`<p><b>Answer: ${esc(ansText(q))}</b></p><div class="row"><button class="go" onclick="startPractice('${WX.k}','practice')">Now you try →</button><button class="alt" onclick="showExample('${WX.k}')">Another example</button></div>`}</div>`}
+const _info=infoHtml;infoHtml=function(k){let h=_info(k);const probe=G[k](1),can=!probe.choices&&probe.h&&probe.h.length;
+  if(can)h=h.replace('<div class="kv">',`<div class="row"><button class="alt" onclick="showExample('${k}')">👣 See a worked example</button></div>${WX&&WX.k===k?exampleHtml():''}<div class="kv">`);return h};
+
+/* ---------- dashboard cards and the quiz view ---------- */
+const _dash=dashHtml;dashHtml=function(){const sub=ST.subj,d=(ST.diag||{})[sub],pool=challengePool(sub),rev=pool.filter(k=>S[k].review).length;
+  return _dash()+`<div class="tools2 rise"><div class="tool"><div class="ic">🧭</div><div><h3>Find my level</h3><p>${d?`Last check: about ${GLAB(d.grade)} (${d.date}). Take it again any time.`:`A quick adaptive check in ${esc(SUBN[sub])}, about 10 questions. It finds your starting point so you skip what you already know.`}</p><button class="alt" onclick="startDiag()">${d?'Check again':'Start the check'}</button></div></div>
+  <div class="tool"><div class="ic">🔁</div><div><h3>Mastery Challenge</h3><p>${pool.length<2?'Mixed review of skills you have practiced. Practice two skills to unlock it.':`6 mixed questions from ${pool.length} skills you've practiced${rev?`, including ${rev} marked for review`:''}. Keeps what you learned from fading.`}</p><button class="alt" ${pool.length<2?'disabled':''} onclick="startChallenge()">Start a challenge</button></div></div></div>`};
+const _r4=render;render=function(){if(view==='quiz'&&QZ&&tab==='learn'){drawMap();$('dash').hidden=true;$('gradebar').hidden=true;$('panel').innerHTML=quizHtml();renderMe();
+    const i=$('qza');if(i&&!QZ.done)i.focus();if(innerWidth<880)$('panel').scrollIntoView({block:'start'});return}
+  if(view!=='lesson')WX=null;_r4();if(view==='lesson'&&WX){const i=$('panel').querySelector('.info');if(i)i.classList.remove('rise')}};
+if(tab==='learn')render();
+</script>
+
+<style>
+/* ===== Lesson videos: a chalkboard that builds up step by step while Lumi narrates ===== */
+.vid{position:fixed;inset:0;z-index:50;background:rgba(10,16,28,.82);display:grid;place-items:center;padding:16px}
+.vid[hidden]{display:none}
+.vbox{width:min(980px,100%);background:#0F1B2D;border-radius:18px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.stage{position:relative;aspect-ratio:16/9;max-height:72vh;overflow:auto;padding:28px 34px 20px;color:#EAF0F8;
+  background:radial-gradient(ellipse at 30% 20%,#1C2D47,#0F1B2D 70%);font:1.25rem/1.5 "Atkinson Hyperlegible",system-ui,sans-serif}
+@media(max-width:600px){.stage{aspect-ratio:auto;min-height:56vh;padding:18px;font-size:1.05rem}}
+.stage h2{font:800 clamp(1.6rem,4vw,2.6rem) "Bricolage Grotesque",sans-serif;color:#fff;margin:0 0 6px}
+.stage .kicker{color:var(--sc);font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:.85rem}
+.vline{margin:10px 0;animation:chalk .5s ease both}
+.vline.big{font:700 clamp(1.4rem,3.4vw,2.1rem) "Bricolage Grotesque",sans-serif;color:#fff}
+.vline .num{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--sc);color:var(--sc-on);font-weight:800;font-size:.85rem;margin-right:10px;vertical-align:2px}
+.vline .hl{color:#FFD25A;font-weight:700}
+.vline ul{margin:6px 0;padding-left:22px}.vline li{margin:4px 0}
+.stage .fr i:first-child{border-bottom-color:#EAF0F8}
+@keyframes chalk{from{opacity:0;transform:translateY(6px);filter:blur(2px)}to{opacity:1;transform:none;filter:none}}
+@media(prefers-reduced-motion:reduce){.vline{animation:none}}
+[data-motion=reduce] .vline{animation:none}
+.vlumi{position:absolute;right:18px;bottom:14px;opacity:.95}
+.vlumi.talk svg{animation:bob 1.2s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-4px)}}
+@media(prefers-reduced-motion:reduce){.vlumi.talk svg{animation:none}}
+.vcap{background:#000;color:#fff;padding:10px 18px;min-height:3.2em;font-size:1rem;line-height:1.45}
+.vcap[hidden]{display:none}
+.vctl{display:flex;align-items:center;gap:8px;padding:10px 12px;background:#0B1422}
+.vctl button{background:transparent;color:#EAF0F8;border:1px solid #2B3A57;padding:8px 12px;font-size:.9rem;border-radius:10px}
+.vctl button:hover{background:#1B2740}
+.vctl .go{background:var(--sc);color:var(--sc-on);border:0}
+.vprog{flex:1;display:flex;gap:3px;min-width:60px}
+@media(max-width:600px){.vctl{flex-wrap:wrap}.vprog{order:-1;flex-basis:100%;margin-bottom:4px}.vctl button{padding:7px 10px}}.vprog i{flex:1;height:6px;border-radius:99px;background:#2B3A57}.vprog i.on{background:var(--sc)}
+</style>
+<div class="vid" id="vid" hidden role="dialog" aria-modal="true" aria-label="Lesson video">
+  <div class="vbox"><div class="stage" id="vstage" aria-live="polite"></div><div class="vcap" id="vcap"></div>
+  <div class="vctl"><button id="vplay" class="go" onclick="vToggle()" aria-label="Pause">❚❚ Pause</button><button onclick="vRestart()" aria-label="Restart">↺</button>
+  <div class="vprog" id="vprog" aria-hidden="true"></div>
+  <button id="vmute" onclick="vMute()" aria-pressed="false">🔊 Voice on</button><button id="vcc" onclick="vCC()" aria-pressed="true">CC</button><button onclick="vClose()" aria-label="Close video">✕</button></div></div>
+</div>
+<script type="text/x-lumen">
+/* ===== Lesson videos for every skill, built from the skill's idea, a fresh worked example and its steps.
+   Narration uses the device's own voice (free, works offline); captions show the same words. ===== */
+let VP=null;
+const sayable=t=>strip(t).replace(/×/g,' times ').replace(/÷/g,' divided by ').replace(/−/g,' minus ').replace(/(\d)\s*\/\s*(\d)/g,'$1 over $2').replace(/\^2/g,' squared').replace(/\^(\d)/g,' to the power $1').replace(/\s=\s?\?/g,' equals what').replace(/=/g,' equals ').replace(/\?/g,'?');
+function buildVideo(k){const n=SK[k],q=G[k](1),sc=[];
+  sc.push({clear:1,board:`<div class="kicker">${esc(SUBN[n.sub])} · ${GLAB(ST.gr[k])}</div><h2>${esc(n.n)}</h2>`,say:`Hi, I'm Lumi. Let's learn ${n.n}.`});
+  if(/^Study these facts/.test(n.c)){const items=[...n.c.matchAll(/<li>(.*?)<\/li>/g)].map(m=>m[1]);
+    sc.push({board:'<div class="vline">Here are the key ideas:</div>',say:'Here are the key ideas.'});
+    items.slice(0,6).forEach(it=>sc.push({board:`<div class="vline">• ${it.replace(/<b>(.*?)<\/b>/,'<span class="hl">$1</span>')}</div>`,say:sayable(it)}))}
+  else sc.push({board:`<div class="vline"><span class="hl">The idea:</span> ${n.c}</div>`,say:sayable(n.c)});
+  sc.push({clear:1,board:`<div class="kicker">Worked example</div><div class="vline big">${q.q}</div>${q.choices?`<div class="vline">${q.choices.map((c,i)=>`${'ABCD'[i]}. ${esc(c)}`).join('&nbsp;&nbsp;&nbsp; ')}</div>`:''}`,
+    say:`Let's try one together. ${sayable(q.q)}${q.choices?' The choices are: '+q.choices.join(', ')+'.':''}`});
+  if(!q.choices){q.h.forEach((h,i)=>sc.push({board:`<div class="vline"><span class="num">${i+1}</span>${h}</div>`,say:sayable(h)}));
+    sc.push({board:`<div class="vline"><span class="hl">So:</span> ${q.s}</div>`,say:'So, '+sayable(q.s)})}
+  else sc.push({board:`<div class="vline"><span class="num">✓</span>The answer is <span class="hl">${esc(q.choices[q.a[0]])}</span>.</div>`,say:`The answer is ${q.choices[q.a[0]]}.`});
+  sc.push({clear:1,board:`<div class="kicker">Your turn</div><h2>Now you try</h2><div class="vline">Practice ${esc(n.n.toLowerCase())} with a tutor beside every question.</div><div class="vline"><button class="go" onclick="vClose();startPractice('${k}','practice')">Start practicing →</button></div>`,say:`Now it's your turn. Press start practicing when you're ready.`,end:1});
+  return sc}
+function watch(k){if(VP)vStop();VP={k,sc:buildVideo(k),i:0,playing:true,mute:!('speechSynthesis' in window),cc:true,shown:-1};
+  const v=$('vid');v.hidden=false;$('vprog').innerHTML=VP.sc.map(()=>'<i></i>').join('');$('vstage').innerHTML=`<div class="vlumi" id="vlumi">${orb(56)}</div>`;
+  vUI();vScene();setTimeout(()=>$('vplay').focus(),50)}
+function vScene(){const P=VP;if(!P)return;const s=P.sc[P.i];if(!s)return;const st=$('vstage');
+  if(P.shown<P.i){if(s.clear)st.innerHTML=`<div class="vlumi" id="vlumi">${orb(56)}</div>`;st.insertAdjacentHTML('beforeend',`<div class="vline-wrap">${s.board}</div>`);P.shown=P.i;st.scrollTop=st.scrollHeight}
+  $('vcap').textContent=strip(s.say);[...$('vprog').children].forEach((x,j)=>x.classList.toggle('on',j<=P.i));
+  if(!P.playing)return;const done=()=>{if(VP!==P||!P.playing)return;clearTimeout(P.t);if(s.end){P.playing=false;vUI();return}P.i++;vScene()};
+  const wait=Math.max(2200,s.say.length*62);$('vlumi')&&$('vlumi').classList.add('talk');
+  if(!P.mute&&'speechSynthesis' in window){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(sayable(s.say));u.rate=.95;u.onend=()=>setTimeout(done,450);u.onerror=()=>{P.t=setTimeout(done,wait)};speechSynthesis.speak(u);
+    P.t=setTimeout(done,wait*2.2)/* safety net: some browsers never fire onend */}
+  else P.t=setTimeout(done,wait)}
+function vStop(){if(!VP)return;clearTimeout(VP.t);try{speechSynthesis.cancel()}catch(e){}}
+function vToggle(){const P=VP;if(!P)return;if(P.playing){P.playing=false;vStop();$('vlumi')&&$('vlumi').classList.remove('talk')}else{P.playing=true;if(P.sc[P.i].end){P.i=0;P.shown=-1}vScene()}vUI()}
+function vRestart(){if(!VP)return;vStop();VP.i=0;VP.shown=-1;VP.playing=true;vScene();vUI()}
+function vMute(){if(!VP)return;if(!('speechSynthesis' in window))return msg("This device can't read aloud. Captions are on.");VP.mute=!VP.mute;vStop();if(VP.playing)vScene();vUI()}
+function vCC(){if(!VP)return;VP.cc=!VP.cc;vUI()}
+function vUI(){const P=VP;$('vplay').innerHTML=P.playing?'❚❚ Pause':'▶ Play';$('vplay').setAttribute('aria-label',P.playing?'Pause':'Play');
+  $('vmute').textContent=P.mute?'🔇 Voice off':'🔊 Voice on';$('vmute').setAttribute('aria-pressed',String(P.mute));$('vcc').setAttribute('aria-pressed',String(P.cc));$('vcap').hidden=!P.cc}
+function vClose(){vStop();VP=null;$('vid').hidden=true}
+document.addEventListener('keydown',e=>{if(!VP||$('vid').hidden)return;if(e.key==='Escape')vClose();else if(e.key===' '&&e.target.tagName!=='BUTTON'){e.preventDefault();vToggle()}});
+/* "Watch the lesson" on every skill panel and on Today's Mission */
+const _info2=infoHtml;infoHtml=function(k){return _info2(k).replace('<div class="row"><button class="go" onclick="startPractice(',`<div class="row"><button class="alt" onclick="watch('${k}')">▶ Watch the lesson</button></div><div class="row"><button class="go" onclick="startPractice(`)};
+const _dash2=dashHtml;dashHtml=function(){return _dash2().replace(`<button class="alt" onclick="openSkill('`,`<button class="alt" onclick="watch(missionState().r)">▶ Watch the lesson</button><button class="alt" onclick="openSkill('`)};
+if(tab==='learn')render();
 </script>
 
 </body>

@@ -10,7 +10,7 @@ Master every skill. Understand every concept. A free learning site for Pre-K thr
 | `public/app.html` | The learning app (`/app`): sign-in, Learn, Courses, classes, Community, Downloads, Library, Certificates, Impact, Owner console |
 | `server/server.js` | The server: accounts, saved progress, classes, community, certificates, owner tools. No dependencies. |
 | `server/curriculum.json` | Courses and milestone badges the server checks before issuing certificates |
-| `tools/` | Sources for `public/app.html`: `base.html` (the prototype), `bridge.html` (server connection), `ui.html` (design layer). Edit these, then run `python3 tools/build.py`. `tools/e2e.cjs` is a full browser test. |
+| `tools/` | Sources for `public/app.html`: `base.html` (the prototype), `firebase.html` (Firebase accounts), `bridge.html` (server connection), `ui.html` (design layer), `features.html` (Find my level, Mastery Challenge, worked examples), `video.html` (lesson videos). Edit these, then run `python3 tools/build.py`. `tools/e2e.cjs` is a full browser test. |
 | `prototype/` | The earlier single-file prototype, kept for reference |
 
 Data is stored in a SQLite file (`lumen.db`) inside `DATA_DIR`. Back that folder up.

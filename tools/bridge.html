@@ -20,7 +20,7 @@ async function api(method,path,body){
 }
 let _syncT=null,_ownerT=null;
 function stateBody(){
-  const P={};['grades','subj','me','lite','cs','rs','cs2','cg','ot','gf','v3','sched','myGrade','lvl','a11y','daily','onboarded'].forEach(k=>{if(ST[k]!==undefined)P[k]=ST[k]});
+  const P={};['grades','subj','me','lite','cs','rs','cs2','cg','ot','gf','v3','sched','myGrade','lvl','a11y','daily','onboarded','diag'].forEach(k=>{if(ST[k]!==undefined)P[k]=ST[k]});
   return {S,gems:BOOT.state.gems||0,xp:BOOT.state.xp||0,days:ST.days||[],secs:ST.secs||0,prefs:P};
 }
 /* Demo mode: no server (for example on GitHub Pages), so progress stays in this browser */
