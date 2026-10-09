@@ -39,35 +39,67 @@
 /* ===== Lesson videos for every skill, built from the skill's idea, a fresh worked example and its steps.
    Narration uses the device's own voice (free, works offline); captions show the same words. ===== */
 let VP=null;
-const sayable=t=>strip(t).replace(/×/g,' times ').replace(/÷/g,' divided by ').replace(/−/g,' minus ').replace(/(\d)\s*\/\s*(\d)/g,'$1 over $2').replace(/\^2/g,' squared').replace(/\^(\d)/g,' to the power $1').replace(/\s=\s?\?/g,' equals what').replace(/=/g,' equals ').replace(/\?/g,'?');
-function buildVideo(k){const n=SK[k],q=G[k](1),sc=[];
-  sc.push({clear:1,board:`<div class="kicker">${esc(SUBN[n.sub])} · ${GLAB(ST.gr[k])}</div><h2>${esc(n.n)}</h2>`,say:`Hi, I'm Lumi. Let's learn ${n.n}.`});
+const sayable=t=>strip(t).replace(/×/g,' times ').replace(/÷/g,' divided by ').replace(/−/g,' minus ').replace(/(\d)\s*\/\s*(\d)/g,'$1 over $2').replace(/\^2/g,' squared').replace(/\^(\d)/g,' to the power $1').replace(/\s=\s?\?/g,' equals what').replace(/=/g,' equals ');
+/* ===== Lumi's voice: picks the most natural voice the device has, speaks sentence by sentence with small pauses,
+   and switches to a Spanish voice for Spanish words ===== */
+const VOICE=(()=>{let list=[];const ok='speechSynthesis' in window;
+  const load=()=>{try{list=speechSynthesis.getVoices()||[]}catch(e){list=[]}};if(ok){load();speechSynthesis.addEventListener&&speechSynthesis.addEventListener('voiceschanged',()=>{load();if(typeof tab!=='undefined'&&tab==='settings')showTab('settings')})}
+  const ROBOTIC=/\b(david|mark|zira|espeak|fred|albert|bad news|bahh|bells|boing|bubbles|cellos|jester|organ|trinoids|whisper|wobble|zarvox|junior|ralph|kathy|grandma|grandpa|rocko|shelley|reed|eddy|flo|sandy|hysterical|superstar|good news|pipe)\b/i;
+  const NICE=/\b(aria|jenny|ava|samantha|allison|emma|michelle|sonia|libby|natasha|clara|joanna|salli|serena|nicky|zoe|evan|guy|andrew|brian|emily|ana)\b/i;
+  const quality=n=>(/natural|neural/i.test(n)?60:0)+(/premium/i.test(n)?55:/enhanced/i.test(n)?45:0)+(/online/i.test(n)?20:0)+(/google/i.test(n)?35:0)+(NICE.test(n)?20:0)-(ROBOTIC.test(n)?60:0);
+  const score=v=>/^en[-_]US/i.test(v.lang)?30+quality(v.name):/^en/i.test(v.lang)?18+quality(v.name):-1e3;
+  const scoreEs=v=>/^es/i.test(v.lang)?(/^es[-_](MX|US|419)/i.test(v.lang)?5:0)+quality(v.name):-1e3;
+  const english=()=>list.filter(v=>score(v)>-100).sort((a,b)=>score(b)-score(a));
+  function pick(lang){if(lang==='es')return list.filter(v=>scoreEs(v)>-100).sort((a,b)=>scoreEs(b)-scoreEs(a))[0]||null;
+    const pref=((typeof ST!=='undefined'&&ST.a11y)||{}).voice,mine=pref&&list.find(v=>v.name===pref);return mine||english()[0]||null}
+  let token=0;
+  /* parts: [{t:'text', lang:'en'|'es'}]; calls onend once when everything has been spoken */
+  function say(parts,onend){if(!ok){onend&&setTimeout(onend,0);return}token++;const my=token;try{speechSynthesis.cancel()}catch(e){}
+    if(!list.length)load();
+    const chunks=[];parts.forEach(p=>{const lang=p.lang||'en';String(p.t).split(/(?<=[.!?])\s+/).map(x=>x.trim()).filter(Boolean).forEach(t=>chunks.push({t,lang}))});
+    if(!chunks.length){onend&&onend();return}
+    let i=0;const next=()=>{if(my!==token)return;if(i>=chunks.length){onend&&onend();return}const c=chunks[i++],u=new SpeechSynthesisUtterance(c.lang==='es'?c.t:sayable(c.t)),v=pick(c.lang);
+      if(v){u.voice=v;u.lang=v.lang}else u.lang=c.lang==='es'?'es-MX':'en-US';
+      u.rate=c.lang==='es'?.9:.96;u.pitch=1.06;u.onend=()=>setTimeout(next,c.lang==='es'?220:320);u.onerror=()=>setTimeout(next,50);speechSynthesis.speak(u)};
+    next()}
+  function stop(){token++;try{speechSynthesis.cancel()}catch(e){}}
+  return{say,stop,english,pick,ok}})();
+/* every read-aloud button in the app uses Lumi's voice too */
+speak=function(t){if(!VOICE.ok)return msg("This device can't read aloud.");VOICE.say([{t}])};
+listen=function(k){if(!VOICE.ok)return msg("This device can't read aloud.");VOICE.say([{t:spoken(k)}])};
+const txt=s=>Array.isArray(s)?s.map(p=>p.t).join(' '):s;
+const parts=s=>Array.isArray(s)?s:[{t:s}];
+const HELLO=["Hi there! I'm Lumi. Today we're learning","Hey! Lumi here. Let's explore","Hello, friend! I'm Lumi. Let's dig into"];
+const STEP=['First, ','Next, ','Then, ','After that, '];
+function buildVideo(k){const n=SK[k],q=G[k](1),sc=[],es=n.sub==='es';
+  sc.push({clear:1,board:`<div class="kicker">${esc(SUBN[n.sub])} · ${GLAB(ST.gr[k])}</div><h2>${esc(n.n)}</h2>`,say:`${pick(HELLO)} ${n.n.toLowerCase()}.`});
   if(/^Study these facts/.test(n.c)){const items=[...n.c.matchAll(/<li>(.*?)<\/li>/g)].map(m=>m[1]);
-    sc.push({board:'<div class="vline">Here are the key ideas:</div>',say:'Here are the key ideas.'});
-    items.slice(0,6).forEach(it=>sc.push({board:`<div class="vline">• ${it.replace(/<b>(.*?)<\/b>/,'<span class="hl">$1</span>')}</div>`,say:sayable(it)}))}
-  else sc.push({board:`<div class="vline"><span class="hl">The idea:</span> ${n.c}</div>`,say:sayable(n.c)});
-  sc.push({clear:1,board:`<div class="kicker">Worked example</div><div class="vline big">${q.q}</div>${q.choices?`<div class="vline">${q.choices.map((c,i)=>`${'ABCD'[i]}. ${esc(c)}`).join('&nbsp;&nbsp;&nbsp; ')}</div>`:''}`,
-    say:`Let's try one together. ${sayable(q.q)}${q.choices?' The choices are: '+q.choices.join(', ')+'.':''}`});
-  if(!q.choices){q.h.forEach((h,i)=>sc.push({board:`<div class="vline"><span class="num">${i+1}</span>${h}</div>`,say:sayable(h)}));
-    sc.push({board:`<div class="vline"><span class="hl">So:</span> ${q.s}</div>`,say:'So, '+sayable(q.s)})}
-  else sc.push({board:`<div class="vline"><span class="num">✓</span>The answer is <span class="hl">${esc(q.choices[q.a[0]])}</span>.</div>`,say:`The answer is ${q.choices[q.a[0]]}.`});
-  sc.push({clear:1,board:`<div class="kicker">Your turn</div><h2>Now you try</h2><div class="vline">Practice ${esc(n.n.toLowerCase())} with a tutor beside every question.</div><div class="vline"><button class="go" onclick="vClose();startPractice('${k}','practice')">Start practicing →</button></div>`,say:`Now it's your turn. Press start practicing when you're ready.`,end:1});
+    sc.push({board:'<div class="vline">Here are the key ideas:</div>',say:"Here are the key ideas. Listen along, and see which ones you already know."});
+    items.slice(0,6).forEach(it=>{const m=it.match(/^(.*)<b>(.*?)<\/b>\s*$/),a=m?m[2]:'',qq=m?strip(m[1]):strip(it);
+      sc.push({board:`<div class="vline">• ${it.replace(/<b>(.*?)<\/b>/,'<span class="hl">$1</span>')}</div>`,say:es&&a?[{t:qq},{t:a,lang:'es'}]:[{t:qq+(a?' '+a+'.':'')}]})})}
+  else sc.push({board:`<div class="vline"><span class="hl">The idea:</span> ${n.c}</div>`,say:'Here is the big idea. '+strip(n.c)});
+  const ch=q.choices||[];
+  sc.push({clear:1,board:`<div class="kicker">Worked example</div><div class="vline big">${q.q}</div>${ch.length?`<div class="vline">${ch.map((c,i)=>`${'ABCD'[i]}. ${esc(c)}`).join('&nbsp;&nbsp;&nbsp; ')}</div>`:''}`,
+    say:ch.length?[{t:`Let's try one together. ${strip(q.q)} Your choices are:`},...ch.map((c,i)=>({t:c+(i<ch.length-1?',':'.'),lang:es?'es':'en'}))]:`Okay, let's try one together. ${strip(q.q)}`});
+  if(!ch.length){q.h.forEach((h,i)=>sc.push({board:`<div class="vline"><span class="num">${i+1}</span>${h}</div>`,say:STEP[Math.min(i,3)]+strip(h).replace(/^./,c=>c.toLowerCase())}));
+    sc.push({board:`<div class="vline"><span class="hl">So:</span> ${q.s}</div>`,say:'So, '+strip(q.s)+' Nice!'})}
+  else{const a=ch[q.a[0]];sc.push({board:`<div class="vline"><span class="num">✓</span>The answer is <span class="hl">${esc(a)}</span>.</div>`,say:es?[{t:'The answer is'},{t:a+'.',lang:'es'},{t:'Great!'}]:`The answer is ${a}. Great!`})}
+  sc.push({clear:1,board:`<div class="kicker">Your turn</div><h2>Now you try</h2><div class="vline">Practice ${esc(n.n.toLowerCase())} with a tutor beside every question.</div><div class="vline"><button class="go" onclick="vClose();startPractice('${k}','practice')">Start practicing →</button></div>`,say:`Nice work watching! Now it's your turn. Press start practicing whenever you're ready. You've got this.`,end:1});
   return sc}
-function watch(k){if(VP)vStop();VP={k,sc:buildVideo(k),i:0,playing:true,mute:!('speechSynthesis' in window),cc:true,shown:-1};
+function watch(k){if(VP)vStop();VP={k,sc:buildVideo(k),i:0,playing:true,mute:!VOICE.ok,cc:true,shown:-1};
   const v=$('vid');v.hidden=false;$('vprog').innerHTML=VP.sc.map(()=>'<i></i>').join('');$('vstage').innerHTML=`<div class="vlumi" id="vlumi">${orb(56)}</div>`;
   vUI();vScene();setTimeout(()=>$('vplay').focus(),50)}
 function vScene(){const P=VP;if(!P)return;const s=P.sc[P.i];if(!s)return;const st=$('vstage');
   if(P.shown<P.i){if(s.clear)st.innerHTML=`<div class="vlumi" id="vlumi">${orb(56)}</div>`;st.insertAdjacentHTML('beforeend',`<div class="vline-wrap">${s.board}</div>`);P.shown=P.i;st.scrollTop=st.scrollHeight}
-  $('vcap').textContent=strip(s.say);[...$('vprog').children].forEach((x,j)=>x.classList.toggle('on',j<=P.i));
-  if(!P.playing)return;const done=()=>{if(VP!==P||!P.playing)return;clearTimeout(P.t);if(s.end){P.playing=false;vUI();return}P.i++;vScene()};
-  const wait=Math.max(2200,s.say.length*62);$('vlumi')&&$('vlumi').classList.add('talk');
-  if(!P.mute&&'speechSynthesis' in window){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(sayable(s.say));u.rate=.95;u.onend=()=>setTimeout(done,450);u.onerror=()=>{P.t=setTimeout(done,wait)};speechSynthesis.speak(u);
-    P.t=setTimeout(done,wait*2.2)/* safety net: some browsers never fire onend */}
+  $('vcap').textContent=txt(s.say);[...$('vprog').children].forEach((x,j)=>x.classList.toggle('on',j<=P.i));
+  if(!P.playing)return;const done=()=>{if(VP!==P||!P.playing)return;clearTimeout(P.t);if(s.end){P.playing=false;$('vlumi')&&$('vlumi').classList.remove('talk');vUI();return}P.i++;vScene()};
+  const wait=Math.max(2400,txt(s.say).length*65);$('vlumi')&&$('vlumi').classList.add('talk');
+  if(!P.mute&&VOICE.ok){VOICE.say(parts(s.say),()=>setTimeout(done,350));P.t=setTimeout(done,wait*2.4)/* safety net: some browsers never report the end of speech */}
   else P.t=setTimeout(done,wait)}
-function vStop(){if(!VP)return;clearTimeout(VP.t);try{speechSynthesis.cancel()}catch(e){}}
+function vStop(){if(!VP)return;clearTimeout(VP.t);VOICE.stop()}
 function vToggle(){const P=VP;if(!P)return;if(P.playing){P.playing=false;vStop();$('vlumi')&&$('vlumi').classList.remove('talk')}else{P.playing=true;if(P.sc[P.i].end){P.i=0;P.shown=-1}vScene()}vUI()}
 function vRestart(){if(!VP)return;vStop();VP.i=0;VP.shown=-1;VP.playing=true;vScene();vUI()}
-function vMute(){if(!VP)return;if(!('speechSynthesis' in window))return msg("This device can't read aloud. Captions are on.");VP.mute=!VP.mute;vStop();if(VP.playing)vScene();vUI()}
+function vMute(){if(!VP)return;if(!VOICE.ok)return msg("This device can't read aloud. Captions are on.");VP.mute=!VP.mute;vStop();if(VP.playing)vScene();vUI()}
 function vCC(){if(!VP)return;VP.cc=!VP.cc;vUI()}
 function vUI(){const P=VP;$('vplay').innerHTML=P.playing?'❚❚ Pause':'▶ Play';$('vplay').setAttribute('aria-label',P.playing?'Pause':'Play');
   $('vmute').textContent=P.mute?'🔇 Voice off':'🔊 Voice on';$('vmute').setAttribute('aria-pressed',String(P.mute));$('vcc').setAttribute('aria-pressed',String(P.cc));$('vcap').hidden=!P.cc}
@@ -76,5 +108,8 @@ document.addEventListener('keydown',e=>{if(!VP||$('vid').hidden)return;if(e.key=
 /* "Watch the lesson" on every skill panel and on Today's Mission */
 const _info2=infoHtml;infoHtml=function(k){return _info2(k).replace('<div class="row"><button class="go" onclick="startPractice(',`<div class="row"><button class="alt" onclick="watch('${k}')">▶ Watch the lesson</button></div><div class="row"><button class="go" onclick="startPractice(`)};
 const _dash2=dashHtml;dashHtml=function(){return _dash2().replace(`<button class="alt" onclick="openSkill('`,`<button class="alt" onclick="watch(missionState().r)">▶ Watch the lesson</button><button class="alt" onclick="openSkill('`)};
+const _set=VIEWS.settings;VIEWS.settings=function(){const vs=VOICE.ok?VOICE.english():[],cur=(VOICE.pick('en')||{}).name,best=(vs[0]||{}).name;
+  const row=VOICE.ok?`<label class="sw"><span>Lumi's voice<small>Used for lesson videos and read-aloud. Voices marked ★ sound the most natural on this device.</small></span><span style="display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end"><select onchange="setA('voice',this.value)" style="max-width:240px">${vs.length?vs.map(v=>`<option value="${esc(v.name)}" ${v.name===cur?'selected':''}>${/natural|neural|premium|enhanced|google/i.test(v.name)?'★ ':''}${esc(v.name.replace(/^Microsoft |^Google /,''))}${v.name===best?' (recommended)':''}</option>`).join(''):'<option>Default voice</option>'}</select><button type="button" class="alt" onclick="VOICE.say([{t:'Hi there! I\'m Lumi. Let\'s learn something new together.'}])">▶ Preview</button></span></label>`:'';
+  return _set().replace('<label class="sw"><span>Text size',row+'<label class="sw"><span>Text size')};
 if(tab==='learn')render();
 </script>
