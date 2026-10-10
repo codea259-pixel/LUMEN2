@@ -57,7 +57,7 @@ Practice questions have an **Ask Lumi** button. With `ANTHROPIC_API_KEY` set on 
 
 ## Accounts
 
-- **Learners 13+** sign up themselves.
-- **Under 13**: a teacher creates logins from the Teacher tab (type the names, Bose Academy makes usernames and passwords, no email needed).
+- **Learners of any age** sign up themselves. Under 13, a parent or guardian gives their email and ticks a permission box (COPPA), and the account can read but not post in the Community.
+- **Classes**: a teacher can also create logins from the Teacher tab (type the names, Bose Academy makes usernames and passwords, no email needed).
 - **Teachers and parents** sign up with an email. The Owner can mark teachers as verified, which lets them moderate the community.
 - **Owner**: created on the server only, never through the website.

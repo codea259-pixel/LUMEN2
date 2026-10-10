@@ -53,8 +53,8 @@ const errs = [];
   if (cid) { const v = await (await fetch(B + '/c/' + cid)).text(); step('public verify page: ' + (/Verified/.test(v) ? 'valid' : 'MISSING')); }
 
   // Community post
-  await s.click('#tabs >> text=Community'); await s.fill('#pt', 'How do I add fractions?'); await s.fill('#pb', 'I keep adding the bottoms too.'); await s.click('#views button:has-text("Post")');
-  await s.waitForSelector('text=How do I add fractions?'); step('student posted a question');
+  // teacher-made logins are treated as under 13: the Community is read-only for them
+  await s.click('#tabs >> text=Community'); await s.waitForSelector('text=Reading only for now'); step('class student sees a read-only Community');
 
   // Teacher sees progress
   await p.reload(); await p.waitForSelector('#avatarBtn'); await p.click('#tabs >> text=Teacher'); await p.waitForSelector('.cls table');

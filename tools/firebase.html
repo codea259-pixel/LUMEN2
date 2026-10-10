@@ -33,7 +33,7 @@ const FBM=(()=>{
     if(/permission-denied/.test(c))return new E(403,'Not allowed.');
     if(/network|unavailable/.test(c))return new E(503,'No connection. Check your internet and try again.');
     return e instanceof E?e:new E(500,e&&e.message||'Something went wrong. Please try again.')};
-  const userOut=()=>({id:me.uid,username:profile.username,display:profile.display,role:isOwner()?'owner':profile.role,verified:!!profile.verified});
+  const userOut=()=>({id:me.uid,username:profile.username,display:profile.display,role:isOwner()?'owner':profile.role,verified:!!profile.verified,under13:!!profile.under13});
 
   async function start(){
     await load('firebase-app-compat.js');await Promise.all([load('firebase-auth-compat.js'),load('firebase-firestore-compat.js')]);
@@ -54,12 +54,13 @@ const FBM=(()=>{
     const username=str(b.username,3,20,'Usernames').toLowerCase();if(!/^[a-z0-9_]+$/.test(username))throw new E(400,'Usernames use letters, numbers and underscores only.');
     const password=String(b.password||'');if(password.length<8||password.length>100)throw new E(400,'Passwords need at least 8 characters.');
     const display=str(b.display,2,20,'Display names');const bad=typeof clean==='function'?clean(display):'';if(bad)throw new E(400,bad);
-    if(role==='student'&&!b.age13)throw new E(400,'Learners must be 13 or older, or ask a teacher or parent to set up the account.');
+    let parentEmail=null;const under13=role==='student'&&!!b.under13;
+    if(under13){parentEmail=str(b.parentEmail,5,100,'Email');if(!/^\S+@\S+\.\S+$/.test(parentEmail))throw new E(400,"Enter the parent or guardian's email.");if(!b.parentOk)throw new E(400,'A parent or guardian needs to tick the permission box.')}
     let email=null;if(role!=='student'){email=str(b.email,5,100,'Email');if(!/^\S+@\S+\.\S+$/.test(email))throw new E(400,'Enter a valid email address.')}
     const cred=await auth.createUserWithEmailAndPassword(emailOf(username),password);const uid=cred.user.uid;
-    await doc('users',uid).set({username,display,role,verified:false,locked:false,created:now()});
+    await doc('users',uid).set({username,display,role,verified:false,locked:false,under13,created:now()});
     await doc('state',uid).set({json:'{}',updated:now(),readers:[]});
-    if(email)await doc('private',uid).set({email});
+    if(email||parentEmail)await doc('private',uid).set(parentEmail?{parentEmail,consent:now()}:{email});
     return{ok:true}});
   route('POST','/api/login',async b=>{const u=String(b.username||'').trim().toLowerCase();if(!/^[a-z0-9_]{3,20}$/.test(u))throw new E(401,'Wrong username or password.');
     await auth.signInWithEmailAndPassword(emailOf(u),String(b.password||''));
@@ -68,10 +69,13 @@ const FBM=(()=>{
     if(window.FIREBASE_TEST_GOOGLE)await auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(JSON.stringify(window.FIREBASE_TEST_GOOGLE)));else await auth.signInWithPopup(pr);
     const p=await doc('users',auth.currentUser.uid).get();if(p.exists&&p.data().locked){await auth.signOut();throw new E(403,'This account is locked. Ask your teacher or the site owner.')}return{ok:true}});
   route('POST','/api/finish',async b=>{if(!me)throw new E(401,'Please sign in.');if(profile)return{ok:true};const role=b.role;if(!ROLES.includes(role))throw new E(400,'Choose learner, parent or teacher.');
-    const display=str(b.display,2,20,'Display names');if(role==='student'&&!b.age13)throw new E(400,'Learners must be 13 or older, or ask a teacher or parent to set up the account.');
+    const display=str(b.display,2,20,'Display names');
+    let parentEmail=null;const under13=role==='student'&&!!b.under13;
+    if(under13){parentEmail=str(b.parentEmail,5,100,'Email');if(!/^\S+@\S+\.\S+$/.test(parentEmail))throw new E(400,"Enter the parent or guardian's email.");if(!b.parentOk)throw new E(400,'A parent or guardian needs to tick the permission box.')}
+
     const username=((me.email||'user').split('@')[0].toLowerCase().replace(/[^a-z0-9_]/g,'').slice(0,14)||'user')+rand(3,'23456789');
-    await doc('users',me.uid).set({username,display,role,verified:false,locked:false,created:now(),google:true});
-    await doc('state',me.uid).set({json:'{}',updated:now(),readers:[]},{merge:true});if(me.email)await doc('private',me.uid).set({email:me.email});return{ok:true}});
+    await doc('users',me.uid).set({username,display,role,verified:false,locked:false,under13,created:now(),google:true});
+    await doc('state',me.uid).set({json:'{}',updated:now(),readers:[]},{merge:true});if(me.email||parentEmail)await doc('private',me.uid).set({...(me.email?{email:me.email}:{}),...(parentEmail?{parentEmail,consent:now()}:{})});return{ok:true}});
   route('POST','/api/logout',async()=>{await auth.signOut();return{ok:true}});
   route('PATCH','/api/me',async b=>{need();const d=str(b.display,2,20,'Display names');await doc('users',me.uid).update({display:d});profile.display=d;return{display:d}});
   route('GET','/api/settings',async()=>({flags:{...DEF.flags,...site.flags},retDays:site.retDays??DEF.retDays,gr:site.gr||{},impact:site.impact||DEF.impact}));
@@ -93,10 +97,11 @@ const FBM=(()=>{
     const posts=[];ps.forEach(d=>{const p=d.data();posts.push({id:num(d.id),type:p.type,group:p.grp?num(p.grp):null,subject:p.subject,grade:p.grade,title:p.title,body:p.body,author:p.authorName,ts:p.ts,hidden:!!p.hidden,pinned:!!p.pinned,locked:!!p.locked,votes:nm(p.votes),reports:mod?nm(p.reports):[],replies:(reps[d.id]||[]).sort((a,b)=>a.ts-b.ts)})});
     posts.sort((a,b)=>b.ts-a.ts);const groups=[];gs.forEach(d=>{const g=d.data();groups.push({id:num(d.id),name:g.name,subject:g.subject,grade:g.grade,members:nm(g.members,g.memberNames)})});
     return{posts,groups}});
-  route('POST','/api/posts',async b=>{need();const t=str(b.title,5,120,'Titles'),body=str(b.body,10,2000,'Posts');let grp=null,subject=String(b.subject||'Math').slice(0,40),grade=+b.grade||5;
+  const noKids=()=>{if(profile&&profile.under13)throw new E(403,"Posting in the Community opens when you're 13.")};
+  route('POST','/api/posts',async b=>{need();noKids();const t=str(b.title,5,120,'Titles'),body=str(b.body,10,2000,'Posts');let grp=null,subject=String(b.subject||'Math').slice(0,40),grade=+b.grade||5;
     if(b.group){const g=await doc('groups',sid(b.group)).get();if(!g.exists||!(g.data().members||[]).includes(me.uid))throw new E(403,'Join the group to post.');grp=g.id;subject=g.data().subject;grade=g.data().grade}
     await db.collection('posts').add({grp,type:b.type==='q'?'q':'d',subject,grade,title:t,body,authorId:me.uid,authorName:profile.display,ts:now(),hidden:false,pinned:false,locked:false,votes:[],reports:[]});return{ok:true}});
-  route('POST','/api/posts/:id/reply',async(b,p)=>{need();const body=str(b.body,2,2000,'Replies');const d=await doc('posts',sid(p.id)).get();if(!d.exists)throw new E(404,'Post not found.');if(d.data().locked)throw new E(403,'This thread is locked.');
+  route('POST','/api/posts/:id/reply',async(b,p)=>{need();noKids();const body=str(b.body,2,2000,'Replies');const d=await doc('posts',sid(p.id)).get();if(!d.exists)throw new E(404,'Post not found.');if(d.data().locked)throw new E(403,'This thread is locked.');
     await db.collection('replies').add({postId:sid(p.id),authorId:me.uid,authorName:profile.display,body,ts:now(),hidden:false,reports:[]});return{ok:true}});
   route('POST','/api/posts/:id/vote',async(b,p)=>{need();const r=doc('posts',sid(p.id)),d=await r.get();if(!d.exists)throw new E(404,'Post not found.');
     await r.update({votes:(d.data().votes||[]).includes(me.uid)?FV.arrayRemove(me.uid):FV.arrayUnion(me.uid)});return{ok:true}});
@@ -106,7 +111,7 @@ const FBM=(()=>{
   route('POST','/api/posts/:id/keep',async(b,p)=>{need(isOwner());await doc('posts',sid(p.id)).update({hidden:false,reports:[]});return{ok:true}});
   route('DELETE','/api/posts/:id',async(b,p)=>{need(isMod());const rs=await db.collection('replies').where('postId','==',sid(p.id)).get();await Promise.all(rs.docs.map(d=>d.ref.delete()));await doc('posts',sid(p.id)).delete();return{ok:true}});
   route('PATCH','/api/replies/:id',async(b,p)=>{need(isMod());const r=doc('replies',sid(p.id)),d=await r.get();await r.update({hidden:!d.data().hidden});return{ok:true}});
-  route('POST','/api/groups',async b=>{need();const n=str(b.name,3,40,'Group names');await db.collection('groups').add({name:n,subject:String(b.subject).slice(0,40),grade:+b.grade,members:[me.uid],memberNames:{[me.uid]:profile.display}});return{ok:true}});
+  route('POST','/api/groups',async b=>{need();noKids();const n=str(b.name,3,40,'Group names');await db.collection('groups').add({name:n,subject:String(b.subject).slice(0,40),grade:+b.grade,members:[me.uid],memberNames:{[me.uid]:profile.display}});return{ok:true}});
   route('POST','/api/groups/:id/join',async(b,p)=>{need();const r=doc('groups',sid(p.id)),d=await r.get();if(!d.exists)throw new E(404,'Not found.');const inG=(d.data().members||[]).includes(me.uid);
     await r.update(inG?{members:FV.arrayRemove(me.uid),['memberNames.'+me.uid]:FV.delete()}:{members:FV.arrayUnion(me.uid),['memberNames.'+me.uid]:profile.display});return{ok:true}});
 
@@ -140,7 +145,7 @@ const FBM=(()=>{
     for(const n of names){const first=(n.split(/\s+/)[0].replace(/[^\p{L}\p{N}]/gu,'').slice(0,14))||'Student',base=first.toLowerCase().replace(/[^a-z0-9]/g,'')||'student',pw=rand(8,'abcdefghjkmnpqrstuvwxyz23456789');
       let un,uid;for(let i=0;i<8&&!uid;i++){un=base+rand(3,'23456789');try{uid=(await ca.createUserWithEmailAndPassword(emailOf(un),pw)).user.uid}catch(e){if(!/email-already-in-use/.test(e.code||''))throw e}}
       if(!uid)throw new E(500,'Could not create a login. Try again.');
-      await cdb.collection('users').doc(uid).set({username:un,display:first,role:'student',verified:false,locked:false,managedBy:me.uid,created:now()});
+      await cdb.collection('users').doc(uid).set({username:un,display:first,role:'student',verified:false,locked:false,under13:true,managedBy:me.uid,created:now()});
       await cdb.collection('state').doc(uid).set({json:'{}',updated:now(),readers:[me.uid]});await ca.signOut();
       await cd.ref.update({members:FV.arrayUnion(uid),['memberGrades.'+uid]:[c.grade]});created.push({name:first,username:un,password:pw})}
     return{created}});

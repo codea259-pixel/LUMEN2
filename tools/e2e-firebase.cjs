@@ -27,7 +27,7 @@ const errs = [], ok = s => console.log('✓', s);
   const signup = async (p, role, user, display, email) => {
     await p.goto(B + 'app.html#signup'); await p.waitForSelector('#af'); await p.selectOption('#ar', role);
     await p.fill('[name=username]', user); await p.fill('[name=display]', display); if (email) await p.fill('[name=email]', email);
-    await p.fill('[name=password]', 'password123'); if (role === 'student') await p.check('[name=age13]');
+    await p.fill('[name=password]', 'password123');
     await p.click('#af button'); await p.waitForSelector('#avatarBtn', { timeout: 20000 });
   };
   const login = async (p, user, pw) => { await p.goto(B + 'app.html'); await p.waitForSelector('#af'); await p.fill('[name=username]', user); await p.fill('[name=password]', pw); await p.click('#af button'); };
@@ -91,6 +91,14 @@ const errs = [], ok = s => console.log('✓', s);
   await l.click('#tabs >> text=Community'); await l.fill('#pt', 'How do I add fractions?'); await l.fill('#pb', 'I keep adding the bottoms too.'); await l.click('#views button:has-text("Post")');
   await l.waitForSelector('text=How do I add fractions?', { timeout: 15000 }); ok('learner posted');
   await s.click('#tabs >> text=Community'); await s.waitForSelector('text=How do I add fractions?', { timeout: 15000 }); await s.click('.card.post button[aria-label=Upvote]'); await s.waitForSelector('.card.post button[aria-label=Upvote].on', { timeout: 10000 }); ok('student upvoted');
+
+  // 6b. A learner under 13 signs up with a parent's permission: progress saves, Community is read-only
+  const k = await page(); await k.goto(B + 'app.html#signup'); await k.waitForSelector('#af'); await k.selectOption('#ar', 'student');
+  await k.fill('[name=username]', 'maya7'); await k.fill('[name=display]', 'Maya7'); await k.fill('[name=password]', 'password123'); await k.check('[name=age][value=under13]');
+  await k.click('#af button'); ok('under-13 without parent details: ' + (await k.evaluate(() => document.querySelector('[name=parentEmail]').validity.valueMissing ? 'blocked by the form' : 'not blocked')));
+  await k.fill('[name=parentEmail]', 'parent@example.com'); await k.check('[name=parentOk]'); await k.click('#af button'); await k.waitForSelector('#avatarBtn', { timeout: 20000 }); ok('under-13 learner signed up with parent permission');
+  await k.click('#tabs >> text=Community'); await k.waitForSelector('text=Reading only for now', { timeout: 15000 }); ok('under-13 sees read-only Community, reply boxes: ' + (await k.$$('input[id^=pr]')).length);
+  ok('under-13 posting straight to the database: ' + await k.evaluate(async () => { try { await firebase.app().firestore().collection('posts').add({ authorId: FBM.uid(), authorName: 'x', title: 'hello there', body: 'hello there everyone', hidden: false, pinned: false, locked: false, votes: [], reports: [], ts: 1 }); return 'ALLOWED' } catch (e) { return 'blocked' } }));
 
   // 7. Owner console: verify the teacher, lock an account
   await menu(o, 'Owner console'); await o.waitForSelector('.vs', { timeout: 15000 }); ok('owner sees ' + ((await o.$$('.vs tr')).length - 1) + ' users');

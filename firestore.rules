@@ -81,7 +81,7 @@ service cloud.firestore {
     // Community posts and replies
     match /posts/{pid} {
       allow read: if active() && (resource.data.hidden == false || isMod());
-      allow create: if active() && request.resource.data.authorId == request.auth.uid
+      allow create: if active() && me().get('under13', false) != true && request.resource.data.authorId == request.auth.uid
         && request.resource.data.hidden == false && request.resource.data.pinned == false && request.resource.data.locked == false
         && request.resource.data.votes.size() == 0 && request.resource.data.reports.size() == 0
         && okText('title', 5, 120) && okText('body', 10, 2000);
@@ -93,7 +93,7 @@ service cloud.firestore {
     }
     match /replies/{rid} {
       allow read: if active() && (resource.data.hidden == false || isMod());
-      allow create: if active() && request.resource.data.authorId == request.auth.uid
+      allow create: if active() && me().get('under13', false) != true && request.resource.data.authorId == request.auth.uid
         && request.resource.data.hidden == false && request.resource.data.reports.size() == 0 && okText('body', 2, 2000)
         && get(/databases/$(db)/documents/posts/$(request.resource.data.postId)).data.locked != true;
       allow update: if isMod() || (active() && (
@@ -105,7 +105,7 @@ service cloud.firestore {
     // Study groups: anyone signed in can join or leave
     match /groups/{gid} {
       allow read: if active();
-      allow create: if active() && request.resource.data.members == [request.auth.uid] && okText('name', 3, 40);
+      allow create: if active() && me().get('under13', false) != true && request.resource.data.members == [request.auth.uid] && okText('name', 3, 40);
       allow update: if active() && changedOnly(['members', 'memberNames']) && toggledSelf('members');
     }
 

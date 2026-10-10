@@ -1,7 +1,7 @@
 <style>
 .auth{max-width:440px;margin:24px auto 64px;padding:0 16px}.auth .card{margin-top:16px}.auth label{display:block;margin-top:12px;font-weight:700;font-size:15px}.auth label input:not([type=checkbox]),.auth label select{display:block;width:100%;margin-top:4px}
 .auth [hidden]{display:none!important}.auth input[type=password]{font:inherit;font-size:16px;padding:9px 12px;border-radius:10px;border:2px solid var(--line);background:var(--bg);color:var(--ink)}
-.auth .ck{font-weight:400;display:flex;gap:8px;align-items:flex-start}.auth .err{color:var(--coral);font-weight:700;min-height:1.4em;margin:10px 0 0}
+.auth .ck{font-weight:400;display:flex;gap:8px;align-items:flex-start}.auth .ck input[type=radio],.auth .ck input[type=checkbox]{display:inline-block;width:18px;height:18px;margin:3px 0 0;flex:none}.auth fieldset .ck{margin-top:6px}.auth .err{color:var(--coral);font-weight:700;min-height:1.4em;margin:10px 0 0}
 .acct{display:flex;gap:8px;align-items:center;margin-left:auto;font-size:14px;color:var(--mute)}.acct b{color:var(--ink)}
 .creds{width:100%;border-collapse:collapse;margin-top:8px;font-size:15px}.creds td,.creds th{border:1px solid var(--line);padding:6px 10px;text-align:left}
 @media print{body *{visibility:hidden}.printme,.printme *{visibility:visible}.printme{position:absolute;left:0;top:0;width:100%}}
@@ -38,32 +38,38 @@ function authPage(mode){
   document.querySelector('.wrap2').hidden=true;document.querySelector('.app').hidden=true;const v=document.getElementById('views');v.hidden=false;
   const G=BOOT.fb?`<button type="button" class="alt" id="gsi" style="width:100%;margin-top:14px;display:flex;gap:10px;justify-content:center;align-items:center"><svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.6l6.7-6.7C35.6 2.4 30.2 0 24 0 14.6 0 6.6 5.4 2.7 13.3l7.8 6C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.6c0-1.6-.1-3.1-.4-4.6H24v9h12.4c-.5 2.9-2.2 5.3-4.6 6.9l7.5 5.8c4.4-4 6.8-10 6.8-17.1z"/><path fill="#FBBC05" d="M10.5 28.7c-.5-1.4-.8-3-.8-4.7s.3-3.2.8-4.7l-7.8-6C1 16.6 0 20.2 0 24s1 7.4 2.7 10.7l7.8-6z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.5-5.8c-2.1 1.4-4.8 2.3-8.4 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.8 6C6.6 42.6 14.6 48 24 48z"/></svg>Continue with Google</button><p class="sol" style="text-align:center;margin:10px 0 0">or use a username</p>`:'';
   if(mode==='finish'){v.innerHTML=`<div class="auth"><h2>Finish setting up</h2><p class="sol">You're signed in with Google. Tell us a little about you.</p><form class="card" id="af">
-  <label>I am a<select name="role" id="ar"><option value="student">Learner (13 or older)</option><option value="parent">Parent or guardian</option><option value="teacher">Teacher</option></select></label>
+  <label>I am a<select name="role" id="ar"><option value="student">Learner</option><option value="parent">Parent or guardian</option><option value="teacher">Teacher</option></select></label>
   <label>Display name (shown to others, not your full name)<input name="display" required minlength="2" maxlength="20"></label>
-  <label class="ck" id="ag"><input type="checkbox" name="age13"> I am 13 or older</label>
+  <fieldset id="ag" style="border:2px solid var(--line);border-radius:12px;margin-top:12px;padding:8px 12px"><legend style="font-weight:700;font-size:15px;padding:0 4px">How old is the learner?</legend>
+  <label class="ck"><input type="radio" name="age" value="13plus" checked> 13 or older</label><label class="ck"><input type="radio" name="age" value="under13"> Under 13</label>
+  <div id="pg" hidden><p class="sol" style="margin-top:4px">Learners under 13 set up their account with a parent or guardian.</p><label>Parent or guardian's email<input name="parentEmail" type="email" autocomplete="off"></label>
+  <label class="ck"><input type="checkbox" name="parentOk"> I'm this learner's parent or guardian. I agree to Bose Academy saving their learning progress. They can read the Community, and can post there once they're 13.</label></div></fieldset>
   <p class="err" id="ae" role="alert"></p><button class="lamp" type="submit">Continue</button></form><p><a href="#" id="so">Sign out</a></p></div>`;
-    const ar=document.getElementById('ar');ar.onchange=()=>{document.getElementById('ag').hidden=ar.value!=='student'};
+    const ar=document.getElementById('ar');ar.onchange=()=>{document.getElementById('ag').hidden=ar.value!=='student'};const ageUI=()=>{const u=(document.querySelector('[name=age]:checked')||{}).value==='under13';document.getElementById('pg').hidden=!u;document.querySelector('[name=parentEmail]').required=u;document.querySelector('[name=parentOk]').required=u};document.querySelectorAll('[name=age]').forEach(r=>r.onchange=ageUI);
     document.getElementById('so').onclick=async ev=>{ev.preventDefault();await api('POST','/api/logout',{}).catch(()=>{});location.reload()};
-    document.getElementById('af').onsubmit=async ev=>{ev.preventDefault();const f=Object.fromEntries(new FormData(ev.target));f.age13=!!f.age13;const b=ev.target.querySelector('button');b.disabled=true;
+    document.getElementById('af').onsubmit=async ev=>{ev.preventDefault();const f=Object.fromEntries(new FormData(ev.target));f.under13=f.age==='under13';f.age13=!f.under13;f.parentOk=!!f.parentOk;const b=ev.target.querySelector('button');b.disabled=true;
       try{await api('POST','/api/finish',f);location.reload()}catch(err){document.getElementById('ae').textContent=err.message;b.disabled=false}};
     v.querySelector('select').focus();return}
   v.innerHTML=`<div class="auth">${mode==='login'?`
   <h2>Sign in</h2>${G}<form class="card" id="af"><label>Username<input name="username" autocomplete="username" required></label><label>Password<input name="password" type="password" autocomplete="current-password" required></label><p class="err" id="ae" role="alert"></p><button class="lamp" type="submit">Sign in</button></form>
-  <p>New to Bose Academy? <a href="#" id="sw">Create a free account</a></p><p class="sol">Students under 13: your teacher or parent gives you a username and password.</p>`:`
+  <p>New to Bose Academy? <a href="#" id="sw">Create a free account</a></p><p class="sol">Learners of every age are welcome. Under 13? Sign up with a parent or guardian, or use the login your teacher gives you.</p>`:`
   <h2>Create a free account</h2>${G}<form class="card" id="af">
-  <label>I am a<select name="role" id="ar"><option value="student">Learner (13 or older)</option><option value="parent">Parent or guardian</option><option value="teacher">Teacher</option></select></label>
+  <label>I am a<select name="role" id="ar"><option value="student">Learner</option><option value="parent">Parent or guardian</option><option value="teacher">Teacher</option></select></label>
   <label>Username<input name="username" autocomplete="username" required minlength="3" maxlength="20" pattern="[A-Za-z0-9_]+" title="Letters, numbers and underscores"></label>
   <label>Display name (shown to others, not your full name)<input name="display" required minlength="2" maxlength="20"></label>
   <label id="em" hidden>Email<input name="email" type="email" autocomplete="email"></label>
   <label>Password (8+ characters)<input name="password" type="password" autocomplete="new-password" required minlength="8" maxlength="100"></label>
-  <label class="ck" id="ag"><input type="checkbox" name="age13"> I am 13 or older</label>
+  <fieldset id="ag" style="border:2px solid var(--line);border-radius:12px;margin-top:12px;padding:8px 12px"><legend style="font-weight:700;font-size:15px;padding:0 4px">How old is the learner?</legend>
+  <label class="ck"><input type="radio" name="age" value="13plus" checked> 13 or older</label><label class="ck"><input type="radio" name="age" value="under13"> Under 13</label>
+  <div id="pg" hidden><p class="sol" style="margin-top:4px">Learners under 13 set up their account with a parent or guardian.</p><label>Parent or guardian's email<input name="parentEmail" type="email" autocomplete="off"></label>
+  <label class="ck"><input type="checkbox" name="parentOk"> I'm this learner's parent or guardian. I agree to Bose Academy saving their learning progress. They can read the Community, and can post there once they're 13.</label></div></fieldset>
   <p class="err" id="ae" role="alert"></p><button class="lamp" type="submit">Create account</button></form>
   <p>Already have an account? <a href="#" id="sw">Sign in</a></p>
-  <p class="sol">Under 13? Ask a teacher or parent to create your login. Bose Academy never sells student data and shows no ads.</p>`}</div>`;
+  <p class="sol">Bose Academy never sells student data and shows no ads.</p>`}</div>`;
   const gb=document.getElementById('gsi');if(gb)gb.onclick=async()=>{gb.disabled=true;try{await api('POST','/api/google',{});location.reload()}catch(err){document.getElementById('ae').textContent=/popup-closed|cancelled/.test(err.message)?'':err.message;gb.disabled=false}};
   document.getElementById('sw').onclick=ev=>{ev.preventDefault();authPage(mode==='login'?'signup':'login')};
-  const ar=document.getElementById('ar');if(ar)ar.onchange=()=>{const s=ar.value==='student';document.getElementById('em').hidden=s;document.querySelector('#em input').required=!s;document.getElementById('ag').hidden=!s};
-  document.getElementById('af').onsubmit=async ev=>{ev.preventDefault();const f=Object.fromEntries(new FormData(ev.target));if(mode==='signup')f.age13=!!f.age13;
+  const ar=document.getElementById('ar');if(ar)ar.onchange=()=>{const s=ar.value==='student';document.getElementById('em').hidden=s;document.querySelector('#em input').required=!s;document.getElementById('ag').hidden=!s};if(document.getElementById('pg')){const ageUI=()=>{const u=(document.querySelector('[name=age]:checked')||{}).value==='under13';document.getElementById('pg').hidden=!u;document.querySelector('[name=parentEmail]').required=u;document.querySelector('[name=parentOk]').required=u};document.querySelectorAll('[name=age]').forEach(r=>r.onchange=ageUI);}
+  document.getElementById('af').onsubmit=async ev=>{ev.preventDefault();const f=Object.fromEntries(new FormData(ev.target));if(mode==='signup'){f.under13=f.age==='under13';f.age13=!f.under13;f.parentOk=!!f.parentOk;}
     const b=ev.target.querySelector('button');b.disabled=true;
     try{await api('POST',mode==='login'?'/api/login':'/api/signup',f);location.reload()}catch(err){document.getElementById('ae').textContent=err.message;b.disabled=false}};
   v.querySelector('input,select').focus();
@@ -171,6 +177,10 @@ qa=(id,keep)=>busy(async()=>{if(keep)await api('POST',`/api/posts/${id}/keep`,{}
 /* Group membership comes back as display names */
 const _gv=groupView;groupView=function(){return _gv()};
 const _cmView=cmView;cmView=function(){return _cmView().replace(/<p class="sol">Use a nickname[\s\S]*?<\/p>/,'<p class="sol">Your display name is shown on posts. Use a nickname, not your full name. Never share emails, phone numbers or where you live. Three reports hide a post until a moderator reviews it.</p>')};
+/* Learners under 13 can read the Community but not post until they're 13 (COPPA) */
+const _newForm=newForm;newForm=function(type,gid){return ME.under13?`<div class="tutor" style="margin-top:12px">${typeof orb==='function'?orb(34):''}<div class="tx"><b>Reading only for now</b>You can read questions and answers here. Posting opens when you're 13. Questions about a lesson? Ask Lumi or your teacher.</div></div>`:_newForm(type,gid)};
+const _postCard=postCard;postCard=function(p){const h=_postCard(p);return ME.under13?h.replace(/<div class="row"><input id="pr[^"]*"[\s\S]*?Reply<\/button><\/div>/,''):h};
+const _gv2=groupView;groupView=function(){const h=_gv2();return ME.under13?h.replace(/<div class="card" style="margin-top:12px"><h3>Create a study group<\/h3>[\s\S]*?Create<\/button><\/div><\/div>/,''):h};
 VIEWS.community=cmView;
 
 /* ---------- Certificates: issued and verified by the server ---------- */

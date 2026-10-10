@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS class_members(class_id INTEGER, user_id INTEGER, grad
 CREATE TABLE IF NOT EXISTS assignments(id INTEGER PRIMARY KEY, class_id INTEGER, title TEXT, skills TEXT, target INTEGER, ts INTEGER);
 CREATE TABLE IF NOT EXISTS settings(key TEXT PRIMARY KEY, value TEXT);
 `);
+for (const col of ['under13 INTEGER DEFAULT 0', 'parent_email TEXT']) { try { db.exec(`ALTER TABLE users ADD COLUMN ${col}`); } catch { /* already there */ } }
 const Q = (sql, ...p) => db.prepare(sql).all(...p);
 const Q1 = (sql, ...p) => db.prepare(sql).get(...p);
 const X = (sql, ...p) => db.prepare(sql).run(...p);
@@ -60,7 +61,7 @@ const sign = s => crypto.createHmac('sha256', SECRET).update(s).digest('base64ur
 const mkTok = id => { const p = Buffer.from(JSON.stringify({ u: id, e: Date.now() + 30 * 864e5 })).toString('base64url'); return p + '.' + sign(p); };
 const readTok = t => { if (!t) return null; const [p, s] = t.split('.'); if (!s || s.length !== sign(p).length || !crypto.timingSafeEqual(Buffer.from(s), Buffer.from(sign(p)))) return null; try { const o = JSON.parse(Buffer.from(p, 'base64url')); return o.e > Date.now() ? o.u : null; } catch { return null; } };
 const cookies = req => Object.fromEntries((req.headers.cookie || '').split(';').map(c => c.trim().split('=')).filter(x => x[0]));
-const userOut = u => ({ id: u.id, username: u.username, display: u.display, role: u.role, verified: !!u.verified });
+const userOut = u => ({ id: u.id, username: u.username, display: u.display, role: u.role, verified: !!u.verified, under13: !!u.under13 });
 function createUser({ username, display, email, role, password, verified = 0 }) {
   const salt = crypto.randomBytes(16).toString('hex');
   const r = X('INSERT INTO users(username,display,email,role,verified,hash,salt,created) VALUES(?,?,?,?,?,?,?,?)', username, display, email || null, role, verified, hashPw(password, salt), salt, Date.now());
@@ -124,10 +125,12 @@ route('POST', '/api/signup', (c, res) => {
   const username = str(b.username, 3, 20).toLowerCase(); if (!/^[a-z0-9_]+$/.test(username)) throw new E(400, 'Usernames use letters, numbers and underscores only.');
   const password = String(b.password || ''); if (password.length < 8 || password.length > 100) throw new E(400, 'Passwords need at least 8 characters.');
   const display = str(b.display, 2, 20); const bad = clean(display); if (bad) throw new E(400, bad);
-  if (role === 'student' && !b.age13) throw new E(400, 'Learners must be 13 or older, or ask a teacher or parent to set up the account.');
+  const under13 = role === 'student' && !!b.under13; let parentEmail = null;
+  if (under13) { parentEmail = str(b.parentEmail, 5, 100); if (!/^\S+@\S+\.\S+$/.test(parentEmail)) throw new E(400, "Enter the parent or guardian's email."); if (!b.parentOk) throw new E(400, 'A parent or guardian needs to tick the permission box.'); }
   let email = null; if (role === 'teacher' || role === 'parent') { email = str(b.email, 5, 100); if (!/^\S+@\S+\.\S+$/.test(email)) throw new E(400, 'Enter a valid email address.'); }
   if (Q1('SELECT 1 FROM users WHERE username=?', username) || Q1('SELECT 1 FROM users WHERE display=?', display)) throw new E(409, 'That username or display name is taken.');
-  const u = createUser({ username, display, email, role, password });
+  let u = createUser({ username, display, email, role, password });
+  if (under13) { X('UPDATE users SET under13=1, parent_email=? WHERE id=?', parentEmail, u.id); u = Q1('SELECT * FROM users WHERE id=?', u.id); }
   res.cookie = mkTok(u.id); return userOut(u);
 });
 route('POST', '/api/login', (c, res) => {
@@ -150,11 +153,12 @@ route('PUT', '/api/state', c => { need(c); const j = JSON.stringify(c.body); if 
 route('GET', '/api/community', c => { need(c); const m = isMod(c.u);
   return { posts: Q('SELECT * FROM posts ORDER BY ts DESC LIMIT 300').filter(p => m || !p.hidden).map(p => postOut(p, m)),
     groups: Q('SELECT * FROM groups ORDER BY id DESC LIMIT 200').map(g => ({ id: g.id, name: g.name, subject: g.subject, grade: g.grade, members: JSON.parse(g.members).map(nameOf) })) }; });
-route('POST', '/api/posts', c => { need(c); limit('po' + c.u.id, 8, 60e3); const b = c.body, t = str(b.title, 5, 120), body = str(b.body, 10, 2000), bad = clean(t + ' ' + body); if (bad) throw new E(400, bad);
+const noKids = c => { if (c.u.under13) throw new E(403, "Posting in the Community opens when you're 13."); };
+route('POST', '/api/posts', c => { need(c); noKids(c); limit('po' + c.u.id, 8, 60e3); const b = c.body, t = str(b.title, 5, 120), body = str(b.body, 10, 2000), bad = clean(t + ' ' + body); if (bad) throw new E(400, bad);
   const type = b.type === 'q' ? 'q' : 'd'; let grp = null, subject = str(b.subject || 'Math', 2, 40), grade = int(b.grade ?? 5, -1, 13);
   if (b.group) { const g = Q1('SELECT * FROM groups WHERE id=?', int(b.group, 1, 1e12)); if (!g || !JSON.parse(g.members).includes(c.u.id)) throw new E(403, 'Join the group to post.'); grp = g.id; subject = g.subject; grade = g.grade; }
   X('INSERT INTO posts(grp,type,subject,grade,title,body,author_id,ts) VALUES(?,?,?,?,?,?,?,?)', grp, type, subject, grade, t, body, c.u.id, Date.now()); return { ok: true }; });
-route('POST', '/api/posts/:id/reply', c => { need(c); limit('rp' + c.u.id, 15, 60e3); const p = Q1('SELECT * FROM posts WHERE id=?', int(c.params.id, 1, 1e12)); if (!p || (p.hidden && !isMod(c.u))) throw new E(404, 'Post not found.'); if (p.locked) throw new E(403, 'This thread is locked.');
+route('POST', '/api/posts/:id/reply', c => { need(c); noKids(c); limit('rp' + c.u.id, 15, 60e3); const p = Q1('SELECT * FROM posts WHERE id=?', int(c.params.id, 1, 1e12)); if (!p || (p.hidden && !isMod(c.u))) throw new E(404, 'Post not found.'); if (p.locked) throw new E(403, 'This thread is locked.');
   const b = str(c.body.body, 2, 2000), bad = clean(b); if (bad) throw new E(400, bad); X('INSERT INTO replies(post_id,author_id,body,ts) VALUES(?,?,?,?)', p.id, c.u.id, b, Date.now()); return { ok: true }; });
 route('POST', '/api/posts/:id/vote', c => { need(c); const p = Q1('SELECT * FROM posts WHERE id=?', int(c.params.id, 1, 1e12)); if (!p || p.hidden) throw new E(404, 'Post not found.'); const v = JSON.parse(p.votes), i = v.indexOf(c.u.id); i < 0 ? v.push(c.u.id) : v.splice(i, 1); X('UPDATE posts SET votes=? WHERE id=?', JSON.stringify(v), p.id); return { ok: true }; });
 route('POST', '/api/posts/:id/report', c => { need(c); const rid = c.body.rid; const tbl = rid && rid !== 'p' ? 'replies' : 'posts', id = tbl === 'replies' ? int(rid, 1, 1e12) : int(c.params.id, 1, 1e12);
@@ -165,7 +169,7 @@ route('PATCH', '/api/posts/:id', c => { need(c, isMod(c.u)); const p = Q1('SELEC
 route('POST', '/api/posts/:id/keep', c => { need(c, c.u.role === 'owner'); const id = int(c.params.id, 1, 1e12); X("UPDATE posts SET hidden=0, reports='[]' WHERE id=?", id); return { ok: true }; });
 route('DELETE', '/api/posts/:id', c => { need(c, isMod(c.u)); const id = int(c.params.id, 1, 1e12); X('DELETE FROM replies WHERE post_id=?', id); X('DELETE FROM posts WHERE id=?', id); return { ok: true }; });
 route('PATCH', '/api/replies/:id', c => { need(c, isMod(c.u)); const r = Q1('SELECT * FROM replies WHERE id=?', int(c.params.id, 1, 1e12)); if (!r) throw new E(404, 'Not found.'); X('UPDATE replies SET hidden=? WHERE id=?', r.hidden ? 0 : 1, r.id); return { ok: true }; });
-route('POST', '/api/groups', c => { need(c); limit('gr' + c.u.id, 5, 3600e3); const n = str(c.body.name, 3, 40), bad = clean(n); if (bad) throw new E(400, bad); X('INSERT INTO groups(name,subject,grade,members) VALUES(?,?,?,?)', n, str(c.body.subject, 2, 40), int(c.body.grade, -1, 13), JSON.stringify([c.u.id])); return { ok: true }; });
+route('POST', '/api/groups', c => { need(c); noKids(c); limit('gr' + c.u.id, 5, 3600e3); const n = str(c.body.name, 3, 40), bad = clean(n); if (bad) throw new E(400, bad); X('INSERT INTO groups(name,subject,grade,members) VALUES(?,?,?,?)', n, str(c.body.subject, 2, 40), int(c.body.grade, -1, 13), JSON.stringify([c.u.id])); return { ok: true }; });
 route('POST', '/api/groups/:id/join', c => { need(c); const g = Q1('SELECT * FROM groups WHERE id=?', int(c.params.id, 1, 1e12)); if (!g) throw new E(404, 'Not found.'); const m = JSON.parse(g.members), i = m.indexOf(c.u.id); i < 0 ? m.push(c.u.id) : m.splice(i, 1); X('UPDATE groups SET members=? WHERE id=?', JSON.stringify(m), g.id); return { ok: true }; });
 
 // classes
@@ -178,7 +182,7 @@ route('POST', '/api/classes', c => { need(c, isTeacher(c.u)); if (Q1('SELECT COU
 route('POST', '/api/classes/join', c => { need(c, c.u.role === 'student'); limit('jc' + c.u.id, 10, 600e3); const k = Q1('SELECT * FROM classes WHERE code=?', String(c.body.code || '').trim().toUpperCase()); if (!k) throw new E(404, 'No class has that code.'); X('INSERT OR IGNORE INTO class_members(class_id,user_id,grades) VALUES(?,?,?)', k.id, c.u.id, JSON.stringify([k.grade])); return { ok: true, name: k.name }; });
 route('POST', '/api/classes/:id/students', c => { need(c, isTeacher(c.u)); const k = ownClass(c, c.params.id); const names = (Array.isArray(c.body.names) ? c.body.names : []).map(n => String(n).trim()).filter(Boolean).slice(0, 60); if (!names.length) throw new E(400, 'Enter at least one student name.');
   return { created: names.map(n => { const first = n.split(/\s+/)[0].replace(/[^\p{L}\p{N}]/gu, '').slice(0, 14) || 'Student', base = first.toLowerCase().replace(/[^a-z0-9]/g, '') || 'student'; let un; do un = base + code(3, '23456789'); while (Q1('SELECT 1 FROM users WHERE username=?', un));
-    const pw = code(8, 'abcdefghjkmnpqrstuvwxyz23456789'), u = createUser({ username: un, display: uniqueDisplay(first), role: 'student', password: pw }); X('INSERT INTO class_members(class_id,user_id,grades) VALUES(?,?,?)', k.id, u.id, JSON.stringify([k.grade])); return { name: u.display, username: un, password: pw }; }) }; });
+    const pw = code(8, 'abcdefghjkmnpqrstuvwxyz23456789'), u = createUser({ username: un, display: uniqueDisplay(first), role: 'student', password: pw }); X('UPDATE users SET under13=1 WHERE id=?', u.id); X('INSERT INTO class_members(class_id,user_id,grades) VALUES(?,?,?)', k.id, u.id, JSON.stringify([k.grade])); return { name: u.display, username: un, password: pw }; }) }; });
 route('PATCH', '/api/classes/:id/students/:uid', c => { need(c, isTeacher(c.u)); const k = ownClass(c, c.params.id); const g = (Array.isArray(c.body.grades) ? c.body.grades : []).map(x => int(x, -1, 13)).slice(0, 6); if (!g.length) throw new E(400, 'Pick a grade.'); X('UPDATE class_members SET grades=? WHERE class_id=? AND user_id=?', JSON.stringify(g), k.id, int(c.params.uid, 1, 1e12)); return { ok: true }; });
 route('POST', '/api/classes/:id/assign', c => { need(c, isTeacher(c.u)); const k = ownClass(c, c.params.id); const skills = (Array.isArray(c.body.skills) ? c.body.skills : []).map(String).slice(0, 40); if (!skills.length) throw new E(400, 'Nothing to assign.');
   let target = null; if (c.body.target != null && c.body.target !== 'all') { target = int(c.body.target, 1, 1e12); if (!Q1('SELECT 1 FROM class_members WHERE class_id=? AND user_id=?', k.id, target)) throw new E(400, 'That student is not in this class.'); }

@@ -835,7 +835,7 @@ const FBM=(()=>{
     if(/permission-denied/.test(c))return new E(403,'Not allowed.');
     if(/network|unavailable/.test(c))return new E(503,'No connection. Check your internet and try again.');
     return e instanceof E?e:new E(500,e&&e.message||'Something went wrong. Please try again.')};
-  const userOut=()=>({id:me.uid,username:profile.username,display:profile.display,role:isOwner()?'owner':profile.role,verified:!!profile.verified});
+  const userOut=()=>({id:me.uid,username:profile.username,display:profile.display,role:isOwner()?'owner':profile.role,verified:!!profile.verified,under13:!!profile.under13});
 
   async function start(){
     await load('firebase-app-compat.js');await Promise.all([load('firebase-auth-compat.js'),load('firebase-firestore-compat.js')]);
@@ -856,12 +856,13 @@ const FBM=(()=>{
     const username=str(b.username,3,20,'Usernames').toLowerCase();if(!/^[a-z0-9_]+$/.test(username))throw new E(400,'Usernames use letters, numbers and underscores only.');
     const password=String(b.password||'');if(password.length<8||password.length>100)throw new E(400,'Passwords need at least 8 characters.');
     const display=str(b.display,2,20,'Display names');const bad=typeof clean==='function'?clean(display):'';if(bad)throw new E(400,bad);
-    if(role==='student'&&!b.age13)throw new E(400,'Learners must be 13 or older, or ask a teacher or parent to set up the account.');
+    let parentEmail=null;const under13=role==='student'&&!!b.under13;
+    if(under13){parentEmail=str(b.parentEmail,5,100,'Email');if(!/^\S+@\S+\.\S+$/.test(parentEmail))throw new E(400,"Enter the parent or guardian's email.");if(!b.parentOk)throw new E(400,'A parent or guardian needs to tick the permission box.')}
     let email=null;if(role!=='student'){email=str(b.email,5,100,'Email');if(!/^\S+@\S+\.\S+$/.test(email))throw new E(400,'Enter a valid email address.')}
     const cred=await auth.createUserWithEmailAndPassword(emailOf(username),password);const uid=cred.user.uid;
-    await doc('users',uid).set({username,display,role,verified:false,locked:false,created:now()});
+    await doc('users',uid).set({username,display,role,verified:false,locked:false,under13,created:now()});
     await doc('state',uid).set({json:'{}',updated:now(),readers:[]});
-    if(email)await doc('private',uid).set({email});
+    if(email||parentEmail)await doc('private',uid).set(parentEmail?{parentEmail,consent:now()}:{email});
     return{ok:true}});
   route('POST','/api/login',async b=>{const u=String(b.username||'').trim().toLowerCase();if(!/^[a-z0-9_]{3,20}$/.test(u))throw new E(401,'Wrong username or password.');
     await auth.signInWithEmailAndPassword(emailOf(u),String(b.password||''));
@@ -870,10 +871,13 @@ const FBM=(()=>{
     if(window.FIREBASE_TEST_GOOGLE)await auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(JSON.stringify(window.FIREBASE_TEST_GOOGLE)));else await auth.signInWithPopup(pr);
     const p=await doc('users',auth.currentUser.uid).get();if(p.exists&&p.data().locked){await auth.signOut();throw new E(403,'This account is locked. Ask your teacher or the site owner.')}return{ok:true}});
   route('POST','/api/finish',async b=>{if(!me)throw new E(401,'Please sign in.');if(profile)return{ok:true};const role=b.role;if(!ROLES.includes(role))throw new E(400,'Choose learner, parent or teacher.');
-    const display=str(b.display,2,20,'Display names');if(role==='student'&&!b.age13)throw new E(400,'Learners must be 13 or older, or ask a teacher or parent to set up the account.');
+    const display=str(b.display,2,20,'Display names');
+    let parentEmail=null;const under13=role==='student'&&!!b.under13;
+    if(under13){parentEmail=str(b.parentEmail,5,100,'Email');if(!/^\S+@\S+\.\S+$/.test(parentEmail))throw new E(400,"Enter the parent or guardian's email.");if(!b.parentOk)throw new E(400,'A parent or guardian needs to tick the permission box.')}
+
     const username=((me.email||'user').split('@')[0].toLowerCase().replace(/[^a-z0-9_]/g,'').slice(0,14)||'user')+rand(3,'23456789');
-    await doc('users',me.uid).set({username,display,role,verified:false,locked:false,created:now(),google:true});
-    await doc('state',me.uid).set({json:'{}',updated:now(),readers:[]},{merge:true});if(me.email)await doc('private',me.uid).set({email:me.email});return{ok:true}});
+    await doc('users',me.uid).set({username,display,role,verified:false,locked:false,under13,created:now(),google:true});
+    await doc('state',me.uid).set({json:'{}',updated:now(),readers:[]},{merge:true});if(me.email||parentEmail)await doc('private',me.uid).set({...(me.email?{email:me.email}:{}),...(parentEmail?{parentEmail,consent:now()}:{})});return{ok:true}});
   route('POST','/api/logout',async()=>{await auth.signOut();return{ok:true}});
   route('PATCH','/api/me',async b=>{need();const d=str(b.display,2,20,'Display names');await doc('users',me.uid).update({display:d});profile.display=d;return{display:d}});
   route('GET','/api/settings',async()=>({flags:{...DEF.flags,...site.flags},retDays:site.retDays??DEF.retDays,gr:site.gr||{},impact:site.impact||DEF.impact}));
@@ -895,10 +899,11 @@ const FBM=(()=>{
     const posts=[];ps.forEach(d=>{const p=d.data();posts.push({id:num(d.id),type:p.type,group:p.grp?num(p.grp):null,subject:p.subject,grade:p.grade,title:p.title,body:p.body,author:p.authorName,ts:p.ts,hidden:!!p.hidden,pinned:!!p.pinned,locked:!!p.locked,votes:nm(p.votes),reports:mod?nm(p.reports):[],replies:(reps[d.id]||[]).sort((a,b)=>a.ts-b.ts)})});
     posts.sort((a,b)=>b.ts-a.ts);const groups=[];gs.forEach(d=>{const g=d.data();groups.push({id:num(d.id),name:g.name,subject:g.subject,grade:g.grade,members:nm(g.members,g.memberNames)})});
     return{posts,groups}});
-  route('POST','/api/posts',async b=>{need();const t=str(b.title,5,120,'Titles'),body=str(b.body,10,2000,'Posts');let grp=null,subject=String(b.subject||'Math').slice(0,40),grade=+b.grade||5;
+  const noKids=()=>{if(profile&&profile.under13)throw new E(403,"Posting in the Community opens when you're 13.")};
+  route('POST','/api/posts',async b=>{need();noKids();const t=str(b.title,5,120,'Titles'),body=str(b.body,10,2000,'Posts');let grp=null,subject=String(b.subject||'Math').slice(0,40),grade=+b.grade||5;
     if(b.group){const g=await doc('groups',sid(b.group)).get();if(!g.exists||!(g.data().members||[]).includes(me.uid))throw new E(403,'Join the group to post.');grp=g.id;subject=g.data().subject;grade=g.data().grade}
     await db.collection('posts').add({grp,type:b.type==='q'?'q':'d',subject,grade,title:t,body,authorId:me.uid,authorName:profile.display,ts:now(),hidden:false,pinned:false,locked:false,votes:[],reports:[]});return{ok:true}});
-  route('POST','/api/posts/:id/reply',async(b,p)=>{need();const body=str(b.body,2,2000,'Replies');const d=await doc('posts',sid(p.id)).get();if(!d.exists)throw new E(404,'Post not found.');if(d.data().locked)throw new E(403,'This thread is locked.');
+  route('POST','/api/posts/:id/reply',async(b,p)=>{need();noKids();const body=str(b.body,2,2000,'Replies');const d=await doc('posts',sid(p.id)).get();if(!d.exists)throw new E(404,'Post not found.');if(d.data().locked)throw new E(403,'This thread is locked.');
     await db.collection('replies').add({postId:sid(p.id),authorId:me.uid,authorName:profile.display,body,ts:now(),hidden:false,reports:[]});return{ok:true}});
   route('POST','/api/posts/:id/vote',async(b,p)=>{need();const r=doc('posts',sid(p.id)),d=await r.get();if(!d.exists)throw new E(404,'Post not found.');
     await r.update({votes:(d.data().votes||[]).includes(me.uid)?FV.arrayRemove(me.uid):FV.arrayUnion(me.uid)});return{ok:true}});
@@ -908,7 +913,7 @@ const FBM=(()=>{
   route('POST','/api/posts/:id/keep',async(b,p)=>{need(isOwner());await doc('posts',sid(p.id)).update({hidden:false,reports:[]});return{ok:true}});
   route('DELETE','/api/posts/:id',async(b,p)=>{need(isMod());const rs=await db.collection('replies').where('postId','==',sid(p.id)).get();await Promise.all(rs.docs.map(d=>d.ref.delete()));await doc('posts',sid(p.id)).delete();return{ok:true}});
   route('PATCH','/api/replies/:id',async(b,p)=>{need(isMod());const r=doc('replies',sid(p.id)),d=await r.get();await r.update({hidden:!d.data().hidden});return{ok:true}});
-  route('POST','/api/groups',async b=>{need();const n=str(b.name,3,40,'Group names');await db.collection('groups').add({name:n,subject:String(b.subject).slice(0,40),grade:+b.grade,members:[me.uid],memberNames:{[me.uid]:profile.display}});return{ok:true}});
+  route('POST','/api/groups',async b=>{need();noKids();const n=str(b.name,3,40,'Group names');await db.collection('groups').add({name:n,subject:String(b.subject).slice(0,40),grade:+b.grade,members:[me.uid],memberNames:{[me.uid]:profile.display}});return{ok:true}});
   route('POST','/api/groups/:id/join',async(b,p)=>{need();const r=doc('groups',sid(p.id)),d=await r.get();if(!d.exists)throw new E(404,'Not found.');const inG=(d.data().members||[]).includes(me.uid);
     await r.update(inG?{members:FV.arrayRemove(me.uid),['memberNames.'+me.uid]:FV.delete()}:{members:FV.arrayUnion(me.uid),['memberNames.'+me.uid]:profile.display});return{ok:true}});
 
@@ -942,7 +947,7 @@ const FBM=(()=>{
     for(const n of names){const first=(n.split(/\s+/)[0].replace(/[^\p{L}\p{N}]/gu,'').slice(0,14))||'Student',base=first.toLowerCase().replace(/[^a-z0-9]/g,'')||'student',pw=rand(8,'abcdefghjkmnpqrstuvwxyz23456789');
       let un,uid;for(let i=0;i<8&&!uid;i++){un=base+rand(3,'23456789');try{uid=(await ca.createUserWithEmailAndPassword(emailOf(un),pw)).user.uid}catch(e){if(!/email-already-in-use/.test(e.code||''))throw e}}
       if(!uid)throw new E(500,'Could not create a login. Try again.');
-      await cdb.collection('users').doc(uid).set({username:un,display:first,role:'student',verified:false,locked:false,managedBy:me.uid,created:now()});
+      await cdb.collection('users').doc(uid).set({username:un,display:first,role:'student',verified:false,locked:false,under13:true,managedBy:me.uid,created:now()});
       await cdb.collection('state').doc(uid).set({json:'{}',updated:now(),readers:[me.uid]});await ca.signOut();
       await cd.ref.update({members:FV.arrayUnion(uid),['memberGrades.'+uid]:[c.grade]});created.push({name:first,username:un,password:pw})}
     return{created}});
@@ -989,7 +994,7 @@ const FBM=(()=>{
 <style>
 .auth{max-width:440px;margin:24px auto 64px;padding:0 16px}.auth .card{margin-top:16px}.auth label{display:block;margin-top:12px;font-weight:700;font-size:15px}.auth label input:not([type=checkbox]),.auth label select{display:block;width:100%;margin-top:4px}
 .auth [hidden]{display:none!important}.auth input[type=password]{font:inherit;font-size:16px;padding:9px 12px;border-radius:10px;border:2px solid var(--line);background:var(--bg);color:var(--ink)}
-.auth .ck{font-weight:400;display:flex;gap:8px;align-items:flex-start}.auth .err{color:var(--coral);font-weight:700;min-height:1.4em;margin:10px 0 0}
+.auth .ck{font-weight:400;display:flex;gap:8px;align-items:flex-start}.auth .ck input[type=radio],.auth .ck input[type=checkbox]{display:inline-block;width:18px;height:18px;margin:3px 0 0;flex:none}.auth fieldset .ck{margin-top:6px}.auth .err{color:var(--coral);font-weight:700;min-height:1.4em;margin:10px 0 0}
 .acct{display:flex;gap:8px;align-items:center;margin-left:auto;font-size:14px;color:var(--mute)}.acct b{color:var(--ink)}
 .creds{width:100%;border-collapse:collapse;margin-top:8px;font-size:15px}.creds td,.creds th{border:1px solid var(--line);padding:6px 10px;text-align:left}
 @media print{body *{visibility:hidden}.printme,.printme *{visibility:visible}.printme{position:absolute;left:0;top:0;width:100%}}
@@ -1026,32 +1031,38 @@ function authPage(mode){
   document.querySelector('.wrap2').hidden=true;document.querySelector('.app').hidden=true;const v=document.getElementById('views');v.hidden=false;
   const G=BOOT.fb?`<button type="button" class="alt" id="gsi" style="width:100%;margin-top:14px;display:flex;gap:10px;justify-content:center;align-items:center"><svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.6l6.7-6.7C35.6 2.4 30.2 0 24 0 14.6 0 6.6 5.4 2.7 13.3l7.8 6C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.6c0-1.6-.1-3.1-.4-4.6H24v9h12.4c-.5 2.9-2.2 5.3-4.6 6.9l7.5 5.8c4.4-4 6.8-10 6.8-17.1z"/><path fill="#FBBC05" d="M10.5 28.7c-.5-1.4-.8-3-.8-4.7s.3-3.2.8-4.7l-7.8-6C1 16.6 0 20.2 0 24s1 7.4 2.7 10.7l7.8-6z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.5-5.8c-2.1 1.4-4.8 2.3-8.4 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.8 6C6.6 42.6 14.6 48 24 48z"/></svg>Continue with Google</button><p class="sol" style="text-align:center;margin:10px 0 0">or use a username</p>`:'';
   if(mode==='finish'){v.innerHTML=`<div class="auth"><h2>Finish setting up</h2><p class="sol">You're signed in with Google. Tell us a little about you.</p><form class="card" id="af">
-  <label>I am a<select name="role" id="ar"><option value="student">Learner (13 or older)</option><option value="parent">Parent or guardian</option><option value="teacher">Teacher</option></select></label>
+  <label>I am a<select name="role" id="ar"><option value="student">Learner</option><option value="parent">Parent or guardian</option><option value="teacher">Teacher</option></select></label>
   <label>Display name (shown to others, not your full name)<input name="display" required minlength="2" maxlength="20"></label>
-  <label class="ck" id="ag"><input type="checkbox" name="age13"> I am 13 or older</label>
+  <fieldset id="ag" style="border:2px solid var(--line);border-radius:12px;margin-top:12px;padding:8px 12px"><legend style="font-weight:700;font-size:15px;padding:0 4px">How old is the learner?</legend>
+  <label class="ck"><input type="radio" name="age" value="13plus" checked> 13 or older</label><label class="ck"><input type="radio" name="age" value="under13"> Under 13</label>
+  <div id="pg" hidden><p class="sol" style="margin-top:4px">Learners under 13 set up their account with a parent or guardian.</p><label>Parent or guardian's email<input name="parentEmail" type="email" autocomplete="off"></label>
+  <label class="ck"><input type="checkbox" name="parentOk"> I'm this learner's parent or guardian. I agree to Bose Academy saving their learning progress. They can read the Community, and can post there once they're 13.</label></div></fieldset>
   <p class="err" id="ae" role="alert"></p><button class="lamp" type="submit">Continue</button></form><p><a href="#" id="so">Sign out</a></p></div>`;
-    const ar=document.getElementById('ar');ar.onchange=()=>{document.getElementById('ag').hidden=ar.value!=='student'};
+    const ar=document.getElementById('ar');ar.onchange=()=>{document.getElementById('ag').hidden=ar.value!=='student'};const ageUI=()=>{const u=(document.querySelector('[name=age]:checked')||{}).value==='under13';document.getElementById('pg').hidden=!u;document.querySelector('[name=parentEmail]').required=u;document.querySelector('[name=parentOk]').required=u};document.querySelectorAll('[name=age]').forEach(r=>r.onchange=ageUI);
     document.getElementById('so').onclick=async ev=>{ev.preventDefault();await api('POST','/api/logout',{}).catch(()=>{});location.reload()};
-    document.getElementById('af').onsubmit=async ev=>{ev.preventDefault();const f=Object.fromEntries(new FormData(ev.target));f.age13=!!f.age13;const b=ev.target.querySelector('button');b.disabled=true;
+    document.getElementById('af').onsubmit=async ev=>{ev.preventDefault();const f=Object.fromEntries(new FormData(ev.target));f.under13=f.age==='under13';f.age13=!f.under13;f.parentOk=!!f.parentOk;const b=ev.target.querySelector('button');b.disabled=true;
       try{await api('POST','/api/finish',f);location.reload()}catch(err){document.getElementById('ae').textContent=err.message;b.disabled=false}};
     v.querySelector('select').focus();return}
   v.innerHTML=`<div class="auth">${mode==='login'?`
   <h2>Sign in</h2>${G}<form class="card" id="af"><label>Username<input name="username" autocomplete="username" required></label><label>Password<input name="password" type="password" autocomplete="current-password" required></label><p class="err" id="ae" role="alert"></p><button class="lamp" type="submit">Sign in</button></form>
-  <p>New to Bose Academy? <a href="#" id="sw">Create a free account</a></p><p class="sol">Students under 13: your teacher or parent gives you a username and password.</p>`:`
+  <p>New to Bose Academy? <a href="#" id="sw">Create a free account</a></p><p class="sol">Learners of every age are welcome. Under 13? Sign up with a parent or guardian, or use the login your teacher gives you.</p>`:`
   <h2>Create a free account</h2>${G}<form class="card" id="af">
-  <label>I am a<select name="role" id="ar"><option value="student">Learner (13 or older)</option><option value="parent">Parent or guardian</option><option value="teacher">Teacher</option></select></label>
+  <label>I am a<select name="role" id="ar"><option value="student">Learner</option><option value="parent">Parent or guardian</option><option value="teacher">Teacher</option></select></label>
   <label>Username<input name="username" autocomplete="username" required minlength="3" maxlength="20" pattern="[A-Za-z0-9_]+" title="Letters, numbers and underscores"></label>
   <label>Display name (shown to others, not your full name)<input name="display" required minlength="2" maxlength="20"></label>
   <label id="em" hidden>Email<input name="email" type="email" autocomplete="email"></label>
   <label>Password (8+ characters)<input name="password" type="password" autocomplete="new-password" required minlength="8" maxlength="100"></label>
-  <label class="ck" id="ag"><input type="checkbox" name="age13"> I am 13 or older</label>
+  <fieldset id="ag" style="border:2px solid var(--line);border-radius:12px;margin-top:12px;padding:8px 12px"><legend style="font-weight:700;font-size:15px;padding:0 4px">How old is the learner?</legend>
+  <label class="ck"><input type="radio" name="age" value="13plus" checked> 13 or older</label><label class="ck"><input type="radio" name="age" value="under13"> Under 13</label>
+  <div id="pg" hidden><p class="sol" style="margin-top:4px">Learners under 13 set up their account with a parent or guardian.</p><label>Parent or guardian's email<input name="parentEmail" type="email" autocomplete="off"></label>
+  <label class="ck"><input type="checkbox" name="parentOk"> I'm this learner's parent or guardian. I agree to Bose Academy saving their learning progress. They can read the Community, and can post there once they're 13.</label></div></fieldset>
   <p class="err" id="ae" role="alert"></p><button class="lamp" type="submit">Create account</button></form>
   <p>Already have an account? <a href="#" id="sw">Sign in</a></p>
-  <p class="sol">Under 13? Ask a teacher or parent to create your login. Bose Academy never sells student data and shows no ads.</p>`}</div>`;
+  <p class="sol">Bose Academy never sells student data and shows no ads.</p>`}</div>`;
   const gb=document.getElementById('gsi');if(gb)gb.onclick=async()=>{gb.disabled=true;try{await api('POST','/api/google',{});location.reload()}catch(err){document.getElementById('ae').textContent=/popup-closed|cancelled/.test(err.message)?'':err.message;gb.disabled=false}};
   document.getElementById('sw').onclick=ev=>{ev.preventDefault();authPage(mode==='login'?'signup':'login')};
-  const ar=document.getElementById('ar');if(ar)ar.onchange=()=>{const s=ar.value==='student';document.getElementById('em').hidden=s;document.querySelector('#em input').required=!s;document.getElementById('ag').hidden=!s};
-  document.getElementById('af').onsubmit=async ev=>{ev.preventDefault();const f=Object.fromEntries(new FormData(ev.target));if(mode==='signup')f.age13=!!f.age13;
+  const ar=document.getElementById('ar');if(ar)ar.onchange=()=>{const s=ar.value==='student';document.getElementById('em').hidden=s;document.querySelector('#em input').required=!s;document.getElementById('ag').hidden=!s};if(document.getElementById('pg')){const ageUI=()=>{const u=(document.querySelector('[name=age]:checked')||{}).value==='under13';document.getElementById('pg').hidden=!u;document.querySelector('[name=parentEmail]').required=u;document.querySelector('[name=parentOk]').required=u};document.querySelectorAll('[name=age]').forEach(r=>r.onchange=ageUI);}
+  document.getElementById('af').onsubmit=async ev=>{ev.preventDefault();const f=Object.fromEntries(new FormData(ev.target));if(mode==='signup'){f.under13=f.age==='under13';f.age13=!f.under13;f.parentOk=!!f.parentOk;}
     const b=ev.target.querySelector('button');b.disabled=true;
     try{await api('POST',mode==='login'?'/api/login':'/api/signup',f);location.reload()}catch(err){document.getElementById('ae').textContent=err.message;b.disabled=false}};
   v.querySelector('input,select').focus();
@@ -1159,6 +1170,10 @@ qa=(id,keep)=>busy(async()=>{if(keep)await api('POST',`/api/posts/${id}/keep`,{}
 /* Group membership comes back as display names */
 const _gv=groupView;groupView=function(){return _gv()};
 const _cmView=cmView;cmView=function(){return _cmView().replace(/<p class="sol">Use a nickname[\s\S]*?<\/p>/,'<p class="sol">Your display name is shown on posts. Use a nickname, not your full name. Never share emails, phone numbers or where you live. Three reports hide a post until a moderator reviews it.</p>')};
+/* Learners under 13 can read the Community but not post until they're 13 (COPPA) */
+const _newForm=newForm;newForm=function(type,gid){return ME.under13?`<div class="tutor" style="margin-top:12px">${typeof orb==='function'?orb(34):''}<div class="tx"><b>Reading only for now</b>You can read questions and answers here. Posting opens when you're 13. Questions about a lesson? Ask Lumi or your teacher.</div></div>`:_newForm(type,gid)};
+const _postCard=postCard;postCard=function(p){const h=_postCard(p);return ME.under13?h.replace(/<div class="row"><input id="pr[^"]*"[\s\S]*?Reply<\/button><\/div>/,''):h};
+const _gv2=groupView;groupView=function(){const h=_gv2();return ME.under13?h.replace(/<div class="card" style="margin-top:12px"><h3>Create a study group<\/h3>[\s\S]*?Create<\/button><\/div><\/div>/,''):h};
 VIEWS.community=cmView;
 
 /* ---------- Certificates: issued and verified by the server ---------- */
