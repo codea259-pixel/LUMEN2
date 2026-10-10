@@ -122,7 +122,7 @@ factors(d){let g=rnd(2,4+d),m,n;do{m=rnd(2,5);n=rnd(2,6)}while(m==n||gcd(m,n)!=1
 equiv(d){const b=rnd(2,6),a=rnd(1,b-1),k=rnd(2,3+d);return{q:`${F(a,b)} = ${F('?',b*k)}`,a:[a*k,1],h:[`What did the denominator ${b} get multiplied by to become ${b*k}?`,`The fraction only keeps its value if the top is multiplied by the same number.`,`The multiplier is ${k}. What is ${a} × ${k}?`],s:`${b} × ${k} = ${b*k}, so ${a} × ${k} = ${a*k}.`}},
 simplify(d){let p,q;do{q=rnd(3,9);p=rnd(1,q-1)}while(gcd(p,q)!=1);const g=rnd(2,3+d);return{q:`Simplify ${F(p*g,q*g)}`,a:[p,q],exact:1,h:[`Is there a number that divides both ${p*g} and ${q*g}?`,`Look for the biggest one. That is the greatest common factor.`,`Try dividing both by ${g}. Can the result go any lower?`],s:`Both are divisible by ${g}: ${p*g}÷${g} = ${p} and ${q*g}÷${g} = ${q}. Answer ${p}/${q}.`}},
 addlike(d){const den=rnd(5,9+d*2),a=rnd(1,den-3),b=rnd(1,den-1-a);return{q:`${F(a,den)} + ${F(b,den)} = ?`,a:[a+b,den],m:u=>eq(u,[a+b,den*2])?"That added the denominators too. The denominator names the piece size. Does adding pieces change their size?":null,h:[`Are the pieces the same size here?`,`If you have ${a} pieces and get ${b} more, how many pieces now?`,`The size of the pieces stays ${F(1,den)}. How many of them do you have?`],s:`${a} + ${b} = ${a+b} pieces of size 1/${den}, so ${a+b}/${den}.`}},
-adduni(d){const b=rnd(2,5),c=d==1?b*rnd(2,3):[2,3,4,5,6].filter(x=>x!=b)[rnd(0,3)],a=rnd(1,b-1),e=rnd(1,c-1);return{q:`${F(a,b)} + ${F(e,c)} = ?`,a:[a*c+e*b,b*c],m:u=>eq(u,[a+e,b+c])?"That adds the tops and the bottoms. Are halves and thirds the same size piece? What would make them the same size?":null,h:[`Are ${F(1,b)} pieces and ${F(1,c)} pieces the same size?`,`Find a number both ${b} and ${c} divide into. Rewrite each fraction with it.`,`${b} × ${c} = ${b*c} works. Make ${F(a,b)} and ${F(e,c)} into twelfths-style pieces of size 1/${b*c}, then add.`],s:`${a}/${b} = ${a*c}/${b*c} and ${e}/${c} = ${e*b}/${b*c}. Sum: ${a*c+e*b}/${b*c}.`}},
+adduni(d){const b=rnd(2,5),c=d==1?b*rnd(2,3):[2,3,4,5,6].filter(x=>x!=b)[rnd(0,3)],a=rnd(1,b-1),e=rnd(1,c-1);return{q:`${F(a,b)} + ${F(e,c)} = ?`,a:[a*c+e*b,b*c],m:u=>eq(u,[a+e,b+c])?"That adds the tops and the bottoms. Are halves and thirds the same size piece? What would make them the same size?":null,h:[`Are ${F(1,b)} pieces and ${F(1,c)} pieces the same size?`,`Find a number both ${b} and ${c} divide into. Rewrite each fraction with it.`,`${b} × ${c} = ${b*c} works. Make ${F(a,b)} and ${F(e,c)} into pieces of size 1/${b*c}, then add.`],s:`${a}/${b} = ${a*c}/${b*c} and ${e}/${c} = ${e*b}/${b*c}. Sum: ${a*c+e*b}/${b*c}.`}},
 multfrac(d){const b=rnd(2,5+d),a=rnd(1,b-1),c=rnd(2,5+d),e=rnd(1,c-1);return{q:`${F(a,b)} × ${F(e,c)} = ?`,a:[a*e,b*c],h:[`This is a part of a part. What do you do with the tops?`,`Multiply the tops together, then the bottoms together.`,`Tops: ${a} × ${e}. Bottoms: ${b} × ${c}. Can it simplify?`],s:`${a}×${e} = ${a*e} and ${b}×${c} = ${b*c}, giving ${a*e}/${b*c}.`}},
 onestepadd(d){const x=rnd(3,10+d*5),a=rnd(2,9+d*3);return{q:`x + ${a} = ${x+a}. x = ?`,a:[x,1],h:[`What is added to x on the left side?`,`What undoes adding ${a}?`,`Subtract ${a} from both sides: ${x+a} − ${a}.`],s:`x = ${x+a} − ${a} = ${x}.`}},
 onestepmul(d){const a=rnd(2,6+d),x=rnd(2,9);return{q:`${a}x = ${a*x}. x = ?`,a:[x,1],h:[`${a}x means ${a} times x. What undoes multiplying?`,`Divide both sides by ${a}.`,`What is ${a*x} ÷ ${a}?`],s:`x = ${a*x} ÷ ${a} = ${x}.`}},
@@ -1684,7 +1684,7 @@ if(tab==='learn')render();
 /* ===== Lesson videos for every skill, built from the skill's idea, a fresh worked example and its steps.
    Narration uses the device's own voice (free, works offline); captions show the same words. ===== */
 let VP=null;
-const sayable=t=>strip(t).replace(/×/g,' times ').replace(/÷/g,' divided by ').replace(/−/g,' minus ').replace(/(\d)\s*\/\s*(\d)/g,'$1 over $2').replace(/\^2/g,' squared').replace(/\^(\d)/g,' to the power $1').replace(/\s=\s?\?/g,' equals what').replace(/=/g,' equals ');
+const sayable=t=>strip(t).replace(/×/g,' times ').replace(/÷/g,' divided by ').replace(/−/g,' minus ').replace(/\+/g,' plus ').replace(/(\d)\s*\/\s*(\d)/g,'$1 over $2').replace(/\^2/g,' squared').replace(/\^(\d)/g,' to the power $1').replace(/\s=\s?\?/g,' equals what').replace(/=/g,' equals ');
 /* ===== Lumi's voice: picks the most natural voice the device has, speaks sentence by sentence with small pauses,
    and switches to a Spanish voice for Spanish words ===== */
 const VOICE=(()=>{let list=[];const ok='speechSynthesis' in window;
@@ -1698,14 +1698,18 @@ const VOICE=(()=>{let list=[];const ok='speechSynthesis' in window;
   function pick(lang){if(lang==='es')return list.filter(v=>scoreEs(v)>-100).sort((a,b)=>scoreEs(b)-scoreEs(a))[0]||null;
     const pref=((typeof ST!=='undefined'&&ST.a11y)||{}).voice,mine=pref&&list.find(v=>v.name===pref);return mine||english()[0]||null}
   let token=0;
-  /* parts: [{t:'text', lang:'en'|'es'}]; calls onend once when everything has been spoken */
+  /* parts: [{t:'text', lang:'en'|'es'}]; calls onend once when everything has been spoken.
+     Each language run is spoken as one smooth utterance (natural voices pause before every new utterance),
+     split only for very long passages, which some browsers cut off. */
   function say(parts,onend){if(!ok){onend&&setTimeout(onend,0);return}token++;const my=token;try{speechSynthesis.cancel()}catch(e){}
     if(!list.length)load();
-    const chunks=[];parts.forEach(p=>{const lang=p.lang||'en';String(p.t).split(/(?<=[.!?])\s+/).map(x=>x.trim()).filter(Boolean).forEach(t=>chunks.push({t,lang}))});
+    const runs=[];parts.forEach(p=>{const lang=p.lang||'en',t=(lang==='es'?String(p.t):sayable(p.t)).replace(/\s+/g,' ').trim();if(!t)return;
+      const last=runs[runs.length-1];if(last&&last.lang===lang)last.t+=' '+t;else runs.push({t,lang})});
+    const chunks=[];runs.forEach(r=>{if(r.t.length<=230){chunks.push(r);return}let cur='';r.t.split(/(?<=[.!?])\s+/).forEach(x=>{if(cur&&(cur+' '+x).length>230){chunks.push({t:cur,lang:r.lang});cur=x}else cur=cur?cur+' '+x:x});if(cur)chunks.push({t:cur,lang:r.lang})});
     if(!chunks.length){onend&&onend();return}
-    let i=0;const next=()=>{if(my!==token)return;if(i>=chunks.length){onend&&onend();return}const c=chunks[i++],u=new SpeechSynthesisUtterance(c.lang==='es'?c.t:sayable(c.t)),v=pick(c.lang);
+    let i=0;const next=()=>{if(my!==token)return;if(i>=chunks.length){onend&&onend();return}const c=chunks[i++],u=new SpeechSynthesisUtterance(c.t),v=pick(c.lang);
       if(v){u.voice=v;u.lang=v.lang}else u.lang=c.lang==='es'?'es-MX':'en-US';
-      u.rate=c.lang==='es'?.9:.96;u.pitch=1.06;u.onend=()=>setTimeout(next,c.lang==='es'?220:320);u.onerror=()=>setTimeout(next,50);speechSynthesis.speak(u)};
+      u.rate=1;u.pitch=1.04;u.onend=()=>next();u.onerror=()=>next();speechSynthesis.speak(u)};
     next()}
   function stop(){token++;try{speechSynthesis.cancel()}catch(e){}}
   return{say,stop,english,pick,ok}})();
@@ -1739,7 +1743,7 @@ function vScene(){const P=VP;if(!P)return;const s=P.sc[P.i];if(!s)return;const s
   $('vcap').textContent=txt(s.say);[...$('vprog').children].forEach((x,j)=>x.classList.toggle('on',j<=P.i));
   if(!P.playing)return;const done=()=>{if(VP!==P||!P.playing)return;clearTimeout(P.t);if(s.end){P.playing=false;$('vlumi')&&$('vlumi').classList.remove('talk');vUI();return}P.i++;vScene()};
   const wait=Math.max(2400,txt(s.say).length*65);$('vlumi')&&$('vlumi').classList.add('talk');
-  if(!P.mute&&VOICE.ok){VOICE.say(parts(s.say),()=>setTimeout(done,350));P.t=setTimeout(done,wait*2.4)/* safety net: some browsers never report the end of speech */}
+  if(!P.mute&&VOICE.ok){VOICE.say(parts(s.say),()=>setTimeout(done,250));P.t=setTimeout(done,wait*2.4)/* safety net: some browsers never report the end of speech */}
   else P.t=setTimeout(done,wait)}
 function vStop(){if(!VP)return;clearTimeout(VP.t);VOICE.stop()}
 function vToggle(){const P=VP;if(!P)return;if(P.playing){P.playing=false;vStop();$('vlumi')&&$('vlumi').classList.remove('talk')}else{P.playing=true;if(P.sc[P.i].end){P.i=0;P.shown=-1}vScene()}vUI()}

@@ -39,7 +39,7 @@
 /* ===== Lesson videos for every skill, built from the skill's idea, a fresh worked example and its steps.
    Narration uses the device's own voice (free, works offline); captions show the same words. ===== */
 let VP=null;
-const sayable=t=>strip(t).replace(/×/g,' times ').replace(/÷/g,' divided by ').replace(/−/g,' minus ').replace(/(\d)\s*\/\s*(\d)/g,'$1 over $2').replace(/\^2/g,' squared').replace(/\^(\d)/g,' to the power $1').replace(/\s=\s?\?/g,' equals what').replace(/=/g,' equals ');
+const sayable=t=>strip(t).replace(/×/g,' times ').replace(/÷/g,' divided by ').replace(/−/g,' minus ').replace(/\+/g,' plus ').replace(/(\d)\s*\/\s*(\d)/g,'$1 over $2').replace(/\^2/g,' squared').replace(/\^(\d)/g,' to the power $1').replace(/\s=\s?\?/g,' equals what').replace(/=/g,' equals ');
 /* ===== Lumi's voice: picks the most natural voice the device has, speaks sentence by sentence with small pauses,
    and switches to a Spanish voice for Spanish words ===== */
 const VOICE=(()=>{let list=[];const ok='speechSynthesis' in window;
@@ -53,14 +53,18 @@ const VOICE=(()=>{let list=[];const ok='speechSynthesis' in window;
   function pick(lang){if(lang==='es')return list.filter(v=>scoreEs(v)>-100).sort((a,b)=>scoreEs(b)-scoreEs(a))[0]||null;
     const pref=((typeof ST!=='undefined'&&ST.a11y)||{}).voice,mine=pref&&list.find(v=>v.name===pref);return mine||english()[0]||null}
   let token=0;
-  /* parts: [{t:'text', lang:'en'|'es'}]; calls onend once when everything has been spoken */
+  /* parts: [{t:'text', lang:'en'|'es'}]; calls onend once when everything has been spoken.
+     Each language run is spoken as one smooth utterance (natural voices pause before every new utterance),
+     split only for very long passages, which some browsers cut off. */
   function say(parts,onend){if(!ok){onend&&setTimeout(onend,0);return}token++;const my=token;try{speechSynthesis.cancel()}catch(e){}
     if(!list.length)load();
-    const chunks=[];parts.forEach(p=>{const lang=p.lang||'en';String(p.t).split(/(?<=[.!?])\s+/).map(x=>x.trim()).filter(Boolean).forEach(t=>chunks.push({t,lang}))});
+    const runs=[];parts.forEach(p=>{const lang=p.lang||'en',t=(lang==='es'?String(p.t):sayable(p.t)).replace(/\s+/g,' ').trim();if(!t)return;
+      const last=runs[runs.length-1];if(last&&last.lang===lang)last.t+=' '+t;else runs.push({t,lang})});
+    const chunks=[];runs.forEach(r=>{if(r.t.length<=230){chunks.push(r);return}let cur='';r.t.split(/(?<=[.!?])\s+/).forEach(x=>{if(cur&&(cur+' '+x).length>230){chunks.push({t:cur,lang:r.lang});cur=x}else cur=cur?cur+' '+x:x});if(cur)chunks.push({t:cur,lang:r.lang})});
     if(!chunks.length){onend&&onend();return}
-    let i=0;const next=()=>{if(my!==token)return;if(i>=chunks.length){onend&&onend();return}const c=chunks[i++],u=new SpeechSynthesisUtterance(c.lang==='es'?c.t:sayable(c.t)),v=pick(c.lang);
+    let i=0;const next=()=>{if(my!==token)return;if(i>=chunks.length){onend&&onend();return}const c=chunks[i++],u=new SpeechSynthesisUtterance(c.t),v=pick(c.lang);
       if(v){u.voice=v;u.lang=v.lang}else u.lang=c.lang==='es'?'es-MX':'en-US';
-      u.rate=c.lang==='es'?.9:.96;u.pitch=1.06;u.onend=()=>setTimeout(next,c.lang==='es'?220:320);u.onerror=()=>setTimeout(next,50);speechSynthesis.speak(u)};
+      u.rate=1;u.pitch=1.04;u.onend=()=>next();u.onerror=()=>next();speechSynthesis.speak(u)};
     next()}
   function stop(){token++;try{speechSynthesis.cancel()}catch(e){}}
   return{say,stop,english,pick,ok}})();
@@ -94,7 +98,7 @@ function vScene(){const P=VP;if(!P)return;const s=P.sc[P.i];if(!s)return;const s
   $('vcap').textContent=txt(s.say);[...$('vprog').children].forEach((x,j)=>x.classList.toggle('on',j<=P.i));
   if(!P.playing)return;const done=()=>{if(VP!==P||!P.playing)return;clearTimeout(P.t);if(s.end){P.playing=false;$('vlumi')&&$('vlumi').classList.remove('talk');vUI();return}P.i++;vScene()};
   const wait=Math.max(2400,txt(s.say).length*65);$('vlumi')&&$('vlumi').classList.add('talk');
-  if(!P.mute&&VOICE.ok){VOICE.say(parts(s.say),()=>setTimeout(done,350));P.t=setTimeout(done,wait*2.4)/* safety net: some browsers never report the end of speech */}
+  if(!P.mute&&VOICE.ok){VOICE.say(parts(s.say),()=>setTimeout(done,250));P.t=setTimeout(done,wait*2.4)/* safety net: some browsers never report the end of speech */}
   else P.t=setTimeout(done,wait)}
 function vStop(){if(!VP)return;clearTimeout(VP.t);VOICE.stop()}
 function vToggle(){const P=VP;if(!P)return;if(P.playing){P.playing=false;vStop();$('vlumi')&&$('vlumi').classList.remove('talk')}else{P.playing=true;if(P.sc[P.i].end){P.i=0;P.shown=-1}vScene()}vUI()}
