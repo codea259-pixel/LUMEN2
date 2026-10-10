@@ -1,0 +1,102 @@
+<script type="text/x-lumen">
+/* ===== Designed worksheets and lesson packets (PDF, made in the browser, works offline).
+   Layout: header with name/date/period/points fields, key-idea box with a QR code to the lesson video,
+   Parts A-C by rising difficulty with boxed workspaces and check-your-work boxes, Part D explain-your-thinking
+   lines, page footers, and an answer key. Two-tone navy and charcoal, Helvetica. ===== */
+const PDFK=(()=>{
+  const W=612,H=792,M=46,NAVY=[.118,.227,.373],INK=[.2,.247,.302],MUTE=[.45,.5,.57],LINE=[.74,.78,.83],TINT=[.933,.953,.976],WHITE=[1,1,1];
+  const cv=document.createElement('canvas').getContext('2d');
+  const enc=t=>tx(String(t)).replace(/[\\()]/g,'\\$&');
+  function Doc(){const pages=[];let ops;const d={W,H,M,pages,
+    page(){ops=[];pages.push(ops);return d},
+    w(t,z,b){cv.font=(b?'bold ':'')+z+'px Helvetica, Arial, sans-serif';return cv.measureText(tx(String(t))).width},
+    wrap(t,z,b,max){const out=[];tx(String(t)).split('\n').forEach(par=>{let l='';par.split(' ').forEach(word=>{const n=l?l+' '+word:word;if(d.w(n,z,b)>max&&l){out.push(l);l=word}else l=n});out.push(l)});return out},
+    col(c,stroke){ops.push(`${c.map(v=>v.toFixed(3)).join(' ')} ${stroke?'RG':'rg'}`)},
+    text(t,x,y,z,b,c=INK,align){const wd=d.w(t,z,b);if(align==='r')x-=wd;if(align==='c')x-=wd/2;d.col(c);ops.push(`BT /F${b?2:1} ${z} Tf ${x.toFixed(1)} ${(H-y).toFixed(1)} Td (${enc(t)}) Tj ET`);return wd},
+    line(x1,y1,x2,y2,c=LINE,lw=.8,dash){d.col(c,1);ops.push(`${lw} w ${dash?'[2 2] 0 d':'[] 0 d'} ${x1.toFixed(1)} ${(H-y1).toFixed(1)} m ${x2.toFixed(1)} ${(H-y2).toFixed(1)} l S`)},
+    rect(x,y,w,h,{fill,stroke,lw=.8,r=0}={}){if(fill)d.col(fill);if(stroke)d.col(stroke,1);const p=r?d._rr(x,H-y-h,w,h,r):`${x.toFixed(1)} ${(H-y-h).toFixed(1)} ${w.toFixed(1)} ${h.toFixed(1)} re`;ops.push(`${lw} w [] 0 d ${p} ${fill&&stroke?'B':fill?'f':'S'}`)},
+    _rr(x,y,w,h,r){const k=.5523*r;return `${x+r} ${y} m ${x+w-r} ${y} l ${x+w-r+k} ${y} ${x+w} ${y+r-k} ${x+w} ${y+r} c ${x+w} ${y+h-r} l ${x+w} ${y+h-r+k} ${x+w-r+k} ${y+h} ${x+w-r} ${y+h} c ${x+r} ${y+h} l ${x+r-k} ${y+h} ${x} ${y+h-r+k} ${x} ${y+h-r} c ${x} ${y+r} l ${x} ${y+r-k} ${x+r-k} ${y} ${x+r} ${y} c h`},
+    circle(cx,cy,r,{fill,stroke,lw=.9}={}){const k=.5523*r,Y=H-cy;if(fill)d.col(fill);if(stroke)d.col(stroke,1);
+      ops.push(`${lw} w [] 0 d ${cx+r} ${Y} m ${cx+r} ${Y+k} ${cx+k} ${Y+r} ${cx} ${Y+r} c ${cx-k} ${Y+r} ${cx-r} ${Y+k} ${cx-r} ${Y} c ${cx-r} ${Y-k} ${cx-k} ${Y-r} ${cx} ${Y-r} c ${cx+k} ${Y-r} ${cx+r} ${Y-k} ${cx+r} ${Y} c ${fill&&stroke?'B':fill?'f':'S'}`)},
+    path(pts,{close,c=NAVY,lw=1.2}={}){d.col(c,1);ops.push(`${lw} w [] 0 d 1 J 1 j `+pts.map((p,i)=>`${p[0].toFixed(1)} ${(H-p[1]).toFixed(1)} ${i?'l':'m'}`).join(' ')+(close?' h':'')+' S')},
+    qr(url,x,y,s){if(typeof qrcode!=='function')return false;const q=qrcode(0,'M');q.addData(url);q.make();const n=q.getModuleCount(),c=s/n;d.rect(x-3,y-3,s+6,s+6,{fill:WHITE});d.col(NAVY);let o='';
+      for(let r=0;r<n;r++)for(let k=0;k<n;k++)if(q.isDark(r,k))o+=`${(x+k*c).toFixed(2)} ${(H-y-(r+1)*c).toFixed(2)} ${c.toFixed(2)} ${c.toFixed(2)} re `;ops.push(o+'f');return true},
+    bytes(){let s='%PDF-1.4\n';const off=[],n=pages.length,obj=(i,b)=>{off[i]=s.length;s+=`${i} 0 obj\n${b}\nendobj\n`};
+      obj(1,'<</Type/Catalog/Pages 2 0 R>>');obj(2,`<</Type/Pages/Kids[${pages.map((_,i)=>`${5+i*2} 0 R`).join(' ')}]/Count ${n}>>`);
+      obj(3,'<</Type/Font/Subtype/Type1/BaseFont/Helvetica/Encoding/WinAnsiEncoding>>');obj(4,'<</Type/Font/Subtype/Type1/BaseFont/Helvetica-Bold/Encoding/WinAnsiEncoding>>');
+      pages.forEach((c,i)=>{const body=c.join('\n');obj(5+i*2,`<</Type/Page/Parent 2 0 R/MediaBox[0 0 ${W} ${H}]/Resources<</Font<</F1 3 0 R/F2 4 0 R>>>>/Contents ${6+i*2} 0 R>>`);obj(6+i*2,`<</Length ${body.length}>>\nstream\n${body}\nendstream`)});
+      const x=s.length,N=5+n*2;s+=`xref\n0 ${N}\n0000000000 65535 f \n`+off.slice(1).map(v=>String(v).padStart(10,'0')+' 00000 n \n').join('')+`trailer\n<</Size ${N}/Root 1 0 R>>\nstartxref\n${x}\n%%EOF`;
+      const u=new Uint8Array(s.length);for(let i=0;i<s.length;i++)u[i]=s.charCodeAt(i)&255;return u}};return d}
+
+  /* small line icons, drawn in a size-s box whose top-left is x,y */
+  function icon(d,sub,x,y,s){const P=(a,b)=>[x+a*s,y+b*s];
+    if(sub==='math'){d.rect(x,y,s,s,{stroke:NAVY,lw:1});[1/3,2/3].forEach(f=>{d.line(x+f*s,y,x+f*s,y+s,NAVY,.6);d.line(x,y+f*s,x+s,y+f*s,NAVY,.6)});d.path([P(.1,.85),P(.45,.5),P(.65,.62),P(.92,.15)],{lw:1.4})}
+    else if(sub==='sci'){d.path([P(.32,.02),P(.32,.4),P(.06,.95),P(.94,.95),P(.68,.4),P(.68,.02)]);d.path([P(.22,.02),P(.78,.02)]);d.path([P(.18,.68),P(.82,.68)],{lw:.9})}
+    else if(sub==='ela'){d.path([P(.5,.22),P(.06,.1),P(.06,.84),P(.5,.96),P(.94,.84),P(.94,.1),P(.5,.22),P(.5,.96)]);d.path([P(.16,.32),P(.4,.38)],{lw:.7});d.path([P(.16,.5),P(.4,.56)],{lw:.7})}
+    else if(sub==='soc'){const c=[x+s/2,y+s/2],r=s/2-.5;d.circle(c[0],c[1],r,{stroke:NAVY,lw:1.1});d.path([P(.04,.5),P(.96,.5)],{lw:.7});d.path([P(.12,.28),P(.88,.28)],{lw:.6});d.path([P(.12,.72),P(.88,.72)],{lw:.6});d.path([P(.5,.02),P(.5,.98)],{lw:.7})}
+    else if(sub==='cs'){d.path([P(.3,.2),P(.04,.5),P(.3,.8)]);d.path([P(.7,.2),P(.96,.5),P(.7,.8)]);d.path([P(.58,.12),P(.42,.88)])}
+    else if(sub==='fin'){d.circle(x+s/2,y+s/2,s/2-.5,{stroke:NAVY,lw:1.1});d.text('$',x+s/2,y+s*.78,s*.7,1,NAVY,'c')}
+    else{d.rect(x,y+s*.05,s,s*.66,{stroke:NAVY,lw:1.1,r:s*.15});d.path([P(.25,.7),P(.2,.98),P(.48,.7)]);d.path([P(.2,.3),P(.8,.3)],{lw:.7});d.path([P(.2,.48),P(.6,.48)],{lw:.7})}}
+
+  const videoLink=k=>location.origin+(location.pathname.replace(/[^/]*$/,'')||'/')+'app.html#watch='+encodeURIComponent(k);
+  const problemText=q=>plain(q.q).replace(/\s+/g,' ').trim();
+  const ansOf=q=>q.choices?'ABCD'[q.a[0]]+') '+q.choices[q.a[0]]:ans(q.a);
+  const uniq=a=>a.filter((q,i)=>a.findIndex(z=>z.q===q.q)===i);
+
+  function build(kind,k){const n=SK[k],sub=n.sub,d=Doc(),R=W-M,TW=R-M,title=kind==='packet'?n.n+': Lesson Packet':n.n+': Worksheet';
+    const sets=kind==='packet'?[['Try It Yourself','Practice',pr(k,8,2),62]]:[['Warm-up','Getting started',pr(k,5,1),46],['Practice','On level',pr(k,6,2),62],['Challenge','Stretch',pr(k,4,3),80]];
+    {const seen=new Set();sets.forEach(s=>{s[2]=uniq(s[2]).filter(q=>!seen.has(q.q));s[2].forEach(q=>seen.add(q.q))});for(let i=sets.length-1;i>=0;i--)if(!sets[i][2].length)sets.splice(i,1)}const total=sets.reduce((a,s)=>a+s[2].length,0),points=total+2;
+    let y,no=0;const key=[];
+    const mini=()=>{d.page();icon(d,sub,M,M-4,14);d.text(title,M+22,M+8,11,1,NAVY);d.text('Name',R-190,M+8,9,1,INK);d.line(R-160,M+10,R,M+10,LINE,.8);d.line(M,M+20,R,M+20,NAVY,1.2);y=M+38};
+    const need=h=>{if(y+h>H-58)mini()};
+    /* page 1 header */
+    d.page();d.text('BOSE ACADEMY',M,M+2,8.5,1,MUTE);icon(d,sub,M,M+12,26);
+    const tl=d.wrap(title,19,1,R-206-24-(M+36));tl.forEach((l,i)=>d.text(l,M+36,M+32+i*22,19,1,NAVY));let hy=M+32+(tl.length-1)*22+18;
+    d.text(`${GLAB(ST.gr[k])}  ·  ${SUBN[sub]}${n.unit?'  ·  '+n.unit:''}`,M+36,hy,10,0,INK);
+    [['Name',''],['Date',''],['Class Period',''],['Total Points',`/ ${points}`]].forEach(([lab,suf],i)=>{const fy=M+4+i*21,fx=R-206;d.text(lab,fx,fy+9,9,1,INK);const lx=fx+d.w(lab,9,1)+6;d.line(lx,fy+11,R-(suf?28:0),fy+11,LINE,.8);if(suf)d.text(suf,R,fy+9,9,0,INK,'r')});
+    y=Math.max(hy+14,M+92);d.line(M,y,R,y,NAVY,1.6);y+=18;
+    d.text('Show your work in the boxes. Tick the small box next to each number once you have checked your answer.',M,y,9.5,0,INK);y+=16;
+    /* key idea box with QR code to the lesson video */
+    const idea=/^Study these facts/.test(n.c)&&kind==='worksheet'?`This worksheet checks what you learned about ${n.n.toLowerCase()}. Review the lesson first: scan the code to watch the video, or study the lesson packet.`:/^Study these facts/.test(n.c)?[...n.c.matchAll(/<li>(.*?)<\/li>/g)].slice(0,6).map(m=>'·  '+plain(m[1]).replace(/\s+/g,' ').trim()).join('\n'):plain(n.c).replace(/\s+/g,' ').trim();
+    const QS=64,iw=TW-QS-34,il=d.wrap(idea,10,0,iw),bh=Math.max(QS+30,24+il.length*14);
+    d.rect(M,y,TW,bh,{fill:TINT,r:8});d.text('KEY IDEA',M+14,y+18,8.5,1,NAVY);il.forEach((l,i)=>d.text(l,M+14,y+34+i*14,10,0,INK));
+    if(d.qr(videoLink(k),R-QS-14,y+10,QS))d.text('Scan to watch the lesson',R-14-QS/2,y+QS+24,6.5,0,MUTE,'c');y+=bh+20;
+    /* packet: worked examples */
+    if(kind==='packet'){const E=uniq(pr(k,2,1));need(40);sectionHead('Worked Examples','Watch how it is done');
+      E.forEach((q,ei)=>{const ql=d.wrap('Example '+(ei+1)+':  '+problemText(q),11,1,TW-10);const steps=q.choices?[]:q.h.map(h=>plain(h)).concat(['So: '+plain(q.s)]);
+        const sl=steps.map(s=>d.wrap(s,9.5,0,TW-60));const h=ql.length*15+sl.reduce((a,l)=>a+l.length*13+6,0)+(q.choices?18:0)+14;need(h);
+        ql.forEach((l,i)=>d.text(l,M,y+i*15,11,1,NAVY));y+=ql.length*15+4;
+        if(q.choices){d.text('Answer: '+ansOf(q),M+20,y+8,10,0,INK);y+=18}
+        sl.forEach((l,i)=>{d.circle(M+28,y+3,7,{fill:TINT});d.text(String(i+1),M+28,y+6.5,8,1,NAVY,'c');l.forEach((t,j)=>d.text(t,M+42,y+6.5+j*13,9.5,0,INK));y+=l.length*13+6});y+=10})}
+    function sectionHead(name,tag,letter){need(150);icon(d,sub,M,y-2,13);d.text((letter?`Part ${letter}  ·  `:'')+name,M+20,y+9,13,1,NAVY);if(tag)d.text(tag,R,y+9,8.5,0,MUTE,'r');y+=16;d.line(M,y,R,y,NAVY,.9);y+=14}
+    /* problem sections */
+    sets.forEach(([name,tag,P,box],si)=>{sectionHead(name,tag,kind==='packet'?'':'ABC'[si]);
+      P.forEach(q=>{no++;key.push([no,ansOf(q)]);const ql=d.wrap(problemText(q),11,0,TW-40),mc=!!q.choices,ch=mc?q.choices:[],twoCol=mc&&ch.every(c=>d.w(c,10,0)<TW/2-50);
+        const h=ql.length*15+(mc?(twoCol?Math.ceil(ch.length/2):ch.length)*17+6:box+8)+12;need(h);
+        d.rect(M,y-8,9,9,{stroke:INK,lw:.8});d.text(no+'.',M+14,y,11,1,NAVY);ql.forEach((l,i)=>d.text(l,M+34,y+i*15,11,0,INK));y+=ql.length*15-4;
+        if(mc){ch.forEach((c,i)=>{const cx=twoCol&&i%2?M+34+TW/2:M+34,cy=y+8+(twoCol?Math.floor(i/2):i)*17;d.circle(cx+5,cy-3.5,5,{stroke:INK,lw:.8});d.text('ABCD'[i],cx+5,cy-0.5,6.5,1,INK,'c');d.text(c,cx+16,cy,10,0,INK)});y+=(twoCol?Math.ceil(ch.length/2):ch.length)*17+6}
+        else{d.rect(M+34,y+2,TW-34,box,{stroke:LINE,lw:.8,r:6});d.text('Work space',M+42,y+12,7,0,MUTE);d.text('Answer:',R-120,y+box-8,8.5,1,INK);d.line(R-84,y+box-6,R-10,y+box-6,LINE,.8);y+=box+8}
+        y+=12})});
+    /* explain your thinking */
+    no++;key.push([no,'Answers will vary.']);sectionHead('Explain Your Thinking','2 points',kind==='packet'?'':'ABCD'[sets.length]);
+    const prompt=/^Study these facts/.test(n.c)?`Pick one idea from this ${kind==='packet'?'packet':'worksheet'} and explain it in your own words. Why does it matter?`:`In your own words, explain how to ${n.n.toLowerCase()}. Use an example if it helps.`;
+    const pl=d.wrap(prompt,11,0,TW-40);need(pl.length*15+80);d.rect(M,y-8,9,9,{stroke:INK,lw:.8});d.text(no+'.',M+14,y,11,1,NAVY);pl.forEach((l,i)=>d.text(l,M+34,y+i*15,11,0,INK));y+=pl.length*15+10;
+    for(let i=0;i<3;i++){y+=22;d.line(M+34,y,R,y,LINE,.8)}y+=20;
+    /* answer key */
+    d.page();icon(d,sub,M,M-4,16);d.text('Answer Key',M+24,M+9,16,1,NAVY);d.text(title,R,M+9,9,0,MUTE,'r');d.line(M,M+20,R,M+20,NAVY,1.4);
+    let ky=M+44;const cw=TW/2;key.forEach(([i,a],j)=>{const col=j<Math.ceil(key.length/2)?0:1,row=col?j-Math.ceil(key.length/2):j,lines=d.wrap(a,10,0,cw-40);const yy=M+44+row*28;d.text(i+'.',M+col*cw,yy,10,1,NAVY);lines.slice(0,2).forEach((l,li)=>d.text(l,M+col*cw+24,yy+li*12,10,0,INK))});
+    d.text('Scoring: 1 point per question, 2 points for Explain Your Thinking. Total '+points+' points.',M,H-80,9,0,MUTE);
+    /* footers */
+    const N=d.pages.length;d.pages.forEach((p,i)=>{p.push(...footer(i+1,N))});
+    return d.bytes()
+    function footer(i,N){const o=[];const t=(s,x,al)=>{const wd=d.w(s,8,0);const xx=al==='r'?x-wd:x;o.push(`${MUTE.join(' ')} rg BT /F1 8 Tf ${xx.toFixed(1)} ${(H-(H-30)).toFixed(1)} Td (${enc(s)}) Tj ET`)};
+      o.push(`${LINE.join(' ')} RG .6 w [] 0 d ${M} 44 m ${R} 44 l S`);t('Bose Academy  ·  bose.academy  ·  Free to copy for classroom use',M);t(`Page ${i} of ${N}`,R,'r');return o}}
+  return{build,videoLink}})();
+
+/* Downloads and Library use the designed versions for worksheets and lesson packets */
+const _dlOld=dl;dl=function(kind,k){if(kind==='worksheet'||kind==='packet'){try{saveBlob(new Blob([PDFK.build(kind,k)],{type:'application/pdf'}),`${k}-${kind==='packet'?'lesson-packet':'worksheet'}.pdf`);return}catch(e){console.error(e)}}_dlOld(kind,k)};
+
+/* QR codes on printables open the lesson video: app.html#watch=<skill> */
+(function(){const m=location.hash.match(/^#watch=([\w-]+)$/);if(!m||!SK[m[1]])return;const k=m[1];history.replaceState(null,'',location.pathname);
+  ST.subj=SK[k].sub;showTab('learn');openSkill(k);if(typeof watch==='function'){watch(k);if(VP){VP.playing=false;vStop();vUI();msg('Press Play to start the lesson video.')}}})();
+</script>
