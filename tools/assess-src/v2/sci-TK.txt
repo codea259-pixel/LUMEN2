@@ -1,0 +1,511 @@
+@subject sci
+@grade TK
+@program Mystery Science
+about: Transitional kindergarten science helps children wonder, observe and explore with their senses and simple tools. Children notice how objects and materials look, feel and change, try pushes and pulls, care for plants and animals and watch them grow, and observe rocks, water, weather and the sky. Items are read aloud and many are answered by pointing, saying or drawing.
+std: PK.SCI.1 | Observation and investigation: use the senses and simple tools (magnifier, measuring cup, scale) to observe, compare, sort, predict and try things out.
+std: PK.SCI.2 | Documentation and communication: record observations with drawings, marks and simple charts, and share what was seen and learned.
+std: PK.SCI.3 | Properties of nonliving objects and materials: describe and compare size, shape, color, texture, weight and what materials are made of.
+std: PK.SCI.4 | Changes in nonliving objects and materials: observe and describe how objects move (push, pull, roll, slide) and how materials change (mix, melt, freeze, get wet or dry).
+std: PK.SCI.5 | Properties of living things: identify living things, their body parts and what plants, animals and people need to live, and where animals live.
+std: PK.SCI.6 | Changes in living things: observe and describe how plants and animals, including people, grow and change over time.
+std: PK.SCI.7 | Properties of earth materials: observe and describe rocks, soil, sand and water.
+std: PK.SCI.8 | Changes in the earth: observe and describe weather, seasons, day and night, and the Sun, Moon and stars.
+
+# ---------------- Unit 1 ----------------
+unit: Unit 1: Our Senses and Science Tools | PK.SCI.1, PK.SCI.2, PK.SCI.3 | sci_pk
+el: Pair each sense word with a gesture (touch your nose for "smell", cup your ear for "hear") and keep a picture chart of the five senses on the wall; accept pointing and one-word answers in any language.
+
+lesson: How do we find out about the world? | PK.SCI.1, PK.SCI.3
+practice:
+mc1: Which body part do you use to see? | eyes | ears | nose | hands
+hint: Point to the part of your face you use to look at a picture.
+mc1: Which body part do you use to smell a flower? | nose | eyes | feet | ears
+hint: Pretend to sniff. What part of your face are you using?
+mc1: Which body part helps you hear a bell? | ears | tongue | eyes | knees
+hint: Cover the sides of your head. Is the bell quieter now?
+mc1: Which body part tells you the sand is bumpy? | fingers | ears | nose | eyes closed
+hint: Which part of your body touches the sand?
+mc2: You taste a lemon. Which word tells how it tastes? | sour | loud | fuzzy | round
+hint: Think about the face people make when they eat a lemon.
+sa1: Close your eyes and listen for one minute. Tell one sound you heard. | Names a real sound, such as "I heard a car" or "I heard my friend talking."
+hint: Was it a loud sound or a quiet sound?
+quiz:
+mc1: How many senses do people have? | 5 | 2 | 3 | 10
+mc1: Which sense do you use to know a song is playing? | hearing | taste | smell | touch
+mc1: Which sense tells you a blanket is soft? | touch | hearing | taste | sight
+mc2: Ana smells cookies baking. Which sense is she using? | smell | touch | hearing | taste
+mc2: Which word tells how an ice cube feels? | cold | loud | sweet | stinky
+mc2: Which sense is safe to use with a rock you found outside? | sight | taste | smell it up close inside your nose | none
+sa1: Name one thing you know about an apple by looking and one thing you know by touching. | Looking: it is red (or green) and round. Touching: it is smooth and hard.
+
+lesson: What can we learn with a magnifier and a scale? | PK.SCI.1, PK.SCI.2
+practice:
+mc1: Which tool makes a tiny bug look bigger? | magnifier | spoon | ruler | cup
+hint: This tool has a round glass part you look through.
+mc1: Which tool helps you find which toy is heavier? | balance scale | magnifier | crayon | mirror
+hint: This tool has two sides that go up and down.
+mc2: A balance scale has a rock on one side and a feather on the other. Which side goes down? | the rock side | the feather side | neither side | both sides
+hint: The heavier thing pulls its side down.
+mc2: Leo looks at a leaf with a magnifier. What will he see better? | the small lines on the leaf | the sound of the leaf | the smell of the leaf | how heavy the leaf is
+hint: A magnifier helps your eyes.
+sa1: Draw what you see when you look at your fingertip with a magnifier. | A drawing of a fingertip with curvy lines or swirls.
+hint: Look for lines and loops on your skin.
+quiz:
+mc1: What do you look through to see something tiny up close? | magnifier | balance scale | bowl | block
+mc2: Which is heavier, a big book or a paper clip? | big book | paper clip | they weigh the same | you cannot tell
+mc2: Mila puts an apple and a grape on a balance scale. Which side goes up? | the grape side | the apple side | neither side | both sides
+mc2: Why do scientists draw what they see? | to remember and share it | to make it disappear | to make it heavier | to make it louder
+mc2: Which tool helps you see the tiny hairs on a bee's leg in a picture? | magnifier | measuring cup | scale | ruler
+mc3: A block and a ball sit on a balance scale. The sides stay level. What does that tell you? | They weigh about the same | The ball is heavier | The block is heavier | The scale is broken
+sa2: Tell how you could find out which of two shoes is heavier. | Put one shoe on each side of a balance scale. The side that goes down has the heavier shoe.
+
+lesson: How can we sort and describe things? | PK.SCI.2, PK.SCI.3
+practice:
+mc1: Which word tells about the color of a banana? | yellow | soft | heavy | loud
+hint: Picture a banana. What color is its peel?
+mc1: Which shape is a ball? | round | flat | square | pointy
+hint: Can it roll all the way around?
+mc2: Which one is smooth? | a glass marble | sandpaper | a pine cone | tree bark
+hint: Smooth things have no bumps.
+mc2: Kai sorts blocks into a big pile and a small pile. What is he sorting by? | size | smell | sound | taste
+hint: Big and small are words about how much space something takes.
+mc2: Which group has only things that are soft? | cotton ball, pillow, scarf | rock, pillow, spoon | spoon, fork, key | brick, cotton ball, cup
+hint: Check each thing in the group. Is every one soft?
+sa1: Pick a toy. Tell two words that describe it. | Two describing words, such as "red and bumpy" or "hard and round."
+quiz:
+mc1: Which word tells how sandpaper feels? | rough | smooth | wet | quiet
+mc1: Which is bigger? | an elephant | a mouse | an ant | a frog
+mc2: Which one does not belong with the others: a leaf, a crayon, a pine cone, a flower? | crayon | leaf | pine cone | flower
+mc2: Rosa sorted toys into a red group and a blue group. What did she sort by? | color | size | weight | sound
+mc2: Which pair feels the same? | a rock and a brick | a rock and a pillow | a feather and a nail | ice and soup
+mc3: A box has a heavy rock, a light leaf and a heavy shoe. If you sort by heavy and light, how many go in the heavy group? | 2 | 1 | 3 | 0
+sa1: Tell how a feather and a rock are different. | The feather is light and soft; the rock is heavy and hard.
+
+test:
+mc1: Which body part do you use to taste? | tongue | ear | elbow | eye
+mc1: Which body part helps you hear? | ears | nose | feet | hair
+mc1: Which sense do you use to see a rainbow? | sight | taste | smell | hearing
+mc1: Which word tells how a kitten's fur feels? | soft | sharp | sour | loud
+mc1: Which tool makes small things look big? | magnifier | balance scale | spoon | bucket
+mc2: Which sense tells you a fire truck is coming before you see it? | hearing | taste | touch | smell only
+mc2: Which word describes how a pickle tastes? | sour | fluffy | round | quiet
+mc2: Omar puts a toy car and a toy truck on a balance scale. The truck side goes down. Which is heavier? | the truck | the car | they are the same | you cannot tell
+mc2: Which is a safe way to learn about a mystery liquid? | look at it | drink it | put it in your eye | splash it on your face
+mc2: Which is rough? | tree bark | a mirror | a balloon | a glass cup
+mc2: Which pair are both round? | a ball and an orange | a box and a book | a pencil and a ball | a book and an orange
+mc2: Zoe sorts shells into big shells and small shells. What is she sorting by? | size | color | smell | taste
+mc2: Which tool would help you see the tiny seeds on a strawberry better? | magnifier | balance scale | ruler | pail
+mc2: Which word tells about a heavy thing? | hard to lift | easy to blow away | floats up | very tiny
+mc3: You hear a crunch, smell toast and see bread. How many senses did you use? | 3 | 1 | 2 | 5
+mc3: Ella feels a mystery object in a bag. It is cold, hard and smooth. Which could it be? | a metal spoon | a cotton ball | a fuzzy sock | a pine cone
+mc3: A rock and a sponge are the same size. Which will be heavier? | the rock | the sponge | they weigh the same | you cannot tell
+num2: Jay found 3 smooth rocks and 2 bumpy rocks. How many rocks did he find in all? | 5
+num2: Look at a picture of 4 red leaves and 1 yellow leaf. How many leaves are red? | 4
+sa1: Name two of your five senses and a body part for each. | Two of: see with eyes, hear with ears, smell with nose, taste with tongue, touch with skin or hands.
+sa2: Tell how you would sort a pile of buttons. Say what each group would be. | Sort by color (red buttons, blue buttons) or by size (big, small) or by number of holes.
+sa2: Why do scientists draw pictures of what they see? | So they remember what they saw and can show other people.
+cer2: Tia had a mystery bag. She put her hand in and felt something soft and fuzzy. She shook the bag and heard nothing. Then she smelled the bag and it smelled like nothing. What do you think was in the bag? Say or draw your idea (claim), what she noticed (evidence) and why that makes sense (reasoning). | Claim: I think it was a soft toy or a sock. Evidence: it felt soft and fuzzy and did not make a sound or have a smell. Reasoning: soft toys and socks are fuzzy and quiet, so they match what Tia felt and heard.
+
+# ---------------- Unit 2 ----------------
+unit: Unit 2: Materials and How They Change | PK.SCI.3, PK.SCI.4, PK.SCI.1, PK.SCI.2
+el: Keep a "materials" tray with real wood, metal, plastic, paper and cloth labeled with pictures and words; model sentence frames such as "It is made of ___" and "It will sink / float."
+
+lesson: Which things float and which things sink? | PK.SCI.3, PK.SCI.1
+practice:
+mc1: A toy boat sits on top of the water. What is it doing? | floating | sinking | melting | rolling
+hint: Things that float stay on top of the water.
+mc1: A rock drops to the bottom of a tub of water. What is it doing? | sinking | floating | melting | flying
+hint: Did it stay on top or go down?
+mc2: Which will most likely float? | a cork | a metal key | a rock | a marble
+hint: Think about things you have seen bobbing on top of water.
+mc2: Which will most likely sink? | a metal spoon | a leaf | a rubber duck | a foam cup
+hint: Heavy metal things often go to the bottom.
+mc2: Before testing, Ben says, "I think the crayon will sink." What is Ben doing? | making a guess (prediction) | measuring | drawing | sorting by color
+hint: He has not tried it yet. What do we call telling what we think will happen?
+sa1: Pick one thing from the classroom. Tell if you think it will sink or float, and why. | A prediction with a reason, such as "The block will float because it is wood and wood floats."
+hint: Is it heavy or light for its size? What is it made of?
+quiz:
+mc1: Things that go to the bottom of the water | sink | float | melt | bounce
+mc1: Which floats in a bathtub? | a rubber duck | a coin | a rock | a key
+mc2: Which is made of wood? | a wooden block | a glass cup | a metal can | a plastic straw
+mc2: Mei put an apple in water and it stayed on top. What happened? | The apple floated | The apple sank | The apple melted | The apple broke
+mc2: Which group has only things that sink? | rock, key, coin | rock, cork, leaf | cork, leaf, duck | leaf, coin, cork
+mc3: A big log and a small pebble go in a pond. The log floats and the pebble sinks. What does this show? | Big things do not always sink | Big things always sink | Small things always float | Everything floats
+sa2: Draw a tub of water with one thing that floats and one thing that sinks. Tell about your drawing. | Drawing shows a floating object (boat, leaf, cork) on top and a sinking object (rock, coin) at the bottom, with a short explanation.
+
+lesson: What happens to ice when it gets warm? | PK.SCI.4, PK.SCI.1
+practice:
+mc1: What does ice turn into when it melts? | water | sand | air | rock
+hint: Think about an ice cube in your cup at lunch.
+mc1: Where will an ice cube melt fastest? | in a warm sunny spot | in the freezer | in a cold cooler | in the snow
+hint: Melting needs warmth.
+mc2: Liv puts a cup of water in the freezer overnight. What will she find in the morning? | ice | hot water | juice | sand
+hint: The freezer is very cold.
+mc2: What happens to a crayon left on a hot car seat? | It gets soft and melts | It freezes | It grows bigger | It turns into water
+hint: Hot places can make some solid things soft.
+mc2: Which feels cold? | a snowball | a warm towel | a cup of cocoa | sand on a hot day
+hint: Which one comes from cold winter weather?
+sa1: Tell what happened to the ice cube we left on the table. | It melted and turned into a puddle of water.
+quiz:
+mc1: Ice is made of | water | sand | paper | milk
+mc1: Where does water turn into ice? | in the freezer | in the bathtub | in the sun | in a warm oven
+mc2: Two ice cubes sit outside. One is in the sun and one is in the shade. Which melts first? | the one in the sun | the one in the shade | they melt at the same time | neither melts
+mc2: An ice pop dripped on a hot day. Why? | The heat made it melt | It got colder | It froze more | It grew
+mc2: Which will turn back into ice if you put it in the freezer? | a puddle of water | a cookie | a crayon drawing | a rock
+mc3: Sam holds an ice cube in his hand. Pat leaves one on a cold plate. Whose ice cube melts first? | Sam's | Pat's | both at the same time | neither
+cer2: Noor put one ice cube on a sunny windowsill and one in the refrigerator. After lunch, the windowsill cube was a puddle, and the refrigerator cube was still an ice cube. What do you think makes ice melt? Say your idea, what Noor saw, and why. | Claim: warmth makes ice melt. Evidence: the ice in the warm sun turned into a puddle, but the ice in the cold refrigerator stayed ice. Reasoning: the only difference was warm or cold, so the warmth must have melted the ice.
+
+lesson: What happens when we mix things? | PK.SCI.4, PK.SCI.2
+practice:
+mc1: Mix blue paint and yellow paint. What color do you get? | green | red | black | white
+hint: Think of the color of grass.
+mc2: What happens to dry sand when you pour water on it? | It gets wet and sticks together | It turns into ice | It disappears | It floats away
+hint: Think about making a sandcastle.
+mc2: You stir sugar into warm water. What happens to the sugar? | It seems to disappear in the water | It turns into a rock | It floats like a boat | It turns blue
+hint: Look closely at the water after stirring. Can you still see the sugar?
+mc2: Which makes mud? | dirt and water | sand and paper | rocks and air | leaves and sunshine
+hint: What do you get when you step in a wet garden?
+mc2: A wet paper towel is left in the sun. What happens later? | It dries | It gets wetter | It freezes | It turns into wood
+hint: Where does water go when things dry in the sun?
+sa1: Tell what happened when we mixed flour and water. | It became sticky dough (or paste).
+quiz:
+mc1: Mix red paint and yellow paint. What color do you get? | orange | blue | green | purple
+mc2: Which will dry first on a sunny day? | a wet shirt on a sunny line | a wet shirt in a dark closet | a wet shirt in a bag | a wet shirt in a bucket
+mc2: You stir sand into water and wait. Where does most of the sand go? | to the bottom | into the air | it melts away | it floats on top
+mc2: Hana mixed dirt and water. What did she make? | mud | ice | paint | juice
+mc2: Which can you mix with water to make it pink? | red paint | sand | a rock | a spoon
+mc3: Ray stirs salt into water and the salt seems to disappear. How could he check if the salt is still there? | let the water dry up and look in the dish | look for it in the air | weigh a feather | shake the cup harder
+sa2: Tell or draw what happens when you mix two paint colors. | Names two colors and the new color, such as "blue and red made purple."
+
+test:
+mc1: A cork in water | floats | sinks | melts | breaks
+mc1: A coin dropped in a fish tank | sinks | floats | melts | flies
+mc1: What does ice become when it melts? | water | sugar | sand | air
+mc1: Mix blue and yellow paint. What color do you get? | green | orange | pink | brown
+mc1: Which is made of metal? | a spoon | a paper bag | a wooden spoon | a cotton shirt
+mc2: Which will float? | a plastic ball | a rock | a nail | a coin
+mc2: Which will sink? | a stone | a leaf | a rubber duck | a sponge full of air
+mc2: Where would a snowman melt fastest? | in the warm sun | in the shade on a cold day | in a freezer | at night in winter
+mc2: You leave a cup of water in the freezer. What happens? | It turns into ice | It turns into juice | It gets hot | It floats away
+mc2: What do you get when you mix dirt and water? | mud | sand | ice | glue
+mc2: A chocolate bar sits in a hot car. What happens? | It melts | It freezes | It gets bigger | It turns to water
+mc2: Wet sand is better for a sandcastle than dry sand because wet sand | sticks together | blows away | is lighter | is hotter
+mc2: A wet towel hangs outside on a sunny day. What happens? | It dries | It freezes | It gets wetter | It melts
+mc2: Before testing, Ivy says the leaf will float. What did Ivy make? | a prediction | a mess | a tool | a chart
+mc3: Ice cube A is in the sun. Ice cube B is in the shade. After a while, A is a puddle and B is still small ice. What made the difference? | the warmth of the sun | the color of the plate | the shape of the cube | the time of day only
+mc3: A big wooden log floats and a tiny pebble sinks. Which is true? | What a thing is made of matters, not just its size | Big things always sink | Small things always float | All rocks float
+mc3: You mix red and blue paint and get purple. Can you easily get the red and blue back? | no | yes, by stirring more | yes, by adding water | yes, by drying it
+num1: Max tested 6 toys. 4 floated. The rest sank. How many sank? | 2
+num2: The class put 5 ice cubes in the sun and 3 in the shade. How many ice cubes did they use? | 8
+sa1: Name one thing that floats and one thing that sinks. | Floats: a leaf, cork, boat or duck. Sinks: a rock, coin, key or nail.
+sa2: Tell how to turn water into ice and ice back into water. | Put water in the freezer to make ice. Put the ice somewhere warm to melt it into water.
+sa2: Tell what happens when you stir sugar into water. | The sugar mixes in and seems to disappear, but the water tastes sweet.
+cer2: Luis put a piece of chocolate in his hand and another piece on a cold plate. After a few minutes, the chocolate in his hand was soft and melty. The chocolate on the plate was still hard. What made the chocolate melt? Say your idea, what Luis saw, and why. | Claim: the warmth of his hand melted the chocolate. Evidence: the chocolate in his warm hand got soft, but the chocolate on the cold plate stayed hard. Reasoning: warm things make chocolate melt, and his hand was warm while the plate was cold.
+
+# ---------------- Unit 3 ----------------
+unit: Unit 3: Pushes, Pulls and Rolling | PK.SCI.4, PK.SCI.1, PK.SCI.2, PK.SCI.3
+el: Act out "push" (hands out, away from you) and "pull" (hands in, toward you) every day; use toy cars, balls and ramps so children can show answers with objects.
+
+lesson: How can we make things move? | PK.SCI.4
+practice:
+mc1: You move a swing away from you with your hands. Is that a push or a pull? | push | pull | neither | a roll
+hint: Does it go away from you or come toward you?
+mc1: You open a door by moving it toward you. Is that a push or a pull? | pull | push | a jump | a slide
+hint: Toward you is one kind of move. Away from you is the other.
+mc2: Which is a pull? | tugging a wagon handle | kicking a ball | pushing a stroller | bumping a ball with your head
+hint: A pull brings something toward you.
+mc2: A toy car is still on the floor. How can you make it move? | push it | look at it | sing to it | wait for it
+hint: Things that are still need a push or a pull to start moving.
+mc2: Which is a push? | pressing a button | pulling a rope | opening a drawer | picking an apple
+hint: A push moves something away from you.
+sa1: Show me a push and a pull with a toy. Tell which is which. | Pushes the toy away and says "push"; pulls it back and says "pull."
+quiz:
+mc1: Kicking a ball is a | push | pull | slide | melt
+mc1: Pulling a sock off your foot is a | pull | push | jump | spin
+mc2: Which needs a pull? | taking a book off a shelf toward you | closing a drawer | kicking a can | rolling a ball away
+mc2: A ball is sitting still. What will happen if nobody touches it and nothing bumps it? | It stays still | It rolls away | It jumps | It spins
+mc2: Which way does a pushed toy car go? | away from the pusher | toward the pusher | straight up | it does not move
+mc2: Two friends play tug-of-war. What are they doing to the rope? | pulling | pushing | throwing | rolling
+sa1: Name one thing you push and one thing you pull at home. | Push: a door, a button, a stroller. Pull: a drawer, a wagon, a zipper.
+
+lesson: How can we make a ball go farther? | PK.SCI.4, PK.SCI.1, PK.SCI.2
+practice:
+mc1: You kick a ball very hard. What happens? | It goes far and fast | It goes a tiny bit | It does not move | It goes backward
+hint: Think about a big kick on the playground.
+mc2: Which push makes a toy car go farther? | a strong push | a gentle push | no push | a tiny tap
+hint: Strong pushes give more go.
+mc2: A ball rolls down a ramp. Which ramp makes it roll farther? | a higher ramp | a flat board | no ramp | a ramp lying on the floor
+hint: Try it. Does a taller ramp make the ball go faster?
+mc2: Ty rolled a ball down a ramp and put a sticker where it stopped. Why did he use a sticker? | to mark how far it went | to make it faster | to make it pretty | to stop the ball
+hint: How will Ty remember where the ball stopped?
+mc2: A ball rolls toward a block. What happens when it hits the block? | It stops or bounces | It goes through it | It turns into a block | It gets bigger
+hint: Can a ball go through something hard?
+sa1: Roll a ball softly and then roll it hard. Tell what was different. | "When I rolled it hard, it went faster and farther."
+quiz:
+mc1: A gentle push makes a car go | a short way | very far | up to the sky | nowhere ever
+mc2: Kim wants her ball to go across the whole room. What should she do? | push it harder | push it softer | hold it | put it on a pillow
+mc2: Which ramp makes a car go fastest? | the tallest ramp | the lowest ramp | a flat board | a bumpy rug
+mc2: A rolling ball hits a wall. What makes it stop? | the wall | the color of the ball | the air | its name
+mc2: Which floor lets a toy car roll the farthest? | a smooth floor | a thick rug | a sandbox | a grassy field
+mc3: Eli rolled a ball down a low ramp and a high ramp. The ball went 2 steps from the low ramp and 5 steps from the high ramp. What did Eli find out? | The high ramp made the ball go farther | The low ramp made the ball go farther | Both ramps were the same | Ramps do not change anything
+cer2: Ava pushed a toy car gently and it stopped at the rug. Then she pushed it hard and it rolled past the rug to the wall. What made the car go farther? Say your idea, what Ava saw, and why. | Claim: the hard push made the car go farther. Evidence: with a gentle push it stopped at the rug, and with a hard push it rolled all the way to the wall. Reasoning: a stronger push gives the car more speed, so it goes farther.
+
+lesson: Which things roll and which things slide? | PK.SCI.4, PK.SCI.3
+practice:
+mc1: Which shape rolls? | a ball | a block | a book | a box
+hint: Things with round sides can roll.
+mc2: You put a block on a slide. What does it do? | It slides down | It rolls down | It flies up | It stays at the top forever
+hint: A block has flat sides. Can flat sides roll?
+mc2: Which will roll down a ramp? | a toy wheel | a book | a sponge | a brick
+hint: Look for something round.
+mc2: Which can roll and also stand still on its flat end? | a can | a ball | a box | a book
+hint: A can is round on its side and flat on its ends.
+mc2: Why do wagons have wheels? | so they roll easily | so they look nice | so they are heavy | so they float
+hint: Is it easier to drag a box or roll a wagon?
+sa1: Find something in the room that rolls. Tell why it can roll. | Names an object (ball, marker, cup on its side) and says it is round or has round sides.
+quiz:
+mc1: Which rolls? | an orange | a book | a shoe | a block
+mc1: Which slides but does not roll? | a box | a marble | a ball | a wheel
+mc2: A crayon is put on its side on a ramp. What will it most likely do? | roll | jump | stay still forever | float
+mc2: Which is easier to move across the floor? | a box on wheels | a box with no wheels | a heavy box on carpet | a box glued down
+mc2: Which shape cannot roll? | a cube block | a ball | a round bead | a hoop
+mc3: Dev wants to move a big pile of blocks to the shelf. Which choice is best? | put them in a wagon and pull it | carry one block at a time with one finger | kick the pile | leave them
+sa2: Tell why a ball rolls but a block slides. | A ball is round all over so it rolls. A block has flat sides so it slides.
+
+test:
+mc1: Pushing a shopping cart is a | push | pull | roll | jump
+mc1: Pulling a wagon by its handle is a | pull | push | throw | kick
+mc1: Which shape rolls best? | a ball | a book | a block | a box
+mc1: A soft push makes a ball go | a short way | very far | up high | backward
+mc2: Which of these do you do with a pull? | opening a drawer | kicking a ball | pushing a swing | pressing a bell
+mc2: Which of these do you do with a push? | throwing a ball | pulling a rope | opening a drawer | tugging a kite string
+mc2: A toy car sits still on a table. What can make it move? | a push or a pull | its color | the lights | a song
+mc2: Which ramp makes a ball go faster? | a steep ramp | a flat ramp | no ramp | a ramp going up
+mc2: Which will slide down a slide without rolling? | a block | a ball | a marble | a can on its side
+mc2: A ball rolls into a pillow. What happens? | It slows and stops | It goes faster | It goes through it | It turns around and flies
+mc2: Which is easiest to pull? | a wagon with wheels | a box with no wheels | a heavy bag on sand | a desk
+mc2: Kai's toy car stopped on the rug but rolled far on the smooth floor. Which floor lets it go farther? | the smooth floor | the rug | both the same | neither
+mc2: Which helps you tell how far a ball rolled? | mark where it stopped | close your eyes | change its color | sing a song
+mc2: Two children pull a rope from both ends just as hard. What happens? | The rope stays in the middle | It flies away | One side wins fast | It breaks into sand
+mc3: A boy wants a ball to stop rolling before it reaches the street. What is best to put in its way? | a big soft pillow | a piece of paper | a shadow | a feather
+mc3: Mina rolled a ball from a low ramp and a high ramp. Which is a fair way to test which ramp sends it farther? | use the same ball for both ramps | use a big ball on one and a tiny ball on the other | push the ball on one ramp only | use a ball and a block
+mc3: A ball rolls toward you. You want it to go back the other way. What do you do? | push it back | pull it closer | wait | look at it
+num2: A ball rolled 3 blocks from a low ramp and 6 blocks from a high ramp. How many more blocks did it roll from the high ramp? | 3
+num1: Lia pushed a car 2 times and pulled it 2 times. How many pushes and pulls did she do in all? | 4
+sa1: Show or tell one push and one pull you do on the playground. | Push: pushing a swing or a merry-go-round. Pull: pulling up on bars, pulling a wagon or a rope.
+sa2: Tell how to make a toy car go farther. | Push it harder, or roll it from a higher ramp, or roll it on a smooth floor.
+sa2: Tell why a wagon is easier to move than a box with no wheels. | Wheels roll, so the wagon moves easily. A box has to slide and rubs on the ground.
+cer2: Jin rolled a ball on the grass and it stopped soon. Then he rolled it the same way on the smooth sidewalk and it rolled much farther. Why did the ball go farther on the sidewalk? Say your idea, what Jin saw, and why. | Claim: the smooth sidewalk lets the ball roll farther. Evidence: with the same roll, the ball stopped soon on the grass but went far on the sidewalk. Reasoning: grass is bumpy and slows the ball down, and the sidewalk is smooth so the ball keeps rolling.
+
+# ---------------- Unit 4 ----------------
+unit: Unit 4: Living Things Grow and Change | PK.SCI.5, PK.SCI.6, PK.SCI.1, PK.SCI.2 | sci_pk_n1
+el: Use real plants, photos of animals and their babies, and a class growth chart; teach "alive / not alive," "baby / grown-up," and "needs" with picture cards children can hold up.
+
+lesson: How can we tell if something is alive? | PK.SCI.5
+practice:
+mc1: Which is alive? | a puppy | a toy dog | a rock | a spoon
+hint: Living things eat, drink and grow.
+mc1: Which is not alive? | a ball | a tree | a fish | a baby
+hint: Does it eat or grow?
+mc2: How do we know a plant is alive? | It grows and needs water | It is green | It is soft | It has a name
+hint: Think about what happens to a plant over many days.
+mc2: Which is alive: a real flower or a paper flower? | a real flower | a paper flower | both | neither
+hint: Which one would grow if you watered it?
+mc2: Which group has only living things? | bird, tree, worm | bird, rock, worm | car, tree, doll | doll, rock, car
+hint: Check every one. Does each one grow and need food or water?
+sa1: Name one living thing and one thing that is not alive in our classroom. | Living: a person, a class plant or a pet. Not alive: a chair, a table, a crayon.
+quiz:
+mc1: Point to the living thing. | a butterfly | a kite | a shoe | a cup
+mc1: Which one never grows? | a teddy bear | a bunny | a spider | a flower
+mc2: Which can grow bigger by itself? | a kitten | a toy cat | a pillow | a pencil
+mc2: A toy robot moves and makes sounds. Is it alive? | no, it does not eat or grow | yes, because it moves | yes, because it is loud | yes, because it has eyes
+mc2: Which needs food to live? | a goat | a wagon | a book | a rock
+mc3: Ruby found a seed. It looks like a tiny pebble. How could she find out if it is alive? | plant it, water it and see if it grows | paint it | throw it | put it in the freezer forever
+sa1: Tell one way a bird and a tree are both alive. | Both grow, and both need water (and food or light).
+
+lesson: What do plants and animals need to live? | PK.SCI.5
+practice:
+mc1: What do plants need to grow? | water and sunlight | candy and toys | shoes | music
+hint: What do we give our class plant?
+mc1: What do all animals need? | food and water | toys | hats | books
+hint: What does a pet need every day?
+mc2: Where does a fish live? | in water | in a tree | in a nest | in the sand dunes
+hint: Fish have fins and swim.
+mc2: Where does a bird keep its eggs? | in a nest | in a pond | in a cave under the sea | in a web
+hint: Birds build this from twigs and grass.
+mc2: Which helps a dog stay healthy? | food, water and a safe place | only toys | only a bath | nothing
+hint: Think about what you need too.
+sa1: Tell two things people need to live. | Two of: food, water, air, a home, sleep.
+quiz:
+mc1: What does a pet hamster need every day? | food and water | a phone | a bike | a crayon
+mc1: Where do bees live? | in a hive | in a pond | in a shell | in a nest of mud under water
+mc2: A plant was put in a dark closet for many days. What happened? | It got pale and droopy | It grew tall and green | It grew flowers | It turned into a tree
+mc2: Which animal lives in the ocean? | an octopus | a horse | a squirrel | a chicken
+mc2: Why does a squirrel live near trees? | to find nuts and a safe home | because trees are tall | because trees are loud | to swim
+mc2: The class plant has dry soil and droopy leaves. What does it need? | water | a hat | a toy | more darkness
+cer2: Kaya watered one bean plant every day. She forgot to water another bean plant. After a week, the watered plant was green and tall. The other plant was brown and droopy. What do you think plants need? Say your idea, what Kaya saw, and why. | Claim: plants need water to live and grow. Evidence: the plant that got water was green and tall, and the plant with no water was brown and droopy. Reasoning: the only difference was water, so water is what helped the plant grow.
+
+lesson: How do plants grow and change? | PK.SCI.6, PK.SCI.2
+practice:
+mc1: What does a bean seed grow into? | a bean plant | a rock | a bird | a flower pot
+hint: Seeds grow into the same kind of plant they came from.
+mc1: Which part of a plant grows down into the soil? | roots | flowers | leaves | fruit
+hint: These look like little strings under the dirt.
+mc2: What comes first? | seed | flower | big plant | fruit
+hint: What did we put in the soil on the first day?
+mc2: Each week Pablo draws his plant. Why? | to see how it grows and changes | to make it grow faster | to water it | to make it smell nice
+hint: How can drawings help him remember?
+mc2: A sunflower plant was 2 blocks tall. Two weeks later it was 6 blocks tall. What happened? | It grew taller | It got shorter | It stayed the same | It became a tree
+hint: Is 6 more or less than 2?
+sa1: Tell what our seed looked like at first and what it looks like now. | At first it was a small seed; now it has a stem, roots and leaves.
+quiz:
+mc1: A tiny plant that just came out of a seed is called a | sprout | rock | flower pot | root beer
+mc1: What does an apple seed grow into? | an apple tree | a pumpkin | a cactus | a bean plant
+mc2: Which shows the order a plant grows? | seed, sprout, big plant | big plant, seed, sprout | sprout, seed, big plant | big plant, sprout, seed
+mc2: Which part of a plant often turns into fruit? | the flower | the root | the soil | the pot
+mc2: The class measured a plant with cubes. Day 1: 1 cube. Day 10: 4 cubes. What does this show? | The plant grew | The plant shrank | The plant did not change | The cubes grew
+mc3: A pumpkin seed was planted. Which will most likely grow? | a pumpkin plant | a corn plant | a rose bush | an oak tree
+sa2: Draw a seed, a sprout and a big plant in order. Tell what happens. | Three drawings in order with words such as "The seed opens, a sprout grows, then it gets big with leaves."
+
+lesson: How do animals and people grow and change? | PK.SCI.6
+practice:
+mc1: A baby dog is called a | puppy | kitten | chick | calf
+hint: Think: puppy, kitten, chick. Which goes with a dog?
+mc1: A baby cat is called a | kitten | puppy | duckling | foal
+hint: Say "cat" and listen for the baby name.
+mc2: What does a chick grow into? | a chicken | a cow | a frog | a dog
+hint: Chicks hatch from chicken eggs.
+mc2: What does a caterpillar turn into? | a butterfly | a bird | a frog | a worm
+hint: It makes a hard case, and something with wings comes out.
+mc2: How are you different now than when you were a baby? | I am bigger | I am smaller | I am the same | I have wings
+hint: Look at a baby picture. Then look at yourself.
+sa1: Name a baby animal and the grown-up it will become. | For example: a puppy becomes a dog, a calf becomes a cow, a tadpole becomes a frog.
+quiz:
+mc1: A baby cow is called a | calf | lamb | kitten | puppy
+mc1: What hatches from a duck egg? | a duckling | a puppy | a kitten | a fish
+mc2: What does a tadpole grow into? | a frog | a fish | a snake | a duck
+mc2: How is a baby like its grown-up parent? | It is the same kind of animal | It is always the same size | It can already drive | It has no eyes
+mc2: Which is a way children grow and change? | They get taller | They shrink | They turn green | They grow tails
+mc3: A girl was 1 handprint tall on the growth chart in fall and a little taller in spring. What does this show? | She grew | She got shorter | She stayed the same | The chart moved
+sa1: Tell one thing you can do now that you could not do as a baby. | Walk, talk, run, eat by myself or climb.
+
+test:
+mc1: Which of these is a living thing? | a cat | a car | a cup | a crayon
+mc1: Which of these is a nonliving thing? | a rock | a tree | a worm | a bee
+mc1: What do plants need? | water and light | toys and shoes | candy | paint
+mc1: A baby frog is called a | tadpole | puppy | cub | chick
+mc1: Where does a bird lay its eggs? | in a nest | in a hive | in a fishbowl | in a shoe store
+mc2: Which grows from a seed? | a plant | a rock | a puppy | a cloud
+mc2: Which one must eat to stay alive? | a horse | a bike | a lamp | a ball
+mc2: A caterpillar becomes a | butterfly | spider | bird | bee
+mc2: Where does a whale live? | in the ocean | in a forest | in a desert | in a nest
+mc2: Which part of a plant takes in water from the soil? | roots | flowers | fruit | petals
+mc2: Which shows how a child changes? | baby, child, grown-up | grown-up, baby, child | child, baby, grown-up | baby, grown-up, baby
+mc2: A plant on the windowsill bends toward the window. Why? | to get sunlight | to hide | to drink | to get cold
+mc2: Which group has only baby animals? | puppy, kitten, chick | puppy, cow, cat | dog, cat, hen | horse, kitten, dog
+mc2: A puppy will grow up to be | a dog | a cat | a duck | a fox
+mc3: Two plants: one gets water and light, one gets no water. After a week, which looks healthier? | the one with water and light | the one with no water | both the same | neither grows ever
+mc3: Leo watched a seed for 2 weeks. First he saw roots, then a stem, then leaves. What did he learn? | The seed grew and changed | The seed stayed the same | The seed got smaller | The seed turned into a rock
+mc3: A toy dog can bark when you press a button. A real dog barks too. Which one is alive? | the real dog | the toy dog | both | neither
+num1: A hen has 3 chicks. 2 more eggs hatch. How many chicks are there now? | 5
+num2: Our bean plant was 2 cubes tall. Now it is 5 cubes tall. How many cubes did it grow? | 3
+sa1: Tell two things an animal needs to live. | Two of: food, water, air, a safe home.
+sa2: Tell how a bean seed changes as it grows. | It splits open, roots grow down, a stem and leaves grow up, and it gets bigger.
+sa2: Name a baby animal and tell one way it is like its parent. | A kitten has fur and whiskers like its mother cat (or another correct example).
+cer2: Two plants were the same at first. One stayed by a sunny window. One was put in a dark box. After a week, the window plant was green and standing up. The box plant was pale and floppy. What do you think plants need? Say your idea, what you noticed, and why. | Claim: plants need light to grow well. Evidence: the plant by the sunny window was green and standing, and the plant in the dark box was pale and floppy. Reasoning: the only difference was light, so light helps plants stay green and strong.
+
+# ---------------- Unit 5 ----------------
+unit: Unit 5: Earth and Sky | PK.SCI.7, PK.SCI.8, PK.SCI.1, PK.SCI.2
+el: Keep a daily weather picture chart with symbols (sun, cloud, raindrop, wind) and words in English and home languages; let children handle real rocks, soil and sand while naming textures.
+
+lesson: What are rocks, soil and sand like? | PK.SCI.7, PK.SCI.1
+practice:
+mc1: Which feels hard? | a rock | a pillow | a sponge | mud
+hint: Squeeze it in your hand. Does it change shape?
+mc1: Where do plants in a garden grow? | in soil | in a rock | in a cup of sand only | in the air
+hint: It is dark and crumbly, and worms live in it.
+mc2: What is sand made of? | tiny bits of rock | tiny bits of sugar | paper | cotton
+hint: Look at sand with a magnifier. What do the tiny pieces look like?
+mc2: Which lives in soil? | a worm | a fish | a whale | an owl
+hint: Dig in the garden. What wiggly animal might you find?
+mc2: Nia sorts rocks into smooth rocks and bumpy rocks. What is she sorting by? | how they feel | how they taste | how they sound | how old they are
+hint: Smooth and bumpy are touch words.
+sa1: Look at a rock with a magnifier. Tell two things you notice. | Two observations, such as "It is gray and has sparkly spots" or "It is bumpy and heavy."
+quiz:
+mc1: Which is a rock? | a pebble | a leaf | a stick | a shell from a snail
+mc2: What happens when you pour water on dry soil? | It gets wet and dark | It turns into rock | It floats | It turns to sand
+mc2: Which is best for building a sandcastle? | wet sand | dry rocks | air | big leaves
+mc2: Which rock would be best for skipping across a pond? | a small flat rock | a giant round rock | a soft rock made of sponge | a rock made of ice cream
+mc2: Why is soil good for plants? | It holds water and helps roots grow | It is loud | It is shiny | It is very cold
+mc3: Gus had a jar with soil and water. He shook it and waited. What did he see? | Bits settled to the bottom in layers | The soil turned into juice | The water disappeared | The jar got lighter
+sa1: Tell one way sand and soil are different. | Sand is grainy and light colored; soil is dark and crumbly and has bits of plants.
+
+lesson: What is the weather today? | PK.SCI.8, PK.SCI.2
+practice:
+mc1: What falls from clouds when it rains? | water | sand | leaves | rocks
+hint: What makes puddles?
+mc1: What do you wear on a rainy day? | a raincoat | a swimsuit | sunglasses only | sandals
+hint: What keeps you dry?
+mc2: The trees are bending and leaves are flying. What is the weather? | windy | sunny and still | snowy | foggy only
+hint: What moves trees and leaves without anyone touching them?
+mc2: Dark gray clouds fill the sky. What weather may come soon? | rain | a rainbow every time | snow in summer | a hot sunny day
+hint: Rain clouds are often dark.
+mc2: Which season is often cold and can be snowy in the mountains? | winter | summer | spring | fall
+hint: Think of the season with coats and hot cocoa.
+sa1: Look outside. Tell what the weather is like today. | Describes today's weather, such as "It is sunny and warm" or "It is cloudy."
+quiz:
+mc1: What might you need on a sunny day? | a sun hat | a snow shovel | boots for snow | a heavy coat
+mc1: Which season comes after winter? | spring | fall | summer | winter again
+mc2: Puddles are drying up and the sun is out. What is the weather now? | sunny | rainy | snowy | stormy
+mc2: Which helps you know if it is windy? | a flag waving | a closed book | a quiet room | a still pond
+mc2: Our chart shows sun, sun, rain, sun, sun. Which weather happened most? | sunny | rainy | snowy | windy
+mc2: In fall, many leaves | change color and fall | grow bigger | turn into flowers | turn into snow
+num2: Our weather chart shows 3 sunny days and 2 rainy days. How many days did we record? | 5
+sa2: Draw what you would wear on a cold, rainy day and tell why. | A drawing of a coat, boots or umbrella, with a reason like "to stay warm and dry."
+
+lesson: Why is the sky different in the day and at night? | PK.SCI.8
+practice:
+mc1: What lights up the sky in the daytime? | the Sun | the Moon | a lamp | the stars
+hint: It is big and bright, and you should never look right at it.
+mc1: What can you often see in the sky at night? | the Moon and stars | the Sun shining brightly | rainbows always | snow
+hint: Think of bedtime outside your window.
+mc2: When do people usually sleep? | at night | at noon | in the morning sun | at lunchtime
+hint: When is it dark outside?
+mc2: Where is your shadow when the Sun is behind you? | in front of you | behind you | on your head | nowhere
+hint: Your body blocks the sunlight. The dark shape is on the other side.
+mc2: The Moon does not always look round. What can it look like? | a thin curve (crescent) | a square | a triangle | a star
+hint: Look at the Moon on different nights.
+sa1: Tell one thing you do in the day and one thing you do at night. | Day: go to school, play outside. Night: sleep, look at the Moon.
+quiz:
+mc1: Is the Sun out in the day or at night? | in the day | at night | both | never
+mc2: Why should you never look straight at the Sun? | It can hurt your eyes | It is too far | It is cold | It is too quiet
+mc2: What makes a shadow on a sunny day? | something blocking the sunlight | the rain | the wind | the Moon
+mc2: Which is a star you can see in the day? | the Sun | the Moon | a cloud | an airplane
+mc2: Which happens every day? | It gets light in the morning and dark at night | It snows | It rains | We see a rainbow
+mc3: In the morning, Eva's shadow was long. At lunch it was short. What changed? | where the Sun was in the sky | Eva's size | the color of the ground | the wind
+sa2: Draw the sky in the day and the sky at night. Tell what is different. | Day drawing with the Sun and blue sky; night drawing with the Moon and stars on a dark sky, with words explaining the difference.
+
+test:
+mc1: Which is hard and heavy? | a rock | a feather | a cotton ball | a leaf
+mc1: Which one is wet? | rain | sand on a hot day | a dry rock | a cracker
+mc1: What lights the sky in the day? | the Sun | the Moon | the stars | a flashlight
+mc1: What do you use on a rainy day to stay dry? | an umbrella | a fan | sunscreen | a sled
+mc1: When can you see the stars? | at night | at noon | at lunch | in the sunny morning
+mc2: Which animal lives in garden soil? | an earthworm | a goldfish | a parrot | a dolphin
+mc2: What are the tiny grains on a beach? | sand | sugar | salt from the shaker | rice
+mc2: The flag at school is flapping hard. What is the weather? | windy | still and calm | snowy | foggy
+mc2: Which season is usually the hottest? | summer | winter | fall | spring
+mc2: Which is the best place to plant a seed? | in soil | on a rock | in a bag of sand with no water | on a shelf
+mc2: Your shadow is in front of you. Where is the Sun? | behind you | in front of you | under you | gone
+mc2: What happens to many trees in fall? | Their leaves change color and drop | They grow fruit made of snow | They turn into rocks | They walk away
+mc2: The weather chart has 4 suns and 1 cloud. Which weather happened most? | sunny | cloudy | rainy | snowy
+mc2: Which helps you know it is cold outside? | You can see your breath and need a coat | Ice is melting fast | You are sweating | People are swimming
+mc3: Before a storm, the sky is | dark and cloudy | bright and clear | full of stars at noon | purple with polka dots
+mc3: Ada puts water in a pan on a sunny day. Later the water is gone. Where did it go? | the Sun dried it up into the air | it turned into sand | it sank into the metal pan | it froze
+mc3: Ben sees the Moon big and round one night and like a thin smile a few nights later. What is true? | The Moon looks different on different nights | The Moon broke | Someone ate the Moon | There are two Moons
+num1: It rained on 2 days and was sunny on 3 days. How many days in all? | 5
+num2: Jen found 6 rocks. 2 are smooth. The rest are bumpy. How many are bumpy? | 4
+sa1: Tell one thing you see in the sky in the day and one thing you see at night. | Day: the Sun, clouds, birds. Night: the Moon, stars.
+sa2: Tell how you would dress on a hot, sunny day and why. | Light clothes, a sun hat and sunscreen to stay cool and protect skin from the Sun.
+sa2: Tell two ways rocks and soil are different. | Rocks are hard and solid; soil is soft and crumbly. Plants can grow in soil, and worms live in it.
+cer2: In the morning, the class drew a chalk circle around a puddle on the playground. At lunch the puddle was smaller. After school, it was gone and the ground was dry. The Sun was out all day. What do you think happened to the puddle? Say your idea, what the class saw, and why. | Claim: the Sun dried up the puddle. Evidence: the puddle got smaller at lunch and was gone after school, and it was sunny all day. Reasoning: the Sun warms water and makes it dry up into the air, so the puddle got smaller and smaller.
