@@ -88,8 +88,11 @@ const errs = [], ok = s => console.log('✓', s);
 
   // 5b. Assessments: teacher assigns a Grade 3 math quiz; the student takes it; rules keep keys and scores safe
   await t.click('.tt >> text=Assessments'); await t.waitForSelector('.gsel select'); await t.selectOption('.gsel select >> nth=0', '3'); await t.waitForSelector('#u_math-3-1');
-  await t.click('#u_math-3-1 button:has-text("Quiz")'); await t.waitForSelector('#u_math-3-1 .items'); await t.fill('#am_math-3-1', '0');
-  await t.click('#u_math-3-1 button:has-text("Assign quiz")'); await t.waitForFunction(() => !document.querySelector('#u_math-3-1 .items'), null, { timeout: 15000 }); ok('quiz assigned (Firebase)');
+  await t.click('#u_math-3-1 button:has-text("Lesson quiz")'); await t.waitForSelector('#u_math-3-1 .items');
+  await t.click('#u_math-3-1 button:has-text("Copy and edit")'); await t.waitForSelector('.ed'); await t.fill('#ed_name', 'Firebase version');
+  await (await (await t.$$('.ed .edi'))[0].$('textarea')).fill('EDITED in Firebase: which equation matches 5 groups of 3?');
+  await t.click('.ed button:has-text("Save version")'); await t.waitForSelector('text=Version saved.', { timeout: 15000 }); ok('teacher saved a question version (Firebase)');
+  await t.fill('#am_math-3-1', '0'); await t.click('#u_math-3-1 button:has-text("Assign lesson quiz")'); await t.waitForSelector('text=Lesson quiz assigned', { timeout: 15000 }); ok('version quiz assigned (Firebase)');
   await s.click('#tabs >> text=Learn'); await s.click('#tabs >> text=My classes'); await s.waitForSelector('.post button:has-text("Start")', { timeout: 15000 }); await s.click('.post button:has-text("Start")'); await s.waitForSelector('.items');
   const nq = await s.$$eval('.items > li', l => l.length);
   for (let i = 0; i < nq; i++) { const li = (await s.$$('.items > li'))[i];
@@ -104,11 +107,13 @@ const errs = [], ok = s => console.log('✓', s);
     await tryIt('un-submit', () => tr.collection('subs').doc(uid).update({ submitted: 0 }));
     await tryIt('release scores', () => tr.update({ released: true }));
     await tryIt('read all answers', () => tr.collection('subs').get());
+    await tryIt('read teachers\' versions', async () => { const q = await db.collection('qvers').where('shared', '==', true).get(); const q2 = await db.collection('qvers').get(); if (q.empty && q2.empty) throw 0 });
+    await tryIt('write a version', () => db.collection('qvers').add({ ownerId: uid, json: '{}', shared: true }));
     return out; }).catch(e => ({ error: e.message }));
   ok('student attacks on assessments: ' + JSON.stringify(qa)); if (Object.values(qa).some(v => v !== 'blocked')) errs.push('assessment rule allowed an attack');
   await t.click('.tt >> text=Gradebook'); await t.waitForSelector('.gb', { timeout: 15000 }); await t.click('button:has-text("Score answers")'); await t.waitForSelector('select[id^=gp_]');
   for (const e of await t.$$('select[id^=gp_]')) await e.selectOption('2'); await t.click('button:has-text("Save scores")'); await t.waitForSelector('text=Scores saved', { timeout: 15000 });
-  await t.click('button:has-text("Release scores")'); await t.waitForSelector('text=Scores released', { timeout: 15000 }); ok('teacher scored and released: ' + (await t.textContent('.gb tr:nth-child(2)')).replace(/\s+/g, ' '));
+  await t.click('button:has-text("Release scores")'); await t.waitForSelector('text=Scores released', { timeout: 15000 }); await t.waitForFunction(() => /\d+\/\d+/.test(document.querySelector('.gb tr:nth-child(2)').textContent), null, { timeout: 15000 }); ok('teacher scored and released: ' + (await t.textContent('.gb tr:nth-child(2)')).replace(/\s+/g, ' '));
   await s.click('#tabs >> text=Learn'); await s.click('#tabs >> text=My classes'); await s.waitForSelector('text=Score:', { timeout: 15000 }); ok('student sees ' + await s.textContent('.post b:has-text("Score")'));
 
   // 6. A 13+ learner joins by code, posts; the other student votes

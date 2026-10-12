@@ -806,7 +806,7 @@ showTab(location.hash.startsWith('#cert=')?'certs':'learn');
    Who may read or change what is enforced by firestore.rules, not by this file. ===== */
 const FBM=(()=>{
   const SDK=window.FIREBASE_SDK_BASE||'https://www.gstatic.com/firebasejs/10.12.2/';
-  const DEF={flags:{'AI tutor feedback':true,'Live Classroom':true,'Gem Challenges':true,'Offline mode':false},retDays:3,gr:{},programs:{},
+  const DEF={flags:{'AI tutor feedback':true,'Live Classroom':true,'Gem Challenges':true,'Offline mode':false},retDays:3,gr:{},programs:{},terms:[],
     block:['stupid','idiot','dumb','hate you','shut up'],
     impact:{mission:'Bose Academy gives every learner, everywhere, free access to clear lessons, unlimited practice and a patient tutor, so that no student is held back by cost or connection.',team:[],partners:[],funds:[['Content creation',40],['Hosting and infrastructure',25],['Accessibility and translation',20],['Reserve',15]],raised:0,goal:0}};
   const ROLES=['student','parent','teacher'];
@@ -880,7 +880,7 @@ const FBM=(()=>{
     await doc('state',me.uid).set({json:'{}',updated:now(),readers:[]},{merge:true});if(me.email||parentEmail)await doc('private',me.uid).set({...(me.email?{email:me.email}:{}),...(parentEmail?{parentEmail,consent:now()}:{})});return{ok:true}});
   route('POST','/api/logout',async()=>{await auth.signOut();return{ok:true}});
   route('PATCH','/api/me',async b=>{need();const d=str(b.display,2,20,'Display names');await doc('users',me.uid).update({display:d});profile.display=d;return{display:d}});
-  route('GET','/api/settings',async()=>({flags:{...DEF.flags,...site.flags},retDays:site.retDays??DEF.retDays,gr:site.gr||{},impact:site.impact||DEF.impact,programs:site.programs||{}}));
+  route('GET','/api/settings',async()=>({flags:{...DEF.flags,...site.flags},retDays:site.retDays??DEF.retDays,gr:site.gr||{},impact:site.impact||DEF.impact,programs:site.programs||{},terms:site.terms||[]}));
   route('GET','/api/curriculum',async()=>{try{const r=await fetch('server/curriculum.json');if(r.ok)return r.json()}catch(e){}return{courses:[],milestones:[]}});
   route('GET','/api/state',async()=>{need();const s=await stateOf(me.uid);lastSaved=s;return s});
   route('PUT','/api/state',async b=>{need();const json=JSON.stringify(b);if(json.length>400000)throw new E(413,'Too large.');
@@ -960,7 +960,7 @@ const FBM=(()=>{
   route('POST','/api/classes/:id/challenge',async(b,p)=>{need(isTeacher());const cd=await ownClass(p.id);const st=await Promise.all((cd.data().members||[]).map(stateOf));
     await cd.ref.update({challenge:{goal:Math.max(10,+b.goal||100),reward:String(b.reward||'Class celebration').slice(0,80),base:st.reduce((a,s)=>a+(+s.gems||0),0)}});return{ok:true}});
   /* Assessments: questions in classes/{c}/tests/{t}, the answer key and draft grades in .../key/k (teacher only), each student's answers in .../subs/{uid} */
-  const KINDS=['classwork','quiz','test'],P=(t,d)=>{try{return JSON.parse(t)}catch(e){return d}};
+  const KINDS=['classwork','quiz','test','benchmark'],P=(t,d)=>{try{return JSON.parse(t)}catch(e){return d}};
   async function myTests(cd){const ts=await cd.ref.collection('tests').get();
     return Promise.all(ts.docs.filter(t=>!t.data().target||t.data().target===me.uid).sort((a,b)=>b.data().ts-a.data().ts).map(async t=>{const x=t.data(),s=await t.ref.collection('subs').doc(me.uid).get(),v=s.exists?s.data():null;
       return{id:num(t.id),kind:x.kind,title:x.title,minutes:x.minutes,skills:x.skills||[],count:P(x.json,[]).length,released:!!x.released,ts:x.ts,sub:v?{started:v.started||null,submitted:v.submitted||null,result:x.released&&v.result?P(v.result,null):null}:null}}))}
@@ -970,12 +970,12 @@ const FBM=(()=>{
   route('POST','/api/classes/:id/tests',async(b,p)=>{need(isTeacher());const cd=await ownClass(p.id);if(!KINDS.includes(b.kind))throw new E(400,'Choose classwork, quiz or test.');
     const items=Array.isArray(b.items)?b.items.slice(0,80):[],key=Array.isArray(b.key)?b.key.slice(0,80):[];if(!items.length||key.length!==items.length)throw new E(400,'The assessment has no questions.');
     const target=b.target&&b.target!=='all'?sid(b.target):null;if(target&&!(cd.data().members||[]).includes(target))throw new E(400,'That student is not in this class.');
-    const json=JSON.stringify(items),kj=JSON.stringify(key);if(json.length>200000||kj.length>200000)throw new E(413,'The assessment is too large.');
-    const r=cd.ref.collection('tests').doc();await r.set({kind:b.kind,title:str(b.title,2,140,'Titles'),unit:String(b.unit||'').slice(0,40),json,skills:(Array.isArray(b.skills)?b.skills:[]).map(String).slice(0,40),minutes:Math.max(0,Math.min(240,Math.trunc(+b.minutes||0))),target,released:false,ts:now()});
+    const json=JSON.stringify(items),kj=JSON.stringify(key),pjson=JSON.stringify(Array.isArray(b.passages)?b.passages.slice(0,12):[]);if(json.length>200000||kj.length>200000||pjson.length>100000)throw new E(413,'The assessment is too large.');
+    const r=cd.ref.collection('tests').doc();await r.set({kind:b.kind,title:str(b.title,2,140,'Titles'),unit:String(b.unit||'').slice(0,40),json,pjson,skills:(Array.isArray(b.skills)?b.skills:[]).map(String).slice(0,40),minutes:Math.max(0,Math.min(240,Math.trunc(+b.minutes||0))),target,released:false,ts:now()});
     await r.collection('key').doc('k').set({json:kj,grades:'{}'});return{ok:true,id:num(r.id)}});
   route('GET','/api/classes/:id/tests',async(b,p)=>{need(isTeacher());const cd=await ownClass(p.id),ts=await cd.ref.collection('tests').get();
     return{tests:await Promise.all(ts.docs.sort((a,b)=>a.data().ts-b.data().ts).map(async t=>{const x=t.data(),[k,ss]=await Promise.all([t.ref.collection('key').doc('k').get(),t.ref.collection('subs').get()]),kd=k.exists?k.data():{};
-      const g=P(kd.grades,{});return{id:num(t.id),kind:x.kind,title:x.title,unit:x.unit,items:P(x.json,[]),key:P(kd.json,[]),grades:Object.fromEntries(Object.entries(g).map(([u,v])=>[num(u),v])),skills:x.skills||[],minutes:x.minutes,target:x.target?num(x.target):null,released:!!x.released,ts:x.ts,
+      const g=P(kd.grades,{});return{id:num(t.id),kind:x.kind,title:x.title,unit:x.unit,items:P(x.json,[]),passages:P(x.pjson,[]),key:P(kd.json,[]),grades:Object.fromEntries(Object.entries(g).map(([u,v])=>[num(u),v])),skills:x.skills||[],minutes:x.minutes,target:x.target?num(x.target):null,released:!!x.released,ts:x.ts,
         subs:ss.docs.map(s=>{const v=s.data();return{uid:num(s.id),answers:P(v.answers,{}),started:v.started||null,submitted:v.submitted||null,result:v.result?P(v.result,null):null}})}}))}});
   route('PATCH','/api/classes/:id/tests/:tid',async(b,p)=>{need(isTeacher());const cd=await ownClass(p.id),t=cd.ref.collection('tests').doc(sid(p.tid));if(!(await t.get()).exists)throw new E(404,'Assessment not found.');const mem=cd.data().members||[];
     if(b.grades&&typeof b.grades==='object'){const kr=t.collection('key').doc('k'),g=P(((await kr.get()).data()||{}).grades,{});Object.entries(b.grades).slice(0,200).forEach(([u,v])=>{u=sid(u);if(mem.includes(u))g[u]=v});await kr.update({grades:JSON.stringify(g)})}
@@ -987,11 +987,22 @@ const FBM=(()=>{
     await Promise.all([...ss.docs.map(d=>d.ref.delete()),t.collection('key').doc('k').delete()]);await t.delete();return{ok:true}});
   route('POST','/api/tests/:cid/:tid/start',async(b,p)=>{need();const t=await myTest(p.cid,p.tid),x=t.data(),sr=t.ref.collection('subs').doc(me.uid);let s=await sr.get();
     if(!s.exists){await sr.set({answers:'{}',started:now(),submitted:0});s=await sr.get()}else if(!s.data().started){await sr.update({started:now()});s=await sr.get()}const v=s.data();
-    return{id:num(t.id),kind:x.kind,title:x.title,minutes:x.minutes,items:P(x.json,[]),answers:P(v.answers,{}),started:v.started,submitted:v.submitted||null,now:now()}});
+    return{id:num(t.id),kind:x.kind,title:x.title,minutes:x.minutes,items:P(x.json,[]),passages:P(x.pjson,[]),answers:P(v.answers,{}),started:v.started,submitted:v.submitted||null,now:now()}});
   route('PUT','/api/tests/:cid/:tid/answers',async(b,p)=>{need();const t=await myTest(p.cid,p.tid),sr=t.ref.collection('subs').doc(me.uid),s=await sr.get();
     if(!s.exists||!s.data().started)throw new E(400,'Start the assessment first.');if(s.data().submitted)throw new E(409,'You already turned this in.');
     const n=P(t.data().json,[]).length,a={};Object.entries(b.answers||{}).forEach(([i,v])=>{i=Math.trunc(+i);if(i>=0&&i<n)a[i]=String(v??'').slice(0,4000)});
     await sr.update({answers:JSON.stringify(a),submitted:b.submit?now():0});return{ok:true}});
+  /* Question versions made on the site (qvers): teachers read shared ones and their own; the owner's are always shared */
+  const verIn=b=>{if(!['classwork','quiz','test'].includes(b.kind))throw new E(400,'Unknown kind.');const items=Array.isArray(b.items)?b.items.slice(0,40):[];if(!items.length)throw new E(400,'Add at least one question.');
+    const json=JSON.stringify({items,passages:Array.isArray(b.passages)?b.passages.slice(0,8):[]});if(json.length>150000)throw new E(413,'This version is too large.');
+    return{unit:str(b.unit,3,40,'Units'),part:str(b.part,4,20,'Parts'),kind:b.kind,name:str(b.name,2,60,'Names'),term:String(b.term||'').trim().slice(0,30),json,ts:now()}};
+  const verOut=d=>{const v=d.data();return{id:num(d.id),unit:v.unit,part:v.part,kind:v.kind,name:v.name,term:v.term||'',shared:!!v.shared,own:v.ownerId===me.uid,ownerName:v.ownerName||'teacher',ts:v.ts,...P(v.json,{items:[],passages:[]})}};
+  const ownVer=async id=>{const d=await doc('qvers',sid(id)).get();if(!d.exists||(d.data().ownerId!==me.uid&&!isOwner()))throw new E(404,'Version not found.');return d};
+  route('GET','/api/assess/versions',async()=>{need(isTeacher());const qs=isOwner()?[await db.collection('qvers').get()]:await Promise.all([db.collection('qvers').where('shared','==',true).get(),db.collection('qvers').where('ownerId','==',me.uid).get()]);
+    const seen=new Set(),out=[];qs.forEach(q=>q.docs.forEach(d=>{if(!seen.has(d.id)){seen.add(d.id);out.push(verOut(d))}}));return{versions:out.sort((a,b)=>a.ts-b.ts)}});
+  route('POST','/api/assess/versions',async b=>{need(isTeacher());const r=await db.collection('qvers').add({...verIn(b),ownerId:me.uid,ownerName:profile.display,shared:isOwner()||!!b.shared});return{ok:true,id:num(r.id)}});
+  route('PUT','/api/assess/versions/:id',async(b,p)=>{need(isTeacher());const d=await ownVer(p.id),v=d.data();await d.ref.update({...verIn(b),shared:v.ownerId!==me.uid?!!v.shared:isOwner()||!!b.shared});return{ok:true}});
+  route('DELETE','/api/assess/versions/:id',async(b,p)=>{need(isTeacher());const d=await ownVer(p.id);await d.ref.delete();return{ok:true}});
   route('POST','/api/users/:id/reset-password',async()=>{throw new E(400,"Password resets need the hosted version of the site. For now, create a new login for this student.")});
 
   /* Certificates */
@@ -1013,8 +1024,8 @@ const FBM=(()=>{
   route('PATCH','/api/owner/users/:id',async(b,p)=>{need(isOwner());p.id=sid(p.id);if(p.id===site.ownerUid)throw new E(403,'The Owner account is protected and cannot be changed.');const up={};
     if(b.role!==undefined){if(![...ROLES,'school_admin'].includes(b.role))throw new E(400,'Invalid role.');up.role=b.role}
     if(typeof b.locked==='boolean')up.locked=b.locked;if(typeof b.verified==='boolean')up.verified=b.verified;await doc('users',p.id).update(up);return{ok:true}});
-  route('GET','/api/owner/settings',async()=>{need(isOwner());return{block:site.block||DEF.block,flags:{...DEF.flags,...site.flags},retDays:site.retDays??DEF.retDays,gr:site.gr||{},impact:site.impact||DEF.impact,programs:site.programs||{}}});
-  route('PUT','/api/owner/settings',async b=>{need(isOwner());const up={};['block','flags','gr','impact','programs'].forEach(k=>{if(b[k]!==undefined)up[k]=b[k]});if(b.retDays!==undefined)up.retDays=Math.max(0,Math.min(60,+b.retDays||0));
+  route('GET','/api/owner/settings',async()=>{need(isOwner());return{block:site.block||DEF.block,flags:{...DEF.flags,...site.flags},retDays:site.retDays??DEF.retDays,gr:site.gr||{},impact:site.impact||DEF.impact,programs:site.programs||{},terms:site.terms||[]}});
+  route('PUT','/api/owner/settings',async b=>{need(isOwner());const up={};['block','flags','gr','impact','programs'].forEach(k=>{if(b[k]!==undefined)up[k]=b[k]});if(Array.isArray(b.terms))up.terms=b.terms.slice(0,6).map(t=>({name:str(t.name,1,30,'Trimester names'),start:/^\d{4}-\d{2}-\d{2}$/.test(t.start)?t.start:''}));if(b.retDays!==undefined)up.retDays=Math.max(0,Math.min(60,+b.retDays||0));
     await doc('config','site').set(up,{merge:true});Object.assign(site,up);return{ok:true}});
   route('POST','/api/tutor',async()=>{throw new E(503,'The AI tutor needs the hosted version of the site.')});
 
@@ -4221,7 +4232,8 @@ const _dlOld=dl;dl=function(kind,k){if(kind==='worksheet'||kind==='packet'){try{
 .std{display:inline-block;font-size:13px;line-height:1.4;padding:2px 9px;border-radius:999px;background:var(--lamp-soft);color:var(--ink);margin:2px 6px 2px 0}
 .qz ol.items{padding-left:26px;margin:12px 0}.qz ol.items>li{margin:0 0 18px}
 .qz .ch label{display:flex;gap:8px;align-items:flex-start;margin:6px 0;font-weight:400;cursor:pointer}.qz .ch input{margin-top:5px;flex:none}
-.qz textarea,.qz input[type=text]{font:inherit;width:100%;padding:8px 10px;border-radius:10px;border:2px solid var(--line);background:var(--bg);color:var(--ink)}.qz textarea{min-height:110px}.qz input[type=text]{max-width:240px}
+.qz textarea,.qz input[type=text],.ed input:not([type=checkbox]),.ed textarea{font:inherit;width:100%;padding:8px 10px;border-radius:10px;border:2px solid var(--line);background:var(--bg);color:var(--ink)}
+.qz textarea{min-height:110px}.qz textarea.big{min-height:220px}.qz input[type=text]{max-width:240px}
 .dok{font-size:12px;font-weight:700;color:var(--mute);margin-left:8px;white-space:nowrap}
 .key{color:var(--teal);font-weight:700}.miss{color:var(--coral);font-weight:700}
 .rub{font-size:14px;margin:8px 0 0;padding-left:20px}.rub li{margin:2px 0}
@@ -4230,67 +4242,129 @@ const _dlOld=dl;dl=function(kind,k){if(kind==='worksheet'||kind==='packet'){try{
 .gb th,.gb td{vertical-align:top}.gb td small{display:block;color:var(--mute)}
 .ans{white-space:pre-wrap;background:var(--bg);border-radius:10px;padding:8px 12px;margin:6px 0}
 .gsel{display:flex;gap:12px;flex-wrap:wrap;align-items:end}.gsel label{font-weight:700;font-size:15px}.gsel select{display:block;margin-top:4px}
+.psg{background:var(--bg);border-left:5px solid var(--lamp);border-radius:10px;padding:10px 16px;margin:0 0 12px;max-width:72ch}.psg h4{margin:0 0 6px}.psg p{margin:0 0 8px;line-height:1.6}
+.hint{margin-top:6px}.hint summary{cursor:pointer;color:var(--teal);font-weight:700}
+.lrow{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:6px 14px;border-top:1px solid var(--line);padding:8px 0}
+.ck2{display:flex;gap:6px;align-items:center;font-weight:400;font-size:15px}
+.ed .edi,.ed .edp{border:2px solid var(--line);border-radius:12px;padding:10px 12px;margin:10px 0;display:grid;gap:6px}
+.ed select{font:inherit}button.sm{padding:4px 10px;font-size:14px}
+.termbar{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-top:10px}
 </style>
 <script type="text/x-lumen">
-/* ===== Teacher page (Classes, Assessments, Gradebook, Grade guides) and taking quizzes and tests (My classes).
-   Questions come from server/assessments.json (built by tools/build_assess.py), which only teachers can load.
-   An assessment's questions are frozen when it is assigned; the answer key stays with the teacher, who
-   scores written answers and releases results. ===== */
-const AS={bank:null,g:null,sub:'math',pv:null,cls:null,T:{},gt:null};
-const AGR=[-1,0,1,2,3,4,5,6,7,8,9,10,11,12],KN={classwork:'Classwork',quiz:'Quiz',test:'Unit test'},PTS={mc:1,num:1,sa:2,ex:2,task:4};
+/* ===== Teacher page (Classes, Assessments, Gradebook, Grade guides) and taking assessments (My classes).
+   Content comes from server/assessments.json (built by tools/build_assess.py), which only teachers can load.
+   Units have lessons (classwork and a lesson quiz) and a unit test; teachers can also save their own versions
+   of any part, pick versions by trimester, and build trimester benchmarks. An assessment's questions are frozen
+   when it is assigned; the answer key stays with the teacher, who scores written answers and releases results. ===== */
+const AS={bank:null,vers:[],g:null,sub:'math',pv:null,ed:null,cls:null,T:{},gt:null};
+const AGR=[-1,0,1,2,3,4,5,6,7,8,9,10,11,12],KN={classwork:'Classwork',quiz:'Lesson quiz',test:'Unit test',benchmark:'Benchmark'};
+const PTS={mc:1,num:1,sa:2,ex:2,cer:4,wr:4,task:4},AUTO=t=>t==='mc'||t==='num';
+const TY={mc:'Multiple choice',num:'Number answer',sa:'Short answer',cer:'Claim, evidence and reasoning (CER)',wr:'Extended writing',task:'Performance task'};
+const CER_RUB=['Clear, accurate claim; relevant and sufficient evidence; reasoning that explains how the evidence supports the claim using key ideas from the unit.','Accurate claim and relevant evidence; the reasoning is only partly explained.','A claim with limited or partly relevant evidence and little reasoning.','The claim is unclear or inaccurate, with little or no evidence or reasoning.'];
+const WR_RUB=['Clear focus and strong organization; ideas fully developed with relevant details or text evidence; precise language; few errors in conventions.','Clear focus and organization; ideas adequately developed with some details or evidence; some errors that do not affect meaning.','Focus or organization is inconsistent; limited development or evidence; errors sometimes interfere with meaning.','Little focus or organization; minimal development; frequent errors.'];
 const GL=g=>g<0?'TK':g==0?'Kindergarten':'Grade '+g;
 const ASUB=s=>(AS.bank&&AS.bank.subjects[s])||SUBN[s]||s;
 const cellOf=(sub,g)=>AS.bank&&AS.bank.cells[sub+'|'+g];
 function unitById(id){const m=/^(\w+)-(-?\d+)-(\d+)$/.exec(id||'');if(!m)return null;const c=cellOf(m[1],+m[2]);const u=c&&c.units[+m[3]-1];return u?{...u,sub:m[1],g:+m[2],n:+m[3]}:null}
+/* what an assessment's unit field points at: a unit, a lesson (math-3-1:L2) or a benchmark (B:math:3:1.2) */
+function unitMeta(s){s=String(s||'');let m=/^B:(\w+):(-?\d+):([\d.]+)$/.exec(s);
+  if(m){const c=cellOf(m[1],+m[2]),U=m[3].split('.').map(n=>c&&c.units[+n-1]).filter(Boolean);return{id:`${m[1]}-${m[2]}-benchmark`,sub:m[1],g:+m[2],name:'Benchmark',std:[...new Set(U.flatMap(u=>u.std))],el:''}}
+  m=/^(\w+-(-?\d+)-\d+)(?::L(\d+))?$/.exec(s);const u=m&&unitById(m[1]);if(!u)return null;const L=m[3]&&u.lessons[+m[3]-1];return{...u,std:L&&L.std.length?L.std:u.std}}
 const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
 const keep=fn=>{const y=scrollY;fn();scrollTo(0,y)};
 const ar=()=>keep(()=>showTab(tab));
+const chips=l=>(l||[]).map(s=>`<span class="std">${esc(s)}</span>`).join('');
 const supportsFor=(sub,g)=>{const s=(AS.bank&&AS.bank.supports[sub])||{el:[],iep:[]},f=l=>l.filter(([lo,hi])=>g>=lo&&g<=hi).map(x=>x[2]);return{el:f(s.el),iep:f(s.iep)}};
+const terms=()=>(((BOOT.settings||{}).terms)||[]).filter(t=>t&&t.name);
+function curTerm(){const d=new Date().toISOString().slice(0,10);return terms().filter(t=>t.start&&t.start<=d).sort((a,b)=>a.start<b.start?-1:1).pop()||null}
 
-/* ---------- Building an assessment from a unit ---------- */
-const mcItem=m=>{const ch=shuf(m.ch);return[{t:'mc',q:m.q,ch,dok:m.dok},{a:ch.indexOf(m.ch[0]),txt:m.ch[0]}]};
-function genItems(u,n){const ks=(u.skills||[]).filter(k=>G[k]),out=[],seen=new Set();
-  for(let i=0;out.length<n&&ks.length&&i<n*8;i++){const k=ks[i%ks.length];let q;try{q=G[k](i<n/2?1:2)}catch(e){continue}
-    const t=plain(String(q.q)).replace(/\s+/g,' ').trim();if(!t||seen.has(t))continue;seen.add(t);
-    if(q.choices)out.push([{t:'mc',q:t,ch:q.choices.map(c=>plain(String(c))),dok:1},{a:q.a[0],txt:plain(String(q.choices[q.a[0]]))}]);
-    else out.push([{t:'num',q:t,dok:1},{a:q.a,exact:!!q.exact,txt:ansText(q)}])}
+/* ---------- Number answers: "24", "-3", "2.5", "3/4", "2 1/2"; a student's $, commas and trailing units are ignored ---------- */
+function pnum(x){const s=String(x??'').replace(/[$,]/g,'').trim().toLowerCase();
+  const m=s.match(/^(-?)(\d+)\s+(\d+)\/(\d+)/);if(m){const d=+m[4];return d?[(m[1]?-1:1)*(+m[2]*d+ +m[3]),d]:null}
+  const n=s.match(/^-?(\d+\/\d+|\d*\.\d+|\d+)/);return n?parse(n[0]):null}
+function numOk(k,raw){const u=pnum(raw);if(!u||!k)return false;
+  if(Array.isArray(k.a))return k.exact?isRight({a:k.a,exact:1},u[1]==1?String(u[0]):u[0]+'/'+u[1]):eq(u,k.a);
+  const a=pnum(k.a);return !!a&&eq(u,a)}
+
+/* ---------- Versions of a part: Standard, versions from files (versions/*.txt) and versions saved on the site ---------- */
+const partKey=(kind,li)=>kind==='test'?'test':`L${li+1}:${kind==='quiz'?'quiz':'practice'}`;
+function versionsFor(u,kind,li){const part=partKey(kind,li),L=u.lessons[li]||u.lessons[0];
+  const out=[{id:'std',name:'Standard',term:'',items:kind==='test'?u.test:kind==='quiz'?L.quiz:L.practice,passages:u.passages||[]}];
+  ((AS.bank&&AS.bank.versions)||[]).forEach(v=>{const p=v.parts[u.id+'|'+part];if(p)out.push({id:'f:'+v.id,name:v.name,term:v.term||'',items:p.items,passages:p.passages||[],src:'file'})});
+  (AS.vers||[]).filter(v=>v.unit===u.id&&v.part===part).forEach(v=>out.push({id:'c:'+v.id,name:v.name,term:v.term||'',items:v.items||[],passages:v.passages||[],src:'site',v}));
   return out}
-function buildA(uid,kind){const u=unitById(uid);const P=[],W=(t,o,pts)=>[{t,q:o.q,dok:o.dok,pts,...(o.rub?{rub:o.rub}:{})},o.rub?{rub:o.rub}:{ans:o.ans}];
-  if(kind==='quiz')P.push(...u.mc.slice(0,4).map(mcItem),...genItems(u,3),W('ex',u.ex,2));
-  else if(kind==='test')P.push(...u.mc.slice(4).map(mcItem),...genItems(u,4),...u.sa.map(s=>W('sa',s,2)),W('task',u.task,4));
-  else P.push(...u.mc.map(mcItem),...genItems(u,4),W('sa',u.sa[0],2),W('ex',u.ex,2));
+function defVer(vs){const t=curTerm();if(t){const m=vs.filter(v=>v.term&&v.term===t.name);if(m.length)return m[m.length-1].id}return 'std'}
+
+/* ---------- Building an assessment ---------- */
+function genSrc(u,n){const ks=(u.skills||[]).filter(k=>G[k]),out=[],seen=new Set();
+  for(let i=0;out.length<n&&ks.length&&i<n*8;i++){const k=ks[i%ks.length];let q;try{q=G[k](i<n/2?1:2)}catch(e){continue}
+    const t=plain(String(q.q)).replace(/\s+/g,' ').trim();if(!t||seen.has(t))continue;seen.add(t);const h=q.h&&q.h[0]?plain(String(q.h[0])):undefined;
+    if(q.choices){const ch=q.choices.map(c=>plain(String(c)));out.push([{t:'mc',q:t,ch:[ch[q.a[0]],...ch.filter((_,j)=>j!==q.a[0])],dok:1,h},null])}
+    else out.push([{t:'num',q:t,dok:1,h,k:{a:q.a,exact:!!q.exact,txt:ansText(q)}},null])}
+  return out}
+/* freezes [item, passages] pairs into public items, a key and the passages they use (choices shuffled, answers removed) */
+function freeze(src,o={}){const pm=new Map(),P=[],items=[],key=[],seen=new Set();
+  src.forEach(([it,ps])=>{if(!it||seen.has(it.q))return;seen.add(it.q);let p;
+    if(it.p!=null&&ps&&ps[it.p]){const k=ps[it.p];if(!pm.has(k)){pm.set(k,P.length);P.push({t:k.t,x:k.x})}p=pm.get(k)}
+    const b={t:it.t==='ex'?'sa':it.t,q:it.q,dok:it.dok||1};if(p!=null)b.p=p;if(o.hints&&it.h)b.h=it.h;
+    if(b.t==='mc'){const ch=shuf(it.ch);items.push({...b,ch});key.push({a:ch.indexOf(it.ch[0]),txt:it.ch[0]})}
+    else if(b.t==='num'){items.push(b);key.push(it.k||{a:it.a,txt:it.a})}
+    else if(b.t==='task'){items.push({...b,rub:it.rub});key.push({rub:it.rub})}
+    else{const rub=it.rub||(b.t==='cer'?CER_RUB:b.t==='wr'?WR_RUB:null);if(rub)b.rub=rub;items.push(b);key.push({ans:it.ans,...(rub?{rub}:{})})}});
+  return{items,key,passages:P}}
+function buildA(uid,kind,li=0,ver){const u=unitById(uid),vs=versionsFor(u,kind,li),v=vs.find(x=>x.id===ver)||vs.find(x=>x.id===defVer(vs))||vs[0],L=u.lessons[li]||u.lessons[0];
+  let src=v.items.map(it=>[it,v.passages]);
+  if(kind==='classwork')src=src.concat(genSrc(u,3));
+  else if(u.legacy&&v.id==='std'){const g=genSrc(u,kind==='quiz'?3:4);src=[...src.filter(x=>AUTO(x[0].t)),...g,...src.filter(x=>!AUTO(x[0].t))]}
+  const f=freeze(src,{hints:kind==='classwork'});
   const core=(u.skills||[]).filter(k=>SK[k]),sup=[...new Set(core.flatMap(k=>SK[k].pre||[]))].filter(k=>SK[k]&&!core.includes(k)).slice(0,3),
     ext=ORDER.filter(k=>SK[k].sub===u.sub&&ST.gr[k]===u.g+1&&SK[k].unit===(core[0]&&SK[core[0]].unit)).slice(0,3);
-  return{kind,unit:u.id,title:`${KN[kind]}: ${u.name} (${GL(u.g)} ${ASUB(u.sub)})`,items:P.map(p=>p[0]),key:P.map(p=>p[1]),
-    skills:kind==='classwork'?[...core,...sup.map(k=>'s:'+k),...ext.map(k=>'x:'+k)]:core,minutes:kind==='classwork'||u.g<=1?0:kind==='quiz'?15:u.g<=5?40:50}}
-/* the version being previewed is the one that is printed and assigned, so all three match */
-function ensure(uid,kind){if(!AS.pv||AS.pv.u!==uid||AS.pv.kind!==kind)AS.pv={u:uid,kind,a:buildA(uid,kind)};return AS.pv.a}
-const maxPts=items=>items.reduce((s,it)=>s+PTS[it.t],0);
+  const what=kind==='test'||u.legacy?u.name:L.name;
+  return{kind,ver:v.id,li,unit:kind==='test'||u.legacy?u.id:`${u.id}:L${li+1}`,title:`${KN[kind]}: ${what} (${GL(u.g)} ${ASUB(u.sub)})${v.id==='std'?'':' - '+v.name}`.slice(0,140),
+    items:f.items,key:f.key,passages:f.passages,skills:kind==='classwork'?[...core,...sup.map(k=>'s:'+k),...ext.map(k=>'x:'+k)]:core,
+    minutes:kind==='classwork'||u.g<=1?0:kind==='quiz'?15:u.g<=5?45:55}}
+/* a trimester benchmark: a fresh mix from the chosen units' tests (all versions) and lesson quizzes */
+function buildBench(sub,g,term,nums,len){const c=cellOf(sub,g),U=nums.map(n=>c&&c.units[n-1]).filter(Boolean).map(u=>({...u,sub,g}));if(!U.length)return null;
+  const pools=U.map(u=>{const auto=[],sa=[],big=[],blocks=[];
+    versionsFor(u,'test',0).forEach(v=>{const byP={};v.items.forEach(it=>{const x=[it,v.passages];if(it.p!=null){(byP[it.p]=byP[it.p]||[]).push(x);return}if(AUTO(it.t))auto.push(x);else if(it.t==='sa'||it.t==='ex')sa.push(x);else big.push(x)});Object.values(byP).forEach(b=>blocks.push(b))});
+    u.lessons.forEach(L=>L.quiz.forEach(it=>{if(it.p==null&&AUTO(it.t))auto.push([it,u.passages])}));
+    return{auto:shuf(auto),sa:shuf(sa),big:shuf(big),blocks:shuf(blocks)}});
+  const pick=(k,n)=>{const out=[];for(let r=0;out.length<n&&r<n*pools.length*2+50;r++){const p=pools[r%pools.length][k];if(p.length)out.push(p.shift())}return out};
+  let pre=[],big=null;
+  if(sub==='ela'){const bl=shuf(pools.flatMap(p=>p.blocks)).slice(0,len>=30?2:1);bl.forEach(b=>pre.push(...b.filter(x=>AUTO(x[0].t)).slice(0,8)));big=bl.flatMap(b=>b.filter(x=>x[0].t==='wr'))[0]||null}
+  if(!big)big=pick('big',1)[0]||null;
+  const sa=pick('sa',len>=30?2:1),auto=pick('auto',Math.max(0,len-pre.length-sa.length-(big?1:0))),f=freeze([...pre,...auto,...sa,...(big?[big]:[])]);
+  return{kind:'benchmark',ver:'std',unit:`B:${sub}:${g}:${nums.join('.')}`,title:`Benchmark${term?' '+term:''}: ${GL(g)} ${ASUB(sub)}`.slice(0,140),items:f.items,key:f.key,passages:f.passages,skills:[],minutes:g<=1?0:60}}
+const maxPts=items=>items.reduce((s,it)=>s+(PTS[it.t]||1),0);
 
-/* ---------- One question, as a student sees it (input), as the teacher's key, or as a student's results ---------- */
-function qHtml(it,i,mode,o={}){const a=o.ans!=null?String(o.ans):'',k=o.key,mk=o.mark;
-  const head=`<b>${esc(it.q)}</b><span class="dok">DOK ${it.dok} · ${PTS[it.t]} pt${PTS[it.t]>1?'s':''}</span>`;let body='';
+/* ---------- One question: as a student sees it (input), as the teacher's key, or as a student's results ---------- */
+const psgHtml=p=>`<div class="psg"><h4>${esc(p.t)}</h4>${String(p.x).split(/\s*\/\/\s*/).map(x=>`<p>${esc(x)}</p>`).join('')}</div>`;
+function itemsHtml(items,passages,mode,opt){let last=null;
+  return `<ol class="items">${items.map((it,i)=>{const pre=it.p!=null&&it.p!==last&&passages&&passages[it.p]?psgHtml(passages[it.p]):'';last=it.p??null;return `<li>${pre}${qHtml(it,i,mode,opt(i))}</li>`}).join('')}</ol>`}
+function qHtml(it,i,mode,o={}){const a=o.ans!=null?String(o.ans):'',k=o.key,mk=o.mark,P=PTS[it.t]||1;
+  const head=`<b>${esc(it.q)}</b><span class="dok">DOK ${it.dok} · ${P} pt${P>1?'s':''}</span>`;let body='';
   if(it.t==='mc')body=`<div class="ch" role="radiogroup">${it.ch.map((c,j)=>mode==='input'?`<label><input type="radio" name="q${i}" value="${j}" ${a===String(j)?'checked':''} onchange="setAns(${i},this.value)"><span>${'ABCD'[j]}) ${esc(c)}</span></label>`
-    :`<div>${'ABCD'[j]}) ${esc(c)}${k&&k.a===j?' <span class="key">✓ answer</span>':''}${mode==='result'&&a===String(j)&&!(k&&k.a===j)?' <span class="miss">your answer</span>':mode==='result'&&a===String(j)?' <span class="key">your answer</span>':''}</div>`).join('')}</div>`;
-  else if(it.t==='num')body=mode==='input'?`<label class="sol" style="display:block;margin-top:6px">Your answer <input type="text" inputmode="text" value="${esc(a)}" oninput="setAns(${i},this.value)" aria-label="Answer to question ${i+1}"></label>`
+    :`<div>${'ABCD'[j]}) ${esc(c)}${k&&k.a===j?' <span class="key">✓ answer</span>':''}${mode==='result'&&a===String(j)?(o.right&&o.right!==c?' <span class="miss">your answer</span>':' <span class="key">your answer</span>'):''}</div>`).join('')}</div>`;
+  else if(it.t==='num')body=mode==='input'?`<label class="sol" style="display:block;margin-top:6px">Your answer <input type="text" inputmode="decimal" value="${esc(a)}" oninput="setAns(${i},this.value)" aria-label="Answer to question ${i+1}"></label>`
     :`${mode==='result'?`<div>Your answer: <b>${esc(a||'(blank)')}</b></div>`:''}${k?`<div class="key">Answer: ${esc(k.txt)}</div>`:''}`;
-  else{const rub=it.rub?`<ol class="rub" reversed>${it.rub.map((r,j)=>`<li><b>${4-j} points:</b> ${esc(r)}</li>`).join('')}</ol>`:'';
-    body=(it.t==='task'?`<div class="sol" style="margin-top:6px">Performance task. How it is scored:</div>${rub}`:'')+
-      (mode==='input'?`<textarea aria-label="Answer to question ${i+1}" oninput="setAns(${i},this.value)" placeholder="Write your answer. Explain your thinking.">${esc(a)}</textarea>`
+  else{const rub=it.rub?`<div class="sol" style="margin-top:6px">${it.t==='task'?'Performance task':it.t==='cer'?'Claim, evidence and reasoning':it.t==='wr'?'Writing':'Scoring'}. How it is scored:</div><ol class="rub" reversed>${it.rub.map((r,j)=>`<li><b>${4-j} points:</b> ${esc(r)}</li>`).join('')}</ol>`:'';
+    const ph=it.t==='cer'?'Claim: ...&#10;Evidence: ...&#10;Reasoning: ...':it.t==='wr'?'Plan, then write your response in paragraphs.':'Write your answer. Explain your thinking.';
+    body=rub+(mode==='input'?`<textarea class="${it.t==='sa'?'':'big'}" aria-label="Answer to question ${i+1}" oninput="setAns(${i},this.value)" placeholder="${ph}">${esc(a)}</textarea>`
       :`${mode==='result'?`<div class="ans">${esc(a||'(blank)')}</div>`:''}${k&&k.ans?`<div class="key">Sample proficient answer:</div><div class="ans">${esc(k.ans)}</div>`:''}`)}
-  return head+body+(mode==='result'&&mk!==undefined?`<div class="sol">${mk==null?'Not scored yet':`${mk} of ${PTS[it.t]} point${PTS[it.t]>1?'s':''}`}${o.right?` · Correct answer: <b>${esc(o.right)}</b>`:''}</div>`:'')}
+  const hint=it.h?(mode==='input'?`<details class="hint"><summary>Hint</summary>${esc(it.h)}</details>`:mode==='key'?`<div class="sol">Hint: ${esc(it.h)}</div>`:''):'';
+  return head+body+hint+(mode==='result'&&mk!==undefined?`<div class="sol">${mk==null?'Not scored yet':`${mk} of ${P} point${P>1?'s':''}`}${o.right?` · Correct answer: <b>${esc(o.right)}</b>`:''}</div>`:'')}
 
 /* ---------- Scoring ---------- */
 function scoreSub(t,uid){const s=(t.subs||[]).find(x=>x.uid==uid),g=(t.grades||{})[uid]||{},pts=g.pts||{};let score=0,max=0,pend=0;
-  const marks=t.items.map((it,i)=>{const p=PTS[it.t],a=s&&s.answers?s.answers[i]:null,k=t.key[i]||{};max+=p;let m;
+  const marks=t.items.map((it,i)=>{const p=PTS[it.t]||1,a=s&&s.answers?s.answers[i]:null,k=t.key[i]||{};max+=p;let m;
     if(it.t==='mc')m=a!=null&&a!==''&&+a===k.a?1:0;
-    else if(it.t==='num')m=a&&isRight({a:k.a,exact:k.exact},a)?1:0;
+    else if(it.t==='num')m=a&&numOk(k,a)?1:0;
     else if(pts[i]!=null&&pts[i]!=='')m=Math.max(0,Math.min(p,+pts[i]));
     else if(a&&String(a).trim()){pend++;return null}else m=0;
     score+=m;return m});
   return{score,max,marks,pend,comment:g.comment||''}}
 const late=(t,s)=>t.minutes&&s.submitted&&s.started&&s.submitted-s.started>t.minutes*60e3+90e3;
-const resultOf=(t,uid)=>{const r=scoreSub(t,uid);return{score:r.score,max:r.max,marks:r.marks.map(m=>m??0),right:t.items.map((it,i)=>it.t==='mc'||it.t==='num'?String((t.key[i]||{}).txt||''):null),comment:r.comment}};
+const resultOf=(t,uid)=>{const r=scoreSub(t,uid);return{score:r.score,max:r.max,marks:r.marks.map(m=>m??0),right:t.items.map((it,i)=>AUTO(it.t)?String((t.key[i]||{}).txt||''):null),comment:r.comment}};
 
 /* ---------- Teacher page ---------- */
 const _tViewA=VIEWS.teacher;
@@ -4300,43 +4374,114 @@ VIEWS.teacher=function(){const t=ST.tt||'classes',T=[['classes','Classes'],['ass
 function setTT(t){ST.tt=t;AS.gt=null;reload('teacher')}
 const _ltA=LOAD.teacher;LOAD.teacher=async()=>{await _ltA();
   if(!AS.bank)try{AS.bank=await api('GET','/api/assess/bank')}catch(e){console.error(e)}
+  if(ST.tt==='assess')try{AS.vers=(await api('GET','/api/assess/versions')).versions||[];AS.versErr=''}catch(e){AS.vers=[];AS.versErr=e.message}
   if(AS.g==null){const g=(ST.classes[0]||{}).grade;AS.g=g==null?3:Math.max(-1,Math.min(12,g))}
   if(ST.tt==='gradebook'&&ST.classes.length){if(!cl(AS.cls))AS.cls=ST.classes[0].id;AS.T[AS.cls]=(await api('GET',`/api/classes/${AS.cls}/tests`)).tests||[]}};
 const gradePick=(onG,onS)=>`<div class="gsel"><label>Grade<select onchange="${onG}">${AGR.map(g=>`<option value="${g}" ${g==AS.g?'selected':''}>${GL(g)}</option>`).join('')}</select></label>
   <label>Subject<select onchange="${onS}">${Object.entries(AS.bank.subjects).map(([k,v])=>`<option value="${k}" ${k===AS.sub?'selected':''}>${esc(v)}</option>`).join('')}</select></label></div>`;
+const classOpts=()=>ST.classes.flatMap(c=>[`<option value="${c.id}:all">${esc(c.name)}: whole class</option>`,...c.students.map(s=>`<option value="${c.id}:${s.uid}">${esc(c.name)}: ${esc(s.name)}</option>`)]).join('');
 
-/* Assessments: browse units, preview, print and assign */
-function assessView(){const c=cellOf(AS.sub,AS.g);
-  return `<div class="card">${gradePick("AS.g=+this.value;AS.pv=null;ar()","AS.sub=this.value;AS.pv=null;ar()")}
-  <p class="sol" style="margin-top:10px">Each unit has classwork, a quiz (about 15 minutes, with one written explain question) and a unit test (multiple choice, written answers and a performance task scored with a 4-point rubric). Questions are original, written to the California standards; compare them with your district's pacing guide. DOK is depth of knowledge: 1 recall, 2 skills and concepts, 3 strategic thinking.</p></div>`+
-  (c?c.units.map(unitCard).join(''):`<div class="card" style="margin-top:14px"><p>Assessments for ${GL(AS.g)} ${esc(ASUB(AS.sub))} are not written yet.</p></div>`)}
-function unitCard(u,i){const pv=AS.pv&&AS.pv.u===u.id?AS.pv:null,opts=ST.classes.flatMap(c=>[`<option value="${c.id}:all">${esc(c.name)}: whole class</option>`,...c.students.map(s=>`<option value="${c.id}:${s.uid}">${esc(c.name)}: ${esc(s.name)}</option>`)]).join('');
-  return `<div class="card" style="margin-top:14px" id="u_${u.id}"><h3>Unit ${i+1}: ${esc(u.name)}</h3><div style="margin:6px 0 10px">${u.std.map(s=>`<span class="std">${esc(s)}</span>`).join('')}</div>
-  <div class="row">${['classwork','quiz','test'].map(k=>`<button class="${pv&&pv.kind===k?'':'alt'}" onclick="pvA('${u.id}','${k}')">${KN[k]}</button>`).join('')}</div>
-  ${pv?previewHtml(pv.a):''}</div>`;
-  function previewHtml(a){const s=supportsFor(u.sub,u.g);
-    return `<div class="qz" style="margin-top:12px;border-top:2px solid var(--line);padding-top:12px"><div class="split"><h3>${esc(a.title)}</h3><span class="sol">${a.items.length} questions · ${maxPts(a.items)} points · ${a.minutes?a.minutes+' minutes':'no timer'}</span></div>
-    <div class="row"><button class="alt" onclick="apdf()">Download PDF (with answer key${a.kind==='test'?' and rubric':''})</button><button class="alt" onclick="pvA('${u.id}','${a.kind}',1)">Make a new version</button></div>
-    ${ST.classes.length?`<div class="row"><label class="sol">Assign to <select id="at_${u.id}">${opts}</select></label><label class="sol">Timer in minutes (0 = none) <input type="number" id="am_${u.id}" min="0" max="240" value="${a.minutes}" style="width:90px"></label><button class="lamp" onclick="assignA('${u.id}')">Assign ${KN[a.kind].toLowerCase()}</button></div>`:'<p class="sol">Create a class in Classes to assign this.</p>'}
-    ${a.kind==='classwork'&&a.skills.length?`<p class="sol">Students also get practice links with Lumi's hints: ${a.skills.map(k=>{const [p,x]=k.includes(':')?k.split(':'):['',k];return esc(SK[x].n)+(p==='s'?' (support)':p==='x'?' (extension)':'')}).join(', ')}.</p>`:''}
-    <ol class="items">${a.items.map((it,j)=>`<li>${qHtml(it,j,'key',{key:a.key[j]})}</li>`).join('')}</ol>
-    <details><summary><b>Supports for English learners and students with IEPs</b></summary><ul>${[...s.el,...(u.el?[u.el]:[])].map(x=>`<li>EL: ${esc(x)}</li>`).join('')}${s.iep.map(x=>`<li>IEP/504: ${esc(x)}</li>`).join('')}</ul></details></div>`}}
-function pvA(uid,kind,fresh){if(fresh||!(AS.pv&&AS.pv.u===uid&&AS.pv.kind===kind))AS.pv={u:uid,kind,a:buildA(uid,kind)};ar()}
-function assignA(uid){const a=AS.pv.a,[cid,who]=$('at_'+uid).value.split(':'),min=Math.max(0,Math.min(240,Math.trunc(+$('am_'+uid).value||0)));
-  busy(async()=>{await api('POST',`/api/classes/${cid}/tests`,{...a,minutes:min,target:who});msg(`${KN[a.kind]} assigned. Scores appear in the Gradebook.`);AS.pv=null;reload('teacher')})}
-function apdf(){const a=AS.pv.a,u=unitById(a.unit);try{saveBlob(new Blob([aPdf(a,u)],{type:'application/pdf'}),`${u.id}-${a.kind}.pdf`)}catch(e){console.error(e);msg('Could not make the PDF.')}}
+/* Assessments: units with lessons, versions, the trimester calendar, benchmarks, preview, print and assign */
+function assessView(){const c=cellOf(AS.sub,AS.g),t=curTerm(),own=BOOT.role==='owner';
+  return `<div class="card">${gradePick("AS.g=+this.value;AS.pv=AS.ed=null;ar()","AS.sub=this.value;AS.pv=AS.ed=null;ar()")}
+  <p class="sol" style="margin-top:10px">Each unit has lessons with classwork (with hints) and a lesson quiz, plus a unit test with multiple choice, number-answer word problems, short answers and a 4-point CER, writing or performance task. Questions are original and written to the California standards; compare them with your district's pacing guide. DOK is depth of knowledge: 1 recall, 2 skills and concepts, 3 strategic thinking.</p>
+  <div class="termbar"><span><b>Current trimester:</b> ${t?`${esc(t.name)} (since ${esc(t.start)})`:'not set'}</span>${own?`<button class="alt sm" onclick="AS.cal=!AS.cal;ar()">${AS.cal?'Close calendar':'Set trimester dates'}</button>`:''}<span class="sol">Versions made for the current trimester open first.</span></div>
+  ${own&&AS.cal?calHtml():''}${AS.versErr?`<p class="sol">Saved versions could not be loaded: ${esc(AS.versErr)}${BOOT.fb?' If the site uses Firebase, publish the latest firestore.rules.':''}</p>`:''}</div>`+
+  (c?benchCard(c)+c.units.map(unitCard).join(''):`<div class="card" style="margin-top:14px"><p>Assessments for ${GL(AS.g)} ${esc(ASUB(AS.sub))} are not written yet.</p></div>`)}
+function calHtml(){const T=terms().slice(0,4);while(T.length<3)T.push({name:'Trimester '+(T.length+1),start:''});
+  return `<div style="margin-top:10px">${T.map((t,i)=>`<div class="row"><label class="sol">Name <input id="tn${i}" value="${esc(t.name)}" maxlength="30" style="width:150px"></label><label class="sol">First day <input type="date" id="td${i}" value="${esc(t.start||'')}"></label></div>`).join('')}
+  <div class="row"><button onclick="saveTerms(${T.length})">Save calendar</button></div></div>`}
+function saveTerms(n){const T=[];for(let i=0;i<n;i++){const nm=$('tn'+i).value.trim(),st=$('td'+i).value;if(nm)T.push({name:nm,start:st})}
+  busy(async()=>{await api('PUT','/api/owner/settings',{terms:T});BOOT.settings.terms=T;AS.cal=false;msg('Calendar saved.');ar()})}
+const benchTerms=()=>terms().length?terms():[{name:'Trimester 1'},{name:'Trimester 2'},{name:'Trimester 3'}];
+function benchCard(c){const T=benchTerms(),cur=curTerm(),ti=Math.min(AS.bt??Math.max(0,cur?T.findIndex(x=>x.name===cur.name):0),T.length-1),n=c.units.length,k=AS.sub+'|'+AS.g+'|'+ti;
+  if(!AS.bu||AS.bu.key!==k)AS.bu={key:k,on:c.units.map((u,j)=>Math.floor(j*T.length/n)===ti)};const pv=AS.pv&&AS.pv.bench?AS.pv:null;
+  return `<div class="card" style="margin-top:14px" id="bench"><h3>Trimester benchmark</h3><p class="sol">One cumulative test for the units taught this trimester. Questions are drawn at random from those units' tests (every version) and lesson quizzes, so each benchmark is a new mix.</p>
+  <div class="row"><label class="sol">Trimester <select onchange="AS.bt=+this.value;AS.pv=null;ar()">${T.map((t,i)=>`<option value="${i}" ${i===ti?'selected':''}>${esc(t.name)}</option>`).join('')}</select></label>
+  <label class="sol">Length <select id="blen">${[20,30,40].map(v=>`<option value="${v}" ${v===(AS.blen||30)?'selected':''}>${v} questions</option>`).join('')}</select></label></div>
+  <div style="margin:6px 0">${c.units.map((u,j)=>`<label class="ck2"><input type="checkbox" ${AS.bu.on[j]?'checked':''} onchange="AS.bu.on[${j}]=this.checked"> ${esc(u.name)}</label>`).join('')}</div>
+  <div class="row"><button class="${pv?'':'alt'}" onclick="pvBench(${ti})">Build benchmark</button></div>${pv?previewHtml(pv.a,{id:'bench',sub:AS.sub,g:AS.g,el:'',std:[]},pv):''}</div>`}
+function pvBench(ti){const T=benchTerms(),nums=AS.bu.on.map((v,j)=>v?j+1:0).filter(Boolean);if(!nums.length)return msg('Tick at least one unit.');
+  AS.blen=+$('blen').value;AS.pv={bench:1,ti,a:buildBench(AS.sub,AS.g,T[ti].name,nums,AS.blen)};AS.ed=null;ar()}
+function unitCard(u0,i){const u={...u0,sub:AS.sub,g:AS.g},pv=AS.pv&&!AS.pv.bench&&AS.pv.u===u.id?AS.pv:null,ed=AS.ed&&AS.ed.unit===u.id?AS.ed:null,on=(k,li)=>pv&&pv.kind===k&&(k==='test'||pv.li===li)?'':'alt';
+  return `<div class="card" style="margin-top:14px" id="u_${u.id}"><h3>${u.legacy?`Unit ${i+1}: `:''}${esc(u.name)}</h3><div style="margin:6px 0 6px">${chips(u.std)}</div>
+  ${u.lessons.map((L,li)=>`<div class="lrow"><b>${u.legacy?'Unit review':`Lesson ${li+1}: ${esc(L.name)}`}</b><span class="row" style="margin:0"><button class="${on('classwork',li)} sm" onclick="pvA('${u.id}','classwork',${li})">Classwork</button><button class="${on('quiz',li)} sm" onclick="pvA('${u.id}','quiz',${li})">Lesson quiz</button></span></div>`).join('')}
+  <div class="lrow"><b>Unit test</b><span class="row" style="margin:0"><button class="${on('test',0)} sm" onclick="pvA('${u.id}','test',0)">Unit test</button></span></div>
+  ${ed?editorHtml(ed):pv?previewHtml(pv.a,u,pv):''}</div>`}
+function pvA(uid,kind,li,ver,fresh){const same=AS.pv&&!AS.pv.bench&&AS.pv.u===uid&&AS.pv.kind===kind&&AS.pv.li===li;
+  if(fresh||!same||(ver&&ver!==AS.pv.a.ver))AS.pv={u:uid,kind,li,a:buildA(uid,kind,li,ver||(same?AS.pv.a.ver:undefined))};AS.ed=null;ar()}
+function previewHtml(a,u,pv){const s=supportsFor(u.sub,u.g),bench=!!(pv&&pv.bench),vs=bench?null:versionsFor(u,a.kind,a.li||0),cur=vs&&vs.find(v=>v.id===a.ver),
+    mine=cur&&cur.src==='site'&&(cur.v.own||BOOT.role==='owner'),idk=bench?'bench':u.id,again=bench?`pvBench(${pv.ti})`:`pvA('${u.id}','${a.kind}',${a.li||0},'${a.ver}',1)`;
+  return `<div class="qz" style="margin-top:12px;border-top:2px solid var(--line);padding-top:12px"><div class="split"><h3>${esc(a.title)}</h3><span class="sol">${a.items.length} questions · ${maxPts(a.items)} points · ${a.minutes?a.minutes+' minutes':'no timer'}</span></div>
+  ${vs?`<div class="row"><label class="sol">Version <select onchange="pvA('${u.id}','${a.kind}',${a.li||0},this.value)">${vs.map(v=>`<option value="${v.id}" ${v.id===a.ver?'selected':''}>${esc(v.name)}${v.term?` (${esc(v.term)})`:''}${v.src==='site'?(v.v.own?' - mine':` - by ${esc(v.v.ownerName)}`):''}</option>`).join('')}</select></label>
+    <button class="alt sm" onclick="edStart('${u.id}','${a.kind}',${a.li||0},'copy')">Copy and edit</button><button class="alt sm" onclick="edStart('${u.id}','${a.kind}',${a.li||0},'new')">New version</button>${mine?`<button class="alt sm" onclick="edStart('${u.id}','${a.kind}',${a.li||0},'edit')">Edit</button><button class="alt sm" onclick="delVer('${cur.id.slice(2)}')">Delete</button>`:''}</div>`:''}
+  <div class="row"><button class="alt" onclick="apdf()">Download PDF (with answer key)</button><button class="alt" onclick="${again}">Shuffle again</button></div>
+  ${ST.classes.length?`<div class="row"><label class="sol">Assign to <select id="at_${idk}">${classOpts()}</select></label><label class="sol">Timer in minutes (0 = none) <input type="number" id="am_${idk}" min="0" max="240" value="${a.minutes}" style="width:90px"></label><button class="lamp" onclick="assignA('${idk}')">Assign ${esc(KN[a.kind].toLowerCase())}</button></div>`:'<p class="sol">Create a class in Classes to assign this.</p>'}
+  ${a.kind==='classwork'&&a.skills.length?`<p class="sol">Students also get practice links with Lumi's hints: ${a.skills.map(k=>{const [p,x]=k.includes(':')?k.split(':'):['',k];return esc(SK[x].n)+(p==='s'?' (support)':p==='x'?' (extension)':'')}).join(', ')}.</p>`:''}
+  ${itemsHtml(a.items,a.passages,'key',i=>({key:a.key[i]}))}
+  <details><summary><b>Supports for English learners and students with IEPs</b></summary><ul>${[...s.el,...(u.el?[u.el]:[])].map(x=>`<li>EL: ${esc(x)}</li>`).join('')}${s.iep.map(x=>`<li>IEP/504: ${esc(x)}</li>`).join('')}</ul></details></div>`}
+function assignA(idk){const a=AS.pv.a,[cid,who]=$('at_'+idk).value.split(':'),min=Math.max(0,Math.min(240,Math.trunc(+$('am_'+idk).value||0)));
+  busy(async()=>{await api('POST',`/api/classes/${cid}/tests`,{kind:a.kind,title:a.title,unit:a.unit,items:a.items,key:a.key,passages:a.passages,skills:a.skills,minutes:min,target:who});msg(`${KN[a.kind]} assigned. Scores appear in the Gradebook.`);AS.pv=null;reload('teacher')})}
+function apdf(){const a=AS.pv.a,u=unitMeta(a.unit)||{id:'assessment',sub:AS.sub,g:AS.g,std:[],el:''};try{saveBlob(new Blob([aPdf(a,u)],{type:'application/pdf'}),`${a.unit.replace(/[^\w-]+/g,'-')}-${a.kind}.pdf`)}catch(e){console.error(e);msg('Could not make the PDF.')}}
+
+/* Question editor: a version of one part (a lesson's classwork or quiz, or a unit test) */
+function compactP(items,ps){const m=new Map(),P=[];items.forEach(it=>{if(it.p!=null&&ps[it.p]){if(!m.has(it.p)){m.set(it.p,P.length);P.push({t:ps[it.p].t,x:ps[it.p].x})}it.p=m.get(it.p)}else delete it.p});return P}
+function edStart(uid,kind,li,mode){const u=unitById(uid),vs=versionsFor(u,kind,li),cur=vs.find(v=>v.id===(AS.pv&&AS.pv.a.ver))||vs[0],items=mode==='new'?[]:JSON.parse(JSON.stringify(cur.items)).map(it=>{delete it.k;if(it.t==='ex')it.t='sa';return it});
+  AS.ed={unit:uid,kind,li,part:partKey(kind,li),id:mode==='edit'?cur.id.slice(2):null,name:mode==='edit'?cur.name:mode==='copy'?(cur.id==='std'?'My version':cur.name+' (copy)'):'New version',
+    term:mode==='edit'?cur.term:(curTerm()||{}).name||'',shared:mode==='edit'?!!cur.v.shared:false,items,passages:mode==='new'?[]:compactP(items,cur.passages||[])};ar()}
+function editorHtml(e){const T=terms(),f=(i,k,v,ph,ta)=>ta?`<textarea placeholder="${ph}" oninput="edSet(${i},'${k}',this.value)">${esc(v||'')}</textarea>`:`<input value="${esc(v||'')}" placeholder="${ph}" oninput="edSet(${i},'${k}',this.value)">`;
+  const item=(it,i)=>{let body='';
+    if(it.t==='mc')body=[0,1,2,3].map(j=>`<input value="${esc((it.ch||[])[j]||'')}" placeholder="${j?'Wrong answer '+j:'Correct answer'}" oninput="edArr(${i},'ch',${j},this.value)" aria-label="${j?'Wrong answer '+j:'Correct answer'}">`).join('');
+    else if(it.t==='num')body=f(i,'a',it.a,'Answer, for example 24, 2.5, 3/4 or 2 1/2');
+    else if(it.t==='task')body=[0,1,2,3].map(j=>`<input value="${esc((it.rub||[])[j]||'')}" placeholder="What a ${4-j}-point answer shows" oninput="edArr(${i},'rub',${j},this.value)">`).join('');
+    else body=f(i,'ans',it.ans,'Sample proficient answer',1);
+    return `<div class="edi"><div class="split"><b>${i+1}. ${TY[it.t]||it.t}</b><span class="row" style="margin:0"><select onchange="edSet(${i},'dok',+this.value)" aria-label="DOK">${[1,2,3].map(d=>`<option value="${d}" ${it.dok==d?'selected':''}>DOK ${d}</option>`).join('')}</select>
+      ${e.passages.length?`<select onchange="edSet(${i},'p',this.value===''?null:+this.value)" aria-label="Passage"><option value="">No passage</option>${e.passages.map((p,pi)=>`<option value="${pi}" ${it.p===pi?'selected':''}>Passage: ${esc(p.t||'untitled')}</option>`).join('')}</select>`:''}
+      <button class="alt sm" onclick="edMove(${i},-1)" aria-label="Move up">↑</button><button class="alt sm" onclick="edMove(${i},1)" aria-label="Move down">↓</button><button class="alt sm" onclick="edDel(${i})">Remove</button></span></div>
+      ${f(i,'q',it.q,'Question or prompt',1)}${body}${e.kind==='classwork'?f(i,'h',it.h,'Hint (optional, shown in classwork)'):''}</div>`};
+  return `<div class="ed qz" style="margin-top:12px;border-top:2px solid var(--line);padding-top:12px"><h3>${e.id?'Edit version':'New version'}: ${KN[e.kind]}</h3>
+  <div class="row"><label class="sol" style="flex:1;min-width:200px">Name <input id="ed_name" value="${esc(e.name)}" maxlength="60" oninput="AS.ed.name=this.value"></label>
+  <label class="sol">For <select onchange="AS.ed.term=this.value"><option value="">Any time</option>${T.map(t=>`<option ${t.name===e.term?'selected':''}>${esc(t.name)}</option>`).join('')}</select></label>
+  ${BOOT.role==='owner'?'<span class="sol">Shared with every teacher</span>':`<label class="ck2"><input type="checkbox" ${e.shared?'checked':''} onchange="AS.ed.shared=this.checked"> Share with other teachers</label>`}</div>
+  <h4>Reading passages (optional)</h4>${e.passages.map((p,pi)=>`<div class="edp"><input value="${esc(p.t)}" placeholder="Passage title" oninput="AS.ed.passages[${pi}].t=this.value"><textarea placeholder="Text. Use // to start a new paragraph." oninput="AS.ed.passages[${pi}].x=this.value">${esc(p.x)}</textarea><div><button class="alt sm" onclick="edDelP(${pi})">Remove passage</button></div></div>`).join('')}
+  <div class="row"><button class="alt sm" onclick="AS.ed.passages.push({t:'',x:''});ar()">Add a passage</button></div>
+  <h4>Questions (${e.items.length})</h4>${e.items.map(item).join('')}
+  <div class="row">${Object.entries(TY).filter(([t])=>t!=='task'||e.kind==='test').map(([t,l])=>`<button class="alt sm" onclick="edAdd('${t}')">+ ${esc(l)}</button>`).join('')}</div>
+  <p class="err" id="ed_err" role="alert" style="color:var(--coral);font-weight:700"></p>
+  <div class="row"><button class="lamp" onclick="edSave()">Save version</button><button class="alt" onclick="AS.ed=null;ar()">Cancel</button></div></div>`}
+function edSet(i,k,v){const it=AS.ed.items[i];if(v===null||v==='')delete it[k];else it[k]=v}
+function edArr(i,k,j,v){const it=AS.ed.items[i];it[k]=it[k]||['','','',''];it[k][j]=v}
+function edAdd(t){AS.ed.items.push({t,q:'',dok:2,...(t==='mc'?{ch:['','','','']}:t==='task'?{rub:['','','','']}:{})});ar()}
+function edDel(i){AS.ed.items.splice(i,1);ar()}
+function edMove(i,d){const L=AS.ed.items,j=i+d;if(j<0||j>=L.length)return;[L[i],L[j]]=[L[j],L[i]];ar()}
+function edDelP(pi){const e=AS.ed;e.passages.splice(pi,1);e.items.forEach(it=>{if(it.p===pi)delete it.p;else if(it.p>pi)it.p--});ar()}
+function edSave(){const e=AS.ed,err=m=>{$('ed_err').textContent=m};
+  if((e.name||'').trim().length<2)return err('Give this version a name.');if(!e.items.length)return err('Add at least one question.');
+  for(const [i,it] of e.items.entries()){const n=i+1;if(!String(it.q||'').trim())return err(`Question ${n} needs text.`);
+    if(it.t==='mc'){const ch=(it.ch||[]).map(x=>String(x||'').trim());if(ch.length<4||ch.some(x=>!x)||new Set(ch).size<4)return err(`Question ${n} needs four different answers.`);it.ch=ch}
+    if(it.t==='num'&&!pnum(it.a))return err(`Question ${n} needs a number answer like 24, 2.5, 3/4 or 2 1/2.`);
+    if(['sa','cer','wr'].includes(it.t)&&!String(it.ans||'').trim())return err(`Question ${n} needs a sample answer.`);
+    if(it.t==='task'&&(it.rub||[]).filter(x=>String(x||'').trim()).length<4)return err(`Question ${n} needs all four rubric levels.`);
+    if(it.p!=null&&!e.passages[it.p])delete it.p}
+  if(e.passages.some(p=>!String(p.t).trim()||!String(p.x).trim()))return err('Every passage needs a title and text.');
+  const items=e.items.map(it=>({...it,...(it.t==='cer'?{rub:CER_RUB}:it.t==='wr'&&!it.rub?{rub:WR_RUB}:{})}));
+  const body={unit:e.unit,part:e.part,kind:e.kind,name:e.name.trim(),term:e.term||'',shared:!!e.shared,items,passages:e.passages};
+  busy(async()=>{const r=e.id?await api('PUT','/api/assess/versions/'+e.id,body):await api('POST','/api/assess/versions',body);
+    AS.vers=(await api('GET','/api/assess/versions')).versions||[];AS.ed=null;AS.pv={u:e.unit,kind:e.kind,li:e.li,a:buildA(e.unit,e.kind,e.li,'c:'+(e.id||r.id))};msg('Version saved.');ar()})}
+function delVer(id){if(!confirm('Delete this version? Assessments already assigned from it are not affected.'))return;
+  busy(async()=>{await api('DELETE','/api/assess/versions/'+id);AS.vers=(await api('GET','/api/assess/versions')).versions||[];const p=AS.pv;AS.pv={u:p.u,kind:p.kind,li:p.li,a:buildA(p.u,p.kind,p.li)};msg('Version deleted.');ar()})}
 
 /* Gradebook */
 function gbView(){const C=ST.classes;if(!C.length)return '<div class="card"><p>Create a class in Classes first.</p></div>';const c=cl(AS.cls)||C[0],T=AS.T[c.id]||[];
   const sel=`<label class="sol">Class <select onchange="AS.cls=+this.value;AS.gt=null;reload('teacher')">${C.map(x=>`<option value="${x.id}" ${x.id===c.id?'selected':''}>${esc(x.name)}</option>`).join('')}</select></label>`;
-  if(!T.length)return `<div class="card">${sel}<p>Nothing assigned to this class yet. Assign classwork, a quiz or a unit test from Assessments.</p></div>`;
+  if(!T.length)return `<div class="card">${sel}<p>Nothing assigned to this class yet. Assign classwork, a lesson quiz, a unit test or a benchmark from Assessments.</p></div>`;
   const cellH=(t,s)=>{if(t.target&&t.target!=s.uid)return '<td class="sol">not assigned</td>';const b=(t.subs||[]).find(x=>x.uid==s.uid);
     if(!b||!b.started)return '<td class="sol">Not started</td>';if(!b.submitted)return '<td>In progress</td>';const r=scoreSub(t,s.uid);
     return `<td><b>${r.score}/${r.max}</b>${r.pend?`<small>${r.pend} to score</small>`:''}${late(t,b)?'<small>late</small>':''}</td>`};
   const avg=s=>{const R=T.filter(t=>!t.target||t.target==s.uid).map(t=>{const b=(t.subs||[]).find(x=>x.uid==s.uid);return b&&b.submitted?scoreSub(t,s.uid):null}).filter(Boolean);
     return R.length?Math.round(100*R.reduce((a,r)=>a+r.score,0)/R.reduce((a,r)=>a+r.max,0))+'%':'-'};
   const gt=T.find(t=>t.id===AS.gt);
-  return `<div class="card">${sel}<div class="tbl" style="margin-top:10px"><table class="vs gb"><tr><th>Student</th>${T.map(t=>`<th>${KN[t.kind]}<small>${esc(t.title.replace(/^[^:]*: /,''))}</small></th>`).join('')}<th>Average</th></tr>
+  return `<div class="card">${sel}<div class="tbl" style="margin-top:10px"><table class="vs gb"><tr><th>Student</th>${T.map(t=>`<th>${KN[t.kind]||t.kind}<small>${esc(t.title.replace(/^[^:]*: /,''))}</small></th>`).join('')}<th>Average</th></tr>
   ${c.students.map(s=>`<tr><td>${esc(s.name)}</td>${T.map(t=>cellH(t,s)).join('')}<td><b>${avg(s)}</b></td></tr>`).join('')}</table></div>
   <p class="sol">Multiple choice and number answers are scored automatically. Written answers wait for you. Students see their scores once you release them.</p></div>
   ${T.slice().reverse().map(t=>{const n=(t.subs||[]).filter(b=>b.submitted).length,of=t.target?1:c.students.length,pend=c.students.reduce((a,s)=>a+((t.subs||[]).some(b=>b.uid==s.uid&&b.submitted)?scoreSub(t,s.uid).pend:0),0);
@@ -4347,14 +4492,14 @@ function gbView(){const C=ST.classes;if(!C.length)return '<div class="card"><p>C
     <button class="alt" onclick="tPdf(${t.id})">Print with answer key</button><button class="alt" onclick="delA(${t.id})">Delete</button></div>
     ${gt===t?gradePanel(c,t):''}</div>`}).join('')}`}
 function gradePanel(c,t){const S=c.students.filter(s=>(t.subs||[]).some(b=>b.uid==s.uid&&b.started));if(!S.length)return '<p class="sol">No one has started this yet.</p>';
-  const W=t.items.map((it,i)=>[it,i]).filter(([it])=>!['mc','num'].includes(it.t));
+  const W=t.items.map((it,i)=>[it,i]).filter(([it])=>!AUTO(it.t));
   return `<div style="margin-top:12px">${S.map(s=>{const b=t.subs.find(x=>x.uid==s.uid),r=scoreSub(t,s.uid),g=(t.grades||{})[s.uid]||{},pts=g.pts||{};
-    const auto=t.items.map((it,i)=>[it,i]).filter(([it])=>['mc','num'].includes(it.t)),got=auto.filter(([,i])=>r.marks[i]===1).length,missed=auto.filter(([,i])=>r.marks[i]!==1).map(([,i])=>i+1);
+    const auto=t.items.map((it,i)=>[it,i]).filter(([it])=>AUTO(it.t)),got=auto.filter(([,i])=>r.marks[i]===1).length,missed=auto.filter(([,i])=>r.marks[i]!==1).map(([,i])=>i+1);
     return `<div class="card" style="margin-top:10px"><div class="split"><h4 style="margin:0">${esc(s.name)}</h4><span>${b.submitted?`<b>${r.score}/${r.max}</b>${late(t,b)?' · late':''}`:'In progress'}</span></div>
     <p class="sol">Scored automatically: ${got} of ${auto.length} correct${missed.length?` (missed ${missed.join(', ')})`:''}.</p>
-    ${W.map(([it,i])=>`<div style="margin:10px 0"><b>${i+1}. ${esc(it.q.length>160?it.q.slice(0,160)+'...':it.q)}</b><div class="ans">${esc((b.answers||{})[i]||'(blank)')}</div>
-      <details><summary class="sol">${it.t==='task'?'Rubric':'Sample proficient answer'}</summary>${it.t==='task'?`<ol class="rub" reversed>${it.rub.map((x,j)=>`<li><b>${4-j}:</b> ${esc(x)}</li>`).join('')}</ol>`:`<div class="ans">${esc((t.key[i]||{}).ans||'')}</div>`}</details>
-      <label class="sol">Points <select id="gp_${s.uid}_${i}">${['',...Array.from({length:PTS[it.t]+1},(_,n)=>n)].map(n=>`<option value="${n}" ${String(pts[i]??'')===String(n)?'selected':''}>${n===''?'not scored':n+' of '+PTS[it.t]}</option>`).join('')}</select></label></div>`).join('')}
+    ${W.map(([it,i])=>{const P=PTS[it.t]||2;return `<div style="margin:10px 0"><b>${i+1}. ${esc(it.q.length>160?it.q.slice(0,160)+'...':it.q)}</b><div class="ans">${esc((b.answers||{})[i]||'(blank)')}</div>
+      <details><summary class="sol">${it.rub?'Rubric and sample':'Sample proficient answer'}</summary>${it.rub?`<ol class="rub" reversed>${it.rub.map((x,j)=>`<li><b>${4-j}:</b> ${esc(x)}</li>`).join('')}</ol>`:''}${(t.key[i]||{}).ans?`<div class="ans">${esc(t.key[i].ans)}</div>`:''}</details>
+      <label class="sol">Points <select id="gp_${s.uid}_${i}">${['',...Array.from({length:P+1},(_,n)=>n)].map(n=>`<option value="${n}" ${String(pts[i]??'')===String(n)?'selected':''}>${n===''?'not scored':n+' of '+P}</option>`).join('')}</select></label></div>`}).join('')}
     <label class="sol">Comment for ${esc(s.name)}<input type="text" id="gc_${s.uid}" value="${esc(g.comment||'')}" maxlength="300" style="width:100%;max-width:none"></label>
     ${b.submitted?`<div class="row"><button class="alt" onclick="reopenA(${t.id},${s.uid})">Let ${esc(s.name)} keep working</button></div>`:''}</div>`}).join('')}
   <div class="row"><button class="lamp" onclick="saveGrades(${t.id})">Save scores</button></div></div>`}
@@ -4372,25 +4517,25 @@ function releaseA(tid,on){const t=tOf(tid);
 function reopenA(tid,uid){busy(async()=>{await api('PATCH',`/api/classes/${AS.cls}/tests/${tid}`,{reopen:uid});await LOAD.teacher();ar()})}
 function delA(tid){if(!confirm('Delete this assessment and every student answer to it? This cannot be undone.'))return;busy(async()=>{await api('DELETE',`/api/classes/${AS.cls}/tests/${tid}`);AS.gt=null;reload('teacher')})}
 function csvA(tid){const t=tOf(tid),c=cl(AS.cls),q=v=>`"${String(v).replace(/"/g,'""')}"`;
-  const rows=[['Student',...t.items.map((it,i)=>`Q${i+1} (${PTS[it.t]})`),'Score','Out of','Status'].map(q).join(',')];
+  const rows=[['Student',...t.items.map((it,i)=>`Q${i+1} (${PTS[it.t]||1})`),'Score','Out of','Status'].map(q).join(',')];
   c.students.forEach(s=>{if(t.target&&t.target!=s.uid)return;const b=(t.subs||[]).find(x=>x.uid==s.uid),r=scoreSub(t,s.uid);
     rows.push([s.name,...r.marks.map(m=>b&&b.submitted?(m??'not scored'):''),b&&b.submitted?r.score:'',r.max,!b||!b.started?'not started':!b.submitted?'in progress':late(t,b)?'turned in late':'turned in'].map(q).join(','))});
   saveBlob(new Blob([rows.join('\r\n')],{type:'text/csv'}),t.title.replace(/[^\w]+/g,'-').toLowerCase()+'.csv')}
-function tPdf(tid){const t=tOf(tid),u=unitById(t.unit)||{id:'assessment',name:t.title,std:[],sub:'math',g:3};try{saveBlob(new Blob([aPdf(t,u)],{type:'application/pdf'}),`${u.id}-${t.kind}.pdf`)}catch(e){console.error(e);msg('Could not make the PDF.')}}
+function tPdf(tid){const t=tOf(tid),u=unitMeta(t.unit)||{id:'assessment',sub:'math',g:3,std:[],el:''};try{saveBlob(new Blob([aPdf(t,u)],{type:'application/pdf'}),`${String(t.unit||'assessment').replace(/[^\w-]+/g,'-')}-${t.kind}.pdf`)}catch(e){console.error(e);msg('Could not make the PDF.')}}
 
 /* Grade guides */
-function guideView(){const c=cellOf(AS.sub,AS.g),key=AS.sub+'|'+AS.g,prog=((BOOT.settings||{}).programs||{})[key]||'',s=supportsFor(AS.sub,AS.g),own=BOOT.role==='owner';
+function guideView(){const c=cellOf(AS.sub,AS.g),key=AS.sub+'|'+AS.g,set=((BOOT.settings||{}).programs||{})[key]||'',prog=set||(c&&c.program)||'',s=supportsFor(AS.sub,AS.g),own=BOOT.role==='owner';
   return `<div class="card">${gradePick("AS.g=+this.value;ar()","AS.sub=this.value;ar()")}</div>`+(!c?`<div class="card" style="margin-top:14px"><p>The ${GL(AS.g)} ${esc(ASUB(AS.sub))} guide is not written yet.</p></div>`:
   `<div class="card" style="margin-top:14px"><h3>${GL(AS.g)} ${esc(ASUB(AS.sub))}</h3><p>${esc(c.about)}</p>
-  <h4>District adopted program</h4>${own?`<div class="row"><input id="prog" value="${esc(prog)}" maxlength="300" placeholder="For example, the program and edition your district uses" style="flex:1;min-width:220px" aria-label="Adopted program"><button onclick="saveProg('${key}')">Save</button></div><p class="sol">Shown to every teacher on this guide.</p>`:`<p>${prog?esc(prog):'<span class="sol">Not set yet. The site owner can add the district\'s adopted program here.</span>'}</p>`}
+  <h4>District adopted program</h4>${own?`<div class="row"><input id="prog" value="${esc(set||c.program||'')}" maxlength="300" placeholder="For example, the program and edition your district uses" style="flex:1;min-width:220px" aria-label="Adopted program"><button onclick="saveProg('${key}')">Save</button></div><p class="sol">Shown to every teacher on this guide.</p>`:`<p>${prog?esc(prog):'<span class="sol">Not set yet. The site owner can add the district\'s adopted program here.</span>'}</p>`}
   <h4>Priority standards (California)</h4><div class="tbl"><table class="vs">${c.std.map(([k,v])=>`<tr><td style="white-space:nowrap"><b>${esc(k)}</b></td><td>${esc(v)}</td></tr>`).join('')}</table></div>
-  <h4>Units</h4><ol>${c.units.map(u=>`<li style="margin-bottom:8px"><b>${esc(u.name)}</b><div>${u.std.map(x=>`<span class="std">${esc(x)}</span>`).join('')}</div>${(u.skills||[]).filter(k=>SK[k]).length?`<div class="sol">Practice in Bose Academy: ${u.skills.filter(k=>SK[k]).map(k=>esc(SK[k].n)).join(', ')}</div>`:''}</li>`).join('')}</ol>
-  <p class="sol">Each unit has classwork, a quiz and a unit test under Assessments. Compare the order with your district's pacing guide.</p>
+  <h4>Units and lessons</h4><ol>${c.units.map(u=>`<li style="margin-bottom:10px"><b>${esc(u.name)}</b><div>${chips(u.std)}</div>${u.legacy?'':`<div class="sol">Lessons: ${u.lessons.map(L=>esc(L.name)).join('; ')}</div>`}${(u.skills||[]).filter(k=>SK[k]).length?`<div class="sol">Practice in Bose Academy: ${u.skills.filter(k=>SK[k]).map(k=>esc(SK[k].n)).join(', ')}</div>`:''}</li>`).join('')}</ol>
+  <p class="sol">Each lesson has classwork and a quiz, and each unit has a unit test, under Assessments. Compare the order with your district's pacing guide.</p>
   <h4>Supports</h4><ul>${s.el.map(x=>`<li>English learners: ${esc(x)}</li>`).join('')}${s.iep.map(x=>`<li>IEP / 504: ${esc(x)}</li>`).join('')}</ul></div>`)}
 function saveProg(key){const v=$('prog').value.trim().slice(0,300),p={...((BOOT.settings||{}).programs||{}),[key]:v};if(!v)delete p[key];
   busy(async()=>{await api('PUT','/api/owner/settings',{programs:p});BOOT.settings.programs=p;msg('Saved.');ar()})}
 
-/* ---------- Learners: My classes lists classwork, quizzes and tests ---------- */
+/* ---------- Learners: My classes lists classwork, quizzes, tests and benchmarks ---------- */
 let RUN=null;
 VIEWS.classes=function(){const J=ST.joined||[];
 return `<h2>My classes</h2><div class="card"><h3>Join a class</h3><div class="row"><input id="jc" placeholder="Class code" aria-label="Class code" maxlength="10" style="text-transform:uppercase"><button class="lamp" onclick="joinClass()">Join</button></div><p class="sol">Your teacher gives you the code.</p></div>
@@ -4399,21 +4544,21 @@ function testsHtml(c){const T=c.tests||[];if(!T.length)return '';
   return T.map(t=>{const s=t.sub||{},st=s.submitted?(s.result?`<b>Score: ${s.result.score} of ${s.result.max}</b> <button class="alt" onclick="startA(${c.id},${t.id})">See results</button>`:'<span class="sol">Turned in. Your teacher will share your score.</span>')
       :`<button class="lamp" onclick="startA(${c.id},${t.id},${t.minutes||0},${!!s.started})">${s.started?'Continue':'Start'}</button>`;
     const links=t.kind==='classwork'?(t.skills||[]).map(k=>{const [p,x]=k.includes(':')?k.split(':'):['',k];return SK[x]?`<button class="alt" onclick="goSkill('${x}')">${p==='s'?'Support: ':p==='x'?'Extension: ':'Practice: '}${esc(SK[x].n)}</button>`:''}).join(''):'';
-    return `<div style="margin:12px 0;padding-bottom:12px;border-bottom:1px solid var(--line)"><span class="pill">${KN[t.kind]}</span> <b>${esc(t.title.replace(/^[^:]*: /,''))}</b>
-    <p class="sol" style="margin:4px 0">${t.count} questions · ${t.minutes?t.minutes+'-minute timer':'no time limit'}${t.kind==='classwork'?' · use the practice links if you get stuck':' · no hints'}</p><div class="row">${st}</div>${links?`<div class="row">${links}</div>`:''}</div>`}).join('')}
+    return `<div style="margin:12px 0;padding-bottom:12px;border-bottom:1px solid var(--line)"><span class="pill">${KN[t.kind]||t.kind}</span> <b>${esc(t.title.replace(/^[^:]*: /,''))}</b>
+    <p class="sol" style="margin:4px 0">${t.count} questions · ${t.minutes?t.minutes+'-minute timer':'no time limit'}${t.kind==='classwork'?' · hints and practice links if you get stuck':' · no hints'}</p><div class="row">${st}</div>${links?`<div class="row">${links}</div>`:''}</div>`}).join('')}
 function startA(cid,tid,minutes,started){if(minutes&&!started&&!confirm(`This has a ${minutes}-minute timer. It starts now and keeps running even if you leave. Ready?`))return;
   busy(async()=>{const r=await api('POST',`/api/tests/${cid}/${tid}/start`,{}),c=(ST.joined||[]).find(x=>x.id==cid),t=c&&c.tests.find(x=>x.id==tid);
-    RUN={cid,tid,...r,skew:r.now-Date.now(),ans:{...r.answers},result:t&&t.sub&&t.sub.result};showTab('take');
+    RUN={cid,tid,...r,passages:r.passages||[],skew:r.now-Date.now(),ans:{...r.answers},result:t&&t.sub&&t.sub.result};showTab('take');
     if(!r.submitted&&r.minutes){tickRun();RUN.iv=setInterval(tickRun,1000)}})}
 const _canA=can;can=t=>t==='take'?!!RUN:_canA(t);
 const _showA=showTab;showTab=function(t){if(t!=='take'&&RUN){if(RUN.iv)clearInterval(RUN.iv);if(!RUN.submitted)saveRun();RUN=null}return _showA(t)};
 VIEWS.take=function(){const r=RUN;if(!r)return '';
   if(r.submitted){const R=r.result;return `<div class="qz"><h2>${esc(r.title)}</h2>${R?`<div class="card"><b>Score: ${R.score} of ${R.max}</b>${R.comment?`<p>Your teacher says: ${esc(R.comment)}</p>`:''}</div>`:'<p class="sol">Turned in. Your score shows here once your teacher shares it.</p>'}
-    <ol class="items">${r.items.map((it,i)=>`<li>${qHtml(it,i,'result',{ans:r.ans[i],mark:R?R.marks[i]:undefined,right:R&&R.right[i]&&R.marks[i]<PTS[it.t]?R.right[i]:null})}</li>`).join('')}</ol>
+    ${itemsHtml(r.items,r.passages,'result',i=>({ans:r.ans[i],mark:R?R.marks[i]:undefined,right:R&&R.right[i]&&R.marks[i]<(PTS[r.items[i].t]||1)?R.right[i]:null}))}
     <button class="alt" onclick="go('classes')">Back to My classes</button></div>`}
   return `<div class="qz"><div class="split"><h2>${esc(r.title)}</h2>${r.minutes?'<span class="tmr" id="tmr" role="timer" aria-live="off"></span>':''}</div>
-  <p class="sol">${r.kind==='classwork'?'Take your time. Your answers save as you go.':'No hints on quizzes and tests. Your answers save as you go. Show your thinking on the written questions.'}</p>
-  <ol class="items">${r.items.map((it,i)=>`<li>${qHtml(it,i,'input',{ans:r.ans[i]})}</li>`).join('')}</ol>
+  <p class="sol">${r.kind==='classwork'?'Take your time. Open a hint if you get stuck. Your answers save as you go.':'No hints. Your answers save as you go. Show your thinking on the written questions.'}</p>
+  ${itemsHtml(r.items,r.passages,'input',i=>({ans:r.ans[i]}))}
   <div class="row"><button class="lamp" onclick="turnIn()">Turn in</button><button class="alt" onclick="go('classes')">Save and finish later</button></div></div>`};
 function setAns(i,v){RUN.ans[i]=v;clearTimeout(RUN.st);RUN.st=setTimeout(saveRun,2500)}
 function saveRun(){if(!RUN||RUN.submitted)return Promise.resolve();clearTimeout(RUN.st);const r=RUN;return api('PUT',`/api/tests/${r.cid}/${r.tid}/answers`,{answers:r.ans}).catch(e=>msg('Your answers could not be saved: '+e.message))}
@@ -4424,37 +4569,39 @@ function turnIn(auto){const r=RUN;if(!r)return;const blank=r.items.filter((_,i)=
   if(!auto&&blank&&!confirm(`You left ${blank} question${blank>1?'s':''} blank. Turn in anyway?`))return;
   busy(async()=>{await api('PUT',`/api/tests/${r.cid}/${r.tid}/answers`,{answers:r.ans,submit:true});if(r.iv)clearInterval(r.iv);r.submitted=true;RUN=null;if(!auto)msg('Turned in. Nice work!');reload('classes')})}
 
-/* ---------- PDF: student copy, then answer key, rubric and supports for the teacher ---------- */
-function aPdf(a,u){const {Doc,icon,C:{W,H,M,NAVY,INK,MUTE,LINE,TINT}}=PDFK,d=Doc(),R=W-M,TW=R-M,sub=u.sub||'math',max=maxPts(a.items);let y;
+/* ---------- PDF: student copy (with passages), then the answer key, rubrics and supports for the teacher ---------- */
+function aPdf(a,u){const {Doc,icon,C:{W,H,M,NAVY,INK,MUTE,LINE,TINT}}=PDFK,d=Doc(),R=W-M,TW=R-M,sub=u.sub||'math',max=maxPts(a.items),P=a.passages||[];let y;
   const fit=(t,z,b,w)=>{if(d.w(t,z,b)<=w)return t;while(t.length>1&&d.w(t+'...',z,b)>w)t=t.slice(0,-1);return t.trimEnd()+'...'};
   const mini=t=>{d.page();icon(d,sub,M,M-4,14);d.text(fit(t,11,1,R-M-22),M+22,M+8,11,1,NAVY);d.line(M,M+20,R,M+20,NAVY,1.2);y=M+40};
-  const need=(h,t)=>{if(y+h>H-60)mini(t)};
-  /* student copy */
+  const need=(h,t)=>{if(y+h>H-60)mini(t||a.title)};
+  const para=(txt,z,x,w,col=INK,lh=z+3)=>{d.wrap(txt,z,0,w).forEach(l=>{need(lh);d.text(l,x,y,z,0,col);y+=lh})};
   d.page();d.text('BOSE ACADEMY',M,M+2,8.5,1,MUTE);icon(d,sub,M,M+12,26);
-  const tl=d.wrap(a.title,17,1,R-206-24-(M+36));tl.forEach((l,i)=>d.text(l,M+36,M+30+i*20,17,1,NAVY));let hy=M+30+(tl.length-1)*20+18;
+  const tl=d.wrap(a.title,17,1,R-206-24-(M+36));tl.slice(0,3).forEach((l,i)=>d.text(l,M+36,M+30+i*20,17,1,NAVY));let hy=M+30+(Math.min(3,tl.length)-1)*20+18;
   d.text(`${GL(u.g)}  ·  ${ASUB(sub)}  ·  ${a.minutes?a.minutes+' minutes':'Untimed'}`,M+36,hy,10,0,INK);
   [['Name',''],['Date',''],['Class Period',''],['Score',`/ ${max}`]].forEach(([lab,suf],i)=>{const fy=M+4+i*21,fx=R-206;d.text(lab,fx,fy+9,9,1,INK);d.line(fx+d.w(lab,9,1)+6,fy+11,R-(suf?28:0),fy+11,LINE,.8);if(suf)d.text(suf,R,fy+9,9,0,INK,'r')});
   y=Math.max(hy+14,M+92);d.line(M,y,R,y,NAVY,1.6);y+=18;
-  const dir=a.kind==='classwork'?'Answer each question. Show your thinking on the written questions.':'Work on your own. Fill in one bubble for each multiple choice question. Answer written questions in complete sentences.';
-  d.wrap(dir,9.5,0,TW).forEach(l=>{d.text(l,M,y,9.5,0,INK);y+=13});if(u.std&&u.std.length){d.text('Standards: '+u.std.join(', '),M,y,8.5,0,MUTE);y+=12}y+=10;
-  a.items.forEach((it,i)=>{const ql=d.wrap(it.q,11,0,TW-110),tag=`DOK ${it.dok}  ·  ${PTS[it.t]} pt${PTS[it.t]>1?'s':''}`,mc=it.t==='mc';
-    const lines=it.t==='task'?9:it.t==='num'?0:4,rubH=it.rub?it.rub.reduce((s,r)=>s+d.wrap(r,8.5,0,TW-60).length*11+3,22):0;
-    const h=ql.length*15+(mc?it.ch.length*17:it.t==='num'?26:lines*22)+rubH+16;need(Math.min(h,H-2*M-80),a.title);
-    d.text((i+1)+'.',M,y,11,1,NAVY);ql.forEach((l,j)=>d.text(l,M+22,y+j*15,11,0,INK));d.text(tag,R,y,7.5,0,MUTE,'r');y+=ql.length*15-2;
-    if(mc)it.ch.forEach(c=>{const cl2=d.wrap(c,10,0,TW-60);need(cl2.length*13+6,a.title);d.circle(M+31,y+4.5,5,{stroke:INK,lw:.8});d.text('ABCD'[it.ch.indexOf(c)],M+31,y+7,6.5,1,INK,'c');cl2.forEach((l,j)=>d.text(l,M+42,y+8+j*13,10,0,INK));y+=cl2.length*13+4});
-    else if(it.t==='num'){y+=6;d.text('Answer:',M+22,y+10,9,1,INK);d.line(M+66,y+12,M+240,y+12,LINE,.8);y+=20}
-    else{if(it.rub){y+=6;const rl=it.rub.map(r=>d.wrap(r,8.5,0,TW-60)),rh=rl.reduce((s,l)=>s+l.length*11+3,16);need(rh,a.title);d.rect(M+22,y,TW-22,rh,{fill:TINT,r:6});d.text('How this is scored',M+32,y+12,8,1,NAVY);let ry=y+24;
-        rl.forEach((l,j)=>{d.text(String(4-j),M+32,ry,8.5,1,NAVY);l.forEach((t,k)=>d.text(t,M+44,ry+k*11,8.5,0,INK));ry+=l.length*11+3});y+=rh+4}
-      for(let k=0;k<lines;k++){need(22,a.title);y+=22;d.line(M+22,y,R,y,LINE,.8)}y+=4}
+  para(a.kind==='classwork'?'Answer each question. Use a hint if you get stuck. Show your thinking on written questions.':'Work on your own. Fill in one bubble for each multiple choice question. Answer written questions in complete sentences.',9.5,M,TW);
+  if(u.std&&u.std.length)para('Standards: '+u.std.join(', '),8.5,M,TW,MUTE,12);y+=10;
+  let last=null;
+  a.items.forEach((it,i)=>{
+    if(it.p!=null&&it.p!==last&&P[it.p]){const p=P[it.p],paras=String(p.x).split(/\s*\/\/\s*/);need(80);
+      d.text(fit(p.t,11,1,TW-20),M+10,y+4,11,1,NAVY);y+=18;paras.forEach(pp=>{para(pp,10,M+10,TW-20,INK,14);y+=5});d.line(M,y,R,y,LINE,.8);y+=16}
+    last=it.p??null;const ql=d.wrap(it.q,11,0,TW-110),Pt=PTS[it.t]||1,tag=`DOK ${it.dok}  ·  ${Pt} pt${Pt>1?'s':''}`,mc=it.t==='mc';
+    const lines={sa:4,cer:9,wr:13,task:9}[it.t]||0;need(Math.min(ql.length*15+(mc?it.ch.length*17:30)+40,H-2*M-80));
+    d.text((i+1)+'.',M,y,11,1,NAVY);ql.forEach((l,j)=>{if(j)need(15);d.text(l,M+22,y,11,0,INK);if(!j)d.text(tag,R,y,7.5,0,MUTE,'r');y+=15});y-=2;
+    if(mc)it.ch.forEach((c,ci)=>{const cl2=d.wrap(c,10,0,TW-60);need(cl2.length*13+6);d.circle(M+31,y+4.5,5,{stroke:INK,lw:.8});d.text('ABCD'[ci],M+31,y+7,6.5,1,INK,'c');cl2.forEach((l,j)=>d.text(l,M+42,y+8+j*13,10,0,INK));y+=cl2.length*13+4});
+    else if(it.t==='num'){need(26);y+=6;d.text('Answer:',M+22,y+10,9,1,INK);d.line(M+66,y+12,M+240,y+12,LINE,.8);y+=20}
+    else{if(it.rub){y+=6;const rl=it.rub.map(r=>d.wrap(r,8.5,0,TW-60)),rh=rl.reduce((s,l)=>s+l.length*11+3,16);need(rh);d.rect(M+22,y,TW-22,rh,{fill:TINT,r:6});
+        d.text(it.t==='cer'?'How this is scored (claim, evidence, reasoning)':'How this is scored',M+32,y+12,8,1,NAVY);let ry=y+24;rl.forEach((l,j)=>{d.text(String(4-j),M+32,ry,8.5,1,NAVY);l.forEach((t,k)=>d.text(t,M+44,ry+k*11,8.5,0,INK));ry+=l.length*11+3});y+=rh+4}
+      for(let k=0;k<lines;k++){need(22);y+=22;d.line(M+22,y,R,y,LINE,.8)}y+=4}
+    if(it.h){need(14);y+=2;para('Hint: '+it.h,8.5,M+22,TW-22,MUTE,11)}
     y+=16});
-  /* teacher pages */
   mini('Answer Key and Scoring  ·  '+a.title);d.text('For the teacher. Remove before copying for students.',M,y,9,0,MUTE);y+=18;
-  a.items.forEach((it,i)=>{const k=a.key[i]||{},txt=it.t==='mc'?`${'ABCD'[k.a]}) ${it.ch[k.a]}`:it.t==='num'?k.txt:it.t==='task'?'Score with the 4-point rubric below.':'Sample: '+(k.ans||'');
-    const l=d.wrap(txt,9.5,0,TW-80);need(l.length*12+8,'Answer Key');d.text((i+1)+'.',M,y,9.5,1,NAVY);l.forEach((t,j)=>d.text(t,M+22,y+j*12,9.5,0,INK));d.text(`DOK ${it.dok} · ${PTS[it.t]} pt`,R,y,7.5,0,MUTE,'r');y+=l.length*12+6});
-  const task=a.items.find(it=>it.t==='task');if(task){y+=8;need(120,'Answer Key');d.text('Performance task rubric',M,y,12,1,NAVY);y+=16;task.rub.forEach((r,j)=>{const l=d.wrap(r,9.5,0,TW-60);need(l.length*12+6,'Answer Key');d.text(`${4-j} points`,M,y,9.5,1,NAVY);l.forEach((t,k)=>d.text(t,M+56,y+k*12,9.5,0,INK));y+=l.length*12+6})}
-  y+=8;need(60,'Answer Key');d.wrap(`Total ${max} points. Multiple choice and number questions are 1 point; short answers and explain questions are 2 points; the performance task is 4 points.`,8.5,0,TW).forEach(l=>{d.text(l,M,y,8.5,0,MUTE);y+=11});y+=10;
+  a.items.forEach((it,i)=>{const k=(a.key||[])[i]||{},txt=it.t==='mc'?`${'ABCD'[k.a]}) ${it.ch[k.a]}`:it.t==='num'?String(k.txt??''):it.t==='task'?'Score with the 4-point rubric (shown with the question).':'Sample: '+(k.ans||'');
+    const l=d.wrap(txt,9.5,0,TW-90).slice(0,40);need(l.length*12+8,'Answer Key');d.text((i+1)+'.',M,y,9.5,1,NAVY);d.text(`DOK ${it.dok} · ${PTS[it.t]||1} pt`,R,y,7.5,0,MUTE,'r');l.forEach(t=>{need(12,'Answer Key');d.text(t,M+22,y,9.5,0,INK);y+=12});y+=6});
+  y+=8;need(40,'Answer Key');para(`Total ${max} points. Multiple choice and number questions are 1 point; short answers are 2 points; CER, extended writing and performance tasks are 4 points.`,8.5,M,TW,MUTE,11);y+=10;
   const s=supportsFor(sub,u.g),notes=[...s.el.map(x=>'English learners: '+x),...(u.el?['English learners: '+u.el]:[]),...s.iep.map(x=>'IEP / 504: '+x)];
-  if(notes.length){need(60,'Answer Key');d.text('Supports',M,y,12,1,NAVY);y+=16;notes.forEach(n=>{const l=d.wrap('·  '+n,9,0,TW);need(l.length*12+4,'Answer Key');l.forEach((t,k)=>d.text(t,M,y+k*12,9,0,INK));y+=l.length*12+4})}
+  if(notes.length){need(60,'Answer Key');d.text('Supports',M,y,12,1,NAVY);y+=16;notes.forEach(n=>{para('·  '+n,9,M,TW,INK,12);y+=4})}
   const N=d.pages.length;d.pages.forEach((p,i)=>{const o=[];const t=(s2,x,al)=>{const wd=d.w(s2,8,0);o.push(`${MUTE.join(' ')} rg BT /F1 8 Tf ${(al==='r'?x-wd:x).toFixed(1)} 30 Td (${PDFK.enc(s2)}) Tj ET`)};
     o.push(`${LINE.join(' ')} RG .6 w [] 0 d ${M} 44 m ${R} 44 l S`);t('Bose Academy  ·  Original questions aligned to the California standards  ·  Free to copy for classroom use',M);t(`Page ${i+1} of ${N}`,R,'r');p.push(...o)});
   return d.bytes()}

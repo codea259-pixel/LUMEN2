@@ -101,6 +101,14 @@ service cloud.firestore {
         }
       }
     }
+    // Question versions made on the site: teachers read shared versions and their own; only the author or the owner changes one
+    match /qvers/{vid} {
+      allow read: if isTeacher() && (resource.data.shared == true || resource.data.ownerId == request.auth.uid || isOwner());
+      allow create: if isTeacher() && request.resource.data.ownerId == request.auth.uid && request.resource.data.json.size() < 160000;
+      allow update: if isTeacher() && (resource.data.ownerId == request.auth.uid || isOwner())
+        && request.resource.data.ownerId == resource.data.ownerId && request.resource.data.json.size() < 160000;
+      allow delete: if isTeacher() && (resource.data.ownerId == request.auth.uid || isOwner());
+    }
     match /joinCodes/{code} {
       allow read: if signedIn();
       allow create: if isTeacher() && request.resource.data.teacherId == request.auth.uid;

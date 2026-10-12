@@ -32,6 +32,14 @@ Items (the digit is the DOK level, 1 to 3):
 Subject checks: every math unit test has at least 3 num word problems; science and social studies unit tests
 have at least one cer; ELA unit tests have at least one passage and one wr. No question may appear twice in a unit.
 
+VERSIONS: tools/assess-src/versions/<id>.txt holds new versions of lesson quizzes, classwork and unit tests
+(for example a new set each trimester). Teachers choose the version when they preview or assign; the version whose
+term matches the current trimester is chosen first. Format:
+  @version 2027 Trimester 2 | Trimester 2      the version's name, then the trimester name it is for (as set in the site's calendar)
+  @for math-3-1 test                           which part follows: a unit id and test, L1 quiz or L1 practice (lesson numbers start at 1)
+  passage:, endpassage:, items and hint: lines as in format 2. Each part follows the same size rules as format 2.
+Unit ids are <subject>-<grade>-<unit number>, with TK as -1 and K as 0 (math--1-2 is TK math unit 2).
+
 FORMAT 1 (older, tools/assess-src/<subject>.txt): @grade blocks of units with exactly 8 mc, 2 sa, 1 ex and 1 task.
 It is converted to the same shape: one "Unit review" lesson, the quiz is mc 1-4 + ex, the test is mc 5-8 + sa + task.
 
@@ -230,15 +238,73 @@ def check_v2(where, sub, c):
             seen[k] = 1
 
 
+def check_part(w, sub, kind, items):
+    a, wr = sum(i['t'] in AUTO for i in items), sum(i['t'] in WRITTEN for i in items)
+    if kind == 'practice' and not 4 <= len(items) <= 10: errors.append(f'{w}: practice needs 4 to 10 items, has {len(items)}')
+    if kind == 'quiz' and (not 6 <= len(items) <= 10 or a < 4 or wr < 1): errors.append(f'{w}: a quiz needs 6 to 10 items with at least 4 mc or num and 1 written')
+    if kind == 'test':
+        if not 20 <= len(items) <= 28 or a < 14 or wr < 3: errors.append(f'{w}: a unit test needs 20 to 28 items with at least 14 mc or num and 3 written')
+        if sub == 'math' and sum(i['t'] == 'num' for i in items) < 3: errors.append(f'{w}: math unit test needs at least 3 num word problems')
+        if sub in ('sci', 'soc') and not any(i['t'] == 'cer' for i in items): errors.append(f'{w}: unit test needs a cer item')
+        if sub == 'ela' and not any(i['t'] == 'wr' for i in items): errors.append(f'{w}: ELA unit test needs a wr item')
+
+
+def versions(cells):
+    d, out = os.path.join(SRC, 'versions'), []
+    if not os.path.isdir(d): return out
+    units = {u['id']: (k.split('|')[0], u) for k, c in cells.items() for u in c['units']}
+    for fn in sorted(os.listdir(d)):
+        if not fn.endswith('.txt'): continue
+        vid = fn[:-4]
+        if not re.match(r'^[a-z0-9-]{2,40}$', vid): errors.append(f'versions/{fn}: name files with lowercase letters, digits and hyphens'); continue
+        ver = {'id': vid, 'name': '', 'term': '', 'parts': {}}; part = psg = last = None; plist = None
+        for n, raw in enumerate(open(os.path.join(d, fn), encoding='utf-8'), 1):
+            line = raw.strip()
+            if not line or line.startswith('#'): continue
+            where = f'versions/{fn}:{n}'
+            mm = re.match(r'^(@\w+|\w+):?\s*(.*)$', line)
+            tag, rest = mm.group(1), mm.group(2).strip(); parts = split(rest)
+            if tag == '@version':
+                ver['name'] = parts[0]; ver['term'] = parts[1] if len(parts) > 1 else ''
+            elif tag == '@for':
+                m = re.match(r'^(\S+)\s+(test|L(\d)\s+(quiz|practice))$', rest)
+                if not m or m.group(1) not in units: errors.append(f'{where}: write @for <unit id> test, or @for <unit id> L1 quiz'); part = None; continue
+                sub, u = units[m.group(1)]
+                key = m.group(1) + '|' + ('test' if m.group(2) == 'test' else f'L{m.group(3)}:{m.group(4)}')
+                if m.group(2) != 'test' and not 1 <= int(m.group(3)) <= len(u['lessons']): errors.append(f'{where}: unit {m.group(1)} has {len(u["lessons"])} lessons'); part = None; continue
+                part = ver['parts'][key] = {'items': [], 'passages': [], '_sub': sub, '_kind': 'test' if m.group(2) == 'test' else m.group(4)}; psg = last = None
+            elif part is None: errors.append(f'{where}: {tag} before a valid @for line')
+            elif tag == 'passage':
+                if len(parts) != 2 or not all(parts): errors.append(f'{where}: passage needs Title | text'); continue
+                part['passages'].append({'t': parts[0], 'x': parts[1]}); psg = len(part['passages']) - 1
+            elif tag == 'endpassage': psg = None
+            elif tag == 'hint':
+                if not last: errors.append(f'{where}: hint must follow an item'); continue
+                last['h'] = rest
+            else:
+                it = item(tag, parts, where)
+                if it is None: errors.append(f'{where}: unknown line type {tag}'); continue
+                if it is False: continue
+                if it['t'] == 'ex': it['t'] = 'sa'
+                if psg is not None: it['p'] = psg
+                part['items'].append(it); last = it
+        if not ver['name']: errors.append(f'versions/{fn}: needs an @version line')
+        for key, p in ver['parts'].items():
+            check_part(f'versions/{fn} {key}', p.pop('_sub'), p.pop('_kind'), p['items'])
+        out.append(ver)
+    return out
+
+
 def build():
     cells, supports = {}, {}
     v1(cells, supports)
     v2(cells)
+    vers = versions(cells)
     for key, c in cells.items():
         bad = sorted(set(ch for ch in json.dumps(c, ensure_ascii=False) if ord(ch) > 255))
         if bad: errors.append(f'{key}: PDFs cannot print {"".join(bad)!r}; use plain characters')
     order = lambda kv: (list(SUBJECTS).index(kv[0].split('|')[0]), int(kv[0].split('|')[1]))
-    return {'version': 2, 'subjects': SUBJECTS, 'supports': supports, 'cells': dict(sorted(cells.items(), key=order))}
+    return {'version': 2, 'subjects': SUBJECTS, 'supports': supports, 'cells': dict(sorted(cells.items(), key=order)), 'versions': vers}
 
 
 if __name__ == '__main__':
