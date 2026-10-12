@@ -1,0 +1,721 @@
+@subject sci
+@grade 6
+@program Discovery Education Science
+about: Grade 6 integrated science (California's preferred middle school model) uses phenomena to study living systems from cells to body systems, how organisms grow and reproduce, thermal energy and its transfer, how energy and water in Earth's systems cause weather and regional climates, and how global warming affects living things. Students plan investigations, analyze data, build models, argue from evidence and design solutions.
+std: MS-LS1-1 | Conduct an investigation to provide evidence that living things are made of cells; either one cell or many different numbers and types of cells.
+std: MS-LS1-3 | Use argument supported by evidence for how the body is a system of interacting subsystems composed of groups of cells.
+std: MS-LS1-5 | Construct a scientific explanation based on evidence for how environmental and genetic factors influence the growth of organisms.
+std: MS-PS3-4 | Plan an investigation to determine the relationships among the energy transferred, the type of matter, the mass and the change in the average kinetic energy of the particles as measured by temperature.
+std: MS-ESS2-5 | Collect data to provide evidence for how the motions and complex interactions of air masses result in changes in weather conditions.
+std: MS-ESS2-6 | Develop and use a model to describe how unequal heating and rotation of the Earth cause patterns of atmospheric and oceanic circulation that determine regional climates.
+std: MS-ESS3-5 | Ask questions to clarify evidence of the factors that have caused the rise in global temperatures over the past century.
+std: MS-ETS1-2 | Evaluate competing design solutions using a systematic process to determine how well they meet the criteria and constraints of the problem.
+
+unit: Unit 1: Cells - The Building Blocks of Life | MS-LS1-1, MS-LS1-2 | sci_6
+el: Keep a labeled cell diagram on the wall with sentence frames: "The ___ is like a ___ because it ___." Pair students to say each part's job aloud before writing.
+
+lesson: Is it alive? Looking for cells | MS-LS1-1
+practice:
+mc1: What do all living things have in common? | They are made of one or more cells | They can all move from place to place | They all have leaves or roots | They are all large enough to see
+hint: Think about the smallest unit that every living thing is built from.
+mc2: A student puts a drop of pond water under a microscope and sees tiny moving things that each have a cell membrane, take in food and divide. What can the student conclude? | The tiny things are single-celled living organisms | The tiny things are dust floating in water | The tiny things are bubbles of air | The tiny things are rocks that move with currents
+hint: Which characteristics of life are described?
+num2: A microscope has a 10x eyepiece and a 40x objective lens. What is the total magnification? | 400
+hint: Total magnification is found by multiplying the two lens powers.
+mc2: A cork slice and a slice of onion skin both show many small box-like units under a microscope. Which statement does this evidence support? | Plants are made of cells | Only onions are alive | Cork is made of atoms you can see | Cells are only found in animals
+sa2: Kenji says a rock is alive because it can grow larger when minerals build up on it. Use the idea of cells to explain why a rock is not a living thing. | A rock is not made of cells. Living things are made of one or more cells that use energy, grow and reproduce. Minerals piling up on a rock is not cell growth.
+hint: What would you see if you looked at a rock under a microscope?
+quiz:
+mc1: Which scientific idea states that all living things are made of cells and that cells come from other cells? | cell theory | the theory of gravity | the law of conservation of mass | plate tectonics
+mc2: Which tool would a student need to see the cells in a thin slice of a leaf? | a light microscope | a telescope | a magnet | a thermometer
+mc2: A yeast sample is made of single cells that each divide to make new cells. An elephant is made of trillions of cells. What do these two organisms show? | Living things can be made of one cell or many cells | Large organisms have larger cells than small organisms | Yeast is not alive because it has only one cell | Cells only come from food
+num2: A cell looks 2 millimeters wide under a microscope that magnifies 400 times. What is the real width of the cell in millimeters? (Divide the image width by the magnification.) | 0.005
+mc2: Students looked at four samples under a microscope: salt crystals, cheek scrapings, a feather and a strand of thread made from plastic. Which sample was taken from something that was alive when the sample was taken? | cheek scrapings | salt crystals | plastic thread | none of the samples
+num1: A microscope has a 10x eyepiece and objective lenses of 4x, 10x and 40x. What is the lowest total magnification it can produce? | 40
+sa2: Explain why the invention of the microscope was needed before scientists could develop cell theory. | Most cells are too small to see with the eye alone. Microscopes magnified samples so scientists could observe that living things are made of cells and that cells divide.
+
+lesson: Inside a cell: parts with jobs | MS-LS1-2
+practice:
+mc1: Which cell part controls the cell's activities and contains its genetic material (DNA)? | nucleus | cell membrane | vacuole | cytoplasm
+hint: Think of the cell's "control center."
+mc2: Which cell part controls what enters and leaves the cell? | cell membrane | nucleus | chloroplast | vacuole
+mc2: Muscle cells use a lot of energy. Which cell part would you expect to find in large numbers in muscle cells? | mitochondria | chloroplasts | cell walls | vacuoles
+hint: Which part releases energy from food?
+mc2: A model compares a cell to a school. Which pairing is the best match? | the nucleus is like the principal's office | the cell membrane is like the cafeteria | the mitochondria are like the library shelves | the cytoplasm is like the front gate
+sa2: A cell's membrane is damaged so that it can no longer control what enters and leaves. Predict one problem the cell would have. | Harmful substances could enter, or water and needed materials could leak out, so the cell could not keep the conditions it needs to stay alive.
+hint: Think about what the membrane normally keeps in and keeps out.
+quiz:
+mc1: What is the jelly-like material that fills a cell and surrounds its parts? | cytoplasm | nucleus | cell wall | chlorophyll
+mc2: Which cell part breaks down food molecules to release energy the cell can use? | mitochondria | vacuole | nucleus | cell membrane
+mc2: A student builds a model cell from a plastic bag (outside), gelatin (inside) and a grape (center). Which cell part does the grape most likely stand for? | nucleus | cell membrane | cytoplasm | cell wall
+mc2: Scientists counted mitochondria in two cell types: Cell X had about 2,000 per cell and Cell Y had about 200 per cell. Which conclusion is best supported? | Cell X probably uses more energy than Cell Y | Cell Y is probably larger than Cell X | Cell X cannot make proteins | Cell Y has no nucleus
+num2: A heart muscle cell has about 5,000 mitochondria. A skin cell has about 500. How many times more mitochondria does the heart cell have? | 10
+mc3: A drug stops the mitochondria in a cell from working. Which result is most likely? | The cell runs low on usable energy | The cell grows a cell wall | The cell makes more DNA | The cell becomes a plant cell
+sa2: Choose two cell parts and explain how they work together to keep the cell alive. | The cell membrane lets food molecules and oxygen into the cell, and the mitochondria use them to release energy that powers the cell's activities.
+
+lesson: Plant cells and animal cells | MS-LS1-1, MS-LS1-2
+practice:
+mc1: Which part is found in plant cells but not in animal cells? | chloroplast | nucleus | cell membrane | mitochondria
+hint: Which part captures light to make food?
+mc2: Which pair of parts do BOTH plant and animal cells have? | nucleus and cell membrane | cell wall and chloroplast | chloroplast and nucleus | cell wall and cell membrane
+mc2: Under a microscope, a cell has a rigid boundary, many green structures and one large water-filled sac. Which kind of cell is it most likely? | a leaf cell from a plant | a human cheek cell | a red blood cell | a nerve cell
+hint: Look for the parts that only plant cells have.
+mc2: Why can a plant stand upright without a skeleton? | Cell walls and water-filled vacuoles make plant cells stiff | Plant cells have bones inside them | Chloroplasts are hard like rocks | The nucleus holds the plant up
+sa2: Make a T-chart comparison in words: list two parts found in both plant and animal cells and two parts found only in plant cells. | Both: nucleus, cell membrane (also cytoplasm, mitochondria). Plant only: cell wall, chloroplasts (also a large central vacuole).
+quiz:
+mc1: What is the main job of a chloroplast? | to capture light energy and make food | to store the cell's DNA | to let wastes out of the cell | to break down old cell parts
+mc2: A plant left without water wilts. Which cell change best explains the wilting? | The vacuoles in its cells lose water and the cells go limp | The cell walls dissolve | The chloroplasts turn into mitochondria | The nucleus leaves the cell
+mc2: Which observation would show that a sample came from an animal and not a plant? | The cells have no cell walls or chloroplasts | The cells have a nucleus | The cells have a cell membrane | The cells have cytoplasm
+mc2: Root cells of a carrot grow underground and have no chloroplasts. What is the best explanation? | Root cells get no light, so they do not need parts that capture light | Root cells are animal cells | Root cells have no nucleus | Root cells are not alive
+num2: In a leaf sample, a student counted 48 chloroplasts in 4 cells. What is the average number of chloroplasts per cell? | 12
+num2: A class looked at 30 cells: 18 had cell walls and 12 did not. What percent of the cells had cell walls? | 60
+sa3: A student says, "Animal cells have no mitochondria because animals do not make their own food." Explain the mistake. | Animal cells do have mitochondria. Mitochondria release energy from food in both plant and animal cells. What animal cells lack are chloroplasts, which make food from light.
+
+lesson: Cells working as a system | MS-LS1-2, MS-LS1-1
+practice:
+mc2: In a cell, the nucleus sends instructions, the mitochondria supply energy and the membrane controls what goes in and out. Why is a cell called a system? | Its parts interact to carry out the functions of life | It is the largest structure in the body | It has only one part | It never changes
+hint: A system is a group of parts that work together.
+mc2: A single-celled organism such as an amoeba must do everything to stay alive with just one cell. Which job must that one cell do? | take in food and get rid of wastes | form tissues and organs | pump blood | grow leaves
+mc2: A nerve cell is long and thin with branches. How does this shape help it do its job? | It can carry signals over long distances to other cells | It can store large amounts of water | It can capture sunlight | It can make the cell wall stronger
+hint: Think about what nerve cells do in the body.
+num2: A bacterium divides every 20 minutes. Starting with 1 bacterium, how many bacteria will there be after 1 hour? | 8
+hint: Count the divisions in 60 minutes: 1 becomes 2, then 4, then...
+sa2: Explain why many different kinds of cells are found in a multicellular organism like a person. | Different cells have different structures that fit different jobs, such as muscle cells for movement, nerve cells for signals and red blood cells for carrying oxygen.
+quiz:
+mc1: An organism made of only one cell is called | unicellular | multicellular | an organ | a tissue
+mc2: A red blood cell has no nucleus and is shaped like a flattened disk. It carries oxygen. Which statement fits this evidence? | A cell's structure is related to its function | All cells have the same shape | Cells without a nucleus are not alive | Red blood cells make food from light
+mc2: Which statement about a multicellular organism is true? | Its cells are specialized and depend on each other | Each of its cells can live alone forever | All of its cells look the same | It has only one type of cell
+num2: A culture of bacteria doubles every 30 minutes. It starts with 50 bacteria. How many bacteria are there after 2 hours? | 800
+mc3: A student models a cell with a city: power plant, city hall, city walls and roads. A classmate says the model is missing something important. Which addition would make the model most accurate for a plant cell? | solar panels that make food for the city from sunlight | a second city hall | a train that leaves the city | a museum of old buildings
+mc2: Why does a cell that is cut open die? | Its parts can no longer work together to control conditions inside the cell | It gains too many mitochondria | It turns into a plant cell | It gets a cell wall
+cer3: Students observed four samples. Sample A: green cells with cell walls. Sample B: many cells without cell walls, from a cheek swab. Sample C: tiny single cells that divided during the lesson. Sample D: clear crystals with no membrane and no change over time. Make a claim about which samples came from living things. Use the observations as evidence and explain your reasoning. | Claim: Samples A, B and C came from living things; Sample D did not. Evidence: A, B and C were made of cells (with walls, without walls, or single cells), and C divided; D had no membrane and did not change. Reasoning: all living things are made of one or more cells, and cells come from other cells, so samples made of cells are from living things while crystals without cells are not.
+
+test:
+mc1: The smallest unit that can carry out all the functions of life is | a cell | an organ | an atom | a tissue
+mc1: Which cell part holds the cell's DNA? | nucleus | vacuole | cell membrane | cytoplasm
+mc1: Which structure gives a plant cell a stiff outer layer outside its membrane? | cell wall | mitochondria | nucleus | cytoplasm
+mc2: A student sees cells with chloroplasts in a sample from a pond. What can the student infer? | The cells can make their own food using light | The cells came from an animal | The cells have no nucleus | The cells are not alive
+mc2: Which statement is part of cell theory? | All cells come from existing cells | All cells are the same size | Cells only exist in animals | Cells are made of organs
+mc2: A single-celled organism moves toward food, takes it in and later divides into two cells. Which conclusion is best supported? | One cell can carry out all the functions of life | Single-celled organisms are not alive | It must be part of a plant | Cells need organs to survive
+mc2: Which part of a cell is most like a security gate at a school? | cell membrane | nucleus | mitochondria | chloroplast
+mc2: Which order goes from smallest to largest? | cell part, cell, tissue, organ | cell, cell part, organ, tissue | tissue, cell, organ, cell part | organ, tissue, cell, cell part
+num1: A microscope has a 10x eyepiece and a 10x objective. What is the total magnification? | 100
+num2: Under 100x magnification, a cell's image is 3 millimeters wide. What is the actual width of the cell in millimeters? | 0.03
+num2: A student counted the cells in 5 fields of view: 12, 15, 9, 14 and 10. What is the mean number of cells per field? | 12
+num2: A bacterium divides every 20 minutes. Starting with 1 bacterium, how many are there after 2 hours? | 64
+mc2: Leaf cells have many chloroplasts, but root cells of the same plant have none. Which is the best explanation? | Leaves get light and make food; roots grow underground | Roots are made of animal cells | Leaves have no nucleus | Root cells are not alive
+mc2: A cell part breaks down sugar so the cell has energy to move and grow. Which part is it? | mitochondria | chloroplast | cell wall | vacuole
+mc2: Which observation would best show that a mushroom is a living thing? | Its tissue is made of cells that grow and divide | It has a round shape | It grows in shady places | It feels soft
+mc3: A plant cell is placed in salty water and its large central vacuole shrinks. What would you predict about the plant? | It will wilt because its cells lose water | It will grow faster | It will turn into an animal | It will make more chloroplasts
+mc3: Two cell samples are labeled X and Y. X: cell wall, chloroplasts, large vacuole. Y: no cell wall, many mitochondria, flexible shape. Which identification is best? | X is a plant leaf cell and Y is an animal muscle cell | X is an animal cell and Y is a plant cell | Both are bacteria | Both are plant cells
+mc3: Scientists found more mitochondria in cells of a hummingbird's flight muscles than in its skin cells. What does this suggest? | Flight muscle cells use much more energy | Skin cells make more food | Flight muscle cells cannot divide | Skin cells have more DNA
+num2: In a sample of 40 cells, 10 were dividing. What percent of the cells were dividing? | 25
+sa2: Explain the difference between a unicellular organism and a multicellular organism and give an example of each. | A unicellular organism is made of one cell that does all life functions, like bacteria or an amoeba. A multicellular organism is made of many specialized cells, like a person, a tree or a dog.
+sa2: Choose one cell part. Describe its job and predict what would happen to the cell if that part stopped working. | Example: mitochondria release energy from food; if they stopped, the cell would not have energy for its activities and could die.
+sa3: A classmate models a cell as a bag of water with a marble inside. Describe one strength and one limitation of this model. | Strength: the bag shows a membrane around the cell and the marble shows the nucleus inside. Limitation: it is missing other parts like mitochondria, and a real membrane controls what passes through.
+cer3: A student tested whether a sample of white fuzz on old bread was alive. Under a microscope, the fuzz was made of thread-like cells with walls. After two days in a warm, dark box the fuzz had spread from 1 square centimeter to 6 square centimeters, and new cells were seen at the edges. A sample kept in the freezer did not spread. Make a claim about whether the fuzz is a living thing. Use the data as evidence and explain your reasoning. | Claim: The fuzz (a mold) is a living thing. Evidence: it is made of cells with walls; in the warm box it grew from 1 to 6 square centimeters and new cells appeared, while frozen fuzz did not grow. Reasoning: living things are made of cells and grow when new cells form from existing cells; the growth and new cells show it carries out life functions, and cold slowed its life processes.
+
+unit: Unit 2: The Body as a System | MS-LS1-3, MS-LS1-8
+el: Use a body outline poster; students label systems in English and their home language. Provide the frame: "The ___ system works with the ___ system to ___."
+
+lesson: From cells to organ systems | MS-LS1-3
+practice:
+mc1: A group of similar cells that work together to do one job is called | a tissue | an organ system | an organism | a molecule
+hint: This level is just one step bigger than a cell.
+mc2: The heart is made of muscle tissue, nerve tissue and connective tissue working together. What level of organization is the heart? | organ | cell | tissue | organ system
+mc2: Which list is in order from simplest to most complex? | muscle cell, muscle tissue, heart, circulatory system | heart, muscle cell, circulatory system, muscle tissue | circulatory system, heart, muscle tissue, muscle cell | muscle tissue, muscle cell, heart, circulatory system
+hint: Start with the smallest living unit.
+mc2: The stomach, small intestine and liver work together to break down food. Together they are part of the | digestive system | respiratory system | nervous system | skeletal system
+sa2: Explain how a single muscle cell is connected to the whole human body using the levels of organization. | Muscle cells form muscle tissue, muscle tissue forms organs such as muscles or the heart, those organs make up organ systems such as the muscular system, and the systems together make the organism.
+hint: Name each level from cell to organism.
+quiz:
+mc1: Which is an example of an organ? | lung | blood cell | skin tissue | the nervous system
+mc2: What is an organ system? | a group of organs that work together to do a major job | a group of identical cells | a single cell with many parts | one tissue that covers the body
+mc2: A doctor examines a thin layer of cells that lines the inside of the stomach. What level of organization is the doctor examining? | tissue | organ system | organism | molecule
+mc2: Which statement best describes how the body is organized? | It is a system made of subsystems built from groups of cells | Each organ works alone without the others | The body is made of one type of cell | Organs are smaller than tissues
+num2: An adult human body has about 37 trillion cells. About 25 trillion of them are red blood cells. To the nearest whole number, what percent of the body's cells are red blood cells? | 68
+mc3: Why is a disease that damages one type of tissue able to affect a whole organ system? | Organs are made of tissues, and a system depends on its organs working | Tissues are bigger than organ systems | Organ systems have no tissues | Each tissue is its own separate organism
+sa2: Name one organ system and two organs in it, and describe the job of the system. | Respiratory system: the lungs and trachea; it brings oxygen into the body and removes carbon dioxide.
+
+lesson: Moving oxygen and nutrients | MS-LS1-3
+practice:
+mc1: Which organ system carries oxygen and nutrients to cells all over the body? | circulatory system | skeletal system | nervous system | digestive system
+hint: This system includes the heart and blood vessels.
+mc2: In the lungs, oxygen moves from tiny air sacs into the blood. Which two systems are interacting? | respiratory and circulatory | digestive and skeletal | nervous and skeletal | muscular and digestive
+mc2: The small intestine absorbs nutrients from digested food. Where do the nutrients go next? | into the blood, which carries them to cells | into the lungs to be breathed out | into the bones to be stored as calcium only | into the stomach to be digested again
+num2: A student counted 18 breaths in 1 minute while resting. At this rate, how many breaths would the student take in 15 minutes? | 270
+hint: Multiply the breaths per minute by the number of minutes.
+sa2: Trace the path of oxygen from the air into a muscle cell in your leg. | Air enters the nose or mouth, travels down the trachea to the lungs, oxygen passes into blood in the air sacs, the heart pumps the blood through blood vessels to the leg, and oxygen moves from the blood into the muscle cell.
+hint: Start at the nose and name each stop along the way.
+quiz:
+mc1: What is the main job of the digestive system? | to break food into nutrients the body can absorb | to pump blood | to send signals to muscles | to filter air
+mc2: Which waste gas does the circulatory system carry from cells to the lungs to be breathed out? | carbon dioxide | oxygen | nitrogen only | helium
+mc2: A person has a disease that makes the air sacs in their lungs stiff, so less oxygen enters the blood. Which other system would be most directly affected? | circulatory system, which would carry less oxygen to cells | skeletal system, which would grow longer bones | digestive system, which would stop making saliva | the hair and nails
+num2: A heart pumps about 70 milliliters of blood with each beat and beats 72 times per minute at rest. About how many milliliters of blood does it pump in 1 minute? | 5040
+num2: Food spends about 4 hours in the stomach, 5 hours in the small intestine and 30 hours in the large intestine. How many hours is that in total? | 39
+mc3: Why do cells need both the digestive system and the respiratory system? | Cells need nutrients from food and oxygen from air to release energy | Cells need only one of them at a time | The digestive system makes oxygen | The respiratory system digests food
+sa2: Explain why the circulatory system is called the body's transport system. Give two things it carries. | It moves blood to every part of the body, carrying oxygen and nutrients to cells and carrying carbon dioxide and other wastes away.
+
+lesson: Sensing and responding | MS-LS1-8, MS-LS1-3
+practice:
+mc1: Which organ system receives information from the senses and sends signals to muscles? | nervous system | digestive system | circulatory system | skeletal system
+hint: This system includes the brain, spinal cord and nerves.
+mc2: You touch a hot pan and pull your hand away before you even feel pain. Why does this happen so fast? | Sensory nerves send a signal through the spinal cord, which signals muscles right away | Your skin moves your hand by itself | Your bones sense heat | Your blood carries the message to your hand
+mc2: Sense receptors in your eyes respond to light. What do they do with that information? | send it as nerve signals to the brain | store it in the eye forever | turn it into food energy | send it to the stomach
+num2: Students measured reaction times by catching a falling ruler. Five trials gave 0.22, 0.20, 0.25, 0.21 and 0.22 seconds. What is the mean reaction time in seconds? | 0.22
+hint: Add all five times, then divide by 5.
+sa2: Explain how the nervous, muscular and skeletal systems work together when you kick a ball. | Eyes sense the ball and send signals to the brain; the brain sends signals through nerves to leg muscles; muscles contract and pull on bones, which move the leg to kick.
+quiz:
+mc1: Which body system moves bones by contracting and relaxing? | muscular system | digestive system | respiratory system | circulatory system
+mc2: Which sequence correctly describes how you respond when you hear your name called? | ears sense sound, nerves carry signals to the brain, brain signals muscles, you turn your head | brain senses sound, ears tell muscles, nerves turn your head | muscles hear the sound, then tell the ears | bones carry sound to the brain, which stores it
+mc2: A student's reaction time got faster from 0.30 seconds to 0.24 seconds after practice. What is the best explanation? | The brain processed the signals and responded more quickly with practice | The student's bones got longer | The ruler fell more slowly | Blood stopped flowing to the hand
+num2: Reaction time dropped from 0.30 seconds to 0.24 seconds. What is the percent decrease? | 20
+mc2: Why might a person with a damaged nerve in the arm be unable to move their fingers even though the muscles are healthy? | Signals from the brain cannot reach the finger muscles | The bones stop growing | The heart stops pumping blood to the arm | The skin cannot feel temperature
+num1: A signal travels along a nerve at 100 meters per second. How many meters does it travel in 0.02 seconds? | 2
+cer3: A class tested whether distractions affect reaction time. With no distraction, the mean ruler-catch time was 0.21 seconds. While counting backward out loud, the mean time was 0.29 seconds. Each test had 10 trials per student. Make a claim about how distraction affects reaction time, use the data as evidence and explain your reasoning using how the nervous system works. | Claim: Distraction makes reaction time slower. Evidence: mean time rose from 0.21 s to 0.29 s while counting backward, across 10 trials each. Reasoning: the brain must process the sensory signal from the eyes and send a signal to the muscles; when the brain is also working on another task, processing takes longer, so the response is slower.
+
+lesson: Systems working together during exercise | MS-LS1-3
+practice:
+mc2: When you run, your muscle cells need more oxygen. Which change helps deliver it? | Your heart beats faster and you breathe faster | Your heart beats slower | You stop breathing | Your stomach digests faster
+hint: Think about which two systems bring oxygen to cells.
+num2: A student's heart rate was 70 beats per minute at rest and 140 beats per minute after running. What was the percent increase? | 100
+hint: Find the increase, divide by the starting value and multiply by 100.
+mc2: Why do you sweat during exercise? | Sweat evaporating from your skin helps cool your body | Sweat adds oxygen to your blood | Sweat digests food | Sweat makes bones stronger
+mc2: After exercise, a student's heart rate slowly returned to normal over 5 minutes. What does this show? | Body systems adjust to keep conditions inside the body stable | The heart is broken | Exercise stops the nervous system | Muscles no longer need oxygen
+sa2: Describe two systems that change during exercise and explain why each change helps the body. | Respiratory: breathing speeds up to bring in more oxygen and remove more carbon dioxide. Circulatory: heart rate rises to deliver oxygen and nutrients to working muscles faster.
+quiz:
+mc2: During a race, which system tells the heart to beat faster? | nervous system | skeletal system | digestive system | the skin
+num2: A runner's breathing rate went from 15 breaths per minute to 42 breaths per minute. What was the increase in breaths per minute? | 27
+num2: Heart rates of four students after jumping jacks were 120, 132, 128 and 136 beats per minute. What is the mean heart rate? | 129
+mc2: A student claims, "During exercise only the muscular system is working." Which evidence best argues against this claim? | Heart rate, breathing rate and sweating all increase during exercise | Muscles get tired during exercise | Bones do not move during exercise | Exercise is done on purpose
+mc3: Data show: resting heart rate 72, after 1 minute of running 150, after 3 minutes of rest 95, after 6 minutes of rest 74 beats per minute. Which conclusion is best supported? | Heart rate rises with exercise and returns toward resting level during rest | Heart rate keeps rising during rest | Running lowers heart rate | Heart rate does not change with activity
+mc2: Which pair of systems directly removes carbon dioxide made by muscle cells? | circulatory and respiratory | skeletal and digestive | nervous and skeletal | digestive and muscular
+sa3: Predict how a long-distance runner's resting heart rate might compare to a non-runner's, and explain your prediction using the idea of body systems. | A trained runner often has a lower resting heart rate because their heart muscle is stronger and pumps more blood per beat, so the circulatory system can deliver enough oxygen with fewer beats.
+
+test:
+mc1: Which level of organization is made of different tissues working together? | organ | cell | organ system | molecule
+mc1: Which organ system includes the brain, spinal cord and nerves? | nervous system | circulatory system | skeletal system | respiratory system
+mc1: Which organ is the main organ of the respiratory system? | lungs | heart | stomach | kidney
+mc2: Which statement best describes the body? | It is a system of interacting subsystems made of groups of cells | It is a collection of cells that work alone | It is one large organ | It is made of organs that never interact
+mc2: Which two systems work together to deliver nutrients from food to cells? | digestive and circulatory | skeletal and nervous | respiratory and skeletal | muscular and skeletal
+mc2: Which pair correctly matches a system with its job? | skeletal system - supports and protects the body | nervous system - digests food | respiratory system - pumps blood | digestive system - sends signals to muscles
+mc2: You smell smoke and run outside. Which system first receives the information? | nervous system, through receptors in the nose | digestive system | skeletal system | circulatory system
+mc2: A person breaks a leg bone. Which system is directly damaged? | skeletal system | digestive system | respiratory system | nervous system only
+mc2: Why does breathing rate increase during exercise? | Muscles need more oxygen and must get rid of more carbon dioxide | The lungs need to digest food | The heart stops working | The bones need air
+mc2: Which list shows levels of organization from largest to smallest? | organism, organ system, organ, tissue, cell | cell, tissue, organ, organ system, organism | organ, organism, cell, tissue, organ system | tissue, cell, organ, organism, organ system
+mc3: A disease weakens the heart muscle. Which effect would most likely follow? | Cells around the body receive less oxygen and nutrients | Bones become stronger | Food is digested faster | Reaction time becomes faster
+mc3: A student feels a mosquito bite and scratches it. Which sequence is correct? | skin receptors sense the bite, nerves signal the brain, brain signals arm muscles, arm moves | brain senses the bite, skin tells bones, muscles signal nerves | muscles sense the bite, then tell the skin | bones sense the bite and move the arm
+mc2: Which observation is evidence that body systems keep conditions in the body stable? | Body temperature stays near 37 °C whether the room is warm or cool | Hair grows longer each month | People have different eye colors | Bones are hard
+num2: A heart beats 75 times per minute. How many times does it beat in 1 hour? | 4500
+num2: A student's resting heart rate was 80 beats per minute and rose to 120 after climbing stairs. What was the percent increase? | 50
+num2: Reaction times for four trials were 0.26, 0.24, 0.27 and 0.23 seconds. What is the mean reaction time in seconds? | 0.25
+num2: A person breathes about 0.5 liters of air in each breath and takes 16 breaths per minute. How many liters of air do they breathe per minute? | 8
+mc3: Two students ran for 2 minutes. Ava's heart rate rose from 70 to 130. Ben's rose from 70 to 160. Both recovered after rest. Which is the most reasonable question to investigate next? | Does fitness level affect how much heart rate rises during exercise? | Does heart rate change the color of blood? | Do bones grow during exercise? | Does running stop breathing?
+mc2: Which system protects the body from germs and also covers it? | skin (part of the integumentary system) | skeletal system | digestive system | respiratory system
+sa2: Explain how the respiratory and circulatory systems depend on each other. | The respiratory system brings oxygen into the lungs, where it enters the blood; the circulatory system carries that oxygen to cells and brings carbon dioxide back to the lungs to be breathed out. Neither can supply cells with oxygen alone.
+sa2: Describe how your senses and nervous system help you stop at a red traffic light while riding a bike. | Eyes detect the red light, nerves carry the signal to the brain, the brain processes it and sends signals to muscles in the hands and legs to squeeze the brakes and stop pedaling.
+sa3: A student's model of the body is a set of separate boxes, one for each organ system, with no connections. Explain one way to improve the model. | Draw arrows between the boxes to show interactions, such as the digestive system passing nutrients to the circulatory system and the nervous system sending signals to the muscular system, because the systems depend on each other.
+cer3: A class measured heart rate and breathing rate for 10 students at rest and after 3 minutes of jumping jacks. Mean heart rate rose from 76 to 138 beats per minute. Mean breathing rate rose from 16 to 34 breaths per minute. After 5 minutes of rest, means returned to 82 and 18. Make a claim about how body systems respond to exercise. Use the data as evidence and explain your reasoning. | Claim: During exercise, the circulatory and respiratory systems work together to supply working muscles, then return toward normal during rest. Evidence: heart rate rose from 76 to 138 and breathing from 16 to 34, then fell to 82 and 18 after rest. Reasoning: exercising muscle cells use more oxygen and make more carbon dioxide, so the nervous system signals the heart and lungs to work faster to deliver oxygen and remove waste; when the need drops, the body returns to stable resting levels.
+
+unit: Unit 3: Growing Up and Passing On - Reproduction and Growth | MS-LS1-4, MS-LS1-5, MS-LS3-2
+el: Build a word wall with picture cards for pollinate, offspring, trait, inherit and environment. Use the frame: "This ___ helps the ___ reproduce because ___."
+
+lesson: Two ways to make offspring | MS-LS3-2
+practice:
+mc1: Reproduction that needs only one parent is called | asexual reproduction | sexual reproduction | pollination | fertilization
+hint: "A-" can mean "without." Without what kind of partner?
+mc2: A strawberry plant sends out a runner that grows into a new plant. How do the genes of the new plant compare with the parent's? | They are identical to the parent's genes | Half come from each of two parents | They are completely different | The new plant has no genes
+mc2: In sexual reproduction, where do an offspring's genes come from? | half from each of two parents | all from the mother | all from the father | from the environment only
+hint: Two parents each give one sex cell.
+mc2: Two black rabbits have a litter. Some babies are black and one is brown. Which type of reproduction best explains this variation? | sexual reproduction, which mixes genes from two parents | asexual reproduction, which copies one parent | budding, like yeast | runners, like strawberries
+sa2: Give one advantage and one disadvantage of asexual reproduction for an organism. | Advantage: it is fast and needs only one parent, so a population can grow quickly. Disadvantage: offspring are all genetically alike, so a disease or change in the environment could harm all of them.
+hint: Think about speed and about variety among offspring.
+quiz:
+mc1: Which is an example of asexual reproduction? | a potato growing new plants from its eyes | two birds producing chicks | a flower being pollinated by a bee | two dogs having puppies
+mc2: Why do offspring from sexual reproduction usually look different from each other? | each offspring gets a different mix of genes from the two parents | each offspring copies one parent exactly | offspring have no genes | the environment chooses their genes
+mc2: A gardener wants many plants exactly like a prize-winning rose. Which method should she use? | grow new plants from cuttings of the rose | plant seeds from the rose after bees visit it | cross the rose with a different rose | plant seeds from a different variety
+num2: A single bacterium divides into two every 30 minutes. How many bacteria come from 1 bacterium after 3 hours? | 64
+num2: In a field, 60 out of 200 dandelions grew from root pieces instead of seeds. What percent grew from root pieces? | 30
+mc3: A disease kills one type of banana plant. Nearly all farms grow bananas from cuttings of the same plant. Why could the disease spread to almost every farm? | The plants are genetically identical, so none have genes that resist the disease | Cuttings make plants grow faster | Seeds protect bananas from disease | The disease only attacks seeds
+sa2: Explain why a puppy can look like both of its parents but not exactly like either one. | Through sexual reproduction the puppy receives half of its genes from each parent, so it inherits a mix of traits from both but a combination that is new.
+
+lesson: Animal behaviors that help reproduction | MS-LS1-4
+practice:
+mc1: A male peacock spreads its colorful tail in front of a female. This behavior most likely helps it | attract a mate | find water | stay cool | hide from predators
+mc2: Emperor penguin fathers hold an egg on their feet for about two months in the Antarctic winter. How does this behavior help the species reproduce? | It keeps the egg warm so the chick can develop and hatch | It helps the father find food | It teaches the egg to swim | It keeps predators away from the ocean
+hint: What would happen to an egg left on the ice?
+mc2: Some songbirds sing loudly in spring. Scientists found males that sang more song types mated earlier. Which conclusion fits? | Singing helps males attract mates | Singing keeps birds warm | Singing makes eggs larger | Singing is only for fun
+mc2: Wolves in a pack bring food back to the den for pups. What is the main benefit to the pack? | More pups survive to become adults | The adults eat less | The pups learn to fly | The den stays cleaner
+sa2: Describe one animal behavior that increases the chance that offspring will survive, and explain how it helps. | Example: a mother bear guards her cubs and teaches them to find food, which protects them from predators and helps them survive until they can live alone.
+hint: Think of protecting, feeding or teaching young.
+quiz:
+mc2: Salmon swim upstream to the streams where they hatched to lay eggs. How does this behavior help them reproduce successfully? | It brings them to places with conditions where eggs are likely to survive | It helps them grow larger | It removes all predators | It makes the water warmer
+mc2: A frog species lays thousands of eggs and gives no care. A gorilla has one baby at a time and cares for it for years. Which statement is supported? | Both strategies can help a species continue: many offspring or few offspring with lots of care | Gorillas reproduce more successfully because they have fewer babies | Frogs never survive to adulthood | Care for young does not affect survival
+num2: In a study, 40 bird nests were guarded by parents and 32 produced chicks that survived. What percent of guarded nests produced surviving chicks? | 80
+num2: In the same study, 40 unguarded nests had only 10 nests with surviving chicks. How many more guarded nests than unguarded nests produced surviving chicks? | 22
+mc3: Based on the nest study (32 of 40 guarded nests succeeded and 10 of 40 unguarded nests succeeded), which claim is best supported? | Parent guarding increases the chance of offspring survival | Guarding nests makes eggs hatch faster | Unguarded nests produce more chicks | Guarding has no effect on survival
+mc2: Fireflies flash light in patterns. Each species has its own pattern. How does this help reproduction? | Fireflies can find mates of their own species | It keeps them warm at night | It scares away all predators | It helps them see food
+sa2: A male bowerbird builds a decorated structure out of sticks and colorful objects. Explain how this behavior could affect its chances of reproducing. | Females choose males with well-built, colorful bowers, so a male that builds a better bower is more likely to attract a mate and pass on his genes.
+
+lesson: Plant structures for reproduction | MS-LS1-4
+practice:
+mc1: What part of a flowering plant makes seeds? | the flower | the root | the stem | the leaf
+mc2: Bright red, tube-shaped flowers that make lots of nectar are often visited by hummingbirds. How do these flower traits help the plant? | They attract hummingbirds that carry pollen to other flowers | They protect the plant from frost | They help the roots take in water | They make the leaves grow larger
+hint: What does a hummingbird carry from flower to flower?
+mc2: Burdock seeds have tiny hooks that stick to animal fur. What does this structure help the plant do? | spread its seeds to new places | attract pollinators | store water | make food from sunlight
+mc2: Maple seeds have wing-like parts that spin as they fall. Why does this help the maple tree? | The wind carries seeds farther from the parent tree | The seeds sink into water | The seeds attract bees | The seeds become heavier
+sa2: Explain why a plant that grows a sweet fruit around its seeds might have its seeds spread farther than a plant with plain, dry seeds. | Animals eat the sweet fruit and carry the seeds away; the seeds pass through or are dropped in new places, sometimes far from the parent plant, where they can grow without competing with it.
+hint: Who eats fruit, and where do they go afterward?
+quiz:
+mc1: The transfer of pollen from one flower to another is called | pollination | germination | photosynthesis | respiration
+mc2: Some flowers bloom only at night, are white and have a strong smell. Which animal are they most likely adapted to attract? | moths | eagles | fish | deer
+num2: A student counted bee visits to two flower colors for 20 minutes. Purple flowers had 36 visits and white flowers had 12. How many visits per minute did the purple flowers get? | 1.8
+num2: In a test, 50 seeds with hooks were placed near a dog's fur path. The dog carried 35 of them away. What percent of the seeds were carried away? | 70
+mc3: A farmer notices fewer bees this year and her squash plants make less fruit. Which explanation is best supported? | Fewer bees means less pollination, so fewer flowers turn into fruit | Bees eat squash fruit | Squash do not need flowers | Fewer bees means more rain
+mc2: Which flower trait would most likely help a plant that is pollinated by wind? | lots of light pollen and small, plain flowers | large, colorful petals | sweet nectar | a strong smell
+sa3: A scientist claims that a flower with a long, narrow tube is adapted for a pollinator with a long beak or tongue. Describe what data you could collect to support or argue against this claim. | Observe which animals visit the flower and record whether they reach the nectar and carry pollen; compare how many seeds form when long-beaked visitors are present versus kept out with a net.
+
+lesson: Genes and environment shape growth | MS-LS1-5
+practice:
+mc2: Two cuttings from the same plant have identical genes. One grows in sunlight and becomes tall; the other grows in shade and stays short. What caused the difference? | an environmental factor (light) | a genetic factor | the type of soil only | random chance only
+hint: The genes are identical, so what was different?
+mc2: A Great Dane puppy and a Chihuahua puppy eat the same food and get the same care. The Great Dane grows much larger. What best explains the difference? | genetic factors | the amount of food | the amount of water | the temperature
+num2: A plant grew from 12 cm to 30 cm in 6 weeks. What was its average growth rate in cm per week? | 3
+hint: Find the total growth, then divide by the number of weeks.
+mc2: Which is an environmental factor that can affect how large an animal grows? | the amount of food it eats | the genes from its parents | its species | its blood type
+sa2: Plan a simple investigation to test whether fertilizer affects the growth of bean plants. Name the variable you change, the variable you measure and two things you keep the same. | Change: amount of fertilizer (none versus some). Measure: plant height after 3 weeks. Keep the same: type of bean, amount of water, light, pot size and soil.
+hint: Only one thing should be different between the groups.
+quiz:
+mc2: Pumpkins of the same variety are grown on two farms. Farm A gets plenty of water and the pumpkins average 9 kg. Farm B is in a drought and its pumpkins average 4 kg. What explains the difference? | environmental factors such as water | genetic factors only | the pumpkins' ages | the color of the pumpkins
+num2: Bean plants given fertilizer grew 18, 22, 20 and 24 cm. What is the mean height in cm? | 21
+num2: Bean plants without fertilizer had a mean height of 15 cm, and plants with fertilizer had a mean of 21 cm. What is the percent increase in mean height? | 40
+mc2: Which pair of factors both influence an organism's growth? | genes and environment | genes only | environment only | neither genes nor environment
+mc3: A student grew two plants of different varieties under identical conditions. Variety 1 grew to 50 cm and Variety 2 grew to 20 cm. Which conclusion is best supported? | Genetic differences between the varieties affected growth | Light affected growth | Water affected growth | The plants were the same height
+mc2: Hydrangea flowers of the same plant variety can be blue in acidic soil and pink in less acidic soil. This is an example of | an environmental factor affecting a trait | a mutation | asexual reproduction | pollination
+cer3: Students grew 10 corn plants of the same variety in each of three groups for 4 weeks. Group 1 (12 hours of light per day) averaged 42 cm. Group 2 (8 hours) averaged 30 cm. Group 3 (4 hours) averaged 17 cm. Water and soil were the same. Make a claim about how light affects plant growth, use the data as evidence and explain your reasoning. | Claim: More hours of light leads to more plant growth. Evidence: 12 hours averaged 42 cm, 8 hours 30 cm and 4 hours 17 cm, with water, soil and variety kept the same. Reasoning: plants use light energy to make the food they need to build new cells and grow; since genes were the same, the environmental factor of light caused the difference.
+
+test:
+mc1: Offspring that are genetically identical to their single parent come from | asexual reproduction | sexual reproduction | pollination | cross-breeding
+mc1: Which part of a plant attracts pollinators? | the flower | the root | the bark | the seed coat
+mc2: Which statement about sexual reproduction is correct? | Offspring get half their genes from each parent and show variation | Offspring are exact copies of one parent | Only one parent is needed | It only happens in plants
+mc2: Why do many animals with no parental care lay large numbers of eggs? | So that at least some offspring survive to adulthood | Because parents cannot find each other | Because eggs do not need food | So that all the eggs hatch at the same time
+mc2: A sea turtle buries its eggs in warm sand on a beach. How does this behavior help reproduction? | It keeps eggs hidden and at a good temperature to develop | It feeds the baby turtles | It helps the turtles find mates | It cools the ocean
+mc2: Coconuts are large, waterproof and can float. Which seed spread method are they adapted for? | carried by ocean water | stuck to fur | blown by wind | eaten by birds
+mc2: A cherry tree's sweet fruit is eaten by birds. How does this help the tree? | Birds drop the seeds in new places where they may grow | Birds water the tree | Birds make the fruit grow larger | Birds pollinate the roots
+mc2: Which is a genetic factor that affects growth? | inherited traits from parents | amount of sunlight | type of soil | amount of food
+mc2: Twin calves (genetically identical) are raised on two farms. One gets rich grass and grows larger. Which conclusion is supported? | Environment affected growth because genes were the same | Genes caused the size difference | Both calves will always be the same size | Grass changes the calves' genes
+mc2: Which of these is an example of asexual reproduction? | yeast cells budding to form new cells | a dog having puppies | a bee pollinating a flower | two fish laying and fertilizing eggs
+mc3: Why might a population of plants that reproduces sexually be more likely to survive a new disease than one that reproduces asexually? | Variation means some plants may have genes that resist the disease | Sexual reproduction makes all plants identical | Asexual plants grow more slowly | Sexual reproduction removes all disease
+mc3: Hummingbird visits to a garden: red tube flowers 48 visits, yellow open flowers 9 visits, blue open flowers 3 visits over the same time. Which conclusion is best supported? | Hummingbirds prefer red tube-shaped flowers, which helps those plants get pollinated | Yellow flowers make the most seeds | Blue flowers do not need pollinators | Hummingbirds avoid all flowers
+num2: In the garden data (red 48, yellow 9, blue 3 visits), what percent of all hummingbird visits went to red flowers? | 80
+num2: A sunflower grew from 20 cm to 140 cm in 8 weeks. What was its mean growth rate in cm per week? | 15
+num2: A gardener planted 150 seeds and 120 sprouted. What percent of the seeds sprouted? | 80
+num2: Plants in shade averaged 25 cm tall and plants in sun averaged 40 cm tall. How many cm taller were the sun plants, on average? | 15
+mc2: Which question could be tested to learn how an environmental factor affects growth? | Does the amount of water change how tall tomato plants grow? | Which tomato tastes best? | What color is a tomato flower? | Why do people like tomatoes?
+mc3: A student measured goldfish in two tanks of the same goldfish variety. Tank A (large, clean) fish averaged 9 cm. Tank B (small, crowded) fish averaged 5 cm. Which is the best explanation? | Living conditions in the environment affected growth | Tank B fish have different genes | Tank A fish are older | The fish in Tank B are a different species
+mc2: Why do some flowers have strong scents? | to attract insects or other animals that carry pollen | to keep the flower warm | to help roots absorb water | to make seeds heavier
+sa2: Explain how a flower and a bee both benefit when the bee visits the flower. | The bee gets nectar or pollen for food, and the flower gets pollen carried to another flower so it can make seeds.
+sa2: Compare the variation in offspring from sexual and asexual reproduction. | Sexual reproduction produces offspring with a mix of both parents' genes, so they vary; asexual reproduction produces offspring that are genetically identical to the one parent.
+sa3: A student says, "Tall parents always have tall children, so environment does not matter for height." Use what you know about genes and environment to respond. | Genes from tall parents can make a child likely to be tall, but environmental factors like nutrition, sleep and health also affect growth, so a child with poor nutrition may not grow as tall as their genes allow.
+cer3: Scientists tagged birds in a forest. Data: 30 pairs that built nests high in thick branches raised 66 chicks to flying age. 30 pairs that built nests low in open bushes raised 21 chicks. Predators such as snakes and cats were seen near the low nests. Make a claim about how nest location affects reproductive success, use the data as evidence and explain your reasoning. | Claim: Building nests high in thick branches increases reproductive success. Evidence: high nests raised 66 chicks from 30 pairs (2.2 per pair) and low nests raised 21 chicks from 30 pairs (0.7 per pair), and predators were seen near low nests. Reasoning: nest-building is a behavior that affects whether offspring survive; nests that are harder for predators to reach protect eggs and chicks, so more young survive to pass on the parents' genes.
+
+unit: Unit 4: Thermal Energy - Keeping Things Hot and Cold | MS-PS3-3, MS-PS3-4, MS-PS3-5, MS-ETS1-1, MS-ETS1-2, MS-ETS1-3, MS-ETS1-4
+el: Act out particle motion: students move slowly (cold) and quickly (hot). Post a three-column chart for conduction, convection and radiation with a picture and a sentence frame for each.
+
+lesson: Temperature, thermal energy and moving particles | MS-PS3-4, MS-PS3-5
+practice:
+mc1: Temperature is a measure of | the average kinetic energy of the particles in a substance | the total mass of a substance | how much space a substance takes up | the color of a substance
+hint: Kinetic energy is the energy of motion. What is moving in a substance?
+mc2: A cup of tea and a bathtub of water are both at 40 °C. Which has more thermal energy? | the bathtub, because it has many more particles | the tea, because it is smaller | they have the same thermal energy | neither has thermal energy
+hint: Thermal energy depends on the total energy of all the particles.
+mc2: When you rub your hands together quickly, they get warm. What is happening to energy? | The kinetic energy of your moving hands is transferred into thermal energy | Your hands are creating new energy | Cold is leaving your hands | Your hands are absorbing light
+mc2: How do the particles in hot soup compare to the particles in cold soup? | They move faster on average | They are larger | They stop moving | They move slower on average
+sa2: A skateboard rolling across the playground slows down and stops. Explain where its kinetic energy went. | Friction between the wheels, the bearings and the ground transferred the skateboard's kinetic energy into thermal energy (and a little sound), warming the wheels and ground slightly. The energy was transferred, not destroyed.
+hint: Energy is not destroyed. What happens when surfaces rub?
+quiz:
+mc1: What happens to the motion of particles when a substance is heated? | the particles move faster | the particles move slower | the particles stop | the particles disappear
+mc2: A bike's brake pads feel hot after a fast ride downhill with lots of braking. Which statement best explains this? | The bike's kinetic energy was transferred to thermal energy in the brakes | The brakes absorbed heat from the Sun only | Braking created new energy | The brake pads lost all their particles
+mc2: A hammer hits a nail many times and the nail gets warm. What does this show? | When an object's kinetic energy changes, energy is transferred to or from it | Nails are always warm | Hammers produce cold | Energy is destroyed when objects stop
+num2: A thermometer in a pot of water read 20 °C. After heating, it read 65 °C. What was the change in temperature in °C? | 45
+num2: Water warmed from 18 °C to 42 °C in 8 minutes. What was the average rate of temperature change in °C per minute? | 3
+mc3: Two identical metal blocks are at 30 °C and 60 °C. Which statement about their particles is correct? | The particles in the 60 °C block have greater average kinetic energy | The particles in the 30 °C block move faster | Both blocks' particles move at the same speed | The 60 °C block has fewer particles
+sa2: Explain the difference between temperature and thermal energy using a cup of hot cocoa and a large pot of warm cocoa as an example. | Temperature is the average kinetic energy of particles, so the cup can be hotter. Thermal energy is the total energy of all the particles, so the large pot can have more thermal energy because it has many more particles even at a lower temperature.
+
+lesson: How heat moves: conduction, convection and radiation | MS-PS3-3
+practice:
+mc1: Heat transfer through direct contact between objects is | conduction | convection | radiation | insulation
+hint: Think of touching a hot pan.
+mc2: In a pot of water on a stove, warm water rises and cooler water sinks, forming a loop. This is | convection | conduction | radiation | evaporation
+mc2: You feel warmth on your face from a campfire even though you are not touching it and the air between you is cool. Which type of transfer is this? | radiation | conduction | convection | friction
+mc2: In which direction does thermal energy move between a cold can of juice and your warm hand? | from your hand to the can | from the can to your hand | it does not move | in both directions equally
+hint: Energy always flows from warmer to cooler.
+sa2: Explain why a metal spoon in hot soup gets hot faster than a wooden spoon. | Metal is a good conductor, so thermal energy moves quickly from the hot soup through the metal; wood is an insulator, so energy moves through it slowly.
+quiz:
+mc1: Which material is the best conductor of thermal energy? | copper | foam | wool | air
+mc2: Why are the handles of many cooking pots made of plastic or wood? | They are insulators that slow conduction to your hand | They conduct heat faster | They make the pot heat faster | They reflect radiation onto the food
+mc2: An ice cube is placed in a glass of room-temperature water. Which happens? | Thermal energy moves from the water to the ice, and the ice melts | Cold moves from the ice into the water | The water gives cold to the ice | No energy moves until the ice melts
+num2: A metal rod is heated at one end. A wax bead 10 cm away melted after 40 seconds. What was the average speed of the heat front in cm per second? | 0.25
+mc2: Why is the air near the ceiling of a heated room warmer than the air near the floor? | Warm air is less dense and rises by convection | Cold air rises | Radiation only heats ceilings | Conduction moves heat upward through the walls
+mc3: A student holds her hand above a candle and feels heat, and holds her hand beside the candle and feels less. Which transfer best explains why it is hotter above the flame? | convection, as heated air rises | conduction through the table | radiation only goes upward | the candle absorbs heat from the hand
+sa2: Describe how all three types of heat transfer happen when a pot of water is heated on a campfire. | Radiation from the fire warms nearby objects and people; conduction moves energy from the flames and hot pot into the water touching the pot; convection currents carry warm water up and cooler water down to heat the whole pot.
+
+lesson: Mass, material and temperature change | MS-PS3-4
+practice:
+mc2: A student heats 100 g of water and 300 g of water on identical burners for 2 minutes. Which will have the larger temperature increase? | the 100 g of water | the 300 g of water | both will increase the same | neither will change
+hint: The same energy is spread over fewer particles in the smaller mass.
+mc2: Equal masses of sand and water sit in the same sunlight for 30 minutes. The sand warms 12 °C and the water warms 4 °C. What does this show? | Different materials change temperature by different amounts with the same energy | Sand has more mass than water | Water absorbs no energy | The sunlight was stronger on the sand
+num2: In the sand and water test, how many times larger was the sand's temperature increase than the water's? | 3
+hint: Divide the sand's change by the water's change.
+mc2: Which question can be answered by heating different masses of the same liquid for the same time and measuring the temperature change? | How does mass affect temperature change? | How does color affect taste? | Which liquid smells strongest? | Does heating change the mass?
+sa2: Identify the independent variable, dependent variable and two controlled variables in this investigation: Students added the same amount of heat to 50 g, 100 g and 150 g of cooking oil and recorded the temperature increase. | Independent: mass of oil. Dependent: temperature increase. Controlled: type of liquid (oil), amount of heat added, starting temperature, container type.
+quiz:
+mc2: Data: adding the same energy raised 50 g of water by 20 °C, 100 g by 10 °C and 200 g by 5 °C. What pattern do the data show? | As mass doubles, the temperature change is cut in half | As mass increases, the temperature change increases | Mass does not affect temperature change | The temperature change is the same for all masses
+num2: Using the pattern above (50 g changed 20 °C, 100 g changed 10 °C, 200 g changed 5 °C), how many °C would 400 g of water change with the same energy? | 2.5
+num2: It takes about 4,200 joules to raise 100 g of water by 10 °C. How many joules would it take to raise 300 g of water by 10 °C? | 12600
+mc2: Why do coastal towns like Monterey have smaller temperature swings between day and night than inland deserts? | Water changes temperature slowly, so the ocean keeps nearby air from heating or cooling quickly | The ocean makes its own heat | Deserts get no sunlight | Coastal air has no particles
+mc3: A student heated 100 g of water for 1 minute with a 60 °C rise, then claimed that heating 100 g of oil for 1 minute would also rise 60 °C. Which statement is the best response? | The claim must be tested, because different materials change temperature by different amounts | The claim is correct because the masses are the same | Oil cannot be heated | Oil will always change exactly half as much
+num2: A 200 g block of aluminum warmed from 22 °C to 37 °C. What was its temperature change in °C? | 15
+sa3: Plan an investigation to find out whether the type of metal affects how much the temperature of a block rises when it is placed in hot water. Describe your groups, what you measure and how you keep the test fair. | Use blocks of different metals (aluminum, copper, iron) with the same mass and starting temperature; place each in the same amount of water at the same hot temperature for the same time; measure each block's temperature change; repeat trials and compare means.
+
+lesson: Design challenge: control the flow of heat | MS-PS3-3, MS-ETS1-1, MS-ETS1-2, MS-ETS1-3, MS-ETS1-4
+practice:
+mc2: A team must design a lunch box that keeps food cold for 4 hours, costs less than $5 and fits in a backpack. What are the cost and size limits called? | constraints | criteria | variables | hypotheses
+hint: Constraints are limits; criteria describe what success looks like.
+mc2: Which material would be best for the inside lining of a cooler? | foam, because it is an insulator | aluminum foil only, because it conducts heat | copper, because it conducts heat | a thin sheet of glass
+mc2: A shiny, reflective cover is placed over a car windshield on a sunny day. How does it keep the car cooler? | It reflects radiation from the Sun | It conducts heat into the car | It adds convection currents | It absorbs more sunlight
+num2: Design A kept an ice cube frozen for 96 minutes and Design B for 72 minutes. How many minutes longer did Design A work? | 24
+hint: Subtract the shorter time from the longer time.
+sa2: Name one criterion and one constraint for a device that keeps a cup of soup hot for a school field trip. | Criterion: keeps soup above 60 °C for 3 hours. Constraint: must cost under $10, be safe for students and fit in a backpack.
+quiz:
+mc2: Why do engineers test a prototype more than once? | to get reliable data and find ways to improve the design | to use up materials | to make the design more expensive | to avoid collecting data
+mc2: Three cooler designs were tested. A: 3 hours, $8. B: 5 hours, $14. C: 4.5 hours, $6. The criteria: keep drinks cold at least 4 hours. The constraint: cost under $10. Which design best meets both? | C | A | B | none of them
+num2: An ice pack in Design C melted completely in 270 minutes. How many hours is that? | 4.5
+num2: Design 1 kept water hot for 150 minutes. After adding a lid, it kept water hot for 210 minutes. What was the percent increase in time? | 40
+mc3: A team combines the best parts of two designs: the foam walls from one and the reflective lid from another. What is this step of the design process called? | optimizing by combining parts of different solutions | defining the problem | asking a scientific question | ending the testing
+mc2: Which change would most reduce heat transfer by convection in a cooler? | sealing gaps so air cannot flow in and out | painting the cooler black | using thinner walls | leaving the lid open
+sa3: Explain how a well-designed thermos reduces heat transfer by conduction, convection and radiation. | A vacuum layer between two walls has almost no particles, so conduction and convection are greatly reduced; a tight lid stops air from flowing in and out; shiny inner surfaces reflect radiation back toward the drink.
+
+test:
+mc1: Thermal energy always moves from | warmer objects to cooler objects | cooler objects to warmer objects | smaller objects to larger objects | darker objects to lighter objects
+mc1: Energy that travels as waves, such as sunlight, is transferred by | radiation | conduction | convection | friction
+mc2: Which situation is an example of conduction? | a pan warming your hand when you touch it | warm air rising above a heater | sunlight warming a sidewalk | hot air balloons rising
+mc2: Which statement about particles is true? | Particles in a hotter object move faster on average | Particles in a colder object move faster | Particles stop moving at room temperature | Particles get larger when heated
+mc2: A soccer ball is kicked and then rolls to a stop on grass. Which statement is correct? | Its kinetic energy is transferred to the grass and air as thermal energy and sound | Its energy is destroyed | Its energy turns into mass | It gains kinetic energy as it stops
+mc2: Which material would make the best oven mitt? | thick cotton with trapped air | thin aluminum | copper mesh | wet cloth
+mc2: The same amount of energy is added to 1 kg of water and 2 kg of water. Which is true? | The 1 kg of water has the larger temperature increase | The 2 kg of water has the larger temperature increase | Both change by the same amount | Neither changes
+mc2: Sand on a beach is hot at noon, while the ocean water feels cool. Which explanation is best? | Sand warms faster than water with the same sunlight | Water absorbs no energy | The sand is closer to the Sun | The water has no particles
+mc2: In an investigation, students change the mass of water and measure the temperature change. What is the dependent variable? | the temperature change | the mass of water | the type of burner | the heating time
+mc2: Why does a pot of soup heat evenly even though only the bottom touches the burner? | Convection currents move warm soup up and cool soup down | Radiation heats only the top | Conduction moves heat out of the soup | The soup is a good insulator
+mc3: Two cups hold 200 mL of 80 °C water. Cup A is foam and Cup B is metal. After 10 minutes, A is 70 °C and B is 52 °C. Which conclusion is supported? | Foam is a better insulator than metal | Metal is a better insulator than foam | The cups lost the same energy | Water in A gained heat
+num2: In the cup test, how many more °C did the water in Cup B cool than the water in Cup A? | 18
+num2: Water in a pot heated from 25 °C to 85 °C in 12 minutes. What was the mean rate of temperature change in °C per minute? | 5
+num2: It takes about 2,100 joules to raise 50 g of water by 10 °C. How many joules would it take to raise 150 g of water by 10 °C? | 6300
+num2: A cooler kept ice for 6 hours. A new design kept ice for 9 hours. What was the percent increase? | 50
+mc3: Trials of an ice-melting test gave 84, 90, 81 and 89 minutes for one design. What should the team report as the result? | the mean, 86 minutes, because repeated trials are more reliable | only the longest time, 90 minutes | only the first trial, 84 minutes | only the shortest time, 81 minutes
+mc2: Which is a criterion (not a constraint) for a solar oven design? | It must heat food to at least 70 °C | It must cost less than $15 | It must be built in one class period | It can only use cardboard and foil
+mc3: Two students heat 100 g of water and 100 g of vegetable oil with the same energy. The oil warms 30 °C and the water warms 14 °C. What can they conclude? | The type of matter affects the temperature change | The mass affects the temperature change | Oil has more mass than water | The water received more energy
+mc2: Why are many homes in hot climates painted white or light colors? | Light colors reflect more sunlight, reducing heat absorbed by radiation | Light colors conduct heat away faster | White paint creates convection | Dark colors keep heat out
+sa2: Explain why a car's tires feel warmer after a long drive. | As the car moved, friction and the flexing of the tires transferred some kinetic energy into thermal energy, raising the tires' temperature.
+sa2: Describe how you would test whether a lid affects how fast hot water cools. Include what you change, what you measure and what you keep the same. | Change: lid or no lid. Measure: water temperature every 2 minutes for 20 minutes. Keep the same: cup type, starting temperature, amount of water, room location; repeat trials.
+sa3: A student says a sweater "makes you warm by adding heat." Explain what a sweater actually does using heat transfer ideas. | A sweater does not add heat; it is an insulator that traps air and slows the transfer of thermal energy from your warm body to the cooler air, so you stay warm longer.
+cer3: A team tested three insulators wrapped around identical cans of 90 °C water. After 20 minutes: no wrap 58 °C, newspaper 66 °C, wool 74 °C, bubble wrap 77 °C. Make a claim about which material is the best insulator for keeping a drink hot. Use the data as evidence and explain your reasoning using ideas about heat transfer. | Claim: Bubble wrap is the best insulator of those tested. Evidence: the can with bubble wrap stayed hottest at 77 °C (dropping 13 °C), compared with wool 74 °C, newspaper 66 °C and no wrap 58 °C. Reasoning: thermal energy moves from the hot water to the cooler air; materials that trap pockets of air slow conduction and convection, so less energy leaves the can and its temperature stays higher.
+
+unit: Unit 5: Earth System Interactions Cause Weather | MS-ESS2-4, MS-ESS2-5
+el: Use a labeled water-cycle diagram with arrows and the verbs evaporate, condense, precipitate and flow. Give a weather-map key with pictures for cold front, warm front, H and L.
+
+lesson: The water cycle runs on sunlight and gravity | MS-ESS2-4
+practice:
+mc1: What provides the energy that drives evaporation in the water cycle? | the Sun | the Moon | Earth's magnetic field | ocean tides
+hint: What warms ocean and lake water every day?
+mc2: Water vapor high in the air cools and forms tiny droplets that make a cloud. This process is | condensation | evaporation | precipitation | runoff
+mc2: Which force pulls rain and snow down from clouds and makes rivers flow downhill to the ocean? | gravity | magnetism | friction | air pressure
+mc2: In the Sierra Nevada, snow melts in spring and the water flows into reservoirs. Which water cycle processes are involved? | melting and runoff pulled by gravity | evaporation and condensation only | freezing and deposition | photosynthesis and respiration
+hint: Think about what happens to snow as it warms, and which way water flows.
+sa2: Describe the path of one water molecule that evaporates from the Pacific Ocean and ends up in a California river. | Sunlight warms ocean water so the molecule evaporates; it rises and cools, condensing into a cloud; winds carry the cloud over land; it falls as rain or snow; gravity pulls it downhill as runoff or melted snow into a river.
+quiz:
+mc1: Water that soaks into the ground and is stored between rocks and soil is called | groundwater | water vapor | ice cap | runoff
+mc2: Plants release water vapor from their leaves into the air. This process is called | transpiration | precipitation | condensation | deposition
+mc2: A sealed jar with wet soil and a plant sits in sunlight. Droplets form on the inside of the lid and drip back down. What does this model show? | evaporation, condensation and precipitation in the water cycle | how earthquakes form | how wind is made by the Moon | why water cannot change state
+num2: A rain gauge collected 12 mm, 8 mm, 0 mm, 20 mm and 5 mm of rain over five days. What was the mean daily rainfall in mm? | 9
+num2: A lake lost 3 mm of water to evaporation each day in July. How many mm did it lose over 31 days? | 93
+mc3: A dish of water evaporated faster on a sunny windowsill than in a shady closet. Which conclusion is best supported? | More energy from sunlight increases the rate of evaporation | Shade adds water to the dish | Evaporation does not need energy | Gravity is stronger in the closet
+sa2: Explain the roles of both sunlight and gravity in the water cycle. | Sunlight provides energy that evaporates water and lifts it into the atmosphere as vapor; gravity pulls condensed water back down as precipitation and makes it flow downhill as runoff and groundwater.
+
+lesson: Air pressure, humidity and clouds | MS-ESS2-5
+practice:
+mc1: The amount of water vapor in the air is called | humidity | air pressure | wind speed | temperature
+mc2: A cold glass of lemonade on a summer day gets water droplets on the outside. Where does the water come from? | water vapor in the air condenses on the cold glass | lemonade leaks through the glass | the ice melts through the glass | the Sun makes water on the glass
+hint: What happens to water vapor when it touches something cold?
+mc2: Weather reports show falling air pressure. Which weather is most likely coming? | clouds and possible storms | clear and calm weather | colder clear skies with no clouds | a heat wave with no wind
+num2: Air at a certain temperature can hold 20 grams of water vapor per cubic meter. It now holds 15 grams. What is the relative humidity in percent? | 75
+hint: Divide the amount held by the most it can hold, then multiply by 100.
+sa2: Explain why clouds often form when warm, moist air rises up the side of a mountain. | As the air rises it expands and cools; cooler air cannot hold as much water vapor, so the vapor condenses into droplets that form clouds.
+quiz:
+mc1: An instrument that measures air pressure is a | barometer | thermometer | rain gauge | anemometer
+mc2: Wind blows from areas of | high pressure to low pressure | low pressure to high pressure | cold land to the Moon | the ocean floor upward
+mc2: Fog often forms on summer mornings along the San Francisco coast. Which explanation is best? | Moist ocean air cools near the cold coastal water, and its vapor condenses near the ground | Dry desert air rises over the city | Sunlight condenses the air | The fog is smoke from factories
+num2: Air can hold 30 grams of water vapor per cubic meter at 30 °C. It is holding 12 grams. What is the relative humidity in percent? | 40
+num2: Air pressure fell from 1,016 millibars to 1,004 millibars over 6 hours. What was the average drop in millibars per hour? | 2
+mc3: Data from a weather station: humidity rose from 45% to 90%, pressure fell steadily, and clouds thickened over the afternoon. What is the best prediction? | rain is likely soon | the sky will clear soon | snow will melt | there will be an earthquake
+sa2: Explain why a high-pressure system usually brings clear, dry weather. | In a high-pressure system air sinks; sinking air warms and can hold more water vapor, so clouds do not form easily, leading to clear skies.
+
+lesson: Air masses meet: fronts and storms | MS-ESS2-5
+practice:
+mc1: A large body of air with similar temperature and humidity throughout is called | an air mass | a front | a cloud | a jet stream
+mc2: An air mass that forms over the North Pacific Ocean would most likely be | cool and moist | hot and dry | cold and dry | hot and moist
+hint: Think about where it formed: ocean or land, north or south?
+mc2: When a cold air mass pushes into a warm air mass, the warm air is forced upward quickly. What weather often results? | thunderstorms and heavy rain, followed by cooler weather | weeks of clear skies | calm, foggy mornings only | a sudden heat wave
+mc2: Which weather change usually happens after a cold front passes? | the temperature drops and skies clear | the temperature rises a lot | humidity increases for days | it becomes foggy for a week
+sa2: Compare the weather usually caused by a cold front and by a warm front. | A cold front moves fast and pushes warm air up steeply, causing short, heavy storms and then cooler, clearer weather. A warm front moves slowly as warm air rises gently over cold air, causing longer periods of light rain or drizzle and warmer weather afterward.
+hint: Think about how steeply the warm air is pushed upward.
+quiz:
+mc1: The boundary where two air masses meet is called | a front | an isobar | a current | a climate zone
+mc2: On a weather map, a line with blue triangles shows | a cold front | a warm front | a high-pressure area | a mountain range
+num2: As a cold front passed a city, the temperature fell from 24 °C to 15 °C in 3 hours. What was the average temperature drop per hour in °C? | 3
+mc2: In winter, California often gets heavy rain from long bands of moist air that flow in from the warm Pacific. These are called atmospheric rivers. Why do they cause so much rain over the mountains? | The moist air is forced up the mountains, cools and drops its water | The mountains make new water | The air sinks and warms over the mountains | Gravity pushes the air upward
+num2: An atmospheric river dropped 150 mm of rain on a town over 3 days. What was the mean rainfall per day in mm? | 50
+mc3: A city's data: Day 1 warm and humid, pressure falling. Day 2 strong storms and gusty winds, temperature drops 8 °C. Day 3 cool, clear and dry, pressure rising. Which event best explains the pattern? | a cold front passed through on Day 2 | a warm front passed through on Day 1 | a high-pressure system stayed all three days | nothing changed
+cer3: A student recorded weather in Fresno. Monday: 32 °C, humidity 30%, clear, pressure 1,018 mb. Tuesday: 31 °C, humidity 55%, clouds building, pressure 1,009 mb. Wednesday morning: thunderstorm, wind shifted, 22 °C. Wednesday evening: clear, humidity 35%, pressure 1,016 mb. Make a claim about what caused the change in weather. Use the data as evidence and explain your reasoning. | Claim: a cold front moved through on Wednesday. Evidence: pressure fell from 1,018 to 1,009 mb and humidity rose before the storm; during the storm the wind shifted and temperature dropped 9 °C; afterward pressure rose and humidity dropped. Reasoning: when a cold air mass pushes under warm, moist air, the warm air rises quickly, cools and forms storms; behind the front the cooler, drier air brings clear skies and higher pressure.
+
+lesson: Forecasting with data | MS-ESS2-5, MS-ESS2-4
+practice:
+mc2: Why do meteorologists collect weather data from many locations at the same time? | to track how air masses and fronts are moving | to measure only their own city | to find earthquakes | to count clouds for fun
+hint: Air masses move across large areas.
+mc2: Which tool measures wind speed? | anemometer | barometer | hygrometer | thermometer
+mc2: A town west of yours had storms yesterday. Weather in most of the United States usually moves from west to east. What might you predict? | storms may reach your town soon | storms will move away to the west | weather never moves | your town will have snow in July
+num2: A storm moved 360 km in 12 hours. What was its average speed in km per hour? | 30
+hint: Speed equals distance divided by time.
+sa2: A forecast says "70% chance of rain." Explain what this means and why forecasts use probability. | It means rain is likely but not certain in the area; forecasts use probability because the atmosphere is complex and scientists can only estimate how air masses will move and interact.
+quiz:
+mc2: After a storm, a city's barometer reading rises steadily for a day. What weather is most likely next? | clearing skies | more heavy rain | thicker clouds building | a new thunderstorm every hour
+num2: For the storm 240 km away moving at 40 km per hour, how many hours until it arrives? | 6
+num2: High temperatures for five days were 28, 30, 25, 22 and 20 °C. What was the mean high temperature in °C? | 25
+mc2: Which data pattern best signals that a cold front is approaching? | falling pressure, rising humidity, building clouds | rising pressure and clearing skies | steady pressure and calm air | falling humidity and clear skies
+mc3: A forecaster sees a high-pressure system parked over Nevada pushing dry wind toward Southern California. Which forecast is best supported? | hot, dry, windy weather with higher fire danger | heavy rain and flooding | thick fog and drizzle | snow at the beach
+mc2: Why might a weather forecast for 10 days ahead be less accurate than a forecast for tomorrow? | Small changes in the atmosphere grow over time and are hard to predict | Weather instruments stop working after 1 day | Air masses do not move | Forecasters guess at random
+sa2: Use what you know about air masses to explain why it is often warmer and more humid before a cold front and cooler and drier after it. | Before the front, a warm, humid air mass covers the area. The front marks where a cold, drier air mass pushes in, so after it passes the cooler, drier air mass replaces the warm air.
+
+test:
+mc1: The main source of energy for Earth's weather and water cycle is | the Sun | Earth's core | the Moon | lightning
+mc1: Water vapor turning into liquid droplets is | condensation | evaporation | precipitation | transpiration
+mc1: A barometer measures | air pressure | humidity | rainfall | wind direction
+mc2: Which process moves water from the ground into the air through plants? | transpiration | runoff | infiltration | precipitation
+mc2: What role does gravity play in the water cycle? | It pulls precipitation down and makes water flow downhill | It evaporates water | It forms clouds | It heats the ocean
+mc2: Which air mass would bring hot, dry weather to California? | one that formed over the deserts of the Southwest or Mexico | one that formed over the North Pacific | one that formed over the Arctic Ocean | one that formed over the Gulf of Mexico
+mc2: Why does warm air rising often lead to cloud formation? | The air cools as it rises, so water vapor condenses | The air gets warmer and drier | The air sinks back down | The air gains more pressure
+mc2: A warm front usually brings | long periods of light rain followed by warmer air | sudden short thunderstorms followed by cooler air | no clouds at all | snow in summer
+mc2: Air moves from a region of high pressure to low pressure. This movement is | wind | a front | humidity | evaporation
+mc2: Which observation suggests air near the ground has reached its dew point? | dew or fog forms | the sky is clear and dry | wind speed is zero | the barometer rises
+mc3: Pressure readings over 12 hours: 1,020, 1,015, 1,008, 1,002 millibars. Which forecast is best supported? | stormy weather is likely | clear weather is likely | there will be no change | a heat wave is certain
+mc3: A mountain's west side gets 1,500 mm of rain per year and its east side gets 250 mm. Winds blow from the west. Which explanation is best? | Air rises on the west side, cools and drops rain; it sinks and warms on the east side | The east side is closer to the ocean | The west side is hotter | Gravity is weaker on the east side
+num2: In the mountain example, how many times more rain does the west side get than the east side? | 6
+num2: A storm moved 450 km in 9 hours. What was its average speed in km per hour? | 50
+num2: Air can hold 25 g of water vapor per cubic meter and holds 20 g. What is the relative humidity in percent? | 80
+num2: Rainfall over four months was 110, 80, 40 and 10 mm. What was the mean monthly rainfall in mm? | 60
+mc2: Which is the best evidence that a cold front has passed? | temperature dropped and wind direction changed after a storm | humidity slowly rose for three days | the sky stayed cloudy all week | pressure fell for two days
+mc2: Why do forecasters use computer models and data from satellites, balloons and ground stations? | Weather depends on many interacting factors over large areas | One thermometer is enough | Weather never changes | Satellites can control the weather
+mc3: Two cities are at the same latitude. City A is next to the ocean; City B is far inland. In summer, City A has fog many mornings and City B has none. What best explains the difference? | Moist ocean air cools and condenses near City A | City B is closer to the Sun | City A has higher mountains | City B has more water vapor
+sa2: Explain why snowpack in the Sierra Nevada is important for California's water supply, using the water cycle. | Winter precipitation is stored as snow; in spring and summer, sunlight melts it and gravity carries the water as runoff into rivers and reservoirs that people use in dry months.
+sa2: Describe what happens to warm and cold air when a cold front arrives and how this changes the weather. | Dense cold air pushes under the warm air and forces it upward quickly; the rising warm air cools and forms tall clouds and storms; after the front passes, cooler and drier air brings clearer weather.
+sa3: A student says, "Clouds are made of water vapor." Explain what is wrong with this statement and what clouds are really made of. | Water vapor is an invisible gas. Clouds form when water vapor cools and condenses into tiny liquid droplets or ice crystals; those droplets and crystals are what we see.
+cer3: A class compared two days in Los Angeles. Day 1: air mass from the Pacific, 21 °C, humidity 78%, morning fog. Day 2: air mass from the Great Basin desert, 34 °C, humidity 12%, strong dry winds from the northeast. Make a claim about what caused the difference in weather between the two days. Use the data as evidence and explain your reasoning. | Claim: different air masses caused the different weather. Evidence: on Day 1 a Pacific air mass brought cooler 21 °C air, 78% humidity and fog; on Day 2 a desert air mass brought 34 °C, 12% humidity and dry winds. Reasoning: air masses take on the temperature and humidity of where they form; air from over the ocean is cool and moist, while air from the desert is hot and dry, so when a different air mass moves in, the local weather changes.
+
+unit: Unit 6: Causes and Effects of Regional Climates | MS-ESS2-6
+el: Shine a flashlight straight down and at an angle on grid paper to show spreading of light. Pre-teach latitude, current, prevailing wind and rain shadow with a labeled world map.
+
+lesson: Weather or climate? Unequal heating of Earth | MS-ESS2-6
+practice:
+mc1: Climate is | the usual pattern of weather in a place over many years | the weather on one day | the temperature at noon | the amount of rain in one storm
+hint: Think long term, not one day.
+mc2: Why is the equator warmer than the poles on average? | Sunlight strikes the equator more directly, so energy is concentrated on a smaller area | The equator is closer to the Sun | The poles have no sunlight all year | The equator has more air
+mc2: A flashlight shines straight down on graph paper and lights 20 squares. Tilted, the same light covers 40 squares. What does this model show? | Light at a low angle is spread over a larger area, so each square gets less energy | Tilted light has more energy | The flashlight made more light when tilted | Angle does not matter
+hint: The same amount of light is shared by more squares.
+num2: In the flashlight model, the same light covers 20 squares straight on and 40 squares when tilted. How many times less light does each square get when tilted? | 2
+sa2: A student says, "It is raining today in Seattle, so Seattle has a rainy climate." Explain why one day of weather is not enough to describe climate. | Climate is based on long-term averages, usually 30 years or more. One rainy day is weather; to describe the climate you need many years of data on temperature and precipitation.
+quiz:
+mc1: Which describes weather rather than climate? | It is foggy in Monterey this morning | Monterey has cool, foggy summers most years | Phoenix has hot summers year after year | Antarctica is always very cold
+mc2: Which place would most likely receive the most solar energy per square meter over a year? | a city near the equator | a city near the Arctic Circle | the North Pole | the South Pole
+num2: Average July high temperatures for 5 years in a city were 31, 33, 32, 30 and 34 °C. What is the mean July high in °C? | 32
+mc2: Earth's axis is tilted. How does this cause seasons in the Northern Hemisphere? | In summer the Northern Hemisphere tilts toward the Sun and receives more direct light and longer days | In summer Earth is much closer to the Sun | In winter the Sun gives off less energy | The tilt changes the length of a year
+mc3: Data: Quito, Ecuador (0° latitude) averages about 14 °C, while Singapore (about 1° N) averages about 27 °C. Both are near the equator. What other factor most likely explains the difference? | Quito is high in the mountains, at about 2,800 meters | Singapore is closer to the Sun | Quito has more sunlight | Singapore is at the North Pole
+num2: Sunlight delivers about 1,000 watts per square meter when it shines straight down. If the same light is spread over 4 square meters, how many watts does each square meter get? | 250
+sa2: Explain why places near the poles stay cold even though they get 24 hours of daylight in summer. | Sunlight arrives at a very low angle, so its energy spreads over a large area and much is reflected by ice and snow, so each area receives little energy.
+
+lesson: Global winds and Earth's rotation | MS-ESS2-6
+practice:
+mc2: Near the equator, warm air rises. What happens as this air rises and cools? | Water vapor condenses and causes heavy rain | The air becomes hotter | It sinks immediately | It turns into ocean water
+hint: Rising air cools. What happens to vapor in cool air?
+mc2: Air that rose at the equator sinks back down near 30° north and south latitude. Sinking air is dry. Which kind of region is common near 30° latitude? | deserts | rainforests | ice caps | swamps
+mc1: The turning of winds caused by Earth's rotation is called | the Coriolis effect | convection | radiation | the greenhouse effect
+mc2: In the Northern Hemisphere, Earth's rotation causes moving air to curve | to the right | to the left | straight up | in no particular direction
+hint: Picture yourself facing the direction the wind is moving.
+sa2: Describe how unequal heating and Earth's rotation together create global wind patterns. | Unequal heating makes air rise at the equator and sink at other latitudes, setting up large convection loops; Earth's rotation curves these winds, producing belts such as the trade winds and westerlies.
+quiz:
+mc2: The prevailing winds over most of the United States, including California, generally blow from | west to east | east to west | north to south | south to north
+mc2: Why do the Amazon and Congo rainforests get so much rain? | They are near the equator, where warm, moist air rises and cools | They are near 30° latitude, where air sinks | They are next to deserts | They receive little sunlight
+mc2: The Sahara Desert lies around 20 to 30 degrees north latitude. Which global pattern helps explain its dryness? | Dry air sinks there after rising at the equator | Air rises and cools there | Ocean currents bring warm rain | It is in a cold polar air cell
+num2: A wind belt carries air 600 km in 20 hours. What is the average speed of the wind in km per hour? | 30
+num2: A balloon released in Sacramento drifted east 1,800 km in 3 days. What was its average distance per day in km? | 600
+mc3: A student models Earth with a spinning globe and draws a line straight from the North Pole toward the equator while it spins. The line curves. What does the model demonstrate? | Earth's rotation causes moving air and water to curve | Winds always blow straight | The globe is too small to show winds | Gravity pulls air to the poles
+sa3: Explain why both the equator and 30° latitude are partly the result of convection in the atmosphere. | At the equator, strong heating makes air rise, cool and drop rain. That air moves toward the poles, cools further and sinks near 30°, where it warms and dries the land. This rising and sinking loop is a convection current driven by unequal heating.
+
+lesson: Ocean currents carry energy around the planet | MS-ESS2-6
+practice:
+mc1: Large streams of moving water in the ocean are called | ocean currents | tides | waves | ripples
+mc2: The Gulf Stream carries warm water from near the equator north across the Atlantic. How does it affect Western Europe? | It helps give Western Europe milder winters than other places at the same latitude | It makes Western Europe a desert | It freezes Western Europe | It has no effect on climate
+mc2: The California Current flows south along the West Coast, bringing cold water from the north. How does it affect coastal California summers? | They are cooler and often foggy | They are much hotter | They are rainier than winters | They have no wind
+hint: Air over cold water gets cooled.
+mc2: What two main factors drive surface ocean currents? | winds and Earth's rotation | the Moon and fish | earthquakes and volcanoes | rivers and lakes
+sa2: Explain how an ocean current can move thermal energy from one part of Earth to another. | Water warmed near the equator flows toward higher latitudes, carrying thermal energy with it; it releases heat to the air there, warming nearby land. Cold currents carry cold water toward the equator.
+quiz:
+mc2: San Francisco and Washington, D.C. are at about the same latitude. San Francisco has cooler summers. What is the best explanation? | San Francisco is next to the cold California Current | Washington, D.C. is closer to the Sun | San Francisco gets no sunlight in summer | Washington, D.C. is at a higher elevation
+mc2: Deep ocean currents are driven partly by differences in water density. Which water is densest? | cold, salty water | warm, fresh water | warm, salty water | cold, fresh water
+num2: Summer ocean temperatures off San Diego averaged 21 °C and off Monterey 14 °C. How many °C warmer was the water off San Diego? | 7
+num2: A floating buoy in an ocean current moved 72 km in one day. What was its average speed in km per hour? | 3
+mc3: A city on a west coast of a continent at 50° N has much warmer winters than a city at 50° N in the middle of the continent. Which combination best explains this? | A warm ocean current and winds from the ocean keep the coast milder | The coastal city is at the equator | The inland city is next to the ocean | The coastal city receives more direct sunlight
+mc2: In upwelling, winds push surface water away from the coast and cold water rises from below. Along California, how does upwelling affect the nearby air? | It cools the air and can help form fog | It heats the air | It adds dry desert air | It makes snow in summer
+cer3: Data: Lisbon, Portugal (39° N, Atlantic coast): January average 11 °C. Beijing, China (40° N, far from warm currents and influenced by cold winds from the continent's interior): January average -3 °C. Make a claim about why these cities at nearly the same latitude have different winter temperatures. Use the data as evidence and explain your reasoning. | Claim: Lisbon has milder winters because the ocean and warm currents keep it warmer, while Beijing is affected by cold continental air. Evidence: at about the same latitude, Lisbon averages 11 °C in January and Beijing averages -3 °C, a 14 °C difference. Reasoning: both receive similar sunlight, so latitude cannot explain the difference; ocean water stores thermal energy and changes temperature slowly, and currents and winds from the ocean carry that energy to Lisbon, while Beijing gets cold air from the interior of the continent.
+
+lesson: Mountains, oceans and California's climates | MS-ESS2-6
+practice:
+mc2: Moist air from the Pacific rises over the Sierra Nevada and drops rain and snow on the western slopes. What happens on the eastern side? | The air sinks, warms and is dry, creating a rain shadow | The air gets wetter | It snows more than the west side | The air stops moving
+hint: The air already lost much of its water on the way up.
+mc2: Death Valley, east of the Sierra Nevada, is one of the driest places in North America. Which factor best explains this? | It is in a rain shadow of mountains | It is next to the ocean | It is at the North Pole | It gets air that is rising and cooling
+mc2: As you climb a tall mountain, the air temperature usually | decreases | increases | stays the same | goes up and down randomly every meter
+num2: Air temperature drops about 6.5 °C for every 1,000 meters of elevation gain. If it is 20 °C at sea level, what is the temperature at 2,000 meters? | 7
+hint: Find the total drop for 2,000 meters first.
+sa2: Explain why inland cities like Fresno have hotter summers than coastal cities like Santa Cruz. | Coastal cities are cooled by the nearby ocean and cold current, which change temperature slowly; inland cities are far from the ocean's influence, so land heats up more in summer sunlight.
+quiz:
+mc2: Which pair of factors most affects the climate of a region? | latitude and nearness to large bodies of water | the color of houses and number of roads | the time zone and the population | the number of trees and the language spoken
+num2: Annual precipitation: west slope of a mountain range 1,200 mm, east slope 300 mm. What percent of the west slope's precipitation does the east slope receive? | 25
+num2: At sea level the temperature is 30 °C. Temperature drops about 6.5 °C per 1,000 m. What is the temperature at 4,000 m? | 4
+mc3: Which data pair would best show the effect of the ocean on climate? | the yearly temperature range for a coastal city and an inland city at the same latitude | the population of two cities | the rainfall of one city on one day | the temperature of one city at noon
+mc2: A climate graph shows a city with warm, dry summers and mild, rainy winters. Which kind of climate is this? | a Mediterranean climate, like much of coastal California | a tropical rainforest climate | a polar ice climate | a climate with no seasons
+mc2: Hawaii's islands each have a wet windward side and a dry leeward side. Which process causes this? | Trade winds push moist air up the mountains on one side; the other side is a rain shadow | The leeward side is closer to the equator | The windward side has no mountains | Volcanoes make rain
+sa3: Use a model of a mountain and moving air to explain why one side of a mountain range can be a forest and the other side a desert. | Wind pushes moist air up the windward side; it cools, the vapor condenses and rain falls, supporting forests. The air that crosses the top is dry; as it sinks it warms and absorbs moisture, creating a dry rain shadow on the leeward side where deserts form.
+
+test:
+mc1: Climate is best described as | the long-term pattern of weather in an area | today's temperature | a single storm | the time of sunrise
+mc1: Which is a cold ocean current along North America's west coast? | the California Current | the Gulf Stream | the Amazon River | the Mississippi River
+mc2: Why does the equator receive more energy from the Sun per square meter than the poles? | Sunlight hits it at a more direct angle | It is closer to the Sun | It has longer years | It has more water
+mc2: Which global pattern helps explain why many deserts lie near 30° latitude? | Dry air sinks there after rising near the equator | Moist air rises there | Ocean currents bring rain there | Polar winds blow there
+mc2: The Coriolis effect is caused by | Earth's rotation | Earth's tilt | the Moon's gravity | volcanoes
+mc2: Which statement about the ocean and climate is correct? | Water heats and cools slowly, so it moderates nearby land temperatures | Water heats faster than land | The ocean has no effect on land climate | The ocean only affects climate at the poles
+mc2: The Gulf Stream helps make Western Europe | milder in winter than other regions at the same latitude | colder than the Arctic | a desert | a rainforest
+mc2: Which observation is evidence of a rain shadow? | One side of a mountain range is green and wet, and the other side is dry | A city has the same weather every day | A beach has sand | A valley floods in spring
+mc2: Which place would likely have the smallest difference between summer and winter temperatures? | a small island in the middle of an ocean | a city in the center of a large continent | a desert far from water | a mountain far inland
+mc2: As air rises over a mountain, it | expands and cools, and water vapor may condense | warms and dries | sinks and becomes denser | stops moving
+mc3: San Diego (33° N, coast) and Dallas, Texas (33° N, inland) have very different summer highs: about 24 °C and about 35 °C. Which is the best explanation? | San Diego is cooled by the ocean and cold current; Dallas is far from the ocean | Dallas is closer to the equator | San Diego gets more sunlight | Dallas is next to a cold ocean current
+mc3: A student shines a lamp straight down on one thermometer and at a low angle on another for 10 minutes. The first rose 9 °C and the second rose 4 °C. What does this model represent? | Why places with more direct sunlight are warmer | Why the ocean is salty | Why the Moon has phases | How earthquakes happen
+num2: In the lamp model, how many more degrees °C did the thermometer under direct light rise? | 5
+num2: Temperature drops about 6.5 °C for every 1,000 m. If it is 25 °C at sea level, what is the temperature at 3,000 m in °C? | 5.5
+num2: A city's yearly rainfall for 4 years was 380, 420, 290 and 510 mm. What is the mean yearly rainfall in mm? | 400
+num2: A drifting buoy moved 96 km in 24 hours in the California Current. What was its speed in km per hour? | 4
+mc2: Which data would best help scientists describe a city's climate? | 30 years of temperature and precipitation records | one week of weather | the city's population | one photograph of the sky
+mc2: Which statement about Earth's rotation and winds is correct? | Rotation curves winds, helping form belts like the trade winds and westerlies | Rotation stops wind from forming | Rotation causes winds to blow straight north | Rotation only affects ocean tides
+mc3: The coast of Peru is very dry even though it is next to the Pacific Ocean. A cold current flows north along the coast. Which explanation fits? | Cold water cools the air above it, so less water evaporates and the air is too stable for rain | Cold currents cause heavy rain | Peru is at the North Pole | The ocean has no water vapor
+sa2: Explain how Earth's tilt and orbit cause seasons in California. | As Earth orbits the Sun, its tilted axis points the Northern Hemisphere toward the Sun in June, giving California more direct sunlight and longer days (summer); in December it points away, so light is less direct and days are shorter (winter).
+sa2: Describe how an ocean current affects the climate of a nearby coast. Give an example. | Currents carry warm or cold water that warms or cools the air above it; for example, the cold California Current keeps coastal California summers cool and foggy.
+sa3: Explain why two cities at the same latitude can have very different climates. Give at least two factors. | Latitude affects sunlight, but climate also depends on nearness to the ocean, ocean currents, elevation, prevailing winds and mountains (rain shadows), so cities at the same latitude can differ in temperature and rainfall.
+cer3: A student compared two California cities at about 36° N. Monterey (coast, near sea level): average July high 20 °C, January high 16 °C. Fresno (inland valley, about 100 m elevation): July high 37 °C, January high 13 °C. Make a claim about what causes the difference in their climates. Use the data as evidence and explain your reasoning. | Claim: Monterey's nearness to the cold Pacific Ocean gives it a milder climate than inland Fresno. Evidence: Monterey's highs vary only 4 °C (16 to 20 °C), while Fresno's vary 24 °C (13 to 37 °C), even though both are at 36° N and near sea level. Reasoning: same latitude means similar sunlight; water heats and cools slowly and the cold California Current cools coastal air, so the ocean keeps Monterey cool in summer and mild in winter, while Fresno's land heats and cools more.
+
+unit: Unit 7: Global Warming and Its Effects on Living Systems | MS-ESS3-5, MS-ESS3-3, MS-ETS1-1, MS-ETS1-2
+el: Model the greenhouse effect with a labeled diagram and gestures (sunlight in, heat trapped). Provide graph-reading frames: "From ___ to ___, the ___ increased by ___."
+
+lesson: The greenhouse effect | MS-ESS3-5
+practice:
+mc1: Which gas released by burning fossil fuels is a major greenhouse gas? | carbon dioxide | oxygen | nitrogen | helium
+mc2: How do greenhouse gases warm Earth? | They absorb heat given off by Earth's surface and send some back toward the ground | They block all sunlight from reaching Earth | They create heat by burning | They cool the oceans
+hint: Sunlight warms the ground; the ground gives off heat. What happens to that heat?
+mc2: Without any greenhouse effect, Earth's average temperature would be far below freezing. What does this tell us? | Some greenhouse effect is natural and needed for life | Greenhouse gases are always harmful | Earth gets no energy from the Sun | Greenhouse gases are made only by people
+mc2: A model has two jars in sunlight. One jar has extra carbon dioxide added. After 30 minutes it is 2 °C warmer. What does this model suggest? | More carbon dioxide can trap more heat | Carbon dioxide cools the air | Jars cannot be heated | The sunlight was stronger on one jar
+hint: What was the only difference between the jars?
+sa2: Explain the difference between the natural greenhouse effect and the enhanced greenhouse effect caused by humans. | The natural greenhouse effect keeps Earth warm enough for life. Human activities like burning fossil fuels add extra greenhouse gases, which trap more heat and raise global temperatures.
+quiz:
+mc1: Which human activity adds the most carbon dioxide to the atmosphere? | burning fossil fuels such as coal, oil and natural gas | planting trees | using solar panels | recycling paper
+mc2: Cutting down forests can increase carbon dioxide in the air because | trees that take in carbon dioxide are removed, and burning or decaying wood releases it | trees produce carbon dioxide only | forests make the Sun brighter | soil absorbs all the oxygen
+mc2: Which gas, released by cattle, landfills and natural gas leaks, is also a greenhouse gas? | methane | oxygen | argon | hydrogen
+num2: In a jar model, a jar with normal air warmed from 22 °C to 28 °C. A jar with extra carbon dioxide warmed from 22 °C to 31 °C. How many more degrees °C did the carbon dioxide jar warm? | 3
+num2: A family's car releases about 4 metric tons of carbon dioxide per year. If they drive 25 percent less, how many metric tons will it release per year? | 3
+mc3: Which question would best help a scientist test the greenhouse effect in a lab model? | Does the amount of carbon dioxide in a container change how much it warms in light? | What color is carbon dioxide? | How many jars fit on a windowsill? | Does sunlight have a smell?
+sa2: Describe the path of energy from the Sun to Earth's surface and back toward space, and explain where greenhouse gases fit in. | Sunlight passes through the atmosphere and warms the surface; the surface gives off heat (infrared energy); greenhouse gases absorb some of this heat and send part of it back toward the surface, so less escapes to space.
+
+lesson: Reading the evidence: temperature and carbon dioxide | MS-ESS3-5
+practice:
+mc2: Measurements at Mauna Loa, Hawaii show carbon dioxide rising from about 315 parts per million (ppm) in 1958 to about 420 ppm in 2023. What is the trend? | carbon dioxide has increased | carbon dioxide has decreased | carbon dioxide stayed the same | the data show no pattern
+num2: Using the Mauna Loa data (315 ppm in 1958 and 420 ppm in 2023), by how many ppm did carbon dioxide increase? | 105
+hint: Subtract the earlier value from the later value.
+mc2: Global average temperature has risen about 1 °C since the late 1800s. Why do scientists use averages from thousands of stations? | One place's weather varies a lot, so many stations show the global trend | One thermometer is enough | Averages hide warming | Stations only measure rain
+mc2: Scientists compare a graph of rising carbon dioxide with a graph of rising global temperature. What kind of relationship do the graphs show? | both increase over the same time period | one increases and one decreases | neither changes | they have no data
+sa2: A student says, "It snowed a lot this winter, so global warming is not real." Use the difference between weather and climate to respond. | One snowy winter is weather in one place. Global warming is a long-term rise in Earth's average temperature measured over decades around the world, so one cold season does not disprove it.
+hint: Is one season in one place weather or climate?
+quiz:
+mc2: Which evidence best shows Earth's average temperature has risen over the past century? | Long-term temperature records from land, oceans and satellites | One hot summer in Sacramento | A cold morning in January | A single weather forecast
+num2: Carbon dioxide was about 280 ppm before 1800 and about 420 ppm in 2023. What is the percent increase? | 50
+num2: A graph shows global temperature rose 0.2 °C per decade. How many °C is that over 30 years? | 0.6
+mc2: Ice cores contain trapped air bubbles that are thousands of years old. Why are they useful? | They show what carbon dioxide levels were in the past | They show today's weather | They melt to make new air | They show where earthquakes happen
+mc3: Scientists checked natural factors such as the Sun's energy output and volcanic eruptions, and found they cannot explain the warming since 1950. Which conclusion is best supported? | Human-caused greenhouse gases are the main cause of recent warming | The Sun is the main cause of recent warming | Volcanoes are cooling Earth faster than ever | Warming has stopped
+mc2: Which question would help clarify evidence about the cause of rising temperatures? | How has the amount of carbon dioxide in the air changed as fossil fuel use increased? | What is the favorite color of most scientists? | How tall is Mauna Loa? | Which city has the most cars painted red?
+cer3: Data table: Year 1960: carbon dioxide 317 ppm, global temperature change compared with the 1951-1980 average 0.0 °C. Year 1980: 339 ppm, +0.3 °C. Year 2000: 370 ppm, +0.4 °C. Year 2020: 414 ppm, +1.0 °C. Make a claim about the relationship between carbon dioxide and global temperature. Use the data as evidence and explain your reasoning. | Claim: As carbon dioxide in the atmosphere increased, global temperature increased. Evidence: from 1960 to 2020 carbon dioxide rose from 317 to 414 ppm, and the temperature change rose from 0.0 to +1.0 °C. Reasoning: carbon dioxide is a greenhouse gas that absorbs heat given off by Earth's surface; more of it traps more heat, which raises the average temperature. A pattern alone shows the two are related, and the greenhouse effect explains why one can cause the other.
+
+lesson: Effects on Earth's systems and living things | MS-ESS3-5, MS-ESS3-3
+practice:
+mc2: As the ocean warms, water expands and land ice melts. What is the effect on sea level? | sea level rises | sea level falls | sea level stays the same | the ocean dries up
+mc2: Warmer winters mean more precipitation falls as rain instead of snow in the Sierra Nevada. Why is this a problem for California's water supply? | Less snowpack stores water for the dry summer months | Rain is not made of water | Snow is too heavy for reservoirs | Rain cannot reach rivers
+hint: When does snowpack release its water?
+mc2: Corals turn white and can die when ocean water stays too warm. What happens to fish that depend on coral reefs? | Their food and shelter decrease, so their populations may decline | They grow larger | They are not affected | They begin to live on land
+num2: From 1900 to 2020, global sea level rose about 24 cm. What was the average rise in cm per decade? | 2
+hint: How many decades are in 120 years?
+sa2: Describe one way warming temperatures can affect a plant or animal species and explain why. | Example: pikas living high in the Sierra Nevada need cool temperatures; as it warms they must move higher up mountains, and when there is no higher place, their habitat shrinks and populations can drop.
+quiz:
+mc2: Spring flowers in some regions now bloom earlier, but some pollinating insects still emerge at the same time. What is a likely effect? | Fewer flowers get pollinated, so plants make fewer seeds | Flowers last forever | Insects grow larger | Plants no longer need pollinators
+mc2: Longer, hotter and drier summers in California most directly increase the risk of | wildfires | earthquakes | tsunamis | volcanic eruptions
+num2: A town's average number of days above 35 °C was 12 per year in 1980 and 30 per year in 2020. What was the percent increase? | 150
+num2: Arctic sea ice covered about 7.7 million square km in September 1980 and about 3.9 million square km in September 2020. By how many million square km did it shrink? | 3.8
+mc3: Polar bears hunt seals from sea ice. Using the sea ice data, which prediction is best supported? | Polar bears will have a harder time finding food | Polar bears will hunt more easily | Seals will move onto land to escape bears | The data cannot apply to bears
+mc2: Some trees in a mountain forest are found 100 meters higher than they were 50 years ago. What is the most likely reason? | Warmer temperatures allow the trees to grow at higher, once-colder elevations | Trees can walk | The mountain shrank | There is less sunlight on mountains
+sa3: Explain how a change in one Earth system (the atmosphere) can cause changes in the hydrosphere and biosphere. Give one example of each. | A warmer atmosphere warms ocean water and melts ice, raising sea levels and reducing snowpack (hydrosphere); this changes habitats, so coral reefs bleach or species move to cooler areas (biosphere).
+
+lesson: Designing solutions to reduce human impacts | MS-ESS3-3, MS-ETS1-1, MS-ETS1-2
+practice:
+mc2: Which choice would most reduce the carbon dioxide released when a school uses electricity? | installing solar panels on the roof | leaving lights on all night | adding more gas-powered generators | painting the school red
+mc2: A city wants to cut car emissions. Which plan addresses the cause most directly? | adding safe bike lanes and frequent electric buses | building larger parking lots | lowering the price of gasoline | adding more highway lanes
+hint: Which option means fewer gasoline-burning cars on the road?
+num2: A school's electricity bill shows 50,000 kilowatt-hours used per year. Solar panels produce 30,000 kilowatt-hours. What percent of the school's electricity do they supply? | 60
+mc2: When evaluating designs to reduce food waste in a cafeteria, why is a decision matrix helpful? | It compares each design against the same criteria in a fair way | It picks a design at random | It avoids collecting data | It makes every design score the same
+sa2: Describe one criterion and one constraint for a plan to reduce the carbon dioxide produced by students' trips to school. | Criterion: reduce car trips by at least 20 percent. Constraint: must be safe for students, cost little and work for families who live far away.
+hint: Criteria describe success; constraints describe limits.
+quiz:
+mc2: A decision matrix rates three plans to cut a school's energy use (1 to 5 points for each criterion). Plan A: cost 4, energy saved 2, easy to do 5 (total 11). Plan B: cost 2, energy saved 5, easy to do 2 (total 9). Plan C: cost 3, energy saved 4, easy to do 4 (total 11). If energy saved counts double, which plan scores highest? | Plan C | Plan A | Plan B | They tie
+num2: Using the matrix where energy saved counts double, what is Plan C's total score? | 15
+num2: A family replaced 20 old light bulbs with LEDs. Each LED saves about 50 kilowatt-hours per year. How many kilowatt-hours do they save per year? | 1000
+mc2: Which statement best explains why planting trees can help reduce global warming? | Trees take in carbon dioxide for photosynthesis and store carbon in their wood | Trees release carbon dioxide all day | Trees block sunlight from Earth | Trees cool the Sun
+mc3: Two plans to reduce a town's greenhouse gases are being compared. Plan X cuts emissions 30 percent but costs too much for the town's budget. Plan Y cuts emissions 18 percent and fits the budget. What should engineers do next? | look for ways to combine or improve the plans to meet more of the criteria within the constraints | choose Plan X anyway | stop working on the problem | pick a plan without data
+mc2: Which human activity change would reduce methane emissions? | capturing gas from landfills and reducing food waste | burning more trash in open fires | adding more landfills | leaving gas leaks unfixed
+sa3: Propose a solution your school could use to reduce its impact on the environment. Explain how it works and how you would measure whether it succeeds. | Example: a composting and food-share program; it keeps food out of landfills, reducing methane. Measure the mass of trash sent to the landfill each week before and after the program and compare the averages.
+
+test:
+mc1: Carbon dioxide and methane are examples of | greenhouse gases | metals | minerals | rocks
+mc1: The main source of the extra carbon dioxide in the atmosphere since 1800 is | burning fossil fuels | volcanoes | ocean waves | photosynthesis
+mc2: How do greenhouse gases affect Earth's temperature? | They absorb and re-emit heat, keeping more energy near the surface | They reflect all sunlight back to space | They make Earth's core hotter | They have no effect on temperature
+mc2: Why is some greenhouse effect necessary for life? | It keeps Earth warm enough for liquid water | It blocks all harmful sunlight | It makes oxygen | It stops all storms
+mc2: Which observation is evidence of a warming climate? | Glaciers around the world are shrinking over decades | One day in July was very hot | A storm happened last week | A tree lost its leaves in fall
+mc2: Which is the best way to describe climate change? | a long-term change in average weather patterns | the change from day to night | a change in the weather in one afternoon | the movement of tectonic plates
+mc2: Rising sea levels most threaten | low-lying coastal communities and wetlands | mountain tops | deserts far inland | the middle of continents
+mc2: How does deforestation contribute to global warming? | Fewer trees take in carbon dioxide, and burning trees releases it | Trees make the Sun stronger | Cutting trees cools the air | Forests produce fossil fuels
+mc2: Which solution most directly reduces carbon dioxide from electricity? | replacing coal power plants with wind and solar power | using more coal | leaving lights on | building more gas power plants
+mc2: In California, warmer winters reduce snowpack. Which effect would follow? | less water flowing into rivers and reservoirs in late summer | more snow in summer | larger glaciers | lower wildfire risk
+mc3: Ocean pH data show the ocean becoming more acidic as it absorbs carbon dioxide. Which organisms are most at risk? | animals with shells made of calcium carbonate, like oysters and corals | sharks | seaweed only | seabirds that fly far
+mc3: Data: global temperature change compared with the 1951-1980 average was -0.3 °C in 1920, 0.0 °C in 1960 and +1.0 °C in 2020. Which conclusion is best supported? | Most of the warming happened after 1960 | Earth cooled after 1960 | Temperatures never changed | The data show warming only before 1960
+num2: Using the data above, by how many °C did the temperature change from 1920 to 2020? | 1.3
+num2: Carbon dioxide rose from 340 ppm in 1980 to 420 ppm in 2023. What was the increase in ppm? | 80
+num2: A school used 80,000 kilowatt-hours of electricity in one year and 68,000 the next year after an energy-saving program. What was the percent decrease? | 15
+num2: A car releases about 0.4 kg of carbon dioxide per mile. A family drives 500 fewer miles by biking. How many kg of carbon dioxide do they avoid? | 200
+mc2: Which question would help clarify evidence about why global temperatures rose? | How have greenhouse gas levels changed as human fuel use increased? | Which month has the most holidays? | How many people live in Hawaii? | What do clouds look like?
+mc3: A decision matrix scores two plans. Plan 1: reduces emissions 9 points, cost 3 points. Plan 2: reduces emissions 6 points, cost 8 points. The town says cost and emissions matter equally. Which plan should be chosen based on the matrix? | Plan 2, with 14 points versus 12 | Plan 1, with 12 points versus 14 | Plan 1, because it reduces emissions more | Neither, because they tie
+mc2: Pikas live high in mountains and cannot survive long in temperatures above about 26 °C. What happens to their habitat as the climate warms? | It shrinks as cool areas move higher up the mountains | It grows larger | It moves into valleys | It does not change
+sa2: Explain why scientists are confident that humans are the main cause of global warming since 1950. | Carbon dioxide levels have risen sharply as people burned fossil fuels, the timing matches the warming, and natural factors like the Sun and volcanoes cannot explain the recent rise.
+sa2: Describe one effect of global warming on a living system and explain the cause. | Coral bleaching: when ocean water stays too warm, corals lose the algae that feed them, turn white and may die, reducing habitat for reef fish.
+sa3: Your city wants to lower greenhouse gas emissions from transportation. Describe one solution, one criterion and one constraint for it. | Solution: more electric buses and protected bike lanes. Criterion: cut transportation emissions by 25 percent in 10 years. Constraint: must fit the city budget and serve all neighborhoods.
+cer3: A student analyzed data for a mountain lake in the Sierra Nevada. 1980: ice-free 150 days per year, average summer water temperature 12 °C, trout population 4,000. 2000: ice-free 165 days, 13 °C, trout 3,200. 2020: ice-free 185 days, 15 °C, trout 2,100. Trout need cold water. Make a claim about how a warming climate is affecting the lake ecosystem. Use the data as evidence and explain your reasoning. | Claim: a warming climate is warming the lake and reducing its trout population. Evidence: from 1980 to 2020 ice-free days rose from 150 to 185, summer water temperature rose 3 °C (12 to 15 °C), and trout fell from 4,000 to 2,100. Reasoning: higher air temperatures from more greenhouse gases warm the lake and shorten ice cover; trout need cold water that holds more oxygen, so as the water warms, fewer trout can survive and reproduce.
+
