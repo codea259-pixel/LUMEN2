@@ -1,44 +1,103 @@
 """Builds server/assessments.json from the plain-text sources in tools/assess-src/.
 Run: python3 tools/build_assess.py   (tools/build.py runs it too)
 
-Source format, one item per line ('|' separates fields, lines starting with # are comments):
-  @subject math                     subject id (math, ela, sci, soc)
-  @el TK-2 | text                   English learner support for grades TK to 2
-  @iep TK-2 | text                  IEP / 504 support for grades TK to 2
-  @grade 3                          starts a grade (TK, K, 1 to 12)
-  about: text                       what the year focuses on
-  std: CODE | text                  a priority standard
-  unit: Name | CODE, CODE | skill, skill   a unit, its standards and the app's practice skills (optional)
-  mc1: question | correct | wrong | wrong | wrong   multiple choice, the digit is the DOK level (1 to 3)
-  sa2: prompt | sample proficient answer            short answer (2 points)
-  ex2: prompt | sample proficient answer            the quiz's written "explain" question (2 points)
-  task3: prompt | score 4 | score 3 | score 2 | score 1   performance task and its 4-point rubric
-  el: text                          a support note for this unit only
-Each unit needs 8 mc, 2 sa, 1 ex and 1 task. Questions are original, written to the California standards."""
+There are two source formats. Both compile to the same JSON shape (see the end of this note).
+
+FORMAT 2 (current): one file per subject and grade, tools/assess-src/v2/<subject>-<grade>.txt,
+for example v2/math-3.txt or v2/ela-TK.txt. A format-2 file replaces that grade's format-1 content.
+'|' separates fields; lines starting with # are comments; every item is one line.
+
+  @subject math                      math, ela, sci or soc (must match the file name)
+  @grade 3                           TK, K, 1 to 12 (must match the file name)
+  @program Eureka Math               optional: the district program this grade follows
+  about: text                        what the year focuses on
+  std: CODE | text                   a priority standard (at least 4)
+  unit: Name | CODE, CODE | skill, skill    a unit (module, chapter); standards; app practice skills (optional, ids in skills.json)
+  el: text                           optional support note for English learners for this unit
+  lesson: Name | CODE, CODE          a lesson (topic) inside the unit
+  practice:                          the lesson's classwork items follow (4 to 10)
+  quiz:                              the lesson's quiz items follow (6 to 10: at least 4 scored automatically, at least 1 written)
+  test:                              the unit test items follow (20 to 28: at least 14 automatic, at least 3 written, one of them cer, wr or task)
+  passage: Title | text // text      a reading passage (// starts a new paragraph); the items after it refer to it
+  endpassage:                        items after this no longer refer to the passage (a new section also ends it)
+Items (the digit is the DOK level, 1 to 3):
+  mc2: question | correct answer | wrong | wrong | wrong      multiple choice, 1 point
+  num2: question | answer            a number answer, scored automatically, 1 point: 24, -3, 2.5, 3/4 or 2 1/2.
+                                     Equivalent forms count (0.75 = 3/4); a student's $, commas and units are ignored.
+  sa2: prompt | sample answer        short written answer, 2 points
+  cer3: prompt | sample answer       claim, evidence and reasoning, 4 points (standard CER rubric added)
+  wr3: prompt | sample or key points [| score 4 | score 3 | score 2 | score 1]   extended writing, 4 points (standard writing rubric unless given)
+  task3: prompt | score 4 | score 3 | score 2 | score 1       performance task, 4 points
+  hint: text                         a hint for the item just above (shown in classwork only)
+Subject checks: every math unit test has at least 3 num word problems; science and social studies unit tests
+have at least one cer; ELA unit tests have at least one passage and one wr. No question may appear twice in a unit.
+
+FORMAT 1 (older, tools/assess-src/<subject>.txt): @grade blocks of units with exactly 8 mc, 2 sa, 1 ex and 1 task.
+It is converted to the same shape: one "Unit review" lesson, the quiz is mc 1-4 + ex, the test is mc 5-8 + sa + task.
+
+JSON: cells["sub|grade"] = {about, program, std, units: [{id, name, std, skills, el, legacy?, passages: [{t, x}],
+  lessons: [{name, std, practice: [item], quiz: [item]}], test: [item]}]}
+Items: {t: mc|num|sa|cer|wr|task, q, dok, ch (mc, correct first), a (num), ans (sa, cer, wr), rub (cer, wr, task), h (hint), p (passage index)}
+All questions are original, written to the California standards."""
 import json, os, re, sys
 D = os.path.dirname(os.path.abspath(__file__))
 SRC, OUT = os.path.join(D, 'assess-src'), os.path.join(D, '..', 'server', 'assessments.json')
 SUBJECTS = {'math': 'Math', 'ela': 'English / ELA', 'sci': 'Science', 'soc': 'Social Studies'}
 GRADES = {'TK': -1, 'K': 0, **{str(g): g for g in range(1, 13)}}
+CER_RUB = ['Clear, accurate claim; relevant and sufficient evidence; reasoning that explains how the evidence supports the claim using key ideas from the unit.',
+           'Accurate claim and relevant evidence; the reasoning is only partly explained.',
+           'A claim with limited or partly relevant evidence and little reasoning.',
+           'The claim is unclear or inaccurate, with little or no evidence or reasoning.']
+WR_RUB = ['Clear focus and strong organization; ideas fully developed with relevant details or text evidence; precise language; few errors in conventions.',
+          'Clear focus and organization; ideas adequately developed with some details or evidence; some errors that do not affect meaning.',
+          'Focus or organization is inconsistent; limited development or evidence; errors sometimes interfere with meaning.',
+          'Little focus or organization; minimal development; frequent errors.']
+NUM = re.compile(r'^-?(\d+(\.\d+)?|\.\d+|\d+/\d+|\d+ \d+/\d+)$')
+AUTO, WRITTEN = ('mc', 'num'), ('sa', 'cer', 'wr', 'task', 'ex')
 errors = []
+SKILLS = json.load(open(os.path.join(SRC, 'skills.json'), encoding='utf-8')) if os.path.exists(os.path.join(SRC, 'skills.json')) else None
 
 
-def build():
-    cells, supports = {}, {}
+def item(tag, parts, where):
+    """One item line as a dict; None if the tag is not an item, False if the line has an error."""
+    m = re.match(r'^(mc|num|sa|cer|wr|task|ex)([1-4])$', tag)
+    if not m: return None
+    t, dok = m.group(1), min(3, int(m.group(2)))
+    need = {'mc': [5], 'num': [2], 'sa': [2], 'cer': [2], 'ex': [2], 'wr': [2, 6], 'task': [5]}[t]
+    if len(parts) not in need or not all(parts):
+        errors.append(f'{where}: {t} needs {" or ".join(map(str, need))} non-empty fields separated by |, has {len(parts)}'); return False
+    it = {'t': t, 'q': parts[0], 'dok': dok}
+    if t == 'mc':
+        if len(set(parts[1:])) != 4: errors.append(f'{where}: answer choices repeat')
+        it['ch'] = parts[1:]
+    elif t == 'num':
+        a = parts[1].replace(',', '')
+        if not NUM.match(a): errors.append(f'{where}: number answer "{parts[1]}" must be like 24, -3, 2.5, 3/4 or 2 1/2'); return False
+        it['a'] = a
+    elif t == 'task': it['rub'] = parts[1:]
+    else:
+        it['ans'] = parts[1]
+        if t == 'cer': it['rub'] = CER_RUB
+        if t == 'wr': it['rub'] = parts[2:] if len(parts) == 6 else WR_RUB
+    return it
+
+
+def split(rest): return [p.strip() for p in rest.split('|')]
+
+
+def v1(cells, supports):
     for sub in SUBJECTS:
         f = os.path.join(SRC, sub + '.txt')
-        if not os.path.exists(f):
-            continue
+        if not os.path.exists(f): continue
         supports[sub] = {'el': [], 'iep': []}
-        cell = unit = None
+        cell = unit = key = None
         for n, raw in enumerate(open(f, encoding='utf-8'), 1):
             line = raw.strip()
-            if not line or line.startswith('#'):
-                continue
+            if not line or line.startswith('#'): continue
             where = f'{sub}.txt:{n}'
             m = re.match(r'^(@\w+|\w+):?\s*(.*)$', line)
             tag, rest = m.group(1), m.group(2).strip()
-            parts = [p.strip() for p in rest.split('|')]
+            parts = split(rest)
             if tag == '@subject':
                 if rest != sub: errors.append(f'{where}: file says {rest}')
             elif tag in ('@el', '@iep'):
@@ -49,58 +108,144 @@ def build():
                 if rest not in GRADES: errors.append(f'{where}: unknown grade {rest}'); continue
                 key = f'{sub}|{GRADES[rest]}'
                 if key in cells: errors.append(f'{where}: grade {rest} appears twice')
-                cell = cells[key] = {'about': '', 'std': [], 'units': []}; unit = None
-            elif cell is None:
-                errors.append(f'{where}: {tag} before @grade')
-            elif tag == 'about':
-                cell['about'] = rest
+                cell = cells[key] = {'about': '', 'program': '', 'std': [], 'units': []}; unit = None
+            elif cell is None: errors.append(f'{where}: {tag} before @grade')
+            elif tag == 'about': cell['about'] = rest
             elif tag == 'std':
                 if len(parts) != 2: errors.append(f'{where}: std needs CODE | text'); continue
                 cell['std'].append(parts)
             elif tag == 'unit':
                 g = key.split('|')[1]
-                unit = {'id': f'{sub}-{g}-{len(cell["units"]) + 1}', 'name': parts[0],
-                        'std': [s.strip() for s in parts[1].split(',')] if len(parts) > 1 and parts[1] else [],
-                        'skills': [s.strip() for s in parts[2].split(',')] if len(parts) > 2 and parts[2] else [],
-                        'mc': [], 'sa': [], 'ex': None, 'task': None, 'el': ''}
+                unit = {'id': f'{sub}-{g}-{len(cell["units"]) + 1}', 'name': parts[0], 'std': [s.strip() for s in parts[1].split(',')] if len(parts) > 1 and parts[1] else [],
+                        'skills': [s.strip() for s in parts[2].split(',')] if len(parts) > 2 and parts[2] else [], 'el': '', 'legacy': True, '_mc': [], '_sa': [], '_ex': None, '_task': None}
                 cell['units'].append(unit)
-            elif unit is None:
-                errors.append(f'{where}: {tag} before unit')
-            elif re.match(r'^mc[123]$', tag):
-                if len(parts) != 5 or not all(parts): errors.append(f'{where}: mc needs question | correct | 3 wrong answers'); continue
-                if len(set(parts[1:])) != 4: errors.append(f'{where}: answer choices repeat')
-                unit['mc'].append({'q': parts[0], 'ch': parts[1:], 'dok': int(tag[2])})
-            elif re.match(r'^sa[123]$', tag):
-                if len(parts) != 2 or not all(parts): errors.append(f'{where}: sa needs prompt | sample answer'); continue
-                unit['sa'].append({'q': parts[0], 'ans': parts[1], 'dok': int(tag[2])})
-            elif re.match(r'^ex[123]$', tag):
-                if len(parts) != 2 or not all(parts): errors.append(f'{where}: ex needs prompt | sample answer'); continue
-                unit['ex'] = {'q': parts[0], 'ans': parts[1], 'dok': int(tag[2])}
-            elif re.match(r'^task[1234]$', tag):
-                if len(parts) != 5 or not all(parts): errors.append(f'{where}: task needs prompt | 4 rubric levels'); continue
-                unit['task'] = {'q': parts[0], 'rub': parts[1:], 'dok': min(3, int(tag[4]))}
-            elif tag == 'el':
-                unit['el'] = rest
+            elif unit is None: errors.append(f'{where}: {tag} before unit')
+            elif tag == 'el': unit['el'] = rest
             else:
-                errors.append(f'{where}: unknown line type {tag}')
-    def latin1(x, where):
-        bad = sorted(set(ch for ch in x if ord(ch) > 255))
-        if bad: errors.append(f'{where}: PDFs cannot print {"".join(bad)!r}; use plain characters')
+                it = item(tag, parts, where)
+                if it is None: errors.append(f'{where}: unknown line type {tag}')
+                elif it:
+                    if it['t'] == 'ex': it['t'] = 'sa'; unit['_ex'] = it
+                    elif it['t'] == 'mc': unit['_mc'].append(it)
+                    elif it['t'] == 'sa': unit['_sa'].append(it)
+                    elif it['t'] == 'task': unit['_task'] = it
     for key, c in cells.items():
-        latin1(json.dumps(c, ensure_ascii=False), key)
-        if not c['about']: errors.append(f'{key}: missing about')
-        if len(c['std']) < 3: errors.append(f'{key}: needs at least 3 priority standards')
-        if len(c['units']) < 3: errors.append(f'{key}: needs at least 3 units')
         for u in c['units']:
-            if len(u['mc']) != 8 or len(u['sa']) != 2 or not u['ex'] or not u['task']:
-                errors.append(f'{key} {u["name"]}: has {len(u["mc"])} mc, {len(u["sa"])} sa, ex={bool(u["ex"])}, task={bool(u["task"])}')
-    return {'version': 1, 'subjects': SUBJECTS, 'supports': supports, 'cells': cells}
+            mc, sa, ex, task = u.pop('_mc'), u.pop('_sa'), u.pop('_ex'), u.pop('_task')
+            if len(mc) != 8 or len(sa) != 2 or not ex or not task:
+                errors.append(f'{key} {u["name"]}: has {len(mc)} mc, {len(sa)} sa, ex={bool(ex)}, task={bool(task)}'); continue
+            u['passages'] = []
+            u['lessons'] = [{'name': 'Unit review', 'std': u['std'], 'practice': mc + [sa[0], ex], 'quiz': mc[:4] + [ex]}]
+            u['test'] = mc[4:] + sa + [task]
+
+
+def v2(cells):
+    d = os.path.join(SRC, 'v2')
+    if not os.path.isdir(d): return
+    for fn in sorted(os.listdir(d)):
+        if not fn.endswith('.txt'): continue
+        m = re.match(r'^(math|ela|sci|soc)-(TK|K|\d{1,2})\.txt$', fn)
+        if not m or m.group(2) not in GRADES: errors.append(f'v2/{fn}: name files like math-3.txt or ela-TK.txt'); continue
+        sub, g = m.group(1), GRADES[m.group(2)]
+        cell = {'about': '', 'program': '', 'std': [], 'units': []}
+        unit = lesson = sec = psg = last = None; head = {}
+        for n, raw in enumerate(open(os.path.join(d, fn), encoding='utf-8'), 1):
+            line = raw.strip()
+            if not line or line.startswith('#'): continue
+            where = f'v2/{fn}:{n}'
+            mm = re.match(r'^(@\w+|\w+):?\s*(.*)$', line)
+            if not mm: errors.append(f'{where}: cannot read this line'); continue
+            tag, rest = mm.group(1), mm.group(2).strip()
+            parts = split(rest)
+            if tag in ('@subject', '@grade'): head[tag] = rest
+            elif tag == '@program': cell['program'] = rest
+            elif tag == 'about': cell['about'] = rest
+            elif tag == 'std':
+                if len(parts) != 2 or not all(parts): errors.append(f'{where}: std needs CODE | text'); continue
+                cell['std'].append(parts)
+            elif tag == 'unit':
+                unit = {'id': f'{sub}-{g}-{len(cell["units"]) + 1}', 'name': parts[0], 'std': [s.strip() for s in parts[1].split(',') if s.strip()] if len(parts) > 1 else [],
+                        'skills': [s.strip() for s in parts[2].split(',') if s.strip()] if len(parts) > 2 else [], 'el': '', 'passages': [], 'lessons': [], 'test': []}
+                if not parts[0]: errors.append(f'{where}: unit needs a name')
+                if SKILLS is not None:
+                    for k in unit['skills']:
+                        if k not in SKILLS: errors.append(f'{where}: unknown practice skill {k} (see skills.json)')
+                cell['units'].append(unit); lesson = sec = psg = last = None
+            elif unit is None: errors.append(f'{where}: {tag} before the first unit')
+            elif tag == 'el': unit['el'] = rest
+            elif tag == 'lesson':
+                lesson = {'name': parts[0], 'std': [s.strip() for s in parts[1].split(',') if s.strip()] if len(parts) > 1 else [], 'practice': [], 'quiz': []}
+                if not parts[0]: errors.append(f'{where}: lesson needs a name')
+                unit['lessons'].append(lesson); sec = psg = last = None
+            elif tag in ('practice', 'quiz'):
+                if lesson is None: errors.append(f'{where}: {tag}: must come after a lesson: line'); continue
+                sec = lesson[tag]; psg = last = None
+            elif tag == 'test': sec = unit['test']; lesson = psg = last = None
+            elif tag == 'passage':
+                if len(parts) != 2 or not all(parts): errors.append(f'{where}: passage needs Title | text'); continue
+                unit['passages'].append({'t': parts[0], 'x': parts[1]}); psg = len(unit['passages']) - 1
+            elif tag == 'endpassage': psg = None
+            elif tag == 'hint':
+                if not last: errors.append(f'{where}: hint must follow an item'); continue
+                last['h'] = rest
+            else:
+                it = item(tag, parts, where)
+                if it is None: errors.append(f'{where}: unknown line type {tag}'); continue
+                if it is False: continue
+                if it['t'] == 'ex': it['t'] = 'sa'
+                if sec is None: errors.append(f'{where}: items must follow practice:, quiz: or test:'); continue
+                if psg is not None: it['p'] = psg
+                sec.append(it); last = it
+        if head.get('@subject') != sub or head.get('@grade') != m.group(2): errors.append(f'v2/{fn}: @subject and @grade must match the file name')
+        check_v2(f'v2/{fn}', sub, cell)
+        cells[f'{sub}|{g}'] = cell
+
+
+def check_v2(where, sub, c):
+    if not c['about']: errors.append(f'{where}: missing about:')
+    if len(c['std']) < 4: errors.append(f'{where}: needs at least 4 priority standards')
+    if len(c['units']) < 4: errors.append(f'{where}: needs at least 4 units')
+    for u in c['units']:
+        w = f'{where} {u["name"]}'
+        if not 2 <= len(u['lessons']) <= 6: errors.append(f'{w}: needs 2 to 6 lessons, has {len(u["lessons"])}')
+        seen = {}
+        for li, l in enumerate(u['lessons']):
+            p, q = l['practice'], l['quiz']
+            if not 4 <= len(p) <= 10: errors.append(f'{w} lesson {li + 1}: practice needs 4 to 10 items, has {len(p)}')
+            if not 6 <= len(q) <= 10: errors.append(f'{w} lesson {li + 1}: quiz needs 6 to 10 items, has {len(q)}')
+            if sum(i['t'] in AUTO for i in q) < 4: errors.append(f'{w} lesson {li + 1}: quiz needs at least 4 mc or num items')
+            if sum(i['t'] in WRITTEN for i in q) < 1: errors.append(f'{w} lesson {li + 1}: quiz needs a written item (sa, cer or wr)')
+            if any(i['t'] == 'task' for i in p + q): errors.append(f'{w} lesson {li + 1}: performance tasks belong in the unit test')
+        t = u['test']
+        if not 20 <= len(t) <= 28: errors.append(f'{w}: unit test needs 20 to 28 items, has {len(t)}')
+        if sum(i['t'] in AUTO for i in t) < 14: errors.append(f'{w}: unit test needs at least 14 mc or num items')
+        if sum(i['t'] in WRITTEN for i in t) < 3: errors.append(f'{w}: unit test needs at least 3 written items')
+        if not any(i['t'] in ('cer', 'wr', 'task') for i in t): errors.append(f'{w}: unit test needs a cer, wr or task item')
+        if sub == 'math' and sum(i['t'] == 'num' for i in t) < 3: errors.append(f'{w}: math unit test needs at least 3 num word problems')
+        if sub in ('sci', 'soc') and not any(i['t'] == 'cer' for i in t): errors.append(f'{w}: unit test needs a cer item')
+        if sub == 'ela' and not (any('p' in i for i in t) and any(i['t'] == 'wr' for i in t)): errors.append(f'{w}: ELA unit test needs a passage and a wr item')
+        for i in [i for l in u['lessons'] for i in l['practice'] + l['quiz']] + t:
+            k = re.sub(r'\W+', ' ', i['q'].lower()).strip()
+            if k in seen: errors.append(f'{w}: question appears twice: {i["q"][:70]}')
+            seen[k] = 1
+
+
+def build():
+    cells, supports = {}, {}
+    v1(cells, supports)
+    v2(cells)
+    for key, c in cells.items():
+        bad = sorted(set(ch for ch in json.dumps(c, ensure_ascii=False) if ord(ch) > 255))
+        if bad: errors.append(f'{key}: PDFs cannot print {"".join(bad)!r}; use plain characters')
+    order = lambda kv: (list(SUBJECTS).index(kv[0].split('|')[0]), int(kv[0].split('|')[1]))
+    return {'version': 2, 'subjects': SUBJECTS, 'supports': supports, 'cells': dict(sorted(cells.items(), key=order))}
 
 
 if __name__ == '__main__':
     data = build()
     if errors:
-        print('\n'.join(errors)); sys.exit(1)
+        print('\n'.join(errors[:200])); print(f'{len(errors)} problem(s)'); sys.exit(1)
     open(OUT, 'w', encoding='utf-8').write(json.dumps(data, ensure_ascii=False, separators=(',', ':')))
-    units = sum(len(c['units']) for c in data['cells'].values())
-    print(f'assessments ok: {len(data["cells"])} grade-subjects, {units} units, {units * 12} items')
+    units = [u for c in data['cells'].values() for u in c['units']]
+    items = sum(len(u['test']) + sum(len(l['practice']) + len(l['quiz']) for l in u['lessons']) for u in units)
+    print(f'assessments ok: {len(data["cells"])} grade-subjects, {len(units)} units, {sum(len(u["lessons"]) for u in units)} lessons, {items} items')

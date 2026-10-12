@@ -1,0 +1,110 @@
+# Format 2 example: one complete unit (Grade 3 Math, following Eureka Math Grade 3 Module 1).
+# The rules are at the top of tools/build_assess.py. A real file (v2/math-3.txt) has @subject, @grade,
+# about:, at least 4 std: lines and at least 4 units. Check a file with: python3 tools/build_assess.py
+#
+# ELA tests need a passage and a wr item, for example:
+#   passage: The Lighthouse Keeper | Mara climbed the ninety steps every evening... // When the storm came...
+#   mc2: Why does Mara climb the steps every evening? | to light the lamp for ships | to watch the sunset | to hide from the storm | to count the steps
+#   wr3: Write an essay explaining how Mara changes from the beginning to the end of the story. Use at least two details from the passage. | Key points: at first ...; later ...; evidence: ...
+#   endpassage:
+# Science and social studies tests need a cer item, for example:
+#   cer3: Two plants were grown, one in sunlight and one in a closet. After two weeks the closet plant was pale and short. Make a claim about what plants need, give evidence from the investigation and explain your reasoning. | Claim: plants need light to grow well. Evidence: the closet plant was pale and short while the sunlight plant was green and tall. Reasoning: plants use light to make food, so without light they cannot grow healthy.
+
+unit: Module 1: Multiplication and division with units of 2, 3, 4, 5 and 10 | 3.OA.A.1, 3.OA.A.2, 3.OA.A.3, 3.OA.A.4, 3.OA.B.5, 3.OA.C.7 | mult, g3div
+el: Act out equal groups with counters before each lesson; post the words "groups of", "in each", "rows", "share equally".
+
+lesson: Meaning of multiplication and division | 3.OA.A.1, 3.OA.A.2, 3.OA.A.4
+practice:
+mc1: Which shows 3 groups of 4? | 4 + 4 + 4 | 3 + 4 | 4 + 4 + 4 + 4 | 3 + 3 + 3
+hint: "Groups of 4" means each group has 4. How many groups are there?
+num1: There are 5 bags with 2 oranges in each bag. How many oranges are there? | 10
+hint: Count by 2s five times.
+mc2: 12 stickers are shared equally by 3 friends. Which equation shows this? | 12 / 3 = 4 | 12 x 3 = 36 | 12 - 3 = 9 | 3 + 4 = 7
+num2: 4 x ? = 20 | 5
+hint: Count by 4s until you reach 20. How many 4s did you count?
+sa2: Draw equal groups to show 2 x 6. Explain what each number means. | Two circles with 6 dots in each. 2 is the number of groups and 6 is the number in each group; there are 12 in all.
+quiz:
+mc1: Which equation matches "5 groups of 3"? | 5 x 3 = 15 | 5 + 3 = 8 | 3 x 3 = 9 | 5 x 5 = 25
+mc2: Ms. Ruiz puts 18 pencils into 3 cups equally. How many pencils go in each cup? | 6 | 15 | 21 | 54
+num1: There are 4 tables with 5 chairs at each table. How many chairs are there? | 20
+num2: ? / 2 = 7 | 14
+mc2: Which situation can be solved with 15 / 5? | 15 crayons put into boxes of 5 | 15 crayons and 5 more crayons | 5 boxes of 15 crayons | 15 crayons with 5 taken away
+num2: 30 apples are packed in bags of 10. How many bags are filled? | 3
+sa2: Write a word problem that can be solved with 3 x 4. Solve it. | There are 3 vases with 4 flowers in each. How many flowers? 3 x 4 = 12 flowers.
+
+lesson: Arrays and units of 2 and 3 | 3.OA.A.3, 3.OA.B.5, 3.OA.C.7
+practice:
+mc1: An array has 4 rows of 3 stars. Which equation matches? | 4 x 3 = 12 | 4 + 3 = 7 | 4 x 4 = 16 | 3 x 3 = 9
+hint: Count the number in each row, then count the rows.
+num1: 2 x 8 = ? | 16
+num1: 3 x 7 = ? | 21
+num2: 27 / 3 = ? | 9
+hint: Think: 3 times what number equals 27?
+sa2: Explain how an array of 3 rows of 6 can also show 6 rows of 3. | Turning the array gives 6 rows of 3. The total does not change: 3 x 6 = 6 x 3 = 18.
+quiz:
+num1: 3 x 9 = ? | 27
+num1: 16 / 2 = ? | 8
+mc2: Which is the same as 2 x 9? | 9 x 2 | 2 + 9 | 9 - 2 | 9 / 2
+mc2: A garden has 3 rows with 8 carrots in each row. How many carrots? | 24 | 11 | 21 | 38
+num2: Twins share 14 marbles equally. How many marbles does each twin get? | 7
+mc2: An array shows 18 dots in 3 equal rows. How many dots are in each row? | 6 | 15 | 21 | 9
+sa2: Use the commutative property to explain why knowing 3 x 8 helps you find 8 x 3. | The commutative property says the order of factors does not change the product, so 8 x 3 = 3 x 8 = 24.
+
+lesson: Multiplication and division with units of 4 | 3.OA.A.3, 3.OA.A.4, 3.OA.C.7
+practice:
+num1: 4 x 6 = ? | 24
+num1: 32 / 4 = ? | 8
+hint: Count by 4s to 32. How many 4s did you count?
+mc2: A table has 4 legs. How many legs do 7 tables have? | 28 | 11 | 24 | 32
+num2: 4 x ? = 36 | 9
+sa2: Explain how doubling helps you multiply by 4. Use 4 x 7 as an example. | 4 is double 2. 2 x 7 = 14, and double 14 is 28, so 4 x 7 = 28.
+quiz:
+num1: 4 x 8 = ? | 32
+num1: 24 / 4 = ? | 6
+mc2: Which number makes 4 x ? = 40 true? | 10 | 36 | 44 | 4
+num2: A coach puts 28 players into teams of 4. How many teams are there? | 7
+mc2: Which array shows 4 x 5? | 4 rows of 5 | 4 rows of 4 | 5 rows of 5 | 9 rows of 1
+num2: Each car has 4 wheels. How many wheels are on 9 cars? | 36
+sa2: Lily says 4 x 6 = 22. Explain her mistake and give the correct answer. | 4 x 6 means 4 groups of 6. 6 + 6 + 6 + 6 = 24, so the answer is 24, not 22.
+
+lesson: Distributive property and word problems with 2 to 5 and 10 | 3.OA.A.3, 3.OA.B.5, 3.OA.C.7
+practice:
+mc2: Which shows 5 x 7 broken apart with the distributive property? | 5 x 5 + 5 x 2 | 5 + 7 | 5 x 5 + 2 | 7 x 7 - 5
+hint: Break 7 into 5 and 2. Multiply each part by 5.
+num1: 10 x 6 = ? | 60
+num1: 45 / 5 = ? | 9
+num2: Sam buys 3 packs of 10 stickers and 2 more stickers. How many stickers does he have? | 32
+hint: First find 3 x 10, then add the 2 extra stickers.
+sa2: Use 5 x 8 = 40 to find 6 x 8. Explain your thinking. | 6 x 8 is one more group of 8 than 5 x 8, so 40 + 8 = 48.
+quiz:
+num1: 5 x 9 = ? | 45
+num1: 70 / 10 = ? | 7
+mc2: Which equals 4 x 9? | 4 x 5 + 4 x 4 | 4 x 5 + 4 | 4 + 9 | 9 x 9 - 4
+num2: A bakery sells muffins in boxes of 5. Mia buys 6 boxes and eats 3 muffins. How many muffins are left? | 27
+mc2: Ben has 40 cards. He puts them in rows of 10. How many rows does he make? | 4 | 30 | 50 | 400
+num2: There are 3 rows of 10 chairs and 1 row of 5 chairs. How many chairs are there? | 35
+sa3: Explain two different ways to solve 6 x 5. | Skip count by 5 six times: 5, 10, 15, 20, 25, 30. Or 5 x 5 = 25 plus one more 5 is 30.
+
+test:
+mc1: Which equation shows 6 groups of 2? | 6 x 2 = 12 | 6 + 2 = 8 | 6 - 2 = 4 | 2 x 2 = 4
+mc1: What is 3 x 6? | 18 | 9 | 16 | 36
+num1: 4 x 7 = ? | 28
+num1: 35 / 5 = ? | 7
+num1: 10 x 8 = ? | 80
+num1: 21 / 3 = ? | 7
+mc2: Which situation can be solved with 20 / 4? | 20 cookies shared equally by 4 children | 20 cookies and 4 more | 4 plates with 20 cookies each | 20 cookies with 4 eaten
+mc2: An array has 5 rows of 4 hearts. How many hearts are there? | 20 | 9 | 25 | 16
+mc2: Which number makes ? x 3 = 24 true? | 8 | 21 | 27 | 72
+mc2: Which is equal to 3 x 7? | 7 x 3 | 3 + 7 | 7 - 3 | 3 x 3 + 7
+mc2: Which shows 4 x 8 using the distributive property? | 4 x 5 + 4 x 3 | 4 x 5 + 3 | 4 + 8 | 8 x 8 - 4
+num2: Jada has 5 vases with 4 roses in each. How many roses does she have? | 20
+num2: 36 students are split into 4 equal teams. How many students are on each team? | 9
+num2: A box holds 10 crayons. How many crayons are in 7 boxes? | 70
+mc2: Kai puts 27 shells into 3 equal piles. Which equation finds the shells in each pile? | 27 / 3 = 9 | 27 x 3 = 81 | 27 - 3 = 24 | 27 + 3 = 30
+mc3: Which statement is true? | 2 x 9 has the same product as 3 x 6 | 2 x 9 is greater than 3 x 6 | 2 x 9 is less than 3 x 6 | 2 x 9 equals 9 + 2
+num3: A store has 4 shelves with 6 toy cars on each shelf. It sells 5 cars. How many cars are left? | 19
+num3: Ana reads 5 pages each day for 8 days. Leo reads 3 pages each day for 10 days. How many more pages does Ana read than Leo? | 10
+sa2: Draw an array for 3 x 5 and write a division equation that matches it. | 3 rows of 5 dots; 15 / 3 = 5 or 15 / 5 = 3.
+sa2: Write a word problem for 24 / 4. Tell whether your answer is the number of groups or the number in each group. | 24 muffins in boxes of 4: how many boxes? 6 boxes, which is the number of groups.
+sa3: Explain how you can use 5 x 6 = 30 to solve 4 x 6. | 4 x 6 is one group of 6 less than 5 x 6, so 30 - 6 = 24.
+task3: The class is planning a picnic. Juice boxes come in packs of 4 and sandwiches come in trays of 5. There are 20 students and 4 adults, and each person gets 1 juice box and 1 sandwich. How many packs of juice and trays of sandwiches should the class buy? Show your work with equations and explain how you know there is enough for everyone. | 24 people: 6 packs of juice (24 / 4) and 5 trays of sandwiches (25 sandwiches, 1 extra), with clear equations and an explanation of why 5 trays are needed. | Correct number of packs and trays with equations; the explanation is incomplete. | One part correct, or a correct strategy with a calculation error (for example 4 trays). | Little correct work.
