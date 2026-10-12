@@ -1,0 +1,957 @@
+# ELA Kindergarten (format 2). Original items written to the California Common Core State Standards for ELA.
+# Units follow a Benchmark Advance-style year of knowledge topics; titles are our own. Teachers match units to their pacing guide.
+@subject ela
+@grade K
+@program Benchmark Advance
+about: Kindergarten builds the foundations of reading and writing around knowledge topics from science and social studies: concepts of print, letter names and sounds, rhyming, syllables and sounds in words, decoding short-vowel (CVC) words and reading high-frequency words, asking and answering questions about read-aloud stories and information texts, and using drawing, dictating and writing to share opinions, information and events. Every item is read aloud to students.
+std: RL.K.1 | With prompting and support, ask and answer questions about key details in a text, including characters, settings and major events.
+std: RI.K.2 | With prompting and support, identify the main topic and retell key details of a text.
+std: RF.K.1 | Demonstrate understanding of the organization and basic features of print, and recognize and name all upper- and lowercase letters.
+std: RF.K.2 | Demonstrate understanding of spoken words, syllables and sounds (phonemes): rhyme, syllables, onset-rime, and the sounds in CVC words.
+std: RF.K.3 | Know and apply grade-level phonics: letter-sound correspondences, short and long vowel sounds, and common high-frequency words.
+std: W.K.2 | Use a combination of drawing, dictating and writing to compose opinion, informative and narrative pieces.
+std: L.K.1 | Print letters, use nouns and verbs, form plural nouns with -s, use question words and prepositions, and speak in complete sentences.
+std: L.K.5 | With guidance, sort words into categories, understand opposites, and connect words to their use in real life.
+
+unit: Unit 1: Welcome to Our Classroom (drawing and labeling) | RL.K.1, RL.K.3, RF.K.1, RF.K.3, W.K.3, SL.K.1
+el: Post a picture schedule and classroom labels in English and the home languages of the class; teach "May I...?", "I need..." and "My name is..." with role play.
+
+lesson: Reading: A first-day story | RL.K.1, RL.K.3
+practice:
+passage: Omar's First Day | Omar held Mama's hand tight. The school was big and loud. "What if I don't know anyone?" he asked. // In the classroom, Mr. Bell showed Omar the cubbies, the reading rug and the paint table. A girl named Hana was painting a big orange fish. "Do you want to paint too?" she asked. // Omar painted a green turtle. At pickup time, he ran to Mama. "I made a friend," he said, "and a turtle!"
+mc1: Who is the main character? | Omar | Hana | Mr. Bell | Mama
+hint: Who is the story mostly about?
+mc1: Where does most of the story take place? | in a classroom | at a park | at a pool | on a farm
+hint: Where are the cubbies and the reading rug?
+mc2: How does Omar feel at the beginning? | worried | proud | silly | angry
+hint: Listen to what Omar asks Mama.
+mc2: What does Hana paint? | an orange fish | a green turtle | a red house | a blue bird
+hint: Hana's picture is something that swims.
+sa2: How does Omar feel at the end? Tell how you know. | He feels happy. He ran to Mama and said "I made a friend."
+hint: Think about what Omar says at pickup time.
+quiz:
+passage: Class Rules | In Room 5, we have three rules. // Rule 1: Use kind words. Say "please" and "thank you." // Rule 2: Keep your hands to yourself. // Rule 3: Clean up when you are done. Put the blocks in the bin and the crayons in the box. // Rules help everyone feel safe and happy at school.
+mc1: How many rules does Room 5 have? | 3 | 2 | 4 | 5
+mc1: What is Rule 1? | Use kind words | Clean up | Run fast | Sit down
+mc2: Which words are kind words? | please and thank you | go away | mine | stop it
+mc2: Where do the crayons go? | in the box | in the bin | on the floor | in a cubby
+mc2: Why do classes have rules? | to help everyone feel safe | to make people sad | to stop all play | to make noise
+mc3: Leo leaves blocks on the floor. Which rule does he need to follow? | Clean up when you are done | Use kind words | Keep your hands to yourself | Say please
+sa2: Tell one rule from the text and why it is important. | "Keep your hands to yourself, so nobody gets hurt." (Any rule and a reason.)
+
+lesson: Print and letters: Books, words and letter names | RF.K.1, RF.K.3
+practice:
+mc1: Which part of the book shows the title? | the front cover | the back cover | the last page | the spine only
+hint: The title is the name of the book. Where do you look first?
+mc1: Which letter is lowercase? | b | B | D | R
+hint: Lowercase letters are the small letters.
+mc2: How many words are in this sentence: "We like school."? | 3 | 2 | 4 | 13
+hint: Count the spaces plus one, or point and count each word.
+mc2: Which one is a word, not a letter? | cat | c | a | t
+hint: A word is made of letters put together.
+sa1: Name the letters your teacher points to: m, s, a, t, p. | Names all five letters correctly.
+hint: Say the alphabet song if you get stuck.
+quiz:
+mc1: Which is the uppercase partner of "e"? | E | F | B | L
+mc1: When you read a page, where do you start? | at the top left | at the bottom right | in the middle | at the top right
+mc2: Which letter comes right after A in the alphabet? | B | C | D | Z
+mc2: How many letters are in the word "Omar"? | 4 | 3 | 5 | 2
+mc2: Who writes the words of a book? | the author | the illustrator | the reader | the librarian
+mc2: Who draws the pictures in a book? | the illustrator | the author | the reader | the teacher
+sa1: Show where a sentence ends and tell what mark is there. | Points to the end of a sentence and names the period (or other end mark).
+
+lesson: Writing and speaking: Drawing and labeling my school | W.K.3, L.K.1, SL.K.1
+practice:
+mc1: You draw the slide on the playground. Which label fits? | slide | sun | cat | cake
+hint: A label names the thing you drew.
+mc2: Which sentence tells about your school day? | I paint at school. | School paint I. | Paint. | At the.
+hint: A sentence tells who and what happens, in an order that makes sense.
+mc2: Which word names a place at school? | library | jump | happy | blue
+hint: A naming word for a place.
+mc2: How do you show you are listening? | look at the speaker | talk at the same time | play with toys | turn around
+hint: Think about Class Rule 1.
+sa1: Draw your favorite place at school. Label it and tell your teacher about it. | A drawing with a label (for example "rug" or "slide") and a sentence such as "I like the slide because it is fast."
+hint: Write the first sound you hear in the word.
+quiz:
+mc1: What letter should begin a sentence? | a capital letter | a small letter | a number | a dot
+mc2: Which word could label a picture of a classroom table? | table | lunch | run | green
+mc2: Which sentence is complete? | The class sits on the rug. | The class on. | Sits rug. | On the rug.
+mc2: Which word is an action word? | write | desk | red | school
+mc2: You want to tell about recess. Which sentence fits? | We play tag at recess. | I like apples. | My shoe is blue. | The book is long.
+mc2: A friend is sharing a picture. What could you ask? | What is in your picture? | Why are you here? | Can I go? | Where is lunch?
+sa2: Draw two things you did today at school. Tell about them in order. | Two drawings and sentences such as "First I painted. Then I played with blocks."
+
+test:
+passage: The Lost Crayon | It was art time. Sofia opened her crayon box. "Oh no! My purple crayon is gone!" she said. Purple was her favorite color. // Sofia looked under her table. She looked in her cubby. No purple crayon. // Then her friend Luis tapped her arm. "Is this yours?" he asked. The purple crayon was on the floor by the sink. // "Thank you, Luis!" said Sofia. She drew a purple flower and gave the picture to Luis.
+mc1: Who is the main character in "The Lost Crayon"? | Sofia | Luis | the teacher | a flower
+mc1: What was missing? | a purple crayon | a paintbrush | a red crayon | a book
+mc2: When does the story happen? | at art time | at lunch | at nap time | at night
+mc2: Where did Sofia look first? | under her table | in her cubby | by the sink | in the hall
+mc2: Who found the crayon? | Luis | Sofia | the teacher | a mouse
+mc2: Where was the crayon? | on the floor by the sink | in her cubby | under her table | in her box
+mc2: How does Sofia feel when the crayon is gone? | upset | happy | sleepy | proud
+mc3: Why does Sofia give the picture to Luis? | to thank him | because she does not like it | because he asked to buy it | it was his turn
+mc2: Which word tells about Luis? | helpful | grumpy | lost | shy
+mc2: What is Sofia's problem in the story? | her crayon is lost | she has no paper | she is hungry | she fell down
+sa2: Retell the story. Tell the beginning, middle and end. | Beginning: Sofia's purple crayon was missing at art time. Middle: She looked under her table and in her cubby. End: Luis found it by the sink and Sofia thanked him with a picture.
+wr3: Draw your favorite part of the story. Write a label or sentence and tell why you like that part. | A drawing of one event (for example, Luis holding up the crayon), a label such as "Luis" or a sentence such as "Luis fnd the crayn," and a dictated reason: "I like when Luis found it because he was a good friend." | Drawing clearly shows a story event; writes a label or sentence with some correct sounds; gives a reason from the story. | Drawing shows a story event; writes a label; gives a simple reason. | Drawing is about the story; little writing or no reason. | Drawing or talk not yet connected to the story.
+endpassage:
+mc1: Which letter is uppercase? | S | s | c | o
+mc1: Which letter comes after C in the alphabet? | D | B | E | G
+mc2: How many words are in "Sofia has a box."? | 4 | 3 | 5 | 14
+mc2: Which one is a letter, not a word? | p | pen | pig | pot
+mc2: Where is the title of a book? | on the front cover | at the end | on page 10 | under the pictures only
+mc2: What is the space on a page for? | it shows where one word ends | it shows a picture | it is a mistake | it means stop
+mc2: Which word could label a picture of a sink? | sink | sun | sock | sand
+mc2: Which sentence starts the right way? | My crayon is purple. | my crayon is purple. | crayon my purple. | purple. my crayon
+mc2: Which word from the story is an action word? | draw | crayon | purple | table
+mc3: Your friend cannot find a book. What is the best thing to do? | help them look | laugh | take your book home | hide it
+sa1: Write your first name. Say the name of each letter. | Writes their first name with recognizable letters and names each letter.
+
+unit: Unit 2: My Five Senses (informative: telling facts) | RI.K.1, RI.K.2, RF.K.2, W.K.2, L.K.5 | ela_0
+el: Use real objects in a "feely bag" and smell jars; post the sense words see, hear, smell, taste and touch with a picture of each body part.
+
+lesson: Reading: Learning with our senses | RI.K.1, RI.K.2
+practice:
+passage: Five Senses | You have five senses. They help you learn about the world. // You see with your eyes. You hear with your ears. You smell with your nose. You taste with your tongue. You touch with your skin. // At the beach, you can see the waves, hear the gulls, smell the salty air, taste a cold orange, and touch the warm sand. Your senses work together all the time!
+mc1: What is the main topic of this text? | the five senses | the beach | oranges | waves
+hint: What does the first sentence tell about?
+mc1: What do you use to hear? | your ears | your eyes | your nose | your hands
+hint: Point to the part of your body you use to listen.
+mc2: What do you taste with? | your tongue | your ears | your eyes | your hair
+hint: Think about what is inside your mouth.
+mc2: At the beach, what can you touch? | the warm sand | the gulls | the salty air | the waves far away
+hint: Listen to the last part again.
+sa2: Tell one thing you can learn with your nose. Use the text. | You can smell the salty air at the beach. (Or another smell.)
+hint: Your nose helps you smell.
+quiz:
+passage: Popcorn Time | Pop! Pop! Pop! Kenji and his mom are making popcorn. // Kenji hears the corn popping in the pot. He sees the little kernels turn white and fluffy. He smells the warm, buttery smell. // When the popcorn cools, Kenji takes a bite. It tastes salty. It feels crunchy in his mouth. "Popcorn uses all my senses!" Kenji says.
+mc1: What are Kenji and his mom making? | popcorn | soup | cookies | rice
+mc2: What sound does the corn make? | pop | moo | buzz | splash
+mc2: What color does the popcorn turn? | white | red | green | brown
+mc2: Which sense does Kenji use to smell the butter? | smell | touch | hearing | sight
+mc2: How does the popcorn taste? | salty | sour | cold | sweet like candy
+mc3: Why does Kenji wait for the popcorn to cool? | so it will not burn him | so it will pop | so it will be loud | so it will grow
+sa2: Tell two senses Kenji uses and what he learns with each. | He hears the popping with his ears and sees the kernels turn white with his eyes. (Any two correct.)
+
+lesson: Sounds and words: Rhyming words and sense words | RF.K.2, L.K.5
+practice:
+mc1: Which word rhymes with "pen"? | ten | pan | pin | pet
+hint: Rhymes sound the same at the end: p-en, t-en.
+mc1: Which word rhymes with "nose"? | rose | nest | nap | nut
+hint: Which word ends with "-ose"?
+mc2: Which word does NOT rhyme with "hear"? | hat | ear | deer | near
+hint: Three words end like "hear." Find the one that does not.
+mc2: Which word tells how a lemon tastes? | sour | soft | loud | fuzzy
+hint: Think of the face you make when you taste a lemon.
+sa1: Say a word that rhymes with "see." | bee, tree, me, three or another rhyme.
+hint: Keep the end sound "ee" and change the start.
+quiz:
+mc1: Which word rhymes with "hand"? | sand | hat | hen | had
+mc1: Which word rhymes with "bell"? | shell | ball | bed | bill
+mc2: Which pair of words rhymes? | sock and rock | sock and sun | hot and hat | pig and pen
+mc2: Which word does NOT rhyme with "sweet"? | sweat | feet | meet | beet
+mc2: Which word tells how a kitten's fur feels? | soft | sour | loud | bright
+mc2: Which word tells about a sound? | loud | sticky | salty | bumpy
+sa1: Say two words that rhyme with "cake." | lake, bake, make, rake, take or other -ake words.
+
+lesson: Writing: Facts about my senses | W.K.2, L.K.1, SL.K.1
+practice:
+mc1: Which sentence tells a fact about senses? | We smell with our nose. | I like red. | My dog is funny. | Can you play?
+hint: A fact is true information.
+mc2: You draw an ear and a bell. Which sentence fits your picture? | I hear the bell. | I taste the bell. | I smell the bell. | I see the cake.
+hint: Which sense goes with an ear?
+mc2: Which word names a body part? | eyes | sweet | hear | loud
+hint: A naming word for a part of you.
+mc2: Which sentence ends with the right mark? | I can see the moon. | I can see the moon | i can see the moon | I can see. the moon
+hint: A telling sentence ends with a period.
+sa2: Draw something you like to taste. Write or tell a fact about how it tastes. | A drawing and a sentence such as "A lemon tastes sour."
+hint: Use a taste word: sweet, sour, salty.
+quiz:
+mc1: Which sense do you use to look at a rainbow? | sight | taste | smell | touch
+mc2: Which sentence is a fact? | Ice feels cold. | Ice is the best. | I like ice. | Ice is my friend.
+mc2: Which word could label a picture of a nose? | nose | nest | nap | name
+mc2: Which sentence tells about touch? | The rock feels rough. | The rock is gray. | The bird sings. | The pie smells good.
+mc2: Which word is the opposite of loud? | quiet | big | soft and fuzzy | hot
+mc2: Which word finishes the sentence? "I ___ with my eyes." | see | hear | smell | taste
+sa2: Draw your favorite sense. Write or tell two facts about it. | A drawing and sentences such as "I use my ears to hear. I hear birds sing."
+
+test:
+passage: A Walk in the Garden | Ayo and her grandpa take a walk in the garden. // Ayo sees bright red roses. She smells them. They smell sweet! She hears a bee buzz by her ear. "Buzz, buzz," it says. She stays still and the bee flies away. // Grandpa picks a ripe strawberry. Ayo tastes it. It is juicy and sweet. Then Ayo touches a fuzzy leaf. It feels soft like a blanket. // "I used all five senses!" says Ayo.
+mc1: Who walks with Ayo? | her grandpa | her teacher | her sister | a bee
+mc1: What color are the roses? | red | yellow | white | purple
+mc2: How do the roses smell? | sweet | sour | salty | bad
+mc2: What does Ayo hear? | a bee | a dog | a bell | a car
+mc2: What does Ayo do when the bee flies by? | stays still | runs away | yells | swats it
+mc2: What does Ayo taste? | a strawberry | a rose | a leaf | an apple
+mc2: Which sense does Ayo use with the fuzzy leaf? | touch | taste | smell | hearing
+mc2: What does the leaf feel like? | a blanket | a rock | ice | sand
+mc3: What is "A Walk in the Garden" mostly about? | using the five senses in a garden | how bees make honey | how to plant roses | Grandpa's house
+mc2: In this text, what does "juicy" mean? | full of juice | dry | hard | cold
+sa2: Tell two things Ayo learns with her senses. Name the sense for each. | She sees red roses (sight), smells that they are sweet (smell), hears a bee (hearing), tastes a sweet strawberry (taste), or feels a soft leaf (touch). Any two.
+wr3: Draw and write about one sense Ayo uses in the garden. Tell what she learns with it. | A drawing (for example, Ayo smelling a rose) with a sentence such as "Ayo smels the rose. It is swet." and a dictated detail from the text. | Drawing and writing name a sense and what Ayo learns, using a detail from the text; writing shows several correct sounds. | Names a sense and what Ayo learns; some writing. | Drawing about the garden; sense or detail is unclear. | Not yet connected to the text.
+endpassage:
+mc1: Which word rhymes with "bee"? | tree | bug | bed | bat
+mc2: Which word rhymes with "rose"? | nose | rope | ran | rug
+mc2: Which two words rhyme with each other? | fan and man | fan and fun | bug and bag | top and tip
+mc2: Which word does NOT rhyme with "pie"? | pig | tie | fly | my
+mc2: Which word tells how candy tastes? | sweet | loud | bumpy | bright
+mc2: Which body part helps you smell? | nose | ears | feet | hands
+mc2: Which sentence tells a fact about sound? | We hear with our ears. | I like music. | Songs are fun. | Bees are bad.
+mc2: Which sentence ends correctly? | The leaf is soft. | The leaf is soft | the leaf is soft | The leaf. is soft
+sa1: Say a word that rhymes with "fun." | sun, run, bun, done or another rhyme.
+mc3: Ayo closes her eyes. Which sense can she NOT use? | sight | hearing | smell | touch
+
+unit: Unit 3: Characters Make Choices (stories and telling events in order) | RL.K.1, RL.K.2, RL.K.3, RF.K.2, W.K.3, L.K.1 | ela_0_n1
+el: Act out each story with puppets; use a story map with picture icons for character, setting, problem and solution; practice "first, next, last" with gestures.
+
+lesson: Reading: Characters, setting and events | RL.K.1, RL.K.2, RL.K.3
+practice:
+passage: Little Goat and the Bridge | Little Goat wanted to cross the river to eat the green grass. But Big Goat was on the narrow bridge, coming the other way. // "Move!" said Little Goat. "No, you move!" said Big Goat. They pushed and pushed. Splash! Both goats fell into the cold river. // The next day, Little Goat had a better idea. "You go first," he said. Big Goat crossed. Then Little Goat crossed. Both goats ate green grass all afternoon.
+mc1: Who are the characters? | Little Goat and Big Goat | a frog and a fish | two children | a farmer and a cow
+hint: Who talks and acts in the story?
+mc1: What is the setting? | a bridge over a river | a school | a city street | a barn
+hint: Where do the goats meet?
+mc2: What happened when the goats pushed? | they fell in the river | they ate grass | they made friends | the bridge broke
+hint: Listen for the sound "Splash!"
+mc2: What was Little Goat's better idea? | let Big Goat go first | push harder | jump over | swim across
+hint: What did Little Goat say the next day?
+sa2: What lesson does Little Goat learn? | Taking turns works better than pushing; when they took turns, both goats got across.
+hint: Think about what worked the second day.
+quiz:
+passage: Pablo and the Last Cookie | There was one cookie left on the plate. Pablo wanted it. His little sister Inés wanted it too. // Pablo thought about it. He broke the cookie into two pieces. He gave one piece to Inés. // Inés smiled and said, "Thank you!" Then she gave Pablo a hug. Pablo felt warm inside. Half a cookie and a hug was even better than a whole cookie.
+mc1: Who is the main character? | Pablo | Inés | Mom | a cookie
+mc1: How many cookies were on the plate? | 1 | 2 | 3 | 0
+mc2: What was the problem? | both children wanted the cookie | the cookie fell | the cookie was burned | there were no cookies
+mc2: What did Pablo do? | broke the cookie in two | ate it all | hid it | threw it away
+mc2: What did Inés give Pablo? | a hug | a toy | a book | another cookie
+mc3: How did Pablo feel at the end? | happy | angry | lonely | hungry and sad
+sa2: Tell what happened first, next and last in the story. | First there was one cookie and both wanted it. Next Pablo broke it and shared. Last Inés hugged him and he felt happy.
+
+lesson: Sounds and words: Clapping syllables and letter sounds | RF.K.2, RF.K.3
+practice:
+mc1: Clap the word "goat." How many syllables? | 1 | 2 | 3 | 4
+hint: Clap once for each part: goat.
+mc1: Clap the word "cookie." How many syllables? | 2 | 1 | 3 | 4
+hint: cook-ie. Clap as you say each part.
+mc2: Which word has 3 syllables? | butterfly | rabbit | bridge | river
+hint: but-ter-fly. Clap each word and count.
+mc2: Which letter makes the first sound in "river"? | r | v | w | l
+hint: Say "river" slowly. What is the first sound?
+sa1: Clap the syllables in your first name and a friend's name. Tell which has more. | Claps both names correctly and compares (for example "Ga-bri-el has 3, Ty has 1").
+hint: Put your hand under your chin. Each time your chin drops, that is a syllable.
+quiz:
+mc1: Clap the word "sister." How many syllables? | 2 | 1 | 3 | 4
+mc1: Clap the word "grass." How many syllables? | 1 | 2 | 3 | 4
+mc2: Which word has 2 syllables? | pancake | dog | sun | bridge
+mc2: Clap each word. Which one has 3 syllables? | banana | apple | cow | tiger
+mc2: Which word has only 1 syllable? | splash | water | happy | monkey
+mc2: Which letter makes the first sound in "goat"? | g | j | d | q
+sa1: Clap and say the syllables in "afternoon." Tell how many. | af-ter-noon, 3 syllables.
+
+lesson: Writing: Telling events in order | W.K.3, L.K.1, SL.K.1
+practice:
+mc1: Which word tells what happens first? | first | last | goat | big
+hint: Which word starts a story?
+mc2: Which sentence tells an event in a story? | The goat fell in the river. | Goats. | River the in. | The green.
+hint: An event is something that happens.
+mc2: Which word is an action word (verb)? | jump | goat | green | bridge
+hint: An action word is something you can do.
+mc2: Which word could finish the story "First I fell. Next I cried. Last I ___."? | smiled | river | big | goat
+hint: The ending needs an action word that makes sense.
+sa2: Draw and tell about a time you shared something. Tell what happened first and last. | Two drawings and sentences such as "First my brother wanted my truck. Last we played with it together."
+hint: Use the words "first" and "last."
+quiz:
+mc1: Which word tells what happens at the end? | last | first | next | then
+mc2: Which action word tells what a goat does? | eats | green | river | happy
+mc2: Which sentence is complete? | Inés hugged Pablo. | Hugged Pablo. | Inés the. | The hug.
+mc2: Which word names a person? | sister | jump | soft | under
+mc2: Which ending fits a story about two friends who fixed a problem? | They played happily together. | Once upon a time. | The sky is blue. | What is a friend?
+mc2: Which word tells when? | next | goat | cookie | soft
+sa2: Draw a story about a time you were kind. Write or tell what happened. | A drawing and a sentence such as "I helpt my mom carry bags." with a dictated beginning and end.
+
+test:
+passage: The Rainy Day Fort | Ruby and Dev wanted to play outside, but it was raining hard. "Now what?" asked Dev. // Ruby had an idea. "Let's build a fort!" They put a blanket over two chairs. They added pillows on the floor. Dev brought a flashlight. // Inside the fort, they read books about pirates. They made up a pirate song. "Arr!" sang Dev. // When the rain stopped, Ruby peeked out. "Do you want to go outside now?" Dev shook his head. "Let's stay in our fort!"
+mc1: Who are the characters in "The Rainy Day Fort"? | Ruby and Dev | Ruby and Mom | two pirates | Dev and a dog
+mc1: What was the weather? | raining hard | sunny | snowing | windy
+mc2: What was the problem at the start? | they could not play outside | the fort fell | the books were lost | the flashlight broke
+mc2: What was Ruby's idea? | build a fort | go outside | take a nap | watch TV
+mc2: What did they put over two chairs? | a blanket | a towel | a box | a coat
+mc2: What did Dev bring? | a flashlight | a snack | a pirate hat | a ball
+mc2: What did they read about in the fort? | pirates | dinosaurs | trains | the ocean
+mc3: Why did Dev want to stay inside at the end? | he was having fun in the fort | it was still raining | he was sick | he was scared of pirates
+mc2: What is the setting of this story? | inside a home on a rainy day | a pirate ship | a beach | a playground
+mc2: Which word best tells about Ruby? | clever | grumpy | sleepy | mean
+sa2: Retell the story using first, next and last. | First it rained and they could not go out. Next Ruby and Dev built a fort with a blanket, pillows and a flashlight. Last they read pirate books and wanted to stay in the fort.
+wr3: Draw and write about your favorite part of "The Rainy Day Fort." Tell why it is your favorite. | A drawing of one event (for example, the children singing in the fort) with a sentence such as "Ruby and Dev sing a pirat song." and a reason: "It is funny." | Drawing and writing show a story event with details; writing has several correct sounds; gives a reason. | Shows a story event and gives a simple reason. | Drawing about the story; little writing; no reason. | Not yet connected to the story.
+endpassage:
+mc1: Clap the word "pillow." How many syllables? | 2 | 1 | 3 | 4
+mc1: Clap the word "fort." How many syllables? | 1 | 2 | 3 | 4
+mc2: Which rainy-day word has 3 syllables? | umbrella | raining | puddle | boots
+mc2: Which word starts with the same sound as "Ruby"? | rain | fort | Dev | book
+mc2: Which letter makes the first sound in "pirate"? | p | b | d | r
+mc2: Which word is an action word? | sang | fort | blanket | pirate
+mc2: Which sentence tells what happened last? | Dev wanted to stay in the fort. | It was raining hard. | Ruby had an idea. | They put a blanket over chairs.
+mc2: Which time-order word could start the next sentence of a story? | then | fort | blanket | happy
+mc2: Which sentence is a complete sentence? | Dev brought a flashlight. | Brought a. | Dev the. | A flashlight.
+sa1: Clap the syllables in "pirate" and say how many. | pi-rate, 2 syllables.
+mc3: If it rains at your house, what could you do that is like Ruby and Dev? | build a fort inside | swim in the rain | go to the beach | fly a kite
+
+unit: Unit 4: Weather Watchers (informative writing) | RI.K.1, RI.K.2, RF.K.2, RF.K.3, W.K.2, L.K.5 | ela_0_n2
+el: Keep a daily weather chart with picture symbols; act out opposite pairs (hot/cold, wet/dry, up/down) with gestures and real objects.
+
+lesson: Reading: Watching the weather | RI.K.1, RI.K.2
+practice:
+passage: What Is the Weather? | Weather is what the air outside is like. It can be hot or cold. It can be wet or dry. // On a sunny day, the sun shines and the sky is blue. On a cloudy day, gray clouds cover the sun. On a windy day, the wind moves the leaves and the flags. On a rainy day, water falls from the clouds. // Weather can change from day to day, so it is good to look outside before you get dressed!
+mc1: What is the main topic of this text? | weather | the ocean | clothes | flags
+hint: What word is in the title?
+mc1: What color is the sky on a sunny day? | blue | gray | green | black
+hint: Listen to the part about sunny days.
+mc2: What moves the leaves and flags? | the wind | the sun | the rain | the clouds
+hint: Think about a windy day.
+mc2: Why is it good to look outside before you get dressed? | weather can change each day | the sun is hot | flags are fun | clouds are gray
+hint: Listen to the last sentence.
+sa2: Name two kinds of weather from the text. Tell one detail about each. | Sunny: the sun shines and the sky is blue. Rainy: water falls from the clouds. (Any two with details.)
+hint: The text tells about four kinds of days.
+quiz:
+passage: Storm Safety | Sometimes a storm comes. You may see flashes of lightning. You may hear loud thunder. Boom! // When there is a thunderstorm, go inside a building. Stay away from windows. Wait until the storm is over. // Weather helpers called forecasters watch the sky and tell people when storms are coming. Listening to them helps families stay safe.
+mc1: What is this text mostly about? | staying safe in a storm | playing in the rain | how to make thunder | the sun
+mc1: What sound does thunder make? | boom | buzz | tweet | moo
+mc2: Where should you go in a thunderstorm? | inside a building | under a tree | to the beach | to the park
+mc2: What should you stay away from? | windows | your family | your bed | books
+mc2: Who tells people when storms are coming? | forecasters | firefighters | bakers | farmers
+mc3: You hear thunder while playing outside. What should you do? | go inside | keep playing | climb a tree | go swimming
+sa2: Tell two ways to stay safe in a thunderstorm. | Go inside a building and stay away from windows; wait until it is over.
+
+lesson: Sounds and letters: Beginning and ending sounds | RF.K.2, RF.K.3
+practice:
+mc1: What is the first sound in "sun"? | /s/ | /n/ | /u/ | /m/
+hint: Say "sun" slowly. Listen to the very start.
+mc1: What is the last sound in "fog"? | /g/ | /f/ | /o/ | /d/
+hint: Say "fog" slowly and listen to the end.
+mc2: Which word ends with the same sound as "wet"? | hat | wed | wig | sun
+hint: Wet ends with /t/.
+mc2: Which letter makes the first sound in "hot"? | h | t | o | k
+hint: Breathe out like you are fogging a window: /h/.
+sa1: Say a word that begins with /r/ like "rain." | rug, run, red, rock or another /r/ word.
+hint: Growl like a tiger: /rrr/.
+quiz:
+mc1: What is the first sound in "mud"? | /m/ | /d/ | /u/ | /n/
+mc1: What is the last sound in "sleet"? | /t/ | /s/ | /l/ | /p/
+mc2: Which word begins with the same sound as "wind"? | web | dog | kite | sun
+mc2: Which word ends with the same sound as "cloud"? | bed | cat | moon | sun
+mc2: Which letter makes the last sound in "sun"? | n | s | u | m
+mc2: Which letter makes the first sound in "cold"? | c | g | d | o
+sa1: Say the first and last sound in "hat." | First /h/, last /t/.
+
+lesson: Writing: Opposites and facts about weather | W.K.2, L.K.1, L.K.5
+practice:
+mc1: What is the opposite of hot? | cold | warm | sunny | wet
+hint: Opposites are as different as they can be.
+mc1: What is the opposite of wet? | dry | rainy | cloudy | cold
+hint: How is a towel after it sits in the sun?
+mc2: Which sentence tells a weather fact? | Snow is cold. | I like snow the best. | Snow is my friend. | Snow, snow, snow.
+hint: A fact is true for everyone.
+mc2: You draw a sun and a kid in shorts. Which sentence fits? | It is hot and sunny. | It is cold and snowy. | It is rainy. | It is dark.
+hint: When do you wear shorts?
+sa2: Draw today's weather. Write a sentence that tells about it. | A weather drawing and a sentence such as "It is sune todae." (spelling with sounds).
+hint: Start with "It is..."
+quiz:
+mc1: What is the opposite of up? | down | top | high | over
+mc2: What is the opposite of day? | night | sun | morning | light
+mc2: Which pair of words are opposites? | fast and slow | big and huge | wet and rainy | cold and icy
+mc2: Which word tells about a windy day? | breezy | sunny and still | dry | quiet
+mc2: Which sentence uses a capital letter and a period correctly? | It is windy. | it is windy. | It is windy | it is windy
+mc2: Which word could label a picture of an umbrella? | umbrella | sun | sand | sled
+sa2: Draw a rainy day and a sunny day. Write or tell how they are opposite. | Two drawings and sentences such as "Rain is wet. Sun is dry and hot."
+
+test:
+passage: Snow Day in the Mountains | Mei's family drove to the mountains. It was cold, and snow covered the ground. The snow was white and soft. // Mei put on her warm coat, hat, mittens and boots. She made a snowman with a carrot nose. Her brother pulled her on a sled down a hill. Whoosh! // By the afternoon, the sun came out. Drip, drip! The snowman began to melt. "Bye, snowman!" said Mei. "See you next winter!"
+mc1: Where did Mei's family go? | the mountains | the beach | the desert | the zoo
+mc1: What covered the ground? | snow | sand | leaves | water
+mc2: What was the weather like at first? | cold | hot | rainy | foggy
+mc2: What did Mei wear on her hands? | mittens | socks | boots | a hat
+mc2: What did Mei use for the snowman's nose? | a carrot | a rock | a stick | a button
+mc2: Who pulled Mei on the sled? | her brother | her mom | her teacher | a dog
+mc2: What happened when the sun came out? | the snowman began to melt | it snowed more | it got colder | the sled broke
+mc3: Why did the snowman melt? | the sun warmed it | the wind blew | Mei kicked it | it was night
+mc2: In this story, what does "melt" mean? | turn to water | get bigger | freeze | fall down
+mc2: What season is it in the story? | winter | summer | spring | fall
+sa2: Tell how the weather changed from the morning to the afternoon. | In the morning it was cold and snowy; in the afternoon the sun came out and the snow started to melt.
+wr3: Draw and write about the weather in the mountains. Use one fact from the story. | A drawing of snowy mountains with a snowman, and a sentence such as "It is cold and the sno is wite." plus a dictated fact from the story. | Drawing and writing give a weather fact from the story; writing shows several correct sounds; a capital and period may be used. | Gives one weather fact from the story with some writing. | Drawing of weather with little writing or a fact not from the story. | Not yet connected to the story.
+endpassage:
+mc1: What is the first sound in "snow"? | /s/ | /n/ | /o/ | /w/
+mc2: What is the last sound in "hat"? | /t/ | /h/ | /a/ | /p/
+mc2: Which word begins with the same sound as "mittens"? | moon | sled | hat | boot
+mc2: Which word ends with the same sound as "sled"? | red | sun | hat | log
+mc2: Which letter makes the first sound in "boots"? | b | d | p | t
+mc2: What is the opposite of cold? | hot | icy | snowy | white
+mc2: What is the opposite of soft? | hard | fluffy | white | warm
+mc2: Which pair of words are opposites from the story? | up and down | white and soft | cold and snowy | hat and coat
+sa1: Say the first and last sound in "sun." | First /s/, last /n/.
+mc3: It is very hot and sunny. What should you wear? | a sun hat | mittens | a snow coat | boots and a scarf
+
+unit: Unit 5: Animal Homes (informative: main topic and details) | RI.K.1, RI.K.2, RF.K.2, RF.K.3, W.K.2, L.K.1
+el: Show photos of each animal home (nest, burrow, hive, den, pond) and label them; use the frame "A ___ lives in a ___." Use realia for CVC words (cap, bag, pan, mat).
+
+lesson: Reading: Where animals live | RI.K.1, RI.K.2
+practice:
+passage: Animal Homes | Animals need homes to stay safe and to raise their babies. // Many birds build nests with twigs and grass. Rabbits dig burrows under the ground. Bees live in hives and make honey there. Bears often sleep in dens in winter. Beavers build lodges out of sticks and mud in ponds. // Every animal home is just right for the animal that lives in it.
+mc1: What is the main topic? | animal homes | how bees make honey | winter | sticks and mud
+hint: The title tells the main topic.
+mc1: Where do rabbits live? | in burrows | in nests | in hives | in lodges
+hint: Rabbits dig under the ground.
+mc2: What do birds use to build nests? | twigs and grass | rocks | mud bricks | snow
+hint: Listen to the sentence about birds.
+mc2: Why do animals need homes? | to stay safe and raise babies | to play games | to hide food from people | to sleep in the sun
+hint: Listen to the first sentence.
+sa2: Name two animals and their homes from the text. | Bees live in hives; bears sleep in dens; beavers build lodges; birds build nests; rabbits dig burrows. (Any two.)
+hint: Each sentence tells an animal and its home.
+quiz:
+passage: The Busy Beaver | A beaver has strong front teeth. It chews down small trees. // The beaver carries sticks to the pond. It piles them up and packs them with mud. This makes a home called a lodge. // The door to the lodge is under the water! That keeps the beaver safe from animals like wolves. Inside, the beaver stays warm and dry with its family.
+mc1: What is the main topic of "The Busy Beaver"? | how a beaver builds its home | how wolves hunt | how trees grow | how to swim
+mc2: What does a beaver use to chew down trees? | its strong teeth | its tail | its paws only | a rock
+mc2: What does a beaver pack with the sticks? | mud | sand | snow | grass
+mc2: Where is the door to the lodge? | under the water | on the roof | in a tree | on the grass
+mc3: Why is the door under the water? | to keep the beaver safe | so the lodge looks pretty | to let the sun in | so wolves can visit
+mc2: What is a beaver's home called? | a lodge | a hive | a nest | a burrow
+sa2: Retell two key details about how a beaver builds its home. | It chews down small trees, carries sticks to the pond, piles them up and packs them with mud.
+
+lesson: Phonics: Short a words and high-frequency words | RF.K.2, RF.K.3
+practice:
+mc1: Blend the sounds: /c/ /a/ /t/. What word? | cat | cot | can | bat
+hint: Say each sound, then say them fast together.
+mc1: Read the word: m-a-p. | map | mop | nap | mat
+hint: Point under each letter and say its sound.
+mc2: Which word has the short a sound, like in "bat"? | bag | bed | big | bug
+hint: Short a says /a/ like in apple.
+mc2: Which word is "the"? | the | then | they | them
+hint: Look for t, h, e.
+sa1: Say the sounds in "van" one at a time. | /v/ /a/ /n/.
+hint: Stretch the word like a rubber band.
+quiz:
+mc1: Blend the sounds: /r/ /a/ /t/. What word? | rat | rag | ran | mat
+mc1: Read the word: s-a-d. | sad | sat | dad | sap
+mc2: Which word rhymes with "bat" and has short a? | hat | hit | hot | hut
+mc2: Change the /c/ in "cap" to /m/. What is the new word? | map | mop | cup | mat
+mc2: Which word spells "fan"? | fan | fun | fin | nap
+mc2: Read the sentence: "I see a cat." Which word is "see"? | see | sea | so | she
+sa1: Read these words: a, I, the, see, can. | Reads all five high-frequency words correctly.
+
+lesson: Writing: An informative page about an animal home | W.K.2, L.K.1
+practice:
+mc1: Which sentence gives a fact about an animal home? | A bird lives in a nest. | I like birds. | Birds are pretty. | Can I see a bird?
+hint: A fact tells true information.
+mc2: Which word tells about more than one bird? | birds | bird | a bird | the bird
+hint: Adding -s can mean more than one.
+mc2: You draw a bee and a hive. Which label fits the hive? | hive | nest | den | pond
+hint: Bees live in it.
+mc2: Which question word asks about a place? | where | who | what | when
+hint: Which word asks "in what place?"
+sa2: Draw an animal in its home. Write a sentence that tells where it lives. | A drawing and a sentence such as "A fox livs in a den."
+hint: Use the frame "A ___ lives in a ___."
+quiz:
+mc1: Which word means more than one rabbit? | rabbits | rabbit | a rabbit | rabbitt
+mc2: Which sentence tells a fact? | Bees make honey. | Bees are scary. | I like honey. | Bees are my best friend.
+mc2: Which is a question? | Where do bears sleep? | Bears sleep in dens. | I see a bear. | The bear is big.
+mc2: Which word tells where? "The rabbit is ___ the ground." | under | rabbit | soft | hop
+mc2: A good title for a page about bird nests is | Bird Nests | My Dog | Rainy Days | Lunch Time
+mc2: Which sentence starts and ends correctly? | The fox is in the den. | the fox is in the den. | The fox is in the den | the fox is in the den
+sa2: Draw two animals and their homes. Write a word or sentence for each. | Two drawings with labels or sentences such as "bee hive" and "A bird is in a nest."
+
+test:
+passage: The Prairie Dog Town | Prairie dogs are small, furry animals. They live in grasslands. They are not really dogs! They got their name because they make a sound like a bark. // Prairie dogs dig long tunnels under the ground. The tunnels have rooms for sleeping and rooms for babies. Many families live close together, like a town. // When a prairie dog sees danger, such as a hawk, it barks a warning. All the prairie dogs run down into their tunnels to stay safe.
+mc1: What is the main topic of "The Prairie Dog Town"? | prairie dogs and their homes | hawks | pet dogs | grass
+mc1: Where do prairie dogs live? | in grasslands | in the ocean | in trees | in houses
+mc2: Why are they called prairie dogs? | they make a sound like a bark | they are dogs | they live with dogs | they chase balls
+mc2: What do prairie dogs dig? | tunnels | nests | ponds | hives
+mc2: What are the rooms in the tunnels for? | sleeping and babies | cooking | playing music | storing toys
+mc2: Why does the text say their home is like a town? | many families live close together | there are stores | there are cars | it has a mayor
+mc2: What danger is named in the text? | a hawk | a fish | a cow | rain
+mc3: What do prairie dogs do when they hear a warning bark? | run into their tunnels | bark back and play | climb trees | swim away
+mc2: In this text, what does "danger" mean? | something that can hurt you | a game | a meal | a friend
+mc2: Is this text true information or a made-up story? | true information | a made-up story | a poem | a song
+sa2: Tell the main topic and two key details from the text. | Main topic: prairie dogs and their homes. Details: they dig tunnels with rooms; many families live close together; they bark to warn of hawks.
+wr3: Draw a prairie dog home. Write a sentence that tells a fact about it. Use the text. | A drawing of tunnels under the ground with rooms and prairie dogs, labeled "tunel," and a sentence such as "Prairie dogs dig tunels." plus a dictated detail. | Drawing shows tunnels and rooms; writing gives a correct fact from the text with many correct sounds; label included. | Drawing matches the text; writing gives a fact. | Drawing of an animal; fact unclear or not from the text. | Not yet connected to the text.
+endpassage:
+mc1: Blend the sounds: /h/ /a/ /m/. What word? | ham | hat | him | jam
+mc2: Read the word: c-a-n. | can | cat | man | cap
+mc2: Which short a word names an animal? | rat | bed | sun | pig
+mc2: Change the /b/ in "bag" to /t/. What is the new word? | tag | tab | big | bat
+mc2: Which word is "can"? | can | cap | an | car
+mc2: Which word means more than one hawk? | hawks | hawk | a hawk | hawkes
+mc2: Which question word asks about a person? | who | where | when | what
+mc2: Which sentence is a fact about prairie dogs? | Prairie dogs dig tunnels. | Prairie dogs are the cutest. | I want a prairie dog. | Prairie dogs are bad.
+sa1: Read this sentence: "I can see a cat." | Reads all five words correctly.
+mc3: A hawk flies over the grass. Where is the safest place for a prairie dog? | in its tunnel | on top of a rock | in the open grass | by a pond
+
+unit: Unit 6: Neighborhood Helpers (opinion writing) | RI.K.1, RI.K.3, RF.K.3, W.K.1, L.K.1, SL.K.1
+el: Take a picture walk of the neighborhood (store, clinic, post office, park) and label helpers; teach the opinion frame "I think ___ because ___."
+
+lesson: Reading: Helpers in the neighborhood | RI.K.1, RI.K.3
+practice:
+passage: Helpers All Around | Our neighborhood has many helpers. The mail carrier brings letters and packages to our homes. The crossing guard helps children cross the street safely. // At the market, the grocer puts fresh fruit on the shelves. At the clinic, the nurse checks our height and weight. // Helpers make our neighborhood a good place to live. When you see a helper, you can say "Thank you!"
+mc1: What is the main topic? | neighborhood helpers | fruit | packages | streets
+hint: What word do you hear again and again?
+mc1: Who brings letters to our homes? | the mail carrier | the grocer | the nurse | the crossing guard
+hint: Listen to the first helper named.
+mc2: How does the crossing guard help? | helps children cross the street | brings fruit | checks your weight | fixes cars
+hint: Think about where the crossing guard stands.
+mc2: Where does the grocer work? | at the market | at the clinic | at the school | at the post office
+hint: Fresh fruit is sold there.
+sa2: Tell how one helper connects to the place where they work. | The nurse works at the clinic and checks our height and weight. (Any helper and place from the text.)
+hint: Match a helper to a place.
+quiz:
+passage: Mr. Tran's Bakery | Mr. Tran gets up very early, before the sun. He mixes flour, water and yeast to make dough. // He shapes the dough into loaves and rolls. Then he bakes them in a hot oven. The whole street smells like warm bread! // At seven o'clock, Mr. Tran opens his door. Neighbors come to buy bread for breakfast. "Good morning!" he says to everyone.
+mc1: What is Mr. Tran's job? | baker | mail carrier | doctor | teacher
+mc2: When does Mr. Tran get up? | very early | at noon | at night | after lunch
+mc2: What does he make dough from? | flour, water and yeast | sand and water | milk and eggs only | sugar and salt only
+mc2: Where does he bake the bread? | in a hot oven | in the sun | in the sink | in a fridge
+mc2: What does the street smell like? | warm bread | flowers | rain | smoke
+mc3: Why does Mr. Tran get up before the sun? | so bread is ready for breakfast | because he is lost | to see the moon | to sleep later
+sa2: Tell why Mr. Tran is a good neighborhood helper. Use a detail. | He makes fresh bread for neighbors' breakfast and greets everyone kindly.
+
+lesson: Phonics: Short i and short o words | RF.K.2, RF.K.3
+practice:
+mc1: Blend the sounds: /p/ /i/ /g/. What word? | pig | peg | pug | big
+hint: Short i says /i/ like in itch.
+mc1: Read the word: h-o-t. | hot | hat | hit | hut
+hint: Short o says /o/ like when the doctor says "say ahh."
+mc2: Which word has the short o sound? | mop | map | mitt | mug
+hint: Listen for /o/ in the middle.
+mc2: Which word has the short i sound? | sit | sat | set | sun
+hint: Listen for /i/ in the middle.
+sa1: Read these words: big, fox, lid, dog. | Reads all four words correctly.
+hint: Say each sound, then blend.
+quiz:
+mc1: Blend the sounds: /f/ /o/ /x/. What word? | fox | fix | fax | box
+mc1: Read the word: w-i-g. | wig | wag | big | win
+mc2: Which word rhymes with "pot" and has short o? | dot | pit | pet | pat
+mc2: Change the /i/ in "hit" to /o/. What is the new word? | hot | hat | hut | lot
+mc2: Which word spells "dig"? | dig | dog | bid | gid
+mc2: Which word is "like"? | like | look | lake | lick
+sa1: Read the sentence: "I like my dog." | Reads all four words correctly.
+
+lesson: Writing: Telling my opinion | W.K.1, L.K.1, SL.K.1
+practice:
+mc1: Which sentence tells an opinion? | I think bakers have the best job. | A baker makes bread. | Bread is in the oven. | The baker is Mr. Tran.
+hint: An opinion tells what someone thinks or likes.
+mc2: Which word helps you give a reason? | because | baker | bread | and then
+hint: We use it before a reason.
+mc2: Which is a good reason for "I like the library"? | I can find books about cats. | It is Tuesday. | My shoe is red. | The sky is blue.
+hint: A reason tells why you like it.
+mc2: Which word names a person? | nurse | clinic | bread | run
+hint: A naming word for someone who helps.
+sa2: Draw your favorite neighborhood place. Write "I like the ___ because ___." | A drawing and a sentence such as "I like the park becuz I can swing."
+hint: Finish both parts: what you like and why.
+quiz:
+mc1: Which sentence tells what someone thinks about the park? | The park is the best place. | The park has a slide. | The park is on Elm Street. | The park opens at 8.
+mc2: Which sentence gives a reason? | I like the market because it has mangoes. | I like the market. | The market. | Mangoes.
+mc2: Which helper would you thank for safe streets? | the crossing guard | the baker | the librarian | the grocer
+mc2: Which word means more than one helper? | helpers | helper | a helper | helperes
+mc2: Which sentence starts with a capital letter? | My mom is a nurse. | my mom is a nurse. | mom my nurse. | nurse is my mom.
+mc2: A friend says, "I like the post office." What could you ask? | Why do you like it? | Are you a dog? | Is it raining? | Where is lunch?
+sa2: Which helper do you think has the most important job? Draw and write your opinion and one reason. | A drawing and a sentence such as "I think doctors are importint becuz they help sik pepl."
+
+test:
+passage: Ms. Rivera Fixes Bikes | Ms. Rivera has a bike shop on our street. When a bike is broken, people bring it to her. // Last week, Jada's bike had a flat tire. Ms. Rivera found a hole and put on a patch. She pumped the tire full of air. She also fixed the squeaky chain with a drop of oil. // Jada rode home with a big smile. "Ms. Rivera is the best helper on our street!" Jada said. Her dad agreed. Now they can ride to the park again.
+mc1: What is Ms. Rivera's job? | she fixes bikes | she bakes bread | she drives a bus | she brings mail
+mc1: Where is the bike shop? | on our street | at school | at the park | in a store far away
+mc2: What was wrong with Jada's bike? | a flat tire | a broken bell | a missing seat | a lost wheel
+mc2: What did Ms. Rivera put on the hole? | a patch | a sticker | tape | glue only
+mc2: How did she fix the squeaky chain? | with a drop of oil | with water | with a new bike | with a hammer
+mc2: How did Jada feel at the end? | happy | sad | angry | scared
+mc2: What is Jada's opinion? | Ms. Rivera is the best helper | bikes are boring | the park is far | flat tires are fun
+mc3: What reason could Jada give for her opinion? | Ms. Rivera fixed her bike | Ms. Rivera has a shop | the chain was squeaky | it was last week
+mc2: In this story, what does "squeaky" mean? | making a high noise | very fast | very quiet | very big
+mc2: What can Jada and her dad do now? | ride to the park | buy a new bike | sell the bike | walk to school
+sa2: Retell how Ms. Rivera helped Jada. Use two details. | She found the hole in the flat tire and put a patch on it, pumped it with air, and oiled the squeaky chain.
+wr3: Do you agree that Ms. Rivera is a great helper? Draw and write your opinion. Give one reason from the story. | A drawing of Ms. Rivera fixing the bike and a sentence such as "Yes. Ms. Rivera is a grat helpr becuz she fixt Jadas bike." | Clear opinion; reason uses a detail from the story; drawing matches; writing has many correct sounds and a capital. | Clear opinion with a simple reason from the story. | Opinion with no reason, or a reason not from the story. | Not yet stating an opinion.
+endpassage:
+mc1: Blend the sounds: /m/ /o/ /p/. What word? | mop | map | mitt | top
+mc2: Read the word: f-i-x. | fix | fox | fit | six
+mc2: Which word has the same middle sound as "pin"? | lid | log | leg | lap
+mc2: Change the /o/ in "dog" to /i/. What is the new word? | dig | dug | dot | big
+mc2: Which word is "my"? | my | me | may | by
+mc2: Which sentence tells an opinion about bikes? | Bikes are the most fun! | A bike has two wheels. | The bike is red. | Jada has a bike.
+mc2: Which word means more than one bike? | bikes | bike | a bike | bikez
+mc2: Which word names a place? | shop | fix | ride | happy
+sa1: Read the sentence: "The dog is big." | Reads all four words correctly.
+mc3: Your bike chain squeaks. Using the story, what could fix it? | a drop of oil | a patch | more air | a new seat
+
+unit: Unit 7: Push and Pull (informative: how things move) | RI.K.1, RI.K.2, RF.K.2, RF.K.3, W.K.2, L.K.1
+el: Let students push and pull real objects (a wagon, a door, a ball) while saying "I push" and "I pull"; act out position words (in, on, under, over, next to).
+
+lesson: Reading: Pushes and pulls | RI.K.1, RI.K.2
+practice:
+passage: Push or Pull? | A push moves something away from you. A pull moves something closer to you. // You push a swing to make it go. You pull a wagon to bring it along. You push a door to open it, and some doors you pull. // A big push makes a ball roll far. A little push makes it roll a short way. Pushes and pulls make things move, stop and change direction.
+mc1: What is the main topic? | pushes and pulls | swings | doors | wagons
+hint: Listen to the title.
+mc1: What does a pull do? | moves something closer to you | moves it away | makes it hot | makes it disappear
+hint: Listen to the second sentence.
+mc2: How do you make a swing go? | push it | pull it | kick it | sing to it
+hint: Listen for the swing sentence.
+mc2: What happens with a big push on a ball? | it rolls far | it rolls a short way | it stops | it floats
+hint: Big push, big roll.
+sa2: Tell one thing you push and one thing you pull. | I push a shopping cart. I pull a wagon. (Any correct pair.)
+hint: Pushing is away. Pulling is toward you.
+quiz:
+passage: Tug of War | At field day, two teams held a long rope. Team Red pulled one way. Team Blue pulled the other way. // At first the rope did not move. Both teams pulled with the same strength. Then Team Blue got two more helpers. They pulled harder, and the rope slid toward them. // "Blue wins!" said the coach. Everyone laughed and shook hands.
+mc1: What did the teams hold? | a long rope | a ball | a wagon | a flag
+mc2: What were both teams doing? | pulling | pushing | jumping | sitting
+mc2: Why did the rope not move at first? | both teams pulled the same | the rope broke | nobody pulled | it was too heavy
+mc2: What did Team Blue get? | two more helpers | a new rope | a trophy first | a ball
+mc3: Why did the rope move toward Team Blue? | Team Blue pulled harder | Team Red pulled harder | the wind blew | the coach pushed it
+mc2: What did everyone do at the end? | shook hands | went home sad | argued | ran away
+sa2: Use the text to explain what makes something move toward you. | A pull moves it toward you; when Team Blue pulled harder, the rope moved toward them.
+
+lesson: Phonics: Short u and short e words | RF.K.2, RF.K.3
+practice:
+mc1: Blend the sounds: /t/ /u/ /g/. What word? | tug | tag | dug | tub
+hint: Short u says /u/ like in up.
+mc1: Read the word: p-e-t. | pet | pat | pit | pot
+hint: Short e says /e/ like in egg.
+mc2: Which word has the short u sound? | bus | bed | bag | big
+hint: Listen for /u/ in the middle.
+mc2: Which word has the short e sound? | net | nut | not | nap
+hint: Listen for /e/ in the middle.
+sa1: Say the sounds in "run" one at a time. | /r/ /u/ /n/.
+hint: Hold up a finger for each sound.
+quiz:
+mc1: Blend the sounds: /j/ /e/ /t/. What word? | jet | jog | get | jut
+mc1: Read the word: c-u-p. | cup | cap | cop | pup
+mc2: Which word rhymes with "bug" and has short u? | rug | rag | rig | beg
+mc2: Change the /e/ in "bed" to /u/. What is the new word? | bud | bad | bid | bug
+mc2: How many sounds are in "sun"? | 3 | 2 | 4 | 1
+mc2: Which word is "go"? | go | got | to | so
+sa1: Read these words: hen, mud, ten, hug. | Reads all four words correctly.
+
+lesson: Writing: How things move (plurals and position words) | W.K.2, L.K.1
+practice:
+mc1: Which word means more than one ball? | balls | ball | a ball | the ball
+hint: Add -s for more than one.
+mc2: The ball is under the table. Which word tells where? | under | ball | table | is
+hint: A position word tells where something is.
+mc2: Which sentence tells a fact about moving things? | A pull brings things closer. | I like wagons. | Wagons are fun. | Push me!
+hint: A fact tells how something works.
+mc2: You draw a girl pushing a cart. Which sentence fits? | She pushes the cart. | She pulls the cart. | She eats the cart. | She rides a bike.
+hint: Look at the action in the picture.
+sa2: Draw something you can push. Write a sentence about it. | A drawing and a sentence such as "I can puh the swing."
+hint: Use the frame "I can push the ___."
+quiz:
+mc1: Which word means more than one wagon? | wagons | wagon | a wagon | wagones
+mc2: The cat is on the box. Where is the cat? | on the box | in the box | under the box | next to the box
+mc2: Which word finishes the sentence? "I ___ the door to open it." | push | cup | red | over
+mc2: Which sentence is complete and correct? | We pull the rope. | we pull the rope | Pull rope. | We the rope.
+mc2: Which word is a position word? | over | rope | pull | team
+mc2: Which word means more than one cup? | cups | cup | a cup | cupes
+sa2: Draw two pictures: one push and one pull. Write a label or sentence for each. | Two drawings labeled "push" and "pull" with sentences such as "I push the swing. I pull the wagon."
+
+test:
+passage: Kick, Roll, Stop! | Ana and Felix played soccer at the park. Ana kicked the ball softly. It rolled a short way and stopped. // "Kick it harder!" said Felix. Ana gave the ball a big kick. It rolled far across the grass! // Felix stopped the ball with his foot. Then he kicked it to the side, and the ball changed direction. It rolled under a bench. // Ana pulled the ball out. "Pushes and kicks make the ball go," she said. "And a foot can make it stop!"
+mc1: What game are Ana and Felix playing? | soccer | tag | tug of war | baseball
+mc1: Where are they playing? | at the park | at school | at home | at the beach
+mc2: What happened when Ana kicked softly? | the ball rolled a short way | the ball rolled far | the ball flew away | nothing happened
+mc2: What happened after the big kick? | the ball rolled far | the ball stopped at once | the ball popped | the ball went up a tree
+mc2: How did Felix stop the ball? | with his foot | with his hands | with a rope | with a bench
+mc2: Where did the ball roll? | under a bench | into a pond | over a fence | into a tree
+mc2: How did Ana get the ball out? | she pulled it | she pushed it | she kicked it | she waited
+mc3: What does the story teach about kicks? | a harder kick makes the ball go farther | soft kicks go farthest | kicks make balls stop | balls cannot change direction
+mc2: In this story, what does "direction" mean? | the way something moves | how fast it goes | the color | the size
+mc2: Is a kick more like a push or a pull? | a push | a pull | neither | both at once
+sa2: Tell two ways the ball moved in the story and what made it move. | It rolled a short way after a soft kick, rolled far after a big kick, changed direction when Felix kicked it to the side.
+wr3: Draw and write about how Ana and Felix made the ball move. Use one fact from the story. | A drawing of a child kicking the ball and a sentence such as "A big kik makes the ball go far." | Drawing and writing give a fact from the story about how the ball moved; writing has many correct sounds, a capital and a period. | Gives a fact from the story with some writing. | Drawing about soccer with little writing or a fact not from the story. | Not yet connected to the story.
+endpassage:
+mc1: Blend the sounds: /b/ /u/ /s/. What word? | bus | bun | bat | boss
+mc2: Read the word: l-e-g. | leg | log | lag | bag
+mc2: Which word has the same middle sound as "red"? | ten | tin | tan | ton
+mc2: Change the /u/ in "hut" to /o/. What is the new word? | hot | hat | hit | hug
+mc2: Which word means more than one bench? | benches | bench | a bench | benchs
+mc2: The ball is under the bench. Which word tells where? | under | ball | bench | the
+mc2: Which word is a position word from the story? | under | kick | grass | soccer
+mc2: Find the word "go." Which one is it? | go | ago | dog | to
+sa1: Read the sentence: "I can kick the ball." | Reads all five words correctly.
+mc3: A wagon is stuck in the sand. What should you do to move it toward you? | pull it | push it away | kick it | sit on it
+
+unit: Unit 8: Plants Grow and Change (how-to writing) | RI.K.1, RI.K.2, RF.K.2, RF.K.3, W.K.2, L.K.1
+el: Grow beans in clear cups and keep a picture journal; post a plant-parts diagram with labels (root, stem, leaf, flower, seed) and point as you say each word.
+
+lesson: Reading: What plants need | RI.K.1, RI.K.2
+practice:
+passage: What Plants Need | Plants are living things. They need water, sunlight and air to grow. Most plants also need soil. // The roots grow down into the soil. They drink up water. The stem holds the plant up tall. The leaves use sunlight to help make food for the plant. // If a plant does not get water, it droops and turns brown. Taking care of a plant means giving it what it needs.
+mc1: What is the main topic? | what plants need | how to cook | animals | rain clouds
+hint: The title tells you.
+mc1: Which part of the plant drinks up water from the soil? | the roots | the flower | the stem | the leaves
+hint: This part grows down into the soil.
+mc2: What does the stem do? | holds the plant up | makes seeds | drinks sunlight | grows under the soil
+hint: Listen to the sentence about the stem.
+mc2: What happens if a plant gets no water? | it droops and turns brown | it grows faster | it turns blue | it makes more flowers
+hint: Listen to the last part.
+sa2: Name three things plants need to grow. | Water, sunlight and air (and most need soil).
+hint: Listen to the first part again.
+quiz:
+passage: The Pumpkin Patch | In spring, Farmer Joy plants pumpkin seeds in rows. She waters them every day. // Soon, green vines grow along the ground. Big leaves spread out. Yellow flowers open. Bees visit the flowers. // In the summer, little green pumpkins grow where the flowers were. All summer they grow bigger. By fall, the pumpkins are big and orange. Children come to pick them!
+mc1: What does Farmer Joy plant? | pumpkin seeds | apple trees | corn | carrots
+mc1: When does she plant the seeds? | in spring | in winter | at night | in fall
+mc2: What color are the flowers? | yellow | purple | white | red
+mc2: What visits the flowers? | bees | birds only | cows | children
+mc2: What color are the pumpkins at first? | green | orange | yellow | brown
+mc3: Why do children come in the fall? | the pumpkins are ready to pick | to plant seeds | to water the vines | to see the flowers
+sa2: Tell how the pumpkins change from spring to fall. | In spring seeds are planted; vines, leaves and yellow flowers grow; little green pumpkins grow in summer; by fall they are big and orange.
+
+lesson: Phonics: Sounds in words and the digraphs sh, ch and th | RF.K.2, RF.K.3
+practice:
+mc1: How many sounds are in "fish"? Say them. | 3 | 4 | 2 | 5
+hint: /f/ /i/ /sh/. The letters s and h make one sound together.
+mc1: Which word begins with the sound /sh/? | ship | sip | chip | hip
+hint: /sh/ is the "be quiet" sound.
+mc2: Which word begins with /ch/? | chin | shin | thin | tin
+hint: /ch/ sounds like a sneeze: ah-choo!
+mc2: Which word ends with /th/? | bath | bat | bash | back
+hint: Stick your tongue out a little for /th/.
+sa1: Say the sounds in "shop." How many sounds are there? | /sh/ /o/ /p/, 3 sounds.
+hint: The letters s and h together make one sound.
+quiz:
+mc1: Which word begins with /th/? | thumb | sum | chum | gum
+mc2: Which word ends with /sh/? | fish | fit | fin | fig
+mc2: Which word ends with /ch/? | lunch | lump | luck | lush
+mc2: How many sounds are in "chop"? | 3 | 4 | 2 | 5
+mc2: Read the word: sh-e-d. | shed | sled | shut | fed
+mc2: Which word is "said"? | said | sad | sat | side
+sa1: Read these words: chip, shop, then, with. | Reads all four words correctly.
+
+lesson: Writing: How to plant a seed | W.K.2, L.K.1, SL.K.1
+practice:
+mc1: Which word tells the first step? | first | last | seed | water
+hint: The beginning of a how-to starts with this word.
+mc2: What is the first step to plant a seed? | dig a hole in the soil | pick the flower | eat the fruit | cut the leaves
+hint: Where does the seed go?
+mc2: Which sentence tells a step? | Put the seed in the hole. | Seeds are small. | I like seeds. | The seed is brown.
+hint: A step tells what to do.
+mc2: Which word means more than one leaf? | leaves | leafs | leaf | a leaf
+hint: Some words change when there is more than one: one leaf, two ___.
+sa2: Draw the steps to plant a seed. Write or tell first, next and last. | Three drawings and sentences such as "Frst dig a hol. Next put in the seed. Last giv it water."
+hint: Use the words first, next and last.
+quiz:
+mc1: Which word tells the end of the steps? | last | first | next | then
+mc2: After you put the seed in the hole, what do you do next? | cover it with soil | eat it | pull it out | paint it
+mc2: Which sentence tells a step in order? | Then water the seed. | The seed is wet. | I like water. | Water is blue.
+mc2: Which is a good title for a how-to page? | How to Plant a Seed | My Cat | A Rainy Day | Fun at the Beach
+mc2: Which word is an action word for a how-to? | dig | soil | green | tall
+mc2: Which sentence ends with the right mark? | Water the plant every day. | Water the plant every day | water the plant every day | Water. the plant every day
+sa2: Tell a friend how to take care of a plant. Use two steps. | "First put the plant in the sun. Then give it water."
+
+test:
+passage: Ben's Bean Plant | Ben's class planted beans in clear cups. Ben put a wet paper towel and a bean in his cup. He set it by the window. // After three days, a white root poked out of the bean. It grew down. Then a green shoot grew up. Ben drew a picture each day in his plant journal. // Soon two leaves opened. Ben's plant got taller and taller. He planted it in a pot of soil and gave it water. "My bean is growing because I take care of it!" said Ben.
+mc1: What did Ben's class plant? | beans | pumpkins | flowers | apples
+mc1: What did they plant them in? | clear cups | boxes | the ground | shoes
+mc2: Where did Ben put his cup? | by the window | in a closet | under his desk | in the fridge
+mc2: What grew out of the bean first? | a white root | a flower | a pumpkin | two leaves
+mc2: Which way did the root grow? | down | up | sideways | it did not grow
+mc2: What did Ben do each day? | drew a picture in his journal | ate a bean | took the plant home | painted the cup
+mc2: What grew after the root? | a green shoot | a red flower | a bean pod | a pumpkin
+mc3: Why did Ben put the cup by the window? | so the plant could get sunlight | so he could see outside | so it would stay cold | so it would get dark
+mc2: In this story, what is a "journal"? | a book where you draw and write each day | a plant pot | a kind of bean | a window
+mc2: What did Ben do last? | planted it in soil and gave it water | put the bean in a cup | saw a root | saw a shoot
+sa2: Tell the steps of how Ben's bean grew. Use first, next and last. | First a root grew down. Next a green shoot grew up and two leaves opened. Last the plant got taller and Ben planted it in soil.
+wr3: Draw and write how Ben took care of his bean plant. Use details from the story. | A drawing of a bean in a cup by a window and a sentence such as "Ben put the bean by the windo and gave it watr." | Drawing and writing tell two ways Ben cared for the plant using story details; writing has many correct sounds, a capital and a period. | Tells one way Ben cared for the plant with some writing. | Drawing of a plant; little writing or no detail from the story. | Not yet connected to the story.
+endpassage:
+mc1: How many sounds are in "bed"? | 3 | 2 | 4 | 1
+mc2: Which word begins with the same sound as "shoot"? | shell | soap | chop | tooth
+mc2: Which word begins with /ch/ like "chair"? | cheese | shoe | three | sheep
+mc2: Which word ends with the same sound as "with"? | path | pass | patch | pack
+mc2: Read the word: th-i-n. | thin | then | tin | chin
+mc2: Which word means more than one cup? Choose the plural. | cups | cup | a cup | cupz
+mc2: Which sentence from a how-to page tells what to do? | Put the bean in the cup. | Beans are green. | The cup is clear. | I like beans.
+mc2: Which word tells what to do next? | then | bean | white | window
+sa1: Read the sentence: "I see a red ship." | Reads all five words correctly.
+mc3: A plant is drooping and the soil is dry. What should you do? | give it water | put it in the dark | cut off the leaves | do nothing
+
+unit: Unit 9: Tales Long Ago and Today (narrative writing) | RL.K.1, RL.K.2, RL.K.3, RL.K.9, RF.K.3, W.K.3
+el: Retell each tale with picture cards and puppets; compare two characters using a two-circle chart with picture symbols; model "In the story, ___ did ___."
+
+lesson: Reading: Folktales and their characters | RL.K.1, RL.K.2, RL.K.3
+practice:
+passage: The Turtle and the Hare | Hare was very fast, and he liked to brag. "I can beat anyone in a race!" he said. Turtle said, "I will race you." // The race began. Hare ran far ahead. He was so far ahead that he sat under a tree for a nap. Turtle kept walking, slow and steady. // When Hare woke up, Turtle was almost at the finish line! Hare ran as fast as he could, but Turtle crossed the line first. Slow and steady won the race.
+mc1: Who are the characters? | Turtle and Hare | Fox and Crow | a boy and a dog | two birds
+hint: Who runs in the race?
+mc1: What did Hare like to do? | brag | sing | swim | cook
+hint: Listen to the first sentence.
+mc2: What did Hare do during the race? | took a nap | helped Turtle | ate lunch | went home
+hint: Hare sat under a tree.
+mc2: Who won the race? | Turtle | Hare | both | nobody
+hint: Who crossed the finish line first?
+sa2: What lesson does this tale teach? | Slow and steady wins the race; do not brag or give up; keep going.
+hint: Listen to the last sentence.
+quiz:
+passage: The Little Red Hen Bakes Tortillas | Little Red Hen found some corn. "Who will help me grind the corn?" she asked. "Not I," said Cat. "Not I," said Dog. So she ground the corn herself. // "Who will help me make the tortillas?" "Not I," said Cat and Dog. So she made them herself. // "Who will help me eat the tortillas?" "I will!" said Cat and Dog. "No," said Little Red Hen. "You did not help. My chicks and I will eat them."
+mc1: What did Little Red Hen find? | corn | eggs | apples | bread
+mc2: What did Cat and Dog say when she asked for help? | Not I | I will | Yes | Maybe
+mc2: What did Little Red Hen make? | tortillas | pizza | soup | cake
+mc2: When did Cat and Dog want to help? | when it was time to eat | when grinding corn | when cooking | never
+mc2: Who ate the tortillas? | Little Red Hen and her chicks | Cat and Dog | everyone | nobody
+mc3: What lesson does the Little Red Hen tale teach? | if you do not help, you do not share the reward | cats are mean | corn is yellow | dogs are hungry
+sa2: How are Cat and Dog alike in this tale? | They both say "Not I" to every job but want to eat the tortillas.
+
+lesson: Phonics: Long vowels with final e | RF.K.2, RF.K.3
+practice:
+mc1: Read the word: c-a-k-e. The e is silent. | cake | cak | cat | cap
+hint: The silent e makes the a say its name: /a/ as in "ape."
+mc1: Which word has a long a sound, like "made"? | gate | hat | had | ham
+hint: Long a says its name.
+mc2: Add an e to "kit." What new word do you make? | kite | kit | cute | kid
+hint: The e makes the i say its name.
+mc2: Which word has a long o sound? | home | hop | hot | hog
+hint: Long o says its name: /o/ as in "bone."
+sa1: Read these words: hop, hope; tap, tape. | Reads all four words, short then long vowel, correctly.
+hint: The e at the end changes the vowel sound.
+quiz:
+mc1: Read the word: b-i-k-e. | bike | bik | bake | back
+mc1: Which word has a long i sound? | time | tim | tip | tin
+mc2: Add an e to "cub." What new word do you make? | cube | cab | cubs | cut
+mc2: Which word has the short a sound? | can | cane | cake | came
+mc2: Which pair shows a short vowel and then a long vowel? | rob and robe | rob and rib | robe and rope | rob and rod
+mc2: Which word rhymes with "race" and has long a? | face | fast | fat | mice
+sa1: Read the sentence: "I like to ride my bike." | Reads all six words correctly.
+
+lesson: Writing: Telling my own tale | W.K.3, L.K.1, SL.K.1
+practice:
+mc1: What does a story need? | characters | a table of contents | a glossary | a price
+hint: Who is in the story?
+mc2: Which sentence could begin a story? | Once there was a little fox. | Foxes live in dens. | The end. | I like foxes.
+hint: Many tales begin with "Once" or "One day."
+mc2: Which word tells something a character does? | ran | fox | red | fast
+hint: An action word that already happened.
+mc2: Which sentence could end a story? | And they were friends forever. | Once upon a time. | One day a fox. | First, the fox.
+hint: An ending tells how things turned out.
+sa2: Draw a character for your own tale. Tell who it is and what problem it has. | A drawing and a sentence such as "This is Bo the bunny. He lost his carrot."
+hint: Every story has a character with a problem.
+quiz:
+mc1: Which words often begin a fairy tale? | Once upon a time | The end | First step | Dear friend
+mc2: Which is a problem a character might have? | the fox is lost | the fox is red | the sky is blue | the end
+mc2: Which sentence tells an event in order? | Then the hen made tortillas. | Hens have feathers. | Tortillas are flat. | I like hens.
+mc2: Which word means more than one chick? | chicks | chick | a chick | chickes
+mc2: Which sentence uses a capital and period correctly? | The hare ran fast. | the hare ran fast. | The hare ran fast | the hare ran fast
+mc2: Which word tells when? | then | hare | slow | race
+sa2: Draw and write a short tale with a beginning and an end. | Two drawings and sentences such as "Once a cat lost her hat. At the end she fownd it."
+
+test:
+passage: Ant and the Grasshopper | All summer, Ant worked hard. She carried seeds and grain to her home under the ground. // Grasshopper sang and played in the warm sun. "Why do you work so hard?" he asked. "Come and play!" Ant said, "I am getting food ready for winter." Grasshopper laughed and kept singing. // When winter came, the ground was cold and covered with snow. Grasshopper had no food. He knocked on Ant's door. Ant gave him some seeds. "Next summer," Grasshopper said, "I will work and get ready too."
+mc1: Who are the characters in this tale? | Ant and Grasshopper | Ant and Hare | Hen and Cat | Turtle and Hare
+mc1: When does the story begin? | in summer | in winter | at night | in spring
+mc2: What did Ant carry to her home? | seeds and grain | toys | water | leaves
+mc2: What did Grasshopper do all summer? | sang and played | worked hard | slept underground | built a house
+mc2: Why did Ant work so hard? | to get food ready for winter | to win a race | to make a song | to help Cat
+mc2: What happened when winter came? | Grasshopper had no food | Ant had no food | it got hot | Ant went to sleep
+mc2: What did Ant give Grasshopper? | some seeds | a song | a coat | nothing
+mc3: How does Grasshopper change by the end? | he plans to work and get ready | he keeps playing | he gets angry at Ant | he moves away
+mc2: How are Ant and Little Red Hen alike? | they both work hard | they both sing | they both are lazy | they both race
+mc2: In this tale, what does "grain" mean? | small seeds we eat | a kind of rain | a bug | a song
+sa2: Retell the tale. Tell the beginning, middle and end. | Beginning: in summer Ant worked and Grasshopper played. Middle: Ant said she was getting ready for winter, but Grasshopper laughed. End: in winter Grasshopper had no food; Ant shared seeds and he said he would work next summer.
+wr3: Draw and write a new ending for the tale. What happens next summer? Use what you know about the characters. | A drawing of Grasshopper carrying seeds with Ant, and a sentence such as "Next sumr Grasshopr works with Ant. They hav lots of food." | New ending fits the characters and the lesson; drawing matches; writing tells what happens with many correct sounds, a capital and period. | Ending fits the story; some writing. | Ending is loosely connected; little writing. | Not yet connected to the tale.
+endpassage:
+mc1: Read the word: h-o-m-e. | home | hum | hop | hot
+mc2: Add an e to "hop." What new word do you make? | hope | hoop | hip | hot
+mc2: Which word has a long a sound, like "game"? | late | lap | lot | let
+mc2: Which word has a short i sound? | sit | site | bite | kite
+mc2: Which word rhymes with "bone"? | cone | bun | bin | can
+mc2: Which word is an action word from the tale? | carried | ant | warm | snow
+mc2: Which sentence could start a tale? | One day a mouse found a big seed. | Mice are small. | The end. | I like mice.
+mc2: Which word means more than one seed? | seeds | seed | a seed | seedz
+sa1: Read these words: like, made, ride, home. | Reads all four words correctly.
+mc3: How are Turtle and Ant alike? | they keep going and do not give up | they both brag | they both nap | they both sing all day
+
+unit: Unit 10: Caring for Our Earth (opinion writing) | RI.K.1, RI.K.8, RF.K.2, RF.K.3, W.K.1, L.K.2
+el: Sort real clean items into recycle, compost and trash bins with picture labels; teach "I think we should ___ because ___" and practice with a partner.
+
+lesson: Reading: Ways to help the Earth | RI.K.1, RI.K.2, RI.K.8
+practice:
+passage: Reduce, Reuse, Recycle | We can help take care of the Earth. // Reduce means use less. Turn off the water when you brush your teeth. Turn off lights when you leave a room. // Reuse means use things again. A glass jar can hold crayons. An old shirt can become a rag. // Recycle means old things are made into new things. Paper, cans and some bottles go in the recycling bin. When we reduce, reuse and recycle, there is less trash.
+mc1: What is the main topic? | helping the Earth | brushing teeth | crayons | shirts
+hint: Listen to the first sentence.
+mc1: What does "reuse" mean? | use things again | use less | throw away | buy more
+hint: Listen to the part about the glass jar.
+mc2: Which is a way to reduce? | turn off the water when you brush | buy more toys | leave lights on | throw away jars
+hint: Reduce means use less.
+mc2: What goes in the recycling bin? | paper and cans | apple cores | toys you play with | dirt
+hint: Listen to the recycle part.
+sa2: The author says we can help the Earth. Give one reason from the text. | When we reduce, reuse and recycle, there is less trash. (Or a specific example from the text.)
+hint: What happens when we do all three?
+quiz:
+passage: Park Clean-Up Day | On Saturday, Lucia's family went to the park with gloves and bags. They were not there to play. They were there to help! // Lucia picked up cans and wrappers by the pond. Her brother picked up paper near the swings. A duck swam by. "The ducks need a clean pond," said Lucia. // After two hours, the park was clean. The family put the cans in the recycling bin. Lucia smiled. "Now everyone can enjoy the park," she said.
+mc1: Where did Lucia's family go? | to the park | to the store | to the beach | to school
+mc2: Why did they go? | to help clean up | to play on swings | to feed ducks | to have a picnic
+mc2: What did Lucia pick up? | cans and wrappers | rocks | flowers | sticks
+mc2: What did the family wear to pick up trash? | gloves | hats | boots | coats
+mc2: Where did they put the cans? | in the recycling bin | in the pond | under a tree | in the car
+mc3: Why does Lucia say the ducks need a clean pond? | trash can hurt animals | ducks like cans | ducks are messy | the pond is too big
+sa2: Do you think Park Clean-Up Day was a good idea? Give a reason from the text. | Yes, because the park was clean so everyone can enjoy it and animals like ducks have a clean pond.
+
+lesson: Phonics: Changing sounds to make new words | RF.K.2, RF.K.3
+practice:
+mc1: Change the /c/ in "can" to /f/. What is the new word? | fan | cat | fin | man
+hint: Keep "-an" and change only the first sound.
+mc1: Change the /t/ at the end of "bat" to /g/. What is the new word? | bag | big | tag | bad
+hint: Keep "ba-" and change the last sound.
+mc2: Change the /i/ in "pin" to /a/. What is the new word? | pan | pen | pun | nap
+hint: Change only the middle sound.
+mc2: Read the word: j-a-m. | jam | jar | ham | jab
+hint: Say each sound and blend them.
+sa1: Change the first sound in "top" to make two new words. | hop, mop, pop, shop or another real word.
+hint: Try /h/, /m/ or /p/ at the start.
+quiz:
+mc1: Change the /r/ in "rug" to /b/. What is the new word? | bug | rag | bud | big
+mc2: Change the /p/ at the end of "cap" to /n/. What is the new word? | can | cat | cup | nap
+mc2: Change the /o/ in "hot" to /a/. What is the new word? | hat | hit | hut | ham
+mc2: Which word is "are"? | are | ate | ear | car
+mc2: Which word is "we"? | we | me | be | wet
+mc2: Read the word: b-i-n. | bin | bun | ban | pin
+sa1: Read the sentence: "We can help the Earth." | Reads all five words correctly.
+
+lesson: Writing: My opinion about helping the Earth | W.K.1, L.K.1, L.K.2
+practice:
+mc1: Which sentence tells an opinion about the Earth? | I think everyone should recycle. | Cans are made of metal. | Paper comes from trees. | The bin is blue.
+hint: An opinion tells what you think.
+mc2: Which is a good reason for "We should turn off lights"? | It saves energy. | Lights are yellow. | I like my lamp. | It is Monday.
+hint: A reason tells why it is a good idea.
+mc2: Which sentence asks a question? | Can we recycle this bottle? | We can recycle this bottle. | This bottle is green. | Recycle the bottle.
+hint: A question ends with a question mark.
+mc2: Which mark ends a question? | ? | . | , | !
+hint: Look at the end of the question.
+sa2: Draw one way you help the Earth. Write "I think we should ___ because ___." | A drawing and a sentence such as "I think we shud reuse jars becuz it maks les trash."
+hint: Say the sentence first, then write the sounds you hear.
+quiz:
+mc1: Which sentence ends with a question mark correctly? | Where is the bin? | Where is the bin. | where is the bin | Where is the bin!
+mc2: Which sentence tells an opinion? | Clean parks are the best parks. | The park has a pond. | Ducks swim in the pond. | The park opens at 9.
+mc2: Which reason supports "We should pick up trash"? | Trash can hurt animals. | Trash is in a bag. | I have a bag. | The sky is blue.
+mc2: Which word should start with a capital letter? | Lucia | park | can | duck
+mc2: Which sentence is written correctly? | We recycle cans. | we recycle cans. | We recycle cans | we recycle cans
+mc2: Which word means more than one bottle? | bottles | bottle | a bottle | bottlez
+sa2: Write a sentence that tells your opinion about recycling. Give one reason. | "I think recycling is good becuz it maks new things." (Opinion plus reason, capital and period.)
+
+test:
+passage: The Water Saver | Kofi's grandma lives where it does not rain very much. "Water is precious here," she told him. "Precious means very important." // Kofi wanted to help. When he brushed his teeth, he turned off the water. He took short showers. He put a bucket outside to catch rain when it did rain. Then he used the rainwater for Grandma's tomato plants. // Grandma hugged him. "You are a water saver!" she said. Kofi made a sign for his class: "Save water. Every drop counts!"
+mc1: Who does Kofi help? | his grandma | his teacher | his brother | a neighbor
+mc1: What is the weather like where Grandma lives? | it does not rain very much | it rains every day | it snows a lot | it is always windy
+mc2: What does "precious" mean? | very important | very wet | very small | very old
+mc2: What does Kofi do when he brushes his teeth? | turns off the water | sings a song | uses hot water | leaves the water on
+mc2: Why does Kofi put a bucket outside? | to catch rain | to wash it | to hold toys | to feed birds
+mc2: What does he use the rainwater for? | tomato plants | his bath | drinking | washing the car
+mc2: What does Grandma call Kofi? | a water saver | a rain maker | a gardener | a helper of birds
+mc3: Why does Kofi take short showers? | to use less water | because he is late | because the water is cold | to save soap
+mc2: What does Kofi's sign say? | Save water. Every drop counts! | Recycle cans! | Plant trees! | Turn off lights!
+mc2: Why does Grandma say water is precious? | it does not rain much there | water is free | she has a pool | it rains every day
+sa2: Tell two ways Kofi saves water. | He turns off the water when brushing his teeth, takes short showers, and catches rain in a bucket for the plants. (Any two.)
+wr3: Do you think kids should save water like Kofi? Draw and write your opinion. Give a reason from the story. | A drawing of a child turning off the faucet and a sentence such as "Yes kids shud save watr becuz watr is precious." | Clear opinion; reason uses a detail from the story; drawing matches; writing has many correct sounds, a capital and end mark. | Clear opinion with a simple reason. | Opinion with no reason or a reason not tied to the story. | Not yet stating an opinion.
+endpassage:
+mc1: Change the /b/ in "bug" to /m/. What is the new word? | mug | bag | mud | hug
+mc2: Change the /n/ at the end of "pin" to /g/. What is the new word? | pig | pit | pen | big
+mc2: Change the /e/ in "net" to /u/. What is the new word? | nut | not | net | gnat
+mc2: Read the word: t-u-b. | tub | tab | tug | bud
+mc2: Find the word "are." Which one is it? | are | ear | era | air
+mc2: Which mark should end this sentence: "Can you save water" | ? | . | , | -
+mc2: Which name needs a capital letter? | Kofi | water | bucket | rain
+mc2: Which sentence is an opinion about water? | Saving water is the right thing to do. | Water is wet. | Rain fills the bucket. | Kofi has a grandma.
+sa1: Read the sentence: "We can save water." | Reads all four words correctly.
+mc3: Which is the best reason to turn off the water while brushing? | it saves water | water is cold | brushing is fun | the sink is white
+
