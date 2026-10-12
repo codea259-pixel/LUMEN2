@@ -11,6 +11,7 @@ Master every skill. Understand every concept. A free learning site for Pre-K thr
 | `server/server.js` | The server: accounts, saved progress, classes, community, certificates, owner tools. No dependencies. |
 | `server/curriculum.json` | Courses and milestone badges the server checks before issuing certificates |
 | `tools/` | Sources for `public/app.html`: `base.html` (the prototype), `firebase.html` (Firebase accounts), `bridge.html` (server connection), `ui.html` (design layer), `features.html` (Find my level, Mastery Challenge, worked examples), `video.html` (lesson videos), `printables.html` (designed worksheet and lesson packet PDFs), `vendor-qrcode.html` (QR code library, MIT). Edit these, then run `python3 tools/build.py`. `tools/e2e.cjs` is a full browser test. |
+| `server/assessments.json` | Classwork, quizzes and unit tests with answer keys, TK to grade 12, for Math, ELA, Science and Social Studies. Built from `tools/assess-src/*.txt` by `tools/build_assess.py` (which `tools/build.py` runs). Only teachers can load it on the full site. |
 | `prototype/` | The earlier single-file prototype, kept for reference |
 
 Data is stored in a SQLite file (`lumen.db`) inside `DATA_DIR`. Back that folder up.
@@ -50,6 +51,21 @@ Any host that runs a Docker container with a persistent disk works (Render, Rail
 3. Set `OWNER_USERNAME` and `OWNER_PASSWORD` for the first start, then remove the password.
 4. Optionally set `SESSION_SECRET` to a long random string (otherwise one is generated and kept in `/data`).
 5. Serve it over HTTPS (the hosts above do this for you). Sign-in cookies are marked secure in production.
+
+## Teacher page and assessments
+
+The Teacher tab has four sections:
+
+- **Classes**: create classes, make student logins, assign practice, live view, Gem Challenges and parent reports.
+- **Assessments**: pick a grade (TK to 12) and subject (Math, ELA, Science, Social Studies) to see its units. Each unit has classwork, a quiz (about 15 minutes, with one written explain question) and a unit test (multiple choice, short answers and a performance task scored with a 4-point rubric). Every question has a DOK level. Preview a version, download it as a PDF with the answer key, rubric and supports for English learners and students with IEPs, then assign that same version to a class or one student, with an optional timer.
+- **Gradebook**: scores per student and assessment. Multiple choice and number answers score automatically; you score written answers with the sample answer or rubric beside them, add comments, then release scores to students. Download a CSV.
+- **Grade guides**: for each grade and subject, the year's focus, priority California standards, units and supports. The Owner can type in the district's adopted program for each grade and subject.
+
+Students find assigned work under **My classes**. Questions appear when they press Start, which also starts any timer; answers save as they go and are turned in automatically when time runs out. The answer key never reaches students' browsers, and they see scores only after the teacher releases them.
+
+All questions are original, written to the California standards; they do not reproduce any publisher's materials. To add or edit content, change `tools/assess-src/*.txt` (the format is described at the top of `tools/build_assess.py`) and run `python3 tools/build.py`. `tools/e2e-assess.cjs` tests the whole flow against a running server.
+
+On GitHub Pages with Firebase, the answer bank is a public file (`server/assessments.json`), so a determined student could find it, and students in a class can read an assigned test's questions before pressing Start; the full site keeps both behind sign-in. Firestore rules still stop students from reading keys stored with assigned tests, changing answers after turning them in, or setting their own scores.
 
 ## Ask Lumi (AI tutor)
 

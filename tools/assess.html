@@ -208,7 +208,8 @@ function turnIn(auto){const r=RUN;if(!r)return;const blank=r.items.filter((_,i)=
 
 /* ---------- PDF: student copy, then answer key, rubric and supports for the teacher ---------- */
 function aPdf(a,u){const {Doc,icon,C:{W,H,M,NAVY,INK,MUTE,LINE,TINT}}=PDFK,d=Doc(),R=W-M,TW=R-M,sub=u.sub||'math',max=maxPts(a.items);let y;
-  const mini=t=>{d.page();icon(d,sub,M,M-4,14);d.text(t,M+22,M+8,11,1,NAVY);d.line(M,M+20,R,M+20,NAVY,1.2);y=M+40};
+  const fit=(t,z,b,w)=>{if(d.w(t,z,b)<=w)return t;while(t.length>1&&d.w(t+'...',z,b)>w)t=t.slice(0,-1);return t.trimEnd()+'...'};
+  const mini=t=>{d.page();icon(d,sub,M,M-4,14);d.text(fit(t,11,1,R-M-22),M+22,M+8,11,1,NAVY);d.line(M,M+20,R,M+20,NAVY,1.2);y=M+40};
   const need=(h,t)=>{if(y+h>H-60)mini(t)};
   /* student copy */
   d.page();d.text('BOSE ACADEMY',M,M+2,8.5,1,MUTE);icon(d,sub,M,M+12,26);

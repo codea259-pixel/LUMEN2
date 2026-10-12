@@ -80,7 +80,7 @@ const SH = process.env.SHOTS, shot = async (pg, n) => { if (SH) await pg.screens
 
     // Owner sets the adopted program; teacher sees it
     const ow = await mk(); await ow.goto(B + '/app'); await ow.fill('[name=username]', 'owner'); await ow.fill('[name=password]', 'ownerpass1234'); await ow.click('#af button'); await ow.waitForSelector('#avatarBtn');
-    await ow.click('#tabs >> text=Teacher'); await ow.click('.tt >> text=Grade guides'); await ow.waitForSelector('#prog'); await ow.fill('#prog', 'Test Program, 2nd edition'); await ow.click('button:has-text("Save")'); await ow.waitForSelector('text=Saved.');
+    await ow.click('#tabs >> text=Teacher'); await ow.click('.tt >> text=Grade guides'); await ow.waitForSelector('.gsel select'); await ow.selectOption('.gsel select >> nth=0', '3'); await ow.selectOption('.gsel select >> nth=1', 'math'); await ow.waitForSelector('#prog'); await ow.fill('#prog', 'Test Program, 2nd edition'); await ow.click('button:has-text("Save")'); await ow.waitForSelector('text=Saved.');
     await t.reload(); await t.waitForSelector('#avatarBtn'); await t.click('#tabs >> text=Teacher'); await t.click('.tt >> text=Grade guides'); await t.waitForSelector('text=Test Program, 2nd edition'); ok('owner set adopted program; teacher sees it');
   } catch (e) { console.log('FAIL', e.message); errs.push('fail'); }
   if (errs.length) { console.log('ERRORS:\n' + errs.join('\n')); process.exitCode = 1; } else console.log('all assessment checks passed');
