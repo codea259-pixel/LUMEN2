@@ -68,7 +68,7 @@ def build():
                 errors.append(f'{where}: {tag} before unit')
             elif re.match(r'^mc[123]$', tag):
                 if len(parts) != 5 or not all(parts): errors.append(f'{where}: mc needs question | correct | 3 wrong answers'); continue
-                if len(set(p.lower() for p in parts[1:])) != 4: errors.append(f'{where}: answer choices repeat')
+                if len(set(parts[1:])) != 4: errors.append(f'{where}: answer choices repeat')
                 unit['mc'].append({'q': parts[0], 'ch': parts[1:], 'dok': int(tag[2])})
             elif re.match(r'^sa[123]$', tag):
                 if len(parts) != 2 or not all(parts): errors.append(f'{where}: sa needs prompt | sample answer'); continue
