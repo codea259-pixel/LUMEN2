@@ -1,0 +1,707 @@
+@subject math
+@grade 6
+@program Eureka Math
+about: Sixth grade connects ratio and rate reasoning to multiplication and division, completes division of fractions and fluency with multi-digit decimals, extends the number line to negative numbers and the coordinate plane, writes and solves one-variable expressions and equations, applies area, surface area and volume to real problems, and begins statistical thinking about variability.
+std: 6.RP.A.3 | Use ratio and rate reasoning to solve real-world and mathematical problems, including tables, tape diagrams, unit rates and percents.
+std: 6.NS.A.1 | Interpret and compute quotients of fractions, and solve word problems involving division of fractions by fractions.
+std: 6.NS.C.6 | Understand a rational number as a point on the number line and extend number line and coordinate axes to negative numbers.
+std: 6.EE.A.2 | Write, read and evaluate expressions in which letters stand for numbers.
+std: 6.EE.B.7 | Solve real-world and mathematical problems by writing and solving equations of the form x + p = q and px = q.
+std: 6.G.A.2 | Find the volume of a right rectangular prism with fractional edge lengths and solve real-world problems.
+std: 6.SP.B.5 | Summarize numerical data sets in relation to their context using measures of center and variability.
+
+unit: Module 1: Ratios and unit rates | 6.RP.A.1, 6.RP.A.2, 6.RP.A.3 | g6ratio1, g6ratio2, g6ratio3, g6rate1, g6rate2, g6pctfrac, g6pctdec, g6pctwhole
+el: Post a word bank with picture examples (ratio, for every, per, each, unit rate, percent) and model reading "3:5" aloud as "3 to 5" and "for every 3 there are 5".
+
+lesson: Ratios and equivalent ratios | 6.RP.A.1, 6.RP.A.3
+practice:
+mc1: A class has 12 girls and 15 boys. What is the ratio of boys to girls? | 15:12 | 12:15 | 15:27 | 12:27
+hint: The order of the words tells you the order of the numbers.
+mc2: Which ratio is equivalent to 3:5? | 12:20 | 5:3 | 6:8 | 9:12
+hint: Multiply both numbers in the ratio by the same number.
+num1: A juice mix uses 2 cups of mango juice for every 7 cups of water. How many cups of water go with 6 cups of mango juice? | 21
+hint: How many times bigger is 6 than 2?
+num2: In a garden, the ratio of tomato plants to pepper plants is 4:3. There are 28 plants in all. How many tomato plants are there? | 16
+hint: There are 4 + 3 = 7 parts in all. How many plants are in one part?
+mc2: A team has 5 forwards for every 2 goalies. Which could be the numbers of forwards and goalies on the team? | 15 forwards and 6 goalies | 7 forwards and 4 goalies | 10 forwards and 2 goalies | 6 forwards and 15 goalies
+hint: Check whether both numbers were multiplied by the same number.
+sa2: Explain what the ratio 5:2 means for a team that has 5 forwards for every 2 goalies. Give one other pair of numbers with the same ratio. | For every 5 forwards there are 2 goalies. For example, 10 forwards and 4 goalies keep the same ratio because both numbers are doubled.
+quiz:
+mc1: A bag has 8 red beads and 5 blue beads. What is the ratio of blue beads to all the beads? | 5:13 | 5:8 | 8:13 | 13:5
+mc2: Which pair of ratios is equivalent? | 4:6 and 10:15 | 2:3 and 3:4 | 5:8 and 8:5 | 3:7 and 6:21
+num2: Paint is mixed with 3 parts blue to 2 parts white. Leila uses 18 liters of blue. How many liters of white does she use? | 12
+num2: The ratio of adults to children on a field trip is 2:9. There are 44 people on the trip. How many children are there? | 36
+mc2: A recipe uses flour and sugar in a ratio of 5:2. Which amounts keep the same ratio? | 15 cups flour and 6 cups sugar | 7 cups flour and 4 cups sugar | 10 cups flour and 7 cups sugar | 5 cups flour and 5 cups sugar
+num3: Marco and Aiyana share $72 in the ratio 5:3. How many more dollars does Marco get than Aiyana? | 18
+sa2: Diego says 2:3 and 4:5 are equivalent ratios because he added 2 to each number. Explain his mistake. | Equivalent ratios come from multiplying or dividing both numbers by the same number, not adding. Doubling 2:3 gives 4:6, not 4:5.
+
+lesson: Ratio tables, tape diagrams and graphs | 6.RP.A.3
+practice:
+num1: A ratio table shows 2 laps in 5 minutes, 4 laps in 10 minutes and 6 laps in 15 minutes. How many minutes does it take to run 10 laps? | 25
+hint: Add two rows of the table together, or find the time for 1 lap.
+mc2: The ratio of x to y is 1:3. Which point would be on the graph of these equivalent ratios? | (4, 12) | (3, 1) | (4, 7) | (12, 4)
+hint: The y-value should be 3 times the x-value.
+num2: A tape diagram shows Kenji's stamps as 4 equal boxes and Rosa's stamps as 7 boxes of the same size. Rosa has 21 more stamps than Kenji. How many stamps does Kenji have? | 28
+hint: The difference is how many boxes? What is one box worth?
+mc2: Which table shows equivalent ratios? | 2:5, 4:10, 6:15 | 2:5, 3:6, 4:7 | 2:5, 4:7, 8:9 | 2:5, 5:2, 10:4
+hint: Look for a number you multiply by to get from one row to the next.
+num2: Two numbers are in the ratio 3:8 and their sum is 77. What is the larger number? | 56
+hint: Draw 3 boxes and 8 boxes. What is one box worth?
+quiz:
+num1: A ratio table shows that 4 movie tickets cost $18. How many dollars do 12 tickets cost? | 54
+num2: The ratio of apples to oranges in a basket is 2:5. There are 35 pieces of fruit. How many oranges are there? | 25
+mc2: The points (2, 5), (4, 10) and (6, 15) are graphed. What is true about them? | They lie on a straight line through (0, 0) | They lie on a curve | They lie on a straight line that does not pass through (0, 0) | They show the ratio 5:2
+num2: In a choir, the ratio of sopranos to altos is 5:4. There are 6 more sopranos than altos. How many singers are in the choir? | 54
+mc2: A double number line shows 3 cups of oats matched with 12 cookies. How many cookies match 5 cups of oats? | 20 | 15 | 17 | 60
+mc3: Hana made this ratio table: 3 to 7, 6 to 14, 9 to 21, 12 to 27. Which entry is wrong? | 12 to 27 | 6 to 14 | 9 to 21 | 3 to 7
+num3: Two schools collect cans in a ratio of 7:4. Together they collect 990 cans. How many more cans does the first school collect than the second? | 270
+sa2: Explain how a tape diagram helps you solve this problem: The ratio of cats to dogs at a shelter is 3:5 and there are 40 animals. How many dogs are there? | Draw 3 boxes for cats and 5 boxes for dogs, 8 equal boxes in all. 40 ÷ 8 = 5 animals per box, so there are 5 x 5 = 25 dogs.
+
+lesson: Unit rates and rate problems | 6.RP.A.2, 6.RP.A.3
+practice:
+num1: A car travels 240 miles on 8 gallons of gas. How many miles per gallon is that? | 30
+hint: Divide to find the distance for 1 gallon.
+mc2: Which is the better buy for rice? | 5 pounds for $6.50 | 2 pounds for $2.80 | Both have the same unit price | You cannot tell without more information
+hint: Find the price of 1 pound for each choice.
+num2: Ayesha types 345 words in 5 minutes. At this rate, how many words does she type in 12 minutes? | 828
+hint: First find how many words she types in 1 minute.
+num1: How many inches are in 4.5 feet? | 54
+hint: 1 foot = 12 inches.
+mc2: A printer prints 84 pages in 6 minutes. What is its unit rate? | 14 pages per minute | 90 pages per minute | 78 pages per minute | 504 pages per minute
+sa2: Explain how "3 feet per second" and "1/3 second per foot" describe the same situation. | Both come from the ratio 3 feet : 1 second. One tells the distance in 1 second and the other tells the time for 1 foot.
+quiz:
+num1: A 12-pack of water costs $4.20. What is the price per bottle, in dollars? | 0.35
+mc2: Jamal runs 3 miles in 27 minutes. Tia runs 5 miles in 40 minutes. Who runs faster? | Tia, at 8 minutes per mile | Jamal, at 9 minutes per mile | Jamal, because he runs for fewer minutes | They run at the same speed
+num2: A faucet fills a 60-liter tank in 4 minutes. How many liters flow out of it in 7 minutes? | 105
+num2: A recipe needs 2.5 kilograms of potatoes. How many grams is that? | 2500
+num3: A cyclist rides at 18 kilometers per hour. How many minutes does it take her to ride 12 kilometers? | 40
+mc2: A store sells 3 notebooks for $5.25. How much do 8 notebooks cost at the same rate? | $14.00 | $13.25 | $15.75 | $10.50
+num3: Mia earns $96 for 8 hours of babysitting. Leo earns $13 per hour. How many more dollars does Leo earn than Mia for 10 hours of work? | 10
+sa2: Priya says 5 pounds of beans for $9 is a better deal than 3 pounds for $5.70 because you get more beans. Explain whether her reasoning is correct. | Her reasoning is not correct, even though her choice is. She should compare unit prices: $9 ÷ 5 = $1.80 per pound and $5.70 ÷ 3 = $1.90 per pound. The 5-pound bag is the better buy because its price per pound is lower.
+
+lesson: Percent | 6.RP.A.3
+practice:
+mc1: What is 3/5 written as a percent? | 60% | 35% | 3.5% | 30%
+hint: Write an equivalent fraction with a denominator of 100.
+num1: What is 25% of 64? | 16
+hint: 25% is the same as 1/4.
+mc2: Which decimal equals 7%? | 0.07 | 0.7 | 7.0 | 0.007
+hint: Percent means "out of 100".
+num2: 18 is 30% of what number? | 60
+hint: If 30% is 18, what is 10%? What is 100%?
+num2: A class has 25 students and 40% of them walk to school. How many students walk? | 10
+sa2: Explain how a 10 by 10 grid can show 45%. | The grid has 100 squares. Shade 45 of them; 45 out of 100 is 45%.
+quiz:
+num1: What is 15% of 80? | 12
+mc2: Which list is ordered from least to greatest? | 0.3, 35%, 2/5 | 2/5, 35%, 0.3 | 35%, 0.3, 2/5 | 0.3, 2/5, 35%
+num2: A soccer team won 12 games, which was 60% of the games it played. How many games did it play? | 20
+num2: A bike costs $240. Ana has saved 35% of the cost. How many dollars has she saved? | 84
+mc2: 45 out of 75 students chose pizza for a class party. What percent chose pizza? | 60% | 45% | 75% | 30%
+num3: A theater has 500 seats. On Friday 84% of the seats are filled, and on Saturday 92% are filled. How many more people attend on Saturday than on Friday? | 40
+sa2: Kofi says 150% of 40 must be less than 40 because a percent is always part of a whole. Explain his mistake and find the correct value. | A percent greater than 100% means more than the whole. 150% of 40 = 1.5 x 40 = 60.
+
+test:
+mc1: Which ratio compares 9 pencils to 4 erasers? | 9:4 | 4:9 | 9:13 | 13:4
+mc1: What is 40% of 50? | 20 | 40 | 10 | 25
+mc1: Which fraction is equal to 75%? | 3/4 | 7/5 | 1/75 | 7/10
+num1: How many centimeters are in 3.2 meters? | 320
+mc2: Which ratio is equivalent to 6:9? | 2:3 | 3:2 | 9:12 | 6:3
+mc2: A runner goes 5 kilometers in 25 minutes. At the same rate, how far does she go in 40 minutes? | 8 kilometers | 20 kilometers | 10 kilometers | 6 kilometers
+mc2: Which store has the lowest price per pound of apples? | Store A: 4 pounds for $5.00 | Store B: 3 pounds for $4.05 | Store C: 2 pounds for $2.70 | Store D: 5 pounds for $6.75
+mc2: Four points are graphed. Which point is NOT on the same line as (2, 7), the graph of the ratio 2:7? | (6, 20) | (4, 14) | (6, 21) | (8, 28)
+num2: The ratio of fiction to nonfiction books on a library cart is 5:3. There are 40 books on the cart. How many are nonfiction? | 15
+num2: A pump moves 450 gallons of water in 15 minutes. How many gallons does it move in 1 hour? | 1800
+num2: Lucia scored 17 out of 20 points on a quiz. What percent did she score? | 85
+num2: 27 students take the bus. That is 45% of the students in the grade. How many students are in the grade? | 60
+mc2: A double number line shows $6 for 4 tickets. How much do 10 tickets cost? | $15 | $12 | $24 | $40
+mc3: Mr. Okafor mixes green paint with 2 cups of yellow for every 3 cups of blue. Ms. Lin mixes 3 cups of yellow for every 5 cups of blue. Whose paint has the greater share of yellow? | Mr. Okafor's, because 2/5 of his mix is yellow and only 3/8 of hers is | Ms. Lin's, because she uses more cups of yellow | They are the same color | Ms. Lin's, because 3:5 is a larger ratio than 2:3
+num3: Sofia and her brother split the cost of a $56 gift in the ratio 3:4. Sofia pays the smaller share. How many dollars does she pay? | 24
+num3: A family drives 330 miles in 6 hours. At the same speed, how many more hours will it take them to drive the remaining 220 miles? | 4
+num3: A jacket costs $80. Jun has a coupon that takes 30% off the price, and then he uses a $10 gift card. How many dollars does he still need to pay? | 46
+num3: At a school fair, the ratio of students to adults is 7:2. There are 35 more students than adults. How many people are at the fair? | 63
+mc2: Which rate is equivalent to 120 words in 2 minutes? | 60 words per minute | 240 words per minute | 1/60 word per minute | 2 words per 120 minutes
+num2: A 20-ounce bag of trail mix costs $5. What is the price per ounce, in dollars? | 0.25
+sa2: Explain how to find 20% of 65 using what you know about 10%. | 10% of 65 is 6.5 (divide by 10). 20% is double 10%, so 20% of 65 = 2 x 6.5 = 13.
+sa3: Nadia says the ratios 4:10 and 6:12 are equivalent because in both the second number is 6 more than the first. Explain whether she is correct, using a table, unit rates or simplified ratios. | She is not correct. 4:10 simplifies to 2:5 and 6:12 simplifies to 1:2, so they are not equivalent. Equivalent ratios have the same multiplicative relationship, not the same difference.
+task3: The cafeteria makes fruit punch using 3 cups of pineapple juice for every 5 cups of orange juice. (a) Make a ratio table showing the cups of each juice in 16, 24 and 40 cups of punch. (b) How much of each juice is needed for 120 cups of punch? (c) Pineapple juice costs $0.40 per cup and orange juice costs $0.30 per cup. What is the total juice cost for 120 cups of punch? (d) What percent of the punch is pineapple juice? Explain how you know. | (a) 6 and 10, 9 and 15, 15 and 25; (b) 45 cups pineapple and 75 cups orange; (c) $18 + $22.50 = $40.50; (d) 3/8 = 37.5%, with clear explanations for every part. | All parts set up correctly with one calculation error or a missing explanation. | Table and part (b) correct, but cost or percent incorrect. | Little correct work beyond one row of the table.
+
+unit: Module 2: Arithmetic operations including dividing by a fraction | 6.NS.A.1, 6.NS.B.2, 6.NS.B.3, 6.NS.B.4 | g6decsub, g6decdiv, g6fwhole, g6fdiv
+el: Show each fraction division with a tape diagram or fraction strips, and teach the question "How many ___ are in ___?" as a sentence frame for division.
+
+lesson: Dividing fractions by fractions | 6.NS.A.1
+practice:
+mc1: How many 1/4-cup scoops are in 3 cups? | 12 | 3/4 | 7 | 4/3
+hint: How many fourths are in one whole? In three wholes?
+num1: 2/3 ÷ 1/6 = ? | 4
+hint: How many sixths are in 2/3?
+num2: 3/4 ÷ 2/5 = ? | 15/8
+hint: Multiply by the reciprocal of the divisor.
+mc2: Which story matches 5 ÷ 1/2? | How many half-mile laps make 5 miles? | What is half of 5 miles? | 5 friends share 1/2 of a pizza. How much does each get? | A 1/2-mile trail is walked 5 times. How far is that?
+hint: Dividing by 1/2 asks how many halves fit into 5.
+num2: A ribbon is 7/8 yard long. It is cut into pieces that are each 1/8 yard long. How many pieces are there? | 7
+sa2: Describe a tape diagram or number line that shows 1 1/2 ÷ 3/4 = 2. | Mark 1 1/2 on a number line divided into fourths; it is 6 fourths. Groups of 3 fourths fit into 6 fourths exactly 2 times.
+quiz:
+num1: 4 ÷ 2/3 = ? | 6
+num2: 5/6 ÷ 1/3 = ? | 2 1/2
+mc2: Which expression has the same value as 3/5 ÷ 4/7? | 3/5 x 7/4 | 5/3 x 4/7 | 3/5 x 4/7 | 3/7 x 4/5
+num2: A baker has 4 1/2 cups of flour. Each batch of rolls needs 3/4 cup. How many batches can she make? | 6
+num3: A rectangle has an area of 3/4 square meter and a length of 1 1/2 meters. What is its width in meters? | 1/2
+mc2: Which quotient is greater than 1? | 3/4 ÷ 1/2 | 1/2 ÷ 3/4 | 1/3 ÷ 2/3 | 2/5 ÷ 4/5
+num3: A hiking trail is 5 1/4 miles long. Water stations are placed every 3/4 mile, with the first one 3/4 mile from the start and the last one at the end. How many water stations are there? | 7
+sa2: Malia says 2 ÷ 1/3 = 2/3. Explain her mistake and give the correct answer. | She multiplied by 1/3 instead of dividing. Dividing 2 by 1/3 asks how many thirds are in 2. There are 3 thirds in each whole, so there are 6 thirds in 2. The answer is 6.
+
+lesson: Adding, subtracting and multiplying multi-digit decimals | 6.NS.B.3
+practice:
+num1: 12.45 + 3.7 = ? | 16.15
+hint: Line up the decimal points before adding.
+num1: 20 - 6.38 = ? | 13.62
+hint: Write 20 as 20.00.
+num2: 3.6 x 0.25 = ? | 0.9
+hint: Multiply 36 x 25, then count the decimal places in both factors.
+mc2: Which is the best estimate for 4.92 x 6.1? | 30 | 3 | 300 | 24
+hint: Round each factor to the nearest whole number.
+num2: Ravi buys 2.5 pounds of grapes at $3.18 per pound. How many dollars does he pay? | 7.95
+sa2: Explain why 0.4 x 0.3 = 0.12 and not 1.2. | Tenths times tenths makes hundredths, so 4 tenths x 3 tenths = 12 hundredths = 0.12. It also makes sense because both factors are less than 1, so the product must be less than each factor.
+quiz:
+num1: 7.035 + 12.8 = ? | 19.835
+num1: 15.2 - 8.76 = ? | 6.44
+num2: 1.25 x 4.8 = ? | 6
+mc2: Which product is less than 5? | 5 x 0.9 | 5 x 1.2 | 5 x 1 | 5 x 2.01
+num2: A runner ran 3.75 kilometers on Monday, 4.6 kilometers on Wednesday and 5.25 kilometers on Friday. How many kilometers did she run in all? | 13.6
+num3: Gas costs $4.85 per gallon. Ms. Tran buys 12.4 gallons and pays with a $100 bill. How many dollars of change does she get? | 39.86
+mc2: Ben computed 6.2 x 0.3 = 18.6. What error did he make? | He placed the decimal point incorrectly; the product is 1.86 | He should have added instead of multiplying | He forgot to regroup; the product is 19.6 | He made no error
+sa2: A sandwich costs $6.75 and a drink costs $1.80. Explain how to find the cost of 3 sandwiches and 2 drinks, and find the total. | Multiply 3 x 6.75 = 20.25 and 2 x 1.80 = 3.60, then add: 20.25 + 3.60 = $23.85.
+
+lesson: Dividing whole numbers and decimals | 6.NS.B.2, 6.NS.B.3
+practice:
+num1: 3,456 ÷ 12 = ? | 288
+hint: Use long division. How many 12s are in 34?
+num2: 7.2 ÷ 0.6 = ? | 12
+hint: Multiply both numbers by 10 so the divisor is a whole number.
+num2: 4.5 ÷ 0.15 = ? | 30
+hint: Multiply both numbers by 100.
+mc2: Which division has the same quotient as 2.4 ÷ 0.08? | 240 ÷ 8 | 24 ÷ 8 | 2.4 ÷ 8 | 0.24 ÷ 8
+hint: Multiply the dividend and the divisor by the same power of 10.
+num2: A 9.6-meter rope is cut into pieces 0.4 meter long. How many pieces are there? | 24
+sa2: Explain why 6 ÷ 0.5 is greater than 6. | Dividing by 0.5 asks how many halves are in 6. There are 2 halves in each whole, so there are 12 halves in 6, which is greater than 6.
+quiz:
+num1: 5,184 ÷ 24 = ? | 216
+num2: 13.65 ÷ 3.5 = ? | 3.9
+mc2: Which quotient is greater than 10? | 4 ÷ 0.2 | 4 ÷ 2 | 0.4 ÷ 2 | 4 ÷ 20
+num2: A 2.5-liter bottle of juice fills cups that hold 0.125 liter each. How many cups can be filled? | 20
+num3: A school orders 1,512 water bottles. They come in cases of 24, and each case costs $8.75. How many dollars does the order cost? | 551.25
+mc2: Keiko divided 0.84 by 0.4 and got 0.21. Which statement is true? | Her answer is wrong; the quotient is 2.1 | Her answer is correct | The quotient is 21 | The quotient is 0.021
+num2: A car uses 11.5 gallons of gas to travel 368 miles. How many miles per gallon does it get? | 32
+sa2: Explain how you can check that 54.6 ÷ 1.3 = 42. | Multiply the quotient by the divisor: 42 x 1.3 = 54.6. This matches the dividend, so the quotient is correct.
+
+lesson: Factors, multiples and the distributive property | 6.NS.B.4
+practice:
+num1: What is the greatest common factor (GCF) of 18 and 30? | 6
+hint: List the factors of each number and find the largest one they share.
+num1: What is the least common multiple (LCM) of 6 and 8? | 24
+hint: List multiples of 8 until you find one that is also a multiple of 6.
+mc2: Which expression uses the GCF to rewrite 24 + 36? | 12(2 + 3) | 6(4 + 6) | 2(12 + 18) | 4(6 + 9)
+hint: Find the greatest number that divides both 24 and 36.
+num2: Hot dogs come in packs of 10 and buns come in packs of 8. What is the fewest hot dogs you can buy to have exactly the same number of hot dogs and buns? | 40
+num2: A teacher has 42 pencils and 56 erasers. She makes identical kits with nothing left over. What is the greatest number of kits she can make? | 14
+sa2: Explain how you can tell whether a word problem asks for a GCF or an LCM. | GCF problems split two amounts into the greatest number of identical groups. LCM problems look for the first time two repeating events happen together, or the smallest amount that is a multiple of both.
+quiz:
+num1: What is the GCF of 45 and 60? | 15
+num1: What is the LCM of 9 and 12? | 36
+mc2: Which expression is equal to 32 + 56? | 8(4 + 7) | 4(8 + 7) | 8(4 + 56) | 2(16 + 56)
+num2: One bus leaves a station every 12 minutes and another leaves every 18 minutes. Both leave at 8:00. How many minutes later will they next leave together? | 36
+num2: A florist has 36 roses and 48 tulips. She makes identical bouquets using every flower. What is the greatest number of bouquets she can make? | 12
+mc2: Which number is a common factor of 28 and 70? | 14 | 4 | 10 | 28
+num3: A coach has 60 cones and 84 pinnies. She packs the greatest possible number of identical equipment bags, using all of them. How many pinnies go in each bag? | 7
+sa2: Luis says the LCM of 4 and 6 is 24 because 4 x 6 = 24. Explain his mistake. | 24 is a common multiple of 4 and 6, but it is not the least one. 12 is also a multiple of both, so the LCM is 12.
+
+test:
+mc1: What is 3/4 ÷ 1/4? | 3 | 3/16 | 1/3 | 4/3
+mc1: What is the GCF of 16 and 40? | 8 | 4 | 2 | 80
+num1: 9.4 + 12.68 = ? | 22.08
+num1: 2,592 ÷ 16 = ? | 162
+num1: 0.6 x 0.7 = ? | 0.42
+mc2: What is 2/5 ÷ 3/10? | 4/3 | 3/25 | 3/4 | 6/50
+mc2: Which expression has the same value as 5/8 ÷ 3/4? | 5/8 x 4/3 | 8/5 x 3/4 | 5/8 x 3/4 | 5/3 x 8/4
+mc2: What is the LCM of 10 and 15? | 30 | 5 | 150 | 60
+mc2: What is 3.2 ÷ 0.04? | 80 | 8 | 0.8 | 800
+num2: 8 - 3.457 = ? | 4.543
+num2: How many 3/8-pound servings are in 6 pounds of cheese? | 16
+num2: Pens cost $1.35 each. How many dollars do 24 pens cost? | 32.4
+mc2: Which expression is equal to 27 + 45? | 9(3 + 5) | 3(9 + 5) | 9(27 + 5) | 5(5 + 9)
+num3: A rectangular rug has an area of 10 1/2 square feet. Its width is 2 1/3 feet. What is its length in feet? | 4 1/2
+num3: Maya earns $12.50 per hour. She works 6.5 hours on Saturday and 4.5 hours on Sunday. How many dollars does she earn in all? | 137.5
+num3: An art club has 3 3/4 pounds of clay. Each student gets 2/3 pound. After as many students as possible get a full share, how many pounds of clay are left? | 5/12
+num3: Red lights on a string blink every 4 seconds and green lights blink every 10 seconds. They blink together at the start. How many more times will they blink together in the next 2 minutes? | 6
+num2: A 7.5-meter board is cut into pieces 0.25 meter long. How many pieces are there? | 30
+mc3: Without calculating, which quotient is greatest? | 12 ÷ 0.03 | 12 ÷ 0.3 | 12 ÷ 3 | 12 ÷ 30
+mc2: Which situation is solved by finding a GCF? | making the greatest number of identical snack bags from 24 crackers and 32 grapes | finding when two alarms on different schedules ring together | finding the total cost of 24 crackers | finding how many grapes are left after eating 8
+sa2: Use a picture or words to explain why 1/2 ÷ 1/4 = 2. | One half of a whole is the same as two fourths, so exactly 2 one-fourths fit into one-half.
+sa3: Ellie says 4.2 ÷ 0.6 = 0.7. Explain her mistake and find the correct quotient. | Dividing by a number less than 1 gives a quotient greater than the dividend, so 0.7 cannot be right. Multiply both numbers by 10: 42 ÷ 6 = 7.
+task3: Plan a class trail mix. You have 4 1/2 pounds of peanuts, 2 1/2 pounds of raisins and $20 to spend on chocolate chips that cost $2.75 per bag. (a) Each bag of trail mix uses 3/8 pound of peanuts and 1/4 pound of raisins. How many bags can each ingredient make, and how many complete bags of trail mix can you make? (b) How many bags of chocolate chips can you buy, and how much money is left? (c) You also want to split 24 granola bars and 36 fruit cups into identical snack packs with nothing left over. What is the greatest number of packs, and what is in each? Show your work. | (a) Peanuts make 12 bags and raisins make 10 bags, so 10 complete bags; (b) 7 bags of chips cost $19.25, with $0.75 left; (c) 12 packs, each with 2 granola bars and 3 fruit cups (GCF 12); all work shown with correct operations. | All parts correct with one small calculation error or a missing explanation. | Two parts correct, or correct setups with several calculation errors. | Little correct work.
+
+unit: Module 3: Rational numbers | 6.NS.C.5, 6.NS.C.6, 6.NS.C.7, 6.NS.C.8 | g6abs, g6dist
+el: Keep a large vertical number line (like a thermometer) and a coordinate grid on the wall; pair the words above/below, left/right, gain/loss and deposit/withdrawal with positive and negative signs.
+
+lesson: Positive and negative numbers on the number line | 6.NS.C.5, 6.NS.C.6
+practice:
+mc1: A diver is 15 feet below the surface of the water. Which number shows her position? | -15 | 15 | 0 | -1/15
+hint: Below the surface is less than zero.
+mc1: What is the opposite of 8? | -8 | 1/8 | 0 | 8
+num1: What is the opposite of the opposite of -6? | -6
+hint: Find the opposite of -6 first, then take the opposite of that number.
+mc2: Which situation is represented by +250? | a deposit of $250 | a withdrawal of $250 | a loss of 250 yards | 250 feet below sea level
+num2: On a number line, a point is 3 units to the left of 1. What number is it? | -2
+hint: Start at 1 and count 3 units toward the negative numbers.
+sa2: Explain what 0 means in a situation about elevation and in a situation about a bank account. | For elevation, 0 is sea level. For a bank account, 0 means there is no money in the account and no money owed.
+quiz:
+mc1: Which number is 4 units from 0 and to the left of 0? | -4 | 4 | -1/4 | 0
+mc2: A point on a number line is halfway between -3 and 1. Which number is it? | -1 | 0 | -2 | 1
+num2: The temperature at noon was 7 degrees. At midnight it was the opposite of that temperature. What was the temperature at midnight, in degrees? | -7
+mc2: Which pair of numbers are opposites? | 2.5 and -2.5 | 2.5 and 1/2.5 | -2.5 and -5/2 | 2.5 and 5/2
+num2: A number line has tick marks every 0.5 unit. A point is 5 tick marks to the left of 1. What number is it? | -1.5
+mc2: A football team loses 6 yards on a play. Which number represents this? | -6 | 6 | 0 | -1/6
+sa2: Explain why the opposite of a negative number is positive. Use a number line in your explanation. | Opposites are the same distance from 0 on opposite sides. A negative number is to the left of 0, so its opposite is the same distance to the right of 0, which is positive.
+
+lesson: Ordering and comparing rational numbers | 6.NS.C.7
+practice:
+mc1: Which number is greatest? | -2 | -9 | -5 | -11
+hint: On a number line, numbers farther to the right are greater.
+mc2: Which statement comparing -4 and -1 is true? | -4 < -1 | -4 > -1 | -1 < -4 | -4 = -1
+num2: What is the least number in this list: 0.5, -1.25, -3/4, -1.2? | -1.25
+hint: Place each number on a number line.
+mc2: Which list is in order from least to greatest? | -3.5, -2, 0, 1.5 | 0, -2, 1.5, -3.5 | -2, -3.5, 0, 1.5 | 1.5, 0, -2, -3.5
+num2: Lake A is at -10 feet, Lake B is at -45 feet and Lake C is at -28 feet compared with sea level. What is the elevation of the lowest lake, in feet? | -45
+sa2: Write an inequality comparing -5 degrees and -2 degrees, and explain what it means about the temperatures. | -5 < -2. A temperature of -5 degrees is colder than -2 degrees because it is farther below zero.
+quiz:
+mc1: Which inequality is true? | -8 < 3 | -8 > 3 | 3 < -8 | -8 > -3
+mc2: Which number is between -2 and -1? | -1.6 | -2.4 | -0.6 | 1.5
+num2: What is the greatest number in this list: -0.2, -1/3, -0.25, -0.3? | -0.2
+mc2: Which list is ordered from greatest to least? | 2, -1/2, -1, -2.5 | -2.5, -1, -1/2, 2 | 2, -2.5, -1, -1/2 | -1/2, -1, 2, -2.5
+mc2: Bank balances are Ari -$12, Bea -$30, Cy $5 and Dee -$8. Who owes the most money? | Bea | Ari | Cy | Dee
+mc3: Kayla says -9 > -4 because 9 > 4. Which statement explains her error? | -9 is farther to the left of 0 than -4, so -9 is less | 9 is not greater than 4 | Negative numbers cannot be compared | -9 and -4 are equal
+num2: The low temperatures for four days were -3, 2, -7 and -1 degrees. What was the warmest of the negative temperatures, in degrees? | -1
+sa2: Explain how comparing -6 and -10 is different from comparing 6 and 10. | 10 > 6, but -10 < -6 because -10 is farther to the left of 0. For negative numbers, the number farther from 0 is the smaller number.
+
+lesson: Absolute value | 6.NS.C.7
+practice:
+num1: What is abs(-14)? | 14
+hint: Absolute value is the distance from 0.
+mc1: Which number has the greatest absolute value? | -12 | 9 | -5 | 11
+hint: Ignore the signs and compare distances from 0.
+mc2: Which statement about absolute value is true? | abs(-6) = abs(6) | abs(-6) < abs(6) | abs(-6) = -6 | abs(-6) > abs(6)
+num2: An account balance is -$35. How many dollars of debt does that show? | 35
+hint: The size of the debt is the absolute value of the balance.
+mc2: Which two numbers both have an absolute value of 4.5? | 4.5 and -4.5 | 4.5 and 0.45 | -4.5 and -45 | 4.5 and 5.4
+sa2: Explain why a balance of -$50 is less than -$20 but represents a larger debt. | -50 is to the left of -20 on the number line, so it is less. Its absolute value, 50, is greater than 20, so it is a larger debt.
+quiz:
+num1: What is abs(-7.25)? | 7.25
+num2: abs(-8) + abs(3) = ? | 11
+mc2: A submarine is at -340 feet and a fish is at -95 feet. Which is farther from the surface? | the submarine, because abs(-340) > abs(-95) | the fish, because -95 > -340 | They are the same distance from the surface | the fish, because abs(-95) > abs(-340)
+mc2: Which values of x make abs(x) = 10 true? | 10 and -10 | 10 only | -10 only | 0 and 10
+num2: Two hikers start at a trail sign. One walks 3.5 miles west and the other walks 2.75 miles east. How many miles apart are they? | 6.25
+mc3: Which statement is always true? | The absolute value of a number is never negative | The absolute value of a number is always positive | abs(x) is always greater than x | abs(x) is always equal to x
+num2: abs(-15) - abs(-6) = ? | 9
+sa2: Chen says abs(-3) is less than abs(2) because -3 is less than 2. Explain his mistake. | Absolute value is distance from 0, not position. -3 is 3 units from 0 and 2 is 2 units from 0, so abs(-3) = 3 is greater than abs(2) = 2.
+
+lesson: The coordinate plane | 6.NS.C.6, 6.NS.C.8
+practice:
+mc1: In which quadrant is the point (-3, 5)? | Quadrant II | Quadrant I | Quadrant III | Quadrant IV
+hint: A negative x means left of the y-axis; a positive y means above the x-axis.
+mc2: The point (4, -2) is reflected across the x-axis. What is the new point? | (4, 2) | (-4, -2) | (-4, 2) | (2, -4)
+hint: Reflecting across the x-axis changes the sign of the y-coordinate.
+num2: What is the distance between (2, -3) and (2, 5)? | 8
+hint: The x-coordinates match, so find the vertical distance.
+num2: What is the distance between (-6, 1) and (4, 1)? | 10
+mc2: Which point is in Quadrant IV? | (7, -1) | (-7, 1) | (-7, -1) | (7, 1)
+sa2: Explain how to use absolute value to find the distance between (-5, 2) and (3, 2). | The y-coordinates match, so the distance is horizontal. The points are on opposite sides of the y-axis, 5 and 3 units away, so the distance is abs(-5) + abs(3) = 8 units.
+quiz:
+mc1: Which point is on the y-axis? | (0, -4) | (-4, 0) | (4, 4) | (-4, -4)
+mc2: The point (-2, 6) is reflected across the y-axis. What is the new point? | (2, 6) | (-2, -6) | (2, -6) | (6, -2)
+num2: What is the distance between (-1, -7) and (-1, 3)? | 10
+num2: A rectangle has vertices at (-3, 2), (5, 2), (5, -4) and (-3, -4). What is its perimeter in units? | 28
+mc2: A point is reflected across the x-axis and then across the y-axis. It ends at (3, -5). Where did it start? | (-3, 5) | (3, 5) | (-3, -5) | (5, -3)
+num3: On a town map each unit is 1 block. The library is at (-4, 3), the school is at (-4, -5) and the park is at (6, -5). Walking along the grid from the library to the school and then to the park, how many blocks long is the walk? | 18
+mc2: A map has its origin at City Hall, with east and north positive. A museum is 3 blocks west and 2 blocks south of City Hall. What are its coordinates? | (-3, -2) | (3, 2) | (-2, -3) | (3, -2)
+sa2: Explain how the signs of the coordinates tell you which quadrant a point is in. | Quadrant I is (+, +), II is (-, +), III is (-, -) and IV is (+, -). The sign of x tells left or right of the y-axis and the sign of y tells above or below the x-axis.
+
+test:
+mc1: Which number represents a temperature of 12 degrees below zero? | -12 | 12 | -1/12 | 0.12
+num1: What is abs(-23)? | 23
+mc1: In which quadrant is (-6, -2)? | Quadrant III | Quadrant II | Quadrant IV | Quadrant I
+mc1: What is the opposite of -3/4? | 3/4 | -4/3 | 4/3 | -3/4
+mc2: Which comparison is true? | -2.5 > -3 | -2.5 < -3 | -3 > 0 | -2.5 = -3
+mc2: Which list is ordered from least to greatest? | -6, -4.5, -1/2, 3 | -1/2, -4.5, -6, 3 | 3, -1/2, -4.5, -6 | -4.5, -6, -1/2, 3
+mc2: Which number has the smallest absolute value? | -0.8 | 1.2 | -2 | 0.9
+mc2: The point (5, 3) is reflected across the y-axis. What is the image? | (-5, 3) | (5, -3) | (-5, -3) | (3, 5)
+num2: What is the distance between (-8, 4) and (7, 4)? | 15
+num2: A city is 75 feet below sea level and a mountain town is 1,240 feet above sea level. How many feet higher is the town than the city? | 1315
+num2: What is the greatest number in this set: -7, -2/3, -0.7, -1? | -2/3
+num2: abs(-12) - abs(5) = ? | 7
+mc2: Which statement about the balances -$40 and -$15 is true? | -40 < -15, and -$40 is the larger debt | -40 > -15, and -$40 is the larger debt | -40 < -15, and -$15 is the larger debt | -40 > -15, and -$15 is the larger debt
+num3: A rectangle on a coordinate plane has vertices (-4, 6), (2, 6), (2, -3) and (-4, -3). What is its area in square units? | 54
+num3: Point A is at (-3, 4). Point B is the reflection of A across the x-axis. What is the distance between A and B? | 8
+num3: The highest temperature recorded at a mountain weather station in a year was 38 degrees and the lowest was -14 degrees. How many degrees apart are these temperatures? | 52
+num2: On a number line, which number is 4 units to the left of 1.5? | -2.5
+mc3: Which statement is true for every negative number n? | abs(n) > n | abs(n) < n | abs(n) = n | abs(n) is negative
+num2: A number x has abs(x) = 5 and x < 0. What is x? | -5
+mc2: Which ordered pair is 3 units below the x-axis and 2 units to the left of the y-axis? | (-2, -3) | (-3, -2) | (2, -3) | (-2, 3)
+sa2: Explain why -1/2 is greater than -3/4. | On a number line, -1/2 is closer to 0 and to the right of -3/4. Numbers to the right are greater, so -1/2 > -3/4.
+sa3: Tomas says the distance between (-2, 5) and (-2, -1) is 4 because 5 + (-1) = 4. Explain his mistake and find the correct distance. | The points are on opposite sides of the x-axis, so the distance is the sum of their distances from the axis: abs(5) + abs(-1) = 6 units. He combined the coordinates instead of adding distances.
+task3: A scavenger hunt map uses a coordinate plane centered on the school flagpole at (0, 0). Each unit is 10 meters, and east and north are positive. Clue 1 is at (-4, 3), Clue 2 is at (-4, -5), Clue 3 is at (6, -5) and the finish is at (6, 3). (a) Name the quadrant of each location. (b) Find the distance in meters from Clue 1 to Clue 2, from Clue 2 to Clue 3 and from Clue 3 to the finish. (c) A team walks Clue 1 to Clue 2 to Clue 3 to the finish and then back to Clue 1. How many meters is the whole walk? (d) A bonus clue is the reflection of Clue 1 across the x-axis. Give its coordinates and explain how you found them. | (a) II, III, IV, I; (b) 80 m, 100 m, 80 m; (c) 80 + 100 + 80 + 100 = 360 m; (d) (-4, -3), found by changing the sign of the y-coordinate; all distances explained with absolute value. | All parts correct with a small error in units or explanation. | Quadrants and some distances correct, but the total or reflection is wrong. | Little correct work.
+
+unit: Module 4: Expressions and equations | 6.EE.A.1, 6.EE.A.2, 6.EE.A.3, 6.EE.A.4, 6.EE.B.5, 6.EE.B.6, 6.EE.B.7, 6.EE.B.8, 6.EE.C.9 | g6exp, g6ooo, g6eval, g6like, onestepadd, onestepmul, g6ineq
+el: Build a two-column chart that pairs word phrases with symbols (more than: +, less than: -, product: x, quotient: ÷, at least: >=, at most: <=) and have students read expressions aloud before evaluating them.
+
+lesson: Exponents and the order of operations | 6.EE.A.1
+practice:
+num1: 4^3 = ? | 64
+hint: 4^3 means 4 x 4 x 4.
+num1: 18 - 2 x 5 = ? | 8
+hint: Multiply before you subtract.
+num2: 3 + 2^4 ÷ 8 = ? | 5
+hint: Evaluate the exponent first, then divide, then add.
+num2: (7 - 3)^2 x 2 = ? | 32
+mc2: Which expression equals 5 x 5 x 5 x 5? | 5^4 | 4^5 | 5 x 4 | 20
+sa2: Explain why 2^3 is not equal to 6. | 2^3 means 2 x 2 x 2 = 8. An exponent shows repeated multiplication of the base, not the base times the exponent.
+quiz:
+num1: 10^3 = ? | 1000
+num2: 40 ÷ (2 + 6) x 3 = ? | 15
+num2: (1/2)^3 = ? | 1/8
+mc2: Which expression has the greatest value? | 3^4 | 4^3 | 2^6 | 5^2
+num2: 6^2 - 4 x (5 - 2) = ? | 24
+mc2: Which value is equal to 0.3^2? | 0.09 | 0.6 | 0.9 | 0.06
+num3: A square patio is 9 feet on each side. A square rug 4 feet on each side lies on it. How many square feet of the patio are not covered by the rug? | 65
+sa2: Rosa evaluated 12 - 4 + 3 and got 5. Explain her mistake and find the correct value. | Addition and subtraction are done in order from left to right. 12 - 4 = 8, then 8 + 3 = 11. She added 4 + 3 first.
+
+lesson: Writing and evaluating expressions | 6.EE.A.2, 6.EE.B.6
+practice:
+mc1: Which expression means "7 more than a number n"? | n + 7 | 7n | n - 7 | 7 - n
+hint: "More than" means add.
+mc2: Which expression means "the quotient of a number x and 4, decreased by 2"? | x/4 - 2 | 4/x - 2 | 2 - x/4 | x/(4 - 2)
+hint: Write the quotient first, then show "decreased by 2".
+num1: Evaluate 5m - 3 when m = 6. | 27
+num2: Evaluate 2a^2 + b when a = 3 and b = 4. | 22
+hint: Find a^2 first, then multiply by 2, then add b.
+mc2: Tickets cost $9 each, and there is one $4 service fee for the whole order. Which expression gives the cost of t tickets? | 9t + 4 | 4t + 9 | 13t | 9(t + 4)
+sa2: The expression 3x gives the cost in dollars of x pounds of apples. Explain what the 3 and the x mean. | x is the number of pounds bought and 3 is the price per pound in dollars. Multiplying them gives the total cost.
+quiz:
+mc1: Which expression means "the product of 8 and a number y"? | 8y | 8 + y | y - 8 | y/8
+num1: Evaluate 20 - 3k when k = 4. | 8
+num2: Evaluate (p + q)/2 when p = 11 and q = 7. | 9
+mc2: A phone plan costs $25 a month plus $0.10 per text. Which expression gives the monthly cost for t texts? | 25 + 0.10t | 0.10 + 25t | 25.10t | 25t + 10
+num2: The perimeter of a square is 4s. What is the perimeter in centimeters of a square with s = 7.5 centimeters? | 30
+mc2: Which phrase matches 3(n + 5)? | three times the sum of a number and 5 | three times a number, plus 5 | the sum of 3 and 5 times a number | 5 more than 3
+num3: A gym charges a $30 sign-up fee and $18 per month, so the cost is 30 + 18m dollars for m months. How many dollars does it cost to belong for one full year? | 246
+sa2: Write an expression for the total cost of buying s sandwiches at $6 each and d drinks at $2 each. Then find the cost of 3 sandwiches and 4 drinks. | 6s + 2d; 6(3) + 2(4) = 18 + 8 = $26.
+
+lesson: Equivalent expressions | 6.EE.A.3, 6.EE.A.4
+practice:
+mc1: Which expression is equivalent to 4(x + 3)? | 4x + 12 | 4x + 3 | x + 12 | 7x
+hint: Multiply 4 by each term inside the parentheses.
+mc2: Which expression is equivalent to 5y + 2y + 3? | 7y + 3 | 10y | 7y^2 + 3 | 5y + 5
+hint: Only like terms can be combined.
+num2: Simplify 6a + 4 - 2a + 9. What is the coefficient of a? | 4
+hint: Combine the a terms, then combine the numbers.
+mc2: Which shows 18x + 12 written as a product using the GCF? | 6(3x + 2) | 3(6x + 2) | 2(9x + 12) | 6(3x + 12)
+mc2: Which pair of expressions are equivalent? | 2(x + 5) and 2x + 10 | 2(x + 5) and 2x + 5 | x + x + x and x^3 | 3(2y) and 5y
+sa2: Explain how you can test whether 3(x + 2) and 3x + 2 are equivalent. | Substitute a value such as x = 1: 3(1 + 2) = 9 but 3(1) + 2 = 5. The values are different, so the expressions are not equivalent.
+quiz:
+mc1: Which expression is equivalent to 7(2m - 1)? | 14m - 7 | 14m - 1 | 9m - 7 | 14m + 7
+mc2: Which expression is equivalent to 3x + 4y + x - y? | 4x + 3y | 3x + 3y | 4x + 5y | 7xy
+mc2: Which expression is equivalent to 24n + 40? | 8(3n + 5) | 4(6n + 40) | 8(3n + 40) | 24(n + 40)
+num2: Evaluate both 5(k + 2) and 5k + 10 when k = 3. What value do both expressions have? | 25
+mc2: A rectangle has a length of x + 6 and a width of 3. Which expression gives its area? | 3x + 18 | 3x + 6 | x + 18 | 3x + 9
+num2: Simplify 2(4b + 3) + 5b. What is the coefficient of b? | 13
+mc3: Which expression is NOT equivalent to 12x + 8? | 4(3x + 8) | 4(3x + 2) | 2(6x + 4) | 8 + 12x
+sa2: Jada says 2(x + 4) + 3x = 5x + 4. Explain her mistake and write the correct expression. | She did not multiply the 4 by 2. 2(x + 4) = 2x + 8, so the expression simplifies to 5x + 8.
+
+lesson: Solving one-step equations | 6.EE.B.5, 6.EE.B.7
+practice:
+num1: Solve x + 9 = 23. | 14
+hint: What can you subtract from both sides to get x alone?
+num1: Solve 7y = 56. | 8
+num2: Solve m ÷ 4 = 12. | 48
+hint: Multiply both sides by 4.
+mc2: Which value of n makes 3.5 + n = 10 true? | 6.5 | 13.5 | 7.5 | 35
+num2: Solve 2/3 w = 10. | 15
+hint: Multiply both sides by the reciprocal of 2/3.
+sa2: Write and solve an equation: Lena has some stickers. After she gets 15 more, she has 42. How many did she start with? | s + 15 = 42, so s = 42 - 15 = 27 stickers.
+quiz:
+num1: Solve 45 = 9p. | 5
+num1: Solve k - 12.5 = 30. | 42.5
+mc2: Which equation matches "6 equal bags hold 84 marbles in all"? | 6b = 84 | b + 6 = 84 | b ÷ 6 = 84 | 84b = 6
+num2: A shirt costs $14 less than a pair of shoes. The shirt costs $27. Write and solve an equation to find the cost of the shoes in dollars. | 41
+num2: Solve 1/4 x = 3/8. | 1 1/2
+num3: Kai saves the same amount each week. After 8 weeks he has saved $116. How many dollars does he save each week? | 14.5
+mc2: Which value is the solution of 5x = 2? | 0.4 | 2.5 | 3 | 10
+sa2: Andre solved x + 8 = 20 by adding 8 to both sides and got x = 28. Explain his mistake and solve correctly. | To undo adding 8, subtract 8 from both sides: x = 20 - 8 = 12. Check: 12 + 8 = 20.
+
+lesson: Inequalities and relationships between two variables | 6.EE.B.8, 6.EE.C.9
+practice:
+mc1: Which inequality means "x is at least 18"? | x >= 18 | x > 18 | x <= 18 | x < 18
+hint: "At least 18" includes 18.
+mc2: Which number is a solution of x < 4.5? | 3 | 5 | 4.5 | 6
+num2: A taxi ride costs c = 2m + 3 dollars for m miles. What is c when m = 8? | 19
+hint: Replace m with 8.
+mc2: In c = 2m + 3, which is the independent variable? | m, the number of miles | c, the cost | 2, the price per mile | 3, the starting fee
+hint: The independent variable is the one you choose; the other depends on it.
+mc2: A ride requires riders to be taller than 48 inches. Which inequality shows the allowed heights h? | h > 48 | h < 48 | h <= 48 | h = 48
+sa2: Explain the difference between the graphs of x > 3 and x >= 3 on a number line. | Both are shaded to the right of 3. x > 3 uses an open circle at 3 because 3 is not a solution; x >= 3 uses a closed circle because 3 is a solution.
+quiz:
+mc1: Which inequality matches "no more than 30 students"? | s <= 30 | s < 30 | s >= 30 | s > 30
+mc2: Which values are all solutions of y > -2? | -1, 0, 5 | -3, 0, 5 | -2, 0, 5 | -5, -3, -2
+num2: A plant is 4 centimeters tall and grows 1.5 centimeters each week, so h = 4 + 1.5w. How many centimeters tall is it after 6 weeks? | 13
+mc2: A table shows x: 1, 2, 3, 4 and y: 7, 14, 21, 28. Which equation fits the table? | y = 7x | y = x + 6 | y = x + 7 | x = 7y
+num2: A worker earns e = 15h dollars for h hours. How many hours must the worker work to earn $210? | 14
+mc2: A bus holds at most 52 people. Which number of people could NOT ride the bus at one time? | 53 | 52 | 50 | 38
+num3: Concert tickets cost $12 each and Ms. Ortiz has $100. Write an inequality to find the greatest whole number of tickets she can buy. What is that number? | 8
+sa2: Write an inequality for "a camper must be at least 8 years old to join," and explain why 8 is included. | a >= 8. "At least" means 8 or older, so 8 is a solution, and the graph uses a closed circle at 8.
+
+test:
+mc1: What is 2^5? | 32 | 10 | 25 | 16
+mc1: Which expression means "12 less than a number n"? | n - 12 | 12 - n | 12n | n + 12
+num1: Solve x - 17 = 25. | 42
+num1: Solve 9y = 108. | 12
+mc2: Which expression is equivalent to 6(2x + 5)? | 12x + 30 | 12x + 5 | 8x + 11 | 12x + 11
+mc2: Which expression is equivalent to 9a + 3 - 4a + 7? | 5a + 10 | 13a + 10 | 5a + 4 | 15a
+num2: Evaluate 3x^2 - 5 when x = 4. | 43
+num2: Evaluate 50 - 4 x 3^2. | 14
+mc2: Which expression is equivalent to 36y + 27? | 9(4y + 3) | 3(12y + 27) | 9(4y + 27) | 6(6y + 3)
+mc2: Which inequality matches "the temperature t stayed below 10 degrees"? | t < 10 | t <= 10 | t > 10 | t >= 10
+mc2: Which number is a solution of 3x > 21? | 8 | 7 | 6 | 0
+mc2: A table shows hours worked h: 2, 4, 6 and pay p: $30, $60, $90. Which equation fits the table? | p = 15h | p = h + 28 | h = 15p | p = 30h
+num2: A streaming service costs $8 per month plus a one-time $15 fee, so the cost is 8m + 15 dollars. How many dollars does one year cost? | 111
+num3: Amara bought 5 notebooks for $13.75 in all. Write and solve an equation to find the price of one notebook, in dollars. | 2.75
+num3: A rectangle has an area of 96 square meters and a length of 12 meters. Write and solve an equation to find its width in meters. | 8
+num3: Isaac is 14 years older than his cousin. Isaac is 31. Write and solve an equation to find his cousin's age. | 17
+num3: A water tank is 3/4 full when it holds 180 gallons. Write and solve an equation to find how many gallons the full tank holds. | 240
+num2: The cost of p pounds of cherries is c = 4.5p dollars. How many pounds can you buy for $27? | 6
+mc3: Which situation can be modeled by x + 12 = 40? | Leo has some marbles and wins 12 more, for 40 in all | Leo has 12 bags with 40 marbles in each | Leo shares 40 marbles equally among 12 friends | Leo has 40 marbles and loses 12
+mc3: Which equation is true for every value of x? | 2(x + 3) = 2x + 6 | 2(x + 3) = 2x + 3 | x + x = x^2 | 3x - x = 3
+sa2: Explain the difference between an expression and an equation, with an example of each. | An expression names a value and has no equal sign, like 4x + 2. An equation states that two expressions are equal, like 4x + 2 = 10, and can be solved.
+sa3: Paolo solved n ÷ 6 = 9 and got n = 1.5. Explain his mistake and find the correct solution. | He divided 9 by 6 instead of multiplying. To undo dividing by 6, multiply both sides by 6: n = 54. Check: 54 ÷ 6 = 9.
+task3: The Pham family is renting a canoe. Company A charges $18 plus $8 per hour. Company B charges $14 per hour with no fee. (a) Write an expression for the cost of h hours at each company. (b) Make a table of costs at both companies for 1, 2, 3, 4 and 5 hours. (c) For how many hours do the companies cost the same? (d) The family can spend at most $60. Write an inequality for Company B and find the greatest whole number of hours they can rent there. Which company should they choose for a 5-hour trip? Explain. | (a) 18 + 8h and 14h; (b) A: 26, 34, 42, 50, 58 and B: 14, 28, 42, 56, 70; (c) 3 hours ($42 each); (d) 14h <= 60, so at most 4 hours at Company B; for 5 hours Company A costs $58, which is cheaper and within the budget, with clear explanations. | Expressions, table and comparison correct with one error or a weak explanation. | Expressions correct with errors in the table or the inequality. | Little correct work.
+
+unit: Module 5: Area, surface area and volume problems | 6.G.A.1, 6.G.A.2, 6.G.A.3, 6.G.A.4 | g6tri, g6para, g6trap, g6cube, g6box
+el: Label a model of each figure with base, height, length, width, face and net; let students cut and fold paper nets and use grid paper to show area before using formulas.
+
+lesson: Area of triangles, parallelograms and trapezoids | 6.G.A.1
+practice:
+num1: A parallelogram has a base of 12 inches and a height of 7 inches. What is its area in square inches? | 84
+hint: The area of a parallelogram is base times height.
+num1: A triangle has a base of 10 meters and a height of 9 meters. What is its area in square meters? | 45
+hint: A triangle is half of a parallelogram with the same base and height.
+num2: A trapezoid has bases of 8 cm and 14 cm and a height of 5 cm. What is its area in square cm? | 55
+hint: Add the two bases, multiply by the height, then take half.
+mc2: A right triangle has legs of 6 feet and 11 feet and a longest side of about 12.5 feet. Which two lengths do you use to find its area? | 6 and 11 | 6 and 12.5 | 11 and 12.5 | 12.5 and 12.5
+hint: The base and height must be perpendicular.
+num2: A triangular sail has a base of 3.5 meters and a height of 6 meters. What is its area in square meters? | 10.5
+sa2: Explain why the area of a triangle is 1/2 x base x height. | Two copies of the same triangle fit together to make a parallelogram with the same base and height. The parallelogram's area is base x height, so one triangle has half of that area.
+quiz:
+num1: A parallelogram has a base of 15 cm and a height of 4.2 cm. What is its area in square cm? | 63
+num2: A triangle has an area of 36 square inches and a base of 8 inches. What is its height in inches? | 9
+num2: A garden bed shaped like a trapezoid has parallel sides of 10 feet and 6 feet and a height of 4.5 feet. What is its area in square feet? | 36
+mc2: A parallelogram has sides of 10 and 6 and a height of 5 drawn to the side of length 10. What is its area? | 50 | 60 | 30 | 32
+num3: A lawn is a 20 m by 12 m rectangle. A triangular flower bed with a base of 6 m and a height of 4 m is cut out of it. How many square meters of grass are there? | 228
+mc2: Two triangles have the same base and the same height. Which statement must be true? | They have the same area | They are congruent | They have the same perimeter | The triangle with longer sides has more area
+num3: A wall shaped like a trapezoid has bases of 14 feet and 9 feet and a height of 8 feet. One gallon of paint covers 46 square feet. How many gallons are needed to cover the wall with one coat? | 2
+sa2: Ruben found the area of a triangle with base 10 and height 6 to be 60 square units. Explain his mistake. | He found base x height, which is the area of a parallelogram. A triangle is half of that: 1/2 x 10 x 6 = 30 square units.
+
+lesson: Composite figures and polygons on the coordinate plane | 6.G.A.1, 6.G.A.3
+practice:
+num2: An L-shaped room is made of a 10 ft by 8 ft rectangle and a 4 ft by 3 ft rectangle. What is its total area in square feet? | 92
+hint: Find the area of each rectangle and add.
+num2: A triangle has vertices (1, 1), (7, 1) and (3, 5). What is its area in square units? | 12
+hint: Use the horizontal side as the base. How far is the third vertex from that side?
+mc2: A rectangle has vertices (-2, 3), (4, 3), (4, -1) and (-2, -1). What are its side lengths? | 6 and 4 | 2 and 3 | 6 and 2 | 4 and 4
+num2: What is the perimeter in units of the rectangle with vertices (-2, 3), (4, 3), (4, -1) and (-2, -1)? | 20
+hint: Find the length and width, then add all four sides.
+mc2: A pentagon is split into a rectangle and a triangle. How do you find the pentagon's area? | Add the area of the rectangle and the area of the triangle | Multiply the two areas | Subtract the triangle's area from the rectangle's area | Add the two perimeters
+sa2: Describe two ways to find the area of a 10 by 10 square with a 4 by 4 square cut out of one corner. | Subtract: 100 - 16 = 84 square units. Or split what is left into two rectangles, 10 x 6 = 60 and 6 x 4 = 24, and add: 84 square units.
+quiz:
+num2: A trapezoid has vertices (0, 0), (8, 0), (6, 4) and (2, 4). What is its area in square units? | 24
+num2: How many units long is the side from (-3, -2) to (-3, 6)? | 8
+mc2: A quadrilateral has vertices (1, 2), (5, 2), (5, 7) and (1, 7). What kind of figure is it? | a rectangle that is not a square | a square | a trapezoid that is not a parallelogram | a triangle
+num3: A patio is a 12 ft by 9 ft rectangle with a triangle attached to one 9-foot side. The triangle's height is 4 feet. Pavers cost $3 per square foot. How many dollars do the pavers for the whole patio cost? | 378
+num2: A right triangle has vertices (-4, -1), (2, -1) and (2, 5). What is its area in square units? | 18
+mc2: A shape is a 6 by 6 square with a right triangle with legs of 6 and 3 removed. What is the area of the shape? | 27 | 45 | 18 | 36
+num3: A flag is a 5 ft by 3 ft rectangle. A blue triangle on the flag has a base of 3 feet along the short side and a height of 5 feet. How many square feet of the flag are NOT blue? | 7.5
+sa2: Explain how to find the length of a horizontal side of a polygon when its endpoints are (-3, 2) and (5, 2). | The y-coordinates are the same, so the side is horizontal. The endpoints are on opposite sides of the y-axis, so add their distances from it: abs(-3) + abs(5) = 8 units.
+
+lesson: Volume of right rectangular prisms | 6.G.A.2
+practice:
+num1: A box is 6 cm long, 4 cm wide and 5 cm tall. What is its volume in cubic cm? | 120
+hint: Multiply length x width x height.
+num2: A prism measures 2 1/2 inches by 2 inches by 4 inches. What is its volume in cubic inches? | 20
+num2: How many cubes with 1/2-inch edges fill a box that is 2 inches by 1 inch by 1 inch? | 16
+hint: How many half-inch cubes fit along each edge?
+mc2: A rectangular prism has a base area of 18 square feet and a height of 2.5 feet. What is its volume? | 45 cubic feet | 20.5 cubic feet | 36 cubic feet | 7.2 cubic feet
+hint: Volume = area of the base x height.
+num2: A fish tank is 30 inches long, 12 inches wide and 16 inches tall. What is its volume in cubic inches? | 5760
+sa2: Explain why packing a prism with 1/2-unit cubes and multiplying length x width x height give the same volume. | Each 1/2-unit cube has a volume of 1/8 cubic unit. Counting the cubes and multiplying by 1/8 gives the same number as multiplying the three fractional edge lengths.
+quiz:
+num1: A cube has edges of 3 meters. What is its volume in cubic meters? | 27
+num2: A cube has edges of 1 1/2 feet. What is its volume in cubic feet? | 3 3/8
+num2: A sandbox is 8 feet long, 5 feet wide and 3/4 foot deep. How many cubic feet of sand fill it? | 30
+mc2: A box has a volume of 96 cubic inches. It is 8 inches long and 4 inches wide. How tall is it? | 3 inches | 12 inches | 84 inches | 6 inches
+num3: A planter is 4 feet long, 1 1/2 feet wide and 1 foot deep. Soil costs $6 per cubic foot. How many dollars does it cost to fill the planter? | 36
+num3: A shipping box is 2 feet by 1 1/2 feet by 1 foot. How many cubes with 1/2-foot edges fit inside it? | 24
+mc2: Which box holds more? | Box A: 5 in by 4 in by 3 in | Box B: 6 in by 2 in by 4 in | They hold the same amount | You need the surface area to decide
+sa2: Lucy says doubling the length of a box doubles its volume. Is she correct? Explain with an example. | Yes. A 2 by 3 by 4 box has a volume of 24, and a 4 by 3 by 4 box has a volume of 48, which is double. The length is one factor of the product, so doubling it doubles the product.
+
+lesson: Nets and surface area | 6.G.A.4
+practice:
+mc1: How many faces does a rectangular prism have? | 6 | 4 | 8 | 12
+num2: What is the surface area of a cube with edges of 4 cm, in square cm? | 96
+hint: A cube has 6 congruent square faces.
+num2: A box is 5 inches by 3 inches by 2 inches. What is its surface area in square inches? | 62
+hint: Find the area of each pair of matching faces.
+mc2: A net has 1 square and 4 triangles. Which solid does it fold into? | a square pyramid | a triangular prism | a cube | a rectangular prism
+mc2: Which situation needs surface area, not volume? | wrapping paper to cover a gift box | sand to fill a sandbox | water to fill a tank | cereal to fill a box
+sa2: Explain how a net helps you find the surface area of a prism. | A net unfolds the prism into its flat faces. Find the area of each face and add them to get the total area of the outside.
+quiz:
+num1: A cube has edges of 7 inches. What is its surface area in square inches? | 294
+num2: A cereal box is 8 inches by 2 inches by 12 inches. What is its surface area in square inches? | 272
+mc2: How many faces does a triangular prism have? | 5 | 6 | 3 | 9
+num2: A square pyramid has a base with 6-meter sides. Each triangular face has a base of 6 m and a height of 5 m. What is its surface area in square meters? | 96
+num3: A storage chest with no lid is 4 feet long, 2 feet wide and 3 feet tall. The outside, including the bottom, is painted. How many square feet are painted? | 44
+mc3: Box A is 2 cm by 2 cm by 6 cm. Box B is a cube with 3-cm edges. Which statement is true? | Box A has less volume but more surface area than Box B | Box A has more volume and more surface area | Box A has less volume and less surface area | The boxes have the same volume
+num3: A gift box is a cube with 10-inch edges. Wrapping paper comes in sheets of 300 square inches, and pieces can be cut and joined. What is the fewest number of sheets needed to cover the box? | 2
+sa2: Omar says the surface area of a 3 by 3 by 3 cube is 27 square units. Explain his mistake. | 27 is the volume, 3 x 3 x 3 cubic units. Surface area is the total area of the 6 square faces: 6 x 9 = 54 square units.
+
+test:
+mc1: What is the area of a parallelogram with a base of 9 m and a height of 6 m? | 54 square meters | 27 square meters | 15 square meters | 30 square meters
+mc1: Which formula gives the volume of a rectangular prism? | V = l x w x h | V = 2l + 2w | V = 1/2 x b x h | V = 6s^2
+num1: A triangle has a base of 14 inches and a height of 5 inches. What is its area in square inches? | 35
+num1: What is the volume of a cube with 5-cm edges, in cubic cm? | 125
+mc2: Which arrangement of squares is a net that folds into a cube? | 4 squares in a row with one square above and one below the second square | 6 squares in one long row | 5 squares in a plus shape | 8 squares in two rows of 4
+num2: A trapezoid has bases of 9 feet and 15 feet and a height of 6 feet. What is its area in square feet? | 72
+num2: A triangle on a coordinate plane has vertices (-2, 0), (6, 0) and (1, 5). What is its area in square units? | 20
+num2: A rectangular prism is 3 1/2 m by 2 m by 4 m. What is its volume in cubic meters? | 28
+num2: What is the surface area of a box that is 6 cm by 4 cm by 3 cm, in square cm? | 108
+mc2: A box has a volume of 210 cubic inches, a length of 7 inches and a width of 6 inches. What is its height? | 5 inches | 30 inches | 197 inches | 35 inches
+mc2: Which situation asks for volume? | how much soil fills a raised garden bed | how much fabric covers a cushion | how much fence goes around a yard | how much paint covers a wall
+mc2: A triangle and a parallelogram have the same base and the same height. How do their areas compare? | The triangle's area is half the parallelogram's area | They have the same area | The triangle's area is double the parallelogram's area | The triangle's area is one-third of the parallelogram's area
+num2: A side of a polygon goes from (-5, 4) to (3, 4). How many units long is it? | 8
+num3: A rectangular pool is 25 m long, 10 m wide and 1.5 m deep. How many cubic meters of water fill it? | 375
+num3: A room is a 14 ft by 12 ft rectangle with a 4 ft by 3 ft closet in one corner that does not get carpet. Carpet costs $5 per square foot. How many dollars does the carpet cost? | 780
+num3: How many cubes with 1/3-inch edges fill a box that is 2 inches by 1 inch by 1 inch? | 54
+num3: A tent is a triangular prism. Its two triangle ends each have a base of 6 feet and a height of 4 feet. Its rectangular faces are a 6 ft by 8 ft floor and two 5 ft by 8 ft sides. What is its total surface area in square feet? | 152
+num2: A parallelogram has an area of 72 square cm and a base of 9 cm. What is its height in cm? | 8
+mc3: A rectangle is cut along a diagonal. What is true about the two triangles? | Each has half the area of the rectangle | Each has the same area as the rectangle | Together they have double the area of the rectangle | Their areas cannot be found
+mc3: Every edge of a cube is doubled. What happens to its volume? | It is multiplied by 8 | It is doubled | It is multiplied by 4 | It is multiplied by 6
+sa2: Explain how splitting a trapezoid into a rectangle and two triangles can help you find its area. | Find the area of the rectangle (length x width) and of each triangle (1/2 x base x height), then add the three areas. The sum is the area of the trapezoid.
+sa3: Grace says a 4 in by 4 in by 4 in box has the same volume and surface area because both are 64. Explain whether she is right. | She is not right. The volume is 4 x 4 x 4 = 64 cubic inches, but the surface area is 6 x 16 = 96 square inches. They are different numbers and are measured in different units.
+task3: A school is building a garden box shaped like a rectangular prism with an open top. Design 1 is 6 ft long, 3 ft wide and 1 1/2 ft tall. (a) How many cubic feet of soil fill Design 1? (b) Soil costs $8 per cubic foot. What does the soil cost? (c) The four sides and the bottom are made of wood. How many square feet of wood does Design 1 need? (d) Design 2 is 4 ft by 4 ft by 1 1/2 ft. Find its volume and the wood it needs. Which design holds more soil, which uses less wood, and which would you recommend? Explain. | (a) 27 cubic feet; (b) $216; (c) 18 + 18 + 9 = 45 square feet; (d) Design 2 holds 24 cubic feet and needs 16 + 24 = 40 square feet; Design 1 holds more soil and Design 2 uses less wood; a recommendation supported by these numbers. | All calculations correct with a weak recommendation, or one calculation error with strong reasoning. | Volume parts correct but the wood area is wrong (for example, includes a top or misses sides). | Little correct work.
+
+unit: Module 6: Statistics | 6.SP.A.1, 6.SP.A.2, 6.SP.A.3, 6.SP.B.4, 6.SP.B.5 | g6mean, g6median, g6mode, g6range
+el: Use class-collected data (shoe sizes, travel times) so the context is familiar; post sentence frames such as "A typical value is ___ because ___" and "The data are spread out from ___ to ___."
+
+lesson: Statistical questions and data displays | 6.SP.A.1, 6.SP.A.2, 6.SP.B.4
+practice:
+mc1: Which is a statistical question? | How many hours do students in our class sleep on school nights? | How many hours did I sleep last night? | What time does school start? | How many days are in a week?
+hint: A statistical question expects answers that vary.
+mc2: A dot plot of shoe sizes has 3 dots at 6, 5 dots at 7, 2 dots at 8 and 1 dot at 10. How many students were surveyed? | 11 | 4 | 31 | 10
+hint: Each dot is one student.
+num2: A dot plot shows 3 dots at size 6, 5 dots at size 7, 2 dots at size 8 and 1 dot at size 10. How many students wear size 8 or larger? | 3
+mc2: A histogram has bars for 0-9, 10-19, 20-29 and 30-39 minutes of reading. Which question can it answer? | How many students read 20 to 29 minutes? | Exactly how many minutes did each student read? | Which student read the longest? | Did anyone read exactly 15 minutes?
+mc2: Most values in a data set are low, and a few are much higher. How is the shape described? | skewed right | skewed left | symmetric | uniform
+hint: A distribution is skewed toward the side of its long tail.
+sa2: Change the question "How tall am I?" into a statistical question, and explain why yours is statistical. | "How tall are the students in my class?" It is statistical because the answers vary from student to student.
+quiz:
+mc1: Which is NOT a statistical question? | How many pets does Mr. Diaz have? | How many pets do the families on our street have? | How long do sixth graders spend on homework each night? | What are the ages of people at the library today?
+mc2: A dot plot shows numbers of siblings: 0 (4 dots), 1 (7 dots), 2 (5 dots), 3 (2 dots), 5 (1 dot). What is the mode? | 1 | 0 | 2 | 5
+num2: A survey of siblings shows 0 siblings (4 people), 1 sibling (7 people), 2 siblings (5 people), 3 siblings (2 people) and 5 siblings (1 person). How many people were surveyed? | 19
+mc2: A histogram of test scores has bars 60-69: 2, 70-79: 6, 80-89: 9 and 90-99: 3. How many scores are 80 or higher? | 12 | 9 | 3 | 20
+num2: A histogram has bars for 0-4, 5-9, 10-14 and 15-19 hours with heights 3, 8, 6 and 1. How many people are in the data set? | 18
+mc2: In a dot plot, most dots pile up between 40 and 50, with a few dots far away at 10 and 12. How would you describe the shape? | skewed left | skewed right | symmetric | flat
+num3: A dot plot of bus ride times shows 5 minutes (2 dots), 10 minutes (4 dots), 15 minutes (6 dots), 20 minutes (3 dots) and 45 minutes (1 dot). What percent of the students ride 15 minutes or more? | 62.5
+sa2: Explain why a histogram cannot tell you the exact greatest value in a data set. | A histogram groups values into intervals. It shows how many values fall in each interval, but not the exact values inside the interval.
+
+lesson: Mean and mean absolute deviation | 6.SP.A.3, 6.SP.B.5
+practice:
+num1: What is the mean of 6, 9, 10, 4 and 11? | 8
+hint: Add the values and divide by how many there are.
+num2: The mean of four test scores is 85. Three of the scores are 80, 90 and 78. What is the fourth score? | 92
+hint: The four scores must add up to 4 x 85.
+num2: Find the mean absolute deviation (MAD) of 2, 4, 6, 8 and 10. | 2.4
+hint: Find the mean, find how far each value is from the mean, then find the mean of those distances.
+mc2: Two classes both have a mean of 20 minutes of reading. Class A has a MAD of 2 minutes and Class B has a MAD of 9 minutes. What does this tell you? | Class B's reading times are more spread out | Class A read more | Class B read more | Both classes have the same spread
+num2: Five friends have 3, 5, 5, 8 and 9 dollars. If they share the money equally, how many dollars does each friend get? | 6
+sa2: Explain what the mean represents, using the idea of a fair share. | The mean is the amount each value would be if the total were shared equally among all the values.
+quiz:
+num1: What is the mean of 12, 15, 18, 15 and 20? | 16
+num2: Find the MAD of 1, 3, 5 and 11. | 3
+num2: A basketball player scores 14, 22, 18 and 10 points in four games. How many points must she score in the fifth game to have a mean of 17 points? | 21
+mc2: Data set A is 10, 10, 10, 10. Data set B is 4, 8, 12, 16. Which statement is true? | They have the same mean, but B has a greater MAD | They have different means | A has a greater MAD | They have the same MAD
+num3: The daily high temperatures for 5 days were 68, 72, 75, 70 and 65 degrees. What is the MAD in degrees? | 2.8
+mc2: Which data set has a MAD of 0? | 7, 7, 7, 7 | 0, 1, 2, 3 | 1, 0, 0, 1 | 7, 0, 7, 0
+num2: The mean of 6 numbers is 12. What is the sum of the numbers? | 72
+sa2: Theo says the MAD of 3, 3, 9, 9 is 6 because 9 - 3 = 6. Explain his mistake and find the correct MAD. | He found the range, not the MAD. The mean is 6, and each value is 3 away from 6, so the MAD is (3 + 3 + 3 + 3) ÷ 4 = 3.
+
+lesson: Median, interquartile range and box plots | 6.SP.B.4, 6.SP.B.5
+practice:
+num1: What is the median of 14, 9, 21, 6 and 17? | 14
+hint: Put the values in order first.
+num2: What is the median of 3, 8, 10, 15, 20, 22? | 12.5
+hint: With an even number of values, find the mean of the two middle values.
+num2: What is the interquartile range (IQR) of 2, 4, 5, 7, 8, 10, 12, 15? | 6.5
+hint: Find the median of the lower half and of the upper half, then subtract.
+mc2: A box plot has a minimum of 10, Q1 of 15, median of 20, Q3 of 30 and maximum of 45. What is the range? | 35 | 15 | 20 | 45
+mc2: A box plot has Q1 = 15 and Q3 = 30. About what fraction of the data lies between 15 and 30? | 1/2 | 1/4 | 3/4 | all of it
+hint: The box covers the middle part of the data.
+sa2: Explain what the five-number summary tells you about a data set. | The minimum and maximum show the extremes, Q1 and Q3 mark the edges of the middle half of the data, and the median is the middle value.
+quiz:
+num1: What is the median of 31, 25, 40, 28, 36, 33, 27? | 31
+num2: Find the IQR of 5, 6, 9, 11, 12, 14, 18, 20, 25. | 11.5
+mc2: A box plot of plant heights has a minimum of 4, Q1 of 7, median of 10, Q3 of 12 and maximum of 20. About what percent of the plants are taller than 12? | 25% | 50% | 75% | 12%
+num2: The ages of people at a party are 8, 9, 9, 10, 11, 12 and 40. What is the median age? | 10
+mc2: What is the five-number summary of 1, 3, 4, 6, 7, 9, 10, 12? | 1, 3.5, 6.5, 9.5, 12 | 1, 3, 6, 10, 12 | 1, 4, 6.5, 9, 12 | 1, 3.5, 6, 9.5, 12
+num3: Class A's test scores have Q1 = 70 and Q3 = 88. Class B's have Q1 = 76 and Q3 = 84. How many points greater is Class A's IQR than Class B's? | 10
+mc3: Which statement about a box plot is always true? | The box shows the middle half of the data | The median is in the center of the box | The two whiskers are the same length | The box shows the mean
+sa2: Ines says that because one whisker of a box plot is longer, more data values are on that side. Explain her mistake. | Each whisker shows about 25% of the data. A longer whisker means those values are more spread out, not that there are more of them.
+
+lesson: Describing distributions and choosing measures | 6.SP.B.5
+practice:
+mc2: Most home prices on a street are near $500,000, but one is $3,000,000. Which measure of center best describes a typical home? | median | mean | range | MAD
+hint: Which measure is affected less by one very large value?
+mc2: A data set is roughly symmetric with no outliers. Which pair of measures should you use to describe it? | mean and MAD | median and IQR | mode and range | maximum and minimum
+num2: Quiz scores are 6, 7, 7, 8, 9, 10 and 2. What is the median score? | 7
+hint: Order the scores first.
+num2: Scores are 10, 12, 13, 15 and 50. How much greater is the mean than the median? | 7
+hint: Find each measure, then subtract.
+mc2: A store records the number of customers each hour. Which statement uses the median of 32 customers correctly? | Half of the hours had 32 or fewer customers | Every hour had 32 customers | 32 hours were recorded | The store had 32 customers in all
+sa2: Explain how an outlier affects the mean and the median differently. | An outlier pulls the mean toward it because every value is added into the total. The median depends only on the middle position, so it changes little or not at all.
+quiz:
+mc2: Commute times are 10, 12, 12, 14, 15, 15, 16 and 55 minutes. Which measure best describes a typical commute? | the median, because 55 is an outlier | the mean, because it uses every value | the range, because it shows spread | the maximum, because it is the longest
+num2: Commute times are 10, 12, 12, 14, 15, 15, 16 and 55 minutes. What is the median commute in minutes? | 14.5
+num2: What is the mean of the commute times 10, 12, 12, 14, 15, 15, 16 and 55 minutes? | 18.625
+mc2: Which data display makes it easiest to see the median and the IQR? | box plot | dot plot | histogram | frequency table
+num3: A data set is 4, 6, 6, 7, 9. A sixth value, 22, is added. By how much does the mean increase? | 2.6
+mc3: A set of 9 test scores has a mean of 80 and a median of 78. The highest score, 95, is changed to 100. Which statement is true? | The mean increases and the median stays the same | Both the mean and the median increase | The median increases and the mean stays the same | Neither measure changes
+sa2: Describe the distribution of these plant heights in centimeters: 12, 13, 13, 14, 14, 14, 15, 15, 16. Include the center, the spread and the shape. | The distribution is symmetric and centered at 14 cm (the mean and the median are both 14). The heights range from 12 to 16 cm, a range of 4 cm, with no outliers.
+
+test:
+mc1: Which of these is a statistical question? | How many minutes do sixth graders at our school spend on homework? | How many minutes did Ana spend on homework yesterday? | How many minutes are in an hour? | What time does the library close?
+num1: What is the mean of 8, 12, 7 and 13? | 10
+num1: What is the median of 22, 18, 30, 25 and 19? | 22
+num1: What is the range of 47, 52, 38, 61 and 44? | 23
+mc2: A data set has most values low and a few very high values. What is its shape? | skewed right | skewed left | symmetric | bell-shaped
+mc2: Which measures are usually best for describing a skewed data set? | median and IQR | mean and MAD | mean and range | mode and MAD
+num2: Find the MAD of 4, 6, 8, 10, 12 and 14. | 3
+num2: Find the IQR of 3, 5, 7, 8, 12, 13, 14, 18. | 7.5
+num2: Find the median of 2.5, 4, 3.5, 6, 1.5 and 5. | 3.75
+mc2: A box plot has a minimum of 20, Q1 of 25, median of 32, Q3 of 40 and maximum of 58. Which statement is true? | About half of the values are between 25 and 40 | The mean is 32 | Most values are between 40 and 58 | The range is 15
+mc2: A histogram of ages has bars 10-19: 4 people, 20-29: 9 people, 30-39: 5 people and 40-49: 2 people. How many people are 30 or older? | 7 | 5 | 11 | 2
+num3: A runner's times for 5 races were 22, 24, 21, 25 and 23 minutes. What time, in minutes, does she need in a sixth race to have a mean of 22.5 minutes for all six races? | 20
+num3: Six students raised $15, $20, $20, $25, $30 and $40 for a food bank. A seventh student raises $46. What is the new mean amount raised, in dollars? | 28
+num3: A data set has 10 values with a mean of 14. One value, 50, is removed. What is the mean of the remaining 9 values? | 10
+num2: The daily rainfall in inches for a week was 0, 0, 0.2, 0.5, 0, 1.1 and 0.3. What was the median daily rainfall in inches? | 0.2
+mc3: Team A's heights have a mean of 160 cm and a MAD of 3 cm. Team B's heights have a mean of 160 cm and a MAD of 8 cm. Which conclusion is supported? | Team A's heights are more alike | Team B is taller | Team A is taller | Both teams have the same tallest player
+mc3: Which change to the data set 3, 5, 7, 9, 11 increases the mean but does NOT change the median? | Change 11 to 20 | Change 7 to 8 | Change 3 to 1 | Add another 7 to the set
+mc2: A dot plot of pets per family shows 0 (5 dots), 1 (8 dots), 2 (4 dots), 3 (2 dots) and 6 (1 dot). What is the median number of pets? | 1 | 2 | 0 | 1.5
+num2: In a class, 18 students read for a mean of 25 minutes. What is the total number of minutes the students read? | 450
+sa2: Explain why the mean of 2, 3, 3, 4 and 38 does not describe a typical value well, and name a better measure. | 38 is an outlier that pulls the mean up to 10, which is greater than four of the five values. The median, 3, better describes a typical value.
+sa3: Jordan says the median of 1, 2, 4, 6, 9, 10, 15 is 8 because 8 is halfway between 1 and 15. Explain his mistake, then find the correct median and IQR. | The median is the middle value of the ordered data, not the midpoint of the range. With 7 values the median is the 4th value, 6. The lower half 1, 2, 4 has Q1 = 2 and the upper half 9, 10, 15 has Q3 = 10, so the IQR is 8.
+task3: A sixth-grade class recorded the minutes 12 students spent on screens on a Saturday: 60, 75, 90, 90, 100, 105, 110, 120, 120, 130, 140, 300. (a) Find the mean, the median and the IQR. (b) Describe the shape of the distribution and identify any outlier. (c) Which measure of center best describes a typical student? Explain. (d) Write one new statistical question about screen time and explain how you would collect the data. | (a) Mean 1440 ÷ 12 = 120 minutes, median 107.5 minutes, Q1 = 90 and Q3 = 125, so IQR = 35 minutes; (b) skewed right with 300 as an outlier; (c) the median, because the outlier pulls the mean up; (d) a question with variable answers and a reasonable plan for collecting data. | Measures correct with a weak explanation, or one calculation error with strong reasoning. | Some measures correct but the choice of center is not supported. | Little correct work.
