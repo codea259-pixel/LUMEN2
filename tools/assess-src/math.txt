@@ -507,3 +507,374 @@ sa2: Find the area of a right triangle with legs 7 and 12. Explain why you divid
 sa2: Write a data set of 5 numbers with a mean of 10 and a median of 8. | Example: 6, 7, 8, 14, 15 (sum 50).
 ex2: Explain why the mean can be misleading when a data set has an outlier. | One very large or small value pulls the mean toward it, so it may not show a typical value.
 task3: A class records minutes spent reading: 20, 35, 30, 25, 120, 30, 40. Find the mean, median and range. Decide which measure best describes a typical student and explain why, and say how the mean changes if the 120 is removed. | Mean 42.9, median 30, range 100, median chosen because of the outlier, new mean 30. | Correct measures and choice with one error. | Two measures correct. | Little correct work.
+
+@grade 7
+about: Seventh grade deepens proportional reasoning, completes operations with rational numbers, solves multi-step equations and inequalities, works with scale drawings, circles, angles and area, and investigates chance with probability models.
+std: 7.RP.A.2 | Recognize and represent proportional relationships between quantities.
+std: 7.RP.A.3 | Use proportional relationships to solve multistep ratio and percent problems.
+std: 7.NS.A.3 | Solve real-world problems involving the four operations with rational numbers.
+std: 7.EE.B.3 | Solve multi-step real-life problems with positive and negative rational numbers in any form.
+std: 7.EE.B.4 | Use variables to construct and solve equations and inequalities.
+std: 7.G.B.4 | Know and use the formulas for the area and circumference of a circle.
+std: 7.SP.C.7 | Develop a probability model and use it to find probabilities of events.
+unit: Proportional relationships and percent | 7.RP.A.1, 7.RP.A.2, 7.RP.A.3 | g7prop, percent, g7pctchg, g7tip
+mc1: y = 4x. What is y when x = 7? | 28 | 11 | 3 | 47
+mc1: What is the constant of proportionality in y = 2.5x? | 2.5 | x | y | 1
+mc2: A $60 jacket is marked up 15%. What is the new price? | $69 | $75 | $51 | $9
+mc2: A meal costs $40. The tip is 18%. What is the total? | $47.20 | $41.80 | $58.00 | $7.20
+mc2: A town grew from 2,000 to 2,500 people. What is the percent increase? | 25% | 20% | 50% | 500%
+mc2: Which table is proportional? | x: 2, 4, 6 and y: 5, 10, 15 | x: 1, 2, 3 and y: 3, 5, 7 | x: 2, 4, 6 and y: 4, 6, 8 | x: 1, 2, 3 and y: 2, 4, 7
+mc2: Pat walks 1/2 mile in 1/4 hour. What is the unit rate in miles per hour? | 2 | 1/8 | 3/4 | 1/2
+mc3: A store gives 20% off, then charges 8% tax on the sale price. What do you pay for a $50 item? | $43.20 | $44.00 | $36.00 | $54.00
+sa2: Explain how you can tell from a graph whether a relationship is proportional. | The graph is a straight line through the origin (0, 0).
+sa2: A map scale is 1 inch : 15 miles. Two towns are 3.5 inches apart. How far apart are they? Show your work. | 3.5 x 15 = 52.5 miles.
+ex2: Explain why a 10% increase followed by a 10% decrease does not get back to the start. | The decrease is 10% of a bigger number. 100 becomes 110, then 110 - 11 = 99.
+task3: A phone plan charges $0.15 per text. Make a table for 0, 10, 20 and 50 texts, write an equation, and graph it. Then a second plan charges $5 plus $0.05 per text. When is each plan cheaper? Explain using your work. | Correct table and y = 0.15x, correct second equation y = 5 + 0.05x, equal at 50 texts, plan 1 cheaper under 50 and plan 2 cheaper over 50, clear reasoning. | Both equations and the crossover correct with a gap in the explanation. | First plan modeled correctly, comparison incorrect. | Little correct work.
+unit: Operations with rational numbers | 7.NS.A.1, 7.NS.A.2, 7.NS.A.3 | g7negmul
+mc1: -8 + 3 = ? | -5 | 5 | -11 | 11
+mc1: -6 x -7 = ? | 42 | -42 | -13 | 13
+mc1: -36 / 4 = ? | -9 | 9 | -32 | -40
+mc2: 5 - (-12) = ? | 17 | -7 | 7 | -17
+mc2: -2.5 x 4 = ? | -10 | 10 | -6.5 | 1.5
+mc2: Which is equal to -3/4? | -0.75 | 0.75 | -3.4 | -1.33
+mc2: A submarine at -120 feet rises 45 feet. Where is it now? | -75 feet | -165 feet | 75 feet | 165 feet
+mc3: The temperature dropped 3 degrees each hour for 5 hours, from 8 degrees. What is the temperature now? | -7 degrees | 23 degrees | 7 degrees | -15 degrees
+sa2: Explain why a negative times a negative is positive using a pattern. | -3 x 2 = -6, -3 x 1 = -3, -3 x 0 = 0, so each step adds 3, and -3 x -1 = 3.
+sa2: Convert 5/8 to a decimal and tell whether it terminates or repeats. | 0.625; it terminates.
+ex2: Explain how subtracting a negative number is like adding. | Taking away a debt makes you richer. 5 - (-3) means removing -3, which is the same as adding 3.
+task3: A hiker starts at 120 feet below sea level, climbs 350 feet, descends 85 feet, then climbs 2 1/2 times the descent. Write an expression for the final elevation, evaluate it, and explain each operation and sign. | -120 + 350 - 85 + 2.5(85) = 357.5 feet, with correct signs and a clear explanation. | Correct value with a minor gap in the explanation. | Correct setup with one sign or calculation error. | Little correct work.
+unit: Expressions, equations and inequalities | 7.EE.A.1, 7.EE.B.3, 7.EE.B.4 | twostep, g7dist
+mc1: Solve 3x + 5 = 26. | 7 | 10.3 | 63 | 9
+mc1: Expand 4(2x - 3). | 8x - 12 | 8x - 3 | 6x - 7 | 8x + 12
+mc2: Solve -2x - 7 = 9. | -8 | 8 | -1 | 1
+mc2: Solve 2x - 3 > 11. | x > 7 | x < 7 | x > 4 | x > 16
+mc2: Solve -3x <= 12. | x >= -4 | x <= -4 | x >= 4 | x <= 4
+mc2: Which is equivalent to 5x - 2(x + 4)? | 3x - 8 | 3x + 8 | 3x - 4 | 7x - 8
+mc2: A rectangle's perimeter is 50 and its length is 15. Which equation finds its width w? | 2(15) + 2w = 50 | 15 + w = 50 | 15w = 50 | 2w - 15 = 50
+mc3: Sam has $80 and spends $6 a day. After how many days will he have less than $20? | more than 10 days | 10 days | fewer than 10 days | 14 days
+sa2: Solve 1/2 x + 6 = 15 and check your answer. | x = 18. Check: 9 + 6 = 15.
+sa2: Write and solve an inequality: a phone costs $240 and you save $30 a week. How many weeks until you can buy it? | 30w >= 240, w >= 8, so 8 weeks.
+ex2: Explain why the inequality sign flips when you divide by a negative number. | Multiplying or dividing by a negative reverses order on the number line: 2 < 5 but -2 > -5.
+task3: A school club sells T-shirts for $12 each. Supplies cost $150. Write an inequality for selling enough shirts to make a profit of at least $300, solve it, graph the solution, and explain what it means for the club. | 12s - 150 >= 300, s >= 37.5, so at least 38 shirts, correct graph and explanation. | Correct inequality and solution, rounding or graph error. | Correct setup, solution incorrect. | Little correct work.
+unit: Geometry and probability | 7.G.A.1, 7.G.B.4, 7.G.B.5, 7.SP.C.5, 7.SP.C.7 | g7supp, g7tri, g7circ, g7circa, g7prob
+mc1: Circumference of a circle with diameter 10 cm (use 3.14 for pi)? | 31.4 cm | 78.5 cm | 15.7 cm | 314 cm
+mc1: Area of a circle with radius 3 m (use 3.14 for pi)? | 28.26 square m | 18.84 square m | 9.42 square m | 113.04 square m
+mc2: Two angles are supplementary. One is 65 degrees. The other is | 115 degrees | 25 degrees | 65 degrees | 295 degrees
+mc2: Two angles of a triangle are 50 and 60 degrees. The third is | 70 degrees | 110 degrees | 90 degrees | 250 degrees
+mc2: A bag has 3 red, 5 blue and 2 green marbles. P(blue)? | 1/2 | 1/5 | 5/3 | 3/10
+mc2: A coin is flipped twice. P(two heads)? | 1/4 | 1/2 | 1/3 | 3/4
+mc2: A scale drawing uses 1 cm = 4 m. A room is 6 cm long on the drawing. Actual length? | 24 m | 10 m | 1.5 m | 64 m
+mc3: A spinner landed on red 18 times in 60 spins. Predict the number of reds in 200 spins. | 60 | 18 | 120 | 36
+sa2: Explain the difference between experimental and theoretical probability, using a die. | Theoretical P(6) = 1/6 from equally likely outcomes. Experimental is from actual rolls, such as 9 sixes in 40 rolls = 9/40.
+sa2: Find the area of a semicircle with diameter 8 (use 3.14). Show your work. | Radius 4, 3.14 x 16 = 50.24, half is 25.12 square units.
+ex2: Explain how the circumference and diameter of every circle are related. | Circumference is always about 3.14 times the diameter; that ratio is pi.
+task3: Design a circular garden with a diameter of 12 feet, surrounded by a 1-foot-wide path. Find the area of the garden, the area of the path, and the length of fencing for the outside edge of the path (use 3.14). Explain each step. | Garden 113.04 sq ft, path 153.86 - 113.04 = 40.82 sq ft, fence 43.96 ft, clear steps. | Two of three correct with clear work. | One correct, or a radius/diameter mix-up throughout. | Little correct work.
+el: Draw and label the garden and path for students before they begin.
+
+@grade 8
+about: Eighth grade focuses on linear equations and functions, systems of two linear equations, the Pythagorean theorem, integer exponents and scientific notation, transformations, and volume of cylinders, cones and spheres.
+std: 8.EE.A.1 | Know and apply the properties of integer exponents.
+std: 8.EE.B.5 | Graph proportional relationships, interpreting the unit rate as the slope.
+std: 8.EE.C.7 | Solve linear equations in one variable, including equations with rational coefficients.
+std: 8.EE.C.8 | Analyze and solve pairs of simultaneous linear equations.
+std: 8.F.B.4 | Construct a function to model a linear relationship and interpret its rate of change and initial value.
+std: 8.G.B.7 | Apply the Pythagorean theorem to find unknown side lengths in right triangles.
+std: 8.G.C.9 | Know the formulas for the volumes of cones, cylinders and spheres and use them to solve problems.
+unit: Exponents, roots and scientific notation | 8.EE.A.1, 8.EE.A.2, 8.EE.A.3, 8.EE.A.4 | g8exp, g8sci, g8sqrt, g8cbrt
+mc1: 3^2 x 3^4 = ? | 3^6 | 3^8 | 9^6 | 6^6
+mc1: Which is the square root of 81? | 9 | 40.5 | 18 | 8.1
+mc2: (2^3)^2 = ? | 64 | 32 | 12 | 256
+mc2: 5^-2 = ? | 1/25 | -25 | -10 | 1/10
+mc2: Write 0.00042 in scientific notation. | 4.2 x 10^-4 | 4.2 x 10^4 | 42 x 10^-5 | 0.42 x 10^-3
+mc2: (3 x 10^5)(2 x 10^3) = ? | 6 x 10^8 | 6 x 10^15 | 5 x 10^8 | 6 x 10^2
+mc2: The cube root of 64 is | 4 | 8 | 21.3 | 16
+mc3: About how many times larger is 6 x 10^9 than 2 x 10^6? | 3,000 | 3 | 300 | 30,000
+sa2: Explain why any nonzero number to the power 0 equals 1. | Using a^3 / a^3 = a^(3-3) = a^0, and any number divided by itself is 1.
+sa2: Between which two whole numbers is the square root of 50? Explain. | 7 and 8, because 7^2 = 49 and 8^2 = 64, and 50 is between them.
+ex2: Explain how scientific notation makes very large and very small numbers easier to compare. | The power of 10 shows the size at a glance; compare exponents first, then the first factors.
+task3: The Sun is about 1.5 x 10^8 km from Earth and light travels about 3 x 10^5 km per second. How many seconds does sunlight take to reach Earth? Convert to minutes, and explain each step using exponent rules. | 500 seconds, about 8.3 minutes, correct division of powers, clear explanation. | Correct seconds with a conversion or explanation gap. | Correct setup with an exponent error. | Little correct work.
+unit: Linear equations and functions | 8.EE.B.5, 8.EE.B.6, 8.EE.C.7, 8.F.A.1, 8.F.B.4 | slope, g8lin
+mc1: Slope of the line through (1, 2) and (3, 8)? | 3 | 1/3 | 6 | 2
+mc1: In y = -2x + 5, what is the y-intercept? | 5 | -2 | 2 | -5
+mc2: Solve 3(x - 2) = 2x + 4. | 10 | 2 | 6 | -2
+mc2: Solve 0.5x + 3 = 1.5x - 7. | 10 | -10 | 4 | 5
+mc2: Which equation has no solution? | 2x + 3 = 2x - 1 | 2x + 3 = 3x - 1 | 2x = 4 | x + 1 = x + 1
+mc2: A plumber charges $40 plus $25 per hour. Which function gives the cost C for h hours? | C = 25h + 40 | C = 40h + 25 | C = 65h | C = 25 + h
+mc2: Which relation is NOT a function? | (1, 2), (1, 3), (2, 4) | (1, 2), (2, 2), (3, 2) | (0, 1), (1, 2), (2, 3) | (5, 1), (6, 2), (7, 3)
+mc3: A tank has 200 liters and drains 15 liters per minute. After how many minutes is it empty? | 13 1/3 | 15 | 185 | 3,000
+sa2: Write the equation of the line with slope 4 that passes through (0, -3), and explain each part. | y = 4x - 3. The 4 is the rise per unit run; -3 is where it crosses the y-axis.
+sa2: Solve 2(x + 5) = 2x + 10 and explain the result. | 10 = 10 is always true, so every number is a solution: infinitely many solutions.
+ex2: Explain what the slope and y-intercept mean for a taxi fare of y = 2x + 3. | The fare starts at $3 and rises $2 for each mile.
+task3: Two gyms: Gym A charges $30 to join plus $20 a month. Gym B charges $50 a month with no fee. Write a function for each, find when they cost the same (by graph or equation), and recommend a gym for someone staying 6 months. Justify. | A = 20m + 30, B = 50m, equal at 1 month ($50), Gym A recommended at $150 vs $300, clear justification. | Correct functions and comparison with a calculation slip. | One function correct. | Little correct work.
+unit: Systems of linear equations | 8.EE.C.8 | g8sys
+mc1: Which point solves both y = x + 2 and y = 2x? | (2, 4) | (1, 3) | (0, 2) | (4, 2)
+mc2: Solve: x + y = 10 and x - y = 4. | x = 7, y = 3 | x = 3, y = 7 | x = 6, y = 4 | x = 5, y = 5
+mc2: Solve: y = 3x and x + y = 12. | x = 3, y = 9 | x = 4, y = 8 | x = 9, y = 3 | x = 2, y = 6
+mc2: Two lines are parallel with different intercepts. How many solutions? | None | One | Two | Infinitely many
+mc2: y = 2x + 1 and 2y = 4x + 2. How many solutions? | Infinitely many | None | One | Two
+mc2: Adult tickets cost $8 and child tickets $5. 20 tickets cost $130. Which system fits? | a + c = 20 and 8a + 5c = 130 | a + c = 130 and 8a + 5c = 20 | 8a = 5c | a - c = 20 and 8a - 5c = 130
+mc2: Using that system, how many adult tickets were sold? | 10 | 5 | 15 | 20
+mc3: Lines y = 2x - 1 and y = -x + 5 cross at | (2, 3) | (3, 2) | (1, 1) | (0, 5)
+sa2: Solve by substitution: y = x - 1 and 2x + y = 11. Show your steps. | 2x + x - 1 = 11, 3x = 12, x = 4, y = 3.
+sa2: Explain how you can tell from the equations that y = 3x + 2 and y = 3x - 4 have no solution. | Same slope, different intercepts, so the lines are parallel and never meet.
+ex2: Explain what the solution of a system means on a graph. | It is the point where the lines cross, which makes both equations true.
+task3: A school sells 300 tickets to a show. Student tickets are $4 and adult tickets are $7. They collect $1,560. Write a system, solve it two ways (graph and algebra, or two algebra methods), and check your answer in both equations. | 180 students and 120 adults, both methods correct, checked in both equations. | Correct answer with one method complete. | Correct system with a solving error. | Little correct work.
+unit: Pythagorean theorem, transformations and volume | 8.G.A.1, 8.G.A.3, 8.G.B.7, 8.G.C.9 | g8pyth, g8cyl
+mc1: A right triangle has legs 6 and 8. The hypotenuse is | 10 | 14 | 48 | 100
+mc1: The point (3, -2) is reflected across the x-axis. Where does it go? | (3, 2) | (-3, -2) | (-3, 2) | (2, 3)
+mc2: A ladder 13 feet long reaches 12 feet up a wall. How far is its base from the wall? | 5 feet | 1 foot | 25 feet | 17.7 feet
+mc2: Which side lengths form a right triangle? | 9, 12, 15 | 4, 5, 6 | 2, 3, 4 | 5, 5, 8
+mc2: (2, 5) is translated 4 left and 3 down. New point? | (-2, 2) | (6, 8) | (-2, 8) | (6, 2)
+mc2: Volume of a cylinder with radius 2 and height 5 (use 3.14)? | 62.8 | 31.4 | 20 | 125.6
+mc2: Volume of a cone with radius 3 and height 4 (use 3.14)? | 37.68 | 113.04 | 50.24 | 12.56
+mc3: A dilation with scale factor 3 is applied to a square with side 2. How does the area change? | It becomes 9 times as large | It becomes 3 times as large | It becomes 6 times as large | It stays the same
+sa2: Find the distance between (1, 2) and (4, 6) using the Pythagorean theorem. Show your work. | Legs 3 and 4, so distance = 5.
+sa2: A sphere has radius 3. Find its volume using V = 4/3 x pi x r^3 (use 3.14). | 4/3 x 3.14 x 27 = 113.04 cubic units.
+ex2: Explain why a reflection keeps a shape congruent. | It flips the shape without stretching, so all lengths and angles stay the same.
+task3: A cylindrical can has radius 4 cm and height 10 cm. A cone-shaped cup has the same radius and height. How many full cups fill the can? A sphere of radius 4 cm is dropped in the full can: how much water spills? Show formulas and work (use 3.14). | 3 cups (502.4 vs 167.47), spill 267.95 cubic cm, correct formulas and clear work. | Two parts correct with clear work. | Formulas correct with calculation errors. | Little correct work.
+
+@grade 9
+about: Algebra I extends linear reasoning to functions, systems and inequalities, introduces exponential models, and develops polynomial operations and quadratic functions, with attention to modeling real data.
+std: A-SSE.A.2 | Use the structure of an expression to identify ways to rewrite it.
+std: A-REI.B.3 | Solve linear equations and inequalities in one variable, including literal equations.
+std: A-REI.B.4 | Solve quadratic equations in one variable by inspection, square roots, factoring, completing the square and the quadratic formula.
+std: F-IF.B.4 | Interpret key features of graphs and tables of functions in terms of the quantities.
+std: F-LE.A.1 | Distinguish between situations that can be modeled with linear functions and with exponential functions.
+std: S-ID.C.7 | Interpret the slope and intercept of a linear model in the context of the data.
+unit: Linear equations, inequalities and absolute value | A-CED.A.1, A-REI.B.3, A-REI.D.12 | lineq, g9abs, g9ineq
+mc1: Solve 5x - 3 = 2x + 12. | 5 | 3 | 9 | 15/7
+mc1: Solve abs(x - 4) = 6, where abs means absolute value. | x = 10 or x = -2 | x = 10 | x = 2 or x = -10 | x = -2
+mc2: Solve for h: A = 1/2 bh. | h = 2A / b | h = A / 2b | h = 2Ab | h = b / 2A
+mc2: Solve -4x + 1 >= 13. | x <= -3 | x >= -3 | x <= 3 | x >= 3
+mc2: Solve abs(2x + 1) < 7, where abs means absolute value. | -4 < x < 3 | x < 3 | x < -4 or x > 3 | -3 < x < 4
+mc2: Which point is in the solution of y > 2x - 1? | (0, 0) | (2, 2) | (3, 4) | (1, 1)
+mc2: Solve 3(2x - 1) = 6x - 3. | All real numbers | No solution | x = 0 | x = 1
+mc3: A phone plan costs $35 plus $0.10 per minute over 500 minutes. Which inequality finds the minutes m over 500 that keep the bill at most $50? | 35 + 0.10m <= 50 | 35m + 0.10 <= 50 | 0.10(m + 35) <= 50 | 35 + 0.10m >= 50
+sa2: Solve abs(3x - 6) = 9 and check both solutions. | 3x - 6 = 9 gives x = 5; 3x - 6 = -9 gives x = -1. Check: abs(9) = 9 and abs(-9) = 9.
+sa2: Solve P = 2l + 2w for w and explain each step. | Subtract 2l: P - 2l = 2w. Divide by 2: w = (P - 2l)/2.
+ex2: Explain why abs(x) = -5 has no solution. | Absolute value is a distance, which is never negative.
+task3: A school plans a dance. The DJ costs $400 and each ticket costs $8 to produce. Tickets sell for $15. Write and solve an inequality for the number of tickets needed to raise at least $1,000 profit, graph it, and explain whether 250 tickets is enough. | 15t - 8t - 400 >= 1000, t >= 200, correct graph, 250 is enough with $1,350 profit. | Correct inequality and solution with a minor graph or explanation error. | Correct setup, solution error. | Little correct work.
+unit: Functions, sequences and exponential models | F-IF.A.2, F-IF.A.3, F-LE.A.1, F-LE.A.2 | g9arith, g9geom, g9exp
+mc1: f(x) = 3x - 7. What is f(4)? | 5 | -5 | 19 | 12
+mc1: Next term of 5, 9, 13, 17, ...? | 21 | 22 | 20 | 34
+mc2: Next term of 3, 6, 12, 24, ...? | 48 | 30 | 36 | 27
+mc2: An arithmetic sequence has a1 = 4 and d = 6. What is a10? | 58 | 64 | 60 | 54
+mc2: Which situation is exponential? | A population doubles every year | A car travels 60 miles each hour | A plant grows 2 cm each week | A pool loses 10 gallons each hour
+mc2: f(x) = 200(1.05)^x models savings. What is the growth rate? | 5% per period | 105% per period | 1.05% per period | 200 per period
+mc2: A car worth $20,000 loses 15% of its value each year. Which models its value after t years? | V = 20000(0.85)^t | V = 20000(0.15)^t | V = 20000 - 0.15t | V = 20000(1.15)^t
+mc3: Which grows larger in the long run: f(x) = 100x or g(x) = 2^x? | g(x) | f(x) | They are always equal | Neither grows
+sa2: Write an explicit formula for 7, 4, 1, -2, ... and find the 20th term. | an = 7 - 3(n - 1); a20 = -50.
+sa2: Bacteria triple every hour, starting at 50. Write a function and find the amount after 4 hours. | B = 50(3)^t; B(4) = 4,050.
+ex2: Explain the difference between linear and exponential growth using a table. | Linear adds the same amount each step; exponential multiplies by the same factor each step.
+task3: Two job offers: Job A pays $1,000 the first month and $100 more each month. Job B pays $100 the first month and doubles each month. Write a rule for each, make a table for 8 months, find when Job B pays more per month, and recommend a job for 6 months and for 1 year. | A = 1000 + 100(n - 1), B = 100(2)^(n - 1), B passes A in month 5 (1,600 vs 1,400), correct recommendations with reasoning. | Correct rules and table with one error in the conclusions. | One rule correct. | Little correct work.
+unit: Polynomials and factoring | A-APR.A.1, A-SSE.A.2 | g9foil
+mc1: (x + 3)(x + 5) = ? | x^2 + 8x + 15 | x^2 + 15 | x^2 + 8x + 8 | 2x + 8
+mc1: (3x^2 + 2x) + (x^2 - 5x) = ? | 4x^2 - 3x | 4x^2 + 7x | 3x^2 - 3x | 4x^4 - 3x^2
+mc2: Factor x^2 + 7x + 12. | (x + 3)(x + 4) | (x + 2)(x + 6) | (x + 12)(x + 1) | (x - 3)(x - 4)
+mc2: Factor x^2 - 25. | (x + 5)(x - 5) | (x - 5)(x - 5) | (x + 25)(x - 1) | x(x - 25)
+mc2: (2x - 1)^2 = ? | 4x^2 - 4x + 1 | 4x^2 + 1 | 4x^2 - 1 | 2x^2 - 4x + 1
+mc2: Factor 3x^2 - 12x. | 3x(x - 4) | 3(x^2 - 12x) | x(3x - 4) | 3x(x - 12)
+mc2: Factor x^2 - x - 6. | (x - 3)(x + 2) | (x + 3)(x - 2) | (x - 6)(x + 1) | (x - 3)(x - 2)
+mc3: The area of a rectangle is x^2 + 9x + 20. Its width is x + 4. What is its length? | x + 5 | x + 16 | x + 4 | x - 5
+sa2: Multiply (x - 4)(2x + 3) and show each product. | 2x^2 + 3x - 8x - 12 = 2x^2 - 5x - 12.
+sa2: Factor completely: 2x^2 - 18. | 2(x^2 - 9) = 2(x + 3)(x - 3).
+ex2: Explain how you can check a factoring answer. | Multiply the factors back together; you should get the original expression.
+task3: A garden is a square with side x feet. It is extended 3 feet in one direction and 5 feet in the other. Write the new area as a product and as a polynomial, find the area when x = 10, and explain how much area the extension added in terms of x. | (x + 3)(x + 5) = x^2 + 8x + 15, 195 sq ft, added 8x + 15 = 95 sq ft, clear explanation. | Correct polynomial and value, added area missing or incorrect. | Correct product with expansion errors. | Little correct work.
+unit: Quadratic functions and equations | A-REI.B.4, F-IF.C.7, F-IF.B.4 | g9disc
+mc1: Solve x^2 = 49. | x = 7 or x = -7 | x = 7 | x = 24.5 | x = -7
+mc2: Solve (x - 2)(x + 5) = 0. | x = 2 or x = -5 | x = -2 or x = 5 | x = 2 or x = 5 | x = -10
+mc2: What is the vertex of y = (x - 3)^2 + 4? | (3, 4) | (-3, 4) | (3, -4) | (4, 3)
+mc2: The discriminant of x^2 + 4x + 5 is | -4 | 36 | 4 | 26
+mc2: How many real solutions does a quadratic have if its discriminant is 0? | One | Two | None | Infinitely many
+mc2: Solve x^2 - 6x + 8 = 0. | x = 2 or x = 4 | x = -2 or x = -4 | x = 1 or x = 8 | x = 6 or x = 8
+mc2: Which way does y = -2x^2 + 3 open? | Down | Up | Left | Right
+mc3: A ball's height is h = -16t^2 + 64t. When does it hit the ground? | t = 4 seconds | t = 2 seconds | t = 16 seconds | t = 64 seconds
+sa2: Solve x^2 + 2x - 15 = 0 by factoring and check one solution. | (x + 5)(x - 3) = 0, so x = -5 or x = 3. Check 3: 9 + 6 - 15 = 0.
+sa2: Use the quadratic formula to solve 2x^2 - 3x - 2 = 0. | x = (3 plus or minus the square root of 25) / 4, so x = 2 or x = -1/2.
+ex2: Explain what the zeros of a quadratic function tell you about its graph. | They are the x-intercepts, where the parabola crosses the x-axis.
+task3: A rocket is launched with height h(t) = -16t^2 + 96t + 6 feet. Find its maximum height and when it occurs, when it hits the ground (to the nearest tenth), and explain what the 6 and the 96 mean in the situation. | Max 150 feet at t = 3 s, lands at about 6.1 s, correct interpretation (launch height 6 ft, initial upward speed 96 ft/s). | Max and timing correct, landing time or interpretation has an error. | One feature correct. | Little correct work.
+
+@grade 10
+about: Geometry develops formal reasoning about congruence and similarity through transformations, proves theorems about lines, triangles and circles, connects algebra and geometry on the coordinate plane, introduces right triangle trigonometry, and applies area and volume.
+std: G-CO.B.7 | Use the definition of congruence in terms of rigid motions to show two triangles are congruent.
+std: G-CO.C.10 | Prove theorems about triangles.
+std: G-SRT.B.5 | Use congruence and similarity criteria for triangles to solve problems and prove relationships.
+std: G-SRT.C.8 | Use trigonometric ratios and the Pythagorean theorem to solve right triangles in applied problems.
+std: G-GPE.B.4 | Use coordinates to prove simple geometric theorems algebraically.
+std: G-C.B.5 | Derive the formula for the length of an arc and the area of a sector.
+std: G-GMD.A.3 | Use volume formulas for cylinders, pyramids, cones and spheres to solve problems.
+unit: Congruence, proof and polygons | G-CO.A.5, G-CO.B.7, G-CO.C.9, G-CO.C.10 | g10poly
+mc1: The interior angles of a pentagon add up to | 540 degrees | 360 degrees | 720 degrees | 900 degrees
+mc1: Each interior angle of a regular hexagon measures | 120 degrees | 108 degrees | 135 degrees | 60 degrees
+mc2: Two parallel lines are cut by a transversal. One angle is 70 degrees. Its alternate interior angle is | 70 degrees | 110 degrees | 20 degrees | 140 degrees
+mc2: Which is NOT a valid way to prove triangles congruent? | AAA | SSS | SAS | ASA
+mc2: In isosceles triangle ABC with AB = AC, angle A = 40 degrees. What is angle B? | 70 degrees | 40 degrees | 140 degrees | 100 degrees
+mc2: A rotation of 180 degrees about the origin sends (2, -3) to | (-2, 3) | (3, 2) | (-2, -3) | (2, 3)
+mc2: An exterior angle of a triangle is 120 degrees. The two remote interior angles add to | 120 degrees | 60 degrees | 240 degrees | 180 degrees
+mc3: How many sides does a regular polygon have if each exterior angle is 24 degrees? | 15 | 12 | 24 | 18
+sa2: Prove that vertical angles are congruent. | Angles 1 and 2 form a linear pair, so 1 + 2 = 180. Angles 2 and 3 form a linear pair, so 2 + 3 = 180. So 1 + 2 = 2 + 3, and angle 1 = angle 3.
+sa2: Explain which rigid motions map triangle ABC with A(1,1), B(3,1), C(1,4) onto A'(-1,1), B'(-3,1), C'(-1,4). | A reflection across the y-axis; it preserves lengths and angles, so the triangles are congruent.
+ex2: Explain why SSA is not enough to prove two triangles congruent. | Two different triangles can have the same two sides and a non-included angle, so the triangle is not fixed.
+task3: Given parallelogram ABCD with diagonal AC, prove that triangle ABC is congruent to triangle CDA. Write a two-column or paragraph proof naming each reason, then use it to explain why opposite sides of a parallelogram are congruent. | Complete proof by ASA (alternate interior angles and shared side AC) with all reasons, and correct use of CPCTC for opposite sides. | Correct proof with one missing reason. | Correct congruence criterion with gaps in the reasoning. | Little correct reasoning.
+unit: Similarity and right triangle trigonometry | G-SRT.A.2, G-SRT.B.5, G-SRT.C.6, G-SRT.C.8 | g10sim, g10sin
+mc1: Triangles are similar with scale factor 3. A side of 4 in the small one matches what in the large one? | 12 | 7 | 4/3 | 1
+mc1: In a right triangle, sin(A) equals | opposite / hypotenuse | adjacent / hypotenuse | opposite / adjacent | hypotenuse / opposite
+mc2: A 6-foot person casts a 4-foot shadow. A tree casts a 20-foot shadow. How tall is the tree? | 30 feet | 13.3 feet | 26 feet | 24 feet
+mc2: In a right triangle the hypotenuse is 10 and angle A is 30 degrees. The side opposite A is | 5 | 8.66 | 10 | 20
+mc2: tan(45 degrees) = | 1 | 0 | 0.5 | 1.41
+mc2: Which is enough to show two triangles are similar? | Two pairs of congruent angles | One pair of congruent angles | One pair of proportional sides | Equal perimeters
+mc2: In a 45-45-90 triangle with legs 5, the hypotenuse is | 5 times the square root of 2 | 10 | 5 | 25
+mc3: A ramp rises 3 feet over a horizontal distance of 20 feet. About what angle does it make with the ground? | 8.5 degrees | 81.5 degrees | 3 degrees | 15 degrees
+sa2: Explain why all equilateral triangles are similar. | Every angle is 60 degrees, so any two have congruent angles (AA).
+sa2: A ladder makes a 70-degree angle with the ground and reaches 15 feet up a wall. How long is the ladder? Show the ratio. | sin 70 = 15 / L, so L = 15 / 0.94 = about 16 feet.
+ex2: Explain why sin(30 degrees) has the same value in every right triangle with a 30-degree angle. | All such triangles are similar, so the ratio of opposite to hypotenuse stays the same.
+task3: You stand 50 meters from a building and measure the angle to the top as 38 degrees. Your eyes are 1.6 m above the ground. Find the building's height, draw and label a diagram, and explain how an error of 2 degrees in your angle would change the answer. | About 40.7 m (50 tan 38 + 1.6), clear diagram, compares with 36 and 40 degrees (about 37.9 m and 43.6 m) and explains the sensitivity. | Correct height and diagram, weak error analysis. | Correct setup with a trig or eye-height error. | Little correct work.
+unit: Coordinate geometry | G-GPE.B.4, G-GPE.B.5, G-GPE.B.6, G-GPE.B.7 | g10dist, g10mid
+mc1: Distance between (1, 1) and (4, 5)? | 5 | 7 | 25 | 3
+mc1: Midpoint of (2, 6) and (8, -2)? | (5, 2) | (6, 8) | (10, 4) | (3, 4)
+mc2: Slope of a line perpendicular to y = 2/3 x + 1? | -3/2 | 2/3 | 3/2 | -2/3
+mc2: Which line is parallel to y = 4x - 2? | y = 4x + 7 | y = -4x - 2 | y = 1/4 x | y = -1/4 x + 2
+mc2: Perimeter of the triangle with vertices (0, 0), (3, 0), (0, 4)? | 12 | 7 | 6 | 10
+mc2: The equation of a circle with center (2, -1) and radius 3 is | (x - 2)^2 + (y + 1)^2 = 9 | (x + 2)^2 + (y - 1)^2 = 9 | (x - 2)^2 + (y + 1)^2 = 3 | x^2 + y^2 = 9
+mc2: M(4, 3) is the midpoint of AB and A is (1, 1). What is B? | (7, 5) | (2.5, 2) | (5, 4) | (3, 2)
+mc3: Quadrilateral with vertices (0,0), (4,0), (5,3), (1,3) is a | parallelogram | rectangle | square | trapezoid with one pair of parallel sides only
+sa2: Show that (0, 0), (4, 0) and (2, 3) form an isosceles triangle. | Sides from (2, 3) to each base vertex are both the square root of 13, so two sides are equal.
+sa2: Write the equation of the line through (2, 5) perpendicular to y = -1/2 x + 3. | Slope 2: y - 5 = 2(x - 2), or y = 2x + 1.
+ex2: Explain how slopes show that two lines are perpendicular. | Their slopes multiply to -1 (they are negative reciprocals).
+task3: Prove using coordinates that the quadrilateral with vertices A(1, 2), B(5, 4), C(7, 0) and D(3, -2) is a rectangle, and find its area. Show slopes and lengths. | Slopes 1/2 and -2 show opposite sides parallel and adjacent sides perpendicular; every side is the square root of 20, so the area is 20 (it is also a square); all work shown. | Correct classification with one missing justification. | Some correct slopes or lengths. | Little correct work.
+unit: Circles, area and volume | G-C.A.2, G-C.B.5, G-GMD.A.3, G-MG.A.1 | g10arc, g10sph
+mc1: Arc length of a 90-degree arc on a circle of radius 8 (in terms of pi)? | 4 pi | 8 pi | 16 pi | 2 pi
+mc1: An inscribed angle intercepts an 80-degree arc. The angle measures | 40 degrees | 80 degrees | 160 degrees | 20 degrees
+mc2: Area of a sector with radius 6 and central angle 60 degrees (in terms of pi)? | 6 pi | 12 pi | 36 pi | 2 pi
+mc2: Volume of a sphere of radius 3 (in terms of pi)? | 36 pi | 27 pi | 12 pi | 108 pi
+mc2: A tangent line and a radius meet at the point of tangency at | 90 degrees | 45 degrees | 180 degrees | 60 degrees
+mc2: Volume of a square pyramid with base side 6 and height 10? | 120 | 360 | 60 | 180
+mc2: A cone and a cylinder have the same base and height. The cone's volume is | 1/3 of the cylinder's | the same | 1/2 of the cylinder's | 3 times the cylinder's
+mc3: Doubling the radius of a sphere multiplies its volume by | 8 | 2 | 4 | 6
+sa2: Find the arc length of a 150-degree arc in a circle of radius 12, showing the fraction of the circle. | 150/360 x 24 pi = 10 pi, about 31.4.
+sa2: A cylindrical tank has diameter 4 m and height 5 m. How many liters does it hold? (1 cubic meter = 1,000 liters, use 3.14.) | 3.14 x 4 x 5 = 62.8 cubic m = 62,800 liters.
+ex2: Explain how the area of a sector relates to the area of the whole circle. | It is the fraction (central angle / 360) of the whole circle's area.
+task3: A company sells ice cream in a cone (radius 3 cm, height 12 cm) topped with a half-sphere scoop of the same radius. Find the total volume of ice cream if the cone is filled. Then design a cup (cylinder) with the same volume and a radius of 4 cm, and find its height. Show formulas and explain (use 3.14). | Cone 113.04 + hemisphere 56.52 = 169.56 cubic cm, cup height about 3.37 cm, clear formulas and work. | Correct total with a cup error. | Correct formulas with calculation errors. | Little correct work.
+
+@grade 11
+about: Algebra II extends work to polynomial, rational, radical, exponential and logarithmic functions, introduces trigonometric functions on the unit circle, and develops series, probability and statistical inference.
+std: A-APR.B.2 | Know and apply the Remainder Theorem.
+std: A-REI.A.2 | Solve simple rational and radical equations in one variable.
+std: F-IF.C.8 | Write a function in different but equivalent forms to reveal properties.
+std: F-LE.A.4 | Express the solution to exponential models as a logarithm and evaluate it.
+std: F-TF.A.2 | Explain how the unit circle extends trigonometric functions to all real numbers.
+std: A-SSE.B.4 | Derive and use the formula for the sum of a finite geometric series.
+std: S-IC.B.4 | Use data from a sample survey to estimate a population mean or proportion.
+unit: Polynomial and rational functions | A-APR.B.2, A-APR.B.3, A-REI.A.2, F-IF.C.7 | g11rem
+mc1: Remainder when x^3 - 2x + 5 is divided by (x - 2)? | 9 | 5 | 1 | 13
+mc1: Zeros of f(x) = x(x - 3)(x + 4)? | 0, 3, -4 | 0, -3, 4 | 3, -4 | 1, 3, 4
+mc2: End behavior of f(x) = -2x^4 + x? | Down on both ends | Up on both ends | Up left, down right | Down left, up right
+mc2: Solve 3 / (x - 1) = 6. | x = 1.5 | x = 3 | x = 0.5 | x = 7
+mc2: Vertical asymptote of y = (x + 2) / (x - 5)? | x = 5 | x = -2 | y = 1 | x = 1
+mc2: Solve the square root of (x + 3) = 5. | 22 | 2 | 28 | 8
+mc2: (x - 1) is a factor of x^3 + kx - 4. What is k? | 3 | -3 | 4 | 5
+mc3: A polynomial of degree 5 has real coefficients and zeros 2, 3i and -1. How many other zeros must it have? | 2, including -3i | 1 | 0 | 3
+sa2: Use synthetic division to divide x^3 - 6x^2 + 11x - 6 by (x - 1) and factor completely. | Quotient x^2 - 5x + 6, so (x - 1)(x - 2)(x - 3).
+sa2: Solve x / (x - 2) = 3 / (x - 2) + 2 and check for extraneous solutions. | x = 3 + 2(x - 2) gives x = 1. Check: 1/(-1) = -1 and 3/(-1) + 2 = -1. x = 1 works.
+ex2: Explain why squaring both sides of a radical equation can create extraneous solutions. | Squaring loses sign information, so a solution of the squared equation may not satisfy the original.
+task3: A box with no lid is made from a 20 cm by 30 cm sheet by cutting squares of side x from each corner. Write the volume as a polynomial, state a sensible domain, find the volume for x = 4, and estimate (by table or graph) the x that gives the greatest volume. | V = x(20 - 2x)(30 - 2x), 0 < x < 10, V(4) = 1,056, maximum near x = 3.9 (volume about 1,056 cubic cm), clear work. | Correct polynomial and domain with an estimation error. | Correct polynomial only. | Little correct work.
+unit: Exponential and logarithmic functions | F-LE.A.4, F-BF.B.5, F-IF.C.8 | logs, g11expeq, g11logp
+mc1: log base 2 of 32 = ? | 5 | 16 | 6 | 2.5
+mc1: Write 10^3 = 1000 in log form. | log 1000 = 3 | log 3 = 1000 | log 10 = 3 | log 1000 = 10
+mc2: Solve 3^x = 81. | 4 | 27 | 3 | 78
+mc2: log 5 + log 20 = ? | 2 | 25 | 100 | log 25
+mc2: Solve 2^(x + 1) = 64. | 5 | 6 | 32 | 31
+mc2: $1,000 grows at 6% compounded yearly. Which gives the balance after t years? | 1000(1.06)^t | 1000(0.06)^t | 1000 + 0.06t | 1000(6)^t
+mc2: Solve e^x = 10 (to two decimals). | 2.30 | 1.00 | 22026.47 | 3.16
+mc3: How long until $500 doubles at 5% compounded yearly (to the nearest year)? | 14 years | 20 years | 10 years | 7 years
+sa2: Solve 5(2)^x = 80 and explain each step. | 2^x = 16, so x = 4.
+sa2: Expand log(x^2 y / z) using log properties. | 2 log x + log y - log z.
+ex2: Explain why log base b of 1 is 0 for any base b. | b^0 = 1, so the exponent needed to get 1 is 0.
+task3: A medicine has a half-life of 6 hours. A patient takes 200 mg. Write a function for the amount after t hours, find the amount after 24 hours, and use logarithms to find when 10 mg remain. Explain what each part of your function means. | A = 200(1/2)^(t/6), 12.5 mg after 24 h, about 25.9 hours for 10 mg, clear interpretation. | Correct function and one answer with explanation. | Correct function only. | Little correct work.
+unit: Trigonometric functions | F-TF.A.1, F-TF.A.2, F-TF.B.5, F-TF.C.8 | g11rad
+mc1: 180 degrees in radians is | pi | 2 pi | pi/2 | 180 pi
+mc1: sin(90 degrees) = | 1 | 0 | -1 | 0.5
+mc2: cos(pi/3) = | 1/2 | the square root of 3 over 2 | 1 | 0
+mc2: 135 degrees in radians is | 3pi/4 | 2pi/3 | 5pi/6 | 3pi/2
+mc2: Period of y = sin(2x)? | pi | 2 pi | 4 pi | pi/2
+mc2: Amplitude of y = 3 cos(x) + 1? | 3 | 1 | 4 | 2
+mc2: If sin(t) = 3/5 and t is in quadrant II, cos(t) = | -4/5 | 4/5 | -3/5 | 5/4
+mc3: A Ferris wheel's height is h = 20 - 18 cos(pi t / 5). How long is one full turn? | 10 minutes | 5 minutes | 20 minutes | 18 minutes
+sa2: Explain why sin^2(t) + cos^2(t) = 1 using the unit circle. | A point on the unit circle is (cos t, sin t) and its distance from the origin is 1, so by the Pythagorean theorem cos^2 + sin^2 = 1.
+sa2: Find all angles from 0 to 2 pi where sin(x) = 1/2. | pi/6 and 5pi/6.
+ex2: Explain what a radian measures. | The angle that cuts off an arc equal in length to the radius.
+task3: The tide at a harbor is high (9 m) at noon and low (3 m) at 6:15 pm. Write a cosine model for the water depth t hours after noon, graph one full cycle, and find the first time after noon the depth is 7 m. Explain each parameter. | d = 3 cos(pi t / 6.25) + 6, correct graph, about 2.4 hours after noon (about 2:27 pm), clear explanation of amplitude, period and midline. | Correct model with an error in the 7 m time. | Correct amplitude and midline with a wrong period. | Little correct work.
+unit: Series, probability and statistics | A-SSE.B.4, S-CP.A.2, S-CP.B.9, S-ID.A.4, S-IC.B.4 | g11arser, g11geoser, g11comb, g11perm
+mc1: Sum of 2 + 4 + 6 + ... + 20? | 110 | 100 | 120 | 210
+mc1: How many ways can 4 students line up? | 24 | 16 | 4 | 10
+mc2: Sum of 3 + 6 + 12 + ... for 6 terms? | 189 | 96 | 192 | 93
+mc2: How many ways to choose 3 books from 7? | 35 | 210 | 21 | 343
+mc2: P(A) = 0.4, P(B) = 0.5, A and B independent. P(A and B)? | 0.2 | 0.9 | 0.1 | 0.45
+mc2: In a normal distribution, about what percent of data is within 1 standard deviation of the mean? | 68% | 95% | 99.7% | 50%
+mc2: A survey of 400 voters finds 52% support a measure. The margin of error is about 5%. Which is a reasonable conclusion? | Support is likely between 47% and 57% | The measure will pass | Exactly 52% of all voters support it | The survey is wrong
+mc3: Why are random samples important in surveys? | They reduce bias so results represent the population | They make the sample larger | They guarantee the exact answer | They make surveys faster
+sa2: Find the sum of the infinite geometric series 8 + 4 + 2 + 1 + ... and explain why it has a sum. | 16. The ratio is 1/2, which is between -1 and 1, so terms shrink toward 0: a / (1 - r) = 8 / (1/2).
+sa2: A test for a condition is 90% accurate. Explain why a positive result might still be unlikely to be a true positive if the condition is rare. | When few people have the condition, the false positives from the many healthy people can outnumber the true positives.
+ex2: Explain the difference between a permutation and a combination with an example. | Permutations count order (president and vice president from 10: 90). Combinations do not (a committee of 2 from 10: 45).
+task3: A student designs a study to find the average hours of sleep of students at their school. Describe a sampling method that avoids bias, explain how to estimate the mean and a margin of error from the sample, and explain how a sample of 30 versus 300 would change the conclusion. | Random sampling plan, sample mean and margin of error (about 2 standard deviations over the square root of n), explains that a larger sample gives a smaller margin of error, with clear reasoning. | Good plan and estimate, sample size effect unclear. | Sampling plan has bias or the estimate is missing. | Little correct reasoning.
+
+@grade 12
+about: Precalculus and Calculus build on functions to study limits, rates of change and accumulation. Students analyze polynomial, exponential and trigonometric functions, find derivatives and integrals, and apply them to motion, optimization and area.
+std: F-BF.A.1 | Write a function that describes a relationship between two quantities, including composition.
+std: F-IF.C.7 | Graph functions and show key features, including asymptotes and end behavior.
+std: CALC.LIM | Understand limits and continuity, and evaluate limits algebraically and graphically.
+std: CALC.DER | Interpret the derivative as a rate of change and compute derivatives using the power, product and chain rules.
+std: CALC.APP | Apply derivatives to optimization, motion and related rates.
+std: CALC.INT | Interpret the definite integral as accumulated change and evaluate it using antiderivatives.
+unit: Limits and continuity | CALC.LIM, F-IF.C.7 | g12lim, g12inf
+mc1: The limit of (2x + 3) as x approaches 4 is | 11 | 7 | 4 | 8
+mc2: The limit of (x^2 - 9)/(x - 3) as x approaches 3 is | 6 | 0 | 3 | undefined
+mc2: The limit of 1/x as x approaches infinity is | 0 | 1 | infinity | -1
+mc2: The limit of (3x^2 + 1)/(x^2 - 5) as x approaches infinity is | 3 | 1 | 0 | -1/5
+mc2: f(x) = (x + 1)/(x - 2) has a vertical asymptote at | x = 2 | x = -1 | y = 1 | x = 1
+mc2: Which function is continuous at x = 0? | f(x) = x^2 + 1 | f(x) = 1/x | f(x) = abs(x)/x | f(x) = 1/x^2
+mc2: Sum of the infinite series 1 + 1/3 + 1/9 + ...? | 3/2 | 3 | 4/3 | infinite
+mc3: A function has f(2) = 5, the left-hand limit at 2 is 5 and the right-hand limit at 2 is 7. Which is true? | f is not continuous at 2 | f is continuous at 2 | The limit at 2 is 5 | The limit at 2 is 6
+sa2: Evaluate the limit of (x^2 + x - 6)/(x - 2) as x approaches 2 and explain your method. | Factor: (x + 3)(x - 2)/(x - 2) = x + 3, so the limit is 5.
+sa2: Explain the three conditions for f to be continuous at x = a. | f(a) is defined, the limit as x approaches a exists, and the limit equals f(a).
+ex2: Explain the difference between f(a) and the limit of f(x) as x approaches a. | f(a) is the value at a; the limit is the value f(x) gets close to near a, which can differ or exist when f(a) does not.
+task3: A piecewise function is f(x) = x^2 + k for x < 1 and f(x) = 3x + 2 for x >= 1. Find k so f is continuous, sketch the graph, and use limits to justify continuity at x = 1. Then explain what happens to the graph if k is 1 more. | k = 4, correct sketch, both one-sided limits equal 5, and a jump discontinuity explained for k = 5. | Correct k and sketch with incomplete limit justification. | Correct setup with an error in k. | Little correct work.
+unit: Derivatives | CALC.DER | deriv, g12d2, g12chain
+mc1: Derivative of x^5? | 5x^4 | x^4 | 5x^5 | 4x^5
+mc1: Derivative of 7x^2 - 3x + 4? | 14x - 3 | 7x - 3 | 14x + 4 | 14x^2 - 3
+mc2: Derivative of (2x + 1)^3? | 6(2x + 1)^2 | 3(2x + 1)^2 | 6(2x + 1)^3 | 2(2x + 1)^2
+mc2: Slope of y = x^3 at x = 2? | 12 | 8 | 6 | 3
+mc2: Derivative of sin(x)? | cos(x) | -cos(x) | -sin(x) | tan(x)
+mc2: Derivative of e^(3x)? | 3e^(3x) | e^(3x) | 3x e^(3x - 1) | e^3
+mc2: Derivative of x^2 sin(x)? | 2x sin(x) + x^2 cos(x) | 2x cos(x) | 2x sin(x) | x^2 cos(x)
+mc3: Position is s(t) = t^3 - 6t^2 + 9t. When is the velocity 0? | t = 1 and t = 3 | t = 0 and t = 3 | t = 2 | t = 0 only
+sa2: Find the equation of the tangent line to y = x^2 + 1 at x = 2. | Slope 4, point (2, 5): y = 4x - 3.
+sa2: Use the definition of the derivative to find f'(x) for f(x) = x^2. | (x + h)^2 - x^2 over h = 2x + h, which approaches 2x.
+ex2: Explain what the derivative tells you about a function's graph. | It gives the slope of the tangent line at each point: positive where the graph rises, negative where it falls.
+task3: A ball is thrown upward with height h(t) = -4.9t^2 + 19.6t + 2 meters. Find the velocity function, the time and height of the peak, the velocity when it hits the ground, and explain what the sign of the velocity means at each stage. | v = -9.8t + 19.6, peak at t = 2 s and 21.6 m, lands near t = 4.1 s with v about -20.5 m/s, clear sign interpretation. | Correct velocity and peak, landing velocity error. | Correct derivative only. | Little correct work.
+unit: Applications of derivatives | CALC.APP | g12vert
+mc1: f'(x) > 0 on an interval means f is | increasing | decreasing | constant | concave down
+mc2: f(x) = x^2 - 6x + 5 has a minimum at x = | 3 | -3 | 5 | 6
+mc2: Critical points of f(x) = x^3 - 3x are at x = | 1 and -1 | 0 | 3 | 0 and 3
+mc2: If f''(x) < 0, the graph is | concave down | concave up | increasing | a line
+mc2: A farmer has 100 m of fence for a rectangle. What dimensions give the most area? | 25 m by 25 m | 10 m by 40 m | 20 m by 30 m | 50 m by 50 m
+mc2: A balloon's radius grows at 2 cm/s. How fast does the volume grow when r = 5? (V = 4/3 pi r^3) | 200 pi cubic cm/s | 100 pi cubic cm/s | 50 pi cubic cm/s | 500/3 pi cubic cm/s
+mc2: Velocity is v(t) = 3t^2 - 12. When is the object speeding up? | When v and acceleration have the same sign | When v > 0 only | When t < 2 only | Never
+mc3: A box with a square base and open top has volume 32. Which base side minimizes the material used? | 4 | 2 | 8 | 3
+sa2: Find the absolute maximum of f(x) = -x^2 + 4x + 1 on [0, 5]. | f'(x) = -2x + 4 = 0 at x = 2, f(2) = 5; endpoints f(0) = 1, f(5) = -4. Maximum 5.
+sa2: Use the second derivative test to classify the critical points of f(x) = x^3 - 3x^2. | f' = 3x^2 - 6x = 0 at x = 0, 2. f'' = 6x - 6: f''(0) < 0 max, f''(2) > 0 min.
+ex2: Explain why the maximum of a function on a closed interval can happen at an endpoint. | The function may keep rising until the edge of the interval, where there is no turning point.
+task3: A can (cylinder) must hold 500 cubic cm. Write the surface area in terms of the radius, use derivatives to find the radius and height that use the least metal, and explain why your answer is a minimum. Compare with a real can and suggest a reason for any difference. | SA = 2 pi r^2 + 1000/r, r about 4.3 cm, h about 8.6 cm (h = 2r), justified as a minimum, thoughtful comparison. | Correct optimization with weak justification or comparison. | Correct SA function with a derivative error. | Little correct work.
+unit: Integrals and accumulation | CALC.INT | g12int, integral
+mc1: An antiderivative of 6x^2 is | 2x^3 | 12x | 6x^3 | 3x^2
+mc2: The integral of 2x from 0 to 3 is | 9 | 6 | 3 | 18
+mc2: The integral of (3x^2 + 1) from 1 to 2 is | 8 | 7 | 9 | 13
+mc2: The integral of cos(x) from 0 to pi/2 is | 1 | 0 | -1 | pi/2
+mc2: If v(t) is velocity, the integral of v from 0 to 5 gives | change in position | acceleration | the speed at t = 5 | the average velocity
+mc2: The area between y = x and y = x^2 from 0 to 1 is | 1/6 | 1/2 | 1/3 | 1
+mc2: A left Riemann sum with 4 rectangles for f(x) = x on [0, 4] gives | 6 | 8 | 10 | 16
+mc3: Water flows into a tank at r(t) = 4t liters per minute. How much enters in the first 5 minutes? | 50 liters | 20 liters | 100 liters | 25 liters
+sa2: Explain the Fundamental Theorem of Calculus in your own words. | The definite integral of a rate from a to b equals the change in an antiderivative, F(b) - F(a): accumulating the rate gives total change.
+sa2: Find the area under y = x^2 from 0 to 3. | x^3/3 from 0 to 3 = 9.
+ex2: Explain why a definite integral can be negative. | It adds signed area; where the function is below the x-axis the area counts as negative.
+task3: A car's velocity is v(t) = 3t^2 - 12t + 9 m/s for 0 <= t <= 4. Find when the car changes direction, the displacement over 4 seconds, and the total distance traveled. Explain why the two answers differ. | Changes direction at t = 1 and t = 3, displacement 4 m, total distance 12 m, clear explanation of signed versus total area. | Displacement and turning times correct, distance error. | Correct antiderivative with errors. | Little correct work.
