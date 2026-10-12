@@ -1,0 +1,242 @@
+<style>
+.tt{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 16px}
+.std{display:inline-block;font-size:13px;line-height:1.4;padding:2px 9px;border-radius:999px;background:var(--lamp-soft);color:var(--ink);margin:2px 6px 2px 0}
+.qz ol.items{padding-left:26px;margin:12px 0}.qz ol.items>li{margin:0 0 18px}
+.qz .ch label{display:flex;gap:8px;align-items:flex-start;margin:6px 0;font-weight:400;cursor:pointer}.qz .ch input{margin-top:5px;flex:none}
+.qz textarea,.qz input[type=text]{font:inherit;width:100%;padding:8px 10px;border-radius:10px;border:2px solid var(--line);background:var(--bg);color:var(--ink)}.qz textarea{min-height:110px}.qz input[type=text]{max-width:240px}
+.dok{font-size:12px;font-weight:700;color:var(--mute);margin-left:8px;white-space:nowrap}
+.key{color:var(--teal);font-weight:700}.miss{color:var(--coral);font-weight:700}
+.rub{font-size:14px;margin:8px 0 0;padding-left:20px}.rub li{margin:2px 0}
+.tmr{position:sticky;top:8px;z-index:5;background:var(--panel);border:2px solid var(--line);border-radius:12px;padding:6px 14px;font-weight:700;font-variant-numeric:tabular-nums}
+.tmr.low{border-color:var(--coral);color:var(--coral)}
+.gb th,.gb td{vertical-align:top}.gb td small{display:block;color:var(--mute)}
+.ans{white-space:pre-wrap;background:var(--bg);border-radius:10px;padding:8px 12px;margin:6px 0}
+.gsel{display:flex;gap:12px;flex-wrap:wrap;align-items:end}.gsel label{font-weight:700;font-size:15px}.gsel select{display:block;margin-top:4px}
+</style>
+<script type="text/x-lumen">
+/* ===== Teacher page (Classes, Assessments, Gradebook, Grade guides) and taking quizzes and tests (My classes).
+   Questions come from server/assessments.json (built by tools/build_assess.py), which only teachers can load.
+   An assessment's questions are frozen when it is assigned; the answer key stays with the teacher, who
+   scores written answers and releases results. ===== */
+const AS={bank:null,g:null,sub:'math',pv:null,cls:null,T:{},gt:null};
+const AGR=[-1,0,1,2,3,4,5,6,7,8,9,10,11,12],KN={classwork:'Classwork',quiz:'Quiz',test:'Unit test'},PTS={mc:1,num:1,sa:2,ex:2,task:4};
+const GL=g=>g<0?'TK':g==0?'Kindergarten':'Grade '+g;
+const ASUB=s=>(AS.bank&&AS.bank.subjects[s])||SUBN[s]||s;
+const cellOf=(sub,g)=>AS.bank&&AS.bank.cells[sub+'|'+g];
+function unitById(id){const m=/^(\w+)-(-?\d+)-(\d+)$/.exec(id||'');if(!m)return null;const c=cellOf(m[1],+m[2]);const u=c&&c.units[+m[3]-1];return u?{...u,sub:m[1],g:+m[2],n:+m[3]}:null}
+const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const keep=fn=>{const y=scrollY;fn();scrollTo(0,y)};
+const ar=()=>keep(()=>showTab(tab));
+const supportsFor=(sub,g)=>{const s=(AS.bank&&AS.bank.supports[sub])||{el:[],iep:[]},f=l=>l.filter(([lo,hi])=>g>=lo&&g<=hi).map(x=>x[2]);return{el:f(s.el),iep:f(s.iep)}};
+
+/* ---------- Building an assessment from a unit ---------- */
+const mcItem=m=>{const ch=shuf(m.ch);return[{t:'mc',q:m.q,ch,dok:m.dok},{a:ch.indexOf(m.ch[0]),txt:m.ch[0]}]};
+function genItems(u,n){const ks=(u.skills||[]).filter(k=>G[k]),out=[],seen=new Set();
+  for(let i=0;out.length<n&&ks.length&&i<n*8;i++){const k=ks[i%ks.length];let q;try{q=G[k](i<n/2?1:2)}catch(e){continue}
+    const t=plain(String(q.q)).replace(/\s+/g,' ').trim();if(!t||seen.has(t))continue;seen.add(t);
+    if(q.choices)out.push([{t:'mc',q:t,ch:q.choices.map(c=>plain(String(c))),dok:1},{a:q.a[0],txt:plain(String(q.choices[q.a[0]]))}]);
+    else out.push([{t:'num',q:t,dok:1},{a:q.a,exact:!!q.exact,txt:ansText(q)}])}
+  return out}
+function buildA(uid,kind){const u=unitById(uid);const P=[],W=(t,o,pts)=>[{t,q:o.q,dok:o.dok,pts,...(o.rub?{rub:o.rub}:{})},o.rub?{rub:o.rub}:{ans:o.ans}];
+  if(kind==='quiz')P.push(...u.mc.slice(0,4).map(mcItem),...genItems(u,3),W('ex',u.ex,2));
+  else if(kind==='test')P.push(...u.mc.slice(4).map(mcItem),...genItems(u,4),...u.sa.map(s=>W('sa',s,2)),W('task',u.task,4));
+  else P.push(...u.mc.map(mcItem),...genItems(u,4),W('sa',u.sa[0],2),W('ex',u.ex,2));
+  const core=(u.skills||[]).filter(k=>SK[k]),sup=[...new Set(core.flatMap(k=>SK[k].pre||[]))].filter(k=>SK[k]&&!core.includes(k)).slice(0,3),
+    ext=ORDER.filter(k=>SK[k].sub===u.sub&&ST.gr[k]===u.g+1&&SK[k].unit===(core[0]&&SK[core[0]].unit)).slice(0,3);
+  return{kind,unit:u.id,title:`${KN[kind]}: ${u.name} (${GL(u.g)} ${ASUB(u.sub)})`,items:P.map(p=>p[0]),key:P.map(p=>p[1]),
+    skills:kind==='classwork'?[...core,...sup.map(k=>'s:'+k),...ext.map(k=>'x:'+k)]:core,minutes:kind==='classwork'||u.g<=1?0:kind==='quiz'?15:u.g<=5?40:50}}
+/* the version being previewed is the one that is printed and assigned, so all three match */
+function ensure(uid,kind){if(!AS.pv||AS.pv.u!==uid||AS.pv.kind!==kind)AS.pv={u:uid,kind,a:buildA(uid,kind)};return AS.pv.a}
+const maxPts=items=>items.reduce((s,it)=>s+PTS[it.t],0);
+
+/* ---------- One question, as a student sees it (input), as the teacher's key, or as a student's results ---------- */
+function qHtml(it,i,mode,o={}){const a=o.ans!=null?String(o.ans):'',k=o.key,mk=o.mark;
+  const head=`<b>${esc(it.q)}</b><span class="dok">DOK ${it.dok} · ${PTS[it.t]} pt${PTS[it.t]>1?'s':''}</span>`;let body='';
+  if(it.t==='mc')body=`<div class="ch" role="radiogroup">${it.ch.map((c,j)=>mode==='input'?`<label><input type="radio" name="q${i}" value="${j}" ${a===String(j)?'checked':''} onchange="setAns(${i},this.value)"><span>${'ABCD'[j]}) ${esc(c)}</span></label>`
+    :`<div>${'ABCD'[j]}) ${esc(c)}${k&&k.a===j?' <span class="key">✓ answer</span>':''}${mode==='result'&&a===String(j)&&!(k&&k.a===j)?' <span class="miss">your answer</span>':mode==='result'&&a===String(j)?' <span class="key">your answer</span>':''}</div>`).join('')}</div>`;
+  else if(it.t==='num')body=mode==='input'?`<label class="sol" style="display:block;margin-top:6px">Your answer <input type="text" inputmode="text" value="${esc(a)}" oninput="setAns(${i},this.value)" aria-label="Answer to question ${i+1}"></label>`
+    :`${mode==='result'?`<div>Your answer: <b>${esc(a||'(blank)')}</b></div>`:''}${k?`<div class="key">Answer: ${esc(k.txt)}</div>`:''}`;
+  else{const rub=it.rub?`<ol class="rub" reversed>${it.rub.map((r,j)=>`<li><b>${4-j} points:</b> ${esc(r)}</li>`).join('')}</ol>`:'';
+    body=(it.t==='task'?`<div class="sol" style="margin-top:6px">Performance task. How it is scored:</div>${rub}`:'')+
+      (mode==='input'?`<textarea aria-label="Answer to question ${i+1}" oninput="setAns(${i},this.value)" placeholder="Write your answer. Explain your thinking.">${esc(a)}</textarea>`
+      :`${mode==='result'?`<div class="ans">${esc(a||'(blank)')}</div>`:''}${k&&k.ans?`<div class="key">Sample proficient answer:</div><div class="ans">${esc(k.ans)}</div>`:''}`)}
+  return head+body+(mode==='result'&&mk!==undefined?`<div class="sol">${mk==null?'Not scored yet':`${mk} of ${PTS[it.t]} point${PTS[it.t]>1?'s':''}`}${o.right?` · Correct answer: <b>${esc(o.right)}</b>`:''}</div>`:'')}
+
+/* ---------- Scoring ---------- */
+function scoreSub(t,uid){const s=(t.subs||[]).find(x=>x.uid==uid),g=(t.grades||{})[uid]||{},pts=g.pts||{};let score=0,max=0,pend=0;
+  const marks=t.items.map((it,i)=>{const p=PTS[it.t],a=s&&s.answers?s.answers[i]:null,k=t.key[i]||{};max+=p;let m;
+    if(it.t==='mc')m=a!=null&&a!==''&&+a===k.a?1:0;
+    else if(it.t==='num')m=a&&isRight({a:k.a,exact:k.exact},a)?1:0;
+    else if(pts[i]!=null&&pts[i]!=='')m=Math.max(0,Math.min(p,+pts[i]));
+    else if(a&&String(a).trim()){pend++;return null}else m=0;
+    score+=m;return m});
+  return{score,max,marks,pend,comment:g.comment||''}}
+const late=(t,s)=>t.minutes&&s.submitted&&s.started&&s.submitted-s.started>t.minutes*60e3+90e3;
+const resultOf=(t,uid)=>{const r=scoreSub(t,uid);return{score:r.score,max:r.max,marks:r.marks.map(m=>m??0),right:t.items.map((it,i)=>it.t==='mc'||it.t==='num'?String((t.key[i]||{}).txt||''):null),comment:r.comment}};
+
+/* ---------- Teacher page ---------- */
+const _tViewA=VIEWS.teacher;
+VIEWS.teacher=function(){const t=ST.tt||'classes',T=[['classes','Classes'],['assess','Assessments'],['gradebook','Gradebook'],['guides','Grade guides']];
+  return `<h2>Teacher</h2><div class="tt">${T.map(([k,l])=>`<button class="chip ${t===k?'on':''}" aria-pressed="${t===k}" onclick="setTT('${k}')">${l}</button>`).join('')}</div>`+
+    (t==='classes'?_tViewA().replace(/^<h2>Teacher dashboard<\/h2>/,''):!AS.bank?'<p class="sol">The assessment bank could not be loaded. Reload the page to try again.</p>':t==='assess'?assessView():t==='gradebook'?gbView():guideView())};
+function setTT(t){ST.tt=t;AS.gt=null;reload('teacher')}
+const _ltA=LOAD.teacher;LOAD.teacher=async()=>{await _ltA();
+  if(!AS.bank)try{AS.bank=await api('GET','/api/assess/bank')}catch(e){console.error(e)}
+  if(AS.g==null){const g=(ST.classes[0]||{}).grade;AS.g=g==null?3:Math.max(-1,Math.min(12,g))}
+  if(ST.tt==='gradebook'&&ST.classes.length){if(!cl(AS.cls))AS.cls=ST.classes[0].id;AS.T[AS.cls]=(await api('GET',`/api/classes/${AS.cls}/tests`)).tests||[]}};
+const gradePick=(onG,onS)=>`<div class="gsel"><label>Grade<select onchange="${onG}">${AGR.map(g=>`<option value="${g}" ${g==AS.g?'selected':''}>${GL(g)}</option>`).join('')}</select></label>
+  <label>Subject<select onchange="${onS}">${Object.entries(AS.bank.subjects).map(([k,v])=>`<option value="${k}" ${k===AS.sub?'selected':''}>${esc(v)}</option>`).join('')}</select></label></div>`;
+
+/* Assessments: browse units, preview, print and assign */
+function assessView(){const c=cellOf(AS.sub,AS.g);
+  return `<div class="card">${gradePick("AS.g=+this.value;AS.pv=null;ar()","AS.sub=this.value;AS.pv=null;ar()")}
+  <p class="sol" style="margin-top:10px">Each unit has classwork, a quiz (about 15 minutes, with one written explain question) and a unit test (multiple choice, written answers and a performance task scored with a 4-point rubric). Questions are original, written to the California standards; compare them with your district's pacing guide. DOK is depth of knowledge: 1 recall, 2 skills and concepts, 3 strategic thinking.</p></div>`+
+  (c?c.units.map(unitCard).join(''):`<div class="card" style="margin-top:14px"><p>Assessments for ${GL(AS.g)} ${esc(ASUB(AS.sub))} are not written yet.</p></div>`)}
+function unitCard(u,i){const pv=AS.pv&&AS.pv.u===u.id?AS.pv:null,opts=ST.classes.flatMap(c=>[`<option value="${c.id}:all">${esc(c.name)}: whole class</option>`,...c.students.map(s=>`<option value="${c.id}:${s.uid}">${esc(c.name)}: ${esc(s.name)}</option>`)]).join('');
+  return `<div class="card" style="margin-top:14px" id="u_${u.id}"><h3>Unit ${i+1}: ${esc(u.name)}</h3><div style="margin:6px 0 10px">${u.std.map(s=>`<span class="std">${esc(s)}</span>`).join('')}</div>
+  <div class="row">${['classwork','quiz','test'].map(k=>`<button class="${pv&&pv.kind===k?'':'alt'}" onclick="pvA('${u.id}','${k}')">${KN[k]}</button>`).join('')}</div>
+  ${pv?previewHtml(pv.a):''}</div>`;
+  function previewHtml(a){const s=supportsFor(u.sub,u.g);
+    return `<div class="qz" style="margin-top:12px;border-top:2px solid var(--line);padding-top:12px"><div class="split"><h3>${esc(a.title)}</h3><span class="sol">${a.items.length} questions · ${maxPts(a.items)} points · ${a.minutes?a.minutes+' minutes':'no timer'}</span></div>
+    <div class="row"><button class="alt" onclick="apdf()">Download PDF (with answer key${a.kind==='test'?' and rubric':''})</button><button class="alt" onclick="pvA('${u.id}','${a.kind}',1)">Make a new version</button></div>
+    ${ST.classes.length?`<div class="row"><label class="sol">Assign to <select id="at_${u.id}">${opts}</select></label><label class="sol">Timer in minutes (0 = none) <input type="number" id="am_${u.id}" min="0" max="240" value="${a.minutes}" style="width:90px"></label><button class="lamp" onclick="assignA('${u.id}')">Assign ${KN[a.kind].toLowerCase()}</button></div>`:'<p class="sol">Create a class in Classes to assign this.</p>'}
+    ${a.kind==='classwork'&&a.skills.length?`<p class="sol">Students also get practice links with Lumi's hints: ${a.skills.map(k=>{const [p,x]=k.includes(':')?k.split(':'):['',k];return esc(SK[x].n)+(p==='s'?' (support)':p==='x'?' (extension)':'')}).join(', ')}.</p>`:''}
+    <ol class="items">${a.items.map((it,j)=>`<li>${qHtml(it,j,'key',{key:a.key[j]})}</li>`).join('')}</ol>
+    <details><summary><b>Supports for English learners and students with IEPs</b></summary><ul>${[...s.el,...(u.el?[u.el]:[])].map(x=>`<li>EL: ${esc(x)}</li>`).join('')}${s.iep.map(x=>`<li>IEP/504: ${esc(x)}</li>`).join('')}</ul></details></div>`}}
+function pvA(uid,kind,fresh){if(fresh||!(AS.pv&&AS.pv.u===uid&&AS.pv.kind===kind))AS.pv={u:uid,kind,a:buildA(uid,kind)};ar()}
+function assignA(uid){const a=AS.pv.a,[cid,who]=$('at_'+uid).value.split(':'),min=Math.max(0,Math.min(240,Math.trunc(+$('am_'+uid).value||0)));
+  busy(async()=>{await api('POST',`/api/classes/${cid}/tests`,{...a,minutes:min,target:who});msg(`${KN[a.kind]} assigned. Scores appear in the Gradebook.`);AS.pv=null;reload('teacher')})}
+function apdf(){const a=AS.pv.a,u=unitById(a.unit);try{saveBlob(new Blob([aPdf(a,u)],{type:'application/pdf'}),`${u.id}-${a.kind}.pdf`)}catch(e){console.error(e);msg('Could not make the PDF.')}}
+
+/* Gradebook */
+function gbView(){const C=ST.classes;if(!C.length)return '<div class="card"><p>Create a class in Classes first.</p></div>';const c=cl(AS.cls)||C[0],T=AS.T[c.id]||[];
+  const sel=`<label class="sol">Class <select onchange="AS.cls=+this.value;AS.gt=null;reload('teacher')">${C.map(x=>`<option value="${x.id}" ${x.id===c.id?'selected':''}>${esc(x.name)}</option>`).join('')}</select></label>`;
+  if(!T.length)return `<div class="card">${sel}<p>Nothing assigned to this class yet. Assign classwork, a quiz or a unit test from Assessments.</p></div>`;
+  const cellH=(t,s)=>{if(t.target&&t.target!=s.uid)return '<td class="sol">not assigned</td>';const b=(t.subs||[]).find(x=>x.uid==s.uid);
+    if(!b||!b.started)return '<td class="sol">Not started</td>';if(!b.submitted)return '<td>In progress</td>';const r=scoreSub(t,s.uid);
+    return `<td><b>${r.score}/${r.max}</b>${r.pend?`<small>${r.pend} to score</small>`:''}${late(t,b)?'<small>late</small>':''}</td>`};
+  const avg=s=>{const R=T.filter(t=>!t.target||t.target==s.uid).map(t=>{const b=(t.subs||[]).find(x=>x.uid==s.uid);return b&&b.submitted?scoreSub(t,s.uid):null}).filter(Boolean);
+    return R.length?Math.round(100*R.reduce((a,r)=>a+r.score,0)/R.reduce((a,r)=>a+r.max,0))+'%':'-'};
+  const gt=T.find(t=>t.id===AS.gt);
+  return `<div class="card">${sel}<div class="tbl" style="margin-top:10px"><table class="vs gb"><tr><th>Student</th>${T.map(t=>`<th>${KN[t.kind]}<small>${esc(t.title.replace(/^[^:]*: /,''))}</small></th>`).join('')}<th>Average</th></tr>
+  ${c.students.map(s=>`<tr><td>${esc(s.name)}</td>${T.map(t=>cellH(t,s)).join('')}<td><b>${avg(s)}</b></td></tr>`).join('')}</table></div>
+  <p class="sol">Multiple choice and number answers are scored automatically. Written answers wait for you. Students see their scores once you release them.</p></div>
+  ${T.slice().reverse().map(t=>{const n=(t.subs||[]).filter(b=>b.submitted).length,of=t.target?1:c.students.length,pend=c.students.reduce((a,s)=>a+((t.subs||[]).some(b=>b.uid==s.uid&&b.submitted)?scoreSub(t,s.uid).pend:0),0);
+    return `<div class="card" style="margin-top:14px"><div class="split"><h3>${esc(t.title)}</h3><span class="pill">${t.released?'Scores released':'Scores hidden'}</span></div>
+    <p class="sol">${n} of ${of} turned in · ${t.items.length} questions · ${maxPts(t.items)} points · ${t.minutes?t.minutes+'-minute timer':'no timer'}${pend?` · <b>${pend} written answer${pend>1?'s':''} to score</b>`:''}</p>
+    <div class="row"><button class="${AS.gt===t.id?'':'alt'}" onclick="AS.gt=AS.gt===${t.id}?null:${t.id};ar()">${AS.gt===t.id?'Close scoring':'Score answers'}</button>
+    <button class="alt" onclick="releaseA(${t.id},${!t.released})">${t.released?'Hide scores':'Release scores'}</button><button class="alt" onclick="csvA(${t.id})">Download CSV</button>
+    <button class="alt" onclick="tPdf(${t.id})">Print with answer key</button><button class="alt" onclick="delA(${t.id})">Delete</button></div>
+    ${gt===t?gradePanel(c,t):''}</div>`}).join('')}`}
+function gradePanel(c,t){const S=c.students.filter(s=>(t.subs||[]).some(b=>b.uid==s.uid&&b.started));if(!S.length)return '<p class="sol">No one has started this yet.</p>';
+  const W=t.items.map((it,i)=>[it,i]).filter(([it])=>!['mc','num'].includes(it.t));
+  return `<div style="margin-top:12px">${S.map(s=>{const b=t.subs.find(x=>x.uid==s.uid),r=scoreSub(t,s.uid),g=(t.grades||{})[s.uid]||{},pts=g.pts||{};
+    const auto=t.items.map((it,i)=>[it,i]).filter(([it])=>['mc','num'].includes(it.t)),got=auto.filter(([,i])=>r.marks[i]===1).length,missed=auto.filter(([,i])=>r.marks[i]!==1).map(([,i])=>i+1);
+    return `<div class="card" style="margin-top:10px"><div class="split"><h4 style="margin:0">${esc(s.name)}</h4><span>${b.submitted?`<b>${r.score}/${r.max}</b>${late(t,b)?' · late':''}`:'In progress'}</span></div>
+    <p class="sol">Scored automatically: ${got} of ${auto.length} correct${missed.length?` (missed ${missed.join(', ')})`:''}.</p>
+    ${W.map(([it,i])=>`<div style="margin:10px 0"><b>${i+1}. ${esc(it.q.length>160?it.q.slice(0,160)+'...':it.q)}</b><div class="ans">${esc((b.answers||{})[i]||'(blank)')}</div>
+      <details><summary class="sol">${it.t==='task'?'Rubric':'Sample proficient answer'}</summary>${it.t==='task'?`<ol class="rub" reversed>${it.rub.map((x,j)=>`<li><b>${4-j}:</b> ${esc(x)}</li>`).join('')}</ol>`:`<div class="ans">${esc((t.key[i]||{}).ans||'')}</div>`}</details>
+      <label class="sol">Points <select id="gp_${s.uid}_${i}">${['',...Array.from({length:PTS[it.t]+1},(_,n)=>n)].map(n=>`<option value="${n}" ${String(pts[i]??'')===String(n)?'selected':''}>${n===''?'not scored':n+' of '+PTS[it.t]}</option>`).join('')}</select></label></div>`).join('')}
+    <label class="sol">Comment for ${esc(s.name)}<input type="text" id="gc_${s.uid}" value="${esc(g.comment||'')}" maxlength="300" style="width:100%;max-width:none"></label>
+    ${b.submitted?`<div class="row"><button class="alt" onclick="reopenA(${t.id},${s.uid})">Let ${esc(s.name)} keep working</button></div>`:''}</div>`}).join('')}
+  <div class="row"><button class="lamp" onclick="saveGrades(${t.id})">Save scores</button></div></div>`}
+const tOf=id=>(AS.T[AS.cls]||[]).find(t=>t.id===id);
+function saveGrades(tid){const t=tOf(tid),c=cl(AS.cls),grades={};
+  c.students.forEach(s=>{if(!$('gc_'+s.uid))return;const pts={};t.items.forEach((it,i)=>{const e=$(`gp_${s.uid}_${i}`);if(e&&e.value!=='')pts[i]=+e.value});grades[s.uid]={pts,comment:$('gc_'+s.uid).value.trim().slice(0,300)}});
+  t.grades={...t.grades,...grades};const body={grades};
+  if(t.released)body.results=Object.fromEntries((t.subs||[]).filter(b=>b.submitted).map(b=>[b.uid,resultOf(t,b.uid)]));
+  busy(async()=>{await api('PATCH',`/api/classes/${AS.cls}/tests/${tid}`,body);msg('Scores saved.');await LOAD.teacher();ar()})}
+function releaseA(tid,on){const t=tOf(tid);
+  if(on){const subs=(t.subs||[]).filter(b=>b.submitted),pend=subs.reduce((a,b)=>a+scoreSub(t,b.uid).pend,0);
+    if(pend&&!confirm(`${pend} written answer${pend>1?'s are':' is'} not scored yet and will count as 0 until you score ${pend>1?'them':'it'}. Release anyway?`))return;
+    return busy(async()=>{await api('PATCH',`/api/classes/${AS.cls}/tests/${tid}`,{released:true,results:Object.fromEntries(subs.map(b=>[b.uid,resultOf(t,b.uid)]))});msg('Scores released to students.');await LOAD.teacher();ar()})}
+  busy(async()=>{await api('PATCH',`/api/classes/${AS.cls}/tests/${tid}`,{released:false});await LOAD.teacher();ar()})}
+function reopenA(tid,uid){busy(async()=>{await api('PATCH',`/api/classes/${AS.cls}/tests/${tid}`,{reopen:uid});await LOAD.teacher();ar()})}
+function delA(tid){if(!confirm('Delete this assessment and every student answer to it? This cannot be undone.'))return;busy(async()=>{await api('DELETE',`/api/classes/${AS.cls}/tests/${tid}`);AS.gt=null;reload('teacher')})}
+function csvA(tid){const t=tOf(tid),c=cl(AS.cls),q=v=>`"${String(v).replace(/"/g,'""')}"`;
+  const rows=[['Student',...t.items.map((it,i)=>`Q${i+1} (${PTS[it.t]})`),'Score','Out of','Status'].map(q).join(',')];
+  c.students.forEach(s=>{if(t.target&&t.target!=s.uid)return;const b=(t.subs||[]).find(x=>x.uid==s.uid),r=scoreSub(t,s.uid);
+    rows.push([s.name,...r.marks.map(m=>b&&b.submitted?(m??'not scored'):''),b&&b.submitted?r.score:'',r.max,!b||!b.started?'not started':!b.submitted?'in progress':late(t,b)?'turned in late':'turned in'].map(q).join(','))});
+  saveBlob(new Blob([rows.join('\r\n')],{type:'text/csv'}),t.title.replace(/[^\w]+/g,'-').toLowerCase()+'.csv')}
+function tPdf(tid){const t=tOf(tid),u=unitById(t.unit)||{id:'assessment',name:t.title,std:[],sub:'math',g:3};try{saveBlob(new Blob([aPdf(t,u)],{type:'application/pdf'}),`${u.id}-${t.kind}.pdf`)}catch(e){console.error(e);msg('Could not make the PDF.')}}
+
+/* Grade guides */
+function guideView(){const c=cellOf(AS.sub,AS.g),key=AS.sub+'|'+AS.g,prog=((BOOT.settings||{}).programs||{})[key]||'',s=supportsFor(AS.sub,AS.g),own=BOOT.role==='owner';
+  return `<div class="card">${gradePick("AS.g=+this.value;ar()","AS.sub=this.value;ar()")}</div>`+(!c?`<div class="card" style="margin-top:14px"><p>The ${GL(AS.g)} ${esc(ASUB(AS.sub))} guide is not written yet.</p></div>`:
+  `<div class="card" style="margin-top:14px"><h3>${GL(AS.g)} ${esc(ASUB(AS.sub))}</h3><p>${esc(c.about)}</p>
+  <h4>District adopted program</h4>${own?`<div class="row"><input id="prog" value="${esc(prog)}" maxlength="300" placeholder="For example, the program and edition your district uses" style="flex:1;min-width:220px" aria-label="Adopted program"><button onclick="saveProg('${key}')">Save</button></div><p class="sol">Shown to every teacher on this guide.</p>`:`<p>${prog?esc(prog):'<span class="sol">Not set yet. The site owner can add the district\'s adopted program here.</span>'}</p>`}
+  <h4>Priority standards (California)</h4><div class="tbl"><table class="vs">${c.std.map(([k,v])=>`<tr><td style="white-space:nowrap"><b>${esc(k)}</b></td><td>${esc(v)}</td></tr>`).join('')}</table></div>
+  <h4>Units</h4><ol>${c.units.map(u=>`<li style="margin-bottom:8px"><b>${esc(u.name)}</b><div>${u.std.map(x=>`<span class="std">${esc(x)}</span>`).join('')}</div>${(u.skills||[]).filter(k=>SK[k]).length?`<div class="sol">Practice in Bose Academy: ${u.skills.filter(k=>SK[k]).map(k=>esc(SK[k].n)).join(', ')}</div>`:''}</li>`).join('')}</ol>
+  <p class="sol">Each unit has classwork, a quiz and a unit test under Assessments. Compare the order with your district's pacing guide.</p>
+  <h4>Supports</h4><ul>${s.el.map(x=>`<li>English learners: ${esc(x)}</li>`).join('')}${s.iep.map(x=>`<li>IEP / 504: ${esc(x)}</li>`).join('')}</ul></div>`)}
+function saveProg(key){const v=$('prog').value.trim().slice(0,300),p={...((BOOT.settings||{}).programs||{}),[key]:v};if(!v)delete p[key];
+  busy(async()=>{await api('PUT','/api/owner/settings',{programs:p});BOOT.settings.programs=p;msg('Saved.');ar()})}
+
+/* ---------- Learners: My classes lists classwork, quizzes and tests ---------- */
+let RUN=null;
+VIEWS.classes=function(){const J=ST.joined||[];
+return `<h2>My classes</h2><div class="card"><h3>Join a class</h3><div class="row"><input id="jc" placeholder="Class code" aria-label="Class code" maxlength="10" style="text-transform:uppercase"><button class="lamp" onclick="joinClass()">Join</button></div><p class="sol">Your teacher gives you the code.</p></div>
+${J.length?J.map(c=>`<div class="card post"><div class="split"><h3>${esc(c.name)}</h3><span class="sol">Teacher: ${esc(c.teacher)}</span></div>${testsHtml(c)}${c.assigned.length?c.assigned.map(a=>{const ks=a.skills.filter(k=>SK[k]),d=ks.filter(k=>level(k)>=3).length;return `<h4>${esc(a.title)}</h4><div class="bar sm"><i style="width:${ks.length?d/ks.length*100:0}%"></i></div><p class="sol">${d} of ${ks.length} skills Proficient</p><div class="row">${ks.map(k=>`<button class="alt" onclick="goSkill('${k}')">${esc(SK[k].n)} · ${LV[level(k)]}</button>`).join('')}</div>`}).join(''):(c.tests||[]).length?'':'<p class="sol">No assignments yet.</p>'}</div>`).join(''):'<p class="sol">You have not joined a class yet.</p>'}`};
+function testsHtml(c){const T=c.tests||[];if(!T.length)return '';
+  return T.map(t=>{const s=t.sub||{},st=s.submitted?(s.result?`<b>Score: ${s.result.score} of ${s.result.max}</b> <button class="alt" onclick="startA(${c.id},${t.id})">See results</button>`:'<span class="sol">Turned in. Your teacher will share your score.</span>')
+      :`<button class="lamp" onclick="startA(${c.id},${t.id},${t.minutes||0},${!!s.started})">${s.started?'Continue':'Start'}</button>`;
+    const links=t.kind==='classwork'?(t.skills||[]).map(k=>{const [p,x]=k.includes(':')?k.split(':'):['',k];return SK[x]?`<button class="alt" onclick="goSkill('${x}')">${p==='s'?'Support: ':p==='x'?'Extension: ':'Practice: '}${esc(SK[x].n)}</button>`:''}).join(''):'';
+    return `<div style="margin:12px 0;padding-bottom:12px;border-bottom:1px solid var(--line)"><span class="pill">${KN[t.kind]}</span> <b>${esc(t.title.replace(/^[^:]*: /,''))}</b>
+    <p class="sol" style="margin:4px 0">${t.count} questions · ${t.minutes?t.minutes+'-minute timer':'no time limit'}${t.kind==='classwork'?' · use the practice links if you get stuck':' · no hints'}</p><div class="row">${st}</div>${links?`<div class="row">${links}</div>`:''}</div>`}).join('')}
+function startA(cid,tid,minutes,started){if(minutes&&!started&&!confirm(`This has a ${minutes}-minute timer. It starts now and keeps running even if you leave. Ready?`))return;
+  busy(async()=>{const r=await api('POST',`/api/tests/${cid}/${tid}/start`,{}),c=(ST.joined||[]).find(x=>x.id==cid),t=c&&c.tests.find(x=>x.id==tid);
+    RUN={cid,tid,...r,skew:r.now-Date.now(),ans:{...r.answers},result:t&&t.sub&&t.sub.result};showTab('take');
+    if(!r.submitted&&r.minutes){tickRun();RUN.iv=setInterval(tickRun,1000)}})}
+const _canA=can;can=t=>t==='take'?!!RUN:_canA(t);
+const _showA=showTab;showTab=function(t){if(t!=='take'&&RUN){if(RUN.iv)clearInterval(RUN.iv);if(!RUN.submitted)saveRun();RUN=null}return _showA(t)};
+VIEWS.take=function(){const r=RUN;if(!r)return '';
+  if(r.submitted){const R=r.result;return `<div class="qz"><h2>${esc(r.title)}</h2>${R?`<div class="card"><b>Score: ${R.score} of ${R.max}</b>${R.comment?`<p>Your teacher says: ${esc(R.comment)}</p>`:''}</div>`:'<p class="sol">Turned in. Your score shows here once your teacher shares it.</p>'}
+    <ol class="items">${r.items.map((it,i)=>`<li>${qHtml(it,i,'result',{ans:r.ans[i],mark:R?R.marks[i]:undefined,right:R&&R.right[i]&&R.marks[i]<PTS[it.t]?R.right[i]:null})}</li>`).join('')}</ol>
+    <button class="alt" onclick="go('classes')">Back to My classes</button></div>`}
+  return `<div class="qz"><div class="split"><h2>${esc(r.title)}</h2>${r.minutes?'<span class="tmr" id="tmr" role="timer" aria-live="off"></span>':''}</div>
+  <p class="sol">${r.kind==='classwork'?'Take your time. Your answers save as you go.':'No hints on quizzes and tests. Your answers save as you go. Show your thinking on the written questions.'}</p>
+  <ol class="items">${r.items.map((it,i)=>`<li>${qHtml(it,i,'input',{ans:r.ans[i]})}</li>`).join('')}</ol>
+  <div class="row"><button class="lamp" onclick="turnIn()">Turn in</button><button class="alt" onclick="go('classes')">Save and finish later</button></div></div>`};
+function setAns(i,v){RUN.ans[i]=v;clearTimeout(RUN.st);RUN.st=setTimeout(saveRun,2500)}
+function saveRun(){if(!RUN||RUN.submitted)return Promise.resolve();clearTimeout(RUN.st);const r=RUN;return api('PUT',`/api/tests/${r.cid}/${r.tid}/answers`,{answers:r.ans}).catch(e=>msg('Your answers could not be saved: '+e.message))}
+function tickRun(){const r=RUN;if(!r||!r.minutes)return;const left=r.started+r.minutes*60e3-(Date.now()+r.skew),e=$('tmr');
+  if(e){const s=Math.max(0,Math.ceil(left/1000));e.textContent=`${Math.floor(s/60)}:${String(s%60).padStart(2,'0')} left`;e.classList.toggle('low',s<=120)}
+  if(left<=0){clearInterval(r.iv);r.iv=null;msg('Time is up. Your answers were turned in.');turnIn(true)}}
+function turnIn(auto){const r=RUN;if(!r)return;const blank=r.items.filter((_,i)=>!String(r.ans[i]??'').trim()).length;
+  if(!auto&&blank&&!confirm(`You left ${blank} question${blank>1?'s':''} blank. Turn in anyway?`))return;
+  busy(async()=>{await api('PUT',`/api/tests/${r.cid}/${r.tid}/answers`,{answers:r.ans,submit:true});if(r.iv)clearInterval(r.iv);r.submitted=true;RUN=null;if(!auto)msg('Turned in. Nice work!');reload('classes')})}
+
+/* ---------- PDF: student copy, then answer key, rubric and supports for the teacher ---------- */
+function aPdf(a,u){const {Doc,icon,C:{W,H,M,NAVY,INK,MUTE,LINE,TINT}}=PDFK,d=Doc(),R=W-M,TW=R-M,sub=u.sub||'math',max=maxPts(a.items);let y;
+  const mini=t=>{d.page();icon(d,sub,M,M-4,14);d.text(t,M+22,M+8,11,1,NAVY);d.line(M,M+20,R,M+20,NAVY,1.2);y=M+40};
+  const need=(h,t)=>{if(y+h>H-60)mini(t)};
+  /* student copy */
+  d.page();d.text('BOSE ACADEMY',M,M+2,8.5,1,MUTE);icon(d,sub,M,M+12,26);
+  const tl=d.wrap(a.title,17,1,R-206-24-(M+36));tl.forEach((l,i)=>d.text(l,M+36,M+30+i*20,17,1,NAVY));let hy=M+30+(tl.length-1)*20+18;
+  d.text(`${GL(u.g)}  ·  ${ASUB(sub)}  ·  ${a.minutes?a.minutes+' minutes':'Untimed'}`,M+36,hy,10,0,INK);
+  [['Name',''],['Date',''],['Class Period',''],['Score',`/ ${max}`]].forEach(([lab,suf],i)=>{const fy=M+4+i*21,fx=R-206;d.text(lab,fx,fy+9,9,1,INK);d.line(fx+d.w(lab,9,1)+6,fy+11,R-(suf?28:0),fy+11,LINE,.8);if(suf)d.text(suf,R,fy+9,9,0,INK,'r')});
+  y=Math.max(hy+14,M+92);d.line(M,y,R,y,NAVY,1.6);y+=18;
+  const dir=a.kind==='classwork'?'Answer each question. Show your thinking on the written questions.':'Work on your own. Fill in one bubble for each multiple choice question. Answer written questions in complete sentences.';
+  d.wrap(dir,9.5,0,TW).forEach(l=>{d.text(l,M,y,9.5,0,INK);y+=13});if(u.std&&u.std.length){d.text('Standards: '+u.std.join(', '),M,y,8.5,0,MUTE);y+=12}y+=10;
+  a.items.forEach((it,i)=>{const ql=d.wrap(it.q,11,0,TW-110),tag=`DOK ${it.dok}  ·  ${PTS[it.t]} pt${PTS[it.t]>1?'s':''}`,mc=it.t==='mc';
+    const lines=it.t==='task'?9:it.t==='num'?0:4,rubH=it.rub?it.rub.reduce((s,r)=>s+d.wrap(r,8.5,0,TW-60).length*11+3,22):0;
+    const h=ql.length*15+(mc?it.ch.length*17:it.t==='num'?26:lines*22)+rubH+16;need(Math.min(h,H-2*M-80),a.title);
+    d.text((i+1)+'.',M,y,11,1,NAVY);ql.forEach((l,j)=>d.text(l,M+22,y+j*15,11,0,INK));d.text(tag,R,y,7.5,0,MUTE,'r');y+=ql.length*15-2;
+    if(mc)it.ch.forEach(c=>{const cl2=d.wrap(c,10,0,TW-60);need(cl2.length*13+6,a.title);d.circle(M+31,y+4.5,5,{stroke:INK,lw:.8});d.text('ABCD'[it.ch.indexOf(c)],M+31,y+7,6.5,1,INK,'c');cl2.forEach((l,j)=>d.text(l,M+42,y+8+j*13,10,0,INK));y+=cl2.length*13+4});
+    else if(it.t==='num'){y+=6;d.text('Answer:',M+22,y+10,9,1,INK);d.line(M+66,y+12,M+240,y+12,LINE,.8);y+=20}
+    else{if(it.rub){y+=6;const rl=it.rub.map(r=>d.wrap(r,8.5,0,TW-60)),rh=rl.reduce((s,l)=>s+l.length*11+3,16);need(rh,a.title);d.rect(M+22,y,TW-22,rh,{fill:TINT,r:6});d.text('How this is scored',M+32,y+12,8,1,NAVY);let ry=y+24;
+        rl.forEach((l,j)=>{d.text(String(4-j),M+32,ry,8.5,1,NAVY);l.forEach((t,k)=>d.text(t,M+44,ry+k*11,8.5,0,INK));ry+=l.length*11+3});y+=rh+4}
+      for(let k=0;k<lines;k++){need(22,a.title);y+=22;d.line(M+22,y,R,y,LINE,.8)}y+=4}
+    y+=16});
+  /* teacher pages */
+  mini('Answer Key and Scoring  ·  '+a.title);d.text('For the teacher. Remove before copying for students.',M,y,9,0,MUTE);y+=18;
+  a.items.forEach((it,i)=>{const k=a.key[i]||{},txt=it.t==='mc'?`${'ABCD'[k.a]}) ${it.ch[k.a]}`:it.t==='num'?k.txt:it.t==='task'?'Score with the 4-point rubric below.':'Sample: '+(k.ans||'');
+    const l=d.wrap(txt,9.5,0,TW-80);need(l.length*12+8,'Answer Key');d.text((i+1)+'.',M,y,9.5,1,NAVY);l.forEach((t,j)=>d.text(t,M+22,y+j*12,9.5,0,INK));d.text(`DOK ${it.dok} · ${PTS[it.t]} pt`,R,y,7.5,0,MUTE,'r');y+=l.length*12+6});
+  const task=a.items.find(it=>it.t==='task');if(task){y+=8;need(120,'Answer Key');d.text('Performance task rubric',M,y,12,1,NAVY);y+=16;task.rub.forEach((r,j)=>{const l=d.wrap(r,9.5,0,TW-60);need(l.length*12+6,'Answer Key');d.text(`${4-j} points`,M,y,9.5,1,NAVY);l.forEach((t,k)=>d.text(t,M+56,y+k*12,9.5,0,INK));y+=l.length*12+6})}
+  y+=8;need(60,'Answer Key');d.wrap(`Total ${max} points. Multiple choice and number questions are 1 point; short answers and explain questions are 2 points; the performance task is 4 points.`,8.5,0,TW).forEach(l=>{d.text(l,M,y,8.5,0,MUTE);y+=11});y+=10;
+  const s=supportsFor(sub,u.g),notes=[...s.el.map(x=>'English learners: '+x),...(u.el?['English learners: '+u.el]:[]),...s.iep.map(x=>'IEP / 504: '+x)];
+  if(notes.length){need(60,'Answer Key');d.text('Supports',M,y,12,1,NAVY);y+=16;notes.forEach(n=>{const l=d.wrap('·  '+n,9,0,TW);need(l.length*12+4,'Answer Key');l.forEach((t,k)=>d.text(t,M,y+k*12,9,0,INK));y+=l.length*12+4})}
+  const N=d.pages.length;d.pages.forEach((p,i)=>{const o=[];const t=(s2,x,al)=>{const wd=d.w(s2,8,0);o.push(`${MUTE.join(' ')} rg BT /F1 8 Tf ${(al==='r'?x-wd:x).toFixed(1)} 30 Td (${PDFK.enc(s2)}) Tj ET`)};
+    o.push(`${LINE.join(' ')} RG .6 w [] 0 d ${M} 44 m ${R} 44 l S`);t('Bose Academy  ·  Original questions aligned to the California standards  ·  Free to copy for classroom use',M);t(`Page ${i+1} of ${N}`,R,'r');p.push(...o)});
+  return d.bytes()}
+</script>

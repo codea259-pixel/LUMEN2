@@ -86,6 +86,31 @@ const errs = [], ok = s => console.log('✓', s);
   await t.reload(); await t.waitForSelector('#avatarBtn'); await t.click('#tabs >> text=Teacher'); await t.waitForSelector('.cls table', { timeout: 15000 });
   ok('teacher table: ' + JSON.stringify(await t.$$eval('.cls table tr', rs => rs.slice(1).map(r => r.innerText.replace(/\s+/g, ' ').replace(/ PK K 1 2 3 4 5 6 7 8 9 10 11 12 College/, '').slice(0, 60)))));
 
+  // 5b. Assessments: teacher assigns a Grade 3 math quiz; the student takes it; rules keep keys and scores safe
+  await t.click('.tt >> text=Assessments'); await t.waitForSelector('.gsel select'); await t.selectOption('.gsel select >> nth=0', '3'); await t.waitForSelector('#u_math-3-1');
+  await t.click('#u_math-3-1 button:has-text("Quiz")'); await t.waitForSelector('#u_math-3-1 .items'); await t.fill('#am_math-3-1', '0');
+  await t.click('#u_math-3-1 button:has-text("Assign quiz")'); await t.waitForFunction(() => !document.querySelector('#u_math-3-1 .items'), null, { timeout: 15000 }); ok('quiz assigned (Firebase)');
+  await s.click('#tabs >> text=Learn'); await s.click('#tabs >> text=My classes'); await s.waitForSelector('.post button:has-text("Start")', { timeout: 15000 }); await s.click('.post button:has-text("Start")'); await s.waitForSelector('.items');
+  const nq = await s.$$eval('.items > li', l => l.length);
+  for (let i = 0; i < nq; i++) { const li = (await s.$$('.items > li'))[i];
+    if (await li.$('input[type=radio]')) await (await li.$$('input[type=radio]'))[0].check(); else if (await li.$('input[type=text]')) await (await li.$('input[type=text]')).fill('7'); else await (await li.$('textarea')).fill('Because 5 x 7 = 35 and one more 7 is 42.'); }
+  await s.click('button:has-text("Turn in")'); await s.waitForSelector('text=Your teacher will share your score', { timeout: 15000 }); ok('student took and turned in the quiz (Firebase)');
+  const qa = await s.evaluate(async () => { const db = firebase.app().firestore(), uid = FBM.uid(), out = {};
+    const cs = await db.collection('classes').where('members', 'array-contains', uid).get(), c = cs.docs[0], ts = await c.ref.collection('tests').get(), tr = ts.docs[0].ref;
+    const tryIt = async (k, fn) => { try { await fn(); out[k] = 'ALLOWED' } catch (e) { out[k] = 'blocked' } };
+    await tryIt('read the answer key', async () => { const d = await tr.collection('key').doc('k').get(); if (!d.exists) throw 0 });
+    await tryIt('give self a score', () => tr.collection('subs').doc(uid).update({ result: '{"score":99,"max":9}' }));
+    await tryIt('change answers after turning in', () => tr.collection('subs').doc(uid).update({ answers: '{}' }));
+    await tryIt('un-submit', () => tr.collection('subs').doc(uid).update({ submitted: 0 }));
+    await tryIt('release scores', () => tr.update({ released: true }));
+    await tryIt('read all answers', () => tr.collection('subs').get());
+    return out; }).catch(e => ({ error: e.message }));
+  ok('student attacks on assessments: ' + JSON.stringify(qa)); if (Object.values(qa).some(v => v !== 'blocked')) errs.push('assessment rule allowed an attack');
+  await t.click('.tt >> text=Gradebook'); await t.waitForSelector('.gb', { timeout: 15000 }); await t.click('button:has-text("Score answers")'); await t.waitForSelector('select[id^=gp_]');
+  for (const e of await t.$$('select[id^=gp_]')) await e.selectOption('2'); await t.click('button:has-text("Save scores")'); await t.waitForSelector('text=Scores saved', { timeout: 15000 });
+  await t.click('button:has-text("Release scores")'); await t.waitForSelector('text=Scores released', { timeout: 15000 }); ok('teacher scored and released: ' + (await t.textContent('.gb tr:nth-child(2)')).replace(/\s+/g, ' '));
+  await s.click('#tabs >> text=Learn'); await s.click('#tabs >> text=My classes'); await s.waitForSelector('text=Score:', { timeout: 15000 }); ok('student sees ' + await s.textContent('.post b:has-text("Score")'));
+
   // 6. A 13+ learner joins by code, posts; the other student votes
   const l = await page(); await signup(l, 'student', 'priya16', 'Priya'); await l.click('#tabs >> text=My classes'); await l.fill('#jc', code); await l.click('#views button:has-text("Join")'); await l.waitForSelector('text=Room 5', { timeout: 15000 }).catch(async e => { throw new Error('join failed, toast: ' + await l.textContent('#toast')) }); ok('learner joined by code');
   await l.click('#tabs >> text=Community'); await l.fill('#pt', 'How do I add fractions?'); await l.fill('#pb', 'I keep adding the bottoms too.'); await l.click('#views button:has-text("Post")');

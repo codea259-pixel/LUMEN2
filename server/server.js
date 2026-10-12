@@ -13,6 +13,7 @@ const PORT = +process.env.PORT || 3000;
 const DATA = process.env.DATA_DIR || path.join(ROOT, 'data');
 const PROD = process.env.NODE_ENV === 'production';
 const CUR = JSON.parse(fs.readFileSync(path.join(ROOT, 'server', 'curriculum.json'), 'utf8'));
+const BANK = fs.readFileSync(path.join(ROOT, 'server', 'assessments.json'), 'utf8'); // quiz and test bank with answer keys: teachers only
 fs.mkdirSync(DATA, { recursive: true });
 
 let SECRET = process.env.SESSION_SECRET;
@@ -35,6 +36,8 @@ CREATE TABLE IF NOT EXISTS classes(id INTEGER PRIMARY KEY, teacher_id INTEGER, n
 CREATE TABLE IF NOT EXISTS class_members(class_id INTEGER, user_id INTEGER, grades TEXT DEFAULT '[]', PRIMARY KEY(class_id,user_id));
 CREATE TABLE IF NOT EXISTS assignments(id INTEGER PRIMARY KEY, class_id INTEGER, title TEXT, skills TEXT, target INTEGER, ts INTEGER);
 CREATE TABLE IF NOT EXISTS settings(key TEXT PRIMARY KEY, value TEXT);
+CREATE TABLE IF NOT EXISTS tests(id INTEGER PRIMARY KEY, class_id INTEGER, kind TEXT, title TEXT, unit TEXT, items TEXT, key TEXT, grades TEXT DEFAULT '{}', skills TEXT DEFAULT '[]', minutes INTEGER, target INTEGER, released INTEGER DEFAULT 0, ts INTEGER);
+CREATE TABLE IF NOT EXISTS subs(test_id INTEGER, user_id INTEGER, answers TEXT DEFAULT '{}', started INTEGER, submitted INTEGER, result TEXT, PRIMARY KEY(test_id,user_id));
 `);
 for (const col of ['under13 INTEGER DEFAULT 0', 'parent_email TEXT']) { try { db.exec(`ALTER TABLE users ADD COLUMN ${col}`); } catch { /* already there */ } }
 const Q = (sql, ...p) => db.prepare(sql).all(...p);
@@ -45,7 +48,7 @@ const setS = (k, v) => X('INSERT INTO settings(key,value) VALUES(?,?) ON CONFLIC
 const DEF = {
   block: ['stupid', 'idiot', 'dumb', 'hate you', 'shut up'],
   flags: { 'AI tutor feedback': true, 'Live Classroom': true, 'Gem Challenges': true, 'Offline mode': false },
-  retDays: 3, gr: {},
+  retDays: 3, gr: {}, programs: {},
   impact: { mission: 'Bose Academy gives every learner, everywhere, free access to clear lessons, unlimited practice and a patient tutor, so that no student is held back by cost or connection.', team: [], partners: [], funds: [['Content creation', 40], ['Hosting and infrastructure', 25], ['Accessibility and translation', 20], ['Reserve', 15]], raised: 0, goal: 0 },
 };
 const S = k => getS(k, DEF[k]);
@@ -84,8 +87,8 @@ if (process.argv[2] === 'create-owner') {
 if (process.env.OWNER_USERNAME && process.env.OWNER_PASSWORD && ensureOwner(process.env.OWNER_USERNAME, process.env.OWNER_PASSWORD)) console.log('Owner account created from environment variables. Remove OWNER_PASSWORD now.');
 
 // ---- helpers
-const isMod = u => u.role === 'owner' || (u.role === 'teacher' && u.verified);
-const isTeacher = u => ['teacher', 'owner', 'school_admin'].includes(u.role);
+const isMod = u => !!u && (u.role === 'owner' || (u.role === 'teacher' && !!u.verified));
+const isTeacher = u => !!u && ['teacher', 'owner', 'school_admin'].includes(u.role);
 const lvl = s => !s || !s.att ? 0 : s.mastered ? 4 : (s.p >= .85 && s.att >= 6) ? 3 : s.p >= .55 ? 2 : 1;
 const stateOf = id => { const r = Q1('SELECT json FROM state WHERE user_id=?', id); try { return r ? JSON.parse(r.json) : {}; } catch { return {}; } };
 const nameOf = id => (Q1('SELECT display FROM users WHERE id=?', id) || {}).display || 'former member';
@@ -144,7 +147,7 @@ route('POST', '/api/login', (c, res) => {
 route('POST', '/api/logout', (c, res) => { res.cookie = 'x'; res.clear = true; return { ok: true }; });
 route('GET', '/api/me', c => { need(c); return { user: userOut(c.u) }; });
 route('PATCH', '/api/me', c => { need(c); const d = str(c.body.display, 2, 20), bad = clean(d); if (bad) throw new E(400, bad); if (Q1('SELECT 1 FROM users WHERE display=? AND id<>?', d, c.u.id)) throw new E(409, 'That display name is taken.'); X('UPDATE users SET display=? WHERE id=?', d, c.u.id); return { display: d }; });
-route('GET', '/api/settings', () => ({ flags: S('flags'), retDays: S('retDays'), gr: S('gr'), impact: S('impact') }));
+route('GET', '/api/settings', () => ({ flags: S('flags'), retDays: S('retDays'), gr: S('gr'), impact: S('impact'), programs: S('programs') }));
 route('GET', '/api/curriculum', () => ({ courses: CUR.courses, milestones: CUR.milestones }));
 route('GET', '/api/state', c => { need(c); return stateOf(c.u.id); });
 route('PUT', '/api/state', c => { need(c); const j = JSON.stringify(c.body); if (j.length > 400000) throw new E(413, 'Too large.'); X('INSERT INTO state(user_id,json,updated) VALUES(?,?,?) ON CONFLICT(user_id) DO UPDATE SET json=excluded.json,updated=excluded.updated', c.u.id, j, Date.now()); return { ok: true }; });
@@ -176,7 +179,10 @@ route('POST', '/api/groups/:id/join', c => { need(c); const g = Q1('SELECT * FRO
 route('GET', '/api/classes', c => { need(c);
   if (isTeacher(c.u)) return { classes: Q(c.u.role === 'owner' ? 'SELECT * FROM classes ORDER BY id' : 'SELECT * FROM classes WHERE teacher_id=? ORDER BY id', ...(c.u.role === 'owner' ? [] : [c.u.id])).map(classOut) };
   const mine = Q('SELECT c.*,m.user_id FROM class_members m JOIN classes c ON c.id=m.class_id WHERE m.user_id=?', c.u.id);
-  return { joined: mine.map(k => ({ id: k.id, name: k.name, teacher: nameOf(k.teacher_id), assigned: Q('SELECT * FROM assignments WHERE class_id=? AND (target IS NULL OR target=?) ORDER BY ts DESC', k.id, c.u.id).map(a => ({ id: a.id, title: a.title, skills: JSON.parse(a.skills) })) })) }; });
+  return { joined: mine.map(k => ({ id: k.id, name: k.name, teacher: nameOf(k.teacher_id), assigned: Q('SELECT * FROM assignments WHERE class_id=? AND (target IS NULL OR target=?) ORDER BY ts DESC', k.id, c.u.id).map(a => ({ id: a.id, title: a.title, skills: JSON.parse(a.skills) })),
+    tests: Q('SELECT * FROM tests WHERE class_id=? AND (target IS NULL OR target=?) ORDER BY ts DESC', k.id, c.u.id).map(t => { const s = Q1('SELECT * FROM subs WHERE test_id=? AND user_id=?', t.id, c.u.id);
+      return { id: t.id, kind: t.kind, title: t.title, minutes: t.minutes, skills: JSON.parse(t.skills), count: JSON.parse(t.items).length, released: !!t.released, ts: t.ts,
+        sub: s ? { started: s.started, submitted: s.submitted, result: t.released && s.result ? JSON.parse(s.result) : null } : null }; }) })) }; });
 route('POST', '/api/classes', c => { need(c, isTeacher(c.u)); if (Q1('SELECT COUNT(*) n FROM classes WHERE teacher_id=?', c.u.id).n >= 20) throw new E(400, 'Class limit reached.');
   for (let i = 0; i < 5; i++) { try { X('INSERT INTO classes(teacher_id,name,grade,region,code) VALUES(?,?,?,?,?)', c.u.id, str(c.body.name, 2, 60), int(c.body.grade, -1, 13), String(c.body.region || '').trim().slice(0, 60), code(6)); return { ok: true }; } catch (e) { if (!/UNIQUE/.test(e.message)) throw e; } } throw new E(500, 'Try again.'); });
 route('POST', '/api/classes/join', c => { need(c, c.u.role === 'student'); limit('jc' + c.u.id, 10, 600e3); const k = Q1('SELECT * FROM classes WHERE code=?', String(c.body.code || '').trim().toUpperCase()); if (!k) throw new E(404, 'No class has that code.'); X('INSERT OR IGNORE INTO class_members(class_id,user_id,grades) VALUES(?,?,?)', k.id, c.u.id, JSON.stringify([k.grade])); return { ok: true, name: k.name }; });
@@ -190,6 +196,42 @@ route('POST', '/api/classes/:id/assign', c => { need(c, isTeacher(c.u)); const k
 route('POST', '/api/classes/:id/challenge', c => { need(c, isTeacher(c.u)); const k = ownClass(c, c.params.id); const base = Q('SELECT user_id FROM class_members WHERE class_id=?', k.id).reduce((a, m) => a + (+stateOf(m.user_id).gems || 0), 0);
   X('UPDATE classes SET challenge=? WHERE id=?', JSON.stringify({ goal: int(c.body.goal, 10, 1e6), reward: str(c.body.reward || 'Class celebration', 1, 80), base }), k.id); return { ok: true }; });
 
+// assessments: classwork, quizzes and unit tests. The answer key stays with the teacher; students get the questions when they start.
+const KINDS = ['classwork', 'quiz', 'test'];
+const J = (v, max, what) => { const t = JSON.stringify(v ?? null); if (t.length > max) throw new E(413, what + ' is too large.'); return t; };
+const ownTest = (k, tid) => { const t = Q1('SELECT * FROM tests WHERE id=? AND class_id=?', int(tid, 1, 1e12), k.id); if (!t) throw new E(404, 'Assessment not found.'); return t; };
+const myTest = (c, cid, tid) => { const t = Q1('SELECT t.* FROM tests t JOIN class_members m ON m.class_id=t.class_id WHERE t.id=? AND t.class_id=? AND m.user_id=?', int(tid, 1, 1e12), int(cid, 1, 1e12), c.u.id);
+  if (!t || (t.target != null && t.target !== c.u.id)) throw new E(404, 'Assessment not found.'); return t; };
+route('GET', '/api/assess/bank', (c, out) => { need(c, isTeacher(c.u)); out.raw = BANK; return null; });
+route('POST', '/api/classes/:id/tests', c => { need(c, isTeacher(c.u)); const k = ownClass(c, c.params.id), b = c.body;
+  if (!KINDS.includes(b.kind)) throw new E(400, 'Choose classwork, quiz or test.');
+  const items = Array.isArray(b.items) ? b.items.slice(0, 80) : [], key = Array.isArray(b.key) ? b.key.slice(0, 80) : [];
+  if (!items.length || key.length !== items.length) throw new E(400, 'The assessment has no questions.');
+  let target = null; if (b.target && b.target !== 'all') { target = int(b.target, 1, 1e12); if (!Q1('SELECT 1 FROM class_members WHERE class_id=? AND user_id=?', k.id, target)) throw new E(400, 'That student is not in this class.'); }
+  const r = X('INSERT INTO tests(class_id,kind,title,unit,items,key,skills,minutes,target,ts) VALUES(?,?,?,?,?,?,?,?,?,?)', k.id, b.kind, str(b.title, 2, 140), String(b.unit || '').slice(0, 40),
+    J(items, 200000, 'The assessment'), J(key, 200000, 'The answer key'), J((Array.isArray(b.skills) ? b.skills : []).map(String).slice(0, 40), 4000, 'The skill list'), int(b.minutes || 0, 0, 240), target, Date.now());
+  return { ok: true, id: Number(r.lastInsertRowid) }; });
+route('GET', '/api/classes/:id/tests', c => { need(c, isTeacher(c.u)); const k = ownClass(c, c.params.id);
+  return { tests: Q('SELECT * FROM tests WHERE class_id=? ORDER BY ts', k.id).map(t => ({ id: t.id, kind: t.kind, title: t.title, unit: t.unit, items: JSON.parse(t.items), key: JSON.parse(t.key), grades: JSON.parse(t.grades),
+    skills: JSON.parse(t.skills), minutes: t.minutes, target: t.target, released: !!t.released, ts: t.ts,
+    subs: Q('SELECT * FROM subs WHERE test_id=?', t.id).map(s => ({ uid: s.user_id, answers: JSON.parse(s.answers), started: s.started, submitted: s.submitted, result: s.result ? JSON.parse(s.result) : null })) })) }; });
+route('PATCH', '/api/classes/:id/tests/:tid', c => { need(c, isTeacher(c.u)); const k = ownClass(c, c.params.id), t = ownTest(k, c.params.tid), b = c.body;
+  const uids = new Set(Q('SELECT user_id FROM class_members WHERE class_id=?', k.id).map(m => m.user_id));
+  if (b.grades && typeof b.grades === 'object') { const g = JSON.parse(t.grades); for (const [u, v] of Object.entries(b.grades).slice(0, 200)) if (uids.has(+u)) g[u] = v; X('UPDATE tests SET grades=? WHERE id=?', J(g, 400000, 'The grades'), t.id); }
+  if (b.results && typeof b.results === 'object') for (const [u, v] of Object.entries(b.results).slice(0, 200)) { if (!uids.has(+u)) continue;
+    X('INSERT INTO subs(test_id,user_id,result) VALUES(?,?,?) ON CONFLICT(test_id,user_id) DO UPDATE SET result=excluded.result', t.id, +u, J(v, 20000, 'A result')); }
+  if (typeof b.released === 'boolean') X('UPDATE tests SET released=? WHERE id=?', b.released ? 1 : 0, t.id);
+  if (typeof b.reopen === 'string' || typeof b.reopen === 'number') X('UPDATE subs SET submitted=NULL WHERE test_id=? AND user_id=?', t.id, int(b.reopen, 1, 1e12));
+  return { ok: true }; });
+route('DELETE', '/api/classes/:id/tests/:tid', c => { need(c, isTeacher(c.u)); const k = ownClass(c, c.params.id), t = ownTest(k, c.params.tid); X('DELETE FROM subs WHERE test_id=?', t.id); X('DELETE FROM tests WHERE id=?', t.id); return { ok: true }; });
+route('POST', '/api/tests/:cid/:tid/start', c => { need(c); const t = myTest(c, c.params.cid, c.params.tid);
+  X('INSERT INTO subs(test_id,user_id,started) VALUES(?,?,?) ON CONFLICT(test_id,user_id) DO UPDATE SET started=COALESCE(subs.started,excluded.started)', t.id, c.u.id, Date.now());
+  const s = Q1('SELECT * FROM subs WHERE test_id=? AND user_id=?', t.id, c.u.id);
+  return { id: t.id, kind: t.kind, title: t.title, minutes: t.minutes, items: JSON.parse(t.items), answers: JSON.parse(s.answers), started: s.started, submitted: s.submitted, now: Date.now() }; });
+route('PUT', '/api/tests/:cid/:tid/answers', c => { need(c); const t = myTest(c, c.params.cid, c.params.tid), s = Q1('SELECT * FROM subs WHERE test_id=? AND user_id=?', t.id, c.u.id);
+  if (!s || !s.started) throw new E(400, 'Start the assessment first.'); if (s.submitted) throw new E(409, 'You already turned this in.');
+  const n = JSON.parse(t.items).length, a = {}; for (const [i, v] of Object.entries(c.body.answers || {})) { const j = int(i, 0, n - 1); a[j] = String(v ?? '').slice(0, 4000); }
+  X('UPDATE subs SET answers=?, submitted=? WHERE test_id=? AND user_id=?', JSON.stringify(a), c.body.submit ? Date.now() : null, t.id, c.u.id); return { ok: true }; });
 route('POST', '/api/users/:id/reset-password', c => { need(c, isTeacher(c.u)); const t = Q1('SELECT * FROM users WHERE id=?', int(c.params.id, 1, 1e12)); if (!t || t.role === 'owner') throw new E(404, 'Not found.');
   const ok = c.u.role === 'owner' || (t.role === 'student' && Q1('SELECT 1 FROM class_members m JOIN classes k ON k.id=m.class_id WHERE m.user_id=? AND k.teacher_id=?', t.id, c.u.id)); if (!ok) throw new E(403, 'Not allowed.');
   const pw = code(8, 'abcdefghjkmnpqrstuvwxyz23456789'), salt = crypto.randomBytes(16).toString('hex'); X('UPDATE users SET hash=?, salt=? WHERE id=?', hashPw(pw, salt), salt, t.id); return { created: [{ name: t.display, username: t.username, password: pw }] }; });
@@ -248,11 +290,12 @@ route('PATCH', '/api/owner/users/:id', c => { need(c, c.u.role === 'owner'); con
   if (c.body.role !== undefined) { if (!ROLES.includes(c.body.role)) throw new E(400, 'Invalid role.'); X('UPDATE users SET role=? WHERE id=?', c.body.role, t.id); }
   if (typeof c.body.locked === 'boolean') X('UPDATE users SET locked=? WHERE id=?', c.body.locked ? 1 : 0, t.id);
   if (typeof c.body.verified === 'boolean') X('UPDATE users SET verified=? WHERE id=?', c.body.verified ? 1 : 0, t.id); return { ok: true }; });
-route('GET', '/api/owner/settings', c => { need(c, c.u.role === 'owner'); return { block: S('block'), flags: S('flags'), retDays: S('retDays'), gr: S('gr'), impact: S('impact') }; });
+route('GET', '/api/owner/settings', c => { need(c, c.u.role === 'owner'); return { block: S('block'), flags: S('flags'), retDays: S('retDays'), gr: S('gr'), impact: S('impact'), programs: S('programs') }; });
 route('PUT', '/api/owner/settings', c => { need(c, c.u.role === 'owner'); const b = c.body;
   if (b.block) setS('block', b.block.map(x => String(x).toLowerCase().trim().slice(0, 40)).filter(Boolean).slice(0, 500));
   if (b.flags) setS('flags', Object.fromEntries(Object.entries(b.flags).slice(0, 30).map(([k, v]) => [String(k).slice(0, 40), !!v])));
   if (b.retDays !== undefined) setS('retDays', int(b.retDays, 0, 60));
+  if (b.programs) setS('programs', Object.fromEntries(Object.entries(b.programs).slice(0, 200).filter(([k]) => /^(math|ela|sci|soc)\|-?\d{1,2}$/.test(k)).map(([k, v]) => [k, String(v).trim().slice(0, 300)])));
   if (b.gr) setS('gr', Object.fromEntries(Object.entries(b.gr).slice(0, 1000).map(([k, v]) => [String(k).slice(0, 60), int(v, -1, 13)])));
   if (b.impact) { const i = b.impact; setS('impact', { mission: str(i.mission, 0, 1000), team: (i.team || []).slice(0, 50).map(t => [String(t[0]).slice(0, 80), String(t[1] || '').slice(0, 80)]), partners: (i.partners || []).slice(0, 50).map(x => String(x).slice(0, 100)),
     funds: (i.funds || []).slice(0, 20).map(f => [String(f[0]).slice(0, 60), int(f[1], 0, 100)]), raised: Math.max(0, +i.raised || 0), goal: Math.max(0, +i.goal || 0) }); }
@@ -288,6 +331,7 @@ http.createServer(async (req, res) => {
       for (const [m, re, fn] of R) { if (m !== req.method) continue; const mt = re.exec(p); if (!mt) continue;
         const out = {}; const result = await fn({ req, u, body, params: mt.groups || {}, ip }, out);
         const ck = out.cookie ? `lumen_s=${out.clear ? '' : out.cookie}; Path=/; HttpOnly; SameSite=Lax; ${PROD ? 'Secure; ' : ''}${out.clear ? 'Max-Age=0' : 'Max-Age=2592000'}` : null;
+        if (out.raw) return send(res, 200, out.raw, 'application/json; charset=utf-8', { 'Cache-Control': 'no-store' });
         return send(res, 200, result, 'application/json', { 'Cache-Control': 'no-store', ...(ck ? { 'Set-Cookie': ck } : {}) }); }
       throw new E(404, 'Not found.');
     }

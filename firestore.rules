@@ -72,6 +72,34 @@ service cloud.firestore {
         allow read: if signedIn() && (cls().teacherId == request.auth.uid || request.auth.uid in cls().members || isOwner());
         allow write: if signedIn() && (cls().teacherId == request.auth.uid || isOwner());
       }
+
+      // Classwork, quizzes and tests: students in the class read the questions; only the teacher writes them
+      match /tests/{tid} {
+        allow read: if signedIn() && (cls().teacherId == request.auth.uid || request.auth.uid in cls().members || isOwner());
+        allow write: if signedIn() && (cls().teacherId == request.auth.uid || isOwner());
+
+        // The answer key and draft grades: the teacher only
+        match /key/{k} {
+          allow read, write: if signedIn() && (cls().teacherId == request.auth.uid || isOwner());
+        }
+
+        // A student's answers. Students write only their own, only until they turn it in, and never their score.
+        match /subs/{uid} {
+          allow read: if signedIn() && (request.auth.uid == uid || cls().teacherId == request.auth.uid || isOwner());
+          allow create: if signedIn() && (cls().teacherId == request.auth.uid || isOwner()) && request.resource.data.keys().hasOnly(['result']);
+          allow create: if signedIn() && request.auth.uid == uid && active() && request.auth.uid in cls().members
+            && request.resource.data.keys().hasOnly(['answers', 'started', 'submitted'])
+            && request.resource.data.submitted == 0 && request.resource.data.answers.size() < 100000;
+          allow update: if signedIn() && (
+            cls().teacherId == request.auth.uid || isOwner()
+            || (request.auth.uid == uid && active() && request.auth.uid in cls().members
+                && resource.data.get('submitted', 0) == 0
+                && changedOnly(['answers', 'submitted', 'started'])
+                && (resource.data.get('started', 0) == 0 || request.resource.data.get('started', 0) == resource.data.get('started', 0))
+                && request.resource.data.get('answers', '').size() < 100000));
+          allow delete: if signedIn() && (cls().teacherId == request.auth.uid || isOwner());
+        }
+      }
     }
     match /joinCodes/{code} {
       allow read: if signedIn();
