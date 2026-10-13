@@ -30,7 +30,9 @@ Items (the digit is the DOK level, 1 to 3):
   task3: prompt | score 4 | score 3 | score 2 | score 1       performance task, 4 points
   hint: text                         a hint for the item just above (shown in classwork only)
 Subject checks: every math unit test has at least 3 num word problems; science and social studies unit tests
-have at least one cer; ELA unit tests have at least one passage and one wr. No question may appear twice in a unit.
+have at least one cer; ELA unit tests have at least one passage and one wr. No question may appear twice in a unit,
+and every question must stand alone (questions are drawn separately into benchmarks): repeat the facts or data it needs
+instead of writing "In that vote..." or "Using the same graph..."; questions about a passage use passage: lines.
 
 VERSIONS: tools/assess-src/versions/<id>.txt holds new versions of lesson quizzes, classwork and unit tests
 (for example a new set each trimester). Teachers choose the version when they preview or assign; the version whose
@@ -233,6 +235,8 @@ def check_v2(where, sub, c):
         if sub in ('sci', 'soc') and not any(i['t'] == 'cer' for i in t): errors.append(f'{w}: unit test needs a cer item')
         if sub == 'ela' and not (any('p' in i for i in t) and any(i['t'] == 'wr' for i in t)): errors.append(f'{w}: ELA unit test needs a passage and a wr item')
         for i in [i for l in u['lessons'] for i in l['practice'] + l['quiz']] + t:
+            if 'p' not in i and '(' not in i['q'] and re.search(r'^(In|Using|From|For|On) (that|the same|those)\b', i['q']):
+                errors.append(f'{w}: this question depends on the one before it; repeat the facts it needs so it stands alone: {i["q"][:70]}')
             k = re.sub(r'\W+', ' ', i['q'].lower()).strip()
             if k in seen: errors.append(f'{w}: question appears twice: {i["q"][:70]}')
             seen[k] = 1

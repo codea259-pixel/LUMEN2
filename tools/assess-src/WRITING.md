@@ -15,6 +15,7 @@ Read this, the rules at the top of `tools/build_assess.py`, and `tools/assess-sr
   - **quiz**: 7 or 8 items, at least 5 scored automatically (mc or num) and at least 1 written (sa, or cer or wr where it fits).
 - Each unit has a **unit test** of 22 to 25 items: about 17 to 19 automatic items, 2 or 3 short answers, and one 4-point item (task for math, wr for ELA, cer for science and social studies). Mix DOK 1, 2 and 3; at least a quarter should be DOK 2 or 3.
 - Quiz and test questions must be new questions, not copies of practice items with small changes.
+- Every question must stand alone, because benchmarks draw questions separately: repeat the facts or data it needs instead of writing "In that vote..." or "Using the same graph...". Questions about a reading passage use `passage:` lines instead.
 
 ## What good items look like
 - **Math:** many real-world word problems (`num` items with one exact number answer), multi-step problems at DOK 3, error analysis ("Sam says... explain his mistake"), and a performance task in every unit test. Work out every answer twice.
