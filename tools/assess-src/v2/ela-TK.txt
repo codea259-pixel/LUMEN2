@@ -1,0 +1,768 @@
+# ELA Transitional Kindergarten (format 2). Original items written to the California Preschool Learning Foundations
+# (Language and Literacy). Units follow a Benchmark Advance-style year of knowledge topics; titles are our own.
+@subject ela
+@grade TK
+@program Benchmark Advance
+about: Transitional kindergarten builds oral language and early literacy through read-aloud stories and information books: listening and retelling, answering questions, rhyming and beginning sounds, naming letters (starting with the letters in each child's name), concepts of print, new vocabulary, and drawing, marks and dictation to share ideas. Every item is read aloud to children.
+std: PK.RL.1 | With support, listen to stories, answer questions about them, and retell familiar stories with characters and events.
+std: PK.RI.1 | With support, listen to information books and tell facts and details learned from them.
+std: PK.RF.1 | Recognize and name upper- and lowercase letters, especially those in the child's own name, and connect some letters to their sounds.
+std: PK.RF.2 | Hear and play with sounds: rhyming words, syllables (word parts) and beginning sounds.
+std: PK.RF.3 | Understand concepts of print: books are read front to back, print is read left to right and top to bottom, and words carry meaning.
+std: PK.SL.1 | Take turns in conversation, listen to others, and use new words to describe objects, actions and feelings.
+std: PK.L.1 | Speak in complete sentences and use describing words, action words and position words (in, on, under).
+std: PK.W.1 | Use drawing, marks, letter-like shapes and some letters, and dictation, to share ideas and tell about experiences.
+
+unit: Unit 1: All About Me (drawing to tell about myself) | PK.RL.1, PK.RF.1, PK.RF.3, PK.SL.1, PK.W.1 | ela_pk_n1
+el: Use each child's name card and a photo of the child every day; teach "my name is", "I like" and "I can" as sentence frames with gestures.
+
+lesson: Reading: A story about a new student | PK.RL.1, PK.SL.1
+practice:
+passage: Nia's Name | Nia has a name with three letters: N, I, A. On the first day, she sees a big N on the classroom door. "That is my letter!" she says. // At circle time, Nia finds her name card. She puts it on the board next to her friend Leo's card. Nia smiles. She likes her name, and she likes her new class.
+mc1: Who is this story about? | Nia | Leo | a teacher | a cat
+hint: Listen for the name you hear the most.
+mc1: How many letters are in Nia's name? | 3 | 2 | 4 | 5
+hint: Say the letters with me and hold up a finger for each one.
+mc2: Where does Nia see her letter? | on the door | on a shoe | in the sky | on a bus
+hint: Think about what Nia saw when she came into class.
+mc2: How does Nia feel at the end of the story? | happy | sad | mad | scared
+hint: What did Nia's face do at the end?
+sa1: Tell one thing Nia does at circle time. | She finds her name card and puts it on the board next to Leo's card.
+hint: Close your eyes and picture circle time in the story.
+quiz:
+passage: My Hands | I have two hands. My hands can clap. My hands can wave hello. // I use my hands to paint a big yellow sun. I hold my dad's hand when we cross the street. // At night, my hands are tired. I fold them and go to sleep.
+mc1: What is this text about? | hands | feet | the sun | the street
+mc1: How many hands does the child have? | 2 | 1 | 3 | 10
+mc2: What does the child paint? | a sun | a dog | a house | a tree
+mc2: Whose hand does the child hold to cross the street? | dad's | a friend's | the teacher's | a baby's
+mc2: What do the child's hands do at night? | fold and rest | clap | paint | wave
+mc3: Why does the child hold Dad's hand to cross the street? | to stay safe | to paint | to clap | to fall asleep
+sa1: Show and tell one thing your hands can do. | "My hands can build with blocks." (Any action told in a sentence.)
+
+lesson: Letters and words: The letters in my name | PK.RF.1, PK.RF.3, PK.SL.1
+practice:
+mc1: Which one is a letter? | M | 3 | 7 | +
+hint: Letters are used to write words. Numbers are used to count.
+mc1: Which letter is a capital letter? | B | b | d | p
+hint: A capital letter is the big kind of letter.
+mc2: The name Sam starts with which letter? | S | M | A | C
+hint: Say "Sam" slowly. What do you hear first?
+mc2: Which name starts with the same letter as Ben? | Bo | Kim | Ana | Tess
+hint: Ben starts with B. Listen for a name that starts like Ben.
+sa1: Find your name card. Point to the first letter and say its name. | Points to the first letter of their name and names it.
+hint: The first letter is on the left side, where we start.
+quiz:
+mc1: Which is the small letter m? | m | M | n | w
+mc1: Which one is a number, not a letter? | 5 | S | E | A
+mc2: The name Rosa starts with which letter? | R | S | O | A
+mc2: Which name starts with T? | Tom | Dan | Lin | Mo
+mc2: Which word tells about how you feel? | proud | table | crayon | door
+mc2: Which name has the letter A in it? | Maya | Leo | Kim | Juno
+sa1: Say the letters in your name in order. | Names the letters of their first name in order, with help as needed.
+
+lesson: Writing: Draw and tell about me | PK.W.1, PK.SL.1, PK.L.1
+practice:
+mc1: What do you use to draw a picture? | a crayon | a spoon | a shoe | a ball
+hint: Think of what is in our art box.
+mc2: You draw yourself playing soccer. Which sentence tells about it? | I kick the ball. | I eat lunch. | I take a nap. | I read a book.
+hint: Look at what the child in the picture is doing.
+mc2: Which word tells something you can do? | jump | blue | happy | big
+hint: An action word is something you can show with your body.
+mc2: A label is | a word that names part of a picture | a page number | a song | a color
+hint: A label tells what something in the picture is.
+sa1: Draw your face. Tell one thing you like. | A face drawing and a spoken sentence such as "I like dogs."
+hint: Start with "I like..."
+quiz:
+mc1: Where do you write your name on your paper? | at the top | on the floor | on your hand | on the table
+mc2: Which sentence tells about you? | I am four. | The sky is blue. | Cats say meow. | A bus is big.
+mc2: You draw your family at the park. What could you write? | park | spoon | rain | bed
+mc2: Which is a complete sentence? | I like to sing. | Like to. | Sing the. | To I.
+mc2: When a friend tells about a picture, you should | look and listen | walk away | talk loudly | close the book
+mc2: Which word could finish "I can ___"? | run | red | cup | tall
+sa1: Draw something you can do. Tell your teacher a sentence about it. | A drawing and a sentence such as "I can ride my bike."
+
+test:
+passage: Kai's Big Day | Kai packed his blue backpack. Today was his first day of school. He felt a little shy. // At school, his teacher, Ms. Lopez, said, "Hello, Kai!" She showed him a cubby with his name on it. Kai put his backpack inside. // A girl named Ivy asked, "Do you want to build with me?" Kai nodded. They made a tall tower with blocks. Kai was not shy anymore. He smiled and said, "I like school!"
+mc1: Who is the story about? | Kai | Ivy | a bear | a bus driver
+mc1: What color is Kai's backpack? | blue | red | green | yellow
+mc1: Who is Kai's teacher? | Ms. Lopez | Ivy | Mom | Ms. Kai
+mc2: How does Kai feel at the start of the story? | shy | silly | angry | sleepy
+mc2: Where does Kai put his backpack? | in a cubby | on the bus | under a table | in a tree
+mc2: What do Kai and Ivy build? | a tower | a car | a boat | a house
+mc2: What does the word "shy" mean? | a little scared to talk | very loud | very fast | hungry
+mc3: Why is Kai not shy at the end? | He made a friend | He went home | He ate lunch | He lost his bag
+mc2: Where does most of the story happen? | at school | at the beach | at the store | at the zoo
+sa2: Tell what happened at the beginning and at the end of Kai's day. | At the beginning Kai felt shy and put his backpack in his cubby. At the end he built a tower with Ivy and said he liked school.
+wr2: Draw a picture of your favorite part of Kai's day. Write or tell your teacher about it. Tell why you like that part. | A drawing of one event from the story (for example, building the tower) with a label or letters, and a dictated sentence with a reason: "I like when Kai and Ivy built a tower because they became friends." | Drawing clearly shows a story event; label or letters; tells the part and a clear reason from the story. | Drawing shows a story event; tells the part and a simple reason. | Drawing is about the story; tells the part but no reason. | Drawing or talk not yet connected to the story.
+endpassage:
+mc1: Kai sees four signs. Which sign shows a letter? | K | 4 | 9 | =
+mc1: Which is a capital letter? | D | d | b | q
+mc2: The name Kai starts with which letter? | K | C | A | I
+mc2: Which name starts with the same letter as Ivy? | Isa | Ana | Lee | Ty
+mc2: Which name starts with M? | Mia | Nia | Wes | Zoe
+mc1: Where do we start reading a book? | the front | the back | the middle | the last page
+mc2: You draw yourself reading. Which word could label your picture? | book | ball | rain | dog
+mc2: Which sentence tells something a child can do? | I can hop. | Hop the can. | Can I. | The hop.
+mc2: Which word tells how you feel? | glad | chair | crayon | shoe
+mc3: Ivy asks Kai to play. What is a kind thing to say back? | Yes, thank you! | Go away. | No way. | I will not.
+sa1: Say your first name and point to each letter as you say it. | Names the letters in their first name in order while pointing.
+sa2: Tell a friend one thing you like to do at school. Use a whole sentence. | "I like to paint at school." (A complete spoken sentence.)
+
+unit: Unit 2: Friends and Feelings (retelling stories) | PK.RL.1, PK.RF.2, PK.SL.1, PK.L.1, PK.W.1
+el: Use feeling faces (picture cards) for happy, sad, mad, scared and proud; model "I feel ___ when ___" and let children point before they speak.
+
+lesson: Reading: Stories about friends | PK.RL.1, PK.SL.1
+practice:
+passage: The Red Shovel | Marco and June played in the sandbox. Marco had the red shovel. June wanted it too. "Mine!" said Marco. June felt sad. // Then Marco had an idea. "You dig first, and I will fill the bucket," he said. June dug a big hole. Marco filled the bucket with sand. Together they made a sand castle. "Friends share," said June.
+mc1: Where do Marco and June play? | in the sandbox | in the kitchen | on the bus | in the pool
+hint: Picture where the shovel and sand would be.
+mc1: What color is the shovel? | red | blue | green | pink
+hint: Listen to the title of the story.
+mc2: What is the problem in the story? | They both want the shovel | The sand is wet | The bucket is lost | It starts to rain
+hint: What made June feel sad?
+mc2: How does June feel when Marco says "Mine!"? | sad | happy | sleepy | silly
+hint: Listen for the feeling word after "Mine!"
+sa2: Tell how Marco and June fix the problem. | Marco lets June dig first while he fills the bucket, so they take turns and build a castle together.
+hint: What was Marco's idea?
+quiz:
+passage: Two Cups | Pia had a cup of juice. Her little brother Ollie spilled his cup. The juice ran onto the floor. Ollie started to cry. // Pia got a towel. She helped wipe up the juice. Then she poured half of her juice into Ollie's cup. Ollie stopped crying. He gave Pia a big hug.
+mc1: Who spilled the juice? | Ollie | Pia | Mom | the dog
+mc1: Who is Ollie? | Pia's little brother | Pia's dad | Pia's teacher | Pia's cat
+mc2: What did Pia use to wipe up the juice? | a towel | a hat | a book | a shoe
+mc2: How did Ollie feel after he spilled? | sad | proud | silly | sleepy
+mc2: What did Pia do with her juice? | gave Ollie half | drank it all | spilled it too | threw it away
+mc3: What word best tells about Pia? | kind | mean | scared | grumpy
+sa2: Retell the story. Tell what happened first and what happened last. | First Ollie spilled his juice and cried. Last Pia shared her juice and Ollie hugged her.
+
+lesson: Sounds and words: Rhymes and feeling words | PK.RF.2, PK.SL.1
+practice:
+mc1: Which word rhymes with "cat"? | hat | dog | cup | sun
+hint: Rhyming words sound the same at the end: c-at, h-at.
+mc1: Which word rhymes with "bee"? | tree | bug | bat | bed
+hint: Say "bee" and each word. Which one ends like "ee"?
+mc2: Which word does NOT rhyme with "pig"? | pan | wig | dig | big
+hint: Three words end with "ig." Find the one that does not.
+mc2: Your friend gives you a hug. Which feeling word fits? | happy | angry | scared | bored
+hint: How would a hug from a friend make you feel?
+sa1: Say a word that rhymes with "fun." | sun, run, bun or another word that ends in -un.
+hint: Change the first sound: fun, s-un...
+quiz:
+mc1: Which word rhymes with "car"? | star | cup | cow | can
+mc1: Which word rhymes with "mop"? | top | map | man | pet
+mc2: Which two words rhyme? | bed and red | bed and bat | sun and sit | cup and cat
+mc2: Which word does NOT rhyme with "cake"? | cup | lake | bake | rake
+mc2: A boy hears a loud thunder boom and hides. How does he feel? | scared | proud | silly | sleepy
+mc2: Which word means very happy? | joyful | tired | grumpy | quiet
+sa1: Tell a time you felt proud. Use the word "proud." | "I felt proud when I zipped my coat by myself."
+
+lesson: Speaking and writing: Taking turns and telling about a friend | PK.SL.1, PK.L.1, PK.W.1
+practice:
+mc1: When your friend is talking, you should | listen | yell | walk away | hide
+hint: How do you show a friend you care about what they say?
+mc2: Which sentence tells about a friend? | Lu likes to paint. | Paint the. | Lu the. | Likes to.
+hint: A whole sentence tells who and what they do.
+mc2: You want a turn on the swing. What can you say? | May I have a turn? | Get off! | Mine! | Go away!
+hint: Use kind, polite words.
+mc2: You draw your friend Ana smiling. Which word could you write? | Ana | cup | rain | bus
+hint: A label names what is in the picture.
+sa1: Draw your friend. Tell one thing you like to do together. | A drawing of a friend and a sentence such as "We like to run."
+hint: Start with "We like to..."
+quiz:
+mc1: How many people should talk at one time? | 1 | 2 | 3 | everyone
+mc2: Which sentence is a whole sentence? | We play tag. | Play tag the. | We the. | Tag.
+mc2: Which word tells what friends do? | share | green | small | cup
+mc2: A friend falls down. What is a kind thing to say? | Are you okay? | Ha ha! | Get up. | Move!
+mc2: You draw two friends on a slide. What are they doing? | sliding | sleeping | eating | reading
+mc2: Which word finishes the sentence? "I feel ___ when I play with my friend." | happy | table | cup | sky
+sa1: Draw how you feel today. Tell your teacher "I feel ___ because ___." | A face drawing and a sentence such as "I feel happy because I saw my grandma."
+
+test:
+passage: Lost Bunny | Rosa had a soft toy bunny. She took it everywhere. One day at the park, she could not find it. Rosa felt sad and began to cry. // Her friend Ben said, "I will help you look." They looked under the slide. They looked by the swings. Then Ben saw two long ears near the bench. "There it is!" he shouted. // Rosa hugged her bunny. Then she hugged Ben. "Thank you for helping me," she said.
+mc1: What toy does Rosa have? | a bunny | a bear | a ball | a doll
+mc1: Where are Rosa and Ben? | at the park | at school | at home | at the store
+mc2: What is Rosa's problem? | She lost her bunny | She fell down | She is hungry | Ben took her toy
+mc2: How does Rosa feel when she cannot find her toy? | sad | happy | proud | silly
+mc2: Where do they look first? | under the slide | by the swings | near the bench | in a car
+mc2: How does Ben know he found the bunny? | He sees its long ears | He hears it sing | It hops to him | Rosa finds it
+mc2: Where is the bunny? | near the bench | under the slide | on the swing | in a tree
+mc3: What word tells about Ben? | helpful | mean | sleepy | lost
+mc2: What does Rosa say at the end? | Thank you for helping me | Go away | I want to go home | Where is my bunny
+sa2: Retell the story. Tell the beginning, the middle and the end. | Beginning: Rosa lost her bunny at the park and cried. Middle: Ben helped her look under the slide and by the swings. End: Ben found it by the bench and Rosa thanked him.
+wr2: Draw a picture of how Rosa feels at the end of the story. Write or tell your teacher about it. Tell why she feels that way. | A drawing of Rosa smiling and hugging her bunny or Ben, with a label or letters, and a dictated sentence: "Rosa is happy because Ben found her bunny." | Drawing shows Rosa's feeling at the end; label or letters; names the feeling and a reason from the story. | Drawing shows the ending; names the feeling with a simple reason. | Drawing about the story; names a feeling but no reason. | Not yet connected to the story.
+endpassage:
+mc1: Which word rhymes with "bun"? | sun | bed | bag | big
+mc2: Which word rhymes with "hop"? | stop | hip | hat | pot
+mc2: Which pair of words rhymes? | cake and lake | cake and cat | dog and dish | red and rag
+mc2: Which word does NOT rhyme with "net"? | nut | jet | pet | wet
+mc2: Which word is a feeling word? | angry | slide | bench | ears
+mc2: Which word means the same as "glad"? | happy | sad | mad | tired
+mc2: Which one is a whole sentence about Ben? | Ben runs fast. | Runs fast the. | Ben the. | Fast.
+mc3: Two friends want the same truck. What is a good idea? | take turns | grab it | cry | throw it
+sa1: Say a word that rhymes with "cat." | hat, mat, bat, sat or another -at word.
+mc2: What should you do when it is your friend's turn to talk? | listen | talk too | leave | shout
+mc2: Which word is the opposite of happy? | sad | glad | big | fast
+
+unit: Unit 3: Families and Homes (information books) | PK.RI.1, PK.RF.2, PK.RF.3, PK.L.1, PK.W.1
+el: Invite families to share a photo or a word in the home language for "home" and "family"; post family words with pictures (mom, dad, grandma, grandpa, brother, sister, aunt, cousin).
+
+lesson: Reading: Learning about homes | PK.RI.1, PK.SL.1
+practice:
+passage: Homes Around Us | People live in many kinds of homes. Some homes are houses. Some homes are apartments in a tall building. Some families live on a boat! // A home keeps us warm and dry. It has a place to sleep and a place to eat. The most important part of a home is the people who love us.
+mc1: What is this text about? | homes | boats | food | rain
+hint: What word do you hear again and again?
+mc1: Which is one kind of home? | an apartment | a cloud | a shoe | a tree trunk
+hint: Listen for the kinds of homes the text names.
+mc2: What does a home keep us? | warm and dry | wet and cold | loud | hungry
+hint: Think about why we go inside when it rains.
+mc2: Is this text a made-up story or true facts? | true facts | a made-up story | a song | a joke
+hint: Does it tell about real things or pretend things?
+sa1: Tell one thing that is in your home. | "My home has a bed and a kitchen." (Any real detail.)
+hint: Think about the room where you sleep or eat.
+quiz:
+passage: Grandpa's Kitchen | This is my grandpa's kitchen. It is my favorite room. Grandpa cooks rice and beans on the stove. // I wash the beans in a bowl. Grandpa stirs the pot with a big spoon. The kitchen smells good! // When dinner is ready, our whole family sits at the table. We eat and talk and laugh.
+mc1: Whose kitchen is it? | Grandpa's | Mom's | the teacher's | a chef's
+mc1: What does Grandpa cook? | rice and beans | pizza | soup | eggs
+mc2: What does the child do to help? | washes the beans | stirs the pot | cleans the floor | sets the oven
+mc2: What does Grandpa use to stir the pot? | a big spoon | a fork | his hand | a cup
+mc2: Where does the family sit to eat? | at the table | on the bed | outside | in the car
+mc3: How does the child feel about Grandpa's kitchen? | loves it | is scared of it | does not like it | never goes there
+sa1: Tell one thing your family does together. | "We eat dinner together." (Any family activity in a sentence.)
+
+lesson: Sounds and words: Clapping word parts and family words | PK.RF.2, PK.SL.1
+practice:
+mc1: Clap the parts in "mom." How many claps? | 1 | 2 | 3 | 4
+hint: Say the word and clap each time your mouth opens: mom.
+mc1: Clap the parts in "sister." How many claps? | 2 | 1 | 3 | 4
+hint: sis-ter. Clap as you say each part.
+mc2: Clap the parts in "grandmother." How many claps? | 3 | 2 | 1 | 4
+hint: grand-moth-er.
+mc2: Which person is a grown-up in a family? | an aunt | a baby | a puppy | a toy
+hint: Who is big and grown?
+sa1: Clap the parts in your own name. Tell how many claps. | Claps their name correctly and gives the number (for example "Ma-ri-a, 3 claps").
+hint: Say your name slowly and clap each part.
+quiz:
+mc1: Clap the parts in "dad." How many claps? | 1 | 2 | 3 | 4
+mc1: Clap the parts in "baby." How many claps? | 2 | 1 | 3 | 4
+mc2: Which word has 2 claps? | kitchen | home | bed | cup
+mc2: Which word has 3 claps? | banana | sofa | door | bath
+mc2: Your mom's sister is your | aunt | brother | baby | cousin
+mc2: A small, young child is a | baby | grandpa | teacher | neighbor
+sa1: Say the name of a person in your family and clap its parts. | Names a family member and claps the syllables correctly.
+
+lesson: Writing: Drawing and labeling my home | PK.W.1, PK.L.1, PK.RF.3
+practice:
+mc1: Which word names a room in a home? | kitchen | park | bus | sky
+hint: A room is a place inside a home.
+mc2: You draw your bed. Which label fits? | bed | sun | car | cat
+hint: The label names what you drew.
+mc2: Which word tells about a home? | cozy | jump | run | eat
+hint: A describing word tells what something is like.
+mc2: Where does the cat sleep? "The cat is ___ the bed." | on | run | red | cat
+hint: Think of a word that tells where.
+sa1: Draw one room in your home. Tell what you do there. | A drawing of a room and a sentence such as "I sleep in my room."
+hint: Start with "In my ___, I..."
+quiz:
+mc1: Which is a room where you take a bath? | bathroom | garage | yard | street
+mc2: The ball is under the table. Where is the ball? | under the table | on the table | in a box | on the roof
+mc2: Which word tells about a big house? | tall | sleepy | sad | slow
+mc2: You draw your family eating. What could you label? | table | swing | rain | bus
+mc2: Which sentence tells about a home? | My home is warm. | Home my the. | Warm is. | The is.
+mc1: When you write, which way do you go? | left to right | right to left | bottom to top | in a circle
+sa1: Draw your family. Tell your teacher who is in your picture. | A family drawing with a sentence such as "This is my mom, my sister and me."
+
+test:
+passage: Moving Day | Today my family is moving to a new apartment. Papa carries the big boxes. Mama carries the lamp. I carry my teddy bear. // The new apartment is on the third floor. We ride the elevator up. My room has a window. I can see a tree outside! // At night, we eat noodles on the floor because the table is still in a box. We laugh. Our new home feels like home because we are together.
+mc1: What is the family doing? | moving | camping | swimming | shopping
+mc1: What does Papa carry? | big boxes | a lamp | a teddy bear | noodles
+mc1: What does the child carry? | a teddy bear | a lamp | a box | a bed
+mc2: How does the family get to the third floor? | the elevator | a slide | a ladder | a car
+mc2: What can the child see out the window? | a tree | the ocean | a train | a zoo
+mc2: Why do they eat on the floor? | the table is in a box | they like the floor | there is no food | the floor is warm
+mc2: What does the family eat? | noodles | pizza | apples | rice
+mc3: Why does the new home feel like home? | the family is together | it has a lamp | it is big | it has an elevator
+mc2: What is a new word in this story that means a home in a big building? | apartment | elevator | window | lamp
+sa2: Tell two things the family does on moving day. | They carry boxes, a lamp and a teddy bear; they ride the elevator; they eat noodles on the floor.
+wr2: Draw a picture of the child's new room. Write or tell your teacher about it. Tell one thing the child likes about the room. | A drawing of a room with a window and a tree, a label (window, tree), and a sentence such as "The child likes the window because they can see a tree." | Drawing matches the text (room, window, tree); label or letters; tells one detail and why it is liked. | Drawing matches the text and tells one detail. | Drawing about a room; detail not from the text. | Not yet connected to the text.
+endpassage:
+mc1: Clap the parts in "teddy." How many claps? | 2 | 1 | 3 | 4
+mc1: Clap the parts in "lamp." How many claps? | 1 | 2 | 3 | 4
+mc2: Clap each word. Which word from the story has 2 claps? | window | box | bed | lamp
+mc2: Your dad's dad is your | grandpa | uncle | brother | cousin
+mc2: The cat is in the box. Where is the cat? | in the box | under the box | on the bed | by the door
+mc2: Which word names a room? | bedroom | tree | lamp | bear
+mc1: Which part of a book do we look at first? | the front cover | the back cover | the last page | the middle
+mc2: Which sentence tells about a family? | We eat together. | Eat the we. | Together. | We the.
+sa1: Draw one person in your family and say their name. Clap the parts of the name. | Draws a family member, says the name and claps its syllables correctly.
+mc2: Which describing word could tell about a home? | warm | jump | sing | run
+mc3: A new friend asks about your home. Which sentence tells the most? | My home has a red door and a big yard. | Home. | It is. | I have.
+
+unit: Unit 4: Helpers in Our Community (information and labels) | PK.RI.1, PK.RF.2, PK.SL.1, PK.L.1, PK.W.1 | ela_pk_n2
+el: Show photos of helpers with their tools (hose, mailbag, stethoscope, books); practice "A ___ helps by ___" and act out each job before reading.
+
+lesson: Reading: People who help us | PK.RI.1, PK.SL.1
+practice:
+passage: Firefighters Help | Firefighters help keep people safe. When there is a fire, they ride in a big red fire truck. The truck has a loud siren and a long ladder. // Firefighters wear heavy coats, boots and helmets. They spray water from a hose to put out the fire. Firefighters also visit schools to teach children how to stay safe.
+mc1: Who is this text about? | firefighters | doctors | farmers | bakers
+hint: Listen to the title.
+mc1: What do firefighters ride in? | a fire truck | a boat | a bike | a plane
+hint: The text tells about a big red vehicle.
+mc2: What do firefighters use to put out a fire? | water from a hose | sand | a broom | a ladder only
+hint: What comes out of the hose?
+mc2: Why do firefighters wear helmets? | to keep their heads safe | to look funny | to stay cool | to hear better
+hint: Think about what a helmet covers.
+sa1: Tell one way firefighters help. | They put out fires, or they teach children how to stay safe.
+hint: Think about the end of the text too.
+quiz:
+passage: At the Library | Ms. Kim is a librarian. She works at the library. The library has many, many books. // Ms. Kim helps people find books they will like. She reads stories to children on Saturday mornings. When you are done with a book, you give it back, so another person can read it.
+mc1: What is Ms. Kim's job? | librarian | doctor | firefighter | cook
+mc1: Where does Ms. Kim work? | the library | a farm | a fire station | a store
+mc2: What does Ms. Kim help people find? | books | shoes | food | toys
+mc2: When does Ms. Kim read stories to children? | Saturday mornings | every night | at lunch | never
+mc2: Why do you give a library book back? | so another person can read it | because it is broken | to buy it | to throw it away
+mc3: What would you ask Ms. Kim for? | a book about dogs | a bandage | a haircut | a fire truck
+sa1: Tell what a librarian does. | A librarian helps people find books and reads stories to children.
+
+lesson: Sounds and words: Beginning sounds and helper words | PK.RF.2, PK.SL.1
+practice:
+mc1: Which word starts with the same sound as "fire"? | fan | dog | sun | map
+hint: Say "fire." Listen to the first sound: /f/.
+mc1: What is the first sound in "mail"? | /m/ | /l/ | /a/ | /s/
+hint: Say "mail" slowly. What sound does your mouth make first?
+mc2: Which two words start with the same sound? | bus and book | bus and cat | top and pig | doll and sun
+hint: Say each pair. Listen to the very first sound.
+mc2: A person who helps sick people get better is a | doctor | baker | farmer | pilot
+hint: Who do you visit when you feel sick?
+sa1: Say two words that start with the /b/ sound, like "bus." | ball, baby, bed, bat or other /b/ words.
+hint: Put your lips together and pop: /b/.
+quiz:
+mc1: Which word starts with the same sound as "truck"? | toy | duck | rug | pan
+mc1: What is the first sound in "nurse"? | /n/ | /s/ | /r/ | /m/
+mc2: Which word starts with /d/? | doctor | teacher | baker | farmer
+mc2: Listen to each pair. Which words begin with the same sound? | hat and hose | hat and fan | sun and moon | pen and cup
+mc2: A person who brings letters to your home is a | mail carrier | chef | dentist | pilot
+mc2: A firefighter climbs a tall ___ to reach a window. | ladder | spoon | pillow | crayon
+sa1: Say your name. Tell the first sound in your name. | Says their name and its first sound (for example "Lupe, /l/").
+
+lesson: Writing: Draw and tell how a helper helps | PK.W.1, PK.L.1, PK.SL.1
+practice:
+mc1: Which tool does a doctor use? | a stethoscope | a hose | a mailbag | a shovel
+hint: A doctor listens to your heart with it.
+mc2: You draw a bus driver. Which label fits? | bus | bed | fish | cake
+hint: What does a bus driver drive?
+mc2: Which sentence tells how a helper helps? | The baker makes bread. | Bread the baker. | Makes. | The bread.
+hint: A helpful sentence tells who and what they do.
+mc2: The letter is in the mailbox. Where is the letter? | in the mailbox | on the roof | under the bed | in the sky
+hint: Listen for the word that tells where.
+sa1: Draw a helper you know. Tell your teacher how they help. | A drawing and a sentence such as "My mom is a nurse. She helps sick people."
+hint: Start with "A ___ helps by..."
+quiz:
+mc1: Who drives a fire truck? | a firefighter | a teacher | a baker | a librarian
+mc2: Which word tells about a firefighter? | brave | sleepy | tiny | quiet
+mc2: You draw a farmer. What could you put in the picture? | a tractor | a book cart | a fire hose | a school desk
+mc2: Which sentence tells about a teacher? | My teacher reads to us. | Reads the my. | Teacher. | To us the.
+mc2: The cat is under the table. Where is the cat? | under the table | on the table | in the box | on the bus
+mc2: How can you thank a helper? | say thank you | run away | shout at them | look away
+sa1: Draw yourself as a helper when you grow up. Tell what you will do. | A drawing and a sentence such as "I will be a vet. I will help sick dogs."
+
+test:
+passage: Dr. Amara | Dr. Amara is a doctor. She helps children stay healthy. When Theo had a cough, his mom took him to see her. // Dr. Amara listened to Theo's heart with a stethoscope. She looked in his mouth with a little light. "Drink lots of water and rest," she said. // In a few days, Theo felt better. He made a card for Dr. Amara. It said, "Thank you!"
+mc1: What is Dr. Amara's job? | doctor | teacher | baker | firefighter
+mc1: Who was sick in the story? | Theo | Mom | Dr. Amara | a dog
+mc2: What was wrong with Theo? | a cough | a broken arm | a lost tooth | a bee sting
+mc2: What did Dr. Amara use to listen to Theo's heart? | a stethoscope | a little light | a hose | a spoon
+mc2: What did Dr. Amara use to look in Theo's mouth? | a little light | a stethoscope | a ladder | a book
+mc2: What did Dr. Amara tell Theo to do? | drink water and rest | run fast | eat candy | go to school
+mc2: How did Theo feel in a few days? | better | worse | angry | scared
+mc3: Why did Theo make a card? | to thank Dr. Amara | because he was bored | to get a toy | for his birthday
+mc2: In this story, what does "healthy" mean? | well and not sick | very tall | very sleepy | sad
+sa2: Tell two ways Dr. Amara helped Theo. | She listened to his heart, looked in his mouth, and told him to drink water and rest.
+wr2: Draw a picture of Dr. Amara helping Theo. Write or tell your teacher about it. Tell how she helped. | A drawing of a doctor with a stethoscope or light and a child, labeled "Dr." or "Theo," and a sentence such as "Dr. Amara listens to Theo's heart to help him get better." | Drawing shows a helping action from the text; label or letters; tells how she helped with a detail. | Drawing shows a helping action; tells how she helped simply. | Drawing of a doctor; little connection to the text. | Not yet connected to the text.
+endpassage:
+mc1: Which word starts with the same sound as "doctor"? | dog | cat | sun | top
+mc1: What is the first sound in "heart"? | /h/ | /t/ | /r/ | /a/
+mc2: Which word starts with /m/ like "mom"? | milk | ball | fish | rug
+mc2: Which pair of words starts with the same sound? | car and cup | car and bus | sun and fan | pig and dog
+mc2: Which word starts with the same sound as "light"? | lamp | mop | rug | yes
+mc2: A person who fixes teeth is a | dentist | farmer | pilot | mail carrier
+mc2: Which helper flies a plane? | a pilot | a chef | a nurse | a librarian
+mc2: Which sentence tells how a vet helps? | The vet helps sick pets. | Pets the vet. | Helps. | Sick the.
+mc2: Which word tells about a doctor? | caring | purple | noisy | wet
+sa1: Say a word that starts with the same sound as "pie." | pig, pan, pot, pen or another /p/ word.
+mc3: Your neighbor is a mail carrier. What does she carry? | letters | bread | books to lend | water hoses
+
+unit: Unit 5: Weather and Seasons (describing words) | PK.RI.1, PK.RF.1, PK.RF.2, PK.L.1, PK.W.1 | ela_pk
+el: Make a class weather chart with picture cards (sunny, rainy, cloudy, windy, foggy); point to the window and name the weather each morning with "Today it is ___."
+
+lesson: Reading: What is the weather? | PK.RI.1, PK.RL.1
+practice:
+passage: Rain, Rain | Drip, drop! Rain falls from gray clouds. Rain makes puddles on the sidewalk. // On a rainy day, we wear raincoats and boots. Some people carry umbrellas. Plants and trees drink the rain, and it helps them grow. After the rain stops, the sun may come out. Sometimes we can see a rainbow!
+mc1: What is this text about? | rain | snow | the beach | trucks
+hint: What word is in the title?
+mc1: What color are the rain clouds? | gray | pink | green | orange
+hint: Listen to the first part again.
+mc2: What does rain make on the sidewalk? | puddles | sand | leaves | flowers
+hint: What do you see on the ground after rain?
+mc2: How does rain help plants? | it helps them grow | it makes them cold | it makes them blue | it hurts them
+hint: Plants drink the rain.
+sa1: Tell what you wear on a rainy day. | "I wear my raincoat and boots." (Any rain gear in a sentence.)
+hint: What keeps you dry?
+quiz:
+passage: Windy Day | Whoosh! The wind blew all morning. Leaves flew across the yard. My hat flew off my head! // Abuela and I took my kite outside. The wind lifted the kite high in the sky. I held the string tight. My kite danced over the trees. I like windy days.
+mc1: What kind of day is it? | windy | snowy | rainy | foggy
+mc1: What flew off the child's head? | a hat | a kite | a leaf | a shoe
+mc2: Who went outside with the child? | Abuela | a teacher | a dog | a doctor
+mc2: What lifted the kite high? | the wind | the rain | Abuela | a tree
+mc2: What did the child hold tight? | the string | the hat | a leaf | an umbrella
+mc3: How does the child feel about windy days? | likes them | is scared of them | does not like them | is sleepy
+sa1: Tell what the wind can move. | The wind can move leaves, hats and kites.
+
+lesson: Sounds and letters: Letters and their sounds | PK.RF.1, PK.RF.2
+practice:
+mc1: Which letter makes the first sound in "sun"? | S | M | T | B
+hint: Say "sun." The first sound is /s/, like a snake.
+mc1: Which letter makes the first sound in "rain"? | R | N | W | D
+hint: Growl like a tiger: /r/.
+mc2: Which word starts with the /w/ sound? | wind | sun | cloud | rain
+hint: Make your lips round like you are blowing: /w/.
+mc2: Which word starts with the same sound as "snow"? | sock | hot | cap | bed
+hint: Snow starts with /s/.
+sa1: Say the sound the letter M makes. Then say a word that starts with M. | /m/; moon, mom, milk or another /m/ word.
+hint: Rub your tummy and say "mmm."
+quiz:
+mc1: Which letter makes the first sound in "moon"? | M | N | W | S
+mc1: What sound does the letter T make? | /t/ | /s/ | /m/ | /p/
+mc2: Which word starts with the letter C, like "cloud"? | cat | sun | rug | hat
+mc2: Which picture name starts with /f/? | fog | sun | hot | wet
+mc2: Which letter does "umbrella" start with? | U | O | M | B
+mc2: Which letter makes the first sound in "hot"? | H | T | O | A
+sa1: Say a weather word. Tell the first sound and the letter it starts with. | For example "sun, /s/, S" or "rain, /r/, R."
+
+lesson: Writing: Draw and describe the weather | PK.W.1, PK.L.1, PK.SL.1
+practice:
+mc1: Which word tells about the weather? | sunny | table | shoe | apple
+hint: A weather word tells what it is like outside.
+mc2: You draw a sun and children in shorts. Which sentence fits? | It is hot today. | It is snowing. | It is raining. | It is dark.
+hint: When do you wear shorts?
+mc2: Which word tells how snow feels? | cold | hot | loud | sweet
+hint: Think about touching snow.
+mc2: Which is the opposite of hot? | cold | warm | sunny | big
+hint: Opposites are very different, like up and down.
+sa1: Draw today's weather. Tell your teacher a sentence about it. | A weather drawing and a sentence such as "Today it is cloudy."
+hint: Look out the window. Start with "Today it is..."
+quiz:
+mc1: Which word names something in the sky? | cloud | puddle | boot | grass
+mc2: You draw a snowman. What season is it? | winter | summer | spring | fall
+mc2: Which sentence tells about a rainy day? | I jump in puddles. | I build a sandcastle. | I wear sunglasses. | I sled down a hill.
+mc2: Which word best tells about a storm? | loud | soft | tiny | sweet
+mc2: The bird is in the tree. Where is the bird? | in the tree | under the tree | in a car | on a boat
+mc2: What should you put on in the cold? | a coat | shorts | flip-flops | a swimsuit
+sa1: Draw your favorite weather. Tell why you like it. | A drawing and a sentence with a reason, such as "I like sunny days because I can play outside."
+
+test:
+passage: Four Seasons | A year has four seasons. In fall, leaves turn red and orange and fall down. In winter, it is cold. In some places, snow falls. // In spring, flowers bloom and baby birds hatch. In summer, it is hot and sunny. Many children swim and play outside. // Then fall comes again, and the seasons go around and around.
+mc1: How many seasons are in a year? | 4 | 2 | 3 | 5
+mc1: In which season do leaves fall down? | fall | spring | summer | winter
+mc2: What is winter like? | cold | hot | dry and sunny | full of flowers
+mc2: When do flowers bloom? | spring | winter | fall | night
+mc2: What do many children do in summer? | swim | build snowmen | rake leaves | wear coats
+mc2: What colors do leaves turn in fall? | red and orange | blue and pink | black and white | purple
+mc3: What happens after summer? | fall comes again | winter comes | the year stops | spring comes
+mc2: In this text, what does "bloom" mean? | open up | fall down | melt | fly
+mc2: Is this text made up or true facts? | true facts | made up | a song | a joke
+sa2: Name two seasons and tell one thing that happens in each. | Fall: leaves change color and fall. Winter: it is cold. Spring: flowers bloom. Summer: it is hot. (Any two correct.)
+wr2: Draw your favorite season. Write or tell your teacher about it. Tell one thing from the text that happens in that season and why you like it. | A drawing of one season with matching details (for example, flowers and birds for spring), a label, and a sentence such as "I like spring because flowers bloom and baby birds hatch." | Drawing matches a season; label or letters; tells a detail from the text and a reason. | Drawing matches a season; tells a detail or a reason. | Drawing of weather but not tied to a season or the text. | Not yet connected to the text.
+endpassage:
+mc1: Which letter makes the first sound in "leaf"? | L | F | E | T
+mc1: Which letter makes the first sound in "bird"? | B | D | P | R
+mc2: Which word starts with the same sound as "fall"? | fox | ball | tall | wall
+mc2: Which word starts with /s/? | summer | winter | fall | rain
+mc2: What sound does the letter P make? | /p/ | /b/ | /d/ | /t/
+mc2: Which is the opposite of wet? | dry | cold | rainy | soft
+mc2: Which word tells about a summer day? | hot | snowy | icy | frozen
+mc2: Which sentence tells about winter? | I wear my warm coat. | I swim at the beach. | I wear shorts. | I eat ice pops in the sun.
+sa1: Say a word that starts with the same sound as "wind." | wet, wagon, worm, water or another /w/ word.
+mc2: The kite is over the tree. Where is the kite? | over the tree | under the tree | in a box | on the ground
+mc3: It is raining. Which thing should you take outside? | an umbrella | sunglasses | a sled | a fan
+
+unit: Unit 6: Animals and Their Babies (asking and answering questions) | PK.RI.1, PK.RL.1, PK.RF.1, PK.SL.1, PK.W.1 | ela_pk_n1
+el: Use matching cards of animal parents and babies with photos; teach the question words who, what and where with a gesture for each.
+
+lesson: Reading: Animal families | PK.RI.1, PK.RL.1
+practice:
+passage: Baby Animals | Many animals have babies. A baby cat is a kitten. A baby dog is a puppy. A baby cow is a calf. // Some babies hatch from eggs. A baby chicken is a chick. It pecks its way out of the egg. // Animal parents take care of their babies. They keep them warm and help them find food until the babies can take care of themselves.
+mc1: What is this text about? | baby animals | farm tools | the ocean | toys
+hint: What words did you hear again and again?
+mc1: What is a baby cat called? | a kitten | a puppy | a calf | a chick
+hint: Listen to the first part again.
+mc2: Which baby hatches from an egg? | a chick | a calf | a puppy | a kitten
+hint: Which baby pecks its way out?
+mc2: How do animal parents help their babies? | keep them warm and find food | paint them | give them toys | teach them to read
+hint: Listen to the last part.
+sa1: Ask a question about baby animals. Start with "What" or "Where." | "What does a baby cow eat?" or "Where do chicks sleep?" (Any real question.)
+hint: Think of something you want to know.
+quiz:
+passage: Duck Walk | Mama Duck walked to the pond. Five little ducklings walked behind her in a line. Quack, quack! // The smallest duckling stopped to look at a bug. "Wait for me!" it peeped. Mama Duck waited. Then the duckling ran to catch up. // At the pond, Mama Duck jumped in. Splash! The ducklings jumped in too. They all swam together.
+mc1: Where did Mama Duck walk? | to the pond | to the barn | to the store | to school
+mc1: How many ducklings were there? | 5 | 2 | 4 | 10
+mc2: Why did the smallest duckling stop? | to look at a bug | to sleep | to eat bread | it was lost
+mc2: What did Mama Duck do when the duckling stopped? | waited | flew away | swam away | quacked loudly
+mc2: What sound did the water make? | splash | moo | buzz | tweet
+mc3: What does this story show about Mama Duck? | she takes care of her babies | she is mean | she is lost | she is sleepy
+sa1: Tell what happened at the end of the story. | Mama Duck jumped in the pond, the ducklings jumped in too, and they all swam together.
+
+lesson: Letters and words: Big and small letters, animal baby names | PK.RF.1, PK.SL.1
+practice:
+mc1: Which small letter goes with big D? | d | b | p | q
+hint: Big D and small d both make the /d/ sound. Look for the tall stick on the right.
+mc1: Which big letter goes with small a? | A | E | H | V
+hint: Sing the alphabet song. Which big letter is first?
+mc2: Which pair shows the same letter, big and small? | Bb | Bd | Pq | Mn
+hint: Look for two letters with the same name.
+mc2: A baby sheep is called a | lamb | foal | joey | calf
+hint: Think: "Mary had a little ___."
+sa1: Point to a big letter and its small partner on our alphabet chart. Say the letter name. | Matches one upper- and lowercase pair and names the letter.
+hint: Look for letters that make the same sound.
+quiz:
+mc1: Which small letter goes with big T? | t | f | l | i
+mc1: Which big letter goes with small k? | K | X | H | R
+mc2: Which pair shows big and small of the same letter? | Ss | Sz | Ce | Wm
+mc2: Which letter looks the same big and small, only the size changes? | O | G | R | A
+mc2: A baby horse is called a | foal | kitten | chick | duckling
+mc2: A baby kangaroo is called a | joey | lamb | puppy | calf
+sa1: Say the names of three animal babies. | Three correct names, such as kitten, puppy and chick.
+
+lesson: Writing: Asking questions and labeling an animal | PK.W.1, PK.L.1, PK.SL.1
+practice:
+mc1: Which is a question? | Where do bears sleep? | Bears sleep. | I see a bear. | The bear is big.
+hint: A question asks something. Your voice goes up at the end.
+mc2: You draw a cow. Which part could you label? | tail | wheel | door | window
+hint: Labels name parts of the animal.
+mc2: Which word tells about a puppy's fur? | soft | loud | hot | sour
+hint: How does a puppy feel when you pet it?
+mc2: Which question word asks about a place? | where | who | when | what color
+hint: Which word asks "in what place?"
+sa1: Draw a baby animal. Tell your teacher one thing it can do. | A drawing and a sentence such as "The chick can peck."
+hint: Start with "The ___ can..."
+quiz:
+mc1: Which question word asks about a person? | who | where | when | how many
+mc2: Which is a question about ducks? | What do ducks eat? | Ducks swim. | I like ducks. | The duck is yellow.
+mc2: You draw a fish. Which label fits? | fin | leg | wing | hoof
+mc2: Which action word tells what a frog does? | hop | read | sing | sew
+mc2: Which word tells about an elephant? | big | tiny | short | light
+mc2: Which sentence tells about a kitten? | The kitten plays with yarn. | Kitten the yarn. | Plays. | Yarn the plays.
+sa1: Draw an animal parent and its baby. Say their names. | A drawing with two animals named correctly, such as "dog and puppy."
+
+test:
+passage: Little Calf | On Tía Rosa's farm, a cow had a baby. The baby was a calf. It had brown spots and wobbly legs. // At first, the calf could not stand. It tried and tried. Then it stood up! The calf drank milk from its mother. // Every day the calf grew bigger. Soon it could run in the grass. Tía Rosa named the calf Coco.
+mc1: Where does the story happen? | on a farm | at the zoo | in a city | at a pond
+mc1: What kind of baby did the cow have? | a calf | a foal | a lamb | a puppy
+mc2: What did the calf look like? | brown spots and wobbly legs | white wings | a long tail and fins | green feathers
+mc2: What could the calf NOT do at first? | stand up | drink milk | see | moo
+mc2: What did the calf drink? | milk from its mother | water from a cup | juice | rain
+mc2: What did the calf do every day? | grew bigger | got smaller | flew | swam
+mc2: What did Tía Rosa name the calf? | Coco | Rosa | Lulu | Max
+mc3: The calf "tried and tried." What does this tell you about the calf? | it did not give up | it was sleepy | it was mad | it was lost
+mc2: In this story, what does "wobbly" mean? | shaky | strong | long | fast
+sa2: Tell how the calf changed from the beginning to the end of the story. | At first it could not stand; later it stood, drank milk, grew bigger and could run in the grass.
+wr2: Draw the calf at the end of the story. Write or tell your teacher about it. Tell one thing the calf can do now that it could not do at first. | A drawing of a spotted calf running in grass, labeled "calf" or "Coco," and a sentence such as "Coco can run now. At first she could not stand." | Drawing matches the ending; label or letters; tells a change using details from the text. | Drawing matches the text; tells one thing the calf can do. | Drawing of a cow; little connection to the text. | Not yet connected to the text.
+endpassage:
+mc1: Which small letter goes with big C? | c | e | o | a
+mc1: Which big letter goes with small r? | R | P | B | K
+mc2: Which pair of letters is the same letter, big and small? | Ff | Ft | Hn | Gq
+mc2: A baby chicken is called a | chick | calf | kitten | joey
+mc2: A baby duck is called a | duckling | puppy | foal | lamb
+mc2: Which one asks a question about the calf? | Where is the calf? | The calf is here. | I see the calf. | Coco runs.
+mc2: Which question word asks about time? | when | who | where | what
+mc2: Which action word tells what a bird does? | fly | swim | read | dig a hole
+mc3: You want to learn what calves eat. Which question should you ask? | What do calves eat? | Who is Coco? | Is it sunny? | Where is the barn?
+sa1: Point to the first letter of your name. Find its big and small letter on the chart. | Finds and names the upper- and lowercase forms of their first letter.
+mc2: Which word tells about a kitten? | small | huge | rough | loud
+
+unit: Unit 7: Seeds and Gardens (first, next, last) | PK.RI.1, PK.RF.1, PK.RF.2, PK.L.1, PK.W.1 | ela_pk
+el: Plant real seeds in clear cups so children can watch roots and sprouts; act out "first, next, last" with hand signals and picture cards.
+
+lesson: Reading: How a seed grows | PK.RI.1, PK.SL.1
+practice:
+passage: From Seed to Bean Plant | First, we plant a bean seed in soil. We give it water. // Next, a root grows down into the soil. Then a little green sprout pushes up out of the ground. // The plant needs sun, water and air to keep growing. Last, the plant grows big and makes new beans. Inside the beans are new seeds!
+mc1: What do we plant first? | a bean seed | a flower | a tree | a rock
+hint: Listen to the very first sentence.
+mc2: What grows down into the soil? | a root | a leaf | a bean | a flower
+hint: Roots go down. Sprouts go up.
+mc2: What does the plant need to keep growing? | sun, water and air | toys and books | candy | snow
+hint: Listen for the three things the plant needs.
+mc2: What happens last? | the plant makes new beans | we plant a seed | a root grows | we give it water
+hint: Listen for the word "last."
+sa1: Tell what happens first and next when a bean seed grows. | First we plant the seed and water it. Next a root grows down and a sprout comes up.
+hint: Use the words "first" and "next."
+quiz:
+passage: Grandma's Garden | Every Saturday, Mateo helps Grandma in her garden. They grow tomatoes, corn and peppers. // Mateo pulls the weeds. Grandma waters the plants with a hose. A fat bumblebee buzzes from flower to flower. // When the tomatoes turn red, Mateo picks one. He washes it and takes a big bite. "Yum!" he says.
+mc1: Who helps Grandma? | Mateo | a bumblebee | a farmer | a teacher
+mc1: When does Mateo help in the garden? | every Saturday | at night | never | every Monday
+mc2: Which plant grows in Grandma's garden? | corn | apples | bananas | cactus
+mc2: What does Mateo pull out? | weeds | tomatoes | flowers | the hose
+mc2: What color are ripe tomatoes in the story? | red | blue | purple | white
+mc3: How does Mateo feel about the tomato? | he likes it | he is scared | he is sad | it is too hot
+sa1: Tell two jobs in the garden from the story. | Pulling weeds, watering the plants, and picking tomatoes. (Any two.)
+
+lesson: Sounds and letters: Letter sounds and rhymes in the garden | PK.RF.1, PK.RF.2
+practice:
+mc1: Which letter makes the first sound in "seed"? | S | C | D | E
+hint: Seed starts with the snake sound /s/.
+mc1: Which word rhymes with "bee"? | see | bug | bed | bag
+hint: Listen for the "ee" sound at the end.
+mc2: Which letter makes the first sound in "pea"? | P | B | E | D
+hint: Pop your lips: /p/.
+mc2: Which word starts with the same sound as "garden"? | goat | jar | dog | ham
+hint: Garden starts with /g/, like a gulp.
+sa1: Say a word that rhymes with "sun." | fun, run, bun, done or another rhyme.
+hint: Change only the first sound.
+quiz:
+mc1: Which letter makes the first sound in "leaf"? | L | F | E | I
+mc1: Which word rhymes with "root"? | boot | rain | rock | rope
+mc2: Which word starts with /w/, like "water"? | worm | seed | corn | dirt
+mc2: Which letter makes the first sound in "tomato"? | T | M | O | D
+mc2: Which two words rhyme? | corn and horn | corn and cup | seed and sun | dig and dog
+mc2: What sound does the letter G make in "grow"? | /g/ | /j/ | /k/ | /r/
+sa1: Say the sound for the letter B. Say a garden word that starts with B. | /b/; bean, bee, bug, bud or another /b/ word.
+
+lesson: Writing: Draw and tell the steps | PK.W.1, PK.L.1, PK.SL.1
+practice:
+mc1: Which word tells what comes first? | first | last | green | plant
+hint: Which word tells the beginning?
+mc2: You plant a seed. What do you do next? | water it | eat it | throw it | paint it
+hint: What does a seed need to grow?
+mc2: Which word tells what you do with a shovel? | dig | sing | read | sleep
+hint: How do you make a hole in the dirt?
+mc2: Which word tells about a sunflower? | tall | tiny | loud | wet
+hint: Picture a sunflower. Is it big or small?
+sa1: Draw two pictures: a seed in the soil, then a sprout. Tell about them with "first" and "next." | Two drawings in order and a sentence such as "First the seed is in the dirt. Next it grows a sprout."
+hint: Draw the seed in the first box.
+quiz:
+mc1: Which word tells the end? | last | first | next | seed
+mc2: What do you do first to plant a seed? | dig a hole | pick the flower | eat the fruit | cut the plant
+mc2: Which sentence tells about a garden? | The flowers are pink. | Pink the. | Flowers. | Are the pink.
+mc2: The worm is under the ground. Where is the worm? | under the ground | on a leaf | in the sky | in a car
+mc2: Which action word tells what a plant does? | grow | run | talk | jump
+mc2: Which word could label a flower part? | petal | wheel | tail | door
+sa1: Draw your favorite plant to eat. Tell what it is and why you like it. | A drawing and a sentence such as "I like strawberries because they are sweet."
+
+test:
+passage: The Sunflower | Lena planted a sunflower seed in a pot. She put the pot by a sunny window. Every day she gave it a little water. // First, nothing happened. Lena waited. Next, a tiny sprout came up. Lena smiled. The sprout grew taller and taller. // Last, a big yellow flower opened. It was taller than Lena! Birds came to eat the seeds from the middle of the flower.
+mc1: What did Lena plant? | a sunflower seed | a bean seed | a tree | a rose
+mc1: Where did Lena put the pot? | by a sunny window | in a closet | under her bed | in the bath
+mc2: What did Lena give the seed every day? | a little water | milk | juice | a toy
+mc2: What happened first? | nothing | a sprout came up | a flower opened | birds came
+mc2: What came up next? | a tiny sprout | a big flower | a bird | a rock
+mc2: What color was the flower? | yellow | red | blue | purple
+mc2: Why did birds come to the flower? | to eat the seeds | to sleep | to drink | to sing to Lena
+mc3: Why did Lena put the pot by the window? | plants need sun | to look at birds | it was cold | to hide it
+mc2: In this story, what does "sprout" mean? | a new little plant | a big flower | a bird | a pot
+sa2: Tell the steps of the story using first, next and last. | First nothing happened. Next a tiny sprout came up and grew. Last a big yellow flower opened.
+wr2: Draw the sunflower at the beginning, middle and end. Write or tell your teacher about each picture. | Three boxes in order: seed in a pot, a small sprout, a tall yellow flower (with birds), labeled with letters or words, and dictated sentences using first, next and last. | Three stages in correct order with details from the text; labels; uses first, next, last. | Three stages mostly in order; tells about each. | One or two stages, or out of order. | Not yet connected to the text.
+endpassage:
+mc1: Which letter makes the first sound in "pot"? | P | T | O | B
+mc1: Which word rhymes with "pot"? | hot | pan | pet | top
+mc2: Which word starts with the same sound as "sun"? | sit | fun | bun | nut
+mc2: Which letter makes the first sound in "water"? | W | M | A | R
+mc2: Which pair of words rhymes? | bug and rug | bug and bag | sun and sip | pot and pet
+mc2: What sound does the letter F make? | /f/ | /v/ | /p/ | /s/
+mc2: Which word tells what comes after first? | next | last | yellow | flower
+mc2: Which sentence tells about a plant? | The plant needs water. | Water the plant needs the. | Plant. | Needs.
+mc2: Which word tells about a seed? | tiny | huge | noisy | tall
+sa1: Say a word that starts with the same sound as "dig." | dog, dad, duck, door or another /d/ word.
+mc3: A plant is in a dark closet and has no water. What will happen? | it will not grow well | it will grow fast | it will make candy | it will fly
+
+unit: Unit 8: Things That Go (telling my opinion) | PK.RI.1, PK.RF.2, PK.RF.3, PK.L.1, PK.W.1, PK.SL.1
+el: Bring toy vehicles to name and sort; teach the frame "I like ___ because ___" and let children point to a picture before they answer.
+
+lesson: Reading: How people travel | PK.RI.1, PK.SL.1
+practice:
+passage: Ways to Go | People go from place to place in many ways. On land, we ride in cars, buses and trains. Some people ride bikes. // On water, people ride in boats. In the sky, people fly in airplanes. Airplanes can go a long way very fast. // How do you get to school? Some children walk with their families!
+mc1: What is this text about? | ways to go places | animals | food | weather
+hint: Think about all the things that move people.
+mc1: What goes on water? | a boat | a bus | a bike | a train
+hint: Which one floats?
+mc2: What flies in the sky? | an airplane | a car | a train | a boat
+hint: Look up! What has wings?
+mc2: Which one goes on land? | a train | a boat | an airplane | a ship
+hint: Land is the ground.
+sa1: Tell how you get to school. | "I ride in a car." or "I walk with my mom." (Any real way, in a sentence.)
+hint: Start with "I..."
+quiz:
+passage: The Big Bus | Dad and I wait at the bus stop. Here comes the big green bus! The doors open with a whoosh. // We pay and find two seats by the window. The bus stops many times. People get on and people get off. // I pull the cord. Ding! The bus stops at the park. Dad and I hop off and go play.
+mc1: Who is with the child? | Dad | Grandma | a teacher | a friend
+mc1: What color is the bus? | green | yellow | red | blue
+mc2: Where do they wait? | at the bus stop | at the park | at home | at school
+mc2: Where do they sit? | by the window | on the floor | next to the driver | in the back door
+mc2: What does the child pull to stop the bus? | the cord | the door | a seat | a wheel
+mc3: Why do Dad and the child ride the bus? | to go to the park | to go to sleep | to buy a bus | to go to work
+sa1: Tell what happens at the end of the story. | The bus stops at the park, and Dad and the child get off to play.
+
+lesson: Sounds and print: Putting sounds together and words on a page | PK.RF.2, PK.RF.3
+practice:
+mc1: Put the parts together: c - ar. What word? | car | cat | jar | can
+hint: Say the parts fast: c...ar, car.
+mc1: Put the parts together: b - us. What word? | bus | bun | sun | bug
+hint: Say /b/, then "us," then say them fast.
+mc2: How many words are in "I see a train."? | 4 | 3 | 5 | 2
+hint: Point to each word and count. Spaces are between words.
+mc2: Where is the title of a book? | on the front cover | on the last page | on the back only | nowhere
+hint: The title is the name of the book.
+sa1: Point to the words as your teacher reads "The bus is big." | Points to each of the 4 words, left to right, as they are read.
+hint: Move your finger from left to right, one word at a time.
+quiz:
+mc1: Put the parts together: tr - ain. What word? | train | rain | tray | tree
+mc1: Put the parts together: b - oat. What word? | boat | coat | bat | goat
+mc2: Put the parts together: j - et. What word? | jet | net | wet | jam
+mc2: What is between words on a page? | a space | a picture | a number | a dot
+mc2: Which way do we read the words on a page? | left to right | right to left | bottom to top | any way
+mc2: How many words are in "We ride."? | 2 | 1 | 3 | 4
+sa1: Show the front of a book, find the title, and show where to start reading. | Holds the book correctly, points to the title and to the first word on the first page.
+
+lesson: Writing: My favorite way to go (opinion) | PK.W.1, PK.L.1, PK.SL.1
+practice:
+mc1: Which sentence tells what someone likes? | I like trains. | Trains have wheels. | A train is long. | The train is here.
+hint: Listen for "I like."
+mc2: Which word tells why? | because | bus | blue | big
+hint: We use this word to give a reason.
+mc2: Which is a good reason to like airplanes? | They go fast. | They are on the cover. | I am four. | My dog is brown.
+hint: A reason tells something about airplanes.
+mc2: Which word tells how a race car moves? | fast | slow | sleepy | soft
+hint: Think about a race.
+sa1: Draw your favorite way to go. Tell your teacher "I like ___ because ___." | A drawing and a sentence such as "I like bikes because I can ride with my sister."
+hint: Finish both parts: what you like and why.
+quiz:
+mc1: Which word tells about a fire truck? | loud | quiet | tiny | soft
+mc2: Which sentence gives an opinion? | Boats are the best! | A boat floats. | Boats go on water. | This is a boat.
+mc2: Which reason fits "I like bikes because ___"? | I can ride with my friends | the sky is blue | I like pizza | my cat sleeps
+mc2: Which sentence is a whole sentence? | The train goes fast. | Train the fast. | Goes. | Fast the.
+mc2: Which word is the opposite of fast? | slow | big | loud | far
+mc2: You draw a boat on the water. Which label fits? | boat | car | bed | tree
+sa1: Tell a friend which you like better, a bus or a train, and tell why. | Names one and gives a reason, such as "I like trains better because they are long."
+
+test:
+passage: Zoe's Wagon | Zoe has a little red wagon. It has four wheels and a long handle. // Zoe pulls her teddy bear in the wagon. She pulls her baby brother, Sam, too. Sam laughs. Bump, bump, bump goes the wagon on the path. // When Zoe goes to the market with Papa, the wagon carries apples and bread home. "My wagon is the best way to go," says Zoe. "It can carry everything!"
+mc1: What does Zoe have? | a red wagon | a blue bike | a green bus | a toy boat
+mc1: How many wheels does the wagon have? | 4 | 2 | 3 | 6
+mc2: What does Zoe pull in the wagon first? | her teddy bear | apples | Papa | a dog
+mc2: Who is Sam? | Zoe's baby brother | Zoe's dad | a teddy bear | a friend at school
+mc2: What sound does the wagon make on the path? | bump, bump | beep, beep | splash | choo choo
+mc2: What does the wagon carry home from the market? | apples and bread | toys | books | rocks
+mc3: Why does Zoe say the wagon is the best way to go? | it can carry everything | it is fast | it can fly | it is new
+mc2: What does Sam do in the wagon? | laughs | sleeps | cries | eats
+mc2: In this story, what is a "handle"? | the part you hold to pull | a wheel | a seat | a bump
+sa2: Tell two things Zoe carries in her wagon. | Her teddy bear, her baby brother Sam, and apples and bread. (Any two.)
+wr2: Do you think a wagon is a good way to carry things? Draw and write or tell your teacher your opinion. Give one reason from the story. | A drawing of the wagon carrying things and a sentence such as "Yes, a wagon is good because it can carry apples, bread and Sam." | States an opinion; drawing matches; gives a reason with a detail from the story; label or letters. | States an opinion and a simple reason. | States an opinion with no reason, or a reason not tied to the story. | Not yet giving an opinion.
+endpassage:
+mc1: Put the parts together: w - agon. What word? | wagon | dragon | wag | water
+mc2: Put the parts together: c - art. What word? | cart | car | part | cat
+mc2: Which word rhymes with "red"? | bed | rat | ride | road
+mc2: How many words are in "Zoe pulls Sam."? | 3 | 2 | 4 | 5
+mc2: Which word starts with the same sound as "wagon"? | wheel | bear | path | apple
+mc1: Where do you begin reading on a page? | at the top left | at the bottom | at the right | in the middle
+mc2: Which sentence tells an opinion? | Wagons are the most fun! | A wagon has wheels. | The wagon is red. | Zoe has a wagon.
+mc2: Which word tells why? "I like trains ___ they are long." | because | and | the | is
+mc2: Which word is the opposite of big? | little | tall | loud | long
+sa1: Point to the title of a book and show where the story starts. | Points to the title on the cover and to the first word on the first page of text.
+mc3: Zoe needs to carry a heavy box to the park. What should she use? | her wagon | her hat | a spoon | a pillow
+
