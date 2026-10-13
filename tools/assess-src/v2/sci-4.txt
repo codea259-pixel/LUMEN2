@@ -1,0 +1,659 @@
+# Grade 4 Science (California NGSS), format 2. Units are original and grouped by topic for classes using Mystery Science.
+@subject sci
+@grade 4
+@program Mystery Science
+about: Fourth graders investigate energy: how speed relates to energy, what happens in collisions, and how energy moves by sound, light, heat and electric current. They design devices that convert energy, study natural resources, model waves and the way light lets us see, explore how plant and animal structures and senses support survival, and read rock layers and landforms to explain how Earth's surface changes and how people reduce the impact of natural hazards.
+std: 4-PS3-1 | Use evidence to construct an explanation relating the speed of an object to the energy of that object.
+std: 4-PS3-2 | Make observations to provide evidence that energy can be transferred from place to place by sound, light, heat and electric currents.
+std: 4-PS3-4 | Apply scientific ideas to design, test and refine a device that converts energy from one form to another.
+std: 4-PS4-1 | Develop a model of waves to describe patterns in terms of amplitude and wavelength and that waves can cause objects to move.
+std: 4-LS1-1 | Construct an argument that plants and animals have internal and external structures that function to support survival, growth, behavior and reproduction.
+std: 4-ESS1-1 | Identify evidence from patterns in rock formations and fossils in rock layers to support an explanation for changes in a landscape over time.
+std: 4-ESS3-1 | Obtain and combine information to describe that energy and fuels are derived from natural resources and their uses affect the environment.
+std: 4-ESS3-2 | Generate and compare multiple solutions to reduce the impacts of natural Earth processes on humans.
+
+unit: Unit 1: Energy, Speed and Collisions | 4-PS3-1, 4-PS3-3
+el: Model the words speed, energy, collide and transfer with toy cars and a ramp; post the frames "The faster ___, the more ___" and "When ___ hit ___, energy moved from ___ to ___."
+
+lesson: Why does a faster object have more energy? | 4-PS3-1
+practice:
+mc1: An object that is moving has | energy of motion | no energy | only heat energy | only light energy
+hint: Anything that moves has a kind of energy.
+mc2: Two identical balls roll across the floor. Ball A rolls faster than Ball B. Which has more energy of motion? | Ball A | Ball B | They have the same energy. | Neither has energy.
+hint: Compare their speeds.
+mc2: A class rolled a marble down a ramp from different heights and timed it over 1 meter of floor. Higher starting points made the marble move faster. Why? | Starting higher gave the marble more energy, so it moved faster. | Higher ramps are slippery. | The marble got heavier. | The floor pushed it.
+hint: Think about what the height gave the marble before it was released.
+num2: A marble rolled 1 meter in 4 seconds from a low ramp and 1 meter in 2 seconds from a high ramp. How many seconds faster was the high-ramp roll? | 2
+hint: Subtract the times.
+mc2: A soccer ball is kicked softly and then kicked hard. Evidence that the hard kick gave it more energy is that it | moved faster and knocked over more cones | was the same color | made no sound | stopped right away
+hint: What can a faster ball do that a slower ball cannot?
+sa2: Explain how you could tell which of two rolling toy cars has more energy without touching them. | Measure or compare their speeds. The faster car has more energy. I could also see which car pushes a cup farther when it hits it.
+quiz:
+mc1: The faster an object moves, the | more energy it has | less energy it has | lighter it becomes | colder it gets
+mc2: A bowling ball rolls slowly and knocks down 2 pins. The same ball rolls quickly and knocks down 9 pins. What does this evidence show? | The faster ball had more energy to transfer to the pins. | Slower balls have more energy. | The pins were heavier the first time. | Speed and energy are not related.
+num2: Using the same data (the slow roll knocked down 2 pins and the fast roll knocked down 9 pins), how many more pins did the fast roll knock down? | 7
+mc2: A class released a cart from heights of 10 cm, 20 cm and 30 cm. The cart pushed a block 5 cm, 11 cm and 16 cm. What pattern does the data show? | Higher release heights made the cart push the block farther. | Higher release heights made the cart push the block a shorter distance. | Height did not matter. | The block moved by itself.
+num2: Using the same data (the block moved 5 cm, 11 cm and 16 cm), how many centimeters did the block move in all three trials? | 32
+mc2: A bike rider stops pedaling and coasts. As the bike slows down, what is happening to its energy of motion? | It is decreasing. | It is increasing. | It stays the same. | It turns into more speed.
+sa2: Write an explanation that relates the speed of a thrown baseball to its energy. Use the words faster and energy. | A baseball thrown faster has more energy. That is why a fast pitch makes a louder smack in the glove and is harder to stop than a slow pitch.
+
+lesson: What happens to energy when objects collide? | 4-PS3-3
+practice:
+mc1: When two objects run into each other, it is called a | collision | circuit | conductor | wave
+hint: Think of bumper cars.
+mc2: A rolling marble hits a still marble. The first marble slows down and the second marble starts moving. What happened? | Energy moved from the first marble to the second marble. | Energy was destroyed. | The second marble made new energy. | Nothing happened to the energy.
+hint: Where did the second marble get its energy?
+mc2: A moving toy car crashes into a block, and you hear a loud bang. Into what forms did some of the car's energy change? | sound and heat, plus motion of the block | light only | electricity only | none, energy disappears
+hint: What did you hear and what moved?
+num2: A cart moving at 60 cm per second hits a wall and bounces back at 25 cm per second. How many centimeters per second slower is it moving after the collision? | 35
+hint: Subtract the speed after from the speed before.
+mc2: In a game of pool, a cue ball hits another ball. Which question asks about energy changes in this collision? | How does the speed of the cue ball change after it hits the other ball? | What color is the cue ball? | How old is the pool table? | Who is winning the game?
+hint: Energy changes show up as changes in speed.
+sa2: Describe what happens to the energy in a collision between a rolling ball and a row of dominoes. | The ball's energy of motion moves to the first domino, which falls and transfers energy to the next one. Some energy also becomes sound and a little heat.
+quiz:
+mc1: In a collision, energy can be | transferred from one object to another | created out of nothing | destroyed completely | kept only by the faster object
+mc2: A soccer player kicks a ball. Which statement best describes the energy? | Energy moved from the player's foot to the ball. | The ball created its own energy. | The foot gained energy from the ball. | No energy changed.
+mc2: Two toy cars collide. Before the crash, Car A moved fast and Car B was still. After the crash, Car A moved slowly and Car B moved forward. Which claim is supported? | Some of Car A's energy was transferred to Car B. | Car B had more energy before the crash. | Energy was destroyed in the crash. | Car A sped up.
+num2: A marble rolled 120 cm when nothing was in its path. When it hit a paper cup, the cup moved 30 cm and the marble stopped after 45 cm. How many centimeters shorter was the marble's roll when it hit the cup? | 75
+mc3: A car crash test shows that a car going 20 km per hour causes small damage and a car going 60 km per hour causes much more damage. What is the best explanation? | The faster car has more energy to transfer in the collision. | The slower car is heavier. | Faster cars are made of weaker metal. | Speed has no effect on energy.
+num2: A cart hit a block 4 times and pushed it 12 cm, 14 cm, 13 cm and 13 cm. How many centimeters did it push the block in all? | 52
+cer3: A class rolled a ball down a ramp into a cup from three heights. Height 10 cm: cup moved 6 cm. Height 20 cm: cup moved 13 cm. Height 30 cm: cup moved 19 cm. Make a claim about how speed affects the energy transferred in a collision. Use evidence and explain your reasoning. | Claim: A faster ball transfers more energy in a collision. Evidence: The ball from 10 cm moved the cup 6 cm, from 20 cm 13 cm and from 30 cm 19 cm. Reasoning: Releasing the ball from higher makes it roll faster. A faster ball has more energy, so when it hits the cup it transfers more energy and pushes the cup farther.
+
+lesson: Where does the energy go after a crash? | 4-PS3-1, 4-PS3-3
+practice:
+mc1: When you clap your hands, the energy of your moving hands changes partly into | sound | light | electricity | magnetism
+hint: What do you hear?
+mc2: Rubbing your hands together quickly makes them feel warm. What does this show? | Motion energy can change into heat. | Heat changes into sound. | Hands make electricity. | Friction makes things cold.
+hint: Notice the warmth.
+mc2: A falling apple hits the ground and stops. Where did most of its energy go? | into sound, heat and moving the ground a tiny bit | it disappeared | back into the tree | into light
+hint: Energy is never destroyed. Think about what you would hear and feel.
+num2: A car's bumper is tested in a crash. At 10 km per hour, a sensor records 15 units of sound. At 30 km per hour, it records 48 units. How many more units of sound were recorded at 30 km per hour? | 33
+hint: Subtract the smaller reading.
+mc2: Why do helmets have foam inside? | The foam takes in some of the energy of a collision so less reaches your head. | Foam makes the helmet faster. | Foam adds energy to a crash. | Foam keeps your head cold.
+hint: Think about what foam does when it is squeezed.
+sa2: A car brakes and stops. Explain where the car's energy of motion goes. | The brakes rub against the wheels, and friction changes the energy of motion into heat. A little energy also becomes sound.
+quiz:
+mc1: Energy cannot be | destroyed | moved | changed into another form | transferred in a collision
+mc2: A hammer hits a nail. Which shows that energy was changed into other forms? | The nail gets slightly warm and you hear a bang. | The hammer gets lighter. | The nail turns a new color. | The hammer floats.
+mc2: Two identical balls are dropped onto a floor from different heights. The ball dropped from higher makes a louder sound. Why? | It was moving faster and had more energy when it hit. | It was lighter. | It hit a softer floor. | It had less energy.
+num2: A ball dropped from 100 cm bounced back to 65 cm. How many centimeters lower was the bounce than the drop height? | 35
+mc2: Using the same ball (dropped from 100 cm, bounced to 65 cm), why did it not bounce all the way back to 100 cm? | Some energy changed into sound and heat when it hit the floor. | Energy was destroyed. | Gravity stopped working. | The ball gained energy.
+num2: A class dropped a ball 3 times and measured bounces of 60 cm, 62 cm and 64 cm. What is the average bounce height in centimeters? (Add the trials and divide by 3.) | 62
+sa3: Explain why a car moving at 50 km per hour is more dangerous in a crash than the same car moving at 20 km per hour. Use the word energy. | The faster car has more energy of motion. In a crash that energy is transferred to whatever it hits and changes into sound, heat and damage, so more energy means more damage.
+
+test:
+mc1: An object's energy of motion depends on its | speed | color | shape only | temperature only
+mc1: When two objects bump into each other, it is a | collision | conductor | circuit | wavelength
+mc1: Energy can change from one form to another, but it cannot be | destroyed | moved | stored | used
+mc2: A skateboarder goes faster and faster down a hill. What is happening to the skateboarder's energy of motion? | It is increasing. | It is decreasing. | It stays the same. | It turns into light.
+mc2: A moving bowling ball hits pins. The ball slows down and the pins fly. What does this show? | Energy was transferred from the ball to the pins. | The pins had energy before they were hit. | Energy was destroyed. | The ball gained energy.
+mc2: You hear a crunch when a cart hits a wall. What does the sound show? | Some of the cart's energy changed into sound. | The wall made new energy. | The cart had no energy. | Sound has no energy.
+mc2: Which ball has the most energy? | a ball thrown at 30 meters per second | a ball thrown at 10 meters per second | a ball rolling at 2 meters per second | a ball sitting still
+mc2: A class rolled a toy car down ramps of three heights and measured how far it pushed a box: low 8 cm, middle 17 cm, high 25 cm. Which conclusion is supported? | The car had more energy when it started higher and moved faster. | Low ramps give the most energy. | Ramp height does not matter. | The box gave energy to the car.
+num2: Using the same data (low 8 cm, middle 17 cm, high 25 cm), how many centimeters farther did the box move from the high ramp than the low ramp? | 17
+num2: Using the same data (low 8 cm, middle 17 cm, high 25 cm), what is the total distance the box moved in all three tests? | 50
+mc2: Why do race cars have crumple zones that fold in a crash? | They take in energy of the crash so less reaches the driver. | They make the car faster. | They create energy. | They make the car lighter.
+mc2: A cue ball hits a still pool ball straight on. After the hit, the cue ball almost stops and the other ball rolls away. Where did the cue ball's energy mostly go? | into the other ball's motion | into the table's color | into the air as light | it vanished
+mc2: Which question would help you investigate how speed affects energy? | Does a faster rolling ball knock over more blocks? | What color ball is best? | Do balls like ramps? | How many people own a ball?
+num2: A cart moving at 80 cm per second hits a block and slows to 35 cm per second. By how many centimeters per second did it slow down? | 45
+num2: A ball was dropped 4 times. The bounces were 50 cm, 54 cm, 52 cm and 48 cm. What is the average bounce height in centimeters? (Add the trials and divide by 4.) | 51
+mc3: A truck and a bicycle both travel at the same speed and each hits a parked bin. The truck knocks the bin much farther. Which is the best explanation? | The heavier truck had more energy at the same speed. | The bicycle was moving faster. | The bin was lighter when the bicycle hit it. | Speed is the only thing that affects energy.
+mc3: Two students roll the same ball at a wall. Student A's ball makes a loud thump. Student B's ball makes a quiet tap. What can you infer? | Student A rolled the ball faster. | Student B rolled the ball faster. | Both rolled it at the same speed. | Student A's ball was cold.
+mc2: Rubbing two sticks together quickly can make them hot. What energy change is this? | motion energy to heat | heat to motion energy | light to sound | sound to electricity
+mc2: A rolling marble slows down and stops on carpet. Where did its energy go? | It changed mostly into heat from friction with the carpet. | It was destroyed. | It went back into the marble's color. | It turned into a magnet.
+sa2: Explain why a faster-moving baseball can knock a can off a fence when a slow one cannot. | The faster baseball has more energy. When it hits the can, it transfers more energy, enough to push the can off the fence.
+sa2: A ball dropped from 2 meters bounces back only 1 meter. Explain what happened to the rest of its energy. | When the ball hit the ground, some of its energy changed into sound and heat and some moved into the ground, so less energy was left to lift the ball back up.
+cer3: Students tested how speed affects energy. They launched a cart at three speeds into a foam block and measured how deep a dent it made. Slow: 2 mm. Medium: 5 mm. Fast: 9 mm. Make a claim about how speed relates to energy. Use evidence and explain your reasoning. | Claim: A faster-moving object has more energy. Evidence: The slow cart made a 2 mm dent, the medium cart 5 mm and the fast cart 9 mm. Reasoning: Making a deeper dent takes more energy. The cart transferred its energy to the foam in the collision, so the faster cart must have had more energy to transfer.
+
+unit: Unit 2: Energy Transfer, Electricity and Design | 4-PS3-2, 4-PS3-4, 3-5-ETS1-1, 3-5-ETS1-2, 3-5-ETS1-3 | sci_4, sci_4_n2
+el: Build a class chart of energy forms (motion, sound, light, heat, electrical) with icons; give students arrow cards to model conversions such as "electrical -> light" and the frame "The ___ changes ___ energy into ___ energy."
+
+lesson: How does energy travel from place to place? | 4-PS3-2
+practice:
+mc1: Sunlight warms a sidewalk. Which form of energy traveled from the Sun to the sidewalk? | light | sound | electrical | motion
+hint: What travels from the Sun to Earth through space?
+mc2: A metal spoon is placed in a cup of hot soup. Soon the handle feels hot. What happened? | Heat moved from the soup through the spoon. | Cold moved from the spoon into the soup. | The spoon made its own heat. | Light moved into the handle.
+hint: Heat moves from warmer things to cooler things.
+mc2: You hit a drum and a nearby paper scrap on a second drum jumps. What does this show? | Sound carries energy from place to place. | Sound has no energy. | Paper makes sound. | The drum is magnetic.
+hint: Something made the paper move without touching it.
+num2: A cup of cocoa was 80°C. After 15 minutes it was 52°C. How many degrees did it cool? | 28
+hint: Subtract the ending temperature from the starting temperature.
+mc2: Which is an example of energy moving by electric current? | a wire carrying energy from a battery to a bulb | sunlight on a leaf | a ball rolling down a hill | a guitar string vibrating
+hint: Electric current moves through wires.
+sa2: Give two examples from your home of energy moving from one place to another. Name the form of energy in each. | Sample: Heat moves from a stove burner to a pot. Light moves from a lamp to my book so I can read. Electricity moves through a cord to a TV.
+quiz:
+mc1: Which can carry energy from place to place? | sound, light, heat and electric current | only electric current | only sound | only light
+mc2: Two cans of water sat in the sun for 1 hour. The can painted black warmed from 20°C to 34°C. The can painted white warmed from 20°C to 26°C. Which claim is supported? | The black can took in more energy from sunlight. | The white can took in more energy. | Color does not affect warming. | The cans made their own heat.
+num2: Using the same data (black can 20°C to 34°C, white can 20°C to 26°C), how many more degrees did the black can warm than the white can? | 8
+mc2: A loud truck passes and the windows in a house rattle. Which energy reached the windows? | sound | electrical | heat only | magnetism
+mc2: An ice cube is held in a warm hand and melts. Which way did heat move? | from the hand to the ice | from the ice to the hand | from the air into the ice and then into the hand | no heat moved
+num2: A lamp is 3 meters from a solar cell. Moving it closer increases the reading from 12 units to 30 units. How many units did the reading increase? | 18
+sa2: Describe an investigation to show that light carries energy. | Place two thermometers in the same spot, one in sunlight and one shaded by a box. After 20 minutes, compare temperatures. The thermometer in light will be warmer, showing light carried energy to it.
+
+lesson: How does electricity move through a circuit? | 4-PS3-2
+practice:
+mc1: A complete path that electricity can flow through is called a | closed circuit | open circuit | insulator | magnet
+hint: The path must have no gaps.
+mc1: Which material is a good conductor of electricity? | copper wire | rubber | plastic | wood
+hint: Conductors let electricity flow easily. Most metals are conductors.
+mc2: A bulb is connected to a battery with two wires, but one wire is not touching the battery. What happens? | The bulb does not light because the circuit is open. | The bulb lights brightly. | The battery gets stronger. | The wire turns into plastic.
+hint: Is there a complete loop?
+mc2: Why are electric wires covered with plastic or rubber? | These insulators keep electricity from flowing where it should not. | They make the wire conduct better. | They make the wire heavier. | They make electricity flow faster.
+hint: Insulators block the flow of electricity.
+num2: A class tested 14 objects in a circuit. The bulb lit for 6 objects. How many objects did not light the bulb? | 8
+hint: Subtract the objects that lit the bulb from the total.
+sa2: Draw or describe a simple circuit that lights a bulb. Explain why it works. | A battery, two wires and a bulb connected in a loop from one end of the battery, through the bulb and back to the other end. It works because the closed loop lets electric current carry energy from the battery to the bulb.
+quiz:
+mc1: What does a switch do in a circuit? | opens or closes the path for electricity | makes the battery bigger | changes light into sound | stores heat
+mc2: A student tests objects in a circuit. The bulb lights for a steel nail, a foil strip and a brass key. It stays dark for an eraser and a craft stick. Which conclusion is supported? | Metals tested were conductors; the eraser and stick were insulators. | All objects are conductors. | Erasers conduct better than metal. | The bulb was broken.
+mc2: A flashlight does not work. The batteries are new. What is a likely cause? | There is a gap in the circuit, such as a loose connection. | The batteries have too much energy. | The bulb is too bright. | The switch is made of metal.
+num2: A circuit uses 3 batteries. Each battery is 1.5 volts. How many volts do the batteries give together? | 4.5
+mc2: In a circuit, energy moves from the battery to a buzzer. What energy change happens at the buzzer? | electrical energy to sound | sound to electrical energy | light to heat | motion to light
+num2: A battery-powered fan ran for 45 minutes on Monday and 70 minutes on Tuesday. How many minutes did it run in all? | 115
+sa2: Explain the difference between a conductor and an insulator and give one example of each. | A conductor lets electricity flow through it easily, like copper. An insulator does not let electricity flow easily, like rubber or plastic.
+
+lesson: How can we change energy from one form to another? | 4-PS3-4
+practice:
+mc1: A solar panel changes | light energy into electrical energy | electrical energy into light | sound into heat | heat into sound
+hint: Solar panels work in sunlight.
+mc2: An electric fan changes electrical energy mostly into | motion energy | light energy | chemical energy | sound only
+hint: What do the blades do?
+mc2: A speaker changes electrical energy into | sound | light | heat only | motion of the whole room
+hint: What do you hear from a speaker?
+mc2: A flashlight battery stores energy. When the flashlight is on, the energy changes into | light and some heat | sound and wind | water | more stored energy
+hint: Touch an old-style bulb after it has been on a while.
+num2: A small motor lifted a paper clip 40 cm with 1 battery and 95 cm with 2 batteries. How many centimeters higher did it lift the clip with 2 batteries? | 55
+hint: Subtract the heights.
+sa2: Name a device in your home and describe the energy change it makes. | Sample: A toaster changes electrical energy into heat that browns the bread.
+quiz:
+mc1: Which device changes motion energy into electrical energy? | a generator | a light bulb | a speaker | a heater
+mc2: A hand-crank flashlight lights when you turn the handle. Which shows the energy changes in order? | motion -> electrical -> light | light -> motion -> sound | electrical -> motion -> heat | heat -> light -> motion
+mc2: Which device changes electrical energy into heat? | a hair dryer heating coil | a solar panel | a windmill | a microphone
+mc2: A wind turbine turns in the wind and lights the houses in a town. What energy change happens in the turbine? | motion energy of the wind becomes electrical energy | electrical energy becomes wind | light becomes sound | heat becomes wind
+num2: A solar charger charged a phone 20 percent in the morning, 35 percent at midday and 15 percent in the afternoon. How many percent did it charge in all? | 70
+num2: A class tested a rubber-band car. 2 winds: 60 cm. 4 winds: 120 cm. 6 winds: 180 cm. How many centimeters did the car travel for each wind? | 30
+sa2: Explain how a person riding a bike with a light powered by the wheel changes energy from one form to another. | The rider's moving legs give motion energy to the wheel. A small generator on the wheel changes that motion energy into electrical energy, and the bulb changes it into light.
+
+lesson: How do engineers design and improve an energy device? | 4-PS3-4, 3-5-ETS1-1, 3-5-ETS1-2, 3-5-ETS1-3
+practice:
+mc1: A class must build a solar oven that warms a cracker to at least 40°C using a pizza box, foil and plastic wrap. The temperature goal is a | criterion | constraint | failure point | conductor
+hint: It describes what success looks like.
+mc2: In the same solar oven project, "only a pizza box, foil and plastic wrap" is a | constraint | criterion | result | prediction
+hint: It limits the materials.
+mc2: Why would a team line its solar oven with foil? | Foil reflects more sunlight into the oven. | Foil makes the box heavier. | Foil blocks all light. | Foil makes the oven cooler.
+hint: Think about what shiny surfaces do with light.
+num2: The team's oven heated from 22°C to 47°C. How many degrees did the temperature rise? | 25
+hint: Subtract the starting temperature from the ending temperature.
+mc2: A solar oven test was done on a sunny day, and the improved oven was tested on a cloudy day. What is wrong with comparing these results? | The weather changed, so the test was not fair. | Nothing is wrong. | Ovens work better on cloudy days. | The oven should be tested at night.
+hint: What else changed besides the design?
+sa2: List two criteria and one constraint for a device that changes motion into sound, such as an alarm that rings when a door opens. | Criteria: it must make a sound loud enough to hear across the room; it must make sound every time the door opens. Constraint: it must cost less than $5, or it must use only materials from the classroom.
+quiz:
+mc2: Three solar oven designs were tested at the same time on the same day. Design A reached 38°C, Design B 51°C and Design C 45°C. The goal was at least 40°C. Which designs met the criterion? | B and C | A only | A and B | all three
+num2: Using the same data (Design A 38°C, B 51°C, C 45°C), how many degrees hotter did Design B get than Design A? | 13
+mc2: Design B used black paper and plastic wrap. Design C used black paper but no plastic wrap. What can the team learn by comparing them? | how the plastic wrap affected the temperature | how foil affected the temperature | how the color of the box mattered | nothing at all
+num2: Design C reached 45°C in three tests: 44°C, 45°C and 46°C. What was the average? (Add the trials and divide by 3.) | 45
+mc2: Design B works best, but its plastic wrap tears easily. What should the team do next? | improve the wrap part and test again under the same conditions | throw away Design B | test only Design A | change every part at once
+mc3: Two alarm designs both ring when a door opens. Alarm 1 costs $3 and is loud enough to hear across the room. Alarm 2 costs $12 and is a little louder. The budget is $5 per alarm. Which alarm is the better solution? | Alarm 1, because it meets the criteria and the budget | Alarm 2, because it is louder | both, because they ring | neither, because alarms do not use energy
+cer3: A team tested two wind turbine blade designs with the same fan at the same distance. Design 1 (2 blades) made the bulb light for 5 seconds per 10 seconds of wind. Design 2 (4 blades) made the bulb light for all 10 seconds. Make a claim about which design better converts wind energy into electrical energy. Use evidence and explain your reasoning. | Claim: Design 2 with 4 blades converts wind energy into electrical energy better. Evidence: With the same fan and distance, Design 2 kept the bulb lit for all 10 seconds, while Design 1 lit it only 5 seconds. Reasoning: The test was fair because the fan and distance stayed the same. The bulb lit longer, which shows more motion energy from the wind was changed into electrical energy by Design 2.
+
+test:
+mc1: Which form of energy travels from the Sun to Earth? | light | sound | electric current in wires | motion of air from the Sun
+mc1: Which material is an insulator? | plastic | copper | aluminum foil | a steel nail
+mc1: A battery, wires and a bulb connected in a complete loop form a | closed circuit | open circuit | conductor | switch
+mc2: A pot of water sits on a hot stove. Heat moves | from the stove to the pot and water | from the water to the stove | only from the air to the pot | nowhere, because pots block heat
+mc2: Which device changes electrical energy into light? | a light bulb | a solar panel | a generator | a microphone
+mc2: A student plucks a rubber band and nearby rice grains on a box bounce. What carried energy to the rice? | sound vibrations | light | heat | electric current
+mc2: In a circuit, the bulb goes out when a student opens the switch. Why? | The path is broken, so current cannot flow. | The battery ran out of energy instantly. | The bulb broke. | The wires turned into insulators.
+mc2: Which energy change happens in a solar-powered calculator? | light to electrical | electrical to light only | sound to electrical | heat to motion
+mc2: A class tested materials in a circuit. The bulb lit with a paper clip, a key and foil. It did not light with a rubber band, a crayon or a cotton ball. Which object would most likely light the bulb? | a metal spoon | a plastic straw | a wooden ruler | a glass marble
+num2: A metal spoon in hot water warmed from 21°C to 48°C. How many degrees did it warm? | 27
+num2: A flashlight uses 4 batteries. Each battery is 1.5 volts. How many volts in all? | 6
+num2: A solar oven was tested 3 times and reached 54°C, 58°C and 50°C. What was the average temperature? (Add the trials and divide by 3.) | 54
+mc2: Which pair names a device and its energy change correctly? | electric fan: electrical to motion | speaker: sound to electrical | solar panel: electrical to light | generator: light to sound
+mc2: A team is building a device that lights a bulb when a door opens. Which is a constraint? | It may use only one battery. | It must light the bulb every time. | It must be bright enough to see. | It must work when the door opens.
+mc2: Three alarms were tested in the same room. Alarm X was heard 4 meters away, Alarm Y 9 meters away and Alarm Z 6 meters away. The criterion is "heard at least 5 meters away." Which alarms meet the criterion? | Y and Z | X only | X and Z | all three
+num2: Using the same data (Alarm X 4 meters, Alarm Y 9 meters, Alarm Z 6 meters), how many meters farther was Alarm Y heard than Alarm X? | 5
+mc3: A team's solar oven reached 35°C on a cloudy day. They added foil flaps and tested it again on a sunny day, and it reached 55°C. Why can't they be sure the foil flaps caused the change? | The weather also changed, so it was not a fair test. | Foil never reflects light. | 55°C is lower than 35°C. | They tested it twice.
+mc3: A wind turbine model produces less electricity than planned. Which next step follows the engineering design process? | find the part that is not working well, change it and test again | give up on wind energy | change all the parts at once and skip testing | paint the turbine
+mc2: Why does a black shirt feel warmer than a white shirt in sunlight? | Black takes in more light energy and changes it to heat. | White takes in more light. | Black shirts make their own heat. | Light cannot carry energy.
+sa2: Explain how energy moves through a circuit to light a bulb. | Stored energy in the battery moves as electric current through the wires to the bulb, where it changes into light and heat. The circuit must be closed for current to flow.
+sa2: Describe one device that changes energy from one form to another and name the forms of energy before and after. | Sample: A hand-crank radio changes motion energy from turning the crank into electrical energy, and then the speaker changes it into sound.
+cer3: Students tested which cup keeps cocoa hot longest. They poured 70°C cocoa into three cups and measured the temperature after 20 minutes. Thin paper cup: 41°C. Plastic cup: 47°C. Foam cup with lid: 62°C. Make a claim about which cup is best at keeping heat from moving out. Use evidence from the data and explain your reasoning. | Claim: The foam cup with a lid is best at keeping heat in. Evidence: After 20 minutes, the cocoa in the foam cup was still 62°C, compared with 47°C in plastic and 41°C in paper. The foam cup lost only 8 degrees, while the paper cup lost 29 degrees. Reasoning: Heat moves from the hot cocoa to the cooler air. The foam and lid slow that transfer of energy, so the cocoa stayed hotter. The paper cup let heat move out the fastest.
+
+unit: Unit 3: Natural Resources and Energy Use | 4-ESS3-1, 3-5-ETS1-2
+el: Sort picture cards of resources (sun, wind, coal, oil, river, wood) into "renewable" and "nonrenewable"; pre-teach fuel, resource, pollution and renewable with student-friendly definitions and examples.
+
+lesson: Where does the energy we use come from? | 4-ESS3-1
+practice:
+mc1: A natural resource is | something from nature that people use | something made only in a factory | a kind of machine | a type of weather
+hint: It comes from Earth, not from people.
+mc1: Coal, oil and natural gas are called fossil fuels because they formed from | remains of living things from millions of years ago | melted rock | ocean salt | sunlight stored in glass
+hint: Think about what "fossil" means.
+mc2: How does a power plant that burns natural gas make electricity? | Burning the gas makes heat that boils water into steam, and the steam spins a generator. | The gas glows like a bulb. | The gas flows through wires. | The gas freezes and makes current.
+hint: Follow the energy from burning to spinning.
+mc2: Which natural resource is used to make electricity at a hydroelectric dam? | moving water | coal | wind | sunlight
+hint: "Hydro" means water.
+num2: A town gets its electricity from three sources: 45 percent natural gas, 35 percent solar and the rest from wind. What percent comes from wind? | 20
+hint: All the parts add up to 100 percent.
+sa2: Choose one energy source and explain where its energy originally comes from. | Sample: Wind energy comes from moving air. The Sun heats Earth's surface unevenly, which makes air move as wind.
+quiz:
+mc1: Which is a fuel that comes from a natural resource? | gasoline made from oil | a solar panel | an electric wire | a battery charger
+mc2: Wood is burned in a fireplace to warm a room. What energy change happens? | stored energy in the wood changes into heat and light | heat changes into wood | light changes into wind | electrical energy changes into wood
+mc2: A wind farm has turbines on hills where it is often windy. Why are turbines placed there? | Strong, steady wind turns the blades more, making more electricity. | Turbines need snow to work. | Hills have more oil. | Turbines work best without wind.
+num2: A wind turbine made 120 units of electricity on Monday and 85 units on Tuesday. How many units did it make in both days? | 205
+num2: A solar farm makes 900 units of electricity on a sunny day and 350 units on a cloudy day. How many fewer units does it make on a cloudy day? | 550
+mc2: Which energy resource depends on sunlight to work? | solar panels | coal | uranium | natural gas
+sa2: Explain how a fossil fuel like oil is a natural resource even though people pump it out of the ground. | Oil formed naturally over millions of years from the remains of ancient living things. People only collect it and process it into fuels like gasoline.
+
+lesson: Which energy resources will run out? | 4-ESS3-1
+practice:
+mc1: A renewable resource is one that | can be replaced naturally in a short time | will be used up and never replaced | is only found in oceans | is made in a factory
+hint: "Renew" means to make new again.
+mc2: Which is a nonrenewable energy resource? | coal | wind | sunlight | flowing water
+hint: Which takes millions of years to form?
+mc2: Why will we eventually run out of oil if we keep using it? | It takes millions of years to form, much longer than we use it. | Oil grows back every year. | Oil is made by the Sun each day. | Oil is a renewable resource.
+hint: Compare how fast it forms with how fast we use it.
+num2: A school used 1,200 units of electricity in March and 950 units in April after turning off unused lights. How many units did the school save? | 250
+hint: Subtract April from March.
+mc2: Which list has only renewable resources? | sunlight, wind, moving water | coal, oil, wind | natural gas, sunlight, coal | oil, uranium, coal
+hint: Check each item in the list.
+sa2: Sort these into renewable and nonrenewable: wind, coal, sunlight, natural gas. Explain one of your choices. | Renewable: wind and sunlight. Nonrenewable: coal and natural gas. Coal is nonrenewable because it took millions of years to form and cannot be replaced quickly.
+quiz:
+mc1: Which energy resource is renewable? | wind | oil | coal | natural gas
+mc2: Trees can be replanted after they are cut for firewood. What kind of resource is wood when forests are replanted? | renewable | nonrenewable | a fossil fuel | a mineral
+mc2: A state wants an energy source that will not run out. Which choice is best? | solar power | coal | oil | natural gas
+num2: A city got 30 percent of its electricity from renewable sources in 2015 and 55 percent in 2025. By how many percent did its renewable share increase? | 25
+mc2: Which is a drawback of solar power? | It makes less electricity at night and on cloudy days. | It runs out after a few years. | It releases smoke. | It is a fossil fuel.
+num2: A family's car used 12 gallons of gasoline a week. After they started biking to school, it used 9 gallons a week. How many gallons do they save in 4 weeks? | 12
+sa3: A student says, "Wind is better than coal in every way." Give one advantage and one disadvantage of wind compared with coal. | Advantage: wind is renewable and does not make smoke or air pollution when it makes electricity. Disadvantage: wind does not blow all the time, so turbines do not always make electricity, and they need a lot of space.
+
+lesson: How does using energy affect the environment? | 4-ESS3-1, 3-5-ETS1-2
+practice:
+mc1: Burning fossil fuels in cars and power plants can | pollute the air | make the air cleaner | create new oil | stop all wind
+hint: Think about the exhaust from a car.
+mc2: Coal is often dug out of large mines. Which is an effect on the environment? | Land and habitats are disturbed. | Rivers become cleaner. | More forests grow. | Animals get more space.
+hint: What happens to the land when a large mine is dug?
+mc2: A dam on a river makes electricity but blocks salmon from swimming upstream. How could engineers reduce this problem? | build a fish ladder that lets salmon pass the dam | build the dam taller | stop all fish from swimming | drain the river
+hint: The fish need a path around the dam.
+num2: A family switched 10 old light bulbs to LED bulbs. Each LED saves 50 units of electricity a year. How many units does the family save each year? | 500
+hint: Multiply the number of bulbs by the savings per bulb.
+mc2: Which choice reduces the amount of fuel people use? | walking or biking for short trips | leaving lights on all day | driving to the mailbox | running the heater with windows open
+hint: Which choice uses no fuel?
+sa2: Describe one way your class could use less energy at school and explain how it helps the environment. | Sample: Turn off computers and lights when we leave the room. Using less electricity means power plants burn less fuel, which means less air pollution.
+quiz:
+mc1: Which energy resource releases the most air pollution when used? | coal | sunlight | wind | moving water
+mc2: Wind turbines make no smoke, but which effect on the environment can they have? | Birds and bats can fly into the blades. | They pour oil into rivers. | They melt glaciers directly. | They dig deep mines.
+num2: A school installs solar panels that make 3,000 units of electricity a month. The school uses 5,000 units a month. How many units must still come from other sources? | 2000
+mc2: Which data would best help a town compare the environmental effects of two energy sources? | how much air pollution each source makes and how much land each one uses | the color of each power plant | how many letters are in each name | which source is older
+mc2: An oil spill from a tanker reaches a beach. Which living things are most directly harmed? | sea birds and ocean animals covered in oil | desert lizards | mountain goats | city pigeons far from the coast
+num2: A city bus carries 40 people and replaces 40 cars. If each car would have burned 2 gallons of gasoline on a trip and the bus burns 8 gallons, how many gallons are saved? | 72
+cer3: A town compared two energy plans. Plan A, a natural gas plant: works day and night, makes air pollution, costs less to build. Plan B, a solar farm with batteries: works in daytime and stores some energy for night, makes no air pollution when running, uses 200 acres of land. The town's main goal is to cut air pollution. Make a claim about which plan better meets the town's goal. Use evidence and explain your reasoning. | Claim: Plan B, the solar farm with batteries, better meets the town's goal. Evidence: Plan B makes no air pollution when running, while Plan A makes air pollution. Plan B's batteries store energy so the town has some power at night. Reasoning: The town's main criterion is cutting air pollution. Sunlight is renewable and solar panels do not burn fuel, so Plan B meets the goal, even though it uses more land.
+
+test:
+mc1: Which is a fossil fuel? | natural gas | wind | sunlight | moving water
+mc1: A resource that can be replaced naturally in a short time is | renewable | nonrenewable | a fossil fuel | pollution
+mc1: Which device changes sunlight directly into electricity? | a solar panel | a wind turbine | a dam | a coal plant
+mc2: Fossil fuels are nonrenewable because | they take millions of years to form | they are found everywhere | they grow back each year | they come from the Sun each day
+mc2: Which energy resource depends on the weather? | wind | coal | oil | natural gas
+mc2: Which statement about burning coal for electricity is true? | It works day and night but pollutes the air. | It is renewable. | It makes no pollution. | It only works when the wind blows.
+mc2: Which list shows only nonrenewable resources? | coal, oil, natural gas | wind, sun, water | wood, wind, coal | sun, oil, water
+mc2: A hydroelectric dam uses which resource to make electricity? | moving water | sunlight | coal | natural gas
+mc2: Which action would reduce the amount of fossil fuel a family uses? | carpooling to school | leaving the car running while parked | using a gas heater with the door open | taking extra car trips
+num2: A school's electricity came 40 percent from solar and 25 percent from wind. The rest came from natural gas. What percent came from natural gas? | 35
+num2: A home used 900 units of electricity in July and 620 units in October. How many fewer units did it use in October? | 280
+num2: A family replaces 8 bulbs. Each new bulb saves 45 units of electricity a year. How many units do they save each year? | 360
+mc2: Which energy source has the problem that it can harm fish by blocking rivers? | hydroelectric dams | solar panels | coal mines | wind turbines
+mc2: A class graphed how much electricity a solar panel made each hour. The bars were tall around noon and zero at night. What does the graph show? | Solar panels make the most electricity when the sun is strongest. | Solar panels work best at night. | Solar panels make the same amount all day. | Solar panels use coal at night.
+mc3: A town has very steady winds, few sunny days and no rivers. Which renewable energy source is the best choice? | wind | solar | hydroelectric | coal
+mc3: Why might a community use both solar and wind power instead of only one? | When one is not available, like at night or on calm days, the other may still produce power. | Using two sources creates pollution. | Solar panels need wind to work. | It makes energy nonrenewable.
+num2: A wind turbine makes about 25 units of electricity each hour on a windy day. How many units does it make in 8 hours? | 200
+mc2: Gasoline is made from which natural resource? | oil | coal | wind | water
+mc2: Which is an effect of mining for coal? | Land and habitats are disturbed. | Air gets cleaner. | More fish live in nearby streams. | New forests grow instantly.
+sa2: Explain why getting more electricity from renewable resources is important for the future. | Nonrenewable resources like coal and oil will run out and they pollute the air when burned. Renewable resources like sun and wind will not run out and make little or no pollution when used.
+sa2: Describe one way people's use of energy affects the environment and one way to reduce that effect. | Sample: Cars burn gasoline and pollute the air. People can walk, bike, carpool or use electric buses to burn less fuel.
+cer3: A class measured car traffic and air quality near their school for two weeks. Week 1 (normal traffic, 600 cars a day): air quality index 85. Week 2 (a "walk to school" week, 250 cars a day): air quality index 55. A lower number means cleaner air. Make a claim about how car traffic affected air quality. Use evidence from the data and explain your reasoning. | Claim: Fewer cars made the air near the school cleaner. Evidence: In Week 1 there were 600 cars a day and the index was 85. In Week 2 there were 250 cars a day and the index dropped to 55, which means cleaner air. Reasoning: Cars burn gasoline, a fossil fuel, and burning it releases pollution into the air. When fewer cars drove near the school, less fuel was burned, so less pollution was released.
+
+unit: Unit 4: Waves, Light and Information | 4-PS4-1, 4-PS4-2, 4-PS4-3, 3-5-ETS1-2
+el: Use a jump rope or slinky to act out amplitude (how high) and wavelength (peak to peak); label a large wave drawing together and give students a picture glossary for reflect, absorb, signal and code.
+
+lesson: How do waves move? | 4-PS4-1
+practice:
+mc1: The height of a wave from its resting position to its top is its | amplitude | wavelength | speed | color
+hint: Think "how tall."
+mc1: The distance from the top of one wave to the top of the next wave is the | wavelength | amplitude | crest height | shore
+hint: Measure from one peak to the next peak.
+mc2: A cork floats on a pond. Waves pass by. What does the cork mostly do? | bobs up and down in about the same place | travels all the way across the pond with the waves | sinks to the bottom | spins in a circle forever
+hint: Waves carry energy, not the water itself very far.
+mc2: Ocean waves with a very large amplitude crash on the beach. What can they do that small waves cannot? | move larger rocks and wear away more sand | make the water colder | make the beach longer | stop the tide
+hint: A bigger amplitude means more energy.
+num2: A wave model drawn on paper has peaks at 0 cm, 6 cm, 12 cm and 18 cm. What is its wavelength in centimeters? | 6
+hint: Find the distance between any two peaks next to each other.
+sa2: Draw or describe two waves: one with a large amplitude and short wavelength, and one with a small amplitude and long wavelength. | Wave 1 has tall peaks that are close together. Wave 2 has short, low peaks that are far apart.
+quiz:
+mc1: Waves carry | energy from place to place | water across the whole ocean | sand to the moon | nothing at all
+mc2: A student shakes a rope harder and harder while keeping the same pace. Which part of the wave changes? | the amplitude gets bigger | the wavelength gets shorter | the rope gets longer | nothing changes
+mc2: A student shakes a rope faster, making more waves each second. What happens to the wavelength? | It gets shorter. | It gets longer. | It stays the same. | It disappears.
+num2: A rope wave has peaks 40 cm apart. How far apart are the first peak and the fourth peak, in centimeters? | 120
+mc2: Which observation shows that waves can make objects move? | A toy boat rocks up and down as ripples pass. | A rock sits still on the shore. | The sun shines on the water. | A fish sleeps on the bottom.
+num2: A class measured wave heights at the beach: 30 cm, 50 cm and 40 cm. What was the average wave height in centimeters? (Add and divide by 3.) | 40
+sa2: Explain why a surfer moves toward the beach on a wave but a floating leaf far from shore mostly bobs in place. | A breaking wave near shore pushes the surfer forward. Out in deeper water, waves carry energy forward while the water and the leaf mostly move up and down in place.
+
+lesson: What makes a sound loud or high? | 4-PS4-1
+practice:
+mc1: Sound is caused by | vibrations | light | magnets | heat only
+hint: Touch your throat while you hum.
+mc2: A drum is hit gently and then hard. The hard hit makes a louder sound because the sound wave has a | larger amplitude | smaller amplitude | longer name | lower speed in air
+hint: Loudness is connected to the size of the vibration.
+mc2: A short guitar string makes a higher sound than a long string. In sound waves, a higher pitch has a | shorter wavelength | longer wavelength | larger amplitude only | no wavelength
+hint: Higher pitch means faster vibrations and waves closer together.
+mc2: Rice on a drum jumps more when the drum is hit harder. What does this show? | Louder sound waves carry more energy. | Rice makes sound. | Drums are magnetic. | Sound has no energy.
+hint: Compare how much the rice moved.
+num2: A sound meter read 45 units for a whisper and 70 units for a shout. How many units louder was the shout? | 25
+hint: Subtract the whisper reading.
+sa2: Explain how you could make a rubber band make a higher sound and a louder sound. | Stretch it tighter or make it shorter for a higher pitch. Pluck it harder for a louder sound with a bigger amplitude.
+quiz:
+mc1: Which part of a sound wave is related to how loud it is? | amplitude | wavelength | color | temperature
+mc2: Two bottles have different amounts of water. Blowing across the bottle with less air space makes a higher sound. Which wave property is different? | The higher sound has a shorter wavelength. | The higher sound has a longer wavelength. | The sounds have the same pitch. | Water stops the sound.
+mc2: Which change will make a xylophone note quieter? | hitting the bar more gently | using a shorter bar | hitting a different color bar | hitting it faster
+num2: A class measured the loudness of a bell at different distances. 1 meter: 80 units. 3 meters: 68 units. 5 meters: 59 units. How many units quieter was it at 5 meters than at 1 meter? | 21
+mc2: Using the same data (80, 68 and 59 units at 1, 3 and 5 meters), which pattern is shown? | The farther away, the quieter the sound. | The farther away, the louder the sound. | Distance does not change loudness. | The bell got louder over time.
+mc3: A model of two sound waves shows Wave A with tall peaks far apart and Wave B with short peaks close together. Which description fits? | Wave A is louder and lower; Wave B is quieter and higher. | Wave A is quieter and higher; Wave B is louder and lower. | Both are the same sound. | Wave B is louder and lower.
+sa2: Describe what happens to the energy of a sound wave as you move farther from the sound. | The energy spreads out as the sound travels, so the amplitude gets smaller and the sound gets quieter the farther away you are.
+
+lesson: How do we see things? | 4-PS4-2
+practice:
+mc1: We see an object when light | reflects off the object and enters our eyes | comes out of our eyes and hits the object | is absorbed completely by the object | goes around the object
+hint: Light has to reach your eyes.
+mc2: In a completely dark room with no light at all, can you see a red ball? | No, because no light reflects from it into your eyes. | Yes, because red glows. | Yes, if you look hard enough. | Only if the ball is big.
+hint: What does seeing need?
+mc2: A mirror reflects light very well. Why can you see your face in it? | Light reflects off your face, then off the mirror, into your eyes. | The mirror makes its own light. | Your eyes send light to the mirror. | The mirror absorbs all the light.
+hint: Trace the light's path.
+num2: A light beam travels 30 cm from a flashlight to a mirror and 45 cm from the mirror to a student's eye. How far does the light travel in all, in centimeters? | 75
+hint: Add both parts of the path.
+mc2: Which object reflects the least light? | a black cloth | a mirror | white paper | aluminum foil
+hint: Dark colors absorb more light.
+sa2: Draw or describe a model that shows how you see a book on your desk while a lamp is on. | Arrows go from the lamp to the book, then from the book to my eye. Light from the lamp reflects off the book and enters my eye, and my brain makes sense of it.
+quiz:
+mc1: Which part of the body takes in light so we can see? | the eye | the ear | the nose | the skin on the hand
+mc2: A student shines a flashlight at a wall and a friend in another part of the room sees a bright spot. Which model is correct? | flashlight -> wall -> friend's eyes | friend's eyes -> wall -> flashlight | wall -> flashlight -> friend's eyes | flashlight -> friend's eyes -> wall
+mc2: A periscope uses two mirrors to see over a wall. How does it work? | Light reflects off one mirror and then the other into your eye. | The mirrors make light. | Your eyes send beams to the mirrors. | The mirrors absorb all the light.
+num2: In a test, a white card reflected 85 units of light and a black card reflected 10 units. How many more units did the white card reflect? | 75
+mc2: Cats see well at night but still cannot see in total darkness. Why? | Seeing needs some light to reflect off objects into the eyes. | Cats close their eyes at night. | Darkness is made of light. | Cats see with their ears.
+mc3: A student holds a book in front of a mirror and sees the book in the mirror. What path did the light take? | from a light source to the book, then to the mirror, then to the student's eyes | from the student's eyes to the mirror, then to the book | from the book straight into the light source | from the mirror into the book
+cer3: A class tested how well materials reflect light. They aimed the same flashlight at each material from the same distance and used a light sensor. Mirror: 95 units. White paper: 70 units. Brown cardboard: 30 units. Black felt: 5 units. Make a claim about which material would be easiest to see in a dim room. Use evidence and explain your reasoning. | Claim: The mirror, and then white paper, would be easiest to see in a dim room. Evidence: The mirror reflected 95 units and white paper 70 units, while black felt reflected only 5 units. Reasoning: We see objects when light reflects off them into our eyes. Materials that reflect more light send more light to our eyes, so they are easier to see when there is little light.
+
+lesson: How can we send messages using patterns? | 4-PS4-3, 3-5-ETS1-2
+practice:
+mc1: A pattern of long and short signals used to send letters is a | code | wave height | conductor | reflection
+hint: Morse code is one example.
+mc2: Two students send a message across the field by flashing a flashlight: one flash means "yes" and two flashes mean "no." What is being used to carry the information? | patterns of light | sound waves | electric wires | magnets
+hint: What did they flash?
+mc2: Drums in some places were used long ago to send messages between villages. Why did this work? | Patterns of drumbeats could travel as sound over a distance. | Drums made light. | Drums sent electricity. | Drums made the wind blow.
+hint: How does sound get from one village to another?
+num2: In a code, each letter uses 3 light flashes. How many flashes are needed for a 4-letter word? | 12
+hint: Multiply flashes per letter by the number of letters.
+mc2: A code uses 1 = on and 0 = off. Which pattern means on, off, on? | 101 | 010 | 110 | 011
+hint: Write 1 for on and 0 for off, in order.
+sa2: Design a simple code using claps to send the words "stop," "go" and "wait" to a teammate. Explain how your teammate would know which word you mean. | Sample: 1 clap = go, 2 claps = stop, 3 claps = wait. My teammate counts the claps, and each number stands for a different word.
+quiz:
+mc1: Computers and phones send information as | patterns of signals, such as 1s and 0s | pieces of paper | smells | magnets that fly through the air
+mc2: Two teams sent the same 20-word message across a noisy gym. Team A used shouting: 9 words were wrong. Team B used a flashlight code: 2 words were wrong. Which conclusion is supported? | In this test, the light code sent the message with fewer errors. | Shouting is always best. | Light codes never make errors. | Both methods worked equally well.
+num2: Using the same data (Team A had 9 wrong words and Team B had 2), how many more words did Team A get wrong? | 7
+num2: Team B sent 20 words and got 2 wrong. How many words did Team B send correctly? | 18
+mc2: Which improvement would most likely reduce errors in a flashlight code? | make every signal clearly long or short and repeat the message | flash randomly | send the message faster than the receiver can watch | turn the light off halfway through
+mc2: Why do engineers compare several ways to send information? | to find which way best meets criteria like speed, distance and accuracy | to use the most expensive way | to avoid testing | to make messages longer
+sa2: A team's sound code worked across the classroom but not across the playground. Explain one likely reason and one way to improve the design. | The sound got quieter as it traveled farther, so the receiver could not hear it clearly. They could use a louder sound, like a whistle, or switch to a light code that can be seen from far away.
+
+test:
+mc1: The distance from one wave peak to the next is the | wavelength | amplitude | pitch | code
+mc1: Sound is made by | vibrations | reflections | magnets | darkness
+mc1: We see an object because light | reflects off the object into our eyes | comes out of our eyes | stays inside the object | goes only to the floor
+mc2: A wave with a larger amplitude carries | more energy | less energy | no energy | the same energy as any wave
+mc2: A beach ball floats as ocean waves pass under it far from shore. What does the beach ball do? | It moves up and down in about the same place. | It travels to another continent. | It stays perfectly still. | It sinks.
+mc2: A drum is hit harder. What happens to the sound? | It gets louder because the amplitude is larger. | It gets higher because the wavelength is longer. | It gets quieter. | It stops vibrating.
+mc2: Which picture of a wave would show a higher-pitched sound? | peaks close together | peaks far apart | a flat line | one single peak
+mc2: Why can you not see your hand in a completely dark closet? | No light reflects from your hand into your eyes. | Your hand disappears in the dark. | Your eyes are closed. | Dark air blocks sound.
+mc2: A student shines a flashlight at a mirror and the beam lights up a poster. Which describes the path of the light? | flashlight -> mirror -> poster | poster -> mirror -> flashlight | mirror -> flashlight -> poster | the light goes straight through the mirror
+num2: A wave drawing has peaks at 0 cm, 8 cm, 16 cm and 24 cm. What is the wavelength in centimeters? | 8
+num2: A team's code uses 4 beeps for each letter. How many beeps are needed for a 5-letter word? | 20
+num2: A sound meter read 92 units next to a speaker and 58 units across the room. How many units quieter was it across the room? | 34
+mc2: In a code where 1 = flash on and 0 = flash off, what does 0110 mean? | off, on, on, off | on, off, off, on | on, on, off, off | off, off, on, on
+mc2: Which material would reflect the most light? | aluminum foil | black construction paper | dark wool | a brown paper bag
+mc3: Two students send messages across a field. Message A is a spoken sentence. Message B is a pattern of flag waves that each stand for a letter. On a windy, noisy day, which would most likely arrive with fewer errors, and why? | Message B, because the flag pattern can be seen even when noise drowns out speech | Message A, because sound travels through wind easily | Both the same, because weather does not matter | Neither, because messages cannot travel across a field
+mc3: A student makes two rope waves. Wave 1: amplitude 10 cm, wavelength 50 cm. Wave 2: amplitude 30 cm, wavelength 50 cm. Which is true? | Wave 2 carries more energy. | Wave 1 carries more energy. | They carry the same energy. | Wave 2 has a shorter wavelength.
+mc2: Which sends information using patterns of electrical signals? | a telephone call | a smoke signal | a flag | a drum
+num2: A class tested a flashlight code 3 times with a 15-word message. Errors: 3, 1 and 2. What was the average number of errors? (Add and divide by 3.) | 2
+mc2: Waves at a beach knock down a sandcastle. What does this show? | Waves carry energy that can move objects. | Waves have no energy. | Sand makes waves. | The sandcastle made the waves.
+sa2: Draw or describe a wave and label its amplitude and wavelength. Then describe how the wave would change if it carried more energy. | A wave with peaks and troughs; amplitude is the height from the middle line to a peak, and wavelength is the distance from one peak to the next. With more energy, the amplitude would be larger, so the peaks would be taller.
+sa2: Explain why a cat sitting in a dark room cannot be seen until someone turns on a lamp. | We see objects only when light reflects off them into our eyes. Without the lamp, no light reflects from the cat, so we cannot see it.
+cer3: A class tested two ways to send a 10-letter message 50 meters across the playground. Shouting: 4 letters wrong on a quiet day, 8 letters wrong on a windy day. Flashlight code (long and short flashes): 1 letter wrong on a quiet day, 1 letter wrong on a windy day. Make a claim about which method is the better design for sending messages across the playground. Use evidence from the data and explain your reasoning. | Claim: The flashlight code is the better design. Evidence: It had only 1 wrong letter on both days, while shouting had 4 wrong on a quiet day and 8 on a windy day. Reasoning: The flashlight code uses patterns of light that are easy to tell apart and are not affected by wind noise. Shouted sound gets quieter over distance and is drowned out by wind, so more information was lost.
+
+unit: Unit 5: Structures, Senses and Survival | 4-LS1-1, 4-LS1-2
+el: Use labeled photos and diagrams of plants and animals; teach structure (a part) and function (its job) with the frame "The ___ helps the ___ ___ by ___." Pair students to point to and name structures before writing.
+
+lesson: How do plant structures help plants survive? | 4-LS1-1
+practice:
+mc1: Which plant structure takes in water and minerals from the soil? | roots | flowers | leaves | fruit
+hint: This part grows underground.
+mc1: Where does a plant make most of its food using sunlight? | in its leaves | in its roots | in its seeds | in its bark
+hint: These parts are usually flat and green.
+mc2: A rose bush has sharp thorns on its stems. What is the function of the thorns? | They protect the plant from animals that might eat it. | They help the plant drink water. | They make seeds. | They attract bees.
+hint: Think about what an animal would feel if it bit the stem.
+mc2: Bright, sweet-smelling flowers help a plant | attract pollinators so it can make seeds | stand up straight | store water in winter | protect its roots
+hint: Bees and butterflies visit flowers.
+num2: A class measured a sunflower stem. In week 1 it was 18 cm tall, and in week 4 it was 75 cm tall. How many centimeters did it grow? | 57
+hint: Subtract to find the change.
+sa2: Choose one plant structure and explain how it helps the plant survive, grow or reproduce. | Sample: The stem holds the plant up toward sunlight and carries water from the roots to the leaves.
+quiz:
+mc1: Which plant structure helps make new plants? | the flower, which makes seeds | the thorn | the bark | the root hair
+mc2: A cactus has a thick, waxy stem and spines instead of broad leaves. How do these structures help it survive in the desert? | They help it store water and lose less water. | They help it soak up rain from the air only. | They make it grow faster in the shade. | They attract snow.
+mc2: An apple tree makes fruit around its seeds. How does the fruit help the tree reproduce? | Animals eat the fruit and spread the seeds to new places. | The fruit makes the tree taller. | The fruit keeps the roots warm. | The fruit makes food from sunlight.
+num2: A tomato plant made 14 tomatoes. Each tomato had about 60 seeds. About how many seeds were there in all? | 840
+mc2: A plant was left in a closet with no light for two weeks. Its leaves turned yellow. Which structure could not do its job? | the leaves, which need light to make food | the roots, which need dark soil | the flowers, which need water | the bark, which needs wind
+mc2: Tall trees in a rain forest have wide, flared bases called buttress roots. What is the most likely function? | to help hold the tall tree up in shallow soil | to attract birds | to make fruit | to catch rain on the leaves
+sa2: Make an argument for how a pine tree's thick bark helps it survive. | Thick bark is a hard outer covering that protects the inside of the tree from insects, from drying out and even from some fires, so the tree can keep growing.
+
+lesson: How do animal body parts help them survive? | 4-LS1-1
+practice:
+mc1: A turtle's hard shell is an external structure that helps it | protect itself from predators | breathe underwater | digest food | see in the dark
+hint: Think about what a turtle does when it is in danger.
+mc2: An eagle has sharp, curved talons. What is their function? | grabbing and holding prey | swimming fast | keeping warm | building a nest out of mud
+hint: Talons are the eagle's claws.
+mc2: A duck has webbed feet. How do they help the duck? | They push water to help it swim. | They help it climb trees. | They help it dig tunnels. | They keep it cool in the desert.
+hint: Think about where ducks spend time.
+mc2: A porcupine is covered in sharp quills. Which statement is the best argument about this structure? | The quills help the porcupine survive by keeping predators away. | The quills help the porcupine fly. | The quills help it see better. | The quills help it smell food.
+hint: What would happen to an animal that tried to bite it?
+num2: A hummingbird's beak is 2 cm long. A woodpecker's beak is 5 cm long. How many centimeters longer is the woodpecker's beak? | 3
+hint: Subtract the lengths.
+sa2: Describe an external structure of an animal that lives in a cold place and explain how it helps the animal survive. | Sample: A polar bear has thick fur and a layer of fat. The fur traps heat and the fat keeps the bear warm in icy water and snow.
+quiz:
+mc1: Which is an external structure of a bird? | feathers | heart | lungs | stomach
+mc2: A giraffe's long neck helps it | reach leaves high in trees | dig for roots | swim across rivers | stay hidden in grass
+mc2: Male peacocks have large, colorful tail feathers. How does this structure help with reproduction? | It helps attract females so they can mate. | It helps them fly long distances. | It keeps them cool. | It helps them catch fish.
+num2: Suppose scientists measured the fur of an Arctic fox in summer (3 cm thick) and winter (7 cm thick). How many centimeters thicker was the winter fur? | 4
+mc2: Using the same data (summer fur 3 cm thick and winter fur 7 cm thick), which is the best explanation for the change? | Thicker fur helps the fox stay warm in the cold winter. | Thicker fur helps the fox stay cool. | The fox ate more fur. | Fur does not affect survival.
+mc3: A bird has a long, thin, pointed beak. Which food is it most likely adapted to eat? | nectar from deep flowers | large hard nuts | fish from deep water | big chunks of meat
+sa2: Choose an animal and make an argument for how two of its external structures help it get food. Use evidence. | Sample: A lion has sharp teeth and strong claws. The claws grab and hold prey, and the sharp teeth tear meat, so the lion can catch and eat other animals.
+
+lesson: What structures inside the body help animals survive? | 4-LS1-1
+practice:
+mc1: Which internal organ pumps blood through the body? | the heart | the lungs | the stomach | the brain
+hint: You can feel it beat in your chest.
+mc1: Which internal structures take in oxygen from the air? | lungs | bones | muscles | the stomach
+hint: They fill up when you breathe in.
+mc2: A fish lives underwater. Which structure lets it get oxygen from water? | gills | lungs like ours | feathers | a shell
+hint: Look at the slits on the sides of a fish's head.
+mc2: Many birds have hollow bones. How does this help them? | Their light bones make flying easier. | Their bones store water. | Their bones make them heavier for diving. | Hollow bones help them dig.
+hint: Think about what flying requires.
+num2: A student counted her heartbeats for 15 seconds while resting: 21 beats. After jumping jacks, she counted 33 beats in 15 seconds. How many more beats did she count after exercise? | 12
+hint: Subtract the resting count.
+sa2: Explain how the skeleton and muscles work together to help an animal move. | The skeleton is a frame of bones that supports the body. Muscles attach to the bones and pull on them, which makes the body parts move.
+quiz:
+mc1: The stomach's main function is to | help break down food | pump blood | take in oxygen | sense light
+mc2: A student's resting heart rate was 80 beats per minute. After running, it was 130 beats per minute. Why did it go up? | The heart pumped faster to move more oxygen to the working muscles. | The heart stopped working. | Running makes the heart smaller. | The lungs took over the heart's job.
+num2: Using the same data (80 beats per minute resting and 130 after running), how many more beats per minute was the heart rate after running? | 50
+mc2: A whale is a mammal that lives in the ocean. Why must it come to the surface? | It breathes air with lungs. | It needs to dry its gills. | It needs to see the Sun. | It eats only birds.
+mc2: Which pair matches an internal structure with its function? | brain - controls the body and processes information | lungs - pump blood | heart - digests food | stomach - takes in oxygen
+num2: An adult human skeleton has about 206 bones. A baby is born with about 270 bones, which grow together over time. About how many more bones does a baby have? | 64
+sa2: Make an argument for why the heart is important for an animal's survival. | The heart pumps blood that carries oxygen and food to every part of the body. Without it, the body's cells would not get what they need, so the animal could not survive.
+
+lesson: How do animals sense and respond to their surroundings? | 4-LS1-2
+practice:
+mc1: Which body part sends information from the senses to be processed? | nerves to the brain | bones to the heart | blood to the hair | muscles to the stomach
+hint: The brain is the body's control center.
+mc2: You touch a hot pan and quickly pull your hand away. In what order does this happen? | skin senses heat -> nerves send a message -> muscles move the hand | muscles move -> skin senses heat -> brain forgets | brain moves the pan -> skin cools | eyes see the pan -> stomach responds
+hint: Start with the sense organ.
+mc2: Owls hunt mice at night in dim light. Which senses most help them? | large eyes and sharp hearing | a strong sense of taste | sensing heat with their feet | hearing only through their beaks
+hint: Think about how to find a mouse in the dark.
+mc2: Bats send out high-pitched sounds and listen for the echoes. What does this help them do? | find insects and avoid objects in the dark | see colors | stay warm | find water underground
+hint: The echoes bounce off things.
+num2: A student's reaction time was tested by catching a falling ruler. Trial 1: 18 cm. Trial 2: 14 cm. Trial 3: 13 cm. What was the average distance in centimeters? (Add the trials and divide by 3.) | 15
+hint: Add 18, 14 and 13, then divide by 3.
+sa2: Describe how a dog uses its senses to find a hidden treat. Name the sense, the sense organ and how the brain responds. | The dog smells the treat with its nose. Nerves send the smell information to the brain, which recognizes food and tells the dog's legs to move toward it.
+quiz:
+mc1: Which organ processes information from the senses? | the brain | the stomach | the lungs | the skin
+mc2: A rabbit hears a twig snap and freezes, then runs. Which statement explains this? | Its ears sensed the sound, its brain processed it as danger and it responded by running. | Its stomach heard the sound. | It was too cold. | It saw its shadow.
+mc2: A rattlesnake has pits on its face that sense heat. How does this help it hunt at night? | It can sense the warm bodies of animals in the dark. | It can see colors better. | It can hear louder sounds. | It can smell flowers.
+num2: A class measured reaction time with a dropped ruler. Before practice, the average catch was 22 cm. After practice, it was 16 cm. How many centimeters better was the average after practice? | 6
+mc2: Some animals store memories of where they hid food. A squirrel buries acorns and later finds many of them. Which body part helps it remember? | the brain | the tail | the fur | the claws
+mc3: A student models how we see a ball thrown at us and catch it. Which model is most complete? | light from the ball enters the eyes, nerves carry signals to the brain, the brain sends signals to arm muscles | the ball sends sound to the ear and the ear catches it | the hands see the ball | the brain catches the ball
+sa2: Explain why animals that live in dark caves often have small eyes but a strong sense of touch or smell. | In a dark cave there is little light, so eyes are less useful. Senses like touch and smell give the brain information about food and danger, which helps the animal survive.
+
+test:
+mc1: Which plant structure holds the plant up and carries water to the leaves? | stem | flower | seed | fruit
+mc1: Which structure helps a fish get oxygen? | gills | fins | scales | tail
+mc1: The brain's main job is to | process information and control the body | digest food | pump blood | take in air
+mc2: A cactus has spines. Which is the best argument about their function? | They protect the cactus from animals that want its water. | They help the cactus make seeds. | They help the cactus take in sunlight. | They help the roots grow.
+mc2: A polar bear's white fur helps it | blend in with the snow while hunting | stay cool in summer | swim faster | see in the dark
+mc2: Which pair correctly matches an animal structure to its function? | eagle's talons - grabbing prey | duck's webbed feet - climbing trees | turtle's shell - catching fish | porcupine's quills - flying
+mc2: A flower is brightly colored and has sweet nectar. Which statement explains how this helps the plant? | It attracts animals that carry pollen so the plant can make seeds. | It keeps insects away from the plant. | It helps the plant take in water. | It makes the plant grow taller.
+mc2: A student touches a cold ice cube and pulls her hand back. Which part sensed the cold? | nerves in the skin | the heart | the lungs | the stomach
+mc2: Why does an animal's heart beat faster when it runs? | to deliver more oxygen to its muscles | to digest food faster | to make the animal sleepy | to cool the blood
+num2: A class measured how far roots of two bean plants grew in one week: Plant A 12 cm and Plant B 19 cm. How many centimeters longer were Plant B's roots? | 7
+num2: A student's breathing rate was 16 breaths per minute resting and 34 breaths per minute after running. How many more breaths per minute after running? | 18
+num2: A ruler-drop test gave 20 cm, 17 cm and 14 cm. What was the average distance in centimeters? (Add and divide by 3.) | 17
+mc2: Bats find insects at night by | sending out sounds and listening for echoes | glowing in the dark | smelling with their wings | waiting for the sun
+mc2: A seed is covered by a hard coat. What is the function of the seed coat? | to protect the young plant inside | to make food from sunlight | to attract bees | to take in oxygen
+mc3: A desert plant has long roots that reach deep under the ground. Which claim is best supported? | The deep roots help the plant reach water far below the dry surface. | The deep roots help the plant catch insects. | The roots help the plant make seeds. | Deep roots make the plant shorter.
+mc3: An animal has large ears, long legs and fur the color of sand. Which habitat is it most likely adapted to? | a hot desert | the deep ocean | an icy glacier | a dark cave
+mc2: Which internal structure gives an animal's body shape and support? | the skeleton | the stomach | the lungs | the blood
+num2: A hummingbird's heart beats about 1,200 times a minute while flying and about 250 times a minute while resting. How many more beats per minute is that while flying? | 950
+mc2: A frog sees a fly, then flicks out its tongue to catch it. Which describes the order of events? | eyes sense the fly -> brain processes it -> muscles move the tongue | tongue moves -> eyes see -> brain forgets | brain sees the fly -> eyes move the tongue | the fly signals the frog's stomach
+sa2: Choose a plant. Describe one internal or external structure and argue how it helps the plant grow or reproduce. | Sample: An oak tree's acorns are seeds with a hard shell. Squirrels carry and bury them, and some sprout into new oak trees, helping the oak reproduce.
+sa2: Explain how a cat's senses, nerves and brain work together when it hears a mouse behind it. | The cat's ears sense the sound. Nerves carry signals to the brain, which processes them as a possible meal and sends signals to the muscles so the cat turns and pounces.
+cer3: Scientists compared two kinds of foxes. Arctic fox: ear length about 4 cm, thick white winter fur, lives where winter temperatures are often below -20°C. Fennec fox: ear length about 15 cm, thin sand-colored fur, lives in the Sahara desert where days can reach 45°C. Make a claim about how the foxes' external structures help them survive in their habitats. Use evidence and explain your reasoning. | Claim: Each fox has external structures that help it survive in its own habitat. Evidence: The Arctic fox has short ears (about 4 cm) and thick white fur where it is below -20°C. The fennec fox has very large ears (about 15 cm) and thin sand-colored fur where it reaches 45°C. Reasoning: Small ears and thick fur hold in body heat, and white fur blends with snow. Large ears let heat escape and help the fennec fox hear prey, and sand-colored fur blends with the desert, so each fox's structures fit its environment.
+
+unit: Unit 6: Earth's Changing Surface and Natural Hazards | 4-ESS1-1, 4-ESS2-1, 4-ESS2-2, 4-ESS3-2, 3-5-ETS1-2, 3-5-ETS1-3 | sci_4_n1
+el: Build a stack of colored clay or paper layers to model rock layers; use photos of canyons, deltas and volcanoes, and pre-teach weathering (breaking down) and erosion (carrying away) with hand motions.
+
+lesson: What can rock layers tell us about the past? | 4-ESS1-1
+practice:
+mc1: In undisturbed rock layers, the oldest layer is usually | at the bottom | at the top | in the middle | missing
+hint: Layers pile up over time, like a stack of newspapers.
+mc2: A layer of rock contains fossils of seashells and coral. What environment did that layer most likely form in? | an ocean | a desert | a glacier | a forest
+hint: Where do seashells and coral live?
+mc2: A cliff has a bottom layer with fish fossils, a middle layer with fern fossils and a top layer with no fossils of water animals. Which story fits the layers? | The area was underwater first, then later became land with plants. | The area was always a dry desert. | The area was land first and then the ocean. | The fossils were all buried at the same time.
+hint: Read the layers from bottom (oldest) to top (newest).
+num2: A layer of sediment builds up about 2 cm every 100 years. About how many centimeters would build up in 500 years? | 10
+hint: 500 years is five groups of 100 years.
+mc2: Which type of rock forms from layers of sand, mud and shells pressed together over a long time? | sedimentary rock | igneous rock from lava | metamorphic rock only | glass
+hint: "Sediment" means bits of sand, mud and shells.
+sa2: Explain how scientists can tell the order in which rock layers formed. | New layers are laid down on top of older layers, so in undisturbed rock the bottom layer formed first and the top layer formed last.
+quiz:
+mc1: A fossil is found in a rock layer. What can it tell scientists? | what lived in that area when the layer formed | what the weather will be next week | how many people live nearby | the color of the sky long ago
+mc2: The walls of a canyon show many flat rock layers. A river flows at the bottom. Which explanation is best? | The layers formed over a long time, and then the river slowly cut down through them. | The river made all the layers in one day. | The layers formed after the river dried up. | An earthquake stacked the layers.
+mc2: A layer with fossils of a tropical plant lies under a layer with fossils of animals that lived in cold places. What does this suggest? | The climate changed from warm to cold over time. | The climate changed from cold to warm. | The climate never changed. | Plants and animals lived on top of each other.
+num2: A canyon wall is 360 meters tall. A river cut it about 1 meter deeper every 10,000 years. How many years would it take to cut 3 meters? | 30000
+mc2: A rock layer has ripple marks like those on a sandy beach. What does this most likely show? | The layer formed where moving water shaped the sand. | The layer formed in a volcano. | The layer formed on ice. | The layer is from outer space.
+num2: A model of rock layers has 5 layers. Each layer is 4 cm thick. How tall is the model in centimeters? | 20
+sa2: A fossil of a sea animal is found in a layer high up on a mountain. Use evidence to explain how this could happen. | The fossil shows the layer formed under the sea. Over a very long time, forces inside Earth pushed the rock layers up to form the mountain.
+
+lesson: How do water, wind, ice and plants change the land? | 4-ESS2-1
+practice:
+mc1: The breaking of rock into smaller pieces is called | weathering | erosion | deposition | melting
+hint: "Weather" is in the word, but it means breaking down.
+mc1: The moving of rock and soil from one place to another is called | erosion | weathering | freezing | sorting
+hint: This step carries pieces away.
+mc2: A class poured water over a sand hill model. With a small cup, little sand moved. With a big pitcher poured faster, a deep channel formed. What does this show? | Faster, larger amounts of water cause more erosion. | Water does not move sand. | Small cups cause the most erosion. | Sand moves uphill.
+hint: Compare the amount and speed of the water.
+mc2: A tree's roots grow into a crack in a rock and make the crack wider. This is an example of | weathering by plants | erosion by wind | deposition by water | a volcano
+hint: The roots are breaking the rock.
+num2: A riverbank wore away 15 cm in one year and 23 cm the next year after a big flood. How many centimeters did it wear away in both years? | 38
+hint: Add the two years.
+sa2: Water seeps into a crack in a rock and freezes. Explain how this can break the rock. | Water expands when it freezes into ice. The ice pushes on the sides of the crack and makes it bigger, and after many freezes and thaws the rock breaks apart.
+quiz:
+mc1: Which can cause erosion? | wind, water, ice and gravity | sunlight only | sound | magnets
+mc2: A class tested how slope affects erosion. They poured 500 mL of water down a sand tray at three tilts. Low tilt: 20 g of sand moved. Medium tilt: 55 g moved. High tilt: 90 g moved. What pattern does the data show? | Steeper slopes had more erosion. | Steeper slopes had less erosion. | Slope did not affect erosion. | The water moved uphill.
+num2: Using the same data (low tilt 20 g, medium tilt 55 g, high tilt 90 g), how many more grams of sand moved at high tilt than at low tilt? | 70
+mc2: A glacier slowly moves down a valley. What does it do to the land? | scrapes and carves the valley wider and deeper | fills the valley with lava | makes the valley warmer | builds a volcano
+mc2: Planting grass on a hillside can reduce erosion because | roots hold the soil in place | grass makes it rain less | grass removes all water | grass makes the hill steeper
+mc2: Sand dunes in a desert slowly move and change shape. What is the main cause? | wind | ocean waves | ice | earthquakes
+cer3: Two hills were watered with the same amount of water in a model. Hill A, bare soil: 85 g of soil washed away. Hill B, covered with grass sod: 10 g washed away. Make a claim about how plants affect erosion. Use evidence and explain your reasoning. | Claim: Plants reduce erosion. Evidence: The bare hill lost 85 g of soil, but the grass-covered hill lost only 10 g with the same amount of water. Reasoning: Plant roots hold soil particles together and leaves slow down falling water, so less soil is carried away when plants cover the ground.
+
+lesson: Why are earthquakes and volcanoes found where they are? | 4-ESS2-2
+practice:
+mc1: A map of earthquakes around the world shows that most earthquakes | happen in long bands, often near the edges of continents and oceans | happen evenly everywhere | happen only at the poles | never happen near oceans
+hint: Look for lines and patterns on the map.
+mc2: The "Ring of Fire" is a band of volcanoes and earthquakes around which ocean? | the Pacific Ocean | the Atlantic Ocean | the Indian Ocean | the Arctic Ocean
+hint: California is on the edge of this ocean.
+mc2: A map shows that many tall mountain ranges, volcanoes and earthquakes are found in the same areas. What does this pattern suggest? | The same forces inside Earth cause all three. | Mountains cause rain only. | Volcanoes stop earthquakes. | These features are not related.
+hint: Why would they be found together?
+num2: A list shows 48 earthquakes in one month in California and 9 in Nevada. How many more were in California? | 39
+hint: Subtract the smaller number.
+mc2: Which California landform is a volcano? | Mount Shasta | the Central Valley | Death Valley | the Channel Islands beaches
+hint: It is a tall, cone-shaped mountain in northern California.
+sa2: Describe what a map of volcanoes and earthquakes tells us about where they happen. | They are not spread out evenly. Most happen in bands along the edges of the giant plates of Earth's surface, such as around the Pacific Ocean.
+quiz:
+mc1: Maps help scientists find | patterns in where Earth's features and events occur | the weather on Mars | the names of animals | how old a person is
+mc2: A map shows a deep ocean trench beside a chain of volcanoes. What is the best explanation? | They formed where large plates of Earth's surface meet and move. | They formed in the middle of plates where nothing moves. | Volcanoes dig ocean trenches. | Trenches are made by ships.
+mc2: Why does California have many earthquakes? | It sits along the boundary between two moving plates, such as along the San Andreas Fault. | It is in the middle of a plate. | It is near the North Pole. | It has many deserts.
+num2: In one year, a seismograph recorded 125 small earthquakes and 8 larger ones near a fault. How many earthquakes were recorded in all? | 133
+mc2: Most of the world's tallest mountains are found | in long chains, often near plate edges | in perfect circles in the middle of oceans | only in flat deserts | randomly, with no pattern
+mc3: A student marks the locations of 50 volcanoes on a world map. Most marks form a ring around the Pacific Ocean. What is the best prediction for a new volcano found next year? | It will most likely be near the edge of the Pacific Ocean. | It will most likely be in the middle of a continent far from any plate edge. | It will be at the North Pole. | It will be in a lake.
+sa2: Explain how a map of earthquakes could help a city decide where to build a new hospital. | The map shows where earthquakes happen most often. The city could build in a place with fewer earthquakes or plan to build the hospital extra strong if it must be near a fault.
+
+lesson: How can we reduce damage from natural hazards? | 4-ESS3-2, 3-5-ETS1-2, 3-5-ETS1-3
+practice:
+mc1: Which is a natural hazard caused by Earth processes? | an earthquake | a traffic jam | a power outage from a broken cable | a flat tire
+hint: It happens because of forces inside Earth.
+mc2: Which design helps a building stay standing during an earthquake? | a flexible frame and pads under the base that let the ground move beneath it | a heavy brick top floor | a glass roof | walls that are not attached to the foundation
+hint: Buildings that can sway a little are less likely to break.
+mc2: A community near the ocean worries about tsunamis after earthquakes. Which solution helps most? | warning sirens and marked routes to higher ground | painting houses blue | building homes closer to the beach | removing evacuation signs
+hint: What helps people get out of danger quickly?
+num2: A model building on a shake table stayed standing for 8 seconds. After adding cross braces, it stayed standing for 25 seconds. How many seconds longer did it last? | 17
+hint: Subtract the times.
+mc2: Why do scientists place instruments around active volcanoes? | to detect warning signs and alert people before an eruption | to stop the eruption | to make the volcano taller | to cool the lava
+hint: Watching for changes helps people prepare.
+sa2: Name two solutions that reduce damage from landslides and explain one of them. | Building retaining walls and planting trees on slopes. A retaining wall holds back soil and rocks so they do not slide onto roads or homes.
+quiz:
+mc1: Bolting a house to its foundation helps protect it from | earthquakes | drought | lightning | heat waves
+mc2: A class tested three model buildings on a shake table. Model A (no braces): fell at 6 seconds. Model B (cross braces): fell at 20 seconds. Model C (cross braces and rubber pads under the base): still standing at 40 seconds when the test ended. Which design best reduces earthquake damage? | Model C | Model A | Model B | none of them
+num2: Using the same data (Model A fell at 6 seconds and Model B fell at 20 seconds), how many seconds longer did Model B last than Model A? | 14
+mc2: Model C costs twice as much as Model B. A town has a small budget but must protect a hospital. Which is the best reasoning? | Choose Model C for the hospital because protecting people there is most important. | Choose Model A because it is cheapest. | Do not build any hospital. | Choose by the color of the model.
+mc2: Which pair compares two solutions for reducing flood damage from heavy rains after a wildfire? | planting fast-growing plants on burned slopes vs. building barriers to catch mud and rocks | painting houses vs. planting flowers indoors | turning off lights vs. closing windows | buying new cars vs. moving furniture
+num2: Each emergency kit costs $25. A school buys kits for 12 classrooms. How many dollars does it spend? | 300
+sa3: A team's model bridge fell during the shake-table test. Describe how the team should use the engineering design process to improve it. | They should find the failure point, think of a few ways to strengthen it (like adding braces), choose the best idea based on criteria and constraints, rebuild it and test it again under the same conditions.
+
+test:
+mc1: In undisturbed rock layers, the youngest layer is usually | at the top | at the bottom | in the middle | under the oldest layer
+mc1: The moving of soil and rock by water, wind or ice is | erosion | weathering | an eruption | a fossil
+mc1: Which is a natural hazard? | a volcanic eruption | a broken window | a stuck elevator | a dropped phone
+mc2: Fossils of clams are found in rock layers in a desert. What does this show? | The area was once covered by water. | Clams live in deserts today. | Clams can walk on sand. | The fossils fell from the sky.
+mc2: The Grand Canyon is very deep. What formed it over millions of years? | the Colorado River eroding the rock | an earthquake in one day | wind in one year | people digging
+mc2: Ice in rock cracks makes them bigger. This is | weathering | erosion by wind | deposition | an earthquake
+mc2: A map shows volcanoes in Washington, Oregon and northern California in a line near the coast. What does this pattern suggest? | They formed along an edge where two plates meet. | They formed randomly. | They were made by people. | They formed in the middle of a plate far from any edge.
+mc2: Which solution helps reduce damage from earthquakes? | building flexible frames that can sway | building on loose sand near cliffs | using heavy unbraced brick walls | removing warning systems
+mc2: A layer with fern fossils is below a layer with desert sand dune patterns. What changed over time? | The area went from a wet, plant-filled place to a dry desert. | The area went from a desert to a forest. | Nothing changed. | Ferns grew in the sand dunes.
+num2: A delta at the mouth of a river grew 12 meters in one year and 17 meters the next. How many meters did it grow in two years? | 29
+num2: Sand built up 3 cm every 100 years. How many centimeters would build up in 400 years? | 12
+num2: A shake-table test: Model 1 stood for 9 seconds, Model 2 for 21 seconds and Model 3 for 30 seconds. What was the average time in seconds? (Add and divide by 3.) | 20
+mc2: Which landform is most likely built by deposition, where a river drops sand and mud? | a delta at the mouth of a river | a deep canyon | a volcano | a sharp mountain peak
+mc2: In a stream table, which change would most likely increase erosion? | making the slope steeper | adding plants | making the water flow slower | making the slope flatter
+mc3: A student has two rock layer diagrams. In Area 1, the layers are flat. In Area 2, the same layers are tilted and broken. What is the best explanation? | Forces inside Earth moved the layers in Area 2 after they formed. | The layers in Area 2 formed tilted. | Area 1 is older. | Erosion stacked the layers in Area 2.
+mc3: Two solutions are proposed for a town where rocks often fall onto a mountain road. Solution 1: a strong wire net on the cliff, cost $50,000. Solution 2: a tunnel through the mountain, cost $5,000,000. The town's budget is $100,000. Which solution meets the constraint? | Solution 1 | Solution 2 | both | neither
+mc2: Earthquake drills at school ask students to drop, cover and hold on. Why? | to protect their heads and bodies from falling objects | to make the shaking stop | to warm up | to see the floor better
+num2: A riverbank lost 8 cm of soil a year. After willow trees were planted, it lost 3 cm a year. How many centimeters less did it lose each year? | 5
+mc2: Most of the world's earthquakes happen | along the edges of Earth's plates | in the exact center of every continent | only in the summer | only at night
+sa2: Explain the difference between weathering and erosion, and give an example of each. | Weathering breaks rock into smaller pieces, like ice widening a crack. Erosion moves those pieces to a new place, like a river carrying sand downstream.
+sa2: Describe one design that reduces the impact of a natural Earth hazard on people and explain why it works. | Sample: Tsunami warning sirens. They sense a coming wave and warn people in time to move to higher ground, so fewer people are hurt.
+cer3: A geologist studies a cliff with four layers. From bottom to top: Layer 1, sandstone with fish and shell fossils. Layer 2, shale with fern fossils. Layer 3, sandstone with dinosaur footprints. Layer 4, soil with modern plant roots. Make a claim about how this landscape changed over time. Use evidence from the layers and explain your reasoning. | Claim: The area changed from an ocean to land over a long time. Evidence: The bottom layer has fish and shell fossils, which live in water. The layers above have ferns and dinosaur footprints, which are land organisms, and the top has modern plants. Reasoning: In undisturbed layers, the bottom is oldest and the top is youngest. Reading from bottom to top shows the environment changed from water to land with plants and animals over time.

@@ -1,0 +1,641 @@
+# Grade 3 Science (California NGSS), format 2. Units are original and grouped by topic for classes using Mystery Science.
+@subject sci
+@grade 3
+@program Mystery Science
+about: Third graders investigate weather patterns and climates around the world, design solutions to weather hazards, explore balanced and unbalanced forces, magnets and static electricity, model life cycles and inherited traits, and argue from evidence about how organisms survive, live in groups and change over time. They also practice the engineering design process.
+std: 3-PS2-1 | Plan and conduct an investigation to provide evidence of the effects of balanced and unbalanced forces on the motion of an object.
+std: 3-PS2-3 | Ask questions to determine cause and effect relationships of electric or magnetic interactions between two objects not in contact with each other.
+std: 3-LS1-1 | Develop models to describe that organisms have unique and diverse life cycles but all have in common birth, growth, reproduction and death.
+std: 3-LS3-1 | Analyze and interpret data to provide evidence that plants and animals have traits inherited from parents and that variation of these traits exists in a group of similar organisms.
+std: 3-LS4-3 | Construct an argument with evidence that in a particular habitat some organisms can survive well, some survive less well and some cannot survive at all.
+std: 3-ESS2-1 | Represent data in tables and graphical displays to describe typical weather conditions expected during a particular season.
+std: 3-ESS3-1 | Make a claim about the merit of a design solution that reduces the impacts of a weather-related hazard.
+std: 3-5-ETS1-2 | Generate and compare multiple possible solutions to a problem based on how well each is likely to meet the criteria and constraints of the problem.
+
+unit: Unit 1: Weather Patterns and Climates | 3-ESS2-1, 3-ESS2-2
+el: Post a word wall with picture cards for temperature, rainfall, wind, season, weather and climate; model reading one row of a data table aloud with the sentence frame "In ___, the ___ was ___."
+
+lesson: How can we predict what the weather will be like? | 3-ESS2-1
+practice:
+mc1: Which tool measures how hot or cold the air is? | thermometer | rain gauge | wind vane | measuring cup
+hint: Think about which tool has a scale with degrees on it.
+mc1: Which tool shows which direction the wind is blowing from? | wind vane | thermometer | rain gauge | ruler
+hint: This tool turns to point into the wind.
+num1: A class recorded the high temperature for 3 days: Monday 64°F, Tuesday 70°F, Wednesday 67°F. How many degrees warmer was Tuesday than Monday? | 6
+hint: Subtract the smaller temperature from the larger one.
+mc2: For 5 days in a row, clouds got thicker and darker each afternoon and then it rained. On day 6 the afternoon clouds are thick and dark again. What is the best prediction? | It will probably rain soon. | It will snow for a week. | The sky will be clear all night. | The temperature will drop below freezing.
+hint: Look for a pattern that repeated before.
+mc2: Which observation is about weather and not climate? | It is windy and 58°F this morning. | Summers here are usually hot and dry. | This city gets about 15 inches of rain a year. | Winters here are usually mild.
+hint: Weather is what is happening at one time and place.
+sa2: Name two kinds of weather data a weather reporter collects. Tell what tool measures each one. | Temperature, measured with a thermometer, and rainfall, measured with a rain gauge. (Wind direction with a wind vane or wind speed with an anemometer also count.)
+hint: Think about what you hear on a weather report.
+quiz:
+mc1: What does a rain gauge measure? | how much rain falls | how fast the wind blows | how hot the air is | how big the clouds are
+mc1: Weather is | the conditions of the air at a certain time and place | the kind of weather a place has over many years | the shape of the land | the amount of water in the ocean
+num1: A rain gauge held 2 centimeters of water on Saturday and 3 centimeters on Sunday. How many centimeters of rain fell in all? | 5
+mc2: A student records the wind every day for a month. On most days the wind vane points west in the afternoon. Which is the best prediction for tomorrow afternoon? | The wind will probably come from the west. | The wind will come from the east. | There will be no wind at all. | The wind vane will break.
+num2: A thermometer read 48°F at 7 a.m. and 73°F at 2 p.m. How many degrees did the temperature rise? | 25
+mc2: Why do scientists record weather data for many days instead of just one day? | to find patterns that help them make predictions | to make the weather change | because one day of data is always wrong | to stop storms from forming
+sa2: Pablo says, "It rained today, so it will rain every day this week." Explain why one day of data is not enough to make that prediction. | One day does not show a pattern. Weather changes from day to day, so you need data from many days to see what usually happens before you predict.
+
+lesson: Why is it rainier in some seasons than others? | 3-ESS2-1
+practice:
+mc2: A table shows rainfall in Sacramento: January 4 inches, April 1 inch, July 0 inches, October 1 inch. Which season is the rainiest? | winter | spring | summer | fall
+hint: Find the month with the most inches, then name its season.
+num2: Using the same table (January 4 inches, April 1 inch, July 0 inches, October 1 inch), how many inches of rain fell in the four months altogether? | 6
+hint: Add all four numbers.
+mc2: Which kind of graph is best for comparing the rainfall in each month of the year? | a bar graph with one bar for each month | a picture of one cloud | a list of the days of the week | a map of the ocean
+hint: You want to compare amounts side by side.
+mc1: In most of California, which season usually has the hottest temperatures? | summer | winter | fall | spring
+hint: Think about when school is out and days are longest.
+num2: The average high temperature in a town is 88°F in July and 55°F in January. How many degrees warmer is July? | 33
+hint: Subtract 55 from 88.
+sa2: A bar graph shows snowfall in a mountain town for each month. The bars are tall from December to March and zero from June to September. Describe the seasonal pattern. | The town gets most of its snow in winter, from December to March. It gets no snow in summer, from June to September.
+quiz:
+mc2: A table shows the number of rainy days in a city: winter 12, spring 7, summer 1, fall 5. Which season should a family pick for an outdoor party with the least chance of rain? | summer | winter | spring | fall
+num2: Using the same table (winter 12, spring 7, summer 1, fall 5), how many more rainy days are there in winter than in fall? | 7
+num2: Using the same table (winter 12, spring 7, summer 1, fall 5), how many rainy days are there in the whole year? | 25
+mc2: A pictograph shows sunny days in May. Each sun picture stands for 2 days. There are 9 sun pictures. How many sunny days were there? | 18 | 9 | 11 | 2
+mc1: What does a bar graph of monthly temperatures help you see? | patterns in how temperature changes during the year | the exact weather on one afternoon | where the wind is blowing right now | how much the clouds weigh
+mc3: A city's graph shows warm, dry summers and cool, rainy winters every year for 20 years. What is the best prediction for next January? | cool with some rain | hot with no rain | snowy every day | the same as July
+sa2: Explain why a farmer would want to know which months usually get the most rain. | The farmer can plan when to plant and water crops. If rain usually comes in winter, the farmer knows crops will need extra watering in the dry summer.
+
+lesson: Why are some places hot and others cold all year? | 3-ESS2-2
+practice:
+mc1: What is climate? | the usual weather of a place over many years | the weather at one moment | a single storm | the temperature this morning
+hint: Climate is about a long time, not one day.
+mc2: Which place has a climate that is hot and very dry most of the year? | a desert | a rain forest | the Arctic | a mountaintop glacier
+hint: Which place gets very little rain?
+mc2: A region is warm all year and gets rain almost every day. What kind of climate does it have? | tropical rain forest | polar | desert | cold mountain
+hint: Think about where it is both hot and wet.
+mc2: Places near the poles, like northern Alaska, have cold climates. Which is true about these places? | They are cold for most of the year. | They are hot all year. | They have no seasons at all. | They get the same weather as a desert.
+hint: Remember where the polar bears live.
+num2: City A gets 60 inches of rain a year. City B gets 8 inches a year. How many more inches does City A get? | 52
+hint: Subtract to compare.
+sa2: Describe the climate where you live. Use the words temperature and rain in your answer. | Sample: Where I live, summers are hot and dry, and winters are cool with some rain. The temperature is warm most of the year.
+quiz:
+mc1: Which is a statement about climate? | San Diego is usually mild and sunny all year. | It is raining in San Diego right now. | Today's high in San Diego is 71°F. | A storm will hit San Diego tonight.
+mc2: Data for two places: Place 1 averages 85°F with 80 inches of rain a year. Place 2 averages 20°F with 10 inches of rain, mostly as snow. Which place is most likely near the North Pole? | Place 2 | Place 1 | both places | neither place
+num2: Place 1 averages 80 inches of rain a year and Place 2 averages 10 inches. How many more inches does Place 1 get? | 70
+mc2: A family is moving from a hot desert to a cold, snowy region. Which item will they most likely need to buy? | a heavy winter coat | a sun hat | a swimsuit | a fan
+mc2: Why do people in a rainy climate often build houses with steep, slanted roofs? | so rain and snow slide off easily | so the house looks taller | so birds cannot land | so the sun cannot reach the house
+mc3: A globe shows that places near the equator are usually hot and places near the poles are usually cold. A new town is near the equator. What climate does it most likely have? | warm or hot most of the year | freezing most of the year | snowy every winter | cold and dry like the Arctic
+sa2: Explain the difference between weather and climate. Give one example of each. | Weather is the conditions at one time and place, like "it is cloudy today." Climate is the usual weather over many years, like "Los Angeles has warm, dry summers."
+
+test:
+mc1: Which tool would you use to find out how much rain fell last night? | rain gauge | thermometer | wind vane | balance scale
+mc1: Climate describes | the usual weather of a place over many years | the weather this afternoon | one rainstorm | the wind speed right now
+mc1: Which is a weather observation? | The air is foggy and cool this morning. | Deserts are usually dry. | Alaska has long, cold winters. | Hawaii is warm all year.
+mc2: Which statement best describes a polar climate? | cold most of the year with snow and ice | hot and rainy all year | hot and dry with cactus plants | mild with warm summers
+mc2: A table shows the high temperature in a city: Monday 75°F, Tuesday 77°F, Wednesday 79°F, Thursday 81°F. If the pattern continues, what is the best prediction for Friday? | about 83°F | about 70°F | about 60°F | about 100°F
+num2: Using the same data (Monday 75°F, Tuesday 77°F, Wednesday 79°F, Thursday 81°F), how many degrees warmer was Thursday than Monday? | 6
+mc2: A bar graph of rainfall in Fresno shows tall bars from December to March and almost no bar from June to August. When does Fresno get most of its rain? | in winter | in summer | in the same amount every month | only in August
+num2: A city recorded these rainy days: October 2, November 5, December 8. How many rainy days were there in all three months? | 15
+num2: A desert town averages 3 inches of rain a year. A coastal forest town averages 45 inches. How many more inches does the forest town get? | 42
+mc2: Which graph would best show how temperature changes from month to month in one city? | a bar graph with one bar for each month | a pie cut into two pieces | a picture of a thermometer | a list of cities
+mc2: Why do weather forecasters study patterns in weather data? | to predict what the weather will probably be | to control the weather | to make it rain | to stop the seasons
+mc2: Which climate would be best for a plant that needs a lot of water and warm temperatures all year? | tropical rain forest | desert | polar | cold mountaintop
+mc2: A wind vane points north. What does this tell you? | The wind is blowing from the north. | It is very hot. | It is raining. | The wind has stopped.
+mc2: A pictograph shows snowy days. Each snowflake stands for 3 days. January has 4 snowflakes. How many snowy days did January have? | 12 | 4 | 7 | 3
+num2: Each snowflake stands for 3 snowy days. February has 2 snowflakes. How many snowy days did February have? | 6
+mc3: Two cities have the same temperature today, 70°F. City A is usually 30°F in winter, and City B is usually 65°F in winter. Which statement is true? | They have the same weather today but different climates. | They have the same climate. | They have different weather today. | Weather and climate are the same thing.
+mc3: A class graphed one year of rainfall. Their graph shows 5 inches in January, 4 in February, 3 in March and almost none in summer. A student says, "Next summer will probably be dry." What evidence best supports the student? | The graph shows almost no rain in summer. | January had 5 inches of rain. | The graph has bars. | March had 3 inches of rain.
+mc2: Which place would most likely have a hot climate with very little rain? | the Mojave Desert | the coast of northern California in winter | Antarctica | a rain forest in Brazil
+num2: A thermometer showed 41°F at sunrise and 68°F in the afternoon. How many degrees warmer was the afternoon? | 27
+sa2: Explain why a weather prediction can be wrong even when scientists use data. | Predictions are based on patterns of what usually happens, but weather can change in ways the pattern did not show, so a prediction tells what is likely, not certain.
+sa2: Name a climate region of the world and describe its usual temperature and rainfall. | Sample: A tropical rain forest is hot all year and gets lots of rain almost every day.
+sa3: A family wants to plan a camping trip in the Sierra Nevada mountains. What weather data should they look at, and how would it help them choose a month? | They should look at the usual temperature, rain and snow for each month. Choosing a month that is usually warm and dry would make the trip safer and more comfortable.
+cer3: Two towns kept weather records. Town A: average summer high 95°F, average winter high 65°F, about 5 inches of rain a year. Town B: average summer high 70°F, average winter high 40°F, about 50 inches of rain and snow a year. A family wants to grow plants that need lots of water and cool weather. Make a claim about which town is the better choice. Use evidence from the data and explain your reasoning. | Claim: Town B is the better choice. Evidence: Town B gets about 50 inches of rain and snow a year, compared with 5 inches in Town A, and its summer high is 70°F instead of 95°F. Reasoning: The plants need lots of water and cool weather. Town B's climate gives more water and cooler temperatures, so the plants would get what they need without as much watering.
+
+unit: Unit 2: Weather Hazards and Engineering Solutions | 3-ESS3-1, 3-5-ETS1-1, 3-5-ETS1-2, 3-5-ETS1-3
+el: Teach criteria ("what the design must do") and constraints ("limits, like time, money or materials") with a two-column chart and picture examples; let students rehearse the frame "My design is good because it ___."
+
+lesson: What makes some kinds of weather dangerous? | 3-ESS3-1
+practice:
+mc1: Which is a weather-related hazard? | a flood | a rainbow | a light breeze | a cloudy sky
+hint: A hazard is something that can hurt people or damage things.
+mc2: Heavy rain falls for three days on a town next to a river. Which hazard is most likely? | a flood | a drought | a blizzard | a heat wave
+hint: Where does all that rain water go?
+mc2: A drought is a long time with | very little rain | too much snow | strong winds every day | thunder every night
+hint: Think about what plants and farms would be missing.
+mc2: Dry plants, hot temperatures and strong winds together make which hazard more likely in California? | wildfires | blizzards | floods | hailstorms
+hint: Which hazard needs dry fuel to burn?
+num2: A town recorded 4 floods in the 1990s, 2 in the 2000s and 5 in the 2010s. How many floods is that in all? | 11
+hint: Add the three numbers.
+sa2: Choose one weather hazard. Describe one way it can harm people, animals or buildings. | Sample: A hurricane brings very strong winds that can tear roofs off houses and knock down trees and power lines.
+quiz:
+mc1: What should you do when you hear thunder outside? | go inside a building or a hard-topped car | stand under a tall tree | go swimming | lie down on a metal bench
+mc2: Which hazard is caused by a long period with much less rain than normal? | drought | flood | tornado | hurricane
+mc2: A blizzard is most dangerous because of | heavy snow, strong wind and very cold air | hot, dry air | too much sunlight | gentle rain
+mc2: Why can a hurricane cause flooding along a coast? | It brings heavy rain and pushes ocean water onto land. | It makes the ocean freeze. | It dries out the rivers. | It blows all the water away from shore.
+num2: Strong winds damaged 18 trees in a park on Monday and 9 more on Tuesday. How many trees were damaged in all? | 27
+mc3: Weather scientists cannot stop a storm. What can they do that helps people stay safe most? | predict storms and warn people early | make the storm smaller | move the storm to the ocean | turn the rain into sunshine
+sa2: Explain why people cannot prevent weather hazards but can still reduce the damage they cause. | Weather is caused by natural forces that people cannot control. People can reduce damage by building stronger structures, making warning systems and having safety plans.
+
+lesson: How can we protect a home from floods and strong winds? | 3-ESS3-1, 3-5-ETS1-1
+practice:
+mc2: A house is built on tall posts near a river. What hazard does this design protect against? | flooding | wildfire | lightning | drought
+hint: Think about where water goes when the river rises.
+mc2: What is the purpose of a levee, a high wall of earth along a river? | to keep river water from spreading onto the land | to make the river flow faster uphill | to give fish a place to live | to make more rain fall
+hint: A levee is like a long, tall wall next to the water.
+mc2: Which design helps a roof stay on a house during strong winds? | metal straps that tie the roof to the walls | a roof painted a bright color | windows with no glass | a roof made of paper
+hint: The roof needs to be held down tightly.
+mc2: Which design reduces the danger of lightning hitting a tall building? | a lightning rod connected to the ground | a flag on the roof | a glass roof | a fence around the parking lot
+hint: Lightning needs a safe path to the ground.
+num2: A town stacks sandbags along a river. Team A fills 45 bags and Team B fills 38 bags. How many sandbags do they fill in all? | 83
+hint: Add the two teams' bags.
+sa2: Describe one design that reduces damage from wildfire to a home. | Sample: Clearing dry brush and dead plants away from the house so a fire has less fuel near the walls.
+quiz:
+mc1: Storm shutters on windows protect a home from | flying objects in strong winds | drought | earthquakes | heat waves
+mc2: Which design would best reduce flooding on a city street? | storm drains that carry rainwater away | more paved parking lots | taller street lights | wider sidewalks with no drains
+mc2: A school in tornado country builds a room with thick concrete walls and no windows. What is the purpose? | to give people a safe place during a tornado | to keep the room cool in summer | to store snow | to make the school taller
+mc2: An engineer must design a flood wall. The problem says "The wall must be at least 2 meters tall." This is a | criterion the design must meet | constraint on time | material that will be used | test result
+num2: A flood wall is 3 meters tall. Last year the highest river water reached 2 meters. How many meters higher than the water is the wall? | 1
+mc3: A town gets heavy rain every winter. Which pair of solutions would best reduce flood damage? | raising houses and building drains | painting houses and planting flowers | building houses closer to the river and removing drains | taking down the levee and paving fields
+cer3: Two roof designs were tested with a fan that blew harder each minute. Roof A, nailed on, blew off at minute 3. Roof B, nailed on and tied down with metal straps, was still on at minute 8 when the test ended. Make a claim about which roof design is better for an area with strong winds. Use evidence and explain your reasoning. | Claim: Roof B is the better design for strong winds. Evidence: Roof A blew off at minute 3, but Roof B stayed on through minute 8 even as the wind got stronger. Reasoning: The metal straps hold the roof to the walls, so it can stand up to stronger wind, which is what an area with strong storms needs.
+
+lesson: How do engineers choose the best solution? | 3-5-ETS1-1, 3-5-ETS1-2
+practice:
+mc1: In engineering, criteria are | the things a design must do to be successful | the limits on materials, time or money | the last step of a test | the people who use a design
+hint: Criteria answer "What counts as success?"
+mc1: Which is a constraint? | The design can cost no more than $20. | The design must keep water out. | The design must be strong. | The design should look nice.
+hint: A constraint is a limit.
+mc2: A class must build a model shelter that stays dry in a rainstorm, using only paper, tape and foil. Which is a constraint? | They can use only paper, tape and foil. | It must stay dry. | It must hold one toy figure. | It must survive the rainstorm test.
+hint: Which one limits what they can use?
+num2: Foil costs 3 cents per sheet. A team uses 8 sheets. How many cents do they spend on foil? | 24
+hint: Multiply cost per sheet by number of sheets.
+mc2: Why do engineers come up with several possible solutions before building one? | so they can compare ideas and pick the one most likely to meet the criteria | because the first idea is always wrong | so they can use every material | so they do not have to test
+hint: Think about how having choices helps.
+sa2: Your class must design a way to keep the school garden from drying out during a drought. Write one criterion and one constraint for the problem. | Criterion: the plants must get enough water to stay alive. Constraint: we can only use water from the rain barrels, or we only have $30 to spend.
+quiz:
+mc1: What is the first step an engineer takes? | define the problem, including criteria and constraints | build the final product | sell the design | throw away all ideas
+mc2: Three umbrella designs are compared. Design A keeps people dry and costs $8. Design B keeps people dry and costs $25. Design C leaks and costs $5. The constraint is "costs $10 or less." Which design is best? | Design A | Design B | Design C | none of them
+num2: Using the same designs (A costs $8, B costs $25, C costs $5), how many dollars more does Design B cost than Design A? | 17
+mc2: A team compares two flood barriers. Barrier 1 holds back water for 10 minutes. Barrier 2 holds back water for 25 minutes. Both cost the same. Which barrier better meets the criterion "holds back water as long as possible"? | Barrier 2 | Barrier 1 | Both are the same | Neither one
+mc2: Which question helps engineers compare solutions? | Which design best meets the criteria within the constraints? | Which design is the prettiest? | Which design did the tallest student make? | Which design used the most tape?
+num2: A team has 30 minutes to build. They spend 12 minutes planning and 15 minutes building. How many minutes do they have left? | 3
+sa2: Explain why a design that works very well might still not be chosen. | It might not meet a constraint. For example, it could cost too much, take too long to build or use materials that are not available.
+
+lesson: How do engineers test and improve a design? | 3-5-ETS1-3
+practice:
+mc1: In a fair test, an engineer changes | only one thing at a time | everything at once | nothing at all | the results
+hint: If you change many things, you cannot tell which one caused the result.
+mc2: A team tests two model roofs in a wind test. To be fair, which must be the same for both roofs? | the strength of the fan and the distance from the fan | the color of the roofs | the names of the builders | the day of the week
+hint: Keep the test conditions the same so only the design is different.
+mc2: A model house leaks water at the corners during a rain test. What should the team do next? | find the failure point at the corners and improve that part | give up on the design | test a different house without fixing it | paint the walls
+hint: Look closely at where it failed.
+num2: A model shelter stayed dry for 4 minutes in the first test. After improvements it stayed dry for 11 minutes. How many minutes longer did it stay dry? | 7
+hint: Subtract the first time from the second time.
+mc2: Why do engineers test a design more than once? | to make sure the results are reliable | to use up materials | to make the test longer | because testing is fun
+hint: What if the first test had a mistake?
+sa2: Explain what a failure point is and why it helps engineers. | A failure point is the part of a design that breaks or does not work during a test. Finding it shows engineers exactly what to improve.
+quiz:
+mc1: What do engineers do after testing a design and finding a problem? | improve the design and test it again | stop working | hide the results | build ten more of the same design
+mc2: A team tested how much water a model levee held back. Trial 1: 300 mL. Trial 2: 310 mL. Trial 3: 50 mL, because a cup tipped over. What should the team do with trial 3? | repeat it, because something went wrong in that trial | use only trial 3 | add 50 to every trial | change the design right away
+num2: Using trials 1 and 2 (300 mL and 310 mL), how many more milliliters did the levee hold back in trial 2? | 10
+mc2: Two students test wind shields made of foil and of cardboard. Student A uses a fan on high; Student B uses a fan on low. Why is this not a fair test? | The fan speed changed, so it is not clear which material is better. | Both materials were tested. | They used a fan. | Foil and cardboard are different colors.
+num2: A rain test used a watering can. Each test poured 4 cups of water, and the team ran 6 tests. How many cups of water did they use? | 24
+mc3: A model shelter passed the wind test but failed the rain test because the roof had gaps. Which change is most likely to improve it without making it fail the wind test? | cover the gaps with tape and foil while keeping the roof attached | take the roof off | make the walls out of tissue paper | test it only on sunny days
+sa2: Describe how you would test whether a model house stays dry in a storm. Name one thing you would keep the same in every test. | Pour the same amount of water over the model from the same height for the same time, then check inside for wet spots. Keep the amount of water the same each time.
+
+test:
+mc1: Which kind of weather can damage buildings and is called a weather hazard? | a hurricane | a gentle breeze | a cloudy day | a sunny morning
+mc1: A constraint is | a limit on a design, such as cost or materials | something the design must do | the result of a test | the name of the design
+mc1: Which design helps protect a building from lightning? | a lightning rod | a doormat | a glass door | a flag pole made of wood
+mc2: A town on a river floods every few years. Which solution would reduce damage to homes? | build a levee and raise homes on posts | build more homes beside the river | remove the storm drains | plant flowers along the banks only
+mc2: Why do people in hurricane areas cover windows with shutters? | to keep wind and flying objects from breaking the glass | to keep the house warm in winter | to keep snow off the roof | to keep the river from rising
+mc2: Which situation is a drought? | a region gets much less rain than normal for many months | a river overflows its banks | strong winds spin in a funnel cloud | a lot of snow falls in a day
+mc2: Which statement is a criterion for a storm shelter design? | It must keep people safe from wind and rain. | It must cost less than $500. | It must be built in one week. | It can use only wood and nails.
+mc2: Why is it helpful to have several possible solutions to a weather problem? | You can compare them and choose the one that best meets the criteria and constraints. | Then you never need to test. | More ideas always cost less. | One of them will stop the weather.
+num2: A town needs 60 sandbags. Volunteers have filled 42. How many more sandbags do they need to fill? | 18
+num2: A rain barrel collects 8 liters of water each rainy day. How many liters does it collect in 5 rainy days? | 40
+mc2: Two shelter designs both keep water out. Design X costs $40 and Design Y costs $90. The budget is $50. Which design should be chosen? | Design X | Design Y | both designs | neither design
+mc2: In a wind test, the fan speed, the distance and the length of time are kept the same. What is being changed? | the design of the model | the fan | the time | the distance
+mc2: A team's model bridge broke in the middle during a flood test. What do engineers call the place where a design breaks? | the failure point | the criterion | the constraint | the budget
+mc2: What is the best reason to test a design three times instead of once? | to see if the results are the same each time | to make the design weaker | to waste materials | because the first test never counts
+num2: Wall A held back water for 14 minutes. Wall B held back water for 23 minutes. How many minutes longer did Wall B last? | 9
+mc2: Which is the safest place to go during a tornado warning? | a small inside room on the lowest floor, away from windows | near a big window to watch | outside in an open field | on the roof
+mc3: Which design solution helps reduce wildfire damage to homes? | keeping dry brush cleared away from buildings | planting dry grass next to the walls | storing firewood against the house | using wooden shingles that catch fire easily
+mc3: A team tested three roof designs in a fan test that got stronger each minute. Roof 1 lasted 2 minutes, Roof 2 lasted 6 minutes, and Roof 3 lasted 5 minutes. Roof 2 costs much more than Roof 3. The town has a small budget. Which roof is the best choice? | Roof 3, because it almost matches Roof 2 and costs less | Roof 1, because it lasted the shortest time | Roof 2, because cost does not matter | none, because all roofs failed
+num3: Using the roof data (Roof 1 lasted 2 minutes, Roof 2 lasted 6 minutes, Roof 3 lasted 5 minutes), how many minutes did all three roofs last altogether? | 13
+sa2: Explain why engineers change only one thing at a time when they test a design. | If they change only one thing, they know that thing caused any change in the result. If they change many things, they cannot tell which one made the difference.
+sa2: Name a weather hazard in California and describe one design that reduces its impact. | Sample: Floods. Storm drains carry rainwater away from streets, or levees keep rivers from spilling onto land.
+cer3: A school near a creek floods during heavy winter rains. The class compared two solutions. Solution A, a row of sandbags: costs $200, held back water about 30 cm deep in a test, must be set up before every storm. Solution B, a rain garden with plants and gravel: costs $800, soaked up water so the school field stayed dry in 5 of 6 storms, needs weeding twice a year. The school's budget is $1,000 and the principal wants a solution that does not need to be set up before every storm. Make a claim about which solution has more merit for this school. Use evidence from the data and explain your reasoning. | Claim: Solution B, the rain garden, has more merit for this school. Evidence: It kept the field dry in 5 of 6 storms, it costs $800, which is under the $1,000 budget, and it only needs weeding twice a year. Sandbags must be set up before every storm. Reasoning: The rain garden meets the criterion of reducing flooding and fits the constraints of the budget and of not needing setup before each storm, so it is the better design solution even though it costs more.
+
+unit: Unit 3: Forces and Motion | 3-PS2-1, 3-PS2-2 | sci_3_n2
+el: Act out push, pull, balanced and unbalanced with a rope and a cart; have students draw force arrows and label them with "push" or "pull" and "bigger" or "smaller."
+
+lesson: What makes an object start or stop moving? | 3-PS2-1
+practice:
+mc1: A push or a pull is called a | force | motion | magnet | balance
+hint: It is the word scientists use for any push or pull.
+mc1: A ball is sitting still on the grass. What is needed to make it move? | a force, like a kick | nothing at all | more sunlight | a colder day
+hint: Objects at rest need a push or pull to start moving.
+mc2: A wagon is rolling across the playground. Which force will make it stop? | a pull or push in the opposite direction, like friction from the ground | a push in the same direction | more speed | nothing can stop it
+hint: To stop something, the force must act against the motion.
+mc2: Which action is a pull? | opening a drawer toward you | kicking a ball | pushing a door shut | pressing a button
+hint: A pull moves something toward you.
+num2: Ana pushes a toy car and it rolls 85 centimeters. Then she pushes it harder and it rolls 140 centimeters. How many centimeters farther did it roll after the harder push? | 55
+hint: Subtract the shorter distance from the longer one.
+sa2: Describe what happens to a soccer ball's motion when a player kicks it, and then when the goalie catches it. | The kick is a force that makes the ball start moving. When the goalie catches it, the goalie's hands push against the ball and make it stop.
+quiz:
+mc1: Which is an example of a force? | pulling a sled | a sled sitting still | the color of a sled | the size of a sled
+mc2: A hockey puck slides across the ice and slowly stops. Which force slows it down? | friction between the puck and the ice | magnetism | a push from the wind behind it | gravity pulling it forward
+mc2: How can you make a rolling ball change direction? | push it from the side | do nothing | paint it | let it keep rolling straight
+num2: A class rolled a ball 3 times with a gentle push. It rolled 40 cm, 45 cm and 50 cm. How many centimeters did it roll in all? | 135
+mc2: Jamal kicks a ball softly and then kicks the same ball harder. What happens with the harder kick? | The ball moves faster and goes farther. | The ball moves slower. | The ball does not move. | The ball goes the same distance.
+mc3: A toy car rolls farther on a smooth wood floor than on a carpet with the same push. What is the best explanation? | The carpet causes more friction, which slows the car more. | The carpet pushes the car forward. | The wood floor has no gravity. | The car is lighter on wood.
+sa2: Name two ways a force can change an object's motion. Give an example of each. | A force can start or stop motion, like kicking a ball or catching it. A force can change direction, like hitting a tennis ball back over the net. (Speeding up or slowing down also count.)
+
+lesson: What happens when forces are balanced or unbalanced? | 3-PS2-1
+practice:
+mc1: When two forces are the same size and push in opposite directions, the forces are | balanced | unbalanced | magnetic | moving
+hint: Think of a tug of war where no one moves.
+mc2: In a tug of war, Team Red pulls left with a force of 200 newtons and Team Blue pulls right with a force of 200 newtons. What happens to the rope? | It does not move. | It moves left. | It moves right. | It breaks in half.
+hint: Compare the two forces.
+mc2: Team Red now pulls left with 250 newtons and Team Blue still pulls right with 200 newtons. Which way does the rope move? | left, toward Team Red | right, toward Team Blue | it stays still | up into the air
+hint: The rope moves toward the bigger force.
+num2: Using the same tug of war (Team Red pulls 250 newtons, Team Blue pulls 200 newtons), how many newtons more does Team Red pull? | 50
+hint: Find the difference between the two forces.
+mc2: A book is resting on a table. Gravity pulls it down and the table pushes it up. What is true about these forces? | They are balanced, so the book stays still. | They are unbalanced, so the book moves. | Only gravity acts on it. | There are no forces on the book.
+hint: The book is not moving. What does that tell you?
+sa2: Draw or describe a force diagram for a box that two children push from opposite sides, where one child pushes harder. Tell which way the box moves. | Two arrows pointing toward each other from opposite sides of the box; the arrow for the harder push is longer. The box moves in the direction of the longer arrow, away from the child who pushes harder.
+quiz:
+mc1: Unbalanced forces on an object can | change its motion | never change anything | only make it heavier | make it disappear
+mc2: In a force diagram, a longer arrow means | a stronger force | a weaker force | a slower object | a lighter object
+mc2: Two dogs pull on the same rope toy in opposite directions. The toy does not move. What can you conclude? | The dogs are pulling with equal force. | One dog is pulling much harder. | There are no forces on the toy. | The toy is too heavy for any force.
+num2: Mia pushes a box to the right with 30 newtons. Leo pushes it to the left with 18 newtons. How many newtons stronger is Mia's push? | 12
+mc2: Using the same pushes (Mia pushes right with 30 newtons, Leo pushes left with 18 newtons), which way does the box move? | to the right | to the left | it stays still | straight up
+num2: A box has 40 newtons pushing left and 40 newtons pushing right. What is the difference between the two forces in newtons? | 0
+cer3: A class tested a cart with two spring scales attached to opposite ends. Trial 1: left pull 5 newtons, right pull 5 newtons, the cart did not move. Trial 2: left pull 5 newtons, right pull 8 newtons, the cart moved right. Trial 3: left pull 9 newtons, right pull 4 newtons, the cart moved left. Make a claim about what makes the cart move. Use evidence from the data and explain your reasoning. | Claim: The cart moves only when the forces are unbalanced, and it moves toward the stronger pull. Evidence: In trial 1 the pulls were equal (5 and 5) and the cart stayed still. In trial 2 the right pull was stronger (8 vs 5) and the cart moved right. In trial 3 the left pull was stronger (9 vs 4) and it moved left. Reasoning: Balanced forces cancel each other, so motion does not change. Unbalanced forces change the cart's motion in the direction of the bigger force.
+
+lesson: How can we predict motion that repeats? | 3-PS2-2
+practice:
+mc1: Which motion repeats in a pattern? | a child swinging back and forth on a swing | a rock sitting on the ground | a leaf landing once on the grass | a ball resting in a box
+hint: Look for something that keeps going back and forth.
+mc2: A pendulum is a weight hanging from a string that swings back and forth. A class counts its swings: 10 swings in the first 10 seconds and 10 swings in the next 10 seconds. How many swings should it make in the next 10 seconds? | about 10 | about 2 | about 50 | none
+hint: Use the pattern the class already saw.
+num2: A pendulum makes 12 swings every 10 seconds. How many swings will it make in 30 seconds? | 36
+hint: 30 seconds is three groups of 10 seconds.
+mc2: A ball is dropped and bounces. Each bounce is lower than the one before. Which prediction fits the pattern? | The next bounce will be lower again. | The next bounce will be higher. | The ball will bounce forever at the same height. | The ball will float.
+hint: What happened each time it bounced?
+mc2: A seesaw goes up and down when two children take turns pushing off the ground. Why can you predict when one side will go up? | The motion repeats in a regular pattern. | It moves randomly. | There is no force on it. | The seesaw is magnetic.
+hint: Think about what happens over and over.
+sa2: A student times a swing. It goes forward and back 4 times every 10 seconds. Explain how the student can use this pattern to predict the number of swings in 20 seconds. | The pattern shows 4 swings every 10 seconds. 20 seconds is two 10-second groups, so it should make about 4 + 4 = 8 swings.
+quiz:
+mc1: Patterns in motion help us | predict what will happen next | stop all forces | change gravity | make objects lighter
+mc2: A class tested pendulums with different string lengths. Short string: 15 swings in 15 seconds. Long string: 9 swings in 15 seconds. What pattern does the data show? | The longer string swings more slowly. | The longer string swings faster. | String length does not matter. | The short string stops sooner.
+num2: Using the same data (short string 15 swings, long string 9 swings in 15 seconds), how many more swings did the short string make? | 6
+mc2: A toy car rolls down a ramp, up a small hill and back down, again and again on a curved track. A student wants to predict where the car will be. What should the student do first? | observe and record where it goes several times to find a pattern | guess without watching | paint the track | take away the ramp
+num2: A playground swing goes back and forth 3 times every 6 seconds. How many times will it go back and forth in 12 seconds? | 6
+mc3: A pendulum is pulled back and let go. It makes a regular pattern of swings. A student wants it to swing more slowly. Based on what the class learned, what should the student change? | make the string longer | make the string shorter | paint the weight | count faster
+sa2: Give an example of a motion in everyday life that repeats in a pattern and explain how you could use it to make a prediction. | Sample: A playground swing moves back and forth at a steady pace. If I count 5 swings every 10 seconds, I can predict about 10 swings in 20 seconds.
+
+test:
+mc1: A force is | a push or a pull | a kind of energy you can see | the speed of an object | the weight of an object only
+mc1: Which force slows down a bike when the rider squeezes the brakes? | friction | magnetism | a push forward | electricity
+mc1: Forces that are equal in size and opposite in direction are | balanced | unbalanced | invisible | magnetic
+mc2: A shopping cart is still. A child pushes it with a small force. What happens? | The cart starts to move in the direction of the push. | The cart moves backward. | Nothing can happen. | The cart moves up.
+mc2: Two students pull a box in opposite directions with the same force. What happens to the box? | It stays still. | It moves toward the first student. | It moves toward the second student. | It spins in a circle.
+mc2: In a force diagram, an arrow pointing right is longer than an arrow pointing left. What will the object do? | move to the right | move to the left | stay still | move up
+mc2: Which change will make a rolling marble stop sooner? | rolling it onto a rough carpet | rolling it on smooth tile | pushing it harder | rolling it downhill
+num2: Team A pulls a rope with 320 newtons. Team B pulls the other way with 290 newtons. How many newtons stronger is Team A's pull? | 30
+mc2: Using the same tug of war (Team A pulls 320 newtons and Team B pulls 290 newtons), which team will win? | Team A | Team B | neither team | both teams
+num2: A pendulum swings 8 times every 10 seconds. How many times will it swing in 40 seconds? | 32
+mc2: A ball rolls toward a wall and bounces back. What caused its direction to change? | The wall pushed on the ball. | The ball ran out of energy. | Gravity pushed it sideways. | The air pulled it back.
+mc2: A book sits on a shelf without moving. Which is true? | The forces on it are balanced. | No forces act on it. | The forces on it are unbalanced. | Only one force acts on it.
+mc2: A class pushed a toy truck with a weak, medium and strong push. Distances: weak 30 cm, medium 70 cm, strong 120 cm. What pattern does the data show? | A stronger push makes the truck go farther. | A stronger push makes the truck go a shorter distance. | The push does not matter. | All pushes made the truck go the same distance.
+num2: Using the same data (weak 30 cm, medium 70 cm, strong 120 cm), how many centimeters farther did the truck go with the strong push than the weak push? | 90
+num2: Using the same data (weak 30 cm, medium 70 cm, strong 120 cm), what is the total distance for all three pushes? | 220
+mc3: Two pendulums are the same except for string length. Pendulum A has a 20 cm string and Pendulum B has a 60 cm string. Which prediction is best? | Pendulum B will swing more slowly. | Pendulum A will swing more slowly. | Both will swing at exactly the same rate. | Pendulum B will not swing at all.
+mc3: A cart is pulled left with 6 newtons and right with 6 newtons. Then the right pull changes to 10 newtons. What happens? | The cart starts moving to the right. | The cart keeps sitting still. | The cart starts moving to the left. | The cart moves up and down.
+mc2: Which is an example of motion with a pattern you can predict? | the hands moving around a clock | a paper bag blowing in a gusty wind | a dropped puzzle piece sliding on the floor | a cat jumping around the room
+mc2: A student wants to test whether a harder push makes a ball roll farther. Which must stay the same in every trial? | the ball and the floor | the strength of the push | the distance the ball rolls | nothing
+sa2: Explain the difference between balanced and unbalanced forces. Give an example of each. | Balanced forces are equal and opposite, so they cancel and the motion does not change, like a lamp sitting on a table. Unbalanced forces are not equal, so they change motion, like kicking a ball to make it move.
+sa2: A swing goes back and forth 5 times in 10 seconds. Predict how many times it will swing in 30 seconds and explain your thinking. | About 15 times. The swing repeats in a pattern: 30 seconds is three groups of 10 seconds, and 5 + 5 + 5 = 15.
+sa3: Describe how you would plan a fair investigation to find out whether a heavier box needs a bigger push to start moving. | Use two boxes that are the same size and on the same floor, one with more weight inside. Pull each one with a spring scale and record the force needed to start it moving. Repeat 3 times and compare.
+cer3: A class rolled a toy car down the same ramp onto three surfaces. Distance traveled after the ramp: tile floor 210 cm, wood floor 180 cm, carpet 60 cm. Make a claim about how the surface affects the car's motion. Use evidence from the data and explain your reasoning. | Claim: Rougher surfaces make the car stop sooner. Evidence: The car went 210 cm on smooth tile and 180 cm on wood, but only 60 cm on carpet, which is the roughest surface. Reasoning: Friction is a force that pushes against motion. The rough carpet causes more friction, so the forces on the car are unbalanced against its motion sooner, which slows it down and stops it in a shorter distance.
+
+unit: Unit 4: Magnets and Static Electricity | 3-PS2-3, 3-PS2-4, 3-5-ETS1-1
+el: Give partners real magnets, paper clips and a balloon; teach "attract" with a pulling-together hand motion and "repel" with a pushing-apart motion, and use the frame "The ___ attracts/repels the ___ because ___."
+
+lesson: How can a magnet move something without touching it? | 3-PS2-3
+practice:
+mc1: Which object will a magnet attract? | a steel paper clip | a plastic button | a wooden pencil | a rubber band
+hint: Magnets attract objects that contain iron, like steel.
+mc2: A magnet pulls a paper clip toward it before they touch. What does this show? | Magnetic force can act without touching. | The paper clip is pushing itself. | Wind moved the paper clip. | The magnet is sticky.
+hint: Notice that there was a gap between them.
+mc2: A student puts a sheet of paper between a magnet and a paper clip. The clip still moves toward the magnet. What can the student conclude? | Magnetic force can pass through paper. | Paper is a magnet. | Paper blocks all magnetic force. | The paper clip is made of paper.
+hint: What happened even with the paper in the way?
+mc2: Which is the best question to test with a magnet and a pile of objects? | Which materials does a magnet attract? | What color is the magnet? | Do magnets like the playground? | How old is the magnet?
+hint: A good science question can be answered by testing.
+num2: A class tested 12 objects. The magnet attracted 5 of them. How many objects were not attracted? | 7
+hint: Subtract the attracted objects from the total.
+sa2: Name two objects in your classroom a magnet would attract and two it would not. Tell what the attracted objects have in common. | Attracted: a steel paper clip and a steel staple. Not attracted: a plastic ruler and a wooden pencil. The attracted objects contain iron or steel.
+quiz:
+mc1: Most objects that a magnet attracts contain | iron | wood | glass | plastic
+mc2: A student sorts objects. Which group shows only objects a magnet attracts? | steel nail, steel paper clip, iron washer | aluminum foil, glass marble, steel nail | wooden spoon, iron nail, eraser | plastic cup, paper, rubber ball
+num2: A magnet picked up 6 paper clips on the first try, 8 on the second and 7 on the third. How many paper clips did it pick up in all? | 21
+mc2: A magnet is held under a thin wooden table. A steel ball on top of the table moves when the magnet moves. Why? | The magnetic force passes through the wood. | The wood is magnetic. | The ball is made of wood. | The table is shaking.
+mc2: Which is a cause and effect relationship? | Bringing a magnet near a steel pin causes the pin to move. | A magnet is gray. | A paper clip is small. | A magnet is cold.
+mc3: A student finds that a magnet attracts a steel can but not an aluminum can. Which question would be best to investigate next? | Which other metals does a magnet attract? | Why are cans round? | What color are the cans? | How many cans are in the store?
+sa2: Describe an investigation to find out if a magnet can pull a paper clip through water. | Put a paper clip in a cup of water. Hold a magnet against the outside of the cup near the clip and move it. Watch whether the clip moves with the magnet.
+
+lesson: Why do magnets sometimes push each other away? | 3-PS2-3
+practice:
+mc1: The two ends of a bar magnet are called | poles | sides | edges | points
+hint: They are labeled N and S.
+mc2: What happens when the north pole of one magnet is brought near the south pole of another magnet? | They attract. | They repel. | Nothing happens. | They both become wood.
+hint: Opposite poles behave differently from like poles.
+mc2: What happens when two north poles are brought close together? | They repel. | They attract. | They stick together. | They melt.
+hint: Poles that are the same push apart.
+mc2: A magnet holds a paper clip when they are 1 cm apart but not when they are 5 cm apart. What does this show? | Magnetic force gets weaker as distance increases. | Magnetic force gets stronger with distance. | Distance does not matter. | The paper clip changed.
+hint: Compare what happened at the short and long distances.
+num2: A magnet attracted a paper clip from 4 cm away. A stronger magnet attracted it from 11 cm away. How many centimeters farther away did the stronger magnet work? | 7
+hint: Subtract the distances.
+sa2: Two ring magnets on a pencil float apart instead of touching. Explain why. | The magnets are placed with the same poles facing each other, so they repel and push each other apart even though they are not touching.
+quiz:
+mc1: Opposite poles of two magnets | attract each other | repel each other | do nothing | become weaker
+mc2: A class measured how many paper clips a magnet could hold through different numbers of index cards. 0 cards: 10 clips. 2 cards: 6 clips. 4 cards: 3 clips. 6 cards: 1 clip. What pattern does the data show? | As the distance grows, the magnet holds fewer clips. | As the distance grows, the magnet holds more clips. | The cards make the magnet stronger. | The number of clips never changes.
+num2: Using the same data (0 cards: 10 clips, 6 cards: 1 clip), how many fewer clips did the magnet hold with 6 cards than with 0 cards? | 9
+mc2: Using the same data (0 cards: 10, 2 cards: 6, 4 cards: 3, 6 cards: 1), predict the number of clips with 8 cards. | 0 or 1 | 12 | 10 | 6
+mc2: Two toy trains have magnets on their ends. When Kai pushes them together, they push apart. What must be facing each other? | like poles, such as north and north | opposite poles | wood and plastic | nothing at all
+mc3: A student says, "A bigger magnet is always stronger." What would be the best way to test this claim? | Test magnets of different sizes and count how many paper clips each one holds. | Look at the colors of the magnets. | Ask a friend which magnet looks strongest. | Weigh only one magnet.
+sa2: Explain how you could find out which end of an unlabeled magnet is the north pole, using a magnet that is labeled N and S. | Bring the labeled north pole near one end of the unlabeled magnet. If they repel, that end is a north pole. If they attract, that end is a south pole.
+
+lesson: What makes a balloon stick to a wall? | 3-PS2-3
+practice:
+mc1: When you rub a balloon on your hair, the balloon gets | an electric charge | colder | heavier | magnetic
+hint: This is called static electricity.
+mc2: After a balloon is rubbed on hair, the hair stands up and moves toward the balloon. What does this show? | Electric charges can attract without touching. | The hair is made of iron. | The balloon is a magnet. | Wind is moving the hair.
+hint: Was the balloon touching the hair when the hair moved?
+mc2: Two balloons are both rubbed on a wool sweater. When they hang near each other, they push apart. Why? | They have the same kind of charge, so they repel. | They have opposite charges, so they attract. | They are magnets. | Wool makes balloons heavier.
+hint: Like charges act like like poles.
+mc2: Which is an example of static electricity? | a shock when you touch a doorknob after walking on carpet | a magnet on a fridge | a ball rolling down a hill | a pendulum swinging
+hint: Think of a tiny spark or a zap.
+num2: A charged balloon picked up 14 tiny bits of paper. After 5 minutes it could only pick up 6 bits. How many fewer bits did it pick up? | 8
+hint: Subtract to compare.
+sa2: How are static electricity and magnetism alike? | Both can push or pull objects without touching them, and both can attract and repel.
+quiz:
+mc1: Static electricity can make objects | attract or repel without touching | turn into metal | stop all motion | glow like the Sun
+mc2: A rubbed plastic comb is held near a thin stream of water from a faucet. The water bends toward the comb. What caused this? | the electric charge on the comb | the magnetism of water | gravity from the comb | wind from the faucet
+mc2: Which question asks about a cause and effect relationship with static electricity? | Does rubbing a balloon longer make it pick up more paper bits? | What color is the balloon? | How big is the room? | Who brought the balloon?
+num2: A class rubbed a balloon for different times. 5 rubs: 3 paper bits. 10 rubs: 7 paper bits. 20 rubs: 15 paper bits. How many more paper bits did 20 rubs pick up than 5 rubs? | 12
+mc2: Using the same data (5 rubs: 3 bits, 10 rubs: 7 bits, 20 rubs: 15 bits), what pattern do you see? | More rubbing picked up more paper bits. | More rubbing picked up fewer paper bits. | Rubbing made no difference. | The balloon popped.
+mc2: Two balloons rubbed on hair hang near each other. Then one balloon is touched to a metal pole and loses its charge. What will most likely happen? | The balloons stop pushing apart as much. | The balloons repel more strongly. | The balloons turn into magnets. | Both balloons pop.
+cer3: A student rubbed a balloon on a wool cloth and held it 1 cm, 5 cm and 10 cm above a pile of paper bits. At 1 cm it picked up 12 bits, at 5 cm it picked up 4 bits, and at 10 cm it picked up 0 bits. Make a claim about how distance affects the electric force. Use evidence from the data and explain your reasoning. | Claim: The electric force gets weaker as the distance gets bigger. Evidence: The balloon picked up 12 bits at 1 cm, 4 bits at 5 cm and 0 bits at 10 cm. Reasoning: The balloon picked up fewer bits as it moved farther away, which means its pull was weaker. The charge can attract without touching, but only when objects are close enough.
+
+lesson: How can we use magnets to solve a problem? | 3-PS2-4, 3-5-ETS1-1
+practice:
+mc1: Which everyday object uses a magnet to stay closed? | a refrigerator door | a zipper | a shoelace | a button
+hint: Think of a kitchen door that seals by itself.
+mc2: A recycling center needs to separate steel cans from aluminum cans. Which design idea uses magnets? | Pass the cans under a big magnet that lifts out the steel cans. | Wash the cans in water. | Paint the cans different colors. | Crush all the cans together.
+hint: Which cans does a magnet attract?
+mc2: A class wants to design a latch that keeps a cabinet door closed. Which is a criterion? | The door must stay shut when a small child pulls gently. | The latch can only cost $3. | It must be finished by Friday. | Only magnets and tape can be used.
+hint: A criterion tells what the design must do.
+num2: A magnet latch costs $4. The class needs latches for 6 cabinets. How many dollars will the latches cost? | 24
+hint: Multiply the cost by the number of cabinets.
+mc2: A student designs a game where a paper fish with a steel paper clip is picked up by a magnet on a string. Why does the game work? | The magnet attracts the steel clip. | The magnet attracts the paper. | The string is magnetic. | The fish is sticky.
+hint: Which part of the fish does a magnet attract?
+sa2: Describe a problem at home or school that a magnet could help solve, and explain how. | Sample: Pins fall on the floor in the art room. A magnet on a stick could pick up the steel pins quickly without anyone touching the sharp points.
+quiz:
+mc1: Which problem could a magnet help solve? | finding a steel needle dropped in the carpet | keeping ice cream cold | making a plant grow | cleaning glass windows
+mc2: A team designs a magnetic pencil holder for a steel whiteboard. In testing, it slides down when it is full of pencils. What is the best next step? | Use a stronger magnet or add a second magnet and test again. | Use a plastic whiteboard. | Remove all the pencils forever. | Stop testing.
+num2: In a test, a magnet held 9 pencils. A stronger magnet held 15 pencils. How many more pencils did the stronger magnet hold? | 6
+mc2: A team tests three magnets for a door latch. Magnet A held the door shut against a pull of 2 newtons, Magnet B against 5 newtons, and Magnet C against 9 newtons. The door must stay shut against a pull of at least 4 newtons, and it must open with a pull of 6 newtons or less so adults can open it easily. Which magnet is the best choice? | Magnet B | Magnet A | Magnet C | none of them
+mc2: Why did Magnet A not meet the criterion in that test (it held against only 2 newtons, and the door needed 4 newtons)? | It was too weak to keep the door shut. | It was too strong. | It was the wrong color. | It cost too much.
+num2: A latch design uses 2 magnets. The class is building 7 latches. How many magnets do they need? | 14
+sa2: Explain how engineers use magnets in at least one real machine or object. | Sample: Cranes at a scrap yard use giant electromagnets to lift heavy pieces of steel and drop them where they are needed.
+
+test:
+mc1: A magnet will attract | an iron nail | a glass marble | a wooden block | a plastic spoon
+mc1: The ends of a magnet are called | poles | handles | edges | charges
+mc2: What happens when the south pole of one magnet faces the south pole of another? | They push apart. | They pull together. | Nothing happens. | They lose all their force.
+mc2: A paper clip jumps up to a magnet before touching it. What does this show? | Magnets can pull objects without touching them. | Paper clips can jump on their own. | The magnet is warm. | Gravity pulls things up.
+mc2: A magnet works through a plastic folder to move a steel pin. What does this show about magnetic force? | It can pass through plastic. | Plastic is a magnet. | Plastic makes magnets stronger. | It cannot pass through anything.
+mc2: A balloon rubbed on hair sticks to a wall. Which force holds it there? | static electricity | magnetism | friction from the wind | the weight of the balloon
+mc2: Two balloons rubbed on wool hang near each other. What will they most likely do? | push away from each other | pull together and stick | stay perfectly still | pop
+mc2: A class measured how far a magnet could pull a paper clip across a table. Small magnet: 2 cm. Medium magnet: 5 cm. Large magnet: 9 cm. Which conclusion is supported? | In this test, larger magnets pulled the clip from farther away. | Smaller magnets are always stronger. | All magnets have the same strength. | Paper clips pull on magnets more than magnets pull on clips.
+num2: Using the same data (small magnet 2 cm, large magnet 9 cm), how many centimeters farther did the large magnet pull the clip than the small magnet? | 7
+num2: A magnet held 3 steel washers on Monday, 4 on Tuesday and 5 on Wednesday. How many washers did it hold in all? | 12
+mc2: Which question can be answered by an investigation with magnets? | Does the magnet's pull get weaker when it is farther from a paper clip? | Why do people like magnets? | Is this magnet pretty? | Who made the first magnet?
+mc2: A recycling machine uses a magnet to pull out some cans. Which cans does it remove? | steel cans | aluminum cans | glass bottles | plastic bottles
+mc2: Which pair shows two objects that can attract each other without touching? | a balloon rubbed on hair and small bits of paper | a wooden block and a plastic cup | a rock and a leaf | a glass jar and a cotton ball
+num2: A charged comb picked up 10 bits of paper at 1 cm and 3 bits at 4 cm. How many fewer bits did it pick up at 4 cm? | 7
+mc3: A magnet holds 12 clips with no cards between it and the clips, 7 clips through 3 cards and 2 clips through 6 cards. Which is the best prediction for 9 cards? | 0 clips | 12 clips | 7 clips | 20 clips
+mc3: A student wants to know whether magnets work through water. Which investigation is best? | Put a steel clip in a cup of water and move a magnet outside the cup to see if the clip moves. | Put a magnet in water and see if it floats. | Ask a classmate. | Hold a magnet above an empty cup.
+mc2: A team designs a magnetic sign holder that falls off a steel door during testing. What should the team do? | find why it failed and improve the design, then test again | give up | test it on a wooden door | paint the sign
+mc2: Which design solution uses magnets to solve a problem? | a cabinet latch that keeps a door shut without a lock | a rubber band that holds papers | a glue stick that holds a poster | a nail that holds a picture
+num2: A team needs 3 magnets for each sign holder. How many magnets do they need for 8 sign holders? | 24
+sa2: Explain how magnetism and static electricity are different. | Magnets attract objects made of iron or steel and have north and south poles. Static electricity comes from charges made by rubbing materials, and it can attract light objects like paper, hair or water.
+sa2: Write a cause and effect question about magnets and describe how you would test it. | Sample: Does adding more paper between a magnet and a paper clip make the pull weaker? Add one sheet of paper at a time and count how many clips the magnet can still hold.
+cer3: A class tested how the distance between a magnet and a steel paper clip affects the pull. They used a spring scale to measure the force needed to pull the clip away. 1 cm: 6 units of force. 2 cm: 4 units. 3 cm: 2 units. 4 cm: 1 unit. Make a claim about how distance affects magnetic force. Use evidence from the data and explain your reasoning. | Claim: Magnetic force gets weaker as the distance between the magnet and the clip increases. Evidence: At 1 cm it took 6 units of force to pull the clip away, but at 4 cm it took only 1 unit. The force went down each time the distance went up. Reasoning: A magnet can pull on steel without touching, but the pull depends on how close the objects are, so the closer the clip, the stronger the magnetic force.
+
+unit: Unit 5: Life Cycles and Inherited Traits | 3-LS1-1, 3-LS3-1, 3-LS3-2 | sci_3_n1
+el: Use picture cards of each life-cycle stage for sequencing with "first, next, then, last"; build a two-column chart "inherited from parents" and "changed by the environment" with photos.
+
+lesson: Do all living things have the same life cycle? | 3-LS1-1
+practice:
+mc1: Which shows the stages of a butterfly's life cycle in order? | egg, caterpillar, chrysalis, adult | caterpillar, egg, adult, chrysalis | adult, chrysalis, egg, caterpillar | egg, adult, caterpillar, chrysalis
+hint: Start with the stage that hatches.
+mc1: What do all life cycles have in common? | birth, growth, reproduction and death | a chrysalis stage | a tadpole stage | flowers and seeds
+hint: Think about what happens to every living thing.
+mc2: A young frog that lives in water and breathes with gills is called a | tadpole | caterpillar | chick | seedling
+hint: This stage has a tail and no legs at first.
+mc2: Which is a stage in the life cycle of a bean plant? | seedling | pupa | tadpole | nymph
+hint: Which word describes a young plant that just sprouted?
+num2: A monarch egg hatched after 4 days. The caterpillar ate and grew for 14 days. Then it was a chrysalis for 10 days. How many days passed from egg to adult? | 28
+hint: Add all three stages.
+sa2: Draw or describe a model of a plant's life cycle. Label at least four stages. | A circle with arrows: seed, seedling (sprout), adult plant, flower, fruit with new seeds, and back to seed.
+quiz:
+mc1: The stage when an animal makes offspring is called | reproduction | birth | death | growth
+mc2: How is a frog's life cycle like a butterfly's life cycle? | The young look very different from the adults. | Both have a chrysalis stage. | Both are born from seeds. | Both have feathers.
+mc2: A chicken hatches from an egg as a chick, grows into an adult hen and lays eggs. Which stage is missing from this description of its life cycle? | death | birth | growth | reproduction
+mc2: Grasshoppers hatch as small nymphs that look like tiny adults without wings. How is this different from a butterfly? | Grasshoppers have no caterpillar or chrysalis stage. | Grasshoppers have a tadpole stage. | Grasshoppers grow from seeds. | Butterflies never lay eggs.
+num2: A tomato seed sprouted in 7 days. The plant grew for 50 more days before its first flower. How many days after planting did the first flower appear? | 57
+num2: A frog egg took 6 days to hatch. The tadpole stage lasted 70 days. How many more days was the tadpole stage than the egg stage? | 64
+sa3: Compare the life cycle of a frog with the life cycle of a dog. Name one way they are alike and one way they are different. | Alike: both are born, grow, reproduce and die. Different: a frog hatches from an egg as a tadpole that looks different from the adult, but a puppy is born alive and looks like a small adult dog.
+
+lesson: Why do offspring look like their parents? | 3-LS3-1
+practice:
+mc1: A trait passed from parents to offspring is called | an inherited trait | a learned skill | a habit | an injury
+hint: "Inherit" means to get something from your parents.
+mc1: Which is an inherited trait in a dog? | the color of its fur | knowing how to sit on command | a cut on its paw | the name on its collar
+hint: Which one was the dog born with?
+mc2: Two black cats have a litter of kittens. Some kittens are black and one is gray. What does this show? | Offspring can vary even though they inherit traits from their parents. | The gray kitten was painted. | The parents are not cats. | Kittens never look like their parents.
+hint: Variation means differences among members of a group.
+num2: A litter of 7 puppies has 4 puppies with spots. How many puppies do not have spots? | 3
+hint: Subtract the spotted puppies from the total.
+mc2: Which trait of a sunflower is inherited from the parent plants? | the shape of its leaves | a broken stem from the wind | a tag a gardener tied on it | a bite taken by a rabbit
+hint: Which trait comes from the plant's parents and not from something that happened to it?
+sa2: Describe two traits you could observe to show that a baby rabbit is related to its parents. | Sample: The shape of its long ears and the color of its fur are similar to its parents' traits.
+quiz:
+mc1: Offspring usually look | similar to their parents, but not exactly the same | exactly the same as their parents | completely different from their parents | like a different kind of animal
+mc2: A class measured the ear length of 5 rabbits from the same parents: 9 cm, 10 cm, 8 cm, 10 cm and 9 cm. What does the data show? | The rabbits have similar but not identical ear lengths. | All rabbits have the same ear length. | Ear length is not inherited. | Rabbits do not have ears.
+num2: Using the same data (9 cm, 10 cm, 8 cm, 10 cm, 9 cm), how many centimeters longer is the longest ear than the shortest ear? | 2
+mc2: A farmer wants pea plants with purple flowers. Which plants should the farmer use to make seeds? | plants that have purple flowers | plants that have white flowers | plants with the tallest stems | any plants at all
+mc2: Which trait is NOT inherited? | a child's ability to ride a bike | a child's eye color | a child's hair texture | a child's dimples
+num2: A tally of 20 puppies in a dog show found 12 with floppy ears and the rest with pointed ears. How many puppies had pointed ears? | 8
+sa2: Explain why brothers and sisters in the same family can look different from each other. | They each inherit a different mix of traits from their two parents, so they show variation even though they are related.
+
+lesson: Can the environment change an organism's traits? | 3-LS3-2
+practice:
+mc2: Two plants grew from seeds of the same parent. One grew in a sunny window and is tall and green. One grew in a dark closet and is short and pale. What caused the difference? | the environment, because of the amount of light | inherited traits from different parents | the color of the pots | the plants' ages
+hint: The seeds came from the same parent. What was different?
+mc2: Flamingos get their pink color from pigments in the food they eat. A flamingo in a zoo is given food without these pigments. What will most likely happen? | Its new feathers will be paler. | It will turn green. | Its legs will grow longer. | It will stop eating.
+hint: The color comes from the food.
+mc1: Which trait is caused by the environment? | strong arm muscles from swimming every day | the shape of a person's nose | natural hair color | the number of fingers
+hint: Which one changed because of something the person did?
+num2: A plant in rich soil grew 32 cm. A plant from the same seed packet in poor soil grew 19 cm. How many centimeters taller was the plant in rich soil? | 13
+hint: Subtract the heights.
+mc2: A dog inherits a body built for running fast. Its owner never lets it exercise, so it becomes slow and out of shape. What does this show? | Traits can be affected by both inheritance and the environment. | Running speed has nothing to do with the body. | The dog did not inherit any traits. | Exercise changes a dog's fur color.
+hint: Think about what the dog was born with and what happened to it.
+sa2: Give one example of a trait in a plant that can be changed by the environment, and explain how. | Sample: A plant's height can change. If it gets less water or light than it needs, it grows shorter than it would in good conditions.
+quiz:
+mc1: Which trait of a tree is most affected by its environment? | how tall it grows, depending on water and sun | the shape of its leaves | the kind of seeds it makes | the type of bark it has
+mc2: A class grew bean plants from the same seed packet. Group A got 50 mL of water a day and grew 18 cm. Group B got 10 mL of water a day and grew 6 cm. Which conclusion is supported? | The amount of water affected how tall the plants grew. | The plants had different parents. | Water does not affect plants. | Group B plants were older.
+num2: Using the same data (Group A grew 18 cm and Group B grew 6 cm), how many centimeters taller was Group A? | 12
+num2: Using the same data, Group A got 50 mL of water a day. How many milliliters did Group A get in 7 days? | 350
+mc2: Hydrangea flowers can be blue in some soils and pink in other soils. What does this tell you? | Soil, a part of the environment, can affect flower color. | Hydrangeas inherit their color only from their parents. | Pink flowers are older. | Blue flowers get more sunlight.
+mc3: Two puppies from the same litter have very similar inherited traits. One lives where it gets lots of food and exercise, and one gets very little food. Years later, one is much bigger. What is the best explanation? | The environment, especially food, affected their size. | They inherited different sizes. | Dogs grow bigger with less food. | Size is never affected by food.
+cer3: A gardener planted seeds from the same sunflower in two places. Place 1: full sun, plants grew an average of 180 cm. Place 2: mostly shade, plants grew an average of 90 cm. Make a claim about what caused the difference in height. Use evidence and explain your reasoning. | Claim: The amount of sunlight in the environment caused the difference in height. Evidence: The seeds came from the same parent plant, but plants in full sun grew about 180 cm while plants in shade grew about 90 cm. Reasoning: The plants inherited similar traits, so the difference must come from the environment. Plants need light to make food and grow, so less light meant shorter plants.
+
+test:
+mc1: Which stage comes right after the egg in a butterfly's life cycle? | caterpillar | chrysalis | adult | seed
+mc1: Which is an inherited trait of a person? | natural eye color | a scraped knee | a short haircut | knowing how to read
+mc1: All living things are born, grow, reproduce and | die | fly | lay eggs | make seeds
+mc2: Which animal's young look very different from the adults? | frog | dog | horse | elephant
+mc2: Which list shows the life cycle of a flowering plant in order? | seed, seedling, adult plant, flower, new seeds | flower, seed, adult plant, seedling | seedling, seed, flower, adult plant | adult plant, seed, flower, seedling
+mc2: A baby giraffe has a long neck like its parents. This trait is | inherited | learned | caused by eating leaves | caused by an injury
+mc2: Kittens in one litter have different fur colors. This is an example of | variation | metamorphosis | a learned behavior | pollination
+mc2: Which of these traits was caused by the environment and not inherited? | a plant leaning toward the window it grows beside | a cat's eye color | the number of legs on a spider | the shape of a bird's beak
+mc2: A parrot learns to say "hello." Is this an inherited trait? | No, it was learned from the environment. | Yes, all parrots are born saying "hello." | Yes, its parents taught it in the egg. | No, parrots cannot learn.
+num2: A ladybug egg hatches in 4 days, the larva stage lasts 16 days and the pupa stage lasts 7 days. How many days from egg to adult? | 27
+num2: A pea plant made 48 seeds. A gardener planted 30 of them. How many seeds were not planted? | 18
+mc2: A class measured the height of 4 corn plants grown from seeds of the same parents in the same garden: 150 cm, 155 cm, 148 cm, 152 cm. What does the data show? | Plants from the same parents show small differences, called variation. | The plants have very different parents. | The plants are all exactly the same. | Corn plants do not inherit traits.
+num2: Using the same data (150 cm, 155 cm, 148 cm, 152 cm), how many centimeters taller is the tallest plant than the shortest plant? | 7
+mc2: Flamingos fed food without pink pigments grow paler feathers. What is the cause of the paler feathers? | their diet, which is part of the environment | their parents | the weather | their age only
+mc3: Two cuttings from the same rose bush are planted. Cutting A gets good soil and water and makes 20 flowers. Cutting B gets poor soil and little water and makes 4 flowers. Which statement is best supported? | The environment affected the number of flowers. | The cuttings inherited different traits. | Poor soil makes roses grow more flowers. | Water has no effect on roses.
+num2: Using the same data (Cutting A made 20 flowers and Cutting B made 4 flowers), how many flowers did they make in all? | 24
+mc3: A model of a frog's life cycle is drawn as a circle with arrows. Why is it drawn as a circle? | Adults make eggs, so the cycle starts again. | Frogs are round. | Frogs live in round ponds. | The frog stops at the adult stage.
+mc2: Which pair of offspring and parents shows inherited traits? | a puppy with spots like its mother | a child who learned to swim from a coach | a plant that grew tall in the sun | a dog that learned tricks
+mc2: Which stage is part of a grasshopper's life cycle but not a butterfly's? | nymph | egg | adult | chrysalis
+sa2: Explain how a frog's life cycle and a bean plant's life cycle are alike and different. | Alike: both begin small (an egg or a seed), grow, reproduce and die. Different: the frog changes from a tadpole that lives in water to an adult with legs, while the bean grows from a seed into a plant that makes flowers and seeds.
+sa2: Explain why a person's height can be affected by both inherited traits and the environment. | A person can inherit traits for being tall or short from their parents, but things in the environment like healthy food and sleep also affect how tall they grow.
+sa3: A student says, "If I cut my hair short, my children will be born with short hair." Explain why this is wrong. | A haircut is a change caused by the environment, not an inherited trait. Changes like a haircut are not passed to offspring, so the children's hair will follow inherited traits.
+cer3: Two goldfish came from the same parents. Goldfish A lived in a large tank and grew to 15 cm long. Goldfish B lived in a small, crowded bowl and grew to only 6 cm long. Both got the same kind of food. Make a claim about why the goldfish are different sizes. Use evidence and explain your reasoning. | Claim: The environment, the size and crowding of the home, caused the difference in size. Evidence: Both goldfish had the same parents and the same food, but the fish in the large tank grew to 15 cm and the fish in the small, crowded bowl grew to only 6 cm. Reasoning: Because the fish inherited traits from the same parents, the big difference in size is best explained by their different environments. A crowded, small space limited how much Goldfish B could grow.
+
+unit: Unit 6: Survival, Groups and Fossils | 3-LS2-1, 3-LS4-1, 3-LS4-2, 3-LS4-3, 3-LS4-4, 3-5-ETS1-2
+el: Show photos of animal groups and fossils with captions; pre-teach habitat, survive, camouflage, fossil and advantage, and use the frame "The ___ helps the ___ survive because ___."
+
+lesson: Why do some animals live in groups? | 3-LS2-1
+practice:
+mc1: A large group of fish swimming together is called a | school | herd | pack | flock
+hint: It is the same word as a place where you learn.
+mc2: How does living in a pack help wolves? | They can hunt large animals together. | They can fly to find food. | They need less water. | They never have to sleep.
+hint: Think about what is hard for one wolf to do alone.
+mc2: In a beehive, some bees collect food, some care for young and some guard the hive. What is the benefit? | Dividing the jobs helps the whole group survive. | Each bee has to do everything. | It keeps the bees from making honey. | It makes the hive smaller.
+hint: What happens when everyone has a job?
+mc2: Emperor penguins huddle close together in the Antarctic winter. Why? | to share body heat and stay warm | to hide from the sun | to cool off | to find seeds
+hint: Antarctica is extremely cold.
+num2: A herd has 23 adult elephants and 9 young elephants. How many elephants are in the herd? | 32
+hint: Add the adults and the young.
+sa2: Name one animal that lives in a group and describe one way the group helps it survive. | Sample: Meerkats live in groups. While some meerkats look for food, one stands guard and warns the others when a predator comes.
+quiz:
+mc1: Which is a benefit of living in a group? | protection from predators | needing to share no food | being easier for predators to find alone | having no one to help
+mc2: Small fish swim in a tight school. How might this help them when a large fish attacks? | It is harder for the predator to catch just one fish. | The predator gets lost in the sand. | The small fish become bigger. | The small fish turn into rocks.
+mc2: Which is a cost, or problem, of living in a big group? | The animals must share food. | The animals stay warmer. | The animals are safer. | The animals hunt better.
+num2: A scientist counted zebras in a herd on two days. Day 1: 48 zebras. Day 2: 57 zebras. How many more zebras were counted on Day 2? | 9
+mc2: A scientist observed that a lion hunting alone caught prey 2 out of 10 tries. Lions hunting in a group caught prey 5 out of 10 tries. What does this data suggest? | Hunting in a group helped the lions catch prey more often. | Lions hunt better alone. | Lions never hunt in groups. | Group size does not matter.
+num2: Using the same data (alone: 2 catches out of 10 tries, group: 5 catches out of 10 tries), how many more catches did the group make? | 3
+cer3: Scientists watched a group of birds called crows. When crows fed alone, a hawk caught one about every 5 days. When crows fed in a flock of 20 with lookouts, a hawk caught one about every 30 days. Make a claim about whether living in a group helps crows survive. Use evidence and explain your reasoning. | Claim: Living in a group helps crows survive. Evidence: Crows feeding alone were caught about every 5 days, but crows in a flock of 20 were caught only about every 30 days. Reasoning: In a group, lookouts can see a hawk coming and warn the others, so fewer crows are caught and more of them survive.
+
+lesson: How do an animal's traits help it survive? | 3-LS4-2
+practice:
+mc1: Fur, feathers or color that helps an animal blend in with its surroundings is called | camouflage | migration | hibernation | pollination
+hint: It helps an animal hide.
+mc2: A white rabbit and a brown rabbit live in a snowy field. Which one is more likely to be seen by a fox? | the brown rabbit | the white rabbit | both equally | neither one
+hint: Which color stands out against the snow?
+mc2: Some male birds have brighter feathers than others of the same kind. How can this trait help them? | Bright feathers can help them attract mates and reproduce. | Bright feathers keep them cooler. | Bright feathers help them hide from all predators. | Bright feathers make them fly slower.
+hint: Survival also means having offspring.
+num2: A scientist put 20 green and 20 brown paper "beetles" on green grass. Birds found 15 brown beetles and 4 green beetles. How many beetles did the birds find in all? | 19
+hint: Add the brown and green beetles found.
+mc2: Using the same beetle data (birds found 15 brown and 4 green beetles on green grass), which trait was an advantage on green grass? | being green | being brown | being large | being fast
+hint: Which color was found less often?
+sa2: Explain how a cactus's spines are a trait that helps it survive. | The spines protect the cactus from animals that might eat it for its water and food.
+quiz:
+mc1: A trait that helps an organism survive and reproduce is | an advantage | a constraint | a fossil | a habitat
+mc2: Giraffes with longer necks can reach leaves high in trees. During a dry season with few low leaves, which giraffes are most likely to survive? | giraffes with longer necks | giraffes with shorter necks | all giraffes equally | none of the giraffes
+mc2: Some plants make fruit that animals like to eat. The animals carry the seeds away in their droppings. How does this help the plant? | Its seeds spread to new places to grow. | It keeps animals away. | It keeps the plant from making flowers. | It makes the plant shorter.
+num2: In a field, 50 moths were dark and 50 were light. A month later there were 38 dark moths and 21 light moths left. How many more dark moths survived than light moths? | 17
+mc2: Using the same moth data (38 dark moths and 21 light moths left), what is the most likely reason? | The dark moths were harder for birds to see in that field. | The light moths were stronger. | Birds only eat dark moths. | The light moths flew away to a better place.
+mc3: Among a group of deer, some can run a little faster than others. A pack of wolves moves into the area. What will most likely happen over many years? | More of the faster deer will survive and have offspring. | The slower deer will become faster right away. | All the deer will stop running. | The wolves will become deer.
+sa2: Explain why small differences in traits among animals of the same kind can make a difference in survival. | Some differences, like a better color for hiding or longer legs for running, give certain animals an advantage. Those animals are more likely to survive, find mates and have offspring.
+
+lesson: What happens when a habitat changes? | 3-LS4-3, 3-LS4-4
+practice:
+mc1: A habitat is | the place where an organism lives and gets what it needs | a kind of food | a stage in a life cycle | a fossil
+hint: It is an organism's home.
+mc2: Which animal can survive well in a hot, dry desert? | a camel that can go a long time without drinking | a polar bear with thick fur | a fish that breathes with gills | a seal that hunts in icy water
+hint: Which animal has traits for little water and high heat?
+mc2: A pond dries up during a long drought. Which organisms will have the hardest time surviving? | fish | birds that can fly to a new pond | deer that can walk to a river | seeds buried in the soil
+hint: Which organisms cannot leave the water?
+num2: A wetland had 64 frogs before it was drained to build a road. Afterward, scientists counted 15 frogs. How many fewer frogs were there? | 49
+hint: Subtract the new count from the old count.
+mc2: A forest is cut down and the land becomes a grassy field. Which animal is most likely to do well in the new habitat? | a rabbit that eats grass | a woodpecker that nests in trees | a squirrel that stores nuts in trees | a tree frog
+hint: Which animal needs grass instead of trees?
+sa2: Explain why some organisms survive well in a habitat, some survive less well and some cannot survive at all. | Each organism has traits that fit certain conditions. If the habitat gives it what it needs, it survives well. If it gets only some of what it needs, it survives less well. If its needs are not met, it cannot survive there.
+quiz:
+mc2: A shallow ocean habitat gets much warmer. Coral that needs cool water begins to die. Fish that hide in the coral also become fewer. Why did the fish decrease? | They lost the coral they need for shelter. | The fish grew too big. | The water became cold. | The fish ate the coral.
+mc2: A town wants to build homes on a field where a rare butterfly lives. Which solution best helps both the town and the butterfly? | build on part of the field and protect the part with the plants the butterflies need | build on the whole field | move all the butterflies to the Arctic | cover the field with gravel
+mc2: Data from a stream: before a factory opened, the stream had 40 trout. Two years later it had 12 trout, and the water was much warmer. Which claim is supported? | The warmer water made the stream less fit for trout. | Trout like warmer water. | The factory had no effect. | Trout became a different animal.
+num2: Using the same stream data (40 trout before and 12 trout two years later), how many fewer trout were in the stream? | 28
+num2: Volunteers planted 35 native plants on Saturday and 47 on Sunday to rebuild a habitat. How many plants did they plant? | 82
+mc3: A class compared two ways to help salmon in a river with a dam. Plan A: build a fish ladder so salmon can swim past the dam. Plan B: paint the dam green. Which plan has more merit for helping salmon reach their spawning grounds? | Plan A, because it gives salmon a path past the dam | Plan B, because green is a natural color | both plans equally | neither plan, because salmon do not swim upstream
+sa2: Describe one change to a habitat caused by people and one solution that could reduce its harm to living things. | Sample: Building a highway cuts a forest in two so animals cannot reach food. A wildlife bridge over the highway lets animals cross safely.
+
+lesson: What can fossils tell us about the past? | 3-LS4-1
+practice:
+mc1: A fossil is | the remains or traces of a living thing from long ago | a rock made of ice | a kind of living plant | a shiny mineral
+hint: Fossils can be bones, shells, footprints or imprints.
+mc2: A fossil of a fern is found in a place that is now very cold and icy. What does this suggest? | The place was once warmer and wetter. | Ferns grow on ice today. | The fossil is from the future. | Ice makes ferns.
+hint: Ferns need warm, moist places to grow.
+mc2: Fossils of fish and seashells are found in rock on a dry hilltop. What can you infer? | The area was once covered by water. | Fish lived on hilltops. | Birds dropped the fish there last week. | Seashells grow in rocks.
+hint: Where do fish and shells live?
+mc2: The La Brea Tar Pits in Los Angeles hold fossils of mammoths, saber-toothed cats and dire wolves. What do these fossils tell us? | Animals that no longer live there once lived in that area. | Those animals still live in Los Angeles today. | The animals are only made-up stories. | Tar makes new animals.
+hint: Are mammoths alive in Los Angeles now?
+num2: A museum has 27 mammoth bones and 19 saber-toothed cat bones on display. How many bones are on display in all? | 46
+hint: Add the two numbers.
+sa2: Explain how a dinosaur footprint fossil can give information even though it is not a bone. | The footprint shows the size and shape of the dinosaur's foot, how many toes it had and that it walked over soft mud in that place.
+quiz:
+mc1: Which is a trace fossil? | a footprint pressed into rock | a living tree | a dinosaur toy | a fresh seashell from the beach
+mc2: A fossil shows a large animal with a body like an elephant and long curved tusks. Which modern animal is it most similar to? | an elephant | a horse | a lion | a whale
+mc2: Fossils of palm trees are found in a place that now has cold winters with snow. What is the best explanation? | The climate there was warmer long ago. | Palm trees grow best in snow. | Someone buried the palm trees last year. | The fossils are made of snow.
+num2: A fossil layer is 75 centimeters below the ground. A deeper fossil layer is 130 centimeters below the ground. How many centimeters deeper is the second layer? | 55
+mc2: Which question can fossils help scientists answer? | What kinds of organisms lived in this place long ago? | What will the weather be tomorrow? | How many people live here today? | What is the name of this town?
+mc3: Fossils of a sea animal are found in the bottom rock layer of a cliff, and fossils of land plants are found in a layer above it. What is the best interpretation? | The area was once under the sea and later became land. | The area was always land. | Sea animals climbed onto the land plants. | The plants lived under the sea.
+sa2: Describe what a fossil of an animal that is now extinct can tell us. | It shows what the animal looked like, how big it was and what kind of environment it lived in, even though no living animals of that kind exist today.
+
+test:
+mc1: The place where an organism lives and gets food, water and shelter is its | habitat | fossil | life cycle | trait
+mc1: Which is a fossil? | the shape of a shell pressed into rock | a live crab on the beach | a plastic dinosaur | a rock shaped like a heart
+mc2: Why do zebras live in large herds? | Many eyes can spot predators and warn the group. | Herds make the zebras invisible. | Zebras cannot walk alone. | Herds make it easier to find snow.
+mc2: A green grasshopper lives in a green meadow. How does its color help it survive? | It blends in so birds have trouble seeing it. | It makes it jump higher. | It keeps it warm. | It helps it make food from sunlight.
+mc2: Which organism would survive least well in a hot, dry desert? | a fern that needs moist soil | a cactus that stores water | a lizard that hides in the shade | a kangaroo rat that gets water from seeds
+mc2: Fossils of corals are found in a mountain far from the ocean. What does this show? | The land was once under warm ocean water. | Coral can live on dry mountains. | Corals are a kind of tree. | Mountains make coral.
+mc2: Ants work together to carry a large leaf back to their nest. What does this show? | Working in a group helps them get food. | Ants are stronger alone. | Leaves are light for one ant. | Ants live alone.
+mc2: A river is dammed and the area below the dam gets much less water. What will most likely happen to fish that live below the dam? | Fewer fish will survive there. | More fish will survive there. | The fish will grow legs and walk. | Nothing will change.
+num2: A park had 84 quail. After a wildfire burned their bushes, there were 37 quail. How many fewer quail were there? | 47
+num2: Students counted 18 ladybugs on Monday, 26 on Tuesday and 14 on Wednesday in the school garden. How many ladybugs did they count in all? | 58
+mc2: Light-colored mice and dark-colored mice live on dark lava rock. Which mice will owls most likely catch more often? | the light-colored mice | the dark-colored mice | both equally | neither, because owls do not eat mice
+mc2: A scientist found 60 light mice and 60 dark mice on dark rock at the start of the year. At the end of the year, there were 14 light mice and 52 dark mice. How many more dark mice than light mice survived? | 38 | 46 | 8 | 66
+num2: Using the same mouse data (14 light mice and 52 dark mice at the end of the year), how many mice survived in all? | 66
+mc3: Which statement best explains the mouse data? | Dark fur was an advantage on dark rock, so more dark mice survived. | Light mice are faster than dark mice. | Owls prefer dark mice. | Fur color does not affect survival.
+mc2: The La Brea Tar Pits have fossils of mammoths and camels. These animals no longer live in Los Angeles. What can scientists conclude? | The animals living in that area have changed over time. | The fossils are fake. | Mammoths still live in Los Angeles. | The area has never changed.
+mc2: A forest habitat is replaced by a shopping center. Which solution would most help forest animals? | keep a strip of forest connecting the remaining woods | cut down the rest of the forest | pave the parking lot with dark asphalt | remove all the bird feeders
+mc3: Plants in a rain forest have large, broad leaves. Plants in a desert have small, waxy leaves or spines. What is the best explanation? | Each plant has traits that fit the conditions of its habitat. | Desert plants are younger. | Rain forest plants are a different color. | Leaf shape does not matter.
+num2: A fossil-hunting club found 13 shell fossils, 8 plant fossils and 5 fish fossils. How many fossils did they find in all? | 26
+mc1: Animals that live in a group and hunt together, like lions, are called a | pride | school | swarm | hive
+sa2: Explain one way living in a group helps animals survive and one way it can make survival harder. | Helps: the group can protect each other from predators or hunt together. Harder: the animals must share food and water, and diseases can spread through the group.
+sa2: Fossils of tropical plants are found in a place that now has cold winters. Explain what this tells you about the environment long ago. | The environment used to be much warmer, because tropical plants need warm temperatures to grow. The climate in that place has changed over a long time.
+cer3: A wetland was partly drained for farmland. Scientists counted animals before and after. Frogs: 120 before, 30 after. Ducks: 45 before, 20 after. Field mice: 15 before, 40 after. Make a claim about how draining the wetland affected these animals. Use evidence from the data and explain your reasoning. | Claim: Draining the wetland helped some animals survive and made it harder for others. Evidence: Frogs dropped from 120 to 30 and ducks dropped from 45 to 20, but field mice rose from 15 to 40. Reasoning: Frogs and ducks need water to live, find food and reproduce, so they survived less well when the water was removed. Field mice live in dry fields, so the new dry habitat gave them more of what they need.
