@@ -1,0 +1,853 @@
+@subject math
+@grade 3
+@program Eureka Math
+about: Third grade builds the meaning of multiplication and division within 100, uses place value to round, add and subtract within 1,000 with measurements of time, mass and liquid volume, connects area to multiplication, develops fractions as numbers on the number line, displays data in scaled graphs and solves perimeter and geometry problems.
+std: 3.OA.A.3 | Use multiplication and division within 100 to solve word problems with equal groups, arrays and measurement quantities.
+std: 3.OA.C.7 | Fluently multiply and divide within 100, and know all products of two one-digit numbers from memory.
+std: 3.OA.D.8 | Solve two-step word problems using the four operations, represent them with equations using a letter for the unknown, and check answers using mental math, estimation and rounding.
+std: 3.NBT.A.2 | Fluently add and subtract within 1,000 using strategies and algorithms based on place value and properties of operations.
+std: 3.NF.A.2 | Understand a fraction as a number on the number line and represent fractions on a number line diagram.
+std: 3.NF.A.3 | Explain equivalence of fractions in special cases and compare fractions by reasoning about their size.
+std: 3.MD.C.7 | Relate area to the operations of multiplication and addition.
+std: 3.MD.D.8 | Solve real-world and mathematical problems involving perimeters of polygons.
+
+unit: Module 1: Multiplication and division with units of 2, 3, 4, 5 and 10 | 3.OA.A.1, 3.OA.A.2, 3.OA.A.3, 3.OA.A.4, 3.OA.B.5, 3.OA.C.7 | mult, g3div
+el: Act out equal groups with counters before each lesson; post the words "groups of", "in each", "rows", "share equally".
+
+lesson: Meaning of multiplication and division | 3.OA.A.1, 3.OA.A.2, 3.OA.A.4
+practice:
+mc1: Which shows 3 groups of 4? | 4 + 4 + 4 | 3 + 4 | 4 + 4 + 4 + 4 | 3 + 3 + 3
+hint: "Groups of 4" means each group has 4. How many groups are there?
+num1: There are 5 bags with 2 oranges in each bag. How many oranges are there? | 10
+hint: Count by 2s five times.
+mc2: 12 stickers are shared equally by 3 friends. Which equation shows this? | 12 / 3 = 4 | 12 x 3 = 36 | 12 - 3 = 9 | 3 + 4 = 7
+num2: 4 x ? = 20 | 5
+hint: Count by 4s until you reach 20. How many 4s did you count?
+sa2: Draw equal groups to show 2 x 6. Explain what each number means. | Two circles with 6 dots in each. 2 is the number of groups and 6 is the number in each group; there are 12 in all.
+quiz:
+mc1: Which equation matches "5 groups of 3"? | 5 x 3 = 15 | 5 + 3 = 8 | 3 x 3 = 9 | 5 x 5 = 25
+mc2: Ms. Ruiz puts 18 pencils into 3 cups equally. How many pencils go in each cup? | 6 | 15 | 21 | 54
+num1: There are 4 tables with 5 chairs at each table. How many chairs are there? | 20
+num2: ? / 2 = 7 | 14
+mc2: Which situation can be solved with 15 / 5? | 15 crayons put into boxes of 5 | 15 crayons and 5 more crayons | 5 boxes of 15 crayons | 15 crayons with 5 taken away
+num2: 30 apples are packed in bags of 10. How many bags are filled? | 3
+sa2: Write a word problem that can be solved with 3 x 4. Solve it. | There are 3 vases with 4 flowers in each. How many flowers? 3 x 4 = 12 flowers.
+
+lesson: Arrays and units of 2 and 3 | 3.OA.A.3, 3.OA.B.5, 3.OA.C.7
+practice:
+mc1: An array has 4 rows of 3 stars. Which equation matches? | 4 x 3 = 12 | 4 + 3 = 7 | 4 x 4 = 16 | 3 x 3 = 9
+hint: Count the number in each row, then count the rows.
+num1: 2 x 8 = ? | 16
+num1: 3 x 7 = ? | 21
+num2: 27 / 3 = ? | 9
+hint: Think: 3 times what number equals 27?
+sa2: Explain how an array of 3 rows of 6 can also show 6 rows of 3. | Turning the array gives 6 rows of 3. The total does not change: 3 x 6 = 6 x 3 = 18.
+quiz:
+num1: 3 x 9 = ? | 27
+num1: 16 / 2 = ? | 8
+mc2: Which is the same as 2 x 9? | 9 x 2 | 2 + 9 | 9 - 2 | 9 / 2
+mc2: A garden has 3 rows with 8 carrots in each row. How many carrots? | 24 | 11 | 21 | 38
+num2: Twins share 14 marbles equally. How many marbles does each twin get? | 7
+mc2: An array shows 18 dots in 3 equal rows. How many dots are in each row? | 6 | 15 | 21 | 9
+sa2: Use the commutative property to explain why knowing 3 x 8 helps you find 8 x 3. | The commutative property says the order of factors does not change the product, so 8 x 3 = 3 x 8 = 24.
+
+lesson: Multiplication and division with units of 4 | 3.OA.A.3, 3.OA.A.4, 3.OA.C.7
+practice:
+num1: 4 x 6 = ? | 24
+num1: 32 / 4 = ? | 8
+hint: Count by 4s to 32. How many 4s did you count?
+mc2: A table has 4 legs. How many legs do 7 tables have? | 28 | 11 | 24 | 32
+num2: 4 x ? = 36 | 9
+sa2: Explain how doubling helps you multiply by 4. Use 4 x 7 as an example. | 4 is double 2. 2 x 7 = 14, and double 14 is 28, so 4 x 7 = 28.
+quiz:
+num1: 4 x 8 = ? | 32
+num1: 24 / 4 = ? | 6
+mc2: Which number makes 4 x ? = 40 true? | 10 | 36 | 44 | 4
+num2: A coach puts 28 players into teams of 4. How many teams are there? | 7
+mc2: Which array shows 4 x 5? | 4 rows of 5 | 4 rows of 4 | 5 rows of 5 | 9 rows of 1
+num2: Each car has 4 wheels. How many wheels are on 9 cars? | 36
+sa2: Lily says 4 x 6 = 22. Explain her mistake and give the correct answer. | 4 x 6 means 4 groups of 6. 6 + 6 + 6 + 6 = 24, so the answer is 24, not 22.
+
+lesson: Distributive property and word problems with 2 to 5 and 10 | 3.OA.A.3, 3.OA.B.5, 3.OA.C.7
+practice:
+mc2: Which shows 5 x 7 broken apart with the distributive property? | 5 x 5 + 5 x 2 | 5 + 7 | 5 x 5 + 2 | 7 x 7 - 5
+hint: Break 7 into 5 and 2. Multiply each part by 5.
+num1: 10 x 6 = ? | 60
+num1: 45 / 5 = ? | 9
+num2: Sam buys 3 packs of 10 stickers and 2 more stickers. How many stickers does he have? | 32
+hint: First find 3 x 10, then add the 2 extra stickers.
+sa2: Use 5 x 8 = 40 to find 6 x 8. Explain your thinking. | 6 x 8 is one more group of 8 than 5 x 8, so 40 + 8 = 48.
+quiz:
+num1: 5 x 9 = ? | 45
+num1: 70 / 10 = ? | 7
+mc2: Which equals 4 x 9? | 4 x 5 + 4 x 4 | 4 x 5 + 4 | 4 + 9 | 9 x 9 - 4
+num2: A bakery sells muffins in boxes of 5. Mia buys 6 boxes and eats 3 muffins. How many muffins are left? | 27
+mc2: Ben has 40 cards. He puts them in rows of 10. How many rows does he make? | 4 | 30 | 50 | 400
+num2: There are 3 rows of 10 chairs and 1 row of 5 chairs. How many chairs are there? | 35
+sa3: Explain two different ways to solve 6 x 5. | Skip count by 5 six times: 5, 10, 15, 20, 25, 30. Or 5 x 5 = 25 plus one more 5 is 30.
+
+test:
+mc1: Which equation shows 6 groups of 2? | 6 x 2 = 12 | 6 + 2 = 8 | 6 - 2 = 4 | 2 x 2 = 4
+mc1: What is 3 x 6? | 18 | 9 | 16 | 36
+num1: 4 x 7 = ? | 28
+num1: 35 / 5 = ? | 7
+num1: 10 x 8 = ? | 80
+num1: 21 / 3 = ? | 7
+mc2: Which situation can be solved with 20 / 4? | 20 cookies shared equally by 4 children | 20 cookies and 4 more | 4 plates with 20 cookies each | 20 cookies with 4 eaten
+mc2: An array has 5 rows of 4 hearts. How many hearts are there? | 20 | 9 | 25 | 16
+mc2: Which number makes ? x 3 = 24 true? | 8 | 21 | 27 | 72
+mc2: Which is equal to 3 x 7? | 7 x 3 | 3 + 7 | 7 - 3 | 3 x 3 + 7
+mc2: Which shows 4 x 8 using the distributive property? | 4 x 5 + 4 x 3 | 4 x 5 + 3 | 4 + 8 | 8 x 8 - 4
+num2: Jada has 5 vases with 4 roses in each. How many roses does she have? | 20
+num2: 36 students are split into 4 equal teams. How many students are on each team? | 9
+num2: A box holds 10 crayons. How many crayons are in 7 boxes? | 70
+mc2: Kai puts 27 shells into 3 equal piles. Which equation finds the shells in each pile? | 27 / 3 = 9 | 27 x 3 = 81 | 27 - 3 = 24 | 27 + 3 = 30
+mc3: Which statement is true? | 2 x 9 has the same product as 3 x 6 | 2 x 9 is greater than 3 x 6 | 2 x 9 is less than 3 x 6 | 2 x 9 equals 9 + 2
+num3: A store has 4 shelves with 6 toy cars on each shelf. It sells 5 cars. How many cars are left? | 19
+num3: Ana reads 5 pages each day for 8 days. Leo reads 3 pages each day for 10 days. How many more pages does Ana read than Leo? | 10
+sa2: Draw an array for 3 x 5 and write a division equation that matches it. | 3 rows of 5 dots; 15 / 3 = 5 or 15 / 5 = 3.
+sa2: Write a word problem for 24 / 4. Tell whether your answer is the number of groups or the number in each group. | 24 muffins in boxes of 4: how many boxes? 6 boxes, which is the number of groups.
+sa3: Explain how you can use 5 x 6 = 30 to solve 4 x 6. | 4 x 6 is one group of 6 less than 5 x 6, so 30 - 6 = 24.
+task3: The class is planning a picnic. Juice boxes come in packs of 4 and sandwiches come in trays of 5. There are 20 students and 4 adults, and each person gets 1 juice box and 1 sandwich. How many packs of juice and trays of sandwiches should the class buy? Show your work with equations and explain how you know there is enough for everyone. | 24 people: 6 packs of juice (24 / 4) and 5 trays of sandwiches (25 sandwiches, 1 extra), with clear equations and an explanation of why 5 trays are needed. | Correct number of packs and trays with equations; the explanation is incomplete. | One part correct, or a correct strategy with a calculation error (for example 4 trays). | Little correct work.
+
+unit: Module 2: Place value and problem solving with units of measure | 3.MD.A.1, 3.MD.A.2, 3.NBT.A.1, 3.NBT.A.2 | g3round
+el: Keep a large analog clock and a number line marked every 5 minutes on display; pre-teach "mass", "liquid volume", "estimate", "round" and "elapsed time" with real objects (a 1-liter bottle, a 1-kilogram bag).
+
+lesson: Telling time to the minute and elapsed time | 3.MD.A.1
+practice:
+mc1: The hour hand of a clock is just past the 4 and the minute hand points to the 7. What time is it? | 4:35 | 4:07 | 7:20 | 4:30
+hint: Each number on the clock stands for 5 minutes. Count by 5s up to the 7.
+num1: How many minutes are in 1 hour? | 60
+hint: Think about how long it takes the minute hand to go all the way around the clock.
+num2: Rosa starts reading at 3:15 p.m. and stops at 3:52 p.m. How many minutes does she read? | 37
+hint: Count on from 3:15 to 3:50, then add the last few minutes.
+mc2: A movie starts at 6:40 p.m. and lasts 45 minutes. When does it end? | 7:25 p.m. | 6:85 p.m. | 7:45 p.m. | 7:15 p.m.
+hint: How many minutes from 6:40 to 7:00? How many minutes are still left after that?
+mc2: Diego needs 25 minutes to bike to practice. Practice starts at 4:10 p.m. What is the latest time he can leave home? | 3:45 p.m. | 4:35 p.m. | 3:55 p.m. | 3:35 p.m.
+hint: Count back 10 minutes to 4:00, then count back the rest of the 25 minutes.
+sa2: Explain how a number line can help you find the time 28 minutes after 2:45. | Mark 2:45 and jump 15 minutes to 3:00, then jump 13 more minutes to 3:13. The jumps add to 28 minutes, so the time is 3:13.
+quiz:
+mc1: The hour hand is between the 11 and the 12, and the minute hand is 3 small marks past the 9. What time is it? | 11:48 | 11:93 | 9:11 | 11:45
+num2: A bus ride starts at 8:05 a.m. and ends at 8:47 a.m. How many minutes long is the ride? | 42
+mc2: Priya puts bread in the oven at 10:35 a.m. It bakes for 40 minutes. When does she take it out? | 11:15 a.m. | 10:75 a.m. | 11:35 a.m. | 11:05 a.m.
+num2: Kenji practices piano for 15 minutes, takes a 5-minute break, then practices 20 more minutes. How many minutes pass from start to finish? | 40
+mc2: Which time is 17 minutes before 1:05 p.m.? | 12:48 p.m. | 1:22 p.m. | 12:58 p.m. | 12:38 p.m.
+num3: Lunch starts at 11:50 a.m. Recess comes right after lunch and ends at 12:35 p.m. How many minutes are lunch and recess together? | 45
+sa2: Omar says the time from 9:40 to 10:10 is 70 minutes because 1010 - 940 = 70. Explain his mistake and give the correct elapsed time. | An hour has 60 minutes, not 100, so you cannot subtract the times like whole numbers. From 9:40 to 10:00 is 20 minutes and from 10:00 to 10:10 is 10 minutes, so the elapsed time is 30 minutes.
+
+lesson: Measuring mass and liquid volume in metric units | 3.MD.A.2
+practice:
+mc1: Which unit is best for measuring the mass of a paper clip? | grams | kilograms | liters | meters
+hint: A paper clip is very light. Which unit is used for light things?
+mc1: Which is the best estimate for the water in a full bathtub? | 150 liters | 150 milliliters | 15 kilograms | 1 liter
+hint: A large water bottle holds about 1 liter. Would one bottle fill a bathtub?
+num2: A pitcher holds 4 liters of lemonade. Mr. Chen makes 6 pitchers for the school fair. How many liters does he make? | 24
+hint: Each pitcher is a group of 4 liters.
+num2: A dog has a mass of 32 kilograms. A puppy has a mass of 9 kilograms. How many kilograms heavier is the dog? | 23
+hint: "How much heavier" means find the difference.
+mc2: A container is marked 0, 2, 4, 6, 8 and 10 liters. The water reaches halfway between the 6 and 8 marks. How much water is in the container? | 7 liters | 6 liters | 8 liters | 3 liters
+hint: What number is halfway between 6 and 8?
+num2: One kilogram is the same as 1,000 grams. A bag of rice has a mass of 3 kilograms. How many grams is that? | 3000
+hint: Each kilogram is 1,000 grams. How many groups of 1,000 are there?
+quiz:
+mc1: Which object has a mass closest to 1 kilogram? | a thick dictionary | a paper clip | a school bus | a grape
+num2: An aquarium holds 36 liters of water. Ava fills it using a 4-liter bucket. How many buckets of water does she pour in? | 9
+num2: Three boxes have masses of 14 kilograms, 25 kilograms and 18 kilograms. What is their total mass in kilograms? | 57
+mc2: A scale shows apples with a mass of 850 grams. Nia adds a 120-gram orange. What does the scale show now? | 970 grams | 730 grams | 960 grams | 1,070 grams
+num3: A jug holds 8 liters of water. Lena pours 3 liters into a plant tub. Then she fills 2 bottles that hold 2 liters each. How many liters are left in the jug? | 1
+mc2: Which is the best estimate for the water in a full mop bucket? | 10 liters | 10 milliliters | 100 liters | 1 liter
+sa2: Jamal says a 5-kilogram bag of potatoes is lighter than a 900-gram bag of carrots because 5 is less than 900. Is he right? Explain. | No. 5 kilograms is 5,000 grams, which is more than 900 grams. You must compare masses in the same unit.
+
+lesson: Rounding to the nearest ten and hundred | 3.NBT.A.1
+practice:
+mc1: Round 63 to the nearest ten. | 60 | 70 | 64 | 100
+hint: Is 63 closer to 60 or to 70?
+num1: Round 278 to the nearest ten. | 280
+hint: Which two tens is 278 between?
+mc2: Round 451 to the nearest hundred. | 500 | 400 | 450 | 460
+hint: Find the halfway point between 400 and 500. Is 451 above or below it?
+num2: Round 649 to the nearest hundred. | 600
+hint: Is 649 more or less than the halfway point, 650?
+mc2: Which number rounds to 300 when rounded to the nearest hundred? | 256 | 245 | 350 | 362
+hint: Any number from 250 up to 349 rounds to 300.
+sa2: Explain how a vertical number line helps you round 735 to the nearest ten. | Put 730 at the bottom, 740 at the top and 735 at the halfway point. 735 is exactly halfway, and halfway numbers round up, so 735 rounds to 740.
+quiz:
+num1: Round 84 to the nearest ten. | 80
+num1: Round 715 to the nearest hundred. | 700
+mc2: The library has 386 books about animals. About how many books is that, to the nearest ten? | 390 | 380 | 400 | 300
+mc2: Which number does NOT round to 500 when rounded to the nearest hundred? | 449 | 450 | 512 | 549
+mc3: A number rounds to 70 when rounded to the nearest ten. Which could the number be? | 65 | 64 | 75 | 77
+num2: Round 995 to the nearest ten. | 1000
+sa3: Mateo rounded 248 to the nearest hundred and got 300. He said, "First I rounded 248 to 250, and 250 rounds to 300." Explain his mistake. | You must round the original number, not a number you already rounded. 248 is less than 250, the halfway point, so it is closer to 200 and rounds to 200.
+
+lesson: Adding and subtracting measurements with the standard algorithm | 3.NBT.A.2, 3.MD.A.2
+practice:
+num1: 347 + 285 = ? | 632
+hint: Add the ones first. Do you have enough ones to make a new ten?
+num1: 602 - 358 = ? | 244
+hint: There are no tens in 602. Rename 1 hundred as 10 tens first.
+num2: A truck carries 465 kilograms of sand and then 378 kilograms more. How many kilograms does it carry in all? | 843
+hint: Line up the hundreds, tens and ones before you add.
+num2: A water tank holds 500 liters. 236 liters are used. How many liters are left? | 264
+hint: Rename 5 hundreds as 4 hundreds, 9 tens and 10 ones.
+mc2: Estimate 412 + 289 by rounding each number to the nearest hundred. | 700 | 600 | 800 | 701
+hint: Round each number first, then add the rounded numbers.
+sa2: Explain how you can check that 703 - 468 = 235 is correct. | Add the answer to the number subtracted: 235 + 468 = 703. Since the sum is 703, the subtraction is correct.
+quiz:
+num1: 529 + 194 = ? | 723
+num1: 800 - 437 = ? | 363
+num2: A school play sold 286 tickets on Friday and 347 tickets on Saturday. How many tickets were sold in all? | 633
+num2: A rope is 950 centimeters long. Ms. Patel cuts off 476 centimeters. How many centimeters long is the rope now? | 474
+mc2: Which is the best estimate for 689 - 312, rounding each number to the nearest hundred? | 400 | 300 | 500 | 377
+num3: A farmer picked 238 kilograms of grapes on Monday and 175 kilograms on Tuesday. She sold 290 kilograms. How many kilograms of grapes does she have left? | 123
+sa2: Hana solved 504 - 267 and got 363. Explain her mistake and find the correct answer. | In each place she subtracted the smaller digit from the larger one (7 - 4 and 6 - 0) instead of renaming. She should rename a hundred as tens and a ten as ones. The correct answer is 237.
+
+test:
+mc1: How many minutes are in half an hour? | 30 | 50 | 60 | 15
+num1: Round 537 to the nearest ten. | 540
+num1: Round 537 to the nearest hundred. | 500
+num1: 456 + 367 = ? | 823
+num1: 710 - 286 = ? | 424
+mc1: Which unit is best for measuring the water in a swimming pool? | liters | grams | kilograms | centimeters
+mc2: Art class starts at 1:25 p.m. and ends at 2:10 p.m. How long is art class? | 45 minutes | 85 minutes | 35 minutes | 55 minutes
+mc2: Which number rounds to 600 when rounded to the nearest hundred and to 640 when rounded to the nearest ten? | 637 | 645 | 652 | 634
+mc2: Which mass is the heaviest? | 2 kilograms | 900 grams | 1,500 grams | 1,999 grams
+mc2: Ari leaves home at 7:48 a.m. and walks 17 minutes to school. When does Ari arrive? | 8:05 a.m. | 7:65 a.m. | 8:15 a.m. | 7:31 a.m.
+num2: A water cooler holds 18 liters. Students drink 3 liters from it each hour. How many hours until the cooler is empty? | 6
+num2: A bridge can hold 900 kilograms. A car with a mass of 685 kilograms is on it. How many more kilograms can the bridge hold? | 215
+num2: Jada ran for 25 minutes, Luis ran for 38 minutes and Kim ran for 19 minutes. How many minutes did they run altogether? | 82
+num3: A bakery bag has 1,000 grams of flour. The baker uses 375 grams for a loaf of bread and 248 grams for a batch of rolls. How many grams of flour are left? | 377
+num3: Mr. Lopez's class collected 168 kilograms of paper for recycling. Ms. Wong's class collected 59 kilograms more than Mr. Lopez's class. How many kilograms did the two classes collect in all? | 395
+mc3: Two numbers are each rounded to the nearest hundred, and the rounded numbers add to 700. Which pair could the numbers be? | 362 and 315 | 350 and 350 | 248 and 349 | 412 and 389
+mc2: Each of 3 bags of oranges has a mass of 6 kilograms. What is the total mass? | 18 kilograms | 9 kilograms | 63 kilograms | 24 kilograms
+num2: A pot holds 12 liters of soup. The cook pours equal amounts into 4 containers until the pot is empty. How many liters are in each container? | 3
+mc2: Which is the best estimate of 523 + 278? | 800 | 700 | 900 | 750
+sa2: Explain how you know 9:55 a.m. is 15 minutes before 10:10 a.m. | From 9:55 to 10:00 is 5 minutes, and from 10:00 to 10:10 is 10 minutes. 5 + 10 = 15 minutes.
+sa2: Mai says 1 kilogram of feathers is lighter than 1 kilogram of rocks. Is she right? Explain. | She is not right. Both have a mass of 1 kilogram, so their masses are equal. The feathers take up more space, but they are not lighter.
+sa3: Leo added 458 + 276 and got 624. Use estimation to show his answer is not reasonable, then find the correct sum. | 458 rounds to 500 and 276 rounds to 300, so the sum should be about 800. 624 is too far from 800. The correct sum is 734.
+task3: Room 12 is going on a field trip. The bus leaves school at 8:35 a.m. and the drive to the science center takes 48 minutes. The class stays at the center for exactly 2 hours, then rides 48 minutes back to school. The class brings 3 coolers that each hold 12 liters of water, and students drink 29 liters during the trip. (a) What time does the class arrive at the center? (b) What time does it get back to school? (c) How many liters of water are left? Show your work with number lines or equations and explain each step. | All correct: arrives 9:23 a.m., leaves at 11:23 a.m., back at 12:11 p.m., and 7 liters left (3 x 12 = 36, 36 - 29 = 7), with clear number lines or equations and explanations. | All answers correct with gaps in the work, or one small error with clear work. | About half the parts correct, or a workable strategy with several calculation errors. | Little correct work.
+
+unit: Module 3: Multiplication and division with units of 0, 1, 6 to 9 and multiples of 10 | 3.OA.A.3, 3.OA.A.4, 3.OA.B.5, 3.OA.C.7, 3.OA.D.8, 3.OA.D.9, 3.NBT.A.3 | mult, g3div, g3x10
+el: Build arrays with counters and post the frame "___ groups of ___ is ___." Pre-teach "factor", "product", "quotient" and "unknown" with a labeled example of each.
+
+lesson: Properties of multiplication and units of 6 and 7 | 3.OA.B.5, 3.OA.C.7, 3.OA.A.4
+practice:
+num1: 6 x 7 = ? | 42
+hint: Think 5 x 7, then add one more group of 7.
+num1: 48 / 6 = ? | 8
+hint: Ask yourself: 6 times what number is 48?
+mc2: Which is equal to 7 x 6? | 6 x 7 | 7 + 6 | 7 x 7 - 1 | 6 x 6 + 1
+hint: The commutative property lets you switch the order of the factors.
+num2: There are 7 days in a week. How many days are in 9 weeks? | 63
+hint: You need 9 groups of 7. Try 10 groups of 7 and take one 7 away.
+num2: n x 6 = 54. What is n? | 9
+hint: Count by 6s until you reach 54. How many 6s did you count?
+sa2: Show how to break apart 7 x 7 into two easier facts and solve it. | 7 x 7 = 7 x 5 + 7 x 2 = 35 + 14 = 49.
+quiz:
+num1: 6 x 9 = ? | 54
+num1: 56 / 7 = ? | 8
+mc2: Which expression has the same value as 6 x 8? | 6 x 5 + 6 x 3 | 6 x 5 + 3 | 6 + 8 | 8 x 5 + 3
+num2: A pack of yogurt has 6 cups. Mrs. Okafor buys 7 packs. How many cups of yogurt does she buy? | 42
+num2: 63 students sit in rows of 7 at an assembly. How many rows are filled? | 9
+mc2: Which number makes 42 / m = 6 true? | 7 | 36 | 48 | 8
+num3: Theo has 4 boxes of 6 crayons and 3 boxes of 7 crayons. How many crayons does he have in all? | 45
+sa2: Explain why 6 x 7 and 7 x 6 have the same product. Use an array in your answer. | An array of 6 rows of 7 can be turned to show 7 rows of 6. The number of dots does not change, so both products are 42.
+
+lesson: Units of 8 and the associative property | 3.OA.B.5, 3.OA.C.7, 3.OA.A.4
+practice:
+num1: 8 x 6 = ? | 48
+hint: 8 is double 4. Find 4 x 6 and double it.
+num1: 72 / 8 = ? | 9
+hint: Count by 8s to 72, or think 8 x ? = 72.
+mc2: Which shows 8 x 3 using the associative property? | (4 x 2) x 3 = 4 x (2 x 3) | 8 x 3 = 3 x 8 | 8 x 3 = 8 + 3 | 8 x 3 = 4 x 3 + 2
+hint: Write 8 as two factors, then group the factors in a different way.
+num2: An octopus has 8 arms. How many arms do 7 octopuses have? | 56
+hint: Find 7 groups of 8. You can use 5 eights plus 2 eights.
+num2: The letter b stands for the number of bags. 8 x b = 40. What is b? | 5
+sa2: Explain how you can use 2 x 8 to find 4 x 8 and 8 x 8. | 2 x 8 = 16. 4 x 8 is double 2 x 8, so it is 32. 8 x 8 is double 4 x 8, so it is 64.
+quiz:
+num1: 8 x 9 = ? | 72
+num1: 64 / 8 = ? | 8
+mc2: Which expression equals 8 x 7? | 2 x (4 x 7) | 2 + 4 x 7 | 8 + 7 | 4 x 7 + 2
+num2: Tickets to the aquarium cost $8 each. How many dollars do 6 tickets cost? | 48
+mc2: A teacher has 56 markers. She puts 8 markers in each cup. Which equation finds c, the number of cups? | 56 / 8 = c | 56 x 8 = c | 56 - 8 = c | 8 / 56 = c
+num3: Isla has $50. She buys 4 books that cost $8 each. How many dollars does she have left? | 18
+sa2: Ruby says 8 x 6 = 46. Show a way to check her answer and find the correct product. | 8 x 6 = 4 x 6 + 4 x 6 = 24 + 24 = 48. Ruby's answer is 2 too small; the correct product is 48.
+
+lesson: Units of 9 and patterns in the multiplication table | 3.OA.C.7, 3.OA.D.9, 3.OA.A.3
+practice:
+num1: 9 x 4 = ? | 36
+hint: Find 10 x 4, then take away one group of 4.
+num1: 81 / 9 = ? | 9
+hint: What number times itself is 81?
+mc2: Look at 9 x 2 = 18, 9 x 3 = 27 and 9 x 4 = 36. Which pattern is true? | The digits of each product add to 9 | Every product is odd | The ones digit goes up by 1 | The tens digit goes down by 1
+hint: Add the tens digit and the ones digit of each product.
+num2: A bike rack holds 9 bikes. How many bikes fit in 6 racks? | 54
+hint: Try 10 x 6, then subtract 6.
+num2: 9 x n = 63. What is n? | 7
+hint: Count by 9s to 63, or think about which fact of 9 has a product of 63.
+sa2: Explain how 10 x 7 helps you find 9 x 7. | 10 x 7 = 70. 9 x 7 is one group of 7 less than 10 x 7, so 70 - 7 = 63.
+quiz:
+num1: 9 x 9 = ? | 81
+num1: 45 / 9 = ? | 5
+mc2: A theater has 9 rows with 8 seats in each row. How many seats are there? | 72 | 17 | 81 | 63
+num2: Ms. Kim has 54 stickers. She gives 9 stickers to each student. How many students get stickers? | 6
+mc3: Which number is NOT a product of 9 and a whole number? | 56 | 63 | 72 | 36
+num3: A pet store has 3 tanks with 9 fish in each tank. It sells 8 fish. How many fish are left? | 19
+sa2: Ken says 9 x 6 = 64. Use a pattern or another fact to explain why his answer cannot be correct, and give the correct product. | For the 9s facts up to 9 x 10, the digits of each product add to 9, but 6 + 4 = 10. Also 10 x 6 = 60 and 60 - 6 = 54, so 9 x 6 = 54.
+
+lesson: Units of 0 and 1 and two-step word problems | 3.OA.B.5, 3.OA.D.8, 3.OA.C.7
+practice:
+num1: 0 x 8 = ? | 0
+hint: 0 groups of 8 means there are no groups at all.
+num1: 7 / 1 = ? | 7
+hint: Put 7 objects into 1 group. How many are in that group?
+mc2: Which equation is true? | 9 / 9 = 1 | 9 x 0 = 9 | 9 / 1 = 1 | 0 / 9 = 9
+hint: Test each equation with counters or a drawing.
+num2: Ella buys 3 packs of 6 juice boxes. Her family drinks 5 juice boxes. How many juice boxes are left? | 13
+hint: First find how many juice boxes she bought. Then subtract.
+num3: Mr. Diaz has 4 shelves with 7 books on each shelf. He gets 9 more books. Let b be the total number of books. What is b? | 37
+hint: Find 4 x 7 first, then add the new books.
+sa2: Explain why any number divided by 1 is that same number. | Dividing by 1 means putting everything into 1 group, so all the objects end up in that group. The group has the same number you started with.
+quiz:
+num1: 1 x 9 = ? | 9
+num1: 0 / 6 = ? | 0
+mc2: Which is true about 5 x 0 and 0 x 5? | Both equal 0 | Both equal 5 | 5 x 0 = 5 and 0 x 5 = 0 | They are not equal
+num2: A class of 24 students forms teams of 6. Each team gets 3 balls. How many balls are needed? | 12
+num3: Carla earns $7 each week for chores. After 6 weeks she spends $15. How many dollars does she have left? | 27
+mc3: Which situation can be solved with the equation 5 x 8 - 6 = n? | 5 boxes of 8 pencils, and 6 pencils are given away | 5 pencils and 8 pencils, and then 6 more | 8 boxes of 6 pencils, and 5 pencils are lost | 6 boxes of 8 pencils, and 5 pencils are given away
+sa2: Pablo says 0 / 4 and 4 / 0 both equal 0. Explain which one he is right about. | 0 / 4 = 0, because sharing 0 objects into 4 groups gives 0 in each group. 4 / 0 does not make sense: you cannot put 4 objects into 0 groups, and no number times 0 equals 4.
+
+lesson: Multiplying by multiples of 10 | 3.NBT.A.3, 3.OA.B.5
+practice:
+num1: 3 x 40 = ? | 120
+hint: 40 is 4 tens. What is 3 x 4 tens?
+num1: 6 x 30 = ? | 180
+hint: Think 6 x 3 tens.
+mc2: Which is the same as 7 x 50? | 7 x 5 tens | 7 x 5 ones | 75 | 7 + 50
+hint: How many tens are in 50?
+num2: A box holds 20 pencils. How many pencils are in 8 boxes? | 160
+hint: Find 8 x 2 tens.
+num2: Each bus seats 40 students. How many students can ride in 9 buses? | 360
+hint: Find 9 x 4 first. How many tens is that?
+sa2: Explain how to use place value to solve 4 x 60. | 60 is 6 tens. 4 x 6 tens = 24 tens, and 24 tens is 240.
+quiz:
+num1: 5 x 70 = ? | 350
+num1: 9 x 20 = ? | 180
+mc2: Which equation about 8 x 30 is true? | 8 x 30 = 24 tens | 8 x 30 = 24 ones | 8 x 30 = 38 | 8 x 30 = 2,400
+num2: A sheet has 60 stickers. Ana buys 4 sheets. How many stickers does she have? | 240
+num3: A school orders 5 boxes of 30 markers and 2 boxes of 40 markers. How many markers does it order? | 230
+mc2: Which expression shows (3 x 2) x 10 grouped another way? | 3 x (2 x 10) | 3 + 2 + 10 | 3 x 2 + 10 | 32 x 10
+sa2: Lucas says 6 x 50 = 30 because 6 x 5 = 30. Explain his mistake. | He forgot that 50 is 5 tens, not 5 ones. 6 x 5 tens = 30 tens, and 30 tens is 300.
+
+test:
+num1: 7 x 8 = ? | 56
+num1: 54 / 6 = ? | 9
+num1: 9 x 3 = ? | 27
+num1: 4 x 90 = ? | 360
+mc1: What is 6 x 0? | 0 | 6 | 1 | 60
+mc1: What is 63 / 7? | 9 | 8 | 7 | 56
+mc2: Which expression equals 9 x 7? | 10 x 7 - 7 | 10 x 7 - 9 | 9 + 7 | 9 x 5 + 2
+mc2: Which equation shows the associative property? | (2 x 3) x 8 = 2 x (3 x 8) | 2 x 3 = 3 x 2 | 2 x 8 = 8 + 8 | 2 x 0 = 0
+mc2: Which number makes 8 x m = 64 true? | 8 | 7 | 9 | 56
+mc2: A gardener plants 7 rows of 6 tulips. How many tulips does she plant? | 42 | 13 | 48 | 36
+mc3: Look at the pattern 6 x 2 = 12, 6 x 4 = 24, 6 x 6 = 36, 6 x 8 = 48. Which statement is true? | When 6 is multiplied by an even number, the ones digit of the product matches that even number | Every product is odd | The products go up by 6 each time | The tens digit is always 6
+num2: A fruit stand sells mangoes in bags of 6. Rahul buys 8 bags. How many mangoes does he buy? | 48
+num2: 72 chairs are set up in rows of 9. How many rows are there? | 8
+num2: A comic book costs $9. How many dollars do 5 comic books cost? | 45
+num2: A baker makes 6 trays with 40 cookies on each tray. How many cookies is that? | 240
+num3: Maya has 3 packs of 8 batteries. She puts 2 batteries in each of 7 flashlights. How many batteries are left? | 10
+num3: One class has 4 groups of 7 students. Another class has 3 groups of 9 students. How many more students are in the first class? | 1
+num3: Jamal reads for 30 minutes each day for 6 days. On the seventh day he reads for 25 minutes. How many minutes does he read in all? | 205
+mc2: Which situation matches 48 / 8 = p? | 48 pears are packed 8 to a box, and p is the number of boxes | There are 48 pears and 8 more pears | There are 8 boxes with 48 pears in each | There are 48 pears and 8 are eaten
+mc3: What is the value of n? 7 x 6 = 40 + n | 2 | 6 | 42 | 46
+sa2: Show how to break apart 7 x 8 into 5 x 8 and 2 x 8. Explain why this works. | 5 x 8 = 40 and 2 x 8 = 16, and 40 + 16 = 56. It works because 7 eights is the same as 5 eights plus 2 eights.
+sa2: Nina says 0 x 9 = 9 because multiplying by 0 does not change a number. Explain her mistake. | She is mixing up 0 and 1. Multiplying by 1 keeps a number the same. 0 x 9 means 0 groups of 9, which is 0.
+sa3: Use place value to explain why 8 x 40 = 320. | 40 is 4 tens. 8 x 4 tens = 32 tens, and 32 tens is 320.
+task3: At the school fair, game tickets come in strips of 6 and ride tickets come in strips of 9. Ms. Rivera's group has 7 students. Each student gets 2 strips of game tickets and 1 strip of ride tickets. (a) How many game tickets does the group get? (b) How many ride tickets does the group get? (c) A strip of game tickets costs $3 and a strip of ride tickets costs $8. Ms. Rivera has $100. Is that enough? Show your equations and explain. | (a) 14 strips, 84 game tickets; (b) 63 ride tickets; (c) 14 x $3 = $42 and 7 x $8 = $56, total $98, so $100 is enough with $2 left; equations for every step and a clear explanation. | All parts correct with gaps in the work, or one small error with clear reasoning. | One or two parts correct, or a workable strategy with several errors. | Little correct work.
+
+unit: Module 4: Multiplication and area | 3.MD.C.5, 3.MD.C.6, 3.MD.C.7, 3.OA.B.5 | g3area
+el: Let students build each rectangle with square tiles or on grid paper. Pre-teach "area", "square unit", "row", "column" and "side length", and contrast "around the shape" with "inside the shape" using gestures.
+
+lesson: Understanding area and unit squares | 3.MD.C.5, 3.MD.C.6
+practice:
+mc1: A shape is covered by 12 unit squares with no gaps or overlaps. What is its area? | 12 square units | 12 units | 24 square units | 7 square units
+hint: Area is the number of unit squares that cover a shape.
+mc1: Which is a unit square? | a square with sides 1 unit long | a rectangle with sides 1 unit and 2 units long | a square with sides 2 units long | a triangle with sides 1 unit long
+hint: A unit square has sides that are each exactly 1 unit.
+num1: A sticky note is covered by square tiles in 3 rows of 3 with no gaps. How many tiles cover it? | 9
+hint: Count the tiles in one row, then count the rows.
+mc2: Rectangle A is covered by 15 square-inch tiles and rectangle B by 18 square-inch tiles. Which statement is true? | B has the greater area by 3 square inches | A has the greater area by 3 square inches | They have the same area | B has the greater area by 33 square inches
+hint: Each tile is 1 square inch. Compare the number of tiles.
+num2: Kai covers a book with 1-inch square sticky notes in 4 rows of 5, with no gaps. What is the area of the book cover in square inches? | 20
+hint: How many sticky notes are there in all?
+sa2: Lena covered a rectangle with tiles but left gaps between the tiles. She counted 10 tiles and said the area is 10 square units. Explain why her answer is not correct. | Area must be measured with no gaps or overlaps. Because there were gaps, more than 10 tiles are needed to cover the rectangle, so its area is greater than 10 square units.
+quiz:
+num1: A rectangle is covered by 2 rows of 7 unit squares. What is its area in square units? | 14
+mc1: Which unit could you use to measure the area of a desktop? | square inches | inches | pounds | liters
+mc2: One shape is covered by 8 square centimeters and another by 8 square inches. Which statement is true? | The square-inch shape is larger, because a square inch is bigger than a square centimeter | The two shapes have the same area | The square-centimeter shape is larger | The two shapes cannot be compared
+num2: A wall mural is made of square tiles in 5 rows with 6 tiles in each row. How many tiles are in the mural? | 30
+mc2: Which shape has an area of 6 square units? | a rectangle covered by 2 rows of 3 unit squares | a rectangle covered by 6 rows of 6 unit squares | a square with sides of 6 units | a rectangle covered by 3 rows of 3 unit squares
+num3: Rosa makes a picture with 3 rows of 4 red tiles and 2 rows of 4 blue tiles. Each tile is 1 square inch. What is the area of the picture in square inches? | 20
+sa2: Explain the difference between a unit of length and a unit of area. | A unit of length, like an inch, measures how long something is. A unit of area, like a square inch, is a square that covers a surface; area counts how many of those squares cover a shape.
+
+lesson: Finding area with rows, columns and side lengths | 3.MD.C.7
+practice:
+num1: A rectangle is 6 centimeters long and 3 centimeters wide. What is its area in square centimeters? | 18
+hint: Multiply the number of rows by the number of squares in each row.
+num2: A rectangle has an area of 32 square inches. One side is 8 inches long. How many inches long is the other side? | 4
+hint: Think 8 x ? = 32.
+mc2: A rug is 7 feet long and 5 feet wide. Which equation finds its area? | 7 x 5 = 35 square feet | 7 + 5 = 12 square feet | 7 + 5 + 7 + 5 = 24 square feet | 7 x 7 = 49 square feet
+hint: Area is the number of rows times the number in each row.
+num2: A square has sides 6 meters long. What is its area in square meters? | 36
+hint: All four sides of a square are the same length.
+mc2: Which rectangle has an area of 24 square units? | 3 units by 8 units | 4 units by 8 units | 12 units by 12 units | 10 units by 4 units
+hint: Multiply the side lengths of each rectangle.
+sa2: Explain how you can find the area of a 4 by 9 rectangle without counting every square. | It has 4 rows with 9 squares in each row, so you can multiply. 4 x 9 = 36, so the area is 36 square units.
+quiz:
+num1: A photo is 5 inches by 7 inches. What is its area in square inches? | 35
+num2: A garden bed has an area of 27 square feet. It is 3 feet wide. How many feet long is it? | 9
+mc2: A rectangle has 6 rows of unit squares and an area of 42 square units. How many squares are in each row? | 7 | 36 | 48 | 6
+mc2: Which two rectangles have the same area? | 2 by 12 and 3 by 8 | 2 by 12 and 4 by 8 | 3 by 8 and 5 by 5 | 4 by 6 and 3 by 9
+num3: A classroom floor is 9 meters by 8 meters. A rug covers 20 square meters of it. How many square meters of the floor are not covered? | 52
+mc1: What is the area of a square with sides 4 centimeters long? | 16 square centimeters | 8 square centimeters | 16 centimeters | 4 square centimeters
+sa2: Ivan says a 3 by 5 rectangle has an area of 16 square units because 3 + 5 + 3 + 5 = 16. Explain his mistake. | He added the side lengths, which measures the distance around the rectangle. Area is the number of unit squares inside: 3 rows of 5 is 3 x 5 = 15 square units.
+
+lesson: Area models and the distributive property | 3.MD.C.7, 3.OA.B.5
+practice:
+mc2: A 6 by 9 rectangle is split into a 6 by 5 rectangle and a 6 by 4 rectangle. Which expression shows the total area? | 6 x 5 + 6 x 4 | 6 + 5 + 4 | 6 x 5 x 4 | 5 x 4 + 6
+hint: Find the area of each small rectangle, then add.
+num2: A rectangle is 7 units by 12 units. Split the 12 into 10 and 2. What is the total area in square units? | 84
+hint: Find 7 x 10 and 7 x 2, then add the two areas.
+num1: 4 x 6 + 4 x 3 = ? | 36
+hint: Find each product first, then add.
+mc2: Which shows 9 x 6 broken into two smaller rectangles? | 5 x 6 + 4 x 6 | 9 x 5 + 6 | 5 x 4 + 6 x 6 | 9 + 6
+hint: Break the 9 into two parts and multiply each part by 6.
+num2: A rectangle 8 units wide is cut into an 8 by 5 rectangle and an 8 by 2 rectangle. What is the area of the whole rectangle in square units? | 56
+hint: Find both areas and add them.
+sa2: Describe how to split a 7 by 8 rectangle into two smaller rectangles to find its area. | Split the 8 into 5 and 3. 7 x 5 = 35 and 7 x 3 = 21, and 35 + 21 = 56, so the area is 56 square units.
+quiz:
+num1: 3 x 7 + 3 x 2 = ? | 27
+mc2: Which expression has the same value as 8 x 9? | 8 x 5 + 8 x 4 | 8 x 5 + 4 | 8 + 9 | 5 x 4 + 8 x 9
+num2: A tile floor is 6 tiles by 14 tiles. Mia splits the 14 into 10 and 4 to count. How many tiles are there in all? | 84
+mc2: A rectangle's area is written as 4 x 8 = 4 x 5 + 4 x 3. What are the side lengths of the whole rectangle? | 4 and 8 | 4 and 5 | 5 and 3 | 4 and 3
+num3: A garden 9 feet by 7 feet is split into a 9 by 5 section of corn and a 9 by 2 section of beans. How many more square feet are used for corn than for beans? | 27
+mc3: Which expression is NOT equal to 6 x 8? | 6 x 4 + 6 x 3 | 6 x 4 + 6 x 4 | 3 x 8 + 3 x 8 | 6 x 5 + 6 x 3
+sa2: Use the idea of an area model to explain why 7 x 6 equals 5 x 6 plus 2 x 6. | A 7 by 6 rectangle can be cut into a 5 by 6 rectangle and a 2 by 6 rectangle. Their areas, 30 and 12, cover the whole rectangle, so 7 x 6 = 30 + 12 = 42.
+
+lesson: Area of combined shapes and problem solving | 3.MD.C.7
+practice:
+num2: An L-shaped patio is made of a 6 meter by 4 meter rectangle and a 3 meter by 2 meter rectangle. What is its total area in square meters? | 30
+hint: Find the area of each rectangle, then add.
+num2: A rectangle 8 feet by 6 feet has a 2 foot by 3 foot rectangle cut out of one corner. What is the area of the shape that is left, in square feet? | 42
+hint: Find the area of the big rectangle, then subtract the piece that was cut out.
+mc2: A shape is made from a 4 by 7 rectangle and a 2 by 5 rectangle. Which expression gives the total area? | 4 x 7 + 2 x 5 | 4 + 7 + 2 + 5 | 4 x 7 x 2 x 5 | 6 x 12
+hint: Each rectangle's area is a product.
+mc2: Two rectangles have the same area. One is 4 by 9. The other is 6 units wide. How long is the other rectangle? | 6 units | 9 units | 4 units | 36 units
+hint: First find the area of the 4 by 9 rectangle.
+num2: A poster is 9 inches by 8 inches. Lu covers part of it with a photo that is 5 inches by 6 inches. How many square inches of the poster are still showing? | 42
+hint: Subtract the photo's area from the poster's area.
+sa3: An L-shape is made by cutting a 2 by 3 rectangle from one corner of a 6 by 6 square. Explain two different ways to find its area. | Subtract: 6 x 6 = 36 and 2 x 3 = 6, so 36 - 6 = 30 square units. Or split it: a 6 by 3 rectangle (18) and a 4 by 3 rectangle (12) make 18 + 12 = 30 square units.
+quiz:
+num2: A room is shaped like two rectangles joined together, 7 feet by 5 feet and 4 feet by 3 feet. What is the total area of the room in square feet? | 47
+num2: A 10 by 9 rectangle has a 3 by 3 square cut out of it. What is the area that is left, in square units? | 81
+mc2: A park has a dog area that is 8 meters by 6 meters and a play area that is 5 meters by 9 meters. Which area is larger, and by how much? | the dog area, by 3 square meters | the play area, by 3 square meters | the dog area, by 1 square meter | They are the same size
+num3: Each tile covers 1 square foot. A floor is 9 feet by 6 feet. Mr. Hassan has already laid 30 tiles. How many more tiles does he need to cover the floor? | 24
+mc2: A rectangle has an area of 40 square units and one side of 5 units. Which other rectangle has the same area? | 4 by 10 | 5 by 10 | 4 by 9 | 20 by 20
+num3: Ana's garden is 6 feet by 7 feet. Ben's garden is 4 feet by 8 feet. What is the total area of both gardens in square feet? | 74
+sa2: Ayla found the area of an L-shape made of a 5 by 3 rectangle and a 2 by 4 rectangle. She wrote 5 x 3 x 2 x 4 = 120. Explain her mistake and find the correct area. | She multiplied all four numbers together. She should find each rectangle's area and add them: 5 x 3 = 15 and 2 x 4 = 8, so the area is 23 square units.
+
+test:
+num1: A rectangle is 9 units by 4 units. What is its area in square units? | 36
+mc1: Which is measured in square units? | the area of a floor | the length of a pencil | the mass of an apple | the time a movie lasts
+num1: 5 x 6 + 5 x 2 = ? | 40
+mc1: A shape is covered by 3 rows of 8 unit squares with no gaps. What is its area? | 24 square units | 11 square units | 22 square units | 32 square units
+num2: A square tablecloth has sides 7 feet long. What is its area in square feet? | 49
+num2: A sandbox has an area of 48 square feet. It is 6 feet wide. How many feet long is it? | 8
+mc2: A 7 by 9 rectangle is split into a 7 by 5 rectangle and a 7 by 4 rectangle. Which expression shows its area? | 7 x 5 + 7 x 4 | 7 x 5 x 4 | 7 + 5 + 4 | 5 x 4 + 7
+mc2: Which rectangle has the greatest area? | 6 by 7 | 5 by 8 | 4 by 10 | 9 by 4
+mc2: A rectangle has an area of 18 square centimeters. Which could be its side lengths? | 2 cm and 9 cm | 3 cm and 15 cm | 9 cm and 9 cm | 4 cm and 5 cm
+mc2: A floor is covered with square tiles in 8 rows of 7. Two tiles are cracked. How many tiles are not cracked? | 54 | 56 | 13 | 15
+num2: A poster is 6 inches wide and 9 inches tall. What is its area in square inches? | 54
+num3: A school garden is made of two rectangles, one 8 meters by 5 meters and one 3 meters by 6 meters. What is the total area in square meters? | 58
+num3: A wall is 9 feet by 8 feet. A window in the wall is 3 feet by 4 feet. How many square feet of the wall need paint? | 60
+num3: Nadia has 40 square tiles. She builds a rectangle 4 tiles by 7 tiles. How many tiles does she have left? | 12
+mc3: Rectangle A is 3 by 8. Rectangle B has the same area as A and is 4 units wide. Rectangle C has an area 6 square units greater than A. Which statement is true? | B is 6 units long and C has an area of 30 square units | B is 8 units long and C has an area of 30 square units | B is 6 units long and C has an area of 18 square units | B is 5 units long and C has an area of 32 square units
+mc2: Which is NOT a way to find 8 x 7? | 8 x 5 + 8 x 3 | 8 x 5 + 8 x 2 | 4 x 7 + 4 x 7 | 7 x 8
+mc3: A rectangle has an area of 36 square units. How many different rectangles with whole-number side lengths have this area? (A 4 by 9 and a 9 by 4 count as the same rectangle.) | 5 | 4 | 3 | 9
+mc1: What is the area of a rectangle 2 units by 8 units? | 16 square units | 10 square units | 20 square units | 28 square units
+sa2: Explain why a 3 by 6 rectangle and a 6 by 3 rectangle have the same area. | Turning a rectangle does not change how many squares cover it. 3 rows of 6 and 6 rows of 3 are both 18 unit squares.
+sa2: Omar says a shape made of a 4 by 4 square and a 4 by 2 rectangle has an area of 12 square units because 4 + 4 + 4 = 12. Explain his mistake and find the area. | He added side lengths instead of finding areas. 4 x 4 = 16 and 4 x 2 = 8, so the area is 16 + 8 = 24 square units.
+sa3: Use an area model to explain how to find 6 x 12. | Split 12 into 10 and 2. A 6 by 10 rectangle has an area of 60 and a 6 by 2 rectangle has an area of 12. Together they make 72, so 6 x 12 = 72.
+task3: Leah's family is carpeting an L-shaped room. The room is made of a 9 foot by 6 foot rectangle joined to a 4 foot by 5 foot rectangle. Carpet squares are 1 foot by 1 foot and come in packs of 10. (a) Find the area of the room. (b) How many packs of carpet squares must the family buy? How many squares will be left over? (c) Show a second way to split the room or check your area, and explain why both ways give the same answer. | (a) 54 + 20 = 74 square feet; (b) 8 packs (80 squares) with 6 left over, explaining why 7 packs (70) are not enough; (c) a correct second method or check with a clear explanation. | Correct area and packs with a weak or missing second method, or one small error with clear work. | Correct area but wrong number of packs, or a workable strategy with errors. | Little correct work.
+
+unit: Module 5: Fractions as numbers on the number line | 3.NF.A.1, 3.NF.A.2, 3.NF.A.3, 3.G.A.2
+el: Use paper fraction strips and a floor number line. Pre-teach "equal parts", "numerator", "denominator", "unit fraction" and "equivalent", and post the frame "The whole is cut into ___ equal parts and ___ parts are shaded."
+
+lesson: Equal parts and unit fractions | 3.NF.A.1, 3.G.A.2
+practice:
+mc1: A sandwich is cut into 4 equal parts. What fraction is one part? | 1/4 | 1/3 | 4/1 | 1/5
+hint: The bottom number tells how many equal parts make the whole.
+mc1: Which shape is divided into fourths? | a square cut into 4 equal parts | a square cut into 4 parts of different sizes | a square cut into 3 equal parts | a square cut into 8 equal parts
+hint: Fourths must be 4 parts that are all the same size.
+num1: A garden is split into 6 equal beds. Tomatoes grow in 5 of the beds. What fraction of the garden has tomatoes? | 5/6
+hint: How many equal beds are there in all? How many have tomatoes?
+mc2: A ribbon is cut into 3 equal pieces. Which fraction names the whole ribbon? | 3/3 | 1/3 | 3/1 | 0/3
+hint: The whole ribbon is all of the equal pieces.
+num2: A chocolate bar has 6 equal pieces. Jun eats 2 pieces. What fraction of the bar is left? | 4/6
+hint: How many pieces are left? How many equal pieces make the whole bar?
+sa2: Maria cut a rectangle into 4 parts and shaded one part. One part is much bigger than the others. She says 1/4 is shaded. Is she right? Explain. | No. Fourths must be 4 equal parts. Because the parts are not the same size, the shaded part is not 1/4 of the rectangle.
+quiz:
+num1: A flag has 8 equal stripes. 3 stripes are red. What fraction of the stripes is red? | 3/8
+mc1: Which fraction is a unit fraction? | 1/6 | 6/1 | 5/6 | 6/6
+mc2: A pie is cut into equal pieces. Each piece is 1/5 of the pie. How many pieces are there? | 5 | 1 | 4 | 6
+num2: A loaf of bread is cut into 6 equal slices. Lin uses 4 slices for sandwiches. What fraction of the loaf is left? | 2/6
+mc2: Nico folds a paper strip in half, then folds it in half again. When he opens it, what equal parts does he see? | fourths | halves | thirds | eighths
+num3: A rope is cut into 8 equal pieces. Ray uses 2 pieces and Tess uses 3 pieces. What fraction of the rope do they use together? | 5/8
+sa2: Explain why 1/3 of a pizza is one part of the pizza but 3/3 is the whole pizza. | The pizza is cut into 3 equal parts. 1/3 is one of those parts. 3/3 means all 3 parts, which is the whole pizza.
+
+lesson: Comparing unit fractions and the size of the whole | 3.NF.A.1, 3.NF.A.3
+practice:
+mc1: Which unit fraction is greatest? | 1/3 | 1/8 | 1/6 | 1/10
+hint: The more equal parts the whole is cut into, the smaller each part is.
+mc2: Which statement is true? | 1/4 > 1/6 | 1/4 < 1/6 | 1/4 = 1/6 | 1/6 > 1/2
+hint: Picture the same strip cut into fourths and into sixths.
+num2: A paper strip is 1/4 of a whole strip. How many copies of it make 1 whole strip? | 4
+hint: How many fourths make a whole?
+mc2: A piece of string is 1/3 of a whole string. Which describes the whole string? | 3 pieces that size | 1 piece that size | 4 pieces that size | 6 pieces that size
+hint: The bottom number tells how many equal pieces make the whole.
+mc2: Order from least to greatest: 1/2, 1/8, 1/4 | 1/8, 1/4, 1/2 | 1/2, 1/4, 1/8 | 1/4, 1/8, 1/2 | 1/8, 1/2, 1/4
+hint: Which unit fraction has the smallest pieces?
+sa2: Explain why 1/2 of a small pizza can be less than 1/4 of a very large pizza. | A fraction is a part of a whole, so the size of the whole matters. Half of a small pizza can be smaller than a fourth of a very large pizza. Fractions can only be compared when the wholes are the same size.
+quiz:
+mc1: Which is the smallest unit fraction? | 1/8 | 1/2 | 1/4 | 1/3
+mc2: Which symbol makes 1/6 __ 1/3 true? | < | > | = | It cannot be compared
+mc2: Lea and Amir have the same size granola bars. Lea eats 1/3 of hers and Amir eats 1/5 of his. Who eats more? | Lea | Amir | They eat the same amount | You cannot tell
+num2: How many sixths make one whole? | 6
+mc3: A shaded part is 1/4 of a whole shape. The shaded part has an area of 2 square units. What is the area of the whole shape? | 8 square units | 2 square units | 4 square units | 6 square units
+num3: A short ribbon is 1/6 as long as a long ribbon. The short ribbon is 3 inches long. How many inches long is the long ribbon? | 18
+mc2: Which unit fraction is greater than 1/4 but less than 1/2? | 1/3 | 1/5 | 1/6 | 1/8
+sa2: Ian says 1/8 is greater than 1/4 because 8 is greater than 4. Explain his mistake. | The bottom number tells how many equal parts the whole is cut into. Cutting a whole into 8 parts makes smaller parts than cutting it into 4 parts, so 1/8 is less than 1/4.
+
+lesson: Fractions on the number line | 3.NF.A.2
+practice:
+mc1: A number line from 0 to 1 is split into 3 equal parts. What fraction is at the first mark after 0? | 1/3 | 1/2 | 3/1 | 1/4
+hint: Count the equal parts between 0 and 1.
+num1: A number line from 0 to 1 is split into 6 equal parts. What fraction is at the fifth mark after 0? | 5/6
+hint: Each jump is 1/6. Count 5 jumps from 0.
+mc2: Where is 3/4 on a number line from 0 to 1? | 3 jumps of 1/4 from 0 | 4 jumps of 1/3 from 0 | 3 jumps of 1/3 from 0 | halfway between 0 and 1
+hint: The denominator tells the size of each jump.
+num2: A number line from 0 to 2 has each whole split into 4 equal parts. What fraction is at the sixth mark after 0? | 6/4
+hint: Each mark is 1/4 more than the mark before it. Keep counting fourths past 1.
+mc2: On a number line, which fraction is at the same point as 1? | 4/4 | 1/4 | 4/1 | 0/4
+hint: How many fourths does it take to get from 0 to 1?
+sa2: Explain how to place 2/3 on a number line from 0 to 1. | Split the distance from 0 to 1 into 3 equal parts, so each part is 1/3. Start at 0 and count 2 parts; that point is 2/3.
+quiz:
+num1: A number line from 0 to 1 is split into 8 equal parts. What fraction is at the third mark after 0? | 3/8
+mc2: A number line has marks at 0, 1/6, 2/6, 3/6, 4/6, 5/6 and 1. Which fraction is halfway between 0 and 1? | 3/6 | 1/6 | 6/6 | 5/6
+mc2: Which fraction is greater than 1? | 5/4 | 4/4 | 3/4 | 1/4
+num2: A 1-mile walking path has a sign every 1/4 mile. Leo walks past 3 signs, not counting the start. How far has he walked, in miles? | 3/4
+mc3: A number line from 0 to 3 shows each whole split into thirds. Which fraction is at the same point as 2? | 6/3 | 2/3 | 3/2 | 5/3
+num3: Mia's number line from 0 to 1 is split into eighths. She starts at 2/8, jumps forward 3 eighths, then jumps back 1 eighth. What fraction is she at now? | 4/8
+sa2: Zoe placed 1/4 on a number line by drawing 4 parts between 0 and 1 that were different sizes. Explain why her number line is not correct. | The parts between 0 and 1 must be equal lengths. If the parts are different sizes, the first mark is not really 1/4 of the distance from 0 to 1.
+
+lesson: Equivalent fractions and whole numbers as fractions | 3.NF.A.3
+practice:
+mc1: Which fraction is equal to 1/2? | 3/6 | 1/3 | 2/3 | 3/2
+hint: Which fraction has half of its parts shaded?
+num2: 1/3 = ?/6. What is the missing numerator? | 2
+hint: Cut each third into 2 equal pieces. How many sixths are in one third?
+mc2: Which fraction equals the whole number 4? | 4/1 | 1/4 | 4/4 | 8/4
+hint: How many wholes is each fraction? A denominator of 1 means each part is a whole.
+num2: How many eighths are equal to 3/4? | 6
+hint: Each fourth is the same as 2 eighths.
+mc2: Which pair of fractions is equivalent? | 2/4 and 4/8 | 2/3 and 3/4 | 1/4 and 2/4 | 3/6 and 3/8
+hint: Equivalent fractions are at the same point on a number line.
+sa2: Use a picture or a number line to explain why 2/4 = 1/2. | A strip cut into 4 equal parts with 2 shaded covers the same length as the same strip cut into 2 equal parts with 1 shaded. Both are at the same point on a number line, so 2/4 = 1/2.
+quiz:
+mc1: Which fraction is equal to 1? | 8/8 | 1/8 | 8/1 | 0/8
+num2: 2/3 = ?/6. What is the missing numerator? | 4
+mc2: Which fraction is equivalent to 6/8? | 3/4 | 2/3 | 6/4 | 1/2
+mc2: Which fraction is at the same point as 3 on a number line? | 6/2 | 3/6 | 2/6 | 3/3
+num2: Juan ate 2/8 of a pizza. Kia ate the same amount of a same-size pizza cut into fourths. How many fourths did Kia eat? | 1
+num3: A recipe needs 1/2 cup of milk. Tomas only has a 1/4 cup measuring cup. How many times must he fill it? | 2
+sa2: Ella says 3/3 and 6/6 are not equal because 6 is bigger than 3. Explain why they are equal. | Both fractions name one whole. 3/3 is all 3 parts and 6/6 is all 6 parts of the same whole, so both equal 1.
+
+lesson: Comparing fractions with the same numerator or denominator | 3.NF.A.3
+practice:
+mc1: Which is greater, 3/8 or 5/8? | 5/8 | 3/8 | They are equal | You cannot tell
+hint: The parts are the same size. Which fraction has more parts?
+mc2: Which is greater, 2/3 or 2/6? | 2/3 | 2/6 | They are equal | You cannot tell
+hint: Both fractions have 2 parts. Which parts are bigger?
+mc2: Which list is in order from least to greatest? | 2/8, 2/4, 2/3 | 2/3, 2/4, 2/8 | 2/4, 2/8, 2/3 | 2/8, 2/3, 2/4
+hint: When the numerators match, the fraction with the smallest parts is least.
+mc2: Which fraction is less than 1/2? | 2/6 | 4/6 | 3/4 | 5/8
+hint: Is the fraction less than half of its parts?
+mc2: Three friends painted same-size walls. Ari painted 4/6, Bo painted 5/6 and Cy painted 1/6 of a wall. Who painted the most? | Bo | Ari | Cy | They all painted the same amount
+hint: The parts are all sixths. Who painted the most sixths?
+sa2: Compare 3/4 and 3/8 using >, < or =. Explain how you know. | 3/4 > 3/8. Both have 3 parts, but fourths are bigger than eighths, so 3 fourths is more.
+quiz:
+mc1: Which symbol makes 5/6 __ 3/6 true? | > | < | = | It cannot be compared
+mc2: Which is greater, 4/8 or 4/6? | 4/6 | 4/8 | They are equal | You cannot tell
+mc2: Which fraction is greatest? | 7/8 | 3/8 | 5/8 | 1/8
+mc3: Sana ate 2/4 of a sandwich and Rico ate 2/3 of a same-size sandwich. Who ate more? | Rico | Sana | They ate the same amount | You cannot tell
+mc2: Which comparison is true? | 3/3 = 4/4 | 3/3 > 4/4 | 3/3 < 4/4 | 3/4 > 4/4
+mc3: Which fraction is between 1/4 and 3/4 on a number line? | 2/4 | 0/4 | 4/4 | 5/4
+num2: Write the fraction with a denominator of 6 that is greater than 4/6 and less than 1. | 5/6
+sa3: Dev says 2/3 < 2/4 because 3 is less than 4. Explain whether he is right, using a picture or a number line. | He is wrong. Thirds are larger pieces than fourths, so 2 thirds is more than 2 fourths. On a number line, 2/3 is farther from 0 than 2/4, so 2/3 > 2/4.
+
+test:
+mc1: A cake is cut into 6 equal pieces. What fraction is one piece? | 1/6 | 6/1 | 1/5 | 6/6
+num1: A number line from 0 to 1 is split into 4 equal parts. What fraction is at the third mark after 0? | 3/4
+mc1: How many fourths make one whole? | 4 | 1 | 2 | 8
+mc2: Which statement about 1/5 and 1/3 is true? | 1/3 > 1/5 | 1/5 > 1/3 | 1/5 = 1/3 | They cannot be compared
+mc2: Which fraction is equivalent to 2/3? | 4/6 | 2/6 | 3/2 | 3/4
+num2: 1/2 = ?/8. What is the missing numerator? | 4
+mc2: Which fraction is the same as the whole number 2? | 8/4 | 2/4 | 4/8 | 2/2
+num2: A fence has 8 equal sections. Mr. Ito paints 5 sections. What fraction of the fence is not painted? | 3/8
+mc2: A number line from 0 to 2 is split into halves. Which fraction is at the mark between 1 and 2? | 3/2 | 1/2 | 2/2 | 2/3
+mc2: Which list is in order from greatest to least? | 1/2, 1/3, 1/6 | 1/6, 1/3, 1/2 | 1/3, 1/2, 1/6 | 1/2, 1/6, 1/3
+mc3: The shaded part of a rectangle is 1/3 of the rectangle and covers 4 square units. What is the area of the whole rectangle? | 12 square units | 4 square units | 7 square units | 3 square units
+num3: A trail has a marker every 1/4 mile. Pia starts at 0 and passes 7 markers, not counting the start. How far has she walked, in miles? | 7/4
+num3: A short board is 1/4 as long as a long board. The short board is 5 feet long. How many feet long is the long board? | 20
+num3: A recipe uses 3/4 cup of oats. Jin only has a 1/8 cup scoop. How many scoops of oats does he need? | 6
+mc3: Which fraction makes 3/6 < ? < 6/6 true? | 4/6 | 2/6 | 3/6 | 7/6
+mc2: Leo ran 3/4 of a lap and Mia ran 3/8 of a lap on the same track. Who ran farther? | Leo | Mia | They ran the same distance | You cannot tell
+mc2: Which number is to the right of 1 on a number line? | 7/6 | 6/6 | 5/6 | 1/6
+mc1: A shape has 5 equal parts and 2 parts are shaded. Which fraction names the shaded part? | 2/5 | 5/2 | 2/3 | 3/5
+sa2: Explain why 4/4 and 1 are at the same point on a number line. | 4/4 means 4 jumps of 1/4 from 0. Four fourths make one whole, so the fourth jump lands exactly on 1.
+sa2: Compare 5/8 and 5/6. Explain your thinking using the size of the parts. | 5/6 > 5/8. Both have 5 parts, but sixths are bigger than eighths, so 5 sixths is more.
+sa3: Tyler says 1/2 of his small sandwich is the same amount as 1/2 of his dad's big sandwich because both are 1/2. Explain whether he is right. | He is not right. A fraction is part of a whole, and these wholes are different sizes. Half of the bigger sandwich is more food than half of the smaller sandwich.
+task3: Ms. Ochoa's class is planting a garden row 2 meters long. Draw a number line from 0 to 2 meters with each meter split into fourths. Place a bean plant at 3/4 meter, a carrot at 5/4 meters, a squash at 2/4 meter and a pepper at 8/4 meters. (a) Label each plant on your number line. (b) List the plants in order from closest to farthest from the start. (c) Which plant is at a whole number of meters? Explain how you know. (d) Write another fraction that names where the squash is planted, and explain why it is equivalent. | Accurate number line with equal fourths and all four plants placed; order squash, bean, carrot, pepper; pepper at 8/4 = 2 meters with an explanation; squash at 1/2 meter (or 4/8) with a clear reason. | Number line and order correct with one small error in (c) or (d). | Some plants placed correctly, or the parts are not equal but the order is mostly right. | Little correct work.
+
+unit: Module 6: Collecting and displaying data | 3.MD.B.3, 3.MD.B.4, 3.OA.A.3, 3.NBT.A.2
+el: Draw each described graph on the board as you read it aloud. Pre-teach "key", "scale", "survey", "line plot" and "quarter inch", and post the frame "Each symbol stands for ___, so ___ symbols show ___."
+
+lesson: Scaled picture graphs | 3.MD.B.3
+practice:
+num1: In a picture graph, each star stands for 2 books. Kim's row has 6 stars. How many books did Kim read? | 12
+hint: Each star is a group of 2 books.
+num2: A picture graph shows pets. Each paw print stands for 5 students. The dog row has 4 paw prints and the cat row has 3 paw prints. How many more students chose dogs than cats? | 5
+hint: Find each total, or think: how many more paw prints does the dog row have?
+mc2: In a picture graph, each symbol stands for 4 students. How many symbols show 20 students? | 5 | 4 | 20 | 80
+hint: How many groups of 4 are in 20?
+num2: Each circle on a picture graph stands for 10 cans. The Room 8 row has 3 full circles and half of a circle. How many cans did Room 8 collect? | 35
+hint: Half of a circle stands for half of 10.
+mc2: A class will make a picture graph of 30, 45 and 25 votes. Which key makes the graph easiest to draw? | Each symbol = 5 votes | Each symbol = 1 vote | Each symbol = 2 votes | Each symbol = 4 votes
+hint: Which number do 30, 45 and 25 all divide by evenly?
+sa2: Explain why someone might choose a key where each symbol stands for 10 instead of 1. | When the numbers are large, a key of 1 would need too many symbols. If each symbol stands for 10, the graph is shorter and easier to read.
+quiz:
+num1: Each umbrella symbol stands for 3 rainy days. March has 4 umbrellas. How many rainy days are shown for March? | 12
+num2: A picture graph shows books read. Each book symbol stands for 5 books. Pedro has 6 symbols and Sofia has 4 symbols. How many books did they read altogether? | 50
+mc2: Each heart stands for 2 votes. Which shows 9 votes? | 4 hearts and half of a heart | 9 hearts | 4 hearts | 18 hearts
+num3: A graph of lunch choices uses a key where each symbol stands for 6 students. Pizza has 5 symbols, tacos have 4 symbols and salad has 2 symbols. How many students chose pizza or tacos? | 54
+mc2: Each fish symbol stands for 4 fish. A row shows 28 fish. How many symbols are in the row? | 7 | 4 | 24 | 112
+num2: Each symbol stands for 10 cars. Monday has 5 symbols and Tuesday has 8 symbols. How many fewer cars passed on Monday than on Tuesday? | 30
+sa2: Ava read a picture graph where each star stands for 5 points. She said a row with 3 stars shows 3 points. Explain her mistake. | She did not use the key. Each star stands for 5 points, so 3 stars show 3 x 5 = 15 points.
+
+lesson: Scaled bar graphs | 3.MD.B.3
+practice:
+mc1: A bar graph scale counts by 5s: 0, 5, 10, 15, 20. A bar ends at the 15 line. What number does it show? | 15 | 3 | 5 | 20
+hint: Read the number on the scale where the bar ends.
+num2: A bar graph scale counts by 2s. A bar ends halfway between 8 and 10. What number does the bar show? | 9
+hint: What number is halfway between 8 and 10?
+num2: A bar graph shows fruit sold: apples 35, pears 20 and plums 15. How many more apples than plums were sold? | 20
+hint: Subtract to compare two bars.
+mc2: A class surveyed favorite seasons: summer 18, winter 6, spring 10 and fall 8. Which scale fits best on a bar graph? | count by 2s from 0 to 20 | count by 10s from 0 to 100 | count by 1s from 0 to 50 | count by 50s from 0 to 200
+hint: Choose a scale that fits the greatest number without being much too big.
+num3: A bar graph shows miles biked: Ana 25, Juan 40 and Lee 10. How many more miles did Juan bike than Ana and Lee together? | 5
+hint: First add Ana's and Lee's miles.
+sa2: Explain how to read a bar that ends between two numbers on the scale. | Find the two numbers on the scale that the bar is between. If the bar ends halfway, its value is the number halfway between them, such as 25 halfway between 20 and 30.
+quiz:
+num1: A bar graph scale counts by 10s. The bar for soccer ends at the 6th line above 0. What number does it show? | 60
+mc2: A bar graph shows votes: red 12, blue 20 and green 8. Which statement is true? | Blue got 8 more votes than red | Red got the most votes | Green got 12 votes | Blue got 28 more votes than green
+num2: A bar graph shows cans collected: week 1, 45 cans; week 2, 30 cans; week 3, 55 cans. How many cans were collected in all? | 130
+num3: A bar graph shows favorite instruments: drums 14, guitar 9, piano 11 and violin 6. How many more students chose drums or piano than guitar or violin? | 10
+mc2: A bar graph scale counts by 4s. A bar ends halfway between 12 and 16. What does the bar show? | 14 | 13 | 15 | 12
+mc3: A bar graph shows that 4 classes collected 30, 25, 40 and 35 books. The goal for each class was 30 books. How many classes met or beat the goal? | 3 | 2 | 4 | 1
+sa2: Kofi drew a bar graph with the scale 0, 5, 10, 20, 40. Explain what is wrong with his scale. | The spaces on a scale must stand for equal amounts. His scale jumps by 5, then 10, then 20, so the bars would not compare fairly. He should count by the same number each time, such as 5s.
+
+lesson: Measuring to the nearest half and quarter inch | 3.MD.B.4
+practice:
+mc1: A crayon ends halfway between the 3-inch and 4-inch marks on a ruler. How long is it? | 3 1/2 inches | 3 inches | 4 inches | 3 1/4 inches
+hint: Look at the mark halfway between 3 and 4.
+mc2: On a ruler, how many quarter-inch spaces are between 0 and 1 inch? | 4 | 2 | 1 | 8
+hint: A quarter is one of four equal parts.
+num2: A leaf measures 2 1/4 inches. How many quarter inches long is it? | 9
+hint: Each inch has 4 quarter inches. Count the quarters in 2 inches, then add 1 more.
+mc2: A ruler is marked in quarter inches. A pencil ends at the first mark after the 5-inch mark. How long is the pencil? | 5 1/4 inches | 5 1/2 inches | 6 inches | 5 1/8 inches
+hint: Each small space is 1/4 inch.
+num1: A ribbon starts at 0 and ends at the 2 1/2-inch mark on a ruler. How many inches long is the ribbon? | 2 1/2
+hint: When an object starts at 0, its length is the number where it ends.
+sa2: Kim lined up one end of a stick at the 1-inch mark on a ruler. The other end was at the 4-inch mark. She says the stick is 4 inches long. Explain her mistake. | She did not start at 0. The stick goes from 1 to 4, which is 3 inches.
+quiz:
+mc1: Which mark on a ruler is halfway between 6 and 7 inches? | 6 1/2 | 6 1/4 | 6 3/4 | 7 1/2
+num2: A worm is 3 3/4 inches long. Another worm is 1/4 inch longer. How long is the second worm, in inches? | 4
+mc2: Which length is the longest? | 4 3/4 inches | 4 1/2 inches | 4 1/4 inches | 4 inches
+num2: A snail crawls from the 2-inch mark to the 5 1/2-inch mark on a ruler. How many inches did it crawl? | 3 1/2
+mc2: Which length is closest to 2 inches? | 2 1/4 inches | 2 3/4 inches | 1 1/2 inches | 3 inches
+mc3: A pencil measures 5 2/4 inches. Which is another way to write its length? | 5 1/2 inches | 5 1/4 inches | 2 5/4 inches | 7 inches
+sa2: Explain why measuring to the nearest quarter inch can be more exact than measuring to the nearest inch. | Quarter inches are smaller units. Measuring with smaller units lets you get closer to the real length instead of rounding to a whole inch.
+
+lesson: Line plots of measurement data | 3.MD.B.4
+practice:
+num1: A line plot shows the lengths of 10 shells. There are 3 Xs above 1 1/2 inches. How many shells are 1 1/2 inches long? | 3
+hint: Each X stands for one shell.
+mc2: A line plot of pencil lengths has 2 Xs at 4 inches, 1 X at 4 1/4 inches, 4 Xs at 4 1/2 inches and 3 Xs at 4 3/4 inches. Which length is most common? | 4 1/2 inches | 4 inches | 4 3/4 inches | 4 1/4 inches
+hint: Which length has the most Xs above it?
+num2: A line plot shows pencil lengths: 2 Xs at 4 inches, 1 X at 4 1/4 inches, 4 Xs at 4 1/2 inches and 3 Xs at 4 3/4 inches. How many pencils were measured? | 10
+hint: Count every X.
+mc2: Which number line is best for a line plot of lengths measured to the nearest quarter inch? | one marked in quarter inches | one marked in whole inches only | one marked by 5s | one marked by 10s
+hint: The marks should match the units used to measure.
+num2: A line plot of plant heights shows 2 Xs at 3 inches, 5 Xs at 3 1/2 inches and 1 X at 4 inches. How many plants are taller than 3 inches? | 6
+hint: Which heights are greater than 3 inches? Add their Xs.
+sa2: Explain how to make a line plot of these ribbon lengths: 2 1/2, 3, 2 1/2, 3 1/2 and 3 inches. | Draw a number line from 2 to 4 inches marked in halves. Put one X above the line for each ribbon: 2 Xs above 2 1/2, 2 Xs above 3 and 1 X above 3 1/2.
+quiz:
+num1: A line plot shows 4 Xs above 5 inches. How many objects measured 5 inches? | 4
+num2: A line plot shows 2 leaves at 1 1/4 inches, 3 at 1 1/2 inches, 6 at 1 3/4 inches and 1 at 2 inches. How many leaves are longer than 1 1/2 inches? | 7
+num2: A line plot shows 2 leaves at 1 1/4 inches, 3 at 1 1/2 inches, 6 at 1 3/4 inches and 1 at 2 inches. How many more leaves are 1 3/4 inches long than 1 1/4 inches long? | 4
+mc2: A line plot shows the lengths of 8 crayons. Which statement could NOT be true? | 9 crayons are 3 inches long | 3 crayons are 3 inches long | 0 crayons are 4 inches long | 5 crayons are 3 1/2 inches long
+mc2: Which set of measurements needs a line plot marked in quarter inches? | 1 1/4, 1 1/2, 2 and 1 3/4 inches | 1, 2, 3 and 4 pounds | red, blue and green | 10, 20 and 30 liters
+num3: A line plot shows the lengths of 12 worms: 3 at 2 inches, 4 at 2 1/4 inches, 3 at 2 1/2 inches and 2 at 2 3/4 inches. How many worms are shorter than 2 1/2 inches? | 7
+mc3: Students measured 6 sticks: 3 1/2, 4, 3 1/2, 4 1/2, 3 1/2 and 4 inches. Which describes the correct line plot? | 3 Xs at 3 1/2, 2 Xs at 4, 1 X at 4 1/2 | 2 Xs at 3 1/2, 3 Xs at 4, 1 X at 4 1/2 | 3 Xs at 3 1/2, 1 X at 4, 2 Xs at 4 1/2 | 1 X at each length
+sa2: Leo made a line plot of pencil lengths. He spaced 4, 4 1/4 and 4 1/2 far apart but put 4 3/4 and 5 close together. Explain why this is a problem. | On a number line, equal jumps must have equal spaces. If the spaces are uneven, the line plot gives a wrong picture of how the lengths compare.
+
+test:
+num1: In a picture graph, each smiley face stands for 5 students. A row has 7 smiley faces. How many students does the row show? | 35
+mc1: A ribbon ends halfway between the 5-inch and 6-inch marks on a ruler. How long is the ribbon? | 5 1/2 inches | 5 inches | 6 1/2 inches | 5 1/4 inches
+mc1: A bar graph scale counts 0, 10, 20, 30, 40. A bar ends at the 30 line. What number does it show? | 30 | 3 | 20 | 40
+num2: In a picture graph, each ball stands for 4 students. Soccer has 6 balls and basketball has 3 balls. How many more students chose soccer than basketball? | 12
+num2: In a picture graph, each symbol stands for 2 books. A row has 7 and a half symbols. How many books does the row show? | 15
+mc2: Which key would make a picture graph of 40, 25 and 35 easiest to draw? | each symbol = 5 | each symbol = 2 | each symbol = 3 | each symbol = 4
+mc2: A bar graph shows laps run: Rey 12, Ada 16, Sam 9 and Lu 15. Which statement is true? | Ada ran 7 more laps than Sam | Sam ran the most laps | Rey and Lu ran the same number of laps | Lu ran 4 fewer laps than Rey
+num2: Rey ran 12 laps, Ada ran 16, Sam ran 9 and Lu ran 15. How many laps did they run in all? | 52
+num3: A bar graph of canned food shows Room 1 collected 35 cans, Room 2 collected 50 and Room 3 collected 25. The goal was 150 cans. How many more cans are needed to reach the goal? | 40
+num3: A picture graph shows trees planted. Each tree symbol stands for 10 trees. Park A has 4 symbols, Park B has 2 and a half symbols and Park C has 6 symbols. How many trees were planted in all? | 125
+mc2: A bar graph scale counts by 10s. A bar ends halfway between 30 and 40. What does the bar show? | 35 | 34 | 3 1/2 | 40
+mc2: A bean sprout is 3 1/4 inches tall. On a ruler marked in quarter inches, where does the sprout end? | the first quarter-inch mark after 3 | halfway between 3 and 4 | the third quarter-inch mark after 3 | the first quarter-inch mark after 4
+mc2: Which length is between 2 1/4 inches and 2 3/4 inches? | 2 1/2 inches | 2 inches | 3 inches | 1 3/4 inches
+num2: A line plot of crayon lengths shows 4 Xs at 3 inches, 2 Xs at 3 1/4 inches and 5 Xs at 3 1/2 inches. How many crayons were measured? | 11
+num3: A line plot of feather lengths shows 1 X at 4 inches, 3 Xs at 4 1/4 inches, 6 Xs at 4 1/2 inches and 2 Xs at 5 inches. How many more feathers are 4 1/2 inches long than are 4 1/4 inches or 5 inches long? | 1
+mc3: A line plot shows hand spans. The most Xs are above 5 1/2 inches, and there are no Xs above 6 1/4 inches. Which statement must be true? | The most common hand span is 5 1/2 inches | Every hand span is 5 1/2 inches | One hand span is 6 1/2 inches | The longest hand span is 5 1/2 inches
+mc3: A survey asked 30 students to pick one fruit. Apples got 12 votes, bananas got 8 and the rest chose grapes. Which statement is true? | Grapes got 10 votes, 2 more than bananas | Grapes got 20 votes | Grapes got the most votes | Grapes got 8 votes
+mc2: Which question can be answered with a line plot of measurement data? | How many plants are 4 1/2 inches tall? | What is the class's favorite color? | On which day did it rain? | Who is the oldest student?
+sa2: A picture graph uses a key where each car symbol stands for 10 cars. Explain how you would show 45 cars. | Draw 4 whole symbols for 40 cars and half of a symbol for 5 more cars, because half of 10 is 5.
+sa2: Rina measured a leaf as 3 inches. Mo measured the same leaf as 3 1/4 inches. Explain how both could be measuring correctly. | Rina measured to the nearest inch and Mo measured to the nearest quarter inch. 3 1/4 is closer to 3 than to 4, so to the nearest inch it is 3 inches. Mo's measurement is more exact.
+sa3: Jo read a bar graph whose scale counts by 5s. A bar ends at the third line above 0, and Jo said the bar shows 3. Explain the mistake and give the correct value. | Jo counted the lines instead of reading the scale. Each line stands for 5 more, so the third line above 0 is 15.
+task3: Students measured the heights of 10 bean plants to the nearest quarter inch: 2 1/4, 2 1/2, 2 1/2, 3, 2 3/4, 2 1/2, 3, 2 1/4, 2 1/2 and 2 3/4 inches. (a) Make a line plot of the data. (b) Which height is most common? (c) How many plants are taller than 2 1/2 inches? (d) Write one more question that can be answered with your line plot, and answer it. | Accurate line plot marked in quarter inches (2 Xs at 2 1/4, 4 at 2 1/2, 2 at 2 3/4, 2 at 3); most common 2 1/2 inches; 4 plants taller than 2 1/2 inches; a sensible new question answered correctly. | Line plot and answers mostly correct with one small error. | Line plot partly correct, or answers do not match the plot. | Little correct work.
+
+unit: Module 7: Geometry and measurement word problems | 3.OA.D.8, 3.G.A.1, 3.MD.D.8, 3.MD.C.7 | g3perim, g3area
+el: Provide labeled shape cards, geoboards and string for measuring around shapes. Pre-teach "perimeter", "quadrilateral", "parallel", "right angle" and "attribute", and have students trace the outside of a shape while saying "perimeter".
+
+lesson: Two-step word problems with all four operations | 3.OA.D.8
+practice:
+num2: A packet has 6 stickers. Ana buys 7 packets and gives 9 stickers to her brother. How many stickers does she have left? | 33
+hint: First find how many stickers are in 7 packets.
+num2: 48 students go on a trip in 6 vans, with the same number of students in each van. Each van also has 1 adult driver. How many people ride in each van? | 9
+hint: Find the number of students in each van first, then add the driver.
+mc2: Leo had 50 cents. He bought 4 pencils for 8 cents each. Which equation finds m, the cents he has left? | 50 - 4 x 8 = m | 50 + 4 x 8 = m | 50 / 4 - 8 = m | (50 - 4) x 8 = m
+hint: First find the cost of the pencils. Then take that away from 50.
+num3: A farmer has 72 eggs. He packs them in cartons of 6, then sells 5 cartons. How many full cartons are left? | 7
+hint: First find how many cartons he fills.
+mc2: Which is the best estimate for 289 + 412 - 198, rounding each number to the nearest hundred? | about 500 | about 300 | about 700 | about 900
+hint: Round each number to the nearest hundred first.
+sa2: Write a two-step word problem for 5 x 6 + 8 and solve it. | A class has 5 tables with 6 students at each table, and 8 more students join. How many students are there? 5 x 6 = 30 and 30 + 8 = 38 students.
+quiz:
+num2: Luis buys 3 shirts that cost $9 each. He pays with a $50 bill. How many dollars of change does he get? | 23
+num2: 56 crayons are shared equally by 8 students. Then each student gets 4 more crayons. How many crayons does each student have now? | 11
+num3: A library has 4 shelves with 9 books each and 3 shelves with 8 books each. How many books are on the shelves? | 60
+mc2: Mia had some beads. She used 18 beads, then bought 25 more. Now she has 60 beads. Which equation finds b, the number of beads she started with? | b - 18 + 25 = 60 | b + 18 + 25 = 60 | b - 18 - 25 = 60 | 60 - 18 + 25 = b
+num3: Cheng runs 4 laps each day for 7 days. His goal is 40 laps. How many more laps must he run? | 12
+mc3: A pack has 8 markers. A class buys 5 packs and loses 6 markers. Raj says 34 markers are left. Which check shows his answer is reasonable? | 5 x 8 = 40, and 40 take away about 6 is about 34 | 5 + 8 = 13, which is close to 34 | 8 - 6 = 2 and 2 x 5 = 10 | 40 + 6 = 46, which is close to 34
+sa2: Kim solved "There are 7 rows of 6 chairs, and 9 chairs are taken away. How many are left?" by writing 7 + 6 - 9 = 4. Explain her mistake and solve the problem. | She added 7 and 6 instead of multiplying. There are 7 groups of 6, so 7 x 6 = 42 chairs, and 42 - 9 = 33 chairs are left.
+
+lesson: Attributes of two-dimensional shapes | 3.G.A.1
+practice:
+mc1: Which shape is a quadrilateral? | a closed shape with 4 straight sides | a closed shape with 3 straight sides | a circle | a closed shape with 5 straight sides
+hint: "Quad" means four.
+mc1: Which shape always has 4 right angles and 4 sides of equal length? | square | trapezoid | rhombus | triangle
+hint: Think about which shape has both of these attributes every time.
+mc2: Which statement is always true? | Every square is a rectangle | Every rectangle is a square | Every rhombus is a square | Every quadrilateral has 4 right angles
+hint: A rectangle needs 4 right angles. Does a square have them?
+mc2: A shape has 4 sides. Two of its sides are parallel and the other two sides are not parallel. What shape is it? | trapezoid | rectangle | square | rhombus
+hint: In rectangles, squares and rhombuses, both pairs of opposite sides are parallel.
+num1: How many right angles does a rectangle have? | 4
+hint: Look at each corner of a rectangle.
+sa2: Explain why a rhombus might not be a square. | A rhombus has 4 equal sides, but its angles do not have to be right angles. A square must have 4 right angles, so a rhombus with slanted corners is not a square.
+quiz:
+mc1: How many sides does a hexagon have? | 6 | 5 | 8 | 4
+mc1: Which shape has exactly 3 sides? | triangle | quadrilateral | pentagon | hexagon
+mc2: Which shape is a quadrilateral but NOT a rectangle? | a rhombus with no right angles | a square | a 2 by 5 rectangle | a shape with 4 sides and 4 right angles
+mc2: A shape has 4 right angles. Two sides are 6 cm long and two sides are 3 cm long. What is the shape? | rectangle | square | rhombus | triangle
+mc3: Which statement is true? | A square is a rhombus, a rectangle and a quadrilateral | A rectangle is always a rhombus | A trapezoid always has 4 right angles | A triangle is a quadrilateral
+num2: Lily draws 3 quadrilaterals and 2 pentagons. How many sides does she draw in all? | 22
+sa2: Sam says a shape with 4 straight sides that are all different lengths is not a quadrilateral. Explain whether he is right. | He is not right. A quadrilateral is any closed shape with 4 straight sides. The sides do not have to be the same length.
+
+lesson: Solving problems with perimeter | 3.MD.D.8
+practice:
+num1: A rectangle is 7 cm long and 4 cm wide. What is its perimeter in centimeters? | 22
+hint: Add all four sides: 7 + 4 + 7 + 4.
+num2: A triangle has sides of 5 inches, 6 inches and 8 inches. What is its perimeter in inches? | 19
+hint: Perimeter is the total length of all the sides.
+num2: A square garden has a perimeter of 32 feet. How many feet long is each side? | 8
+hint: A square has 4 equal sides. What number times 4 is 32?
+mc2: Which situation is about perimeter? | putting a fence around a yard | covering a floor with tiles | filling a box with sand | painting a wall
+hint: Perimeter is the distance around a shape.
+num2: A rectangle has a perimeter of 30 meters. Its length is 9 meters. What is its width in meters? | 6
+hint: The two lengths use 18 meters. What is left for the two widths?
+sa2: Explain why you can find the perimeter of an 8 by 3 rectangle by doubling 8 + 3. | A rectangle has two lengths and two widths. 8 + 3 is one length and one width, so doubling it gives all four sides: 11 + 11 = 22 units.
+quiz:
+num1: A square tile has sides of 9 cm. What is its perimeter in centimeters? | 36
+num2: A pentagon has 5 sides that are each 7 inches long. What is its perimeter in inches? | 35
+num2: A picture frame is 12 inches long and 9 inches wide. How many inches of ribbon fit exactly around the frame? | 42
+num3: Ms. Ali puts a border around a bulletin board that is 6 feet by 4 feet. The border comes in rolls of 5 feet. How many rolls does she need? | 4
+mc2: A quadrilateral has a perimeter of 26 cm. Three of its sides are 5 cm, 8 cm and 6 cm. How long is the fourth side? | 7 cm | 19 cm | 26 cm | 45 cm
+mc2: Which rectangle has a perimeter of 16 units? | 5 by 3 | 8 by 2 | 6 by 4 | 4 by 2
+sa2: Rafa found the perimeter of a 6 by 2 rectangle by multiplying 6 x 2 = 12. Explain his mistake and find the perimeter. | He found the area, not the perimeter. Perimeter is the distance around: 6 + 2 + 6 + 2 = 16 units.
+
+lesson: Problem solving with perimeter and area | 3.MD.D.8, 3.MD.C.7
+practice:
+mc2: Which two rectangles have the same perimeter but different areas? | 5 by 1 and 3 by 3 | 4 by 2 and 8 by 1 | 2 by 6 and 3 by 4 | 2 by 2 and 1 by 4
+hint: Find the perimeter and the area of each rectangle.
+num2: Of all the rectangles with whole-number sides and an area of 12 square units, what is the greatest perimeter? | 26
+hint: List all the rectangles with an area of 12: 1 by 12, 2 by 6 and 3 by 4.
+num2: Ty has 20 feet of fence for a rectangular pen. He makes it 6 feet long. What is the area of the pen in square feet? | 24
+hint: First use the perimeter to find the width.
+mc2: One garden is 4 meters by 4 meters. Another is 2 meters by 6 meters. Which statement is true? | They have the same perimeter, but the square has more area | They have the same area | They have the same area and the same perimeter | The 2 by 6 garden has more area
+hint: Find the perimeter and area of each garden.
+num3: A rectangular patio has a perimeter of 24 meters. Its width is 4 meters. What is its area in square meters? | 32
+hint: Find the length first. The two widths use 8 meters.
+sa3: Two rectangles each have an area of 16 square units. Explain how they can have different perimeters. | A 2 by 8 rectangle has a perimeter of 20 units, and a 4 by 4 square has a perimeter of 16 units. Area counts the squares inside, but the perimeter depends on how the squares are arranged; a long, thin shape has more outside edge.
+quiz:
+num2: A rectangle has a perimeter of 18 inches and a length of 5 inches. What is its area in square inches? | 20
+mc2: Which rectangle has an area of 24 square units and a perimeter of 20 units? | 6 by 4 | 8 by 3 | 12 by 2 | 24 by 1
+num2: A square has an area of 25 square feet. What is its perimeter in feet? | 20
+num3: Nora is building a rectangular pen with 16 meters of fence. She wants the greatest area possible with whole-number side lengths. What is that area in square meters? | 16
+mc3: A rectangle is 2 by 10. Kai makes a new rectangle with the same perimeter that is 5 units wide. How does its area compare with the first rectangle's? | It is 35 square units, which is 15 more | It is 20 square units, the same | It is 50 square units, which is 30 more | It is 24 square units, which is 4 more
+num2: A room is 7 meters by 6 meters. Baseboard goes all the way around the room except for a doorway 1 meter wide. How many meters of baseboard are needed? | 25
+sa2: Bea says that if two rectangles have the same area, they must have the same perimeter. Give an example that shows she is wrong. | A 1 by 6 rectangle and a 2 by 3 rectangle both have an area of 6 square units, but their perimeters are 14 units and 10 units.
+
+test:
+num1: A rectangle is 8 meters by 5 meters. What is its perimeter in meters? | 26
+mc1: Which shape has exactly 5 sides? | pentagon | hexagon | quadrilateral | triangle
+mc1: Which quadrilateral is always both a rectangle and a rhombus? | square | trapezoid | parallelogram | triangle
+num1: A square has sides of 6 inches. What is its perimeter in inches? | 24
+num2: A hexagon has 6 sides that are each 5 cm long. What is its perimeter in centimeters? | 30
+num2: A square playground has a perimeter of 36 meters. How many meters long is each side? | 9
+mc2: Which statement about quadrilaterals is always true? | Every square is a rhombus | Every rhombus is a rectangle | Every quadrilateral is a square | Every trapezoid is a rectangle
+mc2: A quadrilateral has four sides that are each 6 cm long, but it has no right angles. What is it? | rhombus | square | rectangle | trapezoid
+mc2: Which rectangle has the same perimeter as a 6 by 2 rectangle? | 5 by 3 | 6 by 3 | 4 by 3 | 12 by 1
+mc2: Which situation asks for area? | how much carpet covers a floor | how much fence goes around a field | how much ribbon goes around a box lid | how far it is around a running track
+num2: A rectangle has a perimeter of 22 inches and a width of 4 inches. What is its length in inches? | 7
+num3: Pedro buys 4 notebooks for $3 each and 2 pens for $5 each. He pays with a $30 bill. How many dollars of change does he get? | 8
+num3: 63 students are split equally into 7 teams. Each team then splits into groups of 3. How many groups does each team make? | 3
+num3: A garden is 9 feet long and 4 feet wide. Fencing costs $2 per foot. How many dollars does it cost to fence all the way around the garden? | 52
+num3: A rectangular playground has a perimeter of 30 meters and a length of 10 meters. What is its area in square meters? | 50
+mc3: Two rectangles each have a perimeter of 20 cm. One is 9 cm by 1 cm and the other is 5 cm by 5 cm. Which statement is true? | The 5 by 5 square has 16 more square centimeters of area | They have the same area | The 9 by 1 rectangle has more area | The 5 by 5 square has 5 more square centimeters of area
+mc3: Lia makes a rectangle using all 24 of her square tiles. Which rectangle has the smallest perimeter? | 4 by 6 | 3 by 8 | 2 by 12 | 1 by 24
+mc2: Which is the best estimate for 612 - 289 + 98, rounding each number to the nearest hundred? | 400 | 300 | 500 | 1,000
+sa2: Explain how a square and a rhombus are alike and how they are different. | Both are quadrilaterals with 4 equal sides. A square always has 4 right angles, but a rhombus does not have to.
+sa2: Nate says the perimeter of a 7 by 3 rectangle is 10 because 7 + 3 = 10. Explain his mistake. | He added only two sides. A rectangle has 4 sides, so the perimeter is 7 + 3 + 7 + 3 = 20 units.
+sa3: Describe two rectangles that have the same perimeter but different areas. Give the perimeter and area of each. | For example, a 2 by 6 rectangle has a perimeter of 16 units and an area of 12 square units, and a 4 by 4 square has a perimeter of 16 units and an area of 16 square units.
+task3: The class has exactly 24 meters of fence to build a rectangular garden with whole-number side lengths. (a) List at least three different rectangles that use all 24 meters. (b) Find the area of each one. (c) Which rectangle gives the most space to plant? Explain. (d) One seed packet covers 4 square meters. How many packets are needed for the rectangle with the most space? | At least three correct rectangles (from 1 by 11, 2 by 10, 3 by 9, 4 by 8, 5 by 7, 6 by 6) with correct areas (11, 20, 27, 32, 35, 36); 6 by 6 gives the most space (36 square meters); 36 / 4 = 9 packets; clear explanations. | Correct rectangles and areas with one small error or an incomplete explanation. | Some correct rectangles, or confuses area and perimeter in one part. | Little correct work.
+
