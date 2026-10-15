@@ -1,0 +1,651 @@
+@subject math
+@grade 7
+@program Eureka Math
+about: Seventh grade deepens proportional reasoning and applies it to scale drawings and percent problems, completes the four operations with positive and negative rational numbers, writes equivalent expressions and solves multi-step equations and inequalities, uses random sampling and probability models, and solves problems about angles, triangles, circles, cross sections, area, surface area and volume.
+std: 7.RP.A.2 | Recognize and represent proportional relationships between quantities in tables, graphs, equations and diagrams.
+std: 7.RP.A.3 | Use proportional relationships to solve multistep ratio and percent problems.
+std: 7.NS.A.3 | Solve real-world and mathematical problems involving the four operations with rational numbers.
+std: 7.EE.B.3 | Solve multi-step real-life problems posed with positive and negative rational numbers in any form.
+std: 7.EE.B.4 | Use variables to construct and solve simple equations and inequalities to solve problems.
+std: 7.G.B.4 | Know and use the formulas for the area and circumference of a circle to solve problems.
+std: 7.SP.C.7 | Develop a probability model and use it to find probabilities of events.
+
+unit: Module 1: Ratios and proportional relationships | 7.RP.A.1, 7.RP.A.2, 7.RP.A.3, 7.G.A.1 | g7prop
+el: Post a model of the same proportional relationship as a table, a graph, an equation (y = kx) and a sentence; have partners say "for every 1 ___ there are k ___" for each problem.
+
+lesson: Proportional relationships in tables | 7.RP.A.2
+practice:
+mc1: Which table shows a proportional relationship? | x: 2, 4, 6 and y: 7, 14, 21 | x: 1, 2, 3 and y: 4, 6, 8 | x: 2, 4, 6 and y: 3, 5, 7 | x: 1, 2, 3 and y: 1, 4, 9
+hint: Check whether y ÷ x is the same for every pair.
+num2: In a proportional relationship, y = 18 when x = 4. What is y when x = 10? | 45
+hint: Find y when x = 1 first.
+mc2: A climbing gym charges $10 per class plus a one-time $20 card fee. Is the total cost proportional to the number of classes? | No, because 0 classes would still cost $20 | Yes, because the cost goes up by $10 each time | Yes, because both quantities increase | No, because the cost goes up by the same amount each time
+num2: Trail mix is sold by weight. 3 pounds cost $13.50. How many dollars do 7 pounds cost? | 31.5
+hint: Find the price of 1 pound.
+sa2: Explain how to decide from a table whether two quantities are proportional. | Divide each y-value by its x-value. If every quotient is the same number, the quantities are proportional and that number is the constant of proportionality.
+quiz:
+mc1: Which pair of values could be in the same proportional table as (3, 12)? | (5, 20) | (5, 14) | (4, 12) | (6, 15)
+mc2: Which situation is proportional? | the cost of gas at $4.60 per gallon | a taxi fare of $3 plus $2 per mile | a person's height as they get older | a phone plan of $30 plus $5 per gigabyte
+num2: A proportional table includes x = 6, y = 15. What is y when x = 14? | 35
+num2: Ears of corn all cost the same. 8 ears cost $3.20. How many dollars do 15 ears cost? | 6
+mc2: Which table is NOT proportional? | x: 1, 2, 5 and y: 3, 6, 16 | x: 1, 2, 5 and y: 3, 6, 15 | x: 2, 3, 4 and y: 1, 1.5, 2 | x: 10, 20, 30 and y: 1, 2, 3
+num3: A painter uses 2.5 gallons of paint for 3 rooms of the same size. How many gallons does she need for 12 such rooms? | 10
+sa2: Mateo says the table x: 1, 2, 3 and y: 5, 7, 9 is proportional because y increases by 2 each time. Explain his mistake. | Proportional means y ÷ x is the same for every pair. 5 ÷ 1 = 5, 7 ÷ 2 = 3.5 and 9 ÷ 3 = 3 are different, so the table is not proportional, even though it grows by a constant amount.
+
+lesson: Graphs, equations and the constant of proportionality | 7.RP.A.2
+practice:
+num1: In y = 3.5x, what is the constant of proportionality? | 3.5
+hint: In y = kx, the constant is k.
+mc2: Which graph shows a proportional relationship? | a straight line through (0, 0) | a straight line through (0, 4) | a curve through (0, 0) | a horizontal line through (0, 3)
+hint: Think about what happens to y when x is 0.
+num2: The graph of a proportional relationship passes through (4, 10). What is the constant of proportionality? | 2.5
+hint: Divide y by x.
+mc2: A recipe uses 3 cups of flour for every 2 eggs. Which equation gives the cups of flour f for e eggs? | f = 1.5e | f = 2/3 e | e = 1.5f | f = e + 1
+num2: The point (1, r) is on the graph of y = 6x. What is r? | 6
+sa2: A graph of distance in miles against time in hours passes through (0, 0) and (3, 180). Explain what the point (1, 60) means. | After 1 hour the car has traveled 60 miles. 60 miles per hour is the unit rate, which is the constant of proportionality.
+quiz:
+num1: Apples cost c = 0.85p dollars for p apples. How many dollars do 20 apples cost? | 17
+mc2: Which equation represents a proportional relationship? | y = 4x | y = 4x + 1 | y = x + 4 | y = x^2
+num2: The point (5, 12) is on the graph of a proportional relationship. What is y when x = 1? | 2.4
+mc2: A car's distance d in miles after h hours is d = 62h. What does 62 represent? | the speed in miles per hour | the number of hours driven | the total distance | the starting distance
+num2: A printer prints p = 24m pages in m minutes. How many minutes does it take to print 300 pages? | 12.5
+mc3: Ana's running distance in km after t minutes is d = 0.2t. A graph of Ben's running passes through (10, 1.8). Who runs faster? | Ana | Ben | They run at the same speed | There is not enough information
+num3: A store charges c = 2.75w dollars for w pounds of apples. Lin has $22. How many pounds can she buy? | 8
+sa2: Explain why the graph of y = kx always passes through (0, 0) and (1, k). | When x = 0, y = k x 0 = 0. When x = 1, y = k x 1 = k. So (0, 0) and (1, k) are always on the graph.
+
+lesson: Ratios and rates involving fractions | 7.RP.A.1, 7.RP.A.3
+practice:
+num2: Pat walks 1/2 mile in 1/4 hour. What is her speed in miles per hour? | 2
+hint: Divide the distance by the time.
+num2: A recipe uses 3/4 cup of sugar for 1/2 of a batch. How many cups of sugar are needed for a full batch? | 1 1/2
+num2: A pump fills 2/3 of a tank in 1/2 hour. How many tanks does it fill per hour? | 1 1/3
+hint: Find the amount for 1 hour: 2/3 ÷ 1/2.
+mc2: What is the unit rate for 1 1/4 miles in 1/2 hour? | 2 1/2 miles per hour | 5/8 mile per hour | 1 3/4 miles per hour | 2/5 mile per hour
+num2: A snail crawls 5/6 foot in 2/3 minute. How many feet per minute is that? | 1 1/4
+sa2: Explain how to find the unit rate when 3/4 can of paint covers 1/2 of a wall, and what the unit rate means. | Divide 3/4 by 1/2 to get 1 1/2 cans per wall. It means one whole wall needs 1 1/2 cans of paint.
+quiz:
+num2: A bike rider travels 4 1/2 miles in 1/3 hour. What is her speed in miles per hour? | 13 1/2
+num2: A gardener uses 2/5 bag of soil for 1/3 of a garden bed. How many bags are needed for a whole bed? | 1 1/5
+mc2: Which rate is the greatest speed? | 3/4 mile in 1/4 hour | 1/2 mile in 1/4 hour | 1 mile in 1/2 hour | 2 miles in 1 hour
+num3: A hose fills 3/8 of a pool in 1 1/2 hours. At this rate, how many hours does it take to fill the whole pool? | 4
+num2: A recipe uses 2/3 cup of oil for every 1 1/3 cups of flour. How many cups of oil are used per cup of flour? | 1/2
+mc2: Jade mows 5/8 of a lawn in 3/4 hour. Which expression gives the part of the lawn she mows per hour? | 5/8 ÷ 3/4 | 3/4 ÷ 5/8 | 5/8 x 3/4 | 3/4 - 5/8
+num3: Ravi's sauce uses 1/2 cup of tomato for 1/6 cup of water. Chloe's uses 3/4 cup of tomato for 1/3 cup of water. How many more cups of tomato per cup of water does Ravi's sauce use than Chloe's? | 3/4
+sa2: Rahul says the unit rate for 1/2 page in 1/4 minute is 1/8 page per minute. Explain his mistake. | He multiplied instead of dividing. Pages per minute = 1/2 ÷ 1/4 = 2 pages per minute.
+
+lesson: Ratios of scale drawings | 7.G.A.1, 7.RP.A.2
+practice:
+num1: A map scale is 1 cm : 5 km. Two towns are 7 cm apart on the map. How many kilometers apart are they? | 35
+hint: Each centimeter on the map stands for 5 kilometers.
+num2: A blueprint uses 1 inch : 4 feet. A room is 15 feet long. How many inches long is it on the blueprint? | 3.75
+num2: A scale drawing of a garden is 6 in by 4 in with a scale of 1 in : 3 ft. What is the actual area of the garden in square feet? | 216
+hint: Find the actual length and width first.
+mc2: A drawing is enlarged with a scale factor of 2. What happens to its area? | It is multiplied by 4 | It is doubled | It stays the same | It is multiplied by 8
+num2: A model car is 1/24 the size of the real car. The model is 7.5 inches long. How many inches long is the real car? | 180
+sa2: Explain what a scale factor of 1/50 means for a scale drawing of a building. | Every length on the drawing is 1/50 of the actual length, so 1 unit on the drawing represents 50 units on the building.
+quiz:
+num1: A map scale is 1 inch : 20 miles. Two cities are 4.5 inches apart on the map. How many miles apart are they? | 90
+mc2: A rectangle is 3 cm by 5 cm. Which rectangle is a scale drawing of it with scale factor 3? | 9 cm by 15 cm | 6 cm by 8 cm | 9 cm by 5 cm | 3 cm by 15 cm
+num2: A park is 400 meters long. On a map it is 8 cm long. How many meters does 1 cm represent? | 50
+num2: A floor plan has a scale of 1/4 inch : 1 foot. A wall is 3 1/2 inches long on the plan. How many feet long is the actual wall? | 14
+num3: A poster is 18 in by 24 in. Lila makes a copy with a scale factor of 2/3. What is the area of the copy in square inches? | 192
+mc2: Map A uses 1 cm : 2 km and Map B uses 1 cm : 5 km. On which map does the same city look larger? | Map A | Map B | They look the same | It depends on the city
+num3: A scale drawing of a bedroom uses 1 in : 3 ft and is 5 in by 4 in. Carpet costs $4 per square foot. How many dollars does carpet for the actual bedroom cost? | 720
+sa2: Zoe says that if a scale drawing has a scale factor of 3, then its area is also 3 times as large. Explain her mistake with an example. | Both the length and the width are multiplied by 3, so the area is multiplied by 3 x 3 = 9. A 1 by 2 rectangle (area 2) becomes a 3 by 6 rectangle (area 18).
+
+test:
+mc1: What is the constant of proportionality in y = 7x? | 7 | x | y | 1/7
+num1: y is proportional to x, and y = 24 when x = 6. What is y when x = 1? | 4
+mc1: Which point is on the graph of every proportional relationship? | (0, 0) | (1, 0) | (0, 1) | (1, 1)
+mc2: Which of these tables shows a proportional relationship? | x: 3, 6, 9 and y: 2, 4, 6 | x: 3, 6, 9 and y: 4, 7, 10 | x: 1, 3, 5 and y: 2, 4, 6 | x: 2, 4, 8 and y: 4, 16, 64
+mc2: A car uses 1 gallon of gas for every 32 miles. Which equation gives the gallons g used to drive m miles? | g = m/32 | g = 32m | m = g/32 | g = m + 32
+num2: A rate is 3/4 mile in 1/6 hour. What is the unit rate in miles per hour? | 4 1/2
+num2: Oranges cost $4.20 for 6. At the same rate, how many dollars do 15 oranges cost? | 10.5
+num2: A map scale is 1 cm : 12 km. Two lakes are 5.5 cm apart on the map. How many kilometers apart are they? | 66
+mc2: The graph of a proportional relationship goes through (8, 6). What is the constant of proportionality? | 3/4 | 4/3 | 2 | 48
+mc2: Which situation is NOT proportional? | A plumber charges a $50 visit fee plus $40 per hour | Apples cost $1.25 per pound | A car travels at a steady 55 miles per hour | A worker earns $16 per hour
+num2: The distance d in miles that Mai walks in t hours is d = 4.5t. How many hours does it take her to walk 18 miles? | 4
+num3: Juan types 2/3 page in 1/4 hour. Kim types 1 1/2 pages in 3/4 hour. How many more pages per hour does Juan type than Kim? | 2/3
+num3: A blueprint uses a scale of 1 in : 8 ft. A rectangular deck is 2 1/2 in by 1 1/2 in on the blueprint. What is the actual area of the deck in square feet? | 240
+num3: A soup recipe uses 1 1/4 cups of broth for every 1/2 cup of rice. How many cups of broth are needed for 3 cups of rice? | 7.5
+num3: A 4 in by 6 in photo is enlarged with a scale factor of 2.5. How many square inches greater is the area of the enlargement than the area of the original? | 126
+mc2: On the graph of y = 1.2x, x is pounds of bananas and y is the cost in dollars. What does the point (5, 6) mean? | 5 pounds of bananas cost $6 | 6 pounds of bananas cost $5 | Bananas cost $5 per pound | Bananas cost $6 per pound
+mc3: Elena's tutoring earnings are shown by the points (2, 50), (3, 75) and (5, 125), where x is hours and y is dollars. Felix earns e = 22h dollars for h hours. Who earns more per hour, and by how much? | Elena, by $3 per hour | Felix, by $3 per hour | Elena, by $28 per hour | They earn the same
+mc3: A scale drawing is reduced so every length is 1/2 as long. What fraction of the original area is the new area? | 1/4 | 1/2 | 2 | 1/8
+num2: A spring stretches 1.5 cm for every 2 kg hung on it. How many centimeters does it stretch when 7 kg is hung on it? | 5.25
+sa2: Explain how to use the point (1, r) on the graph of a proportional relationship to find the unit rate. | In a proportional graph, the y-value when x = 1 is the amount of y for one unit of x. So r is the unit rate, which is also the constant of proportionality.
+sa3: Ming says y = x + 3 is a proportional relationship because its graph is a straight line. Explain whether Ming is right. | Ming is not right. A proportional graph must be a straight line through the origin. y = x + 3 passes through (0, 3), and y ÷ x is not constant (4 ÷ 1 = 4 but 5 ÷ 2 = 2.5), so it is not proportional.
+task3: A school is choosing a bus company for a field trip. Company A's prices: 50 miles for $150, 100 miles for $300 and 150 miles for $450. Company B charges $100 plus $2 per mile. (a) Decide whether each company's cost is proportional to the number of miles. Give evidence. (b) Write an equation for each company's cost c for m miles. (c) The trip is 120 miles round trip. Which company is cheaper, and by how much? (d) For how many miles do the two companies cost the same? Explain how you know. | (a) A is proportional (every ratio is $3 per mile and 0 miles costs $0); B is not, because 0 miles costs $100; (b) c = 3m and c = 2m + 100; (c) A costs $360 and B costs $340, so B is cheaper by $20; (d) 100 miles, where both cost $300, shown with a table, graph or equation. | Correct equations and comparison with a small error or missing evidence in part (a). | One equation correct and some correct comparisons. | Little correct work.
+
+unit: Module 2: Rational numbers | 7.NS.A.1, 7.NS.A.2, 7.NS.A.3, 7.EE.B.3 | g7negmul
+el: Use a number line and two-color counters for every new rule; post sentence frames such as "Subtracting ___ is the same as adding ___" and pair signed numbers with words like gain/loss, deposit/withdrawal and rise/fall.
+
+lesson: Adding integers and rational numbers | 7.NS.A.1
+practice:
+num1: -8 + 3 = ? | -5
+hint: Start at -8 on a number line and move 3 units to the right.
+num1: -6 + (-9) = ? | -15
+num2: 4.5 + (-7.2) = ? | -2.7
+hint: The signs are different, so subtract the absolute values and use the sign of the number farther from 0.
+mc2: Which sum is 0? | 12 + (-12) | 12 + 12 | -12 + (-12) | 12 + 0.12
+hint: Opposites are additive inverses.
+num2: A diver at -25 feet swims up 11 feet. What is her new position in feet? | -14
+sa2: Use a number line to explain why -3 + 5 = 2. | Start at -3 and move 5 units to the right. The first 3 units bring you to 0 and 2 more units bring you to 2.
+quiz:
+num1: -14 + 6 = ? | -8
+num1: -2.5 + (-3.75) = ? | -6.25
+num2: 3/4 + (-1 1/2) = ? | -3/4
+mc2: Which situation is modeled by -40 + 15? | a $40 debt and then a $15 payment | $40 in savings and then a $15 deposit | a $40 debt and then another $15 charge | a $15 debt and then a $40 charge
+num2: A football team gains 7 yards, loses 12 yards and then gains 3 yards. What is the total change in yards? | -2
+mc2: p is positive, q is negative and abs(q) > abs(p). Which is true about p + q? | It is negative | It is positive | It is zero | It is greater than p
+num3: At 6 a.m. the temperature was -11 degrees. It rose 4 degrees by 9 a.m. and another 9 degrees by noon. What was the temperature at noon, in degrees? | 2
+sa2: Kevin says -7 + 4 = -11. Explain his mistake. | He added the absolute values and kept the negative sign. The signs are different, so subtract 7 - 4 = 3 and use the sign of the number with the greater absolute value: -7 + 4 = -3.
+
+lesson: Subtracting rational numbers and distance | 7.NS.A.1
+practice:
+num1: 5 - (-12) = ? | 17
+hint: Subtracting a number is the same as adding its opposite.
+num1: -9 - 4 = ? | -13
+num2: -3.6 - (-5.1) = ? | 1.5
+mc2: Which expression equals 8 - (-3)? | 8 + 3 | 8 - 3 | -8 + 3 | -8 - 3
+num2: What is the distance on a number line between -17 and 6? | 23
+hint: The distance between p and q is abs(p - q).
+sa2: Use a real-world situation to explain why 4 - (-6) = 10. | If you have $4 and a $6 debt is taken away, you are $6 better off. Taking away -6 is the same as adding 6, so 4 - (-6) = 4 + 6 = 10.
+quiz:
+num1: -20 - (-8) = ? | -12
+num2: 2/3 - 1 1/2 = ? | -5/6
+num2: The top of Mount Whitney in California is about 14,505 feet above sea level, and Badwater Basin in Death Valley is about 282 feet below sea level. About how many feet higher is the top of Mount Whitney? | 14787
+mc2: Which expression gives the distance between -4.5 and 3 on a number line? | abs(-4.5 - 3) | -4.5 - 3 | abs(-4.5 + 3) | -4.5 + 3
+num2: The temperature fell from 7 degrees to -13 degrees. What was the change in temperature, in degrees? | -20
+mc2: Which has the same value as -6 - 10? | -6 + (-10) | -6 + 10 | 6 - 10 | 6 + (-10)
+num3: Ana's bank balance was -$23.50. She deposited $60 and then paid a $41.75 bill. What is her balance now, in dollars? | -5.25
+sa2: Explain why the distance between -8 and -3 is 5, not 11. | The distance is abs(-8 - (-3)) = abs(-5) = 5. Both numbers are on the same side of 0, so their distances from 0 (8 and 3) are subtracted, not added.
+
+lesson: Multiplying and dividing rational numbers | 7.NS.A.2
+practice:
+num1: -6 x -7 = ? | 42
+hint: The product of two negative numbers is positive.
+num1: -36 ÷ 4 = ? | -9
+num2: -2.5 x 1.6 = ? | -4
+mc2: Which product is positive? | (-2)(-3)(4) | (-2)(3)(4) | (-2)(-3)(-4) | (2)(3)(-4)
+hint: Count the negative factors.
+num2: -3/4 x 8/9 = ? | -2/3
+sa2: Use a pattern to explain why -3 x -1 = 3. | -3 x 2 = -6, -3 x 1 = -3 and -3 x 0 = 0. Each time the second factor goes down by 1, the product goes up by 3, so -3 x -1 = 3.
+quiz:
+num1: -48 ÷ (-6) = ? | 8
+num1: 0.5 x (-18) = ? | -9
+num2: -2/5 ÷ 4/15 = ? | -1 1/2
+mc2: Which expression has a negative value? | (-1)^3 | (-1)^2 | (-1)^4 | (-2)(-2)
+num2: A stock's price fell $2.35 each day for 4 days. What was the total change in dollars? | -9.4
+mc2: Which statement is true? | -(12 ÷ 3) = (-12) ÷ 3 = 12 ÷ (-3) | -(12 ÷ 3) = (-12) ÷ (-3) | (-12) ÷ 3 is positive | 12 ÷ (-3) = 4
+num3: A hiker descends into a canyon at a steady 6 meters per minute. What is her change in elevation, in meters, after 45 minutes? | -270
+sa2: Talia says -5 x -4 x -2 = 40 because two negatives make a positive. Explain her error. | There are three negative factors. -5 x -4 = 20, and 20 x -2 = -40. An odd number of negative factors gives a negative product.
+
+lesson: Rational numbers as decimals and multi-step problems | 7.NS.A.2, 7.NS.A.3, 7.EE.B.3
+practice:
+mc1: What is 5/8 as a decimal? | 0.625 | 0.58 | 1.6 | 0.85
+hint: Divide 5 by 8.
+mc2: Which fraction has a repeating decimal? | 2/3 | 3/4 | 7/8 | 9/20
+hint: Divide each numerator by its denominator.
+num2: -4 + 3 x (-2) = ? | -10
+hint: Multiply before adding.
+num2: (-2)^2 - 5 x 3 = ? | -11
+num2: A freezer is at 3 degrees. It cools 2.5 degrees each hour. What is its temperature after 4 hours, in degrees? | -7
+sa2: Explain how you know 1/6 is a repeating decimal. | Dividing 1 by 6 gives 0.1666... The remainder 4 appears again and again, so the digit 6 repeats forever.
+quiz:
+mc1: What is -7/20 as a decimal? | -0.35 | -0.72 | -7.2 | -0.035
+num2: -18 ÷ 3 + (-4)(-5) = ? | 14
+num2: 1/2 x (-6) - (-8) ÷ 4 = ? | -1
+mc2: Which decimal equals -2/9? | -0.222... | -0.29 | -2.9 | -0.2
+num3: A water tank holds 450 liters. A leak removes 12.5 liters per hour for 8 hours, and then 40 liters are added. How many liters are in the tank now? | 390
+num3: A food truck's daily profits for 5 days were $120, -$45, $80, -$15 and -$60. What was the mean daily profit, in dollars? | 16
+mc2: Which expression gives the temperature after starting at -6 degrees and dropping 1.5 degrees each hour for 4 hours? | -6 + 4(-1.5) | -6 - 4(-1.5) | -6 x 4 x 1.5 | 6 - 4(1.5)
+sa2: Explain how to evaluate -2(3 - 7), and give the value. | Do the parentheses first: 3 - 7 = -4. Then multiply: -2 x -4 = 8.
+
+test:
+mc1: What is -12 + 7? | -5 | 5 | -19 | 19
+mc1: What is -9 x 4? | -36 | 36 | -13 | 13
+num1: 6 - (-15) = ? | 21
+num1: -56 ÷ (-7) = ? | 8
+num1: -3.2 + 1.7 = ? | -1.5
+mc2: Which expression has the same value as -8 - (-5)? | -8 + 5 | 8 + 5 | -8 - 5 | 8 - 5
+mc2: Which product is negative? | (-1)(2)(-3)(-4) | (-1)(-2)(3)(4) | (-1)(-2)(-3)(-4) | (1)(2)(3)(4)
+mc2: What is 3/8 as a decimal? | 0.375 | 0.38 | 3.8 | 0.83
+num2: -5/6 + 1/4 = ? | -7/12
+num2: -1.2 x (-2.5) = ? | 3
+num2: 4 - 3 x (-2)^2 = ? | -8
+num2: What is the distance between -9.5 and 4 on a number line? | 13.5
+mc2: Which situation results in a total change of 0? | a $25 deposit followed by a $25 withdrawal | a $25 deposit followed by another $25 deposit | a $25 withdrawal followed by another $25 withdrawal | a $25 withdrawal and no deposit
+num3: A scuba diver is at -18.5 meters. She descends 6.25 meters and then rises 10 meters. What is her final position, in meters? | -14.75
+num3: At 5 p.m. the temperature was 4 degrees. It dropped 3 degrees every hour until 11 p.m. What was the temperature at 11 p.m., in degrees? | -14
+num3: A club's account had $85. It paid 6 bills of $22.50 each and then received a $40 donation. What is the balance now, in dollars? | -10
+num3: In a quiz game, a correct answer earns 5 points and a wrong answer loses 3 points. Dev answers 8 questions correctly and 11 incorrectly. What is his score? | 7
+mc3: p is negative and q is positive. Which expression is always positive? | q - p | p - q | p x q | p ÷ q
+mc3: Which fraction is equal to a repeating decimal? | 5/12 | 5/16 | 7/40 | 9/25
+num2: -3/5 ÷ (-9/10) = ? | 2/3
+sa2: Use multiplication to explain why the quotient of two negative numbers is positive. | Division undoes multiplication. -12 ÷ (-3) asks what number times -3 equals -12. Since 4 x (-3) = -12, the quotient is 4, a positive number.
+sa3: Marcus says -3 - 8 = 5. Explain his mistake and find the correct value. | He treated the problem as -3 + 8. Subtracting 8 means adding -8: -3 + (-8) = -11. On a number line, start at -3 and move 8 units left to reach -11.
+task3: A science class recorded the temperature at a mountain weather station every 4 hours: 6 a.m. -8.5 degrees, 10 a.m. -2 degrees, 2 p.m. 5.5 degrees, 6 p.m. 1 degree and 10 p.m. -6 degrees. (a) Find the change in temperature for each 4-hour period. (b) Find the total change from 6 a.m. to 10 p.m. in two ways and show that they agree. (c) Find the mean of the five temperatures. (d) Which 4-hour period had the change with the greatest absolute value? Explain what that tells you. | (a) +6.5, +7.5, -4.5 and -7 degrees; (b) -6 - (-8.5) = 2.5 and 6.5 + 7.5 + (-4.5) + (-7) = 2.5; (c) -10 ÷ 5 = -2 degrees; (d) 10 a.m. to 2 p.m., abs(7.5) = 7.5, the biggest temperature swing; with correct signs and explanations. | All parts set up correctly with one sign or arithmetic error. | Some changes correct, but the total or mean is wrong. | Little correct work.
+
+unit: Module 3: Expressions and equations | 7.EE.A.1, 7.EE.A.2, 7.EE.B.3, 7.EE.B.4, 7.G.B.4 | twostep, g7dist, g7circ, g7circa
+el: Model each equation with a balance or tape diagram before solving; keep an anchor chart of inverse operations and of the words radius, diameter, circumference and area with a labeled circle.
+
+lesson: Writing equivalent expressions | 7.EE.A.1, 7.EE.A.2
+practice:
+mc1: Expand 4(2x - 3). | 8x - 12 | 8x - 3 | 6x - 7 | 8x + 12
+hint: Multiply 4 by each term in the parentheses.
+mc2: Which expression is equivalent to 5x - 2(x + 4)? | 3x - 8 | 3x + 8 | 3x - 4 | 7x - 8
+hint: Distribute -2 to both terms in the parentheses.
+num2: Simplify 3.5y - 1.2y + 4. What is the coefficient of y? | 2.3
+mc2: Which is a factored form of 12a - 18? | 6(2a - 3) | 6(2a - 18) | 3(4a - 18) | 2(6a - 18)
+hint: Find the greatest common factor of 12 and 18.
+mc2: A price p is increased by 15%. Which expression is equivalent to p + 0.15p? | 1.15p | 0.15p | 1.5p | p + 15
+sa2: Explain why 1.15p and p + 0.15p are equivalent, and what each shows about a price. | p + 0.15p = 1p + 0.15p = 1.15p by combining like terms. The first form shows the price plus the increase; the second shows the new price is 115% of the original.
+quiz:
+mc1: Which expression is equivalent to -3(x - 5)? | -3x + 15 | -3x - 15 | 3x - 15 | -3x - 5
+mc2: Which expression is equivalent to 1/2(8n - 6) + 2n? | 6n - 3 | 4n - 3 | 6n - 6 | 10n - 3
+num2: Evaluate 2(3k - 1) - 4k when k = 5. | 8
+mc2: Which expression is equivalent to 7 - (2y - 4)? | 11 - 2y | 3 - 2y | 11 + 2y | 3 + 2y
+mc2: A rectangle has a length of x + 4 and a width of x. Which expression gives its perimeter? | 4x + 8 | 2x + 4 | 4x + 4 | x^2 + 4x
+num2: Simplify -2(4m + 3) - (m - 7). What is the constant term? | 1
+mc3: Which expression is NOT equivalent to 6x + 9? | 3(2x + 9) | 3(2x + 3) | 9 + 6x | 2x + 4x + 9
+sa2: Hector simplified 8 - 3(x + 2) as 5x + 10. Explain his mistake and simplify correctly. | He subtracted 8 - 3 before multiplying. Multiply first: 8 - 3(x + 2) = 8 - 3x - 6 = 2 - 3x.
+
+lesson: Solving equations | 7.EE.B.3, 7.EE.B.4
+practice:
+num1: Solve 3x + 5 = 26. | 7
+hint: Undo the addition first, then the multiplication.
+num2: Solve -2x - 7 = 9. | -8
+num2: Solve 4(x + 3) = 36. | 6
+hint: Divide both sides by 4 first, or distribute.
+num2: Solve 1/2 x + 6 = 15. | 18
+mc2: A rectangle's perimeter is 50 cm and its length is 15 cm. Which equation finds its width w? | 2(15) + 2w = 50 | 15 + w = 50 | 15w = 50 | 2w - 15 = 50
+sa2: Write and solve an equation: A phone case costs $8 more than twice the cost of a screen protector. The case costs $26. How much is the screen protector? | 2p + 8 = 26, so 2p = 18 and p = 9. The screen protector costs $9.
+quiz:
+num1: Solve 5x - 4 = 31. | 7
+num2: Solve 0.6x + 2.4 = 6. | 6
+num2: Solve -3(x - 2) = 18. | -4
+num3: Five friends split the cost of a pizza equally, and each also pays $2 toward delivery. Each friend pays $6.80 in all. How many dollars did the pizza cost, not counting delivery? | 24
+mc2: Which equation matches "the sum of a number and 7, multiplied by 3, is 45"? | 3(n + 7) = 45 | 3n + 7 = 45 | n + 21 = 45 | 3(n + 45) = 7
+num3: Jalen has $80 and spends $6.50 each day on lunch. After how many days will he have $15 left? | 10
+num2: Solve x/4 - 3 = 5. | 32
+sa2: Lucia solved 2x + 10 = 4 and got x = 7. Explain her error and find the correct solution. | She added 10 to both sides instead of subtracting it. 2x = 4 - 10 = -6, so x = -3. Check: 2(-3) + 10 = 4.
+
+lesson: Solving inequalities | 7.EE.B.4
+practice:
+mc1: Which inequality matches "at most 12"? | x <= 12 | x < 12 | x >= 12 | x > 12
+hint: "At most" means the value can be 12 or less.
+mc2: Solve 2x - 3 > 11. | x > 7 | x < 7 | x > 4 | x > 16
+hint: Solve it like an equation, then check the direction of the sign.
+mc2: Solve -3x <= 12. | x >= -4 | x <= -4 | x >= 4 | x <= 4
+hint: When you divide by a negative number, reverse the inequality sign.
+num2: Movie tickets cost $9 each and parking costs $12. Ines has $80. What is the greatest number of tickets she can buy? | 7
+mc2: Which value is a solution of 5 - x > 2? | 1 | 3 | 4 | 6
+sa2: Explain why the inequality sign reverses when you multiply or divide both sides by a negative number. | Multiplying by a negative number flips numbers to the other side of 0, which reverses their order. For example, 2 < 5, but -2 > -5.
+quiz:
+mc2: Solve 4x + 7 >= 31. | x >= 6 | x <= 6 | x >= 9.5 | x >= 24
+mc2: Solve -5x + 2 < 17. | x > -3 | x < -3 | x > 3 | x < 3
+num2: A taxi charges $3.50 plus $2.25 per mile. Rosa has $26. What is the greatest whole number of miles she can ride? | 10
+mc2: Which graph shows x < -2? | an open circle at -2, shaded to the left | a closed circle at -2, shaded to the left | an open circle at -2, shaded to the right | a closed circle at -2, shaded to the right
+num3: A club sells T-shirts for $12 each. Supplies cost $150. What is the least number of shirts the club must sell to make a profit of at least $300? | 38
+mc3: Sam has $80 and spends $6 a day. When will he have less than $20 left? | after more than 10 days | after exactly 10 days | after fewer than 10 days | after 14 days
+num2: An elevator can carry at most 1,200 pounds. A worker who weighs 180 pounds rides with boxes that weigh 60 pounds each. What is the greatest number of boxes the worker can bring? | 17
+sa2: Write and solve an inequality: Ama saves $30 a week to buy a $240 bike. How many weeks must she save? | 30w >= 240, so w >= 8. She must save for at least 8 weeks.
+
+lesson: Circumference and area of circles | 7.G.B.4
+practice:
+num1: What is the circumference of a circle with a diameter of 10 cm? Use 3.14 for pi. | 31.4
+hint: C = pi x d.
+num1: What is the area of a circle with a radius of 3 m? Use 3.14 for pi. | 28.26
+hint: A = pi x r^2.
+num2: A circle has a circumference of 18.84 inches. What is its diameter in inches? Use 3.14 for pi. | 6
+mc2: The radius of a circle is doubled. What happens to its circumference? | It doubles | It is multiplied by 4 | It stays the same | It is multiplied by 3.14
+num2: What is the area of a semicircle with a diameter of 8 feet, in square feet? Use 3.14 for pi. | 25.12
+hint: Find the radius, find the area of the whole circle, then take half.
+sa2: Explain the relationship between the circumference and the diameter of any circle. | For every circle, the circumference divided by the diameter is the same number, pi, about 3.14. So C = pi x d.
+quiz:
+num1: What is the circumference of a circle with a radius of 7 cm? Use 3.14 for pi. | 43.96
+num2: A circular rug has a diameter of 12 feet. What is its area in square feet? Use 3.14 for pi. | 113.04
+num2: A bike wheel has a diameter of 26 inches. How many inches does the bike move forward in 10 full turns of the wheel? Use 3.14 for pi. | 816.4
+mc2: A circle has an area of 78.5 square cm. What is its radius? Use 3.14 for pi. | 5 cm | 25 cm | 12.5 cm | 10 cm
+num3: A circular garden with a radius of 4 m has a circular fountain with a radius of 1 m in its center. How many square meters of the garden are not covered by the fountain? Use 3.14 for pi. | 47.1
+mc2: Which expression gives the area of a quarter circle with a radius of 6? | 1/4 x 3.14 x 6^2 | 1/4 x 3.14 x 12 | 3.14 x 6^2 | 1/4 x 3.14 x 3^2
+num3: A running track is made of two straight sides, each 100 m long, and a semicircle at each end with a diameter of 60 m. What is the distance around the track in meters? Use 3.14 for pi. | 388.4
+sa2: Kira says a circle with a radius of 5 cm has an area of 31.4 square cm. Explain her mistake. | She found pi x 10, which is the circumference. Area is pi x r^2 = 3.14 x 25 = 78.5 square cm.
+
+test:
+mc1: Which expression is equivalent to 3(4x - 2)? | 12x - 6 | 12x - 2 | 7x - 5 | 12x + 6
+num1: Solve 4x - 9 = 23. | 8
+mc1: Which formula gives the area of a circle? | A = pi x r^2 | A = 2 x pi x r | A = pi x d | A = r^2
+mc2: Which expression is equivalent to 6y - (2y - 5)? | 4y + 5 | 4y - 5 | 8y - 5 | 4y
+mc2: Which expression is equivalent to 15m + 25? | 5(3m + 5) | 5(3m + 25) | 3(5m + 25) | 15(m + 10)
+num2: Solve -4(x + 1) = 20. | -6
+num2: Solve 2/3 x - 5 = 7. | 18
+mc2: Solve -2x + 9 > 1. | x < 4 | x > 4 | x < -4 | x > -4
+mc2: Solve 3x - 4 <= 14. | x <= 6 | x >= 6 | x <= 10/3 | x <= 18
+num2: What is the circumference of a circle with a diameter of 20 inches? Use 3.14 for pi. | 62.8
+num2: What is the area of a circle with a radius of 10 m, in square meters? Use 3.14 for pi. | 314
+num3: A gym charges $35 to join and $22 per month. Carla has paid $255 in all. For how many months has she paid? | 10
+num3: Three friends buy movie tickets at the same price and share a $9 popcorn bucket. They spend $46.50 in all. What is the price of one ticket in dollars? | 12.5
+num3: A phone plan costs $25 per month plus $0.15 per text. Owen wants to spend no more than $40 in a month. What is the greatest number of texts he can send? | 100
+num3: A 16-inch pizza (16 inches is the diameter) is cut into 8 equal slices. What is the area of one slice in square inches? Use 3.14 for pi. | 25.12
+num3: A round table has a circumference of 15.7 feet. What is its area in square feet? Use 3.14 for pi. | 19.625
+mc3: For which values of x is 5 - 2x greater than 11? | x < -3 | x > -3 | x < 3 | x > 3
+mc3: Which equation has the solution x = -2? | 3x + 10 = 4 | 3x - 10 = 4 | -3x + 10 = 4 | 3x + 4 = 10
+mc2: A semicircle has a radius of 3 cm. What is its perimeter, including the straight side? Use 3.14 for pi. | 15.42 cm | 9.42 cm | 18.84 cm | 12.42 cm
+sa2: Show two different ways to solve 3(x - 4) = 21. | Divide both sides by 3: x - 4 = 7, so x = 11. Or distribute: 3x - 12 = 21, so 3x = 33 and x = 11.
+sa3: Diego solved -4x > 20 and wrote x > -5. Explain his error, give the correct solution and check it with a value. | He divided by -4 but did not reverse the inequality sign. The solution is x < -5. Check x = -6: -4(-6) = 24, and 24 > 20 is true.
+task3: A city is building a circular splash pad with a radius of 9 meters. (a) Find the area of the splash pad. (b) A rubber edge will go around the outside. Find its length. (c) Rubber edging costs $14 per meter plus a $120 delivery fee. Write an expression for the cost of e meters of edging and find the cost of the edge from part (b). (d) The city has $1,000 for edging. Write and solve an inequality for how many meters it can buy, and decide whether it can afford the edge. Use 3.14 for pi and show your work. | (a) 3.14 x 81 = 254.34 square meters; (b) 2 x 3.14 x 9 = 56.52 meters; (c) 14e + 120, so 14(56.52) + 120 = $911.28; (d) 14e + 120 <= 1000, e <= 880/14, about 62.9 meters, so yes, 56.52 meters is affordable; all work shown. | All parts set up correctly with one calculation error or a missing explanation. | Area or circumference correct, but the cost or inequality is wrong (for example, radius and diameter mixed up). | Little correct work.
+
+unit: Module 4: Percent and proportional relationships | 7.RP.A.2, 7.RP.A.3, 7.EE.B.3, 7.G.A.1 | percent, g7pctchg, g7tip
+el: Use a percent bar (0% to 100% under 0 to the whole) for every problem and post the words markup, discount, tax, tip, commission and interest with a small example of each.
+
+lesson: Percent of a quantity and finding the whole | 7.RP.A.3
+practice:
+num1: What is 35% of 240? | 84
+hint: Write 35% as 0.35 and multiply.
+num2: 18 is 24% of what number? | 75
+hint: Write the equation 0.24n = 18.
+num2: What percent of 80 is 52? | 65
+mc2: Which expression is the same as 125% of a number n? | 1.25n | 0.125n | 125n | n + 0.25
+num2: A school has 640 students and 15% of them are in the band. How many students are in the band? | 96
+sa2: Explain how to find 0.5% of 600. | 0.5% = 0.005, and 0.005 x 600 = 3. Or 1% of 600 is 6, and 0.5% is half of that, 3.
+quiz:
+num1: What is 7.5% of 200? | 15
+num2: 42 is 120% of what number? | 35
+mc2: 30% of a number is 27. Which equation finds the number w? | 0.3w = 27 | 27w = 0.3 | w = 0.3 x 27 | 30w = 27
+num2: A survey found that 288 people, or 45% of those surveyed, prefer hiking to biking. How many people were surveyed? | 640
+num3: A town has 12,000 residents. 38% are under 25 years old, and 1/4 of the rest are over 65. How many residents are over 65? | 1860
+num2: What percent of 25 is 40? | 160
+sa2: Explain why 150% of a number is greater than the number but 50% of it is less. | 100% is the whole number. 150% is the whole plus half more, so it is greater; 50% is only half of the number, so it is less.
+
+lesson: Percent increase, decrease and error | 7.RP.A.3
+practice:
+num2: A town grew from 2,000 to 2,500 people. What is the percent increase? | 25
+hint: Find the amount of change, then divide by the original amount.
+num2: A price dropped from $80 to $68. What is the percent decrease? | 15
+mc2: A $50 item increases in price by 20% and then decreases by 20%. What is the final price? | $48 | $50 | $52 | $40
+hint: The second percent is taken of the new price.
+num2: Ana estimated there were 45 beans in a jar. There were actually 50. What is her percent error? | 10
+hint: Percent error = abs(estimate - actual) ÷ actual x 100.
+mc2: Which expression gives the new value after a 12% decrease from x? | 0.88x | 1.12x | 0.12x | x - 12
+sa2: Explain why a 10% increase followed by a 10% decrease does not return to the original amount. | The decrease is 10% of a larger number. For example, 100 increases to 110, and then 10% of 110 is 11, so it decreases to 99.
+quiz:
+num2: Enrollment at a school went from 450 to 513 students. What is the percent increase? | 14
+num2: A car's value fell from $24,000 to $18,000. What is the percent decrease? | 25
+num2: A scale shows 2.4 kg for an object whose actual mass is 2.5 kg. What is the percent error? | 4
+mc2: A shirt's price rose from $20 to $25. Which statement is true? | It increased by 25% | It increased by 20% | It increased by 5% | It increased by 125%
+num3: A plant was 40 cm tall. It grew 15% in May and then 10% of its new height in June. How tall was it at the end of June, in cm? | 50.6
+mc3: The price of a game was cut by 25%, and then the sale price was raised by 25%. Compared with the original price, the final price is | 6.25% lower | the same | 6.25% higher | 50% lower
+num2: A bike shop had 80 bikes. It now has 30% fewer. How many bikes does it have now? | 56
+sa2: Max says going from 40 to 50 and going from 50 to 40 are both 25% changes. Explain his mistake. | Percent change is based on the original amount. 40 to 50 is a change of 10 out of 40, a 25% increase, but 50 to 40 is 10 out of 50, a 20% decrease.
+
+lesson: Markups, discounts, tax, tips, commission and interest | 7.RP.A.3, 7.EE.B.3
+practice:
+num2: A $60 jacket is on sale for 30% off. What is the sale price in dollars? | 42
+hint: With 30% off, you pay 70% of the price.
+num2: A meal costs $40 and the tip is 18%. What is the total in dollars? | 47.2
+num2: A store buys a lamp for $25 and marks it up 80%. What is the selling price in dollars? | 45
+mc2: Sales tax is 8.5%. Which expression gives the total cost of an item priced at p dollars? | 1.085p | 0.085p | 8.5p | p + 8.5
+num2: A salesperson earns a 6% commission. How many dollars of commission does she earn on a $3,500 sale? | 210
+sa2: Show two ways to find the price of a $35 item after a 20% discount. | Find 20% of 35, which is 7, and subtract: 35 - 7 = $28. Or find 80% of 35: 0.8 x 35 = $28.
+quiz:
+num2: A $250 bike is 15% off, and 8% sales tax is added to the sale price. What is the total cost in dollars? | 229.5
+num2: Juan deposits $1,200 in an account that earns 3% simple interest per year. How many dollars of interest does he earn in 4 years? | 144
+num2: A $24 haircut gets a 15% tip. What is the total cost in dollars? | 27.6
+mc2: An item costs $56 after a 30% discount. What was the original price? | $80 | $72.80 | $39.20 | $86
+num3: A store buys sneakers for $48 and marks them up 75%. Later they are on sale for 20% off the selling price. What is the sale price in dollars? | 67.2
+mc2: Which offer gives the lowest price on $90 shoes? | 30% off | $25 off | 25% off | $20 off and then 5% off
+num3: Ms. Kim earns a $400 weekly salary plus a 5% commission on her sales. One week she earns $715 in all. How many dollars of sales did she make? | 6300
+sa2: Jae says 20% off followed by an extra 10% off is the same as 30% off. Use a $100 item to explain whether he is right. | He is not right. 20% off $100 is $80, and 10% off $80 is $72. That is 28% off, not 30%, because the second discount is taken from the lower price.
+
+lesson: Percent in scale drawings and mixtures | 7.RP.A.3, 7.G.A.1
+practice:
+num2: A drawing is reduced to 60% of its original size. A line on it was 15 cm long. How long is the line now, in cm? | 9
+hint: Multiply the length by 0.60.
+num2: A photo is enlarged to 150% of its size. Its width was 8 inches. What is its new width in inches? | 12
+mc2: A scale drawing uses 1 cm to represent 4 m. The drawing's lengths are what percent of the actual lengths? | 0.25% | 25% | 4% | 400%
+hint: 4 m is 400 cm.
+num2: A 20-liter mixture is 30% juice. How many liters of juice does it contain? | 6
+num2: A bag of 50 marbles is 20% blue. How many blue marbles are in the bag? | 10
+sa2: Explain what it means if a scale drawing is 200% of the original figure. | Every length in the drawing is 2 times the matching length in the original, so the drawing is an enlargement.
+quiz:
+num2: A copy machine reduces a 12-inch line to 75% of its length. What is the new length in inches? | 9
+num2: A map is enlarged from 10 cm wide to 25 cm wide. What percent of the original width is the new width? | 250
+num3: A 15-liter solution is 20% salt. Then 5 liters of water are added. What percent of the new solution is salt? | 15
+mc2: A drawing is copied at 50%, and then that copy is copied at 50%. What percent of the original size is the final copy? | 25% | 0% | 50% | 100%
+num2: A class has 30 students and 40% of them are boys. How many students are girls? | 18
+num3: A 4-liter punch is 25% juice. How many liters of pure juice must be added to make the punch 40% juice? | 1
+mc2: A floor plan shows a room 3 inches long. The plan is copied at 200%. How many inches long is the room on the copy? | 6 inches | 3 inches | 12 inches | 1.5 inches
+sa2: A drawing is enlarged to 120%, and then the new drawing is reduced to 80%. Is the final drawing the same size as the original? Explain. | No. 1.2 x 0.8 = 0.96, so the final drawing is 96% of the original, a little smaller.
+
+test:
+mc1: What is 20% of 85? | 17 | 4.25 | 20 | 65
+num1: What is 125% of 64? | 80
+mc1: Which decimal is equal to 6.5%? | 0.065 | 0.65 | 6.5 | 0.0065
+mc2: 36 is 15% of what number? | 240 | 5.4 | 540 | 24
+num2: A price went from $45 to $54. What is the percent increase? | 20
+num2: A population fell from 1,250 to 1,100. What is the percent decrease? | 12
+num2: Joe guessed a room was 12 feet long. It was actually 15 feet long. What is his percent error? | 20
+mc2: Which expression gives the price after a 35% markup on a cost of c dollars? | 1.35c | 0.35c | 0.65c | c + 35
+mc2: Which expression gives the total of a bill of b dollars with a 20% tip? | 1.2b | 0.2b | b + 20 | 0.8b
+num2: A $1,500 deposit earns 4% simple interest per year. What is the balance after 3 years, in dollars? | 1680
+num3: A $72 video game is 25% off, and 7.5% sales tax is added to the sale price. What is the total cost in dollars? | 58.05
+num3: A real estate agent earns a 3% commission. She earned $11,400 on one sale. What was the price of the house, in dollars? | 380000
+num3: A restaurant bill is $64. The tax is 9% of the bill and the tip is 20% of the bill before tax. What is the total cost in dollars? | 82.56
+num3: A chess club grew from 25 members to 30 members. The next year, membership fell by 30%. How many members does the club have now? | 21
+num3: A 6-liter drink is 15% juice. How many liters of water must be added so the drink is 10% juice? | 3
+mc2: A blueprint is copied at 80%. A wall is 10 inches long on the blueprint. How long is it on the copy? | 8 inches | 12.5 inches | 2 inches | 18 inches
+mc3: Store A sells a $40 shirt at 25% off. Store B sells the same shirt for $36 at 10% off and then $2 off. Which store's price is lower? | Store A, at $30 | Store B, at $30.40 | Store B, at $32.40 | Both prices are the same
+mc3: A number is increased by 50%, and then the result is decreased by 50%. How does the final number compare with the original? | It is 25% less | It is the same | It is 25% more | It is 50% less
+num2: What percent of 40 is 46? | 115
+sa2: A sale price of $42 is 70% of the original price. Explain how to find the original price. | 70% of the original is 42, so 0.7p = 42 and p = 42 ÷ 0.7 = $60.
+sa3: Lena says a price that rose from $80 to $100 increased by 20% because 100 - 80 = 20. Explain her mistake and find the correct percent increase. | The $20 change must be compared with the original price: 20 ÷ 80 = 0.25, so the increase is 25%, not 20%.
+task3: A family is buying a laptop. Store A sells it for $680 with 15% off, and 8% sales tax is added to the sale price. Store B sells it for $640 with a $40 coupon, and 8% sales tax is added after the coupon. An online store sells it for $600 with no tax and $35 shipping. (a) Find the total cost at each store. (b) Which option is cheapest, and how much more does each other option cost? (c) Paying full price at Store A with tax would cost $734.40. What percent does the family save by choosing the cheapest option instead? Show all work. | (a) Store A $624.24, Store B $648, online $635; (b) Store A is cheapest; online costs $10.76 more and Store B costs $23.76 more; (c) 110.16 ÷ 734.40 = 15%; all work shown. | All totals correct with an error in part (b) or (c). | Two totals correct, or correct methods with several calculation errors. | Little correct work.
+
+unit: Module 5: Statistics and probability | 7.SP.A.1, 7.SP.A.2, 7.SP.B.3, 7.SP.B.4, 7.SP.C.5, 7.SP.C.6, 7.SP.C.7, 7.SP.C.8 | g7prob
+el: Let students act out experiments with real coins, number cubes and spinners before solving; post a probability scale from 0 (impossible) to 1 (certain) with the words unlikely, equally likely and likely.
+
+lesson: Probability and probability models | 7.SP.C.5, 7.SP.C.7
+practice:
+mc1: A bag has 3 red, 5 blue and 2 green marbles. One marble is drawn at random. What is P(blue)? | 1/2 | 1/5 | 5/3 | 3/10
+hint: Probability = number of favorable outcomes ÷ total number of outcomes.
+mc1: An event has a probability of 0.95. How likely is it? | very likely | impossible | unlikely | as likely as not
+num2: A spinner has 8 equal sections numbered 1 to 8. What is the probability of spinning a number greater than 5? | 3/8
+mc2: Which probability model is uniform? | a fair number cube | a spinner that is 1/2 red, 1/4 blue and 1/4 green | a bag with 4 red tiles and 1 blue tile | a weighted coin
+hint: In a uniform model every outcome has the same probability.
+num2: A letter is chosen at random from the word CALIFORNIA. What is the probability that it is an A? | 1/5
+sa2: Explain why the probability of an event must be between 0 and 1. | A probability compares the favorable outcomes to all outcomes. The favorable outcomes can range from none (0) to all of them (1), never fewer than none or more than all.
+quiz:
+num1: A fair number cube is rolled. What is the probability of rolling a 2 or a 5? | 1/3
+num2: A bag holds 4 yellow, 6 purple and 10 white chips. What is the probability of NOT drawing a white chip? | 1/2
+mc2: A spinner is 1/2 red, 1/4 blue and 1/4 green. Which statement is true? | Red is twice as likely as blue | All colors are equally likely | Blue is more likely than red | Green is twice as likely as blue
+num2: The probability of rain tomorrow is 0.35. What is the probability that it does NOT rain? | 0.65
+mc2: Which event has a probability of 0? | rolling a 7 on a standard number cube | flipping heads on a fair coin | rolling an even number on a number cube | drawing a red card from a deck of only red cards
+num3: A jar has 12 marbles. Some are red and the rest are blue, and P(red) = 1/4. How many blue marbles must be added to make P(red) = 1/6? | 6
+sa2: A bag has 2 red tiles and 3 blue tiles. Omar says P(red) = 2/3. Explain his mistake. | He compared red tiles to blue tiles instead of to all tiles. There are 5 tiles in all, so P(red) = 2/5.
+
+lesson: Experimental probability and simulation | 7.SP.C.6, 7.SP.C.7
+practice:
+num2: A spinner landed on red 18 times in 60 spins. What is the experimental probability of red? | 3/10
+hint: Divide the number of reds by the total number of spins.
+num2: A coin landed heads 27 times in 50 flips. What is the experimental probability of heads, as a decimal? | 0.54
+mc2: A spinner landed on red in 18 of 60 spins. Based on this, how many reds would you predict in 200 spins? | 60 | 18 | 120 | 36
+mc2: Why might an experimental probability be different from the theoretical probability? | Random results vary, especially in a small number of trials | The theoretical probability changes | Experiments are always wrong | Some outcomes are impossible
+num2: A factory finds 6 defective light bulbs in a sample of 400. How many defective bulbs would it predict in a batch of 5,000? | 75
+hint: Find the fraction that were defective, then multiply.
+sa2: Describe a simulation with a number cube to estimate the probability that a player who makes 1/3 of her shots makes at least 2 of her next 3 shots. | Let 1 and 2 stand for a made shot and 3 to 6 for a miss. Roll the cube 3 times for one trial and record whether there are at least 2 makes. Repeat for many trials and divide the number of successes by the number of trials.
+quiz:
+num2: A number cube was rolled 120 times and landed on 4 a total of 26 times. What is the experimental probability of rolling a 4? | 13/60
+num2: In 80 trials, a simulation showed a team winning 52 times. What is the experimental probability of winning, as a percent? | 65
+mc2: A fair coin is flipped 1,000 times. Which result is most likely? | close to 500 heads | exactly 500 heads | close to 250 heads | close to 900 heads
+num2: Past data show a carnival game is won 3 times in every 40 plays. How many wins should be expected in 360 plays? | 27
+mc3: A spinner with 4 equal parts was spun 20 times and landed on blue 9 times. What is the best conclusion? | More trials are needed before deciding the spinner is unfair | The spinner is definitely unfair | The theoretical probability of blue is 9/20 | Blue will come up exactly 9 times in the next 20 spins
+num3: Of 250 customers at a cafe, 85 ordered a smoothie. The cafe expects 1,500 customers next week, and each smoothie costs $5. How many dollars of smoothie sales should the cafe expect next week? | 2550
+sa2: Explain why the experimental probability usually gets closer to the theoretical probability as the number of trials increases. | With only a few trials, chance can make results lopsided. Over many trials, unusual results balance out, so the relative frequency settles near the theoretical probability.
+
+lesson: Compound events | 7.SP.C.8
+practice:
+num2: A coin is flipped twice. What is the probability of getting two heads? | 1/4
+hint: List the outcomes: HH, HT, TH, TT.
+num1: A sandwich shop offers 3 kinds of bread and 4 fillings. How many different sandwiches with one bread and one filling are possible? | 12
+hint: Use a tree diagram, or multiply.
+num2: A number cube is rolled and a coin is flipped. What is the probability of an even number and heads? | 1/4
+mc2: How many outcomes are in the sample space for rolling two number cubes? | 36 | 12 | 6 | 18
+num2: Two number cubes are rolled. What is the probability that the sum is 7? | 1/6
+hint: Make a 6 by 6 table of sums.
+sa2: Describe how to use an organized list to find the sample space for flipping a coin three times. | Choose H or T for the first flip, then each choice for the second and third flips: HHH, HHT, HTH, HTT, THH, THT, TTH, TTT. There are 8 outcomes.
+quiz:
+num2: A coin is flipped 3 times. What is the probability of getting exactly two heads? | 3/8
+num2: Two number cubes are rolled. What is the probability that both show 6? | 1/36
+mc2: A spinner with equal red, blue and green sections is spun twice. What is P(red, then blue)? | 1/9 | 2/3 | 1/6 | 2/9
+num2: A snack bar offers 4 drinks, 3 snacks and 2 sizes. How many combinations of one drink, one snack and one size are possible? | 24
+num3: Two number cubes are rolled. What is the probability that the sum is greater than 9? | 1/6
+mc2: A bag has 1 red and 1 blue tile. A tile is drawn, put back, and a tile is drawn again. What is P(at least one red)? | 3/4 | 1/2 | 1/4 | 1
+num3: A code is one letter from A, B, C or D followed by one digit from 0 to 9. A code is chosen at random. What is the probability that it starts with a vowel and ends with an even digit? | 1/8
+sa2: Pablo says that when two coins are flipped, the results are 2 heads, 2 tails or 1 of each, so P(1 of each) = 1/3. Explain his mistake. | Those three results are not equally likely. The sample space is HH, HT, TH, TT, and one of each happens 2 ways out of 4, so P = 1/2.
+
+lesson: Random sampling and comparing populations | 7.SP.A.1, 7.SP.A.2, 7.SP.B.3, 7.SP.B.4
+practice:
+mc2: Which sample is most likely to represent all students at a school? | 50 students chosen at random from the school roster | the first 50 students to arrive | 50 students on the soccer team | 50 students in one sixth-grade class
+hint: A random sample gives every member of the population the same chance of being chosen.
+num2: In a random sample of 60 students, 21 walk to school. The school has 900 students. About how many students walk to school? | 315
+mc2: Which survey question is biased? | Don't you agree that our great park needs a new playground? | Do you think the park needs a new playground? | How often do you visit the park? | Which part of the park do you use most?
+num2: Class A's quiz scores have a mean of 82 and Class B's have a mean of 76. Both have a MAD of 4. How many MADs apart are the means? | 1.5
+hint: Divide the difference of the means by the MAD.
+mc2: Why do different random samples from the same population give different results? | Each sample includes different individuals by chance | Random samples are always biased | The population keeps changing | Only one sample can be correct
+sa2: Explain why surveying people at a gym is not a good way to estimate how often people in a town exercise. | People at a gym probably exercise more than most people in town, so the sample is biased and does not represent the whole town.
+quiz:
+mc2: A city wants to know how residents feel about a new bus route. Which method gives a random sample? | Choose 200 names at random from a list of all residents | Ask 200 people at the bus station | Ask 200 people who call a radio show | Ask the first 200 people who answer an online ad
+num2: A random sample of 40 apples from an orchard has 3 bruised apples. The orchard has 6,000 apples. About how many are bruised? | 450
+num2: Group A's mean time is 30 minutes and Group B's mean time is 24 minutes. Both groups have a MAD of 3 minutes. How many MADs apart are the means? | 2
+mc3: Two random samples of 50 seventh graders find that 18 and 22 students own a pet. What is the best estimate of the percent of all seventh graders who own a pet? | 40% | 18% | 22% | 50%
+mc2: Plants given Fertilizer A have a median height of 24 cm and an IQR of 6 cm. Plants given Fertilizer B have a median height of 18 cm and an IQR of 6 cm. Which statement is supported? | Plants with Fertilizer A tended to be taller | Every plant with Fertilizer A was taller than every plant with Fertilizer B | The plants with Fertilizer B were more varied | Both fertilizers gave the same results
+num3: In a random sample of 75 voters, 42 support building a new library and the rest oppose it. There are 12,000 voters. Based on the sample, about how many more voters support the library than oppose it? | 1440
+sa2: Class A's reading times have a mean of 35 minutes and a MAD of 5 minutes. Class B's have a mean of 30 minutes and a MAD of 5 minutes. Is the difference between the classes meaningful? Explain using the MAD. | The means differ by 5 minutes, which is only 1 MAD. The two sets of data overlap a lot, so the difference is not very meaningful.
+
+test:
+mc1: A fair number cube is rolled. What is the probability of rolling a number less than 3? | 1/3 | 1/2 | 1/6 | 2/3
+mc1: Which probability describes an event that is certain to happen? | 1 | 0 | 1/2 | 100
+num1: A bag has 7 green beads and 13 orange beads. What is the probability of drawing a green bead? | 7/20
+num2: A coin is flipped and a spinner with 5 equal sections numbered 1 to 5 is spun. How many outcomes are in the sample space? | 10
+num2: Three coins are flipped. What is the probability that all three land tails? | 1/8
+num2: A basketball player made 34 of her last 40 free throws. What is the experimental probability that she makes a free throw, as a decimal? | 0.85
+mc2: Which is a random sample of a school's 800 students? | 80 names drawn from a hat holding all 800 names | the 80 students in the library at lunch | 80 students who volunteer | the 80 students in the band
+mc2: A spinner is 1/3 red, 1/6 yellow and 1/2 green. In 300 spins, about how many times should it land on yellow? | 50 | 100 | 150 | 60
+num2: Two number cubes are rolled. What is the probability that the sum is 4? | 1/12
+mc2: P(A) = 0.3. Which statement is true? | P(not A) = 0.7 | P(not A) = 0.3 | P(not A) = 3 | A is likely to happen
+num3: In a random survey of 50 students, 18 prefer tacos for lunch. The school has 1,150 students. About how many students prefer tacos? | 414
+num3: A game spinner has 8 equal sections: 3 are worth 10 points, 4 are worth 5 points and 1 is worth 0 points. What is the probability of scoring at least 5 points on one spin? | 7/8
+num3: A quality check finds 4 broken pencils in a random sample of 250. A store orders 10,000 pencils. About how many will be broken? | 160
+num3: A restaurant offers 3 appetizers (one is soup), 5 main dishes and 4 desserts (one is fruit). A meal of one of each is chosen at random. What is the probability that it includes the soup and the fruit dessert? | 1/12
+mc2: One random sample of 30 seventh graders sleeps a mean of 8.2 hours. Another random sample of 30 sleeps a mean of 7.9 hours. What is the best conclusion? | Sample means vary, so the mean for all seventh graders is probably near 8 hours | One of the samples must be wrong | All seventh graders sleep exactly 8.05 hours | The second sample is biased
+mc3: Team A's scores have a mean of 72 and a MAD of 6. Team B's scores have a mean of 84 and a MAD of 6. How many MADs apart are the means, and what does that suggest? | 2 MADs; the difference is meaningful | 12 MADs; the teams score about the same | 2 MADs; the teams score about the same | 6 MADs; the difference is not meaningful
+mc3: A spinner is spun 10 times and lands on green 6 times. Kai says the theoretical probability of green must be 3/5. Which response is best? | 10 spins is too few; the theoretical probability depends on the sizes of the sections | Kai is correct | The probability of green must be 1/2 | The probability of green must be 6
+num2: On each of two days, the probability of rain is 2/5, and the days do not affect each other. What is the probability that it rains on both days? | 4/25
+sa2: Use a number cube to explain the difference between theoretical and experimental probability. | Theoretical P(6) = 1/6 because there are 6 equally likely outcomes. Experimental probability comes from actual rolls; for example, 9 sixes in 40 rolls gives 9/40.
+sa3: A school newspaper surveyed 40 students at a football game and found that 85% want more money for sports. The editor says 85% of all students want more money for sports. Explain the flaw and how to fix it. | The sample is biased because students at a football game are more likely to support sports. The paper should survey a random sample from the list of all students before drawing a conclusion.
+task3: A class fair game uses two spinners. Spinner A has 3 equal sections (1, 2, 3) and Spinner B has 4 equal sections (1, 2, 3, 4). Both are spun and the numbers are added. A player wins if the sum is 6 or more. (a) Make a table or tree diagram of the sample space. (b) Find the probability of winning. (c) Predict how many wins there will be in 240 plays. (d) The class wants a fair game where P(win) = 1/2. Suggest a new rule using the sum and show that it is fair. | (a) 12 equally likely outcomes listed; (b) sums of 6 or more: (2, 4), (3, 3), (3, 4), so P = 3/12 = 1/4; (c) 1/4 x 240 = 60 wins; (d) for example, win with a sum of 5 or more: 6 of 12 outcomes, P = 1/2; all work shown. | Sample space and probability correct with an error in the prediction or the new rule. | Sample space mostly correct but probability wrong. | Little correct work.
+
+unit: Module 6: Geometry | 7.G.A.2, 7.G.A.3, 7.G.B.5, 7.G.B.6 | g7supp, g7tri
+el: Provide protractors, straws or strips for building triangles, and clay or foam solids to slice; label diagrams with supplementary, complementary, vertical, adjacent, cross section, base and height.
+
+lesson: Unknown angle problems | 7.G.B.5
+practice:
+num1: Two angles are supplementary. One measures 65 degrees. What is the measure of the other angle, in degrees? | 115
+hint: Supplementary angles add to 180 degrees.
+num1: Two angles are complementary. One measures 38 degrees. What is the other angle, in degrees? | 52
+num2: Two vertical angles measure (3x + 10) degrees and 70 degrees. What is x? | 20
+hint: Vertical angles are equal.
+mc2: Angles A and B together form a straight line, and angle A is 4 times angle B. What is the measure of angle B? | 36 degrees | 45 degrees | 144 degrees | 30 degrees
+num2: Three adjacent angles together form a straight line. They measure 47 degrees, x degrees and 85 degrees. What is x? | 48
+sa2: Explain how to find the angle that is supplementary to a 72-degree angle, and why your method works. | Supplementary angles together form a straight angle, which is 180 degrees. So the angle is 180 - 72 = 108 degrees.
+quiz:
+num1: An angle's complement measures 27 degrees. What is the angle, in degrees? | 63
+num2: Two adjacent angles form a right angle. One is 2x degrees and the other is 3x degrees. What is x? | 18
+num2: Four angles around a point measure 110, 95, x and 80 degrees. What is x? | 75
+mc2: Two lines cross, and one of the angles is 125 degrees. What are the other three angles? | 55, 125 and 55 degrees | 55, 55 and 55 degrees | 125, 125 and 125 degrees | 35, 125 and 35 degrees
+num3: Two supplementary angles measure (2x + 15) degrees and (x + 30) degrees. What is the measure of the larger angle, in degrees? | 105
+mc2: Which pair of angles is always equal? | vertical angles | supplementary angles | complementary angles | adjacent angles
+sa2: Ana says two complementary angles can both be obtuse. Explain why this is not possible. | Complementary angles add to 90 degrees. An obtuse angle is already more than 90 degrees by itself, so neither angle can be obtuse.
+
+lesson: Constructing and drawing triangles | 7.G.A.2
+practice:
+mc1: Can 3 cm, 4 cm and 8 cm be the side lengths of a triangle? | No, because 3 + 4 is less than 8 | Yes, any three lengths work | Yes, because 8 is the longest side | No, because all the lengths are different
+hint: The two shorter sides must add to more than the longest side.
+num1: Two angles of a triangle measure 50 and 60 degrees. What is the third angle, in degrees? | 70
+hint: The angles of a triangle add to 180 degrees.
+mc2: Which set of side lengths can form a triangle? | 5, 7, 10 | 2, 3, 6 | 4, 4, 9 | 1, 2, 3
+mc2: Which conditions determine exactly one triangle? | side lengths of 5 cm, 6 cm and 7 cm | angles of 50, 60 and 70 degrees | two angles of 90 degrees | side lengths of 2 cm, 3 cm and 5 cm
+num2: A triangle's angles measure x, 2x and 3x degrees. What is the measure of the largest angle, in degrees? | 90
+sa2: Explain why knowing the three angles of a triangle does not determine a unique triangle. | Triangles with the same three angles can be different sizes, like scaled copies, so many different triangles have those angles.
+quiz:
+num1: A right triangle has an angle of 34 degrees. What is the other acute angle, in degrees? | 56
+mc2: Which set of lengths cannot form a triangle? | 6, 6, 12 | 6, 6, 11 | 3, 4, 5 | 7, 8, 9
+num2: An isosceles triangle has a vertex angle of 40 degrees. What is the measure of each base angle, in degrees? | 70
+mc2: A triangle has sides of 4 cm and 9 cm. Which could be the length of the third side? | 7 cm | 4 cm | 5 cm | 13 cm
+num3: A triangle's angles measure (x + 10), (2x - 5) and (3x + 25) degrees. What is the measure of the largest angle, in degrees? | 100
+mc2: How many different triangles can be drawn with angles of 30, 60 and 90 degrees? | infinitely many | exactly one | none | exactly two
+num2: The angles of a triangle are in the ratio 2:3:4. What is the smallest angle, in degrees? | 40
+sa2: Explain whether a triangle can have two right angles. | No. Two right angles already add to 180 degrees, which leaves 0 degrees for the third angle, so the sides could not meet to form a triangle.
+
+lesson: Slicing three-dimensional figures | 7.G.A.3
+practice:
+mc1: A rectangular prism is sliced parallel to its base. What shape is the cross section? | a rectangle | a triangle | a circle | a pentagon
+hint: A slice parallel to the base has the same shape as the base.
+mc2: A cylinder is sliced perpendicular to its base, through the center of the base. What is the cross section? | a rectangle | a circle | a triangle | an oval
+mc2: A square pyramid is sliced parallel to its base. What is the cross section? | a square | a triangle | a rectangle that is not a square | a circle
+mc2: A cone is sliced through its top point, perpendicular to its base. What is the cross section? | a triangle | a circle | a rectangle | a trapezoid
+num2: A rectangular prism is 8 cm by 5 cm by 3 cm. It is sliced parallel to its 8 cm by 5 cm base. What is the area of the cross section, in square cm? | 40
+sa2: Describe two different cross sections you can make by slicing a cube, and how to make each. | Slicing parallel to a face gives a square. Slicing off a corner, cutting the three edges that meet at that corner, gives a triangle.
+quiz:
+mc1: A sphere is sliced by a flat plane. What shape is the cross section? | a circle | a square | a triangle | a rectangle
+mc2: A triangular prism is sliced parallel to its triangular bases. What is the cross section? | a triangle | a rectangle | a square | a pentagon
+mc2: A square pyramid is sliced perpendicular to its base, through its top point. What is the cross section? | a triangle | a square | a rectangle | a trapezoid
+num2: A cylinder has a radius of 5 cm and a height of 12 cm. It is sliced parallel to its base. What is the area of the cross section, in square cm? Use 3.14 for pi. | 78.5
+num2: A cylinder with a radius of 5 cm and a height of 12 cm is sliced perpendicular to its base, through the center of the base. What is the area of the cross section, in square cm? | 120
+mc3: Which cross section is NOT possible when a cube is sliced by one flat plane? | a circle | a triangle | a rectangle | a hexagon
+num2: A loaf of bread shaped like a rectangular prism is 10 inches long, 4 inches wide and 4 inches tall. It is cut into slices 1/2 inch thick, parallel to its 4 in by 4 in end. How many slices are there? | 20
+sa2: Explain why a slice of a cone parallel to its base is a circle that is smaller than the base. | Every slice parallel to the base has the shape of the base, a circle, but the cone narrows toward its top point, so slices closer to the top have smaller radii.
+
+lesson: Area, surface area and volume problems | 7.G.B.6
+practice:
+num1: A rectangular prism is 5 m by 4 m by 3 m. What is its volume in cubic meters? | 60
+num2: A triangular prism has a triangular base with a base of 6 cm and a height of 4 cm. The prism is 10 cm long. What is its volume in cubic cm? | 120
+hint: Volume = area of the base x length of the prism.
+num2: A cube has edges of 2.5 inches. What is its surface area in square inches? | 37.5
+num2: A figure is a 10 ft by 6 ft rectangle with a 4 ft by 2 ft rectangle cut out of it. What is its area in square feet? | 52
+mc2: A right prism's base is a trapezoid with an area of 18 square cm. The prism is 7 cm tall. What is its volume? | 126 cubic cm | 25 cubic cm | 63 cubic cm | 252 cubic cm
+sa2: Explain why the volume formula V = Bh works for any right prism. | B is the area of the base. Stacking layers the same shape as the base, h units high, fills the prism, so the volume is the base area times the height.
+quiz:
+num1: A box is 12 in by 8 in by 5 in. What is its volume in cubic inches? | 480
+num2: What is the surface area of a box that is 10 cm by 4 cm by 3 cm, in square cm? | 164
+num2: A triangular prism's base is a right triangle with legs of 3 m and 4 m and a longest side of 5 m. The prism is 9 m long. What is its surface area in square meters? | 120
+num3: A pool shaped like a rectangular prism is 20 ft long, 12 ft wide and 5 ft deep. It is filled to 80% of its depth. How many cubic feet of water are in it? | 960
+mc2: A cube-shaped box has a volume of 64 cubic inches. What is its surface area? | 96 square inches | 64 square inches | 16 square inches | 384 square inches
+num3: A storage shed is a rectangular prism 10 ft long, 8 ft wide and 7 ft tall, with a roof shaped like a triangular prism on top. The roof's triangle has a base of 8 ft and a height of 3 ft, and the roof runs the 10-ft length. What is the total volume of the shed in cubic feet? | 680
+sa2: Rafael says a 2 by 3 by 10 box holds more than a 4 by 4 by 5 box because 10 is the longest edge. Explain whether he is correct. | He is not correct. Volume depends on all three edges: 2 x 3 x 10 = 60 cubic units and 4 x 4 x 5 = 80 cubic units, so the 4 by 4 by 5 box holds more.
+
+test:
+mc1: Two angles are supplementary. One is 42 degrees. What is the other? | 138 degrees | 48 degrees | 42 degrees | 318 degrees
+num1: Two angles of a triangle measure 75 and 45 degrees. What is the third angle, in degrees? | 60
+mc1: What is the cross section when a cylinder is sliced parallel to its base? | a circle | a rectangle | a triangle | a square
+num1: A box is 9 cm by 4 cm by 2 cm. What is its volume in cubic cm? | 72
+num2: Vertical angles measure (5x - 12) degrees and (3x + 20) degrees. What is x? | 16
+num2: Complementary angles measure x degrees and (2x + 15) degrees. What is the measure of the larger angle, in degrees? | 65
+mc2: Which set of lengths can form a triangle? | 6, 8, 13 | 6, 8, 14 | 6, 8, 15 | 3, 8, 12
+mc2: Which information determines exactly one triangle? | sides of 7, 9 and 12 inches | angles of 40, 60 and 80 degrees | sides of 2, 3 and 7 inches | one angle of 90 degrees
+mc2: A right rectangular pyramid is sliced parallel to its base. What is the cross section? | a rectangle | a triangle | a trapezoid | a circle
+num2: A triangular prism has a base area of 15 square inches and a length of 8 inches. What is its volume in cubic inches? | 120
+num2: What is the surface area of a cube with 6-meter edges, in square meters? | 216
+num3: Four angles meet at a point and measure x, 2x, 3x and 4x degrees. What is the measure of the largest angle, in degrees? | 144
+num3: A gift box is 12 in by 9 in by 4 in. Wrapping paper costs $0.02 per square inch. How many dollars does the paper to cover the box exactly cost? | 7.68
+num3: A sandbox is 6 ft by 5 ft and is filled with sand 1.5 ft deep. Sand costs $3.50 per cubic foot. How many dollars does the sand cost? | 157.5
+num3: A tent is a triangular prism. Its triangle end has a base of 6 ft and a height of 4 ft, and the tent is 9 ft long. What is the volume of the tent in cubic feet? | 108
+mc2: Angles A and B are supplementary, and angles B and C are supplementary. Which must be true? | angle A = angle C | angle A + angle C = 90 degrees | angle A + angle C = 180 degrees | angle A = 2 x angle C
+mc3: A cube is sliced through the three corners that are each joined by an edge to one corner of the cube. What is the shape of the cross section? | an equilateral triangle | a square | a rectangle that is not a square | a hexagon
+num3: In triangle ABC, angle A is 20 degrees more than angle B, and angle C is 40 degrees. What is the measure of angle A, in degrees? | 80
+num2: An L-shaped garden is made of a 12 m by 5 m rectangle and an 8 m by 4 m rectangle that do not overlap. What is its area in square meters? | 92
+sa2: Explain how supplementary angles show that vertical angles are equal. | When two lines cross, each of two vertical angles forms a straight line with the same angle between them. So each one equals 180 degrees minus that angle, which means the vertical angles are equal.
+sa3: Bella says a triangular prism whose triangle has a base of 8 cm and a height of 5 cm, and whose length is 10 cm, has a volume of 400 cubic cm. Explain her mistake and find the correct volume. | She multiplied 8 x 5 x 10 without taking half for the triangle. The base area is 1/2 x 8 x 5 = 20 square cm, so the volume is 20 x 10 = 200 cubic cm.
+task3: The school wants a planter shaped like a right prism. Each end is a trapezoid with parallel sides of 4 ft and 2 ft and a height of 1.5 ft, and the planter is 6 ft long. (a) Find the area of one trapezoid end. (b) Find the volume of soil that fills the planter. (c) Soil comes in 1.5-cubic-foot bags that cost $6 each. How many bags are needed, and what do they cost? (d) A second design is 25% longer with the same ends. By what percent does the volume increase, and why? Show your work. | (a) (4 + 2) ÷ 2 x 1.5 = 4.5 square feet; (b) 4.5 x 6 = 27 cubic feet; (c) 27 ÷ 1.5 = 18 bags costing $108; (d) 7.5 ft long gives 33.75 cubic feet, a 25% increase, because volume is proportional to length when the base stays the same. | All parts set up correctly with one calculation error or a weak explanation in (d). | Base area or volume correct, but the bags or percent are wrong. | Little correct work.
