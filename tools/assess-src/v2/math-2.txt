@@ -1,0 +1,918 @@
+@subject math
+@grade 2
+@program Eureka Math
+about: Second grade follows the Eureka Math Grade 2 modules: fluency with sums and differences to 20, measuring and comparing lengths in centimeters and meters, place value to 1,000, adding and subtracting within 200 and then 1,000 with word problems to 100, equal groups and arrays as the foundation of multiplication, money, data, customary length units, telling time to five minutes, shapes and equal parts of shapes.
+std: 2.OA.A.1 | Use addition and subtraction within 100 to solve one- and two-step word problems with unknowns in all positions.
+std: 2.OA.B.2 | Fluently add and subtract within 20 using mental strategies; know from memory all sums of two one-digit numbers.
+std: 2.OA.C.4 | Use addition to find the total number of objects arranged in rectangular arrays with up to 5 rows and up to 5 columns.
+std: 2.NBT.A.1 | Understand that the three digits of a three-digit number represent amounts of hundreds, tens and ones.
+std: 2.NBT.B.5 | Fluently add and subtract within 100 using strategies based on place value, properties of operations and the relationship between addition and subtraction.
+std: 2.NBT.B.7 | Add and subtract within 1,000 using concrete models or drawings and strategies based on place value.
+std: 2.MD.A.1 | Measure the length of an object by selecting and using appropriate tools such as rulers, yardsticks, meter sticks and measuring tapes.
+std: 2.MD.C.8 | Solve word problems involving dollar bills, quarters, dimes, nickels and pennies, using $ and cent symbols appropriately.
+
+unit: Module 1: Sums and differences to 20 | 2.OA.A.1, 2.OA.B.2, 2.NBT.B.5 | g2add, g2sub
+el: Practice number bonds to 10 daily with a partner and show "make ten" and "take from ten" with ten frames. Post the frames "___ needs ___ to make ten" and "Take ___ from ten, then add ___."
+
+lesson: Making ten to add | 2.OA.B.2, 2.NBT.B.5
+practice:
+num1: 8 + 7 = ? | 15
+hint: 8 needs 2 to make 10. Break 7 into 2 and 5.
+num1: 9 + 6 = ? | 15
+hint: Give 1 from the 6 to the 9.
+mc2: Which shows making ten for 7 + 5? | 7 + 3 + 2 | 7 + 5 + 3 | 10 + 5 | 7 + 2 + 2
+hint: How many does 7 need to make 10?
+num1: 38 + 5 = ? | 43
+hint: 38 needs 2 to make 40. Then add the rest of the 5.
+num2: Jamal has 29 baseball cards. He gets 4 more. How many cards does he have? | 33
+hint: Make the next ten: 29 + 1 = 30.
+sa2: Explain how to make ten to solve 6 + 8. | 8 needs 2 to make 10. Break 6 into 2 and 4. 8 + 2 = 10, and 10 + 4 = 14.
+quiz:
+num1: 7 + 9 = ? | 16
+num1: 6 + 6 = ? | 12
+num1: 47 + 6 = ? | 53
+mc2: 8 + 5 is the same as | 10 + 3 | 10 + 5 | 10 + 2 | 8 + 10
+num2: A bakery makes 58 rolls in the morning and 7 more after lunch. How many rolls does it make? | 65
+num2: Elena reads 9 pages on Monday and 8 pages on Tuesday. How many pages does she read in all? | 17
+mc2: Which equation shows the next ten for 66 + 7? | 66 + 4 + 3 | 66 + 7 + 4 | 60 + 7 | 66 + 3 + 3
+sa2: Ty says 59 + 3 = 52. Explain his mistake and give the correct sum. | He did not cross the next ten. 59 + 1 = 60 and 60 + 2 = 62, so 59 + 3 = 62.
+
+lesson: Taking from ten to subtract | 2.OA.B.2, 2.NBT.B.5
+practice:
+num1: 14 - 6 = ? | 8
+hint: Break 14 into 10 and 4. Take 6 from the 10.
+num1: 13 - 8 = ? | 5
+hint: 10 - 8 = 2. Add the 3 ones.
+mc2: Which shows taking from ten for 15 - 9? | 10 - 9 = 1 and 1 + 5 = 6 | 15 - 5 = 10 | 10 - 5 = 5 | 15 + 9 = 24
+hint: Break 15 into 10 and 5.
+num1: 42 - 7 = ? | 35
+hint: Break 42 into 30 and 12. Take 7 from 12, or take 7 from a ten.
+num2: There are 31 kids at the pool. 6 kids leave. How many kids are at the pool now? | 25
+hint: Take 6 from one of the tens.
+sa2: Explain how to solve 16 - 9 by taking from ten. | 16 is 10 and 6. 10 - 9 = 1. 1 + 6 = 7.
+quiz:
+num1: 12 - 7 = ? | 5
+num1: 17 - 8 = ? | 9
+num1: 53 - 6 = ? | 47
+mc2: 11 - 9 is the same as | 1 + 1 | 10 + 1 | 9 - 1 | 2 + 9
+num2: Mrs. Ochoa had 64 stickers. She gave 8 to students. How many stickers does she have left? | 56
+num2: A shelf held 15 jars of jam. 9 jars were sold. How many jars are left? | 6
+mc2: Which number sentence helps solve 13 - 5 by taking from ten? | 10 - 5 = 5, 5 + 3 = 8 | 13 - 3 = 10 | 10 + 5 = 15 | 5 - 3 = 2
+sa2: Explain why 71 - 4 is easier if you think of 71 as 60 and 11. | 11 - 4 = 7, and 60 + 7 = 67. There are not enough ones in 1, so you use a ten.
+
+lesson: Word problems within 20 and to 100 | 2.OA.A.1, 2.OA.B.2
+practice:
+num2: Ahmed has 7 red marbles and some blue marbles. He has 15 marbles in all. How many are blue? | 8
+hint: The whole is 15 and one part is 7.
+num2: There were some birds at a feeder. 6 flew away. Now there are 9. How many birds were there at first? | 15
+hint: Put the birds that flew away back.
+num2: Lucia has 13 crayons. Max has 5 fewer crayons than Lucia. How many crayons does Max have? | 8
+hint: Fewer means subtract.
+mc2: Which equation matches: Tom has 18 cards. He gives some away and has 9 left? | 18 - ? = 9 | 18 + 9 = ? | 9 - ? = 18 | ? + 18 = 9
+hint: Start with 18, some go away, 9 are left.
+num2: A team scored 6 goals in the first game and 7 in the second game. How many goals did they score? | 13
+hint: Make ten with one of the numbers.
+sa2: Write a word problem that can be solved with 11 - 4. Solve it. | Example: 11 apples were in a bowl and 4 were eaten. How many are left? 7.
+quiz:
+num2: Priya had 14 balloons. Some popped. Now she has 8. How many popped? | 6
+num2: Ben has 9 toy cars. Ava has 6 more than Ben. How many toy cars does Ava have? | 15
+num2: There are 17 students. 9 are girls. How many are boys? | 8
+num2: A cat had 5 kittens. Another cat had 7 kittens. How many kittens in all? | 12
+mc2: Which equation helps solve 6 + ? = 14? | 14 - 6 = ? | 14 + 6 = ? | 6 - 14 = ? | 6 + 14 = ?
+num2: Maria had 26 beads. She bought 8 more and then used 5. How many beads does she have now? | 29
+mc2: Lia has 12 stamps and Joe has 7. Which question can be answered with 12 - 7? | How many more stamps does Lia have? | How many stamps in all? | How many stamps will Lia buy? | How many stamps does Joe want?
+sa3: Solve and explain: Sam has 16 stickers. He has 7 more stickers than Rosa. How many stickers does Rosa have? | Rosa has 9. Sam has more, so Rosa has 7 fewer: 16 - 7 = 9.
+
+test:
+num1: 9 + 7 = ? | 16
+num1: 8 + 6 = ? | 14
+num1: 15 - 8 = ? | 7
+num1: 12 - 9 = ? | 3
+num1: 57 + 6 = ? | 63
+num1: 34 - 7 = ? | 27
+mc1: 7 + 6 is the same as | 10 + 3 | 10 + 6 | 10 + 4 | 7 + 10
+mc2: Which shows taking from ten for 14 - 8? | 10 - 8 = 2 and 2 + 4 = 6 | 14 - 4 = 10 | 10 - 4 = 6 | 14 + 8 = 22
+mc2: Which equation shows the next ten for 78 + 5? | 78 + 2 + 3 | 78 + 5 + 2 | 70 + 5 | 78 + 3 + 3
+mc2: Which equation helps solve 9 + ? = 17? | 17 - 9 = ? | 17 + 9 = ? | 9 - 17 = ? | 9 + 17 = ?
+num2: Carlos had 45 pennies. He found 8 more. How many pennies does he have now? | 53
+num2: There were 16 ducks on the pond. Some flew away. 7 are left. How many flew away? | 9
+num2: Nadia picked 8 lemons. Her brother picked 5 more than Nadia. How many lemons did her brother pick? | 13
+num2: A box had 62 pencils. The teacher took out 5 and then put in 3. How many pencils are in the box now? | 60
+num2: Kiara has 18 shells. She has 9 more shells than Tim. How many shells does Tim have? | 9
+mc2: Which is the same as 13 - 6? | 10 - 6 + 3 | 10 - 3 + 6 | 13 - 3 + 6 | 10 + 6 - 3
+mc3: Ella solved 65 - 8 and got 63. What mistake did she make? | she found 8 - 5 instead of 15 - 8 | she added 8 instead | she took away 10 instead of 8 | she counted back 7
+mc3: Which pair of facts gives the same answer as 8 + 9? | 10 + 7 and 9 + 8 | 10 + 9 and 8 + 10 | 10 + 8 and 9 + 9 | 7 + 9 and 10 + 6
+sa2: Show how to make ten to solve 9 + 4. Write your steps. | 9 + 1 = 10, and 10 + 3 = 13. So 9 + 4 = 13.
+sa2: Explain how you know 15 - 7 = 8 by using an addition fact. | 7 + 8 = 15, so 15 - 7 = 8.
+sa3: Write and solve a two-step word problem using the numbers 9, 6 and 4. | Example: Ana had 9 cookies. She baked 6 more and then gave away 4. How many does she have? 9 + 6 = 15, 15 - 4 = 11.
+task3: The class is having a book swap. Ms. Patel's class brings 9 books on Monday and 8 books on Tuesday. On Wednesday, students take home 6 books. (1) How many books were brought on Monday and Tuesday? Show how you made ten. (2) How many books are left after Wednesday? Show how you subtracted. (3) The goal is 20 books on the table. How many more books are needed? Write an equation with an unknown and solve it. | 17 books (9 + 1 + 7), 11 books left (17 - 6), and 9 more needed (11 + ? = 20), each with clear strategies and equations. | All answers correct; one strategy or equation is missing. | One or two parts correct, or a correct plan with a calculation error. | Little correct work.
+
+unit: Module 2: Addition and subtraction of length units | 2.MD.A.1, 2.MD.A.3, 2.MD.A.4, 2.MD.B.5, 2.MD.B.6 |
+el: Give each student a centimeter ruler and a meter stick to handle. Teach "estimate," "about," "centimeter (cm)" and "meter (m)" with real benchmarks: a fingertip is about 1 cm wide, and a big step is about 1 m.
+
+lesson: Measuring with a centimeter ruler | 2.MD.A.1
+practice:
+num1: A crayon starts at 0 and ends at 9 on a centimeter ruler. How long is the crayon in centimeters? | 9
+hint: Read the number where the crayon ends.
+num2: An eraser starts at 2 and ends at 7 on a centimeter ruler. How long is it? | 5
+hint: Subtract the start from the end, or count the spaces.
+mc2: Why should you line up the end of an object with 0 on a ruler? | so the number at the end is the length | so the ruler does not move | because 0 is the biggest number | so you can skip counting
+hint: What does the space from 0 to 1 show?
+mc2: A centimeter cube is placed next to a ruler. How long is one cube? | 1 centimeter | 10 centimeters | 1 meter | 100 centimeters
+hint: Look at the space between two marks.
+mc1: What does cm stand for? | centimeter | cent | count | cube meter
+hint: It is a small metric unit of length.
+sa2: Measure your pencil with a centimeter ruler. Write the length and explain how you measured. | Lines up the end of the pencil with 0, reads the number at the other end, and writes the length with cm (for example 14 cm).
+quiz:
+num1: A paper clip lies from 0 to 3 on a centimeter ruler. How long is it in centimeters? | 3
+num2: A key starts at 4 and ends at 10 on a centimeter ruler. How long is the key? | 6
+mc2: Ana measures a marker from the 1 mark to the 13 mark. She says it is 13 cm. What is the real length? | 12 cm | 13 cm | 14 cm | 1 cm
+num2: A ribbon is 8 cm long. Jay tapes it to another ribbon that is 7 cm long. How long are they together? | 15
+mc2: Which is the best tool to measure a glue stick? | centimeter ruler | meter stick | bathroom scale | measuring cup
+mc1: How many centimeters long is the space from 0 to 1 on a centimeter ruler? | 1 | 10 | 100 | 0
+num2: A worm is 12 cm long. A caterpillar is 4 cm long. How much longer is the worm? | 8
+sa2: Leo measured a leaf but started at the end of the ruler instead of 0. Explain why his answer could be wrong. | Some rulers have extra space before 0. If he starts at the end, he counts extra length, so the measurement is too long.
+
+lesson: Meters and estimating length | 2.MD.A.1, 2.MD.A.3
+practice:
+mc1: How many centimeters are in 1 meter? | 100 | 10 | 1,000 | 12
+hint: A meter stick has 100 centimeter marks.
+mc2: Which unit is best for measuring the length of a classroom? | meters | centimeters | grams | cups
+hint: Pick a bigger unit for a long distance.
+mc2: About how long is a new crayon? | 9 cm | 9 m | 90 m | 1 cm
+hint: A crayon fits in your hand.
+num2: A hallway is 6 meter sticks long. How long is the hallway in meters? | 6
+hint: Count the meter sticks.
+mc2: About how tall is a classroom door? | 2 m | 2 cm | 20 m | 200 m
+hint: A meter is about one big step.
+sa2: Estimate the length of your desk in centimeters. Then measure it. Tell how close your estimate was. | An estimate and a measured length in cm (for example estimate 50 cm, measured 60 cm, off by 10 cm).
+quiz:
+mc1: Which is longer, 1 meter or 1 centimeter? | 1 meter | 1 centimeter | same | you cannot tell
+mc2: Which unit is best for the length of a ladybug? | centimeters | meters | kilometers | liters
+mc2: About how long is a school bus? | 12 m | 12 cm | 120 m | 1 m
+num2: A garden row is 3 m long. Another row is 4 m long. How many meters long are the two rows together? | 7
+mc2: Mia measured a rug with a meter stick and a centimeter ruler. Which number did she get when she used centimeters? | the bigger number | the smaller number | the same number | zero
+num2: A rope is 100 cm long. How many meters long is it? | 1
+mc1: About how wide is your fingertip? | 1 cm | 1 m | 10 m | 100 cm
+sa2: Explain why it takes more centimeters than meters to measure the same table. | A centimeter is much smaller than a meter, so you need more of them to cover the same length.
+
+lesson: Comparing lengths | 2.MD.A.4
+practice:
+num2: A pencil is 17 cm. A crayon is 9 cm. How much longer is the pencil than the crayon? | 8
+hint: Subtract or count up from 9 to 17.
+num2: Juan's paper chain is 45 cm. Kim's chain is 30 cm. How much longer is Juan's chain? | 15
+hint: Find the difference between the two lengths.
+mc2: A rope is 52 cm. A string is 25 cm. Which is true? | the rope is 27 cm longer | the string is 27 cm longer | they are the same | the rope is 77 cm longer
+hint: Subtract the smaller length from the larger.
+mc2: Lengths: 38 cm, 83 cm, 48 cm. Which is longest? | 83 cm | 38 cm | 48 cm | all the same
+hint: Compare the tens.
+num2: A blue ribbon is 60 cm. A red ribbon is 18 cm shorter. How long is the red ribbon? | 42
+hint: Shorter means subtract.
+sa2: Measure two objects in centimeters. Write how much longer one is than the other. Show your equation. | Two measurements in cm and a correct difference, for example 24 cm - 15 cm = 9 cm.
+quiz:
+num2: A table is 90 cm long. A bench is 65 cm long. How much longer is the table? | 25
+num2: Ali's snake drawing is 34 cm. Bea's is 19 cm. How much shorter is Bea's drawing? | 15
+mc2: Which is the longest? 70 cm, 1 m, 99 cm | 1 m | 99 cm | 70 cm | all the same
+num2: A green crayon is 8 cm long. A pencil is 11 cm longer than the crayon. How long is the pencil? | 19
+mc2: Sam says a 40 cm board is longer than a 1 m board because 40 is more than 1. What is true? | the 1 m board is longer | the 40 cm board is longer | they are the same | you cannot tell
+num2: Two ribbons are 26 cm and 41 cm long. What is the difference in their lengths? | 15
+sa2: Explain how to find how much longer a 63 cm stick is than a 48 cm stick. Solve it. | Subtract 63 - 48 or count up from 48: 48 + 2 = 50, 50 + 13 = 63, so 2 + 13 = 15 cm longer.
+
+lesson: Length word problems and number lines | 2.MD.B.5, 2.MD.B.6
+practice:
+num2: A frog jumps 35 cm, then 27 cm. How far does it jump in all? | 62
+hint: Add the two jumps. Make a new ten if you need to.
+num2: A ribbon is 80 cm long. Lisa cuts off 24 cm. How long is the ribbon now? | 56
+hint: Subtract the part cut off.
+mc2: On a number line, Jo starts at 20 and jumps 15 to the right. Where does she land? | 35 | 5 | 25 | 45
+hint: Jumping right means adding.
+num2: A path is 46 m long. Kai has walked 19 m. How many more meters does he need to walk? | 27
+hint: Count up from 19 to 46, or subtract.
+mc2: Which equation matches: a 50 cm board, a piece is cut off, 32 cm is left? | 50 - ? = 32 | 50 + 32 = ? | 32 - 50 = ? | ? - 32 = 50
+hint: Start with 50. A piece is taken away. 32 is left.
+sa2: Show 28 + 16 on a number line. Tell where you land. | Start at 28, jump 2 to 30, jump 10 to 40, jump 4 to 44. Land on 44.
+quiz:
+num2: A snail crawls 18 cm in the morning and 25 cm in the afternoon. How far does it crawl? | 43
+num2: A string is 92 cm long. Maya uses 45 cm for a bracelet. How much string is left? | 47
+mc2: On a number line, Ben starts at 70 and jumps back 25. Where does he land? | 45 | 95 | 55 | 35
+num2: Tia's paper chain is 38 cm. She adds 3 links that are each 10 cm long. How long is the chain now? | 68
+num2: A fence is 64 m long. 28 m is painted. How many meters are not painted? | 36
+mc2: A rope is cut into two pieces of 34 cm and 29 cm. How long was the rope? | 63 cm | 53 cm | 5 cm | 73 cm
+num2: Jada swims 25 m, rests, then swims 25 m more and 10 m more. How far does she swim? | 60
+sa2: Draw a number line to show 61 - 24. Explain your jumps. | Start at 61, jump back 1 to 60, back 20 to 40, back 3 to 37. The answer is 37.
+
+test:
+num1: A pen starts at 0 and ends at 13 on a centimeter ruler. How long is it in centimeters? | 13
+num2: A leaf starts at 3 and ends at 11 on a centimeter ruler. How long is the leaf? | 8
+mc1: A meter stick is how many centimeters long? | 100 | 10 | 1,000 | 60
+mc1: Which unit is best for the length of a soccer field? | meters | centimeters | grams | liters
+mc2: About how long is a paper clip? | 3 cm | 3 m | 30 m | 30 cm
+mc2: About how tall is a second grader? | 1 m | 1 cm | 10 m | 10 cm
+mc2: Lee measures a crayon from the 2 mark to the 10 mark and says it is 10 cm. What is the real length? | 8 cm | 10 cm | 12 cm | 2 cm
+mc2: Which takes more units to measure the same desk? | centimeters | meters | they take the same | you cannot tell
+num2: A blue pencil is 16 cm. A yellow pencil is 9 cm. How much longer is the blue pencil? | 7
+num2: A board is 75 cm long. Dad cuts off 38 cm. How long is the board now? | 37
+num2: A toy car rolls 47 cm, then 36 cm more. How far does it roll in all? | 83
+num2: Ana's ribbon is 52 cm. It is 17 cm longer than Joe's. How long is Joe's ribbon? | 35
+mc2: On a number line, start at 45 and jump forward 30. Where do you land? | 75 | 15 | 48 | 65
+mc2: Which equation matches: a 90 cm rope, some is used, 55 cm is left? | 90 - ? = 55 | 90 + 55 = ? | 55 - 90 = ? | ? - 55 = 90
+mc2: Which is longest? 85 cm, 1 m, 58 cm | 1 m | 85 cm | 58 cm | all the same
+mc3: A path has two parts, 28 m and 34 m. Raj has walked 40 m. How many more meters does he have to walk? | 22 | 62 | 12 | 102
+mc3: Mia's tower is 36 cm. Leo's is 9 cm taller than Mia's. Zoe's is 5 cm shorter than Leo's. How tall is Zoe's tower? | 40 cm | 50 cm | 32 cm | 45 cm
+num2: A worm is 14 cm long and a snake is 60 cm long. How much shorter is the worm? | 46
+sa2: Explain why you start measuring at 0 on a ruler and not at 1. | The length is the number of units from one end to the other. Starting at 1 skips the first centimeter and gives a number that is 1 too big.
+sa2: Estimate, then explain: would you measure a pencil box in centimeters or meters? Why? | Centimeters, because a pencil box is short. Meters are for long things like a room.
+sa3: Kim says her 60 cm desk is longer than a 1 m table because 60 is more than 1. Explain her mistake. | 1 m is 100 cm. 60 cm is less than 100 cm, so the table is longer. You must compare the same units.
+task3: Plan a class garden border. The garden has 3 sides that measure 45 cm, 38 cm and 27 cm. (1) Estimate, then find the total length of border needed. Show your work. (2) The class has a roll of border that is 1 m long. Is that enough? How do you know? (3) How much border is left over or how much more is needed? Show the answer on a number line. | Total 110 cm with clear addition; explains 1 m = 100 cm so it is not enough; needs 10 cm more, shown on a number line from 100 to 110 (or 110 - 100). | Correct total and conclusion; the number line or explanation is incomplete. | Correct total only, or a correct plan with a calculation error. | Little correct work.
+
+unit: Module 3: Place value, counting and comparison of numbers to 1,000 | 2.NBT.A.1, 2.NBT.A.2, 2.NBT.A.3, 2.NBT.A.4, 2.NBT.B.8 | g2place
+el: Use a place value chart with the headings hundreds, tens and ones, and base-ten blocks or bundles of straws. Read numbers aloud in word form together, and post the symbols > (greater than) and < (less than) with examples.
+
+lesson: Hundreds, tens and ones | 2.NBT.A.1
+practice:
+mc1: What is the value of the 4 in 472? | 400 | 40 | 4 | 4,000
+hint: Which place is the 4 in?
+num1: 3 hundreds 5 tens 2 ones = ? | 352
+hint: Write the hundreds digit, then the tens, then the ones.
+mc2: How many tens are in 1 hundred? | 10 | 100 | 1 | 1,000
+hint: Count by tens to 100.
+num2: A store has 6 boxes of 100 pencils, 4 packs of 10 pencils and 8 loose pencils. How many pencils are there? | 648
+hint: 6 hundreds, 4 tens and 8 ones.
+mc2: Which number has 7 hundreds, 0 tens and 3 ones? | 703 | 730 | 73 | 7,003
+hint: Use 0 to hold the tens place.
+sa2: Explain what each digit in 528 means. | The 5 means 5 hundreds (500), the 2 means 2 tens (20), and the 8 means 8 ones.
+quiz:
+mc1: What is the value of the 6 in 961? | 60 | 600 | 6 | 9
+num1: 8 hundreds 1 ten 7 ones = ? | 817
+mc2: How many hundreds are in 1,000? | 10 | 100 | 1 | 1,000
+num2: A farm packs 2 crates of 100 apples and 9 bags of 10 apples. How many apples are packed? | 290
+mc2: Which shows 406? | 4 hundreds 0 tens 6 ones | 4 hundreds 6 tens 0 ones | 40 tens 6 hundreds | 6 hundreds 4 ones
+mc2: 12 tens is the same as | 120 | 12 | 1,200 | 102
+num1: 5 hundreds 9 ones = ? | 509
+sa2: Ivan says 350 and 305 are the same because they have the same digits. Explain why he is wrong. | 350 is 3 hundreds 5 tens 0 ones. 305 is 3 hundreds 0 tens 5 ones. The 5 is in a different place, so the values are different.
+
+lesson: Standard, expanded and word form | 2.NBT.A.3
+practice:
+mc1: Which is the expanded form of 274? | 200 + 70 + 4 | 2 + 7 + 4 | 200 + 7 + 4 | 20 + 70 + 4
+hint: Show the value of each digit.
+num1: 600 + 30 + 5 = ? | 635
+hint: Put each value in its place.
+mc2: Which number is four hundred eighteen? | 418 | 480 | 4,018 | 408
+hint: Four hundred, then eighteen.
+mc2: Which is the word form of 560? | five hundred sixty | five hundred six | fifty-six | five hundred sixteen
+hint: The 6 is in the tens place.
+num2: 900 + 7 = ? | 907
+hint: There are no tens.
+sa2: Write 803 in expanded form and word form. | 800 + 3; eight hundred three.
+quiz:
+mc1: Which is the expanded form of 691? | 600 + 90 + 1 | 6 + 9 + 1 | 600 + 9 + 1 | 60 + 90 + 1
+num1: 300 + 80 + 2 = ? | 382
+mc2: Which number is seven hundred two? | 702 | 720 | 7,002 | 72
+mc2: Which is the word form of 415? | four hundred fifteen | four hundred fifty | forty-one five | four hundred one five
+num1: 40 + 500 + 6 = ? | 546
+mc2: Which is equal to 2 hundreds 15 ones? | 215 | 2,015 | 251 | 2,150
+num2: A school has three hundred twenty-four students. Write the number. | 324
+sa2: Tess wrote 9 hundred 4 tens as 94. Explain her mistake and write the correct number. | She left out the ones place. 9 hundreds 4 tens 0 ones is 940.
+
+lesson: Counting within 1,000 | 2.NBT.A.2
+practice:
+mc1: Count by 10s: 340, 350, 360, ... What comes next? | 370 | 361 | 460 | 400
+hint: Add one ten each time.
+mc1: Count by 100s: 200, 300, 400, ... What comes next? | 500 | 410 | 401 | 1,000
+hint: Add one hundred each time.
+mc2: Count by 5s: 75, 80, 85, ... What comes next? | 90 | 86 | 95 | 100
+hint: Add 5 each time.
+num2: Ari has 1 hundred-dollar bill and 4 ten-dollar bills. How many dollars does he have? | 140
+hint: Count 100, then 110, 120, 130, 140.
+mc2: Count by 10s: 480, 490, ... What comes next? | 500 | 4100 | 491 | 590
+hint: After 9 tens, make a new hundred.
+sa2: Count from 186 to 230 using the fewest jumps of 1s, 10s and 100s. Show your counting. | 186, 187, 188, 189, 190, then 200, 210, 220, 230.
+quiz:
+mc1: Count by 10s: 710, 720, 730, ... What comes next? | 740 | 731 | 830 | 800
+mc1: Count by 100s: 500, 600, 700, ... What comes next? | 800 | 710 | 701 | 900
+mc2: Count by 5s: 145, 150, 155, ... What comes next? | 160 | 156 | 165 | 200
+mc2: What number comes right after 699? | 700 | 600 | 6,100 | 690
+num2: A jar has 3 rolls of 100 pennies and 5 rolls of 10 pennies. How many pennies are in the jar? | 350
+mc2: Count back by 10s: 520, 510, 500, ... What comes next? | 490 | 400 | 499 | 410
+num2: Ms. Ray counts 100, 200, 300, then 310, 320, then 321, 322. What number did she end on? | 322
+sa2: Explain how counting by 100s, then 10s, then 1s helps you count 3 hundreds, 2 tens and 4 ones quickly. | Count 100, 200, 300, then 310, 320, then 321, 322, 323, 324. Counting big units first means fewer counts.
+
+lesson: Comparing numbers and 10 or 100 more or less | 2.NBT.A.4, 2.NBT.B.8
+practice:
+mc1: Which symbol makes 452 ___ 425 true? | > | < | = | +
+hint: Same hundreds. Compare the tens.
+num1: What is 100 more than 386? | 486
+hint: Only the hundreds digit changes.
+num1: What is 10 less than 704? | 694
+hint: You need to take a ten from a hundred.
+mc2: Order from least to greatest: 309, 390, 39 | 39, 309, 390 | 390, 309, 39 | 309, 39, 390 | 39, 390, 309
+hint: Compare hundreds first.
+num2: A library has 615 books. It gets 100 more. How many books does it have now? | 715
+hint: Add one hundred.
+sa2: Compare 568 and 586 with >, < or =. Explain your thinking. | 568 < 586. Both have 5 hundreds. 568 has 6 tens and 586 has 8 tens, so 586 is greater.
+quiz:
+mc1: Which symbol makes 731 ___ 713 true? | > | < | = | -
+num1: What is 10 more than 495? | 505
+num1: What is 100 less than 250? | 150
+mc2: Which number is greater than 6 hundreds 2 tens? | 640 | 602 | 620 | 590
+mc2: Order from greatest to least: 820, 802, 280 | 820, 802, 280 | 280, 802, 820 | 802, 820, 280 | 820, 280, 802
+num2: Jun has 347 stamps. Kayla has 10 fewer. How many stamps does Kayla have? | 337
+mc2: Which is true? | 900 > 899 | 899 > 900 | 900 = 899 | 900 < 899
+sa2: Ben says 99 > 101 because 99 has bigger digits. Explain his mistake. | 101 has 1 hundred and 99 has 0 hundreds. Compare the biggest place first, so 101 > 99.
+
+test:
+mc1: What is the value of the 3 in 638? | 30 | 300 | 3 | 8
+num1: 2 hundreds 7 tens 9 ones = ? | 279
+mc1: Which is the expanded form of 507? | 500 + 7 | 500 + 70 | 50 + 7 | 5 + 0 + 7
+mc1: Which number is eight hundred forty? | 840 | 804 | 8,040 | 84
+num1: 100 + 60 + 4 = ? | 164
+mc2: Which equals 1,000? | 10 hundreds | 100 tens and 1 one | 10 tens | 1 hundred
+mc2: 25 tens is the same as | 250 | 25 | 205 | 2,500
+mc1: Count by 10s: 970, 980, 990, ... What comes next? | 1,000 | 9,100 | 991 | 900
+mc2: Count by 5s: 385, 390, 395, ... What comes next? | 400 | 396 | 405 | 490
+num1: What is 100 more than 829? | 929
+num1: What is 10 less than 301? | 291
+mc2: Which symbol makes 674 ___ 647 true? | > | < | = | +
+mc2: Order from least to greatest: 512, 152, 251 | 152, 251, 512 | 512, 251, 152 | 251, 152, 512 | 152, 512, 251
+num2: A bakery sells 4 boxes of 100 cookies and 6 bags of 10 cookies. How many cookies is that? | 460
+num2: A town has 908 trees. It plants 10 more. How many trees does it have? | 918
+num2: Mia has 6 ten-dollar bills and 2 one-dollar bills. Her brother has 100 dollars more. How many dollars does her brother have? | 162
+mc3: Which number has the same value as 4 hundreds 13 tens? | 530 | 413 | 4,130 | 431
+mc3: Lia's number has 7 hundreds, more tens than ones, and 2 ones. Which could it be? | 752 | 725 | 702 | 257
+sa2: Write 609 in expanded form and word form. Explain why there is a 0. | 600 + 9; six hundred nine. The 0 shows there are no tens.
+sa2: Compare 389 and 398 with >, < or =. Explain. | 389 < 398. Both have 3 hundreds; 389 has 8 tens and 398 has 9 tens.
+sa3: Explain why 10 more than 395 is 405 and not 3,105. | 395 has 9 tens. One more ten makes 10 tens, which is a new hundred. So 3 hundreds become 4 hundreds and the tens become 0: 405.
+task3: A school is collecting cans. Room 10 has 2 bags of 100 cans, 5 boxes of 10 cans and 7 loose cans. Room 12 has 275 cans. (1) How many cans does Room 10 have? Write the number in standard, expanded and word form. (2) Which room has more cans? Write a comparison with > or <. (3) Room 12 brings 100 more cans the next day. How many does Room 12 have now? Does that change which room has more? Explain. | Room 10 has 257 (200 + 50 + 7, two hundred fifty-seven); 257 < 275 so Room 12 has more; Room 12 then has 375, still more, with a clear explanation. | All parts mostly correct; one form or explanation is missing. | One or two parts correct. | Little correct work.
+
+unit: Module 4: Addition and subtraction within 200 with word problems to 100 | 2.OA.A.1, 2.NBT.B.5, 2.NBT.B.6, 2.NBT.B.7, 2.NBT.B.8, 2.NBT.B.9 | g2add, g2sub
+el: Use place value disks or base-ten blocks next to each written problem, and the frames "I made a new ten because ___" and "I unbundled a ten because ___." Read word problems aloud and act them out before solving.
+
+lesson: Mental strategies with tens and ones | 2.NBT.B.5, 2.NBT.B.8
+practice:
+num1: 46 + 30 = ? | 76
+hint: Add 3 tens. The ones stay the same.
+num1: 85 - 40 = ? | 45
+hint: Take away 4 tens.
+num1: 59 + 20 = ? | 79
+hint: Count on by tens: 69, 79.
+mc2: Which is an easy way to solve 38 + 9? | 38 + 10 - 1 | 38 + 10 + 1 | 30 + 9 | 38 - 9
+hint: 9 is close to 10.
+num2: Ana has 64 beads. She buys a pack of 30 beads. How many beads does she have? | 94
+hint: Add 3 tens.
+sa2: Explain how you can solve 72 - 19 by thinking about 20. | 72 - 20 = 52. I took away 1 too many, so add 1 back: 53.
+quiz:
+num1: 27 + 50 = ? | 77
+num1: 93 - 60 = ? | 33
+num1: 44 + 29 = ? | 73
+mc2: Which is the same as 56 - 19? | 56 - 20 + 1 | 56 - 20 - 1 | 56 - 10 - 1 | 50 - 19
+num2: A bus has 52 people. At a stop, 30 people get off. How many people are on the bus now? | 22
+num2: Carlos has 68 cents. He earns a dime and a dime. How many cents does he have now? | 88
+mc2: What is 10 more than 191? | 201 | 192 | 291 | 200
+sa2: Lena says 47 + 30 = 50. Explain her mistake. | She added 3 ones instead of 3 tens. 47 + 30 = 77.
+
+lesson: Adding with new tens and hundreds | 2.NBT.B.5, 2.NBT.B.6, 2.NBT.B.7
+practice:
+num1: 37 + 45 = ? | 82
+hint: 7 ones + 5 ones makes a new ten.
+num1: 68 + 27 = ? | 95
+hint: Add the ones first. Do you have 10 or more?
+num1: 86 + 52 = ? | 138
+hint: 8 tens + 5 tens makes a new hundred.
+num1: 23 + 14 + 31 + 12 = ? | 80
+hint: Add the tens, then add the ones.
+num2: The school collected 76 cans on Monday and 58 cans on Tuesday. How many cans in all? | 134
+hint: Watch for a new ten and a new hundred.
+sa2: Solve 49 + 76 and explain each step using tens and ones. | 9 + 6 = 15 ones, which is 1 ten 5 ones. 4 tens + 7 tens + 1 ten = 12 tens = 1 hundred 2 tens. Total 125.
+quiz:
+num1: 58 + 34 = ? | 92
+num1: 75 + 66 = ? | 141
+num1: 19 + 27 + 33 = ? | 79
+num2: A farmer picks 87 tomatoes and 45 peppers. How many vegetables does she pick? | 132
+mc2: When you add 64 + 28, why do you make a new ten? | 4 ones + 8 ones is 12 ones | 6 tens + 2 tens is 8 tens | 64 is more than 28 | you always make a new ten
+num2: Ravi read 34 pages, then 29 pages, then 18 pages. How many pages did he read? | 81
+mc2: Which sum is greater than 100? | 57 + 48 | 37 + 48 | 51 + 46 | 25 + 49
+sa2: Dee added 56 + 37 and got 813. Explain her mistake and give the correct sum. | She wrote 13 ones next to 8 tens instead of making a new ten. 6 + 7 = 13 is 1 ten 3 ones, so 50 + 30 + 10 + 3 = 93.
+
+lesson: Subtracting with unbundling | 2.NBT.B.5, 2.NBT.B.7
+practice:
+num1: 63 - 28 = ? | 35
+hint: You cannot take 8 ones from 3 ones. Unbundle a ten.
+num1: 90 - 46 = ? | 44
+hint: Unbundle a ten to make 10 ones.
+num1: 145 - 62 = ? | 83
+hint: You need to unbundle a hundred to get more tens.
+mc2: To solve 52 - 17, which shows the unbundled number? | 4 tens 12 ones | 5 tens 12 ones | 4 tens 2 ones | 6 tens 2 ones
+hint: Take 1 ten from 5 tens and give 10 ones to the 2 ones.
+num2: A class had 81 balloons. 35 popped. How many balloons are left? | 46
+hint: Unbundle a ten first.
+sa2: Explain how to check 74 - 38 = 36 with addition. | Add 36 + 38. 6 + 8 = 14 ones, which is 1 ten 4 ones; 3 + 3 + 1 = 7 tens. 74, so the answer is right.
+quiz:
+num1: 71 - 34 = ? | 37
+num1: 100 - 45 = ? | 55
+num1: 162 - 80 = ? | 82
+num2: A box has 96 crayons. The class uses 48. How many crayons are left? | 48
+mc2: Which addition checks 85 - 27 = 58? | 58 + 27 = 85 | 85 + 27 = 112 | 58 - 27 = 31 | 85 + 58 = 143
+num2: Sofia has 120 stickers. She gives away 35. How many stickers does she have left? | 85
+mc2: Which subtraction needs you to unbundle a ten? | 64 - 29 | 64 - 23 | 68 - 25 | 69 - 40
+sa2: Kai solved 53 - 26 and got 33. Explain his mistake. | He subtracted 3 from 6 instead of unbundling. 53 is 4 tens 13 ones; 13 - 6 = 7 and 4 - 2 = 2 tens, so the answer is 27.
+
+lesson: One- and two-step word problems to 100 | 2.OA.A.1
+practice:
+num2: Mateo had 45 marbles. He won 18 more and then lost 12. How many marbles does he have now? | 51
+hint: Do one step at a time.
+num2: There are 82 kids at the fair. 37 are boys. How many are girls? | 45
+hint: The whole is 82 and one part is 37.
+num2: Lily has 28 more stickers than Noor. Noor has 39 stickers. How many stickers does Lily have? | 67
+hint: Lily has more, so add.
+num2: Some birds were in a tree. 24 flew away. Then 31 were left. How many birds were in the tree at first? | 55
+hint: Put back the birds that flew away.
+mc2: Juan has 64 cards. Pia has 25 fewer. Which equation finds Pia's cards? | 64 - 25 = ? | 64 + 25 = ? | 25 - 64 = ? | ? - 25 = 64
+hint: Fewer means Pia has less.
+sa3: Write a two-step word problem using 50, 23 and 14. Solve it. | Example: 50 kids were in the gym. 23 left and 14 came in. How many now? 50 - 23 = 27, 27 + 14 = 41.
+quiz:
+num2: A store had 70 balloons. It sold 26 in the morning and 18 in the afternoon. How many balloons are left? | 26
+num2: Ben scored 47 points. Gia scored 15 more than Ben. How many points did they score together? | 109
+num2: Eli has 92 cents. A toy costs 65 cents. How much money will he have after he buys it? | 27
+num2: Rosa read 36 pages. She needs to read 80 pages in all. How many more pages does she need to read? | 44
+num2: A garden has 29 rose bushes and 16 more tulip bushes than rose bushes. How many tulip bushes are there? | 45
+mc2: Which question can be answered with 73 - 48? | How many more cards does Ann (73) have than Bo (48)? | How many cards do Ann (73) and Bo (48) have together? | How many cards will Ann get? | How many cards did Bo lose?
+num2: Lin has 38 shells. She has 19 fewer than Max. How many shells does Max have? | 57
+sa3: Solve and explain: There are 54 red apples and some green apples. There are 91 apples in all. Then 20 green apples are eaten. How many green apples are left? | 91 - 54 = 37 green apples; 37 - 20 = 17 green apples are left.
+
+test:
+num1: 63 + 30 = ? | 93
+num1: 81 - 50 = ? | 31
+num1: 49 + 36 = ? | 85
+num1: 78 + 64 = ? | 142
+num1: 72 - 45 = ? | 27
+num1: 150 - 73 = ? | 77
+num1: 18 + 22 + 35 = ? | 75
+mc2: Which is the same as 45 + 19? | 45 + 20 - 1 | 45 + 20 + 1 | 45 + 10 - 1 | 40 + 19
+mc2: Which subtraction needs unbundling a ten? | 81 - 36 | 87 - 36 | 89 - 30 | 86 - 34
+mc2: Which addition checks 92 - 57 = 35? | 35 + 57 = 92 | 92 + 57 = 149 | 35 - 57 = 22 | 92 + 35 = 127
+num2: A class collected 58 bottle caps on Monday and 67 on Tuesday. How many caps in all? | 125
+num2: There were 100 cupcakes at the bake sale. 64 were sold. How many are left? | 36
+num2: Tara has 36 stickers. Omar has 27 more than Tara. How many stickers does Omar have? | 63
+num2: Some kids were at the park. 18 went home and 45 stayed. How many kids were at the park at first? | 63
+num2: Ken had 75 cents. He spent 32 cents and then found 10 cents. How many cents does he have? | 53
+mc3: Mia has 48 cards. She has 17 more than Leo. How many cards do they have together? | 79 | 65 | 31 | 113
+mc3: Nate solved 64 - 28 and got 44. What did he do wrong? | he did 8 - 4 instead of unbundling | he added instead | he forgot the tens | he unbundled two tens
+mc2: Which sum is less than 100? | 38 + 59 | 48 + 59 | 55 + 46 | 62 + 39
+sa2: Solve 67 + 58. Explain when and why you made a new ten and a new hundred. | 7 + 8 = 15 ones, so make a new ten (5 ones left). 6 + 5 + 1 = 12 tens, so make a new hundred (2 tens left). Total 125.
+sa2: Show two ways to solve 83 - 29. | 83 - 30 + 1 = 54; or unbundle: 7 tens 13 ones - 2 tens 9 ones = 5 tens 4 ones = 54.
+sa3: Write a two-step word problem that uses addition and subtraction with numbers less than 100. Solve it. | Any correct two-step problem with a correct solution, for example 60 + 25 = 85 and 85 - 40 = 45.
+task3: The class is planning a party for 2 classes. Room 5 has 27 students and Room 6 has 26 students. 4 teachers are coming too. (1) How many people will be at the party? (2) Cups come in packs of 20. If the class buys 3 packs, will there be enough cups? Show how you know. (3) Juice boxes: the class has 38 and needs one for each person. How many more juice boxes does the class need? Show your strategy and check it with the inverse operation. | 57 people (27 + 26 + 4); 3 packs = 60 cups, enough with 3 extra; needs 19 more juice boxes (57 - 38), checked with 38 + 19 = 57. | All answers correct; one explanation or the check is missing. | One or two parts correct, or correct plans with a calculation error. | Little correct work.
+
+unit: Module 5: Addition and subtraction within 1,000 with word problems to 100 | 2.NBT.B.7, 2.NBT.B.8, 2.NBT.B.9, 2.OA.A.1 |
+el: Keep place value charts and disks (1, 10, 100) on desks. Model the words "compose," "decompose," "new ten," "new hundred" and "unbundle" with the disks, and let students explain steps to a partner before writing.
+
+lesson: Adding and subtracting 10s and 100s mentally | 2.NBT.B.7, 2.NBT.B.8
+practice:
+num1: 345 + 200 = ? | 545
+hint: Add 2 hundreds. Only the hundreds digit changes.
+num1: 678 - 30 = ? | 648
+hint: Take away 3 tens.
+num1: 290 + 10 = ? | 300
+hint: 9 tens and 1 more ten make a new hundred.
+mc2: Which is an easy way to solve 436 + 199? | 436 + 200 - 1 | 436 + 200 + 1 | 436 + 100 - 1 | 400 + 199
+hint: 199 is close to 200.
+num2: A theater has 520 seats. 300 are filled. How many seats are empty? | 220
+hint: Take away 3 hundreds.
+sa2: Explain how to solve 503 - 98 by thinking about 100. | 503 - 100 = 403. I took away 2 too many, so add 2 back: 405.
+quiz:
+num1: 612 + 300 = ? | 912
+num1: 840 - 400 = ? | 440
+num1: 795 + 10 = ? | 805
+mc2: Which is the same as 350 - 99? | 350 - 100 + 1 | 350 - 100 - 1 | 350 - 10 + 1 | 300 - 99
+num2: A school has 465 books. It buys 100 more and then 20 more. How many books does it have? | 585
+num2: A farmer had 900 seeds. He planted 600. How many seeds are left? | 300
+mc2: What is 100 less than 1,000? | 900 | 990 | 999 | 100
+sa2: Explain why 390 + 20 = 410. | 9 tens + 2 tens = 11 tens. 10 tens make a new hundred, so 3 hundreds become 4 hundreds and 1 ten is left: 410.
+
+lesson: Adding within 1,000 | 2.NBT.B.7
+practice:
+num1: 254 + 132 = ? | 386
+hint: Add hundreds, tens and ones.
+num1: 367 + 248 = ? | 615
+hint: 7 + 8 makes a new ten. 6 + 4 + 1 makes a new hundred.
+num1: 409 + 285 = ? | 694
+hint: Start with the ones: 9 + 5.
+num2: A zoo had 486 visitors on Saturday and 375 on Sunday. How many visitors in all? | 861
+hint: Watch for a new ten and a new hundred.
+mc2: In 538 + 274, why do you make a new hundred? | 3 tens + 7 tens + 1 ten is 11 tens | 5 + 2 is 7 | 8 + 4 is 12 ones | 538 is greater than 274
+hint: Look at the tens after making a new ten.
+sa2: Solve 456 + 367 and explain your steps with place value. | 6 + 7 = 13 ones: 1 new ten, 3 ones. 5 + 6 + 1 = 12 tens: 1 new hundred, 2 tens. 4 + 3 + 1 = 8 hundreds. 823.
+quiz:
+num1: 315 + 472 = ? | 787
+num1: 529 + 186 = ? | 715
+num1: 643 + 259 = ? | 902
+num2: A bakery made 238 muffins and 395 cookies. How many treats did it make? | 633
+mc2: Which sum makes a new hundred? | 160 + 250 | 120 + 250 | 345 + 112 | 401 + 203
+num2: Dan walked 375 steps to the park and 375 steps back. How many steps did he walk? | 750
+mc2: Which is the same as 499 + 238? | 500 + 237 | 500 + 238 | 400 + 238 | 499 + 200
+sa2: Jia added 285 + 147 and got 322. Explain her mistake. | She did not add the new ten and new hundred. 5 + 7 = 12 ones (1 ten 2 ones), 8 + 4 + 1 = 13 tens (1 hundred 3 tens), 2 + 1 + 1 = 4 hundreds. The sum is 432.
+
+lesson: Subtracting within 1,000 | 2.NBT.B.7
+practice:
+num1: 584 - 231 = ? | 353
+hint: Subtract each place.
+num1: 652 - 318 = ? | 334
+hint: Unbundle a ten to get more ones.
+num1: 734 - 452 = ? | 282
+hint: Unbundle a hundred to get more tens.
+num1: 500 - 168 = ? | 332
+hint: Unbundle a hundred into tens, then a ten into ones.
+num2: A store had 815 water bottles. It sold 379. How many are left? | 436
+hint: You need to unbundle twice.
+sa2: Explain how to solve 403 - 157. Show how you unbundle. | 403 = 3 hundreds 9 tens 13 ones. 13 - 7 = 6, 9 - 5 = 4, 3 - 1 = 2. 246.
+quiz:
+num1: 768 - 425 = ? | 343
+num1: 931 - 284 = ? | 647
+num1: 600 - 245 = ? | 355
+num2: A library had 520 books. 135 were checked out. How many books are still on the shelves? | 385
+mc2: Which subtraction does NOT need any unbundling? | 879 - 456 | 852 - 476 | 703 - 128 | 640 - 315
+num2: A plane has 316 seats. 189 seats are taken. How many seats are empty? | 127
+mc2: Which addition checks 702 - 365 = 337? | 337 + 365 = 702 | 702 + 365 = 1,067 | 337 - 365 = 28 | 702 + 337 = 1,039
+sa2: Owen solved 400 - 123 and got 323. Explain his mistake. | He subtracted the smaller digit from the larger in each place instead of unbundling. 400 = 3 hundreds 9 tens 10 ones; 10 - 3 = 7, 9 - 2 = 7, 3 - 1 = 2. 277.
+
+lesson: Choosing strategies and word problems to 100 | 2.NBT.B.9, 2.OA.A.1
+practice:
+num2: Mr. Lopez had 64 pencils. He gave out 28, then bought 30 more. How many pencils does he have? | 66
+hint: Do one step at a time.
+num2: There are 47 kids on one bus and 39 on another. How many more kids are on the first bus? | 8
+hint: Compare the two numbers.
+num2: Ari saved 56 dollars. He needs 93 dollars for a bike. How much more does he need to save? | 37
+hint: Count up from 56 to 93 or subtract.
+mc2: Which strategy works best for 298 + 145? | add 2 to 298 and take 2 from 145 | count by ones | add 145 one hundred at a time | subtract 145
+hint: Make a friendly number.
+num2: A frog jumped 28 cm, then 35 cm, then 19 cm. How far did it jump? | 82
+hint: Look for numbers that make tens.
+sa3: Explain why 298 + 145 = 300 + 143. | Moving 2 from 145 to 298 makes 300 and 143. The total stays the same because nothing was added or taken away.
+quiz:
+num2: A class has 93 crayons. 46 are broken. How many crayons are not broken? | 47
+num2: Pedro has 38 more coins than Kai. Kai has 45 coins. How many coins do they have together? | 128
+num2: A rope was 100 cm. Some was cut off. Now it is 57 cm. How much was cut off? | 43
+num2: Ella picked 25 berries, then 27, then 18. Her sister ate 20. How many berries are left? | 50
+mc2: Which is the same as 401 - 199? | 402 - 200 | 400 - 200 | 401 - 200 - 1 | 400 - 199
+num2: Sam has 72 stickers. He has 26 more than Dee. How many stickers does Dee have? | 46
+mc2: Which question is answered by 65 + 28? | 65 kids were in the gym and 28 more came. How many now? | 65 kids were in the gym and 28 left. How many stay? | There are 28 kids. 65 are boys. How many are girls? | How many more is 65 than 28?
+sa3: Two students solved 500 - 236. Ana got 264 and Ben got 336. Who is right? Explain how you know. | Ana is right. 264 + 236 = 500. Ben's answer checks as 336 + 236 = 572, which is not 500.
+
+test:
+num1: 547 + 300 = ? | 847
+num1: 805 - 70 = ? | 735
+num1: 236 + 451 = ? | 687
+num1: 478 + 354 = ? | 832
+num1: 869 - 527 = ? | 342
+num1: 724 - 386 = ? | 338
+num1: 800 - 459 = ? | 341
+mc2: Which is the same as 627 + 298? | 625 + 300 | 627 + 300 | 600 + 298 | 627 + 200
+mc2: Which subtraction needs unbundling a hundred? | 528 - 263 | 528 - 213 | 589 - 263 | 528 - 204
+mc2: Which addition checks 613 - 248 = 365? | 365 + 248 = 613 | 613 + 248 = 861 | 365 - 248 = 117 | 613 + 365 = 978
+num2: A museum had 389 visitors in the morning and 456 in the afternoon. How many visitors in all? | 845
+num2: A school ordered 600 milk cartons. 372 were used. How many are left? | 228
+num2: Kim has 48 marbles. Raj has 25 more than Kim. How many marbles does Raj have? | 73
+num2: A bag had some apples. 36 were eaten and 47 were left. How many apples were in the bag at first? | 83
+num2: Luis saved 39 dollars in May and 44 dollars in June. He spent 58 dollars. How many dollars does he have left? | 25
+mc3: Gia added 365 + 278 and got 543. Which mistake did she make? | she forgot the new hundred | she forgot the new ten in the ones | she subtracted the tens | no mistake
+mc3: Tim has 64 cards. He has 18 fewer than Jo. How many cards do they have together? | 146 | 82 | 110 | 46
+mc2: Which sum is greater than 700? | 368 + 345 | 268 + 345 | 352 + 341 | 199 + 499
+sa2: Solve 507 - 249 and explain how you unbundled. | 507 = 4 hundreds 9 tens 17 ones. 17 - 9 = 8, 9 - 4 = 5, 4 - 2 = 2. 258.
+sa2: Show two ways to solve 399 + 247. | 400 + 246 = 646; or add places: 300 + 200 = 500, 90 + 40 = 130, 9 + 7 = 16; 500 + 130 + 16 = 646.
+sa3: Explain why adding 10 to 295 changes the hundreds digit. | 295 has 9 tens. Adding 1 ten makes 10 tens, which is 1 new hundred. So 2 hundreds become 3 hundreds and the tens become 0: 305.
+task3: The second grade is running a recycling drive. Week 1: 275 cans. Week 2: 348 cans. Week 3: 189 cans. (1) How many cans did they collect in weeks 1 and 2? (2) How many cans in all three weeks? (3) The goal is 1,000 cans. How many more do they need? (4) Explain one strategy you used and check one answer with the inverse operation. | 623 cans; 812 cans; 188 more needed; a clear strategy explanation and a correct check (for example 812 + 188 = 1,000). | Three answers correct with work; the explanation or check is incomplete. | One or two parts correct. | Little correct work.
+
+unit: Module 6: Foundations of multiplication and division | 2.OA.C.3, 2.OA.C.4, 2.G.A.2 |
+el: Act out equal groups with counters and cups, and arrays with rows of chairs. Post the words "equal groups," "row," "column," "array," "even" and "odd" with small pictures.
+
+lesson: Equal groups | 2.OA.C.4
+practice:
+num2: There are 3 plates with 4 cookies on each plate. How many cookies? | 12
+hint: Add 4 three times.
+mc2: Which shows 5 groups of 2? | 2 + 2 + 2 + 2 + 2 | 5 + 2 | 5 + 5 | 2 + 2 + 2 + 2
+hint: Write 2 once for each group.
+mc2: Which picture shows equal groups? | 3 bags with 5 apples in each | bags with 2, 3 and 5 apples | 1 bag with 5 apples | bags with 4, 4 and 3 apples
+hint: Equal groups have the same number in each group.
+num2: Mia puts 15 pencils into cups with 5 pencils in each cup. How many cups does she use? | 3
+hint: Count by 5s to 15. How many 5s?
+num1: 4 + 4 + 4 + 4 = ? | 16
+hint: Count by 4s.
+sa2: Draw 4 groups of 3. Write a repeated addition sentence. | 4 circles with 3 dots each; 3 + 3 + 3 + 3 = 12.
+quiz:
+num2: There are 5 vases with 3 flowers in each. How many flowers? | 15
+mc2: Which shows 4 groups of 5? | 5 + 5 + 5 + 5 | 4 + 5 | 4 + 4 + 4 | 5 + 5 + 5
+num2: A pack has 10 juice boxes. How many juice boxes are in 3 packs? | 30
+mc2: Which are NOT equal groups? | 2 socks, 3 socks, 2 socks | 2 socks, 2 socks, 2 socks | 4 socks, 4 socks | 5 socks, 5 socks, 5 socks
+num2: Leo has 12 cars. He puts them in rows of 4. How many rows? | 3
+num1: 2 + 2 + 2 + 2 + 2 + 2 = ? | 12
+mc2: Which story matches 3 + 3 + 3 + 3? | 4 kids each have 3 balls | 3 kids each have 4 balls and one more | 3 kids and 4 balls | 4 kids and 3 balls in all
+sa2: Explain why 3 groups of 2 and 2 groups of 3 have the same total. | 2 + 2 + 2 = 6 and 3 + 3 = 6. Both make 6.
+
+lesson: Arrays and repeated addition | 2.OA.C.4
+practice:
+num2: An array has 3 rows with 5 stars in each row. How many stars? | 15
+hint: Add 5 for each row.
+mc2: Which addition matches an array of 2 rows of 4? | 4 + 4 | 2 + 4 | 2 + 2 | 4 + 4 + 4
+hint: Each row has 4.
+mc2: An array has 4 columns of 3 dots. Which equation matches? | 3 + 3 + 3 + 3 = 12 | 4 + 3 = 7 | 4 + 4 + 4 + 4 = 16 | 3 + 3 + 3 = 9
+hint: Each column has 3 dots.
+num2: Chairs are set up in 5 rows of 5. How many chairs? | 25
+hint: Count by 5s.
+num2: An egg carton is an array of 2 rows of 6. How many eggs fit? | 12
+hint: Add 6 + 6.
+sa2: Draw an array for 3 + 3 + 3 + 3 + 3. Tell how many rows and how many in each row. | 5 rows of 3 (or 3 rows of 5); 15 in all.
+quiz:
+num2: A garden has 4 rows with 4 plants in each row. How many plants? | 16
+mc2: Which addition matches 3 rows of 2? | 2 + 2 + 2 | 3 + 2 | 3 + 3 + 3 | 2 + 2
+num2: Stamps are in 5 rows of 4. How many stamps? | 20
+mc2: An array has 2 rows of 5. If you turn it, what is it? | 5 rows of 2 | 2 rows of 2 | 5 rows of 5 | 7 rows of 1
+num2: Muffins are baked in a pan with 3 rows of 4. Kai bakes 2 pans. How many muffins? | 24
+mc2: Which array has 12 dots? | 3 rows of 4 | 3 rows of 3 | 2 rows of 5 | 4 rows of 4
+num2: A window has 2 rows of 3 panes. How many panes? | 6
+sa2: Ana says an array of 4 rows of 5 has 9 dots. Explain her mistake. | She added 4 + 5. The array has 4 rows with 5 in each, so 5 + 5 + 5 + 5 = 20 dots.
+
+lesson: Rows and columns of squares | 2.G.A.2, 2.OA.C.4
+practice:
+num2: A rectangle is split into 2 rows of 3 same-size squares. How many squares? | 6
+hint: Count the squares in one row, then add the next row.
+num2: A rectangle has 4 rows and 3 columns of squares. How many squares? | 12
+hint: Each row has 3 squares.
+mc2: A rectangle has 15 squares in 3 equal rows. How many squares are in each row? | 5 | 3 | 12 | 18
+hint: What number added 3 times makes 15?
+mc2: A rectangle is 5 squares across and 2 squares down. Which addition finds the total? | 5 + 5 | 5 + 2 | 2 + 2 | 5 + 5 + 5
+hint: There are 2 rows of 5.
+num2: A chocolate bar is 3 squares across and 5 squares down. How many squares? | 15
+hint: Count by 3s five times.
+sa2: Draw a rectangle with 2 rows and 4 columns of squares. Write an addition sentence for it. | A rectangle with 8 squares; 4 + 4 = 8 (or 2 + 2 + 2 + 2 = 8).
+quiz:
+num2: A rectangle has 3 rows of 3 squares. How many squares? | 9
+num2: A tile floor has 5 rows of 4 tiles. How many tiles? | 20
+mc2: A rectangle has 8 squares in 2 equal rows. How many columns? | 4 | 2 | 6 | 8
+mc2: Which rectangle has the most squares? | 4 rows of 5 | 3 rows of 5 | 4 rows of 4 | 2 rows of 5
+num2: A sheet of stickers has 4 rows and 4 columns. Rosa uses 5 stickers. How many are left? | 11
+mc2: How many columns does a rectangle with 3 rows of 4 squares have? | 4 | 3 | 7 | 12
+num2: A quilt is 2 squares across and 5 squares down. How many squares? | 10
+sa2: Explain why a rectangle with 3 rows of 5 squares has the same number of squares as one with 5 rows of 3. | 5 + 5 + 5 = 15 and 3 + 3 + 3 + 3 + 3 = 15. Turning the rectangle does not change the number of squares.
+
+lesson: Even and odd numbers | 2.OA.C.3
+practice:
+mc1: Which number is even? | 14 | 13 | 9 | 7
+hint: An even number can make pairs with none left over.
+mc1: Which number is odd? | 11 | 10 | 16 | 20
+hint: Look at the ones digit.
+mc2: Which doubles fact shows that 18 is even? | 9 + 9 = 18 | 10 + 8 = 18 | 9 + 8 = 17 | 18 + 0 = 18
+hint: Even numbers are two equal addends.
+num2: There are 13 kids. They pair up for a game. How many kids do not have a partner? | 1
+hint: Make pairs and see what is left.
+mc2: Which group can be split into 2 equal teams? | 12 kids | 11 kids | 15 kids | 9 kids
+hint: Look for an even number.
+sa2: Is 15 even or odd? Explain using pairs. | Odd. 15 makes 7 pairs with 1 left over.
+quiz:
+mc1: Which of these numbers is even: 20, 15, 19 or 3? | 20 | 15 | 19 | 3
+mc1: Which of these numbers is odd: 17, 8, 12 or 4? | 17 | 8 | 12 | 4
+mc2: Which equation shows that 16 is even? | 8 + 8 = 16 | 9 + 7 = 16 | 10 + 6 = 16 | 15 + 1 = 16
+num2: Sam has 19 socks. How many full pairs can he make? | 9
+mc2: Which list has only even numbers? | 2, 6, 10, 14 | 2, 5, 8, 11 | 1, 3, 5, 7 | 4, 9, 12, 16
+mc2: What is the sum of two odd numbers, such as 3 + 5? | even | odd | always 8 | zero
+num2: A class of 20 lines up in 2 equal lines. How many kids are in each line? | 10
+sa2: Kim says 11 is even because it has two 1s. Explain her mistake. | Even or odd depends on pairs, not the digits. 11 makes 5 pairs with 1 left over, so it is odd.
+
+test:
+num2: There are 4 boxes with 5 crayons in each. How many crayons? | 20
+mc1: Which shows 3 groups of 5? | 5 + 5 + 5 | 3 + 5 | 3 + 3 + 3 | 5 + 5
+mc2: Which are equal groups? | 4 cups with 3 beans each | cups with 2, 3 and 4 beans | 1 cup with 12 beans and 1 empty cup | cups with 3, 3 and 4 beans
+num1: 5 + 5 + 5 + 5 + 5 = ? | 25
+num2: An array has 4 rows of 2. How many in all? | 8
+mc2: Which addition matches 5 rows of 3? | 3 + 3 + 3 + 3 + 3 | 5 + 3 | 5 + 5 + 5 + 5 + 5 | 3 + 3 + 3
+mc2: An array has 3 rows of 4. If you turn it, what is it? | 4 rows of 3 | 3 rows of 3 | 4 rows of 4 | 7 rows of 1
+num2: A rectangle has 2 rows and 5 columns of squares. How many squares? | 10
+mc2: A rectangle has 12 squares in 4 equal rows. How many squares in each row? | 3 | 4 | 8 | 16
+mc1: Which of these numbers is odd: 9, 12, 18 or 6? | 9 | 12 | 18 | 6
+mc1: Which of these numbers is even: 10, 7, 11 or 15? | 10 | 7 | 11 | 15
+mc2: Which doubles fact shows 14 is even? | 7 + 7 = 14 | 8 + 6 = 14 | 10 + 4 = 14 | 13 + 1 = 14
+num2: There are 17 kids. They make pairs. How many kids are left without a partner? | 1
+num2: A farmer plants 3 rows of 5 corn plants and 2 more rows of 5. How many corn plants? | 25
+num2: Ms. Park buys 4 packs of 3 yogurts. Her kids eat 5. How many yogurts are left? | 7
+mc3: Which is NOT true about an array of 2 rows of 6? | it has 8 dots | it has 12 dots | 6 + 6 matches it | it can be turned into 6 rows of 2
+mc3: Jo has an odd number of marbles. She gets 1 more marble. What must be true now? | she has an even number | she has an odd number | she has 2 more | she has 1 marble
+mc2: Which total can be shared into 2 equal groups with none left over? | 18 | 13 | 15 | 17
+sa2: Draw an array with 3 rows of 5. Write two different addition sentences for it. | 3 rows of 5 dots; 5 + 5 + 5 = 15 and 3 + 3 + 3 + 3 + 3 = 15.
+sa2: Is 12 even or odd? Explain two ways. | Even. 12 makes 6 pairs with none left over, and 6 + 6 = 12.
+sa3: Kai says 4 rows of 3 and 3 rows of 4 have different totals. Is he right? Explain. | No. 3 + 3 + 3 + 3 = 12 and 4 + 4 + 4 = 12. They have the same total; one array is the other turned.
+task3: The class is setting up chairs for a show. There are 20 chairs. (1) Show two different ways to arrange all 20 chairs in equal rows (up to 5 rows). Draw each array and write a repeated addition sentence. (2) Is 20 even or odd? Explain. (3) 3 more chairs arrive. Can the 23 chairs be put in 2 equal rows? Explain. | Two correct arrays such as 4 rows of 5 (5 + 5 + 5 + 5 = 20) and 5 rows of 4 or 2 rows of 10; 20 is even (10 + 10); 23 is odd so it cannot be split into 2 equal rows (11 + 11 = 22 with 1 left). | All parts correct with a small gap in an explanation. | One or two parts correct. | Little correct work.
+
+unit: Module 7: Problem solving with length, money and data | 2.MD.A.1, 2.MD.A.2, 2.MD.A.3, 2.MD.C.8, 2.MD.D.9, 2.MD.D.10, 2.OA.A.1 | g2coins
+el: Use real or play coins and bills, a 12-inch ruler and a yardstick. Post the coin names with values, and the units inch, foot (12 inches) and yard (3 feet) with pictures of benchmark objects.
+
+lesson: Picture graphs and bar graphs | 2.MD.D.10
+practice:
+num2: A bar graph shows favorite fruits: apples 8, bananas 5, grapes 11. How many students chose apples or bananas? | 13
+hint: Add the two bars.
+num2: A picture graph shows books read: Ana 6, Ben 9, Cal 4. How many more books did Ben read than Cal? | 5
+hint: Subtract the smaller number from the larger.
+mc2: A bar graph shows pets: dogs 12, cats 9, fish 4. Which pet has 3 fewer than dogs? | cats | fish | dogs | none
+hint: Find 12 - 3.
+num2: A picture graph uses 1 star for 2 votes. Pizza has 6 stars. How many votes did pizza get? | 12
+hint: Each star is 2 votes. Count by 2s.
+num2: A bar graph shows rainy days: March 7, April 10, May 3. How many rainy days in all three months? | 20
+hint: Look for a pair that makes 10.
+sa2: Make a bar graph of favorite colors: red 4, blue 7, green 3. Write one question someone could answer with your graph and answer it. | Bars of 4, 7 and 3 with labels and a scale; for example, "How many more chose blue than green? 4."
+quiz:
+num2: A bar graph shows how students get to school: walk 9, bus 14, car 6. How many students in all? | 29
+num2: A bar graph shows how students get to school: walk 9, bus 14, car 6. How many more ride the bus than walk? | 5
+mc2: A bar graph shows how students get to school: walk 9, bus 14, car 6. Which way is used least? | car | walk | bus | all the same
+num2: A picture graph uses 1 apple for 5 apples picked. Lena's row has 4 apple pictures. How many apples did Lena pick? | 20
+mc2: A bar graph shows sports votes: soccer 11, tennis 7, swimming 11. Which is true? | soccer and swimming tied | soccer won by 4 | tennis won | swimming got the fewest
+num2: A bar graph shows toys sold: balls 15, kites 8. How many fewer kites than balls were sold? | 7
+mc2: A bar on a graph ends halfway between 10 and 12. What number does it show? | 11 | 10 | 12 | 22
+sa2: A bar graph shows snacks chosen: crackers 6, fruit 13, yogurt 8. Pia says fruit got 7 more votes than crackers. Is she right? Explain. | Yes. 13 - 6 = 7, so fruit got 7 more votes than crackers.
+
+lesson: Coins and bills | 2.MD.C.8
+practice:
+num1: How many cents are 2 quarters? | 50
+hint: A quarter is 25 cents.
+num2: Jada has 1 quarter, 2 dimes and 3 pennies. How many cents does she have? | 48
+hint: Start with the coin worth the most and count on.
+num2: Theo has 3 dimes and 4 nickels. How many cents does he have? | 50
+hint: Count the dimes by tens, then the nickels by fives.
+mc2: Which coins make 75 cents? | 3 quarters | 7 dimes | 1 quarter and 5 dimes and 1 nickel | 7 nickels
+hint: Count each choice.
+num2: A pencil costs 35 cents. Rosa pays with 2 quarters. How much change does she get in cents? | 15
+hint: 2 quarters is 50 cents.
+sa2: Show two different ways to make 60 cents with coins. | Examples: 2 quarters and 1 dime; 6 dimes; 1 quarter, 3 dimes and 1 nickel.
+quiz:
+num2: Omar has a 5-dollar bill and three 1-dollar bills. How many dollars does he have? | 8
+num2: Kai has 1 quarter, 1 dime, 1 nickel and 2 pennies. How many cents does he have? | 42
+num1: How many cents is 1 dollar? | 100
+num2: A sticker costs 45 cents. Ella has 3 dimes. How many more cents does she need? | 15
+mc2: Which group of coins is worth the most? | 3 quarters | 6 dimes | 10 nickels | 50 pennies
+num2: Leo has two 10-dollar bills and one 5-dollar bill. He spends 12 dollars. How many dollars does he have left? | 13
+mc2: Which shows 1 dollar? | 4 quarters | 3 quarters and 2 dimes | 9 dimes and 1 nickel | 10 nickels
+sa2: Sam says 5 pennies are worth more than 1 dime because 5 is more coins. Explain his mistake. | 5 pennies are 5 cents and 1 dime is 10 cents. A dime is worth more even though it is one coin.
+
+lesson: Inches, feet and yards | 2.MD.A.1, 2.MD.A.2, 2.MD.A.3
+practice:
+num1: How many inches are in 1 foot? | 12
+hint: Look at a standard ruler.
+num1: How many feet are in 1 yard? | 3
+hint: A yardstick is as long as how many rulers?
+mc2: Which unit is best for measuring the length of a crayon? | inches | yards | feet | miles
+hint: A crayon is small.
+mc2: About how long is a car? | 5 yards | 5 inches | 5 feet | 50 yards
+hint: A yard is about one big step for an adult.
+num2: A ribbon is 2 feet long. How many inches long is it? | 24
+hint: Each foot is 12 inches.
+sa2: Measure your desk in inches and in feet. Which number is bigger? Explain why. | The number of inches is bigger because inches are smaller units, so you need more of them.
+quiz:
+mc1: Which is the longest unit? | yard | foot | inch | centimeter
+mc2: About how long is a math book? | 1 foot | 1 inch | 1 yard | 10 feet
+num2: A board is 36 inches long. How many feet long is it? | 3
+mc2: Which tool is best for measuring the length of a hallway? | measuring tape | 12-inch ruler | centimeter cube | balance scale
+num2: A plant was 9 inches tall. It grew 6 inches. How tall is it now in inches? | 15
+num2: A rope is 3 yards long. How many feet long is it? | 9
+mc2: A table is 4 feet long. About how many inches is that? | 48 inches | 4 inches | 12 inches | 400 inches
+sa2: Explain why it takes more inches than feet to measure the same table. | An inch is smaller than a foot (12 inches make a foot), so you need more inches to cover the same length.
+
+lesson: Line plots of measurement data | 2.MD.D.9
+practice:
+num2: A line plot shows pencil lengths in inches: 4, 5, 5, 6, 6, 6, 7. How many pencils are 6 inches long? | 3
+hint: Count the Xs above 6.
+num2: A line plot shows pencil lengths in inches: 4, 5, 5, 6, 6, 6, 7. How many pencils were measured? | 7
+hint: Count all the Xs.
+mc2: A line plot shows leaf lengths in centimeters: 3, 4, 4, 4, 5, 8. Which length is the most common? | 4 cm | 3 cm | 5 cm | 8 cm
+hint: Which number has the most Xs?
+num2: A line plot shows shoe lengths in inches: 7, 7, 8, 9, 9, 9. How much longer is the longest shoe than the shortest? | 2
+hint: Find the longest and shortest lengths and subtract.
+mc2: To make a line plot of 10 pencil lengths, what do you put above each number? | one X for each pencil that length | the total of all pencils | a bar | the pencil's name
+hint: Each X stands for one object.
+sa2: Measure 5 crayons to the nearest inch. Make a line plot of your data and tell which length was most common. | A number line with labeled inches and one X per crayon; correctly names the length with the most Xs.
+quiz:
+num2: A line plot shows hand spans in inches: 5, 5, 6, 6, 6, 6, 7, 8. How many hands are 6 inches? | 4
+num2: A line plot shows hand spans in inches: 5, 5, 6, 6, 6, 6, 7, 8. How many hands are longer than 6 inches? | 2
+mc2: A line plot shows hand spans in inches: 5, 5, 6, 6, 6, 6, 7, 8. Which length is most common? | 6 inches | 5 inches | 7 inches | 8 inches
+num2: A line plot shows ribbon lengths in centimeters: 10, 12, 12, 15. What is the difference between the longest and shortest ribbon? | 5
+num2: A line plot shows worm lengths in centimeters: 3, 4, 4, 6, 6, 6. How many worms are 4 cm or shorter? | 3
+mc2: A line plot has 2 Xs above 9 and no Xs above 10. What does that mean? | 2 objects are 9 units and none are 10 | 9 objects are 2 units | 10 objects are 0 units | the plot is wrong
+num2: A line plot shows stick lengths in inches: 8, 8, 9, 11. What is the total length of the two 8-inch sticks? | 16
+sa2: A line plot of shell lengths in centimeters shows: 2, 3, 3, 3, 4, 6. Write two facts the line plot tells you. | Example: 6 shells were measured; 3 cm is the most common length; the longest shell is 4 cm longer than the shortest.
+
+test:
+num2: A bar graph shows favorite seasons: summer 12, fall 8, winter 5, spring 9. How many students voted? | 34
+num2: A bar graph shows favorite seasons: summer 12, fall 8, winter 5, spring 9. How many more chose summer than winter? | 7
+mc2: A bar graph shows favorite seasons: summer 12, fall 8, winter 5, spring 9. Which season got 1 more vote than fall? | spring | summer | winter | fall
+num2: A picture graph uses 1 smiley face for 2 students. Tacos have 7 faces. How many students chose tacos? | 14
+num1: How many cents are 3 dimes and 1 nickel? | 35
+num2: Ivy has 2 quarters, 1 dime and 4 pennies. How many cents does she have? | 64
+num2: A book costs 6 dollars. Luis pays with a 10-dollar bill. How many dollars in change does he get? | 4
+num2: Ana has 50 cents. She buys a pencil for 28 cents. How many cents does she have left? | 22
+mc2: Which coins make 41 cents? | 1 quarter, 1 dime, 1 nickel, 1 penny | 4 dimes and 1 nickel | 1 quarter and 2 dimes | 3 dimes and 1 penny
+mc1: A 12-inch ruler is how many feet long? | 1 | 12 | 3 | 10
+mc2: Which unit is best for measuring the length of a classroom? | feet | inches | centimeters | pounds
+mc2: About how long is a paper clip? | 1 inch | 1 foot | 1 yard | 10 inches
+num2: A fence is 2 yards long. How many feet long is it? | 6
+num2: A ribbon is 18 inches. Another ribbon is 1 foot long. How many inches longer is the first ribbon? | 6
+num2: A line plot shows plant heights in inches: 3, 4, 4, 5, 5, 5, 7. How many plants are 5 inches tall? | 3
+mc2: A line plot shows plant heights in inches: 3, 4, 4, 5, 5, 5, 7. How much taller is the tallest plant than the shortest? | 4 inches | 7 inches | 3 inches | 10 inches
+mc3: Maya has 3 quarters. Jon has 8 dimes. Who has more money and by how much? | Jon, by 5 cents | Maya, by 5 cents | Jon, by 3 cents | they have the same
+mc3: A board is 1 yard long. Kim cuts off 10 inches. How long is the board now? | 26 inches | 2 feet | 9 inches | 33 inches
+sa2: A bar graph shows lunches: pizza 9, salad 4, soup 6. Write a question that needs two steps to answer, then answer it. | Example: How many more students chose salad or soup together than pizza? 4 + 6 = 10, and 10 - 9 = 1 more.
+sa2: Explain why measuring a rug in inches gives a bigger number than measuring it in feet. | Inches are smaller than feet. It takes 12 inches to make one foot, so you need more inches to cover the rug.
+sa3: Ben says 4 dimes are worth more than 2 quarters because he has more coins. Explain who has more money. | 4 dimes = 40 cents and 2 quarters = 50 cents. 2 quarters are worth 10 cents more, even though there are fewer coins.
+task3: The class is running a lemonade stand. Cups cost 25 cents each. (1) Mia buys 3 cups. How much does she pay? Show which coins she could use. (2) Leo pays for 1 cup with a 1-dollar bill. How much change does he get? (3) The class sold cups on 4 days: Monday 7, Tuesday 12, Wednesday 9, Thursday 12. Make a bar graph and tell how many cups were sold in all. (4) How many more cups were sold on Tuesday than on Monday? | 75 cents (for example 3 quarters); 75 cents change; a labeled bar graph with a scale and a total of 40 cups; 5 more cups on Tuesday. | Three of the four parts correct with work shown. | One or two parts correct. | Little correct work.
+
+unit: Module 8: Time, shapes and fractions as equal parts of shapes | 2.G.A.1, 2.G.A.3, 2.MD.C.7 |
+el: Label a shape chart with triangle, quadrilateral, pentagon, hexagon, face, edge and vertex. Use paper shapes to fold into halves, thirds and fourths, and a geared clock to count minutes by fives.
+
+lesson: Attributes of shapes | 2.G.A.1
+practice:
+mc1: What is a shape with 4 straight sides called? | quadrilateral | pentagon | triangle | hexagon
+hint: "Quad" means four.
+num1: How many angles does a pentagon have? | 5
+hint: A pentagon has the same number of angles as sides.
+mc2: Which shape has 6 sides and 6 angles? | hexagon | pentagon | quadrilateral | triangle
+hint: Count the sides on a honeycomb cell.
+num1: How many faces does a cube have? | 6
+hint: Count top, bottom and the four sides.
+mc2: Which shape is a quadrilateral but not a rectangle? | a shape with 4 sides and no square corners | a square | a shape with 3 sides | a circle
+hint: Rectangles have 4 square corners.
+sa2: Draw a pentagon and a hexagon. Label the number of sides and angles on each. | A closed 5-sided shape labeled 5 sides, 5 angles; a closed 6-sided shape labeled 6 sides, 6 angles.
+quiz:
+mc1: How many sides does a triangle have? | 3 | 4 | 5 | 6
+num1: How many vertices (corners) does a cube have? | 8
+mc2: A shape has 5 sides. What is it called? | pentagon | hexagon | quadrilateral | octagon
+num1: How many edges does a cube have? | 12
+mc2: Which statement about a square is true? | it is a quadrilateral | it has 5 angles | it is a pentagon | it has 3 sides
+num2: Tess draws 2 pentagons and 1 hexagon. How many sides did she draw in all? | 16
+mc2: Which shape has the most angles? | hexagon | pentagon | quadrilateral | triangle
+sa2: Jay says a shape with 4 sides must be a square. Draw or describe a shape that shows he is wrong. | A rectangle with 2 long and 2 short sides, or a trapezoid; it has 4 sides but is not a square.
+
+lesson: Halves, thirds and fourths | 2.G.A.3
+practice:
+mc1: A rectangle is cut into 3 equal parts. What is each part called? | a third | a half | a fourth | a whole
+hint: 3 equal parts are thirds.
+mc2: A circle is cut into 4 equal parts. How many fourths make the whole circle? | 4 | 2 | 3 | 1
+hint: A whole is all the equal parts together.
+mc2: A sandwich is cut into 2 parts, one bigger than the other. Is each part a half? | no, the parts are not equal | yes, there are 2 parts | yes, both are pieces | no, there are 3 parts
+hint: Halves must be equal.
+mc2: Which is bigger, a half or a third of the same pizza? | a half | a third | they are the same | you cannot tell
+hint: More equal parts means smaller parts.
+num2: A pan of brownies is cut into thirds. How many pieces are there? | 3
+hint: Thirds means 3 equal parts.
+sa2: Draw two rectangles the same size. Split one into halves and one into fourths. Which parts are bigger? Explain. | Halves are bigger. The same whole is cut into fewer parts, so each part is larger.
+quiz:
+mc1: A square is cut into 4 equal parts. Each part is a | fourth | third | half | whole
+mc2: How many thirds make a whole? | 3 | 2 | 4 | 1
+mc2: Which part is the smallest of the same whole? | a fourth | a third | a half | the whole
+num2: Dad cuts 3 pies into fourths. How many pieces are there? | 12
+mc2: A rectangle is split into 3 parts of different sizes. Is each part a third? | no | yes | only if there are 3 parts | only if it is a rectangle
+num2: A pizza is cut into 4 equal slices. Ana eats 1 slice and Ben eats 2 slices. How many fourths are left? | 1
+mc2: Two same-size squares: one is cut into halves as a tall rectangle cut, the other into halves as two triangles. Are the halves the same size? | yes | no | only the triangles | only the rectangles
+sa2: Explain why 2 halves of a sandwich make one whole sandwich. | Each half is one of 2 equal parts. Putting both equal parts back together makes the whole.
+
+lesson: Telling time to five minutes | 2.MD.C.7
+practice:
+mc1: The minute hand points to 3. How many minutes after the hour is it? | 15 | 3 | 30 | 45
+hint: Count by 5s for each number: 5, 10, 15.
+mc1: The hour hand is just past 4 and the minute hand points to 2. What time is it? | 4:10 | 2:20 | 4:02 | 2:04
+hint: Count the minutes by 5s from 12 to 2.
+mc2: Which is a time in the p.m.? | eating dinner | waking up for school | eating breakfast | the sun rising
+hint: p.m. is from noon to midnight.
+num2: The bus comes at 7:40. It is 7:25. How many minutes until the bus comes? | 15
+hint: Count by 5s from 25 to 40.
+mc2: Where does the minute hand point at 9:45? | on the 9 | on the 4 | on the 45 | on the 3
+hint: Count by 5s until you reach 45.
+sa2: Draw a clock that shows 3:35. Explain where each hand points. | Minute hand on 7 (7 x 5 = 35); hour hand a little past halfway between 3 and 4.
+quiz:
+mc1: The minute hand points to 8. How many minutes after the hour is it? | 40 | 8 | 80 | 35
+mc1: The hour hand is between 10 and 11 and the minute hand is on 5. What time is it? | 10:25 | 11:25 | 10:05 | 5:10
+mc2: Which is most likely a time in the a.m.? | getting ready for school | eating dinner | going to bed | watching the moon rise
+num2: Recess starts at 10:15 and ends at 10:35. How many minutes is recess? | 20
+mc2: Which time is 5 minutes after 6:55? | 7:00 | 6:60 | 6:50 | 7:55
+num2: A movie starts at 2:30. It is 2:10 now. How many minutes until the movie starts? | 20
+mc2: Ana says a clock shows 2:30 because the minute hand is on 2 and the hour hand is on 6. What time is it? | 6:10 | 2:30 | 2:06 | 6:02
+sa2: Explain how you know that the minute hand on 11 means 55 minutes. | Each number on the clock is 5 minutes. Counting by 5s eleven times gives 55.
+
+test:
+mc1: A shape has 6 sides and 6 angles. What is it? | hexagon | pentagon | quadrilateral | triangle
+mc1: What is any shape with 4 straight sides called? | quadrilateral | pentagon | hexagon | triangle
+num1: How many sides does a pentagon have? | 5
+num1: How many faces does a cube have in all? | 6
+mc2: Which shape has fewer angles than a quadrilateral? | triangle | pentagon | hexagon | cube
+num2: Max drew 3 triangles and 2 quadrilaterals. How many sides did he draw in all? | 17
+mc1: A shape is cut into 3 equal parts. What is each part called? | a third | a half | a fourth | a whole
+mc2: How many fourths make a whole? | 4 | 2 | 3 | 1
+mc2: Which is bigger, a third or a fourth of the same sandwich? | a third | a fourth | they are the same | you cannot tell
+mc2: A cookie is broken into 2 pieces of different sizes. Are they halves? | no | yes | only if round | only if there are 2
+num2: Mom cuts 2 pizzas into thirds. How many slices are there? | 6
+mc1: The minute hand points to 6. How many minutes after the hour is it? | 30 | 6 | 60 | 35
+mc2: The hour hand is just past 8 and the minute hand points to 4. What time is it? | 8:20 | 4:40 | 8:04 | 4:08
+mc2: Which is most likely a p.m. time? | 7:00 at bedtime | 7:00 when you wake up | 8:00 at the start of school | 6:00 at sunrise
+num2: Soccer practice starts at 4:15 and ends at 4:55. How many minutes long is practice? | 40
+num2: Lunch starts at 11:50. It lasts 25 minutes. How many minutes after 12:00 does it end? | 15
+mc3: A rectangle is split into 4 equal parts. Jo colors 3 parts. Which tells how much is NOT colored? | 1 fourth | 3 fourths | 1 third | 1 half
+mc3: Ray says the clock shows 3:45 when the hour hand is on 9 and the minute hand is on 3. What time is it really? | 9:15 | 3:45 | 9:03 | 3:09
+mc2: Which shape is a quadrilateral? | square | triangle | pentagon | hexagon
+sa2: Draw a circle and split it into fourths. Explain how you know your parts are fourths. | A circle cut into 4 equal parts; they are fourths because there are 4 parts of the same size.
+sa2: Draw a clock that shows 1:50. Tell where each hand points. | Minute hand on 10; hour hand almost at 2 (between 1 and 2, close to 2).
+sa3: Explain why a half of a small pizza can be smaller than a fourth of a big pizza. | Fractions are parts of a whole. If the wholes are different sizes, the parts are too. A fourth of a big pizza can be more food than a half of a small one.
+task3: Plan a class bake sale. (1) A pan of cornbread is a rectangle. Draw how to cut it into thirds, and draw another pan cut into fourths. Which pieces are bigger? Explain. (2) The sale starts at 9:30 a.m. and ends at 11:15 a.m. Draw clocks for both times. (3) Price signs will be pentagons and the table cloth is a quadrilateral. Draw each shape and label how many sides and angles each has. | Correct thirds and fourths with thirds named as bigger and explained; clocks showing 9:30 (minute hand on 6, hour hand between 9 and 10) and 11:15 (minute hand on 3, hour hand just past 11); a pentagon (5 sides, 5 angles) and a quadrilateral (4 sides, 4 angles). | Most parts correct; one drawing or explanation has an error. | One or two parts correct. | Little correct work.
