@@ -252,8 +252,8 @@ quiz:
 mc2: Salmon swim upstream to the streams where they hatched to lay eggs. How does this behavior help them reproduce successfully? | It brings them to places with conditions where eggs are likely to survive | It helps them grow larger | It removes all predators | It makes the water warmer
 mc2: A frog species lays thousands of eggs and gives no care. A gorilla has one baby at a time and cares for it for years. Which statement is supported? | Both strategies can help a species continue: many offspring or few offspring with lots of care | Gorillas reproduce more successfully because they have fewer babies | Frogs never survive to adulthood | Care for young does not affect survival
 num2: In a study, 40 bird nests were guarded by parents and 32 produced chicks that survived. What percent of guarded nests produced surviving chicks? | 80
-num2: In the same study, 40 unguarded nests had only 10 nests with surviving chicks. How many more guarded nests than unguarded nests produced surviving chicks? | 22
-mc3: Based on the nest study (32 of 40 guarded nests succeeded and 10 of 40 unguarded nests succeeded), which claim is best supported? | Parent guarding increases the chance of offspring survival | Guarding nests makes eggs hatch faster | Unguarded nests produce more chicks | Guarding has no effect on survival
+num2: In a bird study, 32 of 40 nests guarded by parents and 10 of 40 unguarded nests produced surviving chicks. How many more guarded nests than unguarded nests produced surviving chicks? | 22
+mc3: Researchers found that 32 of 40 nests guarded by parent birds and 10 of 40 unguarded nests produced surviving chicks. Which claim is best supported? | Parent guarding increases the chance of offspring survival | Guarding nests makes eggs hatch faster | Unguarded nests produce more chicks | Guarding has no effect on survival
 mc2: Fireflies flash light in patterns. Each species has its own pattern. How does this help reproduction? | Fireflies can find mates of their own species | It keeps them warm at night | It scares away all predators | It helps them see food
 sa2: A male bowerbird builds a decorated structure out of sticks and colorful objects. Explain how this behavior could affect its chances of reproducing. | Females choose males with well-built, colorful bowers, so a male that builds a better bower is more likely to attract a mate and pass on his genes.
 
@@ -307,7 +307,7 @@ mc2: Twin calves (genetically identical) are raised on two farms. One gets rich 
 mc2: Which of these is an example of asexual reproduction? | yeast cells budding to form new cells | a dog having puppies | a bee pollinating a flower | two fish laying and fertilizing eggs
 mc3: Why might a population of plants that reproduces sexually be more likely to survive a new disease than one that reproduces asexually? | Variation means some plants may have genes that resist the disease | Sexual reproduction makes all plants identical | Asexual plants grow more slowly | Sexual reproduction removes all disease
 mc3: Hummingbird visits to a garden: red tube flowers 48 visits, yellow open flowers 9 visits, blue open flowers 3 visits over the same time. Which conclusion is best supported? | Hummingbirds prefer red tube-shaped flowers, which helps those plants get pollinated | Yellow flowers make the most seeds | Blue flowers do not need pollinators | Hummingbirds avoid all flowers
-num2: In the garden data (red 48, yellow 9, blue 3 visits), what percent of all hummingbird visits went to red flowers? | 80
+num2: In a garden, hummingbirds made 48 visits to red flowers, 9 to yellow flowers and 3 to blue flowers. What percent of all hummingbird visits went to red flowers? | 80
 num2: A sunflower grew from 20 cm to 140 cm in 8 weeks. What was its mean growth rate in cm per week? | 15
 num2: A gardener planted 150 seeds and 120 sprouted. What percent of the seeds sprouted? | 80
 num2: Plants in shade averaged 25 cm tall and plants in sun averaged 40 cm tall. How many cm taller were the sun plants, on average? | 15
@@ -364,13 +364,13 @@ practice:
 mc2: A student heats 100 g of water and 300 g of water on identical burners for 2 minutes. Which will have the larger temperature increase? | the 100 g of water | the 300 g of water | both will increase the same | neither will change
 hint: The same energy is spread over fewer particles in the smaller mass.
 mc2: Equal masses of sand and water sit in the same sunlight for 30 minutes. The sand warms 12 °C and the water warms 4 °C. What does this show? | Different materials change temperature by different amounts with the same energy | Sand has more mass than water | Water absorbs no energy | The sunlight was stronger on the sand
-num2: In the sand and water test, how many times larger was the sand's temperature increase than the water's? | 3
+num2: Equal masses of sand and water sat in the same sunlight for 30 minutes. The sand warmed 12 °C and the water warmed 4 °C. How many times larger was the sand's temperature increase? | 3
 hint: Divide the sand's change by the water's change.
 mc2: Which question can be answered by heating different masses of the same liquid for the same time and measuring the temperature change? | How does mass affect temperature change? | How does color affect taste? | Which liquid smells strongest? | Does heating change the mass?
 sa2: Identify the independent variable, dependent variable and two controlled variables in this investigation: Students added the same amount of heat to 50 g, 100 g and 150 g of cooking oil and recorded the temperature increase. | Independent: mass of oil. Dependent: temperature increase. Controlled: type of liquid (oil), amount of heat added, starting temperature, container type.
 quiz:
 mc2: Data: adding the same energy raised 50 g of water by 20 °C, 100 g by 10 °C and 200 g by 5 °C. What pattern do the data show? | As mass doubles, the temperature change is cut in half | As mass increases, the temperature change increases | Mass does not affect temperature change | The temperature change is the same for all masses
-num2: Using the pattern above (50 g changed 20 °C, 100 g changed 10 °C, 200 g changed 5 °C), how many °C would 400 g of water change with the same energy? | 2.5
+num2: Adding the same amount of energy raised 50 g of water by 20 °C, 100 g by 10 °C and 200 g by 5 °C. Following this pattern, how many °C would 400 g of water rise with the same energy? | 2.5
 num2: It takes about 4,200 joules to raise 100 g of water by 10 °C. How many joules would it take to raise 300 g of water by 10 °C? | 12600
 mc2: Why do coastal towns like Monterey have smaller temperature swings between day and night than inland deserts? | Water changes temperature slowly, so the ocean keeps nearby air from heating or cooling quickly | The ocean makes its own heat | Deserts get no sunlight | Coastal air has no particles
 mc3: A student heated 100 g of water for 1 minute with a 60 °C rise, then claimed that heating 100 g of oil for 1 minute would also rise 60 °C. Which statement is the best response? | The claim must be tested, because different materials change temperature by different amounts | The claim is correct because the masses are the same | Oil cannot be heated | Oil will always change exactly half as much
@@ -407,7 +407,7 @@ mc2: Sand on a beach is hot at noon, while the ocean water feels cool. Which exp
 mc2: In an investigation, students change the mass of water and measure the temperature change. What is the dependent variable? | the temperature change | the mass of water | the type of burner | the heating time
 mc2: Why does a pot of soup heat evenly even though only the bottom touches the burner? | Convection currents move warm soup up and cool soup down | Radiation heats only the top | Conduction moves heat out of the soup | The soup is a good insulator
 mc3: Two cups hold 200 mL of 80 °C water. Cup A is foam and Cup B is metal. After 10 minutes, A is 70 °C and B is 52 °C. Which conclusion is supported? | Foam is a better insulator than metal | Metal is a better insulator than foam | The cups lost the same energy | Water in A gained heat
-num2: In the cup test, how many more °C did the water in Cup B cool than the water in Cup A? | 18
+num2: Two cups each held 80 °C water. After 10 minutes the foam cup was at 70 °C and the metal cup at 52 °C. How many more °C did the water in the metal cup cool? | 18
 num2: Water in a pot heated from 25 °C to 85 °C in 12 minutes. What was the mean rate of temperature change in °C per minute? | 5
 num2: It takes about 2,100 joules to raise 50 g of water by 10 °C. How many joules would it take to raise 150 g of water by 10 °C? | 6300
 num2: A cooler kept ice for 6 hours. A new design kept ice for 9 hours. What was the percent increase? | 50
@@ -488,7 +488,7 @@ hint: Speed equals distance divided by time.
 sa2: A forecast says "70% chance of rain." Explain what this means and why forecasts use probability. | It means rain is likely but not certain in the area; forecasts use probability because the atmosphere is complex and scientists can only estimate how air masses will move and interact.
 quiz:
 mc2: After a storm, a city's barometer reading rises steadily for a day. What weather is most likely next? | clearing skies | more heavy rain | thicker clouds building | a new thunderstorm every hour
-num2: For the storm 240 km away moving at 40 km per hour, how many hours until it arrives? | 6
+num2: A storm is 240 km west of a city and moving east toward it at 40 km per hour. How many hours until it arrives? | 6
 num2: High temperatures for five days were 28, 30, 25, 22 and 20 °C. What was the mean high temperature in °C? | 25
 mc2: Which data pattern best signals that a cold front is approaching? | falling pressure, rising humidity, building clouds | rising pressure and clearing skies | steady pressure and calm air | falling humidity and clear skies
 mc3: A forecaster sees a high-pressure system parked over Nevada pushing dry wind toward Southern California. Which forecast is best supported? | hot, dry, windy weather with higher fire danger | heavy rain and flooding | thick fog and drizzle | snow at the beach
@@ -508,7 +508,7 @@ mc2: Air moves from a region of high pressure to low pressure. This movement is 
 mc2: Which observation suggests air near the ground has reached its dew point? | dew or fog forms | the sky is clear and dry | wind speed is zero | the barometer rises
 mc3: Pressure readings over 12 hours: 1,020, 1,015, 1,008, 1,002 millibars. Which forecast is best supported? | stormy weather is likely | clear weather is likely | there will be no change | a heat wave is certain
 mc3: A mountain's west side gets 1,500 mm of rain per year and its east side gets 250 mm. Winds blow from the west. Which explanation is best? | Air rises on the west side, cools and drops rain; it sinks and warms on the east side | The east side is closer to the ocean | The west side is hotter | Gravity is weaker on the east side
-num2: In the mountain example, how many times more rain does the west side get than the east side? | 6
+num2: A mountain's west side gets 1,500 mm of rain per year and its east side gets 250 mm. How many times more rain does the west side get? | 6
 num2: A storm moved 450 km in 9 hours. What was its average speed in km per hour? | 50
 num2: Air can hold 25 g of water vapor per cubic meter and holds 20 g. What is the relative humidity in percent? | 80
 num2: Rainfall over four months was 110, 80, 40 and 10 mm. What was the mean monthly rainfall in mm? | 60
@@ -530,7 +530,7 @@ hint: Think long term, not one day.
 mc2: Why is the equator warmer than the poles on average? | Sunlight strikes the equator more directly, so energy is concentrated on a smaller area | The equator is closer to the Sun | The poles have no sunlight all year | The equator has more air
 mc2: A flashlight shines straight down on graph paper and lights 20 squares. Tilted, the same light covers 40 squares. What does this model show? | Light at a low angle is spread over a larger area, so each square gets less energy | Tilted light has more energy | The flashlight made more light when tilted | Angle does not matter
 hint: The same amount of light is shared by more squares.
-num2: In the flashlight model, the same light covers 20 squares straight on and 40 squares when tilted. How many times less light does each square get when tilted? | 2
+num2: A flashlight shining straight down lights 20 squares of graph paper; tilted, the same light covers 40 squares. How many times less light does each square get when tilted? | 2
 sa2: A student says, "It is raining today in Seattle, so Seattle has a rainy climate." Explain why one day of weather is not enough to describe climate. | Climate is based on long-term averages, usually 30 years or more. One rainy day is weather; to describe the climate you need many years of data on temperature and precipitation.
 quiz:
 mc1: Which describes weather rather than climate? | It is foggy in Monterey this morning | Monterey has cool, foggy summers most years | Phoenix has hot summers year after year | Antarctica is always very cold
@@ -607,7 +607,7 @@ mc2: Which place would likely have the smallest difference between summer and wi
 mc2: As air rises over a mountain, it | expands and cools, and water vapor may condense | warms and dries | sinks and becomes denser | stops moving
 mc3: San Diego (33° N, coast) and Dallas, Texas (33° N, inland) have very different summer highs: about 24 °C and about 35 °C. Which is the best explanation? | San Diego is cooled by the ocean and cold current; Dallas is far from the ocean | Dallas is closer to the equator | San Diego gets more sunlight | Dallas is next to a cold ocean current
 mc3: A student shines a lamp straight down on one thermometer and at a low angle on another for 10 minutes. The first rose 9 °C and the second rose 4 °C. What does this model represent? | Why places with more direct sunlight are warmer | Why the ocean is salty | Why the Moon has phases | How earthquakes happen
-num2: In the lamp model, how many more degrees °C did the thermometer under direct light rise? | 5
+num2: A lamp shone straight down on one thermometer and at a low angle on another for 10 minutes. The first rose 9 °C and the second rose 4 °C. How many more °C did the thermometer under direct light rise? | 5
 num2: Temperature drops about 6.5 °C for every 1,000 m. If it is 25 °C at sea level, what is the temperature at 3,000 m in °C? | 5.5
 num2: A city's yearly rainfall for 4 years was 380, 420, 290 and 510 mm. What is the mean yearly rainfall in mm? | 400
 num2: A drifting buoy moved 96 km in 24 hours in the California Current. What was its speed in km per hour? | 4
@@ -643,7 +643,7 @@ sa2: Describe the path of energy from the Sun to Earth's surface and back toward
 lesson: Reading the evidence: temperature and carbon dioxide | MS-ESS3-5
 practice:
 mc2: Measurements at Mauna Loa, Hawaii show carbon dioxide rising from about 315 parts per million (ppm) in 1958 to about 420 ppm in 2023. What is the trend? | carbon dioxide has increased | carbon dioxide has decreased | carbon dioxide stayed the same | the data show no pattern
-num2: Using the Mauna Loa data (315 ppm in 1958 and 420 ppm in 2023), by how many ppm did carbon dioxide increase? | 105
+num2: Carbon dioxide measured at Mauna Loa was about 315 ppm in 1958 and about 420 ppm in 2023. By how many ppm did carbon dioxide increase? | 105
 hint: Subtract the earlier value from the later value.
 mc2: Global average temperature has risen about 1 °C since the late 1800s. Why do scientists use averages from thousands of stations? | One place's weather varies a lot, so many stations show the global trend | One thermometer is enough | Averages hide warming | Stations only measure rain
 mc2: Scientists compare a graph of rising carbon dioxide with a graph of rising global temperature. What kind of relationship do the graphs show? | both increase over the same time period | one increases and one decreases | neither changes | they have no data
@@ -687,7 +687,7 @@ sa2: Describe one criterion and one constraint for a plan to reduce the carbon d
 hint: Criteria describe success; constraints describe limits.
 quiz:
 mc2: A decision matrix rates three plans to cut a school's energy use (1 to 5 points for each criterion). Plan A: cost 4, energy saved 2, easy to do 5 (total 11). Plan B: cost 2, energy saved 5, easy to do 2 (total 9). Plan C: cost 3, energy saved 4, easy to do 4 (total 11). If energy saved counts double, which plan scores highest? | Plan C | Plan A | Plan B | They tie
-num2: Using the matrix where energy saved counts double, what is Plan C's total score? | 15
+num2: A plan scores 3 points for cost, 4 points for energy saved and 4 points for ease. If energy saved counts double, what is its total score? | 15
 num2: A family replaced 20 old light bulbs with LEDs. Each LED saves about 50 kilowatt-hours per year. How many kilowatt-hours do they save per year? | 1000
 mc2: Which statement best explains why planting trees can help reduce global warming? | Trees take in carbon dioxide for photosynthesis and store carbon in their wood | Trees release carbon dioxide all day | Trees block sunlight from Earth | Trees cool the Sun
 mc3: Two plans to reduce a town's greenhouse gases are being compared. Plan X cuts emissions 30 percent but costs too much for the town's budget. Plan Y cuts emissions 18 percent and fits the budget. What should engineers do next? | look for ways to combine or improve the plans to meet more of the criteria within the constraints | choose Plan X anyway | stop working on the problem | pick a plan without data
@@ -707,7 +707,7 @@ mc2: Which solution most directly reduces carbon dioxide from electricity? | rep
 mc2: In California, warmer winters reduce snowpack. Which effect would follow? | less water flowing into rivers and reservoirs in late summer | more snow in summer | larger glaciers | lower wildfire risk
 mc3: Ocean pH data show the ocean becoming more acidic as it absorbs carbon dioxide. Which organisms are most at risk? | animals with shells made of calcium carbonate, like oysters and corals | sharks | seaweed only | seabirds that fly far
 mc3: Data: global temperature change compared with the 1951-1980 average was -0.3 °C in 1920, 0.0 °C in 1960 and +1.0 °C in 2020. Which conclusion is best supported? | Most of the warming happened after 1960 | Earth cooled after 1960 | Temperatures never changed | The data show warming only before 1960
-num2: Using the data above, by how many °C did the temperature change from 1920 to 2020? | 1.3
+num2: Global temperature compared with the 1951-1980 average was -0.3 °C in 1920 and +1.0 °C in 2020. By how many °C did it change from 1920 to 2020? | 1.3
 num2: Carbon dioxide rose from 340 ppm in 1980 to 420 ppm in 2023. What was the increase in ppm? | 80
 num2: A school used 80,000 kilowatt-hours of electricity in one year and 68,000 the next year after an energy-saving program. What was the percent decrease? | 15
 num2: A car releases about 0.4 kg of carbon dioxide per mile. A family drives 500 fewer miles by biking. How many kg of carbon dioxide do they avoid? | 200
