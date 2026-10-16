@@ -1,0 +1,761 @@
+@subject math
+@grade 8
+@program Eureka Math
+about: Eighth grade works with integer exponents and scientific notation, uses rigid motions and dilations to understand congruence and similarity, solves linear equations and systems, defines and compares functions, models relationships with linear functions and scatter plots, finds volumes of cylinders, cones and spheres, and uses the Pythagorean theorem and irrational numbers.
+std: 8.EE.A.1 | Know and apply the properties of integer exponents to generate equivalent numerical expressions.
+std: 8.EE.A.4 | Perform operations with numbers expressed in scientific notation and interpret scientific notation.
+std: 8.G.A.2 | Understand congruence and similarity using physical models, transformations and sequences of rigid motions and dilations.
+std: 8.EE.C.7 | Solve linear equations in one variable, including equations with rational coefficients and variables on both sides.
+std: 8.EE.C.8 | Analyze and solve pairs of simultaneous linear equations.
+std: 8.F.B.4 | Construct a function to model a linear relationship and interpret its rate of change and initial value.
+std: 8.G.B.7 | Apply the Pythagorean theorem to determine unknown side lengths in right triangles in real-world problems.
+std: 8.G.C.9 | Know the formulas for the volumes of cones, cylinders and spheres and use them to solve real-world problems.
+
+unit: Module 1: Integer exponents and scientific notation | 8.EE.A.1, 8.EE.A.3, 8.EE.A.4 | g8exp, g8sci
+el: Keep an exponent-rules chart with an expanded example for each rule (for example a^2 x a^3 = (a x a)(a x a x a)), and read numbers like 3.2 x 10^5 aloud as "three point two times ten to the fifth."
+
+lesson: Exponent notation and products and quotients of powers | 8.EE.A.1
+practice:
+mc1: Which expression equals 3^2 x 3^4? | 3^6 | 3^8 | 9^6 | 6^6
+hint: When you multiply powers with the same base, add the exponents.
+num1: (-2)^5 = ? | -32
+hint: Multiply -2 by itself 5 times. Is the product positive or negative?
+mc2: Which expression equals 7^9 ÷ 7^3? | 7^6 | 7^3 | 1^6 | 7^12
+hint: When you divide powers with the same base, subtract the exponents.
+num2: 2^3 x 5^3 = ? | 1000
+hint: 2^3 x 5^3 = (2 x 5)^3.
+mc2: Which number is equal to (-3)^4? | 81 | -81 | -12 | 12
+sa2: Explain why a^3 x a^4 = a^7 by writing out the factors. | a^3 x a^4 = (a times a times a) times (a times a times a times a). That is 7 factors of a in all, which is a^7.
+quiz:
+num1: 10^2 x 10^3 = ? | 100000
+mc2: Which expression equals 5^8 ÷ 5^2? | 5^6 | 5^4 | 5^10 | 1^6
+mc2: Which expression equals 4^3 x 4^5 ÷ 4^2? | 4^6 | 4^10 | 4^4 | 16^6
+num2: (-1)^7 + (-1)^8 = ? | 0
+num2: 6^5 ÷ 6^3 = ? | 36
+mc3: Which expression is NOT equal to 2^10? | 2^5 + 2^5 | 2^4 x 2^6 | 2^12 ÷ 2^2 | 4^5
+num3: A colony of bacteria doubles every hour. It starts with 2^6 cells, so after 4 hours it has 2^6 x 2^4 cells. How many cells is that? | 1024
+sa2: Jae says 3^4 x 3^2 = 9^6. Explain his mistake. | When multiplying powers with the same base, keep the base and add the exponents: 3^4 x 3^2 = 3^6 = 729. He also multiplied the bases, and 9^6 is much larger than 729.
+
+lesson: Power of a power, zero and negative exponents | 8.EE.A.1
+practice:
+num1: (2^3)^2 = ? | 64
+hint: For a power of a power, multiply the exponents.
+num1: 9^0 = ? | 1
+num2: 5^-2 = ? | 1/25
+hint: A negative exponent means a reciprocal: 5^-2 = 1 ÷ 5^2.
+mc2: Which expression equals (x^4)^3? | x^12 | x^7 | x^64 | 3x^4
+mc2: Which expression equals 2^-3 x 2^5? | 2^2 | 2^-15 | 2^8 | 2^-2
+sa2: Use a quotient of powers to explain why 4^0 = 1. | 4^3 ÷ 4^3 = 4^(3 - 3) = 4^0. Any nonzero number divided by itself is 1, so 4^0 = 1.
+quiz:
+num1: 10^-3 = ? | 0.001
+num2: (3^2)^2 ÷ 3^3 = ? | 3
+num2: 2^-1 + 2^-2 = ? | 3/4
+mc2: Which expression equals (2a^3)^2? | 4a^6 | 2a^6 | 4a^5 | 2a^9
+mc2: Which expression is equal to 1/8? | 2^-3 | -2^3 | 2^-8 | 3^-2
+num3: (4^-2 x 4^5) ÷ 4^2 = ? | 4
+mc3: Which statement is true for every nonzero number x? | x^-2 = 1/x^2 | x^-2 = -x^2 | x^-2 = -2x | x^-2 < 0
+sa2: Mara says 6^-2 = -36. Explain her mistake and give the correct value. | A negative exponent means a reciprocal, not a negative number. 6^-2 = 1/6^2 = 1/36.
+
+lesson: Magnitude and scientific notation | 8.EE.A.3, 8.EE.A.4
+practice:
+mc1: How is 0.00042 written in scientific notation? | 4.2 x 10^-4 | 4.2 x 10^4 | 42 x 10^-5 | 0.42 x 10^-3
+hint: Move the decimal point so there is exactly one nonzero digit to its left.
+mc1: How is 3,600,000 written in scientific notation? | 3.6 x 10^6 | 36 x 10^5 | 3.6 x 10^5 | 0.36 x 10^7
+num2: Write 7.05 x 10^4 in standard form. | 70500
+mc2: Which number is greatest? | 2.1 x 10^5 | 9.8 x 10^4 | 5 x 10^4 | 1.9 x 10^5
+hint: Compare the powers of 10 first.
+num2: Write 6 x 10^-3 in standard form. | 0.006
+sa2: Explain why 25 x 10^3 is not in scientific notation, and rewrite it correctly. | In scientific notation the first factor must be at least 1 and less than 10. 25 x 10^3 = 2.5 x 10^4.
+quiz:
+mc1: Which number is written in scientific notation? | 8.3 x 10^7 | 83 x 10^6 | 0.83 x 10^8 | 8.3 + 10^7
+num2: Write 9.1 x 10^-5 in standard form. | 0.000091
+mc2: A human hair is about 0.00008 meter wide. How is this written in scientific notation? | 8 x 10^-5 meter | 8 x 10^-4 meter | 8 x 10^5 meter | 0.8 x 10^-4 meter
+mc2: About how many times larger is 6 x 10^9 than 2 x 10^6? | 3,000 | 3 | 300 | 30,000
+num2: A city has about 4 x 10^6 people and a town has about 2 x 10^4 people. About how many times as many people live in the city as in the town? | 200
+mc2: Which list is in order from least to greatest? | 3 x 10^-2, 8 x 10^-2, 1 x 10^-1 | 1 x 10^-1, 3 x 10^-2, 8 x 10^-2 | 8 x 10^-2, 3 x 10^-2, 1 x 10^-1 | 3 x 10^-2, 1 x 10^-1, 8 x 10^-2
+num3: There are 86,400 seconds in a day. When this number is written in scientific notation, what is the exponent on the 10? | 4
+sa2: Liam wrote 0.0052 as 5.2 x 10^3. Explain his mistake. | 0.0052 is less than 1, so the exponent must be negative. Moving the decimal point 3 places to the right gives 5.2 x 10^-3.
+
+lesson: Operations with scientific notation | 8.EE.A.4
+practice:
+mc2: What is (3 x 10^5)(2 x 10^3)? | 6 x 10^8 | 6 x 10^15 | 5 x 10^8 | 6 x 10^2
+hint: Multiply the first factors, then add the exponents.
+mc2: What is (8 x 10^9) ÷ (4 x 10^3)? | 2 x 10^6 | 2 x 10^3 | 4 x 10^6 | 2 x 10^12
+mc2: What is (5 x 10^4)(4 x 10^2), in scientific notation? | 2 x 10^7 | 2 x 10^6 | 9 x 10^6 | 2 x 10^8
+hint: 5 x 4 = 20. Rewrite 20 in scientific notation.
+num2: (6 x 10^4) + (3 x 10^3) = ? Give the answer in standard form. | 63000
+hint: Write both numbers with the same power of 10, or write both in standard form.
+mc2: Light travels about 3 x 10^5 km per second. About how far does it travel in 2 x 10^2 seconds? | 6 x 10^7 km | 6 x 10^10 km | 1.5 x 10^3 km | 5 x 10^7 km
+sa2: Explain how to find (1.2 x 10^8) ÷ (4 x 10^3) and write the answer in scientific notation. | Divide 1.2 ÷ 4 = 0.3 and 10^8 ÷ 10^3 = 10^5, giving 0.3 x 10^5. Rewrite it as 3 x 10^4.
+quiz:
+mc2: What is (2.5 x 10^6)(4 x 10^-2)? | 1 x 10^5 | 1 x 10^4 | 10 x 10^-12 | 6.5 x 10^4
+mc2: What is (9 x 10^-4) ÷ (3 x 10^-6)? | 3 x 10^2 | 3 x 10^-10 | 3 x 10^-2 | 6 x 10^2
+num2: (7.5 x 10^5) - (5 x 10^4) = ? Give the answer in standard form. | 700000
+num3: The Sun is about 1.5 x 10^8 km from Earth, and light travels about 3 x 10^5 km per second. About how many seconds does sunlight take to reach Earth? | 500
+mc2: A computer does 4 x 10^9 calculations per second. How many calculations does it do in 1 minute? | 2.4 x 10^11 | 2.4 x 10^10 | 6.4 x 10^10 | 2.4 x 10^9
+num3: A grain of sand has a mass of about 2 x 10^-5 kg. What is the mass in kilograms of 3 x 10^6 grains? | 60
+sa2: Nia says (4 x 10^3) + (2 x 10^3) = 6 x 10^6. Explain her mistake. | She added the exponents as if multiplying. 4 thousand + 2 thousand = 6 thousand, so the sum is 6 x 10^3.
+
+test:
+mc1: Which expression is equal to 2^4 x 2^3? | 2^7 | 2^12 | 4^7 | 2^1
+num1: 3^-2 = ? | 1/9
+num1: 12^0 = ? | 1
+mc1: How is 0.0000607 written in scientific notation? | 6.07 x 10^-5 | 6.07 x 10^5 | 60.7 x 10^-6 | 6.07 x 10^-6
+mc2: Which expression equals (5^2)^4 ÷ 5^6? | 5^2 | 5^0 | 5^12 | 5^-2
+mc2: Which expression equals (3x^2)^3? | 27x^6 | 9x^6 | 27x^5 | 3x^6
+num2: (-2)^3 x (-2)^2 = ? | -32
+num2: Write 4.3 x 10^6 in standard form. | 4300000
+num2: (2 x 10^3)(4.5 x 10^2) = ? Give the answer in standard form. | 900000
+mc2: Which number is the least? | 7 x 10^-4 | 2 x 10^-3 | 9 x 10^-4 | 1 x 10^-2
+mc2: Which equation is true? | 10^-2 = 0.01 | 10^-2 = -100 | 10^-2 = -0.01 | 10^-2 = 0.001
+num2: 4^5 ÷ 4^3 = ? | 16
+num3: A hard drive holds 2 x 10^12 bytes. A movie file is 4 x 10^9 bytes. How many movie files of that size fit on the drive? | 500
+num3: About 3.3 x 10^8 people live in the United States, and about 3.9 x 10^7 live in California. Using these numbers, how many people in the United States do not live in California? Give the answer in standard form. | 291000000
+num3: A blue whale has a mass of about 1.5 x 10^5 kg and a mouse has a mass of about 2 x 10^-2 kg. Using these numbers, how many times as massive as the mouse is the whale? Give the answer in standard form. | 7500000
+num3: A cell is about 1 x 10^-5 meter wide. How many cells lined up end to end would stretch 3 x 10^-2 meter? | 3000
+mc2: What is (6 x 10^5) ÷ (1.5 x 10^-3)? | 4 x 10^8 | 4 x 10^2 | 9 x 10^2 | 4 x 10^-8
+mc3: Which expression has the greatest value? | 2^10 | 10^3 | 4^4 | 3^6
+num2: x is a positive number and x^5 x x^n = x^2. What is n? | -3
+sa2: Explain why 5^3 x 5^-3 = 1. | Adding the exponents gives 5^(3 + (-3)) = 5^0 = 1. Also, 5^-3 = 1/5^3 = 1/125, and 125 x 1/125 = 1.
+sa3: Priya says 4.5 x 10^-3 is greater than 1.2 x 10^-2 because 4.5 > 1.2. Explain her mistake. | She must compare the powers of 10 first. 4.5 x 10^-3 = 0.0045 and 1.2 x 10^-2 = 0.012, so 1.2 x 10^-2 is greater.
+task3: The Moon is about 3.84 x 10^5 km from Earth and the Sun is about 1.5 x 10^8 km from Earth. A spacecraft travels at 4 x 10^4 km per hour. (a) How many hours would it take to reach the Moon? (b) How many hours would it take to travel the distance to the Sun? Write the answer in scientific notation. (c) Convert your answer to part (b) to days. (d) About how many times farther from Earth is the Sun than the Moon? Explain which exponent rules you used. | (a) 3.84 x 10^5 ÷ 4 x 10^4 = 0.96 x 10^1 = 9.6 hours; (b) 1.5 x 10^8 ÷ 4 x 10^4 = 0.375 x 10^4 = 3.75 x 10^3 hours; (c) 3,750 ÷ 24 = 156.25 days; (d) about 400 times (about 390), with quotient of powers explained. | Three parts correct with clear work, or all parts set up correctly with one exponent error. | Correct setup for some parts but several errors in the powers of 10. | Little correct work.
+
+unit: Module 2: The concept of congruence | 8.G.A.1, 8.G.A.2, 8.G.A.3, 8.G.A.5, 8.G.B.6, 8.G.B.7 | g8pyth
+el: Let students trace figures on transparencies or patty paper to act out each slide, flip and turn; post a chart of coordinate rules (reflect over x-axis: (x, -y); over y-axis: (-x, y); rotate 180: (-x, -y)) with pictures.
+
+lesson: Translations, reflections and rotations | 8.G.A.1, 8.G.A.3
+practice:
+mc1: The point (2, 5) is translated 4 units left and 3 units down. Where is its image? | (-2, 2) | (6, 8) | (-2, 8) | (6, 2)
+hint: Moving left changes x; moving down changes y.
+mc2: The point (3, -2) is reflected across the x-axis. What is its image? | (3, 2) | (-3, -2) | (-3, 2) | (-2, 3)
+mc2: The point (4, 1) is rotated 90 degrees counterclockwise around the origin. What is its image? | (-1, 4) | (1, -4) | (-4, -1) | (4, -1)
+hint: A 90-degree counterclockwise rotation around the origin sends (x, y) to (-y, x).
+num2: A segment 7 cm long is reflected across a line. How long is the image, in cm? | 7
+mc2: Which feature of a figure might change after a rotation? | the direction the figure faces | its side lengths | its angle measures | whether parallel sides stay parallel
+sa2: Explain why a rotation is called a rigid motion. | A rotation moves every point of a figure without stretching or shrinking it, so all lengths and angle measures stay the same.
+quiz:
+mc1: Which transformation slides every point the same distance in the same direction? | translation | reflection | rotation | dilation
+mc2: The point (-5, 3) is reflected across the y-axis. What is its image? | (5, 3) | (-5, -3) | (5, -3) | (3, -5)
+mc2: The point (2, -6) is rotated 180 degrees around the origin. What is its image? | (-2, 6) | (2, 6) | (-2, -6) | (6, -2)
+num2: Triangle ABC has a 47-degree angle at A. After a reflection, what is the measure of the angle at A', in degrees? | 47
+mc2: A translation moves (1, 1) to (4, -1). Where does the same translation move (-2, 5)? | (1, 3) | (-5, 7) | (1, 7) | (2, 4)
+num3: A rectangle with vertices (1, 1), (5, 1), (5, 3) and (1, 3) is rotated 90 degrees around the origin. What is the area of the image, in square units? | 8
+mc3: P(3, 4) is reflected across the x-axis and then across the y-axis. Which single transformation gives the same image? | a 180-degree rotation around the origin | a translation 6 units left | a 90-degree rotation around the origin | a reflection across the line y = x
+sa2: Kayla says the reflection of (2, 7) across the y-axis is (2, -7). Explain her mistake. | Reflecting across the y-axis changes the sign of the x-coordinate, so the image is (-2, 7). She reflected across the x-axis instead.
+
+lesson: Sequences of rigid motions and congruence | 8.G.A.2, 8.G.A.3
+practice:
+mc2: What does it mean for two figures to be congruent? | One can be moved exactly onto the other by a sequence of rigid motions | They have the same area | They have the same shape but may be different sizes | They are in the same position
+num2: The point (1, 2) is translated 3 units right and then reflected across the x-axis. What is the y-coordinate of the final image? | -2
+hint: Do the transformations in order, one at a time.
+mc2: Triangle ABC is congruent to triangle DEF. AB = 9 and angle B = 40 degrees. Which must be true? | DE = 9 and angle E = 40 degrees | DE = 18 | angle E = 140 degrees | DF = 9
+num2: The point (-3, 4) is rotated 90 degrees clockwise around the origin. What is the x-coordinate of its image? | 4
+hint: A 90-degree clockwise rotation sends (x, y) to (y, -x).
+mc2: Which sequence maps (2, 3) to (-2, -3)? | a reflection across the x-axis, then a reflection across the y-axis | a translation 2 units left | a reflection across the x-axis only | a 90-degree rotation around the origin
+sa2: Describe a rigid motion that maps the triangle with vertices (1, 1), (3, 1) and (1, 4) onto the triangle with vertices (-1, 1), (-3, 1) and (-1, 4). | Reflect across the y-axis. Each x-coordinate changes sign and each y-coordinate stays the same, which matches every vertex.
+quiz:
+mc2: The point (4, -1) is translated 2 units up and then reflected across the y-axis. What is its final image? | (-4, 1) | (4, 1) | (-4, -3) | (2, -1)
+num2: Square ABCD has sides of length 6. It is rotated and then translated onto square EFGH. What is the perimeter of EFGH? | 24
+mc2: The point (3, 0) is translated 2 units right and then reflected across the y-axis. What happens if the order of the two moves is reversed? | The images are different: (-5, 0) and (-1, 0) | The images are the same: (-5, 0) | The images are the same: (-1, 0) | The images are different: (5, 0) and (1, 0)
+num2: Quadrilateral PQRS is congruent to quadrilateral WXYZ. Angle P = 85 degrees, angle Q = 95 degrees and angle R = 110 degrees. What is angle Z, in degrees? | 70
+mc3: Which two figures must be congruent? | a figure and its image after a reflection followed by a rotation | a figure and its image after a dilation by a scale factor of 2 | two rectangles with the same area | two triangles with the same three angles
+num3: The triangle with vertices (0, 0), (4, 0) and (0, 3) is reflected across the y-axis and then translated 5 units up. What is the area of the image, in square units? | 6
+sa2: Explain how you could show that two triangles on a coordinate grid are congruent. | Find a sequence of translations, reflections and rotations that moves one triangle exactly onto the other. Rigid motions keep all lengths and angles, so the triangles are congruent.
+
+lesson: Angle relationships with parallel lines and triangles | 8.G.A.5
+practice:
+num1: Parallel lines are cut by a transversal. One angle measures 65 degrees. What is the measure of its corresponding angle, in degrees? | 65
+hint: Corresponding angles are equal when the lines are parallel.
+num2: Parallel lines are cut by a transversal. One interior angle measures 112 degrees. What is the measure of the same-side interior angle, in degrees? | 68
+hint: Same-side interior angles are supplementary when the lines are parallel.
+mc2: Two angles of a triangle measure 48 and 71 degrees. What is the measure of the exterior angle at the third vertex? | 119 degrees | 61 degrees | 109 degrees | 180 degrees
+hint: An exterior angle equals the sum of the two remote interior angles.
+num2: Alternate interior angles formed by parallel lines measure (3x + 5) and (5x - 25) degrees. What is x? | 15
+mc2: Which reason explains why the angles of every triangle add to 180 degrees? | A line through one vertex parallel to the opposite side makes a straight angle from three angles equal to the triangle's angles | Every triangle has a right angle | The sides of a triangle add to 180 | Triangles have three sides
+sa2: Explain why alternate interior angles are equal when parallel lines are cut by a transversal. | One alternate interior angle is equal to its corresponding angle because the lines are parallel. That corresponding angle and the other alternate interior angle are vertical angles, which are equal. So the alternate interior angles are equal.
+quiz:
+num1: Two angles of a triangle measure 35 and 90 degrees. What is the third angle, in degrees? | 55
+num2: Parallel lines are cut by a transversal. Same-side interior angles measure (2x + 20) and (3x + 10) degrees. What is x? | 30
+num2: An exterior angle of a triangle measures 130 degrees. One remote interior angle measures 58 degrees. What is the other remote interior angle, in degrees? | 72
+mc2: Lines m and n are cut by a transversal, and two corresponding angles measure 70 and 75 degrees. What can you conclude? | Lines m and n are not parallel | Lines m and n are parallel | The transversal is perpendicular to both lines | The lines are the same line
+mc2: Parallel lines are cut by a transversal, and one of the angles is 90 degrees. What are the other seven angles? | all 90 degrees | four are 90 degrees and four are 0 degrees | all 45 degrees | four are 90 degrees and four are 180 degrees
+num3: The angles of a triangle measure x, (x + 20) and (2x - 4) degrees. What is the measure of the largest angle, in degrees? | 78
+sa2: Tyler says that if a triangle has an exterior angle of 100 degrees, the interior angle next to it is also 100 degrees. Explain his mistake. | An exterior angle and the interior angle next to it form a straight line, so they are supplementary. The interior angle is 180 - 100 = 80 degrees.
+
+lesson: The Pythagorean theorem | 8.G.B.6, 8.G.B.7
+practice:
+num1: A right triangle has legs of 6 and 8. How long is the hypotenuse? | 10
+hint: Use a^2 + b^2 = c^2.
+num2: A right triangle has a hypotenuse of 13 and one leg of 5. How long is the other leg? | 12
+hint: Subtract the square of the leg from the square of the hypotenuse.
+num2: A 10-foot ladder leans against a wall with its base 6 feet from the wall. How many feet up the wall does it reach? | 8
+mc2: Which side lengths form a right triangle? | 9, 12, 15 | 4, 5, 6 | 2, 3, 4 | 5, 5, 8
+hint: Check whether the squares of the two shorter sides add to the square of the longest side.
+num2: A rectangle is 9 cm by 12 cm. How long is its diagonal, in cm? | 15
+sa2: Explain how squares drawn on the sides of a right triangle with legs 3 and 4 show the Pythagorean theorem. | The squares on the legs have areas 9 and 16, which add to 25, the area of the square on the hypotenuse. So the hypotenuse is 5, and a^2 + b^2 = c^2.
+quiz:
+num1: A right triangle has legs of 7 and 24. How long is the hypotenuse? | 25
+num2: A right triangle has a hypotenuse of 17 and a leg of 8. How long is the other leg? | 15
+mc2: Which set of side lengths could be the sides of a right triangle? | 20, 21, 29 | 10, 20, 30 | 6, 7, 8 | 12, 13, 14
+num3: A TV screen is 32 inches wide and 24 inches tall. TVs are sized by the length of the screen's diagonal. What size is this TV, in inches? | 40
+num2: A park is a rectangle 60 m by 80 m. How many meters shorter is the walk straight along the diagonal than the walk along two sides? | 40
+mc2: A right triangle has legs a and b and hypotenuse c. Which equation is true? | c^2 = a^2 + b^2 | c = a + b | c^2 = a^2 - b^2 | a^2 = b^2 + c^2
+sa2: Zane says a right triangle with legs 5 and 12 has a hypotenuse of 17 because 5 + 12 = 17. Explain his mistake. | The theorem adds the squares of the legs, not the lengths. 5^2 + 12^2 = 25 + 144 = 169, so the hypotenuse is the square root of 169, which is 13.
+
+test:
+mc1: Which transformation is NOT a rigid motion? | a dilation by a scale factor of 3 | a translation | a reflection | a rotation
+mc1: The point (-4, 2) is translated 5 units right. What is its image? | (1, 2) | (-9, 2) | (-4, 7) | (1, 7)
+mc2: The point (6, -1) is reflected across the y-axis. What is its image? | (-6, -1) | (6, 1) | (-6, 1) | (-1, 6)
+mc2: The point (-2, 5) is rotated 90 degrees counterclockwise around the origin. What is its image? | (-5, -2) | (5, 2) | (2, -5) | (-5, 2)
+num1: Parallel lines are cut by a transversal. One angle measures 72 degrees. What is the measure of its alternate interior angle, in degrees? | 72
+num2: Two angles of a triangle measure 38 and 64 degrees. What is the third angle, in degrees? | 78
+num2: An exterior angle of a triangle measures 145 degrees. One remote interior angle measures 80 degrees. What is the other remote interior angle, in degrees? | 65
+num2: A right triangle has legs of 9 and 40. How long is the hypotenuse? | 41
+num2: Triangle ABC is congruent to triangle XYZ. AC = 14 cm and angle C = 52 degrees. What is XZ, in cm? | 14
+mc2: Which transformation maps (5, 2) onto (-5, -2)? | a 180-degree rotation around the origin | a reflection across the x-axis | a reflection across the y-axis | a translation 10 units left
+mc2: Two lines are cut by a transversal, and a pair of corresponding angles both measure 58 degrees. What can you conclude? | The lines are parallel | The lines are perpendicular | The lines meet at a 58-degree angle | Nothing can be concluded
+num3: Parallel lines are cut by a transversal. Same-side interior angles measure (4x + 8) and (2x + 10) degrees. What is the measure of the larger angle, in degrees? | 116
+num3: A 25-foot ladder leans against a building with its base 7 feet from the building. How many feet up the building does the ladder reach? | 24
+num3: A rectangular field is 45 yards by 60 yards. A player runs diagonally across it and back. How many yards does she run in all? | 150
+num3: The angles of a triangle measure (x + 15), 2x and (3x - 15) degrees. What is the measure of the smallest angle, in degrees? | 45
+mc3: A figure is reflected across the x-axis and then translated 3 units up. Which statement about the final image is true? | It is congruent to the original figure | It is larger than the original figure | Its angles are different from the original | It is similar but not congruent to the original
+mc3: Which set of lengths forms a right triangle? | 8, 15, 17 | 8, 15, 20 | 7, 15, 17 | 8, 14, 17
+mc2: A square with vertices (1, 1), (4, 1), (4, 4) and (1, 4) is rotated 90 degrees around the origin. What is the perimeter of the image? | 12 units | 9 units | 16 units | 3 units
+sa2: Use parallel lines to explain why the angles of a triangle add to 180 degrees. | Draw a line through one vertex parallel to the opposite side. The two angles beside the triangle's angle at that vertex are alternate interior angles equal to the other two angles of the triangle. Together the three angles form a straight angle, 180 degrees.
+sa3: Ruby says rotating (3, 1) 90 degrees counterclockwise around the origin gives (1, 3). Explain her mistake and give the correct image. | She only swapped the coordinates, which is a reflection across the line y = x. A 90-degree counterclockwise rotation sends (x, y) to (-y, x), so the image is (-1, 3).
+task3: Triangle ABC has vertices A(1, 1), B(4, 1) and C(1, 5). (a) Find AB and AC, and use the Pythagorean theorem to find BC. (b) Reflect triangle ABC across the y-axis, then translate the image 2 units down. Give the coordinates of the final image A''B''C''. (c) Explain why A''B''C'' is congruent to ABC and give the length of B''C'' without measuring. (d) Find the perimeter and area of A''B''C''. | (a) AB = 3, AC = 4, BC = 5; (b) A''(-1, -1), B''(-4, -1), C''(-1, 3); (c) reflections and translations are rigid motions that keep lengths, so B''C'' = 5; (d) perimeter 12 units and area 6 square units. | All parts correct with one error in coordinates or a weak explanation. | Lengths correct but transformations incorrect, or the reverse. | Little correct work.
+
+unit: Module 3: Similarity | 8.G.A.3, 8.G.A.4, 8.G.A.5, 8.G.B.6, 8.G.B.7 |
+el: Give students grid paper and a center point to draw dilations by hand; post a chart that contrasts "same shape, same size" (congruent) with "same shape, scaled size" (similar), with matching pictures.
+
+lesson: Dilations | 8.G.A.3, 8.G.A.4
+practice:
+mc1: The point (2, 3) is dilated from the origin by a scale factor of 4. What is its image? | (8, 12) | (6, 7) | (2, 12) | (0.5, 0.75)
+hint: Multiply each coordinate by the scale factor.
+num1: A segment 6 cm long is dilated by a scale factor of 1/3. How long is the image, in cm? | 2
+mc2: What does a dilation with a scale factor of 0.5 do to a figure? | It shrinks the figure to half its size | It doubles the figure's size | It keeps the same size | It flips the figure over
+hint: A scale factor less than 1 makes the image smaller.
+num2: A triangle with a perimeter of 15 units is dilated by a scale factor of 2.4. What is the perimeter of the image, in units? | 36
+mc2: The point (-6, 9) is dilated from the origin by a scale factor of 2/3. What is its image? | (-4, 6) | (-9, 13.5) | (-6, 6) | (4, -6)
+sa2: Explain how a dilation is different from a rigid motion. | A dilation multiplies every length by the scale factor, so the image can be larger or smaller, while angle measures stay the same. A rigid motion keeps both lengths and angles the same.
+quiz:
+mc1: A figure is dilated with a scale factor of 3. Which statement is true? | Every length is 3 times as long and the angles stay the same | Every angle is 3 times as large | The figure moves 3 units to the right | The area is 3 times as large
+num2: The point (5, -2) is dilated from the origin by a scale factor of 3. What is the y-coordinate of the image? | -6
+num2: A segment of length 12 has an image of length 9 after a dilation. What is the scale factor? | 3/4
+mc2: A 4 by 6 rectangle is dilated by a scale factor of 1.5. What are the dimensions of the image? | 6 by 9 | 5.5 by 7.5 | 2 by 3 | 8 by 12
+num3: A 5 in by 7 in photo is dilated by a scale factor of 3. What is the area of the image, in square inches? | 315
+mc2: A point and its image after a dilation from the origin are (4, 10) and (6, 15). What is the scale factor? | 1.5 | 2 | 2/3 | 5
+mc3: A triangle is dilated from the origin by a scale factor of 2, and then the image is dilated from the origin by a scale factor of 1/2. How does the final image compare with the original triangle? | It is exactly the same as the original | It is 4 times as large | It is 2.5 times as large | It is a reflection of the original
+sa2: Ivan says dilating the point (3, 4) from the origin by a scale factor of 2 gives (5, 6). Explain his mistake. | He added 2 to each coordinate. A dilation from the origin multiplies each coordinate by the scale factor, so the image is (6, 8).
+
+lesson: Similar figures | 8.G.A.4
+practice:
+mc2: What does it mean for two figures to be similar? | One can be mapped onto the other by a sequence of rigid motions and dilations | They are exactly the same size | They have the same area | They have the same perimeter
+num2: Triangle ABC is similar to triangle DEF, and the scale factor from ABC to DEF is 3. AB = 4. What is DE? | 12
+hint: Multiply the length by the scale factor.
+num2: A 3 by 5 rectangle is similar to a larger rectangle whose longer side is 20. What is the shorter side of the larger rectangle? | 12
+hint: Find the scale factor using the longer sides.
+mc2: Are a 4 by 6 rectangle and a 6 by 8 rectangle similar? | No, because 4/6 is not equal to 6/8 | Yes, because both are rectangles | Yes, because each side increased by 2 | No, because their perimeters are different
+num2: Two similar triangles have corresponding sides of 6 and 15. The smaller triangle's perimeter is 20. What is the perimeter of the larger triangle? | 50
+sa2: Explain why any two squares are similar. | Every square has four 90-degree angles, and one square can be dilated by the ratio of the side lengths and then moved to match the other square exactly.
+quiz:
+num1: Quadrilateral PQRS is similar to quadrilateral WXYZ. PQ = 8 and WX = 12. What is the scale factor from PQRS to WXYZ? | 1 1/2
+num2: Triangle JKL is similar to triangle MNO. JK = 10, KL = 14 and MN = 15. What is NO? | 21
+mc2: Which rectangle is similar to a 6 by 10 rectangle? | 9 by 15 | 8 by 12 | 6 by 12 | 10 by 14
+mc2: Two similar figures have a scale factor of 2. How do their angles compare? | The angles are equal | The angles in the larger figure are doubled | The angles in the larger figure are halved | The angles cannot be compared
+num3: A 3 cm by 4 cm rectangle is dilated so that the image's longer side is 10 cm. What is the area of the image, in square cm? | 75
+mc3: Triangle A has vertices (0, 0), (2, 0) and (0, 1). Triangle B has vertices (0, 0), (-6, 0) and (0, 3). Which sequence maps triangle A onto triangle B? | a dilation from the origin by 3, then a reflection across the y-axis | a translation 3 units left | a dilation from the origin by 3 only | a reflection across the x-axis
+num2: A model is similar to a real building with a scale of 1:200. The model is 45 cm tall. How many meters tall is the real building? | 90
+sa2: Kim says any two rectangles are similar because all their angles are 90 degrees. Explain her mistake. | Similar figures need equal angles and proportional sides. A 2 by 3 rectangle and a 2 by 8 rectangle have equal angles, but 2/2 does not equal 3/8, so they are not similar.
+
+lesson: Angle-angle similarity and indirect measurement | 8.G.A.4, 8.G.A.5
+practice:
+mc2: Two triangles each have angles of 40 and 75 degrees. What can you conclude? | They are similar | They are congruent | They have the same area | Nothing can be concluded
+hint: If two pairs of angles match, the third pair must match too.
+num2: A 6-foot person casts a 4-foot shadow. At the same time, a tree casts a 22-foot shadow. How tall is the tree, in feet? | 33
+hint: The person and the tree with their shadows form similar triangles.
+num2: Triangle ABC has angles of 50 and 60 degrees. Triangle DEF is similar to triangle ABC. What is the largest angle of triangle DEF, in degrees? | 70
+mc2: Which pair of triangles must be similar? | a triangle with angles 30, 60 and 90 degrees and another with angles 90, 30 and 60 degrees | two triangles that each have one 50-degree angle | any two isosceles triangles | two triangles with the same perimeter
+num2: A 1.6 m tall student casts a 2 m shadow. At the same time, a flagpole casts a 15 m shadow. How tall is the flagpole, in meters? | 12
+sa2: Explain why two pairs of equal angles are enough to show two triangles are similar. | The angles of a triangle add to 180 degrees, so if two pairs are equal, the third pair is too. A dilation can then make one triangle the same size as the other, and rigid motions place it on top, so the triangles are similar.
+quiz:
+num2: A tree's shadow is 30 feet long. At the same time, a 5-foot post casts a 6-foot shadow. How tall is the tree, in feet? | 25
+num2: Two right triangles are similar. The smaller one has legs of 3 and 4, and the shorter leg of the larger one is 12. How long is the longer leg of the larger triangle? | 16
+mc2: Triangle PQR has angles of 35 and 85 degrees. Which triangle must be similar to it? | a triangle with angles of 60 and 85 degrees | a triangle with angles of 35 and 65 degrees | a triangle with angles of 35 and 90 degrees | a triangle with angles of 45 and 85 degrees
+num3: To find the width of a pond, Rosa sets up two similar triangles. The small triangle has sides of 8 m and 10 m. The matching sides of the large triangle are 36 m and x m, where x is the pond's width. What is x? | 45
+mc2: A line parallel to one side of a triangle cuts the other two sides. Why is the small triangle that is formed similar to the large triangle? | Corresponding angles are equal, so two pairs of angles match | All of their sides are equal | They share a side | All triangles are similar
+num3: A mirror lies flat on the ground 12 m from a building. Lena stands 1.5 m from the mirror and sees the top of the building in it. Her eyes are 1.6 m above the ground. The triangles formed are similar. How tall is the building, in meters? | 12.8
+sa2: Owen says triangles with sides 3, 4, 5 and 6, 8, 12 are similar because two pairs of sides are doubled. Explain whether he is right. | He is not right. Similar triangles need every pair of corresponding sides in the same ratio. 6/3 = 2 and 8/4 = 2, but 12/5 = 2.4, so the triangles are not similar.
+
+lesson: Similar triangles and the Pythagorean theorem | 8.G.B.6, 8.G.B.7
+practice:
+num1: A right triangle has legs of 12 and 16. How long is the hypotenuse? | 20
+hint: Use a^2 + b^2 = c^2.
+mc2: Is a triangle with sides 10, 24 and 26 a right triangle? | Yes, because 10^2 + 24^2 = 26^2 | No, because 10 + 24 is not 26 | Yes, because 26 is the longest side | No, because all the sides are even
+num2: A right triangle has legs of 5 and 12. A similar triangle has a hypotenuse of 39. How long is the shorter leg of the larger triangle? | 15
+hint: Find the hypotenuse of the first triangle, then the scale factor.
+num2: A ramp rises 9 feet over a horizontal distance of 40 feet. How long is the ramp's surface, in feet? | 41
+mc2: Drawing the altitude to the hypotenuse of a right triangle makes two smaller triangles. How are they related to the original triangle? | Both are similar to the original triangle | Both are congruent to the original triangle | Neither is similar to the original triangle | Only one is similar to the original triangle
+sa2: Explain how you know triangles with sides 6, 8, 10 and 9, 12, 15 are similar right triangles. | 6^2 + 8^2 = 100 = 10^2 and 9^2 + 12^2 = 225 = 15^2, so both are right triangles. Each side of the second is 1.5 times the matching side of the first, so they are similar.
+quiz:
+num1: A right triangle has a hypotenuse of 26 and a leg of 10. How long is the other leg? | 24
+num2: A right triangle with legs of 8 and 15 is dilated by a scale factor of 3. How long is the hypotenuse of the image? | 51
+mc2: Which side lengths form a right triangle? | 11, 60, 61 | 11, 60, 62 | 10, 60, 61 | 12, 60, 61
+num3: A kite string is 50 m long and pulled straight. The kite is directly above a point 30 m away from the person's hand, measured level with the hand. How high above the person's hand is the kite, in meters? | 40
+num2: A 13-foot board leans against a wall, and its top touches the wall 12 feet above the floor. How far is the bottom of the board from the wall, in feet? | 5
+mc3: Both legs of a right triangle are doubled. What happens to the hypotenuse? | It doubles | It is multiplied by 4 | It stays the same | It increases by 2
+sa2: Use a triangle with sides 4, 5 and 6 to explain why a^2 + b^2 = c^2 works only for right triangles. | For sides 4, 5 and 6, 4^2 + 5^2 = 41 but 6^2 = 36, so the equation is false. The relationship holds only when the angle between the two shorter sides is 90 degrees, and this triangle has no right angle.
+
+test:
+mc1: The point (4, -2) is dilated from the origin by a scale factor of 2.5. What is its image? | (10, -5) | (6.5, 0.5) | (1.6, -0.8) | (10, 5)
+num1: A 9-inch segment is dilated by a scale factor of 2/3. How long is the image, in inches? | 6
+mc1: Which transformation can map a figure onto a similar figure that is not congruent? | a dilation | a reflection | a rotation | a translation
+mc2: Which rectangle is similar to a 4 by 10 rectangle? | 6 by 15 | 6 by 12 | 5 by 11 | 8 by 18
+num2: Triangle ABC is similar to triangle DEF. AB = 7, BC = 9 and DE = 21. What is EF? | 27
+num2: A segment of length 18 is dilated to a length of 6. What is the scale factor? | 1/3
+mc2: One triangle has angles of 45, 70 and 65 degrees. Another has angles of 70, 65 and 45 degrees. Which statement is true? | They are similar | They must be congruent | They are not similar | Their sides must be equal
+num2: A 2-meter pole casts a 3-meter shadow. At the same time, a building casts a 27-meter shadow. How tall is the building, in meters? | 18
+num2: A right triangle has legs of 15 and 20. How long is its hypotenuse? | 25
+mc2: Is a 3 by 5 rectangle similar to a 9 by 15 rectangle? | Yes, with a scale factor of 3 | No, because the sides grow by different amounts | Yes, with a scale factor of 6 | No, because the areas are different
+num3: A map is a dilation of a park with a scale factor of 1/500. A path on the map is 14 cm long. How many meters long is the actual path? | 70
+num3: A triangle with vertices (0, 0), (4, 0) and (0, 6) is dilated from the origin by a scale factor of 1.5. What is the area of the image, in square units? | 27
+num3: A lamppost and a 1.8 m tall student cast shadows that end at the same point. The student's shadow is 2 m long, and the student stands 4 m from the lamppost. The triangles formed are similar. How tall is the lamppost, in meters? | 5.4
+num3: A right triangle has legs of 9 and 12. A similar triangle has a hypotenuse of 45. What is the perimeter of the larger triangle? | 108
+mc3: A figure is dilated from a point by a scale factor of 2, and the image is then dilated from the same point by a scale factor of 3. Which single dilation gives the same final image? | a scale factor of 6 | a scale factor of 5 | a scale factor of 1.5 | a scale factor of 1
+mc3: Which facts are enough to prove that triangle ABC is similar to triangle DEF? | angle A = angle D and angle B = angle E | AB = DE | angle C = 90 degrees and angle F = 90 degrees | both triangles are isosceles
+mc2: The point (-8, 12) is dilated from the origin to (-2, 3). What is the scale factor? | 1/4 | 4 | -4 | 1/2
+num2: A 6 by 8 rectangle is dilated by a scale factor of 1/2. How long is the diagonal of the image? | 5
+sa2: Explain how a dilation and rigid motions together can show that two triangles are similar. | Dilate one triangle so its side lengths match the other triangle's side lengths, then translate, reflect or rotate it to place it exactly on the other. Because a sequence of these transformations maps one onto the other, the triangles are similar.
+sa3: Ava says a 2 by 4 rectangle and a 4 by 6 rectangle are similar because each side grew by 2. Explain her mistake. | Similarity needs the same scale factor for every side, not the same amount added. 4/2 = 2 but 6/4 = 1.5, so the rectangles are not similar.
+task3: Students measure a tree using shadows. At 3 p.m., a 1.5 m pole casts a 2 m shadow, and the tree casts a 16 m shadow on level ground. (a) Explain why the pole and its shadow and the tree and its shadow form similar triangles. (b) Find the height of the tree. (c) Find the distance from the top of the tree to the tip of its shadow. (d) The next morning, the tree's shadow is 9 m long. How long is the pole's shadow then? Show your work. | (a) Both triangles have a right angle at the ground and the sun's rays make equal angles, so AA similarity applies; (b) 1.5/2 = h/16, h = 12 m; (c) 12^2 + 16^2 = 400, so 20 m; (d) 1.5/12 = s/9, s = 1.125 m; all reasoning explained. | Three parts correct with clear work, or all parts set up correctly with one calculation error. | Height correct but other parts missing or wrong. | Little correct work.
+
+unit: Module 4: Linear equations | 8.EE.B.5, 8.EE.B.6, 8.EE.C.7, 8.EE.C.8 | slope, g8sys
+el: Model each solving step with a balance, and post the forms y = mx + b and ax + by = c with the words slope, rise, run, intercept and solution labeled on a graph.
+
+lesson: Solving linear equations | 8.EE.C.7
+practice:
+num1: Solve 3(x - 2) = 2x + 4. | 10
+hint: Distribute, then collect the x terms on one side.
+num2: Solve 0.5x + 3 = 2x - 9. | 8
+num2: Solve 2/3 x - 4 = 1/3 x + 2. | 18
+hint: Subtract 1/3 x from both sides first.
+mc2: Which equation has no solution? | 2x + 3 = 2x - 1 | 2x + 3 = 3x - 1 | 2x = 4 | x + 1 = x + 1
+mc2: How many solutions does 4(x + 2) = 4x + 8 have? | infinitely many | none | exactly one | exactly two
+sa2: Explain how you can tell that 5x - 3 = 5x + 7 has no solution. | Subtracting 5x from both sides gives -3 = 7, which is never true, so no value of x makes the equation true.
+quiz:
+num1: Solve 7x - 5 = 3x + 19. | 6
+num2: Solve 4(2x - 1) = 3(x + 2). | 2
+num2: Solve 1.2x + 3.6 = 0.4x - 2. | -7
+mc2: Which equation has exactly one solution? | 3x + 1 = 2x + 1 | 3x + 1 = 3x + 2 | 3x + 1 = 3x + 1 | 3(x + 1) = 3x + 3
+num3: Plan A charges $20 plus $15 per month. Plan B charges $50 plus $12 per month. After how many months do the plans cost the same total? | 10
+mc3: For which value of a does 2x + a = 2x + 5 have infinitely many solutions? | 5 | 2 | 0 | every value
+num2: The sum of three consecutive integers is 87. What is the largest of the three integers? | 30
+sa2: Lea solved 6 - 2(x + 1) = 10 by first rewriting it as 4(x + 1) = 10. Explain her mistake and solve correctly. | She subtracted 6 - 2 first, but multiplication comes before subtraction. Distribute: 6 - 2x - 2 = 10, so 4 - 2x = 10, -2x = 6 and x = -3.
+
+lesson: Linear equations in two variables and their graphs | 8.EE.B.5, 8.EE.B.6
+practice:
+mc1: Which ordered pair is a solution of y = 2x + 3? | (2, 7) | (7, 2) | (3, 2) | (0, 2)
+hint: Substitute the x-value and check whether you get the y-value.
+num2: The point (4, k) is on the line 3x + 2y = 18. What is k? | 3
+mc2: What does the graph of all the solutions of 2x + y = 6 look like? | a straight line | a single point | a curve | two separate points
+num2: Student tickets cost $5 and adult tickets cost $8, and ticket sales were $120, so 5s + 8a = 120. If 10 adults attended, how many students attended? | 8
+hint: Substitute 10 for a and solve for s.
+mc2: Which equation's graph passes through (0, 4) and (2, 0)? | 2x + y = 4 | x + 2y = 4 | x + y = 4 | 2x - y = 4
+sa2: Explain why the equation x + y = 10 has infinitely many solutions. | Any pair of numbers that adds to 10 is a solution, such as (3, 7), (4.5, 5.5) and (-2, 12). There are infinitely many such pairs, and together they form a line.
+quiz:
+mc1: Which point is on the line y = -x + 5? | (2, 3) | (3, 8) | (-2, 3) | (5, 5)
+num2: What is the y-intercept of the graph of 3x + 4y = 12? | 3
+num2: What is the x-intercept of the graph of 3x + 4y = 12? | 4
+mc2: A line goes through (0, 0) and (5, 2). Which equation describes it? | y = 2/5 x | y = 5/2 x | y = 2x + 5 | y = x + 3
+num3: Ty spends exactly $40 on pizza slices at $2.50 each and drinks at $1.25 each, so 2.5p + 1.25d = 40. If he buys 10 slices, how many drinks does he buy? | 12
+mc2: A line passes through (0, 3) and (1, 5). Which point is also on the line? | (2, 7) | (2, 8) | (3, 8) | (4, 12)
+sa2: Mira walks at a steady rate, so d = 4t, where t is hours and d is miles. Explain what the point (3, 12) means on the graph, and what the 4 means. | After 3 hours Mira has walked 12 miles. The 4 is her speed, 4 miles per hour, which is the slope of the graph.
+
+lesson: Slope | 8.EE.B.5, 8.EE.B.6
+practice:
+num1: What is the slope of the line through (1, 2) and (3, 8)? | 3
+hint: Slope = change in y ÷ change in x.
+num2: What is the slope of the line through (-2, 5) and (4, 2)? | -1/2
+mc2: What is the slope of a horizontal line? | 0 | 1 | undefined | -1
+num2: A graph of a car's trip passes through (2, 110) and (5, 275), where x is hours and y is miles. What is the car's speed in miles per hour? | 55
+mc2: Which line is steepest? | y = -4x + 1 | y = 3x + 10 | y = 1/2 x | y = x - 7
+hint: Compare the absolute values of the slopes.
+sa2: Use similar triangles to explain why the slope between any two points on a line is the same. | Slope triangles drawn between different pairs of points on the same line have the same angles, so they are similar. Their rises and runs are proportional, so rise ÷ run is the same everywhere on the line.
+quiz:
+num1: What is the slope of the line through (0, -3) and (4, 5)? | 2
+num2: What is the slope of the line through (6, 1) and (-3, 7)? | -2/3
+mc2: A line goes down from left to right. What kind of slope does it have? | negative | positive | zero | undefined
+num2: The line through (2, 4) and (x, 10) has a slope of 3. What is x? | 4
+mc2: Which two points lie on a line with a slope of 2? | (1, 3) and (4, 9) | (1, 3) and (3, 4) | (0, 0) and (2, 1) | (2, 5) and (4, 7)
+num3: A tank's water level was 120 cm after 2 minutes and 75 cm after 11 minutes, dropping at a constant rate. What is the rate of change of the water level, in cm per minute? | -5
+sa2: Ben says the slope of the line through (2, 3) and (5, 9) is 1/2 because (5 - 2) ÷ (9 - 3) = 1/2. Explain his mistake. | He divided the change in x by the change in y. Slope is the change in y over the change in x: (9 - 3) ÷ (5 - 2) = 6 ÷ 3 = 2.
+
+lesson: Equations of lines | 8.EE.B.6
+practice:
+mc1: In y = -2x + 5, what is the y-intercept? | 5 | -2 | 2 | -5
+mc2: Which equation has a slope of 4 and a y-intercept of -3? | y = 4x - 3 | y = -3x + 4 | y = 4x + 3 | y = 3x - 4
+num2: A line has a slope of 2 and passes through (3, 11). What is its y-intercept? | 5
+hint: Substitute into y = mx + b and solve for b.
+mc2: Which equation describes the line through (0, 6) and (3, 0)? | y = -2x + 6 | y = 2x + 6 | y = -1/2 x + 6 | y = 6x - 2
+num2: A line passes through (1, 4) and (3, 10). What is its y-intercept? | 1
+hint: Find the slope first.
+sa2: Explain why the graph of y = mx passes through the origin but the graph of y = mx + b does not when b is not 0. | For y = mx, x = 0 gives y = 0, so (0, 0) is on the line. For y = mx + b, x = 0 gives y = b, so the line crosses the y-axis at b instead of at 0.
+quiz:
+mc1: What is the slope of y = 7 - 3x? | -3 | 7 | 3 | -7
+num2: A line has a slope of -1/2 and passes through (4, 1). What is its y-intercept? | 3
+mc2: Which line is parallel to y = 5x - 2? | y = 5x + 9 | y = -5x - 2 | y = 1/5 x - 2 | y = 2x + 5
+num2: A line passes through (-2, 7) and (2, -1). What is its y-intercept? | 3
+num3: A plumber charges a fixed fee plus an hourly rate. A 2-hour job costs $130 and a 5-hour job costs $250. What is the fixed fee, in dollars? | 50
+mc2: Which equation describes the same line as 2x + y = 8? | y = -2x + 8 | y = 2x + 8 | y = -2x - 8 | y = 8x + 2
+sa2: Write the equation of the line with a slope of 4 that passes through (0, -3), and explain what each part means. | y = 4x - 3. The 4 means y increases by 4 each time x increases by 1, and -3 is where the line crosses the y-axis.
+
+lesson: Systems of linear equations | 8.EE.C.8
+practice:
+mc1: Which point solves both y = x + 2 and y = 2x? | (2, 4) | (1, 3) | (0, 2) | (4, 2)
+hint: Check the point in both equations.
+mc2: What is the solution of the system x + y = 10 and x - y = 4? | x = 7, y = 3 | x = 3, y = 7 | x = 6, y = 4 | x = 5, y = 5
+num2: Solve the system y = 3x and x + y = 12. What is y? | 9
+mc2: Two lines have the same slope and different y-intercepts. How many solutions does the system have? | none | one | two | infinitely many
+num2: Solve the system y = 2x - 1 and y = -x + 5. What is x? | 2
+hint: Set the two expressions for y equal to each other.
+sa2: Explain what the solution of a system of two linear equations means on a graph. | It is the point where the two lines cross. That ordered pair makes both equations true at the same time.
+quiz:
+num2: Solve the system 2x + y = 11 and y = x - 1. What is x? | 4
+num2: Solve the system 3x + 2y = 16 and x - 2y = 0. What is y? | 2
+mc2: How many solutions does the system y = 2x + 1 and 2y = 4x + 2 have? | infinitely many | none | one | two
+mc2: Adult tickets cost $8 and child tickets cost $5. Twenty tickets cost $130 in all. Which system models this? | a + c = 20 and 8a + 5c = 130 | a + c = 130 and 8a + 5c = 20 | 8a = 5c and a + c = 20 | a - c = 20 and 8a - 5c = 130
+num3: Adult tickets cost $8 and child tickets cost $5. Exactly 20 tickets were sold for $130. How many adult tickets were sold? | 10
+num3: A farm has chickens and goats. Together they have 30 heads and 74 legs. How many goats are there? | 7
+sa2: Explain how you can tell from the equations alone that y = 3x + 2 and y = 3x - 4 have no solution. | The lines have the same slope, 3, but different y-intercepts, so they are parallel and never cross. No point is on both lines.
+
+test:
+mc1: What is the slope of y = 6x - 1? | 6 | -1 | 1/6 | 5
+num1: Solve 5x + 4 = 2x + 19. | 5
+num2: Solve 3(x + 4) = 5x - 2. | 7
+num2: Solve 0.25x - 3 = 0.75x + 1. | -8
+mc2: How many solutions does 6x - 2 = 2(3x - 1) have? | infinitely many | none | one | two
+mc2: Which of these equations has no solution? | 4x + 1 = 4x - 3 | 4x + 1 = x - 3 | 4x = 0 | 2(2x + 1) = 4x + 2
+num2: What is the slope of the line through (-3, 4) and (5, -2)? | -3/4
+mc2: Which equation describes the line through (0, -2) with a slope of 3/4? | y = 3/4 x - 2 | y = -2x + 3/4 | y = 4/3 x - 2 | y = 3/4 x + 2
+num2: A line has a slope of -3 and passes through (2, 1). What is its y-intercept? | 7
+mc2: What is the solution of the system y = x + 4 and y = -2x + 1? | (-1, 3) | (1, 5) | (3, -1) | (0, 4)
+num2: Solve the system x + 2y = 14 and x - y = 2. What is x? | 6
+mc2: Which system has infinitely many solutions? | y = 2x + 3 and 4x - 2y = -6 | y = 2x + 3 and y = 2x - 3 | y = 2x + 3 and y = -2x + 3 | y = 2x and y = 3x
+num3: One plumber charges $65 per visit plus $40 per hour. Another charges $95 per visit plus $30 per hour. For how many hours of work do they charge the same amount? | 3
+num3: A school sold 300 tickets to a show. Student tickets cost $4 and adult tickets cost $7, and the school collected $1,560. How many student tickets were sold? | 180
+num3: The perimeter of a rectangle is 46 cm. Its length is 5 cm more than twice its width. What is its length, in cm? | 17
+num3: The cost of a taxi ride is a linear function of distance. A 4-mile ride costs $14 and a 10-mile ride costs $29. What is the starting fee, in dollars? | 4
+num3: A jar holds 40 coins, all dimes and quarters, worth $6.25 in all. How many quarters are in the jar? | 15
+mc3: The lines y = ax + 3 and y = 2x + b form a system. For which values does the system have no solution? | a = 2 and b is not 3 | a = 2 and b = 3 | a is not 2 | a = 3 and b = 2
+mc2: A line goes down 3 units for every 2 units it goes to the right. What is its slope? | -3/2 | 3/2 | -2/3 | 2/3
+sa2: Explain how to tell, without graphing, whether a system of two linear equations has one solution, no solution or infinitely many solutions. | Write both equations in y = mx + b form. Different slopes mean one solution. The same slope with different y-intercepts means no solution. The same slope and the same y-intercept mean infinitely many solutions.
+sa3: Malik solved 2(x - 3) = 2x - 6 and wrote "x = 0, so the only solution is 0." Explain his mistake. | Distributing gives 2x - 6 = 2x - 6, which is true for every value of x. The equation has infinitely many solutions, not only 0.
+task3: Gym A charges $30 to join plus $20 a month. Gym B has no joining fee and charges $35 a month. (a) Write an equation for the total cost y of each gym after x months. (b) Make a table or graph for 0 to 4 months. (c) Solve the system to find when the gyms cost the same, and give that cost. (d) Recommend a gym for someone who will stay 12 months, and justify your choice with costs. | (a) y = 20x + 30 and y = 35x; (b) A: 30, 50, 70, 90, 110 and B: 0, 35, 70, 105, 140; (c) 2 months, $70; (d) Gym A ($270 compared with $420 for Gym B), with a clear justification. | Equations and comparison correct with one error in the table or a weak justification. | One equation correct and some correct values. | Little correct work.
+
+unit: Module 5: Examples of functions from geometry | 8.F.A.1, 8.F.A.2, 8.F.A.3, 8.G.C.9 | g8lin, g8cyl
+el: Use input-output "machine" diagrams for functions, and keep labeled models of a cylinder, a cone and a sphere with their formulas; pre-teach input, output, rule, radius, diameter and volume.
+
+lesson: Functions and their representations | 8.F.A.1
+practice:
+mc2: Which relation is NOT a function? | (1, 2), (1, 3), (2, 4) | (1, 2), (2, 2), (3, 2) | (0, 1), (1, 2), (2, 3) | (5, 1), (6, 2), (7, 3)
+hint: A function gives exactly one output for each input.
+num1: A function's rule is y = 3x - 4. What is the output when the input is 6? | 14
+mc2: Which pairing is a function? | input: a student's ID number; output: that student's name | input: an age in years; output: a person who is that age | input: a shoe size; output: the height of a person who wears that size | input: a letter of the alphabet; output: a word that starts with that letter
+num2: A function's rule is "multiply the input by 4, then add 1." What input gives an output of 29? | 7
+hint: Work backward: subtract 1, then divide by 4.
+mc2: A vertical line crosses a graph at two points. What does this show? | The graph is not a function | The graph is a linear function | The graph is a function | The graph has no inputs
+sa2: Explain why the table x: 2, 2, 5 and y: 3, 7, 9 does not represent a function. | The input 2 is paired with two outputs, 3 and 7. A function must assign exactly one output to each input.
+quiz:
+num1: A function's rule is y = 2x - 5. What is y when x = 8? | 11
+mc2: Which table represents a function? | x: 1, 2, 3, 4 and y: 5, 5, 6, 6 | x: 1, 1, 2, 3 and y: 2, 3, 4, 5 | x: 4, 4, 4, 4 and y: 1, 2, 3, 4 | x: 0, 1, 0, 1 and y: 0, 1, 2, 3
+num2: A taxi ride costs C = 2m + 3 dollars for m miles. How many miles long was a ride that cost $21? | 9
+mc2: The distance a car travels at 60 miles per hour is a function of time. What is the input of this function? | the time traveled | the distance traveled | the speed | the car
+num2: A function's input is the side length s of a square and its output is the square's perimeter. What is the output when s = 7.5? | 30
+mc3: Which statement about functions is true? | Two different inputs can have the same output | One input can have two different outputs | The graph of every function is a straight line | Every function has a negative output
+num3: A tank holds 500 liters of water and drains so that the amount left after t minutes is A = 500 - 25t liters. After how many minutes are 150 liters left? | 14
+sa2: Rosa says the points (3, 1), (3, 4) and (3, 9) form a function because every output is different. Explain her mistake. | The input 3 is paired with three different outputs. For a function, each input must have exactly one output, so these points do not form a function.
+
+lesson: Linear and nonlinear functions | 8.F.A.2, 8.F.A.3
+practice:
+mc2: Which equation defines a nonlinear function? | y = x^2 + 1 | y = 3x + 1 | y = -x | y = 0.5x - 7
+hint: A linear function has a constant rate of change, and its graph is a straight line.
+mc2: Which table shows a linear function? | x: 0, 1, 2, 3 and y: 4, 7, 10, 13 | x: 0, 1, 2, 3 and y: 1, 2, 4, 8 | x: 0, 1, 2, 3 and y: 0, 1, 4, 9 | x: 0, 1, 2, 3 and y: 5, 4, 2, -1
+num2: A linear function has the table x: 0, 1, 2 and y: 6, 10, 14. What is its rate of change? | 4
+num2: Function A is y = 3x + 2. Function B has the table x: 0, 2, 4 and y: 1, 9, 17. How much greater is Function B's rate of change than Function A's? | 1
+hint: Find the rate of change of each function first.
+mc2: The area of a square is a function of its side length, A = s^2. Is this function linear? | No, because the area does not change by a constant amount for each unit of side length | Yes, because the graph goes up | Yes, because it has one input | No, because squares have four sides
+sa2: Explain how you can tell from a table whether a function is linear. | When the inputs change by equal steps, a linear function's outputs also change by equal amounts. If the outputs change by different amounts for equal steps, the function is nonlinear.
+quiz:
+mc1: Which graph represents a linear function? | a straight line that is not vertical | a U-shaped curve | a circle | a vertical line
+num2: Function B's graph is a straight line through (0, 5) and (3, 11). What is its rate of change? | 2
+mc2: Function A is y = 5x - 1. Function B has the table x: 1, 2, 3 and y: 6, 10, 14. Which statement is true? | Function A has the greater rate of change | Function B has the greater rate of change | They have the same rate of change | Neither function is linear
+num2: The volume of a cube with edge length e is V = e^3. What is the volume when e = 4? | 64
+mc2: Which situation is modeled by a nonlinear function? | the area of a circle as a function of its radius | the cost of apples at $2 per pound | the distance traveled at a steady 50 miles per hour | savings that grow by $10 each week
+num3: Car A travels d = 55t miles in t hours. Car B's distances are 48, 96 and 144 miles after 1, 2 and 3 hours, at a constant speed. After 4 hours, how many more miles has Car A traveled than Car B? | 28
+mc3: Which function has a constant rate of change of -3? | y = 7 - 3x | y = 3x - 7 | y = -3x^2 | y = x - 3
+sa2: Kai says y = 2x^2 is linear because 2 is a constant rate of change. Explain his mistake. | Because x is squared, the outputs for x = 0, 1, 2, 3 are 0, 2, 8 and 18. They increase by 2, 6 and 10, which is not a constant rate of change, so the function is nonlinear.
+
+lesson: Volume of cylinders | 8.G.C.9
+practice:
+num1: What is the volume of a cylinder with a radius of 2 cm and a height of 5 cm, in cubic cm? Use 3.14 for pi. | 62.8
+hint: V = pi x r^2 x h.
+num2: A cylindrical can has a diameter of 8 cm and a height of 10 cm. What is its volume in cubic cm? Use 3.14 for pi. | 502.4
+hint: Find the radius first.
+num2: A cylinder has a base area of 28.26 square inches and a height of 12 inches. What is its volume in cubic inches? | 339.12
+mc2: A cylinder's height is doubled and its radius stays the same. What happens to its volume? | It doubles | It is multiplied by 4 | It stays the same | It is multiplied by 8
+num2: A cylindrical tank has a radius of 3 m and a volume of 141.3 cubic meters. What is its height in meters? Use 3.14 for pi. | 5
+sa2: Explain how the volume formula for a cylinder is like the volume formula for a prism. | Both are the area of the base times the height. A cylinder's base is a circle with area pi x r^2, so its volume is pi x r^2 x h.
+quiz:
+num1: What is the volume of a cylinder with a radius of 10 m and a height of 3 m, in cubic meters? Use 3.14 for pi. | 942
+num2: A water bottle is a cylinder with a radius of 3.5 cm and a height of 20 cm. What is its volume in cubic cm? Use 3.14 for pi. | 769.3
+mc2: Which cylinder holds more? | radius 5 cm and height 4 cm | radius 4 cm and height 5 cm | They hold the same amount | It cannot be determined
+num3: A cylindrical wading pool has a diameter of 6 m and is filled to a depth of 1.5 m. Water costs $2 per cubic meter. How many dollars does the water cost? Use 3.14 for pi. | 84.78
+num2: A cylinder's radius is doubled and its height stays the same. By what number is its volume multiplied? | 4
+mc2: A cylinder has a volume of 100.48 cubic inches and a height of 8 inches. What is its radius? Use 3.14 for pi. | 2 inches | 4 inches | 3.2 inches | 16 inches
+num3: A cylindrical candle has a radius of 4 cm and a height of 10 cm. Wax costs $0.05 per cubic cm. How many dollars does the wax cost? Use 3.14 for pi. | 25.12
+sa2: Jin found the volume of a cylinder with a diameter of 10 and a height of 4 as 3.14 x 10^2 x 4 = 1,256. Explain his mistake. | He used the diameter instead of the radius. The radius is 5, so V = 3.14 x 25 x 4 = 314 cubic units.
+
+lesson: Volume of cones and spheres | 8.G.C.9
+practice:
+num1: What is the volume of a cone with a radius of 3 cm and a height of 4 cm, in cubic cm? Use 3.14 for pi. | 37.68
+hint: V = 1/3 x pi x r^2 x h.
+num1: What is the volume of a sphere with a radius of 3 m, in cubic meters? Use 3.14 for pi. | 113.04
+hint: V = 4/3 x pi x r^3.
+mc2: A cone and a cylinder have the same radius and the same height. How do their volumes compare? | The cone's volume is 1/3 of the cylinder's | They are equal | The cone's volume is 1/2 of the cylinder's | The cone's volume is 3 times the cylinder's
+num2: A cone has a diameter of 12 inches and a height of 5 inches. What is its volume in cubic inches? Use 3.14 for pi. | 188.4
+num2: A ball has a radius of 6 inches. What is its volume in cubic inches? Use 3.14 for pi. | 904.32
+sa2: Explain how many full cones of water it takes to fill a cylinder with the same radius and height, and why. | Three. The cone's volume is 1/3 x pi x r^2 x h, which is one third of the cylinder's volume, pi x r^2 x h.
+quiz:
+num1: What is the volume of a cone with a radius of 2 ft and a height of 6 ft, in cubic feet? Use 3.14 for pi. | 25.12
+num2: What is the volume of a sphere with a radius of 1.5 cm, in cubic cm? Use 3.14 for pi. | 14.13
+mc2: Which expression gives the volume of a sphere with radius r? | 4/3 x pi x r^3 | 4 x pi x r^2 | 1/3 x pi x r^2 | pi x r^3
+num3: An ice cream cone has a radius of 3 cm and a height of 10 cm and is filled level with ice cream. A half-sphere scoop with a radius of 3 cm sits on top. What is the total volume of ice cream, in cubic cm? Use 3.14 for pi. | 150.72
+num2: A cylinder holds 150.72 cubic inches. How many cubic inches does a cone with the same radius and height hold? | 50.24
+mc3: A cylinder, a cone and a sphere each have a radius of 3. The cylinder and the cone each have a height of 6. Which has the greatest volume? | the cylinder | the sphere | the cone | They are all equal
+num3: A bowl is a half sphere with a radius of 9 cm. How many cubic cm of soup does it hold when full? Use 3.14 for pi. | 1526.04
+sa2: Pat says a sphere with a radius of 3 has a volume of 4/3 x 3.14 x 3^2 = 37.68. Explain the mistake and find the correct volume. | The radius must be cubed, not squared. V = 4/3 x 3.14 x 27 = 113.04 cubic units.
+
+test:
+mc1: Which set of ordered pairs is a function? | (1, 4), (2, 4), (3, 4) | (1, 4), (1, 5), (2, 6) | (2, 1), (2, 2), (2, 3) | (0, 0), (0, 1), (1, 1)
+num1: A function's rule is y = 4x + 3. What is y when x = 5? | 23
+mc1: Which formula gives the volume of a cylinder? | V = pi x r^2 x h | V = 1/3 x pi x r^2 x h | V = 4/3 x pi x r^3 | V = 2 x pi x r x h
+mc2: Which equation defines a linear function? | y = 6 - 2x | y = x^2 - 2 | y = 2/x | y = x^3
+mc2: Which table does NOT represent a function? | x: 3, 4, 3 and y: 1, 2, 5 | x: 3, 4, 5 and y: 1, 1, 1 | x: 1, 2, 3 and y: 2, 4, 8 | x: -1, 0, 1 and y: 1, 0, 1
+num2: What is the volume of a cylinder with a radius of 5 cm and a height of 8 cm, in cubic cm? Use 3.14 for pi. | 628
+num2: What is the volume of a cone with a radius of 6 in and a height of 10 in, in cubic inches? Use 3.14 for pi. | 376.8
+num2: What is the volume of a sphere with a radius of 9 cm, in cubic cm? Use 3.14 for pi. | 3052.08
+mc2: Function A is y = 2x + 7. Function B has the table x: 0, 1, 2 and y: 3, 6, 9. Which statement is true? | B has the greater rate of change, and A has the greater initial value | A has the greater rate of change and the greater initial value | B has the greater rate of change and the greater initial value | They have the same rate of change
+num2: A linear function has the table x: 2, 4, 6 and y: 11, 17, 23. What is its rate of change? | 3
+num3: A cylindrical water tank has a diameter of 4 m and a height of 3 m. It is 75% full. How many cubic meters of water does it hold? Use 3.14 for pi. | 28.26
+num3: A spherical balloon with a radius of 3 cm is inflated until its radius is 6 cm. How many cubic cm of volume did it gain? Use 3.14 for pi. | 791.28
+num3: A cone-shaped cup has a radius of 4 cm and a height of 9 cm. How many full cups of water does it take to fill a cylinder with a radius of 4 cm and a height of 18 cm? | 6
+num3: A gym charges a $40 fee plus $25 per month, so the cost is C = 25m + 40 dollars for m months. Lia has $240. What is the greatest number of months she can pay for? | 8
+mc3: A cylinder and a sphere have the same radius r, and the cylinder's height is 2r. How do their volumes compare? | The sphere's volume is 2/3 of the cylinder's | They are equal | The sphere's volume is 1/3 of the cylinder's | The sphere's volume is twice the cylinder's
+mc3: The radius of a sphere is tripled. By what number is its volume multiplied? | 27 | 3 | 9 | 6
+mc2: Which of these situations is modeled by a nonlinear function? | the volume of a cube as a function of its edge length | the cost of gas at $4.50 per gallon | the perimeter of a square as a function of its side length | the distance walked at a steady 3 miles per hour
+num2: A cylinder has a volume of 471 cubic cm and a radius of 5 cm. What is its height in cm? Use 3.14 for pi. | 6
+sa2: Use the perimeter and the area of a square to explain the difference between a linear function and a nonlinear function. | The perimeter P = 4s goes up by 4 each time s goes up by 1, a constant rate, so it is linear. The area A = s^2 gives 1, 4, 9, 16, which go up by different amounts, so it is nonlinear.
+sa3: Dana says a cone with a radius of 3 and a height of 6 has a volume of 169.56 cubic units. Explain her mistake and find the correct volume. Use 3.14 for pi. | She used the cylinder formula and left out the 1/3. The correct volume is 1/3 x 3.14 x 9 x 6 = 56.52 cubic units.
+task3: A juice company is choosing a container. Design A is a cylinder with a radius of 4 cm and a height of 12 cm. Design B is a cone with a radius of 6 cm and a height of 12 cm. Design C is a sphere with a radius of 6 cm. Use 3.14 for pi. (a) Find the volume of each design. (b) Which design holds the most? (c) The company needs a container that holds at least 500 cubic cm. Which designs work? (d) The company wants Design A to hold the same amount as Design C without changing its radius. What height should Design A have? Show your work. | (a) A: 602.88, B: 452.16, C: 904.32 cubic cm; (b) Design C; (c) Designs A and C; (d) 904.32 ÷ (3.14 x 16) = 18 cm; formulas and work shown. | Volumes correct with an error in (c) or (d), or one volume wrong with otherwise correct reasoning. | One or two volumes correct, or formulas correct with radius and diameter mixed up. | Little correct work.
+
+unit: Module 6: Linear functions | 8.F.B.4, 8.F.B.5, 8.SP.A.1, 8.SP.A.2, 8.SP.A.3, 8.SP.A.4 | slope, g8lin
+el: Post a labeled graph showing initial value, rate of change, increasing and decreasing; let students describe graphs aloud with frames such as "As ___ increases, ___ tends to ___."
+
+lesson: Modeling with linear functions | 8.F.B.4
+practice:
+num2: A plumber charges $40 plus $25 per hour. What is the initial value of the cost function, in dollars? | 40
+hint: The initial value is the output when the input is 0.
+mc2: Savings are modeled by y = 12x + 30, where x is weeks and y is dollars. What does 12 mean? | $12 is saved each week | $12 was saved at the start | The savings stop after 12 weeks | The savings total $12
+num2: A candle is 20 cm tall and burns down 1.5 cm each hour. How tall is it after 6 hours, in cm? | 11
+num2: A linear function's graph passes through (0, 8) and (4, 20). What is its rate of change? | 3
+hint: Divide the change in y by the change in x.
+mc2: A phone's battery is at 90% and drops 6% each hour. Which function gives the charge c after h hours? | c = 90 - 6h | c = 6h + 90 | c = 90h - 6 | c = 6 - 90h
+sa2: A taxi fare is modeled by y = 2.5x + 4, where x is miles and y is dollars. Explain what the rate of change and the initial value mean. | The initial value, $4, is the charge before any miles are driven. The rate of change, $2.50, is the added cost for each mile.
+quiz:
+num2: A pool holds 1,200 gallons and drains at 75 gallons per minute. After how many minutes is it empty? | 16
+num2: A linear function has the values (2, 15) and (6, 31). What is its initial value? | 7
+mc2: A gym's total cost is $65 for 1 month, $90 for 2 months and $115 for 3 months. Which function fits? | C = 25m + 40 | C = 65m | C = 25m + 65 | C = 40m + 25
+num3: An elevator starts 180 feet above the ground and goes down at 12 feet per second. After how many seconds is it 36 feet above the ground? | 12
+mc2: Which graph matches a function that starts at 5 and decreases by 2 for each unit increase in x? | a line through (0, 5) with slope -2 | a line through (0, -2) with slope 5 | a line through (0, 5) with slope 2 | a line through (5, 0) with slope -2
+num3: A delivery company charges a fixed fee plus a cost per mile. A 3-mile delivery costs $13.50 and an 8-mile delivery costs $23.50. How many dollars does a 15-mile delivery cost? | 37.5
+sa2: Explain how a line's graph shows whether a linear function increases or decreases, and what its steepness tells you. | If the line rises from left to right, the function increases (positive rate of change); if it falls, the function decreases. A steeper line means a rate of change with a larger absolute value.
+
+lesson: Describing functions from graphs | 8.F.B.5
+practice:
+mc2: A graph of a hiker's elevation rises steadily, stays flat and then falls. What does the flat part mean? | The hiker's elevation is not changing | The hiker is climbing faster | The hiker is going downhill | The hiker is at sea level
+mc2: A graph of the water in a bathtub over time rises, stays level and then falls quickly. Which story fits? | The tub fills, someone takes a bath, and then the drain is opened | The tub drains and then fills | The tub fills faster and faster | The tub stays empty
+hint: Match each part of the graph to an action.
+num2: A graph of a car's distance from home goes in straight segments from (0, 0) to (2, 120), stays flat to (3, 120), then goes to (5, 0), with hours and miles. How many miles did the car travel in all? | 240
+mc2: Which part of a distance-time graph shows the greatest speed? | the steepest part | the flattest part | the highest point | the lowest point
+num2: A graph of a plant's height is a straight line from (0, 4) to (10, 24), where x is days and y is height in cm. How many cm does the plant grow per day? | 2
+sa2: Describe a graph of the temperature of a cup of hot cocoa left on a table for an hour. | The graph starts high and decreases, dropping quickly at first and then more slowly, leveling off near room temperature. It is a decreasing nonlinear function.
+quiz:
+mc2: A function's graph rises from x = 0 to x = 3 and then falls from x = 3 to x = 7. Where is the function increasing? | from x = 0 to x = 3 | from x = 3 to x = 7 | from x = 0 to x = 7 | nowhere
+mc2: A runner keeps speeding up during a race. What does her distance-time graph look like? | a curve that gets steeper | a straight line | a curve that gets flatter | a horizontal line
+num2: A graph of savings is a straight line from (0, 50) to (6, 170), where x is weeks and y is dollars. How many dollars are saved each week? | 20
+mc2: Which description matches a linear function with a negative rate of change? | a straight line falling from left to right | a straight line rising from left to right | a horizontal line | a curve
+num3: A cyclist's distance graph goes from (0, 0) to (1, 15), stays flat until (1.5, 15), then goes to (3, 45), where x is hours and y is km. What was the cyclist's speed during the last part, in km per hour? | 20
+mc2: A graph of a ball's height after it is thrown upward rises and then falls. Is the function linear? | No, because its graph is a curve | Yes, because its graph is a straight line | Yes, because the height changes | No, because height is always positive
+sa2: Explain what a horizontal segment means on a graph of distance from home versus time. | The distance from home does not change during that time, so the person is not moving toward or away from home.
+
+lesson: Scatter plots and lines of fit | 8.SP.A.1, 8.SP.A.2, 8.SP.A.3
+practice:
+mc2: A scatter plot shows that students who study more hours tend to score higher. What kind of association is this? | positive | negative | none | nonlinear and negative
+mc2: A scatter plot of car age and value shows that older cars tend to be worth less. What kind of association is this? | negative | positive | none | constant
+num2: A line of fit for hours studied h and test score s is s = 5h + 60. What score does it predict for 6 hours of study? | 90
+mc2: Which line is the best line of fit for a scatter plot? | a line close to most points, with about as many points above it as below it | a line through only the first and last points | a line above all the points | a line that always passes through the origin
+hint: A line of fit follows the overall trend of the data.
+num2: A line of fit for a plant's height y in cm after x weeks is y = 1.5x + 3. What height does it predict after 10 weeks, in cm? | 18
+sa2: Explain what an outlier is on a scatter plot. | An outlier is a point that lies far away from the overall pattern of the other points.
+quiz:
+mc2: A scatter plot of outdoor temperature and hot cocoa sales shows that sales go down as the temperature goes up. What kind of association is this? | negative | positive | none | equal
+num2: The line of fit y = -2.5x + 80 models a phone's battery percent after x hours. What battery percent does it predict after 12 hours? | 50
+mc2: A scatter plot of shoe size and math scores shows points spread out with no pattern. What kind of association is this? | no association | positive | negative | linear and negative
+num2: A line of fit for arm span y and height x, both in cm, is y = 1.02x - 2. What arm span does it predict for a height of 150 cm, in cm? | 151
+num3: A line of fit passes through (2, 30) and (8, 60), where x is years and y is the value of a collectible in dollars. What value does it predict at 12 years, in dollars? | 80
+mc3: The line of fit y = 3x - 120 models ice cream sales y and temperature x in degrees Fahrenheit. What does the slope mean? | Sales increase by about 3 for each 1-degree rise in temperature | Sales are 3 when the temperature is 0 | The temperature rises 3 degrees for each sale | Sales fall by 120 for each degree
+sa2: A scatter plot of age (5 to 15 years) and height shows a strong positive association. Is it reasonable to use its line of fit to predict the height of a 40-year-old? Explain. | No. People stop growing, so the trend does not continue far beyond the data. Predicting far outside the data can give results that do not make sense.
+
+lesson: Patterns in two-way tables | 8.SP.A.4
+practice:
+num1: Of 50 students, 30 play a sport and 18 of them also play an instrument. Of the 20 who do not play a sport, 8 play an instrument. How many of the 50 students play an instrument? | 26
+num2: Of 30 students who play a sport, 18 also play an instrument. What percent of the sport players play an instrument? | 60
+hint: Divide by the number of sport players, not by all students.
+mc2: Of 30 students who play a sport, 18 play an instrument. Of 20 students who do not play a sport, 8 play an instrument. Is there an association between playing a sport and playing an instrument? | Yes; 60% of sport players play an instrument but only 40% of the others do | No; the percents are the same | Yes; more students do not play a sport | No; groups of different sizes cannot be compared
+num2: In a survey, 48 of 80 people said they prefer cats to dogs. What is this relative frequency as a decimal? | 0.6
+mc2: What does a relative frequency in a two-way table show? | a count as a fraction or percent of a row, a column or the total | the total number of people surveyed | the difference between two counts | the mean of the data
+sa2: Explain how to set up a two-way table for a survey asking 7th and 8th graders whether they prefer morning or afternoon classes. | Use rows for the grades (7th, 8th) and columns for the preferences (morning, afternoon). Put the counts in each cell and add a total for each row and column.
+quiz:
+num2: In a survey, 40 of 64 eighth graders said they like to read. What percent of the eighth graders like to read? | 62.5
+num2: Of 120 people surveyed, 45 own a dog, 30 own a cat and 10 own both. How many own a dog but not a cat? | 35
+mc2: In a survey, 25 of 50 girls and 10 of 40 boys chose the art club. Which statement is supported? | Girls chose the art club at a higher rate than boys | Boys chose the art club at a higher rate than girls | The rates are equal | The data do not include boys
+num2: A survey asked 60 adults and 40 teens about coffee. 45 adults and 12 teens prefer coffee. What percent of all 100 people prefer coffee? | 57
+mc2: Of 200 shoppers, 120 used a coupon, and 90 of the coupon users spent more than $50. What is the relative frequency of spending more than $50 among coupon users? | 0.75 | 0.45 | 0.6 | 0.9
+num3: A school surveyed 150 students. 90 ride the bus, and 54 of the bus riders are 8th graders. Of the students who do not ride the bus, 18 are 8th graders. What percent of the 8th graders surveyed ride the bus? | 75
+sa2: In a survey of 60 boys and 40 girls, 30 boys and 30 girls chose soccer as their favorite sport. Leo says boys and girls like soccer equally. Explain his mistake. | He compared counts instead of relative frequencies. 30/60 = 50% of boys chose soccer but 30/40 = 75% of girls did, so girls chose soccer at a higher rate.
+
+test:
+mc1: What is the initial value of y = 7x + 15? | 15 | 7 | 22 | 0
+mc1: A scatter plot shows that as one variable increases, the other tends to decrease. What kind of association is this? | negative | positive | none | constant
+num1: A linear model is y = 4x + 9. What is y when x = 11? | 53
+num2: A linear function's graph passes through (0, -3) and (5, 7). What is its rate of change? | 2
+num2: A tank holds 600 liters and drains 40 liters per minute. How many liters remain after 9 minutes? | 240
+mc2: A gym costs $110 for 2 months, $190 for 4 months and $270 for 6 months. Which function fits? | C = 40m + 30 | C = 55m | C = 40m + 110 | C = 30m + 40
+num2: A line of fit for study time x in minutes and quiz score y is y = 0.4x + 62. What score does it predict for 50 minutes of study? | 82
+mc2: Which graph shows a function that decreases at a constant rate? | a straight line falling from left to right | a curve that falls more and more steeply | a horizontal line | a straight line rising from left to right
+mc2: A graph of a student's distance from school in miles has a horizontal segment from (10, 0.8) to (20, 0.8), where x is minutes. What happened from minute 10 to minute 20? | The student stayed 0.8 mile from school | The student walked 0.8 mile per minute | The student went back to school | The student walked 0.8 mile
+num2: In a survey, 36 of 48 adults said they prefer getting news on TV. What percent of the adults prefer TV news? | 75
+mc2: Which scatter plot pattern suggests a nonlinear association? | points that follow a curve | points close to a straight line going up | points close to a straight line going down | points with no pattern
+num3: A tree was 4 feet tall when it was planted and grew at a constant rate. Six years later it was 13 feet tall. How tall will it be 10 years after planting, in feet? | 19
+num3: A rental company charges a fixed fee plus a daily rate. A 3-day rental costs $135 and a 7-day rental costs $275. What is the fixed fee, in dollars? | 30
+num3: A line of fit passes through (10, 25) and (30, 55), where x is hours practiced and y is points scored. What score does it predict for 40 hours of practice? | 70
+num3: In a survey of 200 students, 120 have a pet. Of the pet owners, 72 have a sibling, and of the students without a pet, 48 have a sibling. What percent of the students with a sibling have a pet? | 60
+mc3: Function A is y = 3x + 10. Function B's graph is a line through (0, 4) and (2, 12). For which x-values is Function B greater than Function A? | x greater than 6 | x greater than 2 | x greater than 4 | no x-values
+mc3: Students' study time and video game time show a negative association. Which statement is correct? | Students who play more video games tend to study less, but this does not prove that gaming causes less studying | Playing video games causes students to study less | Studying causes students to play more video games | There is no relationship between the two
+num2: A line of fit for the gas left in a car's tank y, in gallons, after x miles is y = 14 - 0.04x. How many gallons does it predict are left after 150 miles? | 8
+sa2: The temperature of a pot of water cooling on a stove is modeled by y = -0.5x + 90, where x is minutes and y is degrees. Explain what the slope and the y-intercept mean. | The water starts at 90 degrees (the y-intercept) and cools 0.5 degree each minute (the slope).
+sa3: A line of fit y = 2x + 5 was made from data on practice hours (0 to 20 hours) and test scores (out of 100). Ivy says a student who practices 100 hours will score 205. Explain why this prediction does not make sense. | The data only go up to 20 hours, and a score cannot be more than 100. Using a line of fit far outside the data can give predictions that do not make sense.
+task3: A class measured a phone's battery while it charged: at 0, 10, 20, 30 and 40 minutes the battery was at 10%, 25%, 40%, 55% and 70%. (a) Is the relationship linear? Explain using the table. (b) Write a function for the battery percent b after t minutes. (c) Explain what the rate of change and initial value mean. (d) If the pattern continues, after how many minutes will the battery reach 100%? Explain whether a real battery might behave differently near 100%. | (a) Linear, because the percent rises 15 every 10 minutes; (b) b = 1.5t + 10; (c) the battery gains 1.5% per minute and started at 10%; (d) 1.5t + 10 = 100 gives 60 minutes, with a reasonable comment that charging may slow near 100%. | Function and interpretation correct with an error in part (d) or a weak explanation. | Rate of change or initial value correct, but the function is incomplete. | Little correct work.
+
+unit: Module 7: Introduction to irrational numbers using geometry | 8.NS.A.1, 8.NS.A.2, 8.EE.A.2, 8.G.B.6, 8.G.B.7, 8.G.B.8 | g8sqrt, g8cbrt, g8pyth
+el: Keep a chart of perfect squares to 15^2 and perfect cubes to 10^3, and a number line marked with rational and irrational examples; read "the square root of" and "the cube root of" aloud with students.
+
+lesson: Square roots and cube roots | 8.EE.A.2
+practice:
+num1: What is the square root of 81? | 9
+hint: What number times itself is 81?
+num1: What is the cube root of 64? | 4
+hint: What number used as a factor three times gives 64?
+num2: Solve x^2 = 144, where x is a positive length. | 12
+num2: A cube has a volume of 125 cubic cm. How long is each edge, in cm? | 5
+mc2: Which equation has the solutions 7 and -7? | x^2 = 49 | x^3 = 49 | x^2 = 14 | 2x = 49
+sa2: Explain why x^2 = 25 has two solutions but x^3 = 27 has only one. | Both 5 x 5 and (-5) x (-5) equal 25, so x = 5 or x = -5. Only 3 x 3 x 3 = 27, because (-3)^3 = -27, so x^3 = 27 has the one solution 3.
+quiz:
+num1: What is the cube root of -8? | -2
+num2: A square garden has an area of 196 square feet. How long is each side, in feet? | 14
+num2: Solve x^3 = 1000. | 10
+mc2: The square root of 50 is between which two consecutive whole numbers? | 7 and 8 | 6 and 7 | 8 and 9 | 25 and 26
+num3: A square tile has an area of 0.64 square meter. What is its perimeter, in meters? | 3.2
+num2: What is the square root of 1/16? | 1/4
+sa2: Gabe says the square root of 16 is 8 because 16 ÷ 2 = 8. Explain his mistake. | The square root is the number that, multiplied by itself, gives 16. Since 4 x 4 = 16, the square root of 16 is 4, not 8.
+
+lesson: Rational and irrational numbers | 8.NS.A.1, 8.NS.A.2
+practice:
+mc1: Which number is irrational? | the square root of 2 | the square root of 9 | 0.25 | 3/7
+mc2: Which number is rational? | 0.333... (the 3 repeats forever) | pi | the square root of 5 | the square root of 11
+num2: Write the repeating decimal 0.444... as a fraction. | 4/9
+hint: Let x = 0.444... Then 10x = 4.444... Subtract to find 9x.
+mc2: The square root of 30 is closest to which number? | 5.5 | 5 | 6 | 15
+hint: 5^2 = 25 and 6^2 = 36. Where does 30 fall between them?
+mc2: Which list is in order from least to greatest? | 2.2, the square root of 5, 2.3 | the square root of 5, 2.2, 2.3 | 2.3, 2.2, the square root of 5 | 2.2, 2.3, the square root of 5
+sa2: Explain why the square root of 2 is irrational but the square root of 4 is rational. | 4 is a perfect square, so its square root is 2, a whole number. 2 is not a perfect square, and its square root is a decimal that never ends or repeats, so it cannot be written as a fraction.
+quiz:
+num2: Write the repeating decimal 0.272727... as a fraction in simplest form. | 3/11
+mc2: The square root of 90 is between which two consecutive whole numbers? | 9 and 10 | 8 and 9 | 10 and 11 | 45 and 46
+mc2: What is the square root of 12 to the nearest tenth? | 3.5 | 3.4 | 3.6 | 6
+mc1: Which of these numbers is irrational? | pi | 22/7 | 3.14 | the square root of 49
+num2: Write 0.1666..., where only the 6 repeats, as a fraction in simplest form. | 1/6
+mc3: Which statement about rational and irrational numbers is true? | Every terminating decimal is rational | Every square root is irrational | pi is exactly equal to 22/7 | The decimal 0.101001000100001... (one more 0 each time) is rational
+num2: Write the repeating decimal 2.333... as a mixed number. | 2 1/3
+sa2: Explain how to estimate the square root of 40 to one decimal place. | 6^2 = 36 and 7^2 = 49, so the square root is between 6 and 7, closer to 6. Since 6.3^2 = 39.69 and 6.4^2 = 40.96, and 40 is closer to 39.69, it is about 6.3.
+
+lesson: The Pythagorean theorem and its converse | 8.G.B.6, 8.G.B.7
+practice:
+mc2: A triangle has sides of 7, 24 and 25. Is it a right triangle? | Yes, because 7^2 + 24^2 = 25^2 | No, because 7 + 24 is not 25 | Yes, because 25 is an odd number | No, because 7^2 + 25^2 is not 24^2
+num2: A right triangle has legs of 1 and 1. What is the square of the length of its hypotenuse? | 2
+hint: Find 1^2 + 1^2.
+mc2: A right triangle has legs of 2 and 3. How long is its hypotenuse? | the square root of 13 | 5 | 13 | the square root of 5
+num2: A right triangle has a hypotenuse of 15 and a leg of 9. How long is the other leg? | 12
+num2: A carpenter wants a right angle between a 9-foot side and a 12-foot side. How long must the diagonal between their ends be, in feet? | 15
+sa2: Explain how the converse of the Pythagorean theorem lets a builder check that a corner is square. | If two sides a and b and the diagonal c satisfy a^2 + b^2 = c^2, the angle between a and b must be 90 degrees. For example, measuring 3 feet, 4 feet and a 5-foot diagonal confirms a right angle.
+quiz:
+mc2: Which side lengths form a right triangle? | 16, 30, 34 | 16, 30, 36 | 15, 30, 34 | 16, 32, 34
+num2: A rectangular screen is 48 inches wide and 20 inches tall. How long is its diagonal, in inches? | 52
+mc2: A right triangle has legs of 4 and 6. What is the exact length of its hypotenuse? | the square root of 52 | 10 | 52 | the square root of 10
+num3: A ship sails 9 km north and then 40 km east. How far is it from its starting point, in km? | 41
+num3: A 25-foot ladder leans against a wall with its top 24 feet up the wall and its base 7 feet from the wall. The base slides out until it is 15 feet from the wall. How many feet does the top of the ladder slide down? | 4
+mc3: A triangle has sides of 5, 6 and 8. What kind of triangle is it? | not a right triangle, because 5^2 + 6^2 is not equal to 8^2 | a right triangle, because 5 + 6 > 8 | a right triangle, because 8 is the longest side | not a triangle at all
+sa2: Hana says a triangle with sides 10, 6 and 8 is not a right triangle because 10^2 + 6^2 is not equal to 8^2. Explain her mistake. | The longest side must be used as c. 6^2 + 8^2 = 36 + 64 = 100 = 10^2, so it is a right triangle.
+
+lesson: Distance on the coordinate plane and in three dimensions | 8.G.B.7, 8.G.B.8
+practice:
+num1: What is the distance between (1, 2) and (4, 6)? | 5
+hint: Draw a right triangle. The legs are the horizontal and vertical distances.
+num2: What is the distance between (-2, -3) and (4, 5)? | 10
+num2: A box is 3 ft long, 4 ft wide and 12 ft tall. How long is the longest straight rod that fits from a bottom corner to the opposite top corner, in feet? | 13
+hint: First find the diagonal of the bottom, then use it as a leg of a second right triangle.
+mc2: What is the distance between (0, 0) and (5, 3)? | the square root of 34 | 8 | 34 | the square root of 8
+num2: On a map measured in meters, a rectangular field has opposite corners at (0, 0) and (60, 80). How long is the diagonal path between these corners, in meters? | 100
+sa2: Explain how the Pythagorean theorem helps you find the distance between two points that are not on the same horizontal or vertical line. | Draw a right triangle with the segment as its hypotenuse. The legs are the difference in the x-coordinates and the difference in the y-coordinates, so the distance is the square root of (difference in x)^2 + (difference in y)^2.
+quiz:
+num2: What is the distance between (-3, 1) and (9, 6)? | 13
+num2: What is the distance between (2, -7) and (-6, 8)? | 17
+mc2: A triangle has vertices (0, 0), (6, 0) and (6, 8). What is its perimeter? | 24 | 20 | 14 | 48
+num3: A box is 2 m by 3 m by 6 m. How long is the diagonal from one bottom corner to the opposite top corner, in meters? | 7
+num3: A drone flies in a straight line from (1, 2) to (13, 7) on a map grid where each unit is 10 meters. How many meters does it fly? | 130
+mc3: Which pair of points is exactly 5 units apart? | (1, 1) and (4, 5) | (1, 1) and (5, 5) | (1, 1) and (6, 6) | (1, 1) and (4, 4)
+sa2: Lucas says the distance between (1, 1) and (4, 5) is 7 because 3 + 4 = 7. Explain his mistake. | 7 is the distance traveled along the grid lines. The straight-line distance is the hypotenuse of a right triangle with legs 3 and 4: the square root of 9 + 16 = the square root of 25 = 5.
+
+test:
+mc1: What is the square root of 121? | 11 | 60.5 | 12 | 22
+num1: What is the cube root of 216? | 6
+mc1: Which number in this list is irrational? | the square root of 7 | the square root of 16 | 0.75 | -4
+num1: Solve x^3 = -64. | -4
+mc2: The square root of 70 is between which two consecutive whole numbers? | 8 and 9 | 7 and 8 | 9 and 10 | 35 and 36
+num2: Write the repeating decimal 0.363636... as a fraction in simplest form. | 4/11
+mc2: Which list of numbers is in order from least to greatest? | 3, pi, the square root of 10 | 3, the square root of 10, pi | pi, 3, the square root of 10 | the square root of 10, pi, 3
+num2: A square has an area of 169 square inches. What is its perimeter, in inches? | 52
+num2: A right triangle has legs of 20 and 21. How long is its hypotenuse? | 29
+num2: What is the distance between (-4, 2) and (2, 10)? | 10
+mc2: Which three side lengths make a right triangle? | 12, 35, 37 | 12, 35, 38 | 12, 36, 37 | 13, 35, 37
+mc2: A right triangle has legs of 3 and 5. What is the exact length of its hypotenuse? | the square root of 34 | 8 | 34 | 4
+num3: A cube-shaped box has a volume of 343 cubic inches. What is its surface area, in square inches? | 294
+num3: A rectangular room is 12 ft by 16 ft with a 15-foot ceiling. How long is the diagonal from a corner of the floor to the opposite corner of the ceiling, in feet? | 25
+num3: A hiker walks 5 km east, then 5 km north, then 7 km east. How far is she from her starting point in a straight line, in km? | 13
+num3: A spherical tank holds 113.04 cubic meters. What is its radius, in meters? Use 3.14 for pi. | 3
+mc3: Which statement about the square root of 2 is true? | The square root of 2 is between 1.41 and 1.42 | The square root of 2 equals 1.41 | The square root of 2 is a repeating decimal | The square root of 2 equals 1.5
+mc3: Which point is the same distance from the origin as (6, 8)? | (0, -10) | (8, 8) | (6, -6) | (10, 10)
+num2: Write 0.8333..., where only the 3 repeats, as a fraction in simplest form. | 5/6
+sa2: Explain why every repeating decimal is a rational number. | A repeating decimal can always be written as a fraction. For example, if x = 0.777..., then 10x - x = 7.777... - 0.777... = 7, so 9x = 7 and x = 7/9. Since it equals a fraction, it is rational.
+sa3: Mei says the distance between (2, 3) and (8, 11) is 14 because 6 + 8 = 14. Explain her mistake and find the correct distance. | 14 is the distance along the grid lines. The straight-line distance is the hypotenuse of a right triangle with legs 6 and 8: the square root of 36 + 64 = the square root of 100 = 10.
+task3: A city is planning a rectangular park on a grid where each unit is 10 meters. Its corners are A(0, 0), B(12, 0), C(12, 9) and D(0, 9). (a) Find the length of a straight path from A to C, in meters. (b) Use the converse of the Pythagorean theorem with the side lengths AB, BC and AC to show that angle B is a right angle. (c) The path costs $15 per meter to build. What does it cost? (d) A square flower bed will have an area of 50 square meters. Between which two whole numbers is its side length? Estimate the side length to the nearest tenth and explain whether it is rational or irrational. | (a) 15 units = 150 m; (b) 120^2 + 90^2 = 14,400 + 8,100 = 22,500 = 150^2, so angle B is a right angle; (c) $2,250; (d) between 7 and 8, about 7.1 m, irrational because 50 is not a perfect square; all work shown. | Three parts correct with clear work, or all parts with one calculation error. | Distance correct but other parts incomplete or incorrect. | Little correct work.
