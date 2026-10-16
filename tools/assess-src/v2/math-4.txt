@@ -1,0 +1,893 @@
+@subject math
+@grade 4
+@program Eureka Math
+about: Fourth grade extends place value to 1,000,000 and the standard algorithms for addition and subtraction, solves metric measurement problems, multiplies and divides multi-digit numbers, measures and classifies angles and figures, builds fraction equivalence and operations with like denominators, connects fractions to decimals, and solves customary measurement problems.
+std: 4.OA.A.3 | Solve multistep word problems with whole numbers using the four operations, including problems in which remainders must be interpreted.
+std: 4.NBT.B.4 | Fluently add and subtract multi-digit whole numbers using the standard algorithm.
+std: 4.NBT.B.5 | Multiply a whole number of up to four digits by a one-digit number, and multiply two two-digit numbers, using place value strategies.
+std: 4.NBT.B.6 | Find whole-number quotients and remainders with up to four-digit dividends and one-digit divisors.
+std: 4.NF.A.2 | Compare two fractions with different numerators and different denominators.
+std: 4.NF.B.3 | Add and subtract fractions and mixed numbers with like denominators, and solve word problems with them.
+std: 4.NF.B.4 | Multiply a fraction by a whole number.
+std: 4.NF.C.6 | Use decimal notation for fractions with denominators 10 or 100.
+
+unit: Module 1: Place value, rounding and algorithms for addition and subtraction | 4.NBT.A.1, 4.NBT.A.2, 4.NBT.A.3, 4.NBT.B.4, 4.OA.A.3 | g4add
+el: Use a place value chart to the millions with labeled periods. Pre-teach "period", "expanded form", "estimate", "regroup" and "difference", read multi-step problems twice and sketch a tape diagram together.
+
+lesson: Place value and the times-ten relationship | 4.NBT.A.1
+practice:
+mc1: In 47,382, what is the value of the 7? | 7,000 | 700 | 70,000 | 7
+hint: Name the place of the 7 first.
+num2: How many times as great is the value of the 3 in 300 as the value of the 3 in 30? | 10
+hint: Each place is worth 10 times the place to its right.
+num1: 10 x 4,000 = ? | 40000
+hint: Multiplying by 10 moves each digit one place to the left.
+mc2: Which number is the same as 36 hundreds? | 3,600 | 360 | 36,000 | 306
+hint: 10 hundreds make 1 thousand. How many thousands and hundreds are in 36 hundreds?
+num2: 52,000 / 10 = ? | 5200
+hint: Dividing by 10 moves each digit one place to the right.
+sa2: Explain why the 5 in 5,000 has 10 times the value of the 5 in 500. | 5,000 is 5 thousands and 500 is 5 hundreds. One thousand is 10 hundreds, so 5 thousands is 10 times as much as 5 hundreds.
+quiz:
+mc1: What is the value of the 6 in 862,415? | 60,000 | 6,000 | 600,000 | 6
+num1: 10 x 230 = ? | 2300
+num2: 80,000 / 10 = ? | 8000
+mc2: In which number is the 4 worth 10 times as much as the 4 in 7,430? | 14,206 | 9,040 | 2,341 | 640,000
+num2: A town library has 4,500 books. The city library has 10 times as many books. How many books does the city library have? | 45000
+mc2: How many thousands are in 230,000? | 230 | 23 | 2,300 | 23,000
+sa2: Malik says the 2 in 52,000 and the 2 in 25,000 have the same value. Explain his mistake. | The 2 in 52,000 is in the thousands place, so it is worth 2,000. The 2 in 25,000 is in the ten thousands place, so it is worth 20,000, which is 10 times as much.
+
+lesson: Reading, writing and comparing multi-digit numbers | 4.NBT.A.2
+practice:
+mc1: Which shows 30,000 + 4,000 + 50 + 6 in standard form? | 34,056 | 34,560 | 3,456 | 340,056
+hint: Write a 0 in any place that has no value.
+mc1: Which is the word form of 205,318? | two hundred five thousand, three hundred eighteen | two hundred fifty thousand, three hundred eighteen | twenty-five thousand, three hundred eighteen | two hundred five thousand, thirty-one hundred eight
+hint: Read the period before the comma, say "thousand", then read the rest.
+mc2: Which symbol makes 68,904 __ 69,804 true? | < | > | = | It cannot be compared
+hint: Compare the digits from the greatest place to the least.
+mc2: Which list is in order from least to greatest? | 45,099; 45,909; 49,059 | 49,059; 45,909; 45,099 | 45,909; 45,099; 49,059 | 45,099; 49,059; 45,909
+hint: Compare the thousands digits first, then the hundreds digits.
+num2: What number is 1,000 more than 499,500? | 500500
+hint: Add 1 to the thousands place and watch for regrouping.
+sa2: Write 407,060 in expanded form and explain why there are zeros in the number. | 400,000 + 7,000 + 60. The zeros show there are no ten thousands, no hundreds and no ones.
+quiz:
+mc1: Which is 600,000 + 20,000 + 900 + 4 in standard form? | 620,904 | 62,904 | 620,094 | 602,904
+mc2: Which number is greatest? | 310,999 | 301,999 | 309,999 | 310,099
+num2: What number is 10,000 less than 93,450? | 83450
+mc2: Town A has 87,420 people and Town B has 87,240 people. Which statement is true? | Town A has 180 more people | Town B has more people | They have the same population | Town A has 18 more people
+num2: What number is 100 more than 39,950? | 40050
+mc3: Which digit makes 5_2,817 > 563,000 true? | 7 | 5 | 6 | 3
+sa2: Tia says 9,999 > 10,000 because 9 is greater than 1. Explain her mistake. | She compared the first digits without looking at their places. 10,000 has a digit in the ten thousands place and 9,999 does not, so 10,000 is greater.
+
+lesson: Rounding multi-digit whole numbers | 4.NBT.A.3
+practice:
+mc1: Round 34,682 to the nearest thousand. | 35,000 | 34,000 | 34,700 | 30,000
+hint: Is 34,682 closer to 34,000 or to 35,000?
+num2: Round 451,276 to the nearest ten thousand. | 450000
+hint: Which two ten thousands is it between? Look at the thousands digit.
+num2: Round 7,950 to the nearest hundred. | 8000
+hint: 7,950 is between 7,900 and 8,000. Where is the halfway point?
+mc2: Which number rounds to 60,000 when rounded to the nearest ten thousand? | 55,010 | 54,999 | 65,000 | 66,300
+hint: Numbers from 55,000 up to 64,999 round to 60,000.
+mc2: A stadium had 38,477 fans. A reporter rounded the number to the nearest thousand. What number did she report? | 38,000 | 39,000 | 38,500 | 40,000
+hint: Look at the hundreds digit.
+sa2: Explain how a vertical number line helps you round 2,350 to the nearest thousand. | Put 2,000 at the bottom, 3,000 at the top and 2,500 at the halfway point. 2,350 is below the halfway point, so it rounds to 2,000.
+quiz:
+num1: Round 6,481 to the nearest hundred. | 6500
+num2: Round 283,519 to the nearest hundred thousand. | 300000
+mc2: Round 999,500 to the nearest thousand. | 1,000,000 | 999,000 | 990,000 | 1,000,500
+mc2: Which is the estimate of 48,302 + 21,815 when each number is rounded to the nearest thousand? | 70,000 | 69,000 | 60,000 | 70,117
+mc3: A whole number rounded to the nearest thousand is 9,000. What is the greatest the number could be? | 9,499 | 9,500 | 8,500 | 9,999
+num3: Estimate 3,642 + 2,489 by rounding each number to the nearest hundred. What is the estimate? | 6100
+sa2: Lucy rounded 46,519 to the nearest ten thousand and got 47,000. Explain her mistake and give the correct answer. | She rounded to the nearest thousand instead of the nearest ten thousand. 46,519 is between 40,000 and 50,000 and is past the halfway point of 45,000, so it rounds to 50,000.
+
+lesson: Adding and subtracting with the standard algorithms | 4.NBT.B.4
+practice:
+num1: 34,567 + 18,945 = ? | 53512
+hint: Line up the places. Regroup when a place has 10 or more.
+num1: 60,000 - 27,384 = ? | 32616
+hint: Rename 1 ten thousand as 9 thousands, 9 hundreds, 9 tens and 10 ones.
+num2: 405,230 + 98,770 = ? | 504000
+hint: Watch for regrouping in every place.
+num2: 82,105 - 46,378 = ? | 35727
+hint: Check each place before you subtract. Do you need to rename?
+mc2: Which equation is a good way to check 9,023 - 4,567 = 4,456? | 4,456 + 4,567 = 9,023 | 9,023 + 4,567 = 13,590 | 4,456 - 4,567 = 111 | 9,023 - 4,456 = 4,457
+hint: Addition undoes subtraction.
+sa2: Explain each regrouping step when you add 2,768 + 1,457. | Ones: 8 + 7 = 15, write 5 and regroup 1 ten. Tens: 6 + 5 + 1 = 12, write 2 and regroup 1 hundred. Hundreds: 7 + 4 + 1 = 12, write 2 and regroup 1 thousand. Thousands: 2 + 1 + 1 = 4. The sum is 4,225.
+quiz:
+num1: 47,809 + 36,295 = ? | 84104
+num1: 70,302 - 45,687 = ? | 24615
+num2: 312,456 + 189,544 = ? | 502000
+num2: 500,000 - 123,456 = ? | 376544
+mc2: Which sum is closest to 80,000? | 39,800 + 40,150 | 30,500 + 40,000 | 49,999 + 40,000 | 60,000 + 30,000
+mc2: What is the missing digit? 4_,382 + 25,000 = 71,382 | 6 | 7 | 4 | 5
+sa2: Dana subtracted 5,002 - 1,876 and got 4,874. Explain her mistake and find the correct answer. | In each place she subtracted the smaller digit from the larger digit instead of renaming. She needed to rename a thousand as hundreds, tens and ones. 5,002 - 1,876 = 3,126.
+
+lesson: Multi-step addition and subtraction word problems | 4.OA.A.3, 4.NBT.B.4
+practice:
+num2: A store had 12,450 water bottles. It sold 3,875 on Saturday and 4,290 on Sunday. How many bottles are left? | 4285
+hint: Find the total sold first, or subtract one day at a time.
+num2: Farm A grew 24,600 pounds of oranges. Farm B grew 5,850 pounds more than Farm A. How many pounds did the two farms grow in all? | 55050
+hint: First find Farm B's amount, then add the two farms.
+mc2: Kaya wants a bike that costs $1,250. She has saved $486 and gets $350 for her birthday. Which expression shows how much more money she needs? | 1,250 - (486 + 350) | 1,250 + 486 - 350 | 486 + 350 + 1,250 | 1,250 - 486 + 350
+hint: Find how much she has in all, then compare it with the cost.
+num3: A school library had 8,325 books. It gave away 1,460 old books and bought 2,075 new books. How many books does it have now? | 8940
+hint: Subtract the books given away, then add the new books.
+mc2: A city recycled 38,912 cans in May and 41,276 cans in June. About how many cans is that in all, rounding each number to the nearest thousand? | 80,000 | 70,000 | 79,000 | 81,000
+hint: Round each number to the nearest thousand, then add.
+sa2: Explain how a tape diagram helps you solve this problem: A park had 9,200 visitors on Saturday, which was 2,750 more than on Sunday. How many visitors came on Sunday? | Saturday's bar is longer than Sunday's bar by 2,750. Removing that extra part leaves Sunday's bar: 9,200 - 2,750 = 6,450 visitors.
+quiz:
+num2: A truck can carry 15,000 pounds. It is loaded with 6,875 pounds of rice and 4,950 pounds of beans. How many more pounds can it carry? | 3175
+num3: A train carried 2,345 passengers. A second train carried 1,208 more passengers than the first. A third train carried 975 fewer passengers than the second. How many passengers did the 3 trains carry in all? | 8476
+num2: A plane is flying at 28,750 feet. It climbs 6,400 feet, then drops 3,150 feet. At what height is it flying now, in feet? | 32000
+mc2: A family drives 1,284 miles to visit relatives and the same distance back home. They have driven 1,950 miles so far. How many miles are left? | 618 | 666 | 1,950 | 2,568
+num3: A bakery made 3,600 rolls. It sold 2,145 rolls in the morning and 876 rolls in the afternoon. How many rolls were not sold? | 579
+mc3: Ben solved a problem and got 12,560, but his estimate was about 9,000. What should he do? | Check his work, because the answer is far from the estimate | Keep the answer, because estimates are never close | Change his estimate to 12,560 | Round his answer to 9,000
+sa2: Rosa solved this problem: "A theater sold 4,580 tickets on Friday and 3,920 tickets on Saturday. How many more tickets were sold on Friday?" She added and got 8,500. Explain her mistake and find the answer. | "How many more" asks for the difference between the two days, so she should subtract: 4,580 - 3,920 = 660 more tickets.
+
+test:
+mc1: What is the value of the 8 in 386,214? | 80,000 | 8,000 | 800,000 | 800
+num1: Round 72,649 to the nearest thousand. | 73000
+num1: 56,738 + 27,486 = ? | 84224
+num1: 90,105 - 38,267 = ? | 51838
+mc1: Which is 200,000 + 7,000 + 30 + 9 in standard form? | 207,039 | 27,039 | 207,390 | 270,039
+mc2: Which comparison is true? | 405,012 > 404,999 | 405,012 < 404,999 | 405,012 = 404,999 | 404,999 > 450,012
+num2: 10 x 6,300 = ? | 63000
+mc2: Which number rounds to 400,000 when rounded to the nearest hundred thousand? | 351,000 | 349,999 | 450,000 | 460,000
+mc2: How many tens are in 4,500? | 450 | 45 | 4,500 | 4
+mc2: Which list is in order from greatest to least? | 82,301; 82,031; 80,321 | 80,321; 82,031; 82,301 | 82,031; 82,301; 80,321 | 82,301; 80,321; 82,031
+num2: A website had 245,860 visits in March and 187,945 visits in April. How many more visits were there in March? | 57915
+num2: What number is 100,000 more than 912,500? | 1012500
+num3: A county planted 14,250 trees one year and 9,875 trees the next year. The goal is 30,000 trees. How many more trees must be planted to reach the goal? | 5875
+num3: A zoo had 6,412 visitors on Friday. Saturday had 2,389 more visitors than Friday. Sunday had 1,045 fewer visitors than Saturday. How many visitors came on Sunday? | 7756
+num3: Mr. Ruiz's car showed 38,560 miles before a road trip and 41,215 miles after it. How many miles long was the trip? | 2655
+mc3: Which estimate of 61,827 - 29,370 uses rounding to the nearest thousand? | 62,000 - 29,000 = 33,000 | 61,000 - 29,000 = 32,000 | 60,000 - 30,000 = 30,000 | 62,000 - 30,000 = 32,000
+mc3: The digit 5 appears twice in 552,148. How does the value of the first 5 compare with the value of the second 5? | It is 10 times as much | It is 100 times as much | It is the same | It is 1/10 as much
+mc2: A number rounded to the nearest ten thousand is 80,000. Which could the number be? | 76,400 | 74,900 | 85,000 | 86,100
+sa2: Use place value to explain why 10 x 2,500 = 25,000. | Multiplying by 10 makes each digit worth 10 times as much, so each digit moves one place to the left. 2 thousands become 2 ten thousands and 5 hundreds become 5 thousands, which is 25,000.
+sa2: Jae added 38,476 + 5,219 by lining up the numbers on the left and got 90,666. Explain his mistake and find the correct sum. | He lined up the digits by their left edges instead of by place value, so he added thousands to ten thousands. Lining up ones with ones gives 38,476 + 5,219 = 43,695.
+sa3: Write a two-step word problem that can be solved with 12,000 - (4,350 + 2,875). Solve it. | A school has $12,000 for supplies. It spends $4,350 on books and $2,875 on computers. How much is left? 4,350 + 2,875 = 7,225 and 12,000 - 7,225 = $4,775.
+task3: Three schools are collecting cans for a food bank. Lincoln collected 12,486 cans, Valley collected 9,758 cans and Oak collected 14,075 cans. Their goal is 40,000 cans in all. (a) Estimate the total by rounding each number to the nearest thousand. (b) Find the exact total. (c) How many more cans do they need to reach the goal? (d) If Valley collects 3,500 more cans, which school will have collected the most? Show your work and use your estimate to check that your answers are reasonable. | (a) 12,000 + 10,000 + 14,000 = 36,000; (b) 36,319; (c) 3,681; (d) Valley would have 13,258, so Oak (14,075) still has the most; clear work and a reasonableness check. | All parts correct with gaps in the work or check, or one small error with clear work. | Two parts correct, or a workable strategy with regrouping errors. | Little correct work.
+
+unit: Module 2: Unit conversions and problem solving with metric measurement | 4.MD.A.1, 4.MD.A.2, 4.NBT.B.4, 4.OA.A.3
+el: Keep a two-column conversion chart (km and m, m and cm, kg and g, L and mL) on each desk and show a real meter stick, liter bottle and 1-kilogram bag. Pre-teach "convert", "kilo-", "centi-" and "milli-".
+
+lesson: Converting metric units of length | 4.MD.A.1
+practice:
+num1: How many meters are in 1 kilometer? | 1000
+hint: "Kilo" means one thousand.
+num1: How many meters are in 4 kilometers? | 4000
+hint: Each kilometer is 1,000 meters.
+num2: How many centimeters are in 6 meters? | 600
+hint: 1 meter is 100 centimeters.
+mc2: Which is equal to 2 km 350 m? | 2,350 m | 2,035 m | 235 m | 23,500 m
+hint: Change the kilometers to meters first, then add the meters.
+num2: A trail is 5 km 80 m long. How many meters long is the trail? | 5080
+hint: 80 meters is less than 100 meters. Which places will be zero?
+sa2: Explain why the number of centimeters is greater than the number of meters when you measure the same length. | A centimeter is a much smaller unit than a meter; 100 centimeters fit in 1 meter. It takes more of a smaller unit to cover the same length, so the number is greater.
+quiz:
+num1: How many meters are in 7 kilometers? | 7000
+num2: How many centimeters are in 3 meters 45 centimeters? | 345
+mc2: Which length is the longest? | 3 km | 2,999 m | 3,000 cm | 2 km 900 m
+num2: A race is 10 kilometers long. Lia has run 6,500 meters. How many more meters does she have to run? | 3500
+mc2: Which is equal to 4,060 meters? | 4 km 60 m | 4 km 600 m | 40 km 60 m | 4 km 6 m
+num3: A ribbon is 2 meters long. Maya cuts off 3 pieces that are each 45 centimeters long. How many centimeters of ribbon are left? | 65
+sa2: Omar says 5 km 30 m = 530 m. Explain his mistake. | 5 km is 5,000 meters, not 500 meters. 5,000 + 30 = 5,030 meters.
+
+lesson: Converting metric units of mass and liquid volume | 4.MD.A.1
+practice:
+num1: How many grams are in 1 kilogram? | 1000
+hint: "Kilo" means one thousand.
+mc1: Which unit would you use to measure the medicine in a spoon? | milliliters | liters | kilograms | kilometers
+hint: A spoon holds a very small amount of liquid.
+num2: How many grams are in 6 kilograms 250 grams? | 6250
+hint: Change the kilograms to grams, then add.
+num2: How many milliliters are in 3 liters? | 3000
+hint: 1 liter is 1,000 milliliters.
+mc2: Which is equal to 7,008 grams? | 7 kg 8 g | 7 kg 80 g | 70 kg 8 g | 7 kg 800 g
+hint: How many whole kilograms are in 7,008 grams? How many grams are left?
+sa2: Make a conversion table for 1, 2, 3 and 4 liters in milliliters, and describe the pattern. | 1 L = 1,000 mL, 2 L = 2,000 mL, 3 L = 3,000 mL and 4 L = 4,000 mL. Each time the liters go up by 1, the milliliters go up by 1,000.
+quiz:
+num1: How many milliliters are in 5 liters? | 5000
+mc2: Which mass is the greatest? | 4 kg | 3,950 g | 3 kg 990 g | 399 g
+num2: A bag of flour has a mass of 2 kilograms. A baker uses 750 grams. How many grams are left? | 1250
+num2: A water jug holds 4 liters 200 milliliters. How many milliliters does it hold? | 4200
+mc2: A recipe needs 1 L 500 mL of broth. Which amount is equal? | 1,500 mL | 150 mL | 1,050 mL | 15,000 mL
+num3: Tomas pours 250 milliliters of juice into each of 6 cups from a 2-liter bottle. How many milliliters are left in the bottle? | 500
+sa2: Ava says 2 kg is less than 1,500 g because 2 is less than 1,500. Explain her mistake. | She compared numbers that use different units. 2 kg = 2,000 g, which is more than 1,500 g.
+
+lesson: Adding and subtracting mixed metric units | 4.MD.A.2, 4.NBT.B.4
+practice:
+mc2: 3 m 45 cm + 2 m 70 cm = ? | 6 m 15 cm | 5 m 15 cm | 6 m 115 cm | 5 m 25 cm
+hint: Add the centimeters. If you have 100 or more, make a new meter.
+num2: What is 5 kg 300 g - 2 kg 650 g, in grams? | 2650
+hint: You can convert both masses to grams, then subtract.
+mc2: 4 L 200 mL - 1 L 500 mL = ? | 2 L 700 mL | 3 L 300 mL | 3 L 700 mL | 2 L 300 mL
+hint: There are not enough milliliters to subtract 500. Rename 1 liter as 1,000 mL.
+num2: What is 7 km 600 m + 3 km 800 m, in meters? | 11400
+hint: Convert each length to meters, or add the meters and make a new kilometer.
+num2: A box has a mass of 1 kg 400 g. A second box is 850 g heavier. What is the mass of the second box in grams? | 2250
+hint: Change 1 kg 400 g to grams first.
+sa2: Explain two ways to solve 6 m 20 cm - 3 m 85 cm. | Convert to centimeters: 620 cm - 385 cm = 235 cm, which is 2 m 35 cm. Or rename 1 meter as 100 cm: 5 m 120 cm - 3 m 85 cm = 2 m 35 cm.
+quiz:
+mc2: 2 kg 750 g + 1 kg 600 g = ? | 4 kg 350 g | 3 kg 350 g | 4 kg 150 g | 3 kg 1,150 g
+num2: What is 9 L 100 mL - 4 L 350 mL, in milliliters? | 4750
+num2: What is 12 km 50 m - 7 km 900 m, in meters? | 4150
+mc2: Which equals 8 m 5 cm - 2 m 40 cm? | 5 m 65 cm | 6 m 45 cm | 6 m 35 cm | 5 m 45 cm
+num3: Lena's backpack has a mass of 3 kg 250 g. She adds a book with a mass of 875 g and a water bottle with a mass of 600 g. What is the new mass in grams? | 4725
+mc3: Which sum is exactly 5 L? | 2 L 650 mL + 2 L 350 mL | 2 L 650 mL + 3 L 350 mL | 2 L 500 mL + 2 L 250 mL | 4 L 900 mL + 1 L 100 mL
+sa2: Kai added 4 m 65 cm + 1 m 50 cm and wrote 5 m 115 cm. Is his answer correct? Explain a better way to write it. | The amount is correct, but 115 cm is more than 1 meter. 115 cm = 1 m 15 cm, so the sum is better written as 6 m 15 cm.
+
+lesson: Metric measurement word problems | 4.MD.A.2, 4.OA.A.3
+practice:
+num2: A bridge is 1 km 250 m long. Kim walks across it and back. How many meters does she walk? | 2500
+hint: Change the length to meters. Across and back is 2 times the length.
+num3: A pitcher holds 2 liters of water. Mr. Ali pours 4 glasses of 350 milliliters each. How many milliliters are left in the pitcher? | 600
+hint: Find how much he poured in all, then subtract from 2,000 mL.
+num2: A puppy had a mass of 3 kg 400 g. A month later it had a mass of 5 kg 150 g. How many grams did it gain? | 1750
+hint: Convert both masses to grams, then subtract.
+mc2: Which tape diagram matches "A red rope is 3 times as long as a 140 cm blue rope"? | 3 equal bars of 140 cm for red and 1 bar of 140 cm for blue | 1 bar of 140 cm for red and 3 bars of 140 cm for blue | 1 bar of 420 cm for blue and 1 bar of 140 cm for red | 3 bars of 140 cm for blue and 1 bar of 420 cm for red
+hint: The red rope is made of 3 parts, each the size of the blue rope.
+num3: A runner ran 2 km 600 m on Monday. On Tuesday she ran 1 km 900 m more than on Monday. How many meters did she run on the two days? | 7100
+hint: First find Tuesday's distance, then add both days.
+sa2: Write a word problem using liters and milliliters that can be solved with 3,000 - 1,250. Solve it. | A jug has 3 liters of water and Ana drinks 1 L 250 mL. How much water is left? 3,000 mL - 1,250 mL = 1,750 mL, which is 1 L 750 mL.
+quiz:
+num2: A cat has a mass of 4 kg 200 g. A dog is 3 times as heavy as the cat. What is the dog's mass in grams? | 12600
+num3: A fish tank holds 30 liters. It has 18 L 750 mL of water in it. Kenji adds 5 buckets of 1 L 500 mL each. How many more milliliters are needed to fill the tank? | 3750
+mc2: Pine Trail is 4 km 350 m long and Lake Trail is 3,980 m long. Which statement is true? | Pine Trail is 370 m longer | Lake Trail is 370 m longer | Pine Trail is 470 m longer | They are the same length
+num2: A roll of tape is 15 meters long. Ms. Ito uses 8 pieces that are each 75 centimeters long. How many centimeters of tape are left? | 900
+num3: Three packages have masses of 1 kg 800 g, 2 kg 450 g and 950 g. What is their total mass in grams? | 5200
+mc3: One batch of soup uses 750 mL of broth. Which is the smallest carton that has enough broth for 4 batches? | a 3 L carton | a 2 L carton | a 2 L 500 mL carton | a 750 mL carton
+sa2: A board is 2 m long and a 35 cm piece is cut off. Jin says 1 m 65 cm is left. Lily says 165 cm is left. Who is right? Explain. | Both are right. 2 m = 200 cm and 200 - 35 = 165 cm, which is the same length as 1 m 65 cm.
+
+test:
+num1: How many centimeters are in 9 meters? | 900
+num1: How many grams are in 4 kilograms? | 4000
+mc1: Which unit is best for measuring the distance between two cities? | kilometers | centimeters | milliliters | grams
+num1: How many milliliters are in 2 liters 75 milliliters? | 2075
+mc2: Which is equal to 6,040 m? | 6 km 40 m | 6 km 400 m | 60 km 40 m | 6 km 4 m
+mc2: Which mass is the least? | 1 kg 90 g | 1,100 g | 1 kg 900 g | 2 kg
+mc2: 5 L 300 mL - 2 L 800 mL = ? | 2 L 500 mL | 3 L 500 mL | 3 L 100 mL | 2 L 100 mL
+mc2: 3 km 750 m + 2 km 600 m = ? | 6 km 350 m | 5 km 350 m | 6 km 150 m | 5 km 135 m
+num2: A water bottle holds 750 mL. How many milliliters do 4 bottles hold? | 3000
+num2: A board is 3 m long. A piece 1 m 45 cm long is cut off. How many centimeters of the board are left? | 155
+num2: A melon has a mass of 1 kg 350 g and a pineapple has a mass of 2 kg 100 g. How many grams heavier is the pineapple? | 750
+num2: A path is 2 km 80 m long. How many meters long is it? | 2080
+num3: Jada swims 750 m each day for 6 days. Her goal is 5 km. How many more meters must she swim to reach her goal? | 500
+num3: A cook has 5 kg of rice. She uses 1 kg 250 g on Monday and twice that amount on Tuesday. How many grams of rice are left? | 1250
+num3: A school buys 8 bottles of paint with 450 mL in each bottle. Students use 2 L 900 mL of paint. How many milliliters of paint are left? | 700
+mc3: Which pair of lengths adds to exactly 1 km? | 650 m and 350 m | 650 m and 450 m | 500 m and 50 m | 900 m and 10 m
+mc3: A conversion table shows 1 kg = 1,000 g, 2 kg = 2,000 g and 3 kg = 3,000 g. Which rule changes kilograms to grams? | multiply the kilograms by 1,000 | add 1,000 to the kilograms | multiply the kilograms by 100 | divide the kilograms by 1,000
+mc2: Which statement is true? | 5 m is greater than 450 cm | 5 m equals 50 cm | 5 m is less than 450 cm | 5 m equals 5,000 cm
+sa2: Explain why 3 L 50 mL is not the same as 3,500 mL. | 3 L = 3,000 mL, so 3 L 50 mL = 3,050 mL. 3,500 mL would be 3 L 500 mL.
+sa2: Rico subtracted 6 kg 200 g - 2 kg 700 g and got 4 kg 500 g. Explain his mistake and find the correct answer. | He subtracted 200 from 700 instead of renaming. Rename 1 kg as 1,000 g: 5 kg 1,200 g - 2 kg 700 g = 3 kg 500 g.
+sa3: Describe how kilometers, meters and centimeters are related, and use the relationship to find how many centimeters are in 1 km. | 1 km = 1,000 m and 1 m = 100 cm, so 1 km = 1,000 x 100 = 100,000 cm.
+task3: Room 9 is planning a field day relay. (a) Each of 6 runners runs 450 m. How far do they run in all? Write the answer in meters and in kilometers and meters. (b) Each runner will drink 350 mL of water, and the coach has a 2-liter jug. Is there enough water? Tell how much extra or how much short. (c) An empty equipment bag has a mass of 3 kg 600 g. Four balls with a mass of 450 g each are put in the bag. What is the total mass? Show your conversions and explain each step. | (a) 2,700 m = 2 km 700 m; (b) 2,100 mL is needed, so the 2 L (2,000 mL) jug is 100 mL short; (c) 3,600 + 1,800 = 5,400 g = 5 kg 400 g; conversions shown and each step explained. | All parts correct with gaps in explanation, or one small error with clear work. | One or two parts correct, or conversion errors throughout. | Little correct work.
+
+unit: Module 3: Multi-digit multiplication and division | 4.OA.A.1, 4.OA.A.2, 4.OA.A.3, 4.OA.B.4, 4.NBT.B.5, 4.NBT.B.6 | g4mult, g4div
+el: Draw area models on grid paper and label each partial product. Pre-teach "times as many", "factor", "multiple", "prime", "composite", "remainder" and "partial product", and contrast "3 times as many" with "3 more than" using cubes.
+
+lesson: Multiplicative comparison and multiplying by 10, 100 and 1,000 | 4.OA.A.1, 4.OA.A.2, 4.NBT.B.5
+practice:
+mc1: Which equation means "28 is 4 times as many as 7"? | 28 = 4 x 7 | 28 = 4 + 7 | 28 = 7 - 4 | 4 = 28 x 7
+hint: "Times as many" means multiply.
+num2: A tree is 9 feet tall. A building is 5 times as tall as the tree. How many feet tall is the building? | 45
+hint: Draw a tape diagram with 5 bars, each the height of the tree.
+num1: 300 x 4 = ? | 1200
+hint: Think 3 hundreds x 4.
+num1: 6 x 1,000 = ? | 6000
+hint: How many thousands is 6 x 1 thousand?
+num2: 50 x 70 = ? | 3500
+hint: Think 5 tens x 7 tens = 35 hundreds.
+sa2: Use the number 8 to explain the difference between "3 times as many" and "3 more than". | 3 times as many as 8 is 3 x 8 = 24. 3 more than 8 is 8 + 3 = 11. "Times as many" means multiply; "more than" means add.
+quiz:
+num1: 7 x 100 = ? | 700
+num1: 40 x 60 = ? | 2400
+mc2: Lily has 6 shells. Omar has 8 times as many shells as Lily. Which equation finds s, the number of shells Omar has? | s = 8 x 6 | s = 8 + 6 | s = 8 - 6 | s = 48 / 6
+num2: A bike costs $120. A scooter costs 3 times as much as the bike. How many dollars does the scooter cost? | 360
+num3: A sunflower is 4 times as tall as a tulip. The tulip is 25 cm tall. How many centimeters taller is the sunflower than the tulip? | 75
+mc2: Which is equal to 8 x 600? | 48 hundreds | 48 tens | 48 thousands | 86 hundreds
+num2: 5 x 4,000 = ? | 20000
+sa2: Mina says 30 x 50 = 150. Explain her mistake. | 30 x 50 = 3 tens x 5 tens = 15 hundreds, which is 1,500. She forgot that tens times tens make hundreds.
+
+lesson: Multiplying up to four digits by one digit | 4.NBT.B.5, 4.OA.A.3
+practice:
+num1: 213 x 3 = ? | 639
+hint: Multiply the ones, tens and hundreds, then add the partial products.
+num1: 4 x 1,526 = ? | 6104
+hint: Use an area model with parts 1,000, 500, 20 and 6.
+mc2: Which shows the partial products for 6 x 347? | 1,800 + 240 + 42 | 18 + 24 + 42 | 1,800 + 24 + 42 | 6 + 300 + 40 + 7
+hint: Multiply 6 by each part: 300, 40 and 7.
+num2: A theater has 7 sections with 245 seats in each section. How many seats are there? | 1715
+hint: Multiply 7 by each place of 245.
+num3: A school buys 3 boxes of paper with 1,250 sheets in each box and uses 2,975 sheets. How many sheets are left? | 775
+hint: First find how many sheets are in 3 boxes.
+sa2: Describe an area model for 5 x 2,314 and use it to find the product. | Split 2,314 into 2,000, 300, 10 and 4. 5 x 2,000 = 10,000; 5 x 300 = 1,500; 5 x 10 = 50; 5 x 4 = 20. The total is 11,570.
+quiz:
+num1: 8 x 506 = ? | 4048
+num1: 3,472 x 2 = ? | 6944
+num2: A farm packs 9 crates with 1,125 apples in each crate. How many apples is that? | 10125
+mc2: Which is the best estimate for 7 x 389? | 2,800 | 2,100 | 28,000 | 400
+num3: A family drives 286 miles each day for 4 days, then 175 miles on the fifth day. How many miles do they drive in all? | 1319
+mc2: An area model has the parts 4 x 3,000, 4 x 200 and 4 x 6. Which expression does it show? | 4 x 3,206 | 4 x 326 | 4 x 3,260 | 4 + 3,206
+sa2: Tom multiplied 6 x 253 and got 1,218. Find his mistake and give the correct product. | 6 x 5 tens = 30 tens, plus 1 regrouped ten is 31 tens, so 3 hundreds were regrouped. Tom did not add those 3 hundreds to 6 x 2 hundreds = 12 hundreds. 12 + 3 = 15 hundreds, so 6 x 253 = 1,518.
+
+lesson: Dividing multi-digit numbers with remainders | 4.NBT.B.6, 4.OA.A.3
+practice:
+num1: 84 / 4 = ? | 21
+hint: Share the 8 tens first, then the 4 ones.
+mc2: 47 / 5 = ? | 9 R2 | 9 R3 | 8 R7 | 10 R3
+hint: What is the greatest multiple of 5 that is not more than 47?
+num2: 936 / 3 = ? | 312
+hint: Divide the hundreds, then the tens, then the ones.
+num2: 4,536 / 6 = ? | 756
+hint: There are not enough thousands to share. Start with 45 hundreds.
+mc2: 58 students ride in cars that hold 4 students each. How many cars are needed? | 15 | 14 | 14 R2 | 16
+hint: Can the leftover students be left behind?
+sa2: Explain how to check that 175 / 8 = 21 R7 is correct. | Multiply the quotient by the divisor and add the remainder: 21 x 8 = 168 and 168 + 7 = 175. Since that equals the dividend, the answer is correct.
+quiz:
+num1: 96 / 6 = ? | 16
+mc2: 3,257 / 4 = ? | 814 R1 | 814 R2 | 804 R1 | 815
+num2: 1,620 / 5 = ? | 324
+num2: 92 pencils are shared equally among 8 students. How many pencils are left over? | 4
+num3: A bakery makes 250 rolls and packs them in bags of 6. How many bags can it fill completely? | 41
+mc3: Which division has a remainder of 3? | 59 / 4 | 58 / 4 | 60 / 4 | 57 / 4
+sa2: Emma divided 4,812 by 4 and got 123. Explain her mistake and give the correct quotient. | 4 thousands / 4 = 1 thousand and 8 hundreds / 4 = 2 hundreds. The 1 ten cannot be shared among 4, so the tens digit is 0 and the ten is regrouped as 10 ones; 12 ones / 4 = 3. She left out the 0 in the tens place; the quotient is 1,203.
+
+lesson: Factors, multiples, prime and composite numbers | 4.OA.B.4
+practice:
+mc1: Which number is a factor of 18? | 6 | 4 | 8 | 36
+hint: A factor divides 18 with no remainder.
+num1: What is the next multiple of 7 after 49? | 56
+hint: Multiples of 7 go up by 7.
+mc2: Which number is prime? | 13 | 15 | 21 | 27
+hint: A prime number has exactly two factors: 1 and itself.
+num2: How many factors does 24 have? | 8
+hint: List the factor pairs: 1 x 24, 2 x 12 and so on.
+mc2: Which list shows all the factors of 20? | 1, 2, 4, 5, 10, 20 | 1, 2, 4, 10, 20 | 2, 4, 5, 10 | 1, 20, 40, 60
+hint: Find every pair of whole numbers that multiply to 20.
+sa2: Explain why 9 is composite even though it is odd. | A composite number has more than two factors. 9 has the factors 1, 3 and 9, so it is composite. Being odd does not make a number prime.
+quiz:
+mc1: Which number is a multiple of 6? | 42 | 32 | 26 | 16
+num2: What is the greatest factor of 36 that is less than 36? | 18
+mc2: Which number is composite? | 21 | 2 | 17 | 23
+mc2: Which number is a multiple of both 3 and 4? | 24 | 16 | 18 | 30
+num3: Mr. Lee arranges 30 chairs in equal rows. He wants more than 1 row and more than 1 chair in each row. How many different numbers of rows could he use? | 6
+mc3: Which statement is true? | Every multiple of 6 is also a multiple of 3 | Every multiple of 3 is also a multiple of 6 | 1 is a prime number | Every odd number is prime
+num2: How many prime numbers are between 20 and 30? | 2
+sa2: Hugo says 2 is not prime because it is even. Explain why he is wrong. | 2 has exactly two factors, 1 and 2, so it is prime. It is the only even prime number.
+
+lesson: Multiplying two-digit by two-digit numbers | 4.NBT.B.5
+practice:
+num1: 23 x 14 = ? | 322
+hint: Break both numbers apart: (20 + 3) x (10 + 4).
+mc2: Which partial products find 36 x 24? | 600 + 120 + 120 + 24 | 600 + 12 + 120 + 24 | 60 + 120 + 12 + 24 | 30 x 20 + 6 x 4
+hint: Multiply each part of 36 by each part of 24.
+num2: 45 x 32 = ? | 1440
+hint: Use an area model with four parts.
+num2: A school orders 28 boxes with 36 crayons in each box. How many crayons is that? | 1008
+hint: Find 28 x 36 using partial products.
+mc2: Which is the best estimate for 49 x 31? | 1,500 | 1,200 | 2,000 | 150
+hint: Round each factor to the nearest ten.
+sa2: Use place value to explain why 40 x 30 = 1,200. | 40 x 30 = 4 tens x 3 tens = 12 hundreds, and 12 hundreds is 1,200.
+quiz:
+num1: 52 x 17 = ? | 884
+num1: 64 x 25 = ? | 1600
+num2: A bus holds 48 students. How many students can 15 buses hold? | 720
+mc2: Which is one of the four partial products for 34 x 27? | 30 x 7 = 210 | 30 x 7 = 21 | 34 x 7 = 210 | 4 x 20 = 8
+num3: Maria saves $15 each week for 26 weeks. Then she spends $199 on a tablet. How many dollars does she have left? | 191
+mc3: Which product is greatest? | 40 x 33 | 42 x 31 | 41 x 32 | 43 x 30
+sa2: Lin multiplied 26 x 13 like this: 20 x 10 = 200 and 6 x 3 = 18, so 26 x 13 = 218. Explain her mistake and find the product. | She only multiplied tens by tens and ones by ones. She also needs 20 x 3 = 60 and 6 x 10 = 60. 200 + 60 + 60 + 18 = 338.
+
+test:
+num1: 6 x 700 = ? | 4200
+num1: 3 x 2,416 = ? | 7248
+num1: 875 / 5 = ? | 175
+num1: 31 x 24 = ? | 744
+mc1: Which of these numbers is prime? | 31 | 33 | 35 | 39
+mc2: 79 / 6 = ? | 13 R1 | 12 R7 | 13 R2 | 14 R1
+mc2: Ava has 9 cards. Sam has 5 times as many cards as Ava. Which equation finds s, the number of cards Sam has? | s = 5 x 9 | s = 5 + 9 | s = 9 - 5 | s = 9 / 5
+mc2: Which shows all the factor pairs of 16? | 1 x 16, 2 x 8, 4 x 4 | 1 x 16, 2 x 8 | 2 x 8, 4 x 4 | 1 x 16, 2 x 8, 3 x 5, 4 x 4
+mc2: Which is the best estimate for 4,182 / 6? | 700 | 70 | 600 | 7,000
+mc2: Which expression shows 47 x 23 with partial products? | 40 x 20 + 40 x 3 + 7 x 20 + 7 x 3 | 40 x 20 + 7 x 3 | 47 + 23 | 40 x 3 + 7 x 20
+num2: A theater sells 1,236 tickets for each of 4 shows. How many tickets does it sell in all? | 4944
+num2: A printer prints 2,345 pages and puts them in stacks of 5 pages. How many stacks does it make? | 469
+num2: A farmer plants 34 rows with 18 trees in each row. How many trees does she plant? | 612
+num3: 437 students go on a field trip in vans that hold 9 students each. How many vans are needed? | 49
+num3: A store orders 24 boxes with 36 markers in each box. It sells 650 markers. How many markers are left? | 214
+num3: Leo's dog weighs 3 times as much as his cat. Together they weigh 48 pounds. How many pounds does the dog weigh? | 36
+num3: A baker has 1,000 cookies. She packs them in boxes of 8 and sells each box for $6. How many dollars does she earn if she sells every box? | 750
+mc3: Mr. Patel has 75 photos. Each album page holds 6 photos. Which statement is true? | He fills 12 pages and has 3 photos left for a 13th page | He needs exactly 12 pages | He fills 13 pages with none left over | He fills 12 pages and has 6 photos left
+mc3: Which number is a multiple of 8 and also a factor of 64? | 32 | 24 | 12 | 128
+sa2: Describe how an area model shows 4 x 1,325 and find the product. | Split 1,325 into 1,000, 300, 20 and 5. Multiply each part by 4: 4,000 + 1,200 + 80 + 20 = 5,300.
+sa2: Ana says 51 is prime because it is odd and does not end in 5. Explain her mistake. | 51 = 3 x 17, so its factors are 1, 3, 17 and 51. It has more than two factors, so it is composite.
+sa3: 53 students need rides in cars that hold 4 students each. Ty says they need 13 cars because 53 / 4 = 13 R1. Explain whether he is right. | He is not right. 13 cars hold only 52 students, so 1 student would have no ride. The remainder means one more car is needed, so they need 14 cars.
+task3: The garden club plants 16 rows of tulip bulbs with 24 bulbs in each row. (a) How many bulbs does the club need? (b) Bulbs are sold in bags of 9. How many bags must the club buy, and how many bulbs will be extra? (c) Each bag costs $7. What is the total cost? (d) The club has $300. Is that enough? Explain. Show your work with area models or partial products and explain what the remainder means. | (a) 384 bulbs; (b) 384 / 9 = 42 R6, so 43 bags with 3 extra bulbs; (c) 43 x $7 = $301; (d) not enough, $1 short; correct work and a clear explanation of the remainder. | All parts correct with a weak explanation, or one small error with clear work. | One or two parts correct, or the remainder is ignored (42 bags). | Little correct work.
+
+unit: Module 4: Angle measure and plane figures | 4.G.A.1, 4.G.A.2, 4.G.A.3, 4.MD.C.5, 4.MD.C.6, 4.MD.C.7 | g4comp
+el: Act out quarter, half and full turns with arms and bodies. Keep a word wall with drawings for "ray", "vertex", "acute", "obtuse", "parallel", "perpendicular" and "line of symmetry", and let students use a paper square corner to test right angles.
+
+lesson: Points, lines, rays and angles | 4.G.A.1
+practice:
+mc1: Which figure goes on forever in one direction only? | ray | line segment | line | point
+hint: Which figure has exactly one endpoint?
+mc1: What is an angle that measures less than 90 degrees called? | acute | obtuse | right | straight
+hint: Compare the angle with the corner of a sheet of paper.
+mc2: Two lines cross and form 4 right angles. What are the lines called? | perpendicular lines | parallel lines | rays | line segments
+hint: What is special about lines that meet at right angles?
+num2: Two perpendicular lines cross. How many right angles do they form? | 4
+hint: Picture a plus sign.
+mc2: Which pair of streets is parallel? | two streets that run side by side and never meet | two streets that cross at a corner | two streets that meet in a T | two streets that cross at a slant
+hint: Parallel lines always stay the same distance apart.
+sa2: Explain the difference between a line segment and a ray. | A line segment has two endpoints, so it has a set length. A ray has one endpoint and goes on forever in one direction.
+quiz:
+mc1: How many endpoints does a line segment have? | 2 | 0 | 1 | 3
+mc1: Which angle is obtuse? | an angle wider than a square corner but less than a straight line | an angle that is exactly a square corner | an angle smaller than a square corner | an angle that forms a straight line
+mc2: The capital letter T is made of two segments. How are the segments related? | perpendicular | parallel | neither parallel nor perpendicular | they are the same segment
+mc2: Which capital letter has a pair of parallel segments? | H | V | L | T
+num2: How many pairs of parallel sides does a square have? | 2
+mc3: Which statement is always true? | Perpendicular lines meet at right angles | Parallel lines meet at one point | A ray has two endpoints | Every angle is acute
+num2: How many acute angles does a right triangle have? | 2
+sa2: Dev says two lines that do not cross on his paper must be parallel. Explain why he might be wrong. | Lines go on forever. Two lines that do not cross on the paper could still meet if they were extended. Only lines that stay the same distance apart and never meet are parallel.
+
+lesson: Measuring angles in degrees | 4.MD.C.5, 4.MD.C.6
+practice:
+num1: How many degrees are in a full turn? | 360
+hint: A full turn goes all the way around a circle.
+num1: How many degrees are in a straight angle? | 180
+hint: A straight angle is a half turn.
+num2: An angle turns through 1/4 of a full circle. How many degrees does it measure? | 90
+hint: Divide the 360 degrees of a full turn into 4 equal parts.
+mc2: One ray of an angle passes through 0 on a protractor's outer scale, and the other ray passes through 125 on the outer scale. What is the angle? | 125 degrees | 55 degrees | 135 degrees | 180 degrees
+hint: Read the same scale that has 0 on the first ray.
+mc2: Which is the best estimate for an angle that is a little smaller than a right angle? | 80 degrees | 100 degrees | 150 degrees | 10 degrees
+hint: A right angle is 90 degrees.
+sa2: Explain how to use a protractor to measure an angle. | Place the center mark of the protractor on the vertex. Line up one ray with 0 on a scale. Read the number on that same scale where the other ray passes.
+quiz:
+num1: How many degrees are in a right angle? | 90
+num2: A door opens 1/3 of a full turn. How many degrees does it turn? | 120
+mc2: One ray of an angle is at 0 on a protractor's inner scale. The other ray is at 70 on the inner scale and 110 on the outer scale. What is the angle? | 70 degrees | 110 degrees | 180 degrees | 40 degrees
+mc2: Which angle measure is obtuse? | 135 degrees | 90 degrees | 45 degrees | 180 degrees
+num2: How many 1-degree turns make a half turn? | 180
+mc3: Sara turns 90 degrees and then 90 degrees more in the same direction. How much has she turned in all? | a half turn | a quarter turn | a three-quarter turn | a full turn
+sa2: Ming measured an angle that looks smaller than a right angle and wrote 140 degrees. Explain his mistake and give the likely correct measure. | He read the wrong scale on the protractor. An angle smaller than a right angle must measure less than 90 degrees, so it measures 180 - 140 = 40 degrees.
+
+lesson: Adding angle measures and finding unknown angles | 4.MD.C.7
+practice:
+num2: An angle is split into two parts that measure 35 degrees and 50 degrees. How many degrees is the whole angle? | 85
+hint: When the parts do not overlap, their measures add to the whole.
+num2: A right angle is split into two angles. One is 28 degrees. How many degrees is the other angle? | 62
+hint: The two parts add to 90 degrees.
+num2: Two angles together form a straight angle. One measures 115 degrees. How many degrees is the other? | 65
+hint: A straight angle measures 180 degrees.
+mc2: Angles of x degrees and 47 degrees make a right angle. Which equation finds x? | x + 47 = 90 | x - 47 = 90 | x + 47 = 180 | x = 47 + 90
+hint: The two parts together make a right angle.
+num3: Three angles meet at a point and fill a full turn. Two of them measure 120 degrees and 150 degrees. How many degrees is the third angle? | 90
+hint: Angles that fill a full turn add to 360 degrees.
+sa2: A ray splits a straight angle into two angles. Explain why the two angles add to 180 degrees. | Together the two angles make the straight angle, and they do not overlap, so their measures add to the measure of the straight angle, which is 180 degrees.
+quiz:
+num2: Angles of 64 degrees and 26 degrees are joined without overlapping. How many degrees is the total angle? | 90
+num2: A straight angle is split into angles of 72 degrees and x degrees. What is x? | 108
+num3: A round pizza is cut through the center into 6 equal slices. How many degrees is the angle of each slice at the center? | 60
+mc2: A right angle is split into three equal angles. How many degrees is each angle? | 30 degrees | 45 degrees | 60 degrees | 3 degrees
+num3: Four angles fill a full turn around a point. They measure 95 degrees, 85 degrees, 100 degrees and x degrees. What is x? | 80
+mc3: Two angles make a straight angle. One angle is 30 degrees greater than the other. What are the two angles? | 75 and 105 degrees | 30 and 150 degrees | 90 and 90 degrees | 60 and 120 degrees
+sa2: A 35-degree angle and an unknown angle make a right angle. Jose says the unknown angle is 125 degrees because 90 + 35 = 125. Explain his mistake. | The two angles together make 90 degrees, so he should subtract: 90 - 35 = 55 degrees. Adding gives a number larger than the whole angle.
+
+lesson: Classifying two-dimensional figures and lines of symmetry | 4.G.A.2, 4.G.A.3
+practice:
+mc1: A triangle has one angle that measures exactly 90 degrees. What kind of triangle is it? | right triangle | acute triangle | obtuse triangle | equilateral triangle
+hint: Which kind of triangle is named for a 90-degree angle?
+mc2: A triangle has three sides that are each 5 cm long. Which name fits? | equilateral | scalene | right | obtuse
+hint: "Equi" means equal.
+num1: How many lines of symmetry does a square have? | 4
+hint: Count every fold that makes the two halves match, including the diagonals.
+mc2: Which quadrilateral always has two pairs of parallel sides and four right angles? | rectangle | trapezoid | rhombus | kite
+hint: Which shape must have square corners?
+num2: How many lines of symmetry does a rectangle that is not a square have? | 2
+hint: Try folding across the middle each way, then try the diagonals.
+mc2: Which triangle has no sides of equal length? | scalene | isosceles | equilateral | right isosceles
+hint: Isosceles triangles have at least two equal sides.
+sa2: Explain how you can test whether a line is a line of symmetry. | Fold the figure along the line. If the two halves match exactly, the line is a line of symmetry.
+quiz:
+mc1: A triangle has angles of 30, 60 and 90 degrees. What kind of triangle is it? | right | acute | obtuse | equilateral
+mc2: A triangle has angles of 110, 40 and 30 degrees. Which name fits? | obtuse | acute | right | equilateral
+num2: How many lines of symmetry does an equilateral triangle have? | 3
+mc2: Which capital letter has exactly one line of symmetry? | A | H | O | X
+mc3: Which statement is true? | A square is a rhombus with four right angles | Every rhombus has four right angles | Every trapezoid has four lines of symmetry | Every triangle has a right angle
+num2: How many lines of symmetry does a regular hexagon have? | 6
+sa2: Mae says a triangle cannot be both right and isosceles. Explain whether she is right. | She is not right. A triangle can have one 90-degree angle and two equal sides, like the triangle you get by cutting a square along a diagonal. It is a right isosceles triangle.
+
+test:
+mc1: What is the measure of a right angle? | 90 degrees | 180 degrees | 45 degrees | 360 degrees
+mc1: A figure has exactly one endpoint and goes on forever in one direction. What is it? | ray | line | line segment | angle
+num1: How many degrees are in a half turn? | 180
+mc1: Which angle measure is acute? | 45 degrees | 90 degrees | 120 degrees | 180 degrees
+mc2: Which lines never meet? | parallel lines | perpendicular lines | intersecting lines | lines that form a right angle
+num2: A right angle is split into angles of 38 degrees and x degrees. What is x? | 52
+num2: Two angles form a straight angle. One measures 64 degrees. How many degrees is the other angle? | 116
+mc2: An angle measures 1/8 of a full turn. What is its measure? | 45 degrees | 8 degrees | 36 degrees | 90 degrees
+mc2: A triangle has one angle greater than 90 degrees. What kind of triangle is it? | obtuse | acute | right | equilateral
+num1: How many lines of symmetry does a rectangle 4 cm by 9 cm have? | 2
+mc2: Which shape has exactly 4 lines of symmetry? | square | rectangle that is not a square | equilateral triangle | regular hexagon
+num3: A fan blade turns 45 degrees each second. How many seconds does it take to make a full turn? | 8
+num3: Four angles fill a full turn around a point. They measure 110 degrees, 75 degrees, 90 degrees and x degrees. What is x? | 85
+num3: A desk lamp arm opens from 25 degrees to 140 degrees. How many degrees did it turn? | 115
+mc3: A straight angle is split into three angles of 40 degrees, 75 degrees and x degrees. What is x? | 65 degrees | 115 degrees | 35 degrees | 245 degrees
+mc3: Which description fits a rhombus that is not a square? | 4 equal sides, 2 pairs of parallel sides and no right angles | 4 right angles and 4 equal sides | exactly 1 pair of parallel sides | 3 sides
+mc2: A protractor's outer scale reads 0 on one ray of an angle and 35 on the other ray. What is the angle? | 35 degrees | 145 degrees | 55 degrees | 135 degrees
+mc2: What angle do the hands of a clock form at 6:00? | 180 degrees | 90 degrees | 360 degrees | 60 degrees
+sa2: Explain why angles that fill a full turn add to 360 degrees. | A full turn is a whole circle, and a circle is measured as 360 one-degree angles. Angles that fill the full turn without overlapping must add to 360 degrees.
+sa2: Rory says a triangle with three 60-degree angles is a right triangle because all its angles are the same. Explain his mistake. | A right triangle must have one 90-degree angle. All of these angles are 60 degrees, less than 90, so the triangle is acute (and equilateral), not right.
+sa3: Describe a quadrilateral with exactly 2 lines of symmetry and 4 right angles. Explain how you know it has exactly 2 lines of symmetry. | A rectangle that is not a square, such as 3 by 6. Folding it across the middle in either direction makes the halves match, but folding on a diagonal does not, so it has exactly 2 lines of symmetry.
+task3: Sofia designs a pinwheel with 5 blades that meet at a center point. The angles between the blades fill a full turn. Four of the angles measure 70, 80, 65 and 75 degrees. (a) Write and solve an equation to find the fifth angle. (b) Classify each of the five angles as acute, right or obtuse. (c) For a new pinwheel, she wants 4 blades with 4 equal angles between them. What is each angle, and what kind of angle is it? (d) Explain how you would check one angle of the first design with a protractor. | (a) 70 + 80 + 65 + 75 + x = 360, x = 70 degrees; (b) all five are acute; (c) 360 / 4 = 90 degrees, right angles; (d) correct protractor steps (center on vertex, one ray on 0, read the same scale). | All parts correct with a gap in the equation or explanation, or one small error. | Two parts correct, or the fifth angle found with a calculation error. | Little correct work.
+
+unit: Module 5: Fraction equivalence, ordering and operations | 4.NF.A.1, 4.NF.A.2, 4.NF.B.3, 4.NF.B.4, 4.MD.B.4 | equiv, addlike
+el: Give each student fraction strips and a number line from 0 to 3. Pre-teach "equivalent", "decompose", "mixed number", "benchmark", "numerator" and "denominator", and post the frame "___ fourths plus ___ fourths is ___ fourths."
+
+lesson: Decomposing fractions and finding equivalent fractions | 4.NF.A.1, 4.NF.B.3
+practice:
+mc1: Which shows 3/5 decomposed into unit fractions? | 1/5 + 1/5 + 1/5 | 1/3 + 1/3 + 1/3 | 3/5 + 1/5 | 1/5 + 3/5
+hint: A unit fraction has a numerator of 1.
+num2: 2/3 = ?/12. What is the missing numerator? | 8
+hint: What do you multiply 3 by to get 12? Multiply the numerator by the same number.
+mc2: Which fraction is equivalent to 9/12? | 3/4 | 2/3 | 9/4 | 1/3
+hint: Divide the numerator and the denominator by the same number.
+num2: 5/10 = 1/?. What is the missing denominator? | 2
+hint: What number do you divide 5 by to get 1?
+mc2: Which is NOT a way to decompose 5/8? | 3/8 + 3/8 | 2/8 + 3/8 | 1/8 + 4/8 | 1/8 + 1/8 + 3/8
+hint: Add each set of parts. Which one does not make 5/8?
+sa2: Use an area model to explain why 1/4 = 3/12. | Draw a rectangle cut into 4 equal parts and shade 1 part. Cut each part into 3 equal pieces. Now there are 12 pieces and 3 are shaded, but the shaded amount did not change, so 1/4 = 3/12.
+quiz:
+num2: 3/4 = ?/100. What is the missing numerator? | 75
+mc2: Which fraction is equivalent to 4/6? | 8/12 | 4/12 | 6/4 | 2/6
+num2: 12/16 = 3/?. What is the missing denominator? | 4
+mc2: Which equation shows 7/10 decomposed correctly? | 7/10 = 5/10 + 2/10 | 7/10 = 5/5 + 2/5 | 7/10 = 7/5 + 1/5 | 7/10 = 3/10 + 3/10
+num3: A garden has 12 equal beds. Flowers grow in 2/3 of the beds. How many beds have flowers? | 8
+mc3: Which list shows only fractions equivalent to 1/2? | 3/6, 5/10, 50/100 | 2/4, 3/5, 4/8 | 1/2, 2/3, 3/4 | 6/12, 7/12, 8/16
+sa2: Jay says 2/3 = 3/4 because he added 1 to the numerator and to the denominator. Explain his mistake. | Adding the same number does not make an equivalent fraction; you must multiply or divide the numerator and denominator by the same number. 2/3 = 8/12 and 3/4 = 9/12, so they are not equal.
+
+lesson: Comparing fractions | 4.NF.A.2
+practice:
+mc1: Which symbol makes 3/8 __ 1/2 true? | < | > | = | It cannot be compared
+hint: 1/2 is the same as 4/8.
+mc2: Which fraction is greater than 1/2? | 4/7 | 3/8 | 2/5 | 5/12
+hint: Compare each numerator with half of its denominator.
+mc2: Which comparison is true? | 2/3 > 3/5 | 2/3 < 3/5 | 2/3 = 3/5 | 3/5 > 4/5
+hint: Rename both fractions with a denominator of 15.
+num2: Kiran ran 5/6 mile and Ali ran 7/12 mile. How much farther did Kiran run, in miles? | 3/12
+hint: Rename 5/6 as twelfths first.
+mc2: Order from least to greatest: 3/4, 5/8, 7/12 | 7/12, 5/8, 3/4 | 3/4, 5/8, 7/12 | 5/8, 7/12, 3/4 | 7/12, 3/4, 5/8
+hint: Rename all three fractions with a denominator of 24.
+sa2: Explain how to use 1/2 as a benchmark to compare 3/7 and 5/9. | 3/7 is less than 1/2 because 3 is less than half of 7. 5/9 is more than 1/2 because 5 is more than half of 9. So 3/7 < 5/9.
+quiz:
+mc1: Which fraction is less than 1/2? | 4/9 | 5/9 | 6/10 | 3/6
+mc2: Which symbol makes 5/6 __ 7/9 true? | > | < | = | It cannot be compared
+mc2: Which fraction is greatest? | 7/8 | 3/4 | 5/6 | 2/3
+num2: Ming used 3/4 cup of milk and Tess used 5/8 cup of milk. How many more cups did Ming use? | 1/8
+mc3: Lena says 4/5 > 5/6 because 4/5 is closer to 1. Which statement is correct? | She is wrong: 4/5 is 1/5 away from 1 and 5/6 is 1/6 away, so 5/6 is closer to 1 and greater | She is right, because fifths are bigger than sixths | She is right, because 4/5 = 24/30 and 5/6 = 20/30 | The fractions are equal
+num3: Ava ran 2/3 mile, Ben ran 5/6 mile and Cal ran 7/12 mile. How much farther did the person who ran the most go than the person who ran the least, in miles? | 3/12
+sa2: Explain why 1/2 of one pizza and 1/3 of another pizza can only be compared fairly if the pizzas are the same size. | Fractions name parts of a whole. If the wholes are different sizes, 1/3 of a very big pizza could be more than 1/2 of a small one, so the wholes must be the same to compare the fractions.
+
+lesson: Adding and subtracting fractions with like denominators | 4.NF.B.3
+practice:
+num1: 2/7 + 3/7 = ? | 5/7
+hint: Add the number of sevenths. The size of the pieces does not change.
+num1: 9/10 - 4/10 = ? | 5/10
+hint: Subtract the number of tenths.
+num2: 1 - 3/8 = ? | 5/8
+hint: 1 whole is 8/8.
+mc2: Which sum is equal to 5/6? | 2/6 + 2/6 + 1/6 | 2/3 + 3/3 | 1/6 + 1/6 + 1/6 | 3/6 + 3/6
+hint: Add the sixths in each choice.
+num2: A pitcher has 7/8 liter of juice. Sam pours 3/8 liter into one glass and 2/8 liter into another. How many liters are left in the pitcher? | 2/8
+hint: Add the amounts poured first, or subtract one amount at a time.
+sa2: Explain why 3/5 + 1/5 is 4/5 and not 4/10. | The pieces are fifths. 3 fifths plus 1 fifth is 4 fifths. The denominator names the size of the pieces, and that size does not change when you add.
+quiz:
+num1: 4/9 + 3/9 = ? | 7/9
+num1: 11/12 - 5/12 = ? | 6/12
+num2: 3/10 + 4/10 + 2/10 = ? | 9/10
+mc2: Mia walked 5/8 mile to the park and then 2/8 mile to the store. How far did she walk in all? | 7/8 mile | 7/16 mile | 3/8 mile | 10/8 mile
+num3: A class ate 2/12 of a tray of pizza at lunch and 5/12 of it after school. What fraction of the tray is left? | 5/12
+mc3: Which sum makes exactly 1 whole? | 3/8 + 5/8 | 3/8 + 4/8 | 1/2 + 1/4 | 4/5 + 2/5
+num2: 1 - 2/5 = ? | 3/5
+sa2: Theo wrote 5/9 - 2/9 = 3/0. Explain his mistake. | He subtracted the denominators. The pieces are still ninths, so only the numerators are subtracted: 5/9 - 2/9 = 3/9.
+
+lesson: Mixed numbers: renaming, adding and subtracting | 4.NF.B.3
+practice:
+mc1: Which is 11/4 written as a mixed number? | 2 3/4 | 3 3/4 | 2 1/4 | 1 7/4
+hint: How many groups of 4/4 are in 11/4? How many fourths are left?
+num2: Write 3 2/5 as a fraction greater than 1. | 17/5
+hint: Each whole is 5/5. How many fifths are in 3 wholes?
+num2: 2 3/8 + 1 4/8 = ? | 3 7/8
+hint: Add the wholes, then add the eighths.
+num2: 4 1/6 - 1 5/6 = ? | 2 2/6
+hint: There are not enough sixths to subtract. Rename 1 whole as 6/6.
+mc2: Which equals 5 1/3 - 2 2/3? | 2 2/3 | 3 1/3 | 3 2/3 | 2 1/3
+hint: Rename 5 1/3 as 4 4/3 first.
+sa2: Explain two ways to solve 3 3/4 + 1 2/4. | Add wholes and parts: 4 + 5/4 = 4 + 1 1/4 = 5 1/4. Or change both to fractions: 15/4 + 6/4 = 21/4 = 5 1/4.
+quiz:
+num1: 1 2/5 + 2 1/5 = ? | 3 3/5
+mc2: Which fraction equals 3 5/6? | 23/6 | 18/6 | 35/6 | 15/6
+num2: 6 - 2 3/4 = ? | 3 1/4
+num2: A board is 5 2/8 feet long. Jo cuts off 1 7/8 feet. How many feet long is the board now? | 3 3/8
+num3: Mr. Diaz ran 2 3/4 miles on Monday and 3 2/4 miles on Tuesday. His goal for the week is 8 miles. How many more miles must he run? | 1 3/4
+mc3: Which sum is greater than 6? | 3 3/5 + 2 4/5 | 3 1/5 + 2 3/5 | 2 2/5 + 3 2/5 | 4 1/5 + 1 3/5
+sa2: Kara says 2 1/4 - 1 3/4 = 1 2/4 because 3/4 - 1/4 = 2/4. Explain her mistake. | She subtracted the fractions in the wrong order. She needs to rename 2 1/4 as 1 5/4. Then 1 5/4 - 1 3/4 = 2/4.
+
+lesson: Multiplying a fraction by a whole number and fraction line plots | 4.NF.B.4, 4.MD.B.4
+practice:
+num1: 4 x 1/5 = ? | 4/5
+hint: Think of 4 groups of 1 fifth.
+num2: 3 x 2/7 = ? | 6/7
+hint: 3 groups of 2 sevenths is how many sevenths?
+num2: 5 x 3/4 = ? | 15/4
+hint: 5 groups of 3 fourths is 15 fourths.
+mc2: Which is equal to 3/8 + 3/8 + 3/8 + 3/8? | 4 x 3/8 | 3 x 4/8 | 4 + 3/8 | 12 x 4/8
+hint: How many groups of 3/8 are added?
+num3: A recipe uses 2/3 cup of oats for one batch. How many cups of oats are needed for 6 batches? | 4
+hint: Find 6 x 2/3, then rename the answer as a whole number.
+sa2: Use a number line to explain why 6 x 2/5 = 12/5. | Make 6 jumps of 2/5 from 0: 2/5, 4/5, 6/5, 8/5, 10/5, 12/5. Six groups of 2 fifths is 12 fifths, which is 2 2/5.
+quiz:
+num1: 7 x 1/8 = ? | 7/8
+num2: 4 x 5/6 = ? | 20/6
+num3: Each student needs 3/4 yard of ribbon. How many yards of ribbon do 8 students need? | 6
+num2: A line plot shows the lengths of 6 pencils: 2 at 4 1/4 inches, 3 at 4 2/4 inches and 1 at 4 3/4 inches. What is the difference between the longest and shortest pencils, in inches? | 2/4
+num3: A line plot shows daily rainfall: 3 days with 1/8 inch, 2 days with 3/8 inch and 1 day with 5/8 inch. What was the total rainfall for those days, in inches? | 14/8
+mc2: Which product is greater than 3? | 5 x 2/3 | 4 x 2/3 | 3 x 2/3 | 2 x 2/3
+sa2: Nico says 3 x 2/5 = 6/15. Explain his mistake. | He multiplied the denominator too. 3 x 2/5 means 3 groups of 2 fifths, which is 6 fifths, or 6/5. The pieces are still fifths.
+
+test:
+mc1: Which fraction is equivalent to 2/5? | 4/10 | 2/10 | 5/2 | 4/5
+num1: 3/8 + 4/8 = ? | 7/8
+num1: 5/6 - 1/6 = ? | 4/6
+mc1: Which is 9/4 written as a mixed number? | 2 1/4 | 1 5/4 | 2 3/4 | 9 1/4
+num2: 6 x 1/4 = ? | 6/4
+mc2: Which comparison of 3/5 and 2/3 is true? | 3/5 < 2/3 | 3/5 > 2/3 | 3/5 = 2/3 | 2/3 < 1/2
+mc2: Which fraction is equivalent to 60/100? | 6/10 | 6/100 | 60/10 | 3/10
+num2: 3 1/4 + 2 2/4 = ? | 5 3/4
+num2: 4 2/5 - 1 4/5 = ? | 2 3/5
+mc2: Which list is in order from greatest to least? | 5/6, 2/3, 1/2 | 1/2, 2/3, 5/6 | 2/3, 5/6, 1/2 | 5/6, 1/2, 2/3
+mc2: Which is the same as 4 x 2/9? | 2/9 + 2/9 + 2/9 + 2/9 | 4/9 + 2/9 | 8/36 | 4 + 2/9
+num3: A water bottle holds 3/4 liter. Ella drinks 5 full bottles on a hike. How many liters does she drink? | 3 3/4
+num3: Raj has a rope 6 feet long. He uses 1 3/8 feet and then 2 6/8 feet. How many feet of rope are left? | 1 7/8
+num3: Maria practiced piano for 3/4 hour each day for 6 days. Her goal was 5 hours. How many more hours does she need? | 1/2
+mc3: Which fraction is between 1/2 and 3/4? | 5/8 | 3/8 | 7/8 | 1/4
+mc3: Sam ate 3/8 of a pizza and Kim ate 1/4 of the same pizza. What fraction of the pizza is left? | 3/8 | 4/8 | 5/8 | 4/12
+num2: A line plot shows 4 beetles that are each 3/4 inch long and 2 beetles that are each 1 1/4 inches long. What is the total length of all 6 beetles, in inches? | 5 1/2
+mc2: Which equation shows 7/8 decomposed correctly? | 7/8 = 2/8 + 2/8 + 3/8 | 7/8 = 3/4 + 4/4 | 7/8 = 7/4 + 0/4 | 7/8 = 3/8 + 3/8
+sa2: Use a model to explain why 2/3 = 8/12. | Shade 2 of 3 equal parts of a bar. Split each third into 4 equal pieces. Now there are 12 pieces and 8 are shaded, and the shaded amount is the same, so 2/3 = 8/12.
+sa2: Leah says 2/5 + 2/5 = 4/10. Explain her mistake and give the correct sum. | She added the denominators. The pieces are fifths, so 2 fifths + 2 fifths = 4 fifths, or 4/5.
+sa3: Compare 5/8 and 4/6 using two different strategies. | Common denominators: 5/8 = 15/24 and 4/6 = 16/24, so 5/8 < 4/6. Distance from 1: 5/8 is 3/8 away from 1 and 4/6 is 2/6, or 1/3, away; 3/8 is more than 1/3, so 5/8 is farther from 1 and is the smaller fraction.
+task3: Ms. Park's class is making smoothies. Each smoothie uses 3/4 cup of yogurt, 2/4 cup of berries and 1/4 cup of juice. (a) How many cups of ingredients are in one smoothie? Write your answer as a mixed number. (b) The class makes 8 smoothies. How many cups of each ingredient are needed? (c) Yogurt comes in tubs that hold 4 cups. How many tubs must the class buy, and how much yogurt will be left over? Show your work with equations or models and explain each step. | (a) 6/4 = 1 2/4 cups; (b) yogurt 8 x 3/4 = 6 cups, berries 8 x 2/4 = 4 cups, juice 8 x 1/4 = 2 cups; (c) 2 tubs, with 2 cups left over; clear equations or models for every step. | All parts correct with gaps in the work, or one small error with clear reasoning. | One or two parts correct, or multiplies the denominators. | Little correct work.
+
+unit: Module 6: Decimal fractions | 4.NF.C.5, 4.NF.C.6, 4.NF.C.7, 4.MD.A.2
+el: Use meter sticks, 10-by-10 grids and play money to show tenths and hundredths. Pre-teach "tenth", "hundredth", "decimal point" and "equivalent", and read decimals aloud both ways ("zero point four" and "four tenths").
+
+lesson: Tenths as fractions and decimals | 4.NF.C.6
+practice:
+mc1: Which decimal equals 3/10? | 0.3 | 0.03 | 3.0 | 0.13
+hint: The first place to the right of the decimal point is the tenths place.
+num1: Write 7/10 as a decimal. | 0.7
+hint: How many tenths are there?
+mc2: A meter stick is marked in 10 equal parts. A ribbon starts at 0 and reaches the 6th mark. How long is the ribbon? | 0.6 meter | 6 meters | 0.06 meter | 1.6 meters
+hint: Each part is 1 tenth of a meter.
+num2: Write 2 4/10 as a decimal. | 2.4
+hint: The whole number goes to the left of the decimal point.
+mc2: Where is 1.5 on a number line? | halfway between 1 and 2 | halfway between 0 and 1 | at the mark for 15 | between 5 and 6
+hint: 1.5 is 1 whole and 5 tenths.
+sa2: Explain why 0.8 and 8/10 name the same number. | 0.8 means 8 tenths, because the 8 is in the tenths place. 8/10 also means 8 tenths, so they are the same number.
+quiz:
+num1: Write 9/10 as a decimal. | 0.9
+mc1: Which fraction equals 0.4? | 4/10 | 4/100 | 1/4 | 40/10
+num2: Write 5 3/10 as a decimal. | 5.3
+mc2: A 1-liter bottle has 10 equal marks. Lou fills it to the 7th mark. How many liters are in the bottle? | 0.7 | 7 | 0.07 | 1.7
+num3: A rope is cut into pieces that are each 1/10 meter long. Jo uses 13 of the pieces. How many meters of rope does she use? | 1.3
+mc2: Which number is 1 tenth more than 3.9? | 4 | 3.10 | 3.91 | 4.9
+sa2: Pia says 0.5 and 5 are the same because they both have a 5. Explain her mistake. | The 5 in 0.5 is in the tenths place, so it means 5 tenths, which is half of one whole. The 5 in 5 is in the ones place, so it means 5 wholes.
+
+lesson: Hundredths and equivalent decimals | 4.NF.C.5, 4.NF.C.6
+practice:
+mc1: Which decimal equals 45/100? | 0.45 | 4.5 | 0.045 | 45.0
+hint: The second place to the right of the decimal point is the hundredths place.
+num2: 3/10 = ?/100. What is the missing numerator? | 30
+hint: Each tenth is 10 hundredths.
+num2: Write 6/100 as a decimal. | 0.06
+hint: 6 hundredths has no tenths. What digit goes in the tenths place?
+mc2: Which decimal is equal to 0.7? | 0.70 | 0.07 | 7.0 | 0.17
+hint: 7 tenths is how many hundredths?
+num2: 4/10 + 25/100 = ? Write the answer as a fraction with a denominator of 100. | 65/100
+hint: Rename 4/10 as hundredths first.
+sa2: Explain why 0.50 has the same value as 0.5. | 0.5 is 5 tenths. Each tenth is 10 hundredths, so 5 tenths = 50 hundredths = 0.50. The zero in the hundredths place adds no value.
+quiz:
+num1: Write 83/100 as a decimal. | 0.83
+mc1: Which fraction equals 0.09? | 9/100 | 9/10 | 90/100 | 1/9
+num2: 60/100 = ?/10. What is the missing numerator? | 6
+mc2: Which decimal is 3 ones and 7 hundredths? | 3.07 | 3.7 | 3.70 | 37.0
+num2: 2/10 + 54/100 = ? Write the answer as a decimal. | 0.74
+num3: A grid has 100 equal squares. Kai shades 3 full columns of 10 squares and 8 more squares. What decimal names the shaded part of the grid? | 0.38
+sa2: Ali wrote 0.6 as 6/100. Explain his mistake. | 0.6 is 6 tenths, not 6 hundredths. 6 tenths = 6/10, which is the same as 60/100.
+
+lesson: Comparing decimals | 4.NF.C.7
+practice:
+mc1: Which symbol makes 0.6 __ 0.45 true? | > | < | = | It cannot be compared
+hint: Rename 0.6 as hundredths.
+mc2: Which decimal is greatest? | 0.9 | 0.85 | 0.09 | 0.89
+hint: Compare the tenths digits first.
+mc2: Order from least to greatest: 0.3, 0.27, 0.32 | 0.27, 0.3, 0.32 | 0.3, 0.27, 0.32 | 0.32, 0.3, 0.27 | 0.27, 0.32, 0.3
+hint: Write each decimal as hundredths: 30, 27 and 32 hundredths.
+num2: Which is greater, 1.4 or 1.38? Write the greater number. | 1.4
+hint: Both have 1 whole. Compare the tenths.
+mc2: One snail crawled 0.5 m and another crawled 0.48 m. Which statement is true? | The first snail crawled 2 hundredths of a meter farther | The second snail crawled farther | They crawled the same distance | The first snail crawled 43 hundredths of a meter farther
+hint: Write both distances as hundredths of a meter.
+sa2: Explain how a meter stick can show that 0.7 m is longer than 0.65 m. | 0.7 m is 70 cm and 0.65 m is 65 cm. On a meter stick, 70 cm is farther from 0 than 65 cm, so 0.7 m is longer.
+quiz:
+mc1: Which comparison is true? | 0.4 > 0.38 | 0.4 < 0.38 | 0.4 = 0.04 | 0.38 > 0.83
+mc2: Which decimal is less than 0.5? | 0.49 | 0.51 | 0.6 | 0.50
+mc2: Order from greatest to least: 2.1, 2.09, 2.19 | 2.19, 2.1, 2.09 | 2.09, 2.1, 2.19 | 2.1, 2.19, 2.09 | 2.19, 2.09, 2.1
+num2: Four frogs jumped 1.25 m, 1.3 m, 1.07 m and 1.2 m. How many meters did the frog that jumped farthest go? | 1.3
+mc3: Which digit makes 0._4 > 0.65 true? | 7 | 6 | 5 | 0
+num2: What decimal is halfway between 0.3 and 0.4? | 0.35
+sa2: Sam says 0.25 > 0.3 because 25 is greater than 3. Explain his mistake. | He compared 25 and 3 as whole numbers. 0.3 is 30 hundredths, which is more than 25 hundredths, so 0.25 < 0.3.
+
+lesson: Adding tenths and hundredths and money amounts | 4.NF.C.5, 4.MD.A.2
+practice:
+num2: 3/10 + 45/100 = ? Write the answer as a decimal. | 0.75
+hint: Rename 3/10 as 30/100.
+num2: Write 65 cents as a decimal number of dollars. | 0.65
+hint: A dollar is 100 cents, so 1 cent is 1 hundredth of a dollar.
+mc2: What is the value of 3 quarters and 2 dimes, in dollars? | $0.95 | $0.32 | $0.77 | $9.50
+hint: A quarter is 25 cents and a dime is 10 cents.
+num2: 2 3/10 + 1 46/100 = ? Write the answer as a decimal. | 3.76
+hint: Add the wholes, then rename the tenths as hundredths and add.
+num3: Kim has 2 one-dollar bills, 3 dimes and 4 pennies. How many dollars does she have, written as a decimal? | 2.34
+hint: Find the cents first: 3 dimes and 4 pennies.
+sa2: Explain why 6/10 + 7/100 is not 13/110. | You cannot add the denominators. Rename 6/10 as 60/100, then 60/100 + 7/100 = 67/100, or 0.67.
+quiz:
+num2: 5/10 + 32/100 = ? Write the answer as a decimal. | 0.82
+num2: Write 3 dollars and 8 cents as a decimal number of dollars. | 3.08
+num2: A pencil costs $0.45 and an eraser costs $0.30. What is the total cost in dollars? | 0.75
+mc2: Which coins have a total value of exactly 1 dollar? | 4 quarters | 10 nickels | 50 pennies | 5 dimes
+num3: Ana walks 4/10 km to school, 25/100 km to the library and 2/10 km home. How many kilometers does she walk in all? Write the answer as a decimal. | 0.85
+mc3: Which sum equals 1? | 7/10 + 30/100 | 7/10 + 3/100 | 70/100 + 3/10 + 1/10 | 5/10 + 5/100
+sa2: Jae says $1.5 is the same as 1 dollar and 5 cents. Explain his mistake. | $1.5 means 1 dollar and 5 tenths of a dollar. 5 tenths of a dollar is 50 cents, so $1.5 = $1.50, not $1.05.
+
+test:
+mc1: Which decimal equals 6/10? | 0.6 | 0.06 | 6.0 | 0.16
+num1: Write 47/100 as a decimal. | 0.47
+mc1: What is the value of the 3 in 0.53? | 3 hundredths | 3 tenths | 3 ones | 3 tens
+num2: 8/10 = ?/100. What is the missing numerator? | 80
+mc2: Which of these decimals has the greatest value? | 0.7 | 0.68 | 0.07 | 0.67
+mc2: Which decimal is equal to 2 5/100? | 2.05 | 2.5 | 2.50 | 25.0
+num2: 7/10 + 15/100 = ? Write the answer as a decimal. | 0.85
+mc2: Which statement about 0.9 and 0.89 is true? | 0.9 > 0.89 | 0.9 < 0.89 | 0.9 = 0.89 | 0.89 = 0.98
+mc2: Order from least to greatest: 1.5, 1.05, 1.45 | 1.05, 1.45, 1.5 | 1.5, 1.45, 1.05 | 1.45, 1.05, 1.5 | 1.05, 1.5, 1.45
+num2: Write 9 dollars and 25 cents as a decimal number of dollars. | 9.25
+num2: One ribbon is 0.6 m long and another is 0.35 m long. What is their total length in meters? | 0.95
+num3: Leo has 3 quarters, 1 dime and 3 pennies. How many dollars does he have, written as a decimal? | 0.88
+num3: A plant grew 3/10 cm in week 1, 45/100 cm in week 2 and 15/100 cm in week 3. How many centimeters did it grow in all? Write the answer as a decimal. | 0.9
+num3: A 1-liter jar has 25/100 liter of water in it. Mo adds 6/10 liter more. How many more liters are needed to fill the jar? Write the answer as a decimal. | 0.15
+mc3: Which number is closest to 1 on a number line? | 0.95 | 0.9 | 1.1 | 0.89
+mc3: Mia ran 1.4 km, Jon ran 1.35 km and Tai ran 1.04 km. Which statement is true? | Mia ran the farthest and Tai ran the shortest distance | Jon ran the farthest | Tai ran the farthest | Mia ran the shortest distance
+mc2: Which fraction equals 0.2? | 20/100 | 2/100 | 1/2 | 20/10
+mc2: Which number is 1 hundredth more than 0.39? | 0.4 | 0.49 | 0.391 | 1.39
+sa2: Explain how a number line from 0 to 1 shows that 0.3 = 0.30. | Split the line into 10 tenths; 0.3 is at the 3rd mark. Split each tenth into 10 hundredths; the 30th hundredth mark is at the same point. Numbers at the same point are equal.
+sa2: Kayla says 0.07 > 0.7 because 7 hundredths sounds bigger than 7 tenths. Explain her mistake. | Hundredths are smaller pieces than tenths. 0.7 = 70 hundredths, which is more than 7 hundredths, so 0.7 > 0.07.
+sa3: Write 2.46 in expanded form in two ways, once with decimals and once with fractions. Explain the value of each digit. | 2 + 0.4 + 0.06 and 2 + 4/10 + 6/100. The 2 is 2 ones, the 4 is 4 tenths and the 6 is 6 hundredths.
+task3: The school snack cart sells apples for $0.45, juice for $0.75 and muffins for $1.20. (a) Write each price as a fraction or mixed number of a dollar. (b) Order the prices from least to greatest. (c) What is the cost of one apple, one juice and one muffin together? (d) Ramon has 2 one-dollar bills, 1 quarter and 2 dimes. Can he buy one of each item? Explain how much money he would have left or how much more he would need. | (a) 45/100, 75/100 and 1 20/100; (b) $0.45, $0.75, $1.20; (c) $2.40; (d) Ramon has $2.45, so he can buy all three with $0.05 left; clear work with hundredths and a complete explanation. | All parts correct with gaps in explanation, or one small error with clear work. | Two parts correct, or decimal place value errors in several parts. | Little correct work.
+
+unit: Module 7: Exploring measurement with multiplication | 4.MD.A.1, 4.MD.A.2, 4.MD.A.3, 4.OA.A.3, 4.NF.B.4
+el: Post a customary conversion chart (feet and inches, yards and feet, pounds and ounces, gallons, quarts, pints and cups, hours and minutes) and show real rulers, yardsticks and measuring cups. Pre-teach "convert", "ounce", "pint", "quart" and "gallon".
+
+lesson: Customary length and conversion tables | 4.MD.A.1
+practice:
+num1: How many inches are in 1 foot? | 12
+hint: Look at a 12-inch ruler.
+num1: How many feet are in 1 yard? | 3
+hint: Think about a yardstick and a 1-foot ruler.
+num2: How many inches are in 5 feet? | 60
+hint: Each foot is 12 inches.
+mc2: A table shows 1 ft = 12 in, 2 ft = 24 in and 3 ft = 36 in. Which rule changes feet to inches? | multiply the feet by 12 | add 12 to the feet | multiply the feet by 10 | divide the feet by 12
+hint: What do you do to 1, 2 and 3 to get 12, 24 and 36?
+num2: How many inches are in 4 feet 7 inches? | 55
+hint: Convert the feet to inches, then add the extra inches.
+sa2: Explain why the number of inches is always 12 times the number of feet for the same length. | Each foot is made of 12 inches. If a length is some number of feet, it is that many groups of 12 inches.
+quiz:
+num1: How many feet are in 6 yards? | 18
+num2: How many inches are in 1 yard? | 36
+mc2: Which length is the longest? | 2 yards | 5 feet | 70 inches | 1 yard 2 feet
+num2: A bookshelf is 3 feet 9 inches tall. How many inches tall is it? | 45
+num3: A ribbon is 4 yards long. Nia cuts it into pieces that are each 2 feet long. How many pieces does she get? | 6
+mc2: Which length is equal to 50 inches? | 4 feet 2 inches | 5 feet | 4 feet 5 inches | 3 feet 10 inches
+sa2: Ray says 3 feet = 36 feet because 3 x 12 = 36. Explain his mistake. | 3 feet equals 36 inches, not 36 feet. He changed the number correctly but forgot that the unit changes to inches.
+
+lesson: Converting weight, liquid volume and time | 4.MD.A.1
+practice:
+num1: How many ounces are in 1 pound? | 16
+hint: A pound is a larger unit made of 16 smaller units.
+num2: How many cups are in 1 quart? | 4
+hint: 1 quart = 2 pints and 1 pint = 2 cups.
+num2: How many ounces are in 3 pounds? | 48
+hint: Multiply the pounds by 16.
+num2: How many minutes are in 4 hours? | 240
+hint: Each hour is 60 minutes.
+mc2: Which is equal to 2 gallons? | 8 quarts | 4 quarts | 16 quarts | 2 quarts
+hint: 1 gallon = 4 quarts.
+sa2: Make a table for 1, 2, 3 and 4 gallons in quarts and explain the pattern. | 1 gallon = 4 quarts, 2 = 8, 3 = 12 and 4 = 16 quarts. Each gallon adds 4 quarts, so the quarts are always 4 times the gallons.
+quiz:
+num1: How many pints are in 1 quart? | 2
+num2: How many ounces are in 5 pounds 3 ounces? | 83
+num2: How many seconds are in 3 minutes? | 180
+mc2: Which weight is the heaviest? | 3 pounds | 40 ounces | 2 pounds 15 ounces | 45 ounces
+num3: A recipe needs 3 quarts of milk. Milk is sold in 1-pint bottles. How many bottles are needed? | 6
+num2: A movie is 2 hours 15 minutes long. How many minutes long is it? | 135
+sa2: Tess says 1 gallon is less than 10 cups because 1 is less than 10. Explain her mistake. | She compared numbers with different units. 1 gallon = 4 quarts = 16 cups, which is more than 10 cups.
+
+lesson: Measurement word problems with mixed units | 4.MD.A.2, 4.OA.A.3
+practice:
+num2: Ari's puppy weighed 4 pounds 10 ounces. It gained 2 pounds 9 ounces. How many ounces does it weigh now? | 115
+hint: Convert both weights to ounces, or add pounds and ounces separately and regroup.
+num2: A board is 8 feet long. Two pieces that are each 2 feet 9 inches long are cut from it. How many inches of the board are left? | 30
+hint: Change all the lengths to inches first.
+mc2: 3 hours 40 minutes + 1 hour 35 minutes = ? | 5 hours 15 minutes | 4 hours 15 minutes | 5 hours 75 minutes | 4 hours 5 minutes
+hint: 40 + 35 minutes is more than 60 minutes. Make a new hour.
+num3: Ms. Ray buys 3 gallons of juice. She serves 30 cups. How many cups of juice are left? | 18
+hint: Change the gallons to cups. 1 gallon = 16 cups.
+num2: A runner trains for 45 minutes each day for 6 days. How many minutes does she train in all? | 270
+hint: Multiply the minutes for one day by the number of days.
+sa2: Explain two ways to solve 5 feet 3 inches - 2 feet 8 inches. | Convert to inches: 63 - 32 = 31 inches, which is 2 feet 7 inches. Or rename 1 foot as 12 inches: 4 feet 15 inches - 2 feet 8 inches = 2 feet 7 inches.
+quiz:
+num2: One box of books weighs 12 pounds 6 ounces. A second box weighs 9 pounds 13 ounces. How many ounces heavier is the first box? | 41
+mc2: 6 feet 4 inches - 3 feet 9 inches = ? | 2 feet 7 inches | 3 feet 5 inches | 3 feet 7 inches | 2 feet 5 inches
+num3: A school play rehearses for 1 hour 20 minutes on Monday. On Wednesday it rehearses twice as long as on Monday. How many minutes does it rehearse on the two days? | 240
+num3: A cooler holds 5 gallons of lemonade. Each serving is 1 cup. How many servings does the cooler hold? | 80
+num2: Jada is 4 feet 6 inches tall. Her dad is 6 feet 1 inch tall. How many inches taller is her dad? | 19
+mc3: Each of 4 bags weighs 2 pounds 5 ounces. Which is a correct way to find the total weight? | 4 x 37 ounces = 148 ounces | 4 x 25 ounces = 100 ounces | 4 x 2 + 5 = 13 ounces | 2 pounds + 4 x 5 ounces
+sa2: Omar added 2 hours 45 minutes + 1 hour 30 minutes and wrote 3 hours 75 minutes. Is his answer correct? Explain a better way to write it. | The amount is correct, but 75 minutes is more than 1 hour. 75 minutes = 1 hour 15 minutes, so the total is better written as 4 hours 15 minutes.
+
+lesson: Measurements as fractions and mixed numbers | 4.MD.A.2, 4.NF.B.4
+practice:
+mc1: What fraction of a foot is 6 inches? | 1/2 | 1/6 | 6/10 | 1/12
+hint: A foot has 12 inches. What part of 12 is 6?
+num2: How many inches are in 2 1/2 feet? | 30
+hint: Half of a foot is 6 inches.
+num2: How many ounces are in 1/4 pound? | 4
+hint: Split 16 ounces into 4 equal parts.
+num2: How many minutes are in 3/4 hour? | 45
+hint: Find 1/4 of 60 minutes first.
+mc2: Which is equal to 1 1/2 gallons? | 6 quarts | 3 quarts | 5 quarts | 12 quarts
+hint: 1 gallon is 4 quarts. What is half of a gallon?
+num3: One loaf of bread uses 3/4 cup of milk. How many cups of milk are needed for 8 loaves? | 6
+hint: Multiply 8 x 3/4 and rename the answer.
+sa2: Explain why 1/3 yard is the same length as 1 foot. | A yard is 3 feet. Splitting a yard into 3 equal parts makes each part 1 foot, so 1/3 yard = 1 foot.
+quiz:
+num2: How many inches are in 3/4 foot? | 9
+num2: How many minutes are in 2 1/4 hours? | 135
+mc2: A trail is 2 3/4 miles long. Kim walks the trail 4 times. How far does she walk? | 11 miles | 8 3/4 miles | 6 3/4 miles | 12 miles
+num2: A bag of apples weighs 1 1/4 pounds. How many ounces does it weigh? | 20
+num3: Each of 6 students drinks 1/2 quart of water. How many cups of water do they drink altogether? | 12
+mc3: Which of these lengths is the longest? | 2/3 yard | 1 3/4 feet | 20 inches | 1/2 yard
+sa2: Lu says 1/2 hour is 50 minutes because half of 100 is 50. Explain her mistake. | An hour has 60 minutes, not 100. Half of 60 is 30, so 1/2 hour is 30 minutes.
+
+test:
+num1: How many inches are in 3 feet? | 36
+num1: How many ounces are in 2 pounds? | 32
+mc1: How many quarts are in 1 gallon? | 4 | 2 | 8 | 16
+num1: How many minutes are in 2 hours? | 120
+mc2: Which length is equal to 7 feet? | 84 inches | 70 inches | 2 yards | 21 inches
+mc2: Which amount is equal to 3 pints? | 6 cups | 3 cups | 12 cups | 1 1/2 cups
+num2: A rope is 5 yards long. How many feet long is it? | 15
+num2: How many inches are in 6 feet 5 inches? | 77
+mc2: Which amount of time is the longest? | 2 hours 10 minutes | 125 minutes | 2 hours | 1 hour 59 minutes
+num2: How many minutes are in 1 3/4 hours? | 105
+num3: A baby weighed 7 pounds 12 ounces at birth. She has gained 3 pounds 7 ounces since then. How many ounces does she weigh now? | 179
+num3: A painter has 2 gallons of paint. He uses 5 quarts. How many quarts of paint are left? | 3
+num3: A team practices for 1 hour 15 minutes each day, 4 days a week. How many minutes does it practice each week? | 300
+num3: A fence is 12 yards long. Ms. Lee puts a post every 4 feet along the fence, including one at each end. How many posts does she need? | 10
+mc3: Leo's cat weighs 9 pounds. His dog weighs 3 times as much as the cat. What is the dog's weight in ounces? | 432 ounces | 27 ounces | 144 ounces | 48 ounces
+mc3: A pitcher holds 2 quarts. How many 1-cup glasses can it fill exactly? | 8 | 4 | 6 | 16
+mc2: Which list is in order from shortest to longest? | 30 inches, 1 yard, 4 feet | 1 yard, 30 inches, 4 feet | 4 feet, 1 yard, 30 inches | 30 inches, 4 feet, 1 yard
+mc2: A table shows 1 pound = 16 ounces, 2 pounds = 32 ounces and 3 pounds = ? ounces. What number belongs in the table? | 48 | 35 | 19 | 46
+sa2: Explain how to convert 3 feet 4 inches to inches. | Multiply the feet by 12: 3 x 12 = 36 inches. Then add the 4 extra inches: 36 + 4 = 40 inches.
+sa2: Zara subtracted 5 pounds 2 ounces - 1 pound 8 ounces and got 4 pounds 6 ounces. Explain her mistake and find the correct answer. | She subtracted 2 from 8 instead of renaming. Rename 1 pound as 16 ounces: 4 pounds 18 ounces - 1 pound 8 ounces = 3 pounds 10 ounces.
+sa3: Use yards and feet to explain why changing from a larger unit to a smaller unit uses multiplication. | Each yard is made of 3 feet, so a number of yards is that many groups of 3 feet. For example, 4 yards = 4 x 3 = 12 feet. It takes more of the smaller unit to make the same length.
+task3: The class is building a rectangular garden bed that is 3 yards long and 5 feet wide. (a) Find the perimeter of the bed in feet. (b) Border boards come in 4-foot lengths. How many boards are needed to go all the way around? (c) Find the area of the bed in square feet. (d) Each square foot needs 1/2 pound of plant food. Plant food is sold in 5-pound bags. How many bags must the class buy? Show your conversions and explain each step. | (a) 3 yards = 9 feet, perimeter 2 x 9 + 2 x 5 = 28 feet; (b) 28 / 4 = 7 boards; (c) 9 x 5 = 45 square feet; (d) 45 x 1/2 = 22 1/2 pounds, so 5 bags (25 pounds); conversions shown and each step explained. | All parts correct with gaps in explanation, or one small error with clear work. | Two parts correct, or forgets to convert yards to feet. | Little correct work.
+
