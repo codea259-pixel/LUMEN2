@@ -1,0 +1,718 @@
+@subject sci
+@grade 7
+@program Discovery Education Science
+about: Grade 7 integrated science (California's preferred middle school model) uses phenomena to show that organisms and nonliving things are made of atoms, that matter cycles and energy flows through organisms, ecosystems and rocks, and that natural processes and human activities shape Earth's surface, resources and biodiversity. Students model particles and reactions, analyze data, construct explanations and design solutions.
+std: MS-PS1-1 | Develop models to describe the atomic composition of simple molecules and extended structures.
+std: MS-PS1-4 | Develop a model that predicts and describes changes in particle motion, temperature and state of a pure substance when thermal energy is added or removed.
+std: MS-PS1-2 | Analyze and interpret data on the properties of substances before and after the substances interact to determine if a chemical reaction has occurred.
+std: MS-PS1-5 | Develop and use a model to describe how the total number of atoms does not change in a chemical reaction and thus mass is conserved.
+std: MS-LS1-6 | Construct a scientific explanation based on evidence for the role of photosynthesis in the cycling of matter and flow of energy into and out of organisms.
+std: MS-LS2-3 | Develop a model to describe the cycling of matter and flow of energy among living and nonliving parts of an ecosystem.
+std: MS-ESS2-1 | Develop a model to describe the cycling of Earth's materials and the flow of energy that drives this process.
+std: MS-ESS2-3 | Analyze and interpret data on the distribution of fossils and rocks, continental shapes and seafloor structures to provide evidence of the past plate motions.
+
+unit: Unit 1: Atoms, Molecules and States of Matter | MS-PS1-1, MS-PS1-4 | sci_7_n1
+el: Use ball-and-stick or paper-circle models; students name each atom aloud. Provide a particle diagram chart for solid, liquid and gas with the words close, vibrate, slide and spread out.
+
+lesson: Everything is made of atoms | MS-PS1-1
+practice:
+mc1: What is the smallest particle of an element that still has the properties of that element? | an atom | a molecule | a cell | a mixture
+hint: Elements are made of only one kind of this particle.
+mc2: A water molecule (H2O) is made of | 2 hydrogen atoms and 1 oxygen atom | 1 hydrogen atom and 2 oxygen atoms | 2 hydrogen atoms and 2 oxygen atoms | 3 oxygen atoms
+mc2: Which is a pure element? | gold (Au) | water (H2O) | salt (NaCl) | carbon dioxide (CO2)
+hint: An element is made of only one kind of atom.
+num1: How many atoms in total are in one molecule of carbon dioxide, CO2? | 3
+sa2: Explain the difference between an atom and a molecule, using oxygen gas (O2) as an example. | An atom is a single particle of an element, like one oxygen atom (O). A molecule is two or more atoms bonded together; O2 is a molecule made of two oxygen atoms.
+quiz:
+mc1: Two or more atoms bonded together form a | molecule | cell | element | mixture
+mc2: Which formula shows a molecule made of two different elements? | CH4 | O2 | N2 | He
+num1: How many hydrogen atoms are in one molecule of methane, CH4? | 4
+num2: Glucose has the formula C6H12O6. How many atoms are in one glucose molecule? | 24
+mc2: A substance is made of one carbon atom bonded to two oxygen atoms. What is its formula? | CO2 | C2O | CO | C2O2
+mc3: Sugar and water look different, yet both contain hydrogen and oxygen atoms. Why do they have different properties? | Their atoms are combined in different numbers and arrangements | They are made of different kinds of hydrogen | One has no atoms | Atoms in sugar are larger
+sa2: A student draws a model of ammonia (NH3) as one large circle. Explain how to improve the model. | Ammonia is a molecule made of one nitrogen atom bonded to three hydrogen atoms, so the model should show four circles: one for nitrogen connected to three smaller circles for hydrogen.
+
+lesson: Molecules and extended structures | MS-PS1-1
+practice:
+mc2: Table salt is made of sodium and chlorine atoms arranged in a repeating cube pattern that continues in all directions. This is an example of | an extended structure | a single small molecule | a mixture of gases | a cell
+hint: Does the pattern stop at a few atoms, or repeat?
+mc2: A diamond is made only of carbon atoms, each bonded to four others in a repeating network. What does this tell you about diamond? | It is an extended structure made of one element | It is a compound of many elements | It is a gas | It is a mixture
+mc2: Which is made of individual small molecules rather than an extended structure? | carbon dioxide gas | table salt | a diamond | a quartz crystal
+num2: In table salt (NaCl), sodium and chlorine atoms are present in a 1 to 1 ratio. A tiny salt crystal has 5,000 sodium atoms. How many chlorine atoms does it have? | 5000
+hint: Equal numbers of each.
+sa2: Graphite (pencil lead) and diamond are both made only of carbon. Explain how they can have such different properties. | Their carbon atoms are arranged differently. In diamond each atom bonds to four others in a strong 3D network, making it hard; in graphite atoms form flat layers that slide over each other, making it soft.
+quiz:
+mc1: A substance made of two or more different elements chemically combined is a | compound | element | atom | mixture of elements only
+mc2: Quartz (SiO2) is made of silicon and oxygen atoms in a repeating 3D network. How many oxygen atoms are there for every silicon atom? | 2 | 1 | 3 | 4
+mc2: Which model best represents a crystal of table salt? | alternating sodium and chlorine atoms stacked in a repeating cube | a pair of atoms floating alone | a long chain of only carbon | separate water molecules
+num2: A model of a water molecule uses 1 red bead for oxygen and 2 white beads for hydrogen. How many white beads are needed to build 15 water molecules? | 30
+num2: Ethanol has the formula C2H6O. How many atoms are in 10 ethanol molecules? | 90
+mc3: A student finds a solid that has a repeating pattern of atoms throughout, is very hard and has a high melting point. Which is the best inference? | It is an extended structure with strong bonds between atoms | It is a gas | It is made of small separate molecules held weakly | It has no atoms
+sa2: Compare a small molecule and an extended structure, giving one example of each. | A small molecule has a fixed number of atoms bonded together, like H2O or CO2. An extended structure is a repeating pattern of atoms that continues in every direction, like salt (NaCl) or diamond.
+
+lesson: Particles in motion: solids, liquids and gases | MS-PS1-4
+practice:
+mc1: In which state of matter are particles packed tightly and only vibrate in place? | solid | liquid | gas | plasma
+mc2: How do particles in a liquid move? | They stay close together but slide past one another | They are locked in fixed positions | They are far apart and move freely in all directions | They do not move
+mc2: A balloon is put in a freezer and shrinks. Which explanation is best? | The gas particles slow down and hit the balloon less often and less hard | The gas particles get smaller | Air leaks into the freezer | The balloon gains particles
+hint: How does temperature affect particle speed?
+num2: A gas takes up 30 mL in a syringe at 20 °C. When warmed, it takes up 33 mL. By how many mL did the volume increase? | 3
+sa2: Use particle motion to explain why you can smell soup cooking from across a room. | The warm soup's particles move fast; some escape as gas and spread out, moving freely and mixing with air particles until they reach your nose.
+quiz:
+mc1: In which state do particles have the most energy and move freely to fill their container? | gas | solid | liquid | none of these
+mc2: Why does a liquid take the shape of its container while a solid does not? | Liquid particles can slide past one another; solid particles are locked in place | Solid particles move faster | Liquids have no particles | Solids are always heavier
+mc2: A tire's air pressure is higher on a hot afternoon than on a cold morning. Which explanation is best? | Faster-moving air particles hit the inside of the tire more often and harder | The tire gets more air particles from the sun | Heat makes particles larger | Cold air has no particles
+num2: A balloon has a volume of 2.4 liters in a warm room and 2.1 liters outside in the cold. What is the decrease in volume in liters? | 0.3
+num2: A 50 g ice cube has a volume of about 54.5 cubic centimeters. When it melts, the water has a volume of 50 cubic centimeters. How many cubic centimeters smaller is the water than the ice? | 4.5
+mc3: Ice floats on liquid water. What does this tell you about the particles in ice? | They are spaced a little farther apart than in liquid water, so ice is less dense | They are packed more tightly than in liquid water | They have stopped moving completely | They are larger than water particles
+sa2: Draw or describe particle models for the same substance as a solid, a liquid and a gas. Explain what differs. | Solid: particles tightly packed in a pattern, vibrating. Liquid: particles close but not in a pattern, sliding past each other. Gas: particles far apart, moving fast in all directions. Particle spacing and speed differ; the particles themselves are the same.
+
+lesson: Adding and removing thermal energy: changes of state | MS-PS1-4
+practice:
+mc1: The change from a liquid to a gas is | evaporation (or boiling) | melting | freezing | condensation
+mc2: As ice melts at 0 °C, its temperature stays at 0 °C even though heat is added. Where does the energy go? | It breaks the particles out of their fixed positions | It is destroyed | It makes the ice colder | It turns into new atoms
+hint: Think about what changes when a solid becomes a liquid.
+mc2: When water vapor in the air touches a cold window and forms droplets, thermal energy is | removed from the water vapor, so its particles slow down and come together | added to the water vapor | created by the window | not involved
+num2: Heating data for water: 0 min, -10 °C; 2 min, 0 °C; 6 min, 0 °C; 10 min, 40 °C. For how many minutes did the temperature stay at 0 °C? | 4
+hint: Find when the temperature first reached 0 °C and when it began rising again.
+sa2: Explain what happens to the particles of water as a pot is heated from room temperature until it boils. | The particles gain energy and move faster, raising the temperature; at 100 °C (at sea level) they have enough energy to break away from the liquid and become gas, forming bubbles of water vapor.
+quiz:
+mc1: The change from liquid to solid is | freezing | melting | boiling | evaporation
+mc2: Wax is heated. Its temperature rises to 60 °C, stays at 60 °C for 5 minutes and then rises again. What happened during the 5 minutes? | The wax was melting | The heater turned off | The wax was freezing | The wax became a gas instantly
+num2: Data: a pure substance was heated. Temperatures every minute: 20, 35, 50, 62, 62, 62, 62, 75, 88 °C. What is its melting or boiling point in °C, shown by the flat part? | 62
+num2: Water was heated from 22 °C to 100 °C in 13 minutes before boiling. What was the mean rate of temperature rise in °C per minute? | 6
+mc2: Which change happens when thermal energy is removed from a substance? | Its particles slow down, and it may condense or freeze | Its particles move faster | It always boils | Its atoms change into a new element
+mc3: Dry ice (solid carbon dioxide) turns directly into a gas at room temperature. Which statement about this change is correct? | Thermal energy from the room is added to the dry ice, and the particles spread out as a gas | Thermal energy is removed from the dry ice | New atoms are made | The carbon dioxide becomes a liquid first
+cer3: A class heated 100 g of a white solid and recorded: 0 min 25 °C, 2 min 45 °C, 4 min 54 °C, 6 min 54 °C, 8 min 54 °C, 10 min 70 °C, 12 min 85 °C. The solid became a clear liquid between 4 and 8 minutes. Make a claim about what was happening between 4 and 8 minutes. Use the data as evidence and explain your reasoning with a particle model. | Claim: the substance was melting between 4 and 8 minutes. Evidence: the temperature stayed at 54 °C from 4 to 8 minutes while heat was still being added, and the solid turned into a liquid during that time; before and after, the temperature rose. Reasoning: during melting, added thermal energy is used to break particles free from their fixed positions instead of making them move faster, so the temperature stays constant until all the solid has melted.
+
+test:
+mc1: Which is the smallest unit of an element? | atom | molecule | compound | crystal
+mc1: In which state of matter do particles slide past each other but stay close together? | liquid | solid | gas | none
+mc1: What is the change from gas to liquid called? | condensation | evaporation | melting | sublimation
+mc2: How many oxygen atoms are in one molecule of O3 (ozone)? | 3 | 1 | 2 | 6
+mc2: Which formula represents a compound? | NaCl | O2 | Fe | N2
+mc2: Which statement about atoms in a molecule of water is true? | Two hydrogen atoms are bonded to one oxygen atom | One hydrogen atom is bonded to two oxygen atoms | The atoms are not bonded | Water contains carbon atoms
+mc2: Which is an extended structure? | a quartz crystal | a single oxygen molecule | a water molecule | a carbon dioxide molecule
+mc2: When a gas is heated in a closed container, its particles | move faster and push harder on the walls | slow down | get larger | stop moving
+mc2: A puddle disappears on a sunny day. What happened to the water particles? | They gained energy and escaped into the air as water vapor | They were destroyed | They soaked into the Sun | They froze
+mc2: During boiling, the temperature of pure water stays constant because | added energy is used to separate particles into a gas | the heater stops working | energy is destroyed | the water loses particles that are heavy
+mc3: A substance has a definite volume but takes the shape of its container. Which model of its particles is correct? | close together and sliding past each other | locked in fixed positions | far apart and moving freely | not moving at all
+mc3: A sealed bag of chips puffs up when taken from the beach to the top of a cold mountain. A student says the particles got bigger. Which is the best response? | The particles did not get bigger; lower outside pressure lets the gas inside spread out more | The particles did get bigger | The bag gained new particles | The particles stopped moving
+num1: How many atoms are in one molecule of ammonia, NH3? | 4
+num2: Sucrose (table sugar) has the formula C12H22O11. How many atoms are in one sucrose molecule? | 45
+num2: How many hydrogen atoms are in 5 molecules of water (H2O)? | 10
+num2: Heating data: 0 min 10 °C, 3 min 40 °C, 6 min 70 °C, 9 min 78 °C, 12 min 78 °C, 15 min 78 °C. What is the boiling point of the liquid in °C? | 78
+num2: A liquid was 10 °C at 0 minutes and 70 °C at 6 minutes. What was the mean rate of temperature rise in °C per minute? | 10
+mc2: Which change removes thermal energy from a substance? | freezing | melting | boiling | evaporation
+mc2: Graphite and diamond are both pure carbon. Why are their properties different? | Their carbon atoms are arranged differently | One contains hydrogen | Diamond is a mixture | Graphite has no atoms
+sa2: Use a particle model to explain why a gas can be compressed into a smaller space but a solid cannot easily be compressed. | Gas particles are far apart with lots of empty space between them, so pushing them closer is easy; solid particles are already tightly packed, so there is little space to remove.
+sa2: Describe how the motion and spacing of particles change as liquid water freezes into ice. | As thermal energy is removed, particles slow down; they lock into fixed positions in a pattern and only vibrate, and in ice they are spaced slightly farther apart than in liquid water.
+sa3: A student models a molecule of methane (CH4) with four black balls and one white ball. Evaluate the model. | The model has the right total of 5 atoms, but in the usual color code carbon is black and hydrogen is white, so the colors are reversed: it should show 1 black carbon ball in the center with 4 white hydrogen balls each bonded to it.
+cer3: Two equal masses of the same liquid were placed in identical dishes. Dish A was at 35 °C and Dish B at 15 °C. After 2 hours, Dish A had lost 18 g and Dish B had lost 6 g to evaporation. Make a claim about how temperature affects evaporation. Use the data as evidence and explain your reasoning using a particle model. | Claim: a higher temperature makes a liquid evaporate faster. Evidence: Dish A at 35 °C lost 18 g in 2 hours, three times as much as Dish B at 15 °C, which lost 6 g. Reasoning: at higher temperature, particles have more kinetic energy on average, so more of them move fast enough to escape the liquid's surface and become gas.
+
+unit: Unit 2: Chemical Reactions - New Substances from Old | MS-PS1-2, MS-PS1-3, MS-PS1-5, MS-PS1-6, MS-ETS1-1, MS-ETS1-2, MS-ETS1-3, MS-ETS1-4
+el: Provide a property chart (color, density, melting point, solubility, smell) with picture icons. Use the frame: "Before the reaction ___; after the reaction ___; this shows a new substance because ___."
+
+lesson: Properties identify substances | MS-PS1-2
+practice:
+mc1: Which is a characteristic property that can help identify a pure substance? | density | mass | volume | shape
+hint: It stays the same no matter how much of the substance you have.
+num2: A metal block has a mass of 54 g and a volume of 20 cubic centimeters. What is its density in g per cubic centimeter? | 2.7
+hint: Density equals mass divided by volume.
+mc2: A reference table lists densities: aluminum 2.7, iron 7.9, copper 9.0 and gold 19.3 g per cubic centimeter. A metal block has a density of 2.7 g per cubic centimeter. It is most likely | aluminum | iron | copper | gold
+mc2: Two clear liquids look the same. Which test would best tell them apart? | measure the boiling point of each | compare their colors | compare how much is in each cup | look at the shape of each cup
+sa2: A student says a large piece of iron has a greater density than a small nail made of the same iron. Explain why this is wrong. | Density is a characteristic property; the large piece has more mass but also more volume in the same ratio, so its density is the same as the nail's.
+quiz:
+mc1: The amount of matter in an object is its | mass | volume | density | temperature
+num2: A liquid has a mass of 39.5 g and a volume of 50 mL. What is its density in g per mL? | 0.79
+num2: A gold ring has a density of 19.3 g per cubic centimeter and a volume of 2 cubic centimeters. What is its mass in g? | 38.6
+mc2: An object with a density of 0.9 g per cubic centimeter is placed in water (1.0 g per cubic centimeter). What happens? | It floats | It sinks | It dissolves | It boils
+mc2: Which set of properties would best identify an unknown white powder? | melting point, solubility in water and density | color and mass | size of the pile and shape | the weight of the jar
+mc3: Sample A: density 2.7, melts at 660 °C. Sample B: density 2.7, melts at 660 °C. Sample C: density 7.9, melts at 1,538 °C. Which conclusion is best supported? | A and B are likely the same substance; C is different | All three are the same substance | A and C are the same substance | None can be compared
+sa2: Explain why scientists use several properties rather than just one to identify a substance. | Different substances can share one property, such as color or even density, but it is very unlikely they share several characteristic properties like density, melting point and solubility.
+
+lesson: Evidence of a chemical reaction | MS-PS1-2
+practice:
+mc2: Which observation is the best evidence that a chemical reaction happened? | A new substance with different properties formed | A solid changed shape | Ice melted | Sugar dissolved in water
+hint: In a chemical reaction, new substances form.
+mc2: When vinegar and baking soda are mixed, bubbles form and the mixture gets colder. Which of these is evidence of a chemical reaction? | both the gas forming and the temperature change | only that the mixture is wet | only that the cup is plastic | neither one
+mc2: Which is a physical change, not a chemical change? | chopping wood | burning wood | rusting iron | baking a cake
+mc2: Two clear solutions are mixed and a cloudy yellow solid forms. What is the solid called? | a precipitate | a solvent | a mixture of the same substances | an element
+sa2: A student melts chocolate and says a chemical reaction happened because it changed from solid to liquid. Explain why this is not a chemical reaction. | Melting is a physical change; the chocolate is still the same substance with the same properties and it can harden again. No new substance formed.
+hint: Did a new substance form?
+quiz:
+mc1: Iron combining with oxygen to form rust is a | chemical change | physical change | change of state | mixture
+mc2: Data: before mixing, Substance 1 is a shiny gray solid that does not dissolve; Substance 2 is a clear liquid. After mixing, a gas bubbles off and a white solid that dissolves in water remains. What can be concluded? | A chemical reaction occurred because substances with new properties formed | Only a physical change occurred | Nothing happened | The gray solid just melted
+mc2: Which observation alone could be misleading as evidence of a chemical reaction? | bubbles forming when water boils | a new solid forming from two liquids | a new smell from burning toast | a color change as a banana ripens
+num2: Before a reaction, a liquid was 22 °C. After adding a powder, it was 31 °C. What was the temperature change in °C? | 9
+num2: A substance melted at 801 °C before an experiment. A white solid made after the reaction melted at 186 °C. By how many °C do the melting points differ? | 615
+mc3: Why is a different melting point after mixing strong evidence of a chemical reaction? | Melting point is a characteristic property, so a new value means a new substance | Melting point changes with the amount of substance | Melting point is the same for all solids | Melting point measures color
+sa2: Describe two observations you could make to decide whether cooking an egg is a chemical change. | The clear liquid egg white becomes a white solid that cannot change back, and it has a different texture and smell; these new properties show new substances formed.
+
+lesson: Atoms rearrange; mass is conserved | MS-PS1-5
+practice:
+mc2: In a chemical reaction, what happens to atoms? | They rearrange to form new substances, but none are created or destroyed | They are destroyed | New atoms are created | They turn into energy
+hint: Count atoms on both sides of a reaction.
+num2: In the reaction 2H2 + O2 makes 2H2O, how many hydrogen atoms are on the reactant side? | 4
+hint: 2H2 means two molecules, each with 2 hydrogen atoms.
+mc2: Steel wool is burned on a balance in an open dish and its mass increases. Which explanation is best? | Oxygen atoms from the air combined with the iron | New atoms were created by the flame | The balance broke | Iron atoms got heavier
+num2: 30 g of reactants react in a sealed container. What is the total mass of the products in g? | 30
+sa2: Vinegar and baking soda react in an open cup and the mass goes down. Explain why this does not break the law of conservation of mass. | One product is carbon dioxide gas, which escaped into the air and was not weighed. If the reaction were sealed, the total mass would stay the same.
+quiz:
+mc1: Which statement describes the law of conservation of mass? | Matter is not created or destroyed in a chemical reaction | Mass always increases in a reaction | Mass always decreases in a reaction | Only gases have mass
+num2: In the reaction CH4 + 2O2 makes CO2 + 2H2O, how many oxygen atoms are on the product side? | 4
+num2: A sealed bag contains 85 g of reactants. After the reaction, a gas inflates the bag. What is the mass of the bag's contents in g? | 85
+mc2: A model shows 2 red and 2 blue beads before a reaction and 3 red and 2 blue beads after. Why is the model wrong? | Atoms cannot be created, so the number of each kind must stay the same | Atoms must change color | The model should have fewer beads after | Models cannot show reactions
+num2: 12 g of carbon burns completely with 32 g of oxygen. What mass of carbon dioxide forms in g? | 44
+mc3: Wood burns in a fireplace and only a small pile of ash remains. Where did most of the mass go? | Into gases such as carbon dioxide and water vapor that went into the air | It was destroyed by the fire | It turned into light | It sank into the ground
+cer3: A class reacted 50 g of vinegar with 5 g of baking soda. In an open cup the final mass was 53 g. In a sealed bottle with a balloon on top, the final mass was 55 g and the balloon inflated. Make a claim about whether mass is conserved in this reaction. Use the data as evidence and explain your reasoning using atoms. | Claim: mass is conserved in the reaction. Evidence: the starting mass was 55 g; in the sealed bottle the final mass was also 55 g. In the open cup the mass dropped by 2 g, and in the sealed bottle the balloon filled with gas. Reasoning: atoms rearrange into new substances but are not created or destroyed; in the open cup the carbon dioxide gas escaped, so 2 g was not measured, while the sealed bottle trapped every atom.
+
+lesson: Synthetic materials from natural resources | MS-PS1-3
+practice:
+mc1: A material that people make through chemical reactions, instead of finding in nature, is called | synthetic | natural | an element | a mineral
+mc2: Most plastics are made from which natural resource? | petroleum (crude oil) | sand | iron ore | wool
+hint: Think about fossil fuels.
+mc2: Nylon, used in jackets and ropes, is made by chemical reactions that join small molecules into long chains. Why do engineers make materials like nylon? | to get useful properties, such as strength and light weight, that natural materials may lack | because natural materials do not exist | because nylon grows on trees | to make materials that break easily
+mc2: Glass is made by melting sand with other minerals at high temperature. Glass is an example of | a material made from a natural resource | an element | a living thing | a material found already made in nature
+sa2: Choose one synthetic material. Name the natural resource it comes from and describe one effect its use has on society. | Example: plastic comes from petroleum; it makes lightweight, cheap packaging and medical supplies, but plastic waste pollutes oceans and harms wildlife.
+quiz:
+mc2: Which is a synthetic material? | polyester fabric | cotton | wood | wool
+mc2: Some medicines are made by copying a chemical first found in a plant. What does this show? | People can use chemistry to make useful substances from natural resources | Plants are synthetic | Medicines cannot be made in labs | Natural resources are never useful
+num2: A factory uses 4 kg of crude oil to make 1 kg of plastic. How many kg of crude oil are needed to make 25 kg of plastic? | 100
+num2: A city recycles 1,800 tons of its 6,000 tons of plastic waste each year. What percent is recycled? | 30
+mc3: A new bottle material is made from corn starch instead of oil. Which question is most important for deciding whether it is better for the environment? | Does it break down faster and use fewer resources than plastic from oil? | Is it a pretty color? | Is it shaped like a bottle? | Does it have a name?
+mc2: Which property makes synthetic rubber useful for car tires? | It is stretchy, strong and resists wear | It dissolves in rain | It melts at room temperature | It conducts electricity well
+sa2: Explain one benefit and one cost to society of making and using plastics. | Benefit: plastics are light, cheap and durable, used in medicine, safety gear and food storage. Cost: they come from nonrenewable oil and can last hundreds of years as pollution.
+
+lesson: Design challenge: chemical heat and cold packs | MS-PS1-6, MS-ETS1-1, MS-ETS1-2, MS-ETS1-3, MS-ETS1-4
+practice:
+mc1: A process that releases thermal energy and makes its surroundings warmer is | exothermic | endothermic | physical | neutral
+mc2: A cold pack feels cold when squeezed because the process inside | absorbs thermal energy from its surroundings | releases thermal energy | creates cold particles | stops all particle motion
+hint: Energy moves from your hand into the pack.
+mc2: A team designs a hand warmer for hikers. Which is a criterion? | It stays above 40 °C for at least 1 hour | It costs less than $2 | It weighs less than 100 g | It uses only safe chemicals
+hint: A criterion says how well the design must work.
+num2: A hand warmer started at 20 °C and reached 52 °C. What was the temperature increase in °C? | 32
+sa2: Explain how a team could use test data to improve a cold pack design. | Measure how cold each version gets and how long it stays cold, compare results to the criteria, keep the features that worked best, change one thing at a time and test again.
+quiz:
+mc2: Test data: Mixture A rose from 21 °C to 46 °C. Mixture B fell from 21 °C to 6 °C. Mixture C stayed at 21 °C. Which mixture is best for a hand warmer? | A | B | C | none of them
+num2: A cold pack mixture fell from 21 °C to 6 °C. By how many °C did its temperature drop? | 15
+num2: A warmer's temperature for four trials stayed above 40 °C for 52, 48, 55 and 49 minutes. What was the mean time in minutes? | 51
+mc2: Design X reaches 45 °C for 30 minutes and costs $1. Design Y reaches 60 °C for 90 minutes and costs $4. The criteria are at least 40 °C for 60 minutes and the constraint is cost under $5. Which design meets the criteria and constraint? | Design Y | Design X | both designs | neither design
+mc3: A team finds its hand warmer gets too hot (70 °C) and could burn skin. What is the best next step? | Change the amount of reactant or add insulation, then test again | Ignore the problem | Make it hotter | Stop testing
+mc2: In an exothermic reaction inside a hand warmer, where does the released energy come from? | the rearrangement of atoms as the reactants form products | the air around it | the hiker's hand | nowhere; it is created
+sa3: Describe how you would fairly test two cold pack designs. Include what you would measure and what you would keep the same. | Use the same starting temperature, the same amount of water and the same container; change only the chemical or amount; measure the lowest temperature and how long the pack stays below a target temperature; repeat each test several times and compare means.
+
+test:
+mc1: Which is a chemical change? | baking bread | melting butter | tearing paper | dissolving salt
+mc1: A material made by people from natural resources through chemical processes is | synthetic | natural | elemental | mineral
+mc2: Which observation is the strongest evidence of a chemical reaction? | a new substance with a different melting point forms | the substance changes shape | the substance changes from liquid to solid | the substance is cut in half
+mc2: Which change is endothermic? | a cold pack getting cold when activated | wood burning | a hand warmer heating up | a candle burning
+mc2: When a reaction happens in a sealed container, the total mass | stays the same | increases | decreases | becomes zero
+mc2: A substance's density is 1.0 g per mL, it boils at 100 °C and freezes at 0 °C. What is it most likely? | water | ethanol | oil | mercury
+mc2: In a chemical equation, the substances on the left side are the | reactants | products | catalysts | precipitates
+mc2: Which statement about atoms in a chemical reaction is true? | The same atoms are present before and after, arranged differently | New kinds of atoms appear | Some atoms disappear | Atoms change into different elements
+mc2: Plastic bottles are made from petroleum. Which statement is accurate? | Chemical reactions change substances from oil into a new material with different properties | Plastic is found ready-made in oil wells | Plastic is a natural mineral | Plastic is made of living cells
+mc2: Which property could help identify a metal? | density | the size of the sample | the shape of the sample | the price of the sample
+mc3: Data: Before mixing, Liquid 1 was clear and odorless; Liquid 2 was clear and smelled of vinegar. After mixing, the temperature dropped 6 °C, gas bubbles formed and the vinegar smell faded. Which conclusion is supported? | A chemical reaction occurred | Only a physical change occurred | Nothing happened | The liquids just mixed with no change
+mc3: A student burns a 10 g candle for one hour. Its mass drops to 7 g. Which statement is correct? | 3 g of matter became gases such as carbon dioxide and water vapor | 3 g of matter was destroyed | The candle got lighter because it got hotter | The flame created new atoms
+num2: A stone has a mass of 75 g and a volume of 30 cubic centimeters. What is its density in g per cubic centimeter? | 2.5
+num2: Iron has a density of 7.9 g per cubic centimeter. What is the mass in g of 10 cubic centimeters of iron? | 79
+num2: In the reaction N2 + 3H2 makes 2NH3, how many hydrogen atoms are on the product side? | 6
+num2: 40 g of reactant A and 15 g of reactant B react completely in a sealed flask. What is the mass of the products in g? | 55
+num2: A hot pack warmed from 18 °C to 63 °C in 3 minutes. What was the mean rate of warming in °C per minute? | 15
+mc2: Which is a constraint for designing a cold pack for a school first-aid kit? | It must cost less than $1 to make | It must stay below 5 °C for 15 minutes | It must cool an injury quickly | It must feel cold
+mc3: Two cold pack designs were tested. Design 1 reached 4 °C and stayed cold 12 minutes. Design 2 reached 8 °C and stayed cold 25 minutes. The criterion is to stay below 10 °C for at least 20 minutes. Which design should the team choose, and why? | Design 2, because it stays cold long enough to meet the criterion | Design 1, because it gets colder | Design 1, because it is faster | Neither, because both are cold
+sa2: Explain why the mass of a rusting nail increases over time. | Iron atoms combine with oxygen (and water) from the air to form rust; the added oxygen atoms add mass, but no atoms are created.
+sa2: Describe how a synthetic material such as nylon is made from natural resources and why it is useful. | Chemists take chemicals from petroleum and use reactions to join small molecules into long chains. Nylon is strong, light and stretchy, so it is useful for clothing, ropes and parachutes.
+sa3: Draw or describe a particle model for 2H2 + O2 makes 2H2O that shows mass is conserved. | Reactants: two H2 molecules (4 H atoms) and one O2 molecule (2 O atoms). Products: two H2O molecules, each with 2 H and 1 O, for 4 H and 2 O total. The same 6 atoms are present, only rearranged, so mass is conserved.
+cer3: Students mixed two clear solutions in a sealed bag. Before mixing: total mass 120.0 g, temperature 22 °C, both clear. After mixing: total mass 120.0 g, temperature 29 °C, a blue solid formed, and the bag puffed up slightly. Make a claim about what happened when the solutions were mixed. Use the data as evidence and explain your reasoning. | Claim: a chemical reaction occurred and mass was conserved. Evidence: a new blue solid and a gas formed, and the temperature rose 7 °C, showing energy was released (exothermic); the mass stayed 120.0 g. Reasoning: new substances with different properties show a chemical reaction; the atoms of the reactants rearranged into new products, and because the bag was sealed, no atoms escaped, so the total mass stayed the same.
+
+unit: Unit 3: Matter and Energy in Organisms | MS-LS1-6, MS-LS1-7
+el: Post the two word equations side by side with arrows and pictures (sun, leaf, glucose, mitochondria). Use the frame: "The plant takes in ___ and gives off ___."
+
+lesson: Where does a tree's mass come from? | MS-LS1-6
+practice:
+mc2: In the 1600s, Jan van Helmont grew a 2 kg willow tree in a pot of soil for 5 years, giving it only water. The tree gained about 74 kg, but the soil lost only about 0.06 kg. What does this show? | Most of the tree's mass did not come from the soil | Trees are made mostly of soil | The tree lost mass | Soil grows when trees grow
+hint: Compare the mass the tree gained with the mass the soil lost.
+mc1: Which two raw materials do plants use to make sugar in photosynthesis? | carbon dioxide and water | oxygen and sugar | soil and oxygen | nitrogen and sunlight
+mc2: Where does the carbon in a plant's sugar come from? | carbon dioxide in the air | minerals in the soil | water in the roots | sunlight
+num2: In van Helmont's experiment, the tree grew from 2 kg to 76 kg. How many kg did it gain? | 74
+sa2: A student says plants get their food from the soil. Use evidence and the idea of photosynthesis to explain why this is not correct. | Plants make their own food by photosynthesis, using carbon dioxide from the air and water to build sugar with light energy. Experiments like van Helmont's show soil mass barely changes as a plant grows, so most of the plant's mass comes from the air and water.
+hint: What did the soil data show?
+quiz:
+mc1: Photosynthesis takes place mainly in which cell part? | chloroplasts | mitochondria | nucleus | cell membrane
+mc2: Which is the correct word equation for photosynthesis? | carbon dioxide + water + light energy makes sugar + oxygen | sugar + oxygen makes carbon dioxide + water | oxygen + water makes sugar + carbon dioxide | sugar + water makes oxygen + light
+mc2: Plants use sugar made in photosynthesis to | build new cells and release energy for growth | make soil | make sunlight | absorb oxygen only
+num2: The equation for photosynthesis is 6CO2 + 6H2O makes C6H12O6 + 6O2. How many oxygen atoms are on the reactant side? | 18
+num2: How many carbon atoms are in one glucose molecule, C6H12O6? | 6
+mc3: A student grows a plant in a sealed jar with air that contains carbon dioxide made with a special form of carbon that can be tracked. Later, that carbon is found in the plant's leaves and stem. What does this show? | Carbon from the air becomes part of the plant's body | The plant made new carbon atoms | Carbon came from the soil | Carbon is not used in photosynthesis
+sa2: Explain how photosynthesis moves matter from nonliving parts of the environment into living things. | Plants take in carbon dioxide from the air and water from the soil (nonliving) and rearrange their atoms into sugar, which becomes part of the plant's body (living matter).
+
+lesson: Light energy becomes food energy | MS-LS1-6
+practice:
+mc2: Where does the energy stored in sugar made by plants come from? | sunlight | soil | water | carbon dioxide
+mc2: An aquatic plant in water releases bubbles of oxygen in light. Students count bubbles at different light levels. What are they measuring? | the rate of photosynthesis | the rate of evaporation | the plant's mass | the water's temperature
+hint: Oxygen is a product of which process?
+num2: An aquatic plant made 12 bubbles per minute with the lamp 10 cm away and 4 bubbles per minute with the lamp 40 cm away. How many times faster was bubbling at 10 cm? | 3
+mc2: Students count oxygen bubbles from an aquatic plant with a lamp placed 10, 20, 30 and 40 cm away. What is the independent variable? | the distance of the lamp | the number of bubbles | the type of plant | the size of the beaker
+sa2: Predict what would happen to the bubble count if the lamp were turned off, and explain why. | The bubbling would slow and stop because without light energy the plant cannot carry out photosynthesis, so it stops producing oxygen.
+quiz:
+mc2: Which statement best describes energy in photosynthesis? | Light energy is changed into chemical energy stored in sugar | Chemical energy is changed into light | Energy is created from nothing | Sugar is changed into sunlight
+num2: Bubble counts per minute at four light levels were 3, 7, 11 and 15. What is the mean count per minute? | 9
+num2: A leaf disk test: in bright light 9 of 10 disks floated after 15 minutes; in dim light 3 of 10 floated. What percent floated in dim light? | 30
+mc2: Why do leaf disks float as photosynthesis happens? | Oxygen gas builds up inside them | They lose all their water | They gain soil | They get colder
+mc3: Data: plant growth over 4 weeks - red light 18 cm, blue light 16 cm, green light 6 cm, darkness 2 cm. Which conclusion is best supported? | Plants grow more under red or blue light than green light | Plants grow best in darkness | Light color has no effect | Green light is best for growth
+mc2: Why are plants called producers? | They make their own food using energy from sunlight | They eat other organisms | They produce soil | They produce sunlight
+sa2: Explain why almost all the energy in your lunch can be traced back to the Sun. | Plants capture light energy and store it in sugar through photosynthesis; the food in your lunch is either plants or animals that ate plants, so its energy came from sunlight.
+
+lesson: Cellular respiration releases energy | MS-LS1-7
+practice:
+mc1: In which cell part does cellular respiration mainly happen? | mitochondria | chloroplasts | nucleus | cell wall
+mc2: Which is the word equation for cellular respiration? | sugar + oxygen makes carbon dioxide + water + energy | carbon dioxide + water makes sugar + oxygen | sugar makes oxygen + light | water + oxygen makes sugar
+hint: It is close to the reverse of photosynthesis.
+mc2: Do plants carry out cellular respiration? | Yes, plant cells use respiration to release energy from the sugar they make | No, only animals respire | Only at night, never in the day | Only in their roots
+mc2: When food is digested, large molecules are broken into smaller ones. What happens to the atoms? | They are rearranged into new molecules the body can use | They are destroyed | They turn into energy | They become new elements
+sa2: Explain why you breathe faster when you exercise, using cellular respiration. | Muscles need more energy, so their cells carry out more respiration, which uses more oxygen and makes more carbon dioxide; breathing faster brings in oxygen and removes carbon dioxide.
+quiz:
+mc2: What are the products of cellular respiration? | carbon dioxide, water and usable energy | sugar and oxygen | oxygen and light | protein and fat
+mc2: Yeast is mixed with sugar and warm water in a bottle with a balloon on top. The balloon inflates. Which gas fills it? | carbon dioxide | oxygen | nitrogen | hydrogen
+num2: The balloon on the yeast bottle grew from 0 cm to 15 cm around in 30 minutes. What was the mean growth rate in cm per minute? | 0.5
+num2: Bottle with sugar: balloon 18 cm around. Bottle without sugar: balloon 2 cm around. How many cm larger was the balloon with sugar? | 16
+mc3: Two bottles hold yeast and warm water with a balloon on top; only one bottle also has sugar. The balloon on the bottle without sugar barely grows. Why? | The yeast had little food to break down in respiration | Yeast needs no food | Sugar stops respiration | The water was too wet
+mc2: A runner eats pasta before a race. How does the pasta give energy to the muscles? | Digested sugars travel in the blood to muscle cells, where respiration releases their energy | The pasta goes straight to the muscles unchanged | Pasta makes oxygen | Energy is made from nothing in the stomach
+cer3: Students placed germinating peas in one sealed jar and dry glass beads in another. A carbon dioxide sensor read 400 ppm at the start in both jars. After 1 hour, the pea jar read 1,400 ppm and the bead jar read 400 ppm. Make a claim about whether germinating seeds carry out cellular respiration. Use the data as evidence and explain your reasoning. | Claim: germinating peas carry out cellular respiration. Evidence: carbon dioxide in the pea jar rose from 400 to 1,400 ppm in 1 hour, while the jar with nonliving beads stayed at 400 ppm. Reasoning: cellular respiration breaks down stored sugar using oxygen and releases carbon dioxide; the beads were a control, so the increase came from the living seeds using stored food for energy to grow.
+
+lesson: The cycle between photosynthesis and respiration | MS-LS1-6, MS-LS1-7
+practice:
+mc2: How are photosynthesis and cellular respiration related? | The products of one are the reactants of the other | They are the same process | They have nothing in common | Both happen only in animals
+hint: Compare the inputs and outputs of each.
+mc2: Bromothymol blue turns yellow when carbon dioxide is added and back to blue when it is removed. A yellow tube with an aquatic plant is placed in light. After a few hours it turns blue. What happened? | The plant used carbon dioxide in photosynthesis | The plant added carbon dioxide | Light changed the dye directly | The water evaporated
+num2: In a sealed jar with a plant in light, carbon dioxide fell from 800 ppm to 500 ppm in 2 hours. What was the mean rate of change in ppm per hour? | 150
+mc2: A sealed jar with a green plant is moved from light into the dark. What will happen to the carbon dioxide in the jar? | It will increase because the plant only respires | It will decrease faster | It will stay exactly the same | It will become oxygen
+sa2: Describe the path of a carbon atom from the air, into a plant, into a rabbit that eats the plant and back into the air. | Carbon dioxide from the air is used in photosynthesis to make sugar in the plant; the rabbit eats the plant and digests the sugar; the rabbit's cells use the sugar in respiration and release the carbon as carbon dioxide when it breathes out.
+quiz:
+mc2: Which process adds oxygen to the atmosphere? | photosynthesis | cellular respiration | burning fuel | decomposition
+mc2: A snail and an aquatic plant are sealed in a tube with bromothymol blue and kept in light. The color stays blue for days. Which is the best explanation? | The plant uses the carbon dioxide the snail and plant release | Neither organism is alive | The snail makes oxygen | The dye stopped working
+num2: Tube data after 24 hours: plant only, in light: carbon dioxide went from 600 to 350 ppm. Snail only: 600 to 950 ppm. What is the difference in ppm between the two final readings? | 600
+num2: A forest absorbs 12 tons of carbon dioxide per hectare per year through photosynthesis and releases 9 tons through respiration. How many tons per hectare per year does it store? | 3
+mc3: Why do scientists say energy flows but matter cycles through living things? | Atoms are reused again and again, but energy is used up as heat and must keep coming from the Sun | Energy is recycled forever and matter is used up | Both are used up | Neither ever changes
+mc2: Which organisms carry out cellular respiration? | both plants and animals | only animals | only plants | only bacteria
+sa3: A student says, "Plants make oxygen, and animals use it, so plants do photosynthesis and animals do respiration." Correct the student's statement. | Plants carry out both processes: photosynthesis to make sugar and oxygen, and cellular respiration to release energy from sugar for their own cells. Animals carry out only respiration.
+
+test:
+mc1: The process plants use to make sugar from carbon dioxide and water using light energy is | photosynthesis | cellular respiration | digestion | decomposition
+mc1: Which cell part releases energy from sugar in both plants and animals? | mitochondria | chloroplasts | cell wall | vacuole
+mc2: Which gas do plants take in for photosynthesis? | carbon dioxide | oxygen | nitrogen | helium
+mc2: Most of the mass of a growing tree comes from | carbon dioxide from the air and water | soil minerals only | sunlight | fertilizer
+mc2: Cellular respiration takes sugar and oxygen and produces | carbon dioxide, water and usable energy | sugar and light | oxygen and soil | protein and sunlight
+mc2: Which statement is true about energy in food? | It began as light energy captured by producers | It was created in the stomach | It comes from soil | It comes from water
+mc2: In a food molecule being digested, atoms are | rearranged into new molecules | destroyed | made into new elements | turned into light
+mc2: Which observation shows that plants respire? | In the dark, a sealed jar with a plant gains carbon dioxide | Plants are green | Plants grow toward light | Leaves fall in autumn
+mc2: An aquatic plant is placed at different distances from a lamp. Which is the dependent variable? | the number of oxygen bubbles per minute | the distance from the lamp | the type of plant | the amount of water
+mc2: Which organisms are producers? | plants and algae | mushrooms | deer | wolves
+mc3: Data: bubbles per minute with lamp at 10 cm: 20; 20 cm: 13; 30 cm: 8; 40 cm: 5. Which conclusion is best supported? | As light intensity decreases, the rate of photosynthesis decreases | Distance has no effect | Plants make more oxygen in dim light | Bubbling is caused by heat only
+mc3: A sealed jar containing a mouse and a plant in light stays healthy longer than a jar with a mouse alone. Which is the best explanation? | The plant makes oxygen the mouse uses and uses carbon dioxide the mouse makes | The plant gives the mouse sugar directly | The mouse makes oxygen for the plant | The jar gets more air
+num2: An aquatic plant made 20 bubbles per minute with a lamp 10 cm away and 5 bubbles per minute with the lamp 40 cm away. By what percent did the bubble rate decrease? | 75
+num2: A seedling grew from 0.5 g to 8.5 g in 5 weeks. What was its mean mass gain in g per week? | 1.6
+num2: In 6CO2 + 6H2O makes C6H12O6 + 6O2, how many hydrogen atoms are on each side? | 12
+num2: A sealed jar with yeast and sugar had 500 ppm carbon dioxide at the start and 2,300 ppm after 3 hours. What was the mean increase in ppm per hour? | 600
+mc2: How are photosynthesis and respiration connected in an ecosystem? | Photosynthesis makes sugar and oxygen that respiration uses; respiration makes carbon dioxide and water that photosynthesis uses | They are not connected | Both make oxygen | Both use sunlight
+mc3: A student's model shows energy arrows going in a circle from the Sun to plants to animals and back to the Sun. What is wrong with the model? | Energy is not recycled; it flows one way and leaves living things as heat | The arrows should point from animals to the Sun | Energy should go from soil to plants | Nothing is wrong
+mc2: Bromothymol blue turns yellow with added carbon dioxide. A student breathes through a straw into blue solution. What happens? | It turns yellow because exhaled breath contains carbon dioxide from respiration | It stays blue | It turns red | It freezes
+sa2: Explain how a plant both stores and uses energy. | It stores light energy as chemical energy in sugar during photosynthesis, then uses cellular respiration in its mitochondria to release that energy for growth and other life processes.
+sa2: Describe how the atoms in a sandwich become part of your body. | The sandwich is digested into smaller molecules, which the blood carries to cells; cells rearrange the atoms to build new molecules for growth and repair, and use some in respiration for energy.
+sa3: Explain why the amount of carbon dioxide measured in a forest is lower in the afternoon than at night. | During the day, photosynthesis uses carbon dioxide faster than respiration releases it; at night, there is no photosynthesis, but plants and other organisms keep respiring, so carbon dioxide builds up.
+cer3: Students set up four sealed tubes with bromothymol blue (yellow means more carbon dioxide) for 24 hours. Tube 1: plant in light - stayed blue. Tube 2: plant in dark - turned yellow. Tube 3: snail in light - turned yellow. Tube 4: snail and plant in light - stayed blue. Make a claim about how plants and animals affect carbon dioxide levels. Use the data as evidence and explain your reasoning. | Claim: plants in light remove carbon dioxide through photosynthesis, while animals (and plants in the dark) add carbon dioxide through respiration. Evidence: the plant in light stayed blue, but the plant in the dark and the snail turned yellow; with both snail and plant in light, the tube stayed blue. Reasoning: photosynthesis uses carbon dioxide and needs light, while respiration happens all the time and releases carbon dioxide; in light, the plant used the carbon dioxide released by the snail and itself.
+
+unit: Unit 4: Ecosystem Interactions and Energy Flow | MS-LS2-1, MS-LS2-2, MS-LS2-3
+el: Build a class food web with picture cards and string; students say "The ___ eats the ___, so energy moves from ___ to ___." Pre-teach compete, prey, predator, benefit and decompose.
+
+lesson: Resources limit populations | MS-LS2-1
+practice:
+mc1: A group of the same species living in the same area is a | population | community | ecosystem | biome
+mc2: Which is a limiting factor for a population of deer? | the amount of food available | the color of the sky | the number of clouds | the length of the deer's name
+hint: A limiting factor is a resource that keeps a population from growing without end.
+mc2: After a very rainy year, a desert's plants grow well and the rabbit population increases. What is the best explanation? | More water led to more plant food for rabbits | Rain makes rabbits reproduce without food | Rabbits drink less water | The rain removed all predators
+num2: A rabbit population grew from 200 to 260 in one year. What was the percent increase? | 30
+hint: Find the increase, divide by the starting number and multiply by 100.
+sa2: Explain what happens to a population when it grows larger than its food supply can support. | Individuals compete for limited food; some starve, reproduce less or move away, so the population decreases until it matches what the resources can support.
+quiz:
+mc1: The largest population an environment can support over time is called its | carrying capacity | food chain | biome | habitat
+mc2: Data: a lake's algae population increased after fertilizer from farms washed into it. Which resource was most likely limiting the algae before? | nutrients | sunlight | oxygen for the fish | the number of boats
+num2: A squirrel population was 120 in a year with few acorns and 300 in a year with many acorns. How many more squirrels were there in the good year? | 180
+num2: A population of 50 mice doubles every 3 months with unlimited food. How many mice would there be after 1 year? | 800
+mc2: Why can't the mouse population keep doubling forever? | Food, space and other resources run out, and predators and disease increase | Mice stop reproducing on purpose | Mice always live forever | Populations grow faster as resources shrink
+mc3: A graph of a moose population on an island rises quickly, peaks at 2,400, then falls to 1,000 after a harsh winter when food was scarce. Which conclusion is best supported? | The population went above what the food supply could support, then dropped | Harsh winters make moose populations grow | Food has no effect on moose | Moose populations never change
+sa2: A town builds houses on half of a meadow. Predict what will happen to the meadow's field mouse population and explain why. | The population will probably decrease because there is less space, food and shelter; with fewer resources, the meadow can support fewer mice.
+
+lesson: Patterns of interactions | MS-LS2-2
+practice:
+mc1: An interaction in which both species benefit is | mutualism | predation | parasitism | competition
+mc2: Yucca moths carry pollen between yucca flowers and lay eggs in the flowers; the caterpillars eat some of the seeds. Both species depend on each other to reproduce. What kind of relationship is this? | mutualism | predation | competition | parasitism
+mc2: A tick feeds on a deer's blood, and the deer is harmed. This is | parasitism | mutualism | commensalism | competition
+hint: One benefits and one is harmed, but is not usually killed right away.
+mc2: Coyotes and hawks both hunt ground squirrels in the same field. What is the relationship between the coyotes and hawks? | competition | mutualism | parasitism | commensalism
+sa2: Give an example of predation and explain how the predator and prey populations can affect each other. | Example: owls eat mice. When mice are plentiful, owls have more food and their numbers grow; more owls eat more mice, so mice decrease; then owls have less food and decrease, allowing mice to increase again.
+quiz:
+mc2: A remora fish attaches to a shark and eats scraps from the shark's meals without helping or harming the shark. This relationship is | commensalism | mutualism | parasitism | predation
+mc2: Two kinds of birds eat the same seeds on an island. One has a bigger beak and cracks harder seeds. Over time, each eats mostly different seeds. Which pattern does this show? | Competition can lead species to use different resources | Predation increases food | Mutualism helps both eat the same seeds | Parasites choose the seeds
+num2: Snowshoe hare data: 1900, 80,000; 1905, 20,000. What was the percent decrease? | 75
+mc3: Data from a forest: hare population peaks every 10 years, and lynx population peaks about 1 to 2 years after each hare peak. Which explanation is best supported? | Lynx populations rise when their prey (hares) are plentiful, then fall after hares decline | Hares eat lynx | Lynx and hares do not interact | Lynx cause hares to increase
+mc2: Bees collect nectar from flowers and carry pollen between them. Which pattern of interaction is this? | mutualism | competition | parasitism | predation
+num2: In a field study, 64 of 80 flowers visited by bees made seeds, but only 12 of 80 flowers covered with nets made seeds. How many more flowers made seeds when visited by bees? | 52
+sa2: Explain how competition and mutualism are similar and different, using an example of each. | Both are interactions between species that affect survival. In competition both are harmed because they share a limited resource (two plants competing for water); in mutualism both benefit (bees and flowers).
+
+lesson: Food webs and the flow of energy | MS-LS2-3
+practice:
+mc1: In a food web, arrows point from | the organism eaten to the organism that eats it | the eater to the organism eaten | the consumer to the Sun | the decomposer to the Sun
+hint: Arrows show the direction energy moves.
+mc2: In a kelp forest, sea otters eat sea urchins and sea urchins eat kelp. If sea otters disappeared, what would most likely happen? | Urchins would increase and kelp would decrease | Kelp would increase | Urchins would decrease | Nothing would change
+mc2: Which organisms get energy by eating producers? | primary consumers (herbivores) | producers | decomposers only | the Sun
+num2: Producers in a meadow store 10,000 units of energy. If about 10 percent passes to each next level, how many units reach the primary consumers? | 1000
+hint: Find 10 percent of 10,000.
+sa2: Explain why most of the energy at one level of a food chain does not pass to the next level. | Organisms use most of the energy they take in for life processes like moving and staying warm, releasing it as heat, and some parts are not eaten or digested, so only about 10 percent is stored in their bodies for the next level.
+quiz:
+mc2: In the food chain grass, grasshopper, frog, snake, hawk, which organism is the secondary consumer? | frog | grasshopper | snake | grass
+num2: In the food chain grass, grasshopper, frog, grass stores 50,000 units of energy and about 10 percent passes on at each step. How many units reach the frog? | 500
+mc2: Why are there usually fewer hawks than grasshoppers in an ecosystem? | Less energy is available at higher levels of the food chain | Hawks reproduce faster | Grasshoppers eat hawks | Hawks need less energy
+mc2: Which organism would be a producer in an ocean food web? | phytoplankton | a shark | a jellyfish | a sea star
+num2: In a pond, 4,000 units of energy reach the herbivores and 400 units reach the next level. What percent of the energy was passed on? | 10
+mc3: A disease kills most of the rabbits in a food web where foxes and hawks eat rabbits and mice, and mice and rabbits eat grass. Which is the most likely short-term effect? | Foxes and hawks eat more mice, so mice decrease | Mice increase because hawks die | Grass decreases | Foxes start eating grass
+sa3: Draw or describe a food web with at least five organisms from a California ecosystem and identify a producer, a herbivore and a top predator. | Example (chaparral): chamise and acorns (producers) are eaten by deer and mice (herbivores); snakes and owls eat mice; mountain lions eat deer. Top predator: mountain lion. Arrows go from food to eater.
+
+lesson: Decomposers and the cycling of matter | MS-LS2-3
+practice:
+mc1: Organisms that break down dead matter and wastes, such as fungi and bacteria, are | decomposers | producers | herbivores | predators
+mc2: Why are decomposers important to producers? | They return nutrients from dead matter to the soil | They make sunlight | They eat all the plants | They produce oxygen at night only
+mc2: Which statement about matter in an ecosystem is correct? | Atoms are recycled between living and nonliving parts | Matter enters from the Sun | Matter is used up and disappears | Only producers contain matter
+num2: A compost pile had a mass of 60 kg. After 6 months, decomposers had reduced it to 24 kg. By what percent did the mass decrease? | 60
+hint: Find the decrease first.
+sa2: Trace the path of a nitrogen or carbon atom from a dead leaf back into a living plant. | Decomposers break down the dead leaf; they release carbon dioxide into the air and nutrients like nitrogen into the soil; a plant takes in the carbon dioxide through its leaves or the nitrogen through its roots and uses it to build new tissue.
+quiz:
+mc2: Where does a decomposer get its energy? | from the dead matter and wastes it breaks down | from sunlight directly | from the soil minerals | it needs no energy
+mc2: If all the decomposers in a forest disappeared, what would happen? | Dead material would pile up and nutrients would not return to the soil | Plants would grow faster | More sunlight would reach the forest | Nothing would change
+num2: Leaves in a mesh bag lost 3 g of mass per week. Starting at 30 g, what mass would be left after 6 weeks in g? | 12
+num2: Leaf bags in warm, wet soil lost 18 g in 6 weeks; bags in cold, dry soil lost 6 g. How many times faster did decomposition happen in warm, wet soil? | 3
+mc3: Which model best shows both energy flow and matter cycling in an ecosystem? | Energy arrows go one way from the Sun and leave as heat; matter arrows form loops through producers, consumers, decomposers and soil and air | Both energy and matter go in a loop forever | Energy loops and matter flows one way | Neither moves
+mc2: Which is the best evidence that decomposers are alive? | They take in food, release carbon dioxide and reproduce | They are found in soil | They are small | They are brown
+cer3: Students placed equal masses of leaves in two sealed containers for 4 weeks. Container A had soil with living microbes; Container B had soil that was heated to kill microbes. Results: A's leaves lost 40 percent of their mass and carbon dioxide rose sharply; B's leaves lost 2 percent and carbon dioxide barely changed. Make a claim about the role of microbes in an ecosystem. Use the data as evidence and explain your reasoning. | Claim: microbes are decomposers that break down dead matter and return carbon to the air. Evidence: with living microbes, leaves lost 40 percent of their mass and carbon dioxide rose sharply; with microbes killed, leaves lost only 2 percent and carbon dioxide barely changed. Reasoning: decomposers use dead matter as food and release carbon dioxide through respiration, so atoms in the leaves are recycled into the air and soil where producers can use them again.
+
+test:
+mc1: Organisms that make their own food using sunlight are | producers | consumers | decomposers | predators
+mc1: A relationship in which one organism benefits and the other is harmed is | parasitism | mutualism | commensalism | competition
+mc2: Which factor would most limit a population of trout in a stream? | the amount of dissolved oxygen and food | the color of the rocks | the number of clouds | the name of the stream
+mc2: In a food web, what do arrows represent? | the flow of energy and matter from food to eater | which animals are friends | the direction animals walk | the flow of water
+mc2: Which interaction is an example of competition? | two plants growing close together and sharing limited water | a bee pollinating a flower | an owl eating a mouse | a flea feeding on a dog
+mc2: Which is true about energy in a food chain? | Only about 10 percent is passed to the next level | All energy is passed to the next level | Energy increases at each level | Energy is recycled by decomposers back to the Sun
+mc2: Decomposers return which of these to the soil? | nutrients from dead organisms | sunlight | oxygen gas only | new energy
+mc2: Which pattern describes the relationship between a predator and its prey over time? | When prey increase, predators often increase afterward | Predators and prey always decrease together | Predators increase when prey disappear | There is no pattern
+mc2: Sea otters eat urchins and urchins eat kelp. A large increase in sea otters would most likely cause | more kelp | more urchins | less kelp | fewer sea otters
+mc2: Which pair shows mutualism? | a hummingbird and a flower it pollinates | a mosquito and a person | a lion and a zebra | two trees competing for light
+mc3: Island data: one year, deer 1,000, wolves 20. Two years later, deer 600, wolves 35. Four years later, deer 750, wolves 22. Which explanation is best supported? | More wolves reduced deer; then fewer deer reduced wolves | Deer and wolves do not interact | Wolves eat grass | Deer hunt wolves
+mc3: A farm sprays a chemical that kills insects. Afterward, the bird population nearby drops. Which is the best explanation? | The birds lost a major food source | The chemical made birds stronger | Birds compete with insects for sunlight | The birds moved because of noise
+num2: Producers store 20,000 units of energy. With about 10 percent passed at each level, how many units reach the third level (secondary consumers)? | 200
+num2: A frog population went from 400 to 300. What was the percent decrease? | 25
+num2: A population of 30 beetles triples each year with unlimited food. How many beetles will there be after 2 years? | 270
+num2: Leaf litter lost 2.5 g per week. How many g are lost in 8 weeks? | 20
+mc2: Which question would help explain why a population of salmon decreased? | Did the amount of food or spawning habitat change? | What color are salmon eggs? | How heavy is the river? | What is the name of the river?
+mc3: In a model, a student draws energy arrows from the Sun to grass to rabbits to foxes, and then from foxes back to the grass. What is the error? | Energy does not cycle back; it leaves as heat, while matter cycles through decomposers | Energy should go from foxes to the Sun | Grass gets energy from rabbits | There is no error
+mc2: Which organisms are present in nearly every ecosystem and break down dead material? | bacteria and fungi | lions and tigers | oak trees | sharks
+sa2: Explain how the amount of a resource can limit the size of a population. Give an example. | When a resource like food, water or nesting space is limited, only a certain number of individuals can get enough to survive and reproduce. Example: if acorns are scarce, fewer squirrels survive the winter.
+sa2: Explain the difference between how energy and matter move in an ecosystem. | Energy flows in one direction, from the Sun to producers to consumers, and is lost as heat at each level. Matter cycles: atoms are used again and again as decomposers return them to soil and air for producers.
+sa3: Describe the pattern of interaction between two species in a California ecosystem and predict what would happen if one species were removed. | Example: coyotes prey on rabbits in grasslands. If coyotes were removed, rabbits would increase, eat more plants and possibly run out of food, and then their population would crash.
+cer3: Scientists studied kelp forests along the California coast. Area A (sea otters present): 2 urchins per square meter, kelp covering 80 percent of the seafloor. Area B (no sea otters): 50 urchins per square meter, kelp covering 10 percent. Make a claim about how sea otters affect the kelp forest. Use the data as evidence and explain your reasoning. | Claim: sea otters help kelp forests by keeping urchin populations low. Evidence: where otters are present there are 2 urchins per square meter and 80 percent kelp cover; without otters there are 50 urchins per square meter and only 10 percent kelp cover. Reasoning: otters are predators of urchins, and urchins eat kelp; when predators reduce the urchin population, less kelp is eaten, so the producer population grows. Removing the predator affects every level of the food web.
+
+unit: Unit 5: Earth's Materials, the Rock Cycle and Resources | MS-ESS2-1, MS-ESS3-1 | sci_7
+el: Provide a rock cycle diagram with arrows labeled melt, cool, weather, compact, heat and pressure; let students sort real or pictured rocks while naming them aloud.
+
+lesson: Inside Earth: layers and internal heat | MS-ESS2-1
+practice:
+mc1: Which is Earth's thinnest layer? | crust | mantle | outer core | inner core
+mc2: Which layer of Earth is liquid metal, mostly iron and nickel? | outer core | inner core | crust | lithosphere
+hint: There are two core layers; one is solid and one flows.
+mc2: Where does most of the energy that melts rock deep inside Earth come from? | heat from Earth's interior, including the breakdown of radioactive elements | sunlight | ocean waves | the Moon's gravity
+num2: Earth's radius is about 6,400 km. The crust under a continent is about 40 km thick. What percent of Earth's radius is that crust? | 0.625
+hint: Divide 40 by 6,400 and multiply by 100.
+sa2: Scientists cannot drill to Earth's core. Explain how they know about Earth's layers. | They study how earthquake waves travel through Earth: waves change speed and direction at layer boundaries, and some waves cannot pass through the liquid outer core.
+quiz:
+mc1: Earth's solid, rocky layer just below the crust that slowly flows over long periods is the | mantle | outer core | atmosphere | hydrosphere
+mc2: How does temperature change as you go deeper into Earth? | It increases | It decreases | It stays the same | It changes randomly
+num2: In a deep mine, temperature rises about 25 °C for every 1 km of depth. If it is 15 °C at the surface, what is the temperature 3 km down in °C? | 90
+num2: The crust under the ocean is about 7 km thick, and under a large mountain range it can be about 70 km. How many times thicker is the crust under the mountains? | 10
+mc2: Which layer is the source of magma that reaches the surface at most volcanoes? | the upper mantle and lower crust | the inner core | the atmosphere | the ocean
+mc3: A model of Earth uses a peach: skin for crust, fruit for mantle and pit for core. What is one limitation of this model? | It does not show that the core has a liquid outer layer and a solid inner layer | It shows too many layers | The peach is round | It shows the crust as thin
+sa2: Explain why the inner core is solid even though it is the hottest layer. | The pressure from all the layers above is so great that it keeps the iron and nickel packed into a solid, even at very high temperature.
+
+lesson: The rock cycle | MS-ESS2-1
+practice:
+mc1: Rock that forms when magma or lava cools and hardens is | igneous rock | sedimentary rock | metamorphic rock | soil
+mc2: Granite in Yosemite has large crystals. What does this tell you about how it formed? | It cooled slowly from magma deep underground | It cooled quickly from lava on the surface | It formed from layers of sand | It formed from shells
+hint: Crystals have more time to grow when cooling is slow.
+mc2: Limestone is changed into marble by heat and pressure deep underground. Marble is | metamorphic rock | igneous rock | sedimentary rock | magma
+mc2: Which process forms sedimentary rock? | sediments are deposited, compacted and cemented | magma cools | rock melts | rock is heated and squeezed without melting
+sa2: Describe one path a piece of igneous rock could take to become sedimentary rock. | The igneous rock is weathered into small pieces; water carries the sediment to a lake or ocean where it settles in layers; over time the layers are buried, compacted and cemented into sedimentary rock.
+hint: Think: break, move, settle, press.
+quiz:
+mc2: Which energy sources drive the rock cycle? | Earth's internal heat and energy from the Sun, with gravity | only the Moon | only wind | only living things
+mc2: Basalt has very tiny crystals and holes from gas bubbles. Where did it most likely form? | from lava that cooled quickly at the surface | deep underground over thousands of years | in layers on the ocean floor | from heat and pressure on shale
+num2: Sediment settles in a lake at about 2 mm per year. How many mm thick will the layer be after 500 years? | 1000
+num2: A sample of rock has a mass of 81 g and a volume of 30 cubic centimeters. What is its density in g per cubic centimeter? | 2.7
+mc3: A rock has bands of light and dark minerals that look squeezed and folded. Which is the best inference? | It is metamorphic rock that formed under heat and pressure | It is igneous rock that cooled quickly | It is sedimentary rock made of sand | It formed at the surface
+mc2: Why is the rock cycle called a cycle? | Rocks keep changing from one type to another with no beginning or end | Rocks always become igneous rock last | Rocks only change once | The cycle happens in one day
+sa3: A student says, "Metamorphic rock forms when rock melts." Explain the error and describe how metamorphic rock really forms. | Melted rock becomes magma, and when it cools it forms igneous rock. Metamorphic rock forms when existing rock is changed by high heat and pressure without melting, as when shale becomes slate.
+
+lesson: Shaping the surface: weathering, erosion and deposition | MS-ESS2-1
+practice:
+mc1: The breaking down of rock into smaller pieces is | weathering | deposition | erosion | compaction
+mc2: Water seeps into a crack in a rock, freezes and expands, widening the crack. This is an example of | mechanical weathering | chemical weathering | deposition | melting
+mc2: Which force moves sediment downhill in landslides and helps rivers carry sediment to the ocean? | gravity | magnetism | friction alone | electric force
+hint: What pulls everything toward Earth's center?
+num2: A river carries sediment that builds a delta 4 cm higher each year. How many cm higher will it be after 25 years? | 100
+sa2: Explain how the Sun provides energy for weathering and erosion. | The Sun drives the water cycle and winds; water and wind break rocks and carry sediment, and the Sun's heating and cooling of rocks can crack them.
+quiz:
+mc2: Wind blows sand that slowly wears away a rock arch. This is | erosion | deposition | compaction | melting
+mc2: Where would you most likely find large deposits of sand and silt from a river? | where the river slows down as it enters the ocean | at the top of the mountain | in the river's fastest rapids | inside volcanoes
+num2: A sea cliff erodes about 0.3 m per year. How many meters will it erode in 40 years? | 12
+num2: A stream carried 600 kg of sediment per day after a storm and 150 kg per day during calm weather. How many times more sediment did it carry after the storm? | 4
+mc3: Two identical piles of soil are placed on slopes, one bare and one covered with grass. After the same amount of water is poured, the bare pile loses 400 g and the grassy pile loses 50 g. Which conclusion is best supported? | Plant cover reduces erosion | Grass increases erosion | Slope has no effect | Water does not cause erosion
+mc2: Acid rain slowly dissolves a limestone statue. This is | chemical weathering | mechanical weathering | deposition | metamorphism
+sa2: Explain how weathering, erosion and deposition together can change a mountain into layers of sediment in a valley. | Weathering breaks the mountain's rock into pieces; erosion by water, wind, ice and gravity moves the pieces downhill; when the water slows, the sediment is deposited in layers in the valley.
+
+lesson: Why resources are where they are | MS-ESS3-1, MS-ESS2-1
+practice:
+mc2: Gold in California's Sierra Nevada foothills formed in quartz veins when hot water rich in minerals flowed through cracks in rock and cooled. Why is gold found there but not everywhere? | Past geologic processes concentrated it only in certain places | Gold falls evenly from the sky | People buried it there | Gold grows in soil each year
+mc2: Fossil fuels such as oil and natural gas formed from | remains of ancient organisms buried and heated over millions of years | volcanic lava | ocean salt | modern trees burned last year
+hint: Think about what "fossil" means.
+mc2: Groundwater is stored in layers of rock and sediment with many connected spaces. What are these layers called? | aquifers | lava flows | faults | mantle plumes
+num2: An oil field held 600 million barrels. 450 million barrels have been pumped out. What percent of the oil remains? | 25
+sa2: Explain why mineral resources and fossil fuels are called nonrenewable. | They form over thousands to millions of years through geologic processes, much more slowly than people use them, so once used they cannot be replaced in a human lifetime.
+quiz:
+mc1: Which is a nonrenewable resource? | coal | sunlight | wind | water from rain
+mc2: Oil deposits are often found in sedimentary rock in places that were once shallow seas. Which is the best explanation? | Remains of tiny marine organisms collected there, were buried and slowly changed into oil | Oil forms from volcanoes | Oil seeps up from the core | Oil forms from rocks melting
+num2: A town pumps 3 million liters of groundwater per day, and rain refills the aquifer by 2 million liters per day. By how many million liters does the aquifer shrink each day? | 1
+num2: The town's aquifer holds 900 million liters. At a loss of 1 million liters per day, how many days until it is empty if nothing changes? | 900
+mc3: Scientists find copper ore near old volcanic areas in several countries. Which prediction is most reasonable? | Searching other old volcanic areas may find more copper | Copper is found evenly in all rock | Copper only forms in deserts | Copper ore forms from ocean water every year
+mc2: Why is it important to understand how resources formed? | It helps people predict where to find them and how long they will last | It makes resources renewable | It stops geologic processes | It creates more fossil fuels
+cer3: A geologist studies three areas. Area 1: thick layers of sedimentary rock from an ancient sea, with plant and plankton fossils; oil was found. Area 2: granite with no fossils; no oil found. Area 3: sedimentary rock from an ancient sea with plankton fossils; not yet drilled. Make a claim about whether Area 3 is likely to contain oil. Use the data as evidence and explain your reasoning. | Claim: Area 3 is likely to contain oil. Evidence: Area 3 has sedimentary rock from an ancient sea with plankton fossils, like Area 1 where oil was found; Area 2, granite with no fossils, has no oil. Reasoning: oil forms when the remains of marine organisms are buried in sediments and slowly heated and pressed over millions of years, so rock layers with these remains are where oil is likely to be found; igneous rock like granite did not form from such remains.
+
+test:
+mc1: Which layer of Earth do we live on? | crust | mantle | outer core | inner core
+mc1: Rock formed by heat and pressure without melting is | metamorphic | igneous | sedimentary | magma
+mc2: Which rock most likely formed from lava cooling quickly? | basalt with tiny crystals | granite with large crystals | sandstone with layers | marble with bands
+mc2: Which is a sedimentary rock that often contains fossils? | limestone | granite | basalt | obsidian
+mc2: Which process moves weathered rock from one place to another? | erosion | deposition | compaction | crystallization
+mc2: What two sources provide energy for the rock cycle? | Earth's internal heat and the Sun | the Moon and stars | living things and wind | volcanoes and ice
+mc2: Which statement about the rock cycle is true? | Any type of rock can become any other type over time | Igneous rock can never change | Rocks change only into sedimentary rock | The cycle has a fixed starting point
+mc2: Why are fossil fuels nonrenewable? | They take millions of years to form | They are found everywhere | They come from the Sun each day | They can be grown on farms
+mc2: Which pair correctly matches a process with the rock type it forms? | cementing of sediments - sedimentary rock | melting and cooling - metamorphic rock | heat and pressure - igneous rock | weathering - igneous rock
+mc2: Which feature of Earth's interior is supported by evidence that some earthquake waves cannot pass through the outer core? | the outer core is liquid | the outer core is made of ice | the crust is thickest | the mantle is gas
+mc3: A rock sample has layers of rounded sand grains cemented together, with a shell fossil. Which history is most likely? | Sand and shells settled in water, were buried and cemented | Lava cooled over the shells | Magma cooled slowly deep underground | Heat and pressure melted the shells
+mc3: Mineral deposits are often found near old volcanoes or plate boundaries. Which is the best explanation? | Heat and hot fluids there concentrated minerals in certain places | Minerals grow where people live | Volcanoes make new elements | Minerals are always spread evenly
+num2: Sediment builds up at 3 mm per year. How many years would it take to build a layer 1.5 m (1,500 mm) thick? | 500
+num2: A granite sample has a mass of 135 g and a volume of 50 cubic centimeters. What is its density in g per cubic centimeter? | 2.7
+num2: Temperature increases about 30 °C per km in a drill hole. If the surface is 20 °C, what is the temperature at 2 km in °C? | 80
+num2: A canyon's river cuts down about 0.2 mm per year. How many meters deeper will it cut in 1 million years? | 200
+mc2: Which action would most slow the use of a nonrenewable resource? | recycling aluminum cans | using more plastic | throwing away metal | burning more coal
+mc3: A student models the rock cycle with crayon shavings: pressing the shavings into a layered block, warming and squeezing the block, and fully melting it and letting it cool. Which part models metamorphic rock? | warming and squeezing the block without melting it | making shavings | fully melting and cooling | pressing shavings into layers
+mc2: Groundwater is found unevenly underground mainly because | rock layers differ in how much water they can store and move | groundwater falls from space | aquifers are man-made | all rock holds the same water
+sa2: Explain how the Sun and gravity drive processes on Earth's surface that are part of the rock cycle. | The Sun drives wind and the water cycle, which weather rock and carry sediment; gravity pulls water, ice and sediment downhill so they erode and are deposited in layers that can become sedimentary rock.
+sa2: Explain why California has deposits of gold in the Sierra Nevada foothills but has oil mainly in places like the southern San Joaquin Valley. | Gold was concentrated by hot mineral-rich fluids moving through cracks in rock tied to past igneous activity; oil formed from marine organisms buried in sedimentary basins. Different geologic processes in each place created different resources.
+sa3: Describe one way a piece of sedimentary rock could become igneous rock. | It could be buried deep by plate movements, where high temperatures melt it into magma; when the magma cools and hardens, it becomes igneous rock.
+cer3: Students analyzed a canyon wall. From bottom to top: Layer 1, granite with large crystals; Layer 2, sandstone with ripple marks; Layer 3, limestone with seashell fossils; Layer 4, a thin layer of basalt with tiny crystals. Make a claim about the history of this area. Use the layers as evidence and explain your reasoning using the rock cycle. | Claim: the area began with slowly cooled magma, was later covered by water that deposited sand and then a sea, and finally had a lava flow. Evidence: granite with large crystals at the bottom; sandstone with ripple marks; limestone with shell fossils; basalt with tiny crystals at the top. Reasoning: large crystals form when magma cools slowly underground; ripple marks form in sand under moving water; shell fossils in limestone show a sea; tiny crystals in basalt show lava cooled quickly at the surface. Lower layers are older, so the events happened in that order.
+
+unit: Unit 6: Plate Tectonics and Natural Hazards | MS-ESS2-2, MS-ESS2-3, MS-ESS3-2
+el: Use cut-out continents for students to fit together while naming the evidence. Post a boundary chart with arrows (apart, together, sliding past) and a California example for each.
+
+lesson: Evidence that continents move | MS-ESS2-3
+practice:
+mc2: Fossils of Mesosaurus, a small freshwater reptile, are found only in southern Africa and eastern South America. What is the best explanation? | The two continents were once joined | Mesosaurus swam across the Atlantic Ocean | The fossils were carried by wind | People moved the fossils
+hint: Could a freshwater animal cross a salty ocean?
+mc2: The coastlines of South America and Africa fit together like puzzle pieces. This observation supports the idea that | the continents were once connected and have moved apart | the continents were always in the same place | the oceans are shrinking | Earth is getting smaller
+mc2: Rock layers of the same type and age are found in mountains in eastern North America and in Scotland. What does this suggest? | The mountains formed together before the continents separated | Rocks can float across oceans | Scotland was formed from North American soil | Mountains are always the same age
+num2: The Atlantic Ocean widens about 2.5 cm per year. How many cm would it widen in 1,000 years? | 2500
+hint: Multiply the rate by the time.
+sa2: Fossils of tropical plants have been found in rocks in Antarctica. Explain what this suggests about Antarctica's past. | Antarctica was once in a warmer place closer to the equator, and plate motion has slowly carried it to the South Pole.
+quiz:
+mc1: The theory that Earth's outer layer is broken into large moving plates is | plate tectonics | the rock cycle | the water cycle | cell theory
+mc2: Scientists found that seafloor rock is youngest at mid-ocean ridges and gets older farther away. What does this show? | New seafloor forms at ridges and spreads outward | The seafloor is shrinking at ridges | All seafloor is the same age | Ridges are the oldest places on Earth
+num2: A rock sample 500 km from a mid-ocean ridge is 20 million years old. At what average rate did the seafloor spread, in km per million years? | 25
+num2: Converting the rate: 25 km per million years equals how many cm per year? (1 km = 100,000 cm) | 2.5
+mc2: Glossopteris, an extinct seed fern, is found in rocks in South America, Africa, India, Australia and Antarctica. Its seeds were too large to be carried far by wind. What do these fossils support? | These landmasses were once joined | The plant could fly | Ocean currents moved the plants | Each continent grew its own Glossopteris
+mc3: Which set of evidence together gives the strongest support that continents have moved? | matching fossils, matching rock layers, fitting coastlines and seafloor ages | the shape of one continent only | one fossil in one place | the color of the ocean
+sa2: Explain why scientists at first rejected the idea of continental drift, and what later evidence helped convince them. | Early on, no one could explain what force could move continents. Later, maps of the seafloor showed mid-ocean ridges and young rock near ridges, giving evidence of seafloor spreading that moves plates.
+
+lesson: Plate boundaries build and break the land | MS-ESS2-3, MS-ESS2-2
+practice:
+mc1: At which type of plate boundary do plates move apart? | divergent | convergent | transform | stationary
+mc2: The Himalayas formed and are still rising where the Indian Plate pushes into the Eurasian Plate. What kind of boundary is this? | convergent | divergent | transform | a hot spot
+mc2: The San Andreas Fault, where the Pacific Plate slides past the North American Plate, is | a transform boundary | a divergent boundary | a convergent boundary | not a boundary
+hint: Do the plates move apart, together or side by side?
+mc2: Where an ocean plate meets a continental plate, the denser ocean plate sinks beneath it. Which features commonly form there? | deep ocean trenches and volcanic mountains | mid-ocean ridges | flat plains only | coral reefs
+sa2: The Cascade volcanoes, including Mount St. Helens and Mount Shasta in Northern California, form a line near the coast. Explain how plate motion causes them. | A small ocean plate sinks beneath the North American Plate; as it sinks, rock melts into magma, which rises to form a chain of volcanoes parallel to the boundary.
+quiz:
+mc2: Most earthquakes and volcanoes on a world map form lines. What do these lines mostly mark? | plate boundaries | the equator | ocean currents | country borders
+mc2: Iceland sits on the Mid-Atlantic Ridge. Which feature would you expect there? | volcanic activity as plates move apart | a deep trench where plates collide | no earthquakes ever | thick ice that never moves
+num2: The Pacific Plate moves past the North American Plate at about 5 cm per year. How many meters would it move in 1,000 years? (100 cm = 1 m) | 50
+num2: Los Angeles is on the Pacific Plate, and San Francisco is on the North American Plate, about 550 km apart. If they move toward each other at 5 cm per year, how many million years until they are side by side? (1 km = 100,000 cm) | 11
+mc3: The Hawaiian Islands form a chain that gets older toward the northwest, and only the southeastern island has active volcanoes. Which explanation fits? | The Pacific Plate moves northwest over a fixed hot spot | The islands move on their own | The hot spot moves northwest | The volcanoes erupt randomly
+mc2: Which boundary type would most likely form a rift valley on land? | divergent | convergent | transform | none of these
+sa3: Use a model of plate motion to explain why California has many earthquakes but few active volcanoes in the south, while Northern California has volcanoes like Lassen Peak. | Southern and central California lie along a transform boundary where plates slide past each other, causing earthquakes but not much melting. In far Northern California, an ocean plate sinks beneath North America, melting rock and producing volcanoes like Lassen Peak and Mount Shasta.
+
+lesson: Changes fast and slow, large and small | MS-ESS2-2
+practice:
+mc2: Which change to Earth's surface happens in seconds to minutes? | an earthquake shifting the ground | a mountain range rising | a canyon being carved | a continent moving
+mc2: Which change takes millions of years? | the Sierra Nevada rising | a landslide | a flash flood | a volcanic eruption
+hint: Think about which processes add up slowly over a long time.
+num2: The Colorado River carved the Grand Canyon about 1,800 m deep in about 6 million years. What is the average rate of cutting in mm per year? (1 m = 1,000 mm) | 0.3
+mc2: A small stream carries sand downhill every day. Over millions of years, how could this affect a mountain? | It can wear the mountain down and build up sediment in valleys | It has no effect | It makes the mountain grow taller | It turns the mountain into lava
+sa2: Give one example of a geoscience process that changes Earth's surface quickly and one that changes it slowly, and explain how both can shape the same landscape. | Quickly: a landslide or volcanic eruption. Slowly: plate motion lifting mountains or river erosion carving canyons. A mountain can be pushed up slowly by plates, worn down slowly by rivers and changed suddenly by landslides.
+quiz:
+mc2: Mount St. Helens erupted in 1980 and removed about 400 meters from its top in minutes. This shows that | some surface changes happen very quickly | all changes take millions of years | volcanoes never change land | mountains only grow
+num2: A mountain range rises 4 mm per year and erodes 1 mm per year. How many mm does it gain in height each year? | 3
+num2: At a net rise of 3 mm per year, how many meters would that mountain range gain in 1 million years? (1 m = 1,000 mm) | 3000
+mc3: A geologist finds seashell fossils in rock at the top of a mountain. Which explanation is best? | The rock formed under the sea and was slowly lifted by plate motion | Birds carried the shells up | The sea once covered the whole mountain top last year | Shells grow in mountain rocks
+mc2: Which scale of model would best help students study how a river changes a valley over 10,000 years? | a stream table with sand and flowing water | a photo of a river on one day | a map of a city | a thermometer
+mc2: A big flood in one day moved as much sediment as a river normally moves in 10 years. What does this suggest? | Rare, fast events can cause large changes along with slow, steady processes | Floods never change land | Rivers only change land during floods | Sediment cannot move
+sa3: Explain how evidence at small scales, such as grains of sand, can tell scientists about large-scale processes like mountain building. | Rounded sand grains in rock show they were carried by water or wind from mountains that were eroding; layers of such grains show how much rock was worn away over time, revealing the history of mountains rising and wearing down.
+
+lesson: Forecasting and reducing harm from natural hazards | MS-ESS3-2
+practice:
+mc2: Scientists cannot predict the exact day of an earthquake. What can they forecast? | which areas are likely to have strong earthquakes in coming decades | the exact hour of the next earthquake | that no earthquake will happen | the earthquake's color
+mc2: California's earthquake early warning system detects the first waves of a quake and sends alerts. How does this help people? | It gives seconds of warning to drop, cover and hold on and to slow trains | It stops the earthquake | It prevents all damage | It tells the exact date of future quakes
+hint: Seconds can matter.
+mc2: Which design choice best reduces earthquake damage to buildings? | flexible frames and bases that absorb shaking | heavy brick walls without steel | tall glass towers on soft soil | buildings without foundations
+num2: An earthquake happened 120 km from a city. The first waves travel about 6 km per second and the damaging waves about 4 km per second. How many seconds after the first waves do the damaging waves arrive? | 10
+hint: Find each wave's travel time, then subtract.
+sa2: Explain why scientists monitor volcanoes for small earthquakes, ground swelling and gas releases. | These signs show magma moving underground; when they increase, scientists can warn people that an eruption may be coming so they can evacuate.
+quiz:
+mc1: A large ocean wave caused by an underwater earthquake is a | tsunami | hurricane | tornado | tide
+mc2: Ocean buoys detect changes in sea level after an undersea earthquake and send signals to warning centers. What hazard are they designed to warn about? | tsunamis | droughts | wildfires | blizzards
+num2: A tsunami travels about 800 km per hour across the deep ocean. How many hours would it take to travel 4,000 km? | 5
+num2: Magnitude 6 earthquakes release about 32 times the energy of magnitude 5 earthquakes. About how many times the energy of a magnitude 5 does a magnitude 7 release? | 1024
+mc3: Records show a fault has produced a large earthquake about every 150 years, and the last one was 140 years ago. Which conclusion is best supported? | A large earthquake is likely in the coming decades, so preparation is important | An earthquake will happen in exactly 10 years | The fault is no longer active | The next quake will be small
+mc2: Which action best reduces risk from tsunamis in a coastal town? | posting evacuation routes to high ground and running drills | building houses closer to the beach | ignoring warning sirens | removing warning buoys
+cer3: Data from a California county: Building Type A (older, unreinforced brick) - 40 of 50 buildings badly damaged in a 1989 earthquake. Building Type B (wood frame bolted to foundations) - 6 of 50 damaged. Building Type C (steel frame with base isolators) - 1 of 50 damaged. Make a claim about which building type best reduces earthquake damage. Use the data as evidence and explain your reasoning. | Claim: steel frame buildings with base isolators best reduce earthquake damage. Evidence: only 1 of 50 Type C buildings was badly damaged (2 percent), compared with 6 of 50 Type B (12 percent) and 40 of 50 Type A (80 percent). Reasoning: shaking from plate motion puts stress on buildings; flexible steel frames bend instead of breaking and base isolators absorb shaking, while unreinforced brick is stiff and cracks, so engineered designs mitigate the hazard.
+
+test:
+mc1: Earth's outer shell is broken into large pieces called | tectonic plates | cores | mantles | ridges
+mc1: At a convergent boundary, plates | move toward each other | move apart | slide past each other | do not move
+mc2: Matching fossils of the same land animal on two continents separated by an ocean suggest that | the continents were once connected | the animal swam across | the fossils are fake | the ocean was once dry everywhere
+mc2: Where is the youngest seafloor rock found? | at mid-ocean ridges | near the coasts of continents | in ocean trenches | at the North Pole
+mc2: The San Andreas Fault is an example of a | transform boundary | divergent boundary | convergent boundary | hot spot
+mc2: Most of the world's earthquakes and volcanoes occur | along plate boundaries | in the middle of plates | only in the ocean | only near the equator
+mc2: Which feature forms where two continental plates collide? | tall mountain ranges | mid-ocean ridges | rift valleys | hot spot islands
+mc2: Which change happens most slowly? | a continent moving across the globe | a landslide | an earthquake | a volcanic eruption
+mc2: What causes most volcanoes along the west coast of South America? | an ocean plate sinking beneath a continental plate | plates sliding past each other | a hot spot | erosion by rivers
+mc2: Which is the best way to reduce harm from earthquakes? | build structures to withstand shaking and practice drills | predict the exact minute of each quake | stop plate motion | move all cities to the ocean
+mc3: Data: seafloor rock 0 km from a ridge is 0 million years old; 100 km away, 4 million years; 200 km away, 8 million years. Which conclusion is supported? | The seafloor spreads at a steady rate away from the ridge | The seafloor is moving toward the ridge | All rock is the same age | The ridge is the oldest rock
+mc3: A town lies on a coast near a subduction zone. Which hazard plan is most complete? | earthquake-safe buildings, tsunami warning sirens and evacuation routes to high ground | a plan for blizzards only | a plan to stop earthquakes | no plan because hazards are rare
+num2: Seafloor rock 300 km from a ridge is 12 million years old. What was the average spreading rate in km per million years? | 25
+num2: A plate moves 6 cm per year. How many km would it move in 10 million years? (1 km = 100,000 cm) | 600
+num2: An earthquake's first waves arrived at a station 15 seconds before its damaging waves. A warning system needs 3 seconds to send an alert. How many seconds of warning do people get? | 12
+num2: A volcano's ground swelled 2 cm in January, 5 cm in February and 11 cm in March. What was the total swelling in cm? | 18
+mc2: Which observation would most likely warn scientists that a volcano may erupt soon? | an increase in small earthquakes and ground swelling | a cooler summer | more rain | fewer visitors
+mc3: Hawaii's Big Island has active volcanoes, while islands to the northwest are older and have none. Which statement best explains this pattern? | The Pacific Plate moved northwest over a hot spot that stays in place | The hot spot moves southeast each year | The older islands are on a different planet | The islands formed all at once
+mc2: Why do scientists use maps of past earthquakes to plan building codes? | Areas with many past quakes are likely to have quakes again | Past quakes show the exact date of the next one | Earthquakes never happen in the same place twice | Building codes are not related to hazards
+sa2: Describe two pieces of evidence that support plate tectonics. | Matching fossils and rock layers on continents now separated by oceans; seafloor rock that is youngest at mid-ocean ridges and older farther away; coastlines that fit together.
+sa2: Explain how a mountain range can be shaped by both fast and slow processes. | Plate motion slowly pushes rock upward over millions of years, rivers and glaciers slowly erode it, and earthquakes and landslides can change it suddenly.
+sa3: A school in Northern California near the coast wants to prepare for natural hazards. Describe two hazards it faces and one way to reduce the risk of each. | Earthquakes: secure shelves and practice drop, cover and hold on. Tsunamis: post evacuation routes to high ground and practice evacuation drills.
+cer3: A student studied a map of the Atlantic Ocean floor. The Mid-Atlantic Ridge runs down the middle. Rock samples: at the ridge, 0 million years old; 500 km east, 20 million years; 500 km west, 20 million years; 1,500 km east, 60 million years. Earthquakes and young volcanoes are common along the ridge. Make a claim about what is happening at the Mid-Atlantic Ridge. Use the data as evidence and explain your reasoning. | Claim: the Mid-Atlantic Ridge is a divergent boundary where new seafloor forms and spreads apart. Evidence: rock is youngest (0 million years) at the ridge and gets older with distance on both sides in a matching pattern (20 million years at 500 km east and west, 60 at 1,500 km); earthquakes and volcanoes are common there. Reasoning: as plates move apart, magma rises and cools to form new rock at the ridge, pushing older rock outward, so age increases evenly with distance; the symmetric pattern shows spreading at a steady rate of about 25 km per million years.
+
+unit: Unit 7: Sustaining Biodiversity and Ecosystem Services | MS-LS2-4, MS-LS2-5, MS-ETS1-1, MS-ETS1-2
+el: Use a picture chart of ecosystem services (clean water, pollination, food, flood control). Give a decision-matrix template with sentence frames: "Solution ___ is best because it scores ___ on ___."
+
+lesson: Disturbances change ecosystems | MS-LS2-4
+practice:
+mc2: After a wildfire in California chaparral, many shrubs sprout from their roots and some seeds sprout only after fire. What does this show? | Some organisms are adapted to recover after fire | Fires destroy all life permanently | Shrubs cannot survive any disturbance | Seeds only sprout in winter
+hint: Think about what happens in the months after the fire.
+mc2: A long drought dries up a pond. Which population is most likely to decrease first? | frogs that need water to lay eggs | hawks that fly between areas | cacti that store water | lizards that live in dry places
+mc2: Which is an example of a physical change to an ecosystem? | a flood that moves soil and rocks | a new predator arriving | a disease in a bird species | bees visiting more flowers
+num2: After a fire, a hillside had 2 plant species. Five years later it had 18 species. How many species were added? | 16
+hint: Subtract the starting number from the later number.
+sa2: Explain how a change to one part of an ecosystem, such as less rain, can affect populations at several levels of a food web. | Less rain means fewer plants grow; herbivores that eat those plants have less food and decrease; predators that eat the herbivores then have less food and may decrease too.
+quiz:
+mc1: Any event that changes an ecosystem, such as a fire, flood or storm, is called a | disturbance | producer | population | niche
+mc2: Quagga mussels, which are not native to California, have spread in some lakes and filter huge amounts of plankton from the water. What effect might this have on native fish? | Less plankton means less food for young fish and other animals | Native fish will have more food | Mussels make water warmer | Fish will stop needing food
+num2: A lake had 12 native fish species in 1990 and 9 in 2020 after an invasive species spread. What was the percent decrease? | 25
+num2: A meadow had 400 butterflies in a normal year and 150 in a drought year. How many fewer butterflies were there in the drought year? | 250
+mc3: Data: before a dam was built, a river had 40,000 returning salmon each year. Ten years after, it had 6,000. Which explanation is best supported? | The dam blocked salmon from reaching their spawning areas | Salmon like dams | Water got colder only | Salmon populations never change
+mc2: Which observation best shows an ecosystem recovering after a disturbance? | the number of plant and animal species increases over time | the soil stays bare for many years | all animals leave | the number of species keeps falling
+sa2: Explain why an ecosystem with many species may recover from a disturbance more easily than one with only a few species. | With many species, if some are harmed others can fill similar roles, such as other plants providing food or other pollinators visiting flowers, so the food web stays stable and recovers faster.
+
+lesson: Biodiversity and ecosystem health | MS-LS2-4, MS-LS2-5
+practice:
+mc1: The variety of species in an area is called | biodiversity | population density | carrying capacity | migration
+mc2: Which ecosystem would most likely be most stable when a disease kills one plant species? | a forest with 40 plant species | a farm field with 1 crop | a lawn with 1 grass type | a parking lot with 2 weeds
+hint: What happens if the only food source disappears?
+mc2: Biodiversity can be measured by counting | the number of different species in an area | only the number of trees | the number of people | the number of rocks
+num2: In a sample, students counted 5 species of insects with 40, 30, 20, 6 and 4 individuals. What percent of all insects were the most common species? | 40
+hint: Find the total first.
+sa2: Explain why scientists are concerned when biodiversity decreases in an ecosystem. | Lower biodiversity makes food webs simpler and less stable, so a disturbance can harm more of the ecosystem, and people lose benefits such as food, medicines and clean water.
+quiz:
+mc2: Two ponds have the same number of organisms. Pond A has 15 species and Pond B has 3 species. Which statement is true? | Pond A has higher biodiversity | Pond B has higher biodiversity | They have the same biodiversity | Biodiversity cannot be compared
+mc2: Which human activity most reduces biodiversity? | destroying habitat to build roads and cities | creating nature preserves | planting native plants | cleaning rivers
+num2: A survey found 120 bird species in a protected forest and 30 bird species in a nearby area that was cleared. How many times more bird species were in the protected forest? | 4
+num2: A coral reef area had 60 percent live coral cover in 2000 and 45 percent in 2020. By how many percentage points did coral cover drop? | 15
+mc3: A region's rivers lost several kinds of fish, insects and plants after pollution increased. Which conclusion is best supported? | Pollution reduced biodiversity in the rivers | Pollution increased biodiversity | Biodiversity is not affected by water quality | The rivers gained species
+mc2: Why might a farmer plant hedges of native flowers next to crop fields? | to support pollinators and natural predators of pests | to block all insects | to make the soil salty | to replace the crops
+sa3: A student claims that removing one small insect species from a forest will not matter. Use what you know about food webs and biodiversity to argue against this claim. | The insect may be food for birds or lizards, a pollinator for plants or a decomposer; removing it can reduce food for predators and lower pollination, causing changes that spread through the food web and reduce biodiversity.
+
+lesson: Ecosystem services: what nature does for us | MS-LS2-5
+practice:
+mc2: Wetlands slow down floodwater and filter pollutants. These benefits to people are called | ecosystem services | limiting factors | carrying capacity | natural selection
+mc2: California's almond orchards rely on bees to make almonds. Which ecosystem service do bees provide? | pollination | flood control | soil formation by erosion | water purification
+mc2: Forests on mountain slopes help prevent landslides because | tree roots hold soil in place | trees make the soil heavier | trees cause more rain to run off | trees remove all water
+hint: What keeps soil from sliding away?
+num2: A wetland reduced the amount of nitrogen pollution in water from 20 mg per liter to 5 mg per liter. What percent of the pollution was removed? | 75
+sa2: Describe one ecosystem service provided by a California ecosystem and explain how people benefit. | Example: forests in the Sierra Nevada store water in soil and snow shade and release it slowly into rivers, supplying drinking water and reducing floods for cities downstream.
+quiz:
+mc1: Which is an ecosystem service? | clean water filtered by a wetland | a new highway | a shopping mall | a parking lot
+mc2: Mangrove and marsh plants along coasts reduce damage from storm waves. Which service is this? | protection from flooding and storms | providing pollination | producing minerals | causing earthquakes
+num2: A town pays $2 million per year to treat water. Protecting a wetland upstream would cost $500,000 per year and reduce treatment costs by half. How many dollars would the town save per year overall? | 500000
+num2: Bees pollinate a field so that it produces 3,000 kg of fruit. Without bees it would produce 600 kg. What percent of the harvest depends on bees? | 80
+mc3: A city is deciding whether to drain a marsh to build houses. Which data would best help it evaluate the ecosystem services the marsh provides? | how much floodwater the marsh holds and how much pollution it removes | the color of the marsh plants | the number of cars in the city | the age of the city hall
+mc2: Why can losing biodiversity reduce ecosystem services? | Fewer species may mean fewer organisms doing jobs like pollinating, filtering water and decomposing | Biodiversity has no link to services | More species always cause harm | Services come only from machines
+sa2: Explain how protecting a forest near a river can benefit both wildlife and people. | The forest provides habitat for many species, and its roots hold soil in place and filter water, so the river stays cleaner for fish and for people who use the water.
+
+lesson: Designing solutions to protect biodiversity | MS-LS2-5, MS-ETS1-1, MS-ETS1-2
+practice:
+mc2: Mountain lions near Los Angeles are blocked by freeways from finding mates and food. Which solution most directly addresses the problem? | a wildlife bridge over the freeway planted with native plants | more freeway lanes | taller fences with no openings | removing all mountain lions
+mc2: Engineers build fish ladders beside dams. What problem do they solve? | They let fish swim upstream past the dam to spawn | They keep all fish out of the river | They generate electricity | They make the water warmer
+mc2: A team designs a way to reduce trash in a creek. Which is a constraint? | The solution must cost less than $5,000 | The solution must remove 80 percent of the trash | The solution must keep fish safe | The solution must catch plastic bottles
+hint: A constraint is a limit, such as cost, time or materials.
+num2: A trash net caught 72 kg of trash in 6 weeks. What was the mean amount caught per week in kg? | 12
+sa2: Name one criterion and one constraint for a solution that protects nesting birds on a busy beach. | Criterion: increase the number of chicks that survive by 50 percent. Constraint: the beach must stay open to visitors and the plan must cost little to maintain.
+quiz:
+mc2: A decision matrix compares three plans to restore a stream. Plan A: habitat 3, cost 5, community support 4. Plan B: habitat 5, cost 3, community support 4. Plan C: habitat 4, cost 2, community support 2. Which plan has the highest total score? | Plans A and B tie with 12 | Plan A alone with 12 | Plan B alone with 12 | Plan C with 8
+num2: A decision matrix rates Plan B for a stream: habitat 5, cost 3 and community support 4. If habitat counts double, what is Plan B's total score? | 17
+num2: Roadkill of deer on a highway dropped from 50 per year to 8 per year after wildlife crossings were built. What was the percent decrease? | 84
+mc3: Two plans to protect a native frog are tested. Plan 1 (removing invasive fish from 5 ponds) raised frog numbers by 300 percent. Plan 2 (planting shade trees) raised them by 20 percent. Both cost about the same. Which conclusion is best supported? | Plan 1 better meets the goal of increasing frog populations | Plan 2 is clearly better | Neither plan worked | The plans cannot be compared
+mc2: Why do engineers ask scientists, community members and users for input when designing solutions to protect ecosystems? | Different groups help define the criteria and constraints a good solution must meet | It makes the project slower on purpose | Only engineers can judge solutions | Opinions do not matter
+mc2: A city wants to reduce the harm of night lights on migrating birds. Which solution is most appropriate to test? | dimming or shielding building lights during migration seasons | adding brighter lights | removing all windows | ignoring the problem
+sa3: Design a solution to reduce the number of seabirds harmed by plastic on a California beach. Describe your solution, one criterion, one constraint and how you would test it. | Example: refill water stations and beach trash bins with lids plus monthly cleanups. Criterion: cut plastic found on the beach by 50 percent in 6 months. Constraint: must fit a $3,000 budget. Test: count plastic pieces in marked areas each week before and after and compare means.
+
+test:
+mc1: The variety of different species in an ecosystem is its | biodiversity | food chain | carrying capacity | habitat
+mc1: Clean water and pollination provided by nature are examples of | ecosystem services | limiting factors | disturbances | adaptations
+mc2: Which event is a disturbance that changes an ecosystem? | a wildfire | a sunny day | a bird singing | a squirrel eating an acorn
+mc2: A species that is introduced to a new area and harms native species is | an invasive species | a native species | a producer | a decomposer
+mc2: Which ecosystem is likely to be most resilient after a disease harms one tree species? | a forest with many tree species | a tree farm with one species | a city park with one species | a desert with no trees
+mc2: Why does destroying wetlands increase flooding in nearby towns? | Wetlands store and slow floodwater | Wetlands make rain | Wetlands raise sea level | Wetlands block rivers completely
+mc2: Wildlife bridges over highways help biodiversity by | connecting habitats so animals can find food and mates | keeping animals in one place | removing predators | reducing sunlight
+mc2: Which is an ecosystem service that bees provide to farmers? | pollinating crops | filtering water | preventing earthquakes | producing oxygen at night
+mc2: Which statement about biodiversity is true? | Higher biodiversity often helps ecosystems stay stable | Lower biodiversity always makes ecosystems stronger | Biodiversity cannot change | Only animals count toward biodiversity
+mc2: Which is a criterion for a solution to protect a river's fish? | Increase the number of young fish by 30 percent | Cost less than $10,000 | Be finished in one year | Use only local materials
+mc3: Data: a wetland that covered 1,000 hectares in 1950 now covers 200 hectares. Bird species there dropped from 80 to 35. Which conclusion is best supported? | Loss of wetland habitat is linked to fewer bird species | Birds prefer smaller wetlands | Wetland size has no effect on birds | More birds live there today
+mc3: Two plans protect a creek. Plan X removes invasive plants and replants natives; Plan Y paints rocks along the bank. Native fish rose 60 percent with Plan X and 0 percent with Plan Y. Which conclusion is supported? | Restoring native habitat helped the fish | Painting rocks helped the fish most | Neither plan affected the fish | Fish prefer invasive plants
+num2: A wetland covered 1,000 hectares in 1950 and covers 200 hectares today. What percent of the wetland was lost? | 80
+num2: A forest had 45 tree species before logging and 18 after. How many species were lost? | 27
+num2: A fish ladder let 9,000 salmon pass in one year. If 75 percent of salmon reaching the dam used it, how many salmon reached the dam? | 12000
+num2: Volunteers removed 15 kg, 22 kg, 18 kg and 25 kg of invasive plants on four weekends. What was the mean mass removed per weekend in kg? | 20
+mc2: Why can an invasive species cause a native population to decline? | It competes for resources or preys on native species that have no defenses against it | It always helps native species | It produces more sunlight | It removes all predators
+mc3: A decision matrix rates two plans for a stream (1 to 5 points). Plan 1: habitat 5, cost 2, support 4. Plan 2: habitat 3, cost 5, support 3. If habitat counts double, which plan scores higher? | Plan 1, with 16 points | Plan 2, with 14 points | They tie | Plan 2, with 11 points
+mc2: Which question would best help evaluate a solution to protect pollinators? | How did the number of bees visiting flowers change after the solution? | What color are the flowers? | How tall is the farmer? | What day of the week is it?
+sa2: Explain how an ecosystem service such as pollination depends on biodiversity. | Many crops and wild plants are pollinated by different bees, butterflies, birds and bats; if pollinator species are lost, fewer plants are pollinated, so fewer fruits and seeds form for wildlife and people.
+sa2: Describe how a disturbance like a drought could change the populations in a California grassland. | Less rain means less grass; grazing animals like rabbits and deer have less food and decrease; predators such as coyotes and hawks then have less prey, and their populations may decline too.
+sa3: Compare two solutions for protecting salmon at a dam (for example, a fish ladder and removing the dam). Give one benefit and one drawback of each. | Fish ladder: lets fish pass and keeps the dam's power and water storage, but some fish may not use it. Dam removal: fully restores the river for fish, but it loses electricity and water storage and is costly.
+cer3: Students compared two creeks. Creek A has native willows and shade, water at 16 °C, 14 insect species and 300 young trout per 100 meters. Creek B had its trees cleared, water at 24 °C, 4 insect species and 20 young trout per 100 meters. Make a claim about how losing streamside trees affects the creek ecosystem. Use the data as evidence and explain your reasoning. | Claim: clearing streamside trees reduced biodiversity and fish in the creek. Evidence: Creek B, with trees cleared, was 8 °C warmer (24 versus 16 °C), had 4 insect species instead of 14 and only 20 young trout per 100 meters instead of 300. Reasoning: trees shade the water, keeping it cool and providing leaves and insects as food; without them, the water warms, fewer insect species survive and trout that need cool water and insect food decline, so a change to one part of the ecosystem affects many populations.
+
