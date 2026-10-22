@@ -1,0 +1,776 @@
+@subject math
+@grade 5
+@program Eureka Math
+about: Fifth grade extends place value to thousandths and powers of ten, computes fluently with multi-digit whole numbers and decimals to hundredths, adds and subtracts fractions with unlike denominators, multiplies and divides with fractions, measures volume and area with fractional side lengths, and graphs points on the coordinate plane to solve problems.
+std: 5.NBT.A.1 | Recognize that in a multi-digit number, a digit in one place represents 10 times as much as it represents in the place to its right and 1/10 of what it represents in the place to its left.
+std: 5.NBT.B.5 | Fluently multiply multi-digit whole numbers using the standard algorithm.
+std: 5.NBT.B.7 | Add, subtract, multiply and divide decimals to hundredths using models, place value strategies and properties of operations.
+std: 5.NF.A.1 | Add and subtract fractions with unlike denominators, including mixed numbers, by replacing them with equivalent fractions.
+std: 5.NF.B.4 | Multiply a fraction or whole number by a fraction.
+std: 5.NF.B.7 | Divide unit fractions by whole numbers and whole numbers by unit fractions.
+std: 5.MD.C.5 | Relate volume to multiplication and addition and solve real-world problems involving volume.
+std: 5.G.A.2 | Represent real-world and mathematical problems by graphing points in the first quadrant of the coordinate plane.
+
+unit: Module 1: Place value and decimal fractions | 5.NBT.A.1, 5.NBT.A.2, 5.NBT.A.3, 5.NBT.A.4, 5.NBT.B.7 | g5pow10, g5decadd
+el: Keep a place value chart from thousands to thousandths on each desk. Pre-teach "exponent", "power of ten", "thousandths" and "round", and read decimals aloud with place names ("four and twenty-six hundredths").
+
+lesson: Multiplying and dividing by powers of ten | 5.NBT.A.1, 5.NBT.A.2
+practice:
+num1: 3.6 x 10 = ? | 36
+hint: When you multiply by 10, each digit moves one place to the left.
+num1: 42 / 100 = ? | 0.42
+hint: Dividing by 100 moves each digit two places to the right.
+mc2: Which is equal to 10^3? | 1,000 | 30 | 100 | 10,000
+hint: 10^3 means 10 x 10 x 10.
+num2: 0.075 x 1,000 = ? | 75
+hint: How many places does each digit move when you multiply by 1,000?
+mc2: In 4.44, the 4 in the ones place is how many times the value of the 4 in the tenths place? | 10 | 100 | 1/10 | 4
+hint: Each place is 10 times the place to its right.
+sa2: Explain why 2.5 x 10^2 = 250. | 10^2 = 100. Multiplying by 100 makes each digit 100 times as large, so each digit shifts two places to the left: 2 ones become 2 hundreds and 5 tenths become 5 tens, which is 250.
+quiz:
+num1: 0.8 x 100 = ? | 80
+num1: 56.3 / 10 = ? | 5.63
+num2: What is 7 x 10^4? | 70000
+mc2: Which is the same as 4,200 / 10^2? | 42 | 420 | 4.2 | 420,000
+num3: One pencil costs $0.35. How many dollars do 100 pencils cost? | 35
+mc3: The value of the 6 in 0.06 is what fraction of the value of the 6 in 6? | 1/100 | 1/10 | 100 | 10
+sa2: Lea says 3.2 x 10 = 3.20 because you just add a zero. Explain her mistake. | Writing a zero at the end of a decimal does not change its value: 3.20 = 3.2. Multiplying by 10 makes each digit 10 times as large and moves it one place to the left, so 3.2 x 10 = 32.
+
+lesson: Reading, writing and comparing decimals to thousandths | 5.NBT.A.3
+practice:
+mc1: Which is the word form of 4.208? | four and two hundred eight thousandths | four and two hundred eight hundredths | four thousand two hundred eight | four and twenty-eight thousandths
+hint: The last digit is in the thousandths place.
+mc2: Which shows 3.072 in expanded form? | 3 x 1 + 7 x (1/100) + 2 x (1/1000) | 3 x 1 + 7 x (1/10) + 2 x (1/100) | 3 + 0.7 + 0.02 | 3 x 10 + 7 x (1/100) + 2 x (1/1000)
+hint: Name the place of each digit first.
+mc2: Which symbol makes 0.405 __ 0.45 true? | < | > | = | It cannot be compared
+hint: Compare the hundredths digits: 0 hundredths and 5 hundredths.
+num2: Write 6 + 0.3 + 0.009 as a decimal. | 6.309
+hint: There are no hundredths. What digit goes in the hundredths place?
+mc2: Order from least to greatest: 2.31, 2.103, 2.13 | 2.103, 2.13, 2.31 | 2.31, 2.13, 2.103 | 2.13, 2.103, 2.31 | 2.103, 2.31, 2.13
+hint: All three have 2 ones. Compare the tenths, then the hundredths.
+sa2: Explain why 0.7 > 0.698 even though 0.698 has more digits. | Compare place by place, starting with the greatest place. 0.7 has 7 tenths and 0.698 has only 6 tenths, so 0.7 is greater. The number of digits does not decide the size.
+quiz:
+num1: Write five and forty-six thousandths as a decimal. | 5.046
+mc1: What is the value of the 9 in 3.429? | 9 thousandths | 9 hundredths | 9 tenths | 9 ones
+mc2: Which decimal is greatest? | 0.62 | 0.602 | 0.6 | 0.599
+mc2: Which number is equal to 4/10 + 3/1000? | 0.403 | 0.43 | 0.4003 | 4.03
+num2: Three runners finished a race in 12.08 seconds, 12.8 seconds and 12.008 seconds. What was the fastest time, in seconds? | 12.008
+mc3: Which digit makes 1.4_7 < 1.437 true? | 2 | 3 | 5 | 9
+sa2: Ty wrote 2 + 0.5 + 0.08 as 2.508. Explain his mistake. | 0.08 is 8 hundredths, so the 8 belongs in the hundredths place, not the thousandths place. The number is 2.58.
+
+lesson: Rounding decimals | 5.NBT.A.4
+practice:
+num1: Round 3.47 to the nearest tenth. | 3.5
+hint: Look at the hundredths digit.
+num2: Round 12.649 to the nearest hundredth. | 12.65
+hint: Look at the thousandths digit.
+num2: Round 7.952 to the nearest tenth. | 8
+hint: 7.952 is between 7.9 and 8.0. Which is it closer to?
+mc2: Round 0.385 to the nearest hundredth. | 0.39 | 0.38 | 0.4 | 0.385
+hint: 0.385 is exactly halfway between 0.38 and 0.39.
+mc2: Which number rounds to 4.6 when rounded to the nearest tenth? | 4.55 | 4.54 | 4.65 | 4.67
+hint: Numbers from 4.55 up to, but not including, 4.65 round to 4.6.
+sa2: Explain how a number line helps you round 2.738 to the nearest hundredth. | 2.738 is between 2.73 and 2.74, and the halfway point is 2.735. 2.738 is past the halfway point, so it rounds to 2.74.
+quiz:
+num1: Round 5.62 to the nearest whole number. | 6
+num2: Round 9.035 to the nearest hundredth. | 9.04
+mc2: A runner's time is 15.468 seconds. What is the time rounded to the nearest tenth? | 15.5 seconds | 15.4 seconds | 15.47 seconds | 16 seconds
+mc2: Which number does NOT round to 3 when rounded to the nearest whole number? | 3.5 | 2.5 | 3.49 | 2.81
+num3: A bag of rice costs $2.89 and a jar of beans costs $3.15. Estimate the total cost by rounding each price to the nearest dollar. What is the estimate in dollars? | 6
+mc3: A number with three decimal places rounds to 0.5 when rounded to the nearest tenth. Which of these is the greatest the number could be? | 0.549 | 0.55 | 0.599 | 0.545
+sa2: Kim rounded 6.97 to the nearest tenth and wrote 6.10. Explain her mistake. | 6.97 is between 6.9 and 7.0 and is past halfway, so it rounds up. One more tenth than 9 tenths is 10 tenths, which is 1 whole, so the answer is 7.0, not 6.10.
+
+lesson: Adding and subtracting decimals | 5.NBT.B.7
+practice:
+num1: 4.7 + 2.85 = ? | 7.55
+hint: Line up the decimal points. You can write 4.7 as 4.70.
+num1: 6.2 - 3.45 = ? | 2.75
+hint: Write 6.2 as 6.20 before you subtract.
+num2: 12.06 + 3.948 = ? | 16.008
+hint: Write 12.06 as 12.060 so both numbers have thousandths.
+num2: 10 - 4.37 = ? | 5.63
+hint: Write 10 as 10.00 and rename.
+mc2: Which is the best estimate for 8.92 + 3.1? | 12 | 11 | 13 | 120
+hint: Round each number to the nearest whole number.
+sa2: Explain why you line up the decimal points when you add 3.4 + 1.25. | Lining up the decimal points lines up digits with the same place value: ones with ones and tenths with tenths. Then 3.40 + 1.25 = 4.65.
+quiz:
+num1: 5.36 + 2.7 = ? | 8.06
+num1: 9.5 - 6.82 = ? | 2.68
+num2: A shirt costs $14.95 and a cap costs $8.50. How many dollars do they cost together? | 23.45
+num3: Rosa had $20. She bought a book for $7.89 and a pen for $1.35. How many dollars does she have left? | 10.76
+num2: A plant was 3.4 cm tall. It grew 0.85 cm. How many centimeters tall is it now? | 4.25
+mc2: Which equation is true? | 2.5 + 0.75 = 3.25 | 2.5 + 0.75 = 2.80 | 2.5 + 0.75 = 3.0 | 2.5 + 0.75 = 9.5
+sa2: Dan subtracted 7.4 - 2.15 and got 5.35. Explain his mistake and find the correct answer. | In the hundredths place he subtracted 0 from 5 instead of 5 from 0. He should write 7.4 as 7.40 and rename 1 tenth as 10 hundredths: 7.40 - 2.15 = 5.25.
+
+lesson: Multiplying and dividing decimals by one-digit whole numbers | 5.NBT.B.7
+practice:
+num1: 3 x 0.4 = ? | 1.2
+hint: 3 groups of 4 tenths is 12 tenths.
+num1: 4 x 2.15 = ? | 8.6
+hint: Multiply 4 by 2 ones, 1 tenth and 5 hundredths, then add.
+num2: 6.3 / 3 = ? | 2.1
+hint: Share 6 ones and 3 tenths into 3 equal groups.
+num2: 7.2 / 4 = ? | 1.8
+hint: Rename the extra ones as tenths: 7.2 is 72 tenths.
+mc2: Which is the best estimate for 6 x 3.92? | 24 | 18 | 2.4 | 240
+hint: Round 3.92 to the nearest whole number.
+num3: A pack of 5 markers costs $6.25. How many dollars does one marker cost? | 1.25
+hint: Share $6.25 equally into 5 groups.
+sa2: Explain how 4 x 0.3 is related to 4 x 3. | 4 x 3 = 12, so 4 x 3 tenths = 12 tenths. 12 tenths is 1.2, so 4 x 0.3 = 1.2.
+quiz:
+num1: 5 x 0.06 = ? | 0.3
+num1: 8.4 / 2 = ? | 4.2
+num2: 3 x 4.27 = ? | 12.81
+num2: 9.45 / 5 = ? | 1.89
+num3: Juice costs $1.85 per bottle. Ms. Kaur buys 4 bottles and pays with a $10 bill. How many dollars of change does she get? | 2.6
+mc3: A rope 4.8 meters long is cut into 6 equal pieces. How long is each piece? | 0.8 m | 8 m | 0.08 m | 1.2 m
+sa2: Noor divided 2.4 / 3 and got 8. Explain her mistake. | 2.4 is 24 tenths, and 24 tenths / 3 = 8 tenths, which is 0.8, not 8. Also, the answer cannot be greater than 2.4 when you divide 2.4 into 3 equal parts.
+
+test:
+num1: 0.57 x 100 = ? | 57
+num1: 340 / 1,000 = ? | 0.34
+mc1: What is the value of the 4 in 2.649? | 4 hundredths | 4 tenths | 4 thousandths | 4 ones
+num1: 3.8 + 4.65 = ? | 8.45
+num1: 7.03 - 2.6 = ? | 4.43
+mc2: Which is equal to 6.2 x 10^3? | 6,200 | 620 | 62,000 | 0.0062
+mc2: Which decimal has the least value? | 0.307 | 0.37 | 0.317 | 0.371
+mc2: Round 14.276 to the nearest tenth. | 14.3 | 14.2 | 14.28 | 14
+num2: 6 x 1.45 = ? | 8.7
+num2: 13.5 / 5 = ? | 2.7
+mc2: Which shows 5.064 in expanded form? | 5 x 1 + 6 x (1/100) + 4 x (1/1000) | 5 x 1 + 6 x (1/10) + 4 x (1/100) | 5 + 0.64 | 5 x 1 + 64 x (1/10)
+num3: A runner ran 3.75 km on Monday, 4.2 km on Tuesday and 5.05 km on Wednesday. How many kilometers did she run in all? | 13
+num3: A school buys 6 boxes of tissues for $2.35 each and pays with a $20 bill. How many dollars of change does it get? | 5.9
+num3: Four friends share a $25.80 pizza bill equally. How many dollars does each friend pay? | 6.45
+num3: A tank holds 50 liters. It has 23.65 liters of water, and then 8.4 liters are added. How many more liters are needed to fill the tank? | 17.95
+mc3: Which number has 1/10 the value of 0.5? | 0.05 | 5 | 0.005 | 50
+mc3: Which number rounds to 2.5 when rounded to the nearest tenth and to 2.47 when rounded to the nearest hundredth? | 2.468 | 2.475 | 2.443 | 2.461
+mc2: Which is the best estimate of 19.87 - 6.12? | 14 | 13 | 26 | 12
+sa2: Explain how the value of the 3 changes from 0.3 to 0.03. | In 0.3 the 3 is 3 tenths. In 0.03 it is 3 hundredths, which is 1/10 as much, because each place is 1/10 the value of the place to its left.
+sa2: Ming says 0.25 x 10 = 0.250. Explain his mistake. | Writing a zero at the end does not multiply by 10, because 0.250 = 0.25. Multiplying by 10 shifts each digit one place to the left, so 0.25 x 10 = 2.5.
+sa3: Ella says 4.09 > 4.1 because 9 is greater than 1. Use place value to explain whether she is right. | She is not right. Both numbers have 4 ones. 4.1 has 1 tenth and 4.09 has 0 tenths, so 4.1 is greater. She compared digits that are in different places.
+task3: A relay team's four runners had times of 13.47, 12.9, 13.05 and 12.86 seconds. (a) What was the team's total time? (b) List the runners' times from fastest to slowest. (c) Round each time to the nearest tenth and add the rounded times. How does the estimate compare with the exact total? (d) Last year's team had a total time of 53.1 seconds. How many seconds faster is this year's team? Show your work and explain each step. | (a) 52.28 seconds; (b) 12.86, 12.9, 13.05, 13.47; (c) 13.5 + 12.9 + 13.1 + 12.9 = 52.4, which is close to 52.28, so the total is reasonable; (d) 53.1 - 52.28 = 0.82 seconds faster; clear place value work. | All parts correct with a gap in the explanation, or one small error with clear work. | Two parts correct, or decimal points misaligned in several parts. | Little correct work.
+
+unit: Module 2: Multi-digit whole number and decimal fraction operations | 5.OA.A.1, 5.OA.A.2, 5.NBT.B.5, 5.NBT.B.6, 5.NBT.B.7, 5.MD.A.1 | g5ooo
+el: Model each algorithm step by step on grid paper so digits stay in their columns. Pre-teach "expression", "parentheses", "estimate", "quotient", "divisor" and "remainder", and give the frame "I estimate ___ because ___ is close to ___."
+
+lesson: Expressions and mental multiplication strategies | 5.OA.A.1, 5.OA.A.2, 5.NBT.B.5
+practice:
+num1: 3 + 4 x (6 - 2) = ? | 19
+hint: Work inside the parentheses first, then multiply, then add.
+mc2: Which expression means "add 8 and 7, then multiply by 3"? | (8 + 7) x 3 | 8 + 7 x 3 | 8 x 3 + 7 | 3 + 8 x 7
+hint: Parentheses show which step happens first.
+num2: 40 x 300 = ? | 12000
+hint: 4 tens x 3 hundreds = 12 thousands.
+num2: 25 x 16 = ? | 400
+hint: Think 25 x 4 = 100, and 16 is 4 x 4.
+mc2: How does the value of 4 x (12 + 9) compare with the value of 12 + 9? | It is 4 times as large | It is 4 more | It is 4 less | It is the same
+hint: You do not need to compute. What does multiplying the sum by 4 do?
+sa2: Explain how to multiply 99 x 7 mentally. | 99 is 1 less than 100. 100 x 7 = 700, then take away one 7: 700 - 7 = 693.
+quiz:
+num1: (18 - 6) / 3 + 5 = ? | 9
+num1: 60 x 500 = ? | 30000
+mc2: Which expression has a value of 30? | (2 + 4) x 5 | 2 + 4 x 5 | 2 x 4 + 5 | 2 + 4 + 5 x 2
+num2: Estimate 389 x 52 by rounding 389 to the nearest hundred and 52 to the nearest ten. What is the estimate? | 20000
+num3: Museum tickets cost $12 each. A class buys 25 tickets for students and 3 tickets for adults. How many dollars do the tickets cost in all? | 336
+mc3: Which expression matches "three times the sum of 15 and 25, then subtract 10"? | 3 x (15 + 25) - 10 | 3 x 15 + 25 - 10 | 3 + (15 + 25) - 10 | (3 x 15 + 25) x 10
+sa2: Jo says 20 - 4 x 3 = 48. Explain her mistake and find the correct value. | She subtracted first. Multiplication comes before subtraction when there are no parentheses: 4 x 3 = 12, then 20 - 12 = 8.
+
+lesson: Multi-digit multiplication with the standard algorithm | 5.NBT.B.5
+practice:
+num1: 312 x 24 = ? | 7488
+hint: Multiply 312 by 4, then by 20, then add the partial products.
+num1: 1,205 x 13 = ? | 15665
+hint: Multiply by 3 ones, then by 1 ten, then add.
+num2: 46 x 87 = ? | 4002
+hint: Estimate first: about 50 x 90.
+mc2: Which partial products are added to find 234 x 56? | 1,404 and 11,700 | 1,404 and 1,170 | 1,170 and 1,404 and 56 | 234 and 56
+hint: Find 234 x 6 and 234 x 50.
+num3: A theater has 38 rows with 27 seats in each row. 950 tickets were sold for a show. How many seats are empty? | 76
+hint: First find the total number of seats.
+sa2: Explain why the second row of the standard algorithm for 47 x 32 has a 0 in the ones place. | The second row multiplies 47 by 3 tens, not 3 ones. 47 x 30 = 1,410, which has 0 ones, so the 0 holds the ones place.
+quiz:
+num1: 523 x 41 = ? | 21443
+num1: 2,316 x 25 = ? | 57900
+num2: A farm ships 145 crates with 36 melons in each crate. How many melons does it ship? | 5220
+mc2: Which is the most reasonable estimate for 712 x 38? | 28,000 | 2,800 | 280,000 | 21,000
+num3: A school has 24 classrooms. Each classroom needs 32 new books, and each book costs $9. What is the total cost in dollars? | 6912
+mc2: Which number is equal to 64 x 25? | 1,600 | 1,500 | 160 | 16,000
+sa2: Kenji multiplied 63 x 45 and got 567. Explain his mistake and find the correct product. | He found 63 x 5 = 315 and 63 x 4 = 252 and added them, treating the 4 as 4 ones. The 4 is 4 tens, so he needs 63 x 40 = 2,520. 315 + 2,520 = 2,835.
+
+lesson: Multiplying decimals by whole numbers and measurement problems | 5.NBT.B.7, 5.MD.A.1
+practice:
+num1: 2.4 x 13 = ? | 31.2
+hint: Find 24 x 13, then think about how many tenths that is.
+num1: 0.36 x 25 = ? | 9
+hint: 36 hundredths x 25 = 900 hundredths.
+num2: Ribbon costs $1.75 per meter. How many dollars do 12 meters of ribbon cost? | 21
+hint: Multiply 1.75 by 12, or find 12 x 1 and 12 x 0.75.
+num2: How many centimeters are in 3.5 meters? | 350
+hint: 1 meter = 100 centimeters.
+mc2: Which is equal to 4.2 x 30? | 126 | 12.6 | 1,260 | 1.26
+hint: Think 42 tenths x 3 tens.
+num3: A runner runs 2.75 km each day for 14 days. How many kilometers does she run in all? | 38.5
+hint: Estimate first: about 3 x 14.
+sa2: Explain how you can use 6 x 42 to find 0.6 x 42. | 6 x 42 = 252. 0.6 is 1/10 of 6, so 0.6 x 42 is 1/10 of 252, which is 25.2.
+quiz:
+num1: 1.8 x 24 = ? | 43.2
+num2: 3.05 x 16 = ? | 48.8
+num2: A bag of apples has a mass of 2.4 kg. How many grams is that? | 2400
+num3: Gas costs $4.65 per gallon. Mr. Lopez buys 12 gallons and pays with $60. How many dollars of change does he get? | 4.2
+mc2: Which is the best estimate for 5.92 x 31? | 180 | 18 | 150 | 1,800
+num3: A box of cereal has a mass of 0.45 kg. A store has 36 boxes. What is the total mass in kilograms? | 16.2
+sa2: Ava found 0.4 x 23 = 92. Explain her mistake. | She found 4 x 23 = 92 but forgot that 0.4 is 4 tenths. 92 tenths is 9.2. Also, 0.4 x 23 must be less than 23.
+
+lesson: Dividing whole numbers by two-digit divisors | 5.NBT.B.6
+practice:
+num1: 480 / 60 = ? | 8
+hint: Think 48 tens / 6 tens.
+num1: 672 / 21 = ? | 32
+hint: Estimate: 21 is close to 20, and 672 is close to 600 or 700.
+num2: 1,548 / 43 = ? | 36
+hint: Estimate with 40 and adjust if the product is too large or too small.
+mc2: 395 / 24 = ? | 16 R11 | 16 R1 | 15 R35 | 17 R3
+hint: Find the largest multiple of 24 that is not more than 395.
+mc2: Which is the best estimate for 3,612 / 58? | 60 | 6 | 600 | 70
+hint: Use compatible numbers: 3,600 and 60.
+sa2: Explain how to check that 2,314 / 26 = 89 is correct. | Multiply the quotient by the divisor: 89 x 26 = 2,314. Since the product equals the dividend, the quotient is correct.
+quiz:
+num1: 3,500 / 70 = ? | 50
+num2: 936 / 18 = ? | 52
+num2: 4,182 / 34 = ? | 123
+num3: 615 students go to a game in buses that each hold 48 students. How many buses are needed? | 13
+mc2: 820 / 25 = ? | 32 R20 | 32 R2 | 33 R5 | 31 R45
+mc3: A factory packs 1,000 marbles into bags of 35. How many marbles are left over after it fills as many bags as possible? | 20 | 28 | 35 | 0
+sa2: Lia divided 756 by 36 and got 20 R36. Explain her mistake and give the correct quotient. | A remainder must be less than the divisor. A remainder of 36 means one more group of 36 fits. 36 x 21 = 756, so the quotient is 21 with no remainder.
+
+lesson: Dividing decimals and measurement word problems | 5.NBT.B.7, 5.NBT.B.6
+practice:
+num1: 4.8 / 12 = ? | 0.4
+hint: 4.8 is 48 tenths. Divide 48 tenths by 12.
+num2: 7.65 / 15 = ? | 0.51
+hint: 7.65 is 765 hundredths.
+num2: 25.2 / 21 = ? | 1.2
+hint: Estimate first: about 25 / 20.
+mc2: Which is equal to 0.96 / 32? | 0.03 | 0.3 | 3 | 0.003
+hint: 96 hundredths / 32 = how many hundredths?
+num3: A board 9.6 meters long is cut into 16 equal pieces. How many meters long is each piece? | 0.6
+hint: Think 96 tenths / 16.
+sa2: Explain why 3.6 / 12 has the same digit as 36 / 12 but a different value. | 3.6 is 36 tenths, and 36 tenths / 12 = 3 tenths. The digit matches 36 / 12 = 3, but the answer is in tenths, so it is 0.3.
+quiz:
+num1: 6.4 / 16 = ? | 0.4
+num2: 15.6 / 24 = ? | 0.65
+num3: 18 friends share the cost of a $95.40 gift equally. How many dollars does each friend pay? | 5.3
+num3: A cyclist rides 52.5 km in 15 days, riding the same distance each day. How many kilometers does she ride each day? | 3.5
+mc2: Which is the best estimate for 61.2 / 19? | 3 | 30 | 0.3 | 300
+num2: A 2.4-liter jug of juice fills 12 equal cups. How many milliliters are in each cup? | 200
+sa2: Rafi says 4.2 / 14 = 3. Explain his mistake. | 4.2 is 42 tenths, and 42 tenths / 14 = 3 tenths, or 0.3. Also, 4.2 shared into 14 equal parts must be less than 1.
+
+test:
+num1: 2 x (15 + 9) - 8 = ? | 40
+num1: 437 x 26 = ? | 11362
+num1: 1,152 / 32 = ? | 36
+num1: 3.4 x 22 = ? | 74.8
+num1: 8.4 / 21 = ? | 0.4
+mc1: Which expression means "subtract 6 from 20, then divide by 2"? | (20 - 6) / 2 | 20 - 6 / 2 | 6 - 20 / 2 | 2 / (20 - 6)
+mc2: Which is the best estimate for 4,875 / 62? | 80 | 8 | 800 | 70
+mc2: 713 / 32 = ? | 22 R9 | 22 R19 | 21 R41 | 23 R3
+mc2: Which expression has the same value as 25 x 36? | 25 x 4 x 9 | 25 + 36 | 25 x 30 + 6 | 20 x 30 + 5 x 6
+mc2: Which statement about 3 x (45 + 18) is true? | It is 3 times as large as 45 + 18 | It is 3 more than 45 + 18 | It equals 3 x 45 + 18 | It is 3 less than 45 + 18
+num2: A bakery bakes 128 trays with 24 muffins on each tray. How many muffins does it bake? | 3072
+num2: A factory packs 2,790 bolts into boxes of 45. How many boxes does it fill? | 62
+num3: A school buys 36 calculators for $14.75 each. What is the total cost in dollars? | 531
+num3: 520 students and 38 teachers ride to a concert in buses that each hold 44 people. How many buses are needed? | 13
+num3: A rope 12.6 meters long is cut into 18 equal pieces. How many centimeters long is each piece? | 70
+num3: A coach buys 15 water bottles for $3.25 each and 4 balls for $18.50 each. How many dollars does the coach spend in all? | 122.75
+mc3: Which situation has an answer of 15? | 435 students sit in rows of 29; how many rows? | 435 students sit in rows of 30; how many full rows? | 435 students sit in rows of 15; how many rows? | 29 rows have 435 students each; how many students?
+mc3: Which product is greatest? | 9.1 x 5 | 0.9 x 48 | 4.8 x 8 | 0.48 x 80
+sa2: Explain why 48 x 0.5 is half of 48. | 0.5 is 5 tenths, which equals 1/2. Multiplying by 1/2 finds half of a number, so 48 x 0.5 = 24.
+sa2: Sara divided 645 by 15 and got 42 R15. Explain her mistake and give the correct quotient. | Her remainder equals the divisor, so one more group of 15 fits. 15 x 43 = 645, so the quotient is 43 with no remainder.
+sa3: Write a word problem that can be solved with (6 x 2.50) + (3 x 1.25), and solve it. | Ana buys 6 notebooks for $2.50 each and 3 pens for $1.25 each. How much does she spend? 6 x 2.50 = 15 and 3 x 1.25 = 3.75, so she spends $18.75.
+task3: Room 14 is planning a museum trip for 28 students and 4 adults. Student tickets cost $12.50 and adult tickets cost $15. Vans hold 12 people each and cost $85.50 per van. The class has raised $700. (a) Find the total cost of the tickets. (b) How many vans are needed, and what do they cost? (c) What is the total cost of the trip, and how much of the $700 will be left? (d) Write one expression for the total cost of the trip. Show your work and explain how you checked each answer. | (a) 28 x 12.50 + 4 x 15 = 350 + 60 = $410; (b) 32 people need 3 vans, 3 x 85.50 = $256.50; (c) $666.50 total, $33.50 left; (d) a correct expression such as 28 x 12.50 + 4 x 15 + 3 x 85.50; checks explained. | All parts correct with a gap in the expression or checks, or one small error. | Two parts correct, or uses 2 vans (ignores the remainder). | Little correct work.
+
+unit: Module 3: Addition and subtraction of fractions | 5.NF.A.1, 5.NF.A.2 | adduni, simplify
+el: Use fraction strips and area models drawn on grid paper to make like units. Pre-teach "common denominator", "like units", "rename", "benchmark" and "estimate", and give the frame "I renamed ___ as ___ so the pieces are the same size."
+
+lesson: Equivalent fractions and common denominators | 5.NF.A.1
+practice:
+num2: 3/4 = ?/20. What is the missing numerator? | 15
+hint: What do you multiply 4 by to get 20? Multiply the numerator by the same number.
+mc2: Which denominator could you use to add 1/6 and 3/8? | 24 | 14 | 12 | 2
+hint: Find a number that is a multiple of both 6 and 8.
+mc2: Which fraction is equivalent to 2/3 and has a denominator of 15? | 10/15 | 2/15 | 6/15 | 5/15
+hint: 3 x 5 = 15.
+mc2: Which is 18/24 in simplest form? | 3/4 | 9/12 | 6/8 | 2/3
+hint: Find the greatest number that divides both 18 and 24.
+num2: What is the least common denominator for 1/4 and 5/6? | 12
+hint: List multiples of 6 and find the first one that is also a multiple of 4.
+sa2: Explain how to rename 1/3 and 1/4 so they have the same denominator. | Find a common multiple of 3 and 4, such as 12. Then 1/3 = 4/12 and 1/4 = 3/12, because you multiply the numerator and denominator of each fraction by the same number.
+quiz:
+num2: 5/6 = ?/18. What is the missing numerator? | 15
+mc2: Which pair shows 2/5 and 1/3 renamed with a common denominator? | 6/15 and 5/15 | 2/15 and 1/15 | 6/15 and 3/15 | 4/10 and 3/10
+mc1: Which fraction is equivalent to 4/10? | 2/5 | 4/5 | 1/4 | 10/4
+num2: What is the least common denominator of 3/8 and 5/12? | 24
+mc3: Which statement is true? | 9/12 and 15/20 are equivalent | 9/12 and 12/15 are equivalent | 2/3 and 3/4 are equivalent | 5/8 and 10/12 are equivalent
+num3: A recipe uses 3/4 cup of flour. Ama only has a 1/8 cup scoop. How many scoops of flour does she need? | 6
+sa2: Mo says 3/5 and 6/8 are equivalent because 3 x 2 = 6. Explain his mistake. | To make an equivalent fraction, you must multiply the numerator and the denominator by the same number. 3 x 2 = 6 but 5 x 2 = 10, so 3/5 = 6/10, not 6/8.
+
+lesson: Adding fractions with unlike denominators | 5.NF.A.1, 5.NF.A.2
+practice:
+num1: 1/2 + 1/3 = ? | 5/6
+hint: Rename both fractions as sixths.
+num2: 2/5 + 1/4 = ? | 13/20
+hint: Use 20 as a common denominator.
+num2: 3/8 + 5/12 = ? | 19/24
+hint: Use 24 as a common denominator.
+mc2: Which is a correct first step for finding 2/3 + 1/6? | 4/6 + 1/6 | 2/9 + 1/9 | 3/6 + 1/6 | 2/6 + 1/6
+hint: How many sixths are equal to 2/3?
+num3: Ivy painted 1/3 of a fence on Monday and 2/5 of it on Tuesday. What fraction of the fence has she painted? | 11/15
+hint: Rename both fractions as fifteenths.
+sa2: Explain why 1/2 + 1/4 is not 2/6. | Halves and fourths are different-sized pieces, so you cannot just add the numerators and the denominators. Rename 1/2 as 2/4, then 2/4 + 1/4 = 3/4.
+quiz:
+num1: 1/4 + 2/3 = ? | 11/12
+num2: 3/10 + 1/2 = ? | 8/10
+num2: 5/6 + 3/4 = ? | 19/12
+mc2: Lila walked 3/5 mile and then 1/2 mile more. How far did she walk in all? | 1 1/10 miles | 4/7 mile | 4/10 mile | 1 1/5 miles
+num3: A bag has 1/4 pound of almonds, 1/3 pound of peanuts and 1/6 pound of raisins. What is the total weight of the mix in pounds? | 3/4
+mc3: Which sum is greater than 1? | 2/3 + 3/5 | 1/3 + 1/2 | 1/4 + 3/8 | 2/5 + 1/2
+sa2: Raj added 2/3 + 1/5 and got 3/8. Explain his mistake and find the correct sum. | He added the numerators and added the denominators. He should rename both fractions with a denominator of 15: 10/15 + 3/15 = 13/15.
+
+lesson: Subtracting fractions with unlike denominators | 5.NF.A.1, 5.NF.A.2
+practice:
+num1: 3/4 - 1/3 = ? | 5/12
+hint: Rename both fractions as twelfths.
+num2: 5/6 - 1/4 = ? | 7/12
+hint: Use 12 as a common denominator.
+num2: 7/10 - 1/2 = ? | 2/10
+hint: How many tenths are equal to 1/2?
+mc2: Which is a correct way to find 4/5 - 1/2? | 8/10 - 5/10 | 4/5 - 1/5 | 3/3 | 8/10 - 1/10
+hint: Rename both fractions as tenths.
+num3: A jug holds 9/10 liter of juice. Tom drinks 1/4 liter. How many liters of juice are left in the jug? | 13/20
+hint: Use 20 as a common denominator.
+sa2: Explain how you can use addition to check that 5/8 - 1/4 = 3/8. | Add the answer to the amount subtracted: 3/8 + 1/4 = 3/8 + 2/8 = 5/8. Because the sum is the starting amount, the subtraction is correct.
+quiz:
+num1: 2/3 - 1/6 = ? | 3/6
+num2: 7/8 - 1/3 = ? | 13/24
+num2: 11/12 - 3/4 = ? | 2/12
+mc2: A ribbon is 5/6 yard long. Ana cuts off 2/9 yard. How long is the ribbon now? | 11/18 yard | 3/3 yard | 3/15 yard | 7/18 yard
+num3: Ben had 3/4 of a pizza. He gave 1/3 of a pizza to his sister and ate 1/6 of a pizza. How much pizza does he have left? | 3/12
+mc3: Which difference is less than 1/4? | 1/2 - 3/10 | 3/4 - 1/3 | 5/6 - 1/2 | 2/3 - 1/4
+sa2: Kayla says 3/4 - 1/2 = 2/2 = 1. Explain her mistake. | She subtracted the numerators and the denominators. Rename 1/2 as 2/4; then 3/4 - 2/4 = 1/4. Also, taking an amount away from 3/4 cannot leave more than 3/4.
+
+lesson: Mixed numbers, estimation and word problems | 5.NF.A.1, 5.NF.A.2
+practice:
+num2: 2 1/3 + 1 1/2 = ? | 3 5/6
+hint: Add the wholes, then add the fractions using sixths.
+num2: 5 1/4 - 2 2/3 = ? | 2 7/12
+hint: Rename with twelfths. If there are not enough twelfths, rename 1 whole.
+mc2: Which is a reasonable estimate for 7/8 + 4/9? | about 1 1/2 | about 1/2 | about 3 | about 11
+hint: Is each fraction close to 0, 1/2 or 1?
+mc2: Sam says 3/5 + 1/2 = 4/7. Which reasoning shows he is wrong? | 3/5 is more than 1/2, so the sum must be more than 1, but 4/7 is less than 1 | 4/7 is greater than 1 | 3/5 is less than 1/2 | 4/7 equals 1/2
+hint: Compare each fraction with the benchmark 1/2.
+num3: A board is 6 2/3 feet long. A piece 2 3/4 feet long is cut off. How many feet long is the board now? | 3 11/12
+hint: Rename with twelfths, then rename 1 whole if you need more twelfths.
+sa2: Explain how you know 2 7/8 + 3 1/10 is about 6. | 2 7/8 is close to 3 and 3 1/10 is close to 3, so the sum is about 3 + 3 = 6.
+quiz:
+num2: 3 3/4 + 2 1/6 = ? | 5 11/12
+num2: 4 1/2 - 1 3/5 = ? | 2 9/10
+num3: Nora mixes 3/4 cup of yogurt, 2/3 cup of berries and 1/2 cup of juice in a cup that holds 2 cups. How many cups of space are left in the cup? | 1/12
+mc2: Which is the best estimate for 5 1/9 - 2 5/6? | about 2 | about 3 | about 1 | about 8
+num3: Lena hiked 2 3/10 miles in the morning and 1 1/2 miles in the afternoon. Her goal was 5 miles. How many more miles does she need to hike? | 1 2/10
+mc3: Which sum is closest to 4? | 1 7/8 + 2 1/10 | 1 1/2 + 1 1/2 | 2 4/5 + 2 3/4 | 3 1/2 + 1 5/6
+sa2: Omar says 4 1/3 - 1 2/3 = 3 1/3 because 2/3 - 1/3 = 1/3. Explain his mistake. | He subtracted the fractions in the wrong order. He should rename 4 1/3 as 3 4/3. Then 3 4/3 - 1 2/3 = 2 2/3.
+
+test:
+num1: 1/3 + 1/4 = ? | 7/12
+num1: 5/6 - 2/3 = ? | 1/6
+num2: 3/5 + 3/10 = ? | 9/10
+mc1: Which fraction is equivalent to 3/4? | 9/12 | 3/12 | 6/12 | 4/3
+mc2: Which is 12/18 in simplest form? | 2/3 | 4/6 | 6/9 | 3/4
+mc2: Which common denominator can be used to add 2/9 and 1/6? | 18 | 15 | 9 | 6
+num2: 2 1/4 + 1 2/3 = ? | 3 11/12
+num2: 6 1/5 - 3 1/2 = ? | 2 7/10
+mc2: Which is the best estimate for 4/5 + 5/9? | about 1 1/2 | about 1/2 | about 9/14 | about 3
+mc2: Which statement about 1/2 + 2/5 is true? | The sum is less than 1 | The sum is greater than 1 | The sum is equal to 3/7 | The sum is equal to 1
+num3: A runner ran 1 3/4 miles, rested, then ran 2 2/3 miles more. How many miles did she run in all? | 4 5/12
+num3: A water tank was 7/8 full. After the plants were watered, it was 1/3 full. What fraction of the tank was used? | 13/24
+num3: Mr. Ruiz has 5 yards of fabric. He uses 1 1/2 yards for a shirt and 2 1/3 yards for pants. How many yards of fabric are left? | 1 1/6
+num3: Ava read 1/4 of a book on Monday and 3/8 of the book on Tuesday. What fraction of the book does she have left to read? | 3/8
+mc3: Which pair of fractions has a difference of exactly 1/2? | 5/6 and 1/3 | 3/4 and 1/2 | 7/8 and 1/2 | 2/3 and 1/4
+mc3: Leo says 2/3 + 1/4 = 3/7. Which check shows his sum is not reasonable? | 2/3 is more than 1/2, so the sum must be more than 1/2, but 3/7 is less than 1/2 | 3/7 is greater than 1 | 2/3 is less than 1/4 | 3/7 equals 2/3
+mc2: Which expression is equal to 5/12? | 1/4 + 1/6 | 1/2 - 1/6 | 2/3 - 1/6 | 1/3 + 1/6
+mc2: Order from least to greatest: 2/3, 5/8, 7/12 | 7/12, 5/8, 2/3 | 2/3, 5/8, 7/12 | 5/8, 7/12, 2/3 | 7/12, 2/3, 5/8
+sa2: Explain why you need a common denominator to add 1/3 and 1/5. | Thirds and fifths are different-sized pieces, so you cannot count them together. Rename both as fifteenths: 5/15 + 3/15 = 8/15.
+sa2: Rina says 3 1/2 - 1 3/4 = 2 1/4. Explain her mistake and find the correct difference. | She subtracted 1/2 from 3/4 instead of renaming. Rename 3 1/2 as 3 2/4 and then as 2 6/4; 2 6/4 - 1 3/4 = 1 3/4.
+sa3: Use benchmark fractions to explain whether 3/8 + 2/5 is more or less than 1. | 3/8 is less than 1/2 (4/8) and 2/5 is less than 1/2 (2.5/5). Two numbers that are each less than 1/2 add to less than 1, so the sum is less than 1.
+task3: Mia is planning a community garden plot. She plants 1/4 of the plot with tomatoes, 1/3 with beans and 1/6 with peppers. (a) What fraction of the plot is planted? (b) What fraction is not planted? (c) She wants to plant squash in 3/8 of the plot. Is there enough room? If not, how much more space would she need? (d) Show a second way to check your answer to (a), using a model or estimation. Explain each step. | (a) 3/12 + 4/12 + 2/12 = 9/12 = 3/4; (b) 1/4; (c) no, 3/8 is more than 1/4 (2/8), so she needs 1/8 of the plot more; (d) a correct area model or benchmark check; clear explanations. | All parts correct with a gap in the explanation, or one small error with clear work. | Two parts correct, or adds denominators in one part. | Little correct work.
+
+unit: Module 4: Multiplication and division of fractions and decimal fractions | 5.NF.B.3, 5.NF.B.4, 5.NF.B.5, 5.NF.B.6, 5.NF.B.7, 5.NBT.B.7, 5.MD.B.2 | multfrac, g5fdiv, g5decmul
+el: Draw tape diagrams and area models for every problem. Pre-teach "of" (as multiply), "scaling", "share equally", "unit fraction" and "how many ___ are in ___", and act out sharing with paper strips.
+
+lesson: Fractions as division and fraction line plots | 5.NF.B.3, 5.MD.B.2
+practice:
+num1: 3 pizzas are shared equally by 4 friends. How much pizza does each friend get? | 3/4
+hint: Divide the number of pizzas by the number of friends.
+num2: 7 / 2 = ? Write the answer as a mixed number. | 3 1/2
+hint: How many whole 2s are in 7? What fraction is left?
+mc2: Which division expression is equal to 5/8? | 5 / 8 | 8 / 5 | 5 x 8 | 8 - 5
+hint: A fraction bar means "divided by".
+num2: 10 yards of ribbon are cut into 4 equal pieces. How many yards long is each piece? | 2 1/2
+hint: Divide 10 by 4 and write the remainder as a fraction.
+num3: A line plot shows rope lengths: 2 ropes are 1/4 foot, 3 ropes are 1/2 foot and 1 rope is 3/4 foot. All six ropes are joined end to end. How many feet long is the joined rope? | 2 1/4
+hint: Multiply each length by the number of ropes, then add.
+sa2: Use 2 sandwiches shared equally by 3 people to explain why 2 / 3 = 2/3. | Cut each sandwich into thirds, which makes 6 thirds. Each person gets 2 of the 6 thirds, so each person gets 2/3 of a sandwich.
+quiz:
+num1: 5 granola bars are shared equally by 6 friends. What fraction of a bar does each friend get? | 5/6
+num2: 17 / 5 = ? Write the answer as a mixed number. | 3 2/5
+mc2: Which division expression is the same as 9/4? | 9 / 4 | 4 / 9 | 9 x 4 | 9 - 4
+num3: A teacher shares 6 liters of paint equally among 8 groups. How many liters of paint does each group get? | 3/4
+mc3: Five bags of flour weigh 1/4, 1/2, 1/2, 3/4 and 1 pound. If all the flour were shared equally among the 5 bags, how much would each bag weigh? | 3/5 pound | 3 pounds | 1/2 pound | 5/3 pounds
+num2: 13 / 3 = ? Write the answer as a mixed number. | 4 1/3
+sa2: Pat says that when 2 sandwiches are shared equally by 5 people, each person gets 5/2 sandwiches. Explain her mistake. | She reversed the division. The sandwiches are divided by the people: 2 / 5 = 2/5 of a sandwich each. 5/2 is more than 2 whole sandwiches each, which is impossible with only 2 sandwiches.
+
+lesson: Multiplying a whole number by a fraction | 5.NF.B.4
+practice:
+num1: 2/3 x 12 = ? | 8
+hint: Find 1/3 of 12 first, then double it.
+num2: In a class of 20 students, 3/4 ride the bus. How many students ride the bus? | 15
+hint: Find 1/4 of 20, then multiply by 3.
+num2: 5 x 2/3 = ? | 10/3
+hint: 5 groups of 2 thirds is how many thirds?
+mc2: Which expression shows 2/5 of 30? | 2/5 x 30 | 2/5 + 30 | 30 / (2/5) | 5/2 x 30
+hint: "Of" means multiply.
+num3: Mr. Kim had 48 cookies. He gave 1/4 of them to one class and 1/3 of them to another class. How many cookies are left? | 20
+hint: Find 1/4 of 48 and 1/3 of 48 first.
+sa2: Explain how a tape diagram shows 3/5 of 25. | Split a bar that stands for 25 into 5 equal parts; each part is 25 / 5 = 5. Three parts are 3 x 5 = 15, so 3/5 of 25 is 15.
+quiz:
+num1: 1/6 x 42 = ? | 7
+num2: 5/8 x 24 = ? | 15
+num2: 7 x 3/10 = ? | 21/10
+num3: A 60-minute class spends 2/5 of its time on math games. How many minutes are NOT spent on games? | 36
+mc2: Which number equals 3/4 x 16? | 12 | 4 | 48 | 64/3
+num3: Ana earned $36. She saved 2/3 of the money and spent the rest. How many dollars did she spend? | 12
+sa2: Ty says 2/3 x 9 = 18/27. Explain his mistake and find the product. | He multiplied the denominator by 9 too. 2/3 x 9 means 2/3 of 9: 9 / 3 = 3 and 2 x 3 = 6. Or (2 x 9) / 3 = 18/3 = 6.
+
+lesson: Multiplying fractions by fractions and decimals by decimals | 5.NF.B.4, 5.NBT.B.7
+practice:
+num1: 1/2 x 1/3 = ? | 1/6
+hint: Find half of one third.
+num1: 2/3 x 3/5 = ? | 6/15
+hint: Multiply the numerators, then multiply the denominators.
+num2: 0.4 x 0.3 = ? | 0.12
+hint: 4 tenths x 3 tenths = 12 hundredths.
+num2: 1.5 x 0.6 = ? | 0.9
+hint: Think 15 tenths x 6 tenths = 90 hundredths.
+mc2: A rug is 3/4 yard long and 1/2 yard wide. What is its area? | 3/8 square yard | 4/6 square yard | 1 1/4 square yards | 3/6 square yard
+hint: Area is length times width.
+sa2: Describe an area model for 2/3 x 4/5 and use it to find the product. | Draw a square split into 3 rows and 5 columns, making 15 equal parts. Shade 2 rows and 4 columns; the overlap is 8 parts, so 2/3 x 4/5 = 8/15.
+quiz:
+num1: 3/4 x 1/2 = ? | 3/8
+num2: 5/6 x 3/10 = ? | 15/60
+num2: 2.4 x 0.5 = ? | 1.2
+num2: 0.08 x 0.6 = ? | 0.048
+num3: In a class, 2/3 of the students play a sport, and 3/4 of those students play soccer. What fraction of the whole class plays soccer? | 1/2
+mc2: A ribbon is 0.75 m long. Lina uses 0.4 of the ribbon. How many meters does she use? | 0.3 m | 0.035 m | 3 m | 1.15 m
+sa2: Mia says 0.3 x 0.2 = 0.6. Explain her mistake. | 3 tenths x 2 tenths = 6 hundredths, because a tenth of a tenth is a hundredth. So 0.3 x 0.2 = 0.06.
+
+lesson: Multiplication as scaling | 5.NF.B.5, 5.NF.B.6
+practice:
+mc2: Without multiplying, which product is less than 8? | 8 x 3/4 | 8 x 5/4 | 8 x 1 | 8 x 1 1/2
+hint: What happens when you multiply by a number less than 1?
+mc2: Which statement about 2/3 x 15 is true? | It is less than 15 | It is greater than 15 | It equals 15 | It is greater than 30
+hint: 2/3 is less than 1.
+num2: A photo 4 inches wide is enlarged to 1 1/2 times its width. How many inches wide is the new photo? | 6
+hint: 1 1/2 times 4 is 4 plus half of 4.
+mc2: Which is greater, 7/8 x 12 or 9/8 x 12? | 9/8 x 12 | 7/8 x 12 | They are equal | It cannot be decided
+hint: Compare 7/8 and 9/8 with 1.
+num3: A recipe uses 2 1/2 cups of flour. Ken makes 3/4 of the recipe. How many cups of flour does he use? | 1 7/8
+hint: Write 2 1/2 as 5/2, then multiply by 3/4.
+sa2: Explain why 5 x 0.9 is a little less than 5. | 0.9 is a little less than 1. Multiplying 5 by 1 keeps it 5, so multiplying by a little less than 1 gives a little less than 5. The product is 4.5.
+quiz:
+mc2: Which product is greater than 3/5? | 3/5 x 4/3 | 3/5 x 1/2 | 3/5 x 9/10 | 3/5 x 1/3
+mc2: Which expression has a product equal to 12? | 12 x 4/4 | 12 x 3/4 | 12 x 5/4 | 12 x 1/12
+num2: A plant is 18 cm tall. A second plant is 2/3 as tall as the first. How many centimeters tall is the second plant? | 12
+num3: A tree is 3 1/3 meters tall. A building is 4 1/2 times as tall as the tree. How many meters tall is the building? | 15
+mc3: The letter n stands for a number greater than 1. Which statement about 3/4 x n is true? | It is less than n | It is greater than n | It equals n | It is less than 3/4
+num3: A painter mixes 1 3/4 gallons of paint and uses 2/3 of it. How many gallons of paint does she use? | 1 1/6
+sa2: Leo says multiplying always makes a number bigger. Use 10 x 1/2 to explain why he is wrong. | 10 x 1/2 = 5, which is less than 10. Multiplying by a fraction less than 1 gives a product smaller than the other factor.
+
+lesson: Dividing with unit fractions and decimals | 5.NF.B.7, 5.NBT.B.7
+practice:
+num1: 3 / (1/4) = ? | 12
+hint: How many fourths are in 3 wholes?
+num1: (1/2) / 4 = ? | 1/8
+hint: Split one half into 4 equal parts.
+num2: 1.2 / 0.3 = ? | 4
+hint: How many groups of 3 tenths are in 12 tenths?
+num2: 5 / 0.5 = ? | 10
+hint: How many halves are in 5?
+mc2: How many 1/3-cup servings are in 4 cups of rice? | 12 | 4/3 | 7 | 1 1/3
+hint: Each cup has 3 servings.
+num3: 3 friends share 1/2 of a pizza equally. What fraction of the whole pizza does each friend get? | 1/6
+hint: Split one half into 3 equal parts.
+sa2: Explain why 2 / (1/5) = 10. | 1/5 fits into 1 whole 5 times, so it fits into 2 wholes 2 x 5 = 10 times.
+quiz:
+num1: 6 / (1/3) = ? | 18
+num1: (1/4) / 2 = ? | 1/8
+num2: 2.4 / 0.6 = ? | 4
+num2: 0.36 / 0.04 = ? | 9
+num3: A ribbon is 5 yards long. Each bow uses 1/4 yard. How many bows can be made? | 20
+mc3: Which expression matches "4 children share 1/3 of a pan of brownies equally"? | (1/3) / 4 | 4 / (1/3) | 4 x 1/3 | 1/3 + 4
+num3: A 2-liter bottle of juice is poured into cups that each hold 0.25 liter. How many cups can be filled? | 8
+sa2: Ana says (1/2) / 3 = 1 1/2. Explain her mistake. | She multiplied 3 x 1/2 instead of dividing. Splitting 1/2 into 3 equal parts makes each part smaller, so (1/2) / 3 = 1/6.
+
+test:
+num1: 3/5 x 20 = ? | 12
+num1: 2/3 x 4/7 = ? | 8/21
+num1: 4 / (1/2) = ? | 8
+num1: (1/3) / 5 = ? | 1/15
+num2: 0.6 x 0.7 = ? | 0.42
+num2: 4.5 / 0.9 = ? | 5
+mc1: Which fraction is the same as 7 / 3? | 7/3 | 3/7 | 7 x 3 | 10/3
+mc2: Which product is less than 9? | 9 x 2/3 | 9 x 4/3 | 9 x 1 | 9 x 3/2
+mc2: A rectangle is 2/3 m long and 3/4 m wide. What is its area? | 1/2 square meter | 5/7 square meter | 6/7 square meter | 1 5/12 square meters
+mc2: Which expression shows "half of the sum of 3/4 and 1/8"? | 1/2 x (3/4 + 1/8) | 1/2 + 3/4 + 1/8 | 1/2 x 3/4 + 1/8 | (1/2 + 3/4) x 1/8
+num2: 7 pizzas are shared equally by 4 teams. How many pizzas does each team get? | 1 3/4
+num3: A school has 480 students, and 5/8 of them bring lunch from home. How many students do NOT bring lunch from home? | 180
+num3: Each serving of trail mix is 1/4 cup. Mrs. Ito makes 6 cups of trail mix and gives away 15 servings. How many servings are left? | 9
+num3: A field is 3/4 mile long and 2/5 mile wide. What is its area in square miles? | 3/10
+num3: Juan buys 2.5 pounds of grapes that cost $1.80 per pound. How many dollars does he pay? | 4.5
+mc3: Without multiplying, which statement about 1 1/4 x 36 is true? | It is greater than 36 | It is less than 36 | It equals 36 | It is less than 1 1/4
+mc3: A recipe needs 2/3 cup of oil. Sam makes half of the recipe, then doubles that amount. How much oil does he use? | 2/3 cup | 1/3 cup | 1 1/3 cups | 1/6 cup
+mc2: Which expression answers "How many 1/5-meter pieces can be cut from 3 meters of rope"? | 3 / (1/5) | (1/5) / 3 | 3 x 1/5 | 3 - 1/5
+sa2: Explain why 3/4 x 2/3 is less than 3/4. | You are finding 2/3 of 3/4. Taking a fraction less than 1 of a number gives less than the number, so the product (1/2) is less than 3/4.
+sa2: Sofia says 6 / (1/2) = 3. Explain her mistake. | She found half of 6, which is 6 x 1/2. Dividing by 1/2 asks how many halves are in 6. There are 2 halves in each whole, so 6 / (1/2) = 12.
+sa3: Write a word problem for (1/4) / 3 and solve it with a model. | 3 friends share 1/4 of a cake equally. How much of the whole cake does each get? Draw a cake cut into fourths and split one fourth into 3 equal parts; each part is 1/12 of the cake.
+task3: A cookie recipe that makes 24 cookies uses 3/4 cup of sugar, 2 1/4 cups of flour and 0.5 pound of butter. The class wants to make 36 cookies. (a) By what number must each amount be multiplied? (b) Find the new amount of sugar, flour and butter. (c) Butter costs $3.60 per pound. How much will the butter cost? (d) The class measures sugar with a 1/8 cup scoop. How many scoops of sugar are needed? Explain why each new amount is greater than the original. | (a) 36 / 24 = 1 1/2; (b) 1 1/8 cups sugar, 3 3/8 cups flour, 0.75 pound butter; (c) 0.75 x 3.60 = $2.70; (d) 1 1/8 / (1/8) = 9 scoops; explains that multiplying by a number greater than 1 makes each amount larger. | All parts correct with a weak explanation, or one small error with clear work. | Two parts correct, or scales by the wrong factor but computes correctly. | Little correct work.
+
+unit: Module 5: Addition and multiplication with volume and area | 5.MD.C.3, 5.MD.C.4, 5.MD.C.5, 5.NF.B.4, 5.G.B.3, 5.G.B.4 | g5vol
+el: Build prisms with centimeter cubes and tile rectangles with grid paper cut into halves and fourths. Pre-teach "volume", "cubic unit", "base area", "layer", "parallelogram", "rhombus" and "attribute", and keep a labeled quadrilateral family chart on the wall.
+
+lesson: Understanding volume with unit cubes | 5.MD.C.3, 5.MD.C.4
+practice:
+mc1: Which unit could be used to measure volume? | cubic centimeters | square centimeters | centimeters | grams
+hint: Volume measures how much space a solid takes up.
+num1: A box is filled with 3 layers of cubes. Each layer has 8 cubes. How many cubes fill the box? | 24
+hint: Multiply the cubes in one layer by the number of layers.
+num2: A rectangular prism is built from unit cubes. It is 5 cubes long, 2 cubes wide and 3 cubes tall. What is its volume in cubic units? | 30
+hint: Find the cubes in one layer first.
+mc2: Why can't volume be measured in square units? | Square units are flat and cannot fill space | Square units are too big | Square units only measure length | Square units only measure weight
+hint: Think about what a square unit covers and what a cube fills.
+num2: A cube has edges 3 cm long. How many 1-centimeter cubes fill it? | 27
+hint: Each layer is 3 by 3, and there are 3 layers.
+sa2: Explain why packing a box with gaps between the cubes gives the wrong volume. | Volume is the number of unit cubes that fill a space with no gaps or overlaps. If there are gaps, the box is not filled, so the count is too small.
+quiz:
+num1: A prism has a bottom layer of 6 cubes and is 4 layers tall. What is its volume in cubic units? | 24
+mc1: The volume of which space is best measured in cubic meters? | the cargo space of a moving truck | a sugar cube | a pencil box | a juice box
+num2: A box is 5 cm long, 4 cm wide and 2 cm tall. How many 1-centimeter cubes fill it? | 40
+mc2: Box A is built from unit cubes 2 by 3 by 4, and Box B is built 1 by 4 by 6. Which statement is true? | They have the same volume | Box A has the greater volume | Box B has the greater volume | You cannot tell which is greater
+num3: Lia packs a box that is 6 cubes long and 3 cubes wide. It is exactly full after she puts in 36 cubes. How many layers tall is the box? | 2
+mc3: A cube has a volume of 64 cubic inches. How long is each edge? | 4 inches | 8 inches | 16 inches | 21 inches
+sa2: Zeke says a box that is 2 by 3 by 4 has a volume of 9 cubic units because 2 + 3 + 4 = 9. Explain his mistake. | Volume counts the cubes in layers. Each layer has 2 x 3 = 6 cubes and there are 4 layers, so the volume is 6 x 4 = 24 cubic units. Adding side lengths does not count cubes.
+
+lesson: Volume formulas and composite solids | 5.MD.C.5
+practice:
+num1: Use V = l x w x h. A box is 7 inches long, 4 inches wide and 3 inches tall. What is its volume in cubic inches? | 84
+hint: Multiply the three dimensions.
+num2: A box has a base area of 18 square feet and a height of 5 feet. What is its volume in cubic feet? | 90
+hint: Volume = base area x height.
+num2: A box has a volume of 60 cubic inches, a length of 5 inches and a width of 3 inches. What is its height in inches? | 4
+hint: First find the base area, then think: base area x ? = 60.
+mc2: A solid is made of a 4 by 3 by 2 prism and a 2 by 2 by 5 prism. What is its total volume? | 44 cubic units | 24 cubic units | 20 cubic units | 480 cubic units
+hint: Find the volume of each prism, then add.
+num3: An aquarium is 50 cm long, 20 cm wide and 30 cm tall. Water fills it to a depth of 25 cm. How many cubic centimeters of water are in it? | 25000
+hint: Use the water's depth, not the tank's height.
+sa2: Explain why V = b x h works for a rectangular prism. | The base area b tells how many unit cubes fit in one layer, and the height h tells how many layers there are, so b x h counts all the cubes.
+quiz:
+num1: A cube has edges 6 m long. What is its volume in cubic meters? | 216
+num2: A sandbox 8 feet by 5 feet is filled with sand 2 feet deep. How many cubic feet of sand are in it? | 80
+num2: A prism has a volume of 96 cubic cm and a base area of 16 square cm. What is its height in centimeters? | 6
+mc2: Which set of dimensions gives a volume of 48 cubic units? | 2 by 4 by 6 | 4 by 4 by 4 | 2 by 6 by 6 | 3 by 3 by 6
+num3: A storage unit is made of two boxes stacked together. One is 10 ft by 6 ft by 4 ft and the other is 6 ft by 6 ft by 3 ft. What is the total volume in cubic feet? | 348
+mc3: A box is 3 by 4 by 5. If every edge length is doubled, how does the volume change? | It becomes 8 times as large | It becomes 2 times as large | It becomes 4 times as large | It becomes 6 times as large
+sa2: Tia found the volume of a 10 by 2 by 3 box as 10 x 2 + 3 = 23. Explain her mistake. | She added the height instead of multiplying by it. The base has 10 x 2 = 20 cubes and there are 3 layers, so the volume is 20 x 3 = 60 cubic units.
+
+lesson: Area with fractional side lengths | 5.NF.B.4
+practice:
+num2: A rectangle is 3 1/2 feet by 4 feet. What is its area in square feet? | 14
+hint: Find 3 x 4 and 1/2 x 4, then add.
+num2: A tile is 2/3 foot by 3/4 foot. What is its area in square feet? | 1/2
+hint: Multiply the numerators and the denominators.
+num2: A garden is 5 1/2 m by 2 1/4 m. What is its area in square meters? | 12 3/8
+hint: Write each side as a fraction greater than 1, or use partial products.
+mc2: Which expression finds the area of a 2 1/2 by 3 1/3 rectangle using partial products? | 2 x 3 + 2 x 1/3 + 1/2 x 3 + 1/2 x 1/3 | 2 x 3 + 1/2 x 1/3 | 2 + 3 + 1/2 + 1/3 | 2 1/2 + 3 1/3
+hint: Each part of one side must be multiplied by each part of the other side.
+num3: A wall is 8 feet wide and 9 1/2 feet tall. It has a door that is 3 feet by 6 2/3 feet. How many square feet of the wall need paint? | 56
+hint: Find the wall's area and the door's area, then subtract.
+sa2: Explain how tiling a 1 1/2 by 2 1/2 rectangle shows its area. | Whole unit squares cover 1 by 2 = 2 square units. The strips along the edges cover 1 x 1/2 = 1/2 and 1/2 x 2 = 1. The corner piece is 1/2 x 1/2 = 1/4. The total is 3 3/4 square units, the same as 3/2 x 5/2 = 15/4.
+quiz:
+num2: A poster is 1 1/2 feet by 2 feet. What is its area in square feet? | 3
+num2: A rectangle is 3/5 m by 5/6 m. What is its area in square meters? | 1/2
+num3: A patio is 4 1/2 yards by 6 yards. Tiles cost $8 per square yard. How many dollars do the tiles cost? | 216
+mc2: Which rectangle has an area of 6 square units? | 1 1/2 by 4 | 2 1/2 by 2 1/2 | 3 1/2 by 2 | 1/2 by 6
+num2: A square has sides 3/4 inch long. What is its area in square inches? | 9/16
+mc3: A rectangle has an area of 10 square feet and a length of 4 feet. What is its width? | 2 1/2 feet | 6 feet | 2 feet | 40 feet
+sa2: Kim says a 2 1/2 by 4 rectangle has an area of 8 1/2 square units because 2 x 4 = 8 and there is 1/2 left. Explain her mistake. | She did not multiply the 1/2 by 4. 1/2 x 4 = 2, so the area is 8 + 2 = 10 square units.
+
+lesson: Classifying two-dimensional figures | 5.G.B.3, 5.G.B.4
+practice:
+mc1: Which quadrilateral always has 4 right angles but does not need 4 equal sides? | rectangle | square | rhombus | kite
+hint: Which shape is named for its right angles?
+mc2: Which statement is always true? | Every square is a rectangle | Every rectangle is a square | Every parallelogram is a rectangle | Every rhombus is a square
+hint: Check whether a square has every attribute of a rectangle.
+mc2: A parallelogram has 4 equal sides. What else must it be? | a rhombus | a square | a rectangle | a quadrilateral with no parallel sides
+hint: Which shape is defined by 4 equal sides?
+mc2: Which attribute do all parallelograms have? | opposite sides are parallel and equal in length | 4 right angles | 4 equal sides | only one pair of parallel sides
+hint: Think about rectangles, rhombuses and squares, which are all parallelograms.
+num1: How many pairs of parallel sides does a parallelogram have? | 2
+hint: Look at both pairs of opposite sides.
+sa2: Explain why a square is also a rhombus. | A rhombus is a quadrilateral with 4 equal sides. A square has 4 equal sides, so it is a rhombus. It also has 4 right angles, which makes it a special rhombus.
+quiz:
+mc1: Which shape is a parallelogram with 4 right angles? | rectangle | rhombus that is not a square | kite | trapezoid that is not a parallelogram
+mc2: Which statement is NOT always true? | Every rectangle is a rhombus | Every square is a parallelogram | Every rhombus is a parallelogram | Every rectangle is a parallelogram
+mc2: A quadrilateral has two pairs of equal sides next to each other and no parallel sides. What is it? | kite | rhombus | rectangle | square
+mc3: Which name describes a figure that is both a rectangle and a rhombus? | square | trapezoid | kite that is not a rhombus | pentagon
+num2: A quadrilateral has angles of 90, 90, 90 and x degrees. The angles of a quadrilateral add to 360 degrees. What is x? | 90
+mc2: Which attribute does every rhombus have? | 4 equal sides | 4 right angles | diagonals of equal length | exactly one pair of parallel sides
+sa2: Max says a rectangle cannot be a parallelogram because parallelograms have slanted sides. Explain his mistake. | A parallelogram is any quadrilateral with 2 pairs of parallel sides. A rectangle has 2 pairs of parallel sides, so it is a parallelogram; its sides just meet at right angles.
+
+test:
+num1: A box is 6 cm by 4 cm by 5 cm. What is its volume in cubic centimeters? | 120
+num1: A cube has edges 5 inches long. What is its volume in cubic inches? | 125
+mc1: Which unit measures volume? | cubic feet | square feet | feet | pounds
+num2: A rectangle is 2 1/2 m by 6 m. What is its area in square meters? | 15
+num2: A prism has a base area of 24 square inches and a height of 7 inches. What is its volume in cubic inches? | 168
+num2: A rectangle is 3/4 foot by 2/5 foot. What is its area in square feet? | 3/10
+mc2: Which statement about squares is always true? | Every square is a rhombus and a rectangle | Every square has no right angles | A square has only one pair of parallel sides | A square is never a parallelogram
+mc2: Which dimensions give a volume of 36 cubic units? | 2 by 3 by 6 | 3 by 3 by 3 | 2 by 2 by 6 | 4 by 4 by 2
+mc2: A solid is made of a 5 by 2 by 2 prism and a 3 by 2 by 4 prism. What is its total volume? | 44 cubic units | 20 cubic units | 24 cubic units | 480 cubic units
+mc2: Which shape is a parallelogram with 4 equal sides and no right angles? | rhombus | square | rectangle | trapezoid that is not a parallelogram
+num3: A pool is 12 m long, 5 m wide and 2 m deep. It is filled with water halfway to the top. How many cubic meters of water are in it? | 60
+num3: A garden bed is 3 1/2 feet by 8 feet. One bag of soil covers 4 square feet. How many bags are needed to cover the bed? | 7
+num3: A box is 10 inches long, 6 inches wide and 4 inches tall. How many 2-inch cubes fit inside it? | 30
+num3: A room is 4 1/2 m by 3 1/3 m. Carpet costs $20 per square meter. How many dollars does the carpet cost? | 300
+mc3: A prism has a volume of 90 cubic cm. Its length is 6 cm and its width is 5 cm. What is its height? | 3 cm | 79 cm | 15 cm | 30 cm
+mc3: Box A is 4 by 5 by 6. Box B has the same base as Box A but twice the height. Which statement is true? | Box B's volume is 240 cubic units, twice Box A's | Box B's volume is 120 cubic units | Box B's volume is 480 cubic units | Box B's volume is 8 times Box A's
+mc2: Which expression finds the volume of a solid made of a 3 by 4 by 5 prism and a 3 by 4 by 2 prism? | 3 x 4 x 5 + 3 x 4 x 2 | 3 x 4 x 5 x 2 | 3 + 4 + 5 + 2 | 3 x 4 + 5 + 2
+num2: The angles of a quadrilateral add to 360 degrees. A parallelogram has angles of 70, 110, 70 and x degrees. What is x? | 110
+sa2: Explain why the volume of a box can be found by multiplying the area of its base by its height. | The base area tells how many unit cubes fit in one layer, and the height tells how many layers stack up, so base area x height counts every cube.
+sa2: Kai says a rhombus is always a square. Give an example that shows he is wrong. | A rhombus with angles of 60 and 120 degrees has 4 equal sides but no right angles, so it is not a square.
+sa3: Use partial products to find the area of a 3 1/2 by 2 1/2 rectangle. Explain each part. | 3 x 2 = 6, 3 x 1/2 = 1 1/2, 1/2 x 2 = 1 and 1/2 x 1/2 = 1/4. Adding the parts gives 8 3/4 square units, which matches 7/2 x 5/2 = 35/4.
+task3: The garden club has exactly 72 cubic feet of soil to fill a new rectangular planter box that is 2 feet tall. (a) What must the base area be? (b) Give two different whole-number lengths and widths for the base. (c) The box must fit along a wall that is 10 feet long. Which of your designs fit? (d) If the club makes the box 3 feet tall instead and uses all the soil, what is the new base area? Explain why the base area changes. | (a) 72 / 2 = 36 square feet; (b) two of 1 by 36, 2 by 18, 3 by 12, 4 by 9, 6 by 6; (c) only designs with both sides 10 feet or less (4 by 9 or 6 by 6) fit; (d) 72 / 3 = 24 square feet, because more layers means fewer cubes are needed in each layer. | All parts correct with a gap in the explanation, or one small error. | Two parts correct, or uses addition instead of multiplication in one part. | Little correct work.
+
+unit: Module 6: Problem solving with the coordinate plane | 5.G.A.1, 5.G.A.2, 5.OA.B.3
+el: Tape a coordinate grid on the floor and have students walk to points ("over, then up"). Pre-teach "origin", "axis", "coordinate", "ordered pair", "parallel" and "perpendicular", and post the frame "Start at the origin, move ___ right and ___ up."
+
+lesson: Coordinate systems and plotting points | 5.G.A.1
+practice:
+mc1: In the ordered pair (4, 2), what does the 4 tell you? | how far to move along the x-axis from the origin | how far to move along the y-axis from the origin | the y-coordinate | the number of points on the line
+hint: The first number is the x-coordinate.
+mc1: What are the coordinates of the origin? | (0, 0) | (1, 1) | (0, 1) | (1, 0)
+hint: The origin is where the two axes meet.
+mc2: Start at the origin, move 3 units right and 5 units up. Which point are you at? | (3, 5) | (5, 3) | (3, 0) | (0, 5)
+hint: Write the move right first, then the move up.
+num2: Point A is at (6, 4). What is its y-coordinate? | 4
+hint: The y-coordinate is the second number.
+mc2: Which point is on the x-axis? | (7, 0) | (0, 7) | (7, 7) | (1, 7)
+hint: A point on the x-axis has not moved up at all.
+sa2: Explain the difference between the points (2, 6) and (6, 2). | (2, 6) is 2 units right and 6 units up from the origin, and (6, 2) is 6 units right and 2 units up. The order of the coordinates matters, so they are different points.
+quiz:
+mc1: Which ordered pair names the point 0 units right and 4 units up from the origin? | (0, 4) | (4, 0) | (4, 4) | (0, 0)
+num2: Point B is at (9, 3). How many units is it from the y-axis? | 9
+mc2: Start at (2, 3). Move 3 units right and 1 unit up. Where are you now? | (5, 4) | (3, 5) | (5, 3) | (4, 5)
+num2: The points (1, 5) and (8, 5) are on a horizontal line. How many units apart are they? | 7
+mc3: Which point is farther from the x-axis, (3, 8) or (8, 3)? | (3, 8), because its y-coordinate is 8 | (8, 3), because its x-coordinate is 8 | They are the same distance from the x-axis | (8, 3), because its y-coordinate is 3
+num2: A point in the first quadrant is 5 units from the x-axis and 2 units from the y-axis. What is its x-coordinate? | 2
+sa2: Rosa plotted (4, 1) by moving up 4 and then right 1. Explain her mistake. | The first coordinate is the x-coordinate, so she should move 4 units right first and then 1 unit up. By going up 4 and right 1 she plotted (1, 4).
+
+lesson: Numerical patterns and graphing rules | 5.OA.B.3, 5.G.A.2
+practice:
+num1: A pattern starts at 0 and adds 3: 0, 3, 6, 9. What is the next number? | 12
+hint: Add 3 to the last term.
+mc2: Pattern A starts at 0 and adds 2. Pattern B starts at 0 and adds 4. Which statement about matching terms is true? | Each term in B is twice the matching term in A | Each term in B is 2 more than the matching term in A | Each term in A is twice the matching term in B | The matching terms are equal
+hint: List the first four terms of each pattern and compare.
+num2: A pattern starts at 0 and adds 5. The first term is 0. What is the fifth term? | 20
+hint: List the terms: 0, 5, and so on.
+mc2: The rule is "y is 3 more than x". Which point follows the rule? | (2, 5) | (5, 2) | (3, 3) | (2, 6)
+hint: Add 3 to the x-coordinate. Do you get the y-coordinate?
+num2: The rule is "multiply x by 2 to get y". What is y when x is 7? | 14
+hint: Use the rule on 7.
+sa2: Pattern A is 0, 3, 6, 9 and pattern B is 0, 6, 12, 18. Describe how the patterns are related and write the ordered pairs (A, B). | Each term in pattern B is 2 times the matching term in pattern A. The ordered pairs are (0, 0), (3, 6), (6, 12) and (9, 18).
+quiz:
+num1: A pattern starts at 1 and adds 4: 1, 5, 9. What is the 5th term? | 17
+mc2: Which ordered pairs follow the rule "y is x times 3"? | (1, 3), (2, 6), (4, 12) | (1, 4), (2, 5), (3, 6) | (3, 1), (6, 2), (12, 4) | (1, 3), (2, 5), (3, 7)
+num2: A line passes through (0, 1), (1, 3), (2, 5) and (3, 7). Following the same pattern, what is the y-coordinate when x is 6? | 13
+mc2: Pattern A is 0, 4, 8, 12 and pattern B is 0, 2, 4, 6. Which statement is true? | Each term in A is 2 times the matching term in B | Each term in A is 2 more than the matching term in B | Each term in B is 2 times the matching term in A | The patterns have the same rule
+num3: A plant is 2 cm tall and grows 3 cm each week. How many centimeters tall is it after 8 weeks? | 26
+mc3: The points (0, 0), (1, 4) and (2, 8) lie on a line. Which point is also on that line? | (5, 20) | (5, 9) | (4, 12) | (20, 5)
+sa2: Dee says (2, 8) follows the rule "y is 4 more than x" because 2 x 4 = 8. Explain her mistake. | "4 more than" means add 4, so y should be 2 + 4 = 6. The point (2, 8) follows the rule "y is 4 times x" instead.
+
+lesson: Drawing figures and finding lengths on the coordinate plane | 5.G.A.1, 5.G.A.2
+practice:
+num2: A rectangle has corners at (1, 1), (6, 1), (6, 4) and (1, 4). How many units long is its horizontal side? | 5
+hint: Subtract the x-coordinates of two corners on the same horizontal side.
+num2: A rectangle has corners at (1, 1), (6, 1), (6, 4) and (1, 4). What is its area in square units? | 15
+hint: Find the length and the width first.
+mc2: Three corners of a square are (2, 2), (5, 2) and (5, 5). What is the fourth corner? | (2, 5) | (5, 2) | (2, 8) | (8, 5)
+hint: Sketch the three points. Which corner is missing?
+num2: A rectangle has corners at (0, 0), (8, 0), (8, 3) and (0, 3). What is its perimeter in units? | 22
+hint: Find the length and width, then add all four sides.
+mc2: A line goes through (3, 0) and (3, 7). Which statement describes the line? | It is parallel to the y-axis | It is parallel to the x-axis | It goes through the origin | It slants up to the right
+hint: Both points have the same x-coordinate.
+sa2: Explain how you know a line through (1, 4) and (9, 4) is parallel to the x-axis. | Both points have a y-coordinate of 4, so every point on the line is 4 units above the x-axis. The line stays the same distance from the x-axis, so it is parallel to it.
+quiz:
+num2: The points (2, 3) and (2, 10) are plotted. How many units apart are they? | 7
+num2: A rectangle has corners at (2, 1), (7, 1), (7, 5) and (2, 5). What is its area in square units? | 20
+mc2: Which point makes a rectangle with (1, 2), (1, 6) and (4, 6)? | (4, 2) | (6, 4) | (2, 4) | (4, 1)
+mc2: How are the segment from (0, 2) to (5, 2) and the segment from (0, 6) to (5, 6) related? | They are parallel | They are perpendicular | They are the same segment | They cross at (5, 4)
+num3: On a park map, 1 unit stands for 10 meters. The pond is at (3, 2) and the slide is at (3, 9). How many meters apart are they? | 70
+mc3: Which pair of points makes a segment perpendicular to the segment from (1, 1) to (1, 6)? | (0, 3) and (4, 3) | (2, 1) and (2, 6) | (0, 0) and (0, 5) | (3, 2) and (3, 8)
+sa2: Will says the rectangle with corners (1, 1), (5, 1), (5, 3) and (1, 3) has an area of 6 square units because 5 + 1 = 6. Explain his mistake. | He added coordinates instead of finding side lengths. The length is 5 - 1 = 4 units and the width is 3 - 1 = 2 units, so the area is 4 x 2 = 8 square units.
+
+lesson: Problem solving with the coordinate plane | 5.G.A.2, 5.OA.B.3
+practice:
+num2: A town map shows the school at (2, 3) and the library at (2, 8). Each unit is 1 block. How many blocks apart are they? | 5
+hint: The x-coordinates match, so subtract the y-coordinates.
+num3: A taxi charges $3 plus $2 for each mile. Its graph of (miles, cost) includes (1, 5), (2, 7) and (3, 9). How many dollars does a 6-mile ride cost? | 15
+hint: Each extra mile adds $2.
+mc2: A graph of a bike ride shows the points (1, 12), (2, 24) and (3, 36) as (hours, miles). Which rule fits the graph? | miles = 12 x hours | miles = hours + 12 | hours = 12 x miles | miles = 12 + 12
+hint: How do the miles change each hour?
+num3: Leo walks from (1, 1) to (1, 5), then to (6, 5). Each unit is 100 meters. How many meters does he walk? | 900
+hint: Find each part of the walk in units, then convert.
+mc2: Jo has $10 saved and saves $5 more each week. Which point shows (week, dollars) for week 4? | (4, 30) | (4, 20) | (30, 4) | (4, 25)
+hint: Start at 10 and add 5 four times.
+sa2: Explain how a graph of (weeks, dollars saved) can help you predict savings for a later week. | The points follow a rule and line up, so you can continue the pattern or extend the line to read the number of dollars for a later week.
+quiz:
+num2: Cupcakes cost $2 each. A graph shows (number of cupcakes, cost). What is the cost of 9 cupcakes, in dollars? | 18
+num3: A tank has 50 liters of water and drains 4 liters each minute. A graph of (minutes, liters) includes (0, 50), (1, 46) and (2, 42). How many liters are left after 10 minutes? | 10
+mc2: A delivery robot starts at (0, 0). It moves 4 units right, 3 units up and then 2 more units right. Where is it? | (6, 3) | (4, 5) | (6, 5) | (3, 6)
+num3: Maya's home is at (2, 7), Sam's home is at (9, 7) and the school is at (9, 1). Maya walks to Sam's home, and then they walk together to school. Each unit is 1 block. How many blocks does Maya walk? | 13
+mc3: Pattern A (x-coordinates) is 0, 1, 2, 3 and pattern B (y-coordinates) is 0, 3, 6, 9. Which point would be graphed next? | (4, 12) | (4, 10) | (12, 4) | (5, 12)
+num2: A garden map has corners at (0, 0), (12, 0), (12, 5) and (0, 5), and each unit is 1 foot. How many feet of fence go all the way around the garden? | 34
+sa2: Ty says the point (3, 9) on a graph of (hours, dollars) means $3 for 9 hours. Explain his mistake. | The first coordinate is hours and the second is dollars, so (3, 9) means $9 after 3 hours. He switched the order.
+
+test:
+mc1: Which ordered pair names the point 6 units right of the origin and 2 units up? | (6, 2) | (2, 6) | (6, 0) | (0, 2)
+mc1: Which point is on the y-axis? | (0, 3) | (3, 0) | (3, 3) | (1, 3)
+num1: What is the x-coordinate of the point (8, 5)? | 8
+num2: The points (4, 2) and (4, 11) are plotted. How many units apart are they? | 9
+num2: The rule is "multiply x by 4 to get y". What is y when x is 6? | 24
+num2: A pattern starts at 3 and adds 6. The first term is 3. What is the 6th term? | 33
+mc2: Pattern A is 0, 5, 10, 15 and pattern B is 0, 10, 20, 30. Which ordered pair (A, B) is on their graph? | (15, 30) | (30, 15) | (15, 20) | (10, 10)
+mc2: Three corners of a rectangle are (2, 1), (7, 1) and (7, 4). What is the fourth corner? | (2, 4) | (4, 2) | (7, 7) | (1, 2)
+num2: A rectangle has corners at (0, 0), (9, 0), (9, 4) and (0, 4). What is its area in square units? | 36
+mc2: Which line is parallel to the x-axis? | the line through (1, 6) and (8, 6) | the line through (6, 1) and (6, 8) | the line through (0, 0) and (5, 5) | the line through (2, 3) and (3, 2)
+mc2: Start at (5, 6). Move 2 units left and 3 units down. Where are you now? | (3, 3) | (7, 9) | (3, 9) | (2, 3)
+num3: On a map, 1 unit stands for 5 miles. Town A is at (1, 2) and Town B is at (1, 10). How many miles apart are the towns? | 40
+num3: A pool fills at 30 liters per minute, starting empty. A graph shows (minutes, liters). How many liters are in the pool after 12 minutes? | 360
+num3: A rectangle on a grid has corners at (1, 2), (11, 2), (11, 8) and (1, 8). Each unit stands for 2 feet. What is the area of the real rectangle in square feet? | 240
+num3: A phone plan costs $10 plus $5 for each gigabyte. Its graph of (gigabytes, cost) includes (1, 15) and (2, 20). How many dollars does the plan cost for 7 gigabytes? | 45
+mc3: Which point is NOT on the line that follows the rule "y is 2 more than x"? | (4, 8) | (0, 2) | (3, 5) | (6, 8)
+mc3: A point has an x-coordinate that is 3 times its y-coordinate. Which point could it be? | (9, 3) | (3, 9) | (6, 3) | (5, 15)
+mc2: Which segment is perpendicular to the segment from (2, 4) to (8, 4)? | the segment from (5, 1) to (5, 7) | the segment from (1, 6) to (7, 6) | the segment from (2, 2) to (8, 2) | the segment from (0, 4) to (3, 4)
+sa2: Explain why the point (5, 0) is on the x-axis. | Its y-coordinate is 0, so it is 0 units up from the x-axis. It sits on the x-axis, 5 units to the right of the origin.
+sa2: Nia says the distance from (2, 3) to (2, 9) is 12 units because 3 + 9 = 12. Explain her mistake. | The points are on a vertical line, so the distance is the difference of the y-coordinates, not the sum: 9 - 3 = 6 units.
+sa3: Pattern A starts at 0 and adds 2. Pattern B starts at 0 and adds 6. Write the first four terms of each pattern, form the ordered pairs (A, B), and describe the relationship between the patterns. | A: 0, 2, 4, 6. B: 0, 6, 12, 18. Ordered pairs: (0, 0), (2, 6), (4, 12), (6, 18). Each term in B is 3 times the matching term in A.
+task3: A city is planning a park on a coordinate grid where each unit stands for 10 meters. The playground is a rectangle with corners at (1, 1), (5, 1), (5, 4) and (1, 4). (a) Plot the playground and find its perimeter in meters. (b) Find its area in square meters. (c) A fountain is at (8, 4). A straight path runs from the playground corner at (5, 4) to the fountain. How long is the path in meters? (d) A garden the same size as the playground will be placed 6 units directly above it. Give the four corners of the garden. Show your work and explain how you used the coordinates. | (a) sides of 40 m and 30 m, perimeter 140 m; (b) 40 x 30 = 1,200 square meters; (c) 3 units = 30 m; (d) (1, 7), (5, 7), (5, 10) and (1, 10); coordinates used correctly with clear explanations. | All parts correct with gaps in explanation, or one small error with clear work. | Two parts correct, or forgets the scale in several parts. | Little correct work.
+
