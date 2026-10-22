@@ -1,0 +1,585 @@
+@subject sci
+@grade 2
+@program Mystery Science
+about: Second grade science investigates the properties of materials and how they are chosen for a job, how objects can be built from small pieces, and how heating and cooling cause changes that can or cannot be reversed. Students test what plants need, explore how animals spread seeds and pollinate flowers, compare the diversity of living things in different habitats, observe Earth events that happen quickly or slowly, compare solutions that slow erosion by wind and water, and use maps and models to describe land and water on Earth. Items are read aloud as needed.
+std: 2-PS1-1 | Plan and conduct an investigation to describe and classify different kinds of materials by their observable properties.
+std: 2-PS1-2 | Analyze data obtained from testing different materials to determine which materials have the properties that are best suited for an intended purpose.
+std: 2-PS1-4 | Construct an argument with evidence that some changes caused by heating or cooling can be reversed and some cannot.
+std: 2-LS2-1 | Plan and conduct an investigation to determine if plants need sunlight and water to grow.
+std: 2-LS2-2 | Develop a simple model that mimics the function of an animal in dispersing seeds or pollinating plants.
+std: 2-LS4-1 | Make observations of plants and animals to compare the diversity of life in different habitats.
+std: 2-ESS1-1 | Use information from several sources to provide evidence that Earth events can occur quickly or slowly.
+std: 2-ESS2-1 | Compare multiple solutions designed to slow or prevent wind or water from changing the shape of the land.
+
+# ---------------- Unit 1 ----------------
+unit: Unit 1: Materials and Their Properties | 2-PS1-1, 2-PS1-2, K-2-ETS1-2 | sci_2, sci_2_n1
+el: Build a property word bank with real samples (hard, soft, rough, smooth, bendy, stiff, absorbent, waterproof, see-through) and model frames such as "___ is the best material because it is ___."
+
+lesson: How can we describe and sort materials? | 2-PS1-1
+practice:
+mc1: What is a property of a material? | something you can observe about it, like color or hardness | its name only | who owns it | its price
+hint: Properties describe what a material is like.
+mc1: Which word describes how a material feels? | rough | blue | heavy | loud
+hint: Which word goes with touch?
+mc2: Which material bends easily without breaking? | a rubber band | a glass cup | a clay brick | a wooden block
+hint: Bending without breaking is called flexible.
+mc2: Which material soaks up water? | a sponge | a plastic plate | a metal spoon | a glass marble
+hint: Soak up means water goes inside it.
+mc2: Ivan sorted objects into two groups: "see-through" and "not see-through." Which goes in the see-through group? | a clear plastic cup | a wooden spoon | a paper bag | a rock
+hint: Can you see your hand through it?
+sa2: Pick two objects in the room. Describe two properties of each. | Example: a pencil is hard and long; a sweater is soft and stretchy.
+hint: Think about color, shape, texture, hardness and whether it bends.
+quiz:
+mc1: Which material is hard? | a rock | a cotton ball | a sponge | a wool scarf
+mc2: Which property do glass and clear plastic share? | you can see through them | they are soft | they soak up water | they bend easily
+mc2: Which object is made of metal? | a paper clip | a pencil eraser | a paper cup | a wooden ruler
+mc2: Nina tested which objects a magnet picks up. Which property is she testing? | whether it is attracted to a magnet | its color | its smell | its taste
+mc2: A material is smooth, hard and breaks if dropped. What could it be? | glass | rubber | cloth | foam
+mc3: Leo sorted these into one group: a sponge, a towel and a paper towel. What property did he use? | they soak up water | they are hard | they are made of metal | they are see-through
+num2: The class tested 12 objects with a magnet. 5 stuck to it. How many did not stick? | 7
+sa2: Tell how you would sort a pile of objects into "flexible" and "stiff." Name one object for each group. | Try to bend each one gently; if it bends without breaking it is flexible (rubber band), if not it is stiff (wooden block).
+
+lesson: What makes something a solid or a liquid? | 2-PS1-1
+practice:
+mc1: Which is a solid? | a block | milk | juice | water
+hint: A solid keeps its own shape.
+mc1: Which is a liquid? | orange juice | a coin | a pencil | an ice cube
+hint: A liquid flows and can be poured.
+mc2: You pour water from a tall glass into a bowl. What happens to its shape? | It takes the shape of the bowl | It stays tall like the glass | It turns solid | It disappears
+hint: Liquids take the shape of their container.
+mc2: Sand can be poured, but each grain keeps its shape. Is a grain of sand a solid or a liquid? | a solid | a liquid | neither | both
+hint: Look at one grain with a magnifier. Does it change shape?
+mc2: Which is true about a wooden block? | It keeps its shape in any container | It takes the shape of its container | It can be poured | It flows
+hint: Put a block in a cup and then in a bowl. Did it change?
+sa2: Tell one way solids and liquids are different. | A solid keeps its own shape; a liquid flows and takes the shape of its container.
+quiz:
+mc1: Which can you pour? | honey | a spoon | a book | a rock
+mc2: Which list has only liquids? | milk, water, oil | milk, ice, oil | rock, water, juice | sand, salt, sugar
+mc2: Honey flows slowly and water flows fast. What are they both? | liquids | solids | gases | rocks
+mc2: Which property helps you tell a solid from a liquid? | whether it keeps its own shape | its color | its smell | its name
+mc2: An ice cube melts in a cup. What does it change from and to? | solid to liquid | liquid to solid | liquid to gas only | it does not change
+mc3: Ana says, "Salt is a liquid because you can pour it." Why is she wrong? | Each salt grain keeps its shape, so salt is a solid | Salt is wet | Salt is a gas | Liquids cannot be poured
+cer2: Max put a toy car, a scoop of water and a scoop of sand into three different-shaped containers: a tall cup, a flat dish and a square box. The water took the shape of each container. The car looked the same in each. The pile of sand changed shape, but each grain stayed the same. Is sand a solid or a liquid? Make a claim, give evidence and explain. | Claim: sand is a solid. Evidence: the pile changed shape like water, but each grain kept its own shape, like the toy car. Reasoning: solids keep their own shape; sand only seems to pour because it is made of many tiny solid pieces.
+
+lesson: Which material is best for the job? | 2-PS1-2, K-2-ETS1-2
+practice:
+mc1: Which material is best for a raincoat? | waterproof plastic | paper | cotton cloth | a paper towel
+hint: A raincoat must keep water out.
+mc2: Why are cooking pots often made of metal? | Metal lets heat pass through to cook food | Metal is soft | Metal soaks up water | Metal is see-through
+hint: Heat needs to get from the stove to the food.
+mc2: Which material is best for a window? | clear glass | wood | brick | cardboard
+hint: A window should let light through.
+mc2: The class tested 3 materials for wiping spills. Paper towel soaked up 10 drops, cloth 15 drops, and plastic 0 drops. Which is best for wiping spills? | cloth | paper towel | plastic | all are the same
+hint: The best one soaks up the most.
+mc2: Why do we use rubber for the bottom of shoes? | It grips the ground and bends | It is see-through | It is very hard and slippery | It soaks up water
+hint: Think about running without slipping.
+sa2: Tell which material you would use to build a doghouse and why. | Wood, because it is strong, stiff and keeps rain out (or a similar reason).
+quiz:
+mc1: Which material is best for a pillow? | soft cotton stuffing | rocks | metal | glass
+mc2: Which material would make the best umbrella? | waterproof nylon cloth | paper | a towel | a cardboard sheet
+mc2: Kids tested bridges made of paper, cardboard and craft sticks. The bridges held 2, 8 and 15 pennies. Which material is strongest? | craft sticks | paper | cardboard | they are equal
+mc2: Why is a winter hat made of wool and not metal? | Wool is soft and keeps heat in | Metal is warmer | Wool is waterproof like plastic | Metal is softer
+mc2: A cup for hot cocoa should not get too hot to hold. Which material is best? | foam or thick paper | thin metal | glass with a hole | a sponge
+num2: A towel soaked up 18 drops of water and a paper towel soaked up 11. How many more drops did the towel soak up? | 7
+cer3: Lily tested three materials to cover a sandwich in the rain. She dripped 10 drops of water on each. Foil: the bread stayed dry. Paper: the bread got a little wet. Cloth: the bread got very wet. Which material should she choose? Make a claim, give evidence and explain. | Claim: foil is the best material to keep the sandwich dry. Evidence: with 10 drops the bread under foil stayed dry, the paper let some water through and the cloth let a lot through. Reasoning: the job needs a waterproof material, and the test showed foil keeps water out best.
+
+test:
+mc1: A property is | something we can observe about a material | the name of a store | a kind of weather | a number on a clock
+mc1: Which of these flows and can be poured into a cup? | water | a rock | a key | a crayon
+mc1: Which of these keeps its own shape? | a wooden spoon | milk | juice | rain
+mc1: Which material is see-through? | clear glass | wood | metal | cardboard
+mc2: Which material is flexible? | a rubber band | a brick | a glass jar | a rock
+mc2: Which material soaks up water best? | a sponge | a plastic bag | a metal tray | a glass bowl
+mc2: A liquid takes the shape of | its container | a square always | a ball always | nothing
+mc2: Which is the best material for a bike helmet shell? | hard plastic | paper | cloth | jelly
+mc2: Which is the best material for a tablecloth that is easy to wipe clean? | plastic-coated cloth | tissue paper | sand | paper towels
+mc2: Which group has only solids? | coin, pencil, ice cube | coin, water, pencil | juice, milk, oil | ice cube, juice, rock
+mc2: Why are frying pan handles often made of wood or plastic? | They do not get as hot as metal | They are shiny | They soak up water | They bend easily
+mc2: Which property describes a marble? | hard and smooth | soft and fuzzy | stretchy and bendy | absorbent
+mc2: A test shows that a magnet picks up a nail but not a penny. What can you say? | The nail is attracted to magnets and the penny is not | The penny is heavier | The nail is a liquid | Magnets pick up everything
+mc2: Sugar can be poured. Each grain keeps its shape. Sugar is a | solid | liquid | gas | mixture of water
+mc3: Three towels were tested. Towel A held 20 drops, B held 35 and C held 12. Which towel should a beach store sell to dry people best? | B | A | C | all the same
+mc3: A boat must float and stay dry inside. Which material is best? | waterproof plastic | paper | cloth | a sponge
+mc3: Lena says, "Hard materials are always heavy." Which object shows she is wrong? | a plastic straw is hard but light | a brick is hard and heavy | a rock is hard and heavy | a metal bar is hard and heavy
+num1: Raj tested 9 materials. 4 were flexible. How many were not flexible? | 5
+num2: Paper held 3 pennies, cardboard held 10 and wood held 24. How many more pennies did wood hold than cardboard? | 14
+sa1: Name two properties of a metal spoon. | Two of: hard, shiny, smooth, cold to touch, stiff, attracted to a magnet (some).
+sa2: Tell one way to sort objects by a property and name one object in each group. | Example: sort by whether they float or sink: a cork floats, a key sinks.
+sa2: Explain why a cotton T-shirt would be a poor raincoat. | Cotton soaks up water, so the rain would get through and you would get wet.
+cer3: A class needed the best material for a sign that hangs outside in the rain. They sprayed water on each sample 10 times. Poster paper got soggy and tore. Cardboard got soft and bent. A plastic sheet stayed the same. Which material should they use? Make a claim, give evidence and explain. | Claim: the plastic sheet is the best material for the outdoor sign. Evidence: after 10 sprays, the paper tore, the cardboard got soft and bent, and the plastic did not change. Reasoning: an outdoor sign needs to be waterproof and stay stiff when wet, and the data show only plastic has those properties.
+
+# ---------------- Unit 2 ----------------
+unit: Unit 2: Building With and Changing Materials | 2-PS1-3, 2-PS1-4, 2-PS1-1
+el: Use a two-column chart "Can be undone / Cannot be undone" with photos (ice melting, egg cooking, crayon melting, bread toasting); practice "If we cool it, it will ___" and "It cannot change back because ___."
+
+lesson: Can we build something new from the same small pieces? | 2-PS1-3
+practice:
+mc1: A house can be built from many small | bricks | clouds | sounds | shadows
+hint: Look at a brick wall. What is it made of?
+mc2: Mia builds a tower with 20 blocks, takes it apart and builds a car with the same 20 blocks. What is true? | The same pieces made a different object | New blocks appeared | Some blocks disappeared | The blocks melted
+hint: Did she add or lose any blocks?
+mc2: A wooden fence can be taken apart. What could you build from its boards? | a bench or a box | a glass window | a metal pot | a rubber ball
+hint: The boards are still wood.
+mc2: A necklace is taken apart into beads. What can you make with the same beads? | a bracelet | a sandwich | a puddle | a pencil
+hint: The beads can be put together in a new way.
+mc2: Why do builders use small pieces like bricks instead of one giant rock? | Small pieces can be put together into many shapes | Small pieces are invisible | Giant rocks are soft | Bricks are liquid
+hint: Think about building shapes with blocks.
+sa2: Tell how one set of building blocks can make two different things. | The blocks can be arranged one way to make a tower and taken apart and arranged a different way to make a bridge or car.
+quiz:
+mc1: A puzzle is made of many | pieces | liquids | sounds | colors only
+mc2: A tower made of 30 blocks is taken apart. How many blocks are there now? | 30 | 0 | 15 | 60
+mc2: Which object is made from many small pieces put together? | a brick wall | a single rock | a drop of water | a balloon
+mc2: Old jeans are cut into squares and sewn into a bag. What happened to the material? | It was made into a new object | It turned into plastic | It disappeared | It became a liquid
+mc2: Kai built a boat and a house with the same 12 sticks. Which is true? | Both used 12 sticks | The house used more sticks | The boat used no sticks | The sticks grew
+num2: Ana had 24 blocks. She used 15 for a castle. How many blocks are left to build a wall? | 9
+sa2: A shed was taken apart. Tell how its wood boards could be used again and why that is helpful. | The boards could be used to build a table or a birdhouse. Reusing them saves trees and keeps wood out of the trash.
+
+lesson: What happens when we heat things? | 2-PS1-4
+practice:
+mc1: What happens to butter in a hot pan? | it melts | it freezes | it turns into ice | it grows
+hint: Think about pancakes cooking.
+mc2: A cake batter is baked in the oven. Can you turn the cake back into batter? | no | yes, by cooling it | yes, by stirring it | yes, by adding ice
+hint: Think about what happens to the batter in the oven.
+mc2: A crayon melts in the sun. Then it is put in the shade and gets hard again. This change | can be reversed | cannot be reversed | made a new material | made the crayon disappear
+hint: Did the crayon go back to being solid?
+mc2: Which change from heating cannot be undone? | toasting bread | melting chocolate | melting ice | melting wax
+hint: Can toast become soft bread again?
+mc2: Popcorn kernels are heated and pop. Can the popcorn change back into kernels? | no | yes, by cooling | yes, by freezing | yes, by shaking
+hint: Is the popcorn different now?
+sa2: Name one change from heating that can be reversed and one that cannot. | Can be reversed: melting chocolate, wax or ice. Cannot be reversed: cooking an egg, baking bread, toasting a marshmallow, burning wood.
+quiz:
+mc1: Heating ice makes it | melt into water | freeze | get harder | turn to wood
+mc2: An egg is cooked in a pan. Can it become a raw egg again? | no | yes, if cooled | yes, if frozen | yes, if stirred
+mc2: Chocolate chips melt in a warm hand. What will happen if they are put in the fridge? | They will get hard again | They will turn into cookies | They will stay melted forever | They will turn into milk
+mc2: Which change caused by heat can be reversed? | melting a candle's wax | burning paper | cooking a pancake | baking clay in a kiln
+mc2: Wood burns in a campfire and leaves ash. What kind of change is this? | a change that cannot be undone | a change that can be undone | not a change | a change made by cooling
+mc3: Sara melted a ball of butter in a pan, then put it in the fridge. It got solid again but was flat, not round. Was the melting reversed? | Yes, it became solid butter again even though the shape changed | No, it turned into a new material | No, butter cannot get solid again | Yes, it became milk
+cer3: Jamal heated two things in a warm water bath: a piece of chocolate and a spoon of pancake batter. Both changed. Then he cooled both in the fridge. The chocolate became hard chocolate again. The batter stayed a soft, cooked pancake. Can all changes from heating be reversed? Make a claim, give evidence and explain. | Claim: some changes from heating can be reversed and some cannot. Evidence: the melted chocolate became hard chocolate again when cooled, but the cooked batter did not turn back into liquid batter. Reasoning: melting only changes chocolate from solid to liquid, which cooling can undo, but cooking makes the batter into a new material that cannot change back.
+
+lesson: What happens when we cool things? | 2-PS1-4, 2-PS1-1
+practice:
+mc1: What happens to water in a freezer? | it freezes into ice | it boils | it disappears | it turns to sand
+hint: What do you find in ice cube trays?
+mc2: Melted wax drips onto a cold table. What happens? | It gets hard again | It stays liquid forever | It burns | It turns into water
+hint: Cooling turns many liquids back into solids.
+mc2: Juice is frozen into an ice pop. It melts on a hot day. Can it be frozen again? | yes | no | only if it is heated | only if it is cooked
+hint: Freezing and melting can go back and forth.
+mc2: Which of these can be undone by cooling? | melted crayon | a baked cookie | a burned log | a toasted marshmallow
+hint: Which one only melted?
+mc2: Liquid gelatin is put in the fridge. It turns into a wiggly solid. What caused the change? | cooling | heating | stirring | shaking
+hint: Where did it go?
+sa2: Tell how you could show that freezing water can be reversed. | Freeze water into ice, then let the ice warm up and melt back into water.
+quiz:
+mc1: Cooling can turn a liquid into a | solid | gas | rock that never melts | sound
+mc2: Hot soup is left on the counter and gets cool. Is that change reversible? | yes, you can heat it again | no, never | only if you freeze it | only if you add salt
+mc2: Which item changes when cooled but can change back when warmed? | a block of ice cream | a fried egg | a slice of toast | a piece of ash
+mc2: A puddle freezes on a cold night and melts the next day. What kind of change is this? | one that can be reversed | one that cannot be reversed | not a change | a burning change
+mc2: Why do ice pops melt faster at the beach than in a cooler? | It is warmer at the beach | It is colder at the beach | Coolers are hot | Sand freezes things
+num2: The class froze 10 ice cubes. They let 6 melt. How many ice cubes are still frozen? | 4
+sa2: Name two things that can change from liquid to solid by cooling. | Water (to ice), melted wax, melted chocolate, melted butter, juice (to an ice pop), gelatin.
+
+test:
+mc1: Melting chocolate can be undone by | cooling it | heating it more | stirring it | adding water
+mc1: Water that is cooled enough turns into | ice | steam | sand | wood
+mc1: Which change cannot be reversed? | cooking an egg | freezing juice | melting ice | melting butter
+mc1: A wall is made of many small | bricks | puddles | leaves | sounds
+mc2: Which change from heating can be reversed? | melting a crayon | baking bread | burning wood | frying an egg
+mc2: A wooden toy is taken apart. The pieces are used to build a birdhouse. Which is true? | The same pieces made a new object | The pieces turned to metal | New wood grew | The pieces disappeared
+mc2: Marshmallows are toasted over a fire and turn brown and crispy. Can they turn back? | no | yes, by cooling | yes, by freezing | yes, by washing
+mc2: Butter melted in a pan, then was put in the fridge. What happened? | It became solid again | It became an egg | It stayed liquid | It disappeared
+mc2: Which happens when you heat ice? | it melts | it freezes more | it turns into wood | it burns
+mc2: Which is an example of a change that can be undone? | water freezing into ice | paper burning | bread toasting | a cake baking
+mc2: Clay is shaped into a bowl and baked very hot in a kiln. Can it become soft clay again? | no | yes, by cooling | yes, by freezing | yes, by drying
+mc2: Liquid wax hardens in a candle mold. What caused the change? | cooling | heating | burning | shaking
+mc2: A tower of 18 blocks is rebuilt into a bridge with the same blocks. How many blocks are in the bridge? | 18 | 9 | 36 | 0
+mc2: Which pair shows a change and how to undo it? | melting ice / freezing it | cooking an egg / cooling it | burning paper / freezing it | baking cookies / chilling them
+mc3: Tess says, "All changes caused by heating can be undone by cooling." Which example shows she is wrong? | a cooked egg stays cooked when cooled | melted chocolate hardens when cooled | melted ice freezes when cooled | melted wax hardens when cooled
+mc3: Two cups of the same juice: Cup A is frozen, then melted. Cup B is boiled until it turns into thick, sticky syrup. Which cup is most like the original juice? | Cup A | Cup B | both the same | neither
+mc3: Why can an old toy castle made of plastic bricks be rebuilt into a spaceship? | The bricks are separate pieces that can fit together in new ways | The bricks melt into a new shape | Plastic bricks grow | Castles turn into spaceships by themselves
+num1: Kim melted 4 crayons and 3 chocolate chips. How many things did she melt? | 7
+num2: The class did 12 heating tests. 5 changes could be reversed. How many could not be reversed? | 7
+sa1: Name one change caused by cooling. | Water freezing into ice, wax or chocolate hardening, gelatin setting, juice becoming an ice pop.
+sa2: Explain why melting ice can be reversed but baking a cake cannot. | Melted ice is still water and can freeze again. Baking changes batter into a new material (cake) that cannot turn back into batter.
+sa2: Tell how one set of building pieces can make two different objects. | You can take the first object apart and put the same pieces together in a different way.
+cer3: Pia tested four things. She heated each one, then cooled each one. Ice: melted, then froze again. Chocolate: melted, then got hard again. Bread: turned to crispy toast and stayed toast. Egg: turned white and solid and stayed cooked. Can every change caused by heating be reversed? Make a claim, give evidence from all four tests and explain. | Claim: some changes caused by heating can be reversed and some cannot. Evidence: ice and chocolate went back to being solid when cooled, but the toast and cooked egg stayed changed after cooling. Reasoning: melting only changes a solid into a liquid, so cooling undoes it; cooking and toasting change the food into something new, so cooling cannot undo it.
+
+# ---------------- Unit 3 ----------------
+unit: Unit 3: Plants, Seeds and Pollinators | 2-LS2-1, 2-LS2-2, K-2-ETS1-2
+el: Grow class bean plants with labeled conditions (light/water, dark/water, light/no water) and show real seeds (burrs, maple "helicopters," dandelion fluff, berries); teach "pollen," "pollinate," "spread" and "seed" with diagrams.
+
+lesson: Do plants need sunlight and water to grow? | 2-LS2-1
+practice:
+mc1: In a fair test of whether plants need light, what should be different between the two plants? | only the light | the light and the water | the kind of plant | the size of the pot and the soil
+hint: Change only one thing.
+mc2: Plant A got light and water. Plant B got water but was kept in a dark closet. After 2 weeks, B was pale and thin. What does this show? | Plants need light to grow well | Plants need darkness | Plants do not need water | Closets make plants green
+hint: What was the only difference?
+mc2: Why should both plants in a test be the same kind of plant? | so the test is fair | so they look nice | so they grow faster | so they need no water
+hint: If the plants were different kinds, what could cause a change?
+mc2: Plant C got light but no water. What will most likely happen? | It will wilt and dry out | It will grow faster | It will turn blue | Nothing will change
+hint: What do roots take in from the soil?
+mc2: How can you measure plant growth fairly? | measure the height with a ruler each week | guess by looking | measure only once | count the pots
+hint: Scientists use tools and repeat measurements.
+sa2: Plan a test to find out if a plant needs water. Tell what you will keep the same and what you will change. | Use two same plants in the same light, soil and pots. Water one and do not water the other. Measure and observe both every few days.
+quiz:
+mc1: Plants use sunlight to | make food | make noise | stay cold | sleep
+mc2: Two bean plants grew for 3 weeks. The watered plant grew 12 cm. The unwatered plant grew 2 cm and wilted. What does this show? | Plants need water to grow | Water slows plant growth | Plants do not need water | Both grew the same
+mc2: Which part of the test should stay the same? | the amount of light both plants get when testing water | the amount of water when testing water | nothing at all | only the color of the pots
+mc2: Why do plants on a windowsill lean toward the window? | They grow toward light | They want to look outside | They are cold | They are pulled by the glass
+mc2: A plant in a dark room turns yellow. What is the best explanation? | It is not getting light | It is getting too much water | It is too happy | It is a different kind of plant
+num2: In 4 weeks, Plant A grew from 3 cm to 15 cm. How many centimeters did it grow? | 12
+cer3: The class grew three same bean plants for two weeks. Plant 1 (light and water) grew to 14 cm and was green. Plant 2 (water, no light) grew to 8 cm and was pale yellow and floppy. Plant 3 (light, no water) was 3 cm and dried up. What do plants need to grow? Make a claim, give evidence and explain. | Claim: plants need both light and water to grow well. Evidence: only the plant with light and water was tall and green; the plant without light was pale and floppy, and the plant without water dried up. Reasoning: plants use light to make food and take in water through their roots, so taking away either one stopped healthy growth.
+
+lesson: How do seeds travel to new places? | 2-LS2-2
+practice:
+mc1: Why is it helpful for seeds to travel away from the parent plant? | so they have space, light and water to grow | so they can sleep | so the parent can rest | so they turn into rocks
+hint: What would happen if all seeds dropped right under the parent?
+mc2: A burr has tiny hooks. How does it travel? | It sticks to an animal's fur | It floats on water only | It rolls uphill | It flies like a bird
+hint: Have you ever found something stuck to your socks after a walk?
+mc2: A bird eats a berry and flies away. How can this spread seeds? | The seeds pass through the bird and are dropped somewhere new | The bird plants them with a shovel | The bird keeps them forever | Seeds turn into feathers
+hint: Seeds inside berries can pass through an animal.
+mc2: Dandelion seeds have fluffy tops. How do they travel? | the wind blows them | animals carry them in their mouths | they roll | they swim
+hint: Blow on a dandelion puff.
+mc2: Why do squirrels help oak trees spread? | They bury acorns and forget some | They eat all the acorns | They water the trees | They cut the trees down
+hint: What happens to an acorn a squirrel never digs up?
+sa2: Design a model of a seed that sticks to animal fur. Tell what materials you would use and how you would test it. | A pom-pom or bean covered with hook-and-loop tape or tape; test by rubbing it on fake fur or a sock and see if it sticks and carries.
+quiz:
+mc1: Which carries dandelion seeds? | wind | dogs only | fish | snow
+mc2: A coconut falls into the ocean and floats to a new beach. How did this seed travel? | by water | by wind | by animal fur | by a bird's beak
+mc2: Which seed is most likely carried by animal fur? | a burr with hooks | a smooth heavy nut | a seed with a wing | a fluffy seed
+mc2: A maple seed has a wing and spins down from the tree. What helps it travel? | wind | fur | water only | ants carrying it
+mc2: Kids made a model "fur" from a fuzzy sock. Which seed model stuck best? | the one with tiny hooks | the smooth plastic bead | the slippery marble | the wet paper ball
+mc3: Raspberry bushes grow along a fence where birds like to sit. What is the best explanation? | Birds ate berries and dropped the seeds there | The fence grew the bushes | Wind blew heavy berries to the fence | People planted bushes on every fence
+sa2: Tell two ways animals help spread seeds. | They carry seeds stuck in their fur, eat fruit and drop the seeds in new places, or bury nuts and forget them.
+
+lesson: How do animals help plants make seeds? | 2-LS2-2, K-2-ETS1-2
+practice:
+mc1: The yellow dust inside a flower is | pollen | sand | sugar | soil
+hint: Bees get covered in it.
+mc2: A bee visits one flower, then another. What does it carry between them? | pollen | water | leaves | roots
+hint: Look at the bee's fuzzy legs.
+mc2: Why is pollination important to plants? | It helps them make seeds and fruit | It makes them taller | It keeps them warm | It turns them into trees
+hint: What grows after a flower is pollinated?
+mc2: Which animal is a pollinator? | a hummingbird | a shark | a worm in deep soil | a jellyfish
+hint: Which animal visits flowers to drink nectar?
+mc2: Why do bees visit flowers? | to get nectar and pollen for food | to sleep in them | to paint them | to hide from rain
+hint: Bees make honey from what they collect.
+sa2: Design a model of a bee's body that could carry pollen. Tell what material you would use and why. | A pipe cleaner or cotton swab, because its fuzzy surface picks up powder (pollen) and can drop some on the next flower.
+quiz:
+mc1: Moving pollen from flower to flower is called | pollination | evaporation | erosion | migration
+mc2: Kids tested model bees: a smooth plastic spoon, a fuzzy pipe cleaner and a metal paper clip. Which picked up the most powder "pollen"? | the fuzzy pipe cleaner | the smooth spoon | the metal clip | none picked up any
+mc2: A farmer's apple trees made very few apples one year when there were few bees. Why? | Fewer flowers were pollinated | Bees eat apples | Apples need snow | Trees were too tall
+mc2: Which body part helps a bee carry pollen? | its fuzzy hairs | its stinger | its eyes | its wings only
+mc2: A butterfly drinks nectar from a flower. What else happens? | Pollen sticks to it and moves to the next flower | The flower gets taller | The butterfly makes seeds | The flower stops growing
+mc3: A garden has many flowers but no pollinators can get in because of a net. What will most likely happen? | Fewer fruits and seeds will grow | More fruits will grow | Flowers will turn into bees | Nothing will change
+num2: A model bee picked up pollen at 9 flowers and dropped pollen at 6 of them. At how many flowers did it not drop pollen? | 3
+sa2: Explain how a bee and a flower help each other. | The flower gives the bee food (nectar and pollen), and the bee carries pollen to other flowers so the plant can make seeds.
+
+test:
+mc1: Plants need sunlight and | water | candy | darkness | salt
+mc1: The yellow powder in flowers is | pollen | sugar | dirt | snow
+mc1: Which animal pollinates flowers? | a bee | a goldfish | a whale | a crab
+mc1: Fluffy dandelion seeds are spread by | wind | fish | worms | rain only
+mc2: Why do scientists change only one thing in a plant test? | to know what caused the result | to make it go faster | to make it messy | to need fewer plants
+mc2: A plant was kept in the dark for 2 weeks. It turned pale. What did it need? | light | darkness | salt | sand
+mc2: A plant got light but no water. It wilted. What did it need? | water | more light | darkness | wind
+mc2: A seed with hooks is most likely spread by | sticking to animal fur | floating on rivers | blowing in wind | rolling downhill
+mc2: How do berries help plants spread their seeds? | Animals eat them and drop the seeds in new places | Berries plant themselves | Berries keep seeds from moving | Berries scare animals away
+mc2: Why do plants need pollinators? | to help them make seeds and fruit | to water them | to give them light | to make their roots grow
+mc2: Which model would best show how a bee carries pollen? | a fuzzy pom-pom touched to powder | a smooth glass marble | a wet sponge | a rock
+mc2: A coconut floats across the ocean and grows on a new island. How did it travel? | by water | by wind | by fur | by bird droppings
+mc2: Squirrels bury acorns. How does this help oak trees? | Forgotten acorns can grow into new trees | Squirrels eat all of them | It stops trees from growing | It makes oaks shorter
+mc2: Why is it good for seeds to land far from the parent plant? | They get more space, light and water | They stay in shade | They grow into the parent | They need less sun
+mc3: Plant A (light, water) grew 15 cm. Plant B (no light, water) grew 7 cm and was yellow. Plant C (light, no water) grew 2 cm and died. Which plant had everything it needed? | Plant A | Plant B | Plant C | none of them
+mc3: A town lost most of its bees. Which problem would farmers most likely see? | fewer fruits on their trees | taller trees | more rain | more honey
+mc3: Two seed models were dropped from the same height. Model A with paper wings landed 3 meters away. Model B with no wings landed right below. What does this show? | Wings help seeds travel farther in the air | Wings make seeds heavier | Seeds without wings travel farther | Height does not matter
+num1: A bean plant was 6 cm tall. One week later it was 10 cm tall. How many centimeters did it grow? | 4
+num2: A bee visited 14 flowers in the morning and 9 in the afternoon. How many flowers did it visit? | 23
+sa1: Name one way seeds travel. | By wind, water, sticking to fur, being eaten and dropped by animals, or being buried by animals.
+sa2: Tell how you would set up a fair test to see if a plant needs light. | Use two same plants with the same soil and water; put one in light and one in the dark; measure both over time.
+sa2: Explain why pollinators are important for the food we eat. | Many fruits and vegetables only grow after flowers are pollinated, so without pollinators there would be less food.
+cer3: The class made two model "fur" patches: one fuzzy cloth and one smooth plastic. They rolled hook-covered seed models across each one 10 times. Seeds stuck to the fuzzy cloth 9 times and to the plastic 1 time. How does an animal's fur help spread some seeds? Make a claim, give evidence and explain. | Claim: fuzzy fur helps seeds with hooks hitch a ride to new places. Evidence: hooked seeds stuck to the fuzzy cloth 9 out of 10 times but to the smooth plastic only 1 time. Reasoning: hooks catch on fuzzy fur, so when the animal walks away it carries the seeds and later drops them somewhere new where they can grow.
+
+# ---------------- Unit 4 ----------------
+unit: Unit 4: Habitats and the Variety of Life | 2-LS4-1
+el: Use photo cards of California habitats (redwood forest, Mojave Desert, tide pool, pond, kelp forest) with labels; have students sort living things by habitat and use tally charts with picture headings.
+
+lesson: What lives in different habitats? | 2-LS4-1
+practice:
+mc1: A habitat is | the place where a plant or animal lives | a kind of food | a type of weather | a toy
+hint: Think "home."
+mc1: Which animal lives in a desert? | a roadrunner | a sea otter | a salmon | a penguin
+hint: Which one runs across hot, dry land?
+mc2: Which living things would you find in a tide pool? | sea stars, crabs and sea anemones | cactus and lizards | deer and pine trees | camels and palm trees
+hint: Tide pools are rocky pools at the ocean's edge.
+mc2: Which plant grows in a California desert? | a Joshua tree | a water lily | a redwood | seaweed
+hint: Which plant can live with very little rain?
+mc2: Which animal lives in a pond? | a frog | a camel | a mountain goat | a roadrunner
+hint: Which animal swims and also sits on lily pads?
+sa2: Name a habitat and two living things that live there. | Example: an ocean, with fish and kelp; a forest, with deer and oak trees; a desert, with cactus and lizards.
+quiz:
+mc1: Sea otters and kelp live in the | ocean | desert | forest floor | mountain top
+mc2: Which group lives in a redwood forest? | redwood trees, ferns and banana slugs | cactus, scorpions and tortoises | coral, sharks and sea turtles | camels, sand and palms
+mc2: A desert tortoise lives where it is | hot and dry | wet and icy | always underwater | snowy all year
+mc2: Which pair lives in the ocean? | whales and kelp | cows and grass | owls and pine trees | frogs and cattails
+mc2: Ducks, cattails and dragonflies live in | a pond or marsh | a desert | the deep ocean | a cave
+mc3: A scientist found cattails, frogs, water striders and minnows in one place. What habitat was she most likely in? | a pond | a desert | a mountain top | a dry field
+sa2: Compare a desert and an ocean. Tell one living thing in each and one way the habitats are different. | Desert: cactus; ocean: kelp. The desert is dry with little water; the ocean is salty water everywhere.
+
+lesson: Why do different habitats have different living things? | 2-LS4-1
+practice:
+mc1: A cactus can live in the desert because it | stores water in its stem | needs rain every day | lives underwater | grows in snow
+hint: Deserts get very little rain.
+mc2: Why can't a fish live in a desert? | It needs water to live | It is too hot for sand | Fish like cactus | It has no legs to dig
+hint: How does a fish breathe?
+mc2: Why do many different animals live in a rainforest? | There is lots of water, warmth and plants for food and shelter | It is always dry | It has no trees | It is very cold
+hint: More food and shelter can support more kinds of life.
+mc2: Polar bears have thick fur. Which habitat fits them? | the cold Arctic | a hot desert | a warm pond | a tropical beach
+hint: Thick fur keeps animals warm.
+mc2: Which habitat would likely have the fewest kinds of plants? | an icy polar land | a rainforest | a pond | a forest
+hint: Which place is coldest and has the least liquid water?
+sa2: Explain why a frog lives near a pond and not in a dry desert. | A frog needs water to keep its skin wet and to lay eggs, and it eats insects found near water.
+quiz:
+mc1: Animals live in habitats that give them | food, water and shelter | toys | money | cars
+mc2: Which habitat usually has the most kinds of living things? | a rainforest | a parking lot | a sand dune | an ice sheet
+mc2: A kangaroo rat lives in the desert and gets water from the seeds it eats. This helps it | live where there is little water | swim in the ocean | live in snow | fly
+mc2: A plant has big leaves and needs lots of rain. Where would it grow best? | a rainforest | a desert | an icy land | a sandy beach far from water
+mc2: Why do salmon live in rivers and oceans and not in forests? | They need water to breathe and swim | They like trees | They are birds | They need sand
+mc3: Nadia saw 40 kinds of plants and animals in a forest and 8 kinds in a nearby sand dune. What is the best explanation? | The forest has more water, food and shelter | The sand dune has more water | Animals do not like sand at all | The forest is smaller
+cer3: Two habitats were studied for one day. The marsh: lots of water, tall grasses, many insects; students counted 25 kinds of living things. The dry hillside: little water, rocks, a few bushes; students counted 9 kinds. Which habitat has more variety of life, and why? Make a claim, give evidence and explain. | Claim: the marsh has more variety of life. Evidence: students counted 25 kinds in the marsh and 9 on the dry hillside. Reasoning: the marsh has more water, plants and insects, which give more animals the food, water and shelter they need, so more kinds can live there.
+
+lesson: How can we count and compare living things in habitats? | 2-LS4-1
+practice:
+mc1: A tool for counting what you see with marks is a | tally chart | thermometer | ruler | magnet
+hint: You make a line for each thing you see.
+num2: In the schoolyard, students saw 5 ants, 3 beetles and 2 worms. How many animals did they see? | 10
+hint: Add all three numbers.
+mc2: A chart shows: garden 12 kinds, blacktop 2 kinds, field 7 kinds. Which place has the most variety? | garden | blacktop | field | they are the same
+hint: Variety means how many different kinds.
+mc2: Why do scientists count living things in the same size area in each habitat? | so the comparison is fair | so they finish faster | so they can skip some | so it looks nice
+hint: A bigger area could have more things just because it is bigger.
+mc2: Which is the best way to look for small animals under a log without harming them? | lift it gently, look, and put it back | smash the log | take all the animals home | burn the log
+hint: Scientists respect living things.
+sa2: Tell how you would compare the living things in a garden and on the blacktop. | Mark off the same size square in each place, look carefully, record each kind of living thing in a tally chart and compare the totals.
+quiz:
+num1: A tally chart shows 4 robins and 3 crows. How many birds were seen? | 7
+num2: A pond had 11 kinds of living things. A puddle had 3 kinds. How many more kinds were in the pond? | 8
+mc2: Which question can be answered by counting living things in two habitats? | Which place has more kinds of living things? | What is the best color? | How old is the teacher? | What time is lunch?
+mc2: Students counted 6 kinds of plants in a lawn and 15 kinds in a meadow. Which statement is true? | The meadow has more plant variety | The lawn has more plant variety | They have the same variety | Lawns have no plants
+mc2: Ben counted 20 ants. They were all the same kind. Mia counted 5 animals of 5 different kinds. Who found more variety? | Mia | Ben | they are the same | neither
+mc3: A class counted kinds of living things in the same garden in spring (14 kinds) and in winter (6 kinds). What can they conclude? | The garden had more variety in spring | The garden had more variety in winter | Seasons never change habitats | The count was wrong
+sa2: Explain the difference between the number of animals and the number of kinds of animals. | Number of animals counts every animal; number of kinds counts how many different types there are, like ants, beetles and worms.
+
+test:
+mc1: The place where an animal lives is its | habitat | food | weather | shadow
+mc1: Which animal lives in the ocean? | an octopus | a rabbit | a roadrunner | a squirrel
+mc1: Which plant grows well in a hot, dry desert? | a cactus | a water lily | a fern | seaweed
+mc1: Which habitat has the most kinds of plants and animals? | a rainforest | a frozen ice sheet | a sand dune | a parking lot
+mc2: Frogs, ducks and cattails share which habitat? | a pond | a desert | a mountain peak | an ocean trench
+mc2: Why can't a cactus grow well in a pond? | It is adapted to dry land and too much water hurts its roots | Ponds are too dry | Cactuses need snow | Fish eat all the cactus
+mc2: Which animal is adapted to a cold habitat? | an arctic fox with thick fur | a desert lizard | a tropical parrot | a camel
+mc2: A tide pool is found | at the rocky edge of the ocean | in the middle of a desert | on a mountain top | inside a cave
+mc2: Which tool helps you record how many of each living thing you see? | a tally chart | a thermometer | a balance scale | a magnet
+mc2: A meadow has 18 kinds of living things and a lawn has 5. Which has more variety? | the meadow | the lawn | they are the same | neither
+mc2: Why do habitats have different living things? | Each living thing needs a place that meets its needs | All living things need the same place | Animals choose by color | Plants move every day
+mc2: Banana slugs, ferns and redwoods live in a | moist redwood forest | dry desert | salty ocean | icy tundra
+mc2: Which habitat would most likely have the fewest kinds of living things? | an icy, windy land | a rainforest | a coral reef | a forest
+mc2: Why do scientists count living things in same-size areas? | to make a fair comparison | to see fewer things | to finish faster | to scare animals
+mc3: A desert and a forest each have 1 acre studied. Desert: 10 kinds. Forest: 32 kinds. Which is the best explanation? | The forest has more water and plants for food and shelter | The desert is wetter | The forest is hotter and drier | The count was the same
+mc3: Kai counted 30 pigeons on a city sidewalk. Lea counted 12 different kinds of birds in a park. Who found more variety? | Lea | Kai | both the same | neither
+mc3: Coral reefs are home to many kinds of fish, crabs and sea turtles. What does this show? | Coral reefs have a lot of variety of life | Coral reefs are empty | Only one kind lives there | Reefs are deserts
+num1: A pond had 5 kinds of insects and 4 kinds of plants. How many kinds of living things is that? | 9
+num2: A field had 23 kinds of living things. A sidewalk had 4. How many more kinds did the field have? | 19
+sa1: Name a habitat in California and one plant or animal that lives there. | Example: redwood forest and banana slug; Mojave Desert and Joshua tree; kelp forest and sea otter; tide pool and sea star.
+sa2: Explain why a polar bear could not survive well in a desert. | It has thick fur and hunts seals on ice; the desert is hot and dry with no ice or seals.
+sa2: Tell how you would find out which of two habitats has more variety of life. | Study the same size area in each, record every kind of living thing in a chart and compare the number of kinds.
+cer3: Students studied two spots at school for 20 minutes each. Spot A, the garden: wet soil, flowers and bushes; they found 16 kinds of living things. Spot B, the blacktop: hard, dry, no plants; they found 3 kinds. Which spot has more variety of life, and why? Make a claim, give evidence and explain. | Claim: the garden has more variety of life than the blacktop. Evidence: they found 16 kinds in the garden but only 3 kinds on the blacktop in the same amount of time. Reasoning: the garden has water, soil, plants and shelter that many living things need, while the blacktop has almost none, so fewer kinds can live there.
+
+# ---------------- Unit 5 ----------------
+unit: Unit 5: Earth Changes, Fast and Slow | 2-ESS1-1, 2-ESS2-1, K-2-ETS1-1, K-2-ETS1-2, K-2-ETS1-3
+el: Sort event photo cards onto a "fast (minutes, hours, days) / slow (many years)" timeline; build a sand-tray hill to model erosion and teach "erosion," "weathering," "wind," "flood" and "protect."
+
+lesson: Which Earth changes happen fast and which happen slowly? | 2-ESS1-1
+practice:
+mc1: Which Earth event happens in just minutes? | an earthquake | a canyon forming | a mountain wearing down | a river slowly changing its path
+hint: Which one can shake the ground all at once?
+mc1: Which change takes a very long time? | a river carving a canyon | a landslide | a volcano erupting | a flood
+hint: Canyons are very deep. How long would it take water to carve that much rock?
+mc2: Hot melted rock pours out of a mountain and cools into new land. What is this? | a volcanic eruption | erosion | a rainbow | a drought
+hint: Think of lava.
+mc2: A hillside slides down in one afternoon after heavy rain. This is | a fast change called a landslide | a slow change called a canyon | not a change | a season
+hint: It happened in one afternoon.
+mc2: Sharp rocks on a mountain become smooth pebbles in a stream over many years. This change is | slow | fast | instant | not a change
+hint: Many years means slow.
+sa2: Name one Earth change that happens fast and one that happens slowly. | Fast: earthquake, volcanic eruption, landslide or flood. Slow: a canyon being carved, rocks wearing down, a mountain wearing away.
+quiz:
+mc1: A flood that covers a road in one night is a | fast change | slow change | change that takes millions of years | change that never happens
+mc2: The Grand Canyon was carved by a river over | millions of years | one day | one week | one summer
+mc2: Which is the best evidence that a change was slow? | Scientists see thin layers that built up over a very long time | People watched it happen in one hour | It was in the news yesterday | It made a loud boom
+mc2: Which group lists only fast changes? | earthquake, volcano eruption, landslide | canyon, earthquake, flood | rocks wearing smooth, landslide, flood | canyon, rock weathering, mountain wearing down
+mc2: Ocean waves slowly wear away a cliff. Over many years, what happens? | The cliff gets smaller and moves back | The cliff gets taller | Nothing changes | The cliff turns into ice
+mc3: A town's old photos show a beach was wide 50 years ago and narrow today. What kind of change happened? | a slow change from waves wearing away sand | a fast change from an earthquake | no change | a volcano
+sa2: Explain why scientists cannot watch a canyon form, but can still know how it formed. | It takes far longer than a lifetime, but rock layers, the river at the bottom and the shape of the walls show it was carved slowly by water.
+
+lesson: How do wind and water change the shape of the land? | 2-ESS1-1, 2-ESS2-1
+practice:
+mc1: When wind or water carries away soil and rock, it is called | erosion | melting | freezing | growing
+hint: The word starts with "e."
+mc2: Water was poured on a sand hill in a tray. What happened to the sand? | It washed down and made little channels | It turned to rock | It grew taller | It stayed exactly the same
+hint: Moving water carries sand with it.
+mc2: Strong wind blows across a dry desert. What can it move? | sand, making dunes | mountains, quickly | lakes | trees' roots deep underground
+hint: Have you seen sand blow at the beach?
+mc2: Why does a river get muddy after a big storm? | Rain washed soil into the river | Fish made mud | The river got colder | Mud fell from clouds
+hint: Where did the soil come from?
+mc2: Which land would erode fastest in a heavy rain? | bare dirt on a steep hill | a flat lawn with thick grass | a rocky floor in a cave | a parking lot under a roof
+hint: Plant roots hold soil. Steep slopes make water run fast.
+sa2: Describe what happened to our sand hill when we poured water on it. | The water ran down the hill and carried sand to the bottom, making grooves and a pile of sand at the base.
+quiz:
+mc1: Which can cause erosion? | moving water | a shadow | a song | moonlight
+mc2: A strong ocean storm hits a beach. What may happen fast? | Waves wash away a lot of sand | The beach grows a mountain | The water turns to ice | The sand turns to rock
+mc2: Why does bare soil wash away more than soil covered with grass? | Grass roots hold the soil in place | Grass makes more rain | Bare soil is heavier | Grass pulls soil away
+mc2: A sand model hill was sprayed with gentle water and then with fast water. Which washed away more sand? | fast water | gentle water | both the same | neither
+mc2: Sand dunes in a desert slowly move. What moves them? | the wind | snow | animals digging | earthquakes every day
+num2: A model hill had 20 cups of sand. After pouring water, 7 cups washed to the bottom of the tray. How many cups stayed on the hill? | 13
+cer3: Kenji built two sand hills the same size. He planted grass seed on Hill A and let it grow. Hill B had no plants. He poured 1 cup of water on each. Hill A lost a spoonful of sand. Hill B lost 8 spoonfuls and got deep grooves. Do plants help stop erosion? Make a claim, give evidence and explain. | Claim: plants help stop water from washing away soil. Evidence: the hill with grass lost only 1 spoonful of sand, but the bare hill lost 8 spoonfuls and got deep grooves. Reasoning: plant roots hold the soil together and leaves slow the water, so less soil is carried away.
+
+lesson: How can we protect land from wind and water? | 2-ESS2-1, K-2-ETS1-1, K-2-ETS1-2, K-2-ETS1-3
+practice:
+mc1: Rows of trees planted to slow the wind are called | windbreaks | rainbows | dunes | canyons
+hint: They "break" the wind.
+mc2: Which helps keep a hillside from washing away? | planting plants with deep roots | removing all plants | digging holes at the top | pouring more water on it
+hint: What holds soil in place?
+mc2: A house is near a river that floods. Which solution helps? | building a wall of sandbags or a levee | painting the house | planting flowers on the roof | opening all the doors
+hint: What could block water?
+mc2: Big rocks are placed along a beach cliff. Why? | to take the force of waves so the cliff wears away slower | to make the beach hotter | to grow sand | to make waves bigger
+hint: What will the waves hit first?
+mc2: A fence of wooden slats is put on a beach. What does it do? | slows the wind and catches blowing sand | makes the sand wet | pushes sand into the ocean | makes waves
+hint: Where does sand pile up when wind slows down?
+sa2: Design a way to keep soil on a garden hill from washing away in rain. Tell how it works. | Plant grass or shrubs whose roots hold soil, or build small steps (terraces) or a low wall that slows the water.
+quiz:
+mc1: Engineers compare solutions to find the one that | works best for the problem | is the prettiest | is the loudest | uses the most money
+mc2: Three model walls were tested against poured water. Wall A lost 2 spoons of sand, wall B lost 9, wall C lost 5. Which wall worked best? | wall A | wall B | wall C | all the same
+mc2: Why do farmers plant rows of trees along the edges of windy fields? | to slow the wind so it blows away less soil | to make more wind | to block the sun from crops | to catch rain clouds
+mc2: Which is a fair way to compare two erosion solutions? | use the same hill and the same amount of water | use a big hill for one and a tiny hill for the other | use different amounts of water | test only one
+mc2: A hillside wall works but costs a lot. Planting shrubs works almost as well and costs little. Why might a town choose the shrubs? | it works well and costs less | it does not work | it is the most costly | shrubs make more erosion
+mc3: Two beach solutions were tested in a wave tank. With a rock wall, the model cliff lost 1 cm. With no wall, it lost 6 cm. With a sand fence, it lost 5 cm. Which is best for stopping wave erosion? | the rock wall | no wall | the sand fence | they all worked the same
+sa2: Tell why it is important to test more than one solution. | Different designs work differently; testing and comparing shows which one works best for the problem.
+
+test:
+mc1: Which Earth change happens quickly? | a volcanic eruption | a canyon forming | a mountain wearing down | a stone wearing smooth in a river
+mc1: Which Earth change happens slowly? | a river carving a canyon | an earthquake | a landslide | a flood
+mc1: When wind or water moves soil and rock away, it is called | erosion | eruption | evaporation | freezing
+mc1: Rows of trees planted to slow wind are | windbreaks | levees | dunes | caves
+mc2: Which helps hold soil on a hill? | plant roots | bare dirt | fast water | strong wind
+mc2: An earthquake shakes a town for one minute. What kind of change is this? | fast | slow | not a change | a seasonal change
+mc2: Wind blows sand into big hills in the desert. What are these hills called? | dunes | volcanoes | canyons | glaciers
+mc2: Which is a solution for a river that floods homes? | a levee or wall along the river | cutting down all the trees | removing the riverbank plants | painting the houses
+mc2: Why are large rocks piled at the bottom of some sea cliffs? | to slow erosion by waves | to make waves stronger | to grow sand | to make the cliff fall faster
+mc2: Muddy water in a stream after rain shows | soil was eroded and carried away | the water is clean | fish made mud | it snowed
+mc2: Which happens over millions of years? | a canyon is carved by a river | a landslide | a storm | an earthquake
+mc2: Which is the best way to test which erosion solution works? | try each on the same model hill with the same water | try one and guess about the others | use different hills and different water | do not test
+mc2: Which land is most likely to erode in heavy rain? | a steep, bare hill | a flat, grassy park | a covered patio | a forest with thick plants
+mc2: A beach fence catches blowing sand. What does it stop? | wind erosion of the beach | waves | rain | the tide
+mc3: Old photos show a wooden house 30 meters from a cliff edge in 1950 and 5 meters from it today. What happened? | waves slowly wore away the cliff | the house moved itself | an earthquake built more land | nothing changed
+mc3: Solution A (plants) lost 3 spoons of soil. Solution B (rock wall) lost 2 spoons. Solution C (nothing) lost 10 spoons. Which statement is true? | Both A and B worked much better than doing nothing | Doing nothing worked best | A worked better than B | None of them worked
+mc3: Scientists find a layer of ash in a rock cliff. What fast event does it show happened long ago? | a volcanic eruption | a slow river | a quiet snowfall | a windbreak
+num1: A model hill lost 9 spoons of sand with no plants and 2 spoons with plants. How many fewer spoons did it lose with plants? | 7
+num2: A beach was 40 meters wide. Storms washed away 15 meters. How wide is the beach now? | 25
+sa1: Name one fast Earth event and tell how it changes land. | Example: a landslide moves a lot of rock and soil down a hill in minutes; a volcano adds new rock from lava.
+sa2: Explain how a river can change land slowly. | The moving water carries tiny bits of rock and soil away bit by bit; over a very long time it can carve a valley or canyon.
+sa2: Name two ways people slow erosion and how each one helps. | Planting plants (roots hold soil); building walls or levees (block water); windbreaks (slow wind); rocks on a shore (take the force of waves).
+cer3: The class tested three ways to protect a model hill from a "rainstorm" of 2 cups of water. No protection: 12 spoons of sand washed away. A wall of craft sticks at the bottom: 6 spoons washed away. Grass mat covering the hill: 2 spoons washed away. Which solution is best for slowing water erosion? Make a claim, give evidence and explain. | Claim: covering the hill with grass is the best solution. Evidence: with the same 2 cups of water, the grass mat lost only 2 spoons, the wall lost 6 and no protection lost 12. Reasoning: grass covers the soil and its roots hold it, so the water cannot carry much away; the wall only caught some sand at the bottom.
+
+# ---------------- Unit 6 ----------------
+unit: Unit 6: Land and Water on Earth | 2-ESS2-2, 2-ESS2-3, 2-PS1-1 | sci_2_n2
+el: Build a clay or sand landform model and label it with word cards (mountain, hill, valley, plain, river, lake, ocean, island); color a simple map with a key and practice "The blue shows ___."
+
+lesson: What shapes of land are on Earth? | 2-ESS2-2
+practice:
+mc1: A very tall, steep landform is a | mountain | plain | valley | pond
+hint: Mount Whitney in California is one.
+mc1: Low land between hills or mountains is a | valley | peak | island | ocean
+hint: Think of a "V" shape between two hills.
+mc2: Land with water all around it is an | island | peninsula | plain | canyon
+hint: Catalina Island is off the coast of California.
+mc2: Wide, flat land good for farming is a | plain | mountain | canyon | cliff
+hint: California's Central Valley has very flat farmland.
+mc2: Which is a body of water, not a landform? | a lake | a hill | a valley | a mountain
+hint: Landforms are shapes of land. Which one is water?
+sa2: Name two landforms and tell how they are different. | A mountain is very tall and steep; a plain is flat and low.
+quiz:
+mc1: Which is a landform? | a hill | a river | a lake | an ocean
+mc2: A deep, narrow valley with steep sides, often carved by a river, is a | canyon | plain | island | hill
+mc2: Which is shorter and less steep than a mountain? | a hill | a canyon | a peak | a cliff
+mc2: Land that sticks out into water and has water on three sides is a | peninsula | island | valley | mountain
+mc2: The Sierra Nevada is a long row of | mountains | islands | lakes | plains
+mc3: A family drives from the beach, across flat farm fields, then up a steep, winding road to snowy peaks. Which landforms did they pass, in order? | coast, plain, mountains | mountains, plain, coast | valley, island, ocean | canyon, lake, island
+sa2: Draw or describe a model of a mountain, a valley and a river. Tell where the river would flow and why. | The river starts high in the mountains and flows down into the low valley, because water flows downhill.
+
+lesson: How can maps and models show land and water? | 2-ESS2-2
+practice:
+mc1: On most maps, water is shown with the color | blue | red | yellow | black
+hint: Think of the color of a lake on a map.
+mc1: The part of a map that tells what the symbols and colors mean is the | key (legend) | title only | border | scale only
+hint: It "unlocks" the map.
+mc2: A model is | a small copy that shows how something looks or works | the real thing | a kind of weather | a type of rock
+hint: A toy globe is a model of Earth.
+mc2: On a map key, a triangle means mountain. You see three triangles in a row. What do they show? | a group of mountains | three lakes | three roads | three cities
+hint: Look back at what one triangle means.
+mc2: Which shows the whole Earth's land and water as a round model? | a globe | a ruler | a calendar | a thermometer
+hint: It spins on a stand.
+sa2: Tell how a map key helps you read a map. | The key tells what each color and symbol stands for, such as blue for water and triangles for mountains.
+quiz:
+mc1: A round model of Earth is a | globe | map key | compass | magnet
+mc2: A map shows a wiggly blue line from the mountains to the ocean. What is it most likely? | a river | a road | a mountain | a forest
+mc2: On a globe, most of Earth's surface is colored | blue for water | green for forests | brown for mountains | white for snow
+mc2: Why might a map use green for low land and brown for high land? | to show how high or low the land is | to show the weather | to show where people live | to make it pretty only
+mc2: Nadia built a model hill from clay and sprayed water on top. Where did the water go? | down the sides to the bottom | up to the top | into the air at once | it stayed on top
+mc3: A map key says: blue = water, green = forest, triangle = mountain. A spot is blue with green all around it. What is it most likely? | a lake in a forest | a mountain in a lake | a forest in the ocean | a road in a desert
+sa2: Explain why scientists use models and maps instead of only looking at the real land. | Real land is too big to see all at once; maps and models show large areas in a small space so we can see shapes and patterns.
+
+lesson: Where is water found on Earth? | 2-ESS2-3, 2-PS1-1
+practice:
+mc1: Where is most of Earth's water? | in the oceans | in rivers | in lakes | in puddles
+hint: Look at how much blue is on a globe.
+mc1: Ocean water is | salty | sweet | frozen everywhere | always hot
+hint: Have you tasted seawater at the beach?
+mc2: Water can be found on Earth as a solid. Where? | glaciers and snow on mountains | rivers | oceans | rain
+hint: Solid water is ice.
+mc2: Which is a body of fresh water? | Lake Tahoe | the Pacific Ocean | a salty sea | a tide pool
+hint: Fresh water is not salty.
+mc2: Snow on the Sierra Nevada melts in spring. Where does the water go? | into streams and rivers | up into the mountain | into the Sun | it disappears
+hint: Melted snow flows downhill.
+sa2: Name two places water is found as a liquid and one place it is found as a solid. | Liquid: oceans, rivers, lakes, ponds. Solid: glaciers, polar ice, snow on mountains.
+quiz:
+mc1: A big moving body of fresh water that flows to the sea is a | river | glacier | mountain | desert
+mc2: A glacier is | a huge sheet of ice that moves very slowly | a fast river | a warm lake | a pile of sand
+mc2: Why can't people drink ocean water without cleaning it? | It is too salty | It is too cold | It is too sweet | It is solid
+mc2: Which list has only places with liquid water? | ocean, lake, river | glacier, lake, river | ocean, glacier, snow | ice cap, pond, glacier
+mc2: Most of the fresh water on Earth is frozen in | ice sheets and glaciers | oceans | puddles | clouds only
+mc3: A map of California shows blue in the west, white on mountain peaks in winter and thin blue lines running into a big valley. What do the colors show? | ocean, snow and ice, and rivers | desert, rocks and roads | forests, cities and lakes | sand, beaches and cliffs
+sa2: Tell one way the Pacific Ocean and Lake Tahoe are different. | The ocean is salt water and much bigger; Lake Tahoe is fresh water and surrounded by land.
+
+test:
+mc1: A tall landform with a peak is a | mountain | valley | plain | lake
+mc1: Most of Earth's water is in | oceans | rivers | lakes | ponds
+mc1: Water frozen in a huge, slow-moving sheet of ice is a | glacier | river | pond | plain
+mc1: A map's key tells | what the symbols and colors mean | the time | the weather | who drew it
+mc2: Catalina, off the coast of Los Angeles, has ocean on every side. What landform is it? | an island | a peninsula | a valley | a mountain range
+mc2: Flat, low land good for farming is a | plain | canyon | peak | cliff
+mc2: Which is fresh water? | a river | the ocean | a salty bay | a tide pool
+mc2: On a map, a blue area usually shows | water | mountains | forests | roads
+mc2: Which is a model of the whole Earth? | a globe | a ruler | a clock | a thermometer
+mc2: Snow on mountain peaks is water in which form? | solid | liquid | gas | not water
+mc2: Where does melted mountain snow usually flow? | downhill into streams and rivers | uphill to the peak | into the Sun | into rocks forever
+mc2: A deep, narrow valley carved by a river is a | canyon | plain | hill | island
+mc2: Which list has only landforms? | mountain, valley, plain | lake, ocean, river | mountain, lake, ocean | river, hill, pond
+mc2: Why do we use models of land? | to see a large area in a small space | to make land move | to make it rain | to grow plants
+mc3: On a map key, a triangle means mountain and a blue line means river. A blue line starts near triangles and ends at a blue area on the coast. What does this show? | a river flowing from mountains to the ocean | a mountain inside a lake | a road to a city | a river flowing uphill
+mc3: Which is the best evidence that most of Earth is covered by water? | a globe is mostly blue | a puddle is blue | rivers are long | lakes are deep
+mc3: Some water is liquid in lakes and some is solid in glaciers. What decides which form it is in? | how cold or warm the place is | the color of the water | the shape of the land only | the number of fish
+num1: A model had 3 mountains and 4 hills. How many landforms did it show? | 7
+num2: A class map showed 12 lakes. 5 were frozen in winter. How many were not frozen? | 7
+sa1: Name one landform and one body of water in California. | Landform: Mount Whitney, Sierra Nevada, Central Valley, Death Valley. Water: Pacific Ocean, Lake Tahoe, Sacramento River.
+sa2: Tell how water on Earth can be solid and liquid, with one example of each. | Liquid water flows in oceans, rivers and lakes. Solid water is ice and snow, like glaciers and snow on mountaintops.
+sa2: Draw a simple map with a mountain, a river and a lake. Make a key. | A map with symbols (triangle for mountain, blue line for river, blue shape for lake) and a key that explains each symbol.
+cer3: Lucas looked at a globe and colored a chart of 20 squares, one for each part of Earth he checked: 14 squares landed on blue water, 6 on land. Of the water squares, 13 were oceans. Make a claim about where most of Earth's water is, give evidence and explain. | Claim: most of Earth is covered by water, and most of that water is in the oceans. Evidence: 14 of the 20 squares were water and 13 of those water squares were oceans. Reasoning: the globe is a model of Earth, so if most squares are ocean, most of Earth's surface water is in the oceans, not in lakes or rivers.
