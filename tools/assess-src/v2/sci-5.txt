@@ -1,0 +1,637 @@
+# Grade 5 Science (California NGSS), format 2. Units are original and grouped by topic for classes using Mystery Science.
+@subject sci
+@grade 5
+@program Mystery Science
+about: Fifth graders build a particle model of matter, identify materials by their properties, and investigate whether mixing substances makes new substances while total mass stays the same. They trace how plants get the materials they need from air and water, how energy from the Sun moves through food webs and how matter cycles through ecosystems. They model how Earth's systems interact, describe how water is distributed, explore ways communities protect resources, and analyze patterns of gravity, shadows, day and night and the stars, while applying the engineering design process.
+std: 5-PS1-1 | Develop a model to describe that matter is made of particles too small to be seen.
+std: 5-PS1-2 | Measure and graph quantities to provide evidence that regardless of the type of change that occurs when heating, cooling or mixing substances, the total weight of matter is conserved.
+std: 5-PS1-4 | Conduct an investigation to determine whether the mixing of two or more substances results in new substances.
+std: 5-LS1-1 | Support an argument that plants get the materials they need for growth chiefly from air and water.
+std: 5-LS2-1 | Develop a model to describe the movement of matter among plants, animals, decomposers and the environment.
+std: 5-ESS2-1 | Develop a model using an example to describe ways the geosphere, biosphere, hydrosphere and/or atmosphere interact.
+std: 5-ESS1-2 | Represent data in graphical displays to reveal patterns of daily changes in length and direction of shadows, day and night, and the seasonal appearance of some stars in the night sky.
+std: 3-5-ETS1-3 | Plan and carry out fair tests in which variables are controlled and failure points are considered to identify aspects of a model or prototype that can be improved.
+
+unit: Unit 1: Matter Is Made of Particles | 5-PS1-1, 5-PS1-3
+el: Use a "particle model" picture card (dots close together for solid, a little apart for liquid, far apart for gas); pre-teach property, dissolve, evaporate, particle and conductor with gestures and real objects.
+
+lesson: Is air made of anything? | 5-PS1-1
+practice:
+mc1: All matter is made of tiny particles that are | too small to see | big enough to see with our eyes | made of light | not real
+hint: Even air is made of particles.
+mc2: A basketball is weighed flat, then pumped full of air and weighed again. It is heavier the second time. What does this show? | Air has mass because it is made of particles. | Air has no mass. | The pump added rubber to the ball. | The ball got colder.
+hint: What was added to the ball?
+mc2: A cup is turned upside down and pushed straight down into a tub of water. A paper towel stuck in the bottom of the cup stays dry. Why? | Air trapped in the cup takes up space and keeps the water out. | Water cannot touch paper. | The cup absorbs the water. | The towel is waterproof.
+hint: What fills the cup before it goes in the water?
+num2: A deflated ball weighed 410 grams. After pumping in air, it weighed 418 grams. What was the mass of the air pumped in, in grams? | 8
+hint: Subtract the empty weight from the full weight.
+mc2: In a model of a gas, how are the particles arranged? | far apart and moving freely in all directions | packed tightly in rows | not moving at all | stuck together in one clump
+hint: Think about how a gas spreads to fill a balloon.
+sa2: You smell popcorn from across the room even though you cannot see anything in the air. Use a particle model to explain why. | Tiny particles from the popcorn move through the air and spread out across the room. They are too small to see, but when they reach my nose I can smell them.
+quiz:
+mc1: Which statement about air is true? | It has mass and takes up space. | It has no mass. | It takes up no space. | It is not matter.
+mc2: A balloon is blown up and then placed in a freezer. It shrinks. What happened to the air particles inside? | They slowed down and moved closer together. | They disappeared. | They turned into rubber. | They moved farther apart.
+mc2: A syringe with its tip blocked is full of air. You can push the plunger in a little, but not all the way. What does this show? | Air particles can be squeezed closer together, but they still take up space. | Air has no particles. | Air particles are solid. | The syringe is broken.
+num2: A sealed bag with air weighed 52 grams. The same bag with the air squeezed out weighed 49 grams. What was the mass of the air in grams? | 3
+mc2: Which is the best model of a solid? | particles packed closely and vibrating in place | particles far apart and zooming around | no particles at all | particles that flow like water
+num2: A class weighed a soccer ball 3 times as they added pumps of air: 0 pumps 420 g, 10 pumps 423 g, 20 pumps 426 g. How many grams did the ball gain from 0 to 20 pumps? | 6
+sa2: Explain how you could show a younger student that air is made of something even though you cannot see it. | Blow up a balloon and show it gets bigger, so air takes up space. Or weigh a ball before and after pumping it up to show the air adds mass.
+
+lesson: Where does sugar go when it dissolves? | 5-PS1-1
+practice:
+mc1: When sugar dissolves in water, the sugar | breaks into particles too small to see that spread through the water | is destroyed | turns into air | sinks and stays as crystals
+hint: Can you still taste it?
+mc2: A student stirs salt into water until she can no longer see it. How can she prove the salt is still there? | Let the water evaporate and look for salt crystals left behind. | Shine a flashlight on the water. | Add more water. | Freeze the water.
+hint: What happens if the water goes away?
+mc2: A puddle disappears on a sunny day. Where did the water go? | Its particles moved into the air as water vapor. | It was destroyed by the Sun. | It turned into soil. | It became oxygen.
+hint: The water particles are still somewhere.
+num2: 200 g of water and 15 g of sugar were mixed. The sugar dissolved. What was the total mass of the sugar water in grams? | 215
+hint: Matter is not lost when it dissolves.
+mc2: Food coloring is dropped into hot water and cold water. It spreads faster in hot water. What is the best explanation? | Particles move faster in hot water. | Hot water has no particles. | Cold water particles move faster. | Food coloring is a solid.
+hint: Temperature affects how fast particles move.
+sa2: Draw or describe a particle model of sugar before and after dissolving in water. | Before: a sugar crystal is a tight cluster of sugar particles next to water particles. After: the sugar particles are spread out evenly among the water particles, too small to see.
+quiz:
+mc2: A cup of salt water is left on a windowsill for a week. The water is gone and white crystals are left. What is the best explanation? | The water evaporated and the salt particles were left behind. | The salt evaporated and the water stayed. | Both the water and salt disappeared. | The crystals came from the window.
+mc2: Which observation is evidence that particles are too small to see? | You can taste sugar in clear water. | Sand sinks to the bottom of water. | A rock is hard. | A pencil is long.
+num2: A bowl held 300 g of water. After two days on a sunny windowsill it held 245 g. How many grams of water evaporated? | 55
+mc2: Perfume is sprayed in one corner of a room. A minute later people in the other corner smell it. Which model explains this? | perfume particles moving and spreading through the air | perfume becoming light | air particles standing still | perfume particles growing bigger
+num2: A student dissolved 12 g of salt in 250 g of water. What should the total mass of the salt water be, in grams? | 262
+mc3: A class put a drop of dye in three cups of water at 10°C, 25°C and 50°C. The dye spread completely in 12 minutes, 6 minutes and 2 minutes. Which conclusion is supported? | Particles move faster at higher temperatures. | Particles move slower at higher temperatures. | Temperature has no effect on particles. | The dye dissolved only in cold water.
+cer3: Students mixed 20 g of sugar into 180 g of water. The sugar disappeared. They weighed the cup of sugar water and it had a mass of 200 g (not counting the cup). Make a claim about what happened to the sugar. Use evidence and explain your reasoning with a particle model. | Claim: The sugar is still in the water as tiny particles. Evidence: The sugar water had a mass of 200 g, which equals 20 g of sugar plus 180 g of water. The sugar water also tastes sweet. Reasoning: Matter is made of particles too small to see. When sugar dissolves, its particles spread out among the water particles, so we cannot see them, but their mass is still there.
+
+lesson: How can we identify a material by its properties? | 5-PS1-3
+practice:
+mc1: A property is | a characteristic used to describe or identify a material | the name of an object | the price of an object | the owner of an object
+hint: Color and hardness are examples.
+mc2: Which property could help you tell aluminum foil from plastic wrap? | Aluminum conducts electricity and plastic does not. | Both are thin. | Both can be folded. | Both are used in kitchens.
+hint: Think of a test with a battery and a bulb.
+mc2: A student has two white powders, salt and baking soda. Which test could help identify them? | Add vinegar: baking soda fizzes and salt does not. | Look at their color. | Smell from far away. | Weigh one spoonful of each.
+hint: Look for a test where they act differently.
+mc2: A mineral scratches glass, but glass cannot scratch it. What property is being tested? | hardness | magnetism | color | solubility
+hint: Which one is harder?
+num2: A metal cube has a mass of 81 grams and a volume of 30 cubic centimeters. A different cube made of the same metal has a volume of 10 cubic centimeters. What is its mass in grams? | 27
+hint: The volume is one third as much, so the mass is one third as much.
+sa2: You find a shiny gray object. Describe two tests you could do to find out whether it is steel. | Test it with a magnet; steel is attracted to magnets. Test it in a circuit; steel conducts electricity and will light a bulb.
+quiz:
+mc1: Which property describes whether a material lets heat move through it easily? | thermal conductivity | color | smell | magnetism
+mc2: A class tested materials. Results: Material A - attracted to a magnet, conducts electricity. Material B - not attracted, conducts electricity. Material C - not attracted, does not conduct. Which material is most likely plastic? | Material C | Material A | Material B | none of them
+mc2: A class tested materials. Material A - attracted to a magnet, conducts electricity. Material B - not attracted, conducts electricity. Material C - not attracted, does not conduct. Which material is most likely copper? | Material B | Material A | Material C | all of them
+mc2: Which property would help separate sand from salt? | Salt dissolves in water and sand does not. | Both are grainy. | Both are light-colored. | Both are found at the beach.
+num2: A sample was tested for hardness on a 1 to 10 scale. Mineral X scored 3 and Mineral Y scored 7. How many points harder is Mineral Y? | 4
+num2: Three pieces of the same wood were weighed: 12 g, 15 g and 18 g. What was the average mass in grams? | 15
+sa2: A recycling plant receives a mix of steel cans, aluminum cans and glass bottles. Explain how properties could be used to sort them. | A magnet can pull out steel cans because steel is attracted to magnets. Aluminum and glass can then be separated because aluminum conducts electricity and is much lighter, while glass does not conduct and can break.
+
+test:
+mc1: Matter is made of | particles too small to see | only things we can see | light and sound | energy only
+mc1: Which property tells whether a material can be scratched easily? | hardness | color | magnetism | odor
+mc1: Which statement correctly describes air? | It is matter, so it has mass and takes up space. | It has no mass. | It is empty space. | It is a form of light.
+mc2: A balloon is inflated and gets bigger. What explains this with a particle model? | More air particles were added and they push on the inside of the balloon. | The rubber particles multiplied. | Light filled the balloon. | The balloon got heavier because it got colder.
+mc2: Salt is stirred into water and seems to disappear. What really happened? | The salt particles spread out among the water particles. | The salt was destroyed. | The salt turned into air. | The salt became sugar.
+mc2: Which observation supports the idea that gas particles are spread far apart? | Air in a syringe can be squeezed into a smaller space. | Rocks cannot be squeezed. | Water pours into a cup. | Ice keeps its shape.
+mc2: A wet sidewalk dries in the sun. Which particle model explains this? | Water particles gain energy and move into the air as vapor. | Water particles are destroyed. | The sidewalk absorbs the water forever. | The Sun pulls the water up into space.
+mc2: Which property would help you identify a piece of iron? | It is attracted to a magnet. | It is gray. | It is heavy. | It is smooth.
+mc2: Two clear liquids look the same. One is water and one is vinegar. Which property test is safest and most useful? | Add baking soda and see if it fizzes. | Taste both. | Drink a sip of each. | Look at their colors.
+num2: An empty ball weighs 600 g. After being pumped up, it weighs 609 g. How many grams of air were added? | 9
+num2: 25 g of salt is dissolved in 475 g of water. What is the total mass of the salt water in grams? | 500
+num2: A dish held 120 g of salt water. After the water evaporated, 8 g of salt was left. How many grams of water evaporated? | 112
+mc2: A class tested which materials conduct electricity: a copper wire, a rubber band, a steel nail, a wooden stick and a foil strip. Which group lists the conductors? | copper wire, steel nail, foil strip | rubber band, wooden stick | copper wire and rubber band | all five materials
+num2: Using the same list (copper wire, rubber band, steel nail, wooden stick, foil strip), how many of the five materials are insulators? | 2
+mc3: A drop of food coloring spreads through warm water in 3 minutes and through cold water in 15 minutes. Which explanation uses a particle model? | Water particles move faster when warm, so they mix the coloring faster. | Cold water has no particles. | Food coloring particles grow in warm water. | Warm water is thicker.
+mc3: A student says, "When you can't see something, it isn't there." Which evidence best disproves this? | Sugar dissolved in water can still be tasted and its mass is still measured. | A rock sinks in water. | Ice melts in the sun. | A magnet attracts a nail.
+mc2: Which material would be best for the handle of a cooking pot? | wood, because it does not conduct heat well | copper, because it conducts heat well | aluminum, because it is shiny | steel, because it is attracted to magnets
+num2: A class measured the mass of 3 pieces of the same mineral: 24 g, 30 g and 27 g. What was the average mass in grams? | 27
+mc2: In a model of a liquid, the particles are | close together but able to slide past each other | locked in place in rows | very far apart | not moving at all
+sa2: Describe an investigation that shows air takes up space. | Push an upside-down cup with a dry paper towel inside straight down into water. The towel stays dry because air trapped in the cup takes up space and keeps the water out.
+sa2: Explain how you could use properties to tell the difference between sugar and sand. | Put each in water and stir. Sugar dissolves and sand does not. Sand is also harder and gritty, and sugar crystals can be crushed more easily.
+cer3: Students placed 50 g of ice in a sealed bag and weighed it. They let it melt and weighed it again. Then they opened the bag in the sun for a day and weighed it. Sealed with ice: 50 g. Sealed after melting: 50 g. Open after a day: 31 g. Make a claim about what happened to the water particles. Use evidence and explain your reasoning with a particle model. | Claim: The water particles were never destroyed; some escaped into the air when the bag was open. Evidence: The mass stayed 50 g when the sealed ice melted, but dropped to 31 g after the bag was open in the sun for a day, a loss of 19 g. Reasoning: Melting only changes how the particles are arranged, so the mass stays the same. When the bag was open, some water particles evaporated and moved into the air as vapor, too small to see, so they were no longer weighed in the bag.
+
+unit: Unit 2: Mixing, Reactions and Conservation of Matter | 5-PS1-2, 5-PS1-4, 3-5-ETS1-3
+el: Keep a "signs of a new substance" anchor chart (gas bubbles, color change, new solid, temperature change, new smell) with photos; practice the frame "Before mixing, the mass was ___. After, it was ___. This shows ___."
+
+lesson: Does matter disappear when it melts or freezes? | 5-PS1-2
+practice:
+mc1: When ice melts into water in a sealed container, its mass | stays the same | doubles | becomes zero | always decreases
+hint: The particles are rearranged, not lost.
+mc2: A sealed jar of water weighed 350 g. After it was frozen, it still weighed 350 g. Which statement explains this? | Freezing changes how the particles are arranged but not how many there are. | Ice has no mass. | Freezing adds particles. | The scale was broken.
+hint: Did any particles leave the jar?
+num2: A chocolate bar with a mass of 45 g melts in a sealed bag. What is its mass after melting, in grams? | 45
+hint: Melting is a change of state.
+mc2: A pot of soup is boiled without a lid for 20 minutes. It has less mass afterward. Why? | Water particles escaped into the air as steam. | The heat destroyed the soup. | The particles got smaller. | The pot absorbed the soup.
+hint: Was the container sealed?
+mc2: Which graph would best show that mass stays the same as ice melts in a sealed bag? | a line graph of mass over time that stays flat | a bar graph of different colors of ice | a pie chart of water and air | a map of the classroom
+hint: You want to show mass at many times.
+sa2: Explain why melting butter in a covered pan is a good way to test whether mass changes when a substance is heated. | Covering the pan keeps any particles from escaping, so if the mass is the same before and after, it shows melting does not change the total mass.
+quiz:
+mc1: Melting, freezing and boiling are changes of | state | mass | particles into nothing | color only
+mc2: A class sealed 100 g of ice in a bag and weighed it every 10 minutes as it melted: 100 g, 100 g, 100 g, 100 g. What conclusion is supported? | The total mass stayed the same during melting. | Melting increases mass. | Melting decreases mass. | Ice has more mass than water.
+num2: A sealed bottle with 240 g of water is frozen. The bottle itself has a mass of 30 g. What is the total mass of the bottle and ice in grams? | 270
+mc2: Wax from a candle is melted in a sealed tin. Before: 80 g. After: 80 g. Then the wax cools and hardens. What should its mass be? | 80 g | 0 g | 160 g | 40 g
+num2: An open cup of water had a mass of 500 g. A week later it had a mass of 420 g. How many grams of water evaporated? | 80
+mc3: A student weighs an open pot of water before and after boiling and says, "Boiling destroys matter." Which is the best response? | The water escaped as steam; to test fairly, use a sealed container and the mass will stay the same. | The student is correct. | The pot destroyed the water. | Steam has no mass.
+sa2: Draw or describe a particle model of ice before and after melting. Explain why the mass stays the same. | Before: particles are close together in a regular pattern, vibrating in place. After: the same particles are close but can slide past each other. The number of particles did not change, so the mass stays the same.
+
+lesson: When does mixing make a new substance? | 5-PS1-4
+practice:
+mc1: Which is evidence that a new substance has formed? | gas bubbles form when two liquids are mixed | sand is stirred into water and sinks | paper is cut into pieces | ice melts
+hint: Look for something new that was not there before.
+mc2: Milk and vinegar are mixed. Soft white clumps form that were not there before. What does this show? | A new substance formed. | Nothing new formed. | The milk froze. | The vinegar evaporated.
+hint: Is the solid something new?
+mc2: Salt and pepper are mixed. You can still pick out the pepper and the salt grains. Is this a new substance? | No, it is a mixture and each part keeps its properties. | Yes, it is a new substance. | Yes, because the color changed. | No, because salt disappears.
+hint: Can you separate them again?
+mc2: An iron nail left outside gets reddish-brown and flaky. What happened? | The iron reacted with water and air to form rust, a new substance. | The nail was painted. | The nail melted. | The nail turned into wood.
+hint: Rust is not the same as iron.
+num2: A class mixed four pairs of substances. Two pairs made gas, one pair changed color and one pair made no change. How many pairs showed evidence of a new substance? | 3
+hint: Count the pairs that showed gas or a color change.
+sa2: List three kinds of observations that can show a new substance has formed when two substances are mixed. | A gas forms (bubbles or fizzing), the color changes, a new solid appears, there is a new smell, or the temperature changes.
+quiz:
+mc1: Which mixture makes a new substance? | baking soda and vinegar | sand and water | raisins and nuts | salt and pepper
+mc2: A class tested mixtures. Mixture 1: sugar and water - sugar disappears, no bubbles. Mixture 2: baking soda and lemon juice - fizzes. Mixture 3: iron filings and sand - can be separated with a magnet. Which mixture made a new substance? | Mixture 2 | Mixture 1 | Mixture 3 | all of them
+mc2: Why is dissolving sugar in water NOT considered making a new substance? | The water can evaporate and leave the same sugar behind. | Sugar is destroyed. | Water turns into sugar. | Sugar water has no mass.
+num2: In an experiment, the temperature of a mixture started at 21°C and rose to 34°C after mixing. How many degrees did it rise? | 13
+mc2: Which is the best plan to test whether mixing two powders with water makes a new substance? | Mix them in a cup and record any bubbles, color change, new solid or temperature change. | Smell them from the jar. | Weigh only one powder. | Look at them without mixing.
+num2: A student mixed 3 spoonfuls of baking soda with vinegar in each of 5 cups. How many spoonfuls of baking soda did she use? | 15
+sa3: When you mix lemonade powder and water, the color changes to yellow. A classmate says this proves a new substance formed. Do you agree? Explain. | Not necessarily. The powder may just dissolve and spread its color through the water, like dissolving sugar. If the water evaporated, the same powder would be left. A new substance would show other signs, like gas or a new solid.
+
+lesson: Where does the mass go when a gas is made? | 5-PS1-2, 5-PS1-4
+practice:
+mc2: Baking soda and vinegar are mixed in an open cup. The cup's total mass goes down. Why? | A gas formed and escaped into the air. | Mass was destroyed. | The cup got lighter. | The vinegar turned into nothing.
+hint: Where do the bubbles go?
+mc2: Baking soda and vinegar are mixed inside a sealed plastic bag. What happens to the total mass? | It stays the same. | It goes down. | It goes up. | It becomes zero.
+hint: Can the gas leave the bag?
+num2: Before mixing in a sealed bag, the baking soda, vinegar and bag had a total mass of 160 g. What should the total mass be after the fizzing stops, in grams? | 160
+hint: Nothing could get in or out.
+num2: In an open cup, the total mass was 160 g before mixing and 154 g after. How many grams of gas escaped? | 6
+hint: Subtract the after mass from the before mass.
+mc2: Which statement is always true when substances react in a closed container? | The total mass before equals the total mass after. | The mass doubles. | The mass becomes smaller. | New particles are created from nothing.
+hint: Particles are rearranged, not made or destroyed.
+sa2: Explain why scientists use a closed container to study whether mass changes in a reaction. | A closed container keeps gases from escaping or air from entering, so all the particles are measured before and after, giving an accurate comparison.
+quiz:
+mc1: In any change, the total amount of matter is | conserved | destroyed | doubled | turned into energy only
+mc2: A class graphed the mass of a sealed bottle while an antacid tablet fizzed in water. The line stayed at 215 g for 10 minutes. What does the graph show? | Mass was conserved during the reaction. | The reaction destroyed mass. | No gas formed. | The scale is wrong.
+num2: A sealed bottle had 200 g of water and a 3 g tablet in a small cup inside. The bottle weighed 25 g. What was the total mass before the tablet was dropped in, in grams? | 228
+num2: A sealed bottle with water and a fizzing tablet had a total mass of 228 g. After the fizzing, the bottle was opened and some gas escaped. The new mass was 226 g. How many grams of gas escaped? | 2
+mc2: Steel wool is heated in air and gets slightly heavier. Which explanation fits conservation of matter? | The steel combined with oxygen from the air, adding particles to the solid. | Heat added mass. | Mass was created from nothing. | The scale lost accuracy.
+mc3: Two groups did the same reaction. Group A used an open cup and found mass decreased by 4 g. Group B used a sealed bag and found no change. How do these results fit together? | Both support conservation: in Group A, 4 g of gas escaped into the air. | Group A disproves conservation. | Group B made a mistake. | Mass is only conserved in open cups.
+cer3: A class mixed vinegar and baking soda three ways and measured total mass before and after. Open cup: 180 g before, 174 g after. Cup covered with a balloon: 180 g before, 180 g after, and the balloon inflated. Sealed bag: 180 g before, 180 g after. Make a claim about whether mass is conserved in this reaction. Use evidence from all three trials and explain your reasoning. | Claim: Mass is conserved in this reaction. Evidence: In the balloon and sealed bag trials, the mass stayed at 180 g. In the open cup, the mass dropped 6 g, but that is the trial where gas could escape; the balloon inflating shows a gas formed. Reasoning: The reaction rearranges particles into new substances, including a gas. When the gas is trapped, all the particles are still weighed, so the mass stays the same. The open cup only lost mass because the gas left the cup.
+
+lesson: How can we test a design fairly and improve it? | 5-PS1-4, 3-5-ETS1-3
+practice:
+mc1: In a fair test, the one thing you change on purpose is the | variable you are testing | control | result | failure point
+hint: Everything else stays the same.
+mc2: A team tests how much water makes a fizzing tablet rocket fly highest. Which should stay the same in every trial? | the size of the tablet and the type of canister | the amount of water | the height it flies | nothing
+hint: Only the amount of water should change.
+mc2: In one trial, the canister lid was not snapped on tightly and the rocket did not fly. What should the team do? | Count it as a failure point, fix the lid and repeat the trial. | Report it as the best result. | Change the amount of water and the tablet size at once. | Stop the investigation.
+hint: A failure shows what part needs improvement.
+num2: The rocket flew 120 cm, 135 cm and 126 cm in three trials. What is the average height in centimeters? | 127
+hint: Add the three heights and divide by 3.
+mc2: Why do scientists repeat trials? | to check that results are reliable | to make the results different | to use up materials | to avoid recording data
+hint: One trial might have a mistake.
+sa2: Name one variable you would change and two variables you would keep the same to test which amount of baking soda makes a balloon inflate most. | Change: the amount of baking soda. Keep the same: the amount of vinegar and the size of the bottle and balloon.
+quiz:
+mc2: A team's data for a fizzing rocket. 5 mL water: 80 cm. 10 mL: 140 cm. 15 mL: 110 cm. Which amount worked best in this test? | 10 mL | 5 mL | 15 mL | all the same
+num2: Using the same data (5 mL: 80 cm, 10 mL: 140 cm, 15 mL: 110 cm), how many centimeters higher did the 10 mL rocket fly than the 5 mL rocket? | 60
+mc2: A team changes both the water amount and the tablet size between trials. What is the problem? | They cannot tell which change caused the difference. | Nothing is wrong. | They used too few tablets. | The rocket gets heavier.
+num2: Four trials gave heights of 90 cm, 100 cm, 110 cm and 100 cm. What is the average in centimeters? | 100
+mc2: A balloon on a bottle of vinegar and baking soda keeps leaking at the neck. Which improvement best fixes this failure point? | Wrap tape around the neck so the balloon seals tightly. | Use more vinegar. | Use a bigger bottle. | Shake the bottle harder.
+mc3: Group A's rocket went 150 cm with warm water. Group B's went 90 cm with cold water. Group A also used a full tablet and Group B a half tablet. What conclusion can they draw about water temperature? | None yet, because two variables changed; they need a new test changing only temperature. | Warm water always works best. | Cold water always works best. | Tablets do not matter.
+sa2: A team's balloon-inflating design gave very different results in three trials: 18 cm, 6 cm and 17 cm around. Explain what they should do next. | The 6 cm trial does not match the others, so something may have gone wrong, like a leak or a measuring mistake. They should look for the failure point, fix it and repeat the trial to get reliable results.
+
+test:
+mc1: When ice melts in a sealed bag, the total mass | stays the same | increases | decreases | becomes zero
+mc1: Which is a sign that a new substance formed? | a new solid appears when two liquids are mixed | sugar dissolves in water | ice melts into water | a stick is broken in half
+mc1: In a fair test, scientists change | only one variable at a time | every variable at once | nothing | only the results
+mc2: Vinegar and baking soda fizz in an open cup, and the mass goes down. What is the best explanation? | Gas made in the reaction escaped into the air. | Matter was destroyed. | The cup absorbed the liquid. | The scale broke.
+mc2: Which is a mixture and not a new substance? | trail mix of nuts and raisins | rust on a nail | burned toast | a cake after baking
+mc2: Salt is dissolved in water and the water evaporates. Salt crystals are left. What does this show? | Dissolving did not make a new substance. | A new substance formed. | Salt evaporates. | Water turns into salt.
+mc2: Milk and lemon juice are mixed and form clumps. Which conclusion is supported? | A new substance formed, because a new solid appeared. | Nothing changed. | The milk froze. | The clumps were already in the milk.
+mc2: Butter is melted in a sealed bag. Before: 30 g. After: 30 g. What does this show? | Changes of state do not change the total mass. | Melting removes mass. | Butter gains mass when heated. | Butter cannot melt.
+num2: A sealed bag holds 90 g of vinegar, 10 g of baking soda in a small cup and the 5 g bag. The baking soda is tipped into the vinegar. What is the total mass after fizzing, in grams? | 105
+num2: Vinegar and baking soda were mixed in an open cup. The total mass started at 105 g and ended at 101 g. How many grams of gas escaped? | 4
+num2: A frozen 300 g block of ice was melted in a sealed container. It was then heated until warm, still sealed. What is the mass of the water in grams? | 300
+mc2: Which graph best shows conservation of mass during a reaction in a sealed bag? | a flat line showing the same mass over time | a line that drops to zero | a line that doubles | a bar for each color
+num2: A rocket test gave heights of 210 cm, 190 cm and 200 cm. What is the average height in centimeters? | 200
+mc2: A team tests whether the amount of vinegar changes how big a balloon inflates. Which should stay the same? | the amount of baking soda and the bottle size | the amount of vinegar | the balloon size result | nothing
+mc3: An iron nail with a mass of 20 g rusts and its mass becomes 21 g. Which explanation fits conservation of matter? | Particles of oxygen and water from the air combined with the iron. | Rusting creates matter from nothing. | The scale is wrong because mass cannot change. | The nail got colder.
+mc3: Two powders are mixed with water. The cup gets cold, and when the water evaporates, both powders are left unchanged. Which conclusion is best? | The powders only dissolved; no new substance formed. | A new substance formed because the cup got cold. | Both powders were destroyed. | The water became a powder.
+mc2: During a fizzing rocket test, one trial failed because the lid cracked. What should the team do? | Replace the lid and repeat that trial. | Use that trial as their best result. | Change two variables in the next trial. | Stop testing.
+num2: A class did a reaction in 6 sealed bags. Each bag had a total mass of 65 g before mixing. What was the total mass of all 6 bags after mixing, in grams? | 390
+mc2: Which statement about all changes to matter is true? | Particles are rearranged, but the total mass is conserved. | Mass always goes up. | Mass always goes down. | Particles are created when things mix.
+sa2: Explain how you could test whether mixing two clear liquids makes a new substance. | Mix small amounts in a clear cup and observe for gas bubbles, a color change, a new solid, a temperature change or a new smell. Compare with each liquid alone. If none of these appear, a new substance probably did not form.
+sa2: Explain why the mass of a sealed bottle stays the same while an antacid tablet fizzes inside it. | The tablet and water react to make a gas, but the gas cannot escape the sealed bottle. All the particles are still inside, just rearranged, so the total mass stays the same.
+cer3: A class heated and mixed substances in sealed containers and recorded total mass before and after. Melting chocolate: 60 g before, 60 g after. Freezing juice: 250 g before, 250 g after. Mixing vinegar and baking soda: 140 g before, 140 g after. Mixing salt and water: 110 g before, 110 g after. Make a claim about what happens to the total mass of matter during heating, cooling and mixing. Use evidence and explain your reasoning. | Claim: The total mass of matter is conserved during heating, cooling and mixing, whether or not a new substance forms. Evidence: In all four sealed tests the mass before equaled the mass after: 60 g, 250 g, 140 g and 110 g. This includes a change of state (melting, freezing), dissolving (salt) and a reaction that made gas (vinegar and baking soda). Reasoning: Matter is made of particles. In any change, particles are rearranged but not created or destroyed, so when nothing can escape a sealed container, the total mass stays the same.
+
+unit: Unit 3: Plants, Food and Energy from the Sun | 5-LS1-1, 5-PS3-1
+el: Draw a large plant diagram with arrows labeled "air (carbon dioxide) in," "water in," "light energy in," "oxygen out" and "sugar (food) made"; give students arrow cards to build energy chains such as "Sun -> grass -> cow -> me."
+
+lesson: Where do plants get the materials to grow? | 5-LS1-1
+practice:
+mc1: Plants get most of the materials they use to build their bodies from | air and water | soil | sunlight | other plants
+hint: Soil gives only a small amount of minerals.
+mc1: Which gas from the air do plants take in to make food? | carbon dioxide | oxygen | helium | nitrogen only
+hint: Animals breathe this gas out.
+mc2: A scientist in the 1600s planted a small willow tree in a pot of soil and gave it only water for 5 years. The tree gained about 74 kg, but the soil lost only about 0.06 kg. What does this evidence suggest? | Most of the tree's mass did not come from the soil. | The tree ate the soil. | Trees lose mass as they grow. | Soil gains mass when trees grow.
+hint: Compare how much the tree gained with how much the soil lost.
+num2: A bean plant grew from a 1 g seed to a 46 g plant. The soil in its pot lost less than 1 g. About how many grams did the plant gain? | 45
+hint: Subtract the seed's mass from the plant's mass.
+mc2: Lettuce can be grown with its roots in water with a few added nutrients and no soil at all. What does this show? | Plants do not need soil to get most of their building materials. | Lettuce is not a plant. | Soil is the only source of plant food. | Water turns into soil.
+hint: Where did the lettuce's mass come from if there was no soil?
+sa2: Your friend says, "A big tree is made mostly of soil." Explain why this is not correct. | Plants build their bodies mostly from carbon dioxide from the air and water. Soil only gives small amounts of minerals. Experiments show the soil around a growing plant loses very little mass.
+quiz:
+mc1: What does a plant release into the air when it makes food? | oxygen | carbon dioxide only | soil | sugar
+mc2: Two identical seedlings were grown. Plant A was in a sealed jar with air that had no carbon dioxide. Plant B was in a sealed jar with normal air. Both got light and water. After two weeks, Plant B grew much more. What does this show? | Plants need carbon dioxide from the air to grow. | Plants do not use air. | Jars stop plants from growing. | Plant A got too much air.
+num2: A radish weighed 2 g as a seedling and 38 g at harvest. Its pot of soil weighed 500 g at the start and 499 g at harvest. How many grams did the radish gain? | 36
+num2: A radish grew from 2 g to 38 g. Its pot of soil weighed 500 g at the start and 499 g at harvest. How many grams did the soil lose? | 1
+mc2: A radish grew from 2 g to 38 g while its soil went from 500 g to 499 g. Which statement best explains this data? | Most of the radish's added mass came from air and water, not the soil. | The radish was made only of soil. | The soil got heavier. | The radish lost mass.
+mc3: Why does a plant wilt and stop growing if it gets no water, even in rich soil? | Water is one of the main materials plants use to make food and build their bodies. | Soil needs water to turn into leaves. | Water makes the plant heavier only. | Plants drink soil.
+sa2: Use the willow tree experiment as evidence to support the argument that plants get most of their materials from air and water. | The tree gained about 74 kg in five years, but the soil lost only about 0.06 kg. Since the tree was given only water, its added mass must have come mostly from water and the carbon dioxide it took from the air.
+
+lesson: How do plants capture energy from the Sun? | 5-PS3-1
+practice:
+mc1: Plants use energy from | sunlight | the soil | the wind | the Moon
+hint: Leaves face toward this.
+mc2: When a plant makes food, energy from sunlight is stored in | sugar the plant makes | the soil | oxygen only | the roots' water
+hint: Food is a way to store energy.
+mc2: A plant is kept in a dark closet for two weeks. Its leaves turn yellow and it stops growing. What is the best explanation? | Without light, it cannot make the food it needs for energy. | It has too much water. | Darkness adds soil. | Plants grow faster in the dark.
+hint: What does the plant need light for?
+num2: A class gave plants different hours of light each day. 4 hours: grew 3 cm. 8 hours: grew 7 cm. 12 hours: grew 11 cm. How many more centimeters did the 12-hour plant grow than the 4-hour plant? | 8
+hint: Subtract to compare.
+mc2: Which model shows how energy moves into a plant's food? | Sun -> light energy -> leaf -> sugar | soil -> roots -> sunlight | sugar -> sunlight -> leaf | oxygen -> soil -> Sun
+hint: Start with where the energy comes from.
+sa2: Describe what goes into a leaf and what comes out when a plant makes food. | In: carbon dioxide from the air, water from the roots and light energy from the Sun. Out: sugar that stores energy for the plant and oxygen that goes into the air.
+quiz:
+mc1: The energy stored in plant sugar first came from | the Sun | the soil | rainwater | the plant's seeds
+mc2: A class measured bubbles of oxygen given off by a water plant placed at different distances from a lamp. 10 cm: 30 bubbles per minute. 30 cm: 14 bubbles. 50 cm: 5 bubbles. What pattern is shown? | More light made the plant produce more oxygen. | Less light made the plant produce more oxygen. | Light had no effect. | The plant used up the lamp.
+num2: Using the same data (10 cm: 30, 30 cm: 14, 50 cm: 5 bubbles per minute), how many fewer bubbles per minute were there at 50 cm than at 10 cm? | 25
+mc2: Why are most leaves wide and flat? | to catch more sunlight | to hold more soil | to keep out air | to make the plant heavier
+num2: Using the same data (30, 14 and 5 bubbles per minute), how many bubbles were counted altogether in one minute at each distance? | 49
+mc3: A gardener says, "My tomato plant is getting energy from the fertilizer I add to the soil." Which response is most accurate? | Fertilizer gives some minerals, but the plant's energy comes from sunlight captured in its leaves. | Fertilizer is the plant's main energy source. | Plants do not need energy. | The energy comes from the pot.
+cer3: Students grew three pots of identical bean plants for 3 weeks with the same water and soil. Pot A, full sunlight: average height 24 cm, dark green. Pot B, partial shade: average height 15 cm, light green. Pot C, dark closet: average height 6 cm, pale yellow and weak. Make a claim about what plants need light for. Use evidence and explain your reasoning. | Claim: Plants need light to make the food that gives them energy to grow. Evidence: With the same water and soil, plants in full sun averaged 24 cm and were dark green, plants in partial shade averaged 15 cm, and plants in the dark averaged only 6 cm and were pale and weak. Reasoning: Plants capture light energy to make sugar from carbon dioxide and water. Less light means less food is made, so the plants have less energy and fewer materials to grow.
+
+lesson: Where does the energy in our food come from? | 5-PS3-1
+practice:
+mc1: Animals get the energy they need from | the food they eat | sunlight on their skin directly | the air they breathe only | sleeping
+hint: Think about why you get hungry.
+mc2: A cow eats grass. A person drinks the cow's milk. Where did the energy in the milk originally come from? | the Sun | the cow's barn | the milk carton | the person
+hint: Trace the energy back step by step.
+mc2: Your body uses energy from food to | move, grow and stay warm | make sunlight | turn food into soil | stop breathing
+hint: What do you do all day that needs energy?
+num2: An apple has about 95 Calories of energy. A banana has about 105 Calories. How many Calories are in both? | 200
+hint: Add the two amounts.
+mc2: Which chain correctly traces energy to a hawk? | Sun -> grass -> mouse -> hawk | hawk -> mouse -> grass -> Sun | grass -> Sun -> hawk -> mouse | mouse -> Sun -> hawk -> grass
+hint: Arrows show where the energy goes.
+sa2: Trace the energy in a bowl of rice back to the Sun. | The Sun's light energy was captured by the rice plant's leaves and stored in sugar and starch in the rice grains. When I eat the rice, my body uses that stored energy.
+quiz:
+mc1: In a food chain, energy flows from | the Sun to plants to animals | animals to plants to the Sun | soil to the Sun | the Moon to plants
+mc2: A student runs a race and gets very warm. Where did the energy for running and the heat come from? | energy stored in the food the student ate | the shoes | the air around the track | the finish line
+num2: A student ate a breakfast with 350 Calories and a lunch with 520 Calories. How many Calories did the student eat in all? | 870
+mc2: Why does every food chain start with a plant or other producer? | Producers capture energy from the Sun and store it in food. | Plants eat animals. | Animals cannot eat plants. | Producers are the biggest organisms.
+num2: A class kept a log of energy from food. Monday 1,800 Calories, Tuesday 2,000 Calories, Wednesday 1,900 Calories. What was the average per day? | 1900
+mc3: A lizard lies on a warm rock in the morning before hunting. A student says the lizard is "eating sunlight." Which is the best correction? | The sunlight warms the lizard's body, but its energy for living and moving comes from the food it eats. | The lizard makes food from sunlight like a plant. | The lizard gets no energy from food. | The rock gives the lizard food.
+sa2: Explain why a fox that eats rabbits depends on the Sun even though it never eats plants. | The rabbits eat plants, and plants store energy from sunlight in their food. When the fox eats a rabbit, it gets energy that first came from the Sun through the plants.
+
+test:
+mc1: Most of the materials a plant uses to grow come from | air and water | soil | sunlight | fertilizer
+mc1: The energy in food first came from | the Sun | the soil | water | the wind
+mc1: Plants take in which gas to make food? | carbon dioxide | oxygen | hydrogen | helium
+mc2: A tree grows from a seed into a huge oak. Where did most of its mass come from? | carbon dioxide from the air and water | the soil around its roots | sunlight turned into wood | minerals from rocks only
+mc2: Plants grown in water with no soil still grow tall. What does this support? | Plants get most of their materials from air and water. | Plants need soil for most of their mass. | Water is made of soil. | These plants have no mass.
+mc2: Which model correctly shows energy flow? | Sun -> plant -> rabbit -> fox | fox -> rabbit -> plant -> Sun | plant -> Sun -> fox -> rabbit | rabbit -> fox -> Sun -> plant
+mc2: A potted plant is put in a dark room for a month. What will most likely happen? | It will weaken and may die because it cannot make food. | It will grow faster. | It will get its energy from the soil instead. | Nothing will change.
+mc2: Which gas do plants release when they make food? | oxygen | carbon dioxide | smoke | steam only
+mc2: You eat a slice of bread made from wheat. What energy change happened first, long before you ate it? | Light energy from the Sun was stored in the wheat as food. | The bread created its own energy. | Your body made light. | The oven made the wheat's energy.
+num2: A seedling weighed 3 g. After 6 weeks it weighed 87 g. The soil lost less than 1 g. How many grams did the plant gain? | 84
+num2: A plant was 12 cm tall. It grew 4 cm each week for 5 weeks. How tall was it in centimeters? | 32
+num2: A class counted oxygen bubbles from a water plant: 22, 26 and 24 bubbles per minute. What was the average? | 24
+mc2: Why do animals need to eat? | to get energy and materials for moving, growing and staying warm | to make sunlight | to take in carbon dioxide | to get soil for their bodies
+mc2: A plant's leaves face a window. Which is the best explanation? | The leaves catch light that the plant needs to make food. | The leaves like the view. | The leaves need cold air. | The window gives the plant soil.
+mc3: A student weighs a pot of soil before and after growing a sunflower for 2 months. The soil lost 3 g, and the sunflower gained 450 g. Which is the best conclusion? | Most of the sunflower's mass came from something other than soil, mainly air and water. | The sunflower is made of soil. | The scale is broken. | The sunflower lost mass.
+num2: Using the same data (the soil lost 3 g and the sunflower gained 450 g), how many more grams did the sunflower gain than the soil lost? | 447
+mc3: A fish in a pond eats insects that eat algae. Which statement is true? | The fish's energy can be traced back to the Sun through the algae. | The fish's energy comes from the pond water. | The algae get energy from the fish. | The insects make energy from soil.
+mc2: Which part of a plant is mainly where food is made? | the leaves | the roots | the flowers | the seeds
+num2: A runner ate a 250 Calorie snack and a 400 Calorie meal. How many Calories did she eat in all? | 650
+sa2: Explain why the soil in a plant's pot barely changes in mass while the plant grows a lot. | The plant builds most of its body from carbon dioxide in the air and water, using energy from sunlight. It takes only tiny amounts of minerals from the soil.
+sa2: Trace the energy that lets you kick a soccer ball back to the Sun. | The Sun's light was captured by plants and stored in food. I ate that food (or ate animals that ate plants), and my body used the stored energy to move my leg and kick the ball.
+cer3: Students grew radishes in three conditions with the same soil. Group 1: light and water, gained 30 g. Group 2: water but no light, gained 2 g and turned pale. Group 3: light but no water, gained 0 g and wilted. The soil in every pot changed by less than 1 g. Make a claim about what plants need to make food and grow. Use evidence and explain your reasoning. | Claim: Plants need both light and water to make food and grow, and they get their materials mostly from air and water, not soil. Evidence: Radishes with light and water gained 30 g, but without light they gained only 2 g and without water they gained nothing. The soil changed by less than 1 g in every pot. Reasoning: Plants use light energy to turn carbon dioxide from the air and water into sugar, which they use for energy and to build their bodies. Missing either light or water stops this process, and since the soil barely changed, it is not the main source of the plant's mass.
+
+unit: Unit 4: Ecosystems, Food Webs and Decomposers | 5-LS2-1, 5-PS3-1
+el: Build a classroom food web with yarn and picture cards of a California ecosystem (oak woodland or kelp forest); pre-teach producer, consumer, decomposer and the meaning of an arrow ("is eaten by" / "gives energy to").
+
+lesson: Who eats whom in an ecosystem? | 5-LS2-1, 5-PS3-1
+practice:
+mc1: An organism that makes its own food using sunlight is a | producer | consumer | decomposer | predator
+hint: Plants and algae are examples.
+mc1: In a food chain, an arrow points from | the organism that is eaten to the organism that eats it | the eater to the food | the Sun to the soil | the predator to the plant
+hint: The arrow shows the direction the energy and matter move.
+mc2: In the food chain kelp -> sea urchin -> sea otter, which organism is a consumer that eats a producer? | sea urchin | kelp | sea otter | the Sun
+hint: Which animal eats the kelp?
+mc2: Which organism is a producer in a California oak woodland? | an oak tree | a deer | a hawk | a mushroom
+hint: Which one makes its own food?
+num2: A food web shows 4 producers, 7 herbivores and 3 predators. How many organisms are in the web? | 14
+hint: Add all three groups.
+sa2: Write a food chain with at least four organisms from one ecosystem and label the producer and consumers. | Sample: grass (producer) -> grasshopper (consumer) -> lizard (consumer) -> hawk (consumer).
+quiz:
+mc1: An animal that eats only plants is a | herbivore | carnivore | producer | decomposer
+mc2: In a food web, a hawk eats snakes and mice, snakes eat mice, and mice eat seeds. Which organism is the producer? | the plants that make the seeds | the mice | the snakes | the hawk
+mc2: Sea otters eat sea urchins, and sea urchins eat kelp. If sea otters disappeared from an area, what would most likely happen first? | Sea urchins would increase and kelp would decrease. | Kelp would increase. | Sea urchins would decrease. | Nothing would change.
+num2: A pond survey counted 120 water fleas, 35 small fish and 4 herons. How many more water fleas than small fish were counted? | 85
+mc2: Which organism gets energy by eating both plants and animals? | an omnivore like a raccoon | a producer like grass | a herbivore like a deer | a decomposer like a worm
+num2: A field has 900 grasshoppers that each eat grass. A study found that each lizard eats about 30 grasshoppers a month. How many lizards would eat 900 grasshoppers in a month? | 30
+cer3: Scientists counted animals in a meadow over three years. Year 1: 500 rabbits, 10 foxes. Year 2 (a disease killed most foxes): 900 rabbits, 2 foxes. Year 3: 950 rabbits and the meadow grass was badly overgrazed. Make a claim about how removing foxes affected the meadow ecosystem. Use evidence and explain your reasoning. | Claim: Losing most of the foxes caused the rabbit population to grow, which damaged the grass. Evidence: When foxes dropped from 10 to 2, rabbits rose from 500 to 900 and then 950, and the grass became overgrazed. Reasoning: In this food chain, foxes eat rabbits and rabbits eat grass. With fewer predators, more rabbits survived and ate more grass, showing that a change in one population affects others in the food web.
+
+lesson: What happens to dead plants and animals? | 5-LS2-1
+practice:
+mc1: Organisms that break down dead plants and animals are | decomposers | producers | herbivores | predators
+hint: Mushrooms and many bacteria do this job.
+mc2: Which organism is a decomposer? | a mushroom growing on a fallen log | a rabbit eating clover | an oak tree | a hawk
+hint: Which one feeds on dead material?
+mc2: What do decomposers return to the soil? | nutrients that plants can use | plastic | sunlight | rocks
+hint: Think about why compost helps gardens.
+num2: A class weighed a pile of fruit scraps in a compost bin. Week 1: 800 g. Week 4: 350 g. How many grams were broken down? | 450
+hint: Subtract the later mass from the earlier mass.
+mc2: A log in a forest gets soft and crumbly over several years. What is causing this? | fungi, bacteria and insects breaking it down | the log growing roots | the log turning into rock | sunlight making it bigger
+hint: Look for living things on and in the log.
+sa2: Explain why a forest floor does not pile up higher and higher with dead leaves every year. | Decomposers like fungi, bacteria and worms break the leaves down into nutrients that go back into the soil, so the leaves do not keep piling up.
+quiz:
+mc2: A class put apple slices in three sealed bags. Bag 1: dry and cold. Bag 2: damp and warm. Bag 3: damp and cold. After 10 days, Bag 2 had the most mold. Which conclusion is supported? | Decomposers grew best where it was warm and damp. | Decomposers grow best in cold, dry places. | Apples do not decompose. | Mold grows from the bag.
+num2: Mold covered 2 square cm of a bread slice on Day 2 and 18 square cm on Day 8. How many square centimeters did the mold grow? | 16
+mc2: If all decomposers disappeared from a forest, what would happen? | Dead material would pile up and the soil would run low on nutrients for plants. | Plants would grow faster. | Animals would never die. | Nothing would change.
+mc2: Earthworms eat dead leaves and soil. How do they help plants? | Their wastes add nutrients to the soil and their tunnels let in air and water. | They eat plant roots. | They block sunlight. | They make soil hard.
+num2: A compost bin got 6 kg of food scraps each week for 4 weeks. How many kilograms of scraps went in? | 24
+mc3: Why are decomposers important for matter in an ecosystem? | They return matter from dead organisms to the soil and air so it can be used again. | They make new energy from nothing. | They take matter out of the ecosystem forever. | They turn soil into sunlight.
+sa2: Describe an investigation to test whether temperature affects how fast food decomposes. | Put the same type and amount of food in sealed bags with the same moisture. Keep one cold, one at room temperature and one warm. Measure or photograph the mold each day and compare.
+
+lesson: How does matter move through an ecosystem? | 5-LS2-1
+practice:
+mc2: Which statement best describes how matter moves in an ecosystem? | It cycles between organisms and the environment again and again. | It is used once and disappears. | It comes only from the Sun. | It stays inside the producer forever.
+hint: Think about where nutrients go after something dies.
+mc2: A plant takes in carbon dioxide and water. A rabbit eats the plant. The rabbit dies and decomposers break it down. Where does the matter go? | back into the soil and air, where plants can use it again | into space | it is destroyed | into the Sun
+hint: Follow the matter all the way around.
+mc2: Which part of an ecosystem is NOT living but is part of the matter cycle? | air, water and soil | plants | animals | bacteria
+hint: The environment is part of the cycle.
+num2: In a sealed jar ecosystem, a student put 6 water plants and 3 snails. Two weeks later she counted 8 plants and 5 snails. How many more organisms were in the jar? | 4
+hint: Add each count, then compare totals.
+mc2: Animals breathe out carbon dioxide. How does this connect them to plants? | Plants take in the carbon dioxide to make food. | Plants breathe out carbon dioxide too and never use it. | It makes plants smaller. | Animals and plants do not connect.
+hint: Which gas do plants use?
+sa2: Draw or describe a model that shows how matter moves among a plant, an animal, a decomposer and the environment. | Plant takes carbon dioxide and water from the environment -> animal eats the plant -> animal's wastes and body go to decomposers -> decomposers return nutrients and carbon dioxide to soil and air -> plant uses them again.
+quiz:
+mc1: Matter in an ecosystem is | recycled | used up forever | created by animals | made by the Sun
+mc2: In a model, an arrow goes from "decomposers" to "soil." What does this arrow show? | Decomposers return nutrients to the soil. | Soil eats decomposers. | Decomposers come from the Sun. | Soil makes decomposers.
+mc2: A sealed bottle has water, soil, plants and snails, and it is placed in light. It stays healthy for months. Why? | Matter cycles among the plants, snails, decomposers and environment inside the bottle. | Matter is added to the bottle every day. | The snails make their own food from light. | The plants do not need anything.
+num2: A sealed ecosystem bottle has a mass of 1,450 g. After two months, nothing has been added or removed. What is its mass in grams? | 1450
+mc2: Fallen leaves are raked up and taken away from a garden every year. What will most likely happen to the soil over many years? | It will have fewer nutrients unless something is added. | It will get more nutrients. | It will turn into leaves. | Nothing will change.
+num2: A student tracked an invasive plant that crowded out native plants. Year 1: 15 square meters. Year 2: 40 square meters. Year 3: 95 square meters. By how many square meters did it spread from Year 1 to Year 3? | 80
+sa2: Explain why a sealed jar with plants, snails and soil can keep going for a long time, but a sealed jar with only snails cannot. | In the full jar, plants make food and oxygen, snails eat plants and release carbon dioxide and wastes, and decomposers return nutrients so matter keeps cycling. With only snails, there is no producer to make food or oxygen, so the snails run out.
+
+test:
+mc1: Organisms that make their own food are | producers | consumers | decomposers | carnivores
+mc1: A mushroom on a dead log is a | decomposer | producer | herbivore | predator
+mc1: An arrow in a food web points | toward the organism that eats | toward the food | toward the Sun | toward the soil only
+mc2: In the chain algae -> krill -> whale, what does the whale get from the krill? | matter and energy | only sunlight | only water | nothing
+mc2: Which group lists a producer, a consumer and a decomposer? | grass, rabbit, bacteria | rabbit, fox, hawk | grass, oak tree, fern | mushroom, mold, bacteria
+mc2: Which would happen if all producers in an ecosystem died? | Consumers would run out of food. | Consumers would make their own food. | Decomposers would become producers. | Nothing would happen to consumers.
+mc2: Decomposers are important because they | return nutrients to the soil | make food from sunlight | eat only living animals | stop matter from cycling
+mc2: In a kelp forest, sea otters eat sea urchins and urchins eat kelp. Otters return to an area. What will most likely happen to the kelp? | It will increase because fewer urchins eat it. | It will decrease. | It will stay exactly the same. | It will move to land.
+mc2: Which shows matter cycling? | A plant uses nutrients from a decomposed animal. | A rock sits in the sun. | A bird flies south. | A cloud floats by.
+num2: A food web has 5 producers, 8 herbivores, 4 omnivores and 2 top predators. How many consumers are in the web? | 14
+num2: Bread in a warm, damp bag had mold covering 3 square cm on Day 3 and 27 square cm on Day 9. How many square centimeters did the mold grow? | 24
+num2: A compost pile started at 50 kg. After two months it was 18 kg. How many kilograms were broken down? | 32
+mc2: Which data would best show that decomposers need moisture? | mold growth on bread kept damp compared with bread kept dry, at the same temperature | mold growth on one slice only | the color of the bag | the type of bread on the label
+mc3: A field has 400 mice, 40 snakes and 4 hawks. Why are there many more mice than hawks? | Much of the energy at each level is used for living, so fewer animals can be supported higher up the food chain. | Hawks are too big to count. | Mice eat hawks. | Hawks do not need energy.
+mc3: A new insect arrives in a forest and eats the leaves of oak trees. Which chain of effects is most likely? | fewer oak leaves -> fewer acorns -> fewer squirrels | more oak leaves -> more acorns -> more squirrels | no effect on any other organism | more oaks -> fewer insects -> fewer squirrels
+num2: Using the same data (400 mice, 40 snakes, 4 hawks), how many times as many mice as snakes are there? | 10
+mc2: Which animal is an omnivore? | a bear that eats berries and fish | a deer that eats only plants | a mountain lion that eats only meat | grass
+mc2: A sealed terrarium with plants, insects and soil is put in a sunny window. Which is needed from outside the terrarium? | light energy | food | new soil | more air every day
+num2: A sealed terrarium had a mass of 2,300 g in September and nothing was added or removed. What was its mass in December in grams? | 2300
+sa2: Explain how matter moves from a dead deer back to a living plant. | Decomposers like bacteria, fungi and insects break down the deer's body. They release nutrients into the soil and carbon dioxide into the air, and plants take them in to grow.
+sa2: Explain how energy and matter move differently in an ecosystem. | Energy enters as sunlight and flows from producers to consumers, with some used up or given off as heat at each step, so it must keep coming from the Sun. Matter cycles: it moves from the environment to organisms and back again through decomposers.
+cer3: Students set up two sealed jars with the same soil, water and dead leaves, placed side by side. Jar A had earthworms and soil bacteria. Jar B had soil that was heated first to kill living things. After 6 weeks: Jar A, leaves mostly gone and soil darker; Jar B, leaves almost unchanged. Make a claim about the role of decomposers in an ecosystem. Use evidence and explain your reasoning. | Claim: Decomposers break down dead material and return matter to the soil. Evidence: In Jar A, with earthworms and bacteria, the leaves were mostly gone and the soil got darker after 6 weeks. In Jar B, where living things were killed, the leaves barely changed. Reasoning: Decomposers use dead leaves as food and break them into nutrients that become part of the soil. Without them, matter stays locked in dead material and cannot cycle back to plants.
+
+unit: Unit 5: Earth's Systems and Water | 5-ESS2-1, 5-ESS2-2, 5-ESS3-1, 3-5-ETS1-1 | sci_5_n1
+el: Post a four-part chart with icons for geosphere (rock), hydrosphere (water), atmosphere (air) and biosphere (living things); have partners sort photo cards and use the frame "The ___ affects the ___ when ___."
+
+lesson: How do Earth's systems work together? | 5-ESS2-1
+practice:
+mc1: Earth's system made of rock, soil and sediment is the | geosphere | hydrosphere | atmosphere | biosphere
+hint: "Geo" means Earth or ground.
+mc1: The layer of gases that surrounds Earth is the | atmosphere | geosphere | hydrosphere | biosphere
+hint: It is the air.
+mc2: Ocean waves crash against a cliff and wear it away over many years. Which two systems are interacting? | hydrosphere and geosphere | atmosphere and biosphere | biosphere and geosphere | atmosphere only
+hint: Waves are water; cliffs are rock.
+mc2: Plant roots grow into cracks in rock and break it apart. Which two systems are interacting? | biosphere and geosphere | hydrosphere and atmosphere | atmosphere and geosphere | hydrosphere only
+hint: Roots are part of a living thing.
+num2: A volcano released ash that blocked some sunlight. The average temperature in a nearby region was 18°C the year before and 16.5°C the year after. How many degrees cooler was it? | 1.5
+hint: Subtract the two temperatures.
+sa2: Describe one example of the atmosphere affecting the geosphere. | Sample: Wind blows sand against rocks in the desert and slowly wears them into new shapes.
+quiz:
+mc1: The biosphere includes | all living things on Earth | only the oceans | only rocks | only the air
+mc2: Wind blows over the ocean and makes waves. Which systems are interacting? | atmosphere and hydrosphere | geosphere and biosphere | biosphere and hydrosphere | geosphere only
+mc2: Trees take in water from the soil and release water vapor into the air from their leaves. Which systems does this connect? | biosphere, geosphere, hydrosphere and atmosphere | geosphere only | atmosphere only | hydrosphere and geosphere only
+num2: A mountain stream carried 12 kg of sediment past a station in March and 31 kg in April after snow melted. How many more kilograms did it carry in April? | 19
+mc2: A wildfire burns plants on a hillside. Next winter, rain washes a lot of soil down the hill. Which explanation uses system interactions? | Without plants (biosphere), rain (hydrosphere) erodes more soil (geosphere). | The fire made more rain. | Soil moves only because of wind. | Plants caused the rain.
+mc3: A model shows rain falling on mountains, rivers carrying sediment to the ocean and the ocean water evaporating into clouds. Which systems does the model include? | hydrosphere, geosphere and atmosphere | biosphere only | geosphere only | atmosphere only
+sa2: Choose a place near you, such as a beach or a park. Describe how at least two of Earth's systems interact there. | Sample: At the beach, ocean waves (hydrosphere) move sand (geosphere), and wind (atmosphere) blows sand into dunes where beach grasses (biosphere) grow and hold the sand.
+
+lesson: How does water move around Earth? | 5-ESS2-1
+practice:
+mc1: When liquid water changes into water vapor, it is called | evaporation | condensation | precipitation | runoff
+hint: Think about a puddle drying up.
+mc1: When water vapor cools and forms tiny drops in clouds, it is called | condensation | evaporation | precipitation | melting
+hint: Think of drops forming on a cold glass.
+mc2: What provides the energy that drives the water cycle? | the Sun | the Moon | the wind only | Earth's core only
+hint: What warms the water so it evaporates?
+mc2: Rain falls on a hill and flows over the ground into a creek. This water is called | runoff | groundwater | water vapor | a glacier
+hint: It runs off the surface.
+num2: A rain gauge collected 18 mm on Monday, 25 mm on Tuesday and 9 mm on Wednesday. How many millimeters fell in all? | 52
+hint: Add the three amounts.
+sa2: Describe the path a drop of water could take from the ocean to a mountain and back to the ocean. | It evaporates from the ocean into the atmosphere, condenses into a cloud, falls as snow on a mountain, melts in spring, flows down a river and returns to the ocean.
+quiz:
+mc1: Rain, snow, sleet and hail are all forms of | precipitation | evaporation | condensation | groundwater
+mc2: A cold can of juice gets wet on the outside on a warm day. Where did the water come from? | Water vapor in the air condensed on the cold can. | Juice leaked through the metal. | The can was sweating juice. | It rained inside.
+mc2: Water soaks into the ground and fills spaces between rocks and soil underground. This is | groundwater | water vapor | a cloud | runoff
+num2: A pan held 400 mL of water in the sun. After one day, 310 mL remained. How many milliliters evaporated? | 90
+mc2: Snow on the Sierra Nevada mountains melts in spring. How does this connect to the water cycle for California cities? | Melted snow flows into rivers and reservoirs that supply water. | Snow never melts. | Snow goes straight back into clouds. | Snow turns into rock.
+mc3: Two identical pans of water were set out. Pan A was in the sun and lost 60 mL in a day. Pan B was in the shade and lost 20 mL. Which claim is supported? | More energy from sunlight made more water evaporate. | Shade makes water evaporate faster. | Sunlight has no effect on evaporation. | Pan B had less water to start.
+cer3: A class put a bowl of warm water in a clear container, covered it with plastic wrap and placed ice on top. After 20 minutes, drops formed under the wrap and some fell back into the bowl. Make a claim about what this model shows about the water cycle. Use evidence and explain your reasoning. | Claim: The model shows evaporation, condensation and precipitation. Evidence: Water from the warm bowl rose as vapor, drops formed on the cold plastic under the ice, and drops fell back into the bowl. Reasoning: Warm water evaporates into vapor. When the vapor touches the cold wrap it cools and condenses into drops, like clouds forming, and when the drops get heavy they fall like rain, returning water to the bowl.
+
+lesson: Where is Earth's water? | 5-ESS2-2
+practice:
+mc1: About how much of Earth's water is salt water in the oceans? | about 97 percent | about 50 percent | about 10 percent | about 3 percent
+hint: The oceans hold almost all of it.
+mc2: Where is most of Earth's fresh water found? | frozen in glaciers and ice caps | in rivers | in lakes | in clouds
+hint: Think of Antarctica and Greenland.
+mc2: A pie graph of Earth's water shows a huge slice for oceans and a tiny slice for fresh water. What does this tell us? | Fresh water is a small part of Earth's water, so it is precious. | There is plenty of fresh water everywhere. | Oceans are fresh water. | The graph is wrong.
+hint: Compare the size of the slices.
+num2: If Earth's water were 100 cups, about 97 cups would be salt water. About how many cups would be fresh water? | 3
+hint: Subtract 97 from 100.
+mc2: Which is the largest source of fresh water that is liquid? | groundwater | rivers | lakes | the atmosphere
+hint: Much of it is stored underground.
+sa2: Explain why people cannot simply drink ocean water even though Earth has so much water. | Ocean water is salty, and drinking it would make people sick. Removing the salt takes a lot of energy and money, so people mostly rely on the small amount of fresh water.
+quiz:
+mc1: Most of Earth's water is in | the oceans | glaciers | lakes | the atmosphere
+mc2: A bar graph of fresh water shows: ice and glaciers about 69 percent, groundwater about 30 percent, lakes, rivers and other surface water about 1 percent. Which source is the smallest? | lakes, rivers and other surface water | ice and glaciers | groundwater | all are equal
+num2: Using the same data (ice and glaciers about 69 percent, groundwater about 30 percent, surface water about 1 percent), how many percent of fresh water is groundwater and surface water together? | 31
+num2: A model uses 1,000 mL of water to stand for all of Earth's water. About 97 percent is ocean. How many milliliters stand for the ocean? | 970
+mc2: Why is it important to protect groundwater from pollution? | Many communities pump groundwater for drinking and farming. | Groundwater is salty. | Groundwater is in the clouds. | Groundwater is not used by anyone.
+mc3: A city has a dry summer with almost no rain. Which source of water is most likely to keep its taps running? | stored water in reservoirs and groundwater | rainwater collected that week | the ocean without treatment | clouds over the city
+sa2: Use the numbers to explain why only a tiny part of Earth's water is easy for people to use: about 97 percent is salt water, and most of the remaining fresh water is frozen in ice. | Only about 3 percent of Earth's water is fresh, and most of that is locked in glaciers and ice. Only a very small part is in lakes, rivers and shallow groundwater where people can reach it easily.
+
+lesson: How can communities protect Earth's resources? | 5-ESS3-1, 3-5-ETS1-1
+practice:
+mc1: Which action helps save water at home? | fixing leaky faucets | running the hose while washing a car | taking very long showers | watering lawns at noon
+hint: Which choice stops waste?
+mc2: Fertilizer from farms washes into a river during rain. Which problem could this cause? | algae grows too fast and harms fish | the water becomes cleaner | fish get more oxygen | the river freezes
+hint: Fertilizer helps plants grow, even in water.
+mc2: A school wants to reduce the trash it sends to the landfill. Which solution helps most? | composting food scraps and recycling paper | using more plastic bags | throwing away all lunch scraps | printing more worksheets
+hint: Find ways to reuse or recycle matter.
+num2: A leaky faucet wastes 15 liters of water a day. How many liters does it waste in a week? | 105
+hint: A week has 7 days.
+mc2: A city plants native plants that need little water instead of grass lawns. How does this help? | It saves water during droughts. | It uses more water. | It adds fertilizer to rivers. | It makes summers hotter.
+hint: Native plants are used to the local climate.
+sa2: Describe one way people's activities harm Earth's land, water or air, and one way a community can reduce that harm. | Sample: Trash washes from streets into storm drains and then into the ocean. A community can put screens on storm drains and hold beach and street cleanups.
+quiz:
+mc1: Which is an example of protecting the atmosphere? | riding a bike instead of driving | burning trash in the yard | leaving a car engine running | using more fossil fuels
+mc2: A school compared water use. Before: 9,000 liters a week. After installing low-flow faucets: 6,500 liters a week. What does this show? | The new faucets helped the school use less water. | The faucets increased water use. | Water use did not change. | The school closed.
+num2: Using the same data (9,000 liters a week before and 6,500 liters a week after), how many liters a week did the school save? | 2500
+num2: A class collected cans for recycling: 46 on Monday, 38 on Tuesday and 51 on Wednesday. How many cans in all? | 135
+mc2: A town's engineers must design a way to clean storm runoff before it reaches a creek. Which is a criterion? | The water leaving the system must have less trash and soil than before. | It must cost under $10,000. | It must be built by June. | It must use local materials.
+mc3: A community wants to save water during a drought. Which plan uses science ideas and data best? | Measure water use, then target the biggest uses, like lawn watering, with limits and rebates. | Ask everyone to guess how much water they use. | Water lawns more often. | Ignore water use until the drought ends.
+sa2: Your class wants to reduce the amount of food waste in the cafeteria. Define the problem with one criterion and one constraint, and suggest a solution. | Criterion: cut food thrown away by half. Constraint: we have no money to spend, or it must be set up in one week. Solution: start a share table for unopened food and a compost bin for scraps.
+
+test:
+mc1: Which system includes oceans, lakes, rivers, glaciers and groundwater? | hydrosphere | geosphere | atmosphere | biosphere
+mc1: When water vapor cools and turns into liquid drops, it is | condensation | evaporation | precipitation | runoff
+mc1: Most of Earth's water is | salt water in the oceans | fresh water in lakes | frozen in clouds | under deserts
+mc2: Earthworms dig tunnels that let air and water into the soil. Which systems are interacting? | biosphere, geosphere, atmosphere and hydrosphere | atmosphere only | geosphere only | hydrosphere only
+mc2: A volcano erupts and sends ash high into the air. Which two systems are interacting? | geosphere and atmosphere | biosphere and hydrosphere | hydrosphere only | biosphere only
+mc2: What causes water to evaporate from lakes and oceans? | energy from the Sun | the Moon's light | cold winds only | rocks pushing it up
+mc2: Most of Earth's fresh water is | frozen in ice caps and glaciers | in rivers | in the air | in lakes
+mc2: A river carries sand and mud to the ocean and builds a delta. Which systems are interacting? | hydrosphere and geosphere | atmosphere and biosphere | biosphere only | atmosphere only
+mc2: Which action best protects a river from pollution? | keeping trash and chemicals out of storm drains | dumping yard waste into the river | washing cars in the street with lots of soap | removing plants along the banks
+mc2: In the water cycle, what happens after water vapor condenses into clouds? | precipitation falls when the drops get heavy enough | the clouds turn into rock | the water stays in the cloud forever | the water evaporates into space
+num2: A pie graph shows Earth's water: about 97 percent ocean and the rest fresh water. About what percent is fresh water? | 3
+num2: A family used 380 liters of water a day. After fixing leaks and taking shorter showers, they used 290 liters a day. How many liters a day did they save? | 90
+num2: A reservoir held 640 million liters in May and 410 million liters in September. How many million liters were used or lost? | 230
+mc2: A pan of water lost 50 mL in sun and 15 mL in shade over the same time. What is the best explanation? | More energy from sunlight made more water evaporate. | Shade adds water. | Sunlight makes water heavier. | The shade pan leaked.
+mc3: A forest along a river is cut down. Which chain of system interactions is most likely? | fewer roots (biosphere) -> more soil washed by rain (hydrosphere) -> muddier river and less soil on land (geosphere) | more roots -> clearer water -> more soil | fewer roots -> colder air -> more snow | no change to any system
+mc3: A town gets most of its water from groundwater. A factory wants to store chemicals in unlined pits. Which concern is most important? | Chemicals could seep into the ground and pollute drinking water. | The pits will block sunlight. | The chemicals will turn into clouds. | Nothing could reach the groundwater.
+num2: A school's rain barrels each hold 200 liters. The school has 6 barrels. How many liters can they hold in all? | 1200
+mc2: Which statement about the amount of water on Earth is true? | It stays about the same; it just moves and changes form. | It is made new every day. | It disappears when it evaporates. | It increases each time it rains.
+mc2: Which solution helps a community use less water during a drought? | replacing lawns with native plants | watering lawns at midday | filling every pool each week | leaving sprinklers on overnight
+sa2: Describe the water cycle using the words evaporation, condensation and precipitation, and name the source of energy. | The Sun's energy makes water evaporate from oceans, lakes and plants into water vapor. The vapor rises, cools and condenses into clouds. Drops join until they fall as precipitation, then water flows back to oceans and lakes to start again.
+sa2: Explain how a person's daily choices can help protect Earth's water. | Using less water (shorter showers, fixing leaks) saves fresh water, and keeping trash, oil and chemicals out of storm drains keeps rivers and oceans cleaner.
+cer3: Students set up two trays of soil on a slope and poured 1 liter of water on each. Tray A had bare soil: 600 mL of muddy water ran off and 180 g of soil washed away. Tray B had grass growing: 250 mL of mostly clear water ran off and 15 g of soil washed away. Make a claim about how the biosphere affects the interaction between the hydrosphere and geosphere. Use evidence and explain your reasoning. | Claim: Plants (biosphere) reduce how much water (hydrosphere) washes soil (geosphere) away. Evidence: Bare soil lost 180 g with 600 mL of muddy runoff, while grass-covered soil lost only 15 g with 250 mL of clear runoff. Reasoning: Plant roots hold soil in place and help water soak into the ground instead of running off. Less runoff carries less soil, so plants change how water and land interact.
+
+unit: Unit 6: Gravity, Stars and Patterns in the Sky | 5-PS2-1, 5-ESS1-1, 5-ESS1-2 | sci_5
+el: Use a globe, a flashlight and a pencil "gnomon" to act out rotation, day and night and shadows; pre-teach rotate, orbit, axis, gravity and constellation with gestures and a labeled diagram.
+
+lesson: Why do things fall down everywhere on Earth? | 5-PS2-1
+practice:
+mc1: The force that pulls objects toward Earth's center is | gravity | magnetism | friction | wind
+hint: It is why a dropped apple falls.
+mc2: A child in California and a child in Australia each drop a ball. Which way do the balls fall? | toward the center of Earth for both | up for the child in Australia | sideways for both | toward the Sun
+hint: "Down" always means toward Earth's center.
+mc2: Which observation is evidence that gravity pulls things down? | Rain falls from clouds to the ground. | Smoke rises from a fire. | A balloon floats in a breeze. | A magnet pulls a nail.
+hint: Look for something that moves toward the ground.
+num2: A ball was dropped from a balcony 3 times. It took 1.2, 1.3 and 1.1 seconds to hit the ground. What was the average time in seconds? | 1.2
+hint: Add the times and divide by 3.
+mc2: A model shows people standing all around a globe with arrows. Which arrows show gravity correctly? | arrows pointing from each person toward the globe's center | arrows pointing to the top of the page | arrows pointing away from the globe | arrows pointing to the North Pole
+hint: Gravity pulls toward the center from every side.
+sa2: Explain why people at the bottom of a globe do not fall off Earth. | Gravity pulls everything toward Earth's center, so "down" for every person is toward the middle of Earth, no matter where they stand.
+quiz:
+mc1: Gravity pulls objects | toward the center of Earth | toward the North Pole | toward the Sun only | away from Earth
+mc2: A satellite photo shows Earth is round. A student says, "If I walked to the bottom, I'd fall into space." Which response is correct? | Gravity pulls you toward Earth's center everywhere, so you would not fall off. | The student is correct. | Only people in the north feel gravity. | Gravity only works on oceans.
+mc2: A ball is thrown straight up. Why does it come back down? | Earth's gravity pulls it toward Earth's center. | The air pushes it down. | The ball runs out of air. | The ball is attracted to the Sun.
+num2: A rock was dropped and fell 5 meters in the first second and 15 more meters in the next second. How many meters did it fall in 2 seconds? | 20
+mc2: Which statement about gravity is true? | It acts on objects without touching them. | It only acts when objects touch. | It pushes objects away from Earth. | It only works in the daytime.
+mc3: Rivers in Brazil, Canada and Egypt all flow from high land to low land. What does this pattern show? | Gravity pulls water downhill everywhere on Earth. | Rivers only flow north. | Gravity works only in some countries. | Water flows uphill in the south.
+sa2: Draw or describe a model that shows how gravity acts on three people standing in different places on Earth. | A circle for Earth with three people at different spots (top, side, bottom). Each has an arrow pointing from the person straight to the center of Earth, showing gravity pulls everyone toward the center.
+
+lesson: Why is the Sun so much brighter than other stars? | 5-ESS1-1
+practice:
+mc1: The Sun is | a star | a planet | a moon | a comet
+hint: It makes its own light.
+mc2: Why does the Sun look much bigger and brighter than the stars we see at night? | It is much closer to Earth. | It is the biggest star in the universe. | It is the only star that makes light. | Other stars are tiny and dim up close.
+hint: How does distance change how bright a light looks?
+mc2: Two identical flashlights are turned on. One is 2 meters away and one is 20 meters away. Which looks brighter? | the one 2 meters away | the one 20 meters away | they look the same | neither
+hint: This models how distance affects brightness.
+num2: A light meter read 400 units at 1 meter from a lamp and 25 units at 4 meters. How many units dimmer was it at 4 meters? | 375
+hint: Subtract the readings.
+mc2: Compared with other stars, the Sun is | a medium-sized star | the largest star known | the smallest star known | not a real star
+hint: Many stars are much bigger than the Sun.
+sa2: Explain why stars that are much bigger and brighter than the Sun look like tiny points of light. | They are extremely far away compared with the Sun, so their light spreads out over a huge distance and looks dim and small from Earth.
+quiz:
+mc1: The brightness of a star as seen from Earth depends on how bright it really is and | how far away it is | what color the sky is | how old the viewer is | what time it is on a clock
+mc2: A class measured a bulb's brightness. 1 m: 100 units. 2 m: 25 units. 4 m: 6 units. What pattern does the data show? | The farther the light, the dimmer it appears. | The farther the light, the brighter it appears. | Distance does not matter. | The bulb got brighter over time.
+num2: Using the same data (1 m: 100 units, 2 m: 25 units, 4 m: 6 units), how many units dimmer was the bulb at 2 m than at 1 m? | 75
+mc2: Star A and Star B give off the same amount of light, but Star A looks dimmer. What is the best explanation? | Star A is farther from Earth. | Star A is closer to Earth. | Star A is a planet. | Star B is the Moon.
+num2: The Sun is about 150 million km from Earth. A spacecraft has traveled 30 million km toward the Sun. How many million km does it have left? | 120
+mc3: Sirius is the brightest star in the night sky, but scientists know some much dimmer-looking stars give off far more light. How can both be true? | The dimmer-looking stars are much farther away than Sirius. | The dimmer stars are closer. | Sirius is a planet. | Brightness has nothing to do with distance.
+cer3: A class put the same type of bulb at different distances and measured with a light meter. 1 meter: 160 units. 2 meters: 40 units. 4 meters: 10 units. 8 meters: 3 units. Make a claim about why the Sun looks much brighter than other stars. Use evidence from the data and explain your reasoning. | Claim: The Sun looks brighter than other stars mainly because it is much closer to Earth. Evidence: The same bulb read 160 units at 1 meter but only 10 units at 4 meters and 3 units at 8 meters. Reasoning: The bulbs give off the same light, so the change is caused by distance; light appears dimmer the farther away it is. Other stars are far farther from Earth than the Sun, so even stars that give off more light look dimmer.
+
+lesson: Why do shadows change during the day? | 5-ESS1-2
+practice:
+mc1: Day and night happen because | Earth rotates on its axis | Earth orbits the Sun | the Sun moves around Earth | clouds block the Sun
+hint: Earth spins once about every 24 hours.
+mc2: In the morning the Sun is in the east. Which way does a flagpole's shadow point? | west | east | straight up | toward the Sun
+hint: Shadows point away from the light.
+mc2: When is a shadow outside usually the shortest? | around midday, when the Sun is highest | at sunrise | at sunset | at midnight
+hint: The higher the light, the shorter the shadow.
+num2: A stick's shadow was 140 cm at 8 a.m. and 35 cm at noon. How many centimeters shorter was it at noon? | 105
+hint: Subtract the noon length from the morning length.
+mc2: The Sun seems to move across the sky from east to west each day. Why? | Earth rotates from west to east. | The Sun orbits Earth each day. | The wind pushes the Sun. | Earth stops spinning at noon.
+hint: Think about a merry-go-round: the scenery seems to move the opposite way.
+sa2: Describe how the length of a tree's shadow changes from morning to afternoon. | In the morning the shadow is long and points west. It gets shorter until about midday, then grows longer again in the afternoon, pointing east.
+quiz:
+mc1: How long does it take Earth to rotate once? | about 24 hours | about 7 days | about 30 days | about 365 days
+mc2: A student measured a pole's shadow: 9 a.m. 120 cm, 11 a.m. 60 cm, 1 p.m. 55 cm, 3 p.m. 115 cm. Which conclusion is supported? | Shadows were longest early and late in the day and shortest near midday. | Shadows got longer all day. | Shadows got shorter all day. | Shadow length did not change.
+num2: Using the same data (9 a.m. 120 cm, 11 a.m. 60 cm, 1 p.m. 55 cm, 3 p.m. 115 cm), what is the difference between the longest and shortest shadows in centimeters? | 65
+mc2: Which graph would best show how shadow length changes during a day? | a line graph of shadow length at each hour | a pie chart of colors | a map of the school | a bar graph of students' heights
+mc2: In the late afternoon, the Sun is in the west. Which way do shadows point? | east | west | north only | straight down
+mc3: A student in California records the shadow at noon for a year. In which season would the noon shadow be longest? | winter, when the Sun is lower in the sky | summer, when the Sun is highest | it is the same all year | spring only
+sa2: Explain how Earth's rotation causes day and night. | As Earth spins on its axis, the half facing the Sun has daytime and the half facing away has night. Each place moves into and out of sunlight about once every 24 hours.
+
+lesson: Why do we see different stars in different seasons? | 5-ESS1-2
+practice:
+mc1: How long does it take Earth to orbit the Sun once? | about 365 days | about 24 hours | about 30 days | about 7 days
+hint: One orbit is one year.
+mc1: A group of stars that forms a pattern people have named is a | constellation | galaxy | planet | comet
+hint: Orion is an example.
+mc2: Why can we see stars only at night? | During the day, sunlight is so bright that it hides the stars' light. | Stars turn off in the day. | Stars move under Earth in the day. | Clouds always hide stars in the day.
+hint: The stars are still there in the daytime.
+mc2: Orion is easy to see on winter evenings but not on summer evenings. Why? | As Earth orbits the Sun, the night side faces different parts of space in different seasons. | Orion moves away in summer. | Orion only shines in cold weather. | The Moon blocks Orion all summer.
+hint: Think about which way the night side of Earth faces.
+num2: A class counted visible stars in one constellation on four nights: 7, 9, 8 and 8. What was the average? | 8
+hint: Add the counts and divide by 4.
+sa2: Explain why the stars seem to move across the sky during one night. | Earth rotates on its axis, so stars appear to rise in the east and set in the west during the night, just like the Sun appears to move during the day.
+quiz:
+mc1: Day and night are caused by Earth's rotation. Seasonal changes in which stars we see are caused by | Earth's orbit around the Sun | Earth's rotation each day | the Moon's phases | clouds
+mc2: A star chart shows that the constellation Scorpius is visible on summer evenings. In winter it is near the Sun in the sky. Why can't we see it on winter evenings? | It is in the sky during the daytime, when sunlight hides it. | It disappears in winter. | It moves to another galaxy. | Cold air blocks it.
+num2: A class tracked a star's position each hour after sunset. It moved about 15 degrees each hour. How many degrees did it move in 4 hours? | 60
+mc2: Which data table would best show a seasonal pattern in the stars? | which constellations are visible at 9 p.m. each month for a year | the number of clouds on one night | the temperature at noon | how many people looked at the sky
+num2: Earth orbits the Sun once in about 365 days. About how many days does it take to go halfway around? | 182.5
+mc3: A student says, "The stars move around Earth once a day." Which evidence best supports the scientific explanation instead? | The Sun and stars all appear to move east to west together, which is explained by Earth spinning. | The stars change color. | Some stars are brighter. | Stars twinkle.
+sa2: Describe what a graph of the hours of daylight each month in California would look like and explain the pattern. | It would rise to the most daylight around June and fall to the least around December, then repeat. The pattern happens because Earth's tilted axis makes the Northern Hemisphere lean toward the Sun in summer and away in winter as Earth orbits.
+
+test:
+mc1: Which way does gravity pull a dropped object anywhere on Earth? | toward the center of Earth | away from Earth | toward the North Pole only | toward the Sun only
+mc1: The Sun is a | star | planet | moon | constellation
+mc1: Earth's rotation on its axis causes | day and night | the seasons' stars to change | the Moon's light | gravity
+mc2: A ball dropped in Japan and a ball dropped in Mexico both fall | toward Earth's center | in opposite directions away from Earth | sideways | toward the Moon
+mc2: Why does the Sun appear larger and brighter than other stars? | It is much closer to Earth than any other star. | It is the biggest star there is. | It is the only hot star. | Other stars are not real.
+mc2: At about what time of day is a shadow shortest? | around noon | at sunrise | in the early morning | at sunset
+mc2: In the morning the Sun is in the east. A tree's shadow points | west | east | toward the Sun | up into the air
+mc2: Why do we see different constellations in winter and summer? | Earth's orbit makes the night side face different directions in space. | Stars switch places each season. | Earth stops rotating in winter. | Clouds cover half the stars each season.
+mc2: Which pattern repeats about every 24 hours? | day and night | the change of seasons | the visibility of winter constellations | Earth's orbit around the Sun
+num2: A flagpole's shadow was 300 cm at 8 a.m. and 90 cm at noon. How many centimeters shorter was the noon shadow? | 210
+num2: A student recorded shadow lengths: 9 a.m. 80 cm, 10 a.m. 60 cm, 11 a.m. 40 cm. If the pattern continued until noon, how long would the shadow be at noon, in centimeters? | 20
+num2: A bulb read 90 units at 1 m, 22 units at 2 m and 10 units at 3 m. What was the total of all three readings? | 122
+mc2: Two stars give off the same amount of light. Star X is 10 light-years away and Star Y is 100 light-years away. Which looks brighter from Earth? | Star X | Star Y | both the same | neither can be seen
+mc2: A student draws arrows to show gravity for people on all sides of Earth. Which drawing is correct? | All arrows point toward Earth's center. | All arrows point down the page. | All arrows point away from Earth. | Only the top person has an arrow.
+mc3: A shadow-stick graph for one day is shaped like a U: tall at 8 a.m., lowest at noon and tall again at 4 p.m. What explains this pattern? | The Sun appears high in the sky at midday and low in the morning and afternoon because Earth rotates. | The stick changed height. | The Sun gets closer to Earth at noon. | Earth stops spinning at noon.
+mc3: A star chart shows Orion high on January evenings and not visible on July evenings. What will Orion's visibility be next January? | high in the evening sky again | not visible | visible only at noon | gone forever
+num2: A class counted 6, 9, 7 and 10 shooting stars on four nights. What was the average per night? | 8
+mc2: Water flows downhill in rivers all over the world. Which force causes this? | gravity | magnetism | friction | static electricity
+num2: Earth rotates once in about 24 hours. About how many times does it rotate in a week? | 7
+sa2: Explain why the Sun seems to rise in the east and set in the west. | Earth rotates from west to east. As a place on Earth turns toward the Sun, the Sun appears to rise in the east; as it turns away, the Sun appears to set in the west.
+sa2: Explain the difference between Earth's rotation and Earth's orbit, and name one pattern caused by each. | Rotation is Earth spinning on its axis about once every 24 hours; it causes day and night and changing shadows. Orbit is Earth traveling around the Sun about once every 365 days; it causes different stars to be visible in different seasons.
+cer3: Students measured the shadow of a 1-meter stick on the same day: 8 a.m. 250 cm pointing west; 10 a.m. 110 cm pointing northwest; 12 p.m. 70 cm pointing north; 2 p.m. 110 cm pointing northeast; 4 p.m. 250 cm pointing east. Make a claim about what causes the shadow to change during the day. Use evidence from the data and explain your reasoning. | Claim: Earth's rotation changes the Sun's position in our sky, which changes the length and direction of shadows. Evidence: The shadow was long (250 cm) and pointed west in the morning, shortest (70 cm) and pointed north at noon, and long again (250 cm) pointing east in the afternoon. Reasoning: As Earth rotates, the Sun appears to rise in the east, climb high at midday and set in the west. Shadows point away from the Sun and are shortest when the Sun is highest, so the shadow swings from west to east and is shortest at noon.
