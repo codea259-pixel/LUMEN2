@@ -1,0 +1,710 @@
+@subject sci
+@grade 8
+@program Discovery Education Science
+about: Grade 8 integrated science (California's preferred middle school model) uses phenomena such as collisions, asteroid impacts and mass extinctions to study forces and motion, energy, fields that act at a distance, the solar system, waves and information, the history of life on Earth, and how genes, natural selection and human choices shape species and biodiversity. Students plan investigations, use math and models, analyze data and design solutions.
+std: MS-PS2-1 | Apply Newton's third law to design a solution to a problem involving the motion of two colliding objects.
+std: MS-PS2-2 | Plan an investigation to provide evidence that the change in an object's motion depends on the sum of the forces on the object and the mass of the object.
+std: MS-PS3-1 | Construct and interpret graphical displays of data to describe the relationships of kinetic energy to the mass of an object and to the speed of an object.
+std: MS-PS2-4 | Construct and present arguments using evidence to support the claim that gravitational interactions are attractive and depend on the masses of interacting objects.
+std: MS-ESS1-2 | Develop and use a model to describe the role of gravity in the motions within galaxies and the solar system.
+std: MS-PS4-1 | Use mathematical representations to describe a simple model for waves that includes how the amplitude of a wave is related to the energy in a wave.
+std: MS-LS4-1 | Analyze and interpret data for patterns in the fossil record that document the existence, diversity, extinction and change of life forms throughout the history of life on Earth.
+std: MS-LS4-4 | Construct an explanation based on evidence that describes how genetic variations of traits in a population increase some individuals' probability of surviving and reproducing in a specific environment.
+
+unit: Unit 1: Forces, Motion and Collisions | MS-PS2-1, MS-PS2-2, MS-ETS1-1, MS-ETS1-2, MS-ETS1-3, MS-ETS1-4 | sci_8_n2
+el: Use toy cars and arrows on the board to show force size and direction. Post the frames: "The net force is ___ newtons toward ___." and "Object A pushes on B; B pushes back on A with ___."
+
+lesson: Describing motion: speed and velocity | MS-PS2-2
+practice:
+mc1: Speed is calculated by dividing | distance by time | time by distance | mass by volume | force by mass
+hint: Think of units such as meters per second.
+num2: A cyclist rides 1,200 meters in 240 seconds. What is her average speed in meters per second? | 5
+hint: Divide distance by time.
+mc2: Two runners both run at 6 m/s, one north and one south. Which statement is true? | They have the same speed but different velocities | They have the same velocity | They have different speeds | Neither is moving
+num2: A train travels at 80 km per hour for 3.5 hours. How far does it travel in km? | 280
+sa2: A distance-time graph for a toy car is a straight line rising from 0 to 10 meters over 5 seconds, then a flat line from 5 to 8 seconds. Describe the car's motion. | The car moved at a constant speed of 2 m/s for the first 5 seconds, then stopped and stayed at 10 meters from 5 to 8 seconds.
+hint: What does a flat line on a distance-time graph mean?
+quiz:
+mc1: Speed in a given direction is called | velocity | acceleration | mass | force
+num2: A car drives 150 km in 2.5 hours. What is its average speed in km per hour? | 60
+num2: A sprinter's speed goes from 0 to 9 m/s in 3 seconds. What is the acceleration in meters per second each second? | 3
+mc2: On a distance-time graph, a steeper line means | a greater speed | a slower speed | no motion | a smaller mass
+mc2: Which situation shows acceleration? | a car going around a curve at a steady 40 km per hour | a book resting on a desk | a car parked on a street | a ball sitting on the floor
+mc3: Two cars travel for 4 hours. Car A goes 240 km and Car B goes 320 km. Which statement is correct? | Car B's average speed was 20 km per hour faster | Car A's average speed was faster | Both had the same average speed | Car B's average speed was 80 km per hour faster
+sa2: A student walks 300 meters to school in 5 minutes and then 300 meters home in 10 minutes. Explain why her average speed for the whole trip is not simply the average of the two speeds. | Average speed equals total distance divided by total time: 600 meters in 15 minutes is 40 meters per minute. She spent more time at the slower speed, so averaging 60 and 30 (45) gives the wrong answer.
+
+lesson: Net force, mass and changes in motion | MS-PS2-2
+practice:
+mc2: Two students push a box from opposite sides. One pushes with 30 N to the right and the other with 30 N to the left. What happens? | The forces are balanced, so the box's motion does not change | The box moves right | The box moves left | The box speeds up
+hint: Add forces in the same direction; subtract forces in opposite directions.
+num2: A sled is pulled with 50 N forward while friction pushes back with 20 N. What is the net force in newtons? | 30
+mc2: The same push is given to an empty shopping cart and a full shopping cart. Which accelerates more? | the empty cart, because it has less mass | the full cart, because it has more mass | both accelerate the same | neither moves
+num2: Using F = m x a, what force in newtons is needed to accelerate a 4 kg ball at 3 meters per second each second? | 12
+sa2: Plan an investigation to show how the mass of a cart affects its acceleration when the same force pulls it. | Pull carts of different masses (add weights) with the same force, such as the same falling weight or spring scale reading; measure the time to travel a set distance or use a motion sensor; keep the track and force the same; repeat trials and compare accelerations.
+hint: Change only the mass. What must stay the same?
+quiz:
+mc1: The overall force on an object when all forces are combined is the | net force | friction | mass | inertia
+mc2: A 1,000 kg car and a 2,000 kg truck both speed up at the same rate. Which needs the larger net force? | the truck | the car | both need the same force | neither needs a force
+num2: A 60 kg skater is pushed with a net force of 120 N. What is her acceleration in meters per second each second? | 2
+num2: A rope pulls a wagon with 80 N east, and friction acts with 35 N west. What is the net force in newtons? | 45
+mc3: Data: a cart pulled by 2 N accelerated 1 m/s each second; by 4 N, 2 m/s each second; by 6 N, 3 m/s each second (mass unchanged). Which conclusion is supported? | Acceleration increases in proportion to net force | Acceleration decreases as force increases | Force has no effect | The cart's mass changed
+mc2: A soccer ball rolling across grass slows and stops. Which force caused the change in motion? | friction from the grass and air | the ball's inertia | gravity pulling the ball forward | no force
+cer3: A class pulled carts with the same 6 N force. Cart with 1 kg: acceleration 6 m/s each second. Cart with 2 kg: 3 m/s each second. Cart with 3 kg: 2 m/s each second. Make a claim about how mass affects acceleration when force stays the same. Use the data as evidence and explain your reasoning. | Claim: with the same net force, a greater mass gives a smaller acceleration. Evidence: with 6 N, the 1 kg cart accelerated at 6, the 2 kg at 3 and the 3 kg at 2 m/s each second; doubling mass halved acceleration. Reasoning: an object's change in motion depends on the net force and its mass (a = F / m); more mass has more inertia, so the same force changes its motion less.
+
+lesson: Newton's third law: action and reaction | MS-PS2-1
+practice:
+mc1: Newton's third law says that when one object pushes on another, the second object | pushes back with an equal force in the opposite direction | does not push back | pushes back with a smaller force | pushes in the same direction
+mc2: A swimmer pushes backward on the water. What pushes the swimmer forward? | the water pushing forward on the swimmer | the swimmer's own muscles only | gravity | the air
+hint: Look for the pair of forces between the swimmer and the water.
+mc2: A rocket pushes hot gases downward out of its engine. Why does the rocket go up? | The gases push up on the rocket with an equal and opposite force | The gases pull the rocket by gravity | The air below lifts the rocket like a hand | The rocket has no mass
+num2: A 50 kg student on skates pushes a wall with 100 N. With what force in newtons does the wall push back on the student? | 100
+sa2: A small car and a large truck collide head-on. Compare the forces each exerts on the other and explain why the small car is affected more. | By Newton's third law the forces are equal in size and opposite in direction. The car has less mass, so the same force gives it a much larger change in motion, which is why its passengers feel a bigger jolt.
+quiz:
+mc2: A bat hits a baseball with a force of 500 N. What force does the ball exert on the bat? | 500 N in the opposite direction | 0 N | less than 500 N | more than 500 N
+mc2: Why does a gun or a garden hose recoil backward when it pushes something forward? | The object pushed forward pushes back on it with an equal and opposite force | Gravity pulls it back | The forces are unbalanced on purpose | It has no mass
+num2: Two ice skaters push off each other with 90 N. Skater A has a mass of 45 kg. What is Skater A's acceleration in meters per second each second? | 2
+num2: Two ice skaters push off each other with 90 N. Skater B has a mass of 60 kg. What is Skater B's acceleration in meters per second each second? | 1.5
+mc3: Two carts on a track push apart with a spring. Cart A (1 kg) rolls away at 4 m/s. Cart B (2 kg) rolls the other way at 2 m/s. Which statement is correct? | The forces were equal and opposite; the more massive cart moved slower | Cart A received a greater force | Cart B received a greater force | Only Cart A felt a force
+mc2: When you walk, your foot pushes backward on the ground. Which force moves you forward? | the ground pushing forward on your foot | your foot pushing on the ground | gravity | air resistance
+sa2: Identify the action-reaction force pair when a bird flies by pushing its wings down on the air. | The wings push down on the air, and the air pushes up on the wings with an equal and opposite force, lifting the bird.
+
+lesson: Design challenge: safer collisions | MS-PS2-1, MS-ETS1-1, MS-ETS1-2, MS-ETS1-3, MS-ETS1-4
+practice:
+mc2: Why do car airbags reduce injuries in a crash? | They make the passenger stop over a longer time, lowering the force on the body | They make the car stop faster | They remove the force completely | They increase the passenger's mass
+hint: Spreading a stop over more time lowers the force.
+mc2: A team must design a bumper that protects a toy car carrying an egg in a crash. Which is a constraint? | Use only cardboard, tape and straws | The egg must not crack | The car must hit the wall at full speed | The bumper must absorb the impact
+mc2: Crumple zones in cars are designed to | crush and absorb energy during a collision | make the car heavier | stop the car from moving | increase the force on passengers
+num2: Three bumper designs were tested 4 times each. Design A protected the egg in 3 tests, B in 4 tests and C in 1 test. What percent of tests did Design A pass? | 75
+sa2: Explain how Newton's third law applies when a car hits a wall during a crash test. | The car pushes on the wall and the wall pushes back on the car with an equal and opposite force; this force stops the car, so designs focus on reducing how suddenly that force acts on passengers.
+quiz:
+mc2: Which bumper material would most likely reduce the force on an egg in a collision? | a soft foam that squishes slowly | a hard steel plate | a thin sheet of glass | nothing at all
+num2: In crash tests, Bumper X stopped the car in 0.05 seconds and Bumper Y stopped it in 0.20 seconds. How many times longer did Bumper Y take to stop the car? | 4
+mc3: Bumper Y stops a car over a longer time than Bumper X. Which bumper puts less force on the passengers, and why? | Bumper Y, because stopping over more time means less force | Bumper X, because it stops the car faster | Both the same, because the car's mass is the same | Neither, because bumpers do not affect force
+num2: A team's egg-safe car tests passed in 7 of 10 trials before a redesign and 9 of 10 after. By how many percentage points did the pass rate increase? | 20
+mc2: After testing, a team combines the foam from one design with the straw frame from another. This step is called | optimizing the design | defining the problem | making a hypothesis | ending the project
+mc2: Why do helmets have a hard shell and a soft foam layer inside? | The shell spreads the force and the foam slows the stop | The foam makes the helmet heavier | The shell absorbs all energy | The foam increases the force
+sa3: Describe how you would evaluate two helmet designs for a skateboard company using criteria and constraints. | Set criteria such as reducing impact force by a target amount and fitting comfortably, and constraints such as cost and weight; drop each helmet with a sensor several times, compare the average forces, check cost and weight, and choose or combine the design that best meets the criteria within the constraints.
+
+test:
+mc1: The SI unit of force is the | newton | meter | kilogram | joule
+mc1: An object's tendency to resist changes in its motion is | inertia | velocity | gravity | friction
+mc2: A ball is kicked with 20 N to the right while 5 N of friction acts to the left. What is the net force? | 15 N to the right | 25 N to the right | 15 N to the left | 0 N
+mc2: Which change would give a cart a greater acceleration? | increasing the net force on it | adding more mass while keeping force the same | removing all forces | making it longer
+mc2: A heavy box sits on the floor and does not move when you push it gently. Why? | Friction balances your push, so the net force is zero | There is no force on the box | Gravity pushes the box sideways | The box has no mass
+mc2: A person in a canoe throws a heavy bag forward toward the shore. What happens to the canoe? | It moves backward, away from the shore | It moves toward the shore | It stays still | It sinks
+mc2: In a collision between a moving bowling ball and a pin, which statement is true? | The ball and pin push on each other with equal and opposite forces | The ball pushes harder on the pin | The pin pushes harder on the ball | Only the ball exerts a force
+mc2: Which graph shape on a distance-time graph shows an object at rest? | a flat horizontal line | a straight line rising steeply | a curve rising faster and faster | a line falling to zero
+mc2: Why does a seat belt protect a passenger when a car stops suddenly? | It supplies the force to stop the passenger, who would keep moving due to inertia | It makes the passenger lighter | It stops the car | It increases the passenger's speed
+mc2: Which question can be tested to learn how mass affects motion? | Does adding mass to a cart change its acceleration when the same force pulls it? | What color should the cart be? | Which cart looks fastest? | Why do people like carts?
+mc3: An asteroid about 10 km wide hit Earth 66 million years ago. Which statement about the collision is correct? | Earth pushed on the asteroid with a force equal to the asteroid's force on Earth | The asteroid pushed on Earth much harder than Earth pushed on it | Earth exerted no force on the asteroid | Only Earth's motion changed
+mc3: Data: a toy car pulled by 3 N reached 1.5 m/s each second; with the same force but twice the mass, it reached 0.75 m/s each second. Which conclusion is supported? | Doubling mass halves acceleration when force is constant | Mass does not affect acceleration | Doubling mass doubles acceleration | Force changed between trials
+num2: A runner covers 400 meters in 80 seconds. What is her average speed in meters per second? | 5
+num2: A net force of 150 N acts on a 30 kg wagon. What is its acceleration in meters per second each second? | 5
+num2: A truck accelerates at 2 meters per second each second with a net force of 8,000 N. What is its mass in kg? | 4000
+num2: A drone flies 90 meters in 12 seconds. What is its average speed in meters per second? | 7.5
+mc2: Which design change would best reduce the force on a phone when it is dropped? | adding a soft rubber case | adding a hard metal back | making the phone heavier | removing the screen protector
+mc3: Two bumpers are tested on identical carts at the same speed. Bumper A stops the cart in 0.1 s, and Bumper B stops it in 0.4 s. Which bumper better protects cargo? | Bumper B, because the stop takes longer, so the force is smaller | Bumper A, because it stops faster | They are the same | Neither, because time does not matter
+mc2: A 2 kg cart and a 4 kg cart are pushed apart by a spring. Compared with the 2 kg cart, the 4 kg cart moves | at half the speed in the opposite direction | at twice the speed | at the same speed in the same direction | not at all
+sa2: Explain why a fully loaded truck needs a longer distance to stop than an empty truck traveling at the same speed. | The loaded truck has more mass and more inertia; the brakes can supply only so much force, so its acceleration (slowing) is smaller and it takes longer and farther to stop.
+sa2: Identify the forces acting on a skydiver falling at a constant speed and explain why the speed does not change. | Gravity pulls down and air resistance pushes up; at constant speed they are equal, so the net force is zero and the motion does not change.
+sa3: A student says, "When a fly hits a car windshield, the car pushes harder on the fly than the fly pushes on the car." Use Newton's laws to correct the student. | By Newton's third law, the fly and the car push on each other with equal and opposite forces. The fly is affected far more because its mass is tiny, so the same force gives it a huge change in motion, while the car's large mass barely changes its motion.
+cer3: A team tested three egg-car bumpers by rolling the car down the same ramp into a wall 5 times each. Straw frame: egg survived 2 times, stopping time about 0.03 s. Foam block: survived 4 times, about 0.10 s. Foam plus straw frame: survived 5 times, about 0.15 s. Make a claim about which bumper design is best. Use the data as evidence and explain your reasoning using forces and Newton's laws. | Claim: the foam plus straw frame bumper is the best design. Evidence: its egg survived 5 of 5 trials with the longest stopping time (0.15 s), compared with 4 of 5 for foam (0.10 s) and 2 of 5 for straws (0.03 s). Reasoning: when the car hits the wall, the wall pushes back with an equal and opposite force (Newton's third law); a longer stopping time means a smaller force is needed to change the egg's motion, so the combined bumper protects the egg best.
+
+unit: Unit 2: Energy of Motion and Position | MS-PS3-1, MS-PS3-2
+el: Pair each energy word with a gesture (kinetic: run in place; potential: lift a book). Give students a graph-reading frame: "When ___ doubles, kinetic energy ___."
+
+lesson: Kinetic energy depends on mass and speed | MS-PS3-1
+practice:
+mc1: The energy an object has because it is moving is | kinetic energy | potential energy | thermal energy only | chemical energy
+mc2: A bowling ball and a tennis ball roll at the same speed. Which has more kinetic energy? | the bowling ball, because it has more mass | the tennis ball, because it is smaller | they have the same kinetic energy | neither has kinetic energy
+num2: Kinetic energy = 1/2 x mass x speed x speed. What is the kinetic energy in joules of a 2 kg ball moving at 3 m/s? | 9
+hint: Square the speed first: 3 x 3 = 9.
+mc2: A graph of kinetic energy against mass (speed held constant) is a straight line through zero. What does this show? | Kinetic energy is proportional to mass | Kinetic energy does not depend on mass | Kinetic energy decreases with mass | Kinetic energy depends on color
+sa2: Explain why a car moving at 60 km per hour is much more dangerous in a crash than the same car at 30 km per hour. | Kinetic energy depends on the square of speed, so doubling speed makes the car's kinetic energy four times larger; more energy must be transferred in the crash, causing more damage.
+hint: What happens to kinetic energy when speed doubles?
+quiz:
+mc2: If an object's speed doubles, its kinetic energy | becomes four times as large | doubles | stays the same | is cut in half
+mc2: If an object's mass doubles and its speed stays the same, its kinetic energy | doubles | becomes four times as large | stays the same | is cut in half
+num2: What is the kinetic energy in joules of a 50 kg runner moving at 4 m/s? | 400
+num2: A 1,000 kg car moves at 10 m/s. What is its kinetic energy in joules? | 50000
+mc3: Data: a 1 kg cart at 1 m/s has 0.5 J; at 2 m/s, 2 J; at 3 m/s, 4.5 J. Which describes the graph of kinetic energy against speed? | a curve that gets steeper as speed increases | a straight line through zero | a flat line | a line that slopes downward
+mc2: A truck and a bicycle both have 10,000 J of kinetic energy. What must be true? | The bicycle is moving much faster than the truck | They have the same speed | The truck is moving faster | They have the same mass
+sa2: Describe how you could collect data to show how speed affects kinetic energy, using a cart and a cup that it pushes. | Roll the same cart from different heights on a ramp to change its speed; measure speed with a timer or sensor and measure how far the cart pushes a cup; keep the cart mass and surface the same; more distance means more kinetic energy.
+
+lesson: Potential energy and the distance between objects | MS-PS3-2
+practice:
+mc1: Energy stored because of an object's position or shape is | potential energy | kinetic energy | sound energy | light energy
+mc2: A book is lifted from the floor to a high shelf. What happens to the gravitational potential energy of the Earth-book system? | It increases because the book is farther from Earth | It decreases | It stays the same | It becomes zero
+hint: Lifting against gravity stores energy.
+mc2: Two magnets that repel are pushed closer together. What happens to the potential energy stored between them? | It increases | It decreases | It stays the same | It turns into mass
+num2: Gravitational potential energy = mass x 9.8 x height. What is the potential energy in joules of a 2 kg rock on a 5 m ledge? | 98
+sa2: Explain why stretching a rubber band farther stores more energy, and what happens to that energy when you let go. | Stretching changes the band's shape and increases the distance it is pulled, storing more elastic potential energy; when released, the stored energy changes into kinetic energy as the band snaps back.
+quiz:
+mc2: Two magnets attract each other. When you pull them farther apart, the potential energy stored in the system | increases | decreases | stays the same | disappears
+num2: Gravitational potential energy = mass x 9.8 x height. What is the potential energy in joules of a 10 kg box lifted 3 m? | 294
+num2: A 5 kg ball has 245 J of gravitational potential energy (potential energy = mass x 9.8 x height). How high is it in meters? | 5
+mc2: Which has the most gravitational potential energy? | a 3 kg pot on a 2 m shelf | a 3 kg pot on a 1 m shelf | a 1 kg pot on a 1 m shelf | a 3 kg pot on the floor
+mc3: A student pulls back a slingshot 10 cm and then 20 cm, and the pebble flies farther the second time. What does this show? | More stretch stores more potential energy, which becomes more kinetic energy | Stretch has no effect | The pebble gained mass | Less stretch stores more energy
+mc2: Which statement about potential energy is correct? | It depends on the positions of interacting objects | It only exists in moving objects | It is the same everywhere | It cannot be changed
+sa3: Use the idea of potential energy to explain why water stored behind a high dam can generate electricity. | Water held high behind the dam has gravitational potential energy because it is far above the river below. As it flows down through turbines, this energy changes into kinetic energy that spins the turbines and generators.
+
+lesson: Energy changes form | MS-PS3-1, MS-PS3-2
+practice:
+mc2: A roller coaster car is at the top of the first hill. Where is its kinetic energy greatest? | at the bottom of the hill | at the top of the hill | halfway up the next hill | when it is stopped
+hint: Where is the car moving fastest?
+mc2: A swinging pendulum moves fastest at the bottom of its swing. Which energy change happens as it swings down? | potential energy changes to kinetic energy | kinetic energy changes to potential energy | thermal energy changes to mass | no change occurs
+mc2: A pendulum's swings slowly get smaller and it stops. Where did the energy go? | It was transferred to the air and the pivot as thermal energy and sound | It was destroyed | It turned into mass | It went back into the string
+num2: A 2 kg ball is dropped and has 40 J of potential energy at the top. Ignoring air resistance, how much kinetic energy in joules does it have just before hitting the ground? | 40
+sa2: Describe the energy changes when you throw a ball straight up and it falls back to your hand. | At first the ball has kinetic energy; as it rises, kinetic energy changes into gravitational potential energy until it stops at the top; as it falls, potential energy changes back into kinetic energy. Some energy is lost to air as heat.
+quiz:
+mc1: The idea that energy cannot be created or destroyed, only transferred or transformed, is | conservation of energy | Newton's third law | the law of gravity | cell theory
+mc2: At the highest point of a ball's flight straight up, the ball has | its most potential energy and least kinetic energy | its most kinetic energy | no energy at all | equal kinetic and potential energy always
+num2: A roller coaster car has 120,000 J of potential energy at the top. At the bottom it has 108,000 J of kinetic energy. How many joules were transferred to friction and air? | 12000
+num2: A 0.5 kg skateboard rolls down a ramp, reaching 4 m/s. What is its kinetic energy in joules (KE = 1/2 x m x v x v)? | 4
+mc3: A ball dropped from 2 m bounces to 1.5 m, then 1.1 m, then 0.8 m. Which conclusion is best supported? | Some energy is transferred to sound and heat at each bounce | The ball gains energy each bounce | Energy is destroyed at each bounce | Gravity gets weaker
+mc2: Why does a coaster's second hill have to be lower than the first? | Some energy is lost to friction and air, so the car has less energy to climb | The second hill has more gravity | The car gains mass | Coasters gain energy as they go
+sa2: Explain why a bicycle coasting downhill speeds up without pedaling. | As the bicycle moves downhill, gravitational potential energy changes into kinetic energy, so its speed increases.
+
+lesson: Energy in an asteroid impact | MS-PS3-1, MS-PS3-2
+practice:
+mc2: An asteroid that struck near Mexico's Yucatan Peninsula about 66 million years ago is linked to the extinction of the dinosaurs. Why did it release so much energy? | It had enormous mass and very high speed | It was cold | It was made of ice | It moved slowly
+hint: Kinetic energy depends on both mass and speed.
+mc2: Two asteroids have the same mass. Asteroid A moves twice as fast as Asteroid B. How does A's kinetic energy compare? | four times as much | twice as much | the same | half as much
+num2: A 1,000 kg meteorite moves at 20,000 m/s. What is its kinetic energy in joules (KE = 1/2 x m x v x v)? | 200000000000
+sa2: When a meteorite hits the ground, where does its kinetic energy go? | It is transferred into heat, sound, light and the work of digging a crater and throwing rock and dust into the air.
+mc2: As an asteroid falls toward Earth, the Earth-asteroid system's potential energy | decreases as kinetic energy increases | increases | stays the same | is destroyed
+quiz:
+mc2: A small marble and a heavier steel ball are dropped from the same height into flour. The steel ball makes a deeper crater. Why? | It had more mass, so it had more kinetic energy when it hit | It fell faster than the marble because it was heavier | The flour was softer for the steel ball | It had less energy
+num2: Students dropped a 50 g ball from 0.5 m, 1.0 m and 1.5 m. Crater widths were 3 cm, 4.2 cm and 5.1 cm. How many cm wider was the crater from 1.5 m than from 0.5 m? | 2.1
+num2: An object with mass 2,000 kg moves at 10,000 m/s. What is its kinetic energy in joules? | 100000000000
+mc3: Data: crater width increases as drop height increases, but not as fast as height does. Which variable did the students change, and what does it represent? | Drop height, which changes impact speed and energy | Mass, which changes color | Crater width, which changes gravity | Flour depth, which changes the ball
+mc2: Why would a very fast but small asteroid be dangerous? | Kinetic energy grows with the square of speed, so high speed gives large energy | Small asteroids have no energy | Speed does not matter | Only mass matters
+mc2: In a crater investigation, which variable should stay the same to test the effect of drop height? | the mass of the ball and the type of flour | the drop height | the crater width | the number of trials only
+sa2: Explain how a crater investigation in a tray of flour models an asteroid impact, and give one limitation of the model. | The falling ball has kinetic energy that is transferred to the flour, pushing it outward to form a crater, like an asteroid's energy digging a crater. Limitation: the speeds and energies are tiny compared with a real asteroid, and real impacts melt rock and cause fires.
+
+test:
+mc1: Energy of motion is | kinetic energy | potential energy | nuclear energy | elastic energy only
+mc1: Stored energy due to an object's height above Earth is | gravitational potential energy | kinetic energy | sound energy | thermal energy
+mc2: Which has the most kinetic energy? | a 1,000 kg car moving at 20 m/s | a 1,000 kg car parked | a 1 kg ball at 20 m/s | a 1,000 kg car moving at 5 m/s
+mc2: If a skateboarder's speed is cut in half, the kinetic energy becomes | one-fourth as large | half as large | twice as large | the same
+mc2: A diver stands on a 10 m platform. As she falls, which change happens? | potential energy decreases and kinetic energy increases | both increase | kinetic energy decreases | no energy changes
+mc2: Two magnets repel. You push them closer together. The potential energy of the system | increases | decreases | stays the same | becomes kinetic energy immediately
+mc2: Why does a ball bounce lower each time? | Some energy changes to thermal energy and sound | Energy is destroyed | Gravity stops working | The ball gains mass
+mc2: A graph shows kinetic energy rising in a straight line as mass increases at constant speed. This means | kinetic energy is proportional to mass | kinetic energy is not related to mass | kinetic energy depends on the square of mass | mass decreases energy
+mc2: Which is the best example of energy changing from potential to kinetic? | an apple falling from a tree | a book resting on a shelf | a parked car | a stretched rubber band held still
+mc2: Which statement about energy in a closed system is correct? | Total energy stays the same as it changes form | Energy is used up | Energy is created by motion | Energy only exists as heat
+mc3: Data: a 2 kg cart has 1 J at 1 m/s, 4 J at 2 m/s and 9 J at 3 m/s. What would its kinetic energy be at 4 m/s? | 16 J | 12 J | 10 J | 8 J
+mc3: A coaster car starts from rest at the top of a 30 m hill. Which hill can it NOT climb over if there is friction? | a 30 m hill | a 10 m hill | a 20 m hill | a 15 m hill
+num2: What is the kinetic energy in joules of a 4 kg dog running at 5 m/s? | 50
+num2: What is the gravitational potential energy in joules of a 3 kg pot on a 2 m high shelf? (PE = mass x 9.8 x height) | 58.8
+num2: A ball has 60 J of potential energy at the top of a ramp and 45 J of kinetic energy at the bottom. How many joules were transferred to friction and sound? | 15
+num2: A 0.2 kg ball moves at 10 m/s. What is its kinetic energy in joules? | 10
+mc2: How could you increase the potential energy of a spring toy? | compress it more | let it relax | paint it | cool it down
+mc3: Two balls of different mass are dropped from the same height. Ignoring air resistance, which statement is correct when they land? | They hit at the same speed, but the heavier ball has more kinetic energy | The heavier ball hits faster | They have the same kinetic energy | The lighter ball has more kinetic energy
+mc2: Why do speed limits near schools have such a big effect on safety? | Lower speed greatly reduces kinetic energy, so crashes cause less harm | Speed does not change energy | Lower speed increases energy | Cars have no energy at low speed
+sa2: Explain how the gravitational potential energy of a system depends on the distance between the objects. | The farther an object is lifted from Earth, the more gravitational potential energy the Earth-object system stores, because more energy was used to separate them against gravity.
+sa2: Describe the energy changes in a pendulum during one full swing and explain why it eventually stops. | At the highest points it has the most potential energy and least kinetic energy; at the bottom it has the most kinetic energy. Friction and air resistance transfer some energy to heat each swing, so it slowly stops.
+sa3: A student claims that a car's kinetic energy doubles when its speed doubles. Use the kinetic energy formula to correct the claim with numbers. | KE = 1/2 x m x v x v. For a 1,000 kg car at 10 m/s, KE = 50,000 J; at 20 m/s, KE = 200,000 J. Doubling speed makes KE four times as large, not twice.
+cer3: Students rolled a 0.5 kg cart at different speeds into a cup and measured how far the cup slid. Speed 1 m/s: 10 cm. 2 m/s: 40 cm. 3 m/s: 90 cm. Make a claim about how speed affects the kinetic energy of the cart. Use the data as evidence and explain your reasoning. | Claim: kinetic energy increases with the square of speed. Evidence: doubling speed from 1 to 2 m/s made the cup slide 4 times as far (10 to 40 cm), and tripling speed to 3 m/s made it slide 9 times as far (90 cm). Reasoning: the distance the cup slides shows how much energy the cart transferred to it; since distance grew with speed times speed, kinetic energy depends on the square of speed (KE = 1/2 x m x v x v).
+
+unit: Unit 3: Forces at a Distance - Electric, Magnetic and Gravitational Fields | MS-PS2-3, MS-PS2-4, MS-PS2-5
+el: Let students feel magnets attract and repel through paper and say "attract" or "repel." Post a chart of the three noncontact forces with what causes each and what makes it stronger.
+
+lesson: Fields: forces without touching | MS-PS2-5
+practice:
+mc1: A force that acts on an object without touching it is a | noncontact force | friction force | contact force | normal force
+mc2: A paper clip jumps toward a magnet held 1 cm above it. What does this show? | The magnet's field exerts a force on the clip without touching it | The clip is pushed by air | The magnet must touch the clip to pull it | The clip has its own gravity only
+mc2: Iron filings sprinkled around a bar magnet form curved lines from pole to pole. What do the lines show? | the shape of the magnetic field | electric charges | the magnet's mass | air currents
+hint: Filings line up with an invisible region around the magnet.
+num2: A paper clip moved toward a magnet from 4 cm away, but not from 6 cm away. How many cm closer did it have to be? | 2
+sa2: Plan a simple investigation to show that a magnetic field can pass through materials. | Place sheets of paper, plastic, cardboard and other materials between a magnet and a paper clip; count how many sheets the force passes through before the clip no longer moves; keep the magnet and distance the same.
+quiz:
+mc1: Which is a noncontact force? | gravity | friction | a push from your hand | air resistance
+mc2: A compass needle points north. What causes this? | Earth's magnetic field exerts a force on the magnetized needle | Wind pushes the needle | The Sun pulls the needle | Gravity pulls the needle north
+num2: A magnet lifted a paper clip from 5 cm through 1 sheet of cardboard, and from 3 cm through 6 sheets. How many fewer cm of reach did 6 sheets allow? | 2
+mc2: A rubbed balloon makes a student's hair stand up from 10 cm away. What does this provide evidence for? | an electric field around the charged balloon | a magnetic field from the hair | gravity from the hair | wind made by the balloon
+mc3: Data: a magnet held over a paper clip lifted it at 1 cm, 2 cm and 3 cm, but not at 4 cm or more. Which conclusion is supported? | The magnetic force gets weaker with distance | The magnetic force gets stronger with distance | Distance has no effect | The clip has no mass
+mc2: Which model best represents a field? | lines showing the direction and strength of force around an object | a picture of the object only | a list of the object's colors | a ruler
+sa2: Explain how the Moon pulls on Earth's oceans even though they are far apart. | The Moon's gravitational field extends through space; this field exerts a force on Earth's ocean water without touching it, causing tides.
+
+lesson: Electric forces and charges | MS-PS2-3
+practice:
+mc2: Two balloons are both rubbed with wool and get the same type of charge. What happens when they are brought close? | They repel each other | They attract each other | Nothing happens | They stick together
+hint: Like charges repel; opposite charges attract.
+mc2: A charged comb picks up small bits of paper. As the comb is moved farther away, the force | decreases | increases | stays the same | becomes magnetic
+mc2: Which change would make the electric force between two charged objects stronger? | increasing the amount of charge on them | moving them farther apart | covering them with paint | cooling them
+num2: A charged rod lifted 12 bits of paper from 1 cm away and 3 bits from 2 cm away. How many times more bits did it lift at 1 cm? | 4
+sa2: Explain why your hair sticks to a sweater you just pulled off. | Rubbing moved electrons, giving the hair and sweater opposite charges; opposite charges attract, so the hair is pulled toward the sweater.
+quiz:
+mc1: Objects with opposite electric charges | attract | repel | do not interact | always lose mass
+num2: A balloon rubbed 5 times attracted paper from 3 cm away. Rubbed 15 times, it attracted from 9 cm. How many cm farther did the extra charge reach? | 6
+mc2: A balloon rubbed 5 times attracted paper from 3 cm away, and rubbed 15 times it attracted paper from 9 cm away. Which variable was changed? | the amount of charge | the distance only | the type of paper | the size of the balloon
+mc2: Why do clothes sometimes stick together after a dryer cycle? | Rubbing in the dryer gives them opposite electric charges | They get magnetized | They gain gravity | They become wet
+mc3: Data: two charged spheres felt a force of 8 units at 1 cm apart, 2 units at 2 cm, and about 0.9 units at 3 cm. Which conclusion is supported? | Electric force decreases quickly as distance increases | Electric force increases with distance | Force stays the same | Distance has no effect
+num2: Two charged spheres felt 8 units of force at 1 cm and 2 units at 2 cm. By what percent did the force decrease? | 75
+sa2: Describe a fair test to find whether the number of rubs affects how strongly a balloon attracts paper. | Rub identical balloons different numbers of times with the same cloth, hold each the same distance over the same paper bits, count bits lifted, repeat trials and compare means.
+
+lesson: Magnetic forces and electromagnets | MS-PS2-3
+practice:
+mc2: The north pole of one magnet is brought near the north pole of another. What happens? | They repel | They attract | They stick together | Nothing happens
+mc2: Wire is coiled around an iron nail and connected to a battery. The nail picks up paper clips. What is this device? | an electromagnet | a generator | a compass | a battery
+num2: An electromagnet with 10 coils picked up 4 clips, 20 coils picked up 8 clips and 30 coils picked up 12 clips. How many clips would 40 coils likely pick up? | 16
+hint: Look for how many clips are added for every 10 coils.
+mc2: Which change would make an electromagnet weaker? | using fewer coils of wire | adding more coils | using more current | adding an iron core
+sa2: Explain one advantage of an electromagnet over a permanent magnet for a junkyard crane. | An electromagnet can be turned on to lift scrap metal and turned off to drop it, and its strength can be changed by adjusting the current.
+quiz:
+mc1: Which two factors can increase the strength of an electromagnet? | more coils and more current | fewer coils and less current | a plastic core and fewer coils | a longer wire with no current
+num2: An electromagnet using 1 battery lifted 6 clips, and using 2 batteries in series lifted 11 clips. How many more clips did 2 batteries lift? | 5
+mc2: A student coils wire around a pencil instead of an iron nail. The electromagnet picks up fewer clips. Why? | An iron core makes the magnetic field much stronger | Pencils have more mass | Wood is magnetic | The wire becomes shorter
+mc2: Which device uses electromagnets to make motion? | an electric motor | a flashlight bulb | a mirror | a solar cell only
+mc3: Data: electromagnet with 20 coils lifted 8 clips at 1 battery, 15 clips at 2 batteries. Electromagnet with 40 coils lifted 16 clips at 1 battery. Which conclusion is best supported? | Both more coils and more current increase strength | Only coils matter | Only batteries matter | Neither affects strength
+num2: Maglev trains in some countries use electromagnets to float and move. A maglev train travels 300 km in 1.25 hours. What is its average speed in km per hour? | 240
+sa3: Plan an investigation to test how the number of coils affects an electromagnet's strength. Name the variables and explain how you will make the test fair. | Independent variable: number of coils (10, 20, 30, 40). Dependent: number of paper clips lifted. Controls: same nail, wire, battery, clip size; disconnect between trials to avoid draining the battery; repeat 3 times and average.
+
+lesson: Gravity depends on mass and distance | MS-PS2-4
+practice:
+mc1: Gravity is a force that | always attracts objects with mass toward each other | pushes objects apart | only acts on Earth | only acts on large objects
+mc2: Why do you weigh less on the Moon than on Earth? | The Moon has less mass, so its gravitational pull is weaker | The Moon has no gravity | You have less mass on the Moon | The Moon is closer to the Sun
+hint: Weight depends on the gravitational pull, not on the amount of matter in you.
+num2: Weight = mass x gravity. On the Moon, gravity is 1.6 newtons per kg. What does a 50 kg astronaut weigh on the Moon in newtons? | 80
+mc2: Which pair has the greatest gravitational attraction? | the Sun and Jupiter | a pencil and a paper clip | two students on a bus | a car and a bicycle
+sa2: Explain why you do not feel the gravitational pull between you and a nearby classmate. | All objects with mass attract, but people have very small masses compared with planets, so the force between you is far too small to notice.
+quiz:
+mc2: A spacecraft travels away from Earth. What happens to the gravitational force between it and Earth? | It decreases | It increases | It stays the same | It becomes zero immediately
+num2: On Earth, gravity is 9.8 newtons per kg. What does a 60 kg student weigh in newtons? | 588
+num2: Gravity on Mars is about 3.7 newtons per kg. What does a 60 kg student weigh on Mars in newtons? | 222
+mc2: A student's mass is 60 kg on Earth. What is her mass on Mars? | 60 kg | 22 kg | 222 kg | 0 kg
+mc3: Data: surface gravity in newtons per kg - Mercury 3.7, Earth 9.8, Jupiter 24.8. Jupiter's mass is about 318 times Earth's. Which conclusion is supported? | Planets with much more mass generally have stronger gravity | Smaller planets have stronger gravity | Gravity does not depend on mass | All planets have the same gravity
+mc2: Why do the planets orbit the Sun instead of Earth? | The Sun has by far the most mass in the solar system | Earth is in the center | The Sun is closest to every planet | Planets choose their orbits
+cer3: Data: surface gravity and mass of planets (compared with Earth). Mars: mass 0.11, gravity 0.38. Earth: mass 1, gravity 1. Neptune: mass 17, gravity 1.14. Jupiter: mass 318, gravity 2.53. Make a claim about how a planet's mass relates to its gravitational pull. Use the data as evidence and explain your reasoning. | Claim: planets with more mass generally have stronger gravity. Evidence: Mars, with 0.11 Earth masses, has 0.38 Earth gravity; Jupiter, with 318 Earth masses, has 2.53. Neptune has much more mass than Earth but only slightly stronger surface gravity. Reasoning: gravitational force depends on mass, so more massive planets pull harder; surface gravity also depends on distance from the center, and Neptune is very large, so its surface is far from its center, which weakens the pull felt there.
+
+test:
+mc1: Which force pulls objects toward the center of Earth? | gravity | magnetism | friction | electric force
+mc1: Two north poles of magnets will | repel | attract | stick | have no effect on each other
+mc2: Which statement about fields is correct? | Fields let objects exert forces on each other without touching | Fields only exist when objects touch | Fields are made of air | Fields are visible
+mc2: Which change would increase the strength of an electromagnet? | adding more coils of wire | removing the iron core | using a weaker battery | unwinding the coils
+mc2: A charged balloon is held near a wall and sticks. What causes this? | an electric force between charges | gravity from the wall | a magnetic field from the balloon | glue on the balloon
+mc2: Which factor affects the gravitational force between two objects? | their masses and the distance between them | their colors | their temperatures | their shapes only
+mc2: When two charged objects are moved farther apart, the electric force between them | decreases | increases | stays the same | reverses
+mc2: An astronaut's mass is 80 kg on Earth. On the Moon, her mass is | 80 kg | less than 80 kg | more than 80 kg | 0 kg
+mc2: What does a compass needle line up with? | Earth's magnetic field | the Sun's light | Earth's gravity | wind direction
+mc2: Which device depends on an electric current making a magnetic field? | an electric motor | a candle | a wooden ruler | a glass prism
+mc3: Data: an electromagnet with 1 battery lifted 5 clips; 2 batteries, 10 clips; 3 batteries, 14 clips. Which conclusion is supported? | More current made the electromagnet stronger | More current made it weaker | Batteries had no effect | The number of coils changed
+mc3: A student argues that gravity only acts on Earth because astronauts float in the space station. Which evidence best argues against this? | The station and astronauts are still pulled by Earth's gravity, which keeps them in orbit | Astronauts have no mass in space | The station is outside the solar system | Gravity stops at the clouds
+num2: On Earth, gravity is 9.8 newtons per kg. What does a 25 kg dog weigh in newtons? | 245
+num2: Gravity on Jupiter is about 24.8 newtons per kg. What would a 10 kg backpack weigh there in newtons? | 248
+num2: An electromagnet gains about 3 paper clips for every 10 coils added. It lifts 6 clips with 20 coils. How many clips should it lift with 50 coils? | 15
+num2: A rubbed balloon attracted paper bits from 4 cm away after 10 rubs and from 10 cm after 25 rubs. How many cm farther did it reach after 25 rubs? | 6
+mc2: Which model best shows the magnetic field of a bar magnet? | curved lines from the north pole to the south pole | straight lines pointing up only | circles inside the magnet only | no lines
+mc3: Why is the gravitational force between Earth and the Moon so much stronger than between two books on a table? | Earth and the Moon have enormous masses | The books are farther apart | Books have no mass | The Moon is magnetic
+mc2: Which pair of objects would attract each other with an electric force? | a positively charged rod and a negatively charged balloon | two positively charged balloons | two neutral blocks of wood | two negatively charged rods
+sa2: Explain how the strength of a magnetic force changes with distance and give evidence you could collect. | The force gets weaker as distance increases; you could measure how many paper clips a magnet lifts or whether a clip moves at different distances and see the effect drop with distance.
+sa2: Describe two ways to make an electromagnet stronger and explain why each works. | Add more coils, which adds more loops of current to the field; increase the current with a stronger battery, which strengthens the magnetic field; an iron core also concentrates the field.
+sa3: Explain why a person who weighs 500 N on Earth would weigh less on Mars but have the same mass. | Mass is the amount of matter, which does not change with location. Weight is the gravitational force on that mass; Mars has less mass than Earth, so its gravitational pull is weaker and the person weighs less.
+cer3: Students placed a paper clip at different distances from a magnet and measured the force with a sensitive scale. 1 cm: 0.80 N. 2 cm: 0.20 N. 3 cm: 0.09 N. 4 cm: 0.05 N. Make a claim about how distance affects magnetic force. Use the data as evidence and explain your reasoning using the idea of fields. | Claim: magnetic force decreases quickly as distance from the magnet increases. Evidence: at 1 cm the force was 0.80 N; doubling the distance to 2 cm cut it to 0.20 N (one-fourth), and at 4 cm it was only 0.05 N. Reasoning: a magnet's field is strongest near the magnet and spreads out and weakens with distance, so the force the field exerts on the clip drops sharply as the clip moves farther away.
+
+unit: Unit 4: Earth, the Moon and the Solar System | MS-ESS1-1, MS-ESS1-2, MS-ESS1-3
+el: Model phases with a lamp and a ball on a stick while students name each phase. Provide a planet data table with picture icons and a scale strip (1 cm = 1 AU) for students to place planets.
+
+lesson: Moon phases and eclipses | MS-ESS1-1
+practice:
+mc2: Why does the Moon appear to change shape during the month? | As it orbits Earth, we see different amounts of its sunlit half | Earth's shadow covers parts of it | Clouds block parts of it | The Moon changes size
+hint: Half of the Moon is always lit by the Sun.
+mc2: During a new moon, where is the Moon located? | between Earth and the Sun | on the far side of Earth from the Sun | behind the Sun | at the same distance as the Sun
+mc2: A lunar eclipse happens when | Earth is between the Sun and the Moon, and Earth's shadow falls on the Moon | the Moon is between the Sun and Earth | the Sun is between Earth and the Moon | clouds cover the Moon
+num2: The Moon's cycle of phases takes about 29.5 days. About how many days pass from a full moon to the next new moon? | 14.75
+hint: Full moon to new moon is half the cycle.
+sa2: Explain why we do not have a solar eclipse every month at new moon. | The Moon's orbit is tilted slightly compared with Earth's orbit around the Sun, so most months the Moon passes a little above or below the line between Earth and the Sun and its shadow misses Earth.
+quiz:
+mc1: Which phase comes right after a new moon? | waxing crescent | full moon | waning gibbous | third quarter
+mc2: A solar eclipse can happen only during which phase? | new moon | full moon | first quarter | waning gibbous
+mc2: Why do we always see the same side of the Moon from Earth? | The Moon rotates once in the same time it takes to orbit Earth | The Moon does not rotate | Earth blocks the other side | The far side is always dark
+num2: A full moon was on March 14. Using a 29.5-day cycle, how many days later is the next full moon? | 29.5
+num2: The Moon is about 384,000 km from Earth. Light travels about 300,000 km each second. How many seconds does moonlight take to reach Earth? | 1.28
+mc3: A student models the Moon's phases with a lamp (Sun), her head (Earth) and a ball (Moon). When the ball is directly opposite the lamp from her head, the ball looks fully lit. Which phase is this? | full moon | new moon | first quarter | waning crescent
+sa2: Use a model of the Sun, Earth and Moon to explain why a lunar eclipse can be seen from everywhere on Earth's night side, but a total solar eclipse is seen only along a narrow path. | Earth's shadow is large enough to cover the whole Moon, so anyone who can see the Moon sees the lunar eclipse. The Moon's shadow on Earth is small, so a total solar eclipse is seen only where that small shadow falls.
+
+lesson: Why Earth has seasons | MS-ESS1-1
+practice:
+mc2: What causes Earth's seasons? | the tilt of Earth's axis as Earth orbits the Sun | Earth's changing distance from the Sun | the Sun getting hotter in summer | the Moon blocking sunlight in winter
+hint: Earth is actually closest to the Sun in early January.
+mc2: In June, the Northern Hemisphere is tilted toward the Sun. What season is it in California? | summer | winter | spring | fall
+mc2: In June, what season is it in Australia? | winter | summer | spring | fall
+num2: On the summer solstice, Sacramento gets about 15 hours of daylight; on the winter solstice, about 9.5 hours. How many more hours of daylight are there in summer? | 5.5
+sa2: Explain two ways the tilt of Earth's axis makes summer warmer than winter. | In summer, sunlight hits more directly, so its energy is concentrated on a smaller area; days are also longer, so the ground receives sunlight for more hours.
+quiz:
+mc1: Earth's axis is tilted about | 23.5 degrees | 0 degrees | 45 degrees | 90 degrees
+mc2: Earth is closest to the Sun in early January. Why is it winter in the Northern Hemisphere then? | The Northern Hemisphere is tilted away from the Sun, so sunlight is less direct and days are shorter | The Sun gives off less energy in January | Earth's distance is the only factor | The Moon blocks sunlight
+num2: At noon in June, the Sun is about 79 degrees above the horizon in Los Angeles. In December it is about 32 degrees. What is the difference in degrees? | 47
+mc2: Near the equator, which describes the seasons? | temperatures stay warm all year because sunlight is direct year-round | four strong seasons | six months of darkness | cold summers
+mc3: If Earth's axis were not tilted, what would most likely happen? | There would be little seasonal change | Seasons would be stronger | Every day would be summer everywhere | The Moon would have no phases
+num2: A city gets 14 hours of daylight in June and 10 hours in December. What is the mean of these two amounts? | 12
+sa3: A student says, "It is summer when Earth is closest to the Sun." Use evidence to argue against this claim. | Earth is closest to the Sun in early January, which is winter in the Northern Hemisphere, and the Northern and Southern Hemispheres have opposite seasons at the same time. So distance cannot cause seasons; the tilt of Earth's axis does.
+
+lesson: Gravity holds the solar system and galaxy together | MS-ESS1-2
+practice:
+mc1: What force keeps the planets in orbit around the Sun? | gravity | magnetism | friction | electric force
+mc2: If the Sun's gravity suddenly stopped, what would Earth do? | move off in a straight line into space | fall into the Sun | stop moving | orbit the Moon
+hint: Without a force pulling it inward, a moving object keeps going straight.
+mc2: The Milky Way is a galaxy of hundreds of billions of stars that orbit its center. What keeps the stars together? | gravity | wind | light | magnetism from Earth
+num2: Mercury takes 88 days to orbit the Sun, and Earth takes 365 days. About how many Mercury orbits happen in one Earth year? (Round to the nearest whole number.) | 4
+sa2: Explain how gravity and an object's forward motion together produce an orbit. | Gravity pulls the planet toward the Sun, while the planet's forward motion carries it sideways; the combination makes it curve around the Sun in a path that keeps falling around it.
+quiz:
+mc2: Why do planets closer to the Sun travel faster in their orbits? | The Sun's gravity is stronger closer in | They have more mass | They are colder | They are farther from other planets
+mc2: The solar system formed from a cloud of gas and dust about 4.6 billion years ago. What caused the cloud to collapse and form the Sun and planets? | gravity pulling matter together | magnetism pushing it apart | wind from Earth | sunlight
+num2: Jupiter takes about 12 Earth years to orbit the Sun. How many orbits does it complete in 60 years? | 5
+mc3: Data: orbital periods - Mercury 0.24 years, Earth 1 year, Mars 1.9 years, Jupiter 11.9 years, Saturn 29.5 years. Which pattern is supported? | Planets farther from the Sun take longer to orbit | Planets farther away orbit faster | All planets have the same period | Period does not depend on distance
+mc2: Which statement about the Moon's orbit is correct? | Earth's gravity keeps the Moon in orbit around Earth | The Moon orbits the Sun but not Earth | The Moon is held by magnetism | The Moon does not move
+num2: Saturn takes about 29.5 years to orbit the Sun. How many years do 2 Saturn orbits take? | 59
+sa2: Explain why the Sun, not Earth, is at the center of the planets' orbits. | The Sun contains more than 99 percent of the solar system's mass, so its gravity is by far the strongest and it holds all the planets in orbit around it.
+
+lesson: The scale of the solar system | MS-ESS1-3
+practice:
+mc2: The average distance from Earth to the Sun, about 150 million km, is called | 1 astronomical unit (AU) | 1 light-year | 1 kilometer | 1 meter
+num2: Jupiter is about 5.2 AU from the Sun. How many million km is that? (1 AU = 150 million km) | 780
+hint: Multiply 5.2 by 150.
+mc2: Jupiter's diameter is about 143,000 km and Earth's is about 12,700 km. About how many Earths would fit across Jupiter? | about 11 | about 2 | about 100 | about 1,000
+num2: A model uses 1 cm for each AU. Neptune is about 30 AU from the Sun. How many cm from the model Sun should Neptune be placed? | 30
+sa2: Explain why it is hard to make a model of the solar system with both planet sizes and distances to the same scale. | The distances are enormous compared with the sizes; if planets were large enough to see, the model would need to be kilometers long, and if it fit in a room, the planets would be tiny specks.
+quiz:
+mc2: Which group lists solar system objects from largest to smallest? | the Sun, Jupiter, Earth, the Moon | Earth, the Sun, the Moon, Jupiter | the Moon, Earth, Jupiter, the Sun | Jupiter, the Sun, the Moon, Earth
+num2: Sunlight takes about 8.3 minutes to reach Earth (1 AU). About how many minutes does it take to reach Mars at 1.5 AU? | 12.45
+num2: Mars's diameter is about 6,800 km and Earth's is about 12,700 km. To the nearest whole percent, Mars's diameter is what percent of Earth's? | 54
+mc3: Data: Venus - rocky, 0.7 AU, 462 °C average surface; Mercury - rocky, 0.4 AU, 167 °C average; Earth - rocky, 1 AU, 15 °C. Venus is farther from the Sun than Mercury but hotter. Which is the best explanation? | Venus's thick carbon dioxide atmosphere traps heat | Venus is closer to the Sun | Mercury has oceans that cool it | Venus spins faster
+mc2: Which statement about the four inner planets is correct? | They are small and rocky | They are gas giants | They have rings and many moons | They are made of ice
+mc2: A scale model uses a basketball (24 cm) for the Sun. Earth would be about 0.2 cm, smaller than a peppercorn. What does this show? | The Sun is far larger than Earth | Earth is larger than the Sun | They are similar in size | The model is wrong
+sa3: Use data to compare the inner and outer planets. Give two differences. | Inner planets (Mercury to Mars) are small, rocky and close to the Sun with few moons; outer planets (Jupiter to Neptune) are much larger, made mostly of gas or ice, far from the Sun, and have rings and many moons.
+
+test:
+mc1: The Moon's phases are caused by | the changing amount of its sunlit half we can see | Earth's shadow | clouds | the Moon changing size
+mc1: What keeps the Moon in orbit around Earth? | gravity | magnetism | wind | friction
+mc2: A total solar eclipse occurs when | the Moon blocks the Sun's light from reaching part of Earth | Earth blocks light from the Moon | the Sun moves behind Earth | it is night
+mc2: Earth has seasons because | its tilted axis changes how directly sunlight hits each hemisphere during its orbit | its distance from the Sun changes a lot | the Sun burns hotter in summer | the Moon changes the weather
+mc2: When it is winter in the Northern Hemisphere, the Southern Hemisphere has | summer | winter | fall | no season
+mc2: Which object has the most mass in the solar system? | the Sun | Jupiter | Earth | the Moon
+mc2: Which planet is a gas giant? | Saturn | Mars | Venus | Mercury
+mc2: The Milky Way is | a galaxy of hundreds of billions of stars held together by gravity | a single star | our solar system | a cloud on Earth
+mc2: Why is the far side of the Moon never seen from Earth? | The Moon spins once for each orbit around Earth | The far side is always dark | Earth's shadow hides it | The Moon does not spin
+mc2: Which phase of the Moon occurs during a lunar eclipse? | full moon | new moon | first quarter | waxing crescent
+mc3: Data: Mercury 0.4 AU, 88 days; Venus 0.7 AU, 225 days; Earth 1 AU, 365 days; Mars 1.5 AU, 687 days. Which conclusion is supported? | The farther a planet is from the Sun, the longer its orbit takes | Closer planets take longer to orbit | Distance does not affect orbits | Mars orbits fastest
+mc3: A student draws a model of the solar system on a sheet of paper with the planets close together and all the same size. What is the main problem? | It does not show the real scale of sizes and distances | It has too many planets | The Sun should be at the edge | Planets do not orbit the Sun
+num2: Sunlight takes about 8.3 minutes to reach Earth. About how many minutes would it take to reach Jupiter at 5.2 AU? | 43.16
+num2: Saturn is about 9.5 AU from the Sun. With 1 AU = 150 million km, how many million km away is Saturn? | 1425
+num2: In a scale model where 1 AU = 2 cm, how many cm from the Sun would Mars (1.5 AU) be? | 3
+num2: The Moon's phase cycle is about 29.5 days. How many days are in 4 cycles? | 118
+mc2: Why does the noon Sun appear higher in the sky in summer than in winter? | Earth's tilt points the hemisphere toward the Sun in summer | The Sun moves closer to Earth | Earth's orbit speeds up | The Sun grows larger
+mc3: An astronomer observes a distant galaxy with stars swirling around its center. What best explains this motion? | Gravity from the mass at the galaxy's center and its stars | Wind in space | Magnetism from Earth | The stars are attached to each other
+mc2: Which statement about the solar system's formation is accurate? | Gravity pulled a cloud of gas and dust together to form the Sun and planets | The planets formed first and then made the Sun | The solar system formed last year | Magnetism pushed planets out of the Sun
+sa2: Explain why the Moon goes through phases in about a month. | The Moon orbits Earth about once every 29.5 days. As it moves, the angle between the Sun, Earth and Moon changes, so we see different portions of its sunlit half.
+sa2: Describe the role of gravity in keeping the solar system together. | The Sun's gravity pulls on each planet; combined with each planet's forward motion, this produces orbits. Planets' gravity also holds moons in orbit around them.
+sa3: Planet data: Earth - diameter about 12,700 km, 1 AU from the Sun, rocky. Jupiter - diameter about 143,000 km, 5.2 AU from the Sun, mostly hydrogen and helium gas. Compare Earth and Jupiter in size, distance from the Sun and composition. | Jupiter's diameter is about 11 times Earth's; it is about 5.2 AU from the Sun compared with Earth's 1 AU; Earth is small and rocky while Jupiter is a gas giant made mostly of hydrogen and helium.
+cer3: A student recorded the noon Sun's height above the horizon in Fresno: March 21, 53 degrees, 12 hours of daylight; June 21, 77 degrees, 14.5 hours; September 22, 53 degrees, 12 hours; December 21, 30 degrees, 9.5 hours. Average temperatures were highest in summer and lowest in winter. Make a claim about what causes Fresno's seasons. Use the data as evidence and explain your reasoning. | Claim: Fresno's seasons are caused by the tilt of Earth's axis, which changes how directly sunlight strikes and how long days are. Evidence: in June the noon Sun was 77 degrees high with 14.5 hours of daylight, while in December it was only 30 degrees high with 9.5 hours; in March and September values were in between. Reasoning: when the Northern Hemisphere tilts toward the Sun, sunlight is more direct and concentrated and days are longer, so more energy reaches the ground and it is warmer; when it tilts away, sunlight is spread out and days are short, so it is cooler.
+
+unit: Unit 5: Waves, Light and Information | MS-PS4-1, MS-PS4-2, MS-PS4-3
+el: Use a slinky and a rope so students can make waves and label crest, trough, amplitude and wavelength on a drawing. Post the frame: "When the amplitude increases, the energy ___."
+
+lesson: Wave properties and energy | MS-PS4-1
+practice:
+mc1: The height of a wave from its rest position to its crest is its | amplitude | wavelength | frequency | speed
+mc2: The distance from one crest to the next crest is the | wavelength | amplitude | frequency | trough
+hint: Picture measuring along the wave from one high point to the next.
+num2: Wave speed = frequency x wavelength. A wave has a frequency of 4 waves per second (4 Hz) and a wavelength of 3 m. What is its speed in m/s? | 12
+mc2: Two ocean waves have the same wavelength. Wave A is 1 m tall and Wave B is 3 m tall. Which carries more energy? | Wave B, because it has a larger amplitude | Wave A, because it is smaller | They carry the same energy | Neither carries energy
+sa2: Explain what a wave carries from one place to another and what it does not carry. Give an example. | A wave carries energy, not matter. In an ocean wave, a floating ball bobs up and down in about the same place while the energy moves toward the shore.
+hint: Watch a cork floating as waves pass.
+quiz:
+mc1: The number of waves that pass a point each second is the | frequency | amplitude | wavelength | crest
+num2: A wave travels at 20 m/s and has a wavelength of 4 m. What is its frequency in Hz? | 5
+num2: A student makes rope waves with a frequency of 2 Hz and a wavelength of 1.5 m. What is the wave speed in m/s? | 3
+mc2: If the frequency of a wave increases while its speed stays the same, the wavelength | decreases | increases | stays the same | becomes zero
+mc3: Data: when the amplitude of a rope wave was doubled, a sensor at the end measured about 4 times as much energy. Which conclusion is supported? | Wave energy increases faster than amplitude | Energy is not related to amplitude | Energy doubles when amplitude doubles | Energy decreases with amplitude
+mc2: In an earthquake, which seismic wave would most likely cause the most damage? | a wave with a very large amplitude | a wave with a tiny amplitude | a wave with no energy | a wave that does not reach the surface
+sa2: Draw or describe a transverse wave and label the crest, trough, amplitude and wavelength. | A wavy line above and below a rest line: crests are the high points, troughs are the low points, amplitude is the height from the rest line to a crest, and wavelength is the distance from one crest to the next.
+
+lesson: Sound waves | MS-PS4-1, MS-PS4-2
+practice:
+mc2: Why can't sound travel through outer space? | Sound needs a medium, such as air, to travel through | Space is too cold | Space is too bright | Sound only travels through light
+hint: Sound is a vibration of particles.
+mc2: A guitar string vibrates faster when it is tightened. How does this change the sound? | The pitch gets higher | The pitch gets lower | It gets quieter only | The sound stops
+num2: Sound travels about 340 m/s in air. How far does sound travel in 3 seconds in meters? | 1020
+mc2: A louder sound has | a larger amplitude | a smaller amplitude | a lower frequency always | no energy
+sa2: Explain why you see lightning before you hear thunder. | Light travels much faster than sound; the light reaches you almost instantly, while sound in air travels about 340 m/s, so it arrives later.
+quiz:
+mc2: Sound travels fastest through which material? | steel | air | water | a vacuum
+num2: You hear thunder 6 seconds after seeing lightning. Sound travels about 340 m/s. How far away, in meters, was the lightning? | 2040
+num2: A ship sends a sound pulse to the seafloor. The echo returns in 2 seconds. Sound travels 1,500 m/s in seawater. How deep is the water in meters? | 1500
+mc2: Soft curtains and carpet make a classroom quieter because they | absorb sound waves | reflect more sound | make sound travel faster | create new sounds
+mc3: A student taps a desk and a classmate with an ear on the desk hears it louder than a classmate listening through the air. Which explanation is best? | Sound travels better through the solid desk than through air | Desks make sound | Air blocks all sound | The classmate has better hearing
+mc2: Bats find insects by sending out high-pitched sounds and listening for echoes. Which wave behavior do they use? | reflection | absorption | refraction | transmission through a vacuum
+sa2: Explain how sound gets from a speaker to your ear. | The speaker vibrates and pushes on air particles; the particles bump into neighbors, passing the vibration through the air as a sound wave until it vibrates your eardrum.
+
+lesson: Light: reflect, absorb, transmit | MS-PS4-2
+practice:
+mc2: A red apple looks red in white light because it | reflects red light and absorbs other colors | absorbs red light | makes red light | transmits all light
+hint: The color you see is the light that bounces to your eye.
+mc2: Light passes easily through a clear window. This is | transmission | reflection | absorption | refraction only
+mc2: A straw in a glass of water looks bent at the water's surface. What causes this? | Light refracts (bends) as it changes speed passing from water to air | The straw bends | Light stops in water | Water absorbs all light
+mc2: Which material would most likely absorb the most sunlight and get hottest? | a black shirt | a white shirt | a mirror | a clear plastic sheet
+sa2: Describe what happens to light when it hits a mirror, a black piece of paper and a glass window. | The mirror reflects almost all light; the black paper absorbs most light and warms up; the glass window transmits most light through it.
+quiz:
+mc1: The bouncing of light off a surface is | reflection | refraction | absorption | transmission
+mc2: Light waves can travel through which of these? | empty space | only air | only water | only solids
+num2: Light travels about 300,000 km per second. How many seconds does it take light to travel 900,000 km? | 3
+num2: A solar cell turned 18 of every 100 units of sunlight into electricity. What percent of the light energy became electricity? | 18
+mc3: A student shines white light on a green leaf and measures the reflected light. Most of the reflected light is green. Which conclusion is supported? | The leaf absorbs most red and blue light and reflects green | The leaf absorbs green light | The leaf makes green light | All light passes through the leaf
+mc2: Why do lenses in eyeglasses help people see clearly? | They refract light so it focuses on the back of the eye | They absorb all light | They reflect light away | They make light faster
+sa3: Design a test to compare how well three window films block sunlight from entering a car. Describe what you would measure and how you would keep the test fair. | Place each film over identical jars with thermometers (or a light meter) in the same sunlight for the same time; measure temperature rise or light passing through; keep jar size, starting temperature and position the same; repeat and compare means.
+
+lesson: Digital signals carry information | MS-PS4-3
+practice:
+mc2: A digital signal sends information as | a series of on and off pulses, like 1s and 0s | a smooth, continuous wave only | sound waves only | heat
+mc2: Why are digital signals often more reliable than analog signals? | Small amounts of noise do not change whether a pulse is read as 1 or 0 | They carry no information | They are louder | They travel only through wires
+hint: Think about how easily a 1 or 0 can be read even with a little static.
+num2: Each character in a text message uses 8 bits. How many bits does a 15-character message use? | 120
+mc2: Which uses waves to carry digital information? | a cell phone call | a candle flame | a wooden ruler | a paper book
+sa2: Explain one advantage and one disadvantage of digital signals. | Advantage: they can be copied, stored and sent many times without losing quality. Disadvantage: they need devices to encode and decode them, and if too many bits are lost the message can drop out completely.
+quiz:
+mc1: A signal that changes smoothly and continuously, like the groove on a vinyl record, is | analog | digital | binary | infrared
+mc2: Fiber optic cables carry information as pulses of | light | sound | water | electricity in the air
+num2: A video file is 600 megabits. A connection downloads 50 megabits per second. How many seconds does the download take? | 12
+num2: A 3-minute song takes 24 megabits per minute to store. How many megabits does the song need? | 72
+mc3: A copy of an old cassette tape sounds worse each time it is copied, but a digital music file sounds the same after 100 copies. What explains this? | Digital copies keep exact 1s and 0s, while analog copies add noise each time | Cassettes are digital | Digital files lose quality faster | Both lose quality equally
+mc2: Why can a radio station's digital signal be compressed to take up less space? | Patterns in the 1s and 0s can be stored more efficiently | Digital signals have no information | Compression adds noise | Radio waves are made of sound
+cer3: Students sent a 100-bit message as an analog wave and as a digital signal through a noisy wire. Analog: the receiver correctly read 62 percent of the message. Digital: 99 percent correct, and an error-check fixed the rest. They repeated the test 5 times with similar results. Make a claim about which signal type is more reliable. Use the data as evidence and explain your reasoning. | Claim: digital signals are more reliable than analog signals for sending information through noise. Evidence: the digital signal was read 99 percent correctly (with errors fixed), compared with 62 percent for analog, across 5 repeated trials. Reasoning: a digital signal only needs to be read as on or off, so small noise does not change the message, and errors can be checked and corrected; an analog signal's exact shape carries the information, so noise directly changes it.
+
+test:
+mc1: Waves transfer | energy | matter | only water | only air
+mc1: The highest point on a transverse wave is the | crest | trough | wavelength | rest position
+mc2: Which wave has the most energy if all have the same frequency? | the one with the largest amplitude | the one with the smallest amplitude | they all have the same energy | the one moving slowest
+mc2: Sound is a mechanical wave, which means it | needs a medium to travel through | can travel through a vacuum | is made of light | does not carry energy
+mc2: A higher-pitched sound has a | higher frequency | lower frequency | larger wavelength always | lower speed in air
+mc2: A white car stays cooler in the sun than a black car because white paint | reflects more light | absorbs more light | transmits light into the car | refracts light into heat
+mc2: Light bends when it passes from air into glass. This is | refraction | reflection | absorption | transmission only
+mc2: Which statement about digital signals is correct? | They send information as patterns of 1s and 0s | They cannot be stored | They are always louder | They only work with sound
+mc2: Which wave behavior allows you to see yourself in a still pond? | reflection | absorption | transmission | diffraction
+mc2: Soundproof rooms use foam on the walls mostly to | absorb sound waves | reflect sound waves | speed up sound | create sound
+mc3: A wave's frequency doubles while its speed stays the same. What happens to its wavelength? | It is cut in half | It doubles | It stays the same | It becomes four times longer
+mc3: A phone video call becomes frozen in places but the sound and picture that do come through are clear. Which explanation fits digital signals? | Some data packets were lost, but the received 1s and 0s were read exactly | The signal is analog and full of noise | The phone is broken | Light cannot carry information
+num2: A wave has a frequency of 6 Hz and a wavelength of 2.5 m. What is its speed in m/s? | 15
+num2: A radio wave travels 300,000,000 m/s with a wavelength of 3 m. What is its frequency in Hz? | 100000000
+num2: Thunder is heard 4 seconds after lightning. Sound travels about 340 m/s. How far away is the storm in meters? | 1360
+num2: A sonar pulse returns 3 seconds after being sent. Sound travels 1,500 m/s in seawater. How deep is the water in meters? | 2250
+mc2: Which material transmits the most light? | clear glass | aluminum foil | wood | black paper
+mc3: Students measured sound levels behind barriers: no barrier 80 units, cardboard 70, foam 50, foam plus cardboard 40. Which conclusion is supported? | The foam and cardboard together absorbed or blocked the most sound | Cardboard blocked more than foam | No barrier was quietest | Barriers make sound louder
+mc2: Why do astronauts on a spacewalk use radios to talk? | Sound cannot travel through the vacuum of space, but radio waves can | Their voices are too quiet | Radios make sound travel faster in air | Light cannot travel in space
+sa2: Explain how amplitude and energy are related, using a sound or ocean wave as an example. | A larger amplitude means the wave carries more energy; a loud sound has a large amplitude and can even shake windows, while a tall ocean wave can move rocks and erode a beach.
+sa2: Describe what happens to sunlight that hits a green leaf. | Some light is absorbed, especially red and blue light used in photosynthesis; green light is mostly reflected, which is why the leaf looks green; a little light is transmitted through the leaf.
+sa3: Compare analog and digital signals and explain why most communication today uses digital signals. | Analog signals are continuous waves that change smoothly; digital signals are pulses of 1s and 0s. Digital signals resist noise, can be copied, stored and compressed without losing quality, and can be checked for errors, so they are more reliable.
+cer3: A class tested how amplitude affects energy by dropping a ball into a water tank from different heights and measuring how far a floating cork at the far end rose. Drop height 10 cm: wave amplitude 1 cm, cork rose 1 cm. 20 cm: amplitude 2 cm, cork rose 2 cm. 40 cm: amplitude 4 cm, cork rose 4 cm. Ripples spread out but the water did not flow to the far end. Make a claim about what water waves carry and how amplitude relates to energy. Use the data as evidence and explain your reasoning. | Claim: water waves carry energy, not water, and waves with greater amplitude carry more energy. Evidence: larger drops made waves with larger amplitudes (1, 2 and 4 cm), and the cork rose higher each time; the water itself did not flow to the far end. Reasoning: the falling ball transfers energy to the water; the wave passes that energy along through the water while the water mainly moves up and down; a bigger amplitude shows more energy was given to the wave, so it could lift the cork higher.
+
+unit: Unit 6: Earth's History and Evidence of Common Ancestry | MS-ESS1-4, MS-LS4-1, MS-LS4-2, MS-LS4-3
+el: Use a stack of colored paper to model rock layers ("bottom is oldest"). Provide a picture chart of arm bones in a human, cat, whale and bat with matching colors for each bone.
+
+lesson: Reading rock layers and geologic time | MS-ESS1-4
+practice:
+mc1: In undisturbed rock layers, the oldest layer is usually | at the bottom | at the top | in the middle | anywhere
+hint: Layers pile up one on top of another over time.
+mc2: A layer of volcanic ash lies between Layer A (below) and Layer B (above). What can you say about the ash? | It is younger than Layer A and older than Layer B | It is older than both layers | It is younger than both layers | It has no age
+mc2: A crack (fault) cuts through Layers 1, 2 and 3 but not Layer 4 on top. When did the fault form? | after Layers 1 to 3 formed and before Layer 4 | before Layer 1 formed | after Layer 4 formed | at the same time as Layer 4
+num2: Earth is about 4.6 billion years old. Non-avian dinosaurs went extinct about 66 million years ago. How many million years did Earth exist before that extinction? | 4534
+hint: 4.6 billion = 4,600 million.
+sa2: A fossil of a sea animal is found in a layer below a layer with land plant fossils. What does this suggest about how the area changed? | The area was once covered by sea, and later it became land where plants grew, because lower layers formed earlier than upper layers.
+quiz:
+mc1: A fossil that lived for a short time over a wide area and helps date rock layers is | an index fossil | a trace fossil only | a living fossil | a mineral
+mc2: A thin layer rich in the rare element iridium is found worldwide in rocks about 66 million years old, along with a huge buried crater in Mexico. What event does this evidence support? | a large asteroid impact | an ice age | a single small earthquake | the formation of the oceans
+num2: A model shrinks Earth's 4.6 billion years onto a 46-meter hallway, so each meter equals 100 million years. How many meters from the end of the hallway (today) is the dinosaur extinction 66 million years ago? | 0.66
+num2: Sediment in a lake builds up 0.5 mm per year. How many years would it take to form a layer 20 mm thick? | 40
+mc3: Layers from bottom to top: sandstone with trilobite fossils, shale with fish fossils, limestone with dinosaur bones, soil with mammal bones. Which conclusion is best supported? | Trilobites lived before dinosaurs, and mammals in the top layer are the most recent | Dinosaurs lived before trilobites | All of these animals lived at the same time | The soil is the oldest layer
+mc2: Why do geologists use the geologic time scale? | To organize Earth's long history into eras and periods based on rocks and fossils | To tell the time of day | To predict the weather | To measure tides
+sa2: Explain how scientists can tell that a layer of rock is younger than an igneous rock body that cuts across it. | The igneous rock must have formed after the layers it cuts through, because the layers had to exist first for magma to push through them; so the cutting rock is younger.
+
+lesson: Patterns in the fossil record | MS-LS4-1
+practice:
+mc2: Fossils show that many species that once lived are no longer alive today. This is evidence of | extinction | photosynthesis | erosion only | migration
+mc2: In older rock layers, fossils of living things tend to be simpler; in younger layers, more types of complex organisms appear. What does this pattern suggest? | Life on Earth has changed over time | All life appeared at once | Fossils move between layers | Older organisms were more complex
+hint: Compare what you find at the bottom with what you find near the top.
+num2: A rock layer from about 252 million years ago records a mass extinction. If a sample had 200 species of sea animals before it and 20 after it, what percent of the species disappeared? | 90
+mc2: Fossils of the same kind of organism found in many layers show small changes in shape over time. What does this show? | Species can change gradually over many generations | Species never change | Each layer has unrelated organisms | Fossils change shape after burial
+sa2: Explain why the fossil record is incomplete. | Most organisms decay before they are fossilized; fossils form only under special conditions like quick burial in sediment, and many fossils are destroyed by erosion or are never found.
+quiz:
+mc1: Which is the best definition of a fossil? | preserved remains or traces of an organism that lived long ago | a living animal | any rock | a mineral crystal
+num2: Fossil counts show 12 families of marine reptiles in one period and 3 families in the next. What percent of the families remained? | 25
+mc2: Fossils show that some early whale relatives had four legs and lived near water. Later fossils have smaller hind legs, and today's whales have tiny hip bones. What does this sequence show? | Whales changed over time from land-dwelling ancestors | Whales have always looked the same | Land animals came from modern whales | The fossils are unrelated
+mc3: Data: number of known animal families - 500 million years ago, 150; 300 million years ago, 450; 252 million years ago, 200; 100 million years ago, 600; today, 900. Which statement is supported? | Diversity has generally increased over time, with drops during mass extinctions | Diversity has only decreased | Diversity has stayed the same | There were no extinctions
+num2: The fossil record shows about 200 known animal families 252 million years ago and about 600 known families 100 million years ago. How many families were added? | 400
+mc2: Why are fossils of fish never found below the oldest layers that contain simple single-celled fossils? | Fish appeared later in Earth's history than single-celled life | Fish fossils dissolve in old rock | Single-celled life ate fish | Fish lived only on land
+sa3: A student says, "Since dinosaurs went extinct, the fossil record shows life gets less diverse over time." Use evidence to evaluate this claim. | The claim is not supported. Mass extinctions caused sharp drops, but after each one new species appeared and diversity recovered and grew; overall, the fossil record shows diversity increasing over long periods.
+
+lesson: Similar structures, shared ancestors | MS-LS4-2
+practice:
+mc2: A human arm, a cat's front leg, a whale's flipper and a bat's wing all have the same set of bones in the same order. What does this suggest? | These animals share a common ancestor | They all use their limbs in the same way | They are the same species | The bones formed by chance
+hint: Similar structure is evidence of relationship, even if the jobs differ.
+mc2: Structures that have similar bones but different functions in related species are called | homologous structures | analogous structures | vestigial organs only | fossils
+mc2: A bird's wing and a butterfly's wing are both used for flying but are built very differently. What does this suggest? | They evolved separately and are not evidence of close relationship | They come from the same ancestor recently | They are homologous | Butterflies are birds
+num2: A modern horse has 1 toe per foot. A fossil ancestor from about 50 million years ago had 4 toes on each front foot. How many fewer front toes per foot does the modern horse have? | 3
+sa2: Explain how a whale's tiny hip bones are evidence that its ancestors lived on land. | Hip bones attach legs in land mammals; whales have small, unused hip bones, which suggests they inherited them from ancestors that walked on land with hind legs.
+quiz:
+mc2: A python has tiny leftover leg bones inside its body. Which conclusion is best supported? | Snakes likely evolved from ancestors with legs | Pythons use these bones to walk | Snakes are related to fish only | The bones formed recently by chance
+mc2: Which pair shows homologous structures? | a dolphin's flipper and a human hand | a bird's wing and an insect's wing | a fish fin and a submarine fin | a bat's wing and a kite
+num2: Scientists compared 20 bones in the forelimbs of a lizard and a dog. 17 bones matched in type and position. What percent matched? | 85
+mc3: Fossil Tiktaalik (about 375 million years old) had gills and scales like a fish but also a neck and strong fin bones like the legs of land animals. Which idea does it best support? | Land animals descended from fish-like ancestors | Fish came from land animals | Tiktaalik was a mammal | Fish and land animals are unrelated
+mc2: Why do scientists compare anatomy of living species with fossils? | To find patterns of similarities and differences that show how species are related | To make the fossils grow | To change the living species | To find out the age of rocks only
+mc2: Skeletons of a chimpanzee and a human share many of the same bones in similar arrangements. What does this suggest? | They share a relatively recent common ancestor | Humans descended from today's chimpanzees | They are the same species | They are unrelated
+sa2: Explain the difference between homologous and analogous structures and which is better evidence of common ancestry. | Homologous structures share the same basic bones from a common ancestor but may have different jobs (human arm and bat wing); analogous structures have the same job but different structures (bird wing and insect wing). Homologous structures are evidence of common ancestry.
+
+lesson: Clues from embryos | MS-LS4-3
+practice:
+mc2: Early embryos of fish, chickens, pigs and humans all have a tail and pouches in the throat region. What does this similarity suggest? | These animals share a common ancestor | They will all become fish | They live in the same habitat | They eat the same food
+mc2: As embryos develop, they become more different from each other. Which explanation fits? | Different genes switch on as each species develops its own features | Embryos copy their environment | Embryos lose all their genes | All adults look the same
+hint: Similar early stages, different later stages.
+num2: A study compared 12 early embryo features in a chicken and a turtle. They shared 9 features. What percent did they share? | 75
+mc2: Which observation from embryos would best support that two species are closely related? | Their embryos look alike for a long time during development | Their adults are different colors | They live far apart | They have different diets
+sa2: Explain why comparing embryos can show relationships that are hard to see in adult animals. | Many shared features appear only early in development and later change or disappear, so embryos can reveal similarities, such as tails or throat pouches, that are hidden in adults.
+quiz:
+mc1: The study of how organisms develop before birth or hatching is | embryology | geology | meteorology | astronomy
+mc2: Human embryos briefly have a tail that is mostly absorbed before birth, leaving the tailbone. What does this suggest? | Humans share ancestry with other vertebrates that have tails | Humans are fish | Tails help human embryos swim | Human embryos are not related to other animals
+num2: Researchers checked 40 vertebrate species and found throat pouches in the early embryos of all 40. What percent showed the feature? | 100
+mc3: Data: number of days early embryos look nearly alike - chicken and duck, 6 days; chicken and turtle, 3 days; chicken and fish, 1 day. Which relationship is supported? | Chickens are most closely related to ducks of these animals | Chickens are most closely related to fish | All are equally related | Ducks and fish are the closest
+mc2: Which type of evidence compares patterns in how organisms grow from a single cell? | embryological evidence | fossil evidence | rock layer evidence | weather evidence
+mc2: Why do scientists combine fossil, anatomy and embryo evidence? | Several independent lines of evidence give stronger support for how species are related | One type of evidence is always wrong | Combining makes results less clear | Embryos are the only evidence
+cer3: Scientists compared three species with a fourth species, Species W. Species X shares 18 of 20 embryo features with W and a similar forelimb bone pattern. Species Y shares 11 of 20 embryo features and a somewhat similar forelimb pattern. Species Z shares 4 of 20 embryo features and has no forelimbs. Make a claim about which species is most closely related to W. Use the data as evidence and explain your reasoning. | Claim: Species X is most closely related to Species W. Evidence: X shares 18 of 20 embryo features (90 percent) and a similar forelimb pattern, compared with 11 of 20 for Y and 4 of 20 for Z. Reasoning: species that share a more recent common ancestor inherited more of the same developmental patterns and body structures, so the greatest similarity in embryos and anatomy shows the closest relationship.
+
+test:
+mc1: In undisturbed layers of sedimentary rock, the youngest layer is | at the top | at the bottom | in the middle | not present
+mc1: The preserved remains or traces of ancient organisms are | fossils | minerals | crystals | sediments
+mc2: Which evidence supports that a large asteroid struck Earth about 66 million years ago? | a worldwide iridium-rich layer and a large buried crater | the shape of today's continents | modern dinosaur bones | the Moon's phases
+mc2: A bat's wing and a human arm have the same bones arranged in a similar way. These are | homologous structures | analogous structures | identical structures | unrelated structures
+mc2: Which statement about the fossil record is correct? | It shows that many species have gone extinct and life has changed over time | It shows that all species alive today lived 500 million years ago | It is complete | It shows that life has never changed
+mc2: Early embryos of many vertebrates look alike. This is evidence of | common ancestry | identical adults | the same habitat | the same diet
+mc2: A dike of igneous rock cuts across three sedimentary layers. Which is true? | The dike is younger than the layers | The dike is older than the layers | All are the same age | Age cannot be determined
+mc2: Which fossil would be most useful as an index fossil? | a species that lived for a short time over a wide area | a species that lived for a long time in one small place | a living species | a rock with no fossils
+mc2: A whale has small, unused hip bones. This suggests | its ancestors had hind legs | it uses them to walk | it is related to fish only | it will grow legs
+mc2: Which list orders events from oldest to youngest? | first single-celled life, first fish, first dinosaurs, first humans | first humans, first dinosaurs, first fish, first single-celled life | first fish, first single-celled life, first humans, first dinosaurs | first dinosaurs, first humans, first single-celled life, first fish
+mc3: Layer 1 (bottom) has trilobites; Layer 2 has trilobites and fish; Layer 3 has fish and early reptiles; Layer 4 (top) has reptiles and mammals. Which conclusion is best supported? | Trilobites lived before mammals, and new groups appeared over time | Mammals lived before trilobites | All groups appeared at once | Fish appeared after mammals
+mc3: Embryos of two species look alike for most of their development, while embryos of a third species become different very early. Which conclusion is best supported? | The first two species are more closely related to each other | The third species is most closely related to the others | None are related | All three are the same species
+num2: Earth is about 4,600 million years old. The first fish appeared about 530 million years ago. How many million years of Earth's history passed before the first fish? | 4070
+num2: A layer of mud builds up 2 mm per year. How many years does it take to make a layer 1 meter (1,000 mm) thick? | 500
+num2: Before a mass extinction, a group had 80 species. Afterward it had 12. What percent of the species went extinct? | 85
+num2: A forelimb comparison found 21 of 28 bones matched between two species. What percent matched? | 75
+mc2: Why are some periods of Earth's history marked by sudden drops in the number of fossil species? | Mass extinctions killed many species in a short time | Fossils were destroyed by scientists | Rocks stopped forming | Species stopped reproducing everywhere at once for no reason
+mc3: A fossil of a feathered dinosaur with teeth, a long bony tail and wings is found. Which idea does it support? | Birds share ancestry with dinosaurs | Birds and dinosaurs are unrelated | Dinosaurs came from birds today | Feathers formed only on modern birds
+mc2: Which question can be answered using the fossil record? | How has the diversity of life changed over time? | What will the weather be tomorrow? | How much does a rock cost? | Why is the sky blue?
+sa2: Explain how scientists use the position of fossils in rock layers to tell their relative ages. | In undisturbed layers, lower layers formed first and are older; fossils in lower layers lived before fossils in higher layers, giving their order in time.
+sa2: Describe one piece of anatomical evidence and one piece of embryological evidence that whales share ancestry with land mammals. | Anatomical: whales have small hip bones and their flippers contain the same arm bones as land mammals. Embryological: early whale embryos develop hind-limb buds that later disappear.
+sa3: Explain why scientists are more confident about how species are related when fossil, anatomical and embryo evidence all agree. | Each type of evidence comes from a different source; when independent lines of evidence point to the same relationships, it is very unlikely they all agree by chance, which strongly supports common ancestry.
+cer3: Fossils from a series of rock layers show an animal's front foot over time. 55 million years ago: 4 toes, small body (about the size of a fox). 35 million years ago: 3 toes, middle toe larger. 15 million years ago: 3 toes, side toes small and off the ground. Today: 1 toe (hoof). Make a claim about what the fossil record shows about this group of animals. Use the data as evidence and explain your reasoning. | Claim: this group of animals (horses) changed gradually over time from many-toed ancestors to one-toed modern horses. Evidence: the oldest fossils (55 million years) had 4 toes, later fossils had 3 toes with a larger middle toe and smaller side toes, and today's horses have 1 toe. Reasoning: deeper layers are older, so the order of fossils shows change over many generations; the steady pattern of fewer, larger toes is evidence that the species descended from common ancestors and changed over time.
+
+unit: Unit 7: Genes, Natural Selection and Human Impact | MS-LS3-1, MS-LS4-4, MS-LS4-5, MS-LS4-6, MS-ESS3-4, MS-ETS1-1, MS-ETS1-2
+el: Model natural selection with colored paper "prey" on patterned fabric; students describe results with "More ___ survived because ___." Pre-teach gene, protein, mutation, variation, trait and selection.
+
+lesson: Genes, proteins and mutations | MS-LS3-1
+practice:
+mc1: A segment of DNA that carries instructions for making a protein is a | gene | cell | chromosome pair only | tissue
+mc2: How do genes affect an organism's traits? | Genes code for proteins, and proteins build structures and carry out functions that produce traits | Genes are traits | Genes only affect hair color | Genes make energy directly
+hint: Think: gene, then protein, then trait.
+mc2: A mutation changes one gene so the protein it makes no longer works. Which effect is possible? | The trait the protein controls may change | The organism becomes a new species immediately | Nothing can ever change | All the organism's genes change
+num2: A gene has 1,200 base pairs. A mutation changes 1 of them. What percent of the gene's base pairs changed? (Round to two decimal places.) | 0.08
+hint: Divide 1 by 1,200 and multiply by 100.
+sa2: Explain why a mutation can be harmful, helpful or have no effect. Give an example of each. | Harmful: a mutation that stops a needed protein from working, like one causing a genetic disease. Helpful: a mutation that gives resistance to a disease. Neutral: a change that does not alter the protein or its function.
+quiz:
+mc1: A change in the DNA of a gene is called a | mutation | protein | trait | chromosome
+mc2: Sickle cell disease is caused by a change in one gene for hemoglobin, the protein that carries oxygen in red blood cells. What does this show? | A small change in a gene can change a protein and a trait | Genes do not affect proteins | Proteins have no job | Red blood cells have no genes
+mc2: People with one copy of the sickle cell gene are more likely to survive malaria. In regions with malaria, this mutation is | helpful in that environment | always harmful | always neutral | not inherited
+num2: In a population of 400 bacteria, 6 had a mutation that let them survive an antibiotic. What percent had the mutation? | 1.5
+num2: Six antibiotic-resistant bacteria survive a treatment. Each bacterium divides into 2 every 20 minutes. How many bacteria are there 1 hour later? | 48
+mc3: A mutation changes one DNA base, but the protein made is exactly the same. What effect will the mutation most likely have? | none, because the protein and trait do not change | it will cause a disease | it will change every trait | it will make the organism a new species
+sa2: Explain how a change in one gene could change an organism's ability to survive in its environment. | The gene codes for a protein; a mutation can change the protein's shape and function, which changes a trait such as fur color or toxin resistance; that trait may help or hurt survival in a particular environment.
+
+lesson: Natural selection | MS-LS4-4
+practice:
+mc2: Before factories, most peppered moths in England had light wings. After soot darkened tree bark, dark moths became more common. What best explains this? | Birds ate more light moths, which were easier to see on dark bark, so more dark moths survived to reproduce | Moths chose to change color | Soot dyed the moths | Dark moths moved in from far away
+hint: Which moths were easier for predators to see?
+mc2: For natural selection to happen in a population, there must be | variation in inherited traits | identical individuals | no reproduction | no environment
+mc2: Rock pocket mice with dark fur are common on dark lava rock, and mice with light fur are common on light sand. Which is the best explanation? | Fur that matches the ground hides mice from predators, so those mice survive and reproduce more | Mice change fur color when they move | The ground colors the fur | Predators prefer dark fur everywhere
+num2: In a beetle population of 500, 350 are green and 150 are brown. What percent are brown? | 30
+sa2: Explain the difference between an individual "adapting" and a population evolving by natural selection. | Individuals do not change their inherited traits to fit the environment. Instead, individuals with helpful inherited traits survive and reproduce more, so those traits become more common in the population over generations.
+quiz:
+mc1: A process in which individuals with helpful inherited traits survive and reproduce more is | natural selection | artificial selection | genetic engineering | mutation
+mc2: Bacteria that survive an antibiotic pass on their resistance genes. Why do doctors tell patients to finish their antibiotics? | To kill as many bacteria as possible so resistant ones do not increase | To make bacteria stronger | Because antibiotics work on viruses | To cause mutations
+num2: Green beetles were 70 percent of a population of 600. How many green beetles were there? | 420
+num2: A survey found 20 dark-winged moths and 180 light-winged moths. What percent of the moths were dark-winged? | 10
+mc3: Finches on an island ate mostly small seeds. After a drought, only large, hard seeds were left, and birds with deeper beaks survived better. What would you predict for the next generation? | The average beak depth will be greater | The average beak depth will be smaller | Beak depth will not change | All birds will have identical beaks
+mc2: Which trait would most likely increase in a population of rabbits that live where snow covers the ground for most of the year? | white fur | brown fur | long ears only | black fur
+cer3: A scientist released equal numbers of brown and green toy "insects" on a green lawn, and students played "birds" picking them up for 1 minute. Round 1: 25 green and 25 brown released; 6 green and 19 brown were picked up. Make a claim about which color gives an insect a survival advantage on green grass. Use the data as evidence and explain how this models natural selection. | Claim: green coloring gives an advantage on green grass. Evidence: of 25 each, 19 brown were picked up (76 percent) but only 6 green (24 percent), so 19 green and 6 brown survived. Reasoning: the "birds" saw brown insects more easily against green grass; in nature, prey that blend in survive and reproduce more, passing on the color trait, so green would become more common in later generations.
+
+lesson: Populations change over generations | MS-LS4-6, MS-LS4-4
+practice:
+mc2: Why does natural selection usually take many generations to change a population? | Each generation, helpful traits become only a bit more common | Natural selection works in one day | Individuals change their genes quickly | Populations never change
+mc2: Which population would likely change fastest in response to a new pesticide? | insects that reproduce every few weeks | elephants that reproduce every few years | trees that live for centuries | turtles that live 100 years
+hint: More generations in less time means faster change.
+num2: A trait is in 10 percent of a population. It increases by 10 percentage points each generation. What percent of the population has the trait after 5 generations? | 60
+mc2: A graph shows the percent of resistant mosquitoes rising from 5 percent to 85 percent over 10 years of pesticide spraying. What does the trend show? | Resistance increased in the population because resistant mosquitoes survived and reproduced | The pesticide created the genes | Mosquitoes stopped reproducing | The trend shows no change
+sa2: Explain why antibiotic resistance spreads faster in bacteria than resistance to a disease spreads in a population of deer. | Bacteria reproduce in minutes to hours, so many generations pass quickly and resistant bacteria multiply fast; deer reproduce once a year, so changes in their traits take many years.
+quiz:
+num2: Resistant mosquitoes rose from 5 percent to 85 percent of a population over 10 years. What was the average increase in percentage points per year? | 8
+num2: In a beetle population, dark beetles were 20 percent in year 1 and 50 percent in year 6. By how many percentage points did dark beetles increase? | 30
+mc2: Which data would best show natural selection in a population? | measurements of a trait in many generations before and after an environmental change | one photo of one animal | the weight of one rock | the temperature on one day
+mc3: Data: average finch beak depth was 9.4 mm before a drought, 10.1 mm after the drought and 9.9 mm in the next generation. Which conclusion is supported? | The drought selected for deeper beaks, and the change was inherited | The drought made beaks smaller | Beak depth does not change | Beaks are not inherited
+num2: A finch population's average beak depth was 9.4 mm before a drought and 9.9 mm in the generation after it. By how many mm did the average increase? | 0.5
+mc2: A population of lizards on an island is split by rising water into two groups in different habitats. Over many generations, what is most likely? | Each group's traits change to fit its habitat | Both groups stay exactly the same forever | Both groups die immediately | They become plants
+sa3: Use the ideas of variation, inheritance and selection to explain why a farmer's pesticide stopped working after many years. | Some insects had inherited genes that let them survive the pesticide (variation); these survivors reproduced and passed on the genes (inheritance); each year the pesticide killed non-resistant insects (selection), so the resistant trait became common and the pesticide no longer worked.
+
+lesson: People change traits: artificial selection and genetic engineering | MS-LS4-5
+practice:
+mc1: When people choose which plants or animals reproduce to get desired traits, it is | artificial selection | natural selection | mutation | extinction
+mc2: Broccoli, cabbage, kale and cauliflower were all bred from one wild mustard plant. How? | Farmers selected and bred plants with different traits they wanted over many generations | Each formed from a different wild plant | They changed on their own in one season | They were made in a factory
+mc2: Scientists placed the human gene for insulin into bacteria, and the bacteria now make insulin used by people with diabetes. This is an example of | genetic engineering | natural selection | artificial selection by farmers | a mutation caused by sunlight
+hint: The gene was moved on purpose by scientists in a lab.
+num2: Wild teosinte has ears with about 10 kernels. Modern corn ears can have about 800 kernels. How many times as many kernels is that? | 80
+sa2: Compare artificial selection and natural selection. Give one similarity and one difference. | Similarity: both act on inherited variation and change traits in a population over generations. Difference: in artificial selection people choose the traits; in natural selection the environment determines which individuals survive and reproduce.
+quiz:
+mc2: Dog breeds as different as chihuahuas and Great Danes all came from wolves. What made the breeds so different? | People selected dogs with certain traits to breed over many generations | Wolves chose to change | Dogs mutated in one generation | Food changed their genes
+mc2: Which is a possible benefit of genetically engineered crops? | They can resist pests or drought, increasing food production | They always cost nothing | They never need water | They have no effect on the environment
+num2: A dairy farmer's cows produced an average of 20 liters of milk per day. After several generations of breeding the best producers, the average was 26 liters. What was the percent increase? | 30
+num2: A plant breeder crossed tomatoes for 8 generations and gained 15 g in average fruit mass each generation. How many grams did average fruit mass increase in total? | 120
+mc3: A company wants a rice plant that makes more vitamin A in one generation. Which method is fastest? | genetic engineering to add the genes for vitamin A production | artificial selection over many generations | waiting for natural selection | watering the rice more
+mc2: Why do some scientists worry about planting only one variety of a crop everywhere? | Low genetic variation means one disease could wipe out the crop | It increases genetic diversity | It makes crops grow too fast | It improves soil everywhere
+sa3: Describe one benefit and one concern about using genetic engineering to change the traits of organisms. | Benefit: crops that resist pests can increase food and reduce pesticide use. Concern: engineered genes could spread to wild plants or reduce genetic diversity, and long-term effects on ecosystems must be studied.
+
+lesson: Human population and Earth's resources | MS-ESS3-4, MS-ETS1-1, MS-ETS1-2
+practice:
+mc2: The human population grew from about 1 billion around 1800 to about 8 billion in 2022. Which effect is most likely as population grows? | People use more land, water, energy and other resources | Resource use goes down | Fewer species are affected | Earth gets more fossil fuels
+hint: More people means more food, water and energy needed.
+num2: The human population grew from about 1 billion in 1800 to about 8 billion in 2022. How many times larger was it in 2022? | 8
+mc2: Which choice reduces the amount of resources one person uses? | repairing and reusing items instead of buying new ones | buying more single-use products | leaving water running | driving short distances instead of walking
+mc2: As cities expand into forests, what happens to many wild species? | They lose habitat and their populations can decline | They gain habitat | They are not affected | They all move to the ocean
+sa2: Explain how both the number of people and the amount each person consumes affect Earth's systems. | Total impact depends on population size times how much each person uses; more people or more consumption per person means more land cleared, water used, fuel burned and waste made, affecting habitats, water and air.
+quiz:
+mc1: Which is a renewable resource that can reduce fossil fuel use? | solar energy | coal | natural gas | oil
+num2: A town of 50,000 people uses 300 liters of water per person per day. How many liters does the town use per day? | 15000000
+num2: After a conservation program, the town used 240 liters per person per day instead of 300. What was the percent decrease? | 20
+mc2: A family wants to reduce its impact on Earth's resources. Which change helps the most? | using public transit and eating more plant-based meals | buying a larger car | throwing away food more often | using more plastic bags
+mc3: Data: in Region A, population is 10 million and each person uses 5 units of energy per year. In Region B, population is 40 million and each person uses 1 unit per year. Which statement is correct? | Region A uses 50 million units and Region B uses 40 million, so Region A uses more in total | Region B uses more in total because it has more people | They use the same total | Population does not matter
+mc2: A city's decision matrix compares water-saving plans by cost, water saved and community support. Why use such a matrix? | It compares each plan against the same criteria to find the best fit | It picks a plan randomly | It avoids looking at data | It makes all plans equal
+sa3: Design a plan for your school to reduce its use of one resource (water, energy or paper). Give one criterion, one constraint and a way to measure success. | Example: reduce paper by going digital for homework. Criterion: cut paper use by 30 percent in one semester. Constraint: every student must still have access, including those without internet at home. Measure: compare reams of paper ordered each month before and after.
+
+test:
+mc1: Genes are made of | DNA | protein only | fat | sugar
+mc1: Choosing which animals or plants breed to get desired traits is | artificial selection | natural selection | extinction | mutation
+mc2: How can a mutation change an organism's traits? | It can change the protein a gene makes, which changes a trait | It changes all of the organism's cells to a new species | It never affects traits | It changes the environment
+mc2: Which must be true for natural selection to occur? | Individuals vary in inherited traits that affect survival and reproduction | All individuals are identical | Traits are not inherited | The environment never changes
+mc2: Antibiotic resistance in bacteria increases because | resistant bacteria survive treatment and reproduce | antibiotics create resistance genes on purpose | bacteria decide to change | resistant bacteria die first
+mc2: Which statement about natural selection is correct? | Populations change over generations; individuals do not evolve | Individuals change their genes when they need to | It happens in one generation | It only happens in plants
+mc2: Inserting a gene into bacteria so they produce a human protein is | genetic engineering | artificial selection | natural selection | fossilization
+mc2: A population of snails lives on dark rocks. Birds eat snails they can see. Which shell color will likely become more common? | dark shells | light shells | bright yellow shells | shells will all disappear
+mc2: Why might a mutation that is helpful in one environment be harmful in another? | Whether a trait helps depends on the environment | Mutations never matter | Environments are all the same | Mutations change the environment
+mc2: Which human action most directly increases pressure on Earth's resources? | rising population and consumption per person | recycling more | using renewable energy | protecting habitats
+mc3: Data: the percent of rock pocket mice with dark fur on a lava field rose from 15 percent to 80 percent over about 30 generations, while on nearby light sand it stayed near 5 percent. Which explanation is best supported? | Dark fur helped mice hide on dark lava, so it was selected for there but not on light sand | Lava dyed the mice | Mice on sand had no predators | Fur color is not inherited
+mc3: A crop variety was engineered to resist an insect pest. After 10 years, insects resistant to the crop's defense appeared. Which is the best explanation? | Natural selection favored insects with genes to survive the crop's defense | The crop gave the insects new genes | The insects learned to like the crop | Genetic engineering always fails
+num2: In a population of 800 moths, 200 have dark wings. What percent have dark wings? | 25
+num2: Dark moths rose from 2 percent of a population to 98 percent over 50 years. What was the average increase in percentage points per year? | 1.92
+num2: A city of 200,000 people uses 250 liters of water per person per day. How many liters does the city use each day? | 50000000
+num2: Selective breeding raised the average egg count of a chicken breed from 150 to 300 eggs per year. What was the percent increase? | 100
+mc2: Which question would best help scientists study natural selection in a lizard population after a hurricane? | How did leg length and grip strength differ between lizards that survived and those that did not? | What color is the sky after a hurricane? | How many trees fell? | How fast was the wind?
+mc3: A student says, "Giraffes got long necks because they stretched them to reach leaves and passed the longer necks to their babies." Which response is most accurate? | Giraffes with inherited longer necks reached more food, survived and reproduced more, so longer necks became common | The student is correct | Necks grow from eating more leaves | Giraffes chose long necks
+mc2: Which action would best reduce a person's resource use? | repairing a bike instead of buying a new one | buying new clothes every month | using disposable plates daily | keeping lights on all day
+sa2: Explain how a gene mutation can lead to a change in a trait. Use an example. | A mutation changes the DNA sequence, which can change the protein the gene codes for; for example, a mutation in the hemoglobin gene changes the protein, causing red blood cells to form a sickle shape.
+sa2: Compare natural selection and artificial selection, including who or what "selects." | In natural selection the environment (predators, climate, food) determines which individuals survive and reproduce; in artificial selection people choose which individuals breed. Both act on inherited variation over generations.
+sa3: Explain why increases in human population and per-person consumption affect other species. Suggest one solution. | More people using more resources means more land cleared for homes and farms, more water used and more pollution, which destroys habitats and reduces biodiversity. Solution: protect habitats with parks and wildlife corridors, and reduce consumption by reusing and using renewable energy.
+cer3: Scientists studied anole lizards on a Caribbean island before and after a strong hurricane. Before: average toe pad area 1.10 square mm, front leg length 28 mm. Survivors after the hurricane: average toe pad area 1.20 square mm, front leg length 30 mm. Offspring of survivors one year later: toe pad area 1.18 square mm, front leg length 29.5 mm. Make a claim about how the hurricane affected the lizard population. Use the data as evidence and explain your reasoning using natural selection. | Claim: the hurricane caused natural selection for larger toe pads and longer front legs, and the change was passed to the next generation. Evidence: survivors had larger toe pads (1.20 versus 1.10 square mm) and longer front legs (30 versus 28 mm) than the population before, and their offspring kept most of the change (1.18 square mm, 29.5 mm). Reasoning: lizards varied in these inherited traits; those with bigger toe pads and longer legs could hold onto branches in the strong winds and survived; they reproduced and passed on the genes, so the population's average traits shifted.
+
