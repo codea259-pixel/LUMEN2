@@ -235,14 +235,23 @@ def check_v2(where, sub, c):
         if sub in ('sci', 'soc') and not any(i['t'] == 'cer' for i in t): errors.append(f'{w}: unit test needs a cer item')
         if sub == 'ela' and not (any('p' in i for i in t) and any(i['t'] == 'wr' for i in t)): errors.append(f'{w}: ELA unit test needs a passage and a wr item')
         for i in [i for l in u['lessons'] for i in l['practice'] + l['quiz']] + t:
-            if 'p' not in i and '(' not in i['q'] and re.search(r'^(In|Using|From|For|On) (that|the same|those)\b', i['q']):
-                errors.append(f'{w}: this question depends on the one before it; repeat the facts it needs so it stands alone: {i["q"][:70]}')
+            alone(w, i)
             k = re.sub(r'\W+', ' ', i['q'].lower()).strip()
             if k in seen: errors.append(f'{w}: question appears twice: {i["q"][:70]}')
             seen[k] = 1
 
 
+def alone(w, i):
+    """Questions are drawn one at a time into benchmarks, so each must make sense without the one before it."""
+    if 'p' in i: return
+    if '(' not in i['q'] and re.search(r'^(In|Using|From|For|On) (that|the same|those)\b', i['q']):
+        errors.append(f'{w}: this question depends on the one before it; repeat the facts it needs so it stands alone: {i["q"][:70]}')
+    elif re.search(r'\b(from|in) (the|this) (story|passage|text|poem|article)\b', i['q'], re.I):
+        errors.append(f'{w}: this question mentions a passage but is not under a passage: line; move it under the passage or say what it needs: {i["q"][:70]}')
+
+
 def check_part(w, sub, kind, items):
+    for i in items: alone(w, i)
     a, wr = sum(i['t'] in AUTO for i in items), sum(i['t'] in WRITTEN for i in items)
     if kind == 'practice' and not 4 <= len(items) <= 10: errors.append(f'{w}: practice needs 4 to 10 items, has {len(items)}')
     if kind == 'quiz' and (not 6 <= len(items) <= 10 or a < 4 or wr < 1): errors.append(f'{w}: a quiz needs 6 to 10 items with at least 4 mc or num and 1 written')
@@ -276,7 +285,7 @@ def versions(cells):
                 sub, u = units[m.group(1)]
                 key = m.group(1) + '|' + ('test' if m.group(2) == 'test' else f'L{m.group(3)}:{m.group(4)}')
                 if m.group(2) != 'test' and not 1 <= int(m.group(3)) <= len(u['lessons']): errors.append(f'{where}: unit {m.group(1)} has {len(u["lessons"])} lessons'); part = None; continue
-                part = ver['parts'][key] = {'items': [], 'passages': [], '_sub': sub, '_kind': 'test' if m.group(2) == 'test' else m.group(4)}; psg = last = None
+                part = ver['parts'][key] = {'items': [], 'passages': [], '_sub': sub, '_u': u, '_kind': 'test' if m.group(2) == 'test' else m.group(4)}; psg = last = None
             elif part is None: errors.append(f'{where}: {tag} before a valid @for line')
             elif tag == 'passage':
                 if len(parts) != 2 or not all(parts): errors.append(f'{where}: passage needs Title | text'); continue
@@ -293,8 +302,14 @@ def versions(cells):
                 if psg is not None: it['p'] = psg
                 part['items'].append(it); last = it
         if not ver['name']: errors.append(f'versions/{fn}: needs an @version line')
+        norm = lambda q: re.sub(r'\W+', ' ', q.lower()).strip()
         for key, p in ver['parts'].items():
+            u = p.pop('_u'); std = {norm(i['q']) for i in u['test'] + [i for l in u['lessons'] for i in l['practice'] + l['quiz']]}
             check_part(f'versions/{fn} {key}', p.pop('_sub'), p.pop('_kind'), p['items'])
+            for i in p['items']:
+                if norm(i['q']) in std: errors.append(f'versions/{fn} {key}: this question is already in the standard version; write a new one: {i["q"][:70]}')
+        bad = sorted(set(ch for ch in json.dumps(ver, ensure_ascii=False) if ord(ch) > 255))
+        if bad: errors.append(f'versions/{fn}: PDFs cannot print {"".join(bad)!r}; use plain characters')
         out.append(ver)
     return out
 
