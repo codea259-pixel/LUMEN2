@@ -42,6 +42,8 @@ CREATE TABLE IF NOT EXISTS qvers(id INTEGER PRIMARY KEY, unit TEXT, part TEXT, k
 `);
 for (const col of ['under13 INTEGER DEFAULT 0', 'parent_email TEXT']) { try { db.exec(`ALTER TABLE users ADD COLUMN ${col}`); } catch { /* already there */ } }
 try { db.exec("ALTER TABLE tests ADD COLUMN passages TEXT DEFAULT '[]'"); } catch { /* already there */ }
+try { db.exec('ALTER TABLE classes ADD COLUMN game TEXT'); } catch { /* already there */ }
+db.exec('CREATE TABLE IF NOT EXISTS awards(id INTEGER PRIMARY KEY, class_id INTEGER, user_id INTEGER, gems INTEGER, reason TEXT, ts INTEGER, claimed INTEGER DEFAULT 0)');
 const Q = (sql, ...p) => db.prepare(sql).all(...p);
 const Q1 = (sql, ...p) => db.prepare(sql).get(...p);
 const X = (sql, ...p) => db.prepare(sql).run(...p);
@@ -49,8 +51,8 @@ const getS = (k, d) => { const r = Q1('SELECT value FROM settings WHERE key=?', 
 const setS = (k, v) => X('INSERT INTO settings(key,value) VALUES(?,?) ON CONFLICT(key) DO UPDATE SET value=excluded.value', k, JSON.stringify(v));
 const DEF = {
   block: ['stupid', 'idiot', 'dumb', 'hate you', 'shut up'],
-  flags: { 'AI tutor feedback': true, 'Live Classroom': true, 'Gem Challenges': true, 'Offline mode': false },
-  retDays: 3, gr: {}, programs: {}, terms: [],
+  flags: { 'AI tutor feedback': true, 'Live Classroom': true, 'Gem Challenges': true, 'Offline mode': false, 'Game mode': true, 'Class leaderboards': true },
+  retDays: 3, gr: {}, programs: {}, terms: [], game: { base: 10, per: 5, max: 30 },
   impact: { mission: 'Bose Academy gives every learner, everywhere, free access to clear lessons, unlimited practice and a patient tutor, so that no student is held back by cost or connection.', team: [], partners: [], funds: [['Content creation', 40], ['Hosting and infrastructure', 25], ['Accessibility and translation', 20], ['Reserve', 15]], raised: 0, goal: 0 },
 };
 const S = k => getS(k, DEF[k]);
@@ -104,15 +106,19 @@ function postOut(p, mod) {
     votes: JSON.parse(p.votes).map(nameOf), reports: mod ? JSON.parse(p.reports).map(nameOf) : [],
     replies: rs.map(r => ({ id: r.id, author: nameOf(r.author_id), body: r.body, hidden: !!r.hidden, reports: mod ? JSON.parse(r.reports).map(nameOf) : [] })) };
 }
+// Game: gems earned in total (spending never lowers a class goal), XP, this week's XP and the hero's look
+const gemsEarned = st => +((st.game && st.game.ge) ?? st.gems) || 0;
+const heroOf = st => { const g = st.game || {}; return { xp: +st.xp || 0, wk: g.wk && g.wk.w ? { w: String(g.wk.w).slice(0, 10), xp: +g.wk.xp || 0 } : null, hero: g.hero ? { hero: g.hero, eq: g.eq || {} } : null }; };
+const gameOf = c => { let g = {}; try { g = c.game ? JSON.parse(c.game) : {}; } catch { g = {}; } return { board: g.board !== false, teams: g.teams || [], tm: g.tm || {}, prize: g.prize || '' }; };
 function classOut(c) {
   const mem = Q('SELECT u.id,u.display,u.username,m.grades FROM class_members m JOIN users u ON u.id=m.user_id WHERE m.class_id=? ORDER BY u.id', c.id);
   const asg = Q('SELECT * FROM assignments WHERE class_id=? ORDER BY ts', c.id);
   const sts = mem.map(m => stateOf(m.id));
   const pct = (st, skills) => Math.round(100 * skills.reduce((a, k) => { const s = (st.S || {})[k]; return a + (lvl(s) >= 3 ? 1 : s && s.att ? Math.min(.99, s.p / .85) : 0); }, 0) / Math.max(1, skills.length));
-  const gems = sts.map(s => +s.gems || 0), ch = c.challenge ? JSON.parse(c.challenge) : null;
-  return { id: c.id, name: c.name, grade: c.grade, region: c.region, code: c.code, ch,
+  const gems = sts.map(gemsEarned), ch = c.challenge ? JSON.parse(c.challenge) : null;
+  return { id: c.id, name: c.name, grade: c.grade, region: c.region, code: c.code, ch, game: gameOf(c),
     asg: asg.map(a => ({ id: a.id, title: a.title, skills: JSON.parse(a.skills), target: a.target == null ? 'all' : mem.findIndex(m => m.id === a.target) })),
-    students: mem.map((m, i) => ({ uid: m.id, name: m.display, email: m.username, grades: JSON.parse(m.grades), gems: gems[i], q: Object.values(sts[i].S || {}).reduce((a, s) => a + (s.att || 0), 0),
+    students: mem.map((m, i) => ({ uid: m.id, name: m.display, email: m.username, grades: JSON.parse(m.grades), gems: gems[i], q: Object.values(sts[i].S || {}).reduce((a, s) => a + (s.att || 0), 0), ...heroOf(sts[i]),
       p: Object.fromEntries(asg.map(a => [a.id, pct(sts[i], JSON.parse(a.skills))])) })) };
 }
 const ownClass = (c, id) => { const k = Q1('SELECT * FROM classes WHERE id=?', int(id, 1, 1e12)); if (!k || (k.teacher_id !== c.u.id && c.u.role !== 'owner')) throw new E(404, 'Class not found.'); return k; };
@@ -149,7 +155,7 @@ route('POST', '/api/login', (c, res) => {
 route('POST', '/api/logout', (c, res) => { res.cookie = 'x'; res.clear = true; return { ok: true }; });
 route('GET', '/api/me', c => { need(c); return { user: userOut(c.u) }; });
 route('PATCH', '/api/me', c => { need(c); const d = str(c.body.display, 2, 20), bad = clean(d); if (bad) throw new E(400, bad); if (Q1('SELECT 1 FROM users WHERE display=? AND id<>?', d, c.u.id)) throw new E(409, 'That display name is taken.'); X('UPDATE users SET display=? WHERE id=?', d, c.u.id); return { display: d }; });
-route('GET', '/api/settings', () => ({ flags: S('flags'), retDays: S('retDays'), gr: S('gr'), impact: S('impact'), programs: S('programs'), terms: S('terms') }));
+route('GET', '/api/settings', () => ({ flags: S('flags'), retDays: S('retDays'), gr: S('gr'), impact: S('impact'), programs: S('programs'), terms: S('terms'), game: S('game') }));
 route('GET', '/api/curriculum', () => ({ courses: CUR.courses, milestones: CUR.milestones }));
 route('GET', '/api/state', c => { need(c); return stateOf(c.u.id); });
 route('PUT', '/api/state', c => { need(c); const j = JSON.stringify(c.body); if (j.length > 400000) throw new E(413, 'Too large.'); X('INSERT INTO state(user_id,json,updated) VALUES(?,?,?) ON CONFLICT(user_id) DO UPDATE SET json=excluded.json,updated=excluded.updated', c.u.id, j, Date.now()); return { ok: true }; });
@@ -181,7 +187,8 @@ route('POST', '/api/groups/:id/join', c => { need(c); const g = Q1('SELECT * FRO
 route('GET', '/api/classes', c => { need(c);
   if (isTeacher(c.u)) return { classes: Q(c.u.role === 'owner' ? 'SELECT * FROM classes ORDER BY id' : 'SELECT * FROM classes WHERE teacher_id=? ORDER BY id', ...(c.u.role === 'owner' ? [] : [c.u.id])).map(classOut) };
   const mine = Q('SELECT c.*,m.user_id FROM class_members m JOIN classes c ON c.id=m.class_id WHERE m.user_id=?', c.u.id);
-  return { joined: mine.map(k => ({ id: k.id, name: k.name, teacher: nameOf(k.teacher_id), assigned: Q('SELECT * FROM assignments WHERE class_id=? AND (target IS NULL OR target=?) ORDER BY ts DESC', k.id, c.u.id).map(a => ({ id: a.id, title: a.title, skills: JSON.parse(a.skills) })),
+  const boardOf = k => { const g = gameOf(k); if (!g.board || S('flags')['Class leaderboards'] === false) return null; return Q('SELECT u.id,u.display FROM class_members m JOIN users u ON u.id=m.user_id WHERE m.class_id=?', k.id).map(u => ({ n: u.display, me: u.id === c.u.id, t: g.tm[u.id] ?? null, ...heroOf(stateOf(u.id)) })); };
+  return { joined: mine.map(k => ({ id: k.id, name: k.name, teacher: nameOf(k.teacher_id), game: (({ board, teams, prize }) => ({ board, teams, prize }))(gameOf(k)), board: boardOf(k), assigned: Q('SELECT * FROM assignments WHERE class_id=? AND (target IS NULL OR target=?) ORDER BY ts DESC', k.id, c.u.id).map(a => ({ id: a.id, title: a.title, skills: JSON.parse(a.skills) })),
     tests: Q('SELECT * FROM tests WHERE class_id=? AND (target IS NULL OR target=?) ORDER BY ts DESC', k.id, c.u.id).map(t => { const s = Q1('SELECT * FROM subs WHERE test_id=? AND user_id=?', t.id, c.u.id);
       return { id: t.id, kind: t.kind, title: t.title, minutes: t.minutes, skills: JSON.parse(t.skills), count: JSON.parse(t.items).length, released: !!t.released, ts: t.ts,
         sub: s ? { started: s.started, submitted: s.submitted, result: t.released && s.result ? JSON.parse(s.result) : null } : null }; }) })) }; });
@@ -195,7 +202,7 @@ route('PATCH', '/api/classes/:id/students/:uid', c => { need(c, isTeacher(c.u));
 route('POST', '/api/classes/:id/assign', c => { need(c, isTeacher(c.u)); const k = ownClass(c, c.params.id); const skills = (Array.isArray(c.body.skills) ? c.body.skills : []).map(String).slice(0, 40); if (!skills.length) throw new E(400, 'Nothing to assign.');
   let target = null; if (c.body.target != null && c.body.target !== 'all') { target = int(c.body.target, 1, 1e12); if (!Q1('SELECT 1 FROM class_members WHERE class_id=? AND user_id=?', k.id, target)) throw new E(400, 'That student is not in this class.'); }
   X('INSERT INTO assignments(class_id,title,skills,target,ts) VALUES(?,?,?,?,?)', k.id, str(c.body.title, 2, 120), JSON.stringify(skills), target, Date.now()); return { ok: true }; });
-route('POST', '/api/classes/:id/challenge', c => { need(c, isTeacher(c.u)); const k = ownClass(c, c.params.id); const base = Q('SELECT user_id FROM class_members WHERE class_id=?', k.id).reduce((a, m) => a + (+stateOf(m.user_id).gems || 0), 0);
+route('POST', '/api/classes/:id/challenge', c => { need(c, isTeacher(c.u)); const k = ownClass(c, c.params.id); const base = Q('SELECT user_id FROM class_members WHERE class_id=?', k.id).reduce((a, m) => a + gemsEarned(stateOf(m.user_id)), 0);
   X('UPDATE classes SET challenge=? WHERE id=?', JSON.stringify({ goal: int(c.body.goal, 10, 1e6), reward: str(c.body.reward || 'Class celebration', 1, 80), base }), k.id); return { ok: true }; });
 
 // assessments: classwork, quizzes and unit tests. The answer key stays with the teacher; students get the questions when they start.
@@ -306,11 +313,29 @@ route('PATCH', '/api/owner/users/:id', c => { need(c, c.u.role === 'owner'); con
   if (c.body.role !== undefined) { if (!ROLES.includes(c.body.role)) throw new E(400, 'Invalid role.'); X('UPDATE users SET role=? WHERE id=?', c.body.role, t.id); }
   if (typeof c.body.locked === 'boolean') X('UPDATE users SET locked=? WHERE id=?', c.body.locked ? 1 : 0, t.id);
   if (typeof c.body.verified === 'boolean') X('UPDATE users SET verified=? WHERE id=?', c.body.verified ? 1 : 0, t.id); return { ok: true }; });
-route('GET', '/api/owner/settings', c => { need(c, c.u.role === 'owner'); return { block: S('block'), flags: S('flags'), retDays: S('retDays'), gr: S('gr'), impact: S('impact'), programs: S('programs'), terms: S('terms') }; });
+route('GET', '/api/owner/settings', c => { need(c, c.u.role === 'owner'); return { block: S('block'), flags: S('flags'), retDays: S('retDays'), gr: S('gr'), impact: S('impact'), programs: S('programs'), terms: S('terms'), game: S('game') }; });
+route('PATCH', '/api/classes/:id/game', c => { need(c, isTeacher(c.u)); const k = ownClass(c, c.params.id), g = gameOf(k), b = c.body;
+  if (b.board !== undefined) g.board = !!b.board;
+  if (Array.isArray(b.teams)) g.teams = b.teams.slice(0, 6).map(t => str(t, 1, 24));
+  if (b.tm) { const ids = new Set(Q('SELECT user_id FROM class_members WHERE class_id=?', k.id).map(m => m.user_id)); g.tm = Object.fromEntries(Object.entries(b.tm).filter(([u, t]) => ids.has(+u) && t !== null).map(([u, t]) => [+u, int(t, 0, Math.max(0, g.teams.length - 1))])); }
+  if (!g.teams.length) g.tm = {};
+  if (b.prize !== undefined) g.prize = String(b.prize).trim().slice(0, 80);
+  X('UPDATE classes SET game=? WHERE id=?', JSON.stringify(g), k.id); return { ok: true }; });
+route('POST', '/api/classes/:id/awards', c => { need(c, isTeacher(c.u)); const k = ownClass(c, c.params.id), g = gameOf(k), gems = int(c.body.gems, 1, 20), reason = str(c.body.reason || 'Great work', 1, 60), to = String(c.body.to ?? 'all');
+  let ids = Q('SELECT user_id FROM class_members WHERE class_id=?', k.id).map(m => m.user_id);
+  if (to.startsWith('t:')) { const t = int(to.slice(2), 0, 5); ids = ids.filter(u => g.tm[u] === t); } else if (to !== 'all') { const u = int(to, 1, 1e12); ids = ids.filter(x => x === u); }
+  if (!ids.length) throw new E(400, 'Nobody to give gems to.');
+  const now = Date.now(); ids.forEach(u => X('INSERT INTO awards(class_id,user_id,gems,reason,ts) VALUES(?,?,?,?,?)', k.id, u, gems, reason, now)); return { ok: true, count: ids.length }; });
+route('GET', '/api/awards', c => { need(c); return { awards: Q('SELECT a.id,a.gems,a.reason,a.ts,c.name cls FROM awards a JOIN classes c ON c.id=a.class_id WHERE a.user_id=? AND a.claimed=0 ORDER BY a.ts LIMIT 50', c.u.id) }; });
+route('POST', '/api/awards/claim', c => { need(c); const got = [];
+  for (const id of (Array.isArray(c.body.ids) ? c.body.ids : []).slice(0, 50)) { const r = X('UPDATE awards SET claimed=1 WHERE id=? AND user_id=? AND claimed=0', int(id, 1, 1e12), c.u.id); if (r.changes) got.push(+id); }
+  return { claimed: got }; });
+
 route('PUT', '/api/owner/settings', c => { need(c, c.u.role === 'owner'); const b = c.body;
   if (b.block) setS('block', b.block.map(x => String(x).toLowerCase().trim().slice(0, 40)).filter(Boolean).slice(0, 500));
   if (b.flags) setS('flags', Object.fromEntries(Object.entries(b.flags).slice(0, 30).map(([k, v]) => [String(k).slice(0, 40), !!v])));
   if (b.retDays !== undefined) setS('retDays', int(b.retDays, 0, 60));
+  if (b.game) setS('game', { base: int(b.game.base, 0, 120), per: int(b.game.per, 0, 60), max: int(b.game.max, 0, 240) });
   if (Array.isArray(b.terms)) setS('terms', b.terms.slice(0, 6).map(t => ({ name: str(t.name, 1, 30), start: /^\d{4}-\d{2}-\d{2}$/.test(t.start) ? t.start : '' })));
   if (b.programs) setS('programs', Object.fromEntries(Object.entries(b.programs).slice(0, 200).filter(([k]) => /^(math|ela|sci|soc)\|-?\d{1,2}$/.test(k)).map(([k, v]) => [k, String(v).trim().slice(0, 300)])));
   if (b.gr) setS('gr', Object.fromEntries(Object.entries(b.gr).slice(0, 1000).map(([k, v]) => [String(k).slice(0, 60), int(v, -1, 13)])));

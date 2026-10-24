@@ -116,6 +116,31 @@ const errs = [], ok = s => console.log('✓', s);
   await t.click('button:has-text("Release scores")'); await t.waitForSelector('text=Scores released', { timeout: 15000 }); await t.waitForFunction(() => /\d+\/\d+/.test(document.querySelector('.gb tr:nth-child(2)').textContent), null, { timeout: 15000 }); ok('teacher scored and released: ' + (await t.textContent('.gb tr:nth-child(2)')).replace(/\s+/g, ' '));
   await s.click('#tabs >> text=Learn'); await s.click('#tabs >> text=My classes'); await s.waitForSelector('text=Score:', { timeout: 15000 }); ok('student sees ' + await s.textContent('.post b:has-text("Score")'));
 
+  // 5c. Game: play-time settings, teams, bonus gems, the weekly leaderboard; rules keep rows and gifts safe
+  await o.evaluate(() => api('PUT', '/api/owner/settings', { game: { base: 4, per: 5, max: 25 } }));
+  await s.reload(); await s.waitForSelector('#avatarBtn', { timeout: 20000 });
+  if ((await s.evaluate(() => api('GET', '/api/settings'))).game.base !== 4) errs.push('play time setting not saved (Firebase)'); else ok('owner play time saved (Firebase)');
+  await s.evaluate(async () => { addXP(120, 'test'); clearTimeout(_syncT); _syncT = null; await api('PUT', '/api/state', stateBody()) });
+  await t.click('.tt >> text=Classes'); await t.waitForSelector('.gblock', { timeout: 15000 }); await t.selectOption('[id^=tn]', '2'); await t.click('text=Make teams'); await t.waitForSelector('.race', { timeout: 15000 });
+  const sid0 = await t.evaluate(() => ST.classes[0].students[0].uid); await t.selectOption('[id^=awt]', String(sid0)); await t.selectOption('[id^=awg]', '5'); await t.click('text=Give gems'); await t.waitForSelector('text=Gave 5 gems', { timeout: 15000 });
+  ok('teacher made teams and gave 5 bonus gems (Firebase): ' + JSON.stringify(await t.$$eval('.gblock table tr', r => r.slice(1).map(x => x.innerText.replace(/\s+/g, ' ').slice(0, 50)))));
+  const g0 = await s.evaluate(() => GEMS()); await s.click('#tabs >> text=Learn'); await s.click('#tabs >> text=My classes'); await s.waitForSelector('.lb', { timeout: 15000 });
+  await s.waitForFunction(g => GEMS() === g + 5, g0, { timeout: 15000 }); ok('student collected the bonus gems once and sees: ' + (await s.$$eval('.lb li', l => l.map(x => x.innerText.replace(/\s+/g, ' ')).join(' | '))));
+  const ga = await s.evaluate(async () => { const db = firebase.app().firestore(), uid = FBM.uid(), out = {};
+    const cs = await db.collection('classes').where('members', 'array-contains', uid).get(), c = cs.docs[0], other = c.data().members.find(u => u !== uid);
+    const tryIt = async (k, fn) => { try { await fn(); out[k] = 'ALLOWED' } catch (e) { out[k] = 'blocked' } };
+    const mine = (await c.ref.collection('board').doc(uid).get()).data(); out['own board row saved'] = mine && mine.xp >= 120 ? 'yes' : 'NO';
+    await tryIt('write a classmate\'s board row', () => c.ref.collection('board').doc(other).set({ n: 'x', xp: 1, w: '', wx: 99999, hero: '{}', ts: 1 }));
+    await tryIt('add extra fields to own row', () => c.ref.collection('board').doc(uid).set({ ...mine, admin: true }));
+    await tryIt('give self gems', () => c.ref.collection('awards').add({ uid, gems: 20, reason: 'me', ts: 1, claimed: false }));
+    const aw = await c.ref.collection('awards').where('uid', '==', uid).get(), a = aw.docs[0];
+    await tryIt('claim a gift twice', () => a.ref.update({ claimed: true }));
+    await tryIt('change a gift\'s gems', () => a.ref.update({ gems: 20 }));
+    await tryIt('read a classmate\'s gifts', async () => { const q = await c.ref.collection('awards').where('uid', '==', other).get(); if (q.empty) throw 0 });
+    await tryIt('change the class game settings', () => c.ref.update({ game: { board: false } }));
+    return out; }).catch(e => ({ error: e.message }));
+  ok('student attacks on the game: ' + JSON.stringify(ga)); if (ga['own board row saved'] !== 'yes' || Object.entries(ga).some(([k, v]) => k !== 'own board row saved' && v !== 'blocked')) errs.push('game rule allowed an attack or the board row was not saved');
+
   // 6. A 13+ learner joins by code, posts; the other student votes
   const l = await page(); await signup(l, 'student', 'priya16', 'Priya'); await l.click('#tabs >> text=My classes'); await l.fill('#jc', code); await l.click('#views button:has-text("Join")'); await l.waitForSelector('text=Room 5', { timeout: 15000 }).catch(async e => { throw new Error('join failed, toast: ' + await l.textContent('#toast')) }); ok('learner joined by code');
   await l.click('#tabs >> text=Community'); await l.fill('#pt', 'How do I add fractions?'); await l.fill('#pb', 'I keep adding the bottoms too.'); await l.click('#views button:has-text("Post")');

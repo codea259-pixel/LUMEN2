@@ -8,8 +8,9 @@
 .worldmap{border-radius:24px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line)}.worldmap svg{display:block;width:100%;height:auto}
 .worldmap .land{cursor:pointer}.worldmap .land:focus{outline:none}.worldmap .land:focus .ring,.worldmap .land:hover .ring{stroke:#F2A900;stroke-width:8}
 .landlist{display:none;gap:10px}
-@media(max-width:640px){.worldmap{display:none}.landlist{display:grid}}
-.lrow{display:flex;gap:12px;align-items:center;padding:12px;text-align:left;width:100%;border-radius:16px;border:2px solid var(--line);background:var(--panel);color:var(--ink);font:inherit}
+@media(max-width:640px){.worldmap{display:none}.landlist{display:grid}.schools small{display:none}.schools .chip{padding:5px 10px}}
+.lrow>span:last-child{display:flex;flex-direction:column;align-items:flex-start}
+.lrow{display:flex;justify-content:flex-start;gap:12px;align-items:center;padding:12px;text-align:left;width:100%;border-radius:16px;border:2px solid var(--line);background:var(--panel);color:var(--ink);font:inherit}
 .lrow.on{border-color:#F2A900}.lrow .le{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-size:24px;flex:none}.lrow b{display:block}.lrow[disabled]{opacity:.55}
 .mons{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin-top:12px}
 .mon{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;padding:12px}.mon .art{width:110px;height:110px}.mon.boss{border:2px solid #F2A900}
@@ -190,8 +191,4 @@ const _ofG=O.flags;O.flags=function(){const g=GSET();return _ofG()+`<h3 style="m
   <div class="row"><label>Free minutes a day <input type="number" id="gsb" min="0" max="120" value="${g.base}" style="width:90px"></label><label>Minutes earned per 10 minutes of learning <input type="number" id="gsp" min="0" max="60" value="${g.per}" style="width:90px"></label><label>Most minutes a day <input type="number" id="gsm" min="0" max="240" value="${g.max}" style="width:90px"></label><button class="lamp" onclick="saveGameSet()">Save play time</button></div>`};
 function saveGameSet(){const n=(id,hi)=>Math.max(0,Math.min(hi,Math.round(+$(id).value||0))),g={base:n('gsb',120),per:n('gsp',60),max:n('gsm',240)};busy(async()=>{await api('PUT','/api/owner/settings',{game:g});BOOT.settings.game=g;msg('Play time saved.')})}
 
-/* Start: only level-ups from now on are celebrated; then redraw the header and the page with the game added */
-if(!GM.seen)GM.seen=LVL();
-if(BOOT.role==='student'&&!BOOT.local)api('GET','/api/classes').then(r=>{ST.joined=r.joined||[]}).catch(()=>{});
-nav();if(tab==='learn')render();else if(VIEWS[tab])showTab(tab);setTimeout(gameCheck,1500);
 </script>

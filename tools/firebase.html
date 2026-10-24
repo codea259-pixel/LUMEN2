@@ -4,7 +4,7 @@
    Who may read or change what is enforced by firestore.rules, not by this file. ===== */
 const FBM=(()=>{
   const SDK=window.FIREBASE_SDK_BASE||'https://www.gstatic.com/firebasejs/10.12.2/';
-  const DEF={flags:{'AI tutor feedback':true,'Live Classroom':true,'Gem Challenges':true,'Offline mode':false},retDays:3,gr:{},programs:{},terms:[],
+  const DEF={flags:{'AI tutor feedback':true,'Live Classroom':true,'Gem Challenges':true,'Offline mode':false,'Game mode':true,'Class leaderboards':true},retDays:3,gr:{},programs:{},terms:[],game:{base:10,per:5,max:30},
     block:['stupid','idiot','dumb','hate you','shut up'],
     impact:{mission:'Bose Academy gives every learner, everywhere, free access to clear lessons, unlimited practice and a patient tutor, so that no student is held back by cost or connection.',team:[],partners:[],funds:[['Content creation',40],['Hosting and infrastructure',25],['Accessibility and translation',20],['Reserve',15]],raised:0,goal:0}};
   const ROLES=['student','parent','teacher'];
@@ -78,7 +78,7 @@ const FBM=(()=>{
     await doc('state',me.uid).set({json:'{}',updated:now(),readers:[]},{merge:true});if(me.email||parentEmail)await doc('private',me.uid).set({...(me.email?{email:me.email}:{}),...(parentEmail?{parentEmail,consent:now()}:{})});return{ok:true}});
   route('POST','/api/logout',async()=>{await auth.signOut();return{ok:true}});
   route('PATCH','/api/me',async b=>{need();const d=str(b.display,2,20,'Display names');await doc('users',me.uid).update({display:d});profile.display=d;return{display:d}});
-  route('GET','/api/settings',async()=>({flags:{...DEF.flags,...site.flags},retDays:site.retDays??DEF.retDays,gr:site.gr||{},impact:site.impact||DEF.impact,programs:site.programs||{},terms:site.terms||[]}));
+  route('GET','/api/settings',async()=>({flags:{...DEF.flags,...site.flags},retDays:site.retDays??DEF.retDays,gr:site.gr||{},impact:site.impact||DEF.impact,programs:site.programs||{},terms:site.terms||[],game:site.game||DEF.game}));
   route('GET','/api/curriculum',async()=>{try{const r=await fetch('server/curriculum.json');if(r.ok)return r.json()}catch(e){}return{courses:[],milestones:[]}});
   route('GET','/api/state',async()=>{need();const s=await stateOf(me.uid);lastSaved=s;return s});
   route('PUT','/api/state',async b=>{need();const json=JSON.stringify(b);if(json.length>400000)throw new E(413,'Too large.');
@@ -86,6 +86,7 @@ const FBM=(()=>{
     /* public Impact counters */
     try{const q=x=>Object.values((x&&x.S)||{}).reduce((a,s)=>a+(s.att||0),0),was=lastSaved?q(lastSaved):0,n=q(b),dq=Math.max(0,Math.min(50,n-was)),ds=Math.max(0,Math.min(3600,(b.secs||0)-((lastSaved&&lastSaved.secs)||0)));
       if(dq||ds){const inc={answered:FV.increment(dq),secs:FV.increment(ds)};if(was===0&&n>0)inc.learners=FV.increment(1);await doc('stats','global').set(inc,{merge:true})}}catch(e){}
+    try{await boardSync(b)}catch(e){}
     lastSaved=b;return{ok:true}});
 
   /* Community */
@@ -115,20 +116,31 @@ const FBM=(()=>{
   route('POST','/api/groups/:id/join',async(b,p)=>{need();const r=doc('groups',sid(p.id)),d=await r.get();if(!d.exists)throw new E(404,'Not found.');const inG=(d.data().members||[]).includes(me.uid);
     await r.update(inG?{members:FV.arrayRemove(me.uid),['memberNames.'+me.uid]:FV.delete()}:{members:FV.arrayUnion(me.uid),['memberNames.'+me.uid]:profile.display});return{ok:true}});
 
+  /* Game: gems earned in total, XP, this week's XP and the hero's look. Learners keep their own row on each class's weekly board (classes/{c}/board/{uid}). */
+  const gemsEarned=st=>+((st.game&&st.game.ge)??st.gems)||0;
+  const heroOf=st=>{const g=st.game||{};return{xp:+st.xp||0,wk:g.wk&&g.wk.w?{w:String(g.wk.w).slice(0,10),xp:+g.wk.xp||0}:null,hero:g.hero?{hero:g.hero,eq:g.eq||{}}:null}};
+  const gameOf=c=>{const g=c.game||{};return{board:g.board!==false,teams:g.teams||[],tm:g.tm||{},prize:g.prize||''}};
+  let myCls=null,lastBoard='';
+  async function boardSync(b){if(!profile||profile.role!=='student')return;const h=heroOf(b),row={n:profile.display,xp:Math.min(1e7,Math.round(h.xp)),w:h.wk?h.wk.w:'',wx:Math.min(1e6,Math.round(h.wk?h.wk.xp:0)),hero:JSON.stringify(h.hero||{}).slice(0,390)},k=JSON.stringify(row);
+    if(myCls===null)myCls=(await db.collection('classes').where('members','array-contains',me.uid).get()).docs.map(d=>d.id);
+    if(k===lastBoard||!myCls.length)return;lastBoard=k;await Promise.all(myCls.map(c=>doc('classes',c).collection('board').doc(me.uid).set({...row,ts:now()})))}
   /* Classes */
   const pct=(st,skills)=>Math.round(100*skills.reduce((a,k)=>{const s=(st.S||{})[k];return a+(lvl(s)>=3?1:s&&s.att?Math.min(.99,s.p/.85):0)},0)/Math.max(1,skills.length));
   async function classOut(cd){const c=cd.data(),mem=c.members||[];
-    const [asg,users,states]=await Promise.all([cd.ref.collection('assignments').get(),Promise.all(mem.map(u=>doc('users',u).get())),Promise.all(mem.map(stateOf))]);
+    const [asg,users,states]=await Promise.all([cd.ref.collection('assignments').get(),Promise.all(mem.map(u=>doc('users',u).get())),Promise.all(mem.map(stateOf))]),gm=gameOf(c);
     const A=asg.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>a.ts-b.ts);
-    return{id:num(cd.id),name:c.name,grade:c.grade,region:c.region||'',code:c.code,ch:c.challenge||null,
+    return{id:num(cd.id),name:c.name,grade:c.grade,region:c.region||'',code:c.code,ch:c.challenge||null,game:{...gm,tm:Object.fromEntries(Object.entries(gm.tm).map(([u,t])=>[num(u),t]))},
       asg:A.map(a=>({id:num(a.id),title:a.title,skills:a.skills,target:a.target?mem.indexOf(a.target):'all'})),
-      students:mem.map((u,i)=>{const p=users[i].exists?users[i].data():{},st=states[i];return{uid:num(u),name:p.display||'student',email:p.username||'',grades:(c.memberGrades||{})[u]||[c.grade],gems:+st.gems||0,
+      students:mem.map((u,i)=>{const p=users[i].exists?users[i].data():{},st=states[i];return{uid:num(u),name:p.display||'student',email:p.username||'',grades:(c.memberGrades||{})[u]||[c.grade],gems:gemsEarned(st),...heroOf(st),
         q:Object.values(st.S||{}).reduce((a,s)=>a+(s.att||0),0),p:Object.fromEntries(A.map(a=>[num(a.id),pct(st,a.skills)]))}})}}
   const ownClass=async id=>{const d=await doc('classes',sid(id)).get();if(!d.exists||(d.data().teacherId!==me.uid&&!isOwner()))throw new E(404,'Class not found.');return d};
   route('GET','/api/classes',async()=>{need();
     if(isTeacher()){const q=isOwner()?db.collection('classes'):db.collection('classes').where('teacherId','==',me.uid);const cs=await q.get();return{classes:await Promise.all(cs.docs.sort((a,b)=>a.data().created-b.data().created).map(classOut))}}
     const cs=await db.collection('classes').where('members','array-contains',me.uid).get();
-    return{joined:await Promise.all(cs.docs.map(async d=>{const a=await d.ref.collection('assignments').get();return{id:num(d.id),name:d.data().name,teacher:d.data().teacherName,
+    myCls=cs.docs.map(d=>d.id);
+    const boardOf=async d=>{const g=gameOf(d.data());if(!g.board||(site.flags||{})['Class leaderboards']===false)return null;const r=await d.ref.collection('board').get();const mem=d.data().members||[];
+      return r.docs.filter(x=>mem.includes(x.id)).map(x=>{const v=x.data();let h=null;try{h=JSON.parse(v.hero||'null')}catch(e){}return{n:v.n,me:x.id===me.uid,t:g.tm[x.id]??null,xp:+v.xp||0,wk:v.w?{w:v.w,xp:+v.wx||0}:null,hero:h&&h.hero?h:null}})};
+    return{joined:await Promise.all(cs.docs.map(async d=>{const a=await d.ref.collection('assignments').get(),g=gameOf(d.data());return{id:num(d.id),name:d.data().name,teacher:d.data().teacherName,game:{board:g.board,teams:g.teams,prize:g.prize},board:await boardOf(d),
       assigned:a.docs.map(x=>({id:x.id,...x.data()})).filter(x=>!x.target||x.target===me.uid).sort((x,y)=>y.ts-x.ts).map(x=>({id:num(x.id),title:x.title,skills:x.skills})),
       tests:await myTests(d)}}))}});
   route('POST','/api/classes',async b=>{need(isTeacher());const name=str(b.name,2,60,'Class names');let code;
@@ -136,7 +148,7 @@ const FBM=(()=>{
     const r=db.collection('classes').doc();await r.set({teacherId:me.uid,teacherName:profile.display,name,grade:+b.grade,region:String(b.region||'').slice(0,60),code,members:[],memberGrades:{},challenge:null,created:now()});
     await doc('joinCodes',code).set({classId:r.id,teacherId:me.uid});return{ok:true}});
   route('POST','/api/classes/join',async b=>{need(profile.role==='student');const code=String(b.code||'').trim().toUpperCase();const j=await doc('joinCodes',code).get();if(!j.exists)throw new E(404,'No class has that code.');
-    await doc('classes',j.data().classId).update({members:FV.arrayUnion(me.uid)});await doc('state',me.uid).set({readers:FV.arrayUnion(j.data().teacherId)},{merge:true});
+    await doc('classes',j.data().classId).update({members:FV.arrayUnion(me.uid)});myCls=null;lastBoard='';await doc('state',me.uid).set({readers:FV.arrayUnion(j.data().teacherId)},{merge:true});
     const c=await doc('classes',j.data().classId).get();return{ok:true,name:c.data().name}});
   route('POST','/api/classes/:id/students',async(b,p)=>{need(isTeacher());const cd=await ownClass(p.id),c=cd.data();
     const names=(Array.isArray(b.names)?b.names:[]).map(n=>String(n).trim()).filter(Boolean).slice(0,60);if(!names.length)throw new E(400,'Enter at least one student name.');
@@ -156,7 +168,21 @@ const FBM=(()=>{
     const target=b.target&&b.target!=='all'?sid(b.target):null;if(target&&!(cd.data().members||[]).includes(target))throw new E(400,'That student is not in this class.');
     await cd.ref.collection('assignments').add({title:str(b.title,2,120,'Titles'),skills,target,ts:now()});return{ok:true}});
   route('POST','/api/classes/:id/challenge',async(b,p)=>{need(isTeacher());const cd=await ownClass(p.id);const st=await Promise.all((cd.data().members||[]).map(stateOf));
-    await cd.ref.update({challenge:{goal:Math.max(10,+b.goal||100),reward:String(b.reward||'Class celebration').slice(0,80),base:st.reduce((a,s)=>a+(+s.gems||0),0)}});return{ok:true}});
+    await cd.ref.update({challenge:{goal:Math.max(10,+b.goal||100),reward:String(b.reward||'Class celebration').slice(0,80),base:st.reduce((a,s)=>a+gemsEarned(s),0)}});return{ok:true}});
+  route('PATCH','/api/classes/:id/game',async(b,p)=>{need(isTeacher());const cd=await ownClass(p.id),g=gameOf(cd.data()),mem=cd.data().members||[];
+    if(b.board!==undefined)g.board=!!b.board;if(Array.isArray(b.teams))g.teams=b.teams.slice(0,6).map(t=>str(t,1,24,'Team names'));
+    if(b.tm)g.tm=Object.fromEntries(Object.entries(b.tm).map(([u,t])=>[sid(u),t]).filter(([u,t])=>mem.includes(u)&&t!==null).map(([u,t])=>[u,Math.max(0,Math.min(g.teams.length-1,Math.round(+t||0)))]));
+    if(!g.teams.length)g.tm={};if(b.prize!==undefined)g.prize=String(b.prize).trim().slice(0,80);await cd.ref.update({game:g});return{ok:true}});
+  route('POST','/api/classes/:id/awards',async(b,p)=>{need(isTeacher());const cd=await ownClass(p.id),c=cd.data(),g=gameOf(c),gems=Math.round(+b.gems||0),reason=str(b.reason||'Great work',1,60,'Reasons'),to=String(b.to??'all');
+    if(gems<1||gems>20)throw new E(400,'Give 1 to 20 gems.');let ids=c.members||[];
+    if(to.startsWith('t:')){const t=+to.slice(2);ids=ids.filter(u=>g.tm[u]===t)}else if(to!=='all'){const u=sid(to);ids=ids.filter(x=>x===u)}
+    if(!ids.length)throw new E(400,'Nobody to give gems to.');const ts=now();await Promise.all(ids.map(u=>cd.ref.collection('awards').add({uid:u,gems,reason,ts,claimed:false,cname:c.name})));return{ok:true,count:ids.length}});
+  route('GET','/api/awards',async()=>{need();if(myCls===null)myCls=(await db.collection('classes').where('members','array-contains',me.uid).get()).docs.map(d=>d.id);
+    const out=[];for(const c of myCls){const r=await doc('classes',c).collection('awards').where('uid','==',me.uid).where('claimed','==',false).get();r.forEach(d=>{const v=d.data();out.push({id:num(c+'|'+d.id),gems:v.gems,reason:v.reason,ts:v.ts,cls:v.cname})})}
+    return{awards:out.sort((a,b)=>a.ts-b.ts).slice(0,50)}});
+  route('POST','/api/awards/claim',async b=>{need();const got=[];
+    for(const id of (Array.isArray(b.ids)?b.ids:[]).slice(0,50)){const [c,a]=sid(id).split('|');if(!a)continue;try{await doc('classes',c).collection('awards').doc(a).update({claimed:true});got.push(id)}catch(e){}}
+    return{claimed:got}});
   /* Assessments: questions in classes/{c}/tests/{t}, the answer key and draft grades in .../key/k (teacher only), each student's answers in .../subs/{uid} */
   const KINDS=['classwork','quiz','test','benchmark'],P=(t,d)=>{try{return JSON.parse(t)}catch(e){return d}};
   async function myTests(cd){const ts=await cd.ref.collection('tests').get();
@@ -222,8 +248,9 @@ const FBM=(()=>{
   route('PATCH','/api/owner/users/:id',async(b,p)=>{need(isOwner());p.id=sid(p.id);if(p.id===site.ownerUid)throw new E(403,'The Owner account is protected and cannot be changed.');const up={};
     if(b.role!==undefined){if(![...ROLES,'school_admin'].includes(b.role))throw new E(400,'Invalid role.');up.role=b.role}
     if(typeof b.locked==='boolean')up.locked=b.locked;if(typeof b.verified==='boolean')up.verified=b.verified;await doc('users',p.id).update(up);return{ok:true}});
-  route('GET','/api/owner/settings',async()=>{need(isOwner());return{block:site.block||DEF.block,flags:{...DEF.flags,...site.flags},retDays:site.retDays??DEF.retDays,gr:site.gr||{},impact:site.impact||DEF.impact,programs:site.programs||{},terms:site.terms||[]}});
+  route('GET','/api/owner/settings',async()=>{need(isOwner());return{block:site.block||DEF.block,flags:{...DEF.flags,...site.flags},retDays:site.retDays??DEF.retDays,gr:site.gr||{},impact:site.impact||DEF.impact,programs:site.programs||{},terms:site.terms||[],game:site.game||DEF.game}});
   route('PUT','/api/owner/settings',async b=>{need(isOwner());const up={};['block','flags','gr','impact','programs'].forEach(k=>{if(b[k]!==undefined)up[k]=b[k]});if(Array.isArray(b.terms))up.terms=b.terms.slice(0,6).map(t=>({name:str(t.name,1,30,'Trimester names'),start:/^\d{4}-\d{2}-\d{2}$/.test(t.start)?t.start:''}));if(b.retDays!==undefined)up.retDays=Math.max(0,Math.min(60,+b.retDays||0));
+    if(b.game){const n=(v,hi)=>Math.max(0,Math.min(hi,Math.round(+v||0)));up.game={base:n(b.game.base,120),per:n(b.game.per,60),max:n(b.game.max,240)}}
     await doc('config','site').set(up,{merge:true});Object.assign(site,up);return{ok:true}});
   route('POST','/api/tutor',async()=>{throw new E(503,'The AI tutor needs the hosted version of the site.')});
 

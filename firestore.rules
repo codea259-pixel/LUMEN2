@@ -100,6 +100,30 @@ service cloud.firestore {
           allow delete: if signedIn() && (cls().teacherId == request.auth.uid || isOwner());
         }
       }
+
+      // Weekly class leaderboard: each learner writes only their own row (name, XP, this week's XP, hero look)
+      match /board/{uid} {
+        allow read: if signedIn() && (cls().teacherId == request.auth.uid || request.auth.uid in cls().members || isOwner());
+        allow create, update: if signedIn() && request.auth.uid == uid && active() && request.auth.uid in cls().members
+          && request.resource.data.keys().hasOnly(['n', 'xp', 'w', 'wx', 'hero', 'ts'])
+          && request.resource.data.n is string && request.resource.data.n.size() <= 20
+          && request.resource.data.xp is int && request.resource.data.xp >= 0 && request.resource.data.xp <= 10000000
+          && request.resource.data.wx is int && request.resource.data.wx >= 0 && request.resource.data.wx <= 1000000
+          && request.resource.data.w is string && request.resource.data.w.size() <= 10
+          && request.resource.data.hero is string && request.resource.data.hero.size() <= 400;
+        allow delete: if signedIn() && (request.auth.uid == uid || cls().teacherId == request.auth.uid || isOwner());
+      }
+
+      // Bonus gems from the teacher. A learner can only mark their own gift as claimed, once.
+      match /awards/{aid} {
+        allow read: if signedIn() && (cls().teacherId == request.auth.uid || isOwner() || resource.data.uid == request.auth.uid);
+        allow create: if signedIn() && (cls().teacherId == request.auth.uid || isOwner())
+          && request.resource.data.gems is int && request.resource.data.gems >= 1 && request.resource.data.gems <= 20
+          && request.resource.data.claimed == false && request.resource.data.uid in cls().members;
+        allow update: if signedIn() && resource.data.uid == request.auth.uid && resource.data.claimed == false
+          && changedOnly(['claimed']) && request.resource.data.claimed == true;
+        allow delete: if signedIn() && (cls().teacherId == request.auth.uid || isOwner());
+      }
     }
     // Question versions made on the site: teachers read shared versions and their own; only the author or the owner changes one
     match /qvers/{vid} {

@@ -139,7 +139,7 @@ const TRE=[
 /* ---------- Celebrations ---------- */
 /* One card at a time; new news joins the card that is showing. Tap it to close. */
 function celebrate(lines,big){if(!$('gtoast'))document.body.insertAdjacentHTML('beforeend','<div id="gtoast" role="status" aria-live="polite"></div>');
-  const box=$('gtoast');celebrate.q=[...(box.firstChild?celebrate.q||[]:[]),...lines];celebrate.big=big||(box.firstChild&&celebrate.big);let L=celebrate.q;if(L.length>4)L=[...L.slice(0,3),`...and ${L.length-3} more on your hero page.`];
+  const box=$('gtoast');const old=box.firstChild?celebrate.q||[]:[];celebrate.q=big?[...lines,...old]:[...old,...lines];celebrate.big=big||(box.firstChild&&celebrate.big);let L=celebrate.q;if(L.length>4)L=[...L.slice(0,3),`...and ${L.length-3} more on your hero page.`];
   box.innerHTML=`<div class="gt${celebrate.big?' big':''}" onclick="this.remove()"><span class="ge" aria-hidden="true">${celebrate.big?'🎉':'✨'}</span><ul>${L.map(l=>`<li>${esc(l)}</li>`).join('')}</ul></div>`;
   clearTimeout(celebrate.t);celebrate.t=setTimeout(()=>{box.innerHTML='';celebrate.q=[]},celebrate.big?6500:4500);
   if(big&&!matchMedia('(prefers-reduced-motion: reduce)').matches){const c=document.createElement('div');c.className='confetti';c.setAttribute('aria-hidden','true');

@@ -1,0 +1,63 @@
+<style>
+/* ===== Class competitions: weekly leaderboards, teams and bonus gems ===== */
+.gblock{margin-top:18px;padding-top:4px;border-top:1px solid var(--line)}
+.gblock .row label{display:flex;gap:8px;align-items:center}
+.race{display:grid;gap:8px;margin:10px 0 6px}.lane{display:grid;grid-template-columns:minmax(110px,150px) 1fr 80px;gap:10px;align-items:center}
+.lane .tn{font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.lane .bar{max-width:none;margin:0;height:14px}.lane b{text-align:right;font-size:.9rem}
+.lb{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:6px}
+.lb li{display:grid;grid-template-columns:34px 44px 1fr auto;gap:10px;align-items:center;padding:6px 10px;border-radius:14px;background:var(--bg)}
+.lb li.me{outline:2px solid var(--lamp);background:var(--lamp-soft,#FFF4D6)}
+.lb .pos{font-weight:800;text-align:center;font-size:1.05rem}.lb .av{width:44px;height:44px;border-radius:12px;overflow:hidden;background:#BFE6FF}.lb .av svg{width:100%;height:100%;display:block}
+.lb .nm{font-weight:700;min-width:0;overflow:hidden;text-overflow:ellipsis}.lb .nm small{display:block;color:var(--mute);font-weight:400;font-size:.8rem}.lb b{font-size:.95rem;white-space:nowrap}
+.lb.more{margin-top:4px}
+@media(max-width:520px){.lane{grid-template-columns:118px 1fr 62px;gap:8px}.lane .tn{font-size:.9rem}}
+</style>
+<script type="text/x-lumen">
+/* ===== Class competitions. Teachers turn on a weekly leaderboard (XP earned from learning this week, so effort counts, not test
+   scores), split the class into teams for a weekly team race, and give bonus gems for effort, kindness or teamwork. ===== */
+const TEAMS=[['Dragons','#E4572E','🐉'],['Griffins','#F2A900','🦅'],['Phoenixes','#D94F8A','🔥'],['Unicorns','#8E6CEF','🦄'],['Krakens','#2D9CDB','🐙'],['Wolves','#4B5563','🐺']];
+const REASONS=['Great effort','Kindness','Teamwork','Helping others','Never giving up','Great participation','Excellent work'];
+const wxp=s=>s.wk&&s.wk.w===wkId()?s.wk.xp:0;
+const teamTag=(T,t)=>t!=null&&T[t]?`${TEAMS[t][2]} ${esc(T[t])}`:'';
+function raceHtml(T,tot,prize){const mx=Math.max(1,...tot),lead=tot.indexOf(Math.max(...tot));
+  return `<div class="race">${T.map((n,t)=>`<div class="lane"><span class="tn">${tot[t]&&t===lead?'👑 ':''}${TEAMS[t][2]} ${esc(n)}</span><div class="bar" role="progressbar" aria-label="${esc(n)} XP this week" aria-valuemin="0" aria-valuemax="${mx}" aria-valuenow="${tot[t]}"><i style="width:${tot[t]/mx*100}%;background:${TEAMS[t][1]}"></i></div><b>${tot[t]} XP</b></div>`).join('')}</div>${prize?`<p class="sol">🎁 This week's prize for the winning team: <b>${esc(prize)}</b></p>`:''}`}
+
+/* ---------- Teacher: the Game section of each class ---------- */
+function gameBlock(c){const g=c.game||{board:true,teams:[],tm:{},prize:''},T=g.teams||[],St=c.students;if(!ST.flags['Class leaderboards']&&!gameOn())return '';
+  const rows=St.map(s=>({s,w:wxp(s),L:lvlOf(s.xp||0)})).sort((a,b)=>b.w-a.w||b.L-a.L),tot=T.map((n,t)=>St.filter(s=>g.tm[s.uid]===t).reduce((a,s)=>a+wxp(s),0));
+  return `<div class="gblock"><h4>🏆 Game and competitions</h4>
+  ${ST.flags['Class leaderboards']!==false?`<div class="row"><label><input type="checkbox" ${g.board?'checked':''} onchange="setGame(${c.id},{board:this.checked})"> Show students a weekly leaderboard</label></div><p class="sol">Students are ranked by XP earned from learning this week (answers, missions, quests, classwork), never by test scores. It resets every Monday.</p>`:''}
+  ${St.length?`<div class="tbl"><table class="vs"><tr><th>#</th><th>Student</th><th>Hero</th><th>XP this week</th>${T.length?'<th>Team</th>':''}</tr>${rows.map((r,n)=>`<tr><td>${n+1}</td><td>${esc(r.s.name)}</td><td>Level ${r.L} ${esc(rankOf(r.L))}</td><td>${r.w}</td>${T.length?`<td><select aria-label="Team for ${esc(r.s.name)}" onchange="setTeam(${c.id},${r.s.uid},this.value)"><option value="">No team</option>${T.map((n,t)=>`<option value="${t}" ${g.tm[r.s.uid]===t?'selected':''}>${TEAMS[t][2]} ${esc(n)}</option>`).join('')}</select></td>`:''}</tr>`).join('')}</table></div>`:''}
+  <h4 style="margin-top:14px">Teams</h4>
+  ${T.length?`${raceHtml(T,tot,g.prize)}<div class="row"><input id="pz${c.id}" value="${esc(g.prize||'')}" placeholder="Prize for the winning team (for example, extra recess)" aria-label="Team prize" maxlength="80"><button class="alt" onclick="setGame(${c.id},{prize:$('pz${c.id}').value})">Save prize</button><button class="alt" onclick="if(confirm('Remove all teams?'))setGame(${c.id},{teams:[],tm:{}})">Remove teams</button></div>`
+    :`<div class="row"><label>Make <select id="tn${c.id}" aria-label="Number of teams">${[2,3,4,5,6].map(n=>`<option ${n===4?'selected':''}>${n}</option>`).join('')}</select> teams</label><button class="alt" onclick="makeTeams(${c.id})" ${St.length<2?'disabled':''}>Make teams</button></div><p class="sol">Students are split evenly at random; you can move anyone afterward. Teams race each week on XP from learning.</p>`}
+  <h4 style="margin-top:14px">Give bonus gems</h4><div class="row"><select id="awt${c.id}" aria-label="Give to"><option value="all">Whole class</option>${T.map((n,t)=>`<option value="t:${t}">Team ${TEAMS[t][2]} ${esc(n)}</option>`).join('')}${St.map(s=>`<option value="${s.uid}">${esc(s.name)}</option>`).join('')}</select>
+  <select id="awg${c.id}" aria-label="Gems">${[1,2,3,5,10].map(n=>`<option value="${n}" ${n===3?'selected':''}>${n} 💎</option>`).join('')}</select><select id="awr${c.id}" aria-label="Reason">${REASONS.map(r=>`<option>${r}</option>`).join('')}</select><button class="lamp" onclick="giveGems(${c.id})">Give gems</button></div>
+  <p class="sol">Students see your note the next time they open Bose Academy.</p></div>`}
+const _ccG=classCard;classCard=function(c){const h=_ccG(c);return h.includes('<h4>Parent report</h4>')?h.replace('<h4>Parent report</h4>',gameBlock(c)+'<h4>Parent report</h4>'):h.replace(/<\/div>$/,gameBlock(c)+'</div>')};
+const setGame=(id,b)=>busy(async()=>{await api('PATCH',`/api/classes/${id}/game`,b);reload('teacher')});
+function makeTeams(id){const c=cl(id),n=+$('tn'+id).value,ids=c.students.map(s=>s.uid).sort(()=>Math.random()-.5),tm={};ids.forEach((u,i)=>tm[u]=i%n);setGame(id,{teams:TEAMS.slice(0,n).map(t=>t[0]),tm})}
+function setTeam(id,uid,t){const c=cl(id),tm={...(c.game&&c.game.tm||{})};if(t==='')delete tm[uid];else tm[uid]=+t;setGame(id,{tm})}
+function giveGems(id){const to=$('awt'+id).value,gems=+$('awg'+id).value,reason=$('awr'+id).value;busy(async()=>{const r=await api('POST',`/api/classes/${id}/awards`,{to,gems,reason});msg(`Gave ${gems} gems to ${r.count} student${r.count===1?'':'s'}: ${reason}.`)})}
+
+/* ---------- Learners: this week's leaderboard and team race in My classes ---------- */
+function boardCard(c){const T=(c.game&&c.game.teams)||[];if(!c.board&&!T.length)return '';
+  const B=(c.board||[]).map(e=>({...e,wx:wxp(e)})).sort((a,b)=>b.wx-a.wx||b.xp-a.xp),tot=T.map((n,t)=>B.filter(e=>e.t===t).reduce((a,e)=>a+e.wx,0)),meI=B.findIndex(e=>e.me);
+  const row=(e,i)=>`<li class="${e.me?'me':''}"><span class="pos">${['🥇','🥈','🥉'][i]||i+1}</span><span class="av">${heroSvg({hero:(e.hero&&e.hero.hero)||{},eq:(e.hero&&e.hero.eq)||{}},{label:e.n+"'s hero"})}</span><span class="nm">${esc(e.n)}${e.me?' (you)':''}<small>Level ${lvlOf(e.xp||0)}${teamTag(T,e.t)?' · '+teamTag(T,e.t):''}</small></span><b>${e.wx} XP</b></li>`;
+  return `<div class="card" style="margin-top:14px"><div class="split"><h3>🏆 ${esc(c.name)}: this week</h3><span class="sol">Resets on Monday</span></div>
+  ${T.length?raceHtml(T,tot,c.game.prize):''}
+  ${c.board?`<ol class="lb">${B.slice(0,10).map(row).join('')}</ol>${meI>=10?`<ol class="lb more">${row(B[meI],meI)}</ol>`:''}<p class="sol" style="margin-top:8px">Earn XP by learning: answers, missions, quests, classwork and lesson quizzes.</p>`:''}</div>`}
+const _vcG=VIEWS.classes;VIEWS.classes=function(){const h=_vcG(),b=(ST.joined||[]).map(boardCard).join('');const k='Your teacher gives you the code.</p></div>';return h.includes(k)?h.replace(k,k+b):h+b};
+
+/* ---------- Bonus gems: picked up when the learner opens the site or My classes ---------- */
+async function claimAwards(){if(BOOT.local||BOOT.role!=='student')return;try{const r=await api('GET','/api/awards');if(!r.awards.length)return;
+  const c=await api('POST','/api/awards/claim',{ids:r.awards.map(a=>a.id)}),got=r.awards.filter(a=>c.claimed.includes(a.id));if(!got.length)return;
+  got.forEach(a=>addGems(a.gems));celebrate(got.map(a=>`Your teacher gave you ${a.gems} 💎: ${a.reason}${a.cls?' ('+a.cls+')':''}`),true)}catch(e){}}
+const _lcG=LOAD.classes;LOAD.classes=async()=>{await _lcG();claimAwards()};
+setTimeout(claimAwards,2500);
+
+/* Start: only level-ups from now on are celebrated; then redraw the header and the page with the game added */
+if(!GM.seen)GM.seen=LVL();
+if(BOOT.role==='student'&&!BOOT.local)api('GET','/api/classes').then(r=>{ST.joined=r.joined||[]}).catch(()=>{});
+nav();if(tab==='learn')render();else if(VIEWS[tab])showTab(tab);setTimeout(gameCheck,1500);
+</script>
