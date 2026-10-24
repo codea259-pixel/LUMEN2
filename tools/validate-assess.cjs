@@ -41,6 +41,12 @@ const fs = require('fs'), path = require('path'), OUT = process.argv[2];
       }
       try { const nums = c.units.map((_, j) => j + 1).slice(0, 3), a = buildBench(sub, +g, 'Trimester 1', nums, 30); check(`${sub}-${g} benchmark`, a, unitMeta(a.unit)) } catch (e) { probs.push(`${key} benchmark: build failed ${e.message}`) }
     }
+    // question versions from tools/assess-src/versions (for example each trimester's new set)
+    for (const v of bank.versions || []) for (const pk of Object.keys(v.parts)) {
+      const [uid, part] = pk.split('|'), m = part.match(/^L(\d+):(quiz|practice)$/), kind = m ? (m[2] === 'quiz' ? 'quiz' : 'classwork') : 'test', li = m ? +m[1] - 1 : 0;
+      const label = `version ${v.id} ${uid} ${part}`;
+      try { const a = buildA(uid, kind, li, 'f:' + v.id); if (a.ver !== 'f:' + v.id) probs.push(`${label}: the site does not pick this version`); check(label, a, unitById(uid)) } catch (e) { probs.push(`${label}: build failed ${e.message}`) }
+    }
     return { probs, files, n, items, overflow };
   }, { bank, save: !!OUT });
   if (OUT) { fs.mkdirSync(OUT, { recursive: true }); r.files.forEach(([f, b64]) => fs.writeFileSync(path.join(OUT, f), Buffer.from(b64, 'base64'))) }

@@ -286,7 +286,7 @@ wr2: Draw a picture of the child's new room. Write or tell your teacher about it
 endpassage:
 mc1: Clap the parts in "teddy." How many claps? | 2 | 1 | 3 | 4
 mc1: Clap the parts in "lamp." How many claps? | 1 | 2 | 3 | 4
-mc2: Clap each word. Which word from the story has 2 claps? | window | box | bed | lamp
+mc2: Clap each word. Which word has 2 claps? | window | box | bed | lamp
 mc2: Your dad's dad is your | grandpa | uncle | brother | cousin
 mc2: The cat is in the box. Where is the cat? | in the box | under the box | on the bed | by the door
 mc2: Which word names a room? | bedroom | tree | lamp | bear
@@ -547,7 +547,7 @@ quiz:
 mc1: Which question word asks about a person? | who | where | when | how many
 mc2: Which is a question about ducks? | What do ducks eat? | Ducks swim. | I like ducks. | The duck is yellow.
 mc2: You draw a fish. Which label fits? | fin | leg | wing | hoof
-mc2: Which action word tells what a frog does? | hop | read | sing | sew
+mc2: Which action word tells what a frog does? | hop | read | drive | sew
 mc2: Which word tells about an elephant? | big | tiny | short | light
 mc2: Which sentence tells about a kitten? | The kitten plays with yarn. | Kitten the yarn. | Plays. | Yarn the plays.
 sa1: Draw an animal parent and its baby. Say their names. | A drawing with two animals named correctly, such as "dog and puppy."
@@ -573,7 +573,7 @@ mc2: A baby chicken is called a | chick | calf | kitten | joey
 mc2: A baby duck is called a | duckling | puppy | foal | lamb
 mc2: Which one asks a question about the calf? | Where is the calf? | The calf is here. | I see the calf. | Coco runs.
 mc2: Which question word asks about time? | when | who | where | what
-mc2: Which action word tells what a bird does? | fly | swim | read | dig a hole
+mc2: Which action word tells what a bird does? | fly | drive | read | bake
 mc3: You want to learn what calves eat. Which question should you ask? | What do calves eat? | Who is Coco? | Is it sunny? | Where is the barn?
 sa1: Point to the first letter of your name. Find its big and small letter on the chart. | Finds and names the upper- and lowercase forms of their first letter.
 mc2: Which word tells about a kitten? | small | huge | rough | loud

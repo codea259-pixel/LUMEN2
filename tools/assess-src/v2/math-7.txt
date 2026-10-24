@@ -49,7 +49,7 @@ mc2: Which equation represents a proportional relationship? | y = 4x | y = 4x + 
 num2: The point (5, 12) is on the graph of a proportional relationship. What is y when x = 1? | 2.4
 mc2: A car's distance d in miles after h hours is d = 62h. What does 62 represent? | the speed in miles per hour | the number of hours driven | the total distance | the starting distance
 num2: A printer prints p = 24m pages in m minutes. How many minutes does it take to print 300 pages? | 12.5
-mc3: Ana's running distance in km after t minutes is d = 0.2t. A graph of Ben's running passes through (10, 1.8). Who runs faster? | Ana | Ben | They run at the same speed | There is not enough information
+mc3: Ana's running distance in km after t minutes is d = 0.2t. A proportional graph of Ben's distance in km after t minutes passes through (10, 1.8). Who runs faster? | Ana | Ben | They run at the same speed | There is not enough information
 num3: A store charges c = 2.75w dollars for w pounds of apples. Lin has $22. How many pounds can she buy? | 8
 sa2: Explain why the graph of y = kx always passes through (0, 0) and (1, k). | When x = 0, y = k x 0 = 0. When x = 1, y = k x 1 = k. So (0, 0) and (1, k) are always on the graph.
 
@@ -240,7 +240,7 @@ num2: Simplify 3.5y - 1.2y + 4. What is the coefficient of y? | 2.3
 mc2: Which is a factored form of 12a - 18? | 6(2a - 3) | 6(2a - 18) | 3(4a - 18) | 2(6a - 18)
 hint: Find the greatest common factor of 12 and 18.
 mc2: A price p is increased by 15%. Which expression is equivalent to p + 0.15p? | 1.15p | 0.15p | 1.5p | p + 15
-sa2: Explain why 1.15p and p + 0.15p are equivalent, and what each shows about a price. | p + 0.15p = 1p + 0.15p = 1.15p by combining like terms. The first form shows the price plus the increase; the second shows the new price is 115% of the original.
+sa2: Explain why 1.15p and p + 0.15p are equivalent, and what each shows about a price. | p + 0.15p = 1p + 0.15p = 1.15p by combining like terms. p + 0.15p shows the price plus the increase; 1.15p shows the new price is 115% of the original.
 quiz:
 mc1: Which expression is equivalent to -3(x - 5)? | -3x + 15 | -3x - 15 | 3x - 15 | -3x - 5
 mc2: Which expression is equivalent to 1/2(8n - 6) + 2n? | 6n - 3 | 4n - 3 | 6n - 6 | 10n - 3
@@ -288,7 +288,7 @@ mc2: Solve -5x + 2 < 17. | x > -3 | x < -3 | x > 3 | x < 3
 num2: A taxi charges $3.50 plus $2.25 per mile. Rosa has $26. What is the greatest whole number of miles she can ride? | 10
 mc2: Which graph shows x < -2? | an open circle at -2, shaded to the left | a closed circle at -2, shaded to the left | an open circle at -2, shaded to the right | a closed circle at -2, shaded to the right
 num3: A club sells T-shirts for $12 each. Supplies cost $150. What is the least number of shirts the club must sell to make a profit of at least $300? | 38
-mc3: Sam has $80 and spends $6 a day. When will he have less than $20 left? | after more than 10 days | after exactly 10 days | after fewer than 10 days | after 14 days
+mc3: Sam has $80 and spends $6 a day. When will he have less than $20 left? | after more than 10 days | after exactly 10 days | after fewer than 10 days | after more than 3 days
 num2: An elevator can carry at most 1,200 pounds. A worker who weighs 180 pounds rides with boxes that weigh 60 pounds each. What is the greatest number of boxes the worker can bring? | 17
 sa2: Write and solve an inequality: Ama saves $30 a week to buy a $240 bike. How many weeks must she save? | 30w >= 240, so w >= 8. She must save for at least 8 weeks.
 
@@ -540,7 +540,7 @@ num3: A game spinner has 8 equal sections: 3 are worth 10 points, 4 are worth 5 
 num3: A quality check finds 4 broken pencils in a random sample of 250. A store orders 10,000 pencils. About how many will be broken? | 160
 num3: A restaurant offers 3 appetizers (one is soup), 5 main dishes and 4 desserts (one is fruit). A meal of one of each is chosen at random. What is the probability that it includes the soup and the fruit dessert? | 1/12
 mc2: One random sample of 30 seventh graders sleeps a mean of 8.2 hours. Another random sample of 30 sleeps a mean of 7.9 hours. What is the best conclusion? | Sample means vary, so the mean for all seventh graders is probably near 8 hours | One of the samples must be wrong | All seventh graders sleep exactly 8.05 hours | The second sample is biased
-mc3: Team A's scores have a mean of 72 and a MAD of 6. Team B's scores have a mean of 84 and a MAD of 6. How many MADs apart are the means, and what does that suggest? | 2 MADs; the difference is meaningful | 12 MADs; the teams score about the same | 2 MADs; the teams score about the same | 6 MADs; the difference is not meaningful
+mc3: Team A's scores have a mean of 72 and a MAD of 6. Team B's scores have a mean of 90 and a MAD of 6. How many MADs apart are the means, and what does that suggest? | 3 MADs; the difference is meaningful | 18 MADs; the teams score about the same | 3 MADs; the teams score about the same | 6 MADs; the difference is not meaningful
 mc3: A spinner is spun 10 times and lands on green 6 times. Kai says the theoretical probability of green must be 3/5. Which response is best? | 10 spins is too few; the theoretical probability depends on the sizes of the sections | Kai is correct | The probability of green must be 1/2 | The probability of green must be 6
 num2: On each of two days, the probability of rain is 2/5, and the days do not affect each other. What is the probability that it rains on both days? | 4/25
 sa2: Use a number cube to explain the difference between theoretical and experimental probability. | Theoretical P(6) = 1/6 because there are 6 equally likely outcomes. Experimental probability comes from actual rolls; for example, 9 sixes in 40 rolls gives 9/40.

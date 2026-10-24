@@ -265,7 +265,7 @@ lesson: Gravity depends on mass and distance | MS-PS2-4
 practice:
 mc1: Gravity is a force that | always attracts objects with mass toward each other | pushes objects apart | only acts on Earth | only acts on large objects
 mc2: Why do you weigh less on the Moon than on Earth? | The Moon has less mass, so its gravitational pull is weaker | The Moon has no gravity | You have less mass on the Moon | The Moon is closer to the Sun
-hint: Weight depends on the gravitational pull, not on the amount of matter in you.
+hint: Your mass stays the same everywhere; what changes is the strength of the gravitational pull on you.
 num2: Weight = mass x gravity. On the Moon, gravity is 1.6 newtons per kg. What does a 50 kg astronaut weigh on the Moon in newtons? | 80
 mc2: Which pair has the greatest gravitational attraction? | the Sun and Jupiter | a pencil and a paper clip | two students on a bus | a car and a bicycle
 sa2: Explain why you do not feel the gravitational pull between you and a nearby classmate. | All objects with mass attract, but people have very small masses compared with planets, so the force between you is far too small to notice.
@@ -312,7 +312,7 @@ mc2: Why does the Moon appear to change shape during the month? | As it orbits E
 hint: Half of the Moon is always lit by the Sun.
 mc2: During a new moon, where is the Moon located? | between Earth and the Sun | on the far side of Earth from the Sun | behind the Sun | at the same distance as the Sun
 mc2: A lunar eclipse happens when | Earth is between the Sun and the Moon, and Earth's shadow falls on the Moon | the Moon is between the Sun and Earth | the Sun is between Earth and the Moon | clouds cover the Moon
-num2: The Moon's cycle of phases takes about 29.5 days. About how many days pass from a full moon to the next new moon? | 14.75
+num2: The Moon's cycle of phases takes about 29.5 days. Using 29.5 days, how many days pass from a full moon to the next new moon? | 14.75
 hint: Full moon to new moon is half the cycle.
 sa2: Explain why we do not have a solar eclipse every month at new moon. | The Moon's orbit is tilted slightly compared with Earth's orbit around the Sun, so most months the Moon passes a little above or below the line between Earth and the Sun and its shadow misses Earth.
 quiz:
@@ -368,7 +368,7 @@ num2: A model uses 1 cm for each AU. Neptune is about 30 AU from the Sun. How ma
 sa2: Explain why it is hard to make a model of the solar system with both planet sizes and distances to the same scale. | The distances are enormous compared with the sizes; if planets were large enough to see, the model would need to be kilometers long, and if it fit in a room, the planets would be tiny specks.
 quiz:
 mc2: Which group lists solar system objects from largest to smallest? | the Sun, Jupiter, Earth, the Moon | Earth, the Sun, the Moon, Jupiter | the Moon, Earth, Jupiter, the Sun | Jupiter, the Sun, the Moon, Earth
-num2: Sunlight takes about 8.3 minutes to reach Earth (1 AU). About how many minutes does it take to reach Mars at 1.5 AU? | 12.45
+num2: Sunlight takes about 8.3 minutes to reach Earth (1 AU). At that rate, how many minutes does it take to reach Mars at 1.5 AU? | 12.45
 num2: Mars's diameter is about 6,800 km and Earth's is about 12,700 km. To the nearest whole percent, Mars's diameter is what percent of Earth's? | 54
 mc3: Data: Venus - rocky, 0.7 AU, 462 °C average surface; Mercury - rocky, 0.4 AU, 167 °C average; Earth - rocky, 1 AU, 15 °C. Venus is farther from the Sun than Mercury but hotter. Which is the best explanation? | Venus's thick carbon dioxide atmosphere traps heat | Venus is closer to the Sun | Mercury has oceans that cool it | Venus spins faster
 mc2: Which statement about the four inner planets is correct? | They are small and rocky | They are gas giants | They have rings and many moons | They are made of ice
@@ -388,7 +388,7 @@ mc2: Why is the far side of the Moon never seen from Earth? | The Moon spins onc
 mc2: Which phase of the Moon occurs during a lunar eclipse? | full moon | new moon | first quarter | waxing crescent
 mc3: Data: Mercury 0.4 AU, 88 days; Venus 0.7 AU, 225 days; Earth 1 AU, 365 days; Mars 1.5 AU, 687 days. Which conclusion is supported? | The farther a planet is from the Sun, the longer its orbit takes | Closer planets take longer to orbit | Distance does not affect orbits | Mars orbits fastest
 mc3: A student draws a model of the solar system on a sheet of paper with the planets close together and all the same size. What is the main problem? | It does not show the real scale of sizes and distances | It has too many planets | The Sun should be at the edge | Planets do not orbit the Sun
-num2: Sunlight takes about 8.3 minutes to reach Earth. About how many minutes would it take to reach Jupiter at 5.2 AU? | 43.16
+num2: Sunlight takes about 8.3 minutes to reach Earth (1 AU). At that rate, how many minutes would it take to reach Jupiter at 5.2 AU? | 43.16
 num2: Saturn is about 9.5 AU from the Sun. With 1 AU = 150 million km, how many million km away is Saturn? | 1425
 num2: In a scale model where 1 AU = 2 cm, how many cm from the Sun would Mars (1.5 AU) be? | 3
 num2: The Moon's phase cycle is about 29.5 days. How many days are in 4 cycles? | 118
@@ -516,7 +516,7 @@ num2: A model shrinks Earth's 4.6 billion years onto a 46-meter hallway, so each
 num2: Sediment in a lake builds up 0.5 mm per year. How many years would it take to form a layer 20 mm thick? | 40
 mc3: Layers from bottom to top: sandstone with trilobite fossils, shale with fish fossils, limestone with dinosaur bones, soil with mammal bones. Which conclusion is best supported? | Trilobites lived before dinosaurs, and mammals in the top layer are the most recent | Dinosaurs lived before trilobites | All of these animals lived at the same time | The soil is the oldest layer
 mc2: Why do geologists use the geologic time scale? | To organize Earth's long history into eras and periods based on rocks and fossils | To tell the time of day | To predict the weather | To measure tides
-sa2: Explain how scientists can tell that a layer of rock is younger than an igneous rock body that cuts across it. | The igneous rock must have formed after the layers it cuts through, because the layers had to exist first for magma to push through them; so the cutting rock is younger.
+sa2: Explain how scientists can tell that an igneous rock body is younger than the rock layers it cuts across. | The igneous rock must have formed after the layers it cuts through, because the layers had to exist first for magma to push through them; so the cutting rock is younger.
 
 lesson: Patterns in the fossil record | MS-LS4-1
 practice:

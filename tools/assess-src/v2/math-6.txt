@@ -50,7 +50,7 @@ hint: Draw 3 boxes and 8 boxes. What is one box worth?
 quiz:
 num1: A ratio table shows that 4 movie tickets cost $18. How many dollars do 12 tickets cost? | 54
 num2: The ratio of apples to oranges in a basket is 2:5. There are 35 pieces of fruit. How many oranges are there? | 25
-mc2: The points (2, 5), (4, 10) and (6, 15) are graphed. What is true about them? | They lie on a straight line through (0, 0) | They lie on a curve | They lie on a straight line that does not pass through (0, 0) | They show the ratio 5:2
+mc2: The points (2, 5), (4, 10) and (6, 15) are graphed. What is true about them? | They lie on a straight line through (0, 0) | They lie on a curve | They lie on a straight line that does not pass through (0, 0) | They show the ratio of x to y as 5:2
 num2: In a choir, the ratio of sopranos to altos is 5:4. There are 6 more sopranos than altos. How many singers are in the choir? | 54
 mc2: A double number line shows 3 cups of oats matched with 12 cookies. How many cookies match 5 cups of oats? | 20 | 15 | 17 | 60
 mc3: Hana made this ratio table: 3 to 7, 6 to 14, 9 to 21, 12 to 27. Which entry is wrong? | 12 to 27 | 6 to 14 | 9 to 21 | 3 to 7
@@ -232,7 +232,7 @@ mc2: Which expression is equal to 27 + 45? | 9(3 + 5) | 3(9 + 5) | 9(27 + 5) | 5
 num3: A rectangular rug has an area of 10 1/2 square feet. Its width is 2 1/3 feet. What is its length in feet? | 4 1/2
 num3: Maya earns $12.50 per hour. She works 6.5 hours on Saturday and 4.5 hours on Sunday. How many dollars does she earn in all? | 137.5
 num3: An art club has 3 3/4 pounds of clay. Each student gets 2/3 pound. After as many students as possible get a full share, how many pounds of clay are left? | 5/12
-num3: Red lights on a string blink every 4 seconds and green lights blink every 10 seconds. They blink together at the start. How many more times will they blink together in the next 2 minutes? | 6
+num3: Red lights on a string blink every 4 seconds and green lights blink every 10 seconds. They blink together at the start. How many more times will they blink together in the next 2 minutes, counting a blink at exactly 2 minutes? | 6
 num2: A 7.5-meter board is cut into pieces 0.25 meter long. How many pieces are there? | 30
 mc3: Without calculating, which quotient is greatest? | 12 ÷ 0.03 | 12 ÷ 0.3 | 12 ÷ 3 | 12 ÷ 30
 mc2: Which situation is solved by finding a GCF? | making the greatest number of identical snack bags from 24 crackers and 32 grapes | finding when two alarms on different schedules ring together | finding the total cost of 24 crackers | finding how many grapes are left after eating 8

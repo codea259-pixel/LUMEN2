@@ -417,7 +417,7 @@ mc2: Which division expression is equal to 5/8? | 5 / 8 | 8 / 5 | 5 x 8 | 8 - 5
 hint: A fraction bar means "divided by".
 num2: 10 yards of ribbon are cut into 4 equal pieces. How many yards long is each piece? | 2 1/2
 hint: Divide 10 by 4 and write the remainder as a fraction.
-num3: A line plot shows rope lengths: 2 ropes are 1/4 foot, 3 ropes are 1/2 foot and 1 rope is 3/4 foot. All six ropes are joined end to end. How many feet long is the joined rope? | 2 1/4
+num3: A line plot shows rope lengths: 2 ropes are 1/4 foot, 3 ropes are 1/2 foot and 1 rope is 3/4 foot. All six ropes are joined end to end. How many feet long is the joined rope? | 2 3/4
 hint: Multiply each length by the number of ropes, then add.
 sa2: Use 2 sandwiches shared equally by 3 people to explain why 2 / 3 = 2/3. | Cut each sandwich into thirds, which makes 6 thirds. Each person gets 2 of the 6 thirds, so each person gets 2/3 of a sandwich.
 quiz:
@@ -505,7 +505,7 @@ num2: 1.2 / 0.3 = ? | 4
 hint: How many groups of 3 tenths are in 12 tenths?
 num2: 5 / 0.5 = ? | 10
 hint: How many halves are in 5?
-mc2: How many 1/3-cup servings are in 4 cups of rice? | 12 | 4/3 | 7 | 1 1/3
+mc2: How many 1/3-cup servings are in 4 cups of rice? | 12 | 4/3 | 7 | 3
 hint: Each cup has 3 servings.
 num3: 3 friends share 1/2 of a pizza equally. What fraction of the whole pizza does each friend get? | 1/6
 hint: Split one half into 3 equal parts.
@@ -657,7 +657,7 @@ num2: The angles of a quadrilateral add to 360 degrees. A parallelogram has angl
 sa2: Explain why the volume of a box can be found by multiplying the area of its base by its height. | The base area tells how many unit cubes fit in one layer, and the height tells how many layers stack up, so base area x height counts every cube.
 sa2: Kai says a rhombus is always a square. Give an example that shows he is wrong. | A rhombus with angles of 60 and 120 degrees has 4 equal sides but no right angles, so it is not a square.
 sa3: Use partial products to find the area of a 3 1/2 by 2 1/2 rectangle. Explain each part. | 3 x 2 = 6, 3 x 1/2 = 1 1/2, 1/2 x 2 = 1 and 1/2 x 1/2 = 1/4. Adding the parts gives 8 3/4 square units, which matches 7/2 x 5/2 = 35/4.
-task3: The garden club has exactly 72 cubic feet of soil to fill a new rectangular planter box that is 2 feet tall. (a) What must the base area be? (b) Give two different whole-number lengths and widths for the base. (c) The box must fit along a wall that is 10 feet long. Which of your designs fit? (d) If the club makes the box 3 feet tall instead and uses all the soil, what is the new base area? Explain why the base area changes. | (a) 72 / 2 = 36 square feet; (b) two of 1 by 36, 2 by 18, 3 by 12, 4 by 9, 6 by 6; (c) only designs with both sides 10 feet or less (4 by 9 or 6 by 6) fit; (d) 72 / 3 = 24 square feet, because more layers means fewer cubes are needed in each layer. | All parts correct with a gap in the explanation, or one small error. | Two parts correct, or uses addition instead of multiplication in one part. | Little correct work.
+task3: The garden club has exactly 72 cubic feet of soil to fill a new rectangular planter box that is 2 feet tall. (a) What must the base area be? (b) Give two different whole-number lengths and widths for the base. (c) The box's longer side must fit along a wall that is 10 feet long. Which of your designs fit? (d) If the club makes the box 3 feet tall instead and uses all the soil, what is the new base area? Explain why the base area changes. | (a) 72 / 2 = 36 square feet; (b) two of 1 by 36, 2 by 18, 3 by 12, 4 by 9, 6 by 6; (c) only designs with both sides 10 feet or less (4 by 9 or 6 by 6) fit; (d) 72 / 3 = 24 square feet, because more layers means fewer cubes are needed in each layer. | All parts correct with a gap in the explanation, or one small error. | Two parts correct, or uses addition instead of multiplication in one part. | Little correct work.
 
 unit: Module 6: Problem solving with the coordinate plane | 5.G.A.1, 5.G.A.2, 5.OA.B.3
 el: Tape a coordinate grid on the floor and have students walk to points ("over, then up"). Pre-teach "origin", "axis", "coordinate", "ordered pair", "parallel" and "perpendicular", and post the frame "Start at the origin, move ___ right and ___ up."

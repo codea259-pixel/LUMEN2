@@ -355,7 +355,7 @@ mc2: Favorite color: red 6, blue 9, green 4. Which color got the most votes? | b
 hint: Find the biggest number.
 num2: Weather this month: sunny 12 days, rainy 4 days, cloudy 3 days. How many days in all? | 19
 hint: Add all three numbers. Look for an easy pair to add first.
-mc2: Snack votes: chips 5, fruit 5, crackers 2. What is true? | chips and fruit got the same votes | chips got the most | crackers got the most | fruit got the fewest
+mc2: Snack votes: chips 5, fruit 5, crackers 2. What is true? | chips and fruit got the same votes | chips got more than fruit | crackers got the most | fruit got the fewest
 hint: Compare each pair of numbers.
 sa2: Ask 10 classmates if they like apples or oranges better. Make a tally chart and tell which won and by how many. | Tally chart with totals that add to 10, the winner named, and the difference found (for example 7 - 3 = 4).
 quiz:
@@ -483,7 +483,7 @@ num1: 15 + 9 = ? | 24
 num2: Ella has 18 books. She gets 8 more at the library. How many books does she have? | 26
 num2: The class has 27 pencils. The teacher buys 10 more. How many pencils does the class have? | 37
 mc2: 29 + 3 = ? | 32 | 22 | 31 | 59
-num2: A bus has 34 seats. 5 seats are empty. How many seats have people in them? | 29
+num2: A bus has 34 seats. 10 seats are empty. How many seats have people in them? | 24
 mc2: Which is the same as 24 + 8? | 30 + 2 | 20 + 8 | 24 + 10 | 30 + 8
 sa2: Ty solved 16 + 7 and got 13. Explain his mistake and find the right answer. | He added 6 + 7 = 13 but forgot the 1 ten. 16 + 7 = 23.
 
@@ -607,7 +607,7 @@ mc2: Soccer practice is at half past 3. Which clock shows that? | 3:30 | 3:00 | 
 sa2: Explain how you know a clock shows half past an hour. | The minute hand points to 6, and the hour hand is halfway between two numbers.
 
 test:
-mc1: Which shape has 4 equal sides and 4 square corners? | square | rectangle | trapezoid | triangle
+mc1: Which shape has 4 equal sides and 4 square corners? | square | hexagon | pentagon | triangle
 mc1: Which solid shape has 6 square faces? | cube | rectangular prism | cylinder | cone
 mc2: Which matters when you name a shape? | number of sides | color | size | which way it turns
 mc2: Which solid has 2 circle faces? | cylinder | cone | sphere | cube

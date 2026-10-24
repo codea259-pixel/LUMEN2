@@ -151,7 +151,7 @@ quiz:
 mc1: Which shape is curved with no corners? | circle | triangle | square | rectangle
 num1: How many sides does a hexagon have? | 6
 mc1: A stop sign has 8 straight sides and 8 corners. Which word fits it? | not round | round | curved | 3-sided
-mc2: Which shape has 4 sides that are all the same length? | square | rectangle | triangle | hexagon
+mc2: Which shape has 4 sides that are all the same length? | square | circle | triangle | hexagon
 mc2: A very long, skinny shape has 3 sides. What shape is it? | triangle | rectangle | square | circle
 num2: Jae draws 2 triangles. How many sides did he draw in all? | 6
 mc2: A picture of a slice of watermelon has 3 sides, but one side is curved. Is it a triangle? | no, one side is curved | yes, it has 3 sides | yes, it is pointy | yes, it has corners
@@ -214,7 +214,7 @@ mc2: A roll of tape is shaped most like a | cylinder | cube | cone | sphere
 num1: How many sides does a rectangle have? | 4
 num2: Tia draws 2 squares. How many corners did she draw in all? | 8
 num2: Sort: ball, box, can, circle, triangle. How many are flat? | 2
-mc2: A shape has 4 sides and all 4 are the same length. What is it? | square | rectangle | triangle | hexagon
+mc2: A shape has 4 sides and all 4 are the same length. What is it? | square | circle | triangle | hexagon
 mc2: A square is turned on its corner so it looks like a diamond. What shape is it? | square | triangle | circle | hexagon
 mc2: Which solid can roll but cannot stack? | sphere | cube | cylinder | box
 mc2: The bird is above the nest. Where is the nest? | below the bird | above the bird | inside the bird | beside the bird
@@ -582,7 +582,7 @@ num2: A triangle and a square are on the table. How many sides are there in all?
 hint: Count the sides of each shape, then put them together.
 sa2: Tell one way a cylinder and a sphere are alike and one way they are different. | Alike: both can roll. Different: a cylinder has flat circle faces and can stack; a sphere has no flat faces.
 quiz:
-mc1: Which shape has 4 corners and 4 sides that are all the same length? | square | rectangle | triangle | hexagon
+mc1: Which shape has 4 corners and 4 sides that are all the same length? | square | circle | triangle | hexagon
 mc2: How are a cube and a cylinder alike? | both can stack | both are flat | both have points | both are round all over
 mc2: Which is different from the others? triangle, square, sphere, rectangle | sphere | triangle | square | rectangle
 num2: Lola has 2 hexagons. How many sides do they have in all? | 12
