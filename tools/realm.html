@@ -1,0 +1,197 @@
+<style>
+/* ===== Lumi's Realm: the fantasy game. Spells are cast by answering grade-level questions. ===== */
+.realm-top{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:14px}
+.realm-top h2{margin:0}
+.ptime{display:flex;gap:10px;align-items:center;padding:8px 14px;border-radius:14px;background:var(--panel);border:1px solid var(--line);box-shadow:var(--shadow);font-weight:700}
+.ptime .bar{width:110px;height:8px;margin:0}.ptime .bar i{background:var(--lamp)}
+.schools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 14px}
+.worldmap{border-radius:24px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line)}.worldmap svg{display:block;width:100%;height:auto}
+.worldmap .land{cursor:pointer}.worldmap .land:focus{outline:none}.worldmap .land:focus .ring,.worldmap .land:hover .ring{stroke:#F2A900;stroke-width:8}
+.landlist{display:none;gap:10px}
+@media(max-width:640px){.worldmap{display:none}.landlist{display:grid}}
+.lrow{display:flex;gap:12px;align-items:center;padding:12px;text-align:left;width:100%;border-radius:16px;border:2px solid var(--line);background:var(--panel);color:var(--ink);font:inherit}
+.lrow.on{border-color:#F2A900}.lrow .le{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-size:24px;flex:none}.lrow b{display:block}.lrow[disabled]{opacity:.55}
+.mons{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin-top:12px}
+.mon{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;padding:12px}.mon .art{width:110px;height:110px}.mon.boss{border:2px solid #F2A900}
+.mon .sol{margin:0;font-size:.82rem}.mon button{width:100%}.mon.locked .art{filter:grayscale(1);opacity:.45}
+.battle{border-radius:24px;overflow:hidden;box-shadow:var(--shadow-up);border:1px solid var(--line);background:var(--panel)}
+.arena{position:relative;display:grid;grid-template-columns:1fr 1fr;align-items:end;gap:8px;padding:16px 14px 18px;min-height:250px}
+.fighter{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;z-index:1}
+.fighter .art{width:min(170px,36vw);height:min(170px,36vw)}.fighter .art svg{width:100%;height:100%;display:block}
+.fighter.me .art{border-radius:22px;overflow:hidden}
+.mon-art{animation:bob 2.6s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.hpw{display:flex;flex-direction:column;align-items:center;gap:4px}
+.nameplate{font-weight:800;background:rgba(255,255,255,.9);color:#1B2A41;padding:3px 12px;border-radius:99px;font-size:.85rem;white-space:nowrap;max-width:44vw;overflow:hidden;text-overflow:ellipsis}
+.hp{width:min(180px,38vw);height:13px;border-radius:99px;background:rgba(27,42,65,.25);overflow:hidden;border:2px solid rgba(255,255,255,.9)}.hp i{display:block;height:100%;background:#3BB273;transition:width .45s}.hp.foe i{background:#E4572E}
+.hpn{font-size:.75rem;font-weight:800;color:#1B2A41;background:rgba(255,255,255,.75);padding:0 8px;border-radius:99px}
+.combo{position:absolute;top:10px;left:50%;transform:translateX(-50%);z-index:2;background:#F2A900;color:#1B2A41;font-weight:900;padding:4px 12px;border-radius:99px;font-size:.85rem}
+.qpanel{padding:16px 18px 18px;border-top:1px solid var(--line)}
+.qpanel .bq{font-size:1.25rem;font-weight:700;margin:0 0 12px}
+.bchoices{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:520px){.bchoices{grid-template-columns:1fr}}
+.bchoices button{text-align:left;padding:12px 14px;border-radius:14px;border:2px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;font-weight:700;min-height:52px}
+.bchoices button:hover{border-color:var(--sc)}
+.bans{display:flex;gap:10px;flex-wrap:wrap}.bans input{flex:1;min-width:140px;font-size:1.2rem;padding:10px 14px;border-radius:14px;border:2px solid var(--line);background:var(--bg);color:var(--ink)}
+.bfb{margin-top:12px;padding:12px 14px;border-radius:14px;font-weight:700}.bfb.ok{background:#E3F6EA;color:#1D5E3A}.bfb.no{background:#FDECEC;color:#8A2626}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .bfb.ok{background:#1E3B2C;color:#B9F0CF}:root:not([data-theme="light"]) .bfb.no{background:#3E2226;color:#F8C9CD}}
+:root[data-theme="dark"] .bfb.ok{background:#1E3B2C;color:#B9F0CF}:root[data-theme="dark"] .bfb.no{background:#3E2226;color:#F8C9CD}
+.bfb .sol{color:inherit;opacity:.9;font-weight:400;margin:6px 0 0}
+.orbshot{position:absolute;width:30px;height:30px;border-radius:50%;z-index:3;left:24%;bottom:44%;box-shadow:0 0 18px 8px currentColor;background:#fff;animation:shoot .55s ease-in forwards}
+@keyframes shoot{to{left:70%;bottom:52%;transform:scale(1.4);opacity:.9}}
+.lunge{animation:lunge .5s ease-in-out}@keyframes lunge{40%{transform:translateX(-26%)}}
+.hit{animation:hit .45s ease-in-out}@keyframes hit{20%{transform:translateX(-8px) rotate(-4deg)}40%{transform:translateX(8px) rotate(3deg)}60%{transform:translateX(-5px)}}
+.flash{filter:brightness(1.8) saturate(.4)}
+.dmg{position:absolute;z-index:4;font:900 1.7rem "Bricolage Grotesque",sans-serif;color:#fff;-webkit-text-stroke:1.5px #8A2626;text-shadow:0 3px 0 rgba(0,0,0,.25);animation:dmg 1s ease-out forwards;pointer-events:none}
+.dmg.heal{-webkit-text-stroke-color:#1D5E3A}
+@keyframes dmg{from{transform:translateY(0) scale(.8);opacity:0}20%{opacity:1;transform:translateY(-10px) scale(1.15)}to{transform:translateY(-46px);opacity:0}}
+.endcard{text-align:center;padding:24px 18px}.endcard .big{font-size:52px;line-height:1}.endcard h3{font-size:1.5rem;margin:8px 0}
+@media(prefers-reduced-motion:reduce){.mon-art,.orbshot,.lunge,.hit,.dmg{animation:none!important}.orbshot{display:none}}
+</style>
+<script type="text/x-lumen">
+/* ===== Lumi's Realm. Lands open as the hero levels up from learning. In battle every spell is a question from the
+   learner's own grade-level skills; a correct answer casts the spell, a wrong one shows the worked answer.
+   Learners get a daily play time that grows with time spent learning (the Owner sets the numbers). ===== */
+const MAGIC={math:['☀️','Number magic','#F2A900'],ela:['📘','Word magic','#2563EB'],sci:['🌿','Nature magic','#059669'],soc:['⏳','Time magic','#7C3AED'],cs:['💻','Code magic','#0EA5E9'],fin:['🪙','Coin magic','#CA8A04'],es:['🗣️','Language magic','#DB2777']};
+const magicOf=s=>MAGIC[s]||['✨','Arcane magic','#E4572E'];
+const MONS={
+  meadow:[['Slimey','blob','#7ED957',[]],['Sprout','ball','#9BD36A',['leaf']],['Buzzbee','ball','#FFD23F',['stripes','wings','antenna']],['Thornback','ball','#9A7350',['spikes']]],
+  woods:[['Mossling','blob','#4E9B5A',['flower']],['Hoot','bird','#8A5A2B',['ears']],['Shroomy','bean','#F4E7D3',['cap']],['Old Grumbleroot','stump','#7A5634',['leaf']]],
+  caves:[['Glimmer Bat','ball','#5B4B8A',['wings','ears']],['Pebble Golem','block','#8C8FA3',['crystals']],['Crystal Slime','blob','#7FE3F0',['crystals']],['Gemjaw','ball','#D9534F',['claws','crystals']]],
+  peaks:[['Snowpuff','ball','#F4F8FF',['ears']],['Frostfang','bean','#BFE3FF',['horns']],['Icicle Imp','bean','#7FC8F8',['crystals']],['the Yeti Queen','bean','#EEF3FA',['horns']]],
+  volcano:[['Ember Imp','bean','#FF7A3D',['flame','horns']],['Lava Slime','blob','#E4572E',['flame']],['Cinder Bat','ball','#5B3A33',['wings','flame']],['Magmaw','block','#6B2E1F',['flame','horns']]],
+  sky:[['Cloudlet','ball','#FFFFFF',['cloud']],['Zephyr','bird','#9FD3FF',['wings']],['Storm Sprite','bean','#7B5BD6',['antenna']],['the Storm Griffin','bird','#C8961E',['wings','ears']]],
+  keep:[['Drakeling','ball','#2BA59B',['wings','horns']],['Shadow Knight','block','#3B3355',['horns']],['Wyvern','bird','#8E6CEF',['wings','horns']],['Emberwing','bean','#B8322A',['wings','horns','flame']]]};
+const shade=(c,f)=>{const n=parseInt(c.slice(1),16),m=x=>Math.max(0,Math.min(255,Math.round(x*f)));return '#'+[n>>16,(n>>8)&255,n&255].map(x=>m(x).toString(16).padStart(2,'0')).join('')};
+/* A friendly monster drawn from a body shape, a color and a few accessories (viewBox 120 x 120) */
+function monsterSvg(m,boss,label){const [n,shape,c,acc]=m,d=shade(c,.78),A=a=>acc.includes(a),ey={blob:74,ball:64,bean:56,block:64,bird:62,stump:62}[shape];let back='',body='',top='';
+  if(A('wings'))back+=`<path d="M30 60Q2 40 6 78Q18 70 30 80ZM90 60Q118 40 114 78Q102 70 90 80Z" fill="${d}"/>`;
+  if(A('claws'))back+=`<path d="M22 70Q2 62 8 46Q16 56 24 52Q20 62 28 64ZM98 70Q118 62 112 46Q104 56 96 52Q100 62 92 64Z" fill="${d}"/>`;
+  if(A('cloud'))back+=`<g fill="#E3EEFA">${[[30,96],[48,102],[72,102],[90,96]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="14"/>`).join('')}</g>`;
+  if(A('spikes'))back+=`<g fill="${d}">${Array.from({length:9},(_,i)=>{const a=Math.PI*(1.05+i*.1125),x=60+44*Math.cos(a),y=66+44*Math.sin(a);return `<path d="M${60+30*Math.cos(a-.15)} ${66+30*Math.sin(a-.15)}L${x} ${y}L${60+30*Math.cos(a+.15)} ${66+30*Math.sin(a+.15)}Z"/>`}).join('')}</g>`;
+  body={blob:`<path d="M16 106Q12 56 60 48Q108 56 104 106Z" fill="${c}"/><ellipse cx="38" cy="66" rx="7" ry="10" fill="#fff" opacity=".35"/>`,
+    ball:`<ellipse cx="44" cy="104" rx="10" ry="6" fill="${d}"/><ellipse cx="76" cy="104" rx="10" ry="6" fill="${d}"/><circle cx="60" cy="68" r="36" fill="${c}"/><ellipse cx="44" cy="52" rx="7" ry="9" fill="#fff" opacity=".3"/>`,
+    bean:`<ellipse cx="46" cy="108" rx="9" ry="5" fill="${d}"/><ellipse cx="74" cy="108" rx="9" ry="5" fill="${d}"/><rect x="30" y="30" width="60" height="78" rx="30" fill="${c}"/>`,
+    block:`<rect x="22" y="38" width="76" height="70" rx="12" fill="${c}"/><path d="M34 92l8-8 6 6M80 50l-6 8 8 4" stroke="${d}" stroke-width="3" fill="none"/>`,
+    bird:`<ellipse cx="60" cy="72" rx="34" ry="33" fill="${c}"/><path d="M26 72Q14 84 30 92ZM94 72Q106 84 90 92Z" fill="${d}"/><path d="M54 74L60 84L66 74Z" fill="#F2A900"/>`,
+    stump:`<path d="M24 108L30 40Q60 30 90 40L96 108Z" fill="${c}"/><ellipse cx="60" cy="40" rx="30" ry="8" fill="${shade(c,1.25)}"/><path d="M40 100V80M80 100V84M60 104V92" stroke="${d}" stroke-width="3"/><path d="M24 108Q14 110 10 104M96 108Q106 110 110 104" stroke="${d}" stroke-width="5" fill="none" stroke-linecap="round"/>`}[shape];
+  if(A('stripes'))body+=`<path d="M30 70H90M27 82H93" stroke="#3B2F2F" stroke-width="6" opacity=".75"/>`;
+  if(A('cap'))top+=`<path d="M22 46Q60 0 98 46Z" fill="#E4572E"/><circle cx="46" cy="30" r="5" fill="#fff"/><circle cx="70" cy="26" r="6" fill="#fff"/>`;
+  const tY={blob:48,ball:32,bean:30,block:38,bird:39,stump:34}[shape];
+  if(A('leaf'))top+=`<path d="M60 ${tY+2}Q58 ${tY-14} 72 ${tY-20}Q72 ${tY-6} 60 ${tY+2}Z" fill="#3BB273"/>`;
+  if(A('flower'))top+=`${[[-7,0],[7,0],[0,-7],[0,7]].map(([x,y])=>`<circle cx="${60+x}" cy="${tY-6+y}" r="5" fill="#FF8FB1"/>`).join('')}<circle cx="60" cy="${tY-6}" r="4" fill="#FFE27A"/>`;
+  if(A('horns'))top+=`<path d="M40 ${tY+8}Q30 ${tY-6} 34 ${tY-16}Q40 ${tY-4} 48 ${tY+4}ZM80 ${tY+8}Q90 ${tY-6} 86 ${tY-16}Q80 ${tY-4} 72 ${tY+4}Z" fill="#F3E9D2"/>`;
+  if(A('ears'))top+=`<path d="M36 ${tY+12}L34 ${tY-8}L50 ${tY+4}ZM84 ${tY+12}L86 ${tY-8}L70 ${tY+4}Z" fill="${d}"/>`;
+  if(A('antenna'))top+=`<path d="M50 ${tY+2}Q44 ${tY-12} 40 ${tY-16}M70 ${tY+2}Q76 ${tY-12} 80 ${tY-16}" stroke="#3B2F2F" stroke-width="3" fill="none"/><circle cx="40" cy="${tY-17}" r="4" fill="#FFE27A"/><circle cx="80" cy="${tY-17}" r="4" fill="#FFE27A"/>`;
+  if(A('crystals'))top+=`<path d="M46 ${tY+4}L50 ${tY-14}L55 ${tY+4}ZM58 ${tY+2}L63 ${tY-20}L68 ${tY+2}ZM70 ${tY+4}L74 ${tY-10}L78 ${tY+6}Z" fill="#7FE3F0" stroke="#3CC1C3" stroke-width="1.5"/>`;
+  if(A('flame'))top+=`<path d="M48 ${tY+4}Q44 ${tY-10} 54 ${tY-20}Q54 ${tY-8} 60 ${tY-12}Q66 ${tY-24} 68 ${tY-10}Q76 ${tY-4} 72 ${tY+4}Z" fill="#FF9F1C"/><path d="M54 ${tY+4}Q54 ${tY-4} 60 ${tY-6}Q66 ${tY-2} 66 ${tY+4}Z" fill="#FFE27A"/>`;
+  if(boss)top+=`<path d="M44 ${tY-2}L46 ${tY-16}L53 ${tY-8}L60 ${tY-20}L67 ${tY-8}L74 ${tY-16}L76 ${tY-2}Z" fill="#F2C14E" stroke="#C8961E" stroke-width="1.5"/>`;
+  const face=`<circle cx="48" cy="${ey}" r="8.5" fill="#fff"/><circle cx="72" cy="${ey}" r="8.5" fill="#fff"/><circle cx="49.5" cy="${ey+1.5}" r="4.4" fill="#1B2A41"/><circle cx="70.5" cy="${ey+1.5}" r="4.4" fill="#1B2A41"/><circle cx="51" cy="${ey}" r="1.4" fill="#fff"/><circle cx="72" cy="${ey}" r="1.4" fill="#fff"/>
+    ${boss?`<path d="M39 ${ey-11}L54 ${ey-6}M81 ${ey-11}L66 ${ey-6}" stroke="#1B2A41" stroke-width="3" stroke-linecap="round"/>`:''}
+    <path d="M50 ${ey+14}Q60 ${ey+21} 70 ${ey+14}" fill="none" stroke="#1B2A41" stroke-width="3" stroke-linecap="round"/>${boss?`<path d="M53 ${ey+16}L55 ${ey+21}L57 ${ey+17}M63 ${ey+17}L65 ${ey+21}L67 ${ey+16}" fill="#fff" stroke="#fff"/>`:''}
+    <circle cx="40" cy="${ey+11}" r="4" fill="#FF8FB1" opacity=".45"/><circle cx="80" cy="${ey+11}" r="4" fill="#FF8FB1" opacity=".45"/>`;
+  return `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${esc(label||n)}">${back}${body}${face}${top}</svg>`}
+
+/* ---------- Play time ---------- */
+const GSET=()=>Object.assign({base:10,per:5,max:30},(BOOT.settings&&BOOT.settings.game)||{});
+const noLimit=()=>BOOT.role!=='student';                      /* teachers, parents and the Owner can preview without a limit */
+const playAllowed=()=>{const g=GSET();return Math.min(g.max,g.base+Math.floor(DAY().study/60)*g.per/10)*60};
+const playLeft=()=>noLimit()?Infinity:Math.max(0,Math.round(playAllowed()-DAY().play));
+const mmss=s=>`${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,'0')}`;
+function playLabel(){const l=playLeft();return l===Infinity?'no time limit':l>0?mmss(l)+' left':'out of time'}
+function earnNote(){const g=GSET(),m=Math.floor(DAY().study/60),capped=playAllowed()>=g.max*60;
+  return capped?`You've earned today's full ${g.max} minutes of play. Come back tomorrow for more.`:`Every 10 minutes of learning earns ${g.per} more minutes of play, up to ${g.max} minutes a day. You've learned ${m} minute${m===1?'':'s'} today.`}
+function realmTick(sec){if(tab!=='play'||!gameOn()||document.hidden||Date.now()-lastAct>120000)return;
+  if(BT&&['ask','fb'].includes(BT.phase)||!BT){if(!noLimit()&&playLeft()>0){DAY().play+=sec;if(DAY().play%60===0)SYNC()}}
+  const e=$('ptime');if(e)e.outerHTML=ptimeHtml();
+  if(!noLimit()&&playLeft()<=0&&BT&&BT.phase==='ask'){BT.phase='timeup';renderBattle()}}
+function ptimeHtml(){const l=playLeft(),a=noLimit()?1:playAllowed();return `<div class="ptime" id="ptime" title="${esc(noLimit()?'Only learners have a daily play time.':earnNote())}"><span aria-hidden="true">⏳</span><span>${l===Infinity?'No time limit (preview)':l>0?mmss(l)+' of play left today':'Out of play time today'}</span>${l===Infinity?'':`<div class="bar" aria-hidden="true"><i style="width:${Math.min(100,l/a*100)}%"></i></div>`}</div>`}
+
+/* ---------- World map and lands ---------- */
+const POS=[[110,330],[260,200],[410,312],[545,150],[690,292],[830,140],[920,320]];
+const landOpen=l=>LVL()>=l.lv;
+const LS=id=>GM.lands[id]||(GM.lands[id]={won:[0,0,0],boss:0,wins:0});
+let RL=null,BT=null;
+function curLand(){if(RL&&landOpen(LANDS.find(l=>l.id===RL)))return RL;const open=LANDS.filter(landOpen),nx=open.find(l=>!LS(l.id).boss);return (nx||open[open.length-1]).id}
+function selLand(id){const l=LANDS.find(x=>x.id===id);if(!landOpen(l))return msg(`${l.n} opens at level ${l.lv}. Learn to earn XP and level up!`);RL=id;rerealm();setTimeout(()=>{const e=$('landpanel');if(e)e.scrollIntoView({behavior:'smooth',block:'start'})},30)}
+function mapSvg(){const path=POS.map(([x,y],i)=>(i?'L':'M')+x+' '+y).join(' ');
+  return `<svg viewBox="0 0 1000 440" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="Map of Lumi's Realm"><defs><linearGradient id="rsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9FD8FF"/><stop offset="1" stop-color="#E9F8FF"/></linearGradient></defs>
+  <rect width="1000" height="440" fill="url(#rsky)"/><path d="M0 300Q180 220 360 300T720 270T1000 250V440H0Z" fill="#8CD17D"/><path d="M0 360Q250 310 500 370T1000 340V440H0Z" fill="#6DBF62"/>
+  <ellipse cx="160" cy="70" rx="60" ry="18" fill="#fff" opacity=".8"/><ellipse cx="700" cy="60" rx="80" ry="20" fill="#fff" opacity=".8"/>
+  <path d="${path}" fill="none" stroke="#fff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" opacity=".85"/><path d="${path}" fill="none" stroke="#C8A46A" stroke-width="6" stroke-dasharray="2 14" stroke-linecap="round"/>
+  ${LANDS.map((l,i)=>{const [x,y]=POS[i],o=landOpen(l),st=LS(l.id),sel=curLand()===l.id;return `<g class="land" tabindex="0" role="button" aria-label="${esc(l.n)}${o?'':', opens at level '+l.lv}${st.boss?', cleared':''}" onclick="selLand('${l.id}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selLand('${l.id}')}">
+    <circle class="ring" cx="${x}" cy="${y}" r="52" fill="${o?l.sky[0]:'#C9D2DC'}" stroke="${sel?'#F2A900':'#fff'}" stroke-width="${sel?9:6}"/><text x="${x}" y="${y+16}" font-size="46" text-anchor="middle" ${o?'':'opacity=".45"'}>${l.e}</text>
+    ${o?'':`<circle cx="${x+34}" cy="${y-34}" r="17" fill="#1B2A41"/><text x="${x+34}" y="${y-28}" font-size="17" text-anchor="middle">🔒</text>`}${st.boss?`<circle cx="${x+36}" cy="${y-34}" r="17" fill="#3BB273"/><text x="${x+36}" y="${y-28}" font-size="18" fill="#fff" text-anchor="middle" font-weight="800">✓</text>`:''}
+    <rect x="${x-78}" y="${y+60}" width="156" height="${o?30:46}" rx="15" fill="rgba(255,255,255,.92)"/><text x="${x}" y="${y+81}" font-size="18" font-weight="800" text-anchor="middle" fill="#1B2A41">${esc(l.n)}</text>${o?'':`<text x="${x}" y="${y+99}" font-size="14" text-anchor="middle" fill="#55657E">Level ${l.lv}</text>`}</g>`}).join('')}</svg>`}
+function landPanel(){const l=LANDS.find(x=>x.id===curLand()),st=LS(l.id),M=MONS[l.id],ready=st.won.every(Boolean);
+  return `<div class="card" id="landpanel" style="margin-top:14px"><div class="split"><h3>${l.e} ${esc(l.n)}</h3><span class="sol">${st.won.filter(Boolean).length} of 3 monsters befriended${st.boss?' · boss defeated':''}</span></div>
+  <p class="sol">Beat the three monsters to unlock the boss. A correct answer casts your spell; a wrong answer lets the monster strike, and shows you how to solve it.</p>
+  <div class="mons">${M.map((m,i)=>{const boss=i===3,lock=boss&&!ready,won=boss?st.boss:st.won[i];return `<div class="card mon ${boss?'boss':''} ${lock?'locked':''}"><div class="art mon-art">${monsterSvg(m,boss)}</div><b>${esc(boss?(m[0][0].toUpperCase()+m[0].slice(1)):m[0])}</b>
+    <p class="sol">${boss?'👑 Boss':won?'✓ Beaten':'Wild monster'} · ❤️ ${monHp(l,i)}</p><button class="${won||lock?'alt':'lamp'}" ${lock?'disabled':''} onclick="startBattle('${l.id}',${i})">${lock?'🔒 Beat all 3 first':won?'Battle again':'⚔️ Battle'}</button></div>`}).join('')}</div></div>`}
+function monHp(l,i){const n=LANDS.indexOf(l);return i===3?130+15*n:60+8*n}
+function schoolsHtml(){const subs=Object.keys(SUBN).filter(s=>subSkills(s).some(k=>G[k]));const s=GM.rsub&&subs.includes(GM.rsub)?GM.rsub:subs.includes(ST.subj)?ST.subj:'math';GM.rsub=s;
+  return `<div class="schools" role="group" aria-label="Choose your magic"><span class="sol"><b>Your magic:</b></span>${subs.map(x=>{const g=magicOf(x);return `<button class="chip ${s===x?'on':''}" aria-pressed="${s===x}" onclick="GM.rsub='${x}';SYNC();rerealm()">${g[0]} ${g[1]} <small>(${esc(SUBN[x])})</small></button>`}).join('')}</div>`}
+function mapView(){const left=playLeft();
+  return `<div class="realm-top"><h2>⚔️ Lumi's Realm</h2>${ptimeHtml()}</div>
+  ${!noLimit()&&left<=0?`<div class="card endcard" style="margin-bottom:14px"><div class="big" aria-hidden="true">🌙</div><h3>Play time is over for today</h3><p>${esc(earnNote())}</p><button class="lamp" onclick="go('learn')">📖 Go learn</button></div>`:''}
+  ${schoolsHtml()}<div class="worldmap">${mapSvg()}</div>
+  <div class="landlist">${LANDS.map(l=>{const o=landOpen(l),st=LS(l.id);return `<button class="lrow ${curLand()===l.id?'on':''}" ${o?'':'disabled'} onclick="selLand('${l.id}')"><span class="le" style="background:${o?l.sky[0]:'#C9D2DC'}" aria-hidden="true">${l.e}</span><span><b>${esc(l.n)}</b><span class="sol">${o?(st.boss?'Cleared ✓':`${st.won.filter(Boolean).length} of 3 monsters`):'🔒 Opens at level '+l.lv}</span></span></button>`}).join('')}</div>
+  ${landPanel()}<p class="sol" style="margin-top:12px">${noLimit()?'Teachers, parents and the Owner can play without a time limit to try the game. Learners get a daily play time.':esc(earnNote())}</p>`}
+
+/* ---------- Battles ---------- */
+function rpool(sub){let L=subSkills(sub).filter(k=>G[k]&&inBand(k));if(!L.length)L=subSkills(sub).filter(k=>G[k]);return L}
+function rquestion(){const L=rpool(GM.rsub||'math'),seen=L.filter(k=>S[k]&&S[k].att);
+  for(let i=0;i<15&&L.length;i++){const k=seen.length&&Math.random()<.7?pick(seen):pick(L);try{const s=S[k]||{p:0},q=G[k](s.p<.4?1:s.p<.7?2:3);if(q&&q.q&&q.a)return{k,q}}catch(e){}}return null}
+function startBattle(id,i){const l=LANDS.find(x=>x.id===id);if(!landOpen(l))return;if(i===3&&!LS(id).won.every(Boolean))return;
+  if(!noLimit()&&playLeft()<=0)return msg('Play time is over for today. Learn to earn more!');
+  const hp=monHp(l,i);BT={land:id,i,m:MONS[id][i],boss:i===3,mhp:hp,mmax:hp,hp:100,run:0,phase:'ask',n:0,ok:0};nextTurn();renderBattle()}
+function nextTurn(){const x=rquestion();if(!x){BT.phase='none';return}Object.assign(BT,{k:x.k,q:x.q,phase:'ask',fb:'',low:0})}
+const fmtA=q=>q.choices?q.choices[q.a[0]]:q.a[1]===1?String(q.a[0]):`${q.a[0]}/${q.a[1]}`;
+function castAns(raw){if(!BT||BT.phase!=='ask')return;const q=BT.q;let ok;
+  if(q.choices)ok=+raw===q.a[0];else{const u=parse(String(raw));if(!u){bfb('no','Type a whole number or a fraction like 3/4.');return}ok=eq(u,q.a);
+    if(ok&&q.exact&&!(gcd(Math.abs(u[0]),u[1])==1&&u[0]==q.a[0]&&u[1]==q.a[1])){bfb('no','That is the right value, but it can still go lower. Simplify it and cast again!');return}}
+  const l=LANDS.find(x=>x.id===BT.land),li=LANDS.indexOf(l);BT.n++;
+  if(ok){BT.ok++;BT.run++;const dmg=22+Math.floor(Math.random()*9)+Math.min(3,BT.run-1)*6+(GM.eq.pet?5:0);BT.mhp=Math.max(0,BT.mhp-dmg);BT.phase='fb';
+    BT.fb=`<div class="bfb ok" role="status">${magicOf(GM.rsub)[0]} ${pick(['Great spell!','Direct hit!','Brilliant!','Super cast!','You got it!'])} ${dmg} damage${BT.run>1?` · ${BT.run} in a row!`:''}${GM.eq.pet?' (your pet helped!)':''}</div>`;
+    anim('hero',dmg);setTimeout(()=>{if(!BT||BT.phase!=='fb')return;if(BT.mhp<=0)winBattle();else{nextTurn();renderBattle()}},1150)}
+  else{BT.run=0;const dmg=16+3*li+Math.floor(Math.random()*6);BT.hp=Math.max(0,BT.hp-dmg);BT.phase='fb';
+    BT.fb=`<div class="bfb no" role="status">Not quite. The answer is <b>${esc(fmtA(q))}</b>. The monster strikes for ${dmg}!${q.s?`<p class="sol">${q.s}</p>`:''}<div class="row" style="margin-top:8px"><button class="lamp" id="bnext" onclick="afterMiss()">${BT.hp<=0?'Continue':'Next spell →'}</button></div></div>`;anim('mon',dmg)}
+  renderBattle(true)}
+function afterMiss(){if(!BT)return;if(BT.hp<=0){BT.phase='lost';renderBattle();return}if(!noLimit()&&playLeft()<=0){BT.phase='timeup';renderBattle();return}nextTurn();renderBattle()}
+function bfb(c,t){const e=$('bfbx');if(e)e.innerHTML=`<div class="bfb ${c}" role="status">${esc(t)}</div>`}
+function winBattle(){const st=LS(BT.land),first=BT.boss?!st.boss:!st.won[BT.i],g=BT.boss?(first?25:8):(first?6:2);
+  if(BT.boss)st.boss=1;else st.won[BT.i]=1;st.wins++;GM.bw++;DAY().bat++;addGems(g);BT.phase='won';BT.gems=g;BT.first=first;SYNC();renderBattle();gameCheck()}
+function anim(who,dmg){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;setTimeout(()=>{const ar=document.querySelector('.arena');if(!ar)return;
+  const me=ar.querySelector('.fighter.me .art'),mo=ar.querySelector('.fighter.foe .art');
+  if(who==='hero'){const o=document.createElement('div');o.className='orbshot';o.style.color=magicOf(GM.rsub)[2];ar.appendChild(o);setTimeout(()=>{o.remove();if(mo){mo.classList.add('hit','flash');setTimeout(()=>mo.classList.remove('hit','flash'),450)}pop(ar,'72%','58%',dmg)},520)}
+  else{if(mo){mo.classList.add('lunge');setTimeout(()=>mo.classList.remove('lunge'),500)}setTimeout(()=>{if(me){me.classList.add('hit');setTimeout(()=>me.classList.remove('hit'),450)}pop(ar,'24%','58%',dmg)},260)}},30)}
+function pop(ar,l,t,n){const d=document.createElement('div');d.className='dmg';d.style.left=l;d.style.top=t;d.textContent='-'+n;ar.appendChild(d);setTimeout(()=>d.remove(),1000)}
+function battleHtml(){const l=LANDS.find(x=>x.id===BT.land),q=BT.q,nm=BT.m[0][0].toUpperCase()+BT.m[0].slice(1),mg=magicOf(GM.rsub);
+  const arena=`<div class="arena" style="background:linear-gradient(${l.sky[0]},${l.sky[1]} 62%,${l.gr} 62%)">${BT.run>1&&BT.phase!=='won'?`<div class="combo">🔥 ${BT.run} in a row</div>`:''}
+    <div class="fighter me"><div class="hpw"><span class="nameplate">${esc(ME.display||'Hero')} · Lv ${LVL()}</span><div class="hp" role="progressbar" aria-label="Your health" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${BT.hp}"><i style="width:${BT.hp}%"></i></div><span class="hpn">${BT.hp} / 100</span></div><div class="art">${heroSvg(GM,{bg:false,label:'Your hero'})}</div></div>
+    <div class="fighter foe"><div class="hpw"><span class="nameplate">${BT.boss?'👑 ':''}${esc(nm)}</span><div class="hp foe" role="progressbar" aria-label="Monster health" aria-valuemin="0" aria-valuemax="${BT.mmax}" aria-valuenow="${BT.mhp}"><i style="width:${BT.mhp/BT.mmax*100}%"></i></div><span class="hpn">${BT.mhp} / ${BT.mmax}</span></div><div class="art mon-art">${monsterSvg(BT.m,BT.boss)}</div></div></div>`;
+  let panel;
+  if(BT.phase==='won')panel=`<div class="endcard"><div class="big" aria-hidden="true">🏆</div><h3>You beat ${esc(nm)}!</h3><p>${BT.ok} correct out of ${BT.n} spells. You earned <b>💎 ${BT.gems} gems</b>${BT.first?' for your first win':''}.${BT.boss&&BT.first?` You found the <b>${esc(l.relic)}</b>!`:''}</p><div class="row" style="justify-content:center"><button class="lamp" onclick="BT=null;rerealm()">Back to ${esc(l.n)}</button>${playLeft()>0?`<button class="alt" onclick="startBattle('${l.id}',${BT.i})">Battle again</button>`:''}</div></div>`;
+  else if(BT.phase==='lost')panel=`<div class="endcard"><div class="big" aria-hidden="true">💫</div><h3>${esc(nm)} won this time</h3><p>Lumi healed you up. Every miss showed you how to solve it, so you're stronger now. Try again!</p><div class="row" style="justify-content:center"><button class="lamp" onclick="startBattle('${l.id}',${BT.i})">Try again</button><button class="alt" onclick="BT=null;rerealm()">Back to the map</button></div></div>`;
+  else if(BT.phase==='timeup')panel=`<div class="endcard"><div class="big" aria-hidden="true">🌙</div><h3>Play time is over for today</h3><p>${esc(earnNote())}</p><div class="row" style="justify-content:center"><button class="lamp" onclick="BT=null;go('learn')">📖 Go learn</button><button class="alt" onclick="BT=null;rerealm()">Back to the map</button></div></div>`;
+  else if(BT.phase==='none')panel=`<div class="endcard"><h3>No questions here yet</h3><p>Pick another kind of magic, or choose your grade on the Learn page.</p><button class="lamp" onclick="BT=null;rerealm()">Back to the map</button></div>`;
+  else panel=`<p class="sol" style="margin:0 0 6px">${mg[0]} ${mg[1]} · ${esc(SK[BT.k].n)}</p><div class="bq">${q.q}</div>
+    ${q.choices?`<div class="bchoices">${q.choices.map((c,i)=>`<button ${BT.phase!=='ask'?'disabled':''} onclick="castAns(${i})"><span aria-hidden="true">${'ABCD'[i]}.</span> ${esc(c)}</button>`).join('')}</div>`
+      :`<form class="bans" onsubmit="event.preventDefault();castAns($('bans').value)"><input id="bans" autocomplete="off" inputmode="text" aria-label="Your answer" placeholder="Type your answer" ${BT.phase!=='ask'?'disabled':''}><button class="lamp" ${BT.phase!=='ask'?'disabled':''}>✨ Cast</button></form>`}
+    <div id="bfbx">${BT.fb||''}</div>`;
+  return `<div class="realm-top"><button class="alt" onclick="if(BT.phase==='ask'&&BT.n&&!confirm('Leave this battle?'))return;BT=null;rerealm()">← Map</button>${ptimeHtml()}</div><div class="battle">${arena}<div class="qpanel">${panel}</div></div>`}
+function renderBattle(keep){if(tab!=='play'||!BT)return;$('views').innerHTML=battleHtml();
+  const f=BT.phase==='ask'?($('bans')||document.querySelector('.bchoices button')):$('bnext');if(f&&!keep)f.focus();else if(f&&BT.phase==='fb')f.focus()}
+function rerealm(){if(tab==='play')$('views').innerHTML=VIEWS.play()}
+VIEWS.play=function(){if(!gameOn())return `<h2>Lumi's Realm</h2><p class="sol">The game is turned off on this site.</p>`;return BT?battleHtml():mapView()};
+const _stG=showTab;showTab=function(t){if(t!=='play'&&BT&&BT.phase==='ask')BT=null;_stG(t)};
+
+/* Owner console: the daily play time */
+const _ofG=O.flags;O.flags=function(){const g=GSET();return _ofG()+`<h3 style="margin-top:18px">Lumi's Realm play time</h3><p class="sol">Learners start each day with free play time and earn more by learning. Teachers, parents and the Owner have no limit. Turn the whole game off with the Game mode flag above.</p>
+  <div class="row"><label>Free minutes a day <input type="number" id="gsb" min="0" max="120" value="${g.base}" style="width:90px"></label><label>Minutes earned per 10 minutes of learning <input type="number" id="gsp" min="0" max="60" value="${g.per}" style="width:90px"></label><label>Most minutes a day <input type="number" id="gsm" min="0" max="240" value="${g.max}" style="width:90px"></label><button class="lamp" onclick="saveGameSet()">Save play time</button></div>`};
+function saveGameSet(){const n=(id,hi)=>Math.max(0,Math.min(hi,Math.round(+$(id).value||0))),g={base:n('gsb',120),per:n('gsp',60),max:n('gsm',240)};busy(async()=>{await api('PUT','/api/owner/settings',{game:g});BOOT.settings.game=g;msg('Play time saved.')})}
+
+/* Start: only level-ups from now on are celebrated; then redraw the header and the page with the game added */
+if(!GM.seen)GM.seen=LVL();
+if(BOOT.role==='student'&&!BOOT.local)api('GET','/api/classes').then(r=>{ST.joined=r.joined||[]}).catch(()=>{});
+nav();if(tab==='learn')render();else if(VIEWS[tab])showTab(tab);setTimeout(gameCheck,1500);
+</script>

@@ -1,0 +1,258 @@
+<style>
+/* ===== Game layer: hero levels, quests, treasures, the gem shop and hero avatars ===== */
+button.chipstat{cursor:pointer;font-family:inherit}button.chipstat:hover{box-shadow:var(--shadow-up)}
+.lvbar{display:inline-block;width:40px;height:6px;border-radius:4px;background:var(--line);overflow:hidden}.lvbar i{display:block;height:100%;background:var(--lamp)}
+.avatar.hero{overflow:hidden;background:#BFE6FF}.avatar.hero svg{width:100%;height:100%;display:block}
+.herostrip{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:14px;margin:0 0 16px}
+@media(max-width:860px){.herostrip{grid-template-columns:1fr}}
+.hcard{display:flex;gap:16px;align-items:center}.hav{flex:none;width:96px;height:96px;border-radius:22px;overflow:hidden;box-shadow:var(--shadow)}.hav svg{width:100%;height:100%;display:block}
+.hcard h3{margin:2px 0 0;font-size:1.2rem}.rank{font-size:.75rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#8A6100}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .rank{color:#F5C34B}}:root[data-theme="dark"] .rank{color:#F5C34B}
+.xpline{display:flex;justify-content:space-between;gap:8px;font-size:.8rem;color:var(--mute)}.hcard .bar{max-width:none;margin:6px 0 4px}.hcard .bar i{background:var(--lamp)}
+.gemrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.quest{display:flex;gap:10px;align-items:center;padding:9px 0;border-top:1px solid var(--line)}.quest:first-of-type{border-top:0}
+.qi{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:var(--lamp-soft,#FFF4D6);font-size:18px;flex:none}
+.quest .qt{flex:1;min-width:0}.quest .qt b{display:block;font-size:.95rem}.quest .bar{height:7px;max-width:none;margin:5px 0 0}.quest .bar i{background:var(--lamp)}
+.quest .rw{font-size:.8rem;font-weight:700;white-space:nowrap;color:var(--mute)}.quest.done .qi{background:#D9F2E3}.quest.done .qt b{text-decoration:line-through;text-decoration-color:var(--mute)}
+.chest{display:flex;gap:10px;align-items:center;margin-top:8px;padding:10px 12px;border-radius:12px;background:var(--lamp-soft,#FFF4D6);font-size:.9rem}
+.htabs{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 16px}
+.shopgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.shopit{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;padding:12px}.shopit .pv{width:100px;height:100px;border-radius:18px;overflow:hidden}.shopit .pv svg{width:100%;height:100%}
+.shopit b{font-size:.95rem}.shopit .sol{margin:0;font-size:.8rem}.shopit button{width:100%}.shopit.lock .pv{filter:grayscale(1);opacity:.55}
+.swatches{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 12px}.sw{width:34px;height:34px;border-radius:50%;border:3px solid var(--panel);box-shadow:0 0 0 2px var(--line);cursor:pointer;padding:0}.sw.on{box-shadow:0 0 0 3px var(--ink)}
+.trgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}.tre{text-align:center;padding:14px}.tre .ti{font-size:34px;line-height:1.1}.tre b{display:block;margin-top:6px;font-size:.92rem}.tre .sol{margin:4px 0 0;font-size:.8rem}.tre.off .ti{filter:grayscale(1);opacity:.35}
+.herobig{display:grid;grid-template-columns:220px minmax(0,1fr);gap:20px;align-items:start}.herobig .hav{width:220px;height:220px;border-radius:28px}
+@media(max-width:700px){.herobig{grid-template-columns:1fr}.herobig .hav{width:180px;height:180px;margin:0 auto}}
+#gtoast{position:fixed;left:50%;top:72px;transform:translateX(-50%);z-index:30;width:min(92vw,440px)}
+.gt{background:var(--panel);color:var(--ink);border:2px solid var(--lamp);border-radius:16px;padding:12px 16px;box-shadow:var(--shadow-up);display:flex;gap:12px;align-items:flex-start;animation:gtin .35s ease-out;cursor:pointer}
+.gt .ge{font-size:28px;line-height:1}.gt ul{margin:0;padding:0;list-style:none}.gt li{font-weight:700;font-size:.95rem;margin:2px 0}.gt li:first-child{font-size:1.05rem}.gt.big li:first-child{font-size:1.2rem}
+@keyframes gtin{from{transform:translateY(-14px) scale(.96);opacity:0}to{transform:none;opacity:1}}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:29;overflow:hidden}.confetti i{position:absolute;top:-12px;width:9px;height:14px;border-radius:2px;animation:fall 1.8s ease-in forwards}
+@keyframes fall{to{transform:translateY(105vh) rotate(540deg);opacity:.9}}
+@media(prefers-reduced-motion:reduce){.gt{animation:none}.confetti{display:none}}
+</style>
+<script type="text/x-lumen">
+/* ===== Game layer: hero levels and ranks, daily and weekly quests, treasures, the gem shop and hero avatars.
+   It is saved with the learner's progress (BOOT.state.game). XP comes only from learning; gems buy cosmetic items. ===== */
+const GM=BOOT.state.game=Object.assign({hero:{skin:1,hair:0,hc:1},eq:{outfit:'o_tunic',hat:'',item:'i_sword',pet:'',bg:'b_meadow'},own:['o_tunic','i_sword','b_meadow'],
+  day:{},wk:{},lands:{},tre:[],qn:0,bw:0,cwn:0,done:[],aw:[],seen:0},BOOT.state.game||{});
+if(GM.ge==null)GM.ge=BOOT.state.gems||0;   /* gems earned in total: Gem Challenges count these, so spending gems never undoes a class goal */
+const GEMS=()=>BOOT.state.gems||0;
+const _sbG=stateBody;stateBody=function(){const b=_sbG();b.game=GM;return b};
+const gameOn=()=>ST.flags['Game mode']!==false;
+['Game mode','Class leaderboards'].forEach(f=>{if(ST.flags&&ST.flags[f]===undefined)ST.flags[f]=true});
+
+/* Days and weeks use the learner's own clock; a week starts on Monday */
+const dstr=(d=new Date())=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+const wkId=()=>{const d=new Date();d.setDate(d.getDate()-(d.getDay()+6)%7);return dstr(d)};
+function DAY(){const d=dstr();if(GM.day.d!==d)GM.day={d,study:0,play:0,ok:0,run:0,best:0,mis:0,les:0,cw:0,bat:0,q:[],chest:0};return GM.day}
+function WEEK(){const w=wkId();if(GM.wk.w!==w)GM.wk={w,xp:0,days:[],q:[]};return GM.wk}
+const markDay=()=>{const W=WEEK(),d=dstr();if(!W.days.includes(d))W.days.push(d)};
+
+/* ---------- Levels and ranks ---------- */
+const LVXP=L=>100*(L-1)+25*(L-1)*(L-2);          /* total XP needed to reach level L */
+const lvlOf=x=>{let L=1;while(L<99&&LVXP(L+1)<=x)L++;return L};
+const LVL=()=>lvlOf(XP());
+const RANKS=[[1,'Apprentice'],[5,'Squire'],[10,'Adventurer'],[15,'Knight'],[20,'Mage'],[25,'Champion'],[30,'Hero'],[40,'Legend']];
+const rankOf=L=>RANKS.filter(r=>L>=r[0]).pop()[1];
+function lvProg(){const x=XP(),L=lvlOf(x),a=LVXP(L),b=LVXP(L+1);return{L,into:x-a,need:b-a,pct:Math.round(100*(x-a)/(b-a))}}
+/* The lands of Lumi's Realm open as the hero levels up */
+const LANDS=[
+  {id:'meadow',n:'Sunny Meadow',lv:1,e:'🌼',sky:['#BFE6FF','#E9F8FF'],gr:'#7CCB6B',boss:'Thornback',relic:'Thorn Crown'},
+  {id:'woods',n:'Whispering Woods',lv:4,e:'🌲',sky:['#CDE8C9','#EEF8EA'],gr:'#4E8F45',boss:'Old Grumbleroot',relic:'Acorn of Ages'},
+  {id:'caves',n:'Crystal Caves',lv:8,e:'💎',sky:['#3B3F6B','#6B5FA8'],gr:'#4A4470',boss:'Gemjaw',relic:'Heart Crystal'},
+  {id:'peaks',n:'Frost Peaks',lv:12,e:'🏔️',sky:['#DCEFFF','#F6FBFF'],gr:'#E3EEF7',boss:'the Yeti Queen',relic:'Snowflake Sigil'},
+  {id:'volcano',n:'Ember Volcano',lv:16,e:'🌋',sky:['#FFB38A','#FFE0C7'],gr:'#6B4A3A',boss:'Magmaw',relic:'Ember Stone'},
+  {id:'sky',n:'Sky Castle',lv:20,e:'🏰',sky:['#9FD3FF','#E3F3FF'],gr:'#F1F6FF',boss:'the Storm Griffin',relic:'Feather of Storms'},
+  {id:'keep',n:"Dragon's Keep",lv:25,e:'🐉',sky:['#2A1F3D','#5B3A5E'],gr:'#3D2B3F',boss:'Emberwing the Elder Dragon',relic:'Dragon Scale'}];
+
+/* ---------- XP, gems and learning events ---------- */
+function levelUp(L){const was=GM.seen||1;GM.seen=L;const lines=[`Level up! You reached level ${L}.`];
+  if(rankOf(L)!==rankOf(was))lines.push(`New rank: ${rankOf(L)}`);
+  LANDS.filter(l=>l.lv>was&&l.lv<=L).forEach(l=>lines.push(`New land unlocked in Lumi's Realm: ${l.e} ${l.n}`));
+  const items=SHOP.filter(s=>s.lv>was&&s.lv<=L);if(items.length)lines.push(`New in the shop: ${items.map(s=>s.n).join(', ')}`);
+  celebrate(lines,true)}
+const _axG=addXP;addXP=function(n,why){const L0=LVL(),r=_axG(n,why);WEEK().xp+=n;if(LVL()>L0&&GM.seen)levelUp(LVL());return r};
+function addGems(n){BOOT.state.gems=GEMS()+n;GM.ge+=n;renderMe();SYNC();return n}
+const _udG=update;update=function(k,ok,...a){const g0=GEMS(),L0=level(k);_udG(k,ok,...a);const dg=GEMS()-g0;if(dg>0)GM.ge+=dg;
+  const D=DAY();if(ok){D.ok++;D.run++;D.best=Math.max(D.best,D.run)}else D.run=0;markDay();gameCheck()};
+const _nqG=nextQ;nextQ=function(){_nqG();if(view==='summary'&&cur&&cur.celebrate&&!cur._g){cur._g=1;DAY().mis++;gameCheck()}};
+const _osG=openSkill;openSkill=function(k){_osG(k);DAY().les++;gameCheck()};
+/* Classwork and lesson quizzes earn XP and gems when turned in (unit tests and benchmarks do not) */
+turnIn=function(auto){const r=RUN;if(!r)return;const blank=r.items.filter((_,i)=>!String(r.ans[i]??'').trim()).length;
+  if(!auto&&blank&&!confirm(`You left ${blank} question${blank>1?'s':''} blank. Turn in anyway?`))return;
+  busy(async()=>{await api('PUT',`/api/tests/${r.cid}/${r.tid}/answers`,{answers:r.ans,submit:true});if(r.iv)clearInterval(r.iv);r.submitted=true;RUN=null;
+    let extra='';const id=r.cid+':'+r.tid;
+    if(['classwork','quiz'].includes(r.kind)&&!GM.done.includes(id)){const x=r.kind==='quiz'?40:30;GM.done=[...GM.done,id].slice(-300);DAY().cw++;GM.cwn++;addXP(x,'turning in work');addGems(5);extra=` +${x} XP and +5 💎`;gameCheck()}
+    if(!auto)msg('Turned in. Nice work!'+extra);reload('classes')})};
+
+/* Learning time counts toward quests and earns play time in Lumi's Realm (only while the learner is active) */
+let lastAct=Date.now();['pointerdown','keydown','touchstart','wheel'].forEach(e=>addEventListener(e,()=>{lastAct=Date.now()},{passive:true,capture:true}));
+const studying=()=>(tab==='learn'&&['lesson','practice','quiz'].includes(view))||tab==='take';
+setInterval(()=>{if(document.hidden)return;const D=DAY();
+  if(studying()&&Date.now()-lastAct<180000){D.study+=5;markDay();if(D.study%60===0){SYNC();gameCheck();if(tab==='learn'&&view==='home'&&$('qbox'))$('qbox').outerHTML=questBox()}}
+  if(typeof realmTick==='function')realmTick(5)},5000);
+
+/* ---------- Quests ---------- */
+const QUESTS={
+  ok:{i:'✅',t:n=>`Answer ${n} questions correctly`,n:15,v:D=>D.ok},
+  study:{i:'📖',t:n=>`Learn for ${n} minutes`,n:10,v:D=>Math.floor(D.study/60)},
+  run:{i:'🔥',t:n=>`Get ${n} right in a row`,n:5,v:D=>D.best},
+  mis:{i:'🎯',t:()=>'Finish a practice mission',n:1,v:D=>D.mis},
+  les:{i:'💡',t:n=>`Open ${n} lessons`,n:2,v:D=>D.les},
+  cw:{i:'📝',t:()=>'Turn in classwork or a lesson quiz',n:1,v:D=>D.cw},
+  bat:{i:'⚔️',t:n=>`Win ${n} battles in Lumi's Realm`,n:2,v:D=>D.bat,gemsOnly:1}};
+const WQ=[{id:'days',i:'📅',t:'Learn on 4 different days this week',n:4,v:W=>W.days.length,g:25,x:50},{id:'xp',i:'⭐',t:'Earn 500 XP this week',n:500,v:W=>W.xp,g:25}];
+const openWork=()=>(ST.joined||[]).some(c=>(c.tests||[]).some(t=>['classwork','quiz'].includes(t.kind)&&!(t.sub&&t.sub.submitted)));
+function dailyQuests(){const D=DAY();if(!D.list){let h=7;for(const c of D.d+':'+(ME.id||0))h=(h*31+c.charCodeAt(0))>>>0;const r=()=>(h=(h*1103515245+12345)>>>0)/4294967296;
+    const first=r()<.5?'ok':'study',rest=['run','mis','les','ok','study',...(openWork()?['cw','cw']:[]),...(gameOn()?['bat']:[])].filter(x=>x!==first),out=[first];
+    while(out.length<3&&rest.length){const x=rest.splice(Math.floor(r()*rest.length),1)[0];if(!out.includes(x))out.push(x)}D.list=out}
+  return D.list}
+function gameCheck(){const D=DAY(),W=WEEK(),got=[];
+  dailyQuests().forEach(id=>{const Q=QUESTS[id];if(!D.q.includes(id)&&Q.v(D)>=Q.n){D.q.push(id);GM.qn++;addGems(Q.gemsOnly?8:5);if(!Q.gemsOnly)addXP(15,'a quest');got.push(`Quest complete: ${Q.t(Q.n)}. +${Q.gemsOnly?8:5} 💎`)}});
+  if(!D.chest&&D.q.length>=3){D.chest=1;addGems(10);addXP(30,'finishing every daily quest');got.push('Every daily quest done! Treasure chest: +10 💎 and +30 XP')}
+  WQ.forEach(q=>{if(!W.q.includes(q.id)&&q.v(W)>=q.n){W.q.push(q.id);addGems(q.g);if(q.x)addXP(q.x,'a weekly quest');got.push(`Weekly quest complete: ${q.t}. +${q.g} 💎`)}});
+  TRE.forEach(t=>{if(!GM.tre.includes(t.id)&&t.f()){GM.tre.push(t.id);addGems(10);got.push(`${t.i} Treasure found: ${t.n}! +10 💎`)}});
+  if(got.length){celebrate(got);if(tab==='learn'&&view==='home')render();else if(tab==='hero')ar2()}if(GM.seen&&LVL()>GM.seen)levelUp(LVL())}
+
+/* ---------- Treasures (badges) ---------- */
+const TRE=[
+  {id:'first',i:'🪨',n:'Lucky Pebble',d:'Answer your first question',f:()=>qsum()>=1},
+  {id:'q100',i:'📜',n:'Scroll of a Hundred',d:'Answer 100 questions',f:()=>qsum()>=100},
+  {id:'q1000',i:'📚',n:'Tome of a Thousand',d:'Answer 1,000 questions',f:()=>qsum()>=1000},
+  {id:'s3',i:'🕯️',n:'Ember Charm',d:'Learn 3 days in a row',f:()=>streak()>=3},
+  {id:'s7',i:'🔥',n:'Flame Amulet',d:'Learn 7 days in a row',f:()=>streak()>=7},
+  {id:'s30',i:'🪶',n:'Phoenix Feather',d:'Learn 30 days in a row',f:()=>streak()>=30},
+  {id:'l5',i:'🛡️',n:'Squire Shield',d:'Reach level 5',f:()=>LVL()>=5},
+  {id:'l10',i:'🗺️',n:"Adventurer's Map",d:'Reach level 10',f:()=>LVL()>=10},
+  {id:'l20',i:'🔮',n:"Mage's Orb",d:'Reach level 20',f:()=>LVL()>=20},
+  {id:'l30',i:'👑',n:"Hero's Crown",d:'Reach level 30',f:()=>LVL()>=30},
+  {id:'m1',i:'⭐',n:'Golden Star',d:'Master a skill',f:()=>ORDER.some(k=>level(k)===4)},
+  {id:'p10',i:'💠',n:'Crystal of Focus',d:'Reach Proficient in 10 skills',f:()=>ORDER.filter(k=>level(k)>=3).length>=10},
+  {id:'qn10',i:'🚩',n:'Quest Banner',d:'Finish 10 quests',f:()=>GM.qn>=10},
+  {id:'qn50',i:'🏆',n:"Questmaster's Cup",d:'Finish 50 quests',f:()=>GM.qn>=50},
+  {id:'cw5',i:'🎀',n:'Scholar Ribbon',d:'Turn in 5 classwork or lesson quizzes',f:()=>GM.cwn>=5},
+  {id:'shop',i:'🧰',n:'First Treasure Chest',d:'Buy something in the gem shop',f:()=>GM.own.length>3},
+  {id:'b10',i:'⚔️',n:'Monster Tamer',d:"Win 10 battles in Lumi's Realm",f:()=>GM.bw>=10,game:1},
+  ...LANDS.map(l=>({id:'boss_'+l.id,i:l.e,n:l.relic,d:`Defeat ${l.boss} in ${l.n}`,f:()=>!!(GM.lands[l.id]&&GM.lands[l.id].boss),game:1}))];
+
+/* ---------- Celebrations ---------- */
+/* One card at a time; new news joins the card that is showing. Tap it to close. */
+function celebrate(lines,big){if(!$('gtoast'))document.body.insertAdjacentHTML('beforeend','<div id="gtoast" role="status" aria-live="polite"></div>');
+  const box=$('gtoast');celebrate.q=[...(box.firstChild?celebrate.q||[]:[]),...lines];celebrate.big=big||(box.firstChild&&celebrate.big);let L=celebrate.q;if(L.length>4)L=[...L.slice(0,3),`...and ${L.length-3} more on your hero page.`];
+  box.innerHTML=`<div class="gt${celebrate.big?' big':''}" onclick="this.remove()"><span class="ge" aria-hidden="true">${celebrate.big?'🎉':'✨'}</span><ul>${L.map(l=>`<li>${esc(l)}</li>`).join('')}</ul></div>`;
+  clearTimeout(celebrate.t);celebrate.t=setTimeout(()=>{box.innerHTML='';celebrate.q=[]},celebrate.big?6500:4500);
+  if(big&&!matchMedia('(prefers-reduced-motion: reduce)').matches){const c=document.createElement('div');c.className='confetti';c.setAttribute('aria-hidden','true');
+    c.innerHTML=Array.from({length:60},(_,i)=>`<i style="left:${Math.random()*100}%;background:${['#F2A900','#E4572E','#2D9CDB','#3CC1C3','#8E6CEF','#59C36A'][i%6]};animation-delay:${Math.random()*.6}s;animation-duration:${1.4+Math.random()}s"></i>`).join('');
+    document.body.appendChild(c);setTimeout(()=>c.remove(),3200)}}
+
+/* ---------- Hero avatar (SVG, 100 x 100) ---------- */
+const SKIN=['#FFE0BD','#F5C9A0','#E0A878','#C68650','#9A5B32','#6B3E22'];
+const HAIRC=['#2B1B12','#5A3825','#A0522D','#D9A441','#EADBB0','#B83A26','#4A4A4A','#7B5BD6','#2D9CDB'];
+const HAIRS=['Short','Long','Curly','Bun','Spiky','Braids'];
+const svgId=()=>'h'+Math.random().toString(36).slice(2,8);
+function bgSvg(id,cid){const s={
+  b_meadow:`<rect width="100" height="100" fill="#BFE6FF"/><circle cx="82" cy="18" r="9" fill="#FFE27A"/><path d="M0 74Q30 62 60 72T100 70V100H0Z" fill="#7CCB6B"/><circle cx="14" cy="88" r="2.2" fill="#fff"/><circle cx="86" cy="86" r="2.2" fill="#FF8FB1"/>`,
+  b_forest:`<rect width="100" height="100" fill="#D3ECCD"/><path d="M8 78L18 44L28 78ZM74 78L86 38L98 78ZM60 78L67 54L74 78Z" fill="#3E7D3A"/><rect y="76" width="100" height="24" fill="#5E9E4E"/>`,
+  b_night:`<rect width="100" height="100" fill="#26315C"/><circle cx="80" cy="20" r="8" fill="#F6EFC8"/><circle cx="76" cy="17" r="7" fill="#26315C"/>${[[12,14],[30,8],[48,20],[20,34],[90,40],[62,10]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="1.3" fill="#fff"/>`).join('')}<path d="M0 78Q50 66 100 78V100H0Z" fill="#2E4A3A"/>`,
+  b_castle:`<rect width="100" height="100" fill="#DCE6F2"/><path d="M60 78V40h6v-6h5v6h6v-6h5v6h6V78Z" fill="#A3AFBD"/><rect x="69" y="58" width="9" height="20" rx="4" fill="#6E7B8A"/><path d="M0 78Q50 70 100 78V100H0Z" fill="#8BBF7A"/>`,
+  b_volcano:`<rect width="100" height="100" fill="#FFC8A8"/><path d="M52 80L72 34H82L100 80Z" fill="#5B3A33"/><path d="M72 34L77 26L82 34Z" fill="#FF6A2B"/><circle cx="77" cy="20" r="4" fill="#FFB13B" opacity=".8"/><path d="M0 80Q50 72 100 80V100H0Z" fill="#6B4A3A"/>`,
+  b_sky:`<rect width="100" height="100" fill="#A8D8FF"/><ellipse cx="20" cy="24" rx="14" ry="6" fill="#fff"/><ellipse cx="78" cy="58" rx="16" ry="6" fill="#fff"/><path d="M64 56V34h4v-4h4v4h4v-4h4v4h4V56Z" fill="#EEF2FA"/><path d="M0 84Q50 74 100 84V100H0Z" fill="#F4F8FF"/>`}[id]||'';
+  return s}
+function outfitSvg(o){const T='M27 100L31 74Q50 62 69 74L73 100Z';return{
+  o_tunic:`<path d="${T}" fill="#3F8F5A"/><rect x="30" y="86" width="40" height="5" fill="#7A4E2D"/><rect x="47" y="85" width="6" height="7" rx="1" fill="#F2C14E"/>`,
+  o_scholar:`<path d="${T}" fill="#2563EB"/><path d="M44 68L50 80L56 68Z" fill="#fff"/><path d="M49 72H51L52 86L50 89L48 86Z" fill="#E4572E"/>`,
+  o_cloak:`<path d="M22 100L30 70Q50 60 70 70L78 100Z" fill="#2F6B4F"/><path d="M36 72L50 98L64 72Q50 66 36 72Z" fill="#8C6A3F"/><circle cx="50" cy="70" r="3" fill="#F2C14E"/>`,
+  o_robe:`<path d="M25 100L31 72Q50 62 69 72L75 100Z" fill="#6D4BC4"/><path d="M45 66L50 100M55 66L50 100" stroke="#F2C14E" stroke-width="2"/>${[[37,84],[62,90],[60,78]].map(([x,y])=>`<path d="M${x} ${y-3}L${x+1} ${y-1}L${x+3} ${y}L${x+1} ${y+1}L${x} ${y+3}L${x-1} ${y+1}L${x-3} ${y}L${x-1} ${y-1}Z" fill="#FFD86B"/>`).join('')}`,
+  o_armor:`<path d="${T}" fill="#AEB8C4"/><path d="M33 80H67M32 90H68" stroke="#7F8C9B" stroke-width="2"/><path d="M50 72L56 77L50 84L44 77Z" fill="#F2C14E"/>`,
+  o_royal:`<path d="${T}" fill="#B8322A"/><path d="M50 70V100" stroke="#F2C14E" stroke-width="3"/><path d="M31 74Q50 64 69 74Q60 80 50 79Q40 80 31 74Z" fill="#F5F1E8"/><circle cx="40" cy="76" r="1.2" fill="#333"/><circle cx="60" cy="76" r="1.2" fill="#333"/>`}[o]||''}
+function hairSvg(st,c,back){if(back)return st===1?`<path d="M30 44Q28 22 50 21Q72 22 70 44L72 68Q66 72 62 66V48H38V66Q34 72 28 68Z" fill="${c}"/>`:st===5?`<g fill="${c}"><circle cx="31" cy="58" r="4"/><circle cx="31" cy="66" r="3.6"/><circle cx="69" cy="58" r="4"/><circle cx="69" cy="66" r="3.6"/></g>`:'';
+  const top='M31 43Q30 22 50 21Q70 22 69 43Q67 33 58 31Q50 36 41 31Q33 33 31 43Z';
+  return [top,top,null,top,null,top][st]?`<path d="${top}" fill="${c}"/>`+(st===3?`<circle cx="50" cy="17" r="7" fill="${c}"/>`:'')
+    :st===2?`<g fill="${c}">${[[33,38],[36,29],[43,23],[50,21],[57,23],[64,29],[67,38],[40,30],[50,28],[60,30]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="6.5"/>`).join('')}</g>`
+    :`<path d="M31 44L30 30L37 34L38 22L45 30L50 18L55 30L62 22L63 34L70 30L69 44Q62 34 50 34Q38 34 31 44Z" fill="${c}"/>`}
+function hatSvg(h){return{
+  h_flower:[[34,30,'#FF8FB1'],[41,25,'#FFE27A'],[50,23,'#fff'],[59,25,'#FF8FB1'],[66,30,'#FFE27A']].map(([x,y,c])=>`<circle cx="${x}" cy="${y}" r="4.2" fill="${c}"/><circle cx="${x}" cy="${y}" r="1.5" fill="#F2A900"/>`).join(''),
+  h_wiz:`<path d="M32 31L52 1L68 31Z" fill="#3554B8"/><ellipse cx="50" cy="31" rx="23" ry="5" fill="#2B4598"/><path d="M50 12l1.5 3 3 .4-2.2 2 .6 3.2L50 19l-2.9 1.6.6-3.2-2.2-2 3-.4z" fill="#FFD86B"/>`,
+  h_hood:`<path d="M26 54Q24 16 50 15Q76 16 74 54Q71 34 50 32Q29 34 26 54Z" fill="#2F6B4F"/>`,
+  h_feather:`<path d="M30 32Q31 18 50 18Q69 18 70 32Z" fill="#B8322A"/><rect x="29" y="29" width="42" height="5" rx="2" fill="#7E1F19"/><path d="M62 22Q78 6 86 4Q78 16 64 26Z" fill="#F2C14E"/>`,
+  h_helm:`<path d="M29 44Q29 17 50 17Q71 17 71 44Z" fill="#B8C2CC"/><rect x="29" y="38" width="42" height="5" fill="#8592A0"/><path d="M50 17Q52 6 60 4Q56 12 52 18Z" fill="#E4572E"/>`,
+  h_viking:`<path d="M30 40Q30 18 50 18Q70 18 70 40Z" fill="#9AA6B2"/><rect x="30" y="35" width="40" height="5" fill="#7A6A4F"/><path d="M31 33Q18 30 16 14Q24 26 33 26Z M69 33Q82 30 84 14Q76 26 67 26Z" fill="#F3E9D2"/>`,
+  h_crown:`<path d="M33 30L35 13L43 22L50 10L57 22L65 13L67 30Z" fill="#F2C14E" stroke="#C8961E" stroke-width="1.5"/><circle cx="50" cy="24" r="2.6" fill="#E4572E"/><circle cx="40" cy="26" r="2" fill="#2D9CDB"/><circle cx="60" cy="26" r="2" fill="#2D9CDB"/>`}[h]||''}
+function itemSvg(i){return{
+  i_sword:`<path d="M80 56h5v28h-5z" fill="#C89B6A"/><rect x="76" y="83" width="13" height="3" rx="1" fill="#8A5A2B"/><rect x="81" y="86" width="3" height="8" fill="#6B4423"/>`,
+  i_ksword:`<path d="M80 50h5v34h-5z" fill="#DCE3EA"/><path d="M80 50L82.5 44L85 50Z" fill="#DCE3EA"/><rect x="75" y="83" width="15" height="3.5" rx="1" fill="#F2C14E"/><rect x="81" y="86" width="3" height="8" fill="#5A3825"/>`,
+  i_book:`<rect x="72" y="74" width="16" height="20" rx="2" fill="#7B3FA0"/><rect x="74" y="76" width="12" height="16" fill="none" stroke="#F2C14E" stroke-width="1.2"/><circle cx="80" cy="84" r="2.5" fill="#F2C14E"/>`,
+  i_lantern:`<path d="M80 62v6" stroke="#5A3825" stroke-width="2"/><circle cx="80" cy="78" r="12" fill="#FFE27A" opacity=".35"/><rect x="74" y="68" width="12" height="16" rx="3" fill="#F2A900"/><rect x="76.5" y="71" width="7" height="10" rx="2" fill="#FFF3B0"/>`,
+  i_wand:`<path d="M76 94L84 62" stroke="#6B4423" stroke-width="3" stroke-linecap="round"/><path d="M85 52l2.2 4.6 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5-3.6-3.5 5-.7z" fill="#FFD86B"/>`,
+  i_staff:`<path d="M82 98V54" stroke="#7A4E2D" stroke-width="3.5" stroke-linecap="round"/><circle cx="82" cy="48" r="9" fill="#7FE3F0" opacity=".35"/><path d="M82 40L87 48L82 56L77 48Z" fill="#3CC1C3"/>`,
+  i_bow:`<path d="M78 52Q94 74 78 96" fill="none" stroke="#8A5A2B" stroke-width="3"/><path d="M78 52V96" stroke="#EDE6D6" stroke-width="1"/>`,
+  i_shield:`<path d="M12 66H32V80Q32 92 22 97Q12 92 12 80Z" fill="#2F6B4F" stroke="#F2C14E" stroke-width="2"/><path d="M22 71L26 79L22 88L18 79Z" fill="#E4572E"/>`}[i]||''}
+function petSvg(p){const e=(x,y)=>`<circle cx="${x}" cy="${y}" r="1.4" fill="#1B2A41"/>`;return{
+  p_slime:`<path d="M6 98Q6 80 17 80Q28 80 28 98Z" fill="#59C36A"/><ellipse cx="12" cy="86" rx="2" ry="3" fill="#fff" opacity=".6"/>${e(14,90)}${e(21,90)}`,
+  p_bunny:`<ellipse cx="13" cy="76" rx="2.6" ry="8" fill="#fff" stroke="#E5E5E5"/><ellipse cx="21" cy="76" rx="2.6" ry="8" fill="#fff" stroke="#E5E5E5"/><ellipse cx="17" cy="91" rx="10" ry="8" fill="#fff" stroke="#E5E5E5"/>${e(14,89)}${e(20,89)}<circle cx="17" cy="92" r="1.2" fill="#FF8FB1"/>`,
+  p_cat:`<path d="M8 84L10 74L15 81ZM26 84L24 74L19 81Z" fill="#F29B38"/><ellipse cx="17" cy="91" rx="10" ry="8" fill="#F29B38"/>${e(14,89)}${e(20,89)}<path d="M15 93Q17 95 19 93" stroke="#1B2A41" fill="none"/>`,
+  p_owl:`<ellipse cx="17" cy="89" rx="10" ry="10" fill="#8A5A2B"/><path d="M8 82L10 76L14 80ZM26 82L24 76L20 80Z" fill="#8A5A2B"/><circle cx="13" cy="87" r="3.5" fill="#fff"/><circle cx="21" cy="87" r="3.5" fill="#fff"/>${e(13,87)}${e(21,87)}<path d="M16 91L17 94L18 91Z" fill="#F2A900"/>`,
+  p_fox:`<path d="M27 96Q36 90 32 82Q30 92 24 92Z" fill="#E4572E"/><path d="M8 84L10 73L16 81ZM26 84L24 73L18 81Z" fill="#E4572E"/><ellipse cx="17" cy="90" rx="10" ry="8" fill="#E4572E"/><path d="M11 92Q17 99 23 92Q17 95 11 92Z" fill="#fff"/>${e(14,88)}${e(20,88)}`,
+  p_dragon:`<path d="M8 84L2 76L12 80ZM26 84L32 76L22 80Z" fill="#2BA59B"/><ellipse cx="17" cy="90" rx="10" ry="8" fill="#3CC1C3"/><path d="M12 82L13 77L15 82ZM19 82L21 77L22 82Z" fill="#F2C14E"/>${e(14,89)}${e(20,89)}<path d="M13 94Q17 96 21 94" stroke="#1B2A41" fill="none"/>`,
+  p_unicorn:`<path d="M17 80L19 70L21 80Z" fill="#F2C14E"/><ellipse cx="17" cy="90" rx="10" ry="8" fill="#fff" stroke="#E5E5E5"/><path d="M9 86Q8 78 15 80Q11 82 12 88Z" fill="#FF8FB1"/>${e(14,89)}${e(21,89)}`}[p]||''}
+/* opts.bg: draw the background; opts.flip: face left (battles); opts.only: preview one shop item on a plain hero */
+function heroSvg(G=GM,opts={}){const h=G.hero||{},q=Object.assign({},G.eq||{},opts.eq||{}),sk=SKIN[h.skin??1],hc=HAIRC[h.hc??1],id=svgId(),hideHair=['h_helm','h_hood','h_viking'].includes(q.hat);
+  const body=`${hairSvg(h.hair??0,hc,1)}${outfitSvg(q.outfit||'o_tunic')}<rect x="45" y="58" width="10" height="9" fill="${sk}"/><circle cx="31" cy="45" r="4" fill="${sk}"/><circle cx="69" cy="45" r="4" fill="${sk}"/><circle cx="50" cy="43" r="19" fill="${sk}"/>
+  <ellipse cx="43" cy="46" rx="2.6" ry="3.3" fill="#1B2A41"/><ellipse cx="57" cy="46" rx="2.6" ry="3.3" fill="#1B2A41"/><circle cx="44" cy="45" r=".9" fill="#fff"/><circle cx="58" cy="45" r=".9" fill="#fff"/>
+  <circle cx="38.5" cy="52" r="3.2" fill="#F4A6A0" opacity=".55"/><circle cx="61.5" cy="52" r="3.2" fill="#F4A6A0" opacity=".55"/><path d="M45 53Q50 58 55 53" fill="none" stroke="#1B2A41" stroke-width="2" stroke-linecap="round"/>
+  ${hideHair?'':hairSvg(h.hair??0,hc)}${hatSvg(q.hat)}<circle cx="${q.item==='i_shield'?27:76}" cy="86" r="4" fill="${sk}"/>${itemSvg(q.item)}${petSvg(q.pet)}`;
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${esc(opts.label||'Hero avatar')}"><defs><clipPath id="${id}"><rect width="100" height="100" rx="${opts.round??0}"/></clipPath></defs><g clip-path="url(#${id})">${opts.bg===false?'':bgSvg(q.bg||'b_meadow')}<g ${opts.flip?'transform="translate(100 0) scale(-1 1)"':''}>${body}</g></g></svg>`}
+
+/* ---------- Gem shop ---------- */
+const SHOP=[['hat','h_flower','Flower crown',30,1],['hat','h_wiz','Wizard hat',40,1],['hat','h_hood','Ranger hood',50,3],['hat','h_feather','Bard cap',60,4],['hat','h_helm','Knight helmet',90,6],['hat','h_viking','Horned helmet',110,9],['hat','h_crown','Golden crown',200,12],
+  ['outfit','o_tunic','Traveler tunic',0,1],['outfit','o_scholar','Scholar coat',40,1],['outfit','o_cloak','Forest cloak',50,2],['outfit','o_robe','Mage robe',70,4],['outfit','o_armor','Shining armor',120,8],['outfit','o_royal','Royal outfit',220,14],
+  ['item','i_sword','Wooden sword',0,1],['item','i_book','Spell book',30,1],['item','i_lantern','Lumi lantern',35,2],['item','i_wand','Star wand',45,3],['item','i_staff','Crystal staff',70,5],['item','i_bow','Elf bow',80,6],['item','i_ksword','Knight sword',100,8],['item','i_shield','Dragon shield',130,10],
+  ['pet','p_slime','Pet slime',40,1],['pet','p_bunny','Bunny',50,2],['pet','p_cat','Cat',60,3],['pet','p_owl','Owl',80,5],['pet','p_fox','Fox',90,7],['pet','p_dragon','Baby dragon',250,12],['pet','p_unicorn','Unicorn foal',300,16],
+  ['bg','b_meadow','Meadow',0,1],['bg','b_forest','Forest',40,2],['bg','b_night','Starry night',60,4],['bg','b_castle','Castle',80,6],['bg','b_volcano','Volcano',100,10],['bg','b_sky','Sky castle',150,15]]
+  .map(([cat,id,n,p,lv])=>({cat,id,n,p,lv}));
+const SHOPCAT=[['hat','Hats'],['outfit','Outfits'],['item','Magic items'],['pet','Pets'],['bg','Backgrounds']];
+const shopItem=id=>SHOP.find(s=>s.id===id);
+function buy(id){const s=shopItem(id);if(!s||GM.own.includes(id))return;if(LVL()<s.lv)return msg(`Reach level ${s.lv} to unlock this.`);if(GEMS()<s.p)return msg(`You need ${s.p-GEMS()} more gems. Gems come from correct answers, quests and battles.`);
+  BOOT.state.gems=GEMS()-s.p;GM.own=[...GM.own,id];GM.eq[s.cat]=id;SYNC();renderMe();celebrate([`You got the ${s.n}!`]);gameCheck();ar2()}
+function equip(id){const s=shopItem(id);if(!s||!GM.own.includes(id))return;GM.eq[s.cat]=GM.eq[s.cat]===id&&['hat','pet'].includes(s.cat)?'':id;SYNC();renderMe();ar2()}
+function setLook(k,v){GM.hero[k]=v;SYNC();renderMe();ar2()}
+const ar2=()=>{if(tab==='hero')$('views').innerHTML=VIEWS.hero()};
+
+/* ---------- Header chips, profile menu and the Learn page ---------- */
+const _rmG=renderMe;renderMe=function(){_rmG();const m=$('me');if(!m)return;const p=lvProg(),x=[...m.querySelectorAll('.chipstat')].find(e=>e.title==='Points');
+  if(x)x.outerHTML=`<button class="chipstat" title="Level ${p.L} ${rankOf(p.L)}: ${p.into} of ${p.need} XP to level ${p.L+1}" onclick="go('hero')">🛡️ ${p.L}<small> level</small><span class="lvbar" aria-hidden="true"><i style="width:${p.pct}%"></i></span></button><button class="chipstat" title="Gems: spend them in the shop" onclick="ST.ht='shop';go('hero')">💎 ${GEMS()}<small> gems</small></button>`;
+  const b=$('avatarBtn');if(b){b.classList.add('hero');b.innerHTML=heroSvg(GM,{label:'Your hero'})}};
+const _tmG=toggleMenu;toggleMenu=function(){_tmG();const m=$('pmenu');if(m.hidden||m.querySelector('[data-g]'))return;
+  m.querySelector('.who').insertAdjacentHTML('afterend',`<button role="menuitem" data-g onclick="$('pmenu').hidden=true;ST.ht='hero';go('hero')"><span aria-hidden="true">🛡️</span>My hero, shop and quests</button>${innerWidth<860&&can('community')&&!BOOT.local?`<button role="menuitem" onclick="$('pmenu').hidden=true;go('community')"><span aria-hidden="true">💬</span>Community</button>`:''}`)};
+function questBox(){const D=DAY(),L=dailyQuests(),W=WEEK();
+  return `<div class="card" id="qbox"><div class="split"><h3>⚔️ Today's quests</h3><span class="sol">${D.q.length} of 3 done</span></div>
+  ${L.map(id=>{const Q=QUESTS[id],v=Math.min(Q.n,Q.v(D)),d=D.q.includes(id);return `<div class="quest ${d?'done':''}"><span class="qi" aria-hidden="true">${d?'✔️':Q.i}</span><div class="qt"><b>${esc(Q.t(Q.n))}</b><div class="bar" role="progressbar" aria-label="${esc(Q.t(Q.n))}" aria-valuemin="0" aria-valuemax="${Q.n}" aria-valuenow="${v}"><i style="width:${v/Q.n*100}%"></i></div></div><span class="rw">${d?'Done':`${v}/${Q.n} · ${Q.gemsOnly?8:5} 💎`}</span></div>`}).join('')}
+  <div class="chest"><span aria-hidden="true" style="font-size:22px">${D.chest?'🔓':'🧰'}</span><span>${D.chest?'Treasure chest opened. New quests tomorrow!':'Finish all three for a treasure chest: +10 💎 and +30 XP'}</span></div>
+  ${WQ.map(q=>{const v=Math.min(q.n,q.v(W)),d=W.q.includes(q.id);return `<div class="quest ${d?'done':''}" style="margin-top:6px"><span class="qi" aria-hidden="true">${d?'✔️':q.i}</span><div class="qt"><b>Weekly: ${esc(q.t)}</b><div class="bar"><i style="width:${v/q.n*100}%"></i></div></div><span class="rw">${d?'Done':`${v}/${q.n} · ${q.g} 💎`}</span></div>`}).join('')}</div>`}
+function heroCard(){const p=lvProg();
+  return `<div class="card hcard"><div class="hav">${heroSvg()}</div><div style="flex:1;min-width:0"><div class="rank">${esc(rankOf(p.L))}</div><h3>Level ${p.L} hero</h3>
+  <div class="bar" role="progressbar" aria-label="XP to the next level" aria-valuemin="0" aria-valuemax="${p.need}" aria-valuenow="${p.into}"><i style="width:${p.pct}%"></i></div><div class="xpline"><span>${p.into} / ${p.need} XP</span><span>to level ${p.L+1}</span></div>
+  <p class="sol" style="margin:8px 0 0;font-size:.85rem">${(()=>{const nl=gameOn()&&LANDS.find(l=>l.lv>p.L),nr=RANKS.find(r=>r[0]>p.L);return nl?`Next: ${nl.e} ${esc(nl.n)} opens at level ${nl.lv}`:nr?`Next rank: ${nr[1]} at level ${nr[0]}`:'Top rank reached!'})()} · 🏆 ${GM.tre.length} treasures</p>
+  <div class="gemrow">${gameOn()?`<button class="lamp" onclick="go('play')">⚔️ Play${typeof playLabel==='function'?' · '+playLabel():''}</button>`:''}<button class="alt" onclick="ST.ht='shop';go('hero')">💎 ${GEMS()} · Shop</button></div></div></div>`}
+const _dhG=dashHtml;dashHtml=function(){return _dhG().replace('<article class="mission',`<div class="herostrip">${heroCard()}${questBox()}</div><article class="mission`)};
+
+/* ---------- My hero page: hero, shop, quests and treasures ---------- */
+VIEWS.hero=function(){const t=ST.ht||'hero',p=lvProg();
+  const tabs=`<div class="htabs" role="tablist">${[['hero','🛡️ My hero'],['shop','💎 Gem shop'],['quests','⚔️ Quests'],['tre','🏆 Treasures']].map(([k,l])=>`<button class="chip ${t===k?'on':''}" role="tab" aria-selected="${t===k}" onclick="ST.ht='${k}';ar2()">${l}</button>`).join('')}</div>`;
+  let body;
+  if(t==='shop')body=`<p class="sol">You have <b>💎 ${GEMS()} gems</b>. Earn gems with correct answers (1 each), quests, classwork${gameOn()?' and battles in Lumi\'s Realm':''}. Items are just for fun; they never change your grades.</p>
+    ${SHOPCAT.map(([c,l])=>`<h3 style="margin-top:18px">${l}</h3><div class="shopgrid">${SHOP.filter(s=>s.cat===c).map(s=>{const own=GM.own.includes(s.id),on=GM.eq[c]===s.id,lock=LVL()<s.lv;
+      return `<div class="card shopit ${lock&&!own?'lock':''}"><div class="pv">${heroSvg(GM,{eq:{[c]:s.id},label:s.n})}</div><b>${esc(s.n)}</b><p class="sol">${own?(on?'Wearing':'Yours'):lock?`🔒 Level ${s.lv}`:`💎 ${s.p}`}</p>
+      ${own?`<button class="${on?'lamp':'alt'}" onclick="equip('${s.id}')">${on?(['hat','pet'].includes(c)?'Take off':'Wearing'):'Wear'}</button>`:`<button class="alt" ${lock?'disabled':''} onclick="buy('${s.id}')">${lock?'Locked':'Buy'}</button>`}</div>`}).join('')}</div>`).join('')}`;
+  else if(t==='quests')body=`<div class="herostrip">${questBox()}<div class="card"><h3>How quests work</h3><p class="sol">You get three new quests every day and two each week. Finishing a quest gives gems and XP right away. Finish all three daily quests to open the treasure chest. Quests reset at midnight; weekly quests reset on Monday.</p><p class="sol">Quests finished so far: <b>${GM.qn}</b></p></div></div>`;
+  else if(t==='tre'){const L=TRE.filter(x=>!x.game||gameOn());body=`<p class="sol">${GM.tre.length} of ${L.length} treasures found. Each one gives 10 gems.</p><div class="trgrid">${L.map(x=>{const h=GM.tre.includes(x.id);return `<div class="card tre ${h?'':'off'}"><div class="ti" aria-hidden="true">${x.i}</div><b>${esc(h?x.n:'???')}</b><p class="sol">${esc(x.d)}</p></div>`}).join('')}</div>`}
+  else body=`<div class="card herobig"><div class="hav">${heroSvg(GM,{label:'Your hero'})}</div><div><div class="rank">${esc(rankOf(p.L))}</div><h2 style="margin:2px 0 6px">${esc(ME.display||'Hero')}, level ${p.L}</h2>
+    <div class="bar"><i style="width:${p.pct}%"></i></div><div class="xpline"><span>${p.into} / ${p.need} XP</span><span>${LVXP(p.L+1)-XP()} XP to level ${p.L+1}</span></div>
+    <p class="sol">XP comes from learning: correct answers, missions, quests, classwork and lesson quizzes. Ranks: ${RANKS.map(r=>`${r[1]} (${r[0]})`).join(', ')}.</p>
+    <h3 style="margin-top:14px">Skin</h3><div class="swatches">${SKIN.map((c,i)=>`<button class="sw ${GM.hero.skin===i?'on':''}" style="background:${c}" aria-label="Skin tone ${i+1}" aria-pressed="${GM.hero.skin===i}" onclick="setLook('skin',${i})"></button>`).join('')}</div>
+    <h3>Hair</h3><div class="row">${HAIRS.map((n,i)=>`<button class="chip ${GM.hero.hair===i?'on':''}" aria-pressed="${GM.hero.hair===i}" onclick="setLook('hair',${i})">${n}</button>`).join('')}</div>
+    <div class="swatches">${HAIRC.map((c,i)=>`<button class="sw ${GM.hero.hc===i?'on':''}" style="background:${c}" aria-label="Hair color ${i+1}" aria-pressed="${GM.hero.hc===i}" onclick="setLook('hc',${i})"></button>`).join('')}</div>
+    <div class="row"><button class="lamp" onclick="ST.ht='shop';ar2()">💎 Visit the gem shop</button>${gameOn()?`<button class="alt" onclick="go('play')">⚔️ Lumi's Realm</button>`:''}</div></div></div>`;
+  return `<h2>My hero</h2>${tabs}${body}`};
+</script>
