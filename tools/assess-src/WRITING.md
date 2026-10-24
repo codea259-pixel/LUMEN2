@@ -31,3 +31,22 @@ Read this, the rules at the top of `tools/build_assess.py`, and `tools/assess-sr
 - Facts must be accurate and grade-appropriate. If you are not sure of a fact, leave it out.
 - Plain characters only (Latin-1): straight quotes ' and ", hyphens instead of dashes, x for times and / for divide (or the symbols in Latin-1: x, ÷, ×, °, ½). Never use the character `|` inside text (write absolute value as abs(x)).
 - Respect every student: no stereotypes; use a variety of names, families and communities from California and the world.
+
+## New questions each trimester
+Each trimester gets a new set of unit tests and lesson quizzes, so a class does not see last year's questions. The
+standard questions stay; the new set is an extra version that the site picks first during its trimester (teachers can
+still choose any version when they preview or assign).
+- **Which units:** the units taught that trimester. Split each grade's units in order into thirds: with N units, unit i
+  (counting from 1) is in trimester min(3, floor((i - 1) x 3 / N) + 1). With 6 units that is 1-2, 3-4 and 5-6.
+- **What to write:** for each of those units, a new unit test and a new quiz for every lesson (classwork stays).
+  Same sizes and mix as above, same standards, lessons and difficulty, but new questions, numbers, contexts and passages.
+  Do not copy or lightly edit questions from the standard version or from earlier trimesters' files; the compiler
+  rejects exact copies.
+- **Where:** one file per subject and grade, `tools/assess-src/versions/<year>-t<n>-<subject>-<grade>.txt`, for
+  example `versions/2026-t2-math-3.txt` or `versions/2027-t3-ela-tk.txt` (lowercase; the year is the one the school
+  year starts in). Start it with `@version 2026-27 Trimester 2 | Trimester 2`. The term after `|` must match the
+  trimester's name in the site's calendar (Teacher > Assessments > Set trimester dates). Then one `@for` block per part:
+  `@for math-3-4 test` or `@for math-3-4 L2 quiz` (unit ids are listed in `server/assessments.json`; TK is -1 and K is 0,
+  so TK math unit 2 is `math--1-2`).
+- **Check:** have someone other than the writer review every file with `REVIEW.md`, then run `python3 tools/build.py`
+  (must end with `assessments ok`) and `node tools/validate-assess.cjs` (must end with `no problems`).
