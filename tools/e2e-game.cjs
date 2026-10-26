@@ -150,6 +150,35 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     await t.click('.gblock input[type=checkbox]'); await t.waitForSelector('.gblock input[type=checkbox]:not(:checked)');
     const off = await a.evaluate(async () => (await api('GET', '/api/classes')).joined[0].board); if (off !== null) fail('board still shown when turned off');
     ok('teacher turned the leaderboard off; students no longer get it');
+    // Membership: the Owner offers it with a PayPal link, kids see it only after a grown-up check, the Owner switches it on
+    await ow.evaluate(() => reload('owner')); await ow.waitForSelector('text=⭐ Membership'); await ow.click('text=⭐ Membership'); await ow.waitForSelector('#mln');
+    await ow.check('#mon'); await ow.fill('#mpr', '$4.99 a month'); await ow.fill('#mln', 'https://www.paypal.com/ncp/payment/TEST123'); await ow.fill('#mct', 'help@school.org');
+    await ow.click('text=Save offer'); await ow.waitForSelector('text=Membership offer saved.');
+    const bad = await call(ow, 'PUT', '/api/owner/settings', { member: { on: true, link: 'javascript:alert(1)' } }); if (bad.s !== 400) fail('a non-https payment link was accepted');
+    ok('owner offers membership at $4.99 a month with a PayPal link (non-https links refused)');
+    await a.reload(); await a.waitForSelector('#avatarBtn'); await a.evaluate(() => { DAY().play = playAllowed() }); await a.click('#tabs >> text=Play');
+    await a.waitForSelector('text=Play time is over for today'); await a.click('text=⭐ Membership (for grown-ups)'); await a.waitForSelector('#gatein');
+    if (await a.isVisible('a.paybtn')) fail('a learner saw the price before the grown-up check');
+    await a.fill('#gatein', '1'); await a.click('.gate button'); await a.waitForSelector('text=Not quite. Please ask a grown-up.');
+    await a.fill('#gatein', String(await a.evaluate(() => MGATE.a * MGATE.b))); await a.click('.gate button'); await a.waitForSelector('a.paybtn');
+    const pay = await a.evaluate(() => ({ href: document.querySelector('a.paybtn').href, text: document.querySelector('a.paybtn').textContent, page: $('views').textContent }));
+    if (!/Pay with PayPal/.test(pay.text) || pay.href !== 'https://www.paypal.com/ncp/payment/TEST123' || !pay.page.includes(creds[0][1]) || !pay.page.includes('$4.99 a month')) fail('offer page wrong: ' + JSON.stringify(pay).slice(0, 300));
+    ok('out of play time, a learner sees "ask a grown-up"; after the grown-up check: price, Pay with PayPal, and their username for the note');
+    await t.reload(); await t.waitForSelector('#avatarBtn'); await t.click('#tabs >> text=Teacher'); await t.waitForSelector('.cls'); await t.evaluate(() => go('member')); await t.waitForSelector('a.paybtn'); if (!(await t.textContent('#views')).includes(await t.evaluate(() => ST.classes[0].code))) fail('teacher does not see class codes');
+    ok('teachers see the offer right away, with their class codes');
+    const code = await t.evaluate(() => ST.classes[0].code);
+    await ow.fill('#mwho', creds[0][1]); await ow.selectOption('#mlen', '3'); await ow.click('text=Switch on'); await ow.waitForSelector('text=Membership on for');
+    await ow.waitForSelector(`td:has-text("${creds[0][1]}")`); ok('owner switched on 3 months for ' + creds[0][1]);
+    await a.reload(); await a.waitForSelector('#avatarBtn'); await a.evaluate(() => { DAY().play = playAllowed() + 999 }); await a.click('#tabs >> text=Play'); await a.waitForSelector('text=⭐ Member: unlimited play');
+    await a.click('#landpanel .mon >> nth=0 >> button'); await a.waitForSelector('.qpanel .bq'); ok('member plays with no time limit: ' + (await a.textContent('#ptime')).trim());
+    await ow.fill('#mwho', code); await ow.selectOption('#mlen', '12'); await ow.click('text=Switch on'); await ow.waitForSelector('text=Membership on for the class');
+    await b.reload(); await b.waitForSelector('#avatarBtn'); if (!(await b.evaluate(() => isMember()))) fail('class membership did not reach a student'); ok('class code ' + code + ' switched on for a year: every student in the class is a member');
+    await ow.click(`tr:has-text("${creds[0][1]}") >> text=End now`); await ow.waitForSelector('text=Membership ended.');
+    await ow.click(`tr:has-text("${code}") >> text=End now`); await ow.waitForSelector('text=Membership ended.');
+    await a.reload(); await a.waitForSelector('#avatarBtn'); if (await a.evaluate(() => isMember())) fail('membership did not end'); ok('owner ended both memberships; the daily limit is back');
+    const sm = await call(a, 'POST', '/api/owner/members', { who: creds[0][1], until: Date.now() + 9e9 }), tm2 = await call(t, 'POST', '/api/owner/members', { who: code, until: Date.now() + 9e9 }), sl = await call(a, 'GET', '/api/owner/members');
+    if (sm.s !== 403 || tm2.s !== 403 || sl.s !== 403) fail(`students or teachers could switch on membership: ${sm.s} ${tm2.s} ${sl.s}`);
+    ok('students and teachers get 403 when they try to switch on membership');
     // Teachers play without a time limit
     await t.click('#tabs >> text=Play'); await t.waitForSelector('text=No time limit (preview)'); ok('teachers can try the game with no time limit');
   } catch (e) { console.log('FAIL', e.message); errs.push(e.message) }

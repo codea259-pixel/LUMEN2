@@ -4,7 +4,7 @@
    Who may read or change what is enforced by firestore.rules, not by this file. ===== */
 const FBM=(()=>{
   const SDK=window.FIREBASE_SDK_BASE||'https://www.gstatic.com/firebasejs/10.12.2/';
-  const DEF={flags:{'AI tutor feedback':true,'Live Classroom':true,'Gem Challenges':true,'Offline mode':false,'Game mode':true,'Class leaderboards':true},retDays:3,gr:{},programs:{},terms:[],game:{base:10,per:5,max:30},
+  const DEF={flags:{'AI tutor feedback':true,'Live Classroom':true,'Gem Challenges':true,'Offline mode':false,'Game mode':true,'Class leaderboards':true},retDays:3,gr:{},programs:{},terms:[],game:{base:10,per:5,max:30},member:{on:false,price:'',link:'',contact:''},
     block:['stupid','idiot','dumb','hate you','shut up'],
     impact:{mission:'Bose Academy gives every learner, everywhere, free access to clear lessons, unlimited practice and a patient tutor, so that no student is held back by cost or connection.',team:[],partners:[],funds:[['Content creation',40],['Hosting and infrastructure',25],['Accessibility and translation',20],['Reserve',15]],raised:0,goal:0}};
   const ROLES=['student','parent','teacher'];
@@ -48,7 +48,9 @@ const FBM=(()=>{
   /* Each request the app makes, answered with Firestore */
   const R=[];const route=(m,p,fn)=>R.push([m,new RegExp('^'+p.replace(/:(\w+)/g,'(?<$1>[^/]+)')+'$'),fn]);
 
-  route('GET','/api/me',async()=>{if(!me)throw new E(401,'Please sign in.');if(!profile)throw new E(428,'Finish setting up your account.');if(profile.locked){await auth.signOut();throw new E(401,'This account is locked.')}return{user:userOut()}});
+  route('GET','/api/me',async()=>{if(!me)throw new E(401,'Please sign in.');if(!profile)throw new E(428,'Finish setting up your account.');if(profile.locked){await auth.signOut();throw new E(401,'This account is locked.')}
+    let member=+profile.memberUntil||0;if(profile.role==='student'){try{(await db.collection('classes').where('members','array-contains',me.uid).get()).forEach(d=>{member=Math.max(member,+d.data().memberUntil||0)})}catch(e){}}
+    return{user:{...userOut(),member}}});
   route('POST','/api/signup',async b=>{
     const role=b.role;if(!ROLES.includes(role))throw new E(400,'Choose learner, parent or teacher.');
     const username=str(b.username,3,20,'Usernames').toLowerCase();if(!/^[a-z0-9_]+$/.test(username))throw new E(400,'Usernames use letters, numbers and underscores only.');
@@ -78,7 +80,7 @@ const FBM=(()=>{
     await doc('state',me.uid).set({json:'{}',updated:now(),readers:[]},{merge:true});if(me.email||parentEmail)await doc('private',me.uid).set({...(me.email?{email:me.email}:{}),...(parentEmail?{parentEmail,consent:now()}:{})});return{ok:true}});
   route('POST','/api/logout',async()=>{await auth.signOut();return{ok:true}});
   route('PATCH','/api/me',async b=>{need();const d=str(b.display,2,20,'Display names');await doc('users',me.uid).update({display:d});profile.display=d;return{display:d}});
-  route('GET','/api/settings',async()=>({flags:{...DEF.flags,...site.flags},retDays:site.retDays??DEF.retDays,gr:site.gr||{},impact:site.impact||DEF.impact,programs:site.programs||{},terms:site.terms||[],game:site.game||DEF.game}));
+  route('GET','/api/settings',async()=>({flags:{...DEF.flags,...site.flags},retDays:site.retDays??DEF.retDays,gr:site.gr||{},impact:site.impact||DEF.impact,programs:site.programs||{},terms:site.terms||[],game:site.game||DEF.game,member:site.member||DEF.member}));
   route('GET','/api/curriculum',async()=>{try{const r=await fetch('server/curriculum.json');if(r.ok)return r.json()}catch(e){}return{courses:[],milestones:[]}});
   route('GET','/api/state',async()=>{need();const s=await stateOf(me.uid);lastSaved=s;return s});
   route('PUT','/api/state',async b=>{need();const json=JSON.stringify(b);if(json.length>400000)throw new E(413,'Too large.');
@@ -243,14 +245,23 @@ const FBM=(()=>{
   /* Impact (public) and the owner console */
   route('GET','/api/impact',async()=>{let s={};try{const d=await doc('stats','global').get();s=d.exists?d.data():{}}catch(e){}
     return{stats:{learners:s.learners||0,hours:+((s.secs||0)/3600).toFixed(1),regions:0,helped:0,answered:s.answered||0},content:site.impact||DEF.impact}});
+  route('GET','/api/owner/members',async()=>{need(isOwner());const [us,cs]=await Promise.all([db.collection('users').where('memberUntil','>',0).limit(500).get(),db.collection('classes').where('memberUntil','>',0).limit(500).get()]);
+    return{users:us.docs.map(d=>({id:num(d.id),username:d.data().username,display:d.data().display,until:d.data().memberUntil})),classes:cs.docs.map(d=>({id:num(d.id),name:d.data().name,code:d.data().code,teacher:d.data().teacherName,until:d.data().memberUntil}))}});
+  route('POST','/api/owner/members',async b=>{need(isOwner());const who=str(b.who,3,30,'Usernames and class codes'),until=b.until?Math.max(0,Math.min(4102444800000,Math.round(+b.until)||0)):0;
+    const u=await db.collection('users').where('username','==',who.toLowerCase()).limit(1).get();if(!u.empty){await u.docs[0].ref.update({memberUntil:until});return{ok:true,kind:'account',name:u.docs[0].data().display}}
+    const j=await doc('joinCodes',who.toUpperCase()).get();if(j.exists){const r=doc('classes',j.data().classId);await r.update({memberUntil:until});return{ok:true,kind:'class',name:(await r.get()).data().name}}
+    throw new E(404,'No account has that username and no class has that code.')});
   route('GET','/api/owner/users',async()=>{need(isOwner());const q=await db.collection('users').limit(500).get();
     return{users:q.docs.map(d=>{const u=d.data();return{id:num(d.id),username:u.username,display:u.display,email:null,role:d.id===site.ownerUid?'owner':u.role,verified:!!u.verified,locked:!!u.locked,created:u.created}}).sort((a,b)=>(b.created||0)-(a.created||0))}});
   route('PATCH','/api/owner/users/:id',async(b,p)=>{need(isOwner());p.id=sid(p.id);if(p.id===site.ownerUid)throw new E(403,'The Owner account is protected and cannot be changed.');const up={};
     if(b.role!==undefined){if(![...ROLES,'school_admin'].includes(b.role))throw new E(400,'Invalid role.');up.role=b.role}
     if(typeof b.locked==='boolean')up.locked=b.locked;if(typeof b.verified==='boolean')up.verified=b.verified;await doc('users',p.id).update(up);return{ok:true}});
-  route('GET','/api/owner/settings',async()=>{need(isOwner());return{block:site.block||DEF.block,flags:{...DEF.flags,...site.flags},retDays:site.retDays??DEF.retDays,gr:site.gr||{},impact:site.impact||DEF.impact,programs:site.programs||{},terms:site.terms||[],game:site.game||DEF.game}});
+  route('GET','/api/owner/settings',async()=>{need(isOwner());return{block:site.block||DEF.block,flags:{...DEF.flags,...site.flags},retDays:site.retDays??DEF.retDays,gr:site.gr||{},impact:site.impact||DEF.impact,programs:site.programs||{},terms:site.terms||[],game:site.game||DEF.game,member:site.member||DEF.member}});
   route('PUT','/api/owner/settings',async b=>{need(isOwner());const up={};['block','flags','gr','impact','programs'].forEach(k=>{if(b[k]!==undefined)up[k]=b[k]});if(Array.isArray(b.terms))up.terms=b.terms.slice(0,6).map(t=>({name:str(t.name,1,30,'Trimester names'),start:/^\d{4}-\d{2}-\d{2}$/.test(t.start)?t.start:''}));if(b.retDays!==undefined)up.retDays=Math.max(0,Math.min(60,+b.retDays||0));
     if(b.game){const n=(v,hi)=>Math.max(0,Math.min(hi,Math.round(+v||0)));up.game={base:n(b.game.base,120),per:n(b.game.per,60),max:n(b.game.max,240)}}
+    if(b.member){const m=b.member,link=String(m.link||'').trim(),contact=String(m.contact||'').trim();
+      if(link&&!/^https:\/\/[^\s"'<>]{4,300}$/.test(link))throw new E(400,'The payment link must start with https://');if(contact&&!/^\S+@\S+\.\S+$/.test(contact))throw new E(400,'Enter a valid contact email.');
+      up.member={on:!!m.on,price:String(m.price||'').trim().slice(0,60),link,contact:contact.slice(0,100)}}
     await doc('config','site').set(up,{merge:true});Object.assign(site,up);return{ok:true}});
   route('POST','/api/tutor',async()=>{throw new E(503,'The AI tutor needs the hosted version of the site.')});
 

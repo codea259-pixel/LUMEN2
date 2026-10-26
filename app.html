@@ -806,7 +806,7 @@ showTab(location.hash.startsWith('#cert=')?'certs':'learn');
    Who may read or change what is enforced by firestore.rules, not by this file. ===== */
 const FBM=(()=>{
   const SDK=window.FIREBASE_SDK_BASE||'https://www.gstatic.com/firebasejs/10.12.2/';
-  const DEF={flags:{'AI tutor feedback':true,'Live Classroom':true,'Gem Challenges':true,'Offline mode':false,'Game mode':true,'Class leaderboards':true},retDays:3,gr:{},programs:{},terms:[],game:{base:10,per:5,max:30},
+  const DEF={flags:{'AI tutor feedback':true,'Live Classroom':true,'Gem Challenges':true,'Offline mode':false,'Game mode':true,'Class leaderboards':true},retDays:3,gr:{},programs:{},terms:[],game:{base:10,per:5,max:30},member:{on:false,price:'',link:'',contact:''},
     block:['stupid','idiot','dumb','hate you','shut up'],
     impact:{mission:'Bose Academy gives every learner, everywhere, free access to clear lessons, unlimited practice and a patient tutor, so that no student is held back by cost or connection.',team:[],partners:[],funds:[['Content creation',40],['Hosting and infrastructure',25],['Accessibility and translation',20],['Reserve',15]],raised:0,goal:0}};
   const ROLES=['student','parent','teacher'];
@@ -850,7 +850,9 @@ const FBM=(()=>{
   /* Each request the app makes, answered with Firestore */
   const R=[];const route=(m,p,fn)=>R.push([m,new RegExp('^'+p.replace(/:(\w+)/g,'(?<$1>[^/]+)')+'$'),fn]);
 
-  route('GET','/api/me',async()=>{if(!me)throw new E(401,'Please sign in.');if(!profile)throw new E(428,'Finish setting up your account.');if(profile.locked){await auth.signOut();throw new E(401,'This account is locked.')}return{user:userOut()}});
+  route('GET','/api/me',async()=>{if(!me)throw new E(401,'Please sign in.');if(!profile)throw new E(428,'Finish setting up your account.');if(profile.locked){await auth.signOut();throw new E(401,'This account is locked.')}
+    let member=+profile.memberUntil||0;if(profile.role==='student'){try{(await db.collection('classes').where('members','array-contains',me.uid).get()).forEach(d=>{member=Math.max(member,+d.data().memberUntil||0)})}catch(e){}}
+    return{user:{...userOut(),member}}});
   route('POST','/api/signup',async b=>{
     const role=b.role;if(!ROLES.includes(role))throw new E(400,'Choose learner, parent or teacher.');
     const username=str(b.username,3,20,'Usernames').toLowerCase();if(!/^[a-z0-9_]+$/.test(username))throw new E(400,'Usernames use letters, numbers and underscores only.');
@@ -880,7 +882,7 @@ const FBM=(()=>{
     await doc('state',me.uid).set({json:'{}',updated:now(),readers:[]},{merge:true});if(me.email||parentEmail)await doc('private',me.uid).set({...(me.email?{email:me.email}:{}),...(parentEmail?{parentEmail,consent:now()}:{})});return{ok:true}});
   route('POST','/api/logout',async()=>{await auth.signOut();return{ok:true}});
   route('PATCH','/api/me',async b=>{need();const d=str(b.display,2,20,'Display names');await doc('users',me.uid).update({display:d});profile.display=d;return{display:d}});
-  route('GET','/api/settings',async()=>({flags:{...DEF.flags,...site.flags},retDays:site.retDays??DEF.retDays,gr:site.gr||{},impact:site.impact||DEF.impact,programs:site.programs||{},terms:site.terms||[],game:site.game||DEF.game}));
+  route('GET','/api/settings',async()=>({flags:{...DEF.flags,...site.flags},retDays:site.retDays??DEF.retDays,gr:site.gr||{},impact:site.impact||DEF.impact,programs:site.programs||{},terms:site.terms||[],game:site.game||DEF.game,member:site.member||DEF.member}));
   route('GET','/api/curriculum',async()=>{try{const r=await fetch('server/curriculum.json');if(r.ok)return r.json()}catch(e){}return{courses:[],milestones:[]}});
   route('GET','/api/state',async()=>{need();const s=await stateOf(me.uid);lastSaved=s;return s});
   route('PUT','/api/state',async b=>{need();const json=JSON.stringify(b);if(json.length>400000)throw new E(413,'Too large.');
@@ -1045,14 +1047,23 @@ const FBM=(()=>{
   /* Impact (public) and the owner console */
   route('GET','/api/impact',async()=>{let s={};try{const d=await doc('stats','global').get();s=d.exists?d.data():{}}catch(e){}
     return{stats:{learners:s.learners||0,hours:+((s.secs||0)/3600).toFixed(1),regions:0,helped:0,answered:s.answered||0},content:site.impact||DEF.impact}});
+  route('GET','/api/owner/members',async()=>{need(isOwner());const [us,cs]=await Promise.all([db.collection('users').where('memberUntil','>',0).limit(500).get(),db.collection('classes').where('memberUntil','>',0).limit(500).get()]);
+    return{users:us.docs.map(d=>({id:num(d.id),username:d.data().username,display:d.data().display,until:d.data().memberUntil})),classes:cs.docs.map(d=>({id:num(d.id),name:d.data().name,code:d.data().code,teacher:d.data().teacherName,until:d.data().memberUntil}))}});
+  route('POST','/api/owner/members',async b=>{need(isOwner());const who=str(b.who,3,30,'Usernames and class codes'),until=b.until?Math.max(0,Math.min(4102444800000,Math.round(+b.until)||0)):0;
+    const u=await db.collection('users').where('username','==',who.toLowerCase()).limit(1).get();if(!u.empty){await u.docs[0].ref.update({memberUntil:until});return{ok:true,kind:'account',name:u.docs[0].data().display}}
+    const j=await doc('joinCodes',who.toUpperCase()).get();if(j.exists){const r=doc('classes',j.data().classId);await r.update({memberUntil:until});return{ok:true,kind:'class',name:(await r.get()).data().name}}
+    throw new E(404,'No account has that username and no class has that code.')});
   route('GET','/api/owner/users',async()=>{need(isOwner());const q=await db.collection('users').limit(500).get();
     return{users:q.docs.map(d=>{const u=d.data();return{id:num(d.id),username:u.username,display:u.display,email:null,role:d.id===site.ownerUid?'owner':u.role,verified:!!u.verified,locked:!!u.locked,created:u.created}}).sort((a,b)=>(b.created||0)-(a.created||0))}});
   route('PATCH','/api/owner/users/:id',async(b,p)=>{need(isOwner());p.id=sid(p.id);if(p.id===site.ownerUid)throw new E(403,'The Owner account is protected and cannot be changed.');const up={};
     if(b.role!==undefined){if(![...ROLES,'school_admin'].includes(b.role))throw new E(400,'Invalid role.');up.role=b.role}
     if(typeof b.locked==='boolean')up.locked=b.locked;if(typeof b.verified==='boolean')up.verified=b.verified;await doc('users',p.id).update(up);return{ok:true}});
-  route('GET','/api/owner/settings',async()=>{need(isOwner());return{block:site.block||DEF.block,flags:{...DEF.flags,...site.flags},retDays:site.retDays??DEF.retDays,gr:site.gr||{},impact:site.impact||DEF.impact,programs:site.programs||{},terms:site.terms||[],game:site.game||DEF.game}});
+  route('GET','/api/owner/settings',async()=>{need(isOwner());return{block:site.block||DEF.block,flags:{...DEF.flags,...site.flags},retDays:site.retDays??DEF.retDays,gr:site.gr||{},impact:site.impact||DEF.impact,programs:site.programs||{},terms:site.terms||[],game:site.game||DEF.game,member:site.member||DEF.member}});
   route('PUT','/api/owner/settings',async b=>{need(isOwner());const up={};['block','flags','gr','impact','programs'].forEach(k=>{if(b[k]!==undefined)up[k]=b[k]});if(Array.isArray(b.terms))up.terms=b.terms.slice(0,6).map(t=>({name:str(t.name,1,30,'Trimester names'),start:/^\d{4}-\d{2}-\d{2}$/.test(t.start)?t.start:''}));if(b.retDays!==undefined)up.retDays=Math.max(0,Math.min(60,+b.retDays||0));
     if(b.game){const n=(v,hi)=>Math.max(0,Math.min(hi,Math.round(+v||0)));up.game={base:n(b.game.base,120),per:n(b.game.per,60),max:n(b.game.max,240)}}
+    if(b.member){const m=b.member,link=String(m.link||'').trim(),contact=String(m.contact||'').trim();
+      if(link&&!/^https:\/\/[^\s"'<>]{4,300}$/.test(link))throw new E(400,'The payment link must start with https://');if(contact&&!/^\S+@\S+\.\S+$/.test(contact))throw new E(400,'Enter a valid contact email.');
+      up.member={on:!!m.on,price:String(m.price||'').trim().slice(0,60),link,contact:contact.slice(0,100)}}
     await doc('config','site').set(up,{merge:true});Object.assign(site,up);return{ok:true}});
   route('POST','/api/tutor',async()=>{throw new E(503,'The AI tutor needs the hosted version of the site.')});
 
@@ -4990,7 +5001,9 @@ function monsterSvg(m,boss,label){const [n,shape,c,acc]=m,d=shade(c,.78),A=a=>ac
 
 /* ---------- Play time ---------- */
 const GSET=()=>Object.assign({base:10,per:5,max:30},(BOOT.settings&&BOOT.settings.game)||{});
-const noLimit=()=>BOOT.role!=='student';                      /* teachers, parents and the Owner can preview without a limit */
+const isMember=()=>(ME.member||0)>Date.now();                 /* membership (unlimited play), switched on by the Owner for an account or a class */
+const noLimit=()=>BOOT.role!=='student'||isMember();          /* teachers, parents and the Owner can preview without a limit */
+const memberNote=()=>BOOT.settings.member&&BOOT.settings.member.on?`<p class="sol" style="margin-top:10px">Want to play longer? Ask a parent or teacher about membership.</p><button class="alt" onclick="BT=null;go('member')">⭐ Membership (for grown-ups)</button>`:'';
 const playAllowed=()=>{const g=GSET();return Math.min(g.max,g.base+Math.floor(DAY().study/60)*g.per/10)*60};
 const playLeft=()=>noLimit()?Infinity:Math.max(0,Math.round(playAllowed()-DAY().play));
 const mmss=s=>`${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,'0')}`;
@@ -5001,7 +5014,7 @@ function realmTick(sec){if(tab!=='play'||!gameOn()||document.hidden||Date.now()-
   if(BT&&['ask','fb'].includes(BT.phase)||!BT){if(!noLimit()&&playLeft()>0){DAY().play+=sec;if(DAY().play%60===0)SYNC()}}
   const e=$('ptime');if(e)e.outerHTML=ptimeHtml();
   if(!noLimit()&&playLeft()<=0&&BT&&BT.phase==='ask'){BT.phase='timeup';renderBattle()}}
-function ptimeHtml(){const l=playLeft(),a=noLimit()?1:playAllowed();return `<div class="ptime" id="ptime" title="${esc(noLimit()?'Only learners have a daily play time.':earnNote())}"><span aria-hidden="true">⏳</span><span>${l===Infinity?'No time limit (preview)':l>0?mmss(l)+' of play left today':'Out of play time today'}</span>${l===Infinity?'':`<div class="bar" aria-hidden="true"><i style="width:${Math.min(100,l/a*100)}%"></i></div>`}</div>`}
+function ptimeHtml(){const l=playLeft(),a=noLimit()?1:playAllowed();return `<div class="ptime" id="ptime" title="${esc(noLimit()?'Only learners have a daily play time.':earnNote())}"><span aria-hidden="true">⏳</span><span>${l===Infinity?(isMember()&&BOOT.role==='student'?'⭐ Member: unlimited play':'No time limit (preview)'):l>0?mmss(l)+' of play left today':'Out of play time today'}</span>${l===Infinity?'':`<div class="bar" aria-hidden="true"><i style="width:${Math.min(100,l/a*100)}%"></i></div>`}</div>`}
 
 /* ---------- World map and lands ---------- */
 const POS=[[110,330],[260,200],[410,312],[545,150],[690,292],[830,140],[920,320]];
@@ -5029,10 +5042,10 @@ function schoolsHtml(){const subs=Object.keys(SUBN).filter(s=>subSkills(s).some(
   return `<div class="schools" role="group" aria-label="Choose your magic"><span class="sol"><b>Your magic:</b></span>${subs.map(x=>{const g=magicOf(x);return `<button class="chip ${s===x?'on':''}" aria-pressed="${s===x}" onclick="GM.rsub='${x}';SYNC();rerealm()">${g[0]} ${g[1]} <small>(${esc(SUBN[x])})</small></button>`}).join('')}</div>`}
 function mapView(){const left=playLeft();
   return `<div class="realm-top"><h2>⚔️ Lumi's Realm</h2>${ptimeHtml()}</div>
-  ${!noLimit()&&left<=0?`<div class="card endcard" style="margin-bottom:14px"><div class="big" aria-hidden="true">🌙</div><h3>Play time is over for today</h3><p>${esc(earnNote())}</p><button class="lamp" onclick="go('learn')">📖 Go learn</button></div>`:''}
+  ${!noLimit()&&left<=0?`<div class="card endcard" style="margin-bottom:14px"><div class="big" aria-hidden="true">🌙</div><h3>Play time is over for today</h3><p>${esc(earnNote())}</p><button class="lamp" onclick="go('learn')">📖 Go learn</button>${memberNote()}</div>`:''}
   ${schoolsHtml()}<div class="worldmap">${mapSvg()}</div>
   <div class="landlist">${LANDS.map(l=>{const o=landOpen(l),st=LS(l.id);return `<button class="lrow ${curLand()===l.id?'on':''}" ${o?'':'disabled'} onclick="selLand('${l.id}')"><span class="le" style="background:${o?l.sky[0]:'#C9D2DC'}" aria-hidden="true">${l.e}</span><span><b>${esc(l.n)}</b><span class="sol">${o?(st.boss?'Cleared ✓':`${st.won.filter(Boolean).length} of 3 monsters`):'🔒 Opens at level '+l.lv}</span></span></button>`}).join('')}</div>
-  ${landPanel()}<p class="sol" style="margin-top:12px">${noLimit()?'Teachers, parents and the Owner can play without a time limit to try the game. Learners get a daily play time.':esc(earnNote())}</p>`}
+  ${landPanel()}<p class="sol" style="margin-top:12px">${isMember()&&BOOT.role==='student'?`⭐ You're a member until ${new Date(ME.member).toLocaleDateString()}: play as long as you like.`:noLimit()?'Teachers, parents and the Owner can play without a time limit to try the game. Learners get a daily play time.':esc(earnNote())}</p>`}
 
 /* ---------- Battles ---------- */
 function rpool(sub){let L=subSkills(sub).filter(k=>G[k]&&inBand(k));if(!L.length)L=subSkills(sub).filter(k=>G[k]);return L}
@@ -5069,7 +5082,7 @@ function battleHtml(){const l=LANDS.find(x=>x.id===BT.land),q=BT.q,nm=BT.m[0][0]
   let panel;
   if(BT.phase==='won')panel=`<div class="endcard"><div class="big" aria-hidden="true">🏆</div><h3>You beat ${esc(nm)}!</h3><p>${BT.ok} correct out of ${BT.n} spells. You earned <b>💎 ${BT.gems} gems</b>${BT.first?' for your first win':''}.${BT.boss&&BT.first?` You found the <b>${esc(l.relic)}</b>!`:''}</p><div class="row" style="justify-content:center"><button class="lamp" onclick="BT=null;rerealm()">Back to ${esc(l.n)}</button>${playLeft()>0?`<button class="alt" onclick="startBattle('${l.id}',${BT.i})">Battle again</button>`:''}</div></div>`;
   else if(BT.phase==='lost')panel=`<div class="endcard"><div class="big" aria-hidden="true">💫</div><h3>${esc(nm)} won this time</h3><p>Lumi healed you up. Every miss showed you how to solve it, so you're stronger now. Try again!</p><div class="row" style="justify-content:center"><button class="lamp" onclick="startBattle('${l.id}',${BT.i})">Try again</button><button class="alt" onclick="BT=null;rerealm()">Back to the map</button></div></div>`;
-  else if(BT.phase==='timeup')panel=`<div class="endcard"><div class="big" aria-hidden="true">🌙</div><h3>Play time is over for today</h3><p>${esc(earnNote())}</p><div class="row" style="justify-content:center"><button class="lamp" onclick="BT=null;go('learn')">📖 Go learn</button><button class="alt" onclick="BT=null;rerealm()">Back to the map</button></div></div>`;
+  else if(BT.phase==='timeup')panel=`<div class="endcard"><div class="big" aria-hidden="true">🌙</div><h3>Play time is over for today</h3><p>${esc(earnNote())}</p><div class="row" style="justify-content:center"><button class="lamp" onclick="BT=null;go('learn')">📖 Go learn</button><button class="alt" onclick="BT=null;rerealm()">Back to the map</button></div>${memberNote()}</div>`;
   else if(BT.phase==='none')panel=`<div class="endcard"><h3>No questions here yet</h3><p>Pick another kind of magic, or choose your grade on the Learn page.</p><button class="lamp" onclick="BT=null;rerealm()">Back to the map</button></div>`;
   else panel=`<p class="sol" style="margin:0 0 6px">${mg[0]} ${mg[1]} · ${esc(SK[BT.k].n)}</p><div class="bq">${q.q}</div>
     ${q.choices?`<div class="bchoices">${q.choices.map((c,i)=>`<button ${BT.phase!=='ask'?'disabled':''} onclick="castAns(${i})"><span aria-hidden="true">${'ABCD'[i]}.</span> ${esc(c)}</button>`).join('')}</div>`
@@ -5087,6 +5100,66 @@ const _ofG=O.flags;O.flags=function(){const g=GSET();return _ofG()+`<h3 style="m
   <div class="row"><label>Free minutes a day <input type="number" id="gsb" min="0" max="120" value="${g.base}" style="width:90px"></label><label>Minutes earned per 10 minutes of learning <input type="number" id="gsp" min="0" max="60" value="${g.per}" style="width:90px"></label><label>Most minutes a day <input type="number" id="gsm" min="0" max="240" value="${g.max}" style="width:90px"></label><button class="lamp" onclick="saveGameSet()">Save play time</button></div>`};
 function saveGameSet(){const n=(id,hi)=>Math.max(0,Math.min(hi,Math.round(+$(id).value||0))),g={base:n('gsb',120),per:n('gsp',60),max:n('gsm',240)};busy(async()=>{await api('PUT','/api/owner/settings',{game:g});BOOT.settings.game=g;msg('Play time saved.')})}
 
+</script>
+
+<style>
+/* ===== Membership: unlimited play, paid with PayPal and switched on by the Owner ===== */
+.mperks{display:grid;gap:8px;margin:10px 0 14px;padding:0;list-style:none}.mperks li{display:flex;gap:10px;align-items:flex-start}.mperks li span{font-size:20px;line-height:1.2}
+.mprice{font:800 1.6rem "Bricolage Grotesque",sans-serif;margin:6px 0 12px}
+a.paybtn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:14px;background:#FFC439;color:#111827;font-weight:800;text-decoration:none;box-shadow:var(--shadow)}a.paybtn:hover{box-shadow:var(--shadow-up)}
+.msteps{margin:14px 0 0;padding-left:20px}.msteps li{margin:6px 0}
+.gate{max-width:420px}.gate input{font-size:1.2rem;width:120px;padding:8px 12px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink)}
+.mform label{display:block;margin:10px 0 0;font-weight:700}.mform label input:not([type=checkbox]){display:block;width:100%;max-width:520px;margin-top:4px}
+.mform label.ck{display:flex;gap:8px;align-items:center}
+</style>
+<script type="text/x-lumen">
+/* ===== Membership. The Owner pastes a PayPal link and price in the Owner console. Parents and teachers see the offer;
+   learners see it only after a grown-up check. After paying, the payer writes the learner's username (or a class code)
+   in the PayPal note, and the Owner switches membership on until a date. Members have no daily play limit. ===== */
+const MSET=()=>Object.assign({on:false,price:'',link:'',contact:''},BOOT.settings.member||{});
+let MGATE=null;
+const fmtDay=t=>new Date(t).toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'});
+function memberOffer(){const m=MSET(),pp=/(^|\.)paypal\.(com|me)$/i.test((()=>{try{return new URL(m.link).hostname}catch(e){return ''}})());
+  const who=ME.role==='student'?`this account's username, <b>${esc(ME.username||'')}</b>`:ME.role==='parent'?"your child's Bose Academy username":"the learner's username";
+  const codes=BOOT.role==='teacher'&&(ST.classes||[]).length?`<p class="sol">Your class codes: ${ST.classes.map(c=>`${esc(c.name)} <b>${esc(c.code)}</b>`).join(' · ')}</p>`:'';
+  return `<div class="card"><h3>What members get</h3><ul class="mperks"><li><span aria-hidden="true">⚔️</span><span>Unlimited play in Lumi's Realm: no daily time limit.</span></li><li><span aria-hidden="true">📚</span><span>Learning stays free for everyone: lessons, practice, classwork and quizzes never need a membership.</span></li><li><span aria-hidden="true">🏫</span><span>Teachers and schools can buy one membership for a whole class.</span></li></ul>
+  ${m.price?`<div class="mprice">${esc(m.price)}</div>`:''}<a class="paybtn" href="${esc(m.link)}" target="_blank" rel="noopener noreferrer">${pp?'Pay with PayPal':'Pay now'} ↗</a>
+  <ol class="msteps"><li>Pay with the button above.</li><li>In the payment note, write ${who}. To cover a whole class, write the class code instead.</li><li>We switch on membership, usually within a day. It ends on its own when the time you paid for is up.</li></ol>${codes}
+  ${m.contact?`<p class="sol">Questions or no note box? Email <b>${esc(m.contact)}</b> with the username or class code.</p>`:''}</div>`}
+VIEWS.member=function(){const m=MSET(),mine=isMember();
+  let body;
+  if(mine)body=`<div class="card"><h3>⭐ You're a member</h3><p>Unlimited play in Lumi's Realm until <b>${fmtDay(ME.member)}</b>. Thank you for supporting Bose Academy!</p>${gameOn()?`<button class="lamp" onclick="go('play')">⚔️ Play</button>`:''}</div>`;
+  else if(!m.on||!m.link)body=`<div class="card"><p>Membership isn't available yet. Everyone gets daily play time, and learning more earns more.</p></div>`;
+  else if(BOOT.role==='student'&&!(MGATE&&MGATE.ok)){if(!MGATE)MGATE={a:11+Math.floor(Math.random()*9),b:12+Math.floor(Math.random()*8)};
+    body=`<div class="card gate"><h3>For parents and teachers</h3><p>Ask a grown-up to answer this question to see membership.</p><form onsubmit="event.preventDefault();gateCheck()"><p><b>What is ${MGATE.a} × ${MGATE.b}?</b></p><div class="row"><input id="gatein" inputmode="numeric" autocomplete="off" aria-label="Answer"><button class="lamp">Continue</button></div></form><p class="sol" id="gatemsg" role="alert"></p></div>`}
+  else body=memberOffer();
+  return `<h2>⭐ Membership</h2>${body}`};
+function gateCheck(){if(+$('gatein').value===MGATE.a*MGATE.b){MGATE.ok=1;showTab('member')}else{MGATE=null;showTab('member');$('gatemsg').textContent='Not quite. Please ask a grown-up.'}}
+const _tmM=toggleMenu;toggleMenu=function(){_tmM();const m=$('pmenu');if(m.hidden||m.querySelector('[data-m]')||!(MSET().on||BOOT.role==='owner'||isMember())||BOOT.local)return;
+  const g=m.querySelector('[data-g]');(g||m.querySelector('.who')).insertAdjacentHTML('afterend',`<button role="menuitem" data-m onclick="$('pmenu').hidden=true;go('member')"><span aria-hidden="true">⭐</span>Membership${isMember()?' (active)':''}</button>`)};
+
+/* ---------- Owner console: the offer and who is a member ---------- */
+O.member=function(){const m=MSET(),L=ST.members||{users:[],classes:[]},now=Date.now(),st=u=>u>now?`Until ${fmtDay(u)}`:`Ended ${fmtDay(u)}`;
+  return `<div class="card mform"><h3>Membership offer</h3><p class="sol">Members get unlimited play in Lumi's Realm. Make a payment link in PayPal (Pay &amp; Get Paid, then Payment links, or your paypal.me link) and paste it here. Parents and teachers see the price and the button; learners see it only after a grown-up check.</p>
+  <label class="ck"><input type="checkbox" id="mon" ${m.on?'checked':''}> Offer membership</label>
+  <label>Price shown (for example "$4.99 a month" or "$30 a year")<input id="mpr" maxlength="60" value="${esc(m.price)}"></label>
+  <label>PayPal payment link<input id="mln" maxlength="300" placeholder="https://www.paypal.com/ncp/payment/..." value="${esc(m.link)}"></label>
+  <label>Contact email for questions (optional, shown on the membership page)<input id="mct" type="email" maxlength="100" value="${esc(m.contact)}"></label>
+  <div class="row" style="margin-top:12px"><button class="lamp" onclick="saveMemberSet()">Save offer</button></div></div>
+  <div class="card mform" style="margin-top:14px"><h3>Switch on membership</h3><p class="sol">When a payment arrives, type the username or the class code from the PayPal note. A class code covers every learner in that class. If the account or class is already a member, the time is added to what's left.</p>
+  <div class="row"><input id="mwho" placeholder="Username or class code" aria-label="Username or class code" maxlength="30"><select id="mlen" aria-label="How long">${[[1,'1 month'],[3,'3 months'],[6,'6 months'],[12,'1 year']].map(([n,l])=>`<option value="${n}" ${n===1?'selected':''}>${l}</option>`).join('')}</select><button class="lamp" onclick="giveMember()">Switch on</button></div></div>
+  <div class="card" style="margin-top:14px"><h3>Members</h3>${L.users.length||L.classes.length?`<div class="tbl"><table class="vs"><tr><th>Who</th><th>Membership</th><th></th></tr>
+  ${L.users.map(u=>`<tr><td>${esc(u.display)}<div class="sol">${esc(u.username)}</div></td><td>${st(u.until)}</td><td>${u.until>now?`<button class="alt" onclick="endMember('${esc(u.username)}')">End now</button>`:''}</td></tr>`).join('')}
+  ${L.classes.map(c=>`<tr><td>🏫 ${esc(c.name)}<div class="sol">Class code ${esc(c.code)}${c.teacher?' · '+esc(c.teacher):''}</div></td><td>${st(c.until)}</td><td>${c.until>now?`<button class="alt" onclick="endMember('${esc(c.code)}')">End now</button>`:''}</td></tr>`).join('')}</table></div>`:'<p class="sol">No members yet.</p>'}</div>`};
+function saveMemberSet(){const m={on:$('mon').checked,price:$('mpr').value.trim(),link:$('mln').value.trim(),contact:$('mct').value.trim()};
+  if(m.on&&!/^https:\/\//.test(m.link))return msg('Paste the PayPal payment link (it starts with https://) before offering membership.');
+  busy(async()=>{await api('PUT','/api/owner/settings',{member:m});BOOT.settings.member=m;msg('Membership offer saved.');showTab('owner')})}
+function giveMember(){const who=$('mwho').value.trim(),n=+$('mlen').value;if(who.length<3)return msg('Type a username or a class code.');const L=ST.members||{users:[],classes:[]};
+  const cur=[...L.users.filter(u=>u.username.toLowerCase()===who.toLowerCase()),...L.classes.filter(c=>c.code===who.toUpperCase())].map(x=>x.until)[0]||0,d=new Date(Math.max(Date.now(),cur));d.setMonth(d.getMonth()+n);
+  busy(async()=>{const r=await api('POST','/api/owner/members',{who,until:d.getTime()});msg(`Membership on for ${r.kind==='class'?'the class ':''}${r.name} until ${fmtDay(d)}.`);reload('owner')})}
+function endMember(who){if(!confirm('End this membership now?'))return;busy(async()=>{await api('POST','/api/owner/members',{who,until:0});msg('Membership ended.');reload('owner')})}
+const _loM=LOAD.owner;LOAD.owner=async()=>{await _loM();try{ST.members=await api('GET','/api/owner/members')}catch(e){ST.members={users:[],classes:[]}}};
+const _ovM=VIEWS.owner;VIEWS.owner=function(){const h=_ovM(),k='</div><div style="margin-top:16px">';return h.replace(k,`<button class="chip ${ST.ot==='member'?'on':''}" onclick="ST.ot='member';r2()">⭐ Membership</button>`+k)};
 </script>
 
 <style>

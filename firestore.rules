@@ -41,6 +41,7 @@ service cloud.firestore {
       allow create: if signedIn() && request.auth.uid == uid
         && request.resource.data.role in ['student', 'parent', 'teacher']
         && request.resource.data.verified == false && request.resource.data.locked == false
+        && request.resource.data.get('memberUntil', 0) == 0
         && okText('display', 2, 20) && okText('username', 3, 20);
       allow update: if isOwner()
         || (request.auth.uid == uid && active() && changedOnly(['display']) && okText('display', 2, 20));
@@ -62,9 +63,11 @@ service cloud.firestore {
     match /classes/{cid} {
       function cls() { return get(/databases/$(db)/documents/classes/$(cid)).data; }
       allow read: if signedIn() && (resource.data.teacherId == request.auth.uid || request.auth.uid in resource.data.members || isOwner());
-      allow create: if isTeacher() && request.resource.data.teacherId == request.auth.uid && request.resource.data.members.size() == 0;
+      allow create: if isTeacher() && request.resource.data.teacherId == request.auth.uid && request.resource.data.members.size() == 0
+        && request.resource.data.get('memberUntil', 0) == 0;
+      // Teachers manage their classes, but only the Owner can switch on a class membership (memberUntil)
       allow update: if signedIn() && (
-        ((resource.data.teacherId == request.auth.uid && isTeacher()) || isOwner())
+        (resource.data.teacherId == request.auth.uid && isTeacher() && request.resource.data.get('memberUntil', 0) == resource.data.get('memberUntil', 0)) || isOwner()
         || (active() && me().role == 'student' && changedOnly(['members']) && addedSelf('members')));
       allow delete: if signedIn() && (resource.data.teacherId == request.auth.uid || isOwner());
 

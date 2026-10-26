@@ -94,7 +94,9 @@ function monsterSvg(m,boss,label){const [n,shape,c,acc]=m,d=shade(c,.78),A=a=>ac
 
 /* ---------- Play time ---------- */
 const GSET=()=>Object.assign({base:10,per:5,max:30},(BOOT.settings&&BOOT.settings.game)||{});
-const noLimit=()=>BOOT.role!=='student';                      /* teachers, parents and the Owner can preview without a limit */
+const isMember=()=>(ME.member||0)>Date.now();                 /* membership (unlimited play), switched on by the Owner for an account or a class */
+const noLimit=()=>BOOT.role!=='student'||isMember();          /* teachers, parents and the Owner can preview without a limit */
+const memberNote=()=>BOOT.settings.member&&BOOT.settings.member.on?`<p class="sol" style="margin-top:10px">Want to play longer? Ask a parent or teacher about membership.</p><button class="alt" onclick="BT=null;go('member')">⭐ Membership (for grown-ups)</button>`:'';
 const playAllowed=()=>{const g=GSET();return Math.min(g.max,g.base+Math.floor(DAY().study/60)*g.per/10)*60};
 const playLeft=()=>noLimit()?Infinity:Math.max(0,Math.round(playAllowed()-DAY().play));
 const mmss=s=>`${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,'0')}`;
@@ -105,7 +107,7 @@ function realmTick(sec){if(tab!=='play'||!gameOn()||document.hidden||Date.now()-
   if(BT&&['ask','fb'].includes(BT.phase)||!BT){if(!noLimit()&&playLeft()>0){DAY().play+=sec;if(DAY().play%60===0)SYNC()}}
   const e=$('ptime');if(e)e.outerHTML=ptimeHtml();
   if(!noLimit()&&playLeft()<=0&&BT&&BT.phase==='ask'){BT.phase='timeup';renderBattle()}}
-function ptimeHtml(){const l=playLeft(),a=noLimit()?1:playAllowed();return `<div class="ptime" id="ptime" title="${esc(noLimit()?'Only learners have a daily play time.':earnNote())}"><span aria-hidden="true">⏳</span><span>${l===Infinity?'No time limit (preview)':l>0?mmss(l)+' of play left today':'Out of play time today'}</span>${l===Infinity?'':`<div class="bar" aria-hidden="true"><i style="width:${Math.min(100,l/a*100)}%"></i></div>`}</div>`}
+function ptimeHtml(){const l=playLeft(),a=noLimit()?1:playAllowed();return `<div class="ptime" id="ptime" title="${esc(noLimit()?'Only learners have a daily play time.':earnNote())}"><span aria-hidden="true">⏳</span><span>${l===Infinity?(isMember()&&BOOT.role==='student'?'⭐ Member: unlimited play':'No time limit (preview)'):l>0?mmss(l)+' of play left today':'Out of play time today'}</span>${l===Infinity?'':`<div class="bar" aria-hidden="true"><i style="width:${Math.min(100,l/a*100)}%"></i></div>`}</div>`}
 
 /* ---------- World map and lands ---------- */
 const POS=[[110,330],[260,200],[410,312],[545,150],[690,292],[830,140],[920,320]];
@@ -133,10 +135,10 @@ function schoolsHtml(){const subs=Object.keys(SUBN).filter(s=>subSkills(s).some(
   return `<div class="schools" role="group" aria-label="Choose your magic"><span class="sol"><b>Your magic:</b></span>${subs.map(x=>{const g=magicOf(x);return `<button class="chip ${s===x?'on':''}" aria-pressed="${s===x}" onclick="GM.rsub='${x}';SYNC();rerealm()">${g[0]} ${g[1]} <small>(${esc(SUBN[x])})</small></button>`}).join('')}</div>`}
 function mapView(){const left=playLeft();
   return `<div class="realm-top"><h2>⚔️ Lumi's Realm</h2>${ptimeHtml()}</div>
-  ${!noLimit()&&left<=0?`<div class="card endcard" style="margin-bottom:14px"><div class="big" aria-hidden="true">🌙</div><h3>Play time is over for today</h3><p>${esc(earnNote())}</p><button class="lamp" onclick="go('learn')">📖 Go learn</button></div>`:''}
+  ${!noLimit()&&left<=0?`<div class="card endcard" style="margin-bottom:14px"><div class="big" aria-hidden="true">🌙</div><h3>Play time is over for today</h3><p>${esc(earnNote())}</p><button class="lamp" onclick="go('learn')">📖 Go learn</button>${memberNote()}</div>`:''}
   ${schoolsHtml()}<div class="worldmap">${mapSvg()}</div>
   <div class="landlist">${LANDS.map(l=>{const o=landOpen(l),st=LS(l.id);return `<button class="lrow ${curLand()===l.id?'on':''}" ${o?'':'disabled'} onclick="selLand('${l.id}')"><span class="le" style="background:${o?l.sky[0]:'#C9D2DC'}" aria-hidden="true">${l.e}</span><span><b>${esc(l.n)}</b><span class="sol">${o?(st.boss?'Cleared ✓':`${st.won.filter(Boolean).length} of 3 monsters`):'🔒 Opens at level '+l.lv}</span></span></button>`}).join('')}</div>
-  ${landPanel()}<p class="sol" style="margin-top:12px">${noLimit()?'Teachers, parents and the Owner can play without a time limit to try the game. Learners get a daily play time.':esc(earnNote())}</p>`}
+  ${landPanel()}<p class="sol" style="margin-top:12px">${isMember()&&BOOT.role==='student'?`⭐ You're a member until ${new Date(ME.member).toLocaleDateString()}: play as long as you like.`:noLimit()?'Teachers, parents and the Owner can play without a time limit to try the game. Learners get a daily play time.':esc(earnNote())}</p>`}
 
 /* ---------- Battles ---------- */
 function rpool(sub){let L=subSkills(sub).filter(k=>G[k]&&inBand(k));if(!L.length)L=subSkills(sub).filter(k=>G[k]);return L}
@@ -173,7 +175,7 @@ function battleHtml(){const l=LANDS.find(x=>x.id===BT.land),q=BT.q,nm=BT.m[0][0]
   let panel;
   if(BT.phase==='won')panel=`<div class="endcard"><div class="big" aria-hidden="true">🏆</div><h3>You beat ${esc(nm)}!</h3><p>${BT.ok} correct out of ${BT.n} spells. You earned <b>💎 ${BT.gems} gems</b>${BT.first?' for your first win':''}.${BT.boss&&BT.first?` You found the <b>${esc(l.relic)}</b>!`:''}</p><div class="row" style="justify-content:center"><button class="lamp" onclick="BT=null;rerealm()">Back to ${esc(l.n)}</button>${playLeft()>0?`<button class="alt" onclick="startBattle('${l.id}',${BT.i})">Battle again</button>`:''}</div></div>`;
   else if(BT.phase==='lost')panel=`<div class="endcard"><div class="big" aria-hidden="true">💫</div><h3>${esc(nm)} won this time</h3><p>Lumi healed you up. Every miss showed you how to solve it, so you're stronger now. Try again!</p><div class="row" style="justify-content:center"><button class="lamp" onclick="startBattle('${l.id}',${BT.i})">Try again</button><button class="alt" onclick="BT=null;rerealm()">Back to the map</button></div></div>`;
-  else if(BT.phase==='timeup')panel=`<div class="endcard"><div class="big" aria-hidden="true">🌙</div><h3>Play time is over for today</h3><p>${esc(earnNote())}</p><div class="row" style="justify-content:center"><button class="lamp" onclick="BT=null;go('learn')">📖 Go learn</button><button class="alt" onclick="BT=null;rerealm()">Back to the map</button></div></div>`;
+  else if(BT.phase==='timeup')panel=`<div class="endcard"><div class="big" aria-hidden="true">🌙</div><h3>Play time is over for today</h3><p>${esc(earnNote())}</p><div class="row" style="justify-content:center"><button class="lamp" onclick="BT=null;go('learn')">📖 Go learn</button><button class="alt" onclick="BT=null;rerealm()">Back to the map</button></div>${memberNote()}</div>`;
   else if(BT.phase==='none')panel=`<div class="endcard"><h3>No questions here yet</h3><p>Pick another kind of magic, or choose your grade on the Learn page.</p><button class="lamp" onclick="BT=null;rerealm()">Back to the map</button></div>`;
   else panel=`<p class="sol" style="margin:0 0 6px">${mg[0]} ${mg[1]} · ${esc(SK[BT.k].n)}</p><div class="bq">${q.q}</div>
     ${q.choices?`<div class="bchoices">${q.choices.map((c,i)=>`<button ${BT.phase!=='ask'?'disabled':''} onclick="castAns(${i})"><span aria-hidden="true">${'ABCD'[i]}.</span> ${esc(c)}</button>`).join('')}</div>`

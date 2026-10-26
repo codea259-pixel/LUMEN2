@@ -43,6 +43,7 @@ CREATE TABLE IF NOT EXISTS qvers(id INTEGER PRIMARY KEY, unit TEXT, part TEXT, k
 for (const col of ['under13 INTEGER DEFAULT 0', 'parent_email TEXT']) { try { db.exec(`ALTER TABLE users ADD COLUMN ${col}`); } catch { /* already there */ } }
 try { db.exec("ALTER TABLE tests ADD COLUMN passages TEXT DEFAULT '[]'"); } catch { /* already there */ }
 try { db.exec('ALTER TABLE classes ADD COLUMN game TEXT'); } catch { /* already there */ }
+for (const t of ['users', 'classes']) { try { db.exec(`ALTER TABLE ${t} ADD COLUMN member_until INTEGER DEFAULT 0`); } catch { /* already there */ } }
 db.exec('CREATE TABLE IF NOT EXISTS awards(id INTEGER PRIMARY KEY, class_id INTEGER, user_id INTEGER, gems INTEGER, reason TEXT, ts INTEGER, claimed INTEGER DEFAULT 0)');
 const Q = (sql, ...p) => db.prepare(sql).all(...p);
 const Q1 = (sql, ...p) => db.prepare(sql).get(...p);
@@ -52,7 +53,7 @@ const setS = (k, v) => X('INSERT INTO settings(key,value) VALUES(?,?) ON CONFLIC
 const DEF = {
   block: ['stupid', 'idiot', 'dumb', 'hate you', 'shut up'],
   flags: { 'AI tutor feedback': true, 'Live Classroom': true, 'Gem Challenges': true, 'Offline mode': false, 'Game mode': true, 'Class leaderboards': true },
-  retDays: 3, gr: {}, programs: {}, terms: [], game: { base: 10, per: 5, max: 30 },
+  retDays: 3, gr: {}, programs: {}, terms: [], game: { base: 10, per: 5, max: 30 }, member: { on: false, price: '', link: '', contact: '' },
   impact: { mission: 'Bose Academy gives every learner, everywhere, free access to clear lessons, unlimited practice and a patient tutor, so that no student is held back by cost or connection.', team: [], partners: [], funds: [['Content creation', 40], ['Hosting and infrastructure', 25], ['Accessibility and translation', 20], ['Reserve', 15]], raised: 0, goal: 0 },
 };
 const S = k => getS(k, DEF[k]);
@@ -153,9 +154,10 @@ route('POST', '/api/login', (c, res) => {
   res.cookie = mkTok(u.id); return userOut(u);
 });
 route('POST', '/api/logout', (c, res) => { res.cookie = 'x'; res.clear = true; return { ok: true }; });
-route('GET', '/api/me', c => { need(c); return { user: userOut(c.u) }; });
+const memberUntil = u => Math.max(+u.member_until || 0, ...Q('SELECT c.member_until m FROM class_members x JOIN classes c ON c.id=x.class_id WHERE x.user_id=?', u.id).map(r => +r.m || 0));
+route('GET', '/api/me', c => { need(c); return { user: { ...userOut(c.u), member: memberUntil(c.u) } }; });
 route('PATCH', '/api/me', c => { need(c); const d = str(c.body.display, 2, 20), bad = clean(d); if (bad) throw new E(400, bad); if (Q1('SELECT 1 FROM users WHERE display=? AND id<>?', d, c.u.id)) throw new E(409, 'That display name is taken.'); X('UPDATE users SET display=? WHERE id=?', d, c.u.id); return { display: d }; });
-route('GET', '/api/settings', () => ({ flags: S('flags'), retDays: S('retDays'), gr: S('gr'), impact: S('impact'), programs: S('programs'), terms: S('terms'), game: S('game') }));
+route('GET', '/api/settings', () => ({ flags: S('flags'), retDays: S('retDays'), gr: S('gr'), impact: S('impact'), programs: S('programs'), terms: S('terms'), game: S('game'), member: S('member') }));
 route('GET', '/api/curriculum', () => ({ courses: CUR.courses, milestones: CUR.milestones }));
 route('GET', '/api/state', c => { need(c); return stateOf(c.u.id); });
 route('PUT', '/api/state', c => { need(c); const j = JSON.stringify(c.body); if (j.length > 400000) throw new E(413, 'Too large.'); X('INSERT INTO state(user_id,json,updated) VALUES(?,?,?) ON CONFLICT(user_id) DO UPDATE SET json=excluded.json,updated=excluded.updated', c.u.id, j, Date.now()); return { ok: true }; });
@@ -307,13 +309,23 @@ route('GET', '/api/impact', () => {
   return { stats: { learners, hours: +(secs / 3600).toFixed(1), regions, helped: stu.size, answered }, content: S('impact') }; });
 
 // owner
+// Membership (unlimited play): the Owner switches it on for an account (by username) or a whole class (by class code) until a date
+route('GET', '/api/owner/members', c => { need(c, c.u.role === 'owner'); return {
+  users: Q('SELECT id,username,display,member_until until FROM users WHERE member_until>0 ORDER BY member_until DESC LIMIT 500'),
+  classes: Q('SELECT c.id,c.name,c.code,c.member_until until,u.display teacher FROM classes c LEFT JOIN users u ON u.id=c.teacher_id WHERE c.member_until>0 ORDER BY c.member_until DESC LIMIT 500') }; });
+route('POST', '/api/owner/members', c => { need(c, c.u.role === 'owner'); const who = str(c.body.who, 3, 30), until = c.body.until ? int(c.body.until, 0, 4102444800000) : 0;
+  const u = Q1('SELECT id,display FROM users WHERE username=?', who.toLowerCase());
+  if (u) { X('UPDATE users SET member_until=? WHERE id=?', until, u.id); return { ok: true, kind: 'account', name: u.display }; }
+  const k = Q1('SELECT id,name FROM classes WHERE code=?', who.toUpperCase());
+  if (k) { X('UPDATE classes SET member_until=? WHERE id=?', until, k.id); return { ok: true, kind: 'class', name: k.name }; }
+  throw new E(404, 'No account has that username and no class has that code.'); });
 route('GET', '/api/owner/users', c => { need(c, c.u.role === 'owner'); return { users: Q('SELECT id,username,display,email,role,verified,locked,created FROM users ORDER BY id DESC LIMIT 500') }; });
 route('PATCH', '/api/owner/users/:id', c => { need(c, c.u.role === 'owner'); const t = Q1('SELECT * FROM users WHERE id=?', int(c.params.id, 1, 1e12)); if (!t) throw new E(404, 'Not found.');
   if (t.role === 'owner') throw new E(403, 'The Owner account is protected and cannot be changed.');
   if (c.body.role !== undefined) { if (!ROLES.includes(c.body.role)) throw new E(400, 'Invalid role.'); X('UPDATE users SET role=? WHERE id=?', c.body.role, t.id); }
   if (typeof c.body.locked === 'boolean') X('UPDATE users SET locked=? WHERE id=?', c.body.locked ? 1 : 0, t.id);
   if (typeof c.body.verified === 'boolean') X('UPDATE users SET verified=? WHERE id=?', c.body.verified ? 1 : 0, t.id); return { ok: true }; });
-route('GET', '/api/owner/settings', c => { need(c, c.u.role === 'owner'); return { block: S('block'), flags: S('flags'), retDays: S('retDays'), gr: S('gr'), impact: S('impact'), programs: S('programs'), terms: S('terms'), game: S('game') }; });
+route('GET', '/api/owner/settings', c => { need(c, c.u.role === 'owner'); return { block: S('block'), flags: S('flags'), retDays: S('retDays'), gr: S('gr'), impact: S('impact'), programs: S('programs'), terms: S('terms'), game: S('game'), member: S('member') }; });
 route('PATCH', '/api/classes/:id/game', c => { need(c, isTeacher(c.u)); const k = ownClass(c, c.params.id), g = gameOf(k), b = c.body;
   if (b.board !== undefined) g.board = !!b.board;
   if (Array.isArray(b.teams)) g.teams = b.teams.slice(0, 6).map(t => str(t, 1, 24));
@@ -336,6 +348,10 @@ route('PUT', '/api/owner/settings', c => { need(c, c.u.role === 'owner'); const 
   if (b.flags) setS('flags', Object.fromEntries(Object.entries(b.flags).slice(0, 30).map(([k, v]) => [String(k).slice(0, 40), !!v])));
   if (b.retDays !== undefined) setS('retDays', int(b.retDays, 0, 60));
   if (b.game) setS('game', { base: int(b.game.base, 0, 120), per: int(b.game.per, 0, 60), max: int(b.game.max, 0, 240) });
+  if (b.member) { const m = b.member, link = String(m.link || '').trim(), contact = String(m.contact || '').trim();
+    if (link && !/^https:\/\/[^\s"'<>]{4,300}$/.test(link)) throw new E(400, 'The payment link must start with https://');
+    if (contact && !/^\S+@\S+\.\S+$/.test(contact)) throw new E(400, 'Enter a valid contact email.');
+    setS('member', { on: !!m.on, price: String(m.price || '').trim().slice(0, 60), link, contact: contact.slice(0, 100) }); }
   if (Array.isArray(b.terms)) setS('terms', b.terms.slice(0, 6).map(t => ({ name: str(t.name, 1, 30), start: /^\d{4}-\d{2}-\d{2}$/.test(t.start) ? t.start : '' })));
   if (b.programs) setS('programs', Object.fromEntries(Object.entries(b.programs).slice(0, 200).filter(([k]) => /^(math|ela|sci|soc)\|-?\d{1,2}$/.test(k)).map(([k, v]) => [k, String(v).trim().slice(0, 300)])));
   if (b.gr) setS('gr', Object.fromEntries(Object.entries(b.gr).slice(0, 1000).map(([k, v]) => [String(k).slice(0, 60), int(v, -1, 13)])));
