@@ -143,6 +143,10 @@ const errs = [], ok = s => console.log('✓', s);
 
   // 5d. Membership: only the Owner switches it on (by username or class code); students and teachers cannot grant it
   const sUser = creds[0][1], cCode = code;
+  const plans = await o.evaluate(async () => { await api('PUT', '/api/owner/settings', { member: { on: true, price: '$4.99 a month', link: 'https://buy.stripe.com/test_M1', yprice: '$39.99 a year', ylink: 'https://buy.stripe.com/test_Y1' } });
+    let bad = 'saved'; try { await api('PUT', '/api/owner/settings', { member: { on: true, link: 'https://buy.stripe.com/x', ylink: 'http://evil.example/' } }) } catch (e) { bad = 'refused' }
+    const m = (await api('GET', '/api/settings')).member; return { m: [m.price, m.link, m.yprice, m.ylink].join(' | '), bad } });
+  ok('monthly and annual plans saved (Firebase): ' + JSON.stringify(plans)); if (plans.bad !== 'refused' || !plans.m.endsWith('$39.99 a year | https://buy.stripe.com/test_Y1')) errs.push('membership plans not saved right (Firebase)');
   const mo = await o.evaluate(async ([u, c]) => { const a = await api('POST', '/api/owner/members', { who: u, until: Date.now() + 864e5 * 30 }); const b = await api('POST', '/api/owner/members', { who: c, until: Date.now() + 864e5 * 365 }); const l = await api('GET', '/api/owner/members'); return [a.kind, b.kind, l.users.length, l.classes.length] }, [sUser, cCode]);
   await s.reload(); await s.waitForSelector('#avatarBtn', { timeout: 20000 }); const sm = await s.evaluate(() => isMember());
   ok('owner switched on membership for an account and a class (Firebase): ' + JSON.stringify(mo) + ', student is a member: ' + sm); if (!sm || mo[0] !== 'account' || mo[1] !== 'class') errs.push('membership did not switch on (Firebase)');

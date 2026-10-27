@@ -53,7 +53,7 @@ const setS = (k, v) => X('INSERT INTO settings(key,value) VALUES(?,?) ON CONFLIC
 const DEF = {
   block: ['stupid', 'idiot', 'dumb', 'hate you', 'shut up'],
   flags: { 'AI tutor feedback': true, 'Live Classroom': true, 'Gem Challenges': true, 'Offline mode': false, 'Game mode': true, 'Class leaderboards': true },
-  retDays: 3, gr: {}, programs: {}, terms: [], game: { base: 10, per: 5, max: 30 }, member: { on: false, price: '', link: '', contact: '' },
+  retDays: 3, gr: {}, programs: {}, terms: [], game: { base: 10, per: 5, max: 30 }, member: { on: false, price: '', link: '', yprice: '', ylink: '', contact: '' },
   impact: { mission: 'Bose Academy gives every learner, everywhere, free access to clear lessons, unlimited practice and a patient tutor, so that no student is held back by cost or connection.', team: [], partners: [], funds: [['Content creation', 40], ['Hosting and infrastructure', 25], ['Accessibility and translation', 20], ['Reserve', 15]], raised: 0, goal: 0 },
 };
 const S = k => getS(k, DEF[k]);
@@ -348,10 +348,10 @@ route('PUT', '/api/owner/settings', c => { need(c, c.u.role === 'owner'); const 
   if (b.flags) setS('flags', Object.fromEntries(Object.entries(b.flags).slice(0, 30).map(([k, v]) => [String(k).slice(0, 40), !!v])));
   if (b.retDays !== undefined) setS('retDays', int(b.retDays, 0, 60));
   if (b.game) setS('game', { base: int(b.game.base, 0, 120), per: int(b.game.per, 0, 60), max: int(b.game.max, 0, 240) });
-  if (b.member) { const m = b.member, link = String(m.link || '').trim(), contact = String(m.contact || '').trim();
-    if (link && !/^https:\/\/[^\s"'<>]{4,300}$/.test(link)) throw new E(400, 'The payment link must start with https://');
+  if (b.member) { const m = b.member, link = String(m.link || '').trim(), ylink = String(m.ylink || '').trim(), contact = String(m.contact || '').trim(), price = v => String(v || '').trim().slice(0, 60);
+    for (const l of [link, ylink]) if (l && !/^https:\/\/[^\s"'<>]{4,300}$/.test(l)) throw new E(400, 'The payment link must start with https://');
     if (contact && !/^\S+@\S+\.\S+$/.test(contact)) throw new E(400, 'Enter a valid contact email.');
-    setS('member', { on: !!m.on, price: String(m.price || '').trim().slice(0, 60), link, contact: contact.slice(0, 100) }); }
+    setS('member', { on: !!m.on, price: price(m.price), link, yprice: price(m.yprice), ylink, contact: contact.slice(0, 100) }); }
   if (Array.isArray(b.terms)) setS('terms', b.terms.slice(0, 6).map(t => ({ name: str(t.name, 1, 30), start: /^\d{4}-\d{2}-\d{2}$/.test(t.start) ? t.start : '' })));
   if (b.programs) setS('programs', Object.fromEntries(Object.entries(b.programs).slice(0, 200).filter(([k]) => /^(math|ela|sci|soc)\|-?\d{1,2}$/.test(k)).map(([k, v]) => [k, String(v).trim().slice(0, 300)])));
   if (b.gr) setS('gr', Object.fromEntries(Object.entries(b.gr).slice(0, 1000).map(([k, v]) => [String(k).slice(0, 60), int(v, -1, 13)])));

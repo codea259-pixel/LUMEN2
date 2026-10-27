@@ -165,22 +165,32 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     await t.click('.gblock input[type=checkbox]'); await t.waitForSelector('.gblock input[type=checkbox]:not(:checked)');
     const off = await a.evaluate(async () => (await api('GET', '/api/classes')).joined[0].board); if (off !== null) fail('board still shown when turned off');
     ok('teacher turned the leaderboard off; students no longer get it');
-    // Membership: the Owner offers it with a PayPal link, kids see it only after a grown-up check, the Owner switches it on
+    // Membership: the Owner offers it with Stripe payment links, kids see it only after a grown-up check, the Owner switches it on
     await ow.evaluate(() => reload('owner')); await ow.waitForSelector('text=⭐ Membership'); await ow.click('text=⭐ Membership'); await ow.waitForSelector('#mln');
-    await ow.check('#mon'); await ow.fill('#mpr', '$4.99 a month'); await ow.fill('#mln', 'https://www.paypal.com/ncp/payment/TEST123'); await ow.fill('#mct', 'help@school.org');
+    await ow.check('#mon'); await ow.fill('#mpr', '$4.99 a month'); await ow.fill('#mln', 'https://buy.stripe.com/test_M1'); await ow.fill('#mypr', '$39.99 a year'); await ow.fill('#myln', 'https://buy.stripe.com/test_Y1'); await ow.fill('#mct', 'help@school.org');
     await ow.click('text=Save offer'); await ow.waitForSelector('text=Membership offer saved.');
-    const bad = await call(ow, 'PUT', '/api/owner/settings', { member: { on: true, link: 'javascript:alert(1)' } }); if (bad.s !== 400) fail('a non-https payment link was accepted');
-    ok('owner offers membership at $4.99 a month with a PayPal link (non-https links refused)');
+    const bad = await call(ow, 'PUT', '/api/owner/settings', { member: { on: true, link: 'javascript:alert(1)' } }); const bady = await call(ow, 'PUT', '/api/owner/settings', { member: { on: true, link: 'https://buy.stripe.com/x', ylink: 'http://evil.example/' } });
+    if (bad.s !== 400 || bady.s !== 400) fail('a non-https payment link was accepted');
+    ok('owner offers a monthly plan ($4.99 a month) and an annual plan ($39.99 a year) with Stripe payment links (non-https links refused)');
     await a.reload(); await a.waitForSelector('#avatarBtn'); await a.evaluate(() => { DAY().play = playAllowed() }); await a.click('#tabs >> text=Arcade');
     await a.waitForSelector('text=Rest your eyes, hero!'); await a.click('text=⭐ Membership (for grown-ups)'); await a.waitForSelector('#gatein');
     if (await a.isVisible('a.paybtn')) fail('a learner saw the price before the grown-up check');
     await a.fill('#gatein', '1'); await a.click('.gate button'); await a.waitForSelector('text=Not quite. Please ask a grown-up.');
     await a.fill('#gatein', String(await a.evaluate(() => MGATE.a * MGATE.b))); await a.click('.gate button'); await a.waitForSelector('a.paybtn');
-    const pay = await a.evaluate(() => ({ href: document.querySelector('a.paybtn').href, text: document.querySelector('a.paybtn').textContent, page: $('views').textContent }));
-    if (!/Pay with PayPal/.test(pay.text) || pay.href !== 'https://www.paypal.com/ncp/payment/TEST123' || !pay.page.includes(creds[0][1]) || !pay.page.includes('$4.99 a month')) fail('offer page wrong: ' + JSON.stringify(pay).slice(0, 300));
-    ok('out of play time, a learner sees "ask a grown-up"; after the grown-up check: price, Pay with PayPal, and their username for the note');
-    await t.reload(); await t.waitForSelector('#avatarBtn'); await t.click('#tabs >> text=Teacher'); await t.waitForSelector('.cls'); await t.evaluate(() => go('member')); await t.waitForSelector('a.paybtn'); if (!(await t.textContent('#views')).includes(await t.evaluate(() => ST.classes[0].code))) fail('teacher does not see class codes');
-    ok('teachers see the offer right away, with their class codes');
+    const pay = await a.evaluate(() => ({ plans: [...document.querySelectorAll('.mplan')].map(p => [p.dataset.plan, p.querySelector('a.paybtn').href, p.querySelector('a.paybtn').textContent, p.textContent.includes('Best value')]), ref: $('mref').value, page: $('views').textContent }));
+    const [pm, py] = pay.plans, u0 = creds[0][1]; if (pay.plans.length !== 2 || pm[0] !== 'month' || pm[1] !== 'https://buy.stripe.com/test_M1?client_reference_id=' + u0 || py[0] !== 'year' || py[1] !== 'https://buy.stripe.com/test_Y1?client_reference_id=' + u0
+      || !/Pay with card/.test(pm[2] + py[2]) || pm[3] || !py[3] || pay.ref !== u0 || !pay.page.includes('$4.99 a month') || !pay.page.includes('$39.99 a year') || !pay.page.includes('one month or one year')) fail('offer page wrong: ' + JSON.stringify(pay).slice(0, 500));
+    ok('out of play time, a learner sees "ask a grown-up"; after the grown-up check: Monthly and Annual (best value) plans, each paying with card through Stripe with their username as the reference');
+    await a.fill('#mref', 'not ok!'); const badRef = await a.evaluate(() => [$('mref').getAttribute('aria-invalid'), $('mrefmsg').textContent, document.querySelector('a.paybtn').href]);
+    await a.fill('#mref', ''); await a.click('.mplan[data-plan=month] a.paybtn'); const stopped = await a.textContent("#mrefmsg");
+    if (badRef[0] !== 'true' || !badRef[1] || badRef[2] !== 'https://buy.stripe.com/test_M1' || !/username or a class code first/.test(stopped) || a.context().pages().length !== 1) fail('reference check wrong: ' + JSON.stringify([badRef, stopped]));
+    ok('a bad or empty username stops the pay button with a message instead of sending it to Stripe');
+    await t.reload(); await t.waitForSelector('#avatarBtn'); await t.click('#tabs >> text=Teacher'); await t.waitForSelector('.cls'); await t.evaluate(() => go('member')); await t.waitForSelector('a.paybtn');
+    const tref = await t.evaluate(() => [ST.classes[0].code, $('mref').value, document.querySelector('a.paybtn').href, $('views').textContent]);
+    if (tref[1] !== tref[0] || !tref[2].endsWith('client_reference_id=' + tref[0]) || !tref[3].includes(tref[0])) fail('teacher offer does not use the class code: ' + JSON.stringify(tref.slice(0, 3)));
+    const one = await t.evaluate(() => { BOOT.settings.member = { ...BOOT.settings.member, link: '' }; showTab('member'); return [...document.querySelectorAll('.mplan')].map(p => p.dataset.plan + (p.textContent.includes('Best value') ? '+best' : '')) });
+    if (one.join() !== 'year') fail('with only an annual link the page showed ' + one.join());
+    ok('teachers see the offer right away, already set to their class code; with only one plan\'s link, only that plan shows');
     const code = await t.evaluate(() => ST.classes[0].code);
     await ow.fill('#mwho', creds[0][1]); await ow.selectOption('#mlen', '3'); await ow.click('button:text-is("Switch on")'); await ow.waitForSelector('text=Membership on for');
     await ow.waitForSelector(`td:has-text("${creds[0][1]}")`); ok('owner switched on 3 months for ' + creds[0][1]);

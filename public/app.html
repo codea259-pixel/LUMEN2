@@ -806,7 +806,7 @@ showTab(location.hash.startsWith('#cert=')?'certs':'learn');
    Who may read or change what is enforced by firestore.rules, not by this file. ===== */
 const FBM=(()=>{
   const SDK=window.FIREBASE_SDK_BASE||'https://www.gstatic.com/firebasejs/10.12.2/';
-  const DEF={flags:{'AI tutor feedback':true,'Live Classroom':true,'Gem Challenges':true,'Offline mode':false,'Game mode':true,'Class leaderboards':true},retDays:3,gr:{},programs:{},terms:[],game:{base:10,per:5,max:30},member:{on:false,price:'',link:'',contact:''},
+  const DEF={flags:{'AI tutor feedback':true,'Live Classroom':true,'Gem Challenges':true,'Offline mode':false,'Game mode':true,'Class leaderboards':true},retDays:3,gr:{},programs:{},terms:[],game:{base:10,per:5,max:30},member:{on:false,price:'',link:'',yprice:'',ylink:'',contact:''},
     block:['stupid','idiot','dumb','hate you','shut up'],
     impact:{mission:'Bose Academy gives every learner, everywhere, free access to clear lessons, unlimited practice and a patient tutor, so that no student is held back by cost or connection.',team:[],partners:[],funds:[['Content creation',40],['Hosting and infrastructure',25],['Accessibility and translation',20],['Reserve',15]],raised:0,goal:0}};
   const ROLES=['student','parent','teacher'];
@@ -1061,9 +1061,9 @@ const FBM=(()=>{
   route('GET','/api/owner/settings',async()=>{need(isOwner());return{block:site.block||DEF.block,flags:{...DEF.flags,...site.flags},retDays:site.retDays??DEF.retDays,gr:site.gr||{},impact:site.impact||DEF.impact,programs:site.programs||{},terms:site.terms||[],game:site.game||DEF.game,member:site.member||DEF.member}});
   route('PUT','/api/owner/settings',async b=>{need(isOwner());const up={};['block','flags','gr','impact','programs'].forEach(k=>{if(b[k]!==undefined)up[k]=b[k]});if(Array.isArray(b.terms))up.terms=b.terms.slice(0,6).map(t=>({name:str(t.name,1,30,'Trimester names'),start:/^\d{4}-\d{2}-\d{2}$/.test(t.start)?t.start:''}));if(b.retDays!==undefined)up.retDays=Math.max(0,Math.min(60,+b.retDays||0));
     if(b.game){const n=(v,hi)=>Math.max(0,Math.min(hi,Math.round(+v||0)));up.game={base:n(b.game.base,120),per:n(b.game.per,60),max:n(b.game.max,240)}}
-    if(b.member){const m=b.member,link=String(m.link||'').trim(),contact=String(m.contact||'').trim();
-      if(link&&!/^https:\/\/[^\s"'<>]{4,300}$/.test(link))throw new E(400,'The payment link must start with https://');if(contact&&!/^\S+@\S+\.\S+$/.test(contact))throw new E(400,'Enter a valid contact email.');
-      up.member={on:!!m.on,price:String(m.price||'').trim().slice(0,60),link,contact:contact.slice(0,100)}}
+    if(b.member){const m=b.member,link=String(m.link||'').trim(),ylink=String(m.ylink||'').trim(),contact=String(m.contact||'').trim(),price=v=>String(v||'').trim().slice(0,60);
+      for(const l of [link,ylink])if(l&&!/^https:\/\/[^\s"'<>]{4,300}$/.test(l))throw new E(400,'The payment link must start with https://');if(contact&&!/^\S+@\S+\.\S+$/.test(contact))throw new E(400,'Enter a valid contact email.');
+      up.member={on:!!m.on,price:price(m.price),link,yprice:price(m.yprice),ylink,contact:contact.slice(0,100)}}
     await doc('config','site').set(up,{merge:true});Object.assign(site,up);return{ok:true}});
   route('POST','/api/tutor',async()=>{throw new E(503,'The AI tutor needs the hosted version of the site.')});
 
@@ -1328,8 +1328,12 @@ header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--b
 .menu hr{border:0;border-top:1px solid var(--line);margin:6px 0}
 #bnav{display:none}
 .brand{white-space:nowrap}
+/* Laptops: owners and teachers have six tabs and four chips, so the chips go compact (their titles keep the details) */
+@media(max-width:1440px){.chipstat small,.chipstat .lvbar{display:none}#tabs .tb{padding:9px 10px}.topin{gap:12px}}
+@media(max-width:1180px){#me .chipstat[title^="Skills"]{display:none}}
+@media(max-width:1000px){#me .chipstat[title="Day streak"]{display:none}.topin{padding:10px 16px}}
 @media(max-width:520px){#me .chipstat:not(:nth-child(2)){display:none}.brand{font-size:1.2rem}.topin{gap:8px}}
-@media(max-width:860px){
+@media(max-width:940px){
   #tabs{display:none}.topin{padding:8px 14px;gap:10px}.chipstat small{display:none}
   #bnav{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--panel);border-top:1px solid var(--line);padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px));justify-content:space-around}
   #bnav button{background:transparent;color:var(--mute);display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 8px;font-size:.75rem;min-width:56px;min-height:48px;border-radius:12px}
@@ -5114,33 +5118,52 @@ function saveGameSet(){const n=(id,hi)=>Math.max(0,Math.min(hi,Math.round(+$(id)
 </script>
 
 <style>
-/* ===== Membership: unlimited play, paid with PayPal and switched on by the Owner ===== */
+/* ===== Membership: unlimited play, paid through Stripe Payment Links and switched on by the Owner ===== */
 .mperks{display:grid;gap:8px;margin:10px 0 14px;padding:0;list-style:none}.mperks li{display:flex;gap:10px;align-items:flex-start}.mperks li span{font-size:20px;line-height:1.2}
 .mprice{font:800 1.6rem "Bricolage Grotesque",sans-serif;margin:6px 0 12px}
-a.paybtn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:14px;background:#FFC439;color:#111827;font-weight:800;text-decoration:none;box-shadow:var(--shadow)}a.paybtn:hover{box-shadow:var(--shadow-up)}
+a.paybtn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:14px;background:#635BFF;color:#fff;font-weight:800;text-decoration:none;box-shadow:var(--shadow)}a.paybtn:hover{background:#5248E8;box-shadow:var(--shadow-up)}
+.mfor{margin:4px 0 14px}.mfor label{display:block;font-weight:700}.mfor input{display:block;width:100%;max-width:320px;margin-top:4px;font-size:1.05rem}.mfor input[aria-invalid=true]{border-color:#DC2626}
+.mfor .codes{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.mplans{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:6px 0 4px}
+.mplan{position:relative;border:2px solid var(--line);border-radius:16px;padding:16px;background:var(--bg)}.mplan h4{margin:0;font:800 1.05rem "Bricolage Grotesque",sans-serif}
+.mplan.best{border-color:#F5B301}.mplan .tag{position:absolute;top:-12px;right:14px;padding:2px 10px;border-radius:999px;background:#F5B301;color:#111827;font-size:.75rem;font-weight:800}
+.mplan .mprice{margin:4px 0 2px}.mplan .sol{margin:0 0 12px}
+.mform fieldset{border:2px solid var(--line);border-radius:14px;padding:4px 14px 14px;margin:12px 0 0;max-width:560px}.mform legend{font-weight:800;padding:0 6px}
 .msteps{margin:14px 0 0;padding-left:20px}.msteps li{margin:6px 0}
 .gate{max-width:420px}.gate input{font-size:1.2rem;width:120px;padding:8px 12px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink)}
 .mform label{display:block;margin:10px 0 0;font-weight:700}.mform label input:not([type=checkbox]){display:block;width:100%;max-width:520px;margin-top:4px}
 .mform label.ck{display:flex;gap:8px;align-items:center}
 </style>
 <script type="text/x-lumen">
-/* ===== Membership. The Owner pastes a PayPal link and price in the Owner console. Parents and teachers see the offer;
-   learners see it only after a grown-up check. After paying, the payer writes the learner's username (or a class code)
-   in the PayPal note, and the Owner switches membership on until a date. Members have no daily play limit. ===== */
-const MSET=()=>Object.assign({on:false,price:'',link:'',contact:''},BOOT.settings.member||{});
+/* ===== Membership. The Owner pastes a Stripe Payment Link and a price for a monthly and an annual plan in the Owner console.
+   Parents and teachers see the offer; learners see it only after a grown-up check. The pay buttons send the learner's username
+   (or a class code) to Stripe as the client reference ID, and the Owner switches membership on until a date.
+   Members have no daily play limit. ===== */
+const MSET=()=>Object.assign({on:false,price:'',link:'',yprice:'',ylink:'',contact:''},BOOT.settings.member||{});
+// The plans on offer: monthly (price, link) and annual (yprice, ylink). A plan without a link isn't shown.
+const PLANS=m=>[{id:'month',name:'Monthly',price:m.price,link:m.link,len:'a month'},{id:'year',name:'Annual',price:m.yprice,link:m.ylink,len:'a year'}].filter(p=>p.link);
 let MGATE=null;
 const fmtDay=t=>new Date(t).toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'});
-function memberOffer(){const m=MSET(),pp=/(^|\.)paypal\.(com|me)$/i.test((()=>{try{return new URL(m.link).hostname}catch(e){return ''}})());
-  const who=ME.role==='student'?`this account's username, <b>${esc(ME.username||'')}</b>`:ME.role==='parent'?"your child's Bose Academy username":"the learner's username";
-  const codes=BOOT.role==='teacher'&&(ST.classes||[]).length?`<p class="sol">Your class codes: ${ST.classes.map(c=>`${esc(c.name)} <b>${esc(c.code)}</b>`).join(' · ')}</p>`:'';
-  return `<div class="card"><h3>What members get</h3><ul class="mperks"><li><span aria-hidden="true">⚔️</span><span>Unlimited play in Lumi's Realm: no daily time limit.</span></li><li><span aria-hidden="true">📚</span><span>Learning stays free for everyone: lessons, practice, classwork and quizzes never need a membership.</span></li><li><span aria-hidden="true">🏫</span><span>Teachers and schools can buy one membership for a whole class.</span></li></ul>
-  ${m.price?`<div class="mprice">${esc(m.price)}</div>`:''}<a class="paybtn" href="${esc(m.link)}" target="_blank" rel="noopener noreferrer">${pp?'Pay with PayPal':'Pay now'} ↗</a>
-  <ol class="msteps"><li>Pay with the button above.</li><li>In the payment note, write ${who}. To cover a whole class, write the class code instead.</li><li>We switch on membership, usually within a day. It ends on its own when the time you paid for is up.</li></ol>${codes}
-  ${m.contact?`<p class="sol">Questions or no note box? Email <b>${esc(m.contact)}</b> with the username or class code.</p>`:''}</div>`}
+// Stripe accepts letters, digits, - and _ in client_reference_id; usernames and class codes fit
+const okRef=r=>/^[A-Za-z0-9_-]{3,30}$/.test(r);
+const payHref=(link,r)=>okRef(r)?link+(link.includes('?')?'&':'?')+'client_reference_id='+encodeURIComponent(r):link;
+function memberOffer(){const m=MSET(),pl=PLANS(m),stripe=l=>/(^|\.)stripe\.com$/i.test((()=>{try{return new URL(l).hostname}catch(e){return ''}})());
+  const cls=BOOT.role==='teacher'?ST.classes||[]:[],ref=ME.role==='student'?ME.username||'':cls.length?cls[0].code:'';
+  const codes=cls.length?`<div class="codes" role="group" aria-label="Your class codes">${cls.map(c=>`<button class="chip" onclick="$('mref').value='${esc(c.code)}';mrefSync()">${esc(c.name)} · ${esc(c.code)}</button>`).join('')}</div>`:'';
+  const plan=p=>`<div class="mplan ${p.id==='year'&&pl.length>1?'best':''}" data-plan="${p.id}">${p.id==='year'&&pl.length>1?'<span class="tag">Best value</span>':''}<h4>${p.name}</h4>
+    ${p.price?`<div class="mprice">${esc(p.price)}</div>`:''}<p class="sol">Unlimited play for ${p.len}.</p><a class="paybtn" data-link="${esc(p.link)}" href="${esc(payHref(p.link,ref))}" target="_blank" rel="noopener noreferrer" onclick="payClick(event)" aria-label="${p.name} plan: ${stripe(p.link)?'pay with card':'pay now'} (opens in a new tab)">${stripe(p.link)?'Pay with card':'Pay now'} ↗</a></div>`;
+  return `<div class="card"><h3>What members get</h3><ul class="mperks"><li><span aria-hidden="true">⚔️</span><span>Unlimited play in the Arcade: no daily time limit.</span></li><li><span aria-hidden="true">📚</span><span>Learning stays free for everyone: lessons, practice, classwork and quizzes never need a membership.</span></li><li><span aria-hidden="true">🏫</span><span>Teachers and schools can buy one membership for a whole class.</span></li></ul>
+  <div class="mfor"><label for="mref">Who is it for? A learner's username, or a class code to cover a whole class</label><input id="mref" maxlength="30" autocomplete="off" spellcheck="false" placeholder="${ME.role==='parent'?"Your child's username":'Username or class code'}" value="${esc(ref)}" oninput="mrefSync()">${codes}<p class="sol" id="mrefmsg" role="alert"></p></div>
+  <h3>${pl.length>1?'Pick a plan':'Plan'}</h3><div class="mplans">${pl.map(plan).join('')}</div>
+  <ol class="msteps"><li>Check who it's for, then pay with ${pl.length>1?"your plan's":'the'} button. Checkout is by Stripe, and the username or class code goes along with the payment. If the checkout asks for it, type it there too.</li><li>We switch on membership for the time you paid for (${pl.map(p=>p.len.replace('a ','one ')).join(' or ')}), usually within a day. It ends on its own when that time is up.</li></ol>
+  ${m.contact?`<p class="sol">Questions? Email <b>${esc(m.contact)}</b> with the username or class code.</p>`:''}</div>`}
+function mrefSync(){const r=$('mref').value.trim(),bad=r!==''&&!okRef(r);$('mref').setAttribute('aria-invalid',bad);$('mrefmsg').textContent=bad?'Use only letters, numbers, - and _.':'';
+  document.querySelectorAll('a.paybtn').forEach(a=>a.href=payHref(a.dataset.link,r))}
+function payClick(e){const i=$('mref');if(i&&okRef(i.value.trim()))return;e.preventDefault();$('mrefmsg').textContent="Type the learner's username or a class code first.";i&&i.focus()}
 VIEWS.member=function(){const m=MSET(),mine=isMember();
   let body;
-  if(mine)body=`<div class="card"><h3>⭐ You're a member</h3><p>Unlimited play in Lumi's Realm until <b>${fmtDay(ME.member)}</b>. Thank you for supporting Bose Academy!</p>${gameOn()?`<button class="lamp" onclick="go('play')">⚔️ Play</button>`:''}</div>`;
-  else if(!m.on||!m.link)body=`<div class="card"><p>Membership isn't available yet. Everyone gets daily play time, and learning more earns more.</p></div>`;
+  if(mine)body=`<div class="card"><h3>⭐ You're a member</h3><p>Unlimited play in the Arcade until <b>${fmtDay(ME.member)}</b>. Thank you for supporting Bose Academy!</p>${gameOn()?`<button class="lamp" onclick="go('play')">⚔️ Play</button>`:''}</div>`;
+  else if(!m.on||!PLANS(m).length)body=`<div class="card"><p>Membership isn't available yet. Everyone gets daily play time, and learning more earns more.</p></div>`;
   else if(BOOT.role==='student'&&!(MGATE&&MGATE.ok)){if(!MGATE)MGATE={a:11+Math.floor(Math.random()*9),b:12+Math.floor(Math.random()*8)};
     body=`<div class="card gate"><h3>For parents and teachers</h3><p>Ask a grown-up to answer this question to see membership.</p><form onsubmit="event.preventDefault();gateCheck()"><p><b>What is ${MGATE.a} × ${MGATE.b}?</b></p><div class="row"><input id="gatein" inputmode="numeric" autocomplete="off" aria-label="Answer"><button class="lamp">Continue</button></div></form><p class="sol" id="gatemsg" role="alert"></p></div>`}
   else body=memberOffer();
@@ -5151,19 +5174,25 @@ const _tmM=toggleMenu;toggleMenu=function(){_tmM();const m=$('pmenu');if(m.hidde
 
 /* ---------- Owner console: the offer and who is a member ---------- */
 O.member=function(){const m=MSET(),L=ST.members||{users:[],classes:[]},now=Date.now(),st=u=>u>now?`Until ${fmtDay(u)}`:`Ended ${fmtDay(u)}`;
-  return `<div class="card mform"><h3>Membership offer</h3><p class="sol">Members get unlimited play in Lumi's Realm. Make a payment link in PayPal (Pay &amp; Get Paid, then Payment links, or your paypal.me link) and paste it here. Parents and teachers see the price and the button; learners see it only after a grown-up check.</p>
+  return `<div class="card mform"><h3>Membership offer</h3><p class="sol">Members get unlimited play in the Arcade. Payments go through Stripe Payment Links:</p>
+  <ol class="msteps sol"><li>In the Stripe Dashboard, open <b>Payment Links</b> and make one link for each plan, with a one-month price and a one-year price.</li><li>In each link's options, add a custom field named <b>Username or class code</b>.</li><li>Paste the links below. They start with https://buy.stripe.com/.</li></ol>
+  <p class="sol">Each payment also carries the username or class code as its <b>client reference ID</b>. One-time prices are simplest, because membership is switched on for the time paid; with a subscription, switch on another month or year at each renewal. Parents and teachers see the plans; learners see them only after a grown-up check.</p>
   <label class="ck"><input type="checkbox" id="mon" ${m.on?'checked':''}> Offer membership</label>
-  <label>Price shown (for example "$4.99 a month" or "$30 a year")<input id="mpr" maxlength="60" value="${esc(m.price)}"></label>
-  <label>PayPal payment link<input id="mln" maxlength="300" placeholder="https://www.paypal.com/ncp/payment/..." value="${esc(m.link)}"></label>
+  <fieldset><legend>Monthly plan</legend><label>Price shown (for example "$4.99 a month")<input id="mpr" maxlength="60" value="${esc(m.price)}"></label>
+  <label>Stripe payment link for one month<input id="mln" maxlength="300" placeholder="https://buy.stripe.com/..." value="${esc(m.link)}"></label></fieldset>
+  <fieldset><legend>Annual plan</legend><label>Price shown (for example "$39.99 a year")<input id="mypr" maxlength="60" value="${esc(m.yprice)}"></label>
+  <label>Stripe payment link for one year<input id="myln" maxlength="300" placeholder="https://buy.stripe.com/..." value="${esc(m.ylink)}"></label></fieldset>
+  <p class="sol">Leave a plan's link empty to offer only the other plan.</p>
   <label>Contact email for questions (optional, shown on the membership page)<input id="mct" type="email" maxlength="100" value="${esc(m.contact)}"></label>
   <div class="row" style="margin-top:12px"><button class="lamp" onclick="saveMemberSet()">Save offer</button></div></div>
-  <div class="card mform" style="margin-top:14px"><h3>Switch on membership</h3><p class="sol">When a payment arrives, type the username or the class code from the PayPal note. A class code covers every learner in that class. If the account or class is already a member, the time is added to what's left.</p>
-  <div class="row"><input id="mwho" placeholder="Username or class code" aria-label="Username or class code" maxlength="30"><select id="mlen" aria-label="How long">${[[1,'1 month'],[3,'3 months'],[6,'6 months'],[12,'1 year']].map(([n,l])=>`<option value="${n}" ${n===1?'selected':''}>${l}</option>`).join('')}</select><button class="lamp" onclick="giveMember()">Switch on</button></div></div>
+  <div class="card mform" style="margin-top:14px"><h3>Switch on membership</h3><p class="sol">When a payment arrives in Stripe, type the username or class code from it (the custom field or the client reference ID) and pick the plan that was paid for. A class code covers every learner in that class. If the account or class is already a member, the time is added to what's left.</p>
+  <div class="row"><input id="mwho" placeholder="Username or class code" aria-label="Username or class code" maxlength="30"><select id="mlen" aria-label="How long">${[[1,'1 month (monthly plan)'],[3,'3 months'],[6,'6 months'],[12,'1 year (annual plan)']].map(([n,l])=>`<option value="${n}" ${n===1?'selected':''}>${l}</option>`).join('')}</select><button class="lamp" onclick="giveMember()">Switch on</button></div></div>
   <div class="card" style="margin-top:14px"><h3>Members</h3>${L.users.length||L.classes.length?`<div class="tbl"><table class="vs"><tr><th>Who</th><th>Membership</th><th></th></tr>
   ${L.users.map(u=>`<tr><td>${esc(u.display)}<div class="sol">${esc(u.username)}</div></td><td>${st(u.until)}</td><td>${u.until>now?`<button class="alt" onclick="endMember('${esc(u.username)}')">End now</button>`:''}</td></tr>`).join('')}
   ${L.classes.map(c=>`<tr><td>🏫 ${esc(c.name)}<div class="sol">Class code ${esc(c.code)}${c.teacher?' · '+esc(c.teacher):''}</div></td><td>${st(c.until)}</td><td>${c.until>now?`<button class="alt" onclick="endMember('${esc(c.code)}')">End now</button>`:''}</td></tr>`).join('')}</table></div>`:'<p class="sol">No members yet.</p>'}</div>`};
-function saveMemberSet(){const m={on:$('mon').checked,price:$('mpr').value.trim(),link:$('mln').value.trim(),contact:$('mct').value.trim()};
-  if(m.on&&!/^https:\/\//.test(m.link))return msg('Paste the PayPal payment link (it starts with https://) before offering membership.');
+function saveMemberSet(){const v=id=>$(id).value.trim(),m={on:$('mon').checked,price:v('mpr'),link:v('mln'),yprice:v('mypr'),ylink:v('myln'),contact:v('mct')};
+  if([m.link,m.ylink].some(l=>l&&!/^https:\/\//.test(l)))return msg('Stripe payment links start with https://');
+  if(m.on&&!m.link&&!m.ylink)return msg('Paste a Stripe payment link for at least one plan before offering membership.');
   busy(async()=>{await api('PUT','/api/owner/settings',{member:m});BOOT.settings.member=m;msg('Membership offer saved.');showTab('owner')})}
 function giveMember(){const who=$('mwho').value.trim(),n=+$('mlen').value;if(who.length<3)return msg('Type a username or a class code.');const L=ST.members||{users:[],classes:[]};
   const cur=[...L.users.filter(u=>u.username.toLowerCase()===who.toLowerCase()),...L.classes.filter(c=>c.code===who.toUpperCase())].map(x=>x.until)[0]||0,d=new Date(Math.max(Date.now(),cur));d.setMonth(d.getMonth()+n);

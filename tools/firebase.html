@@ -4,7 +4,7 @@
    Who may read or change what is enforced by firestore.rules, not by this file. ===== */
 const FBM=(()=>{
   const SDK=window.FIREBASE_SDK_BASE||'https://www.gstatic.com/firebasejs/10.12.2/';
-  const DEF={flags:{'AI tutor feedback':true,'Live Classroom':true,'Gem Challenges':true,'Offline mode':false,'Game mode':true,'Class leaderboards':true},retDays:3,gr:{},programs:{},terms:[],game:{base:10,per:5,max:30},member:{on:false,price:'',link:'',contact:''},
+  const DEF={flags:{'AI tutor feedback':true,'Live Classroom':true,'Gem Challenges':true,'Offline mode':false,'Game mode':true,'Class leaderboards':true},retDays:3,gr:{},programs:{},terms:[],game:{base:10,per:5,max:30},member:{on:false,price:'',link:'',yprice:'',ylink:'',contact:''},
     block:['stupid','idiot','dumb','hate you','shut up'],
     impact:{mission:'Bose Academy gives every learner, everywhere, free access to clear lessons, unlimited practice and a patient tutor, so that no student is held back by cost or connection.',team:[],partners:[],funds:[['Content creation',40],['Hosting and infrastructure',25],['Accessibility and translation',20],['Reserve',15]],raised:0,goal:0}};
   const ROLES=['student','parent','teacher'];
@@ -259,9 +259,9 @@ const FBM=(()=>{
   route('GET','/api/owner/settings',async()=>{need(isOwner());return{block:site.block||DEF.block,flags:{...DEF.flags,...site.flags},retDays:site.retDays??DEF.retDays,gr:site.gr||{},impact:site.impact||DEF.impact,programs:site.programs||{},terms:site.terms||[],game:site.game||DEF.game,member:site.member||DEF.member}});
   route('PUT','/api/owner/settings',async b=>{need(isOwner());const up={};['block','flags','gr','impact','programs'].forEach(k=>{if(b[k]!==undefined)up[k]=b[k]});if(Array.isArray(b.terms))up.terms=b.terms.slice(0,6).map(t=>({name:str(t.name,1,30,'Trimester names'),start:/^\d{4}-\d{2}-\d{2}$/.test(t.start)?t.start:''}));if(b.retDays!==undefined)up.retDays=Math.max(0,Math.min(60,+b.retDays||0));
     if(b.game){const n=(v,hi)=>Math.max(0,Math.min(hi,Math.round(+v||0)));up.game={base:n(b.game.base,120),per:n(b.game.per,60),max:n(b.game.max,240)}}
-    if(b.member){const m=b.member,link=String(m.link||'').trim(),contact=String(m.contact||'').trim();
-      if(link&&!/^https:\/\/[^\s"'<>]{4,300}$/.test(link))throw new E(400,'The payment link must start with https://');if(contact&&!/^\S+@\S+\.\S+$/.test(contact))throw new E(400,'Enter a valid contact email.');
-      up.member={on:!!m.on,price:String(m.price||'').trim().slice(0,60),link,contact:contact.slice(0,100)}}
+    if(b.member){const m=b.member,link=String(m.link||'').trim(),ylink=String(m.ylink||'').trim(),contact=String(m.contact||'').trim(),price=v=>String(v||'').trim().slice(0,60);
+      for(const l of [link,ylink])if(l&&!/^https:\/\/[^\s"'<>]{4,300}$/.test(l))throw new E(400,'The payment link must start with https://');if(contact&&!/^\S+@\S+\.\S+$/.test(contact))throw new E(400,'Enter a valid contact email.');
+      up.member={on:!!m.on,price:price(m.price),link,yprice:price(m.yprice),ylink,contact:contact.slice(0,100)}}
     await doc('config','site').set(up,{merge:true});Object.assign(site,up);return{ok:true}});
   route('POST','/api/tutor',async()=>{throw new E(503,'The AI tutor needs the hosted version of the site.')});
 
