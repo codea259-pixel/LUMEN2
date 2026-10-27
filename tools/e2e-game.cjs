@@ -71,7 +71,7 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     // Lumi's Realm: battle with real questions until the monster is beaten
     await a.click('#tabs >> text=Arcade'); await a.waitForSelector('.tiles');
     const tiles = await a.$$eval('.tile', t => t.map(x => x.querySelector('.tname').textContent + (x.classList.contains('soon') ? ' (soon)' : '')));
-    if (tiles.length !== 5 || tiles[0] !== 'Spell Quest') fail('arcade tiles wrong: ' + tiles.join(', '));
+    if (tiles.length !== 5 || tiles[0] !== 'Spell Quest' || tiles.some(x => x.includes('(soon)'))) fail('arcade tiles wrong: ' + tiles.join(', '));
     const p0 = await a.evaluate(() => DAY().play); await a.evaluate(() => realmTick(5)); if (await a.evaluate(() => DAY().play) !== p0) fail('play time ticked on the hub');
     await a.click('.hubhero .livehero'); if (!(await a.evaluate(() => document.querySelector('.hubhero .livehero').classList.contains('wave')))) fail('hero did not wave when tapped');
     ok('Arcade hub: ' + tiles.join(', ') + '; browsing the hub uses no play time; the hero waves when tapped');
@@ -105,6 +105,64 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     if (!dr.id || dr.own !== gd + 1) fail('no gear drop on a first boss win: ' + JSON.stringify(dr));
     await a.click('.drop button'); if (!(await a.evaluate(id => Object.values(GM.eq).includes(id), dr.id))) fail('could not wear the gear');
     ok(`first boss win dropped ${dr.rar.replace('!', '')}: ${dr.id}, worn with one tap`); await shot(a, 'g-drop');
+    // The other four Arcade games
+    const answerQM = async (pg, right) => { await pg.waitForFunction(() => QM && QM.phase === 'ask'); const ch = await pg.evaluate(() => QM.q.choices ? QM.q.choices.length : 0), a0 = await pg.evaluate(() => QM.q.a[0]);
+      if (ch) await pg.click(`#qmodal .bchoices button >> nth=${right ? a0 : (a0 + 1) % ch}`); else { await pg.fill('#qmin', right ? await pg.evaluate(() => fmtA(QM.q)) : '987654'); await pg.click('#qmodal .bans button') } };
+    await a.evaluate(() => { BT = null; DAY().play = 0; toHub() }); await a.waitForSelector('.tiles');
+    const soon = await a.$$eval('.tile.soon', t => t.length); if (soon) fail(soon + ' games still say coming soon');
+    // Pet Pals: food from learning, hatching, the question of the day, and no play time
+    await a.click('.tile:has-text("Pet Pals")'); await a.waitForSelector('.eggpick');
+    const food0 = await a.evaluate(() => { const D = DAY(); return { food: PET().food, want: Math.floor(D.ok / 10) + D.mis + Math.min(3, D.les) + 2 * D.cw } });
+    if (food0.food !== food0.want) fail('pet food does not match the learning done today: ' + JSON.stringify(food0));
+    await a.click('.eggpick[data-kind=dragon]'); await a.waitForSelector('#palbtn');
+    const pp0 = await a.evaluate(() => DAY().play); await a.evaluate(() => realmTick(5)); if (await a.evaluate(() => DAY().play) !== pp0) fail('Pet Pals used play time');
+    await a.evaluate(() => { PET().food += 2; rerealm() }); await a.click('text=Feed a snack'); await a.click('text=Feed a snack');
+    await a.waitForSelector('text=Sparky hatched!'); if (await a.evaluate(() => pstage(PET().g)) !== 1) fail('the pet did not hatch after 2 snacks');
+    const tr0 = await a.evaluate(() => PET().treat); await a.click('#petq'); await answerQM(a, true); await a.waitForFunction(() => !QM);
+    if (await a.evaluate(() => PET().treat) !== tr0 + 1 || !(await a.isDisabled('#petq'))) fail('the question of the day did not give one treat');
+    if (!(await a.evaluate(() => heroCard().includes('palmini')))) fail('the pet does not visit the Learn page');
+    ok(`Pet Pals: ${food0.food} snacks from today's learning, Sparky hatched after 2 snacks, the question of the day gave a treat, the pet shows on the Learn page; no play time used`); await shot(a, 'g-pet');
+    // Turbo Trivia Kart: three different lane answers, the right one included
+    const kc = await a.evaluate(() => { const bad = [], v = s => s.includes('/') ? s.split('/')[0] / s.split('/')[1] : +s; let n = 0;
+      for (const sub of Object.keys(SUBN)) { GM.rsub = sub; for (let i = 0; i < 60; i++) { const x = rquestion(); if (!x) break; const c = kartChoices(x.q); if (!c) continue; n++;
+        const right = x.q.choices ? c.L[c.cor] === x.q.choices[x.q.a[0]] : Math.abs(v(c.L[c.cor]) - x.q.a[0] / x.q.a[1]) < 1e-9; if (c.L.length !== 3 || new Set(c.L).size !== 3 || !right) bad.push(x.q.q + ' -> ' + c.L.join('|')) } }
+      GM.rsub = 'math'; return { n, bad } });
+    if (kc.bad.length || kc.n < 100) fail('kart lanes wrong: ' + JSON.stringify(kc).slice(0, 300));
+    await a.evaluate(() => toHub()); await a.click('.tile:has-text("Turbo Trivia Kart")'); await a.click('text=Start race'); await a.waitForSelector('#kgate span');
+    const kg0 = await a.evaluate(() => GEMS()), kp0 = await a.evaluate(() => DAY().play); await a.evaluate(() => realmTick(5)); if (await a.evaluate(() => DAY().play) !== kp0 + 5) fail('a race did not use play time');
+    for (let i = 0; i < 10; i++) { await a.waitForFunction(() => KT && KT.ph === 'go', null, { timeout: 8000 }); const c = await a.evaluate(() => KT.cor), want = i === 4 ? (c + 1) % 3 : c;
+      if (i % 2) await a.keyboard.press(String(want + 1)); else await a.click(`.klanes button >> nth=${want}`);
+      await a.evaluate(() => { KT.gs -= KT.win }); await a.waitForFunction(() => KT.ph !== 'go');
+      if (i === 4 && !/Bump! It was/.test(await a.textContent('#kfb'))) fail('a wrong lane does not show the answer') }
+    await a.waitForSelector('text=Gold medal!'); const kr = await a.evaluate(g => ({ gems: GEMS() - g, best: ARS('kart').best, ok: KT.ok }), kg0);
+    if (kr.ok !== 9 || kr.gems !== 6 || kr.best == null) fail('race result wrong: ' + JSON.stringify(kr));
+    ok(`Turbo Trivia Kart: ${kc.n} questions all made 3 different lanes with the right answer; 9 of 10 gates right (taps and number keys) won gold and 6 gems (3 for gold, 3 for a first best time); a wrong lane shows the answer; racing uses play time`); await shot(a, 'g-kart');
+    // Goblin Gate: build with a right answer, the field pauses during questions, upgrades need answers in a row
+    await a.evaluate(() => toHub()); await a.click('.tile:has-text("Goblin Gate")'); await a.click('text=Start defending'); await a.waitForSelector('#gp0');
+    await a.click('#gp0'); await a.click('.tpick button:has-text("Laser tower")'); await answerQM(a, true); await a.waitForFunction(() => !QM && GT.tw[0] && GT.tw[0].lv === 1);
+    await a.click('#gwave'); await a.waitForFunction(() => GT.gobs.length > 0 && GT.gobs[0].d > 20); await a.click('#gp1'); await a.waitForSelector('.tpick');
+    const gd0 = await a.evaluate(() => GT.gobs.map(g => g.d.toFixed(2)).join()); await a.waitForTimeout(700); const gd1 = await a.evaluate(() => GT.gobs.map(g => g.d.toFixed(2)).join());
+    if (gd0 !== gd1) fail('goblins kept moving while a question menu was open'); await a.click('#qmodal >> text=Not now'); await a.waitForFunction(() => !QM && !GT.paused);
+    await a.click('#gp0'); await a.click('text=Start the upgrade'); await answerQM(a, true); await answerQM(a, false); await a.waitForSelector('#qmok'); await a.click('#qmok'); await a.waitForFunction(() => !QM);
+    if (await a.evaluate(() => GT.tw[0].lv) !== 1) fail('an upgrade went through after a miss');
+    const gg0 = await a.evaluate(() => GEMS()); await a.evaluate(() => { GT.tw = GT.tw.map((t, i) => ({ t: ['laser', 'frost', 'bubble'][i % 3], lv: 3, cd: 0 })); for (let i = 0; i < 6000 && ['build', 'wave'].includes(GT.ph); i++) { if (GT.ph === 'build') gateWave(); gateStep(.05) } });
+    await a.waitForSelector('text=The castle is safe!'); const gr = await a.evaluate(g => ({ gems: GEMS() - g, stars: GT.stars, best: ARS('gate').best }), gg0);
+    if (gr.gems !== [0, 3, 5, 8][gr.stars] || gr.best !== gr.stars) fail('castle reward wrong: ' + JSON.stringify(gr));
+    ok(`Goblin Gate: a right answer built a laser tower, goblins froze while a menu was open, a miss stopped the upgrade, 4 waves defended for ${gr.stars} stars and ${gr.gems} gems`); await shot(a, 'g-gate');
+    // Block Builder: side-by-side and stacked blocks that make 10 clear
+    await a.evaluate(() => toHub()); await a.click('.tile:has-text("Block Builder")'); await a.click('.accs >> text=Make 10'); await a.click('text=Start building'); await a.waitForSelector('.bcell.cur');
+    await a.evaluate(() => { BB.g[8][0] = 4; BB.cur = { v: 6, c: 3, r: 0 }; bbPaint() }); await a.keyboard.press('ArrowLeft'); await a.keyboard.press('ArrowLeft'); await a.keyboard.press(' ');
+    const bb1 = await a.evaluate(() => ({ clears: BB.clears, row: BB.g[8].join(), feed: BB.feed[0] }));
+    if (bb1.clears !== 1 || bb1.row !== '0,0,0,0,0,0' || bb1.feed !== '4 + 6 = 10') fail('side-by-side clear wrong: ' + JSON.stringify(bb1));
+    await a.evaluate(() => { BB.g[8][5] = 2; BB.cur = { v: 8, c: 5, r: 0 }; bbPaint() }); await a.click('.bcell >> nth=5');
+    if (await a.evaluate(() => BB.clears) !== 2) fail('a stacked 2 + 8 did not clear (tapping the block\'s own column should drop it)');
+    const bg0 = await a.evaluate(() => GEMS()); await a.evaluate(() => { for (let r = 0; r < 9; r++) for (let c = 0; c < 6; c++) BB.g[r][c] = r === 0 && c === 2 ? 0 : 1; BB.clears = 8; BB.cur = { v: 1, c: 2, r: 0 }; bbDrop() });
+    await a.waitForSelector('text=Tower full!'); const bgem = await a.evaluate(g => GEMS() - g, bg0); if (bgem !== 2) fail('Block Builder paid ' + bgem + ' gems for 9 clears');
+    ok('Block Builder: 4 + 6 side by side and 2 + 8 stacked both cleared; a full tower ends the round with 2 gems for 9 clears'); await shot(a, 'g-blocks');
+    // Out of play time: the action games stop at the start screen; the pet can still be visited
+    await a.evaluate(() => { DAY().play = playAllowed(); toHub() }); if (!(await a.isVisible('.tile:has-text("Pet Pals") >> text=Visit'))) fail('Pet Pals is not open when play time is over');
+    await a.click('.tile:has-text("Turbo Trivia Kart")'); if (!(await a.isDisabled('text=Start race'))) fail('a race can start with no play time left');
+    ok('out of play time, races and rounds cannot start, but Pet Pals is still open');
     await a.evaluate(() => { BT = null; DAY().play = playAllowed() });
 
     // Classwork turned in: XP and gems once
@@ -113,11 +171,11 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     const n = await a.$$eval('.items > li', l => l.length);
     for (let i = 0; i < n; i++) { const li = (await a.$$('.items > li'))[i];
       if (await li.$('input[type=radio]')) await (await li.$$('input[type=radio]'))[0].check(); else if (await li.$('input[type=text]')) await (await li.$('input[type=text]')).fill('12'); else await (await li.$('textarea')).fill('my answer') }
-    const before = await a.evaluate(() => ({ xp: XP(), gems: GEMS(), cw: DAY().cw }));
+    const before = await a.evaluate(() => ({ xp: XP(), gems: GEMS(), cw: DAY().cw, food: PET().food }));
     await a.click('button:has-text("Turn in")'); await a.waitForSelector('text=Nice work');
-    const after = await a.evaluate(() => ({ xp: XP(), gems: GEMS(), cw: DAY().cw, done: GM.done.length }));
-    if (after.xp - before.xp !== 30 || after.gems - before.gems !== 5 || after.cw !== before.cw + 1) fail('classwork reward wrong: ' + JSON.stringify([before, after]));
-    ok('turning in classwork gave +30 XP and +5 gems'); await save(a);
+    const after = await a.evaluate(() => ({ xp: XP(), gems: GEMS(), cw: DAY().cw, done: GM.done.length, food: PET().food }));
+    if (after.xp - before.xp !== 30 || after.gems - before.gems !== 5 || after.cw !== before.cw + 1 || after.food - before.food !== 2) fail('classwork reward wrong: ' + JSON.stringify([before, after]));
+    ok('turning in classwork gave +30 XP, +5 gems and 2 pet snacks'); await save(a);
 
     // Student B learns a little
     const b = await login(creds[1][1], creds[1][2], 390);

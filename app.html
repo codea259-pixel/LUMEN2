@@ -5015,7 +5015,7 @@ function playLabel(){const l=playLeft();return l===Infinity?'no time limit':l>0?
 function earnNote(){const g=GSET(),m=Math.floor(DAY().study/60),capped=playAllowed()>=g.max*60;
   return capped?`You've earned today's full ${g.max} minutes of play. Come back tomorrow for more.`:`Every 10 minutes of learning earns ${g.per} more minutes of play, up to ${g.max} minutes a day. You've learned ${m} minute${m===1?'':'s'} today.`}
 function realmTick(sec){if(tab!=='play'||!gameOn()||document.hidden||Date.now()-lastAct>120000)return;
-  if(BT?['ask','fb'].includes(BT.phase):!!AR.mode){if(!noLimit()&&playLeft()>0){DAY().play+=sec;if(DAY().play%60===0)SYNC()}}
+  if(BT?['ask','fb'].includes(BT.phase):AR.mode==='spell'||!!AR.run){if(!noLimit()&&playLeft()>0){DAY().play+=sec;if(DAY().play%60===0)SYNC()}}
   const e=$('ptime');if(e)e.outerHTML=ptimeHtml();
   if(!noLimit()&&playLeft()<=0&&BT&&BT.phase==='ask'){BT.phase='timeup';renderBattle()}}
 function ptimeHtml(){const l=playLeft(),a=noLimit()?1:playAllowed();return `<div class="ptime" id="ptime" title="${esc(noLimit()?'Only learners have a daily play time.':earnNote())}"><span aria-hidden="true">⏳</span><span>${l===Infinity?(isMember()&&BOOT.role==='student'?'⭐ Member: unlimited play':'No time limit (preview)'):l>0?mmss(l)+' of play left today':'Out of play time today'}</span>${l===Infinity?'':`<div class="bar" aria-hidden="true"><i style="width:${Math.min(100,l/a*100)}%"></i></div>`}</div>`}
@@ -5107,7 +5107,7 @@ function battleHtml(){const l=LANDS.find(x=>x.id===BT.land),q=BT.q,nm=BT.m[0][0]
 function renderBattle(keep){if(tab!=='play'||!BT)return;$('views').innerHTML=battleHtml();
   const f=BT.phase==='ask'?($('bans')||document.querySelector('.bchoices button')):$('bnext');if(f&&!keep)f.focus();else if(f&&BT.phase==='fb')f.focus()}
 function rerealm(){if(tab==='play')$('views').innerHTML=VIEWS.play()}
-VIEWS.play=function(){if(!gameOn())return `<h2>Bose Arcade</h2><p class="sol">The Arcade is turned off on this site.</p>`;return BT?battleHtml():AR.mode==='spell'?mapView():hubView()};
+VIEWS.play=function(){if(!gameOn())return `<h2>Bose Arcade</h2><p class="sol">The Arcade is turned off on this site.</p>`;return BT?battleHtml():AR.mode==='spell'?mapView():typeof GVIEW!=='undefined'&&GVIEW[AR.mode]?GVIEW[AR.mode]():hubView()};
 const _stG=showTab;showTab=function(t){if(t!=='play'&&BT&&BT.phase==='ask')BT=null;_stG(t)};
 
 /* Owner console: the daily play time */
@@ -5333,24 +5333,338 @@ const ART={
   spell:()=>sceneSvg(`<path d="M0 96Q60 84 120 96T200 92V130H0Z" fill="#7CCB6B"/><circle cx="168" cy="22" r="10" fill="#FFE27A"/>${nest(heroSvg(GM,{bg:false,label:''}),12,28,92,92)}<circle cx="104" cy="64" r="9" fill="#FFE27A" opacity=".9"/><circle cx="104" cy="64" r="16" fill="#FFE27A" opacity=".3"/>${nest(monsterSvg(MONS.meadow[1],false,''),118,38,76,76)}`,'#9FD8FF','#E9F8FF'),
   pets:()=>sceneSvg(`<rect x="0" y="92" width="200" height="38" fill="#F1C27D"/><rect x="132" y="16" width="52" height="40" rx="6" fill="#BFE6FF" stroke="#fff" stroke-width="4"/><circle cx="170" cy="28" r="6" fill="#FFE27A"/><ellipse cx="70" cy="104" rx="46" ry="9" fill="#E8B26A"/><ellipse cx="70" cy="70" rx="24" ry="30" fill="#FFF6E5" stroke="#E8C79A" stroke-width="2"/><path d="M50 66l7 6 6-8 7 8 6-7 8 7" fill="none" stroke="#C99A5B" stroke-width="2.5"/><circle cx="62" cy="58" r="4" fill="#8E6CEF"/><circle cx="80" cy="80" r="5" fill="#59C36A"/>${nest(`<svg viewBox="0 70 34 34">${petSvg('p_dragon')}</svg>`,112,52,64,64)}<path d="M150 46l4 -6 4 6" fill="#FF8FB1"/>`,'#FFE8D1','#FFD3B0'),
   kart:()=>sceneSvg(`<path d="M70 40H130L200 130H0Z" fill="#5B6478"/><path d="M98 40H102L106 130H94Z" fill="#FFE27A"/><path d="M0 60L60 40M200 60L140 40" stroke="#fff" stroke-width="2" opacity=".6"/><rect x="72" y="22" width="56" height="16" rx="4" fill="#8B5CF6"/><text x="100" y="34" font-size="11" font-weight="800" text-anchor="middle" fill="#fff" font-family="sans-serif">7 × 8 = ?</text><path d="M30 92h20M24 104h28M150 92h20M148 104h28" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".8"/><rect x="74" y="84" width="52" height="24" rx="8" fill="#E4572E"/><rect x="84" y="76" width="32" height="14" rx="6" fill="#FFB13B"/><circle cx="84" cy="110" r="8" fill="#1B2A41"/><circle cx="116" cy="110" r="8" fill="#1B2A41"/><circle cx="100" cy="80" r="6" fill="#F5C9A0"/>`,'#7DD3FC','#C7F0FF'),
-  blocks:()=>sceneSvg(`${[['3',20,70,'#F97316'],['+',52,70,'#8B5CF6'],['9',84,70,'#22B35E'],['=',116,70,'#8B5CF6'],['12',148,70,'#2D9CDB'],['7',52,30,'#E4572E'],['C',148,100,'#F2A900'],['A',116,100,'#D94F8A'],['T',84,100,'#22B35E']].map(([t,x,y,c])=>`<rect x="${x}" y="${y}" width="30" height="28" rx="6" fill="${c}"/><rect x="${x}" y="${y}" width="30" height="8" rx="4" fill="#fff" opacity=".35"/><text x="${x+15}" y="${y+20}" font-size="15" font-weight="800" text-anchor="middle" fill="#fff" font-family="sans-serif">${t}</text>`).join('')}<path d="M14 66H186" stroke="#FFE27A" stroke-width="2" stroke-dasharray="4 4"/>`,'#312E81','#1E1B4B'),
+  blocks:()=>sceneSvg(`${[['3',20,70,'#F97316'],['+',52,70,'#8B5CF6'],['9',84,70,'#22B35E'],['=',116,70,'#8B5CF6'],['12',148,70,'#2D9CDB'],['7',52,30,'#E4572E'],['5',148,100,'#F2A900'],['5',116,100,'#D94F8A'],['8',84,100,'#22B35E']].map(([t,x,y,c])=>`<rect x="${x}" y="${y}" width="30" height="28" rx="6" fill="${c}"/><rect x="${x}" y="${y}" width="30" height="8" rx="4" fill="#fff" opacity=".35"/><text x="${x+15}" y="${y+20}" font-size="15" font-weight="800" text-anchor="middle" fill="#fff" font-family="sans-serif">${t}</text>`).join('')}<path d="M14 66H186" stroke="#FFE27A" stroke-width="2" stroke-dasharray="4 4"/>`,'#312E81','#1E1B4B'),
   gate:()=>sceneSvg(`<path d="M0 90Q100 70 200 90V130H0Z" fill="#6DBF62"/><path d="M0 112C50 96 120 118 200 100" stroke="#D9B98A" stroke-width="12" fill="none"/><path d="M150 38h40v62h-40z" fill="#A3AFBD"/><path d="M150 38v-8h8v8h8v-8h8v8h8v-8h8v8" fill="#A3AFBD"/><rect x="163" y="74" width="14" height="26" rx="6" fill="#5B6478"/><rect x="96" y="58" width="16" height="30" fill="#8C8FA3"/><circle cx="104" cy="54" r="9" fill="#67E8F9"/><path d="M104 54L60 92" stroke="#67E8F9" stroke-width="3"/>${nest(monsterSvg(['Goblin','ball','#7ED957',['ears']],false,''),26,70,44,44)}`,'#BFE6FF','#E9F8FF')};
 const GAMES=[
   {id:'spell',n:'Spell Quest',p:'Cast spells with smart answers and befriend the monsters of seven magic lands.'},
-  {id:'pets',n:'Pet Pals',p:'Your learning feeds a pet that grows, evolves and cheers you on.',soon:1},
-  {id:'kart',n:'Turbo Trivia Kart',p:'Your kart drives itself. Answer fast to dodge, boost and fly over ramps!',soon:1},
-  {id:'blocks',n:'Block Builder',p:'Catch falling blocks to build true equations and real words.',soon:1},
-  {id:'gate',n:'Goblin Gate',p:'Solve fast to build towers and keep the goofy goblins out.',soon:1}];
+  {id:'pets',n:'Pet Pals',p:'Your learning feeds a pet that grows, evolves and cheers you on.'},
+  {id:'kart',n:'Turbo Trivia Kart',p:'Your kart drives itself. Pick the right lane to boost past every gate!'},
+  {id:'blocks',n:'Block Builder',p:'Stack falling number blocks that add or multiply to the target to clear them.'},
+  {id:'gate',n:'Goblin Gate',p:'Answer questions to build towers and keep the goofy goblins out.'}];
 let AR={mode:null};
 function openGame(id){const g=GAMES.find(x=>x.id===id);if(!g||g.soon)return;AR.mode=id;rerealm();scrollTo({top:0,behavior:calmOn()?'auto':'smooth'})}
 function toHub(){if(BT&&BT.phase==='ask'&&BT.n&&!confirm('Leave this battle?'))return;BT=null;AR.mode=null;rerealm()}
 function hubView(){const left=playLeft(),out=!noLimit()&&left<=0,D=DAY(),qs=dailyQuests();
-  const tile=g=>`<button class="tile ${g.soon?'soon':''} ${out&&!g.soon?'dim':''}" ${g.soon?'aria-disabled="true"':''} onclick="openGame('${g.id}')" aria-label="${esc(g.n)}${g.soon?', coming soon':''}"><span class="tart">${ART[g.id]()}</span><span class="tbody"><span class="tname">${esc(g.n)}</span><span class="tpitch">${esc(g.p)}</span>${g.soon?'':`<span class="tgo">${out?'Rest time':'▶ Play'}</span>`}</span>${g.soon?'<span class="ribbon">Coming soon</span>':''}</button>`;
+  const tile=g=>{const rest=out&&!g.soon&&g.id!=='pets';return `<button class="tile ${g.soon?'soon':''} ${rest?'dim':''}" ${g.soon?'aria-disabled="true"':''} onclick="openGame('${g.id}')" aria-label="${esc(g.n)}${g.soon?', coming soon':''}"><span class="tart">${ART[g.id]()}</span><span class="tbody"><span class="tname">${esc(g.n)}</span><span class="tpitch">${esc(g.p)}</span>${g.soon?'':`<span class="tgo">${g.id==='pets'?'🐾 Visit':rest?'Rest time':'▶ Play'}</span>`}</span>${g.soon?'<span class="ribbon">Coming soon</span>':''}</button>`};
   return `<div class="gworld">${clouds()}<div class="ghead"><div><h2 class="gtitle">Bose Arcade</h2><p class="gsub">Every move is powered by what you learn.</p></div><div>${timeTube()}<div style="margin-top:8px;text-align:right"><label class="calm"><input type="checkbox" ${GM.calm?'checked':''} onchange="setCalm(this.checked);rerealm()"> Calm mode</label></div></div></div>
   ${out?restCard():''}
   <div class="tiles">${GAMES.map(tile).join('')}</div>
   <div class="hubbar"><div class="gcard hubhero">${liveHero({label:'Your hero',style:'width:104px;height:104px;flex:none'})}<div style="flex:1;min-width:0"><div class="rank">${esc(rankOf(LVL()))}</div><h3 style="margin:0 0 8px">${esc(ME.display||'Hero')}</h3>${gemBar()}<div class="row" style="margin-top:12px"><button class="abtn sec sm" onclick="ST.ht='shop';go('hero')">💎 ${GEMS()} · Shop</button></div></div></div>
   <div class="gcard parch"><div class="split"><h3>⚔️ Today's quests</h3><span class="sol">${D.q.length} of 3 done</span></div>${qs.map(id=>{const Q=QUESTS[id],v=Math.min(Q.n,Q.v(D)),d=D.q.includes(id);return `<div class="quest ${d?'done':''}"><span class="qi" aria-hidden="true">${d?'✔️':Q.i}</span><div class="qt"><b>${esc(Q.t(Q.n))}</b><div class="bar"><i style="width:${v/Q.n*100}%"></i></div></div><span class="rw">${d?'Done':`${v}/${Q.n}`}</span></div>`}).join('')}</div></div></div>`}
+</script>
+
+<style>
+/* ===== Arcade games: Pet Pals, Turbo Trivia Kart, Goblin Gate, Block Builder ===== */
+.qm-back{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:16px;background:rgba(15,23,42,.55)}
+.qm-card{width:min(560px,100%);max-height:calc(100vh - 32px);overflow:auto;padding:14px!important}.qm-card .qpanel{border-radius:20px;border-top:0}
+.qm-card h3{margin:0 0 6px}.tpick{display:grid;gap:10px}.tpick .abtn{justify-content:flex-start;text-align:left;width:100%}.tpick small{display:block;font:600 .8rem/1.3 "Atkinson Hyperlegible",sans-serif;opacity:.8;margin-left:4px}
+.tpick .abtn svg{width:34px;height:34px;flex:none}
+.pearn{margin:6px 0 0;padding-left:20px}.pearn li{margin:5px 0}
+.ckline{display:flex;gap:8px;align-items:center;margin-top:10px;font-weight:700}
+.bsr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* Pet Pals */
+.ppwrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:18px}.ppwrap>*{min-width:0}@media(max-width:820px){.ppwrap{grid-template-columns:1fr}}
+.palstage{display:grid;place-items:center;background:radial-gradient(circle at 50% 75%,#FFF7E6,#FFE3C2 70%);border-radius:22px;min-height:230px}
+.palbtn{border:0;background:none;padding:0;cursor:pointer;width:220px;max-width:72%}.palbtn svg{width:100%;height:auto;display:block}.palbtn:focus-visible{outline:3px solid var(--ga-glow);outline-offset:4px;border-radius:20px}
+.pal .pm-munch{display:none}.pal.munch .pm-smile{display:none}.pal.munch .pm-munch{display:inline}
+.pal.palidle{animation:palbreathe 3s ease-in-out infinite;transform-origin:50% 95%}.pal.egg{animation:palwobble 2.8s ease-in-out infinite;transform-origin:50% 92%}
+.pal.happy{animation:palhop .6s ease}.pal.munch{animation:palmunch .3s ease 3;transform-origin:50% 95%}
+@keyframes palbreathe{50%{transform:scaleY(1.03)}}@keyframes palhop{40%{transform:translateY(-16px)}}@keyframes palmunch{50%{transform:scale(1.05,.95)}}
+@keyframes palwobble{0%,70%,100%{transform:rotate(0)}78%{transform:rotate(-5deg)}86%{transform:rotate(5deg)}94%{transform:rotate(-3deg)}}
+.pstat{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.pstat span{background:#FFF1D6;color:#3B2A12;border-radius:99px;padding:6px 12px;font-weight:800}
+.eggs{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;margin-top:12px}.eggs .tart{height:150px;background:#FFF7E6}
+.accs{display:flex;flex-wrap:wrap;gap:8px}.accs .chip{background:var(--bg);color:var(--ink);border-color:var(--line)}.accs .chip.on{background:var(--ga-gold);color:#1E1B4B;border-color:var(--ga-gold)}
+.palmini{display:inline-flex;align-items:center;gap:8px;margin-top:10px;border:2px solid var(--line);background:var(--bg);border-radius:14px;padding:3px 12px 3px 3px;cursor:pointer;font:700 .9rem inherit;color:var(--ink)}.palmini svg{width:44px;height:44px;display:block}
+/* Turbo Trivia Kart */
+.kq{margin-bottom:12px;min-height:76px}.kq .kqt{font:700 clamp(1.15rem,2.8vw,1.45rem)/1.3 "Atkinson Hyperlegible",sans-serif;margin-top:2px}
+.khud,.ghud{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}.khud span,.ghud span{background:rgba(30,27,75,.5);color:#fff;border-radius:99px;padding:5px 12px;font-weight:800;font-size:.9rem}
+.ktrack{position:relative;height:clamp(280px,48vh,400px);border-radius:24px;overflow:hidden;border:3px solid rgba(255,255,255,.85);box-shadow:0 7px 0 var(--ga-lip);background:#6DBF62}
+.kroad{position:absolute;top:0;bottom:0;left:6%;right:6%;background-color:#5B6478;background-image:linear-gradient(#fff 50%,transparent 50%),linear-gradient(#fff 50%,transparent 50%);background-size:4px 44px,4px 44px;background-position:33.33% 0,66.66% 0;background-repeat:repeat-y;border-left:6px solid #F8FAFC;border-right:6px solid #F8FAFC;animation:kroad .5s linear infinite}
+@keyframes kroad{to{background-position:33.33% 44px,66.66% 44px}}
+.kgate{position:absolute;left:6%;right:6%;top:-12%;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 8px}
+.kgate span{display:grid;place-items:center;min-height:46px;padding:6px;border-radius:14px;background:#fff;color:#1E1B4B;border:3px solid #8B5CF6;box-shadow:0 4px 0 #5B21B6;font-weight:800;text-align:center;line-height:1.15;font-size:clamp(.78rem,2.2vw,1rem);overflow-wrap:anywhere}
+.kgate.done span{opacity:.55}.kgate span.right{opacity:1;border-color:#22B35E;box-shadow:0 4px 0 #15803D;background:#E3F6EA}.kgate span.wrong{opacity:1;border-color:#E4572E;box-shadow:0 4px 0 #B83B1D;background:#FDECEC}
+.kart{position:absolute;bottom:12px;width:min(17%,86px);left:calc(6% + 88% * (var(--lane) * 2 + 1) / 6);transform:translateX(-50%);transition:left .16s ease-out}.kart svg{width:100%;height:auto;display:block}
+.kart.boost{animation:kboost .7s ease-out}.kart.bump{animation:kbump .6s ease}@keyframes kboost{30%{transform:translate(-50%,-26px) scale(1.08)}}@keyframes kbump{25%{transform:translateX(-50%) rotate(-14deg)}60%{transform:translateX(-50%) rotate(10deg)}}
+.kfb{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);max-width:86%;text-align:center;font:800 clamp(1.1rem,3.4vw,1.6rem) "Bricolage Grotesque",sans-serif;color:#fff;text-shadow:0 2px 0 #1E1B4B,0 0 10px rgba(30,27,75,.8)}
+.klanes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}.klanes .abtn{width:100%;min-height:60px;padding:0 10px;font-size:1rem}.klanes .abtn .kl{overflow-wrap:anywhere;line-height:1.15}
+.klanes .abtn.on{box-shadow:inset 0 2px 0 rgba(255,255,255,.6),0 6px 0 var(--ga-gold),0 0 0 3px var(--ga-gold)}.klanes .key{display:grid;place-items:center;flex:none;width:26px;height:26px;border-radius:8px;background:#EEF2FF;color:#4338CA;font-size:.85rem}
+/* Goblin Gate */
+.gfield{position:relative;aspect-ratio:16/9;border-radius:24px;overflow:hidden;border:3px solid rgba(255,255,255,.85);box-shadow:0 7px 0 var(--ga-lip)}.gfield>svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.gpad{position:absolute;transform:translate(-50%,-50%);width:10%;min-width:40px;aspect-ratio:1;border-radius:50%;border:3px dashed rgba(255,255,255,.95);background:rgba(255,255,255,.28);display:grid;place-items:center;cursor:pointer;padding:0;color:#fff;font:800 clamp(1rem,2.6vw,1.5rem)/1 "Bricolage Grotesque",sans-serif;box-shadow:0 3px 0 rgba(0,0,0,.18)}
+.gpad.built{border:3px solid #fff;background:#F8FAFC}.gpad svg{width:78%;height:78%;display:block}.gpad .pips{position:absolute;bottom:-9px;left:50%;transform:translateX(-50%);background:#1E1B4B;color:#FDE047;border-radius:99px;padding:1px 6px;font-size:.62rem;letter-spacing:1px}
+.gpad:focus-visible{outline:3px solid var(--ga-glow);outline-offset:3px}
+/* Block Builder */
+.bbwrap{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:18px;align-items:start}.bbwrap>*{min-width:0}@media(max-width:720px){.bbwrap{grid-template-columns:1fr}}
+.bboard{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-template-rows:repeat(9,minmax(0,1fr));gap:4px;padding:8px;background:#1E1B4B;border-radius:20px;border:3px solid rgba(255,255,255,.85);box-shadow:0 7px 0 var(--ga-lip);aspect-ratio:6/9;width:100%;max-width:340px;margin:0 auto}
+.bcell{border-radius:8px;background:rgba(255,255,255,.07);display:grid;place-items:center;font:800 clamp(.95rem,3.6vw,1.35rem)/1 "Bricolage Grotesque",sans-serif;color:#fff;cursor:pointer;user-select:none}
+.bcell.v{background:var(--bc);box-shadow:inset 0 3px 0 rgba(255,255,255,.35),0 3px 0 rgba(0,0,0,.3);text-shadow:0 1px 0 rgba(0,0,0,.3)}.bcell.cur{outline:3px solid #FDE047;outline-offset:-1px}
+.bctl{display:flex;gap:10px;justify-content:center;margin-top:12px}.bctl .abtn{min-width:64px}
+.bbtop{display:flex;justify-content:space-between;align-items:center;gap:10px;max-width:340px;margin:0 auto 10px}.btarget{font:800 1.6rem "Bricolage Grotesque",sans-serif;color:#fff;text-shadow:0 2px 0 #312E81,0 0 8px rgba(30,27,75,.6)}.bpill{background:rgba(30,27,75,.55);color:#fff;border-radius:99px;padding:5px 12px;font-weight:800}.bfeed{list-style:none;margin:0;padding:0}.bfeed li{padding:6px 10px;border-radius:10px;margin:4px 0;background:var(--bg);font-weight:700}.bfeed li.new{background:#E3F6EA;color:#1D5E3A}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .bfeed li.new{background:#1E3B2C;color:#B9F0CF}}:root[data-theme=dark] .bfeed li.new{background:#1E3B2C;color:#B9F0CF}
+@media(prefers-reduced-motion:reduce){.pal,.kroad,.kart{animation:none!important}}
+body[data-calm] .pal,body[data-calm] .kroad,body[data-calm] .kart{animation:none!important}
+</style>
+<script type="text/x-lumen">
+/* ===== Arcade games: Pet Pals, Turbo Trivia Kart, Goblin Gate and Block Builder. Each is a mode of the Play tab (AR.mode).
+   Questions come from the learner's own skills (rquestion, as in Spell Quest). A running round sets AR.run, which uses
+   play time; Pet Pals uses none. Saved stats live in GM.ar and the pet in GM.pet. ===== */
+const GVIEW={};
+const ARS=k=>{const A=GM.ar||(GM.ar={});return A[k]||(A[k]={})};
+const outOfTime=()=>!noLimit()&&playLeft()<=0;
+const canStart=()=>{if(!outOfTime())return true;msg('Play time is over for today. Learn to earn more!');return false};
+const GSTOP=[];
+function stopGames(){AR.run=false;cancelAnimationFrame(AR.raf);clearInterval(AR.iv);AR.raf=AR.iv=0;if(QM)qmClose(true);GSTOP.forEach(f=>f())}
+const _thA=toHub;toHub=function(){if(AR.run&&!confirm('Leave this game? This round will end.'))return;stopGames();_thA()};
+const _stA=showTab;showTab=function(t){stopGames();_stA(t)};
+const gameHead=(t,s)=>`<div class="ghead"><div style="display:flex;gap:14px;align-items:center"><button class="abtn sec sm" onclick="toHub()">← Arcade</button><div><h2 class="gtitle">${t}</h2><p class="gsub">${s}</p></div></div>${ptimeHtml()}</div>`;
+function subjChips(){const subs=Object.keys(SUBN).filter(s=>subSkills(s).some(k=>G[k]));if(!subs.includes(GM.rsub))GM.rsub=subs.includes(ST.subj)?ST.subj:subs[0]||'math';
+  return `<div class="schools" role="group" aria-label="Questions from"><span class="sol"><b>Questions from:</b></span>${subs.map(x=>`<button class="chip ${GM.rsub===x?'on':''}" aria-pressed="${GM.rsub===x}" onclick="GM.rsub='${x}';SYNC();rerealm()">${esc(SUBN[x])}</button>`).join('')}</div>`}
+const stars3=(n,lbl)=>`<span class="stars" role="img" aria-label="${lbl||n+' of 3 stars'}">${'★'.repeat(n)}<span class="off">${'★'.repeat(3-n)}</span></span>`;
+
+/* ---------- The question modal, shared by the games (same answer rules as Spell Quest) ---------- */
+let QM=null;
+function judge(q,raw){if(q.choices)return{ok:+raw===q.a[0]};const u=parse(String(raw));if(!u)return{retry:'Type a whole number or a fraction like 3/4.'};const ok=eq(u,q.a);
+  if(ok&&q.exact&&!(gcd(Math.abs(u[0]),u[1])==1&&u[0]==q.a[0]&&u[1]==q.a[1]))return{retry:'That is the right value, but it can still go lower. Simplify it and try again!'};return{ok}}
+function qmEl(){let el=$('qmodal');if(!el){el=document.createElement('div');el.id='qmodal';document.body.appendChild(el)}return el}
+/* Resolves true (right), false (wrong, after the learner reads the answer) or null (closed, or no questions) */
+function qAsk(o={}){return new Promise(res=>{const x=rquestion();if(!x){msg('No questions here yet. Pick another subject, or choose your grade on the Learn page.');return res(null)}
+  QM={o,k:x.k,q:x.q,res,phase:'ask',fb:''};qmRender()})}
+function qmRender(focus=true){const el=qmEl(),q=QM.q,o=QM.o,dis=QM.phase!=='ask'?'disabled':'';
+  el.innerHTML=`<div class="qm-back"><div class="gworld qm-card" role="dialog" aria-modal="true" aria-labelledby="qmt"><div class="qpanel">
+  <p class="sol" id="qmt" style="margin:0 0 6px">${esc(o.title||'Question')}${SK[QM.k]?` · ${esc(SK[QM.k].n)}`:''}</p>${o.intro?`<p style="margin:0 0 8px"><b>${esc(o.intro)}</b></p>`:''}<div class="bq">${q.q}</div>
+  ${q.choices?`<div class="bchoices" style="margin-top:12px">${q.choices.map((c,i)=>`<button ${dis} onclick="qmAns(${i})"><span class="key" aria-hidden="true">${'ABCD'[i]}</span> ${esc(c)}</button>`).join('')}</div>`
+   :`<form class="bans" style="margin-top:12px" onsubmit="event.preventDefault();qmAns($('qmin').value)"><input id="qmin" autocomplete="off" aria-label="Your answer" placeholder="Type your answer" ${dis}><button class="abtn" ${dis}>Answer</button></form>`}
+  <div id="qmfb">${QM.fb}</div>${o.cancel&&QM.phase==='ask'?`<div class="row" style="margin-top:12px"><button class="abtn sec sm" onclick="qmClose(false,null)">Not now</button></div>`:''}</div></div></div>`;
+  if(focus){const f=QM.phase==='ask'?($('qmin')||el.querySelector('.bchoices button')):$('qmok');if(f)f.focus()}}
+function qmAns(raw){if(!QM||QM.phase!=='ask')return;const r=judge(QM.q,raw);if(r.retry){$('qmfb').innerHTML=`<div class="bfb no" role="status">${esc(r.retry)}</div>`;return}
+  QM.phase='fb';
+  if(r.ok){QM.fb=`<div class="bfb ok" role="status">✨ ${pick(['Correct!','You got it!','Brilliant!','Nice work!'])}</div>`;qmRender(false);heroMood('beam',800);const m=QM;setTimeout(()=>{if(QM===m)qmClose(false,true)},750)}
+  else{QM.fb=`<div class="bfb no" role="status">Not quite. The answer is <b>${esc(fmtA(QM.q))}</b>.${QM.q.s?`<p class="sol">${QM.q.s}</p>`:''}<div class="row" style="margin-top:10px"><button class="abtn sun sm" id="qmok" onclick="qmClose(false,false)">OK</button></div></div>`;qmRender()}}
+function qmClose(silent,v){const m=QM;QM=null;const el=$('qmodal');if(el)el.remove();if(m)m.res(silent?null:v)}
+/* A small menu in the same modal (Goblin Gate's tower picker) */
+function qmMenu(html,onClose){QM={o:{cancel:true},phase:'menu',res:()=>onClose&&onClose()};const el=qmEl();
+  el.innerHTML=`<div class="qm-back"><div class="gworld qm-card" role="dialog" aria-modal="true" aria-label="Choose"><div class="qpanel">${html}<div class="row" style="margin-top:12px"><button class="abtn sec sm" onclick="qmClose(false,null)">Not now</button></div></div></div></div>`;
+  const f=el.querySelector('.qpanel button');if(f)f.focus()}
+
+/* ---------- Pet Pals: learning earns food; feeding grows the pet. Visiting uses no play time. ---------- */
+const PALS={dragon:{n:'Dragon',c:'#6CC66C',d:'#3E9E4B',b:'#E8F7C8',nm:'Sparky'},bunny:{n:'Bunny',c:'#F6E7F1',d:'#C98DB5',b:'#FFFFFF',nm:'Clover'},fox:{n:'Fox',c:'#F59E4B',d:'#C2622D',b:'#FFF1DF',nm:'Rusty'}};
+const PSTAGE=[['Egg',0],['Baby',2],['Young',8],['Hero form',20]];
+const PACC=[{id:'bow',n:'Bow',g:3},{id:'cap',n:'Party hat',g:6},{id:'scarf',n:'Scarf',g:12},{id:'crown',n:'Star crown',g:25}];
+const PET=()=>GM.pet||(GM.pet={kind:'',name:'',g:0,food:0,treat:0,wear:'',last:{},ask:'',newf:0,newt:0});
+const pstage=g=>PSTAGE.reduce((s,x,i)=>g>=x[1]?i:s,0);
+/* Snacks: 1 per 10 right answers, 1 per finished practice mission, 1 per lesson opened (3 a day), 2 per classwork or lesson quiz turned in */
+function petSync(){const P=PET(),D=DAY();if(P.last.d!==D.d)P.last={d:D.d,ok:0,mis:0,les:0,cw:0};const L=P.last;
+  const n=Math.floor(D.ok/10)-Math.floor(L.ok/10)+(D.mis-L.mis)+Math.min(3,D.les)-Math.min(3,L.les)+2*(D.cw-L.cw);
+  Object.assign(L,{ok:D.ok,mis:D.mis,les:D.les,cw:D.cw});if(n>0){P.food+=n;P.newf=(P.newf||0)+n}return n}
+const _gcP=gameCheck;gameCheck=function(...a){petSync();return _gcP(...a)};
+/* A treat each time a skill reaches Proficient or Mastered */
+const _udP=update;update=function(k,ok,...a){const L0=level(k);_udP(k,ok,...a);if(level(k)>=3&&level(k)>L0){const P=PET();P.treat++;P.newt=(P.newt||0)+1}};
+function palSvg(P,o={}){const k=PALS[P.kind]||PALS.dragon,st=o.stage??pstage(P.g),F=P.kind,lab=esc(o.label||k.n);
+  if(!st)return `<svg class="pal egg" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${lab}"><ellipse cx="80" cy="151" rx="38" ry="6" fill="rgba(0,0,0,.12)"/><path d="M80 24C113 24 128 78 128 104C128 133 107 150 80 150C53 150 32 133 32 104C32 78 47 24 80 24Z" fill="#FFF6E5" stroke="${k.d}" stroke-width="3"/><circle cx="61" cy="78" r="9" fill="${k.c}" stroke="${k.d}" stroke-width="1.5"/><circle cx="99" cy="100" r="12" fill="${k.c}" stroke="${k.d}" stroke-width="1.5"/><circle cx="72" cy="124" r="7" fill="${k.c}" stroke="${k.d}" stroke-width="1.5"/>${P.g>=1?`<path d="M48 94l10 8 8-10 10 10 8-8 10 8 10-8" fill="none" stroke="${k.d}" stroke-width="3" stroke-linejoin="round"/>`:''}</svg>`;
+  const s=[0,.74,.88,1][st],w=P.wear;
+  const back=`${st===3?`<path d="M54 98L38 150H122L106 98Z" fill="#8B5CF6"/><path d="M54 98L46 150H60Z" fill="#7C3AED"/>`:''}${F==='dragon'&&st>=2?`<path d="M52 106C28 88 22 68 30 58C38 74 48 82 60 94ZM108 106C132 88 138 68 130 58C122 74 112 82 100 94Z" fill="${k.d}"/>`:''}
+    ${F==='fox'?`<path d="M104 134C134 136 148 110 141 92C132 108 120 114 104 120Z" fill="${k.c}" stroke="${k.d}" stroke-width="2"/><path d="M141 92C140 101 136 108 129 112C135 106 139 99 141 92Z" fill="#fff"/>`:F==='dragon'?`<path d="M104 138C126 140 140 130 145 114L133 120L135 107L120 126Z" fill="${k.c}" stroke="${k.d}" stroke-width="2"/>`:`<circle cx="111" cy="136" r="9" fill="#fff" stroke="${k.d}" stroke-width="1.5"/>`}`;
+  const ears=F==='bunny'?`<ellipse cx="64" cy="${st>=2?30:36}" rx="10" ry="${st>=2?28:22}" fill="${k.c}" stroke="${k.d}" stroke-width="2"/><ellipse cx="64" cy="${st>=2?32:38}" rx="5" ry="${st>=2?17:13}" fill="#FFB6CF"/><ellipse cx="96" cy="${st>=2?30:36}" rx="10" ry="${st>=2?28:22}" fill="${k.c}" stroke="${k.d}" stroke-width="2"/><ellipse cx="96" cy="${st>=2?32:38}" rx="5" ry="${st>=2?17:13}" fill="#FFB6CF"/>`
+    :F==='fox'?`<path d="M48 58L48 22L76 44Z" fill="${k.c}" stroke="${k.d}" stroke-width="2"/><path d="M53 49L53 32L66 42Z" fill="#3B2A12"/><path d="M112 58L112 22L84 44Z" fill="${k.c}" stroke="${k.d}" stroke-width="2"/><path d="M107 49L107 32L94 42Z" fill="#3B2A12"/>`:'';
+  const horns=F==='dragon'?`<path d="M60 44L55 22L71 38ZM100 44L105 22L89 38Z" fill="#FFE27A" stroke="#E0B640" stroke-width="1.5"/>`:'';
+  const snout=F==='fox'?`<ellipse cx="80" cy="86" rx="14" ry="10" fill="${k.b}"/><circle cx="80" cy="80" r="3.6" fill="#3B2A12"/>`:F==='bunny'?`<path d="M76 80H84L80 85Z" fill="#FF8FB1"/>`:`<circle cx="75" cy="82" r="1.8" fill="${k.d}"/><circle cx="85" cy="82" r="1.8" fill="${k.d}"/>`;
+  const acc=w==='bow'?`<g transform="translate(104 46)"><path d="M0 0L-13 -9V9ZM0 0L13 -9V9Z" fill="#FF6FA8"/><circle r="4.5" fill="#E04E8A"/></g>`
+    :w==='cap'?`<path d="M66 42L80 4L94 42Z" fill="#60A5FA"/><path d="M71 30H89M75 18H85" stroke="#FDE047" stroke-width="4"/><circle cx="80" cy="4" r="5" fill="#FDE047"/>`
+    :w==='scarf'?`<path d="M50 100Q80 113 110 100L110 109Q80 122 50 109Z" fill="#EF4444"/><path d="M96 110L103 134L91 131Z" fill="#DC2626"/>`
+    :w==='crown'?`<path d="M62 42L64 22L72 33L80 18L88 33L96 22L98 42Z" fill="#F2C14E" stroke="#C8961E" stroke-width="2"/><circle cx="80" cy="34" r="3" fill="#FB7185"/>`:'';
+  const spark=st===3?`<path d="M22 44l3 8 8 3-8 3-3 8-3-8-8-3 8-3z" fill="#FDE047"/><path d="M138 56l2 6 6 2-6 2-2 6-2-6-6-2 6-2z" fill="#FDE047"/>`:'';
+  return `<svg class="pal palidle ${o.cls||''}" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${lab}"><ellipse cx="80" cy="151" rx="38" ry="6" fill="rgba(0,0,0,.12)"/>${spark}
+  <g transform="translate(80 152) scale(${s}) translate(-80 -152)">${back}<ellipse cx="50" cy="118" rx="8" ry="12" fill="${k.d}"/><ellipse cx="110" cy="118" rx="8" ry="12" fill="${k.d}"/><ellipse cx="80" cy="118" rx="33" ry="30" fill="${k.c}" stroke="${k.d}" stroke-width="2"/><ellipse cx="80" cy="125" rx="20" ry="18" fill="${k.b}"/>
+  <ellipse cx="64" cy="147" rx="11" ry="6" fill="${k.d}"/><ellipse cx="96" cy="147" rx="11" ry="6" fill="${k.d}"/>${ears}<circle cx="80" cy="72" r="36" fill="${k.c}" stroke="${k.d}" stroke-width="2"/>${horns}
+  <circle cx="66" cy="70" r="7.5" fill="#1B2A41"/><circle cx="94" cy="70" r="7.5" fill="#1B2A41"/><circle cx="68.5" cy="67.5" r="2.6" fill="#fff"/><circle cx="96.5" cy="67.5" r="2.6" fill="#fff"/><ellipse cx="56" cy="84" rx="6" ry="4" fill="#FF8FB1" opacity=".55"/><ellipse cx="104" cy="84" rx="6" ry="4" fill="#FF8FB1" opacity=".55"/>
+  ${snout}<g class="pm-smile"><path d="M72 90Q80 97 88 90" fill="none" stroke="#1B2A41" stroke-width="3" stroke-linecap="round"/></g><g class="pm-munch"><ellipse cx="80" cy="93" rx="6" ry="5.5" fill="#7A2E2E"/></g>${acc}</g></svg>`}
+function petAnim(c){const el=document.querySelector('#palbtn .pal');if(!el||calmOn())return;el.classList.remove('munch','happy');void el.getBoundingClientRect();el.classList.add(c);setTimeout(()=>el.classList.remove(c),c==='munch'?950:650)}
+function petPick(kind){const P=PET();if(P.kind||!PALS[kind])return;P.kind=kind;P.name=PALS[kind].nm;SYNC();rerealm()}
+function petFeed(t){const P=PET(),s0=pstage(P.g),g0=P.g;if(t?!P.treat:!P.food)return;if(t){P.treat--;P.g+=3}else{P.food--;P.g+=1}SYNC();rerealm();setTimeout(()=>petAnim('munch'),30);
+  const s1=pstage(P.g),acc=PACC.filter(a=>a.g>g0&&a.g<=P.g).map(a=>`New dress-up item: ${a.n}`);
+  if(s1>s0)setTimeout(()=>celebrate([s0?`${P.name} grew into ${PSTAGE[s1][0]}!`:`${P.name} hatched!`,...acc],true),350);else if(acc.length)msg(acc.join('. '))}
+function petWear(id){const P=PET(),a=PACC.find(x=>x.id===id);if(!a||P.g<a.g)return;P.wear=P.wear===id?'':id;SYNC();rerealm()}
+function petAsk(){const P=PET();if(P.ask===dstr()||!P.kind)return;
+  qAsk({title:`${P.name} needs help`,intro:pick(['Help me count my berries!','I found a riddle in the garden!','Can you help me with my homework?','Lumi gave me a puzzle!']),cancel:true}).then(ok=>{
+    if(ok===null)return;P.ask=dstr();if(ok)P.treat++;SYNC();rerealm();if(ok){msg(`${P.name} says thank you! +1 treat 🍪`);setTimeout(()=>petAnim('happy'),60)}})}
+GVIEW.pets=function(){const P=PET();petSync();
+  if(!P.kind)return `<div class="gworld">${clouds()}${gameHead('Pet Pals','Your learning feeds a pet that grows and cheers you on.')}<div class="gcard"><h3>Pick your pet egg</h3><p class="sol">Each egg hatches into a different friend. Choose the one you like best: it stays with you.</p>
+    <div class="eggs">${Object.entries(PALS).map(([id,k])=>`<button class="tile eggpick" data-kind="${id}" onclick="petPick('${id}')"><span class="tart">${palSvg({kind:id,g:0},{stage:0,label:k.n+' egg'})}</span><span class="tbody"><span class="tname">${k.n} egg</span><span class="tpitch">Hatches into ${k.nm} the ${k.n.toLowerCase()}.</span></span></button>`).join('')}</div>
+    ${P.food?`<p class="sol" style="margin-top:12px">🍎 ${P.food} snack${P.food===1?'':'s'} already waiting for your pet!</p>`:''}</div></div>`;
+  const st=pstage(P.g),nx=PSTAGE[st+1],cur=PSTAGE[st][1],k=PALS[P.kind],asked=P.ask===dstr(),nf=P.newf,nt=P.newt;P.newf=P.newt=0;
+  return `<div class="gworld">${clouds()}${gameHead('Pet Pals',`${esc(P.name)} the ${k.n.toLowerCase()} · ${PSTAGE[st][0]}`)}
+  ${nf||nt?`<div class="gcard parch" style="margin-bottom:16px" role="status">🎉 Your learning earned ${[nf?`${nf} snack${nf>1?'s':''}`:'',nt?`${nt} treat${nt>1?'s':''}`:''].filter(Boolean).join(' and ')} since your last visit!</div>`:''}
+  <div class="ppwrap"><div class="gcard"><div class="palstage"><button class="palbtn" id="palbtn" onclick="petAnim('happy')" aria-label="Pat ${esc(P.name)}">${palSvg(P,{label:`${P.name} the ${k.n.toLowerCase()}`})}</button></div>
+    <h3 style="margin:14px 0 8px">${esc(P.name)} <span class="sol">· ${PSTAGE[st][0]}</span></h3>${tubeHtml(nx?(P.g-cur)/(nx[1]-cur):1,nx?`${st?'Grows':'Hatches'} into ${nx[0]}: ${P.g-cur} / ${nx[1]-cur}`:'Fully grown hero!','#F59E0B')}
+    <div class="pstat"><span>🍎 ${P.food} snack${P.food===1?'':'s'}</span><span>🍪 ${P.treat} treat${P.treat===1?'':'s'}</span></div>
+    <div class="row" style="margin-top:12px"><button class="abtn" ${P.food?'':'disabled'} onclick="petFeed(0)">🍎 Feed a snack</button><button class="abtn gold" ${P.treat?'':'disabled'} onclick="petFeed(1)">🍪 Give a treat</button></div></div>
+  <div><div class="gcard parch"><h3>❓ ${esc(P.name)} needs your help</h3><p style="margin:0 0 10px">${asked?'Thanks for helping today! Come back tomorrow for another question.':`Answer ${esc(P.name)}'s question of the day to earn a treat.`}</p><button class="abtn sun" id="petq" ${asked?'disabled':''} onclick="petAsk()">${asked?'✔ Done for today':'Help '+esc(P.name)}</button></div>
+    <div class="gcard" style="margin-top:16px"><h3>👒 Dress up</h3><div class="accs">${PACC.map(a=>{const lock=P.g<a.g,on=P.wear===a.id;return `<button class="chip ${on?'on':''}" ${lock?'disabled':''} aria-pressed="${on}" onclick="petWear('${a.id}')">${lock?'🔒 ':''}${a.n}${lock?` <small>(at ${a.g} growth)</small>`:''}</button>`}).join('')}</div></div>
+    <div class="gcard" style="margin-top:16px"><h3>🍎 How your pet gets food</h3><ul class="pearn"><li>10 right answers in practice: 1 snack</li><li>Finishing a practice mission: 1 snack</li><li>Opening a lesson: 1 snack (up to 3 a day)</li><li>Turning in classwork or a lesson quiz: 2 snacks</li><li>A skill reaching Proficient or Mastered: 1 treat</li></ul><button class="abtn sec sm" style="margin-top:10px" onclick="go('learn')">📖 Go learn</button></div></div></div>
+  <p class="gnote">Caring for ${esc(P.name)} uses no play time.</p></div>`};
+/* The pet visits the Learn page too */
+const _hcP=heroCard;heroCard=function(){const h=_hcP(),P=PET();if(!gameOn()||!(P.kind||P.food))return h;
+  return h.replace('<div class="gemrow"',`<button class="palmini" onclick="AR.mode='pets';go('play')">${P.kind?palSvg(P,{label:P.name}):'<span aria-hidden="true" style="font-size:28px;padding:4px">🥚</span>'}<span>${P.kind?`${esc(P.name)}${P.food?`: ${P.food} snack${P.food>1?'s':''} waiting`:' says hi!'}`:'Pick your pet egg'}</span></button><div class="gemrow"`)};
+
+/* ---------- Turbo Trivia Kart: 10 gates, 3 answer lanes, 5 seconds a gate (8 in Relaxed mode) ---------- */
+let KT=null;const KGATES=10;
+GSTOP.push(()=>{if(KT&&['go','fb'].includes(KT.ph))KT=null});
+/* Three lane answers: the right one plus two others (near misses for numbers) */
+function kartChoices(q){if(q.choices){const c=q.choices[q.a[0]],L=shuf([c,...shuf(q.choices.filter((_,i)=>i!==q.a[0])).slice(0,2)]);return{L,cor:L.indexOf(c)}}
+  const [n,d]=q.a,dec=/\d\.\d/.test(q.q)&&[1,2,4,5,8,10,20,25,50,100,1000].includes(d),f=(x,y)=>{const g=gcd(Math.abs(x),y)||1;x/=g;y/=g;return dec?String(+(x/y).toFixed(3)):y===1?String(x):`${x}/${y}`};
+  const cands=dec?[[n*10,d],[n,d*10],[n+d/10,d],[n-d/10,d],[n+d/100,d],[n-d/100,d]].filter(([x])=>x>=0).map(([x,y])=>[Math.round(x*100),y*100])
+    :d===1?[n+1,n-1,n+2,n-2,n+10,n-10,n*2,n+5].filter(x=>n<0||x>=0).map(x=>[x,1]):[[n+1,d],[n-1,d],[n,d+1],[n+d,d],[n*2,d]].filter(([x,y])=>x>0&&y>0);
+  const c=f(n,d),seen=new Set([c]),o=[];for(const [x,y] of shuf(cands)){const s=f(x,y);if(!seen.has(s)&&!eq([x,y],[n,d])){seen.add(s);o.push(s)}if(o.length===2)break}
+  if(o.length<2)return null;const L=shuf([c,...o]);return{L,cor:L.indexOf(c)}}
+const kartWin=()=>(ARS('kart').relax??myGrade()<=2)?8000:5000;
+function kartStart(){if(!canStart())return;stopGames();KT={ph:'go',i:0,ok:0,lane:1,pen:0,t0:performance.now(),win:kartWin()};AR.run=true;rerealm();kartNext();if(KT&&KT.ph==='go')AR.raf=requestAnimationFrame(kartFrame)}
+function kartNext(){let x=null,c=null;for(let i=0;i<12&&!c;i++){x=rquestion();if(!x)break;if(x.q.q.replace(/<[^>]+>/g,'').length<=90)c=kartChoices(x.q)}
+  if(!c){kartEnd('none');return}Object.assign(KT,{ph:'go',k:x.k,q:x.q,L:c.L,cor:c.cor,gs:performance.now()});kartPaint(true)}
+const kartHud=()=>`${KT.ph==='go'?`<span>⏳ ${Math.max(1,Math.ceil((KT.win-(performance.now()-KT.gs))/1000))} s</span>`:''}<span>🏁 ${Math.min(KT.i+1,KGATES)} / ${KGATES}</span><span>✅ ${KT.ok}</span><span>⏱ ${Math.max(0,(performance.now()-KT.t0)/1000+KT.pen).toFixed(1)} s</span>`;
+function kartPaint(full){const T=KT,g=$('kgate');if(!T||!g)return;
+  if(full){$('kq').innerHTML=`<span class="sol">Gate ${T.i+1} of ${KGATES}</span><div class="kqt">${T.q.q}</div>`;g.className='kgate';g.style.top='-12%';g.innerHTML=T.L.map(s=>`<span>${esc(s)}</span>`).join('');
+    document.querySelectorAll('.klanes button').forEach((b,i)=>{b.querySelector('.kl').textContent=T.L[i];b.disabled=false});$('kfb').textContent='';$('khud').innerHTML=kartHud()}
+  document.querySelectorAll('.klanes button').forEach((b,i)=>{b.classList.toggle('on',i===T.lane);b.setAttribute('aria-pressed',i===T.lane)});$('kart').style.setProperty('--lane',T.lane)}
+function kartFrame(t){if(!AR.run||!KT||AR.mode!=='kart')return;const g=$('kgate');if(!g){stopGames();return}if(outOfTime()){kartEnd('time');return}
+  if(KT.ph==='go'){const p=Math.min(1,(t-KT.gs)/KT.win);g.style.top=`calc(${(p*72).toFixed(2)}% - ${(12*(1-p)).toFixed(1)}%)`;if(p>=1)kartResolve()}
+  if(t-(KT.ht||0)>250){KT.ht=t;const h=$('khud');if(h)h.innerHTML=kartHud()}
+  if(AR.run)AR.raf=requestAnimationFrame(kartFrame)}
+function kartLane(i){if(!KT||KT.ph!=='go')return;KT.lane=Math.max(0,Math.min(2,i));kartPaint()}
+function kartResolve(){const T=KT,ok=T.lane===T.cor,g=$('kgate');T.i++;T.ph='fb';if(ok){T.ok++;T.pen-=1.5}else T.pen+=2;
+  if(g){g.className='kgate done';g.children[T.cor].classList.add('right');if(!ok)g.children[T.lane].classList.add('wrong')}
+  $('kfb').innerHTML=ok?`🚀 ${pick(['Boost!','Zoom!','Ramp jump!','Turbo!'])}`:`💥 Bump! It was ${esc(T.L[T.cor])}`;
+  const k=$('kart');if(k&&!calmOn()){k.classList.remove('boost','bump');void k.getBoundingClientRect();k.classList.add(ok?'boost':'bump')}
+  document.querySelectorAll('.klanes button').forEach(b=>b.disabled=true);
+  setTimeout(()=>{if(KT!==T||!AR.run)return;if(T.i>=KGATES)kartEnd('done');else kartNext()},ok?1000:1900)}
+function kartEnd(why){const T=KT;if(!T)return;AR.run=false;cancelAnimationFrame(AR.raf);T.ph=why==='done'?'end':why;
+  if(why==='done'){const S=ARS('kart');T.time=Math.max(.1,(performance.now()-T.t0)/1000+T.pen);T.medal=T.ok>=9?3:T.ok>=7?2:T.ok>=5?1:0;
+    T.pb=T.medal>0&&(S.best==null||T.time<S.best);if(T.pb)S.best=+T.time.toFixed(1);T.gems=T.medal+(T.pb?3:0);S.races=(S.races||0)+1;if(T.medal===3)S.gold=(S.gold||0)+1;if(T.gems)addGems(T.gems);SYNC();gameCheck()}
+  rerealm()}
+const kartSvg=()=>`<svg viewBox="0 0 80 92" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Your kart"><rect x="6" y="58" width="16" height="28" rx="5" fill="#1B2A41"/><rect x="58" y="58" width="16" height="28" rx="5" fill="#1B2A41"/><rect x="8" y="8" width="14" height="22" rx="5" fill="#1B2A41"/><rect x="58" y="8" width="14" height="22" rx="5" fill="#1B2A41"/><path d="M24 4H56L64 84H16Z" fill="#E4572E"/><path d="M28 4H52" stroke="#FFE27A" stroke-width="5"/><rect x="16" y="80" width="48" height="9" rx="3" fill="#B83B1D"/><circle cx="40" cy="46" r="14" fill="#8B5CF6"/><rect x="30" y="39" width="20" height="8" rx="4" fill="#1E1B4B" opacity=".8"/></svg>`;
+GVIEW.kart=function(){const T=KT,S=ARS('kart'),relax=S.relax??myGrade()<=2,head=`<div class="gworld">${clouds()}${gameHead('Turbo Trivia Kart','Pick the lane with the right answer before the gate reaches you!')}`;
+  if(!T||!['go','fb'].includes(T.ph)){const out=outOfTime();let card='';
+    if(T&&T.ph==='end')card=`<div class="gcard endcard" style="margin-bottom:16px"><div class="big" aria-hidden="true">${['🏁','🥉','🥈','🥇'][T.medal]}</div><h3>${T.medal?['','Bronze','Silver','Gold'][T.medal]+' medal!':'Race finished!'}</h3><p>${T.ok} of ${KGATES} right · ${T.time.toFixed(1)} seconds${T.pb?' · ⭐ New personal best!':''}${T.gems?` · 💎 +${T.gems} gems`:''}</p>${T.medal?'':'<p class="sol">Get 5 right for a bronze medal. Every bump showed you the answer, so try again!</p>'}</div>`;
+    else if(T&&T.ph==='none')card=`<div class="gcard" style="margin-bottom:16px"><h3>No questions here yet</h3><p>Pick another subject, or choose your grade on the Learn page.</p></div>`;
+    return head+`${out?restCard():''}${card}${subjChips()}<div class="gcard"><h3>🏎️ How to race</h3><ul class="pearn"><li>Your kart drives itself. Each gate has three answer lanes.</li><li>Steer with the ← → arrow keys or the 1 2 3 keys, or tap a lane button, before the gate reaches you.</li><li>Right lane: boost! Wrong lane: a soft bump, and you see the right answer.</li><li>Medals: 5 right for bronze, 7 for silver, 9 for gold. A new best time earns 3 bonus gems.</li></ul>
+      <label class="ckline"><input type="checkbox" id="krelax" ${relax?'checked':''} onchange="ARS('kart').relax=this.checked;SYNC()"> Relaxed: 8 seconds per gate instead of 5</label>
+      <div class="row" style="margin-top:14px;align-items:center"><button class="abtn big" ${out?'disabled':''} onclick="kartStart()">🏁 Start race</button>${S.best!=null?`<span class="sol">Best time: <b>${S.best} s</b></span>`:''}</div></div></div>`}
+  return head+`<div class="gcard kq" id="kq" aria-live="polite"></div><div class="khud" id="khud"></div><div class="ktrack"><div class="kroad"></div><div class="kgate" id="kgate"></div><div class="kart" id="kart" style="--lane:${T.lane}">${kartSvg()}</div><div class="kfb" id="kfb" role="status"></div></div>
+    <div class="klanes" role="group" aria-label="Pick a lane">${[0,1,2].map(i=>`<button class="abtn sec" onclick="kartLane(${i})"><span class="key" aria-hidden="true">${i+1}</span><span class="kl"></span></button>`).join('')}</div></div>`};
+
+/* ---------- Goblin Gate: towers built with right answers; the field pauses while a question is open ---------- */
+let GT=null;
+GSTOP.push(()=>{if(GT&&['build','wave'].includes(GT.ph))GT=null});
+const GPATH=[[-30,80],[140,80],[140,270],[320,270],[320,100],[480,100],[480,230],[600,230]];
+const GPADS=[[70,165],[230,195],[230,40],[400,185],[400,38],[560,150]];
+const GTOW={laser:{n:'Laser tower',c:'#FB7185',r:120,rate:.55,d:[9,14,20],tip:'Zaps one goblin hard'},frost:{n:'Frost tower',c:'#38BDF8',r:105,rate:.9,d:[4,6,8],slow:[1.4,1.9,2.5],tip:'Slows goblins down'},bubble:{n:'Bubble tower',c:'#A78BFA',r:110,rate:1.1,d:[7,10,14],splash:44,tip:'Bubbles a whole group'}};
+const GWAVES=4,gwave=w=>({n:6+2*w,hp:24+14*w,sp:40+5*w,gap:1.25-.1*w,boss:w===GWAVES-1});
+const GLEN=GPATH.slice(1).reduce((s,p,i)=>s+Math.hypot(p[0]-GPATH[i][0],p[1]-GPATH[i][1]),0);
+function gpos(d){for(let i=1;i<GPATH.length;i++){const [x0,y0]=GPATH[i-1],[x1,y1]=GPATH[i],l=Math.hypot(x1-x0,y1-y0);if(d<=l)return[x0+(x1-x0)*d/l,y0+(y1-y0)*d/l];d-=l}return GPATH[GPATH.length-1]}
+const towerIcon=(t,lv)=>`<svg viewBox="0 0 40 40" aria-hidden="true"><rect x="11" y="17" width="18" height="20" rx="3" fill="#8C8FA3"/><path d="M11 17h18v-4h-4v3h-3v-3h-4v3h-3v-3h-4z" fill="#A3AFBD"/><circle cx="20" cy="${t==='bubble'?11:12}" r="${7+(lv||1)}" fill="${GTOW[t].c}" stroke="#fff" stroke-width="2"/></svg>`;
+function gateStart(){if(!canStart())return;stopGames();GT={ph:'build',w:0,cookies:10,tw:Array(6).fill(null),gobs:[],shots:[],pops:[],sp:null,time:0,paused:false,id:0,last:0};AR.run=true;rerealm();gatePaint(true);AR.raf=requestAnimationFrame(gateFrame)}
+function gateWave(){if(!GT||GT.ph!=='build')return;const W=gwave(GT.w);GT.ph='wave';GT.sp={left:W.n,cd:0,W};gatePaint(true)}
+function gateFrame(t){const Z=GT;if(!AR.run||!Z||AR.mode!=='gate')return;if(!$('gfield')){stopGames();return}if(outOfTime()){gateOver('time');return}
+  const dt=Z.last?Math.min(.05,(t-Z.last)/1000):0;Z.last=t;if(!Z.paused&&Z.ph==='wave')gateStep(dt);if(GT===Z&&AR.run){gatePaint();AR.raf=requestAnimationFrame(gateFrame)}}
+function gateStep(dt){const Z=GT,sp=Z.sp;Z.time+=dt;
+  if(sp&&sp.left>0&&(sp.cd-=dt)<=0){sp.left--;sp.cd=sp.W.gap;const boss=sp.W.boss&&sp.left===0,hp=boss?sp.W.hp*6:sp.W.hp;Z.gobs.push({id:++Z.id,d:0,hp,max:hp,sp:boss?sp.W.sp*.7:sp.W.sp,boss,slow:0})}
+  for(const g of Z.gobs){g.d+=g.sp*(g.slow>Z.time?.5:1)*dt;if(g.d>=GLEN){g.out=1;Z.cookies--}}
+  Z.gobs=Z.gobs.filter(g=>!g.out);if(Z.cookies<=0){Z.cookies=0;gateOver('lost');return}
+  Z.tw.forEach((T,i)=>{if(!T||(T.cd-=dt)>0)return;const D=GTOW[T.t],[px,py]=GPADS[i],r=D.r+12*(T.lv-1);let b=null;
+    for(const g of Z.gobs){const [x,y]=gpos(g.d);if(Math.hypot(x-px,y-py)<=r&&(!b||g.d>b.d))b=g}if(!b)return;T.cd=D.rate;
+    const dmg=D.d[T.lv-1],[bx,by]=gpos(b.d);Z.shots.push({x0:px,y0:py,x1:bx,y1:by,c:D.c,k:T.t,t:Z.time+.15});
+    if(D.splash)Z.gobs.forEach(g=>{const [x,y]=gpos(g.d);if(Math.hypot(x-bx,y-by)<=D.splash)g.hp-=dmg});else b.hp-=dmg;if(D.slow)b.slow=Z.time+D.slow[T.lv-1]});
+  Z.gobs.filter(g=>g.hp<=0).forEach(g=>Z.pops.push({p:gpos(g.d),t:Z.time+.7}));Z.gobs=Z.gobs.filter(g=>g.hp>0);
+  Z.shots=Z.shots.filter(s=>s.t>Z.time);Z.pops=Z.pops.filter(p=>p.t>Z.time);
+  if(sp&&sp.left<=0&&!Z.gobs.length){Z.w++;Z.sp=null;if(Z.w>=GWAVES)gateOver('won');else{Z.ph='build';gatePaint(true)}}}
+function gateOver(why){const Z=GT;if(!Z)return;AR.run=false;cancelAnimationFrame(AR.raf);if(QM)qmClose(true);Z.ph=why;
+  if(why==='won'){const S=ARS('gate'),st=Z.cookies>=8?3:Z.cookies>=4?2:1,pay=[0,3,5,8],b=S.best||0;Z.stars=st;Z.gems=st>b?pay[st]-pay[b]:1;S.best=Math.max(b,st);S.wins=(S.wins||0)+1;addGems(Z.gems);SYNC();gameCheck()}
+  rerealm()}
+const gobSvg=(g,x,y,frz)=>`<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)})${g.boss?' scale(1.6)':''}"><ellipse cy="13" rx="11" ry="3" fill="rgba(0,0,0,.18)"/><path d="M-12 -4L-21 -11L-9 -9ZM12 -4L21 -11L9 -9Z" fill="#5FB548"/><circle r="12" fill="${frz?'#A5E8F7':'#7ED957'}" stroke="#4E9E3A" stroke-width="1.5"/><path d="M-10 -8Q0 -21 10 -8Z" fill="#8C8FA3"/><circle cx="-4" cy="-1" r="2.6" fill="#1B2A41"/><circle cx="4" cy="-1" r="2.6" fill="#1B2A41"/><path d="M-4 5Q0 8 4 5" stroke="#1B2A41" stroke-width="1.6" fill="none"/><rect x="-11" y="-23" width="22" height="3.5" rx="1.5" fill="rgba(0,0,0,.3)"/><rect x="-11" y="-23" width="${(22*Math.max(0,g.hp)/g.max).toFixed(1)}" height="3.5" rx="1.5" fill="#FB7185"/></g>`;
+function gatePaint(full){const Z=GT,dyn=$('gdyn');if(!Z||!dyn)return;
+  dyn.innerHTML=Z.gobs.map(g=>{const [x,y]=gpos(g.d);return gobSvg(g,x,y,g.slow>Z.time)}).join('')
+    +Z.shots.map(s=>s.k==='bubble'?`<circle cx="${s.x1.toFixed(1)}" cy="${s.y1.toFixed(1)}" r="${GTOW.bubble.splash}" fill="${s.c}" opacity=".28"/>`:`<line x1="${s.x0}" y1="${s.y0}" x2="${s.x1.toFixed(1)}" y2="${s.y1.toFixed(1)}" stroke="${s.c}" stroke-width="${s.k==='laser'?4:3}" stroke-linecap="round"/>`).join('')
+    +Z.pops.map(p=>{const f=(p.t-Z.time)/.7;return `<g transform="translate(${p.p[0].toFixed(1)} ${(p.p[1]-34*(1-f)).toFixed(1)})" opacity="${f.toFixed(2)}"><circle r="15" fill="#BFE9FF" stroke="#fff" stroke-width="2" opacity=".7"/><circle r="8" fill="#7ED957"/></g>`}).join('');
+  const c=$('gcook');if(c&&c.textContent!=String(Z.cookies))c.textContent=Z.cookies;
+  if(full){$('ghud').innerHTML=gateHud();Z.tw.forEach((T,i)=>{const b=$('gp'+i);if(!b)return;b.className='gpad'+(T?' built':'');b.innerHTML=T?`${towerIcon(T.t,T.lv)}<span class="pips" aria-hidden="true">${'★'.repeat(T.lv)}</span>`:'<span aria-hidden="true">+</span>';
+    b.setAttribute('aria-label',T?`${GTOW[T.t].n}, level ${T.lv}${T.lv<3?'. Tap to upgrade':''}`:`Empty pad ${i+1}. Tap to build a tower`)});const w=$('gwrow');if(w)w.innerHTML=waveBtn()}}
+const gateHud=()=>`<span>🍪 <b id="gcook">${GT.cookies}</b> cookies</span><span>🌊 Wave ${Math.min(GT.w+1,GWAVES)} of ${GWAVES}</span><span>🗼 ${GT.tw.filter(Boolean).length} of 6 towers</span>`;
+const waveBtn=()=>GT.ph==='build'?`<button class="abtn sun big" id="gwave" onclick="gateWave()">⚔️ Start wave ${GT.w+1}</button>`:'<p class="gsub" style="margin:0">Goblins incoming! Tap a pad to build or upgrade. The game pauses while you answer.</p>';
+function padTap(i){const Z=GT;if(!Z||!['build','wave'].includes(Z.ph)||QM)return;const T=Z.tw[i];if(T&&T.lv>=3)return msg('This tower is fully upgraded!');
+  Z.paused=!ARS('gate').speedy;const go_=()=>{if(GT)GT.paused=false};
+  if(!T)return qmMenu(`<h3>Build a tower</h3><p class="sol" style="margin:0 0 10px">Pick a tower, then answer a question to build it.</p><div class="tpick">${Object.entries(GTOW).map(([id,D])=>`<button class="abtn sec" onclick="gateBuild(${i},'${id}')">${towerIcon(id)}<span>${D.n}<small>${D.tip}</small></span></button>`).join('')}</div>`,go_);
+  qmMenu(`<h3>Upgrade the ${GTOW[T.t].n.toLowerCase()}</h3><p style="margin:0 0 10px">Answer ${T.lv+1} questions in a row to reach level ${T.lv+1}.</p><button class="abtn" onclick="gateUp(${i})">Start the upgrade</button>`,go_)}
+async function gateBuild(i,t){qmClose(true);const Z=GT;if(!Z)return;Z.paused=!ARS('gate').speedy;const ok=await qAsk({title:'Build a '+GTOW[t].n.toLowerCase(),cancel:true});
+  if(GT!==Z)return;Z.paused=false;if(ok&&!Z.tw[i]&&['build','wave'].includes(Z.ph)){Z.tw[i]={t,lv:1,cd:0};gatePaint(true)}}
+async function gateUp(i){qmClose(true);const Z=GT,T=Z&&Z.tw[i];if(!T)return;const need=T.lv+1;Z.paused=!ARS('gate').speedy;
+  for(let n=1;n<=need;n++){const ok=await qAsk({title:`Upgrade: question ${n} of ${need}`,cancel:n===1});if(GT!==Z)return;if(!ok){Z.paused=false;if(ok===false)msg('So close! Try the upgrade again.');return}}
+  Z.paused=false;if(Z.tw[i]===T){T.lv=need;gatePaint(true);msg(`${GTOW[T.t].n} is now level ${need}!`)}}
+const gateSvg=()=>`<svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="640" height="360" fill="#7CCB6B"/><path d="M0 300Q160 270 320 320T640 300V360H0Z" fill="#6DBF62"/>
+  ${[[40,320],[210,330],[380,320],[600,40],[30,30],[300,190]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="16" fill="#5FAE53"/><circle cx="${x+14}" cy="${y+4}" r="12" fill="#5FAE53"/>`).join('')}
+  <path d="${GPATH.map(([x,y],i)=>(i?'L':'M')+x+' '+y).join(' ')}" fill="none" stroke="#C9A46A" stroke-width="40" stroke-linejoin="round"/><path d="${GPATH.map(([x,y],i)=>(i?'L':'M')+x+' '+y).join(' ')}" fill="none" stroke="#E2C48F" stroke-width="30" stroke-linejoin="round"/>
+  <g transform="translate(596 150)"><rect x="0" y="20" width="44" height="100" fill="#A3AFBD"/><path d="M0 20V8h9v12h9V8h8v12h9V8h9v12" fill="#A3AFBD"/><rect x="-6" y="62" width="20" height="36" rx="9" fill="#5B6478"/><path d="M22 0V-26L40 -18L22 -10" fill="#FB7185"/><text x="22" y="56" font-size="22" text-anchor="middle">🍪</text></g><g id="gdyn"></g></svg>`;
+GVIEW.gate=function(){const Z=GT,S=ARS('gate'),head=`<div class="gworld">${clouds()}${gameHead('Goblin Gate','Answer questions to build towers and keep the goblins away from your cookies!')}`;
+  if(!Z||!['build','wave'].includes(Z.ph)){const out=outOfTime();let card='';
+    if(Z&&Z.ph==='won')card=`<div class="gcard endcard" style="margin-bottom:16px"><div class="big" aria-hidden="true">🏰</div><h3>The castle is safe!</h3><p>${stars3(Z.stars)}<br>${Z.cookies} of 10 cookies saved · 💎 +${Z.gems} gem${Z.gems>1?'s':''}</p></div>`;
+    else if(Z&&Z.ph==='lost')card=`<div class="gcard endcard" style="margin-bottom:16px"><div class="big" aria-hidden="true">🍪</div><h3>The goblins ate all the cookies!</h3><p>More towers and upgrades will stop them, and every question you answer builds your defense. Try again!</p></div>`;
+    return head+`${out?restCard():''}${card}${subjChips()}<div class="gcard"><h3>🏰 How to play</h3><ul class="pearn"><li>Tap an empty pad, pick a tower and answer a question to build it.</li><li>Tap a tower to upgrade it: 2 right in a row for level 2, 3 in a row for level 3.</li><li>Stop ${GWAVES} waves of goblins before they eat your 10 cookies. The game pauses while you answer.</li></ul>
+      <label class="ckline"><input type="checkbox" ${S.speedy?'checked':''} onchange="ARS('gate').speedy=this.checked;SYNC()"> Speedy mode: goblins keep moving while you answer</label>
+      <div class="row" style="margin-top:14px;align-items:center"><button class="abtn big" ${out?'disabled':''} onclick="gateStart()">🛡️ Start defending</button>${S.best?`<span class="sol">Best: ${stars3(S.best,`Best: ${S.best} of 3 stars`)}</span>`:''}</div></div></div>`}
+  return head+`<div class="ghud" id="ghud"></div><div class="gfield" id="gfield">${gateSvg()}${GPADS.map(([x,y],i)=>`<button class="gpad" id="gp${i}" style="left:${(x/6.4).toFixed(2)}%;top:${(y/3.6).toFixed(2)}%" onclick="padTap(${i})"></button>`).join('')}</div><div class="row" style="margin-top:14px;justify-content:center;text-align:center" id="gwrow"></div></div>`};
+
+/* ---------- Block Builder: falling number blocks; groups that add (or multiply) to the target clear ---------- */
+let BB=null;const BW=6,BH=9;
+GSTOP.push(()=>{if(BB&&BB.ph==='run')BB=null});
+const BPZ=[{id:'s10',op:'+',t:10,n:'Make 10'},{id:'s20',op:'+',t:20,n:'Make 20'},{id:'m24',op:'×',t:24,n:'Make 24'},{id:'m36',op:'×',t:36,n:'Make 36'}];
+const BCOL=['#E4572E','#F97316','#D97706','#16A34A','#0D9488','#2563EB','#4F46E5','#7C3AED','#DB2777'];
+const bpz=()=>BPZ.find(p=>p.id===ARS('blocks').pz)||BPZ[myGrade()<=2?0:myGrade()<=3?1:2];
+const bvals=p=>p.op==='+'?Array.from({length:p.t-1},(_,i)=>i+1):Array.from({length:p.t},(_,i)=>i+1).filter(x=>p.t%x===0&&x>1&&x<p.t);
+/* Most new blocks complete a block already showing at the top of a column, so a clear is always in reach */
+function bdeal(){const Z=BB,p=Z.p,V=bvals(p),tops=[];for(let c=0;c<BW;c++)for(let r=0;r<BH;r++)if(Z.g[r][c]){tops.push(Z.g[r][c]);break}
+  if(tops.length&&Math.random()<.65){const v=pick(tops),w=p.op==='+'?p.t-v:p.t/v;if(V.includes(w))return w}return pick(V)}
+function bbStart(){if(!canStart())return;stopGames();BB={p:bpz(),g:Array.from({length:BH},()=>Array(BW).fill(0)),ph:'run',score:0,clears:0,feed:[],cur:null};AR.run=true;rerealm();bbSpawn();AR.iv=setInterval(bbTick,myGrade()<=2?1000:800)}
+function bbSpawn(){const Z=BB;if(Z.g[0][2]){bbEnd('done');return}Z.cur={v:bdeal(),c:2,r:0};bbPaint()}
+function bbTick(){if(!AR.run||!BB||AR.mode!=='blocks'||document.hidden||QM)return;if(!$('bboard')){stopGames();return}if(outOfTime()){bbEnd('time');return}bbFall()}
+function bbFall(){const Z=BB,c=Z&&Z.cur;if(!c||Z.ph!=='run')return;if(c.r+1<BH&&!Z.g[c.r+1][c.c]){c.r++;bbPaint()}else bbLand()}
+function bbMove(d){const Z=BB,c=Z&&Z.cur;if(!c||Z.ph!=='run')return;const n=c.c+d;if(n<0||n>=BW||Z.g[c.r][n])return;c.c=n;bbPaint()}
+function bbDrop(){const Z=BB,c=Z&&Z.cur;if(!c||Z.ph!=='run')return;while(c.r+1<BH&&!Z.g[c.r+1][c.c])c.r++;bbLand()}
+/* Tap a column to slide the block there; tap its own column to drop it */
+function bbCol(q){const Z=BB,c=Z&&Z.cur;if(!c||Z.ph!=='run')return;if(q===c.c)return bbDrop();while(c.c!==q){const d=q>c.c?1:-1;if(Z.g[c.r][c.c+d])break;c.c+=d}bbPaint()}
+function bbGroup(r,c){const Z=BB,p=Z.p,v=(r,c)=>r>=0&&r<BH&&c>=0&&c<BW?Z.g[r][c]:0,L=[];
+  for(const n of p.op==='+'?[3,2]:[2]){for(let s=c-n+1;s<=c;s++)L.push(Array.from({length:n},(_,i)=>[r,s+i]));for(let s=r-n+1;s<=r;s++)L.push(Array.from({length:n},(_,i)=>[s+i,c]))}
+  return L.find(a=>a.every(([r,c])=>v(r,c))&&(p.op==='+'?a.reduce((s,[r,c])=>s+v(r,c),0)===p.t:v(...a[0])*v(...a[1])===p.t))||null}
+function bbScan(){for(let r=BH-1;r>=0;r--)for(let c=0;c<BW;c++)if(BB.g[r][c]){const x=bbGroup(r,c);if(x)return x}return null}
+function bbLand(){const Z=BB,c=Z.cur;Z.cur=null;Z.g[c.r][c.c]=c.v;let cells=bbGroup(c.r,c.c),chain=0;
+  while(cells){chain++;const vals=cells.map(([r,q])=>Z.g[r][q]);cells.forEach(([r,q])=>Z.g[r][q]=0);
+    for(let q=0;q<BW;q++){const col=[];for(let r=BH-1;r>=0;r--)if(Z.g[r][q])col.push(Z.g[r][q]);for(let r=BH-1,i=0;r>=0;r--,i++)Z.g[r][q]=col[i]||0}
+    Z.clears++;Z.score+=10*cells.length*chain;Z.feed.unshift(`${vals.join(Z.p.op==='+'?' + ':' × ')} = ${Z.p.t}${chain>1?` · combo ×${chain}!`:''}`);Z.feed=Z.feed.slice(0,5);cells=bbScan()}
+  if(chain){heroMood('beam',700);const b=$('bboard');if(b&&!calmOn()){b.animate([{filter:'brightness(1.6)'},{filter:'none'}],{duration:350})}}
+  if(Z.ph==='run')bbSpawn()}
+function bbEnd(why){const Z=BB;if(!Z)return;AR.run=false;clearInterval(AR.iv);AR.iv=0;Z.ph=why;Z.cur=null;
+  if(why!=='none'){const S=ARS('blocks');Z.gems=Math.min(8,Math.floor(Z.clears/4));Z.pb=Z.score>(S.best||0);if(Z.pb)S.best=Z.score;S.rounds=(S.rounds||0)+1;if(Z.gems)addGems(Z.gems);SYNC();gameCheck()}
+  rerealm()}
+function bbPaint(){const Z=BB,b=$('bboard');if(!Z||!b)return;const c=Z.cur;let h='';
+  for(let r=0;r<BH;r++)for(let q=0;q<BW;q++){const cur=c&&c.r===r&&c.c===q,v=cur?c.v:Z.g[r][q];h+=`<div class="bcell${v?' v':''}${cur?' cur':''}"${v?` style="--bc:${BCOL[v%BCOL.length]}"`:''} onclick="bbCol(${q})">${v||''}</div>`}
+  b.innerHTML=h;$('bscore').textContent=Z.score;$('bnow').textContent=c?`Falling block ${c.v}, column ${c.c+1}`:'';
+  const f=$('bfeed');if(f&&f.dataset.n!=String(Z.clears)){f.dataset.n=Z.clears;f.innerHTML=Z.feed.map((x,i)=>`<li${i?'':' class="new"'}>${esc(x)} ✓</li>`).join('')||'<li class="sol">Clear a group to see it here.</li>'}}
+GVIEW.blocks=function(){const Z=BB,S=ARS('blocks'),p=Z&&Z.ph==='run'?Z.p:bpz(),head=`<div class="gworld">${clouds()}${gameHead('Block Builder',`Stack number blocks that ${p.op==='+'?'add up':'multiply'} to the target to clear them.`)}`;
+  if(!Z||Z.ph!=='run'){const out=outOfTime();let card='';
+    if(Z&&['done','time'].includes(Z.ph))card=`<div class="gcard endcard" style="margin-bottom:16px"><div class="big" aria-hidden="true">🧱</div><h3>${Z.ph==='time'?'Time to rest!':'Tower full!'}</h3><p>${Z.score} points · ${Z.clears} clear${Z.clears===1?'':'s'}${Z.pb?' · ⭐ New best!':''}${Z.gems?` · 💎 +${Z.gems} gems`:''}</p></div>`;
+    return head+`${out?restCard():''}${card}<div class="gcard"><h3>🧱 Pick a puzzle</h3><div class="accs" role="group" aria-label="Puzzle" style="margin:0 0 12px">${BPZ.map(x=>`<button class="chip ${p.id===x.id?'on':''}" aria-pressed="${p.id===x.id}" onclick="ARS('blocks').pz='${x.id}';SYNC();rerealm()">${x.op==='+'?'➕':'✖️'} ${x.n}</button>`).join('')}</div>
+      <ul class="pearn"><li>Number blocks fall one at a time. Move them with ← → or tap a column. ↓ falls faster; Space (or tapping the block's own column) drops it.</li><li>${p.op==='+'?`Line up 2 or 3 blocks side by side, or stack them, so they add up to <b>${p.t}</b>.`:`Put 2 blocks side by side, or stack them, so they multiply to <b>${p.t}</b>.`} They clear with a sparkle!</li><li>A clear that sets off another clear scores a combo. The round ends when the tower reaches the top.</li></ul>
+      <div class="row" style="margin-top:14px;align-items:center"><button class="abtn big" ${out?'disabled':''} onclick="bbStart()">▶ Start building</button>${S.best?`<span class="sol">Best score: <b>${S.best}</b></span>`:''}</div></div></div>`}
+  return head+`<div class="bbwrap"><div><div class="bbtop"><span class="btarget">${p.op==='+'?'➕':'✖️'} Make ${p.t}</span><span class="bpill">Score: <b id="bscore">0</b></span></div><div class="bboard" id="bboard" role="application" aria-label="Block board. Arrow keys move the falling block, Space drops it." aria-describedby="bnow"></div><p class="bsr" id="bnow" aria-live="polite"></p>
+    <div class="bctl"><button class="abtn sec" onclick="bbMove(-1)" aria-label="Move left">◀</button><button class="abtn sec" onclick="bbDrop()" aria-label="Drop">⬇</button><button class="abtn sec" onclick="bbMove(1)" aria-label="Move right">▶</button></div></div>
+    <div class="gcard"><h3 style="margin:0 0 6px">Clears</h3><ul class="bfeed" id="bfeed"></ul><button class="abtn sec sm" style="margin-top:12px" onclick="bbEnd('done')">Finish round</button></div></div></div>`};
+
+/* ---------- Keys for the games and the question modal ---------- */
+addEventListener('keydown',e=>{if(typeof tab==='undefined'||tab!=='play')return;const tg=e.target,typing=tg&&/^(INPUT|TEXTAREA|SELECT)$/.test(tg.tagName);
+  if(QM){if(QM.phase==='ask'&&QM.q&&QM.q.choices&&!typing&&/^[1-4]$/.test(e.key)&&+e.key<=QM.q.choices.length){e.preventDefault();qmAns(+e.key-1)}else if(e.key==='Escape'&&QM.o.cancel&&QM.phase!=='fb')qmClose(false,null);return}
+  if(typing||e.ctrlKey||e.metaKey||e.altKey)return;const k=e.key.length===1?e.key.toLowerCase():e.key;
+  if(AR.mode==='kart'&&KT&&KT.ph==='go'){if(k==='ArrowLeft'||k==='a'){e.preventDefault();kartLane(KT.lane-1)}else if(k==='ArrowRight'||k==='d'){e.preventDefault();kartLane(KT.lane+1)}else if(/^[123]$/.test(k)){e.preventDefault();kartLane(+k-1)}}
+  else if(AR.mode==='blocks'&&BB&&BB.ph==='run'){if(k==='ArrowLeft'||k==='a'){e.preventDefault();bbMove(-1)}else if(k==='ArrowRight'||k==='d'){e.preventDefault();bbMove(1)}else if(k==='ArrowDown'||k==='s'){e.preventDefault();bbFall()}else if(k===' '||k==='Enter'){e.preventDefault();bbDrop()}}});
+/* A hidden tab pauses the kart's gate clock */
+document.addEventListener('visibilitychange',()=>{if(!KT||KT.ph!=='go')return;if(document.hidden)KT.hid=performance.now();else if(KT.hid){KT.gs+=performance.now()-KT.hid;KT.hid=0}});
 </script>
 
 <style>
