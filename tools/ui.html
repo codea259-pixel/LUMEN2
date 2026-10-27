@@ -191,7 +191,7 @@ const _nq2=nextQ;nextQ=function(){const k=cur&&cur.k,wasM=k&&S[k].mastered,mode=
   document.addEventListener('click',e=>{const m=$('pmenu');if(!m.hidden&&!e.target.closest('#pmenu,#avatarBtn'))m.hidden=true});
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('pmenu').hidden){$('pmenu').hidden=true;$('avatarBtn').focus()}});
 })();
-const PLAY=()=>typeof gameOn==='function'&&gameOn()?[['play','Play']]:[];
+const PLAY=()=>typeof gameOn==='function'&&gameOn()?[['play','Arcade']]:[];
 const PRIMARY=()=>BOOT.local?[['learn','Learn'],...PLAY(),['courses','Courses'],['library','Library']]:[['learn','Learn'],...PLAY(),['courses','Courses'],...(BOOT.role==='student'?[['classes','My classes']]:[['teacher','Teacher']]),['community','Community'],['library','Library']];
 can=t=>BOOT.local&&['teacher','owner','classes','community','certs','impact'].includes(t)?false:t=='teacher'?BOOT.role!=='student':t=='owner'?BOOT.role==='owner':t=='classes'?BOOT.role==='student':true;
 nav=function(){$('tabs').innerHTML=PRIMARY().map(([k,l])=>`<button class="tb ${tab===k?'on':''}" ${tab===k?'aria-current="page"':''} onclick="go('${k}')">${l}</button>`).join('');

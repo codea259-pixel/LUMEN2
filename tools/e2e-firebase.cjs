@@ -141,6 +141,21 @@ const errs = [], ok = s => console.log('✓', s);
     return out; }).catch(e => ({ error: e.message }));
   ok('student attacks on the game: ' + JSON.stringify(ga)); if (ga['own board row saved'] !== 'yes' || Object.entries(ga).some(([k, v]) => k !== 'own board row saved' && v !== 'blocked')) errs.push('game rule allowed an attack or the board row was not saved');
 
+  // 5d. Membership: only the Owner switches it on (by username or class code); students and teachers cannot grant it
+  const sUser = creds[0][1], cCode = code;
+  const mo = await o.evaluate(async ([u, c]) => { const a = await api('POST', '/api/owner/members', { who: u, until: Date.now() + 864e5 * 30 }); const b = await api('POST', '/api/owner/members', { who: c, until: Date.now() + 864e5 * 365 }); const l = await api('GET', '/api/owner/members'); return [a.kind, b.kind, l.users.length, l.classes.length] }, [sUser, cCode]);
+  await s.reload(); await s.waitForSelector('#avatarBtn', { timeout: 20000 }); const sm = await s.evaluate(() => isMember());
+  ok('owner switched on membership for an account and a class (Firebase): ' + JSON.stringify(mo) + ', student is a member: ' + sm); if (!sm || mo[0] !== 'account' || mo[1] !== 'class') errs.push('membership did not switch on (Firebase)');
+  const ma = await s.evaluate(async () => { const db = firebase.app().firestore(), uid = FBM.uid(), out = {}; const tryIt = async (k, fn) => { try { await fn(); out[k] = 'ALLOWED' } catch (e) { out[k] = 'blocked' } };
+    await tryIt('student gives self membership', () => db.collection('users').doc(uid).update({ memberUntil: 4102444800000 }));
+    await tryIt('student lists members', () => api('GET', '/api/owner/members')); return out });
+  const mt = await t.evaluate(async () => { const db = firebase.app().firestore(), out = {}; const tryIt = async (k, fn) => { try { await fn(); out[k] = 'ALLOWED' } catch (e) { out[k] = 'blocked' } };
+    const cs = await db.collection('classes').where('teacherId', '==', FBM.uid()).get();
+    await tryIt('teacher gives their class membership', () => cs.docs[0].ref.update({ memberUntil: 4102444800000 }));
+    await tryIt('teacher creates a member class', () => db.collection('classes').add({ teacherId: FBM.uid(), members: [], memberUntil: 4102444800000, name: 'x' })); return out });
+  ok('membership attacks: ' + JSON.stringify({ ...ma, ...mt })); if (Object.values({ ...ma, ...mt }).some(v => v !== 'blocked')) errs.push('membership rule allowed an attack');
+  await o.evaluate(async ([u, c]) => { await api('POST', '/api/owner/members', { who: u, until: 0 }); await api('POST', '/api/owner/members', { who: c, until: 0 }) }, [sUser, cCode]);
+
   // 6. A 13+ learner joins by code, posts; the other student votes
   const l = await page(); await signup(l, 'student', 'priya16', 'Priya'); await l.click('#tabs >> text=My classes'); await l.fill('#jc', code); await l.click('#views button:has-text("Join")'); await l.waitForSelector('text=Room 5', { timeout: 15000 }).catch(async e => { throw new Error('join failed, toast: ' + await l.textContent('#toast')) }); ok('learner joined by code');
   await l.click('#tabs >> text=Community'); await l.fill('#pt', 'How do I add fractions?'); await l.fill('#pb', 'I keep adding the bottoms too.'); await l.click('#views button:has-text("Post")');

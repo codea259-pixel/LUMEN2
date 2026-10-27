@@ -4,7 +4,7 @@ import sys
 import os
 D=os.path.dirname(os.path.abspath(__file__))
 src, out = os.path.join(D,'base.html'), os.path.join(D,'..','public','app.html')
-layers = [os.path.join(D,f) for f in ('firebase.html','bridge.html','ui.html','features.html','video.html','vendor-qrcode.html','printables.html','assess.html','game.html','realm.html','member.html','compete.html')]
+layers = [os.path.join(D,f) for f in ('firebase.html','bridge.html','ui.html','features.html','video.html','vendor-qrcode.html','printables.html','assess.html','game.html','realm.html','member.html','arcade.html','compete.html')]
 import subprocess
 subprocess.run([sys.executable, os.path.join(D, 'build_assess.py')], check=True)  # server/assessments.json
 h = open(src, encoding='utf-8').read()

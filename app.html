@@ -1478,7 +1478,7 @@ const _nq2=nextQ;nextQ=function(){const k=cur&&cur.k,wasM=k&&S[k].mastered,mode=
   document.addEventListener('click',e=>{const m=$('pmenu');if(!m.hidden&&!e.target.closest('#pmenu,#avatarBtn'))m.hidden=true});
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('pmenu').hidden){$('pmenu').hidden=true;$('avatarBtn').focus()}});
 })();
-const PLAY=()=>typeof gameOn==='function'&&gameOn()?[['play','Play']]:[];
+const PLAY=()=>typeof gameOn==='function'&&gameOn()?[['play','Arcade']]:[];
 const PRIMARY=()=>BOOT.local?[['learn','Learn'],...PLAY(),['courses','Courses'],['library','Library']]:[['learn','Learn'],...PLAY(),['courses','Courses'],...(BOOT.role==='student'?[['classes','My classes']]:[['teacher','Teacher']]),['community','Community'],['library','Library']];
 can=t=>BOOT.local&&['teacher','owner','classes','community','certs','impact'].includes(t)?false:t=='teacher'?BOOT.role!=='student':t=='owner'?BOOT.role==='owner':t=='classes'?BOOT.role==='student':true;
 nav=function(){$('tabs').innerHTML=PRIMARY().map(([k,l])=>`<button class="tb ${tab===k?'on':''}" ${tab===k?'aria-current="page"':''} onclick="go('${k}')">${l}</button>`).join('');
@@ -4847,10 +4847,10 @@ function petSvg(p){const e=(x,y)=>`<circle cx="${x}" cy="${y}" r="1.4" fill="#1B
 /* opts.bg: draw the background; opts.flip: face left (battles); opts.only: preview one shop item on a plain hero */
 function heroSvg(G=GM,opts={}){const h=G.hero||{},q=Object.assign({},G.eq||{},opts.eq||{}),sk=SKIN[h.skin??1],hc=HAIRC[h.hc??1],id=svgId(),hideHair=['h_helm','h_hood','h_viking'].includes(q.hat);
   const body=`${hairSvg(h.hair??0,hc,1)}${outfitSvg(q.outfit||'o_tunic')}<rect x="45" y="58" width="10" height="9" fill="${sk}"/><circle cx="31" cy="45" r="4" fill="${sk}"/><circle cx="69" cy="45" r="4" fill="${sk}"/><circle cx="50" cy="43" r="19" fill="${sk}"/>
-  <ellipse cx="43" cy="46" rx="2.6" ry="3.3" fill="#1B2A41"/><ellipse cx="57" cy="46" rx="2.6" ry="3.3" fill="#1B2A41"/><circle cx="44" cy="45" r=".9" fill="#fff"/><circle cx="58" cy="45" r=".9" fill="#fff"/>
-  <circle cx="38.5" cy="52" r="3.2" fill="#F4A6A0" opacity=".55"/><circle cx="61.5" cy="52" r="3.2" fill="#F4A6A0" opacity=".55"/><path d="M45 53Q50 58 55 53" fill="none" stroke="#1B2A41" stroke-width="2" stroke-linecap="round"/>
+  <g class="hx-eyes"><g class="hx-pup"><ellipse cx="43" cy="46" rx="2.6" ry="3.3" fill="#1B2A41"/><ellipse cx="57" cy="46" rx="2.6" ry="3.3" fill="#1B2A41"/><circle cx="44" cy="45" r=".9" fill="#fff"/><circle cx="58" cy="45" r=".9" fill="#fff"/></g></g>
+  <circle cx="38.5" cy="52" r="3.2" fill="#F4A6A0" opacity=".55"/><circle cx="61.5" cy="52" r="3.2" fill="#F4A6A0" opacity=".55"/><path class="m-smile" d="M45 53Q50 58 55 53" fill="none" stroke="#1B2A41" stroke-width="2" stroke-linecap="round"/><path class="m-beam" d="M44 52Q50 61 56 52Z" fill="#1B2A41"/><ellipse class="m-oops" cx="50" cy="54.5" rx="2" ry="2.5" fill="#1B2A41"/>
   ${hideHair?'':hairSvg(h.hair??0,hc)}${hatSvg(q.hat)}<circle cx="${q.item==='i_shield'?27:76}" cy="86" r="4" fill="${sk}"/>${itemSvg(q.item)}${petSvg(q.pet)}`;
-  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${esc(opts.label||'Hero avatar')}"><defs><clipPath id="${id}"><rect width="100" height="100" rx="${opts.round??0}"/></clipPath></defs><g clip-path="url(#${id})">${opts.bg===false?'':bgSvg(q.bg||'b_meadow')}<g ${opts.flip?'transform="translate(100 0) scale(-1 1)"':''}>${body}</g></g></svg>`}
+  return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${esc(opts.label||'Hero avatar')}"><defs><clipPath id="${id}"><rect width="100" height="100" rx="${opts.round??0}"/></clipPath></defs><g clip-path="url(#${id})">${opts.bg===false?'':bgSvg(q.bg||'b_meadow')}<g ${opts.flip?'transform="translate(100 0) scale(-1 1)"':''}><g class="hx-body">${body}</g></g></g></svg>`}
 
 /* ---------- Gem shop ---------- */
 const SHOP=[['hat','h_flower','Flower crown',30,1],['hat','h_wiz','Wizard hat',40,1],['hat','h_hood','Ranger hood',50,3],['hat','h_feather','Bard cap',60,4],['hat','h_helm','Knight helmet',90,6],['hat','h_viking','Horned helmet',110,9],['hat','h_crown','Golden crown',200,12],
@@ -4874,15 +4874,15 @@ const _rmG=renderMe;renderMe=function(){_rmG();const m=$('me');if(!m)return;cons
 const _tmG=toggleMenu;toggleMenu=function(){_tmG();const m=$('pmenu');if(m.hidden||m.querySelector('[data-g]'))return;
   m.querySelector('.who').insertAdjacentHTML('afterend',`<button role="menuitem" data-g onclick="$('pmenu').hidden=true;ST.ht='hero';go('hero')"><span aria-hidden="true">🛡️</span>My hero, shop and quests</button>${innerWidth<860&&can('community')&&!BOOT.local?`<button role="menuitem" onclick="$('pmenu').hidden=true;go('community')"><span aria-hidden="true">💬</span>Community</button>`:''}`)};
 function questBox(){const D=DAY(),L=dailyQuests(),W=WEEK();
-  return `<div class="card" id="qbox"><div class="split"><h3>⚔️ Today's quests</h3><span class="sol">${D.q.length} of 3 done</span></div>
-  ${L.map(id=>{const Q=QUESTS[id],v=Math.min(Q.n,Q.v(D)),d=D.q.includes(id);return `<div class="quest ${d?'done':''}"><span class="qi" aria-hidden="true">${d?'✔️':Q.i}</span><div class="qt"><b>${esc(Q.t(Q.n))}</b><div class="bar" role="progressbar" aria-label="${esc(Q.t(Q.n))}" aria-valuemin="0" aria-valuemax="${Q.n}" aria-valuenow="${v}"><i style="width:${v/Q.n*100}%"></i></div></div><span class="rw">${d?'Done':`${v}/${Q.n} · ${Q.gemsOnly?8:5} 💎`}</span></div>`}).join('')}
+  const act=L.find(id=>!D.q.includes(id));
+  return `<div class="gcard parch" id="qbox"><div class="split"><h3>⚔️ Today's quests</h3><span class="sol">${D.q.length} of 3 done</span></div>
+  ${L.map(id=>{const Q=QUESTS[id],v=Math.min(Q.n,Q.v(D)),d=D.q.includes(id);return `<div class="quest ${d?'done':''} ${id===act?'qactive':''}"><span class="qi" aria-hidden="true">${d?'✔️':Q.i}</span><div class="qt"><b>${esc(Q.t(Q.n))}</b><div class="bar" role="progressbar" aria-label="${esc(Q.t(Q.n))}" aria-valuemin="0" aria-valuemax="${Q.n}" aria-valuenow="${v}"><i style="width:${v/Q.n*100}%"></i></div></div><span class="rw">${d?'Done':`${v}/${Q.n} · ${Q.gemsOnly?8:5} 💎`}</span></div>`}).join('')}
   <div class="chest"><span aria-hidden="true" style="font-size:22px">${D.chest?'🔓':'🧰'}</span><span>${D.chest?'Treasure chest opened. New quests tomorrow!':'Finish all three for a treasure chest: +10 💎 and +30 XP'}</span></div>
   ${WQ.map(q=>{const v=Math.min(q.n,q.v(W)),d=W.q.includes(q.id);return `<div class="quest ${d?'done':''}" style="margin-top:6px"><span class="qi" aria-hidden="true">${d?'✔️':q.i}</span><div class="qt"><b>Weekly: ${esc(q.t)}</b><div class="bar"><i style="width:${v/q.n*100}%"></i></div></div><span class="rw">${d?'Done':`${v}/${q.n} · ${q.g} 💎`}</span></div>`}).join('')}</div>`}
-function heroCard(){const p=lvProg();
-  return `<div class="card hcard"><div class="hav">${heroSvg()}</div><div style="flex:1;min-width:0"><div class="rank">${esc(rankOf(p.L))}</div><h3>Level ${p.L} hero</h3>
-  <div class="bar" role="progressbar" aria-label="XP to the next level" aria-valuemin="0" aria-valuemax="${p.need}" aria-valuenow="${p.into}"><i style="width:${p.pct}%"></i></div><div class="xpline"><span>${p.into} / ${p.need} XP</span><span>to level ${p.L+1}</span></div>
-  <p class="sol" style="margin:8px 0 0;font-size:.85rem">${(()=>{const nl=gameOn()&&LANDS.find(l=>l.lv>p.L),nr=RANKS.find(r=>r[0]>p.L);return nl?`Next: ${nl.e} ${esc(nl.n)} opens at level ${nl.lv}`:nr?`Next rank: ${nr[1]} at level ${nr[0]}`:'Top rank reached!'})()} · 🏆 ${GM.tre.length} treasures</p>
-  <div class="gemrow">${gameOn()?`<button class="lamp" onclick="go('play')">⚔️ Play${typeof playLabel==='function'?' · '+playLabel():''}</button>`:''}<button class="alt" onclick="ST.ht='shop';go('hero')">💎 ${GEMS()} · Shop</button></div></div></div>`}
+function heroCard(){const p=lvProg(),nl=gameOn()&&LANDS.find(l=>l.lv>p.L),nr=RANKS.find(r=>r[0]>p.L);
+  return `<div class="gcard hcard">${typeof liveHero==='function'?liveHero({label:'Your hero',style:'width:112px;height:112px;flex:none'}):`<div class="hav">${heroSvg()}</div>`}<div style="flex:1;min-width:0"><div class="rank">${esc(rankOf(p.L))}</div><h3 style="margin:0 0 8px">Level ${p.L} hero</h3>
+  ${typeof gemBar==='function'?gemBar(p):''}<p class="sol" style="margin:8px 0 0;font-size:.85rem">${nl?`Next: ${nl.e} ${esc(nl.n)} opens at level ${nl.lv}`:nr?`Next rank: ${nr[1]} at level ${nr[0]}`:'Top rank reached!'} · 🏆 ${GM.tre.length} treasures</p>
+  <div class="gemrow" style="margin-top:12px">${gameOn()?`<button class="abtn big" onclick="go('play')">▶ Play${typeof playLabel==='function'?` <span class="apill">${playLabel()}</span>`:''}</button>`:''}<button class="abtn sec sm" onclick="ST.ht='shop';go('hero')">💎 ${GEMS()} · Shop</button></div></div></div>`}
 const _dhG=dashHtml;dashHtml=function(){return _dhG().replace('<article class="mission',`<div class="herostrip">${heroCard()}${questBox()}</div><article class="mission`)};
 
 /* ---------- My hero page: hero, shop, quests and treasures ---------- */
@@ -5011,7 +5011,7 @@ function playLabel(){const l=playLeft();return l===Infinity?'no time limit':l>0?
 function earnNote(){const g=GSET(),m=Math.floor(DAY().study/60),capped=playAllowed()>=g.max*60;
   return capped?`You've earned today's full ${g.max} minutes of play. Come back tomorrow for more.`:`Every 10 minutes of learning earns ${g.per} more minutes of play, up to ${g.max} minutes a day. You've learned ${m} minute${m===1?'':'s'} today.`}
 function realmTick(sec){if(tab!=='play'||!gameOn()||document.hidden||Date.now()-lastAct>120000)return;
-  if(BT&&['ask','fb'].includes(BT.phase)||!BT){if(!noLimit()&&playLeft()>0){DAY().play+=sec;if(DAY().play%60===0)SYNC()}}
+  if(BT?['ask','fb'].includes(BT.phase):!!AR.mode){if(!noLimit()&&playLeft()>0){DAY().play+=sec;if(DAY().play%60===0)SYNC()}}
   const e=$('ptime');if(e)e.outerHTML=ptimeHtml();
   if(!noLimit()&&playLeft()<=0&&BT&&BT.phase==='ask'){BT.phase='timeup';renderBattle()}}
 function ptimeHtml(){const l=playLeft(),a=noLimit()?1:playAllowed();return `<div class="ptime" id="ptime" title="${esc(noLimit()?'Only learners have a daily play time.':earnNote())}"><span aria-hidden="true">⏳</span><span>${l===Infinity?(isMember()&&BOOT.role==='student'?'⭐ Member: unlimited play':'No time limit (preview)'):l>0?mmss(l)+' of play left today':'Out of play time today'}</span>${l===Infinity?'':`<div class="bar" aria-hidden="true"><i style="width:${Math.min(100,l/a*100)}%"></i></div>`}</div>`}
@@ -5031,27 +5031,28 @@ function mapSvg(){const path=POS.map(([x,y],i)=>(i?'L':'M')+x+' '+y).join(' ');
   ${LANDS.map((l,i)=>{const [x,y]=POS[i],o=landOpen(l),st=LS(l.id),sel=curLand()===l.id;return `<g class="land" tabindex="0" role="button" aria-label="${esc(l.n)}${o?'':', opens at level '+l.lv}${st.boss?', cleared':''}" onclick="selLand('${l.id}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selLand('${l.id}')}">
     <circle class="ring" cx="${x}" cy="${y}" r="52" fill="${o?l.sky[0]:'#C9D2DC'}" stroke="${sel?'#F2A900':'#fff'}" stroke-width="${sel?9:6}"/><text x="${x}" y="${y+16}" font-size="46" text-anchor="middle" ${o?'':'opacity=".45"'}>${l.e}</text>
     ${o?'':`<circle cx="${x+34}" cy="${y-34}" r="17" fill="#1B2A41"/><text x="${x+34}" y="${y-28}" font-size="17" text-anchor="middle">🔒</text>`}${st.boss?`<circle cx="${x+36}" cy="${y-34}" r="17" fill="#3BB273"/><text x="${x+36}" y="${y-28}" font-size="18" fill="#fff" text-anchor="middle" font-weight="800">✓</text>`:''}
-    <rect x="${x-78}" y="${y+60}" width="156" height="${o?30:46}" rx="15" fill="rgba(255,255,255,.92)"/><text x="${x}" y="${y+81}" font-size="18" font-weight="800" text-anchor="middle" fill="#1B2A41">${esc(l.n)}</text>${o?'':`<text x="${x}" y="${y+99}" font-size="14" text-anchor="middle" fill="#55657E">Level ${l.lv}</text>`}</g>`}).join('')}</svg>`}
+    <rect x="${x-78}" y="${y+60}" width="156" height="46" rx="15" fill="rgba(255,255,255,.94)"/><text x="${x}" y="${y+81}" font-size="18" font-weight="800" text-anchor="middle" fill="#1B2A41">${esc(l.n)}</text>${o?`<text x="${x}" y="${y+99}" font-size="15" text-anchor="middle" fill="#F2A900" letter-spacing="2">${'★'.repeat(starN(st))}<tspan fill="#C9D2DC">${'★'.repeat(4-starN(st))}</tspan></text>`:`<text x="${x}" y="${y+99}" font-size="14" text-anchor="middle" fill="#55657E">Level ${l.lv}</text>`}</g>`}).join('')}</svg>`}
+const starN=st=>st.won.filter(Boolean).length+(st.boss?1:0);
+const starsHtml=st=>{const n=starN(st);return `<span class="stars" role="img" aria-label="${n} of 4 stars">${'★'.repeat(n)}<span class="off">${'★'.repeat(4-n)}</span></span>`};
 function landPanel(){const l=LANDS.find(x=>x.id===curLand()),st=LS(l.id),M=MONS[l.id],ready=st.won.every(Boolean);
-  return `<div class="card" id="landpanel" style="margin-top:14px"><div class="split"><h3>${l.e} ${esc(l.n)}</h3><span class="sol">${st.won.filter(Boolean).length} of 3 monsters befriended${st.boss?' · boss defeated':''}</span></div>
-  <p class="sol">Beat the three monsters to unlock the boss. A correct answer casts your spell; a wrong answer lets the monster strike, and shows you how to solve it.</p>
-  <div class="mons">${M.map((m,i)=>{const boss=i===3,lock=boss&&!ready,won=boss?st.boss:st.won[i];return `<div class="card mon ${boss?'boss':''} ${lock?'locked':''}"><div class="art mon-art">${monsterSvg(m,boss)}</div><b>${esc(boss?(m[0][0].toUpperCase()+m[0].slice(1)):m[0])}</b>
-    <p class="sol">${boss?'👑 Boss':won?'✓ Beaten':'Wild monster'} · ❤️ ${monHp(l,i)}</p><button class="${won||lock?'alt':'lamp'}" ${lock?'disabled':''} onclick="startBattle('${l.id}',${i})">${lock?'🔒 Beat all 3 first':won?'Battle again':'⚔️ Battle'}</button></div>`}).join('')}</div></div>`}
+  return `<div class="gcard" id="landpanel" style="margin-top:18px"><div class="split"><h3>${l.e} ${esc(l.n)}</h3>${starsHtml(st)}</div>
+  <p class="sol">Befriend the three monsters to unlock the boss. A correct answer casts your spell; a wrong one lets the monster swing, then shows you the trick.</p>
+  <div class="mons">${M.map((m,i)=>{const boss=i===3,lock=boss&&!ready,won=boss?st.boss:st.won[i];return `<div class="mon ${boss?'boss':''} ${lock?'locked':''}"><div class="art mon-art">${monsterSvg(m,boss)}</div><b>${esc(boss?(m[0][0].toUpperCase()+m[0].slice(1)):m[0])}</b>
+    <p class="sol">${boss?'👑 Boss':won?'✓ Befriended':'Wild monster'} · ❤️ ${monHp(l,i)}</p><button class="abtn sm ${won||lock?'sec':''}" ${lock?'disabled':''} onclick="startBattle('${l.id}',${i})">${lock?'🔒 Beat all 3 first':won?'Battle again':'⚔️ Battle'}</button></div>`}).join('')}</div></div>`}
 function monHp(l,i){const n=LANDS.indexOf(l);return i===3?130+15*n:60+8*n}
 function schoolsHtml(){const subs=Object.keys(SUBN).filter(s=>subSkills(s).some(k=>G[k]));const s=GM.rsub&&subs.includes(GM.rsub)?GM.rsub:subs.includes(ST.subj)?ST.subj:'math';GM.rsub=s;
   return `<div class="schools" role="group" aria-label="Choose your magic"><span class="sol"><b>Your magic:</b></span>${subs.map(x=>{const g=magicOf(x);return `<button class="chip ${s===x?'on':''}" aria-pressed="${s===x}" onclick="GM.rsub='${x}';SYNC();rerealm()">${g[0]} ${g[1]} <small>(${esc(SUBN[x])})</small></button>`}).join('')}</div>`}
-function mapView(){const left=playLeft();
-  return `<div class="realm-top"><h2>⚔️ Lumi's Realm</h2>${ptimeHtml()}</div>
-  ${!noLimit()&&left<=0?`<div class="card endcard" style="margin-bottom:14px"><div class="big" aria-hidden="true">🌙</div><h3>Play time is over for today</h3><p>${esc(earnNote())}</p><button class="lamp" onclick="go('learn')">📖 Go learn</button>${memberNote()}</div>`:''}
-  ${schoolsHtml()}<div class="worldmap">${mapSvg()}</div>
-  <div class="landlist">${LANDS.map(l=>{const o=landOpen(l),st=LS(l.id);return `<button class="lrow ${curLand()===l.id?'on':''}" ${o?'':'disabled'} onclick="selLand('${l.id}')"><span class="le" style="background:${o?l.sky[0]:'#C9D2DC'}" aria-hidden="true">${l.e}</span><span><b>${esc(l.n)}</b><span class="sol">${o?(st.boss?'Cleared ✓':`${st.won.filter(Boolean).length} of 3 monsters`):'🔒 Opens at level '+l.lv}</span></span></button>`}).join('')}</div>
-  ${landPanel()}<p class="sol" style="margin-top:12px">${isMember()&&BOOT.role==='student'?`⭐ You're a member until ${new Date(ME.member).toLocaleDateString()}: play as long as you like.`:noLimit()?'Teachers, parents and the Owner can play without a time limit to try the game. Learners get a daily play time.':esc(earnNote())}</p>`}
+function mapView(){const out=!noLimit()&&playLeft()<=0;
+  return `<div class="gworld">${clouds()}<div class="ghead"><div style="display:flex;gap:14px;align-items:center"><button class="abtn sec sm" onclick="toHub()">← Arcade</button><div><h2 class="gtitle">Spell Quest</h2><p class="gsub">Befriend the monsters of seven magic lands.</p></div></div>${ptimeHtml()}</div>
+  ${out?restCard():''}${schoolsHtml()}<div class="worldmap">${mapSvg()}</div>
+  <div class="landlist">${LANDS.map(l=>{const o=landOpen(l),st=LS(l.id);return `<button class="lrow ${curLand()===l.id?'on':''}" ${o?'':'disabled'} onclick="selLand('${l.id}')"><span class="le" style="background:${o?l.sky[0]:'#C9D2DC'}" aria-hidden="true">${l.e}</span><span><b>${esc(l.n)}</b><span class="sol">${o?starsHtml(st):'🔒 Opens at level '+l.lv}</span></span></button>`}).join('')}</div>
+  ${landPanel()}<p class="gnote">${isMember()&&BOOT.role==='student'?`⭐ You're a member until ${new Date(ME.member).toLocaleDateString()}: play as long as you like.`:noLimit()?'Teachers, parents and the Owner can play without a time limit to try the game. Learners get a daily play time.':esc(earnNote())}</p></div>`}
 
 /* ---------- Battles ---------- */
 function rpool(sub){let L=subSkills(sub).filter(k=>G[k]&&inBand(k));if(!L.length)L=subSkills(sub).filter(k=>G[k]);return L}
 function rquestion(){const L=rpool(GM.rsub||'math'),seen=L.filter(k=>S[k]&&S[k].att);
   for(let i=0;i<15&&L.length;i++){const k=seen.length&&Math.random()<.7?pick(seen):pick(L);try{const s=S[k]||{p:0},q=G[k](s.p<.4?1:s.p<.7?2:3);if(q&&q.q&&q.a)return{k,q}}catch(e){}}return null}
-function startBattle(id,i){const l=LANDS.find(x=>x.id===id);if(!landOpen(l))return;if(i===3&&!LS(id).won.every(Boolean))return;
+function startBattle(id,i){AR.mode='spell';const l=LANDS.find(x=>x.id===id);if(!landOpen(l))return;if(i===3&&!LS(id).won.every(Boolean))return;
   if(!noLimit()&&playLeft()<=0)return msg('Play time is over for today. Learn to earn more!');
   const hp=monHp(l,i);BT={land:id,i,m:MONS[id][i],boss:i===3,mhp:hp,mmax:hp,hp:100,run:0,phase:'ask',n:0,ok:0};nextTurn();renderBattle()}
 function nextTurn(){const x=rquestion();if(!x){BT.phase='none';return}Object.assign(BT,{k:x.k,q:x.q,phase:'ask',fb:'',low:0})}
@@ -5064,12 +5065,21 @@ function castAns(raw){if(!BT||BT.phase!=='ask')return;const q=BT.q;let ok;
     BT.fb=`<div class="bfb ok" role="status">${magicOf(GM.rsub)[0]} ${pick(['Great spell!','Direct hit!','Brilliant!','Super cast!','You got it!'])} ${dmg} damage${BT.run>1?` · ${BT.run} in a row!`:''}${GM.eq.pet?' (your pet helped!)':''}</div>`;
     anim('hero',dmg);setTimeout(()=>{if(!BT||BT.phase!=='fb')return;if(BT.mhp<=0)winBattle();else{nextTurn();renderBattle()}},1150)}
   else{BT.run=0;const dmg=16+3*li+Math.floor(Math.random()*6);BT.hp=Math.max(0,BT.hp-dmg);BT.phase='fb';
-    BT.fb=`<div class="bfb no" role="status">Not quite. The answer is <b>${esc(fmtA(q))}</b>. The monster strikes for ${dmg}!${q.s?`<p class="sol">${q.s}</p>`:''}<div class="row" style="margin-top:8px"><button class="lamp" id="bnext" onclick="afterMiss()">${BT.hp<=0?'Continue':'Next spell →'}</button></div></div>`;anim('mon',dmg)}
-  renderBattle(true)}
+    BT.fb=`<div class="bfb no" role="status">Not quite. The answer is <b>${esc(fmtA(q))}</b>. The monster strikes for ${dmg}!${q.s?`<p class="sol">${q.s}</p>`:''}<div class="row" style="margin-top:10px"><button class="abtn sun sm" id="bnext" onclick="afterMiss()">${BT.hp<=0?'Continue':'Next spell →'}</button></div></div>`;anim('mon',dmg)}
+  renderBattle(true);setTimeout(()=>heroMood(ok?'beam':'oops',ok?900:1200),40)}
 function afterMiss(){if(!BT)return;if(BT.hp<=0){BT.phase='lost';renderBattle();return}if(!noLimit()&&playLeft()<=0){BT.phase='timeup';renderBattle();return}nextTurn();renderBattle()}
 function bfb(c,t){const e=$('bfbx');if(e)e.innerHTML=`<div class="bfb ${c}" role="status">${esc(t)}</div>`}
 function winBattle(){const st=LS(BT.land),first=BT.boss?!st.boss:!st.won[BT.i],g=BT.boss?(first?25:8):(first?6:2);
-  if(BT.boss)st.boss=1;else st.won[BT.i]=1;st.wins++;GM.bw++;DAY().bat++;addGems(g);BT.phase='won';BT.gems=g;BT.first=first;SYNC();renderBattle();gameCheck()}
+  if(BT.boss)st.boss=1;else st.won[BT.i]=1;st.wins++;GM.bw++;DAY().bat++;addGems(g);BT.phase='won';BT.gems=g;BT.first=first;
+  BT.drop=Math.random()<.25||(BT.boss&&first)?gearDrop(BT.boss&&first):null;SYNC();renderBattle();gameCheck()}
+/* Gear drops: 1 win in 4 (and every first boss win) drops a free item for the hero, from Common to Legendary */
+const RARITY=[['Common','#64748B'],['Rare','#2563EB'],['Epic','#7C3AED'],['Legendary','#D97706']];
+const rarityOf=s=>s.p<=45?0:s.p<=90?1:s.p<=150?2:3;
+function gearDrop(boss){const pool=SHOP.filter(s=>s.p>0&&!GM.own.includes(s.id)&&s.lv<=LVL()+3&&(boss||rarityOf(s)<3));if(!pool.length)return null;
+  const w=boss?[0,4,4,2]:[6,3,1,0];let r=Math.random()*w.reduce((a,b)=>a+b),t=0;for(;t<3&&(r-=w[t])>0;t++);
+  const L=pool.filter(s=>rarityOf(s)===t),it=pick(L.length?L:pool);GM.own=[...GM.own,it.id];return it.id}
+function dropHtml(id){const s=shopItem(id),r=RARITY[rarityOf(s)],on=GM.eq[s.cat]===id;
+  return `<div class="drop" style="--rc:${r[1]}"><div class="pv">${heroSvg(GM,{eq:{[s.cat]:id},label:s.n})}</div><div style="text-align:left"><span class="rar">${r[0]} gear!</span><b>${esc(s.n)}</b><span class="sol">${({hat:'Hat',outfit:'Outfit',item:'Magic item',pet:'Pet',bg:'Background'})[s.cat]}</span><p class="sol" style="margin:2px 0 8px">It's in your hero's closet now.</p><button class="abtn gold sm" ${on?'disabled':''} onclick="equip('${id}');renderBattle()">${on?'Wearing it':'Wear it'}</button></div></div>`}
 function anim(who,dmg){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;setTimeout(()=>{const ar=document.querySelector('.arena');if(!ar)return;
   const me=ar.querySelector('.fighter.me .art'),mo=ar.querySelector('.fighter.foe .art');
   if(who==='hero'){const o=document.createElement('div');o.className='orbshot';o.style.color=magicOf(GM.rsub)[2];ar.appendChild(o);setTimeout(()=>{o.remove();if(mo){mo.classList.add('hit','flash');setTimeout(()=>mo.classList.remove('hit','flash'),450)}pop(ar,'72%','58%',dmg)},520)}
@@ -5077,22 +5087,23 @@ function anim(who,dmg){if(matchMedia('(prefers-reduced-motion: reduce)').matches
 function pop(ar,l,t,n){const d=document.createElement('div');d.className='dmg';d.style.left=l;d.style.top=t;d.textContent='-'+n;ar.appendChild(d);setTimeout(()=>d.remove(),1000)}
 function battleHtml(){const l=LANDS.find(x=>x.id===BT.land),q=BT.q,nm=BT.m[0][0].toUpperCase()+BT.m[0].slice(1),mg=magicOf(GM.rsub);
   const arena=`<div class="arena" style="background:linear-gradient(${l.sky[0]},${l.sky[1]} 62%,${l.gr} 62%)">${BT.run>1&&BT.phase!=='won'?`<div class="combo">🔥 ${BT.run} in a row</div>`:''}
-    <div class="fighter me"><div class="hpw"><span class="nameplate">${esc(ME.display||'Hero')} · Lv ${LVL()}</span><div class="hp" role="progressbar" aria-label="Your health" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${BT.hp}"><i style="width:${BT.hp}%"></i></div><span class="hpn">${BT.hp} / 100</span></div><div class="art">${heroSvg(GM,{bg:false,label:'Your hero'})}</div></div>
+    <div class="fighter me"><div class="hpw"><span class="nameplate">${esc(ME.display||'Hero')} · Lv ${LVL()}</span><div class="hp" role="progressbar" aria-label="Your health" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${BT.hp}"><i style="width:${BT.hp}%"></i></div><span class="hpn">${BT.hp} / 100</span></div><div class="art live" style="--bd:-1.7s" onclick="heroTap(this)">${heroSvg(GM,{bg:false,label:'Your hero'})}</div></div>
     <div class="fighter foe"><div class="hpw"><span class="nameplate">${BT.boss?'👑 ':''}${esc(nm)}</span><div class="hp foe" role="progressbar" aria-label="Monster health" aria-valuemin="0" aria-valuemax="${BT.mmax}" aria-valuenow="${BT.mhp}"><i style="width:${BT.mhp/BT.mmax*100}%"></i></div><span class="hpn">${BT.mhp} / ${BT.mmax}</span></div><div class="art mon-art">${monsterSvg(BT.m,BT.boss)}</div></div></div>`;
+  const again=playLeft()>0?`<button class="abtn sec" onclick="startBattle('${l.id}',${BT.i})">Battle again</button>`:'';
   let panel;
-  if(BT.phase==='won')panel=`<div class="endcard"><div class="big" aria-hidden="true">🏆</div><h3>You beat ${esc(nm)}!</h3><p>${BT.ok} correct out of ${BT.n} spells. You earned <b>💎 ${BT.gems} gems</b>${BT.first?' for your first win':''}.${BT.boss&&BT.first?` You found the <b>${esc(l.relic)}</b>!`:''}</p><div class="row" style="justify-content:center"><button class="lamp" onclick="BT=null;rerealm()">Back to ${esc(l.n)}</button>${playLeft()>0?`<button class="alt" onclick="startBattle('${l.id}',${BT.i})">Battle again</button>`:''}</div></div>`;
-  else if(BT.phase==='lost')panel=`<div class="endcard"><div class="big" aria-hidden="true">💫</div><h3>${esc(nm)} won this time</h3><p>Lumi healed you up. Every miss showed you how to solve it, so you're stronger now. Try again!</p><div class="row" style="justify-content:center"><button class="lamp" onclick="startBattle('${l.id}',${BT.i})">Try again</button><button class="alt" onclick="BT=null;rerealm()">Back to the map</button></div></div>`;
-  else if(BT.phase==='timeup')panel=`<div class="endcard"><div class="big" aria-hidden="true">🌙</div><h3>Play time is over for today</h3><p>${esc(earnNote())}</p><div class="row" style="justify-content:center"><button class="lamp" onclick="BT=null;go('learn')">📖 Go learn</button><button class="alt" onclick="BT=null;rerealm()">Back to the map</button></div>${memberNote()}</div>`;
-  else if(BT.phase==='none')panel=`<div class="endcard"><h3>No questions here yet</h3><p>Pick another kind of magic, or choose your grade on the Learn page.</p><button class="lamp" onclick="BT=null;rerealm()">Back to the map</button></div>`;
+  if(BT.phase==='won')panel=`<div class="endcard"><div class="big" aria-hidden="true">🏆</div><h3>You befriended ${esc(nm)}!</h3><p>${BT.ok} correct out of ${BT.n} spell${BT.n===1?'':'s'}. You earned <b>💎 ${BT.gems} gems</b>${BT.first?' for your first win':''}.${BT.boss&&BT.first?` You found the <b>${esc(l.relic)}</b>!`:''}</p>${BT.drop?dropHtml(BT.drop):''}<div class="row" style="justify-content:center"><button class="abtn" onclick="BT=null;rerealm()">Back to ${esc(l.n)}</button>${again}</div></div>`;
+  else if(BT.phase==='lost')panel=`<div class="endcard"><div class="big" aria-hidden="true">💫</div><h3>Your hero needs a rest</h3><p>Lumi patched you up. Every miss showed you the trick, so you're stronger now. Try again!</p><div class="row" style="justify-content:center"><button class="abtn" onclick="startBattle('${l.id}',${BT.i})">Try again</button><button class="abtn sec" onclick="BT=null;rerealm()">Back to the map</button></div></div>`;
+  else if(BT.phase==='timeup')panel=`<div class="endcard"><div class="big" aria-hidden="true">🌙</div><h3>Play time is over for today</h3><p>${esc(earnNote())}</p><div class="row" style="justify-content:center"><button class="abtn sun" onclick="BT=null;go('learn')">📖 Go learn</button><button class="abtn sec" onclick="BT=null;rerealm()">Back to the map</button></div>${memberNote()}</div>`;
+  else if(BT.phase==='none')panel=`<div class="endcard"><h3>No questions here yet</h3><p>Pick another kind of magic, or choose your grade on the Learn page.</p><button class="abtn" onclick="BT=null;rerealm()">Back to the map</button></div>`;
   else panel=`<p class="sol" style="margin:0 0 6px">${mg[0]} ${mg[1]} · ${esc(SK[BT.k].n)}</p><div class="bq">${q.q}</div>
-    ${q.choices?`<div class="bchoices">${q.choices.map((c,i)=>`<button ${BT.phase!=='ask'?'disabled':''} onclick="castAns(${i})"><span aria-hidden="true">${'ABCD'[i]}.</span> ${esc(c)}</button>`).join('')}</div>`
-      :`<form class="bans" onsubmit="event.preventDefault();castAns($('bans').value)"><input id="bans" autocomplete="off" inputmode="text" aria-label="Your answer" placeholder="Type your answer" ${BT.phase!=='ask'?'disabled':''}><button class="lamp" ${BT.phase!=='ask'?'disabled':''}>✨ Cast</button></form>`}
+    ${q.choices?`<div class="bchoices">${q.choices.map((c,i)=>`<button ${BT.phase!=='ask'?'disabled':''} onclick="castAns(${i})"><span class="key" aria-hidden="true">${'ABCD'[i]}</span> ${esc(c)}</button>`).join('')}</div>`
+      :`<form class="bans" onsubmit="event.preventDefault();castAns($('bans').value)"><input id="bans" autocomplete="off" inputmode="text" aria-label="Your answer" placeholder="Type your answer" ${BT.phase!=='ask'?'disabled':''}><button class="abtn" ${BT.phase!=='ask'?'disabled':''}>✨ Cast</button></form>`}
     <div id="bfbx">${BT.fb||''}</div>`;
-  return `<div class="realm-top"><button class="alt" onclick="if(BT.phase==='ask'&&BT.n&&!confirm('Leave this battle?'))return;BT=null;rerealm()">← Map</button>${ptimeHtml()}</div><div class="battle">${arena}<div class="qpanel">${panel}</div></div>`}
+  return `<div class="gworld">${clouds()}<div class="ghead"><button class="abtn sec sm" onclick="if(BT.phase==='ask'&&BT.n&&!confirm('Leave this battle?'))return;BT=null;rerealm()">← Map</button>${ptimeHtml()}</div><div class="battle">${arena}<div class="qpanel">${panel}</div></div></div>`}
 function renderBattle(keep){if(tab!=='play'||!BT)return;$('views').innerHTML=battleHtml();
   const f=BT.phase==='ask'?($('bans')||document.querySelector('.bchoices button')):$('bnext');if(f&&!keep)f.focus();else if(f&&BT.phase==='fb')f.focus()}
 function rerealm(){if(tab==='play')$('views').innerHTML=VIEWS.play()}
-VIEWS.play=function(){if(!gameOn())return `<h2>Lumi's Realm</h2><p class="sol">The game is turned off on this site.</p>`;return BT?battleHtml():mapView()};
+VIEWS.play=function(){if(!gameOn())return `<h2>Bose Arcade</h2><p class="sol">The Arcade is turned off on this site.</p>`;return BT?battleHtml():AR.mode==='spell'?mapView():hubView()};
 const _stG=showTab;showTab=function(t){if(t!=='play'&&BT&&BT.phase==='ask')BT=null;_stG(t)};
 
 /* Owner console: the daily play time */
@@ -5160,6 +5171,157 @@ function giveMember(){const who=$('mwho').value.trim(),n=+$('mlen').value;if(who
 function endMember(who){if(!confirm('End this membership now?'))return;busy(async()=>{await api('POST','/api/owner/members',{who,until:0});msg('Membership ended.');reload('owner')})}
 const _loM=LOAD.owner;LOAD.owner=async()=>{await _loM();try{ST.members=await api('GET','/api/owner/members')}catch(e){ST.members={users:[],classes:[]}}};
 const _ovM=VIEWS.owner;VIEWS.owner=function(){const h=_ovM(),k='</div><div style="margin-top:16px">';return h.replace(k,`<button class="chip ${ST.ot==='member'?'on':''}" onclick="ST.ot='member';r2()">⭐ Membership</button>`+k)};
+</script>
+
+<style>
+/* ===== Bose Arcade: the game look (sky-to-indigo worlds, 3D cards, arcade buttons, gem XP bar, liquid tubes,
+   a living hero) and the Arcade hub that replaces the Play tab. Teacher pages keep the plain look. ===== */
+:root{--ga-top:#7DD3FC;--ga-mid:#4F46E5;--ga-deep:#312E81;--ga-gold:#F2A900;--ga-glow:#FFD86B;--ga-purple:#8B5CF6;--ga-ice:#67E8F9;--ga-red:#FB7185;--ga-parch:#F8EBD0;--ga-lip:rgba(30,27,75,.38)}
+.gworld{position:relative;border-radius:28px;padding:22px 20px 26px;background:radial-gradient(1200px 300px at 50% -60px,rgba(255,255,255,.35),transparent 70%),linear-gradient(180deg,var(--ga-top) 0,#6366F1 300px,var(--ga-deep) 640px,#1E1B4B 100%);color:#fff;overflow:hidden;box-shadow:0 10px 30px rgba(30,27,75,.25)}
+.gworld::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(1.4px 1.4px at 12% 22%,#fff 50%,transparent 51%),radial-gradient(1.2px 1.2px at 32% 64%,#fff 50%,transparent 51%),radial-gradient(1.6px 1.6px at 68% 30%,#fff 50%,transparent 51%),radial-gradient(1.2px 1.2px at 84% 72%,#fff 50%,transparent 51%),radial-gradient(1.3px 1.3px at 52% 86%,#fff 50%,transparent 51%),radial-gradient(1.1px 1.1px at 90% 12%,#fff 50%,transparent 51%);opacity:.55;top:220px}
+.gworld>*{position:relative}
+.cloud{position:absolute;pointer-events:none;width:180px;height:44px;border-radius:44px;background:rgba(255,255,255,.32);filter:blur(1px);animation:drift 38s linear infinite}
+.cloud::before,.cloud::after{content:"";position:absolute;border-radius:50%;background:inherit}.cloud::before{width:70px;height:60px;left:30px;top:-28px}.cloud::after{width:56px;height:50px;left:88px;top:-20px}
+@keyframes drift{from{transform:translateX(-220px)}to{transform:translateX(1400px)}}
+.ghead{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:16px}
+.gtitle{margin:0;font:800 clamp(1.7rem,4vw,2.4rem)/1.1 "Bricolage Grotesque",sans-serif;color:#fff;text-shadow:0 2px 0 #312E81,2px 0 0 #312E81,-2px 0 0 #312E81,0 -2px 0 #312E81,2px 2px 0 #312E81,-2px 2px 0 #312E81,0 5px 0 rgba(30,27,75,.45)}
+.gsub{margin:6px 0 0;color:#fff;font-weight:700;text-shadow:0 1px 2px rgba(30,27,75,.9),0 0 8px rgba(30,27,75,.55)}
+.gworld h3{margin:0 0 8px}
+/* 3D cards: light top edge, inner glow, a solid lip and a soft shadow */
+.gcard{background:var(--panel);color:var(--ink);border-radius:24px;padding:18px;border:2px solid rgba(255,255,255,.7);box-shadow:inset 0 1px 0 rgba(255,255,255,.75),0 6px 0 var(--ga-lip),0 16px 26px rgba(15,23,42,.22);transition:transform .15s}
+.gcard .sol{color:var(--mute)}
+.gcard.parch{background:var(--ga-parch) radial-gradient(circle at 20% 30%,rgba(120,80,20,.06) 0 2px,transparent 3px) 0 0/22px 22px;color:#3B2A12;border-color:#FFF7E6}
+.gcard.parch .sol,.gcard.parch .rw{color:#6B5532}.gcard.parch .bar{background:rgba(120,80,20,.15)}
+.gcard.active{border:3px solid var(--ga-gold);animation:goldpulse 2.4s ease-in-out infinite}
+@keyframes goldpulse{0%,100%{box-shadow:inset 0 1px 0 rgba(255,255,255,.75),0 6px 0 var(--ga-lip),0 0 0 3px rgba(242,169,0,.18),0 0 14px rgba(255,216,107,.35)}50%{box-shadow:inset 0 1px 0 rgba(255,255,255,.75),0 6px 0 var(--ga-lip),0 0 0 5px rgba(242,169,0,.28),0 0 26px rgba(255,216,107,.7)}}
+/* Arcade buttons: bright face, heavy bottom lip, squash on press */
+.abtn{--c1:#22B35E;--c2:#15803D;--lip:#0F5C2C;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:56px;padding:0 22px;border-radius:18px;border:0;background:linear-gradient(180deg,var(--c1),var(--c2));color:#fff;font:800 1.12rem "Bricolage Grotesque",sans-serif;letter-spacing:.01em;text-shadow:0 2px 0 rgba(0,0,0,.22);box-shadow:inset 0 2px 0 rgba(255,255,255,.4),0 6px 0 var(--lip),0 10px 18px rgba(0,0,0,.2);cursor:pointer;transition:transform .09s,box-shadow .09s;text-decoration:none}
+.abtn:hover{filter:brightness(1.06)}.abtn:active{transform:translateY(4px);box-shadow:inset 0 2px 0 rgba(255,255,255,.3),0 2px 0 var(--lip),0 4px 8px rgba(0,0,0,.18)}
+.abtn:focus-visible{outline:3px solid var(--ga-glow);outline-offset:3px}
+.abtn.sun{--c1:#F97316;--c2:#C2410C;--lip:#7C2D12}.abtn.gold{--c1:#FBBF24;--c2:#D97706;--lip:#92400E}
+.abtn.sec{background:var(--panel);color:var(--ink);text-shadow:none;--lip:#C7D2FE;box-shadow:inset 0 2px 0 rgba(255,255,255,.6),0 6px 0 var(--lip),0 10px 18px rgba(0,0,0,.16)}
+.abtn.big{min-height:64px;font-size:1.25rem;padding:0 30px}.abtn.sm{min-height:46px;font-size:1rem;padding:0 16px;border-radius:15px}
+.abtn .apill{background:rgba(0,0,0,.22);color:#fff;border-radius:99px;padding:3px 11px;font-size:.92rem;text-shadow:none}
+.abtn[disabled]{background:#CBD5E1;color:#334155;text-shadow:none;box-shadow:0 2px 0 #94A3B8;cursor:not-allowed;filter:none;transform:none}
+/* XP as a row of ten gems */
+.gembar{display:flex;align-items:center;gap:5px}.lvshield{flex:none;display:grid;place-items:center;width:38px;height:42px;font:800 1rem "Bricolage Grotesque",sans-serif;color:#5B3A00;background:linear-gradient(180deg,#FFE27A,#F2A900);clip-path:polygon(50% 0,100% 14%,100% 60%,50% 100%,0 60%,0 14%)}
+.gem{position:relative;width:20px;height:24px;flex:1 1 0;min-width:11px;max-width:20px;clip-path:polygon(50% 0,100% 26%,100% 74%,50% 100%,0 74%,0 26%);background:linear-gradient(90deg,var(--gc,#F2A900) calc(var(--f)*100%),rgba(100,116,139,.28) calc(var(--f)*100%))}
+.gem::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.65) 0 22%,transparent 23% 60%,rgba(0,0,0,.12) 61%)}
+.gembar.sweep .gem.on::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.95) 50%,transparent 70%);animation:sweep .9s ease-out}
+@keyframes sweep{from{transform:translateX(-120%)}to{transform:translateX(120%)}}
+.gemnums{font-size:.8rem;color:var(--mute);margin-top:4px}
+/* Liquid tubes for play time and growth */
+.tube{position:relative;height:34px;min-width:220px;border-radius:99px;background:rgba(15,23,42,.38);border:3px solid rgba(255,255,255,.85);box-shadow:inset 0 3px 6px rgba(0,0,0,.3),0 4px 0 var(--ga-lip);overflow:hidden}
+.tube .liq{position:absolute;left:0;top:0;bottom:0;width:calc(var(--f)*100%);background:linear-gradient(180deg,color-mix(in srgb,var(--c,#67E8F9) 55%,#fff),var(--c,#67E8F9) 60%,color-mix(in srgb,var(--c,#67E8F9) 75%,#000));transition:width .6s ease;overflow:hidden}
+.tube .liq::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(-45deg,rgba(255,255,255,.22) 0 9px,transparent 9px 18px);animation:shimmer 2.2s linear infinite}
+@keyframes shimmer{to{background-position:51px 0}}
+.tube .liq i{position:absolute;bottom:-6px;width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.7);animation:bub 2.6s linear infinite}
+@keyframes bub{0%{transform:translateY(0);opacity:0}20%{opacity:.9}100%{transform:translateY(-34px);opacity:0}}
+.tube .tl{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:6px;font:800 .98rem "Bricolage Grotesque",sans-serif;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.6),0 0 6px rgba(0,0,0,.35);white-space:nowrap}
+.tube.low{animation:lowglow 1.2s ease-in-out infinite}@keyframes lowglow{50%{box-shadow:inset 0 3px 6px rgba(0,0,0,.3),0 4px 0 var(--ga-lip),0 0 18px var(--ga-glow)}}
+/* The living hero: blinks, breathes, looks at the pointer, waves when tapped, cheers on a win */
+.livehero{display:block;padding:0;border:0;background:none;cursor:pointer;border-radius:22px;overflow:hidden}.livehero svg{display:block;width:100%;height:100%}
+.live .hx-eyes{transform-box:fill-box;transform-origin:center;animation:blink 5s infinite;animation-delay:var(--bd,0s)}
+@keyframes blink{0%,94%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
+.live .hx-pup{transform:translate(var(--lx,0px),var(--ly,0px));transition:transform .18s}
+.live .hx-body{transform-box:fill-box;transform-origin:50% 100%;animation:breathe 3.2s ease-in-out infinite}@keyframes breathe{50%{transform:translateY(-1.4px)}}
+.live.wave .hx-body{animation:wave .7s ease-in-out}@keyframes wave{30%{transform:translateY(-6px) rotate(-5deg)}60%{transform:translateY(-2px) rotate(4deg)}}
+.live.dance .hx-body{animation:dance 1.3s ease-in-out}@keyframes dance{20%{transform:translateY(-7px) rotate(-8deg)}40%{transform:translateY(0) rotate(8deg)}60%{transform:translateY(-7px) rotate(-8deg)}80%{transform:translateY(0) rotate(6deg)}}
+.live.jump .hx-body{animation:jump .8s cubic-bezier(.3,1.6,.5,1)}@keyframes jump{40%{transform:translateY(-12px) scale(1.04)}}
+.live.oops .hx-body{animation:oops .5s}@keyframes oops{25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
+.m-beam,.m-oops{display:none}.beam .m-beam,.dance .m-beam,.jump .m-beam{display:inline}.beam .m-smile,.dance .m-smile,.jump .m-smile{display:none}.oops .m-oops{display:inline}.oops .m-smile{display:none}
+/* Arcade hub */
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px;margin:6px 0 20px}
+.tile{position:relative;display:flex;flex-direction:column;text-align:left;padding:0;border:0;border-radius:22px;overflow:hidden;background:var(--panel);color:var(--ink);box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 7px 0 var(--ga-lip),0 16px 28px rgba(15,23,42,.28);cursor:pointer;transition:transform .15s,box-shadow .15s;font:inherit}
+.tile:hover{transform:translateY(-3px)}.tile:active{transform:translateY(3px);box-shadow:0 3px 0 var(--ga-lip)}.tile:focus-visible{outline:3px solid var(--ga-glow);outline-offset:3px}
+.tile .tart{height:130px;display:block}.tile .tart svg{width:100%;height:100%;display:block}
+.tile .tbody{padding:12px 14px 14px}.tile .tname{display:block;font:800 1.12rem "Bricolage Grotesque",sans-serif}.tile .tpitch{display:block;margin-top:4px;font-size:.86rem;color:var(--mute);line-height:1.35}
+.tile .tgo{display:inline-flex;margin-top:10px;padding:5px 12px;border-radius:99px;font-weight:800;font-size:.85rem;color:#fff;background:linear-gradient(180deg,#22B35E,#15803D)}
+.tile.soon{cursor:default}.tile.soon .tart{filter:saturate(.75) brightness(.92)}.tile.soon:hover,.tile.soon:active{transform:none}
+.tile .ribbon{position:absolute;top:12px;right:-34px;transform:rotate(35deg);background:var(--ga-purple);color:#fff;font-weight:800;font-size:.72rem;letter-spacing:.06em;padding:4px 40px;text-transform:uppercase;box-shadow:0 2px 0 rgba(0,0,0,.2)}
+.tile.dim{filter:grayscale(.6) brightness(.85)}
+.hubbar{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:18px}.hubbar>*{min-width:0}.hubhero{display:flex;gap:16px;align-items:center}
+.herostrip>*{min-width:0}.ghead>:last-child{flex:0 1 290px}.ghead .tube{min-width:0;width:100%}
+@media(max-width:560px){.gworld{padding:16px 12px 20px;border-radius:22px}.hubhero,.hcard{flex-wrap:wrap}.hubhero>div:last-child,.hcard>div:last-child{flex-basis:100%!important}.ghead>:last-child{flex:1 1 100%}}@media(max-width:820px){.hubbar{grid-template-columns:1fr}}
+.restcard{display:flex;gap:16px;align-items:center;margin-bottom:18px}.restcard .moon{font-size:46px;line-height:1}
+.calm{display:inline-flex;gap:6px;align-items:center;font-size:.85rem;color:rgba(255,255,255,.9);font-weight:700}
+.gworld .chip{background:rgba(30,27,75,.42);color:#fff;border-color:rgba(255,255,255,.55)}.gworld .chip.on{background:#fff;color:#1E1B4B;border-color:#fff}
+.gworld .chip small{color:inherit;opacity:.8}
+/* Spell Quest in the game look */
+.gworld .worldmap{border:3px solid rgba(255,255,255,.85);border-radius:26px;box-shadow:0 7px 0 var(--ga-lip),0 18px 30px rgba(15,23,42,.3)}
+.gworld .schools .sol,.gnote{color:rgba(255,255,255,.9)}.gnote{margin:14px 0 0;font-size:.9rem}
+.gworld .lrow{border:2px solid rgba(255,255,255,.7);box-shadow:0 5px 0 var(--ga-lip);border-radius:18px}.gworld .lrow.on{border:3px solid var(--ga-gold)}
+.stars{color:#F2A900;letter-spacing:2px;font-size:1.05rem}.stars .off{color:#CBD5E1}
+.gworld .mon{background:var(--panel);color:var(--ink);border-radius:20px;border:2px solid rgba(255,255,255,.75);box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 5px 0 var(--ga-lip),0 12px 20px rgba(15,23,42,.16)}
+.gworld .mon.boss{border:3px solid var(--ga-gold)}.gworld .mon .abtn{width:100%}
+.gworld .battle{border:3px solid rgba(255,255,255,.85);border-radius:26px;box-shadow:0 8px 0 var(--ga-lip),0 20px 34px rgba(15,23,42,.35)}
+.gworld .qpanel{background:var(--panel);color:var(--ink)}.gworld .qpanel .bq{font:700 clamp(1.15rem,2.6vw,1.4rem)/1.35 "Atkinson Hyperlegible",sans-serif}
+.gworld .bchoices button{display:flex;gap:10px;align-items:center;border:2px solid #C7D2FE;background:var(--panel);color:var(--ink);border-radius:16px;min-height:58px;font-size:1.05rem;box-shadow:0 5px 0 #C7D2FE;transition:transform .09s,box-shadow .09s}
+.gworld .bchoices button:hover{border-color:#818CF8}.gworld .bchoices button:active{transform:translateY(3px);box-shadow:0 2px 0 #C7D2FE}
+.gworld .bchoices .key{display:grid;place-items:center;flex:none;width:30px;height:30px;border-radius:10px;background:#EEF2FF;color:#4338CA;font-weight:800}
+.gworld .bans input{border-radius:16px;min-height:56px;border:2px solid #C7D2FE}
+.gworld .endcard h3{font:800 1.6rem "Bricolage Grotesque",sans-serif}
+.drop{display:flex;gap:14px;align-items:center;margin:4px auto 16px;max-width:420px;padding:12px;border-radius:20px;border:3px solid var(--rc);background:color-mix(in srgb,var(--rc) 10%,var(--panel));box-shadow:0 0 0 4px color-mix(in srgb,var(--rc) 18%,transparent),0 0 24px color-mix(in srgb,var(--rc) 45%,transparent)}
+.drop .pv{width:92px;height:92px;flex:none;border-radius:16px;overflow:hidden}.drop .pv svg{width:100%;height:100%;display:block}
+.drop .rar{display:inline-block;font-weight:800;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--rc);padding:3px 10px;border-radius:99px}.drop b{display:block;font-size:1.1rem;margin-top:4px}
+/* The Learn page: hero card and quests in the game look */
+.herostrip .gcard.hcard{background:linear-gradient(160deg,#EEF2FF,var(--panel) 55%)}
+.quest.qactive{border-top:0;margin:6px 0;padding:9px 10px;border-radius:14px;border:2px solid var(--ga-gold);animation:goldpulse 2.4s ease-in-out infinite;background:rgba(255,255,255,.55)}
+body[data-calm] .quest.qactive{animation:none}
+@media(prefers-reduced-motion:reduce){.quest.qactive{animation:none}}
+/* Calm mode and reduced motion */
+@media(prefers-reduced-motion:reduce){.cloud,.gcard.active,.tube .liq::before,.tube .liq i,.live .hx-eyes,.live .hx-body,.tube.low{animation:none!important}}
+body[data-calm] .cloud,body[data-calm] .gcard.active,body[data-calm] .tube .liq::before,body[data-calm] .tube .liq i,body[data-calm] .live .hx-eyes,body[data-calm] .live .hx-body,body[data-calm] .tube.low,body[data-calm] .mon-art,body[data-calm] .confetti{animation:none!important}
+body[data-calm] .confetti{display:none}
+</style>
+<script type="text/x-lumen">
+/* ===== Bose Arcade. Shared look (gworld, gcard, abtn, gemBar, tubeHtml, the living hero) and the Arcade hub.
+   Each game is a mode of the Play tab: the hub lists them; Spell Quest is Lumi's Realm. ===== */
+const calmOn=()=>!!GM.calm||matchMedia('(prefers-reduced-motion: reduce)').matches;
+const setCalm=v=>{GM.calm=!!v;SYNC();document.body.toggleAttribute('data-calm',!!v)};
+document.body.toggleAttribute('data-calm',!!GM.calm);
+const clouds=()=>`<div class="cloud" style="top:40px;animation-delay:-6s" aria-hidden="true"></div><div class="cloud" style="top:120px;transform:scale(.7);animation-delay:-24s;animation-duration:52s" aria-hidden="true"></div>`;
+function gemBar(p=lvProg(),sweep){const gems=Array.from({length:10},(_,i)=>{const f=Math.max(0,Math.min(1,(p.pct-i*10)/10));return `<i class="gem ${f>=1?'on':''}" style="--f:${f.toFixed(2)}"></i>`}).join('');
+  return `<div><div class="gembar ${sweep?'sweep':''}" role="progressbar" aria-label="Level ${p.L}: ${p.into} of ${p.need} XP to level ${p.L+1}" aria-valuemin="0" aria-valuemax="${p.need}" aria-valuenow="${p.into}"><span class="lvshield" aria-hidden="true">${p.L}</span>${gems}</div><div class="gemnums">${p.into} / ${p.need} XP to level ${p.L+1}</div></div>`}
+function tubeHtml(frac,label,c,id,low){const f=Math.max(0,Math.min(1,frac));return `<div class="tube ${low?'low':''}" ${id?`id="${id}"`:''} style="--f:${f.toFixed(3)};--c:${c||'#67E8F9'}" role="progressbar" aria-label="${esc(label)}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(f*100)}"><div class="liq">${f>0?'<i style="left:12%;animation-delay:-.4s"></i><i style="left:46%;animation-delay:-1.5s"></i><i style="left:78%;animation-delay:-2.1s"></i>':''}</div><span class="tl">${esc(label)}</span></div>`}
+/* The time-left tube used by the hub and every game */
+function timeTube(){const l=playLeft();if(l===Infinity)return tubeHtml(1,isMember()&&BOOT.role==='student'?'⭐ Unlimited play':'No time limit (preview)','#A78BFA','ptime');
+  return tubeHtml(l/Math.max(1,playAllowed()),l>0?`⏳ ${mmss(l)} left today`:'🌙 Out of play time','#0891B2','ptime',l>0&&l<=60)}
+ptimeHtml=timeTube;
+/* A hero who blinks, follows the pointer with their eyes, and reacts to taps */
+function liveHero(opts={}){const d=-(Math.random()*4).toFixed(2);return `<button class="livehero live ${opts.cls||''}" style="--bd:${d}s;${opts.style||''}" onclick="heroTap(this)" aria-label="Your hero. Tap to wave.">${heroSvg(GM,opts)}</button>`}
+function heroTap(el){const n=(el._taps=(el._taps||0)+1);clearTimeout(el._tt);el._tt=setTimeout(()=>{el._taps=0},700);const c=n>=3?'dance':'wave';el.classList.remove('wave','dance');void el.offsetWidth;el.classList.add(c,'beam');clearTimeout(el._tc);el._tc=setTimeout(()=>el.classList.remove('wave','dance','beam'),c==='dance'?1300:800);if(n>=3)el._taps=0}
+function heroMood(c,ms){document.querySelectorAll('.live').forEach(el=>{el.classList.remove('beam','oops','jump');void el.offsetWidth;el.classList.add(...c.split(' '));clearTimeout(el._tm);el._tm=setTimeout(()=>el.classList.remove(...c.split(' ')),ms||900)})}
+let _lookT=0;addEventListener('pointermove',e=>{const now=Date.now();if(now-_lookT<60||calmOn())return;_lookT=now;document.querySelectorAll('.live').forEach(el=>{const r=el.getBoundingClientRect();if(!r.width)return;
+  const dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height*.42),d=Math.hypot(dx,dy)||1,k=Math.min(1,d/300)*1.3;el.style.setProperty('--lx',(dx/d*k).toFixed(2)+'px');el.style.setProperty('--ly',(dy/d*k).toFixed(2)+'px')})},{passive:true});
+const _celA=celebrate;celebrate=function(lines,big){_celA(lines,big);heroMood('jump beam',900)};
+
+function restCard(){return `<div class="gcard parch restcard"><span class="moon" aria-hidden="true">🌙</span><div style="flex:1"><h3>Rest your eyes, hero!</h3><p style="margin:0">${esc(earnNote())}</p>${memberNote()}</div><button class="abtn sun" onclick="go('learn')">📖 Go learn</button></div>`}
+/* ---------- The Arcade hub ---------- */
+const sceneSvg=(inner,a,b)=>`<svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="sg${a.slice(1)}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient></defs><rect width="200" height="130" fill="url(#sg${a.slice(1)})"/>${inner}</svg>`;
+const nest=(svg,x,y,w,h)=>svg.replace('<svg ',`<svg x="${x}" y="${y}" width="${w}" height="${h}" `);
+const ART={
+  spell:()=>sceneSvg(`<path d="M0 96Q60 84 120 96T200 92V130H0Z" fill="#7CCB6B"/><circle cx="168" cy="22" r="10" fill="#FFE27A"/>${nest(heroSvg(GM,{bg:false,label:''}),12,28,92,92)}<circle cx="104" cy="64" r="9" fill="#FFE27A" opacity=".9"/><circle cx="104" cy="64" r="16" fill="#FFE27A" opacity=".3"/>${nest(monsterSvg(MONS.meadow[1],false,''),118,38,76,76)}`,'#9FD8FF','#E9F8FF'),
+  pets:()=>sceneSvg(`<rect x="0" y="92" width="200" height="38" fill="#F1C27D"/><rect x="132" y="16" width="52" height="40" rx="6" fill="#BFE6FF" stroke="#fff" stroke-width="4"/><circle cx="170" cy="28" r="6" fill="#FFE27A"/><ellipse cx="70" cy="104" rx="46" ry="9" fill="#E8B26A"/><ellipse cx="70" cy="70" rx="24" ry="30" fill="#FFF6E5" stroke="#E8C79A" stroke-width="2"/><path d="M50 66l7 6 6-8 7 8 6-7 8 7" fill="none" stroke="#C99A5B" stroke-width="2.5"/><circle cx="62" cy="58" r="4" fill="#8E6CEF"/><circle cx="80" cy="80" r="5" fill="#59C36A"/>${nest(`<svg viewBox="0 70 34 34">${petSvg('p_dragon')}</svg>`,112,52,64,64)}<path d="M150 46l4 -6 4 6" fill="#FF8FB1"/>`,'#FFE8D1','#FFD3B0'),
+  kart:()=>sceneSvg(`<path d="M70 40H130L200 130H0Z" fill="#5B6478"/><path d="M98 40H102L106 130H94Z" fill="#FFE27A"/><path d="M0 60L60 40M200 60L140 40" stroke="#fff" stroke-width="2" opacity=".6"/><rect x="72" y="22" width="56" height="16" rx="4" fill="#8B5CF6"/><text x="100" y="34" font-size="11" font-weight="800" text-anchor="middle" fill="#fff" font-family="sans-serif">7 × 8 = ?</text><path d="M30 92h20M24 104h28M150 92h20M148 104h28" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".8"/><rect x="74" y="84" width="52" height="24" rx="8" fill="#E4572E"/><rect x="84" y="76" width="32" height="14" rx="6" fill="#FFB13B"/><circle cx="84" cy="110" r="8" fill="#1B2A41"/><circle cx="116" cy="110" r="8" fill="#1B2A41"/><circle cx="100" cy="80" r="6" fill="#F5C9A0"/>`,'#7DD3FC','#C7F0FF'),
+  blocks:()=>sceneSvg(`${[['3',20,70,'#F97316'],['+',52,70,'#8B5CF6'],['9',84,70,'#22B35E'],['=',116,70,'#8B5CF6'],['12',148,70,'#2D9CDB'],['7',52,30,'#E4572E'],['C',148,100,'#F2A900'],['A',116,100,'#D94F8A'],['T',84,100,'#22B35E']].map(([t,x,y,c])=>`<rect x="${x}" y="${y}" width="30" height="28" rx="6" fill="${c}"/><rect x="${x}" y="${y}" width="30" height="8" rx="4" fill="#fff" opacity=".35"/><text x="${x+15}" y="${y+20}" font-size="15" font-weight="800" text-anchor="middle" fill="#fff" font-family="sans-serif">${t}</text>`).join('')}<path d="M14 66H186" stroke="#FFE27A" stroke-width="2" stroke-dasharray="4 4"/>`,'#312E81','#1E1B4B'),
+  gate:()=>sceneSvg(`<path d="M0 90Q100 70 200 90V130H0Z" fill="#6DBF62"/><path d="M0 112C50 96 120 118 200 100" stroke="#D9B98A" stroke-width="12" fill="none"/><path d="M150 38h40v62h-40z" fill="#A3AFBD"/><path d="M150 38v-8h8v8h8v-8h8v8h8v-8h8v8" fill="#A3AFBD"/><rect x="163" y="74" width="14" height="26" rx="6" fill="#5B6478"/><rect x="96" y="58" width="16" height="30" fill="#8C8FA3"/><circle cx="104" cy="54" r="9" fill="#67E8F9"/><path d="M104 54L60 92" stroke="#67E8F9" stroke-width="3"/>${nest(monsterSvg(['Goblin','ball','#7ED957',['ears']],false,''),26,70,44,44)}`,'#BFE6FF','#E9F8FF')};
+const GAMES=[
+  {id:'spell',n:'Spell Quest',p:'Cast spells with smart answers and befriend the monsters of seven magic lands.'},
+  {id:'pets',n:'Pet Pals',p:'Your learning feeds a pet that grows, evolves and cheers you on.',soon:1},
+  {id:'kart',n:'Turbo Trivia Kart',p:'Your kart drives itself. Answer fast to dodge, boost and fly over ramps!',soon:1},
+  {id:'blocks',n:'Block Builder',p:'Catch falling blocks to build true equations and real words.',soon:1},
+  {id:'gate',n:'Goblin Gate',p:'Solve fast to build towers and keep the goofy goblins out.',soon:1}];
+let AR={mode:null};
+function openGame(id){const g=GAMES.find(x=>x.id===id);if(!g||g.soon)return;AR.mode=id;rerealm();scrollTo({top:0,behavior:calmOn()?'auto':'smooth'})}
+function toHub(){if(BT&&BT.phase==='ask'&&BT.n&&!confirm('Leave this battle?'))return;BT=null;AR.mode=null;rerealm()}
+function hubView(){const left=playLeft(),out=!noLimit()&&left<=0,D=DAY(),qs=dailyQuests();
+  const tile=g=>`<button class="tile ${g.soon?'soon':''} ${out&&!g.soon?'dim':''}" ${g.soon?'aria-disabled="true"':''} onclick="openGame('${g.id}')" aria-label="${esc(g.n)}${g.soon?', coming soon':''}"><span class="tart">${ART[g.id]()}</span><span class="tbody"><span class="tname">${esc(g.n)}</span><span class="tpitch">${esc(g.p)}</span>${g.soon?'':`<span class="tgo">${out?'Rest time':'▶ Play'}</span>`}</span>${g.soon?'<span class="ribbon">Coming soon</span>':''}</button>`;
+  return `<div class="gworld">${clouds()}<div class="ghead"><div><h2 class="gtitle">Bose Arcade</h2><p class="gsub">Every move is powered by what you learn.</p></div><div>${timeTube()}<div style="margin-top:8px;text-align:right"><label class="calm"><input type="checkbox" ${GM.calm?'checked':''} onchange="setCalm(this.checked);rerealm()"> Calm mode</label></div></div></div>
+  ${out?restCard():''}
+  <div class="tiles">${GAMES.map(tile).join('')}</div>
+  <div class="hubbar"><div class="gcard hubhero">${liveHero({label:'Your hero',style:'width:104px;height:104px;flex:none'})}<div style="flex:1;min-width:0"><div class="rank">${esc(rankOf(LVL()))}</div><h3 style="margin:0 0 8px">${esc(ME.display||'Hero')}</h3>${gemBar()}<div class="row" style="margin-top:12px"><button class="abtn sec sm" onclick="ST.ht='shop';go('hero')">💎 ${GEMS()} · Shop</button></div></div></div>
+  <div class="gcard parch"><div class="split"><h3>⚔️ Today's quests</h3><span class="sol">${D.q.length} of 3 done</span></div>${qs.map(id=>{const Q=QUESTS[id],v=Math.min(Q.n,Q.v(D)),d=D.q.includes(id);return `<div class="quest ${d?'done':''}"><span class="qi" aria-hidden="true">${d?'✔️':Q.i}</span><div class="qt"><b>${esc(Q.t(Q.n))}</b><div class="bar"><i style="width:${v/Q.n*100}%"></i></div></div><span class="rw">${d?'Done':`${v}/${Q.n}`}</span></div>`}).join('')}</div></div></div>`}
 </script>
 
 <style>

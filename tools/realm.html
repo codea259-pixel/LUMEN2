@@ -104,7 +104,7 @@ function playLabel(){const l=playLeft();return l===Infinity?'no time limit':l>0?
 function earnNote(){const g=GSET(),m=Math.floor(DAY().study/60),capped=playAllowed()>=g.max*60;
   return capped?`You've earned today's full ${g.max} minutes of play. Come back tomorrow for more.`:`Every 10 minutes of learning earns ${g.per} more minutes of play, up to ${g.max} minutes a day. You've learned ${m} minute${m===1?'':'s'} today.`}
 function realmTick(sec){if(tab!=='play'||!gameOn()||document.hidden||Date.now()-lastAct>120000)return;
-  if(BT&&['ask','fb'].includes(BT.phase)||!BT){if(!noLimit()&&playLeft()>0){DAY().play+=sec;if(DAY().play%60===0)SYNC()}}
+  if(BT?['ask','fb'].includes(BT.phase):!!AR.mode){if(!noLimit()&&playLeft()>0){DAY().play+=sec;if(DAY().play%60===0)SYNC()}}
   const e=$('ptime');if(e)e.outerHTML=ptimeHtml();
   if(!noLimit()&&playLeft()<=0&&BT&&BT.phase==='ask'){BT.phase='timeup';renderBattle()}}
 function ptimeHtml(){const l=playLeft(),a=noLimit()?1:playAllowed();return `<div class="ptime" id="ptime" title="${esc(noLimit()?'Only learners have a daily play time.':earnNote())}"><span aria-hidden="true">⏳</span><span>${l===Infinity?(isMember()&&BOOT.role==='student'?'⭐ Member: unlimited play':'No time limit (preview)'):l>0?mmss(l)+' of play left today':'Out of play time today'}</span>${l===Infinity?'':`<div class="bar" aria-hidden="true"><i style="width:${Math.min(100,l/a*100)}%"></i></div>`}</div>`}
@@ -124,27 +124,28 @@ function mapSvg(){const path=POS.map(([x,y],i)=>(i?'L':'M')+x+' '+y).join(' ');
   ${LANDS.map((l,i)=>{const [x,y]=POS[i],o=landOpen(l),st=LS(l.id),sel=curLand()===l.id;return `<g class="land" tabindex="0" role="button" aria-label="${esc(l.n)}${o?'':', opens at level '+l.lv}${st.boss?', cleared':''}" onclick="selLand('${l.id}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selLand('${l.id}')}">
     <circle class="ring" cx="${x}" cy="${y}" r="52" fill="${o?l.sky[0]:'#C9D2DC'}" stroke="${sel?'#F2A900':'#fff'}" stroke-width="${sel?9:6}"/><text x="${x}" y="${y+16}" font-size="46" text-anchor="middle" ${o?'':'opacity=".45"'}>${l.e}</text>
     ${o?'':`<circle cx="${x+34}" cy="${y-34}" r="17" fill="#1B2A41"/><text x="${x+34}" y="${y-28}" font-size="17" text-anchor="middle">🔒</text>`}${st.boss?`<circle cx="${x+36}" cy="${y-34}" r="17" fill="#3BB273"/><text x="${x+36}" y="${y-28}" font-size="18" fill="#fff" text-anchor="middle" font-weight="800">✓</text>`:''}
-    <rect x="${x-78}" y="${y+60}" width="156" height="${o?30:46}" rx="15" fill="rgba(255,255,255,.92)"/><text x="${x}" y="${y+81}" font-size="18" font-weight="800" text-anchor="middle" fill="#1B2A41">${esc(l.n)}</text>${o?'':`<text x="${x}" y="${y+99}" font-size="14" text-anchor="middle" fill="#55657E">Level ${l.lv}</text>`}</g>`}).join('')}</svg>`}
+    <rect x="${x-78}" y="${y+60}" width="156" height="46" rx="15" fill="rgba(255,255,255,.94)"/><text x="${x}" y="${y+81}" font-size="18" font-weight="800" text-anchor="middle" fill="#1B2A41">${esc(l.n)}</text>${o?`<text x="${x}" y="${y+99}" font-size="15" text-anchor="middle" fill="#F2A900" letter-spacing="2">${'★'.repeat(starN(st))}<tspan fill="#C9D2DC">${'★'.repeat(4-starN(st))}</tspan></text>`:`<text x="${x}" y="${y+99}" font-size="14" text-anchor="middle" fill="#55657E">Level ${l.lv}</text>`}</g>`}).join('')}</svg>`}
+const starN=st=>st.won.filter(Boolean).length+(st.boss?1:0);
+const starsHtml=st=>{const n=starN(st);return `<span class="stars" role="img" aria-label="${n} of 4 stars">${'★'.repeat(n)}<span class="off">${'★'.repeat(4-n)}</span></span>`};
 function landPanel(){const l=LANDS.find(x=>x.id===curLand()),st=LS(l.id),M=MONS[l.id],ready=st.won.every(Boolean);
-  return `<div class="card" id="landpanel" style="margin-top:14px"><div class="split"><h3>${l.e} ${esc(l.n)}</h3><span class="sol">${st.won.filter(Boolean).length} of 3 monsters befriended${st.boss?' · boss defeated':''}</span></div>
-  <p class="sol">Beat the three monsters to unlock the boss. A correct answer casts your spell; a wrong answer lets the monster strike, and shows you how to solve it.</p>
-  <div class="mons">${M.map((m,i)=>{const boss=i===3,lock=boss&&!ready,won=boss?st.boss:st.won[i];return `<div class="card mon ${boss?'boss':''} ${lock?'locked':''}"><div class="art mon-art">${monsterSvg(m,boss)}</div><b>${esc(boss?(m[0][0].toUpperCase()+m[0].slice(1)):m[0])}</b>
-    <p class="sol">${boss?'👑 Boss':won?'✓ Beaten':'Wild monster'} · ❤️ ${monHp(l,i)}</p><button class="${won||lock?'alt':'lamp'}" ${lock?'disabled':''} onclick="startBattle('${l.id}',${i})">${lock?'🔒 Beat all 3 first':won?'Battle again':'⚔️ Battle'}</button></div>`}).join('')}</div></div>`}
+  return `<div class="gcard" id="landpanel" style="margin-top:18px"><div class="split"><h3>${l.e} ${esc(l.n)}</h3>${starsHtml(st)}</div>
+  <p class="sol">Befriend the three monsters to unlock the boss. A correct answer casts your spell; a wrong one lets the monster swing, then shows you the trick.</p>
+  <div class="mons">${M.map((m,i)=>{const boss=i===3,lock=boss&&!ready,won=boss?st.boss:st.won[i];return `<div class="mon ${boss?'boss':''} ${lock?'locked':''}"><div class="art mon-art">${monsterSvg(m,boss)}</div><b>${esc(boss?(m[0][0].toUpperCase()+m[0].slice(1)):m[0])}</b>
+    <p class="sol">${boss?'👑 Boss':won?'✓ Befriended':'Wild monster'} · ❤️ ${monHp(l,i)}</p><button class="abtn sm ${won||lock?'sec':''}" ${lock?'disabled':''} onclick="startBattle('${l.id}',${i})">${lock?'🔒 Beat all 3 first':won?'Battle again':'⚔️ Battle'}</button></div>`}).join('')}</div></div>`}
 function monHp(l,i){const n=LANDS.indexOf(l);return i===3?130+15*n:60+8*n}
 function schoolsHtml(){const subs=Object.keys(SUBN).filter(s=>subSkills(s).some(k=>G[k]));const s=GM.rsub&&subs.includes(GM.rsub)?GM.rsub:subs.includes(ST.subj)?ST.subj:'math';GM.rsub=s;
   return `<div class="schools" role="group" aria-label="Choose your magic"><span class="sol"><b>Your magic:</b></span>${subs.map(x=>{const g=magicOf(x);return `<button class="chip ${s===x?'on':''}" aria-pressed="${s===x}" onclick="GM.rsub='${x}';SYNC();rerealm()">${g[0]} ${g[1]} <small>(${esc(SUBN[x])})</small></button>`}).join('')}</div>`}
-function mapView(){const left=playLeft();
-  return `<div class="realm-top"><h2>⚔️ Lumi's Realm</h2>${ptimeHtml()}</div>
-  ${!noLimit()&&left<=0?`<div class="card endcard" style="margin-bottom:14px"><div class="big" aria-hidden="true">🌙</div><h3>Play time is over for today</h3><p>${esc(earnNote())}</p><button class="lamp" onclick="go('learn')">📖 Go learn</button>${memberNote()}</div>`:''}
-  ${schoolsHtml()}<div class="worldmap">${mapSvg()}</div>
-  <div class="landlist">${LANDS.map(l=>{const o=landOpen(l),st=LS(l.id);return `<button class="lrow ${curLand()===l.id?'on':''}" ${o?'':'disabled'} onclick="selLand('${l.id}')"><span class="le" style="background:${o?l.sky[0]:'#C9D2DC'}" aria-hidden="true">${l.e}</span><span><b>${esc(l.n)}</b><span class="sol">${o?(st.boss?'Cleared ✓':`${st.won.filter(Boolean).length} of 3 monsters`):'🔒 Opens at level '+l.lv}</span></span></button>`}).join('')}</div>
-  ${landPanel()}<p class="sol" style="margin-top:12px">${isMember()&&BOOT.role==='student'?`⭐ You're a member until ${new Date(ME.member).toLocaleDateString()}: play as long as you like.`:noLimit()?'Teachers, parents and the Owner can play without a time limit to try the game. Learners get a daily play time.':esc(earnNote())}</p>`}
+function mapView(){const out=!noLimit()&&playLeft()<=0;
+  return `<div class="gworld">${clouds()}<div class="ghead"><div style="display:flex;gap:14px;align-items:center"><button class="abtn sec sm" onclick="toHub()">← Arcade</button><div><h2 class="gtitle">Spell Quest</h2><p class="gsub">Befriend the monsters of seven magic lands.</p></div></div>${ptimeHtml()}</div>
+  ${out?restCard():''}${schoolsHtml()}<div class="worldmap">${mapSvg()}</div>
+  <div class="landlist">${LANDS.map(l=>{const o=landOpen(l),st=LS(l.id);return `<button class="lrow ${curLand()===l.id?'on':''}" ${o?'':'disabled'} onclick="selLand('${l.id}')"><span class="le" style="background:${o?l.sky[0]:'#C9D2DC'}" aria-hidden="true">${l.e}</span><span><b>${esc(l.n)}</b><span class="sol">${o?starsHtml(st):'🔒 Opens at level '+l.lv}</span></span></button>`}).join('')}</div>
+  ${landPanel()}<p class="gnote">${isMember()&&BOOT.role==='student'?`⭐ You're a member until ${new Date(ME.member).toLocaleDateString()}: play as long as you like.`:noLimit()?'Teachers, parents and the Owner can play without a time limit to try the game. Learners get a daily play time.':esc(earnNote())}</p></div>`}
 
 /* ---------- Battles ---------- */
 function rpool(sub){let L=subSkills(sub).filter(k=>G[k]&&inBand(k));if(!L.length)L=subSkills(sub).filter(k=>G[k]);return L}
 function rquestion(){const L=rpool(GM.rsub||'math'),seen=L.filter(k=>S[k]&&S[k].att);
   for(let i=0;i<15&&L.length;i++){const k=seen.length&&Math.random()<.7?pick(seen):pick(L);try{const s=S[k]||{p:0},q=G[k](s.p<.4?1:s.p<.7?2:3);if(q&&q.q&&q.a)return{k,q}}catch(e){}}return null}
-function startBattle(id,i){const l=LANDS.find(x=>x.id===id);if(!landOpen(l))return;if(i===3&&!LS(id).won.every(Boolean))return;
+function startBattle(id,i){AR.mode='spell';const l=LANDS.find(x=>x.id===id);if(!landOpen(l))return;if(i===3&&!LS(id).won.every(Boolean))return;
   if(!noLimit()&&playLeft()<=0)return msg('Play time is over for today. Learn to earn more!');
   const hp=monHp(l,i);BT={land:id,i,m:MONS[id][i],boss:i===3,mhp:hp,mmax:hp,hp:100,run:0,phase:'ask',n:0,ok:0};nextTurn();renderBattle()}
 function nextTurn(){const x=rquestion();if(!x){BT.phase='none';return}Object.assign(BT,{k:x.k,q:x.q,phase:'ask',fb:'',low:0})}
@@ -157,12 +158,21 @@ function castAns(raw){if(!BT||BT.phase!=='ask')return;const q=BT.q;let ok;
     BT.fb=`<div class="bfb ok" role="status">${magicOf(GM.rsub)[0]} ${pick(['Great spell!','Direct hit!','Brilliant!','Super cast!','You got it!'])} ${dmg} damage${BT.run>1?` · ${BT.run} in a row!`:''}${GM.eq.pet?' (your pet helped!)':''}</div>`;
     anim('hero',dmg);setTimeout(()=>{if(!BT||BT.phase!=='fb')return;if(BT.mhp<=0)winBattle();else{nextTurn();renderBattle()}},1150)}
   else{BT.run=0;const dmg=16+3*li+Math.floor(Math.random()*6);BT.hp=Math.max(0,BT.hp-dmg);BT.phase='fb';
-    BT.fb=`<div class="bfb no" role="status">Not quite. The answer is <b>${esc(fmtA(q))}</b>. The monster strikes for ${dmg}!${q.s?`<p class="sol">${q.s}</p>`:''}<div class="row" style="margin-top:8px"><button class="lamp" id="bnext" onclick="afterMiss()">${BT.hp<=0?'Continue':'Next spell →'}</button></div></div>`;anim('mon',dmg)}
-  renderBattle(true)}
+    BT.fb=`<div class="bfb no" role="status">Not quite. The answer is <b>${esc(fmtA(q))}</b>. The monster strikes for ${dmg}!${q.s?`<p class="sol">${q.s}</p>`:''}<div class="row" style="margin-top:10px"><button class="abtn sun sm" id="bnext" onclick="afterMiss()">${BT.hp<=0?'Continue':'Next spell →'}</button></div></div>`;anim('mon',dmg)}
+  renderBattle(true);setTimeout(()=>heroMood(ok?'beam':'oops',ok?900:1200),40)}
 function afterMiss(){if(!BT)return;if(BT.hp<=0){BT.phase='lost';renderBattle();return}if(!noLimit()&&playLeft()<=0){BT.phase='timeup';renderBattle();return}nextTurn();renderBattle()}
 function bfb(c,t){const e=$('bfbx');if(e)e.innerHTML=`<div class="bfb ${c}" role="status">${esc(t)}</div>`}
 function winBattle(){const st=LS(BT.land),first=BT.boss?!st.boss:!st.won[BT.i],g=BT.boss?(first?25:8):(first?6:2);
-  if(BT.boss)st.boss=1;else st.won[BT.i]=1;st.wins++;GM.bw++;DAY().bat++;addGems(g);BT.phase='won';BT.gems=g;BT.first=first;SYNC();renderBattle();gameCheck()}
+  if(BT.boss)st.boss=1;else st.won[BT.i]=1;st.wins++;GM.bw++;DAY().bat++;addGems(g);BT.phase='won';BT.gems=g;BT.first=first;
+  BT.drop=Math.random()<.25||(BT.boss&&first)?gearDrop(BT.boss&&first):null;SYNC();renderBattle();gameCheck()}
+/* Gear drops: 1 win in 4 (and every first boss win) drops a free item for the hero, from Common to Legendary */
+const RARITY=[['Common','#64748B'],['Rare','#2563EB'],['Epic','#7C3AED'],['Legendary','#D97706']];
+const rarityOf=s=>s.p<=45?0:s.p<=90?1:s.p<=150?2:3;
+function gearDrop(boss){const pool=SHOP.filter(s=>s.p>0&&!GM.own.includes(s.id)&&s.lv<=LVL()+3&&(boss||rarityOf(s)<3));if(!pool.length)return null;
+  const w=boss?[0,4,4,2]:[6,3,1,0];let r=Math.random()*w.reduce((a,b)=>a+b),t=0;for(;t<3&&(r-=w[t])>0;t++);
+  const L=pool.filter(s=>rarityOf(s)===t),it=pick(L.length?L:pool);GM.own=[...GM.own,it.id];return it.id}
+function dropHtml(id){const s=shopItem(id),r=RARITY[rarityOf(s)],on=GM.eq[s.cat]===id;
+  return `<div class="drop" style="--rc:${r[1]}"><div class="pv">${heroSvg(GM,{eq:{[s.cat]:id},label:s.n})}</div><div style="text-align:left"><span class="rar">${r[0]} gear!</span><b>${esc(s.n)}</b><span class="sol">${({hat:'Hat',outfit:'Outfit',item:'Magic item',pet:'Pet',bg:'Background'})[s.cat]}</span><p class="sol" style="margin:2px 0 8px">It's in your hero's closet now.</p><button class="abtn gold sm" ${on?'disabled':''} onclick="equip('${id}');renderBattle()">${on?'Wearing it':'Wear it'}</button></div></div>`}
 function anim(who,dmg){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;setTimeout(()=>{const ar=document.querySelector('.arena');if(!ar)return;
   const me=ar.querySelector('.fighter.me .art'),mo=ar.querySelector('.fighter.foe .art');
   if(who==='hero'){const o=document.createElement('div');o.className='orbshot';o.style.color=magicOf(GM.rsub)[2];ar.appendChild(o);setTimeout(()=>{o.remove();if(mo){mo.classList.add('hit','flash');setTimeout(()=>mo.classList.remove('hit','flash'),450)}pop(ar,'72%','58%',dmg)},520)}
@@ -170,22 +180,23 @@ function anim(who,dmg){if(matchMedia('(prefers-reduced-motion: reduce)').matches
 function pop(ar,l,t,n){const d=document.createElement('div');d.className='dmg';d.style.left=l;d.style.top=t;d.textContent='-'+n;ar.appendChild(d);setTimeout(()=>d.remove(),1000)}
 function battleHtml(){const l=LANDS.find(x=>x.id===BT.land),q=BT.q,nm=BT.m[0][0].toUpperCase()+BT.m[0].slice(1),mg=magicOf(GM.rsub);
   const arena=`<div class="arena" style="background:linear-gradient(${l.sky[0]},${l.sky[1]} 62%,${l.gr} 62%)">${BT.run>1&&BT.phase!=='won'?`<div class="combo">🔥 ${BT.run} in a row</div>`:''}
-    <div class="fighter me"><div class="hpw"><span class="nameplate">${esc(ME.display||'Hero')} · Lv ${LVL()}</span><div class="hp" role="progressbar" aria-label="Your health" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${BT.hp}"><i style="width:${BT.hp}%"></i></div><span class="hpn">${BT.hp} / 100</span></div><div class="art">${heroSvg(GM,{bg:false,label:'Your hero'})}</div></div>
+    <div class="fighter me"><div class="hpw"><span class="nameplate">${esc(ME.display||'Hero')} · Lv ${LVL()}</span><div class="hp" role="progressbar" aria-label="Your health" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${BT.hp}"><i style="width:${BT.hp}%"></i></div><span class="hpn">${BT.hp} / 100</span></div><div class="art live" style="--bd:-1.7s" onclick="heroTap(this)">${heroSvg(GM,{bg:false,label:'Your hero'})}</div></div>
     <div class="fighter foe"><div class="hpw"><span class="nameplate">${BT.boss?'👑 ':''}${esc(nm)}</span><div class="hp foe" role="progressbar" aria-label="Monster health" aria-valuemin="0" aria-valuemax="${BT.mmax}" aria-valuenow="${BT.mhp}"><i style="width:${BT.mhp/BT.mmax*100}%"></i></div><span class="hpn">${BT.mhp} / ${BT.mmax}</span></div><div class="art mon-art">${monsterSvg(BT.m,BT.boss)}</div></div></div>`;
+  const again=playLeft()>0?`<button class="abtn sec" onclick="startBattle('${l.id}',${BT.i})">Battle again</button>`:'';
   let panel;
-  if(BT.phase==='won')panel=`<div class="endcard"><div class="big" aria-hidden="true">🏆</div><h3>You beat ${esc(nm)}!</h3><p>${BT.ok} correct out of ${BT.n} spells. You earned <b>💎 ${BT.gems} gems</b>${BT.first?' for your first win':''}.${BT.boss&&BT.first?` You found the <b>${esc(l.relic)}</b>!`:''}</p><div class="row" style="justify-content:center"><button class="lamp" onclick="BT=null;rerealm()">Back to ${esc(l.n)}</button>${playLeft()>0?`<button class="alt" onclick="startBattle('${l.id}',${BT.i})">Battle again</button>`:''}</div></div>`;
-  else if(BT.phase==='lost')panel=`<div class="endcard"><div class="big" aria-hidden="true">💫</div><h3>${esc(nm)} won this time</h3><p>Lumi healed you up. Every miss showed you how to solve it, so you're stronger now. Try again!</p><div class="row" style="justify-content:center"><button class="lamp" onclick="startBattle('${l.id}',${BT.i})">Try again</button><button class="alt" onclick="BT=null;rerealm()">Back to the map</button></div></div>`;
-  else if(BT.phase==='timeup')panel=`<div class="endcard"><div class="big" aria-hidden="true">🌙</div><h3>Play time is over for today</h3><p>${esc(earnNote())}</p><div class="row" style="justify-content:center"><button class="lamp" onclick="BT=null;go('learn')">📖 Go learn</button><button class="alt" onclick="BT=null;rerealm()">Back to the map</button></div>${memberNote()}</div>`;
-  else if(BT.phase==='none')panel=`<div class="endcard"><h3>No questions here yet</h3><p>Pick another kind of magic, or choose your grade on the Learn page.</p><button class="lamp" onclick="BT=null;rerealm()">Back to the map</button></div>`;
+  if(BT.phase==='won')panel=`<div class="endcard"><div class="big" aria-hidden="true">🏆</div><h3>You befriended ${esc(nm)}!</h3><p>${BT.ok} correct out of ${BT.n} spell${BT.n===1?'':'s'}. You earned <b>💎 ${BT.gems} gems</b>${BT.first?' for your first win':''}.${BT.boss&&BT.first?` You found the <b>${esc(l.relic)}</b>!`:''}</p>${BT.drop?dropHtml(BT.drop):''}<div class="row" style="justify-content:center"><button class="abtn" onclick="BT=null;rerealm()">Back to ${esc(l.n)}</button>${again}</div></div>`;
+  else if(BT.phase==='lost')panel=`<div class="endcard"><div class="big" aria-hidden="true">💫</div><h3>Your hero needs a rest</h3><p>Lumi patched you up. Every miss showed you the trick, so you're stronger now. Try again!</p><div class="row" style="justify-content:center"><button class="abtn" onclick="startBattle('${l.id}',${BT.i})">Try again</button><button class="abtn sec" onclick="BT=null;rerealm()">Back to the map</button></div></div>`;
+  else if(BT.phase==='timeup')panel=`<div class="endcard"><div class="big" aria-hidden="true">🌙</div><h3>Play time is over for today</h3><p>${esc(earnNote())}</p><div class="row" style="justify-content:center"><button class="abtn sun" onclick="BT=null;go('learn')">📖 Go learn</button><button class="abtn sec" onclick="BT=null;rerealm()">Back to the map</button></div>${memberNote()}</div>`;
+  else if(BT.phase==='none')panel=`<div class="endcard"><h3>No questions here yet</h3><p>Pick another kind of magic, or choose your grade on the Learn page.</p><button class="abtn" onclick="BT=null;rerealm()">Back to the map</button></div>`;
   else panel=`<p class="sol" style="margin:0 0 6px">${mg[0]} ${mg[1]} · ${esc(SK[BT.k].n)}</p><div class="bq">${q.q}</div>
-    ${q.choices?`<div class="bchoices">${q.choices.map((c,i)=>`<button ${BT.phase!=='ask'?'disabled':''} onclick="castAns(${i})"><span aria-hidden="true">${'ABCD'[i]}.</span> ${esc(c)}</button>`).join('')}</div>`
-      :`<form class="bans" onsubmit="event.preventDefault();castAns($('bans').value)"><input id="bans" autocomplete="off" inputmode="text" aria-label="Your answer" placeholder="Type your answer" ${BT.phase!=='ask'?'disabled':''}><button class="lamp" ${BT.phase!=='ask'?'disabled':''}>✨ Cast</button></form>`}
+    ${q.choices?`<div class="bchoices">${q.choices.map((c,i)=>`<button ${BT.phase!=='ask'?'disabled':''} onclick="castAns(${i})"><span class="key" aria-hidden="true">${'ABCD'[i]}</span> ${esc(c)}</button>`).join('')}</div>`
+      :`<form class="bans" onsubmit="event.preventDefault();castAns($('bans').value)"><input id="bans" autocomplete="off" inputmode="text" aria-label="Your answer" placeholder="Type your answer" ${BT.phase!=='ask'?'disabled':''}><button class="abtn" ${BT.phase!=='ask'?'disabled':''}>✨ Cast</button></form>`}
     <div id="bfbx">${BT.fb||''}</div>`;
-  return `<div class="realm-top"><button class="alt" onclick="if(BT.phase==='ask'&&BT.n&&!confirm('Leave this battle?'))return;BT=null;rerealm()">← Map</button>${ptimeHtml()}</div><div class="battle">${arena}<div class="qpanel">${panel}</div></div>`}
+  return `<div class="gworld">${clouds()}<div class="ghead"><button class="abtn sec sm" onclick="if(BT.phase==='ask'&&BT.n&&!confirm('Leave this battle?'))return;BT=null;rerealm()">← Map</button>${ptimeHtml()}</div><div class="battle">${arena}<div class="qpanel">${panel}</div></div></div>`}
 function renderBattle(keep){if(tab!=='play'||!BT)return;$('views').innerHTML=battleHtml();
   const f=BT.phase==='ask'?($('bans')||document.querySelector('.bchoices button')):$('bnext');if(f&&!keep)f.focus();else if(f&&BT.phase==='fb')f.focus()}
 function rerealm(){if(tab==='play')$('views').innerHTML=VIEWS.play()}
-VIEWS.play=function(){if(!gameOn())return `<h2>Lumi's Realm</h2><p class="sol">The game is turned off on this site.</p>`;return BT?battleHtml():mapView()};
+VIEWS.play=function(){if(!gameOn())return `<h2>Bose Arcade</h2><p class="sol">The Arcade is turned off on this site.</p>`;return BT?battleHtml():AR.mode==='spell'?mapView():hubView()};
 const _stG=showTab;showTab=function(t){if(t!=='play'&&BT&&BT.phase==='ask')BT=null;_stG(t)};
 
 /* Owner console: the daily play time */

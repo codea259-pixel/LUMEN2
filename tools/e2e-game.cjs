@@ -44,7 +44,7 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
 
     // Student A learns: XP, gems, quests, level
     const a = await login(creds[0][1], creds[0][2]);
-    if (!(await a.isVisible('#tabs >> text=Play'))) fail('no Play tab for students');
+    if (!(await a.isVisible('#tabs >> text=Arcade'))) fail('no Arcade tab for students');
     if (!(await a.isVisible('.herostrip'))) fail('no hero card and quests on the Learn page');
     for (let i = 0; i < 12; i++) await practiceOne(a, true);
     const g1 = await a.evaluate(() => ({ xp: XP(), gems: GEMS(), ge: GM.game_ge ?? GM.ge, ok: DAY().ok, wk: WEEK().xp, lv: LVL() }));
@@ -69,7 +69,13 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     ok('Golden crown is locked until level 12'); await shot(a, 'g-shop');
 
     // Lumi's Realm: battle with real questions until the monster is beaten
-    await a.click('#tabs >> text=Play'); await a.waitForSelector('.worldmap');
+    await a.click('#tabs >> text=Arcade'); await a.waitForSelector('.tiles');
+    const tiles = await a.$$eval('.tile', t => t.map(x => x.querySelector('.tname').textContent + (x.classList.contains('soon') ? ' (soon)' : '')));
+    if (tiles.length !== 5 || tiles[0] !== 'Spell Quest') fail('arcade tiles wrong: ' + tiles.join(', '));
+    const p0 = await a.evaluate(() => DAY().play); await a.evaluate(() => realmTick(5)); if (await a.evaluate(() => DAY().play) !== p0) fail('play time ticked on the hub');
+    await a.click('.hubhero .livehero'); if (!(await a.evaluate(() => document.querySelector('.hubhero .livehero').classList.contains('wave')))) fail('hero did not wave when tapped');
+    ok('Arcade hub: ' + tiles.join(', ') + '; browsing the hub uses no play time; the hero waves when tapped');
+    await a.click('.tile:has-text("Spell Quest")'); await a.waitForSelector('.worldmap');
     const left0 = await a.evaluate(() => playLeft()); if (left0 < 60 || left0 > 20 * 60) fail('play time left is wrong: ' + left0);
     await a.click('#landpanel .mon >> nth=0 >> button'); await a.waitForSelector('.qpanel .bq');
     for (let i = 0; i < 12 && await a.evaluate(() => BT && BT.phase !== 'won'); i++) {
@@ -77,7 +83,7 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
       if (await a.evaluate(() => !!BT.q.choices)) await a.click(`.bchoices button >> nth=${await a.evaluate(() => BT.q.a[0])}`);
       else { await a.fill('#bans', await a.evaluate(() => fmtA(BT.q))); await a.click('.bans button') }
       await a.waitForTimeout(1300) }
-    await a.waitForSelector('text=You beat'); const w = await a.evaluate(() => ({ won: LS('meadow').won, bw: GM.bw, bat: DAY().bat }));
+    await a.waitForSelector('text=You befriended'); const w = await a.evaluate(() => ({ won: LS('meadow').won, bw: GM.bw, bat: DAY().bat }));
     if (!w.won[0] || w.bw !== 1) fail('battle win not recorded: ' + JSON.stringify(w)); await shot(a, 'g-won');
     ok('won a battle in Sunny Meadow by answering questions; first-win gems added');
     await a.click('text=Battle again'); await a.waitForSelector('.qpanel .bq');
@@ -85,12 +91,21 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     else { await a.fill('#bans', '987654'); await a.click('.bans button') }
     await a.waitForSelector('#bnext'); const miss = await a.textContent('#bfbx'); if (!/The answer is/.test(miss)) fail('a miss does not show the answer');
     ok('a wrong answer shows the right answer and how to solve it');
+    await a.waitForFunction(() => document.querySelector('.fighter.me .live').classList.contains('oops'), null, { timeout: 2000 }).catch(() => fail('hero did not react to a miss'));
     await a.evaluate(() => { DAY().play = playAllowed(); realmTick(0) }); await a.click('#bnext'); await a.waitForSelector('text=Play time is over for today');
     ok('when play time runs out the battle ends: ' + (await a.textContent('.endcard p')).trim().slice(0, 70));
-    await a.click('.endcard >> text=Back to the map'); if (!(await a.isVisible('text=Play time is over for today'))) fail('map does not show the time-up note');
+    await a.click('.endcard >> text=Back to the map'); if (!(await a.isVisible('text=Rest your eyes, hero!'))) fail('map does not show the time-up note');
     const blocked = await a.evaluate(() => { startBattle('meadow', 0); return BT === null || BT.phase !== 'ask' }); if (!blocked) fail('a battle started with no play time left');
     await a.evaluate(() => { DAY().study += 600 }); const more = await a.evaluate(() => playLeft()); if (more !== 300) fail('10 minutes of learning should earn 5 minutes, got ' + more);
     ok('10 more minutes of learning earned 5 more minutes of play');
+
+    // A first boss win always drops gear, saved to the hero's closet
+    const gd = await a.evaluate(() => { DAY().play = 0; const st = LS('meadow'); st.won = [1, 1, 1]; st.boss = 0; startBattle('meadow', 3); BT.mhp = 1; const own = GM.own.length; castAns(BT.q.choices ? BT.q.a[0] : fmtA(BT.q)); return own });
+    await a.waitForSelector('.drop'); const dr = await a.evaluate(() => ({ id: BT.drop, own: GM.own.length, rar: document.querySelector('.drop .rar').textContent }));
+    if (!dr.id || dr.own !== gd + 1) fail('no gear drop on a first boss win: ' + JSON.stringify(dr));
+    await a.click('.drop button'); if (!(await a.evaluate(id => Object.values(GM.eq).includes(id), dr.id))) fail('could not wear the gear');
+    ok(`first boss win dropped ${dr.rar.replace('!', '')}: ${dr.id}, worn with one tap`); await shot(a, 'g-drop');
+    await a.evaluate(() => { BT = null; DAY().play = playAllowed() });
 
     // Classwork turned in: XP and gems once
     await a.click('#tabs >> text=My classes'); await a.waitForSelector('button:text-is("Start")');
@@ -156,8 +171,8 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     await ow.click('text=Save offer'); await ow.waitForSelector('text=Membership offer saved.');
     const bad = await call(ow, 'PUT', '/api/owner/settings', { member: { on: true, link: 'javascript:alert(1)' } }); if (bad.s !== 400) fail('a non-https payment link was accepted');
     ok('owner offers membership at $4.99 a month with a PayPal link (non-https links refused)');
-    await a.reload(); await a.waitForSelector('#avatarBtn'); await a.evaluate(() => { DAY().play = playAllowed() }); await a.click('#tabs >> text=Play');
-    await a.waitForSelector('text=Play time is over for today'); await a.click('text=⭐ Membership (for grown-ups)'); await a.waitForSelector('#gatein');
+    await a.reload(); await a.waitForSelector('#avatarBtn'); await a.evaluate(() => { DAY().play = playAllowed() }); await a.click('#tabs >> text=Arcade');
+    await a.waitForSelector('text=Rest your eyes, hero!'); await a.click('text=⭐ Membership (for grown-ups)'); await a.waitForSelector('#gatein');
     if (await a.isVisible('a.paybtn')) fail('a learner saw the price before the grown-up check');
     await a.fill('#gatein', '1'); await a.click('.gate button'); await a.waitForSelector('text=Not quite. Please ask a grown-up.');
     await a.fill('#gatein', String(await a.evaluate(() => MGATE.a * MGATE.b))); await a.click('.gate button'); await a.waitForSelector('a.paybtn');
@@ -167,11 +182,11 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     await t.reload(); await t.waitForSelector('#avatarBtn'); await t.click('#tabs >> text=Teacher'); await t.waitForSelector('.cls'); await t.evaluate(() => go('member')); await t.waitForSelector('a.paybtn'); if (!(await t.textContent('#views')).includes(await t.evaluate(() => ST.classes[0].code))) fail('teacher does not see class codes');
     ok('teachers see the offer right away, with their class codes');
     const code = await t.evaluate(() => ST.classes[0].code);
-    await ow.fill('#mwho', creds[0][1]); await ow.selectOption('#mlen', '3'); await ow.click('text=Switch on'); await ow.waitForSelector('text=Membership on for');
+    await ow.fill('#mwho', creds[0][1]); await ow.selectOption('#mlen', '3'); await ow.click('button:text-is("Switch on")'); await ow.waitForSelector('text=Membership on for');
     await ow.waitForSelector(`td:has-text("${creds[0][1]}")`); ok('owner switched on 3 months for ' + creds[0][1]);
-    await a.reload(); await a.waitForSelector('#avatarBtn'); await a.evaluate(() => { DAY().play = playAllowed() + 999 }); await a.click('#tabs >> text=Play'); await a.waitForSelector('text=⭐ Member: unlimited play');
-    await a.click('#landpanel .mon >> nth=0 >> button'); await a.waitForSelector('.qpanel .bq'); ok('member plays with no time limit: ' + (await a.textContent('#ptime')).trim());
-    await ow.fill('#mwho', code); await ow.selectOption('#mlen', '12'); await ow.click('text=Switch on'); await ow.waitForSelector('text=Membership on for the class');
+    await a.reload(); await a.waitForSelector('#avatarBtn'); await a.evaluate(() => { DAY().play = playAllowed() + 999 }); await a.click('#tabs >> text=Arcade'); await a.waitForSelector('text=⭐ Unlimited play');
+    await a.click('.tile:has-text("Spell Quest")'); await a.waitForSelector('.worldmap'); await a.click('#landpanel .mon >> nth=0 >> button'); await a.waitForSelector('.qpanel .bq'); ok('member plays with no time limit: ' + (await a.textContent('#ptime')).trim());
+    await ow.fill('#mwho', code); await ow.selectOption('#mlen', '12'); await ow.click('button:text-is("Switch on")'); await ow.waitForSelector('text=Membership on for the class');
     await b.reload(); await b.waitForSelector('#avatarBtn'); if (!(await b.evaluate(() => isMember()))) fail('class membership did not reach a student'); ok('class code ' + code + ' switched on for a year: every student in the class is a member');
     await ow.click(`tr:has-text("${creds[0][1]}") >> text=End now`); await ow.waitForSelector('text=Membership ended.');
     await ow.click(`tr:has-text("${code}") >> text=End now`); await ow.waitForSelector('text=Membership ended.');
@@ -180,7 +195,7 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     if (sm.s !== 403 || tm2.s !== 403 || sl.s !== 403) fail(`students or teachers could switch on membership: ${sm.s} ${tm2.s} ${sl.s}`);
     ok('students and teachers get 403 when they try to switch on membership');
     // Teachers play without a time limit
-    await t.click('#tabs >> text=Play'); await t.waitForSelector('text=No time limit (preview)'); ok('teachers can try the game with no time limit');
+    await t.click('#tabs >> text=Arcade'); await t.waitForSelector('text=No time limit (preview)'); ok('teachers can try the game with no time limit');
   } catch (e) { console.log('FAIL', e.message); errs.push(e.message) }
   console.log(errs.length ? 'ERRORS:\n' + errs.join('\n') : 'all game checks passed'); await br.close(); process.exit(errs.length ? 1 : 0);
 })();
