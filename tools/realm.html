@@ -104,7 +104,7 @@ function playLabel(){const l=playLeft();return l===Infinity?'no time limit':l>0?
 function earnNote(){const g=GSET(),m=Math.floor(DAY().study/60),capped=playAllowed()>=g.max*60;
   return capped?`You've earned today's full ${g.max} minutes of play. Come back tomorrow for more.`:`Every 10 minutes of learning earns ${g.per} more minutes of play, up to ${g.max} minutes a day. You've learned ${m} minute${m===1?'':'s'} today.`}
 function realmTick(sec){if(tab!=='play'||!gameOn()||document.hidden||Date.now()-lastAct>120000)return;
-  if(BT?['ask','fb'].includes(BT.phase):AR.mode==='spell'||!!AR.run){if(!noLimit()&&playLeft()>0){DAY().play+=sec;if(DAY().play%60===0)SYNC()}}
+  if(BT?['ask','fb'].includes(BT.phase):AR.mode==='spell'||(!!AR.run&&!AR.paused)){if(!noLimit()&&playLeft()>0){DAY().play+=sec;if(DAY().play%60===0)SYNC()}}
   const e=$('ptime');if(e)e.outerHTML=ptimeHtml();
   if(!noLimit()&&playLeft()<=0&&BT&&BT.phase==='ask'){BT.phase='timeup';renderBattle()}}
 function ptimeHtml(){const l=playLeft(),a=noLimit()?1:playAllowed();return `<div class="ptime" id="ptime" title="${esc(noLimit()?'Only learners have a daily play time.':earnNote())}"><span aria-hidden="true">⏳</span><span>${l===Infinity?(isMember()&&BOOT.role==='student'?'⭐ Member: unlimited play':'No time limit (preview)'):l>0?mmss(l)+' of play left today':'Out of play time today'}</span>${l===Infinity?'':`<div class="bar" aria-hidden="true"><i style="width:${Math.min(100,l/a*100)}%"></i></div>`}</div>`}

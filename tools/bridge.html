@@ -104,7 +104,8 @@ async function verifyPage(id){document.querySelector('.wrap2').hidden=true;docum
 /* ===== Server-backed views. These replace the demo data layer of the prototype. ===== */
 const ME=BOOT.user;
 const busy=async(fn)=>{try{await fn()}catch(e){msg(e.message)}};
-const reload=t=>LOAD[t]?LOAD[t]().then(()=>showTab(t)).catch(e=>msg(e.message)):showTab(t);
+/* Only the latest navigation shows its tab, so a slow load (like My classes refreshing after joining) never pulls the learner back from where they went next */
+let navSeq=0;const reload=t=>{const n=++navSeq;return LOAD[t]?LOAD[t]().then(()=>{if(n===navSeq)showTab(t)}).catch(e=>msg(e.message)):showTab(t)};
 
 /* Navigation: tabs follow the signed-in account's real role */
 can=t=>t=='teacher'?BOOT.role!=='student':t=='owner'?BOOT.role==='owner':t=='classes'?BOOT.role==='student':true;

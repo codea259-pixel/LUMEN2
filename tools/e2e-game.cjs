@@ -71,7 +71,7 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     // Lumi's Realm: battle with real questions until the monster is beaten
     await a.click('#tabs >> text=Arcade'); await a.waitForSelector('.tiles');
     const tiles = await a.$$eval('.tile', t => t.map(x => x.querySelector('.tname').textContent + (x.classList.contains('soon') ? ' (soon)' : '')));
-    if (tiles.length !== 5 || tiles[0] !== 'Spell Quest' || tiles.some(x => x.includes('(soon)'))) fail('arcade tiles wrong: ' + tiles.join(', '));
+    if (tiles.length !== 6 || tiles[0] !== 'Spell Quest' || tiles[1] !== 'Dungeon Dash' || tiles.some(x => x.includes('(soon)'))) fail('arcade tiles wrong: ' + tiles.join(', '));
     const p0 = await a.evaluate(() => DAY().play); await a.evaluate(() => realmTick(5)); if (await a.evaluate(() => DAY().play) !== p0) fail('play time ticked on the hub');
     await a.click('.hubhero .livehero'); if (!(await a.evaluate(() => document.querySelector('.hubhero .livehero').classList.contains('wave')))) fail('hero did not wave when tapped');
     ok('Arcade hub: ' + tiles.join(', ') + '; browsing the hub uses no play time; the hero waves when tapped');
@@ -134,9 +134,9 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
       if (i % 2) await a.keyboard.press(String(want + 1)); else await a.click(`.klanes button >> nth=${want}`);
       await a.evaluate(() => { KT.gs -= KT.win }); await a.waitForFunction(() => KT.ph !== 'go');
       if (i === 4 && !/Bump! It was/.test(await a.textContent('#kfb'))) fail('a wrong lane does not show the answer') }
-    await a.waitForSelector('text=Gold medal!'); const kr = await a.evaluate(g => ({ gems: GEMS() - g, best: ARS('kart').best, ok: KT.ok }), kg0);
-    if (kr.ok !== 9 || kr.gems !== 6 || kr.best == null) fail('race result wrong: ' + JSON.stringify(kr));
-    ok(`Turbo Trivia Kart: ${kc.n} questions all made 3 different lanes with the right answer; 9 of 10 gates right (taps and number keys) won gold and 6 gems (3 for gold, 3 for a first best time); a wrong lane shows the answer; racing uses play time`); await shot(a, 'g-kart');
+    await a.waitForSelector('text=Gold medal!'); const kr = await a.evaluate(g => ({ gems: GEMS() - g, best: (ARS('kart').bt || {}).sun, ok: KT.ok, n: KT.n, next: ktOpen(1), last: ktOpen(3) }), kg0);
+    if (kr.ok !== 9 || kr.n !== 10 || kr.gems !== 6 || kr.best == null || !kr.next || kr.last || !(await a.isVisible('text=New track unlocked: Candy Canyon'))) fail('race result wrong: ' + JSON.stringify(kr));
+    ok(`Turbo Trivia Kart: ${kc.n} questions all made 3 different lanes with the right answer; 9 of 10 gates right (taps and number keys) won gold and 6 gems (3 for gold, 3 for a first best time) and unlocked Candy Canyon (12 gates); a wrong lane shows the answer; racing uses play time`); await shot(a, 'g-kart');
     // Goblin Gate: build with a right answer, the field pauses during questions, upgrades need answers in a row
     await a.evaluate(() => toHub()); await a.click('.tile:has-text("Goblin Gate")'); await a.click('text=Start defending'); await a.waitForSelector('#gp0');
     await a.click('#gp0'); await a.click('.tpick button:has-text("Laser tower")'); await answerQM(a, true); await a.waitForFunction(() => !QM && GT.tw[0] && GT.tw[0].lv === 1);
@@ -146,9 +146,9 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     await a.click('#gp0'); await a.click('text=Start the upgrade'); await answerQM(a, true); await answerQM(a, false); await a.waitForSelector('#qmok'); await a.click('#qmok'); await a.waitForFunction(() => !QM);
     if (await a.evaluate(() => GT.tw[0].lv) !== 1) fail('an upgrade went through after a miss');
     const gg0 = await a.evaluate(() => GEMS()); await a.evaluate(() => { GT.tw = GT.tw.map((t, i) => ({ t: ['laser', 'frost', 'bubble'][i % 3], lv: 3, cd: 0 })); for (let i = 0; i < 6000 && ['build', 'wave'].includes(GT.ph); i++) { if (GT.ph === 'build') gateWave(); gateStep(.05) } });
-    await a.waitForSelector('text=The castle is safe!'); const gr = await a.evaluate(g => ({ gems: GEMS() - g, stars: GT.stars, best: ARS('gate').best }), gg0);
-    if (gr.gems !== [0, 3, 5, 8][gr.stars] || gr.best !== gr.stars) fail('castle reward wrong: ' + JSON.stringify(gr));
-    ok(`Goblin Gate: a right answer built a laser tower, goblins froze while a menu was open, a miss stopped the upgrade, 4 waves defended for ${gr.stars} stars and ${gr.gems} gems`); await shot(a, 'g-gate');
+    await a.waitForSelector('text=The castle is safe!'); const gr = await a.evaluate(g => ({ gems: GEMS() - g, stars: GT.stars, best: (ARS('gate').st || {}).meadow, forest: gmOpen(1), snow: gmOpen(2) }), gg0);
+    if (gr.gems !== [0, 3, 5, 8][gr.stars] || gr.best !== gr.stars || !gr.forest || gr.snow || !(await a.isVisible('text=New map unlocked: Forest Trail'))) fail('castle reward wrong: ' + JSON.stringify(gr));
+    ok(`Goblin Gate: a right answer built a laser tower, goblins froze while a menu was open, a miss stopped the upgrade, 4 waves of Meadow Path defended for ${gr.stars} stars and ${gr.gems} gems, unlocking Forest Trail (6 waves)`); await shot(a, 'g-gate');
     // Block Builder: side-by-side and stacked blocks that make 10 clear
     await a.evaluate(() => toHub()); await a.click('.tile:has-text("Block Builder")'); await a.click('.accs >> text=Make 10'); await a.click('text=Start building'); await a.waitForSelector('.bcell.cur');
     await a.evaluate(() => { BB.g[8][0] = 4; BB.cur = { v: 6, c: 3, r: 0 }; bbPaint() }); await a.keyboard.press('ArrowLeft'); await a.keyboard.press('ArrowLeft'); await a.keyboard.press(' ');
@@ -156,9 +156,31 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     if (bb1.clears !== 1 || bb1.row !== '0,0,0,0,0,0' || bb1.feed !== '4 + 6 = 10') fail('side-by-side clear wrong: ' + JSON.stringify(bb1));
     await a.evaluate(() => { BB.g[8][5] = 2; BB.cur = { v: 8, c: 5, r: 0 }; bbPaint() }); await a.click('.bcell >> nth=5');
     if (await a.evaluate(() => BB.clears) !== 2) fail('a stacked 2 + 8 did not clear (tapping the block\'s own column should drop it)');
+    const lv = await a.evaluate(() => { BB.clears = 4; BB.g[8][0] = 9; BB.cur = { v: 1, c: 1, r: 8 }; bbDrop(); return { lv: BB.lv, feed: BB.feed[0] } });
+    if (lv.lv !== 2 || !/Level 2/.test(lv.feed)) fail('5 clears did not reach level 2: ' + JSON.stringify(lv));
     const bg0 = await a.evaluate(() => GEMS()); await a.evaluate(() => { for (let r = 0; r < 9; r++) for (let c = 0; c < 6; c++) BB.g[r][c] = r === 0 && c === 2 ? 0 : 1; BB.clears = 8; BB.cur = { v: 1, c: 2, r: 0 }; bbDrop() });
     await a.waitForSelector('text=Tower full!'); const bgem = await a.evaluate(g => GEMS() - g, bg0); if (bgem !== 2) fail('Block Builder paid ' + bgem + ' gems for 9 clears');
-    ok('Block Builder: 4 + 6 side by side and 2 + 8 stacked both cleared; a full tower ends the round with 2 gems for 9 clears'); await shot(a, 'g-blocks');
+    ok('Block Builder: 4 + 6 side by side and 2 + 8 stacked both cleared, the 5th clear reached level 2, and a full tower ends the round with 2 gems for 9 clears'); await shot(a, 'g-blocks');
+    // Dungeon Dash: move, recharge magic with answers, level up, dodge, take the stairs
+    await a.evaluate(() => toHub()); await a.click('.tile:has-text("Dungeon Dash")'); await a.click('text=Enter the dungeon'); await a.waitForSelector('#ddcv');
+    const dp0 = await a.evaluate(() => DAY().play); await a.evaluate(() => realmTick(5)); if (await a.evaluate(() => DAY().play) !== dp0 + 5) fail('a dungeon run did not use play time');
+    await a.keyboard.press('p'); const pz = await a.evaluate(() => { const d = DAY().play; realmTick(5); return [DD.ph, DAY().play - d] }); await a.keyboard.press('p');
+    if (pz[0] !== 'pause' || pz[1] !== 0 || await a.evaluate(() => DD.ph) !== 'run') fail('pausing did not stop the play-time clock: ' + pz.join(' '));
+    const dx0 = await a.evaluate(() => DD.h.x); await a.keyboard.down('ArrowLeft'); await a.waitForTimeout(450); await a.keyboard.up('ArrowLeft'); const dx1 = await a.evaluate(() => DD.h.x);
+    if (!(dx1 < dx0 - 30)) fail(`the hero did not move left with the arrow key: ${dx0} -> ${dx1}`);
+    await a.evaluate(() => { DD.ch = 0; DD.low = .01 }); await answerQM(a, true); await a.waitForFunction(() => !QM && !DD.asking); const ch1 = await a.evaluate(() => DD.ch); if (ch1 < 15) fail('a right answer gave only ' + ch1 + ' charges');
+    await a.evaluate(() => { DD.ch = 0; ddRecharge() }); for (let i = 0; i < 3; i++) { await answerQM(a, false); await a.waitForSelector('#qmok'); await a.click('#qmok') }
+    await a.waitForFunction(() => !QM && !DD.asking); const ch2 = await a.evaluate(() => ({ ch: DD.ch, streak: DD.streak })); if (ch2.ch !== 6 || ch2.streak !== 0) fail('3 misses should lend 6 charges: ' + JSON.stringify(ch2));
+    const up0 = await a.evaluate(() => JSON.stringify(DD.up) + DD.h.max); await a.evaluate(() => { DD.jw = DD.need }); await answerQM(a, true); await a.waitForSelector('.ddpick'); await a.click('.ddpick button >> nth=0'); await a.waitForFunction(() => !QM && !DD.asking);
+    const up1 = await a.evaluate(() => ({ s: JSON.stringify(DD.up) + DD.h.max, lvl: DD.lvl })); if (up1.s === up0 || up1.lvl !== 2) fail('level up did not give a power-up: ' + JSON.stringify(up1));
+    const hp = await a.evaluate(() => { const H = DD.h; H.inv = 0; const h0 = H.hp; DD.foes.push({ k: 'fire', x: H.x, y: H.y, vx: 0, vy: 0, r: 9, b: 3, life: 5 }, { k: 'missile', x: H.x + 2, y: H.y, vx: 1, vy: 0, r: 8, life: 5 }); ddStep(.016); return [h0, H.hp] });
+    if (hp[1] !== hp[0] - 1) fail('a fireball and a missile together should cost exactly one heart: ' + hp.join(' -> '));
+    await a.evaluate(() => { DD.wave = 5; DD.gated = 0; DD.left = 0; DD.mons = []; DD.waveDone = 1; DD.between = .01 }); await a.waitForFunction(() => QM && QM.phase === 'ask');
+    if (!/Stairs to floor 2/.test(await a.textContent('#qmt'))) fail('wave 5 did not lead to the stairs question'); await answerQM(a, true); await a.waitForFunction(() => !QM && !DD.asking);
+    const fl = await a.evaluate(() => ({ floor: DD.floor, wave: DD.wave })); if (fl.floor !== 1 || fl.wave !== 6) fail('the stairs did not lead to floor 2, wave 6: ' + JSON.stringify(fl));
+    const dg0 = await a.evaluate(() => GEMS()); await a.evaluate(() => { DD.cleared = 5; DD.h.hp = 1; DD.h.inv = 0; ddHurt() }); await a.waitForSelector('text=Your hero needs a rest!');
+    const dres = await a.evaluate(g => ({ gems: GEMS() - g, best: ARS('dash').wave }), dg0); if (dres.gems !== 5 || dres.best !== 6) fail('run result wrong: ' + JSON.stringify(dres));
+    ok('Dungeon Dash: P pauses the game and the play-time clock, the arrow keys move the hero, a right answer recharges 15+ bolts, 3 misses still lend 6, levelling up gives a power-up, a fireball plus a missile cost one heart, wave 5 opens the stairs to floor 2 with a question, and the run paid 1 gem per wave cleared'); await shot(a, 'g-dash');
     // Out of play time: the action games stop at the start screen; the pet can still be visited
     await a.evaluate(() => { DAY().play = playAllowed(); toHub() }); if (!(await a.isVisible('.tile:has-text("Pet Pals") >> text=Visit'))) fail('Pet Pals is not open when play time is over');
     await a.click('.tile:has-text("Turbo Trivia Kart")'); if (!(await a.isDisabled('text=Start race'))) fail('a race can start with no play time left');

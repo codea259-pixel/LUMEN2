@@ -23,8 +23,12 @@
 /* Turbo Trivia Kart */
 .kq{margin-bottom:12px;min-height:76px}.kq .kqt{font:700 clamp(1.15rem,2.8vw,1.45rem)/1.3 "Atkinson Hyperlegible",sans-serif;margin-top:2px}
 .khud,.ghud{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}.khud span,.ghud span{background:rgba(30,27,75,.5);color:#fff;border-radius:99px;padding:5px 12px;font-weight:800;font-size:.9rem}
-.ktrack{position:relative;height:clamp(280px,48vh,400px);border-radius:24px;overflow:hidden;border:3px solid rgba(255,255,255,.85);box-shadow:0 7px 0 var(--ga-lip);background:#6DBF62}
-.kroad{position:absolute;top:0;bottom:0;left:6%;right:6%;background-color:#5B6478;background-image:linear-gradient(#fff 50%,transparent 50%),linear-gradient(#fff 50%,transparent 50%);background-size:4px 44px,4px 44px;background-position:33.33% 0,66.66% 0;background-repeat:repeat-y;border-left:6px solid #F8FAFC;border-right:6px solid #F8FAFC;animation:kroad .5s linear infinite}
+.ktrack{position:relative;height:clamp(280px,48vh,400px);border-radius:24px;overflow:hidden;border:3px solid rgba(255,255,255,.85);box-shadow:0 7px 0 var(--ga-lip);background:var(--grass,#6DBF62)}
+.ktrack::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle,var(--dot,#4E9E45) 7px,transparent 8px);background-size:46px 64px;animation:kscen .9s linear infinite}@keyframes kscen{to{background-position:0 64px}}
+.ktracks{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}.ktr{display:flex;flex-direction:column;gap:4px;text-align:left;padding:10px;border-radius:16px;border:2px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer;font:inherit}
+.ktr.on{border:3px solid var(--ga-gold);box-shadow:0 0 0 3px color-mix(in srgb,var(--ga-gold) 30%,transparent)}.ktr[disabled]{opacity:.6;cursor:not-allowed}.ktr b{font:800 1rem "Bricolage Grotesque",sans-serif}.ktr .sol{font-size:.82rem}
+.ktrart{display:block;height:44px;border-radius:10px;background:linear-gradient(90deg,var(--grass) 0 16%,var(--edge) 16% 20%,var(--road) 20% 80%,var(--edge) 80% 84%,var(--grass) 84%)}
+.kroad{position:absolute;top:0;bottom:0;left:6%;right:6%;background-color:var(--road,#5B6478);background-image:linear-gradient(#fff 50%,transparent 50%),linear-gradient(#fff 50%,transparent 50%);background-size:4px 44px,4px 44px;background-position:33.33% 0,66.66% 0;background-repeat:repeat-y;border-left:6px solid var(--edge,#F8FAFC);border-right:6px solid var(--edge,#F8FAFC);animation:kroad .5s linear infinite}
 @keyframes kroad{to{background-position:33.33% 44px,66.66% 44px}}
 .kgate{position:absolute;left:6%;right:6%;top:-12%;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 8px}
 .kgate span{display:grid;place-items:center;min-height:46px;padding:6px;border-radius:14px;background:#fff;color:#1E1B4B;border:3px solid #8B5CF6;box-shadow:0 4px 0 #5B21B6;font-weight:800;text-align:center;line-height:1.15;font-size:clamp(.78rem,2.2vw,1rem);overflow-wrap:anywhere}
@@ -32,7 +36,7 @@
 .kart{position:absolute;bottom:12px;width:min(17%,86px);left:calc(6% + 88% * (var(--lane) * 2 + 1) / 6);transform:translateX(-50%);transition:left .16s ease-out}.kart svg{width:100%;height:auto;display:block}
 .kart.boost{animation:kboost .7s ease-out}.kart.bump{animation:kbump .6s ease}@keyframes kboost{30%{transform:translate(-50%,-26px) scale(1.08)}}@keyframes kbump{25%{transform:translateX(-50%) rotate(-14deg)}60%{transform:translateX(-50%) rotate(10deg)}}
 .kfb{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);max-width:86%;text-align:center;font:800 clamp(1.1rem,3.4vw,1.6rem) "Bricolage Grotesque",sans-serif;color:#fff;text-shadow:0 2px 0 #1E1B4B,0 0 10px rgba(30,27,75,.8)}
-.klanes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}.klanes .abtn{width:100%;min-height:60px;padding:0 10px;font-size:1rem}.klanes .abtn .kl{overflow-wrap:anywhere;line-height:1.15}
+.klanes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}.klanes .abtn{width:100%;min-height:60px;padding:0 10px;font-size:1rem}.klanes .abtn .kl{overflow-wrap:break-word;line-height:1.15;min-width:0}@media(max-width:480px){.klanes .abtn .key{display:none}.klanes .abtn{font-size:.92rem;padding:0 6px}}
 .klanes .abtn.on{box-shadow:inset 0 2px 0 rgba(255,255,255,.6),0 6px 0 var(--ga-gold),0 0 0 3px var(--ga-gold)}.klanes .key{display:grid;place-items:center;flex:none;width:26px;height:26px;border-radius:8px;background:#EEF2FF;color:#4338CA;font-size:.85rem}
 /* Goblin Gate */
 .gfield{position:relative;aspect-ratio:16/9;border-radius:24px;overflow:hidden;border:3px solid rgba(255,255,255,.85);box-shadow:0 7px 0 var(--ga-lip)}.gfield>svg{position:absolute;inset:0;width:100%;height:100%;display:block}
@@ -44,11 +48,12 @@
 .bboard{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-template-rows:repeat(9,minmax(0,1fr));gap:4px;padding:8px;background:#1E1B4B;border-radius:20px;border:3px solid rgba(255,255,255,.85);box-shadow:0 7px 0 var(--ga-lip);aspect-ratio:6/9;width:100%;max-width:340px;margin:0 auto}
 .bcell{border-radius:8px;background:rgba(255,255,255,.07);display:grid;place-items:center;font:800 clamp(.95rem,3.6vw,1.35rem)/1 "Bricolage Grotesque",sans-serif;color:#fff;cursor:pointer;user-select:none}
 .bcell.v{background:var(--bc);box-shadow:inset 0 3px 0 rgba(255,255,255,.35),0 3px 0 rgba(0,0,0,.3);text-shadow:0 1px 0 rgba(0,0,0,.3)}.bcell.cur{outline:3px solid #FDE047;outline-offset:-1px}
-.bctl{display:flex;gap:10px;justify-content:center;margin-top:12px}.bctl .abtn{min-width:64px}
+.bctl{display:flex;gap:10px;justify-content:center;margin-top:12px}.bbtop .bpill{margin-left:auto}.bbtop .bpill+.bpill{margin-left:0}
+.bnrow{display:flex;align-items:center;gap:12px}.bnext{width:54px;height:54px;flex:none;font-size:1.5rem;cursor:default}.bctl .abtn{min-width:64px}
 .bbtop{display:flex;justify-content:space-between;align-items:center;gap:10px;max-width:340px;margin:0 auto 10px}.btarget{font:800 1.6rem "Bricolage Grotesque",sans-serif;color:#fff;text-shadow:0 2px 0 #312E81,0 0 8px rgba(30,27,75,.6)}.bpill{background:rgba(30,27,75,.55);color:#fff;border-radius:99px;padding:5px 12px;font-weight:800}.bfeed{list-style:none;margin:0;padding:0}.bfeed li{padding:6px 10px;border-radius:10px;margin:4px 0;background:var(--bg);font-weight:700}.bfeed li.new{background:#E3F6EA;color:#1D5E3A}
 @media(prefers-color-scheme:dark){:root:not([data-theme=light]) .bfeed li.new{background:#1E3B2C;color:#B9F0CF}}:root[data-theme=dark] .bfeed li.new{background:#1E3B2C;color:#B9F0CF}
-@media(prefers-reduced-motion:reduce){.pal,.kroad,.kart{animation:none!important}}
-body[data-calm] .pal,body[data-calm] .kroad,body[data-calm] .kart{animation:none!important}
+@media(prefers-reduced-motion:reduce){.pal,.kroad,.kart,.ktrack::before{animation:none!important}}
+body[data-calm] .pal,body[data-calm] .kroad,body[data-calm] .kart,body[data-calm] .ktrack::before{animation:none!important}
 </style>
 <script type="text/x-lumen">
 /* ===== Arcade games: Pet Pals, Turbo Trivia Kart, Goblin Gate and Block Builder. Each is a mode of the Play tab (AR.mode).
@@ -59,7 +64,7 @@ const ARS=k=>{const A=GM.ar||(GM.ar={});return A[k]||(A[k]={})};
 const outOfTime=()=>!noLimit()&&playLeft()<=0;
 const canStart=()=>{if(!outOfTime())return true;msg('Play time is over for today. Learn to earn more!');return false};
 const GSTOP=[];
-function stopGames(){AR.run=false;cancelAnimationFrame(AR.raf);clearInterval(AR.iv);AR.raf=AR.iv=0;if(QM)qmClose(true);GSTOP.forEach(f=>f())}
+function stopGames(){AR.run=false;AR.paused=false;cancelAnimationFrame(AR.raf);clearInterval(AR.iv);AR.raf=AR.iv=0;if(QM)qmClose(true);GSTOP.forEach(f=>f())}
 const _thA=toHub;toHub=function(){if(AR.run&&!confirm('Leave this game? This round will end.'))return;stopGames();_thA()};
 const _stA=showTab;showTab=function(t){stopGames();_stA(t)};
 const gameHead=(t,s)=>`<div class="ghead"><div style="display:flex;gap:14px;align-items:center"><button class="abtn sec sm" onclick="toHub()">← Arcade</button><div><h2 class="gtitle">${t}</h2><p class="gsub">${s}</p></div></div>${ptimeHtml()}</div>`;
@@ -153,8 +158,13 @@ const _hcP=heroCard;heroCard=function(){const h=_hcP(),P=PET();if(!gameOn()||!(P
   return h.replace('<div class="gemrow"',`<button class="palmini" onclick="AR.mode='pets';go('play')">${P.kind?palSvg(P,{label:P.name}):'<span aria-hidden="true" style="font-size:28px;padding:4px">🥚</span>'}<span>${P.kind?`${esc(P.name)}${P.food?`: ${P.food} snack${P.food>1?'s':''} waiting`:' says hi!'}`:'Pick your pet egg'}</span></button><div class="gemrow"`)};
 
 /* ---------- Turbo Trivia Kart: 10 gates, 3 answer lanes, 5 seconds a gate (8 in Relaxed mode) ---------- */
-let KT=null;const KGATES=10;
+let KT=null;
 GSTOP.push(()=>{if(KT&&['go','fb'].includes(KT.ph))KT=null});
+const KTRACKS=[{id:'sun',n:'Sunny Speedway',g:10,grass:'#6DBF62',dot:'#4E9E45',road:'#5B6478',edge:'#F8FAFC'},{id:'candy',n:'Candy Canyon',g:12,grass:'#F9A8D4',dot:'#F472B6',road:'#7C5C8A',edge:'#FDE68A'},
+  {id:'jungle',n:'Jungle Jump',g:14,grass:'#166534',dot:'#22C55E',road:'#6B4F3A',edge:'#FACC15'},{id:'moon',n:'Moon Loop',g:16,grass:'#1E1B4B',dot:'#A5B4FC',road:'#334155',edge:'#C4B5FD'}];
+/* A track opens after a medal on the track before it */
+const ktOpen=i=>!i||((ARS('kart').med||{})[KTRACKS[i-1].id]||0)>0;
+const ktCur=()=>{let i=KTRACKS.findIndex(t=>t.id===ARS('kart').tr);if(i<0||!ktOpen(i))i=0;return KTRACKS[i]};
 /* Three lane answers: the right one plus two others (near misses for numbers) */
 function kartChoices(q){if(q.choices){const c=q.choices[q.a[0]],L=shuf([c,...shuf(q.choices.filter((_,i)=>i!==q.a[0])).slice(0,2)]);return{L,cor:L.indexOf(c)}}
   const [n,d]=q.a,dec=/\d\.\d/.test(q.q)&&[1,2,4,5,8,10,20,25,50,100,1000].includes(d),f=(x,y)=>{const g=gcd(Math.abs(x),y)||1;x/=g;y/=g;return dec?String(+(x/y).toFixed(3)):y===1?String(x):`${x}/${y}`};
@@ -163,12 +173,12 @@ function kartChoices(q){if(q.choices){const c=q.choices[q.a[0]],L=shuf([c,...shu
   const c=f(n,d),seen=new Set([c]),o=[];for(const [x,y] of shuf(cands)){const s=f(x,y);if(!seen.has(s)&&!eq([x,y],[n,d])){seen.add(s);o.push(s)}if(o.length===2)break}
   if(o.length<2)return null;const L=shuf([c,...o]);return{L,cor:L.indexOf(c)}}
 const kartWin=()=>(ARS('kart').relax??myGrade()<=2)?8000:5000;
-function kartStart(){if(!canStart())return;stopGames();KT={ph:'go',i:0,ok:0,lane:1,pen:0,t0:performance.now(),win:kartWin()};AR.run=true;rerealm();kartNext();if(KT&&KT.ph==='go')AR.raf=requestAnimationFrame(kartFrame)}
+function kartStart(){if(!canStart())return;stopGames();const tr=ktCur();KT={ph:'go',i:0,ok:0,lane:1,pen:0,t0:performance.now(),win:kartWin(),tr,n:tr.g};AR.run=true;rerealm();kartNext();if(KT&&KT.ph==='go')AR.raf=requestAnimationFrame(kartFrame)}
 function kartNext(){let x=null,c=null;for(let i=0;i<12&&!c;i++){x=rquestion();if(!x)break;if(x.q.q.replace(/<[^>]+>/g,'').length<=90)c=kartChoices(x.q)}
   if(!c){kartEnd('none');return}Object.assign(KT,{ph:'go',k:x.k,q:x.q,L:c.L,cor:c.cor,gs:performance.now()});kartPaint(true)}
-const kartHud=()=>`${KT.ph==='go'?`<span>⏳ ${Math.max(1,Math.ceil((KT.win-(performance.now()-KT.gs))/1000))} s</span>`:''}<span>🏁 ${Math.min(KT.i+1,KGATES)} / ${KGATES}</span><span>✅ ${KT.ok}</span><span>⏱ ${Math.max(0,(performance.now()-KT.t0)/1000+KT.pen).toFixed(1)} s</span>`;
+const kartHud=()=>`${KT.ph==='go'?`<span>⏳ ${Math.max(1,Math.ceil((KT.win-(performance.now()-KT.gs))/1000))} s</span>`:''}<span>🏁 ${Math.min(KT.i+1,KT.n)} / ${KT.n}</span><span>✅ ${KT.ok}</span><span>⏱ ${Math.max(0,(performance.now()-KT.t0)/1000+KT.pen).toFixed(1)} s</span>`;
 function kartPaint(full){const T=KT,g=$('kgate');if(!T||!g)return;
-  if(full){$('kq').innerHTML=`<span class="sol">Gate ${T.i+1} of ${KGATES}</span><div class="kqt">${T.q.q}</div>`;g.className='kgate';g.style.top='-12%';g.innerHTML=T.L.map(s=>`<span>${esc(s)}</span>`).join('');
+  if(full){$('kq').innerHTML=`<span class="sol">Gate ${T.i+1} of ${T.n}</span><div class="kqt">${T.q.q}</div>`;g.className='kgate';g.style.top='-12%';g.innerHTML=T.L.map(s=>`<span>${esc(s)}</span>`).join('');
     document.querySelectorAll('.klanes button').forEach((b,i)=>{b.querySelector('.kl').textContent=T.L[i];b.disabled=false});$('kfb').textContent='';$('khud').innerHTML=kartHud()}
   document.querySelectorAll('.klanes button').forEach((b,i)=>{b.classList.toggle('on',i===T.lane);b.setAttribute('aria-pressed',i===T.lane)});$('kart').style.setProperty('--lane',T.lane)}
 function kartFrame(t){if(!AR.run||!KT||AR.mode!=='kart')return;const g=$('kgate');if(!g){stopGames();return}if(outOfTime()){kartEnd('time');return}
@@ -181,49 +191,57 @@ function kartResolve(){const T=KT,ok=T.lane===T.cor,g=$('kgate');T.i++;T.ph='fb'
   $('kfb').innerHTML=ok?`🚀 ${pick(['Boost!','Zoom!','Ramp jump!','Turbo!'])}`:`💥 Bump! It was ${esc(T.L[T.cor])}`;
   const k=$('kart');if(k&&!calmOn()){k.classList.remove('boost','bump');void k.getBoundingClientRect();k.classList.add(ok?'boost':'bump')}
   document.querySelectorAll('.klanes button').forEach(b=>b.disabled=true);
-  setTimeout(()=>{if(KT!==T||!AR.run)return;if(T.i>=KGATES)kartEnd('done');else kartNext()},ok?1000:1900)}
+  setTimeout(()=>{if(KT!==T||!AR.run)return;if(T.i>=T.n)kartEnd('done');else kartNext()},ok?1000:1900)}
 function kartEnd(why){const T=KT;if(!T)return;AR.run=false;cancelAnimationFrame(AR.raf);T.ph=why==='done'?'end':why;
-  if(why==='done'){const S=ARS('kart');T.time=Math.max(.1,(performance.now()-T.t0)/1000+T.pen);T.medal=T.ok>=9?3:T.ok>=7?2:T.ok>=5?1:0;
-    T.pb=T.medal>0&&(S.best==null||T.time<S.best);if(T.pb)S.best=+T.time.toFixed(1);T.gems=T.medal+(T.pb?3:0);S.races=(S.races||0)+1;if(T.medal===3)S.gold=(S.gold||0)+1;if(T.gems)addGems(T.gems);SYNC();gameCheck()}
+  if(why==='done'){const S=ARS('kart'),id=T.tr.id,f=T.ok/T.n;S.med=S.med||{};S.bt=S.bt||{};T.time=Math.max(.1,(performance.now()-T.t0)/1000+T.pen);T.medal=f>=.9?3:f>=.7?2:f>=.5?1:0;
+    T.pb=T.medal>0&&(S.bt[id]==null||T.time<S.bt[id]);if(T.pb)S.bt[id]=+T.time.toFixed(1);T.unlock=T.medal>0&&!(S.med[id]>0)&&KTRACKS[KTRACKS.indexOf(T.tr)+1];S.med[id]=Math.max(S.med[id]||0,T.medal);
+    T.gems=T.medal+(T.pb?3:0);S.races=(S.races||0)+1;if(T.medal===3)S.gold=(S.gold||0)+1;if(T.gems)addGems(T.gems);SYNC();gameCheck()}
   rerealm()}
 const kartSvg=()=>`<svg viewBox="0 0 80 92" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Your kart"><rect x="6" y="58" width="16" height="28" rx="5" fill="#1B2A41"/><rect x="58" y="58" width="16" height="28" rx="5" fill="#1B2A41"/><rect x="8" y="8" width="14" height="22" rx="5" fill="#1B2A41"/><rect x="58" y="8" width="14" height="22" rx="5" fill="#1B2A41"/><path d="M24 4H56L64 84H16Z" fill="#E4572E"/><path d="M28 4H52" stroke="#FFE27A" stroke-width="5"/><rect x="16" y="80" width="48" height="9" rx="3" fill="#B83B1D"/><circle cx="40" cy="46" r="14" fill="#8B5CF6"/><rect x="30" y="39" width="20" height="8" rx="4" fill="#1E1B4B" opacity=".8"/></svg>`;
-GVIEW.kart=function(){const T=KT,S=ARS('kart'),relax=S.relax??myGrade()<=2,head=`<div class="gworld">${clouds()}${gameHead('Turbo Trivia Kart','Pick the lane with the right answer before the gate reaches you!')}`;
-  if(!T||!['go','fb'].includes(T.ph)){const out=outOfTime();let card='';
-    if(T&&T.ph==='end')card=`<div class="gcard endcard" style="margin-bottom:16px"><div class="big" aria-hidden="true">${['🏁','🥉','🥈','🥇'][T.medal]}</div><h3>${T.medal?['','Bronze','Silver','Gold'][T.medal]+' medal!':'Race finished!'}</h3><p>${T.ok} of ${KGATES} right · ${T.time.toFixed(1)} seconds${T.pb?' · ⭐ New personal best!':''}${T.gems?` · 💎 +${T.gems} gems`:''}</p>${T.medal?'':'<p class="sol">Get 5 right for a bronze medal. Every bump showed you the answer, so try again!</p>'}</div>`;
+GVIEW.kart=function(){const T=KT,S=ARS('kart'),relax=S.relax??myGrade()<=2,run=T&&['go','fb'].includes(T.ph),tr=run?T.tr:ktCur(),head=`<div class="gworld">${clouds()}${gameHead('Turbo Trivia Kart',`${tr.n}: pick the lane with the right answer before the gate reaches you!`)}`;
+  if(!run){const out=outOfTime(),med=S.med||{},bt=S.bt||{};let card='';
+    if(T&&T.ph==='end')card=`<div class="gcard endcard" style="margin-bottom:16px"><div class="big" aria-hidden="true">${['🏁','🥉','🥈','🥇'][T.medal]}</div><h3>${T.medal?['','Bronze','Silver','Gold'][T.medal]+' medal!':'Race finished!'}</h3><p>${esc(T.tr.n)} · ${T.ok} of ${T.n} right · ${T.time.toFixed(1)} seconds${T.pb?' · ⭐ New best time!':''}${T.gems?` · 💎 +${T.gems} gems`:''}</p>${T.unlock?`<p><b>🔓 New track unlocked: ${esc(T.unlock.n)}!</b></p>`:''}${T.medal?'':`<p class="sol">Get ${Math.ceil(T.n/2)} right for a bronze medal. Every bump showed you the answer, so try again!</p>`}</div>`;
     else if(T&&T.ph==='none')card=`<div class="gcard" style="margin-bottom:16px"><h3>No questions here yet</h3><p>Pick another subject, or choose your grade on the Learn page.</p></div>`;
-    return head+`${out?restCard():''}${card}${subjChips()}<div class="gcard"><h3>🏎️ How to race</h3><ul class="pearn"><li>Your kart drives itself. Each gate has three answer lanes.</li><li>Steer with the ← → arrow keys or the 1 2 3 keys, or tap a lane button, before the gate reaches you.</li><li>Right lane: boost! Wrong lane: a soft bump, and you see the right answer.</li><li>Medals: 5 right for bronze, 7 for silver, 9 for gold. A new best time earns 3 bonus gems.</li></ul>
+    return head+`${out?restCard():''}${card}${subjChips()}<div class="gcard"><h3>🏆 Pick a track</h3><div class="ktracks">${KTRACKS.map((t,i)=>{const o=ktOpen(i),on=t.id===tr.id,md=med[t.id]||0;return `<button class="ktr ${on?'on':''}" ${o?'':'disabled'} aria-pressed="${on}" onclick="ARS('kart').tr='${t.id}';SYNC();rerealm()" style="--grass:${t.grass};--road:${t.road};--edge:${t.edge}"><span class="ktrart" aria-hidden="true"></span><b>${o?'':'🔒 '}${esc(t.n)}</b><span class="sol">${t.g} gates · ${o?(md?['','🥉','🥈','🥇'][md]+(bt[t.id]!=null?` ${bt[t.id]} s`:''):'No medal yet'):'Win a medal on the track before'}</span></button>`}).join('')}</div>
+      <h3 style="margin-top:18px">🏎️ How to race</h3><ul class="pearn"><li>Your kart drives itself. Each gate has three answer lanes.</li><li>Steer with the ← → arrow keys or the 1 2 3 keys, or tap a lane button, before the gate reaches you.</li><li>Right lane: boost! Wrong lane: a soft bump, and you see the right answer.</li><li>Medals: half right for bronze, 7 in 10 for silver, 9 in 10 for gold. A medal unlocks the next track, and a new best time earns 3 bonus gems.</li></ul>
       <label class="ckline"><input type="checkbox" id="krelax" ${relax?'checked':''} onchange="ARS('kart').relax=this.checked;SYNC()"> Relaxed: 8 seconds per gate instead of 5</label>
-      <div class="row" style="margin-top:14px;align-items:center"><button class="abtn big" ${out?'disabled':''} onclick="kartStart()">🏁 Start race</button>${S.best!=null?`<span class="sol">Best time: <b>${S.best} s</b></span>`:''}</div></div></div>`}
-  return head+`<div class="gcard kq" id="kq" aria-live="polite"></div><div class="khud" id="khud"></div><div class="ktrack"><div class="kroad"></div><div class="kgate" id="kgate"></div><div class="kart" id="kart" style="--lane:${T.lane}">${kartSvg()}</div><div class="kfb" id="kfb" role="status"></div></div>
+      <div class="row" style="margin-top:14px;align-items:center"><button class="abtn big" ${out?'disabled':''} onclick="kartStart()">🏁 Start race</button></div></div></div>`}
+  return head+`<div class="gcard kq" id="kq" aria-live="polite"></div><div class="khud" id="khud"></div><div class="ktrack" style="--grass:${tr.grass};--dot:${tr.dot};--road:${tr.road};--edge:${tr.edge}"><div class="kroad"></div><div class="kgate" id="kgate"></div><div class="kart" id="kart" style="--lane:${T.lane}">${kartSvg()}</div><div class="kfb" id="kfb" role="status"></div></div>
     <div class="klanes" role="group" aria-label="Pick a lane">${[0,1,2].map(i=>`<button class="abtn sec" onclick="kartLane(${i})"><span class="key" aria-hidden="true">${i+1}</span><span class="kl"></span></button>`).join('')}</div></div>`};
 
 /* ---------- Goblin Gate: towers built with right answers; the field pauses while a question is open ---------- */
 let GT=null;
 GSTOP.push(()=>{if(GT&&['build','wave'].includes(GT.ph))GT=null});
-const GPATH=[[-30,80],[140,80],[140,270],[320,270],[320,100],[480,100],[480,230],[600,230]];
-const GPADS=[[70,165],[230,195],[230,40],[400,185],[400,38],[560,150]];
+const GMAPS=[
+  {id:'meadow',n:'Meadow Path',waves:4,hp:1,sp:1,bg:'#7CCB6B',bg2:'#6DBF62',tree:'#5FAE53',road:['#C9A46A','#E2C48F'],path:[[-30,80],[140,80],[140,270],[320,270],[320,100],[480,100],[480,230],[600,230]],pads:[[70,165],[230,195],[230,40],[400,185],[400,38],[560,150]],trees:[[40,320],[210,330],[380,320],[600,40],[30,30],[300,190]]},
+  {id:'forest',n:'Forest Trail',waves:6,hp:1.35,sp:1.08,bg:'#3F8F4A',bg2:'#367D40',tree:'#2D6B36',road:['#8B6B47','#A8865C'],path:[[-30,290],[110,290],[110,70],[290,70],[290,280],[470,280],[470,80],[600,80]],pads:[[40,200],[200,180],[200,326],[380,180],[380,36],[555,190]],trees:[[40,30],[380,330],[560,320],[620,250],[160,18]]},
+  {id:'snow',n:'Snowy Pass',waves:8,hp:1.75,sp:1.15,bg:'#E3EEF7',bg2:'#D3E3F0',tree:'#9FB8CC',road:['#9AAAB9','#BDCAD6'],path:[[-30,180],[100,180],[100,60],[250,60],[250,300],[400,300],[400,60],[520,60],[520,240],[600,240]],pads:[[40,95],[175,165],[175,300],[325,180],[460,170],[570,120]],trees:[[40,320],[460,330],[620,330],[330,40],[175,15]]}];
+GMAPS.forEach(m=>m.len=m.path.slice(1).reduce((s,p,i)=>s+Math.hypot(p[0]-m.path[i][0],p[1]-m.path[i][1]),0));
+/* A map opens after winning the map before it */
+const gmOpen=i=>!i||((ARS('gate').st||{})[GMAPS[i-1].id]||0)>0;
+const gmCur=()=>{let i=GMAPS.findIndex(m=>m.id===ARS('gate').map);if(i<0||!gmOpen(i))i=0;return GMAPS[i]};
 const GTOW={laser:{n:'Laser tower',c:'#FB7185',r:120,rate:.55,d:[9,14,20],tip:'Zaps one goblin hard'},frost:{n:'Frost tower',c:'#38BDF8',r:105,rate:.9,d:[4,6,8],slow:[1.4,1.9,2.5],tip:'Slows goblins down'},bubble:{n:'Bubble tower',c:'#A78BFA',r:110,rate:1.1,d:[7,10,14],splash:44,tip:'Bubbles a whole group'}};
-const GWAVES=4,gwave=w=>({n:6+2*w,hp:24+14*w,sp:40+5*w,gap:1.25-.1*w,boss:w===GWAVES-1});
-const GLEN=GPATH.slice(1).reduce((s,p,i)=>s+Math.hypot(p[0]-GPATH[i][0],p[1]-GPATH[i][1]),0);
-function gpos(d){for(let i=1;i<GPATH.length;i++){const [x0,y0]=GPATH[i-1],[x1,y1]=GPATH[i],l=Math.hypot(x1-x0,y1-y0);if(d<=l)return[x0+(x1-x0)*d/l,y0+(y1-y0)*d/l];d-=l}return GPATH[GPATH.length-1]}
+const gwave=w=>{const m=GT.m;return{n:6+2*w,hp:Math.round((24+14*w)*m.hp),sp:(40+5*w)*m.sp,gap:Math.max(.55,1.25-.1*w),boss:w===m.waves-1}};
+function gpos(d){const P=GT.m.path;for(let i=1;i<P.length;i++){const [x0,y0]=P[i-1],[x1,y1]=P[i],l=Math.hypot(x1-x0,y1-y0);if(d<=l)return[x0+(x1-x0)*d/l,y0+(y1-y0)*d/l];d-=l}return P[P.length-1]}
 const towerIcon=(t,lv)=>`<svg viewBox="0 0 40 40" aria-hidden="true"><rect x="11" y="17" width="18" height="20" rx="3" fill="#8C8FA3"/><path d="M11 17h18v-4h-4v3h-3v-3h-4v3h-3v-3h-4z" fill="#A3AFBD"/><circle cx="20" cy="${t==='bubble'?11:12}" r="${7+(lv||1)}" fill="${GTOW[t].c}" stroke="#fff" stroke-width="2"/></svg>`;
-function gateStart(){if(!canStart())return;stopGames();GT={ph:'build',w:0,cookies:10,tw:Array(6).fill(null),gobs:[],shots:[],pops:[],sp:null,time:0,paused:false,id:0,last:0};AR.run=true;rerealm();gatePaint(true);AR.raf=requestAnimationFrame(gateFrame)}
+function gateStart(){if(!canStart())return;stopGames();GT={ph:'build',m:gmCur(),w:0,cookies:10,tw:Array(6).fill(null),gobs:[],shots:[],pops:[],sp:null,time:0,paused:false,id:0,last:0};AR.run=true;rerealm();gatePaint(true);AR.raf=requestAnimationFrame(gateFrame)}
 function gateWave(){if(!GT||GT.ph!=='build')return;const W=gwave(GT.w);GT.ph='wave';GT.sp={left:W.n,cd:0,W};gatePaint(true)}
 function gateFrame(t){const Z=GT;if(!AR.run||!Z||AR.mode!=='gate')return;if(!$('gfield')){stopGames();return}if(outOfTime()){gateOver('time');return}
   const dt=Z.last?Math.min(.05,(t-Z.last)/1000):0;Z.last=t;if(!Z.paused&&Z.ph==='wave')gateStep(dt);if(GT===Z&&AR.run){gatePaint();AR.raf=requestAnimationFrame(gateFrame)}}
 function gateStep(dt){const Z=GT,sp=Z.sp;Z.time+=dt;
   if(sp&&sp.left>0&&(sp.cd-=dt)<=0){sp.left--;sp.cd=sp.W.gap;const boss=sp.W.boss&&sp.left===0,hp=boss?sp.W.hp*6:sp.W.hp;Z.gobs.push({id:++Z.id,d:0,hp,max:hp,sp:boss?sp.W.sp*.7:sp.W.sp,boss,slow:0})}
-  for(const g of Z.gobs){g.d+=g.sp*(g.slow>Z.time?.5:1)*dt;if(g.d>=GLEN){g.out=1;Z.cookies--}}
+  for(const g of Z.gobs){g.d+=g.sp*(g.slow>Z.time?.5:1)*dt;if(g.d>=Z.m.len){g.out=1;Z.cookies--}}
   Z.gobs=Z.gobs.filter(g=>!g.out);if(Z.cookies<=0){Z.cookies=0;gateOver('lost');return}
-  Z.tw.forEach((T,i)=>{if(!T||(T.cd-=dt)>0)return;const D=GTOW[T.t],[px,py]=GPADS[i],r=D.r+12*(T.lv-1);let b=null;
+  Z.tw.forEach((T,i)=>{if(!T||(T.cd-=dt)>0)return;const D=GTOW[T.t],[px,py]=Z.m.pads[i],r=D.r+12*(T.lv-1);let b=null;
     for(const g of Z.gobs){const [x,y]=gpos(g.d);if(Math.hypot(x-px,y-py)<=r&&(!b||g.d>b.d))b=g}if(!b)return;T.cd=D.rate;
     const dmg=D.d[T.lv-1],[bx,by]=gpos(b.d);Z.shots.push({x0:px,y0:py,x1:bx,y1:by,c:D.c,k:T.t,t:Z.time+.15});
     if(D.splash)Z.gobs.forEach(g=>{const [x,y]=gpos(g.d);if(Math.hypot(x-bx,y-by)<=D.splash)g.hp-=dmg});else b.hp-=dmg;if(D.slow)b.slow=Z.time+D.slow[T.lv-1]});
   Z.gobs.filter(g=>g.hp<=0).forEach(g=>Z.pops.push({p:gpos(g.d),t:Z.time+.7}));Z.gobs=Z.gobs.filter(g=>g.hp>0);
   Z.shots=Z.shots.filter(s=>s.t>Z.time);Z.pops=Z.pops.filter(p=>p.t>Z.time);
-  if(sp&&sp.left<=0&&!Z.gobs.length){Z.w++;Z.sp=null;if(Z.w>=GWAVES)gateOver('won');else{Z.ph='build';gatePaint(true)}}}
+  if(sp&&sp.left<=0&&!Z.gobs.length){Z.w++;Z.sp=null;if(Z.w>=Z.m.waves)gateOver('won');else{Z.ph='build';gatePaint(true)}}}
 function gateOver(why){const Z=GT;if(!Z)return;AR.run=false;cancelAnimationFrame(AR.raf);if(QM)qmClose(true);Z.ph=why;
-  if(why==='won'){const S=ARS('gate'),st=Z.cookies>=8?3:Z.cookies>=4?2:1,pay=[0,3,5,8],b=S.best||0;Z.stars=st;Z.gems=st>b?pay[st]-pay[b]:1;S.best=Math.max(b,st);S.wins=(S.wins||0)+1;addGems(Z.gems);SYNC();gameCheck()}
+  if(why==='won'){const S=ARS('gate'),mi=GMAPS.indexOf(Z.m),st=Z.cookies>=8?3:Z.cookies>=4?2:1,pay=[0,3,5,8].map(x=>x&&x+2*mi);S.st=S.st||{};const b=S.st[Z.m.id]||0;
+    Z.stars=st;Z.gems=st>b?pay[st]-pay[b]:1;Z.unlock=!b&&GMAPS[mi+1];S.st[Z.m.id]=Math.max(b,st);S.wins=(S.wins||0)+1;addGems(Z.gems);SYNC();gameCheck()}
   rerealm()}
 const gobSvg=(g,x,y,frz)=>`<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)})${g.boss?' scale(1.6)':''}"><ellipse cy="13" rx="11" ry="3" fill="rgba(0,0,0,.18)"/><path d="M-12 -4L-21 -11L-9 -9ZM12 -4L21 -11L9 -9Z" fill="#5FB548"/><circle r="12" fill="${frz?'#A5E8F7':'#7ED957'}" stroke="#4E9E3A" stroke-width="1.5"/><path d="M-10 -8Q0 -21 10 -8Z" fill="#8C8FA3"/><circle cx="-4" cy="-1" r="2.6" fill="#1B2A41"/><circle cx="4" cy="-1" r="2.6" fill="#1B2A41"/><path d="M-4 5Q0 8 4 5" stroke="#1B2A41" stroke-width="1.6" fill="none"/><rect x="-11" y="-23" width="22" height="3.5" rx="1.5" fill="rgba(0,0,0,.3)"/><rect x="-11" y="-23" width="${(22*Math.max(0,g.hp)/g.max).toFixed(1)}" height="3.5" rx="1.5" fill="#FB7185"/></g>`;
 function gatePaint(full){const Z=GT,dyn=$('gdyn');if(!Z||!dyn)return;
@@ -233,7 +251,7 @@ function gatePaint(full){const Z=GT,dyn=$('gdyn');if(!Z||!dyn)return;
   const c=$('gcook');if(c&&c.textContent!=String(Z.cookies))c.textContent=Z.cookies;
   if(full){$('ghud').innerHTML=gateHud();Z.tw.forEach((T,i)=>{const b=$('gp'+i);if(!b)return;b.className='gpad'+(T?' built':'');b.innerHTML=T?`${towerIcon(T.t,T.lv)}<span class="pips" aria-hidden="true">${'★'.repeat(T.lv)}</span>`:'<span aria-hidden="true">+</span>';
     b.setAttribute('aria-label',T?`${GTOW[T.t].n}, level ${T.lv}${T.lv<3?'. Tap to upgrade':''}`:`Empty pad ${i+1}. Tap to build a tower`)});const w=$('gwrow');if(w)w.innerHTML=waveBtn()}}
-const gateHud=()=>`<span>🍪 <b id="gcook">${GT.cookies}</b> cookies</span><span>🌊 Wave ${Math.min(GT.w+1,GWAVES)} of ${GWAVES}</span><span>🗼 ${GT.tw.filter(Boolean).length} of 6 towers</span>`;
+const gateHud=()=>`<span>🍪 <b id="gcook">${GT.cookies}</b> cookies</span><span>🌊 Wave ${Math.min(GT.w+1,GT.m.waves)} of ${GT.m.waves}</span><span>🗼 ${GT.tw.filter(Boolean).length} of 6 towers</span>`;
 const waveBtn=()=>GT.ph==='build'?`<button class="abtn sun big" id="gwave" onclick="gateWave()">⚔️ Start wave ${GT.w+1}</button>`:'<p class="gsub" style="margin:0">Goblins incoming! Tap a pad to build or upgrade. The game pauses while you answer.</p>';
 function padTap(i){const Z=GT;if(!Z||!['build','wave'].includes(Z.ph)||QM)return;const T=Z.tw[i];if(T&&T.lv>=3)return msg('This tower is fully upgraded!');
   Z.paused=!ARS('gate').speedy;const go_=()=>{if(GT)GT.paused=false};
@@ -244,20 +262,22 @@ async function gateBuild(i,t){qmClose(true);const Z=GT;if(!Z)return;Z.paused=!AR
 async function gateUp(i){qmClose(true);const Z=GT,T=Z&&Z.tw[i];if(!T)return;const need=T.lv+1;Z.paused=!ARS('gate').speedy;
   for(let n=1;n<=need;n++){const ok=await qAsk({title:`Upgrade: question ${n} of ${need}`,cancel:n===1});if(GT!==Z)return;if(!ok){Z.paused=false;if(ok===false)msg('So close! Try the upgrade again.');return}}
   Z.paused=false;if(Z.tw[i]===T){T.lv=need;gatePaint(true);msg(`${GTOW[T.t].n} is now level ${need}!`)}}
-const gateSvg=()=>`<svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="640" height="360" fill="#7CCB6B"/><path d="M0 300Q160 270 320 320T640 300V360H0Z" fill="#6DBF62"/>
-  ${[[40,320],[210,330],[380,320],[600,40],[30,30],[300,190]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="16" fill="#5FAE53"/><circle cx="${x+14}" cy="${y+4}" r="12" fill="#5FAE53"/>`).join('')}
-  <path d="${GPATH.map(([x,y],i)=>(i?'L':'M')+x+' '+y).join(' ')}" fill="none" stroke="#C9A46A" stroke-width="40" stroke-linejoin="round"/><path d="${GPATH.map(([x,y],i)=>(i?'L':'M')+x+' '+y).join(' ')}" fill="none" stroke="#E2C48F" stroke-width="30" stroke-linejoin="round"/>
-  <g transform="translate(596 150)"><rect x="0" y="20" width="44" height="100" fill="#A3AFBD"/><path d="M0 20V8h9v12h9V8h8v12h9V8h9v12" fill="#A3AFBD"/><rect x="-6" y="62" width="20" height="36" rx="9" fill="#5B6478"/><path d="M22 0V-26L40 -18L22 -10" fill="#FB7185"/><text x="22" y="56" font-size="22" text-anchor="middle">🍪</text></g><g id="gdyn"></g></svg>`;
-GVIEW.gate=function(){const Z=GT,S=ARS('gate'),head=`<div class="gworld">${clouds()}${gameHead('Goblin Gate','Answer questions to build towers and keep the goblins away from your cookies!')}`;
-  if(!Z||!['build','wave'].includes(Z.ph)){const out=outOfTime();let card='';
-    if(Z&&Z.ph==='won')card=`<div class="gcard endcard" style="margin-bottom:16px"><div class="big" aria-hidden="true">🏰</div><h3>The castle is safe!</h3><p>${stars3(Z.stars)}<br>${Z.cookies} of 10 cookies saved · 💎 +${Z.gems} gem${Z.gems>1?'s':''}</p></div>`;
+const gateSvg=m=>{const d=m.path.map(([x,y],i)=>(i?'L':'M')+x+' '+y).join(' '),e=m.path[m.path.length-1];return `<svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="640" height="360" fill="${m.bg}"/><path d="M0 300Q160 270 320 320T640 300V360H0Z" fill="${m.bg2}"/>
+  ${m.trees.map(([x,y])=>`<circle cx="${x}" cy="${y}" r="16" fill="${m.tree}"/><circle cx="${x+14}" cy="${y+4}" r="12" fill="${m.tree}"/>`).join('')}
+  <path d="${d}" fill="none" stroke="${m.road[0]}" stroke-width="40" stroke-linejoin="round"/><path d="${d}" fill="none" stroke="${m.road[1]}" stroke-width="30" stroke-linejoin="round"/>
+  <g transform="translate(596 ${e[1]-80})"><rect x="0" y="20" width="44" height="100" fill="#A3AFBD"/><path d="M0 20V8h9v12h9V8h8v12h9V8h9v12" fill="#A3AFBD"/><rect x="-6" y="62" width="20" height="36" rx="9" fill="#5B6478"/><path d="M22 0V-26L40 -18L22 -10" fill="#FB7185"/><text x="22" y="56" font-size="22" text-anchor="middle">🍪</text></g><g id="gdyn"></g></svg>`};
+GVIEW.gate=function(){const Z=GT,S=ARS('gate'),run=Z&&['build','wave'].includes(Z.ph),m=run?Z.m:gmCur(),head=`<div class="gworld">${clouds()}${gameHead('Goblin Gate',`${m.n}: answer questions to build towers and keep the goblins away from your cookies!`)}`;
+  if(!run){const out=outOfTime(),st=S.st||{};let card='';
+    if(Z&&Z.ph==='won')card=`<div class="gcard endcard" style="margin-bottom:16px"><div class="big" aria-hidden="true">🏰</div><h3>The castle is safe!</h3><p>${stars3(Z.stars)}<br>${esc(Z.m.n)} · ${Z.cookies} of 10 cookies saved · 💎 +${Z.gems} gem${Z.gems>1?'s':''}</p>${Z.unlock?`<p><b>🔓 New map unlocked: ${esc(Z.unlock.n)}!</b></p>`:''}</div>`;
     else if(Z&&Z.ph==='lost')card=`<div class="gcard endcard" style="margin-bottom:16px"><div class="big" aria-hidden="true">🍪</div><h3>The goblins ate all the cookies!</h3><p>More towers and upgrades will stop them, and every question you answer builds your defense. Try again!</p></div>`;
-    return head+`${out?restCard():''}${card}${subjChips()}<div class="gcard"><h3>🏰 How to play</h3><ul class="pearn"><li>Tap an empty pad, pick a tower and answer a question to build it.</li><li>Tap a tower to upgrade it: 2 right in a row for level 2, 3 in a row for level 3.</li><li>Stop ${GWAVES} waves of goblins before they eat your 10 cookies. The game pauses while you answer.</li></ul>
+    return head+`${out?restCard():''}${card}${subjChips()}<div class="gcard"><h3>🗺️ Pick a map</h3><div class="ktracks">${GMAPS.map((g,i)=>{const o=gmOpen(i),on=g.id===m.id;return `<button class="ktr ${on?'on':''}" ${o?'':'disabled'} aria-pressed="${on}" onclick="ARS('gate').map='${g.id}';SYNC();rerealm()"><span class="ktrart" aria-hidden="true" style="background:linear-gradient(135deg,${g.bg} 0 42%,${g.road[1]} 42% 58%,${g.bg2} 58%)"></span><b>${o?'':'🔒 '}${esc(g.n)}</b><span class="sol">${g.waves} waves · ${o?(st[g.id]?stars3(st[g.id]):'Not won yet'):'Win the map before'}</span></button>`}).join('')}</div>
+      <h3 style="margin-top:18px">🏰 How to play</h3><ul class="pearn"><li>Tap an empty pad, pick a tower and answer a question to build it.</li><li>Tap a tower to upgrade it: 2 right in a row for level 2, 3 in a row for level 3.</li><li>Stop every wave of goblins before they eat your 10 cookies. The game pauses while you answer. Winning a map unlocks the next one, with tougher goblins.</li></ul>
       <label class="ckline"><input type="checkbox" ${S.speedy?'checked':''} onchange="ARS('gate').speedy=this.checked;SYNC()"> Speedy mode: goblins keep moving while you answer</label>
-      <div class="row" style="margin-top:14px;align-items:center"><button class="abtn big" ${out?'disabled':''} onclick="gateStart()">🛡️ Start defending</button>${S.best?`<span class="sol">Best: ${stars3(S.best,`Best: ${S.best} of 3 stars`)}</span>`:''}</div></div></div>`}
-  return head+`<div class="ghud" id="ghud"></div><div class="gfield" id="gfield">${gateSvg()}${GPADS.map(([x,y],i)=>`<button class="gpad" id="gp${i}" style="left:${(x/6.4).toFixed(2)}%;top:${(y/3.6).toFixed(2)}%" onclick="padTap(${i})"></button>`).join('')}</div><div class="row" style="margin-top:14px;justify-content:center;text-align:center" id="gwrow"></div></div>`};
+      <div class="row" style="margin-top:14px;align-items:center"><button class="abtn big" ${out?'disabled':''} onclick="gateStart()">🛡️ Start defending</button></div></div></div>`}
+  return head+`<div class="ghud" id="ghud"></div><div class="gfield" id="gfield">${gateSvg(m)}${m.pads.map(([x,y],i)=>`<button class="gpad" id="gp${i}" style="left:${(x/6.4).toFixed(2)}%;top:${(y/3.6).toFixed(2)}%" onclick="padTap(${i})"></button>`).join('')}</div><div class="row" style="margin-top:14px;justify-content:center;text-align:center" id="gwrow"></div></div>`};
 
-/* ---------- Block Builder: falling number blocks; groups that add (or multiply) to the target clear ---------- */
+/* ---------- Block Builder: falling number blocks; groups that add (or multiply) to the target clear.
+   Every 5 clears is a new level: blocks fall faster and score more. ---------- */
 let BB=null;const BW=6,BH=9;
 GSTOP.push(()=>{if(BB&&BB.ph==='run')BB=null});
 const BPZ=[{id:'s10',op:'+',t:10,n:'Make 10'},{id:'s20',op:'+',t:20,n:'Make 20'},{id:'m24',op:'×',t:24,n:'Make 24'},{id:'m36',op:'×',t:36,n:'Make 36'}];
@@ -267,8 +287,9 @@ const bvals=p=>p.op==='+'?Array.from({length:p.t-1},(_,i)=>i+1):Array.from({leng
 /* Most new blocks complete a block already showing at the top of a column, so a clear is always in reach */
 function bdeal(){const Z=BB,p=Z.p,V=bvals(p),tops=[];for(let c=0;c<BW;c++)for(let r=0;r<BH;r++)if(Z.g[r][c]){tops.push(Z.g[r][c]);break}
   if(tops.length&&Math.random()<.65){const v=pick(tops),w=p.op==='+'?p.t-v:p.t/v;if(V.includes(w))return w}return pick(V)}
-function bbStart(){if(!canStart())return;stopGames();BB={p:bpz(),g:Array.from({length:BH},()=>Array(BW).fill(0)),ph:'run',score:0,clears:0,feed:[],cur:null};AR.run=true;rerealm();bbSpawn();AR.iv=setInterval(bbTick,myGrade()<=2?1000:800)}
-function bbSpawn(){const Z=BB;if(Z.g[0][2]){bbEnd('done');return}Z.cur={v:bdeal(),c:2,r:0};bbPaint()}
+const bbMs=()=>Math.max(300,(myGrade()<=2?1000:800)*Math.pow(.86,BB.lv-1));
+function bbStart(){if(!canStart())return;stopGames();BB={p:bpz(),g:Array.from({length:BH},()=>Array(BW).fill(0)),ph:'run',score:0,clears:0,lv:1,feed:[],cur:null,nx:0};AR.run=true;rerealm();BB.nx=bdeal();bbSpawn();AR.iv=setInterval(bbTick,bbMs())}
+function bbSpawn(){const Z=BB;if(Z.g[0][2]){bbEnd('done');return}Z.cur={v:Z.nx||bdeal(),c:2,r:0};Z.nx=bdeal();bbPaint()}
 function bbTick(){if(!AR.run||!BB||AR.mode!=='blocks'||document.hidden||QM)return;if(!$('bboard')){stopGames();return}if(outOfTime()){bbEnd('time');return}bbFall()}
 function bbFall(){const Z=BB,c=Z&&Z.cur;if(!c||Z.ph!=='run')return;if(c.r+1<BH&&!Z.g[c.r+1][c.c]){c.r++;bbPaint()}else bbLand()}
 function bbMove(d){const Z=BB,c=Z&&Z.cur;if(!c||Z.ph!=='run')return;const n=c.c+d;if(n<0||n>=BW||Z.g[c.r][n])return;c.c=n;bbPaint()}
@@ -282,25 +303,27 @@ function bbScan(){for(let r=BH-1;r>=0;r--)for(let c=0;c<BW;c++)if(BB.g[r][c]){co
 function bbLand(){const Z=BB,c=Z.cur;Z.cur=null;Z.g[c.r][c.c]=c.v;let cells=bbGroup(c.r,c.c),chain=0;
   while(cells){chain++;const vals=cells.map(([r,q])=>Z.g[r][q]);cells.forEach(([r,q])=>Z.g[r][q]=0);
     for(let q=0;q<BW;q++){const col=[];for(let r=BH-1;r>=0;r--)if(Z.g[r][q])col.push(Z.g[r][q]);for(let r=BH-1,i=0;r>=0;r--,i++)Z.g[r][q]=col[i]||0}
-    Z.clears++;Z.score+=10*cells.length*chain;Z.feed.unshift(`${vals.join(Z.p.op==='+'?' + ':' × ')} = ${Z.p.t}${chain>1?` · combo ×${chain}!`:''}`);Z.feed=Z.feed.slice(0,5);cells=bbScan()}
-  if(chain){heroMood('beam',700);const b=$('bboard');if(b&&!calmOn()){b.animate([{filter:'brightness(1.6)'},{filter:'none'}],{duration:350})}}
+    Z.clears++;Z.score+=10*cells.length*chain*Z.lv;Z.feed.unshift(`${vals.join(Z.p.op==='+'?' + ':' × ')} = ${Z.p.t}${chain>1?` · combo ×${chain}!`:''}`);Z.feed=Z.feed.slice(0,5);cells=bbScan()}
+  if(chain){heroMood('beam',700);const b=$('bboard');if(b&&!calmOn())b.animate([{filter:'brightness(1.6)'},{filter:'none'}],{duration:350});
+    if(Z.clears>=Z.lv*5){Z.lv++;Z.score+=25*Z.lv;Z.feed.unshift(`⭐ Level ${Z.lv}! Faster blocks, bigger points`);Z.feed=Z.feed.slice(0,5);clearInterval(AR.iv);AR.iv=setInterval(bbTick,bbMs())}}
   if(Z.ph==='run')bbSpawn()}
 function bbEnd(why){const Z=BB;if(!Z)return;AR.run=false;clearInterval(AR.iv);AR.iv=0;Z.ph=why;Z.cur=null;
-  if(why!=='none'){const S=ARS('blocks');Z.gems=Math.min(8,Math.floor(Z.clears/4));Z.pb=Z.score>(S.best||0);if(Z.pb)S.best=Z.score;S.rounds=(S.rounds||0)+1;if(Z.gems)addGems(Z.gems);SYNC();gameCheck()}
+  if(why!=='none'){const S=ARS('blocks');Z.gems=Math.min(8,Math.floor(Z.clears/4));Z.pb=Z.score>(S.best||0);if(Z.pb)S.best=Z.score;S.lv=Math.max(S.lv||0,Z.lv);S.rounds=(S.rounds||0)+1;if(Z.gems)addGems(Z.gems);SYNC();gameCheck()}
   rerealm()}
 function bbPaint(){const Z=BB,b=$('bboard');if(!Z||!b)return;const c=Z.cur;let h='';
   for(let r=0;r<BH;r++)for(let q=0;q<BW;q++){const cur=c&&c.r===r&&c.c===q,v=cur?c.v:Z.g[r][q];h+=`<div class="bcell${v?' v':''}${cur?' cur':''}"${v?` style="--bc:${BCOL[v%BCOL.length]}"`:''} onclick="bbCol(${q})">${v||''}</div>`}
-  b.innerHTML=h;$('bscore').textContent=Z.score;$('bnow').textContent=c?`Falling block ${c.v}, column ${c.c+1}`:'';
-  const f=$('bfeed');if(f&&f.dataset.n!=String(Z.clears)){f.dataset.n=Z.clears;f.innerHTML=Z.feed.map((x,i)=>`<li${i?'':' class="new"'}>${esc(x)} ✓</li>`).join('')||'<li class="sol">Clear a group to see it here.</li>'}}
+  b.innerHTML=h;$('bscore').textContent=Z.score;$('blv').textContent=Z.lv;$('bnow').textContent=c?`Falling block ${c.v}, column ${c.c+1}. Next block ${Z.nx}`:'';
+  const n=$('bnext');if(n){n.textContent=Z.nx||'';n.style.setProperty('--bc',BCOL[(Z.nx||0)%BCOL.length])}
+  const f=$('bfeed');if(f&&f.dataset.n!=Z.clears+':'+Z.lv){f.dataset.n=Z.clears+':'+Z.lv;f.innerHTML=Z.feed.map((x,i)=>`<li${i?'':' class="new"'}>${esc(x)}${x.startsWith('⭐')?'':' ✓'}</li>`).join('')||'<li class="sol">Clear a group to see it here.</li>'}}
 GVIEW.blocks=function(){const Z=BB,S=ARS('blocks'),p=Z&&Z.ph==='run'?Z.p:bpz(),head=`<div class="gworld">${clouds()}${gameHead('Block Builder',`Stack number blocks that ${p.op==='+'?'add up':'multiply'} to the target to clear them.`)}`;
   if(!Z||Z.ph!=='run'){const out=outOfTime();let card='';
-    if(Z&&['done','time'].includes(Z.ph))card=`<div class="gcard endcard" style="margin-bottom:16px"><div class="big" aria-hidden="true">🧱</div><h3>${Z.ph==='time'?'Time to rest!':'Tower full!'}</h3><p>${Z.score} points · ${Z.clears} clear${Z.clears===1?'':'s'}${Z.pb?' · ⭐ New best!':''}${Z.gems?` · 💎 +${Z.gems} gems`:''}</p></div>`;
+    if(Z&&['done','time'].includes(Z.ph))card=`<div class="gcard endcard" style="margin-bottom:16px"><div class="big" aria-hidden="true">🧱</div><h3>${Z.ph==='time'?'Time to rest!':'Tower full!'}</h3><p>Level ${Z.lv} · ${Z.score} points · ${Z.clears} clear${Z.clears===1?'':'s'}${Z.pb?' · ⭐ New best!':''}${Z.gems?` · 💎 +${Z.gems} gems`:''}</p></div>`;
     return head+`${out?restCard():''}${card}<div class="gcard"><h3>🧱 Pick a puzzle</h3><div class="accs" role="group" aria-label="Puzzle" style="margin:0 0 12px">${BPZ.map(x=>`<button class="chip ${p.id===x.id?'on':''}" aria-pressed="${p.id===x.id}" onclick="ARS('blocks').pz='${x.id}';SYNC();rerealm()">${x.op==='+'?'➕':'✖️'} ${x.n}</button>`).join('')}</div>
-      <ul class="pearn"><li>Number blocks fall one at a time. Move them with ← → or tap a column. ↓ falls faster; Space (or tapping the block's own column) drops it.</li><li>${p.op==='+'?`Line up 2 or 3 blocks side by side, or stack them, so they add up to <b>${p.t}</b>.`:`Put 2 blocks side by side, or stack them, so they multiply to <b>${p.t}</b>.`} They clear with a sparkle!</li><li>A clear that sets off another clear scores a combo. The round ends when the tower reaches the top.</li></ul>
-      <div class="row" style="margin-top:14px;align-items:center"><button class="abtn big" ${out?'disabled':''} onclick="bbStart()">▶ Start building</button>${S.best?`<span class="sol">Best score: <b>${S.best}</b></span>`:''}</div></div></div>`}
-  return head+`<div class="bbwrap"><div><div class="bbtop"><span class="btarget">${p.op==='+'?'➕':'✖️'} Make ${p.t}</span><span class="bpill">Score: <b id="bscore">0</b></span></div><div class="bboard" id="bboard" role="application" aria-label="Block board. Arrow keys move the falling block, Space drops it." aria-describedby="bnow"></div><p class="bsr" id="bnow" aria-live="polite"></p>
+      <ul class="pearn"><li>Number blocks fall one at a time. Move them with ← → or tap a column. ↓ falls faster; Space (or tapping the block's own column) drops it.</li><li>${p.op==='+'?`Line up 2 or 3 blocks side by side, or stack them, so they add up to <b>${p.t}</b>.`:`Put 2 blocks side by side, or stack them, so they multiply to <b>${p.t}</b>.`} They clear with a sparkle!</li><li>Every 5 clears is a new level: blocks fall faster and score more. A clear that sets off another clear scores a combo. The round ends when the tower reaches the top.</li></ul>
+      <div class="row" style="margin-top:14px;align-items:center"><button class="abtn big" ${out?'disabled':''} onclick="bbStart()">▶ Start building</button>${S.best?`<span class="sol">Best score: <b>${S.best}</b>${S.lv?` · best level <b>${S.lv}</b>`:''}</span>`:''}</div></div></div>`}
+  return head+`<div class="bbwrap"><div><div class="bbtop"><span class="btarget">${p.op==='+'?'➕':'✖️'} Make ${p.t}</span><span class="bpill">Lv <b id="blv">1</b></span><span class="bpill">Score: <b id="bscore">0</b></span></div><div class="bboard" id="bboard" role="application" aria-label="Block board. Arrow keys move the falling block, Space drops it." aria-describedby="bnow"></div><p class="bsr" id="bnow" aria-live="polite"></p>
     <div class="bctl"><button class="abtn sec" onclick="bbMove(-1)" aria-label="Move left">◀</button><button class="abtn sec" onclick="bbDrop()" aria-label="Drop">⬇</button><button class="abtn sec" onclick="bbMove(1)" aria-label="Move right">▶</button></div></div>
-    <div class="gcard"><h3 style="margin:0 0 6px">Clears</h3><ul class="bfeed" id="bfeed"></ul><button class="abtn sec sm" style="margin-top:12px" onclick="bbEnd('done')">Finish round</button></div></div></div>`};
+    <div class="gcard"><div class="bnrow"><span class="bcell v bnext" id="bnext" aria-hidden="true"></span><b>Next block</b></div><h3 style="margin:14px 0 6px">Clears</h3><ul class="bfeed" id="bfeed"></ul><button class="abtn sec sm" style="margin-top:12px" onclick="bbEnd('done')">Finish round</button></div></div></div>`};
 
 /* ---------- Keys for the games and the question modal ---------- */
 addEventListener('keydown',e=>{if(typeof tab==='undefined'||tab!=='play')return;const tg=e.target,typing=tg&&/^(INPUT|TEXTAREA|SELECT)$/.test(tg.tagName);
