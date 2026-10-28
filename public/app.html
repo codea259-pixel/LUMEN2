@@ -7974,6 +7974,433 @@ ART.snake=()=>sceneSvg(`${[[22,24,'#22d3ee'],[60,104,'#f472b6'],[140,18,'#facc15
 </script>
 
 <style>
+/* ===== Next Level: the Arcade section for older learners (grades 6-12). Its own sleek, dark look. ===== */
+.arctabs{display:flex;gap:10px;margin:0 0 14px;flex-wrap:wrap}
+.arctabs button{flex:1;min-width:200px;display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:12px 18px;border-radius:18px;border:2px solid var(--line);background:var(--panel);color:var(--ink);font:800 1.1rem "Bricolage Grotesque",sans-serif;cursor:pointer;text-align:left}
+.arctabs button small{font:600 .82rem "Atkinson Hyperlegible",sans-serif;color:var(--mute)}
+.arctabs button.on{border-color:var(--ga-mid);box-shadow:0 0 0 3px color-mix(in srgb,var(--ga-mid) 25%,transparent)}
+.arctabs button.next.on{border-color:#22D3EE;background:#0B1020;color:#E2E8F0;box-shadow:0 0 0 3px rgba(34,211,238,.25)}.arctabs button.next.on small{color:#94A3B8}
+.arctabs button:focus-visible{outline:3px solid var(--ga-glow);outline-offset:2px}
+.nl{--acc:#22D3EE;--bg2:#0B1020;--card:#121A2E;--card2:#18223A;--ln:rgba(148,163,184,.2);--tx:#E2E8F0;--mt:#94A3B8;--good:#22C55E;--bad:#F43F5E;
+  position:relative;border-radius:26px;padding:22px 20px 26px;color:var(--tx);overflow:hidden;
+  background:radial-gradient(900px 260px at 85% -40px,color-mix(in srgb,var(--acc) 22%,transparent),transparent 70%),linear-gradient(180deg,#0B1020,#0E1529 60%,#0B1020);
+  background-color:#0B1020;border:1px solid var(--ln)}
+.nl::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(148,163,184,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(148,163,184,.06) 1px,transparent 1px);background-size:32px 32px;mask-image:linear-gradient(180deg,#000,transparent 70%)}
+.nl>*{position:relative}
+.nl h2,.nl h3,.nl h4{color:var(--tx);margin:0 0 8px}
+.nl .kick{font:800 .78rem/1 "Atkinson Hyperlegible",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--acc)}
+.nl .nltitle{font:800 clamp(1.7rem,4vw,2.4rem)/1.1 "Bricolage Grotesque",sans-serif;margin:6px 0 4px}
+.nl .mt{color:var(--mt)}
+.nlhead{display:flex;justify-content:space-between;gap:14px;align-items:flex-end;flex-wrap:wrap;margin-bottom:18px}
+.nlcard{background:var(--card);border:1px solid var(--ln);border-radius:18px;padding:16px}
+.nlgrid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:16px;align-items:start}@media(max-width:880px){.nlgrid{grid-template-columns:1fr}}
+.nlbtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:12px;border:1px solid transparent;background:var(--acc);color:#0B1020;font:800 1rem "Bricolage Grotesque",sans-serif;cursor:pointer}
+.nlbtn:hover{filter:brightness(1.08)}.nlbtn:focus-visible{outline:3px solid #fff;outline-offset:2px}
+.nlbtn.ghost{background:transparent;color:var(--tx);border-color:var(--ln)}.nlbtn.ghost:hover{background:rgba(148,163,184,.1)}
+.nlbtn.sm{min-height:36px;padding:0 12px;font-size:.9rem;border-radius:10px}
+.nlbtn[disabled]{opacity:.45;cursor:not-allowed;filter:none}
+.nlpill{white-space:nowrap;display:inline-flex;align-items:center;gap:6px;border:1px solid var(--ln);border-radius:99px;padding:4px 12px;font-weight:700;font-size:.88rem;background:rgba(15,23,42,.6)}
+.nlloop{display:grid;gap:8px;margin-top:10px}
+.nlstep{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:14px;background:var(--card2);border:1px solid var(--ln)}
+.nlstep .ic{width:34px;height:34px;display:grid;place-items:center;border-radius:10px;background:rgba(148,163,184,.12);font-size:1.1rem;flex:none}
+.nlstep.done .ic{background:color-mix(in srgb,var(--good) 25%,transparent)}
+.nlstep b{display:block}.nlstep .mt{font-size:.86rem}.nlstep>div{flex:1;min-width:0}
+.nltiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin-top:16px}
+.nltile{display:flex;flex-direction:column;text-align:left;padding:0;border-radius:18px;overflow:hidden;border:1px solid var(--ln);background:var(--card);color:var(--tx);cursor:pointer;font:inherit;transition:transform .15s,border-color .15s}
+.nltile:hover{transform:translateY(-3px);border-color:var(--acc)}.nltile:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.nltile svg{display:block;width:100%;height:auto}
+.nltile .nlb{display:block;padding:12px 14px 14px}.nltile .nlname{font:800 1.15rem "Bricolage Grotesque",sans-serif;display:block;color:var(--tx);margin:2px 0}.nltile .tag{font-size:.75rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--acc)}
+.nlprof .ban{height:64px;border-radius:14px;background:linear-gradient(120deg,var(--acc),color-mix(in srgb,var(--acc) 30%,#0B1020));margin:-4px -4px 0}
+.nlprof .who{display:flex;gap:12px;align-items:flex-end;margin-top:-26px;padding:0 6px}
+.nlprof .av{width:62px;height:62px;border-radius:16px;background:#0B1020;border:3px solid var(--acc);display:grid;place-items:center;font:800 1.6rem "Bricolage Grotesque",sans-serif;color:var(--acc);flex:none}
+.nlprof .ttl{color:var(--acc);font-weight:800;font-size:.85rem}
+.nlxp{height:8px;border-radius:99px;background:rgba(148,163,184,.18);overflow:hidden;margin:6px 0 2px}.nlxp i{display:block;height:100%;background:var(--acc)}
+.nlstat{display:grid;grid-template-columns:118px 1fr 48px;gap:8px;align-items:center;font-size:.88rem;margin:5px 0}
+.nlstat .bar{height:7px;border-radius:99px;background:rgba(148,163,184,.18);overflow:hidden}.nlstat .bar i{display:block;height:100%;background:var(--acc)}
+.nlchips{display:flex;gap:6px;flex-wrap:wrap}
+.nlchip{border:1px solid var(--ln);background:var(--card2);color:var(--tx);border-radius:99px;padding:5px 11px;font:700 .82rem "Atkinson Hyperlegible",sans-serif;cursor:pointer}
+.nlchip.on{border-color:var(--acc);color:var(--acc)}.nlchip[disabled]{opacity:.45;cursor:default}
+.nlsw{width:26px;height:26px;border-radius:50%;border:2px solid transparent;cursor:pointer}.nlsw.on{border-color:#fff;box-shadow:0 0 0 2px #0B1020}
+/* Word and equation grids */
+.pzwrap{display:grid;justify-items:center;gap:14px}
+.pzgrid{display:grid;gap:6px}
+.pzrow{display:grid;gap:6px}
+.pzc{width:var(--s,54px);height:var(--s,54px);display:grid;place-items:center;border:2px solid #334155;border-radius:10px;font:800 1.5rem "Bricolage Grotesque",sans-serif;text-transform:uppercase;color:var(--tx);background:#0F172A}
+.pzc.f{border-color:#64748B}
+.pzc.g{background:#16A34A;border-color:#16A34A;color:#fff}.pzc.y{background:#CA8A04;border-color:#CA8A04;color:#fff}.pzc.n{background:#334155;border-color:#334155;color:#CBD5E1}
+.pzc.flip{animation:pzflip .45s ease both}@keyframes pzflip{0%{transform:rotateX(0)}50%{transform:rotateX(90deg)}100%{transform:rotateX(0)}}
+.pzshake{animation:pzshake .35s}@keyframes pzshake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+.pzkb{display:grid;gap:6px;width:min(560px,100%)}
+.pzkr{display:flex;gap:5px;justify-content:center}
+.pzk{flex:1;max-width:46px;min-height:52px;border-radius:9px;border:0;background:#475569;color:#fff;font:800 1rem "Atkinson Hyperlegible",sans-serif;cursor:pointer;text-transform:uppercase}
+.pzk.wide{max-width:76px;flex:1.5;font-size:.8rem}.pzk.g{background:#16A34A}.pzk.y{background:#CA8A04}.pzk.n{background:#1E293B;color:#64748B}
+.pzk:focus-visible{outline:3px solid var(--acc);outline-offset:1px}
+.pzmsg{min-height:26px;font-weight:700;text-align:center}
+.pzend{text-align:center;max-width:560px}
+.pzdist{display:grid;gap:4px;margin:8px auto;max-width:360px}.pzdist div{display:grid;grid-template-columns:18px 1fr;gap:6px;align-items:center;font-size:.85rem}.pzdist i{display:block;background:#334155;color:#fff;text-align:right;padding:1px 6px;border-radius:4px;font-style:normal;min-width:22px}.pzdist i.me{background:var(--acc);color:#0B1020}
+@media(max-width:480px){.pzc{--s:46px;font-size:1.25rem}.pzk{min-height:48px;font-size:.9rem}}
+/* Market Sim */
+.mkgrid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:16px;align-items:start}@media(max-width:960px){.mkgrid{grid-template-columns:1fr}}
+.mktop{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:14px}
+.mktop div{background:var(--card);border:1px solid var(--ln);border-radius:14px;padding:10px 12px}.mktop b{display:block;font:800 1.3rem "Bricolage Grotesque",sans-serif}.mktop span{color:var(--mt);font-size:.82rem}
+.mka{display:grid;grid-template-columns:minmax(150px,1.4fr) 92px 100px minmax(170px,1.3fr);gap:10px;align-items:center;padding:10px 12px;border-top:1px solid var(--ln)}
+.mka:first-of-type{border-top:0}
+.mka .nm b{display:block}.mka .nm small{color:var(--mt)}
+.mka .px b{display:block;font-variant-numeric:tabular-nums}.up{color:#4ADE80}.dn{color:#FB7185}
+.mka .tr{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.mka input{width:64px;min-height:36px;border-radius:10px;border:1px solid var(--ln);background:#0F172A;color:var(--tx);padding:0 8px;font:inherit}
+.mka .own{font-size:.82rem;color:var(--mt)}
+@media(max-width:640px){.mka{grid-template-columns:1fr 1fr}.mka .tr{grid-column:1/-1}.mka svg{display:none}}
+.mknews{border-left:4px solid var(--acc)}
+.mkrep{border-left:4px solid #FBBF24}
+.mklesson{display:grid;gap:8px;margin-top:10px}.mklesson div{background:var(--card2);border-radius:12px;padding:10px 12px;border:1px solid var(--ln)}
+.mkbig{font:800 clamp(2rem,6vw,3rem)/1 "Bricolage Grotesque",sans-serif}
+</style>
+<script type="text/x-lumen">
+/* ===== Next Level: the Arcade section for older learners =====
+   The Arcade has two tabs for everyone: Young Explorers (the original games) and Next Level. Next Level games
+   reward reasoning over recall and use no play time: two daily puzzles (Cipher, a five-letter academic word,
+   and Equation Code, an eight-character equation) and Market Sim (a 12-month investing simulation). A daily
+   loop of all three builds a streak; a player card shows stats from real subject mastery, earned titles and an
+   accent colour. State lives in GM.nl. */
+const NLACC={cyan:'#22D3EE',violet:'#A78BFA',lime:'#A3E635',amber:'#FBBF24',rose:'#FB7185',sky:'#60A5FA'};
+const NL=()=>{const n=GM.nl||(GM.nl={});n.acc=n.acc||'cyan';n.st=n.st||{};for(const k of ['c','e'])n.st[k]=n.st[k]||{p:0,w:0,dist:[0,0,0,0,0,0]};n.st.mk=n.st.mk||{runs:0,best:null,beat:0,pos:0};n.loop=n.loop||{};n.got=n.got||[];return n};
+function nlRng(seed){let s=seed>>>0;const r=()=>{s=(s+0x6d2b79f5)|0;let t=Math.imul(s^(s>>>15),1|s);t=(t+Math.imul(t^(t>>>7),61|t))^t;return((t^(t>>>14))>>>0)/4294967296};
+  r.int=(a,b)=>a+Math.floor(r()*(b-a+1));r.pick=a=>a[Math.floor(r()*a.length)];r.gauss=()=>(r()+r()+r()+r()-2)*1.7;return r}
+const nlDayNum=(d=dstr())=>Math.round(Date.UTC(+d.slice(0,4),+d.slice(5,7)-1,+d.slice(8,10))/864e5);
+const nlYesterday=()=>{const d=new Date();d.setDate(d.getDate()-1);return dstr(d)};
+const money=v=>(v<0?'−$':'$')+Math.abs(v).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+const sgnPct=v=>(v>=0?'+':'−')+Math.abs(v*100).toFixed(1)+'%';
+
+/* ---------- The two Arcade tabs ---------- */
+const arcTab=()=>GM.arc||(myGrade()>=6?'next':'young');
+function arcTabs(){const t=arcTab();
+  return `<div class="arctabs" role="tablist" aria-label="Arcade sections"><button role="tab" aria-selected="${t==='young'}" class="${t==='young'?'on':''}" onclick="GM.arc='young';SYNC();rerealm()">🧸 Young Explorers<small>Pre-K to grade 5 · playful learning games</small></button><button role="tab" aria-selected="${t==='next'}" class="next ${t==='next'?'on':''}" onclick="GM.arc='next';SYNC();rerealm()">🚀 Next Level<small>Grades 6 to 12 · puzzles, strategy and simulations</small></button></div>`}
+const _hubNL=hubView;hubView=function(){return arcTabs()+(arcTab()==='next'?nlHub():_hubNL().replace('<h2 class="gtitle">Bose Arcade</h2><p class="gsub">Every move is powered by what you learn.</p>','<h2 class="gtitle">Young Explorers</h2><p class="gsub">Games for younger learners. Every move is powered by what you learn.</p>'))};
+function nlOpen(id){AR.mode=id;rerealm();scrollTo({top:0,behavior:calmOn()?'auto':'smooth'})}
+const nlHeadBar=(t,s)=>`<div class="nlhead"><div style="display:flex;gap:14px;align-items:center"><button class="nlbtn ghost sm" onclick="toHub()">← Next Level</button><div><div class="kick">Next Level</div><h2 class="nltitle" style="margin:2px 0 0">${t}</h2><p class="mt" style="margin:4px 0 0">${s}</p></div></div></div>`;
+const nlWrap=html=>`<div class="nl" style="--acc:${NLACC[NL().acc]}">${html}</div>`;
+
+/* ---------- Stats from real mastery, titles and the daily loop ---------- */
+const NLSTATS=[['math','🧮','Logic'],['ela','📜','Rhetoric'],['sci','🔬','Science'],['soc','🏛️','History'],['cs','💻','Code'],['fin','💰','Finance'],['es','🌎','Languages']];
+function nlStats(){const g=myGrade();return NLSTATS.filter(([s])=>ORDER.some(k=>SK[k].sub===s)).map(([s,i,n])=>{const all=ORDER.filter(k=>SK[k].sub===s),band=all.filter(k=>Math.abs((ST.gr[k]??g)-g)<=1);
+  const lv=all.filter(k=>level(k)>=3).length,b=band.length?band.filter(k=>level(k)>=3).length/band.length:0;return{s,i,n,lv,b}})}
+const NLTITLES=[
+  {id:'rookie',n:'Rookie',d:'Start playing Next Level',ok:()=>true},
+  {id:'codebreaker',n:'Codebreaker',d:'Solve 3 Ciphers',ok:N=>N.st.c.w>=3},
+  {id:'lexicon',n:'Lexicon',d:'Solve 10 Ciphers',ok:N=>N.st.c.w>=10},
+  {id:'engine',n:'Equation Engine',d:'Solve 3 Equation Codes',ok:N=>N.st.e.w>=3},
+  {id:'mathlete',n:'Mathlete',d:'Solve 10 Equation Codes',ok:N=>N.st.e.w>=10},
+  {id:'investor',n:'Investor',d:'Finish a Market Sim year',ok:N=>N.st.mk.runs>=1},
+  {id:'bull',n:'Bull Run',d:'Finish a Market Sim year up 15% or more',ok:N=>N.st.mk.best!=null&&N.st.mk.best>=.15},
+  {id:'beat',n:'Beat the Market',d:'Finish ahead of the index fund',ok:N=>N.st.mk.beat>=1},
+  {id:'fire',n:'On Fire',d:'Reach a 3-day loop streak',ok:N=>(N.best||0)>=3},
+  {id:'unstoppable',n:'Unstoppable',d:'Reach a 7-day loop streak',ok:N=>(N.best||0)>=7},
+  {id:'polymath',n:'Polymath',d:'Reach Proficient in a skill in 4 different subjects',ok:()=>nlStats().filter(x=>x.lv>0).length>=4}];
+function nlAwards(){const N=NL(),fresh=NLTITLES.filter(t=>!N.got.includes(t.id)&&t.ok(N));if(!fresh.length)return;
+  N.got.push(...fresh.map(t=>t.id));if(!N.title)N.title=fresh[fresh.length-1].id;SYNC();
+  if(fresh.some(t=>t.id!=='rookie'))setTimeout(()=>celebrate(fresh.filter(t=>t.id!=='rookie').map(t=>`New title: ${t.n}!`)),300)}
+const NLLOOP=[['cipher','🔤','Cipher','Crack today\'s five-letter word'],['eqcode','🧮','Equation Code','Find today\'s hidden equation'],['market','📈','Market Sim','Trade through one month']];
+function nlLoopDone(id){const N=NL(),d=dstr();if(id==='market')return N.loop.mk===d;const P=N.pz&&N.pz.d===d?N.pz[id==='cipher'?'c':'e']:null;return !!(P&&P.done)}
+/* All three done today: +1 streak (if yesterday was done too), +20 XP and +5 gems, once a day */
+function nlLoopCheck(){const N=NL(),d=dstr();if(N.loopDay===d||!NLLOOP.every(([id])=>nlLoopDone(id)))return;
+  N.streak=N.last===nlYesterday()?(N.streak||0)+1:1;N.last=d;N.loopDay=d;N.best=Math.max(N.best||0,N.streak);addXP(20,'your daily loop');addGems(5);SYNC();
+  setTimeout(()=>celebrate([`Daily loop complete! 🔥 ${N.streak}-day streak`,'+20 XP and +5 💎'],true),400);nlAwards()}
+const nlStreak=()=>{const N=NL();return N.last===dstr()||N.last===nlYesterday()?N.streak||0:0};
+
+function nlHub(){const N=NL(),P=lvProg(),st=nlStats(),t=NLTITLES.find(x=>x.id===N.title)||NLTITLES[0],done=NLLOOP.filter(([id])=>nlLoopDone(id)).length,sk=nlStreak();nlAwards();
+  const tile=(id,tag,name,pitch,art)=>`<button class="nltile" onclick="nlOpen('${id}')" aria-label="${esc(name)}"><span aria-hidden="true">${art}</span><span class="nlb"><span class="tag">${tag}</span><span class="nlname">${name}</span><span class="mt">${pitch}</span></span></button>`;
+  return nlWrap(`<div class="nlhead"><div><div class="kick">Next Level · grades 6 to 12</div><h2 class="nltitle">Think. Compete. Build.</h2><p class="mt" style="margin:0">Strategy, logic and real-world simulations. Next Level games use no play time: every move is thinking.</p></div><span class="nlpill" title="Days in a row you finished the daily loop">🔥 ${sk}-day streak</span></div>
+  <div class="nlgrid"><div>
+    <div class="nlcard"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><h3 style="margin:0">⏱️ Today's loop <span class="mt" style="font-weight:600">· about 5 minutes</span></h3><span class="nlpill">${done} of 3</span></div>
+      <div class="nlloop">${NLLOOP.map(([id,i,n,d])=>{const ok=nlLoopDone(id);return `<div class="nlstep ${ok?'done':''}"><span class="ic" aria-hidden="true">${ok?'✅':i}</span><div><b>${n}</b><span class="mt">${d}</span></div><button class="nlbtn ${ok?'ghost':''} sm" onclick="nlOpen('${id}')" aria-label="${ok?'Open':'Play'} ${n}">${ok?'Open':'Play'}</button></div>`}).join('')}</div>
+      <p class="mt" style="margin:10px 0 0;font-size:.88rem">Finish all three for +20 XP, +5 💎 and a longer streak.</p></div>
+    <div class="nltiles">
+      ${tile('cipher','Daily puzzle','Cipher','Six tries to crack the academic word of the day. Every guess must be a real word.',NLART.cipher)}
+      ${tile('eqcode','Daily puzzle','Equation Code','Find the hidden 8-character equation. Every guess must be a true equation.',NLART.eq)}
+      ${tile('market','Simulation','Market Sim','Invest $10,000 for a year of news, booms and crashes. Can you beat the market?',NLART.market)}
+    </div></div>
+  <div class="nlcard nlprof"><div class="ban" aria-hidden="true"></div><div class="who"><div class="av" aria-hidden="true">${esc((ME.display||'?')[0].toUpperCase())}</div><div><div class="ttl">${esc(t.n)}</div><h3 style="margin:0">${esc(ME.display||'Player')}</h3></div></div>
+    <div style="margin-top:12px;display:flex;justify-content:space-between;font-size:.88rem"><b>Level ${P.L} · ${esc(rankOf(P.L))}</b><span class="mt">${P.into} / ${P.need} XP</span></div><div class="nlxp" role="progressbar" aria-label="XP to the next level" aria-valuenow="${P.pct}" aria-valuemin="0" aria-valuemax="100"><i style="width:${P.pct}%"></i></div>
+    <h4 style="margin:14px 0 4px">Stats <span class="mt" style="font-weight:600;font-size:.82rem">· from your real mastery</span></h4>
+    ${st.map(x=>`<div class="nlstat"><span>${x.i} ${x.n}</span><span class="bar" role="img" aria-label="${Math.round(x.b*100)}% of your grade's ${esc(SUBN[x.s])} skills Proficient"><i style="width:${Math.round(x.b*100)}%"></i></span><b style="text-align:right">Lv ${x.lv}</b></div>`).join('')}
+    <p class="mt" style="font-size:.8rem;margin:4px 0 0">Level = skills Proficient or better. Bars show your grade band.</p>
+    <h4 style="margin:14px 0 6px">Title</h4><div class="nlchips">${NLTITLES.map(x=>{const g=N.got.includes(x.id);return `<button class="nlchip ${N.title===x.id||(!N.title&&x.id==='rookie')?'on':''}" ${g?'':'disabled'} title="${esc(x.d)}" aria-pressed="${N.title===x.id}" onclick="NL().title='${x.id}';SYNC();rerealm()">${g?'':'🔒 '}${esc(x.n)}</button>`}).join('')}</div>
+    <h4 style="margin:14px 0 6px">Accent</h4><div class="nlchips">${Object.entries(NLACC).map(([k,c])=>`<button class="nlsw ${N.acc===k?'on':''}" style="background:${c}" aria-label="${k} accent" aria-pressed="${N.acc===k}" onclick="NL().acc='${k}';SYNC();rerealm()"></button>`).join('')}</div>
+  </div></div>`)}
+const NLART={
+  cipher:`<svg viewBox="0 0 240 110" xmlns="http://www.w3.org/2000/svg"><rect width="240" height="110" fill="#0F172A"/>${[['O','#16A34A'],['R','#CA8A04'],['B','#334155'],['I','#16A34A'],['T','#16A34A']].map(([l,c],i)=>`<rect x="${22+i*40}" y="34" width="34" height="34" rx="7" fill="${c}"/><text x="${39+i*40}" y="58" font-size="18" font-weight="800" text-anchor="middle" fill="#fff" font-family="sans-serif">${l}</text>`).join('')}<rect x="22" y="76" width="194" height="6" rx="3" fill="#1E293B"/><rect x="22" y="18" width="70" height="8" rx="4" fill="#22D3EE" opacity=".6"/></svg>`,
+  eq:`<svg viewBox="0 0 240 110" xmlns="http://www.w3.org/2000/svg"><rect width="240" height="110" fill="#111827"/>${[['4','#16A34A'],['8','#334155'],['÷','#CA8A04'],['6','#16A34A'],['+','#16A34A'],['2','#CA8A04'],['=','#16A34A'],['?','#1E293B']].map(([l,c],i)=>`<rect x="${12+i*28}" y="38" width="24" height="30" rx="6" fill="${c}"/><text x="${24+i*28}" y="59" font-size="15" font-weight="800" text-anchor="middle" fill="#fff" font-family="sans-serif">${l}</text>`).join('')}<path d="M12 84h216" stroke="#A78BFA" stroke-width="3" opacity=".5"/></svg>`,
+  market:`<svg viewBox="0 0 240 110" xmlns="http://www.w3.org/2000/svg"><rect width="240" height="110" fill="#0B1220"/>${[0,1,2,3].map(i=>`<path d="M0 ${24+i*22}H240" stroke="#1E293B"/>`).join('')}<path d="M10 86L40 70L62 78L90 50L118 58L146 34L170 44L198 22L230 30" stroke="#22C55E" stroke-width="4" fill="none" stroke-linejoin="round"/><path d="M10 92L44 88L70 74L98 80L126 70L154 72L182 60L230 58" stroke="#64748B" stroke-width="2.5" fill="none" stroke-dasharray="6 5"/>${[[40,62,14],[90,40,18],[146,26,16],[198,14,18]].map(([x,y,h])=>`<rect x="${x-4}" y="${y}" width="8" height="${h}" fill="#22C55E" opacity=".55"/>`).join('')}</svg>`};
+
+/* ---------- Puzzle words: guesses are checked against words5.txt (loaded only when needed) ---------- */
+let NLWORDS=null;
+function nlWords(){if(NLWORDS)return Promise.resolve(NLWORDS);
+  return fetch('words5.txt').then(r=>r.ok?r.text():'').then(t=>NLWORDS=new Set(t.split('\n').filter(l=>l&&l[0]!=='#'))).catch(()=>NLWORDS=new Set())}
+/* The answer of the day: an academic word, with its subject and meaning */
+const CIPHER=[
+  ['math','angle','The figure formed by two rays that share an endpoint, measured in degrees.'],['math','ratio','A comparison of two quantities, like 3 to 2 (3:2).'],
+  ['math','prime','A whole number greater than 1 whose only factors are 1 and itself.'],['math','slope','How steep a line is: the rise divided by the run.'],
+  ['math','range','The difference between the greatest and least values in a data set.'],['math','digit','Any one of the symbols 0 through 9 used to write numbers.'],
+  ['math','chord','A line segment whose endpoints both lie on a circle.'],['math','prism','A solid with two parallel, congruent bases joined by flat faces.'],
+  ['math','power','A number written with an exponent, like 2⁵, meaning repeated multiplication.'],['math','proof','A step-by-step logical argument that shows a statement must be true.'],
+  ['math','axiom','A basic statement accepted as true without proof.'],['math','array','Objects arranged in equal rows and columns.'],
+  ['math','scale','The ratio between measurements on a map or model and the real thing.'],['math','limit','The value a function gets closer and closer to as its input approaches a number.'],
+  ['math','radii','The plural of radius: segments from a circle\'s center to its edge.'],['math','solve','To find the value that makes an equation true.'],
+  ['math','graph','A diagram that shows how quantities are related.'],['math','plane','A flat surface that extends forever in every direction.'],
+  ['math','round','To replace a number with a nearby, simpler number, like 47 → 50.'],['math','cubic','Having three dimensions; cubic units measure volume.'],
+  ['sci','atoms','The tiny building blocks of all matter.'],['sci','cells','The smallest units of life; every living thing is made of them.'],
+  ['sci','force','A push or a pull on an object.'],['sci','orbit','The curved path of one object around another, like Earth around the Sun.'],
+  ['sci','lunar','Having to do with the Moon.'],['sci','solar','Having to do with the Sun.'],
+  ['sci','fungi','Living things like mushrooms and molds that absorb food from their surroundings.'],['sci','genes','Sections of DNA that pass traits from parents to offspring.'],
+  ['sci','ozone','A form of oxygen (O₃); a layer of it high in the atmosphere blocks much of the Sun\'s UV light.'],['sci','magma','Melted rock beneath Earth\'s surface.'],
+  ['sci','fault','A crack in Earth\'s crust where blocks of rock move past each other.'],['sci','vapor','A substance in its gas form, like water vapor.'],
+  ['sci','alloy','A mixture of a metal with other elements, like steel or bronze.'],['sci','virus','A tiny particle that can only copy itself inside a living cell.'],
+  ['sci','trait','A characteristic, like eye color, that can be passed from parents to offspring.'],['sci','biome','A large region with a similar climate, plants and animals, like a desert or tundra.'],
+  ['sci','delta','Land built up where a river drops its sediment as it flows into a larger body of water.'],['sci','joule','The SI unit of energy and work.'],
+  ['sci','waves','Disturbances that carry energy from place to place, like sound and light.'],['sci','spore','A tiny cell that fungi and some plants use to reproduce.'],
+  ['sci','nerve','A bundle of fibers that carries signals between the brain and the body.'],['sci','laser','A device that makes a narrow, powerful beam of light.'],
+  ['sci','solid','Matter with a definite shape and volume.'],['sci','tides','The regular rise and fall of the ocean, caused mostly by the Moon\'s gravity.'],
+  ['sci','crust','Earth\'s thin, rocky outer layer.'],['sci','acids','Substances with a pH below 7, like lemon juice and vinegar.'],
+  ['ela','theme','The central message or big idea of a story or poem.'],['ela','irony','When what happens is the opposite of what is expected.'],
+  ['ela','genre','A category of writing, like mystery, fantasy or poetry.'],['ela','prose','Ordinary writing in sentences and paragraphs, not poetry.'],
+  ['ela','rhyme','Words with the same ending sound, like light and bright.'],['ela','tense','The form of a verb that shows when an action happens.'],
+  ['ela','claim','An arguable statement that a writer supports with evidence.'],['ela','motif','An image, idea or symbol that repeats through a story.'],
+  ['ela','fable','A short story, often with animals, that teaches a lesson.'],['ela','idiom','A phrase whose meaning differs from its words, like "break a leg."'],
+  ['ela','affix','A prefix or suffix added to a word to change its meaning.'],['ela','vowel','The letters a, e, i, o and u (and sometimes y), made with an open mouth.'],
+  ['ela','colon','A punctuation mark (:) that introduces a list, an example or an explanation.'],['ela','essay','A short piece of writing about one topic.'],
+  ['ela','drama','A story written to be performed by actors.'],['ela','verse','Writing arranged in lines with rhythm, like poetry.'],
+  ['ela','meter','The pattern of stressed and unstressed syllables in a line of poetry.'],['ela','moral','The lesson a story teaches.'],
+  ['ela','nouns','Words that name people, places, things or ideas.'],['ela','verbs','Words that show an action or a state of being.'],
+  ['ela','quote','Words repeated exactly from a speaker or writer, inside quotation marks.'],['ela','voice','The personality and style of a writer that comes through in the words.'],
+  ['ela','topic','What a piece of writing is mostly about.'],['ela','slang','Very informal words used by a particular group.'],
+  ['soc','voter','A person who casts a ballot in an election.'],['soc','taxes','Money people and businesses pay the government to fund public services.'],
+  ['soc','trade','Buying, selling or exchanging goods and services.'],['soc','union','A group joined together; in the U.S. Civil War, the Northern states.'],
+  ['soc','court','A place where judges decide legal cases.'],['soc','mayor','The elected leader of a city or town.'],
+  ['soc','nomad','A person who moves from place to place instead of living in one spot.'],['soc','reign','The period of time a king or queen rules.'],
+  ['soc','guild','A medieval group of craftspeople or merchants who set rules for their trade.'],['soc','atlas','A book of maps.'],
+  ['soc','coast','Land next to the sea.'],['soc','civic','Having to do with citizens and community life.'],
+  ['soc','elect','To choose someone by voting.'],['soc','canal','A human-made waterway for boats or for watering crops.'],
+  ['fin','loans','Money borrowed that must be paid back, usually with interest.'],['fin','stock','A share of ownership in a company.'],
+  ['fin','bonds','Loans to a government or company that pay the lender interest.'],['fin','debit','A card or charge that takes money straight from your bank account.'],
+  ['fin','wages','Pay earned for work, often by the hour.'],['fin','asset','Something you own that has value.'],
+  ['fin','yield','The income an investment earns, as a percent of its price.'],['fin','share','One unit of ownership in a company.'],
+  ['fin','debts','Money that you owe.'],['fin','lease','A contract to rent property for a set time.'],
+  ['cs','bytes','Units of computer data, each made of 8 bits.'],['cs','pixel','One tiny dot of color on a screen.'],
+  ['cs','query','A request for information from a database.'],['cs','stack','A data structure where the last item added is the first one removed.'],
+  ['cs','queue','A data structure where the first item added is the first one removed.'],['cs','debug','To find and fix errors in a program.'],
+  ['cs','logic','Reasoning that follows clear rules to reach a conclusion.'],['cs','cache','A small, fast store of data a computer may need again soon.'],
+  ['cs','robot','A machine that can sense, decide and act, often by following a program.'],['cs','loops','Code that repeats steps until a condition is met.'],
+  ['cs','input','Data that goes into a program or function.'],['cs','token','A small piece of text or data that a program treats as one unit.']];
+const CIPHERX=(()=>{const r=nlRng(20261028),a=CIPHER.map((_,i)=>i);for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a})();
+const cipherOf=(d=dstr())=>CIPHER[CIPHERX[((nlDayNum(d)%CIPHER.length)+CIPHER.length)%CIPHER.length]];
+
+/* ---------- Equation of the day ---------- */
+/* Evaluates digits and + - * / with the usual order of operations; null if it isn't a valid calculation */
+function eqEval(s){if(!/^\d+([+\-*/]\d+)*$/.test(s))return null;const nums=s.split(/[+\-*/]/),ops=s.replace(/\d/g,'').split('');
+  if(nums.some(n=>n.length>1&&n[0]==='0'))return null;const v=[+nums[0]];
+  for(let i=0;i<ops.length;i++){const b=+nums[i+1],o=ops[i];
+    if(o==='*')v[v.length-1]*=b;else if(o==='/'){if(b===0||v[v.length-1]%b!==0)return null;v[v.length-1]/=b}else v.push(o==='-'?-b:b)}
+  return v.reduce((a,b)=>a+b,0)}
+const eqShow=s=>s.replace(/\*/g,'×').replace(/\//g,'÷').replace(/-/g,'−');
+function eqProblem(g){const p=g.split('=');if(p.length!==2)return 'Use exactly one = sign.';const [L,R]=p;
+  if(!L||!R)return 'Put a calculation on the left of = and the answer on the right.';
+  if(!/^\d+$/.test(R))return 'The right side of = must be just a number.';
+  if(R.length>1&&R[0]==='0')return 'Numbers can\'t start with 0.';
+  if(!/[+\-*/]/.test(L))return 'The left side needs at least one + − × or ÷.';
+  const v=eqEval(L);if(v===null)return /[+\-*/]{2}|^[+\-*/]|[+\-*/]$/.test(L)?'Put a number between every two signs.':/(^|[+\-*/])0\d/.test(L)?'Numbers can\'t start with 0.':'Division has to come out even here.';
+  if(v!==+R)return `That isn't true: ${eqShow(L)} = ${v}.`;return null}
+function eqOf(d=dstr()){const r=nlRng(nlDayNum(d)*7919+13),T=['a+b','a-b','a*b','a/b','a+b*c','a*b-c','a-b+c','a*b+c','a/b+c','a+b-c','a-b*c'];
+  for(let k=0;k<20000;k++){const t=r.pick(T),n=()=>r.int(1,r()<.5?9:99),L=t.replace(/[abc]/g,()=>n());
+    if(/[*/]1(?!\d)/.test(L))continue;const v=eqEval(L);if(v===null||v<0)continue;const s=L+'='+v;if(s.length===8)return s}
+  return '12+35=47'}
+
+/* ---------- Shared puzzle engine (Cipher and Equation Code) ---------- */
+/* Wordle-style marks: g = right spot, y = in the answer elsewhere, n = not in the answer (repeats handled) */
+function pzMarks(guess,ans){const m=Array(guess.length).fill('n'),left={};
+  for(let i=0;i<ans.length;i++)if(guess[i]===ans[i])m[i]='g';else left[ans[i]]=(left[ans[i]]||0)+1;
+  for(let i=0;i<guess.length;i++)if(m[i]!=='g'&&left[guess[i]]){m[i]='y';left[guess[i]]--}return m}
+const PZ={cipher:{key:'c',len:5,rows:6,name:'Cipher',ans:()=>cipherOf()[1]},eqcode:{key:'e',len:8,rows:6,name:'Equation Code',ans:()=>eqOf()}};
+let PZIN={cipher:'',eqcode:''},PZMSG={cipher:'',eqcode:''},PZFLIP=-1;
+function pzState(id){const N=NL(),d=dstr();if(!N.pz||N.pz.d!==d)N.pz={d,c:{g:[],done:0,won:0},e:{g:[],done:0,won:0}};return N.pz[PZ[id].key]}
+async function pzEnter(id){const P=pzState(id),C=PZ[id];if(P.done)return;const g=PZIN[id];
+  if(g.length<C.len){pzSay(id,`Use all ${C.len} ${id==='cipher'?'letters':'spaces'}.`,true);return}
+  if(id==='cipher'){const W=await nlWords();if(W.size?!W.has(g)&&g!==C.ans():!/[aeiouy]/.test(g)){pzSay(id,'Not in the word list. Try a real word.',true);return}}
+  else{const e=eqProblem(g);if(e){pzSay(id,e,true);return}}
+  P.g.push(g);PZIN[id]='';PZFLIP=P.g.length-1;const won=g===C.ans(),N=NL(),S=N.st[C.key];
+  if(won||P.g.length>=C.rows){P.done=1;P.won=won?1:0;S.p++;if(won){S.w++;S.dist[P.g.length-1]++}
+    addXP(won?15:5,won?`solving ${C.name}`:`playing ${C.name}`);PZMSG[id]=won?pick(['Brilliant!','Nailed it!','Cracked it!','Genius move!']):'Out of tries. Here is the answer:';nlAwards();nlLoopCheck()}
+  else PZMSG[id]='';SYNC();rerealm();setTimeout(()=>{PZFLIP=-1},700)}
+function pzSay(id,t,shake){PZMSG[id]=t;const m=$('pzmsg');if(m)m.textContent=t;if(shake){const r=document.querySelector('.pzrow.cur');if(r&&!calmOn()){r.classList.remove('pzshake');void r.offsetWidth;r.classList.add('pzshake')}}}
+function pzKey(id,k){const P=pzState(id),C=PZ[id];if(P.done)return;
+  if(k==='Enter'){pzEnter(id);return}
+  if(k==='Backspace'){PZIN[id]=PZIN[id].slice(0,-1)}
+  else if(PZIN[id].length<C.len&&(id==='cipher'?/^[a-z]$/:/^[0-9+\-*/=]$/).test(k))PZIN[id]+=k;else return;
+  PZMSG[id]='';const r=document.querySelector('.pzrow.cur');if(r)r.innerHTML=pzCells(id,PZIN[id].padEnd(C.len),null,false);const m=$('pzmsg');if(m)m.textContent=''}
+const pzLab={g:'right spot',y:'in it, wrong spot',n:'not in it'};
+function pzCells(id,s,marks,flip){return [...s].map((ch,i)=>{const show=id==='eqcode'?eqShow(ch):ch,m=marks?marks[i]:'';
+  return `<span class="pzc ${m} ${!marks&&ch.trim()?'f':''} ${flip&&!calmOn()?'flip':''}" style="${flip?`animation-delay:${i*90}ms`:''}" ${marks?`aria-label="${esc(show)}, ${pzLab[m]}"`:''}>${esc(show.trim())}</span>`}).join('')}
+function pzBoard(id){const P=pzState(id),C=PZ[id],ans=C.ans(),rows=[];
+  for(let r=0;r<C.rows;r++){const g=P.g[r];
+    if(g)rows.push(`<div class="pzrow" style="grid-template-columns:repeat(${C.len},auto)" role="row">${pzCells(id,g,pzMarks(g,ans),r===PZFLIP)}</div>`);
+    else if(r===P.g.length&&!P.done)rows.push(`<div class="pzrow cur" style="grid-template-columns:repeat(${C.len},auto)" aria-label="Your guess">${pzCells(id,PZIN[id].padEnd(C.len),null,false)}</div>`);
+    else rows.push(`<div class="pzrow" style="grid-template-columns:repeat(${C.len},auto)">${pzCells(id,' '.repeat(C.len),null,false)}</div>`)}
+  return `<div class="pzgrid" style="${id==='eqcode'?'--s:44px':''}" role="grid" aria-label="${esc(C.name)} board">${rows.join('')}</div>`}
+function pzKeyboard(id){const P=pzState(id),ans=PZ[id].ans(),best={};
+  for(const g of P.g){const m=pzMarks(g,ans);[...g].forEach((ch,i)=>{const o={g:3,y:2,n:1};if((o[m[i]]||0)>(o[best[ch]]||0))best[ch]=m[i]})}
+  const rows=id==='cipher'?['qwertyuiop','asdfghjkl','⏎zxcvbnm⌫']:['1234567890','+-*/=⏎⌫'];
+  return `<div class="pzkb" aria-label="Keyboard">${rows.map(r=>`<div class="pzkr">${[...r].map(ch=>{const k=ch==='⏎'?'Enter':ch==='⌫'?'Backspace':ch,wide=ch==='⏎'||ch==='⌫';
+    return `<button class="pzk ${wide?'wide':''} ${best[ch]||''}" onclick="pzKey('${id}','${k}')" aria-label="${ch==='⏎'?'Enter':ch==='⌫'?'Delete':esc(id==='eqcode'?eqShow(ch):ch)}">${ch==='⏎'?'Enter':esc(id==='eqcode'?eqShow(ch):ch)}</button>`}).join('')}</div>`).join('')}</div>`}
+function pzShare(id){const P=pzState(id),ans=PZ[id].ans(),txt=`Bose ${PZ[id].name} ${dstr()} ${P.won?P.g.length:'X'}/6\n`+P.g.map(g=>pzMarks(g,ans).map(m=>({g:'🟩',y:'🟨',n:'⬛'})[m]).join('')).join('\n');
+  (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(()=>msg('Copied your result. Share it with a friend!'),()=>msg(txt))}
+function pzEnd(id){const P=pzState(id),C=PZ[id],S=NL().st[C.key],max=Math.max(1,...S.dist);
+  const what=id==='cipher'?(()=>{const [s,w,d]=cipherOf();return `<p class="mkbig" style="letter-spacing:.12em;text-transform:uppercase;margin:6px 0">${w}</p><p><span class="nlpill">${esc(SUBN[s]||s)}</span></p><p style="max-width:460px;margin:8px auto">${esc(d)}</p>`})()
+    :`<p class="mkbig" style="margin:6px 0">${eqShow(C.ans())}</p><p class="mt">${/[*/]/.test(C.ans())&&/[+\-]/.test(C.ans())?'Remember: × and ÷ happen before + and −.':'Every guess had to be a true equation, so each one taught you something.'}</p>`;
+  return `<div class="nlcard pzend"><h3>${esc(PZMSG[id]||(P.won?'Solved!':'Here is the answer:'))}</h3>${what}
+    <p class="mt">Played ${S.p} · solved ${S.w} (${S.p?Math.round(100*S.w/S.p):0}%)</p><div class="pzdist" aria-label="Guess distribution">${S.dist.map((n,i)=>`<div><span>${i+1}</span><i class="${P.won&&P.g.length===i+1?'me':''}" style="width:${Math.max(8,n/max*100)}%">${n}</i></div>`).join('')}</div>
+    <div class="row" style="justify-content:center;gap:8px;margin-top:10px"><button class="nlbtn" onclick="pzShare('${id}')">📋 Share result</button><button class="nlbtn ghost" onclick="nlOpen('${id==='cipher'?'eqcode':'cipher'}')">Next puzzle →</button><button class="nlbtn ghost" onclick="toHub()">Back to Next Level</button></div>
+    <p class="mt" style="margin-top:10px">A new ${esc(C.name)} arrives tomorrow.</p></div>`}
+function pzView(id){const P=pzState(id),C=PZ[id],hint=id==='cipher'&&!P.done&&P.g.length>=3?`<p class="nlpill">💡 Hint: it's a ${esc(SUBN[cipherOf()[0]]||'')} word</p>`:'';
+  if(id==='cipher')nlWords();
+  return nlWrap(nlHeadBar(C.name,id==='cipher'?'Crack the five-letter academic word of the day in six tries. Every guess must be a real word.':'Find the hidden equation in six tries. Every guess must be a true 8-character equation, like 12+35=47.')+
+  `<div class="pzwrap">${pzBoard(id)}${hint}<p class="pzmsg" id="pzmsg" role="status" aria-live="polite">${P.done?'':esc(PZMSG[id])}</p>${P.done?pzEnd(id):pzKeyboard(id)}
+  <details class="nlcard" style="max-width:560px;width:100%"><summary style="cursor:pointer;font-weight:700">How it works</summary><p class="mt">After each guess the tiles change color: <b style="color:#4ADE80">green</b> is in the right spot, <b style="color:#FBBF24">gold</b> is in the answer but somewhere else, and <b>gray</b> is not in the answer.${id==='eqcode'?' Use + − × ÷ and one =. The answer after = is a single number, and × and ÷ come before + and −.':''} Type on your keyboard or tap the keys.</p></details></div>`)}
+GVIEW.cipher=()=>pzView('cipher');
+GVIEW.eqcode=()=>pzView('eqcode');
+addEventListener('keydown',e=>{if(typeof tab==='undefined'||tab!=='play'||!PZ[AR.mode]||QM||e.ctrlKey||e.metaKey||e.altKey)return;const tg=e.target;if(tg&&/^(INPUT|TEXTAREA|SELECT)$/.test(tg.tagName))return;
+  let k=e.key;if(k==='x'&&AR.mode==='eqcode')k='*';if(k==='÷')k='/';if(k.length===1)k=k.toLowerCase();
+  if(k==='Enter'||k==='Backspace'||(AR.mode==='cipher'?/^[a-z]$/:/^[0-9+\-*/=]$/).test(k)){
+    // Enter on a focused page button (Share, Back...) presses it; on an on-screen key it submits the guess
+    if(tg&&tg.tagName==='BUTTON'&&k==='Enter'&&!tg.classList.contains('pzk'))return;e.preventDefault();pzKey(AR.mode,k)}});
+
+/* ---------- Market Sim: a year of investing $10,000 ---------- */
+const MKA=[
+  {id:'BYTE',n:'ByteForge',sec:'tech',i:'💻',p:80,vol:.085,dr:.011,div:0,d:'Chips and apps. Big swings.'},
+  {id:'SOLR',n:'Solaris Energy',sec:'energy',i:'⚡',p:45,vol:.065,dr:.007,div:.02,d:'Power plants and solar farms.'},
+  {id:'LEAF',n:'GreenLeaf Foods',sec:'food',i:'🥫',p:30,vol:.03,dr:.004,div:.04,d:'Groceries people buy in good times and bad.'},
+  {id:'MEDI',n:'MediCore Health',sec:'health',i:'💊',p:60,vol:.045,dr:.006,div:.03,d:'Medicines and hospitals.'},
+  {id:'URBN',n:'UrbanWear',sec:'retail',i:'👟',p:25,vol:.06,dr:.006,div:0,d:'Clothes and sneakers.'},
+  {id:'INDX',n:'Total Market Index Fund',sec:'index',i:'📊',p:100,fund:1,div:.015,d:'Owns all five companies at once. No trading fee.'},
+  {id:'BOND',n:'Government Bond Fund',sec:'bond',i:'🏛️',p:50,fund:1,vol:.006,dr:.0005,div:.036,d:'Steady interest. Pays a little every month. No trading fee.'}];
+const MKSTOCKS=MKA.filter(a=>!a.fund);
+/* div is the yearly dividend or interest rate: paid every quarter (every month for the bond fund) */
+/* News events: the effect on each sector (and on everything, "all") with the reason */
+const MKEV=[
+  {h:'Chip shortage hits factories',x:'Factories can\'t get enough chips, so ByteForge sells fewer devices and stores have less to sell.',e:{tech:-.12,retail:-.03}},
+  {h:'Record heat wave',x:'Air conditioners run all day, so electricity demand jumps.',e:{energy:.08}},
+  {h:'Interest rates rise',x:'Borrowing costs more, so fast-growing companies slow down. New bonds pay more, so older bonds are worth a bit less.',e:{all:-.02,tech:-.05,bond:-.025}},
+  {h:'Interest rates cut',x:'Cheaper borrowing helps companies grow, and existing bonds with higher payments become worth more.',e:{all:.02,tech:.05,bond:.025}},
+  {h:'New medicine approved',x:'Regulators approve MediCore\'s new medicine, which means years of new sales.',e:{health:.14}},
+  {h:'Drug trial fails',x:'A big MediCore trial didn\'t work, so expected future profits fall.',e:{health:-.15}},
+  {h:'Holiday shopping boom',x:'Shoppers spend more than expected on clothes and gadgets.',e:{retail:.12,tech:.03}},
+  {h:'Recession fears',x:'Investors worry the economy is slowing. They sell riskier stocks and buy bonds, but people still buy groceries.',e:{all:-.06,food:.05,bond:.02}},
+  {h:'Oil spill fine',x:'Solaris must pay a large fine, which cuts its profit this year.',e:{energy:-.1}},
+  {h:'Battery breakthrough',x:'A new battery makes solar power cheaper to store, and gadgets last longer.',e:{energy:.1,tech:.04}},
+  {h:'Viral sneaker trend',x:'A UrbanWear sneaker goes viral and sells out everywhere.',e:{retail:.15}},
+  {h:'Drought hurts crops',x:'Less harvest means GreenLeaf pays more for ingredients, so its profit shrinks.',e:{food:-.08}},
+  {h:'Record harvest',x:'Cheap, plentiful crops lower GreenLeaf\'s costs.',e:{food:.06}},
+  {h:'Data breach',x:'Hackers steal ByteForge customer data. Customers and investors lose trust.',e:{tech:-.1}},
+  {h:'Strong jobs report',x:'More people have jobs, so they spend more.',e:{all:.03,retail:.04}},
+  {h:'Inflation jumps',x:'Prices rise across the economy. Costs go up for most companies, but energy prices rise too. Bonds lose value because their fixed payments buy less.',e:{all:-.03,energy:.05,bond:-.02}},
+  {h:'AI boom',x:'Everyone wants AI chips, and ByteForge makes them.',e:{tech:.16}},
+  {h:'Shipping delays end',x:'Goods arrive on time again, so stores have full shelves.',e:{retail:.06,tech:.04}},
+  {h:'Hospital merger',x:'MediCore joins with a big hospital network and will save money.',e:{health:.06}},
+  {h:'Factory strike',x:'UrbanWear workers strike, and production stops for weeks.',e:{retail:-.08}},
+  {h:'Solar tax credit',x:'A new law pays people to install solar panels.',e:{energy:.12}},
+  {h:'Food safety recall',x:'GreenLeaf recalls a product, which costs money and trust.',e:{food:-.12}},
+  {h:'Market rally',x:'Good news everywhere: investors feel confident and buy.',e:{all:.05}},
+  {h:'Market slump',x:'Investors get nervous and sell almost everything.',e:{all:-.06,bond:.015}}];
+const MKCALM={h:'A quiet month',x:'No big news. Prices just drift with normal ups and downs.',e:{}};
+/* Concept checks at the Research Desk: answer right to see next month's headline early */
+const MKQ=[
+  ['You put $1,000 in savings that earns 5% a year, compounded yearly. How much is there after 2 years?',['$1,100.00','$1,102.50','$1,050.00','$1,125.00'],1,'Year 1: $1,000 × 1.05 = $1,050. Year 2: $1,050 × 1.05 = $1,102.50. Interest earns interest: that\'s compounding.'],
+  ['Why does spreading your money across many companies (diversifying) lower risk?',['It guarantees a profit','One company\'s bad news only hits part of your money','It removes all fees','It stops prices from falling'],1,'If one company has a bad month, the others can balance it out. Diversifying lowers risk; it can\'t guarantee a profit.'],
+  ['A stock costs $50 and pays a $2 dividend each year. What is its dividend yield?',['2%','4%','25%','0.4%'],1,'Yield = $2 ÷ $50 = 0.04 = 4%.'],
+  ['When interest rates rise, what usually happens to the prices of bonds people already own?',['They rise','They fall','They stay exactly the same','They double'],1,'New bonds now pay more, so older bonds with lower payments are worth less.'],
+  ['Inflation is 4% this year and your savings earn 1%. What happens to what your money can buy?',['It grows by 5%','It shrinks by about 3%','It stays the same','It grows by 3%'],1,'Your money grows 1% but prices grow 4%, so it buys about 3% less.'],
+  ['What is an index fund?',['A fund that owns many companies to match a whole market','A loan from a bank','One company\'s stock','A kind of savings account'],0,'An index fund buys a little of many companies, so you get the whole market\'s return with less single-company risk.'],
+  ['Which usually has the highest risk and the highest possible reward?',['A government bond','A savings account','Shares of a young tech company','Cash in a drawer'],2,'Young growth companies can soar or crash. Savings and bonds are steadier but grow slower.'],
+  ['Each stock trade costs $2. You make 15 trades. How much did fees cost you?',['$15','$30','$17','$2'],1,'15 × $2 = $30. Small fees add up when you trade a lot.'],
+  ['You buy 10 shares at $40 and sell them at $46. What is your profit, before fees?',['$6','$46','$60','$460'],2,'($46 − $40) × 10 shares = $60.'],
+  ['A stock falls 50%, then rises 50%. Compared with where it started, it is…',['back to even','down 25%','up 25%','down 50%'],1,'$100 → $50 → $75. After a big loss you need an even bigger gain to recover.'],
+  ['What does owning one share of a company mean?',['You lent the company money','You own a small piece of the company','You work for the company','You must pay the company\'s debts'],1,'A share is a slice of ownership. If the company does well, your slice can be worth more.'],
+  ['Rule of 72: at 8% a year, about how many years does it take money to double?',['6 years','9 years','12 years','72 years'],1,'72 ÷ 8 = 9 years.']];
+const MKFEE=2,MKSAV=.03/12,MKN=12;
+const MK=()=>NL().mk;
+function mkNew(){const seed=(Math.random()*1e9)|0,r=nlRng(seed),deck=MKEV.map((_,i)=>i);for(let i=deck.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[deck[i],deck[j]]=[deck[j],deck[i]]}
+  const ev=[-1,...deck.slice(0,MKN-1)];for(let i=2;i<MKN;i++)if(r()<.15)ev[i]=-1;  // some quiet months
+  const qs=MKQ.map((_,i)=>i);for(let i=qs.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[qs[i],qs[j]]=[qs[j],qs[i]]}
+  NL().mk={seed,m:0,cash:10000,sav:0,hold:{},px:Object.fromEntries(MKA.map(a=>[a.id,a.p])),hist:Object.fromEntries(MKA.map(a=>[a.id,[a.p]])),nw:[10000],bench:[10000],
+    ev,qs:qs.slice(0,3),checks:{},peek:null,news:null,trades:0,fees:0,divs:0,held:[],done:0};SYNC();rerealm()}
+const mkWorth=M=>M.cash+M.sav+MKA.reduce((s,a)=>s+(M.hold[a.id]||0)*M.px[a.id],0);
+function mkTrade(id,dir){const M=MK(),a=MKA.find(x=>x.id===id),inp=$('mkq'+id),q=Math.floor(+(inp&&inp.value)||0);if(!M||M.done||!a)return;
+  if(q<=0){msg('Type how many shares first.');return}const fee=a.fund?0:MKFEE,px=M.px[id];
+  if(dir>0){const cost=q*px+fee;if(cost>M.cash+1e-9){msg(`That costs ${money(cost)} but you have ${money(M.cash)} in cash.`);return}M.cash-=cost;M.hold[id]=(M.hold[id]||0)+q}
+  else{const have=M.hold[id]||0;if(q>have){msg(`You only own ${have} share${have===1?'':'s'}.`);return}M.cash+=q*px-fee;M.hold[id]=have-q}
+  M.trades++;M.fees+=fee;MKQTY[id]=q;SYNC();rerealm()}
+function mkMax(id){const M=MK(),a=MKA.find(x=>x.id===id),fee=a.fund?0:MKFEE,n=Math.max(0,Math.floor((M.cash-fee)/M.px[id]));const i=$('mkq'+id);if(i)i.value=n}
+function mkSave(dir){const M=MK(),i=$('mksv'),v=Math.round((+(i&&i.value)||0)*100)/100;if(v<=0){msg('Type an amount first.');return}
+  if(dir>0){if(v>M.cash+1e-9){msg('Not enough cash.');return}M.cash-=v;M.sav+=v}else{if(v>M.sav+1e-9){msg('Not that much in savings.');return}M.sav-=v;M.cash+=v}SYNC();rerealm()}
+let MKQTY={};
+/* One month passes: news moves prices, dividends and interest are paid */
+function mkNext(){const M=MK();if(!M||M.done)return;const r=nlRng(M.seed+M.m*101),E=M.ev[M.m]>=0?MKEV[M.ev[M.m]]:MKCALM,eff=E.e,mv={};
+  for(const a of MKSTOCKS){mv[a.id]=Math.max(-.6,a.dr+a.vol*r.gauss()+(eff.all||0)+(eff[a.sec]||0))}
+  mv.INDX=MKSTOCKS.reduce((s,a)=>s+mv[a.id],0)/MKSTOCKS.length-.0002;
+  const B=MKA.find(a=>a.id==='BOND');mv.BOND=B.dr+B.vol*r.gauss()+(eff.bond||0);
+  const benchUnits=10000/100,quarter=(M.m+1)%3===0;let divs=0;
+  for(const a of MKA){M.px[a.id]=Math.max(1,Math.round(M.px[a.id]*(1+mv[a.id])*100)/100);M.hist[a.id].push(M.px[a.id]);
+    const pay=a.id==='BOND'?a.div/12:quarter?a.div/4:0;if(pay&&M.hold[a.id])divs+=M.hold[a.id]*M.px[a.id]*pay}
+  M.benchDiv=(M.benchDiv||0)+(quarter?benchUnits*M.px.INDX*MKA.find(a=>a.id==='INDX').div/4:0);
+  M.cash+=divs;M.divs+=divs;M.sav=Math.round(M.sav*(1+MKSAV)*100)/100;
+  M.held.push(MKA.filter(a=>(M.hold[a.id]||0)>0).length);
+  M.m++;M.news={h:E.h,x:E.x,mv,divs};M.peek=null;M.nw.push(mkWorth(M));M.bench.push(benchUnits*M.px.INDX+M.benchDiv);
+  NL().loop.mk=dstr();
+  if(M.m>=MKN)mkFinish();SYNC();nlLoopCheck();rerealm()}
+function mkFinish(){const M=MK(),N=NL(),S=N.st.mk,ret=mkWorth(M)/10000-1,b=M.bench[M.bench.length-1]/10000-1;M.done=1;M.ret=ret;M.bret=b;
+  S.runs++;if(S.best==null||ret>S.best)S.best=ret;if(ret>b)S.beat++;if(ret>0)S.pos++;addXP(30,'finishing a Market Sim year');nlAwards()}
+function mkResearch(){const M=MK(),qi=M.qs[[3,6,9].indexOf(M.m)];if(qi==null||M.checks[M.m])return;const [q,ch,a,s]=MKQ[qi];
+  nlAsk({title:'Research Desk',intro:'Answer right to read next month\'s headline before anyone else.',q,choices:ch,a,s}).then(ok=>{if(ok===null)return;
+    M.checks[M.m]=ok?1:-1;if(ok){const E=M.ev[M.m]>=0?MKEV[M.ev[M.m]]:MKCALM;M.peek=E.h;addXP(10,'a market concept check')}SYNC();rerealm()})}
+/* A question from a fixed set, in the shared question modal (choices; explanation shown on a miss) */
+function nlAsk(o){return new Promise(res=>{QM={o:{title:o.title,intro:o.intro,cancel:true},k:null,q:{q:esc(o.q),choices:o.choices,a:[o.a],s:esc(o.s)},res,phase:'ask',fb:''};qmRender()})}
+function mkSpark(arr,w=96,h=30){const lo=Math.min(...arr),hi=Math.max(...arr),k=hi-lo||1,pts=arr.map((v,i)=>`${(i/(Math.max(1,MKN))*w).toFixed(1)},${(h-2-(v-lo)/k*(h-4)).toFixed(1)}`).join(' ');
+  return `<svg viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" aria-hidden="true"><polyline points="${pts}" fill="none" stroke="${arr[arr.length-1]>=arr[0]?'#4ADE80':'#FB7185'}" stroke-width="2"/></svg>`}
+function mkChart(M){const w=520,h=170,all=[...M.nw,...M.bench],lo=Math.min(...all)*.98,hi=Math.max(...all)*1.02,k=hi-lo||1,X=i=>(i/MKN*(w-50)+40).toFixed(1),Y=v=>(h-20-(v-lo)/k*(h-36)).toFixed(1);
+  const line=(arr,c,dash)=>`<polyline points="${arr.map((v,i)=>`${X(i)},${Y(v)}`).join(' ')}" fill="none" stroke="${c}" stroke-width="${dash?2:3}" ${dash?'stroke-dasharray="6 5"':''}/>`;
+  return `<svg viewBox="0 0 ${w} ${h}" style="width:100%;height:auto" role="img" aria-label="Your net worth ${money(M.nw[M.nw.length-1])} compared with the index fund ${money(M.bench[M.bench.length-1])}">
+    ${[lo+k*.25,lo+k*.5,lo+k*.75].map(v=>`<line x1="40" x2="${w-10}" y1="${Y(v)}" y2="${Y(v)}" stroke="#1E293B"/><text x="36" y="${+Y(v)+4}" font-size="10" fill="#94A3B8" text-anchor="end">$${(v/1000).toFixed(1)}k</text>`).join('')}
+    ${line(M.bench,'#64748B',1)}${line(M.nw,'var(--acc)',0)}<text x="${w-10}" y="14" font-size="11" fill="#94A3B8" text-anchor="end">— you   - - index fund</text></svg>`}
+function mkReport(M){const ret=M.ret,b=M.bret,sav=Math.pow(1+MKSAV,MKN)-1,avgHeld=M.held.length?M.held.reduce((a,c)=>a+c,0)/M.held.length:0,L=[];
+  L.push(ret>b?`<b>You beat the market.</b> Your ${sgnPct(ret)} topped the index fund's ${sgnPct(b)}. Doing that reliably is hard, even for professionals, which is why many people simply buy index funds.`:`<b>The index fund won this year</b> (${sgnPct(b)} vs your ${sgnPct(ret)}). Just owning the whole market is a strong strategy, and it beats most professional stock-pickers over time.`);
+  L.push(avgHeld<2?`<b>Diversification:</b> you usually held ${avgHeld<1?'nothing':'just one investment'}. With everything in one place, one piece of bad news can sink you. Holding several different sectors smooths out the bumps.`:`<b>Diversification:</b> you held about ${avgHeld.toFixed(1)} different investments each month. Spreading across sectors means no single headline can sink you.`);
+  if(M.fees>=20)L.push(`<b>Fees:</b> ${M.trades} trades cost ${money(M.fees)}. Frequent trading adds up; patient investors keep more.`);
+  if(M.divs>0)L.push(`<b>Income:</b> you earned ${money(M.divs)} in dividends and bond interest just for holding on.`);
+  L.push(`<b>Safe choice:</b> leaving everything in savings would have earned ${sgnPct(sav)}, with no risk. Higher possible rewards come with higher risk.`);
+  return `<div class="nlcard" style="margin-bottom:16px"><div class="kick">Year complete</div><div class="mkbig ${ret>=0?'up':'dn'}" style="margin:8px 0">${sgnPct(ret)}</div><p style="margin:0">You turned $10,000 into <b>${money(mkWorth(M))}</b>.</p>
+    <div class="mktop" style="margin-top:12px"><div><span>Index fund</span><b>${sgnPct(b)}</b></div><div><span>Savings only</span><b>${sgnPct(sav)}</b></div><div><span>Trades · fees</span><b>${M.trades} · ${money(M.fees)}</b></div><div><span>Dividends + interest</span><b>${money(M.divs)}</b></div></div>
+    ${mkChart(M)}<div class="mklesson">${L.map(x=>`<div>${x}</div>`).join('')}</div>
+    <div class="row" style="gap:8px;margin-top:12px"><button class="nlbtn" onclick="mkNew()">▶ Play another year</button><button class="nlbtn ghost" onclick="toHub()">Back to Next Level</button></div></div>`}
+GVIEW.market=function(){const N=NL(),M=N.mk,S=N.st.mk,head=nlHeadBar('Market Sim','Invest $10,000 for one year. Read the news, spread your risk, and see if you can beat the market.');
+  if(!M)return nlWrap(head+`<div class="nlgrid"><div class="nlcard"><h3>How it works</h3><ul class="pearn"><li>You start with <b>$10,000</b> in cash. Each turn is one month; a year is 12 turns.</li><li>Buy and sell shares of five companies, an <b>index fund</b> that owns all of them, and a <b>bond fund</b>. Or park cash in <b>savings</b> at 3% a year, risk-free.</li><li>Each month brings news that moves prices. Read why, and decide what to do.</li><li>Stock trades cost a $${MKFEE} fee. Some investments pay dividends.</li><li>At months 3, 6 and 9 the <b>Research Desk</b> asks a concept question. Get it right to read next month's headline early.</li></ul><button class="nlbtn" style="margin-top:12px" onclick="mkNew()">▶ Start investing</button></div>
+    <div class="nlcard"><h3>Your record</h3><p class="mt">Years played: <b style="color:var(--tx)">${S.runs}</b><br>Best year: <b style="color:var(--tx)">${S.best==null?'–':sgnPct(S.best)}</b><br>Years you beat the market: <b style="color:var(--tx)">${S.beat}</b></p></div></div>`);
+  const nw=mkWorth(M),ch=nw/10000-1,canAsk=[3,6,9].includes(M.m)&&!M.checks[M.m]&&!M.done;
+  const asset=a=>{const h=M.hist[a.id],p=M.px[a.id],last=h.length>1?p/h[h.length-2]-1:0,own=M.hold[a.id]||0;
+    return `<div class="mka"><div class="nm"><b>${a.i} ${esc(a.n)} <span class="mt" style="font-weight:600">${a.id}</span></b><small>${esc(a.d)}${a.div?` Pays ${(a.div*100).toFixed(1)}% a year, ${a.id==='BOND'?'monthly':'every 3 months'}.`:''}</small></div>
+      <div class="px"><b>${money(p)}</b><span class="${last>=0?'up':'dn'}">${h.length>1?sgnPct(last):'—'}</span></div><div>${mkSpark(h)}</div>
+      <div class="tr">${M.done?'':`<input id="mkq${a.id}" type="number" min="1" step="1" value="${MKQTY[a.id]||10}" aria-label="How many ${esc(a.n)} shares"><button class="nlbtn sm" onclick="mkTrade('${a.id}',1)">Buy</button><button class="nlbtn ghost sm" ${own?'':'disabled'} onclick="mkTrade('${a.id}',-1)">Sell</button><button class="nlbtn ghost sm" onclick="mkMax('${a.id}')" title="Most you can afford">Max</button>`}<span class="own">${own?`You own ${own} · ${money(own*p)}`:'You own none'}</span></div></div>`};
+  return nlWrap(head+`${M.done?mkReport(M):''}
+    <div class="mktop"><div><span>Month</span><b>${Math.min(M.m+1,MKN)}${M.done?'':' of '+MKN}</b></div><div><span>Net worth</span><b class="${ch>=0?'up':'dn'}">${money(nw)}</b></div><div><span>Return so far</span><b class="${ch>=0?'up':'dn'}">${sgnPct(ch)}</b></div><div><span>Cash</span><b>${money(M.cash)}</b></div><div><span>Savings (3%/yr)</span><b>${money(M.sav)}</b></div></div>
+    <div class="mkgrid"><div class="nlcard" style="padding:6px 4px">${MKA.map(asset).join('')}</div>
+    <div style="display:grid;gap:14px">
+      ${M.news?`<div class="nlcard mknews"><div class="kick">Last month's news</div><h3 style="margin:6px 0">📰 ${esc(M.news.h)}</h3><p class="mt" style="margin:0">${esc(M.news.x)}</p>${M.news.divs?`<p style="margin:8px 0 0">💵 You received ${money(M.news.divs)} in dividends and interest.</p>`:''}</div>`:`<div class="nlcard mknews"><div class="kick">Month 1</div><p class="mt" style="margin:6px 0 0">Make your first moves, then press <b>Next month</b> to see what happens.</p></div>`}
+      ${M.peek?`<div class="nlcard mkrep"><div class="kick" style="color:#FBBF24">Research report</div><p style="margin:6px 0 0">Next month's headline: <b>${esc(M.peek)}</b>. What will it do to each company?</p></div>`:''}
+      ${canAsk?`<div class="nlcard mkrep"><div class="kick" style="color:#FBBF24">Research Desk</div><p style="margin:6px 0 10px">Answer one concept question to read next month's headline early.</p><button class="nlbtn sm" onclick="mkResearch()">📚 Take the question</button></div>`:''}
+      ${M.done?'':`<div class="nlcard"><h4>🏦 Savings account</h4><p class="mt" style="margin:0 0 8px">Safe, 3% a year, paid monthly.</p><div class="tr" style="display:flex;gap:6px;flex-wrap:wrap"><input id="mksv" type="number" min="0" step="100" value="1000" aria-label="Amount" style="width:100px;min-height:36px;border-radius:10px;border:1px solid var(--ln);background:#0F172A;color:var(--tx);padding:0 8px"><button class="nlbtn sm" onclick="mkSave(1)">Deposit</button><button class="nlbtn ghost sm" ${M.sav?'':'disabled'} onclick="mkSave(-1)">Withdraw</button></div></div>
+      <button class="nlbtn" style="min-height:56px;font-size:1.15rem" onclick="mkNext()">Next month ▶</button>`}
+      <div class="nlcard"><h4>Your year so far</h4>${mkChart(M)}</div>
+    </div></div>`)};
+</script>
+
+<style>
 /* ===== Class competitions: weekly leaderboards, teams and bonus gems ===== */
 .gblock{margin-top:18px;padding-top:4px;border-top:1px solid var(--line)}
 .gblock .row label{display:flex;gap:8px;align-items:center}

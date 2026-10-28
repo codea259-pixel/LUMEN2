@@ -4,7 +4,7 @@ import sys
 import os
 D=os.path.dirname(os.path.abspath(__file__))
 src, out = os.path.join(D,'base.html'), os.path.join(D,'..','public','app.html')
-layers = [os.path.join(D,f) for f in ('firebase.html','bridge.html','ui.html','features.html','video.html','vendor-qrcode.html','printables.html','assess.html','game.html','realm.html','member.html','arcade.html','games.html','dungeon.html','snake.html','compete.html')]
+layers = [os.path.join(D,f) for f in ('firebase.html','bridge.html','ui.html','features.html','video.html','vendor-qrcode.html','printables.html','assess.html','game.html','realm.html','member.html','arcade.html','games.html','dungeon.html','snake.html','next.html','compete.html')]
 import re
 # Snake Arena's engine lives in snake-arena/src as JavaScript modules (it also runs on its own page and in Node).
 # For the app, the modules are joined in dependency order inside one function scope, in place of /*@SNAKE_ENGINE@*/.
@@ -50,4 +50,6 @@ root = os.path.join(D, '..')
 open(os.path.join(root, 'app.html'), 'w', encoding='utf-8').write(h)
 open(os.path.join(root, 'index.html'), 'w', encoding='utf-8').write(open(os.path.join(root, 'public', 'index.html'), encoding='utf-8').read())
 open(os.path.join(root, '.nojekyll'), 'w').close()
+# Next Level's Cipher checks guesses against this word list (fetched only when the puzzle opens)
+open(os.path.join(root, 'words5.txt'), 'w', encoding='utf-8').write(open(os.path.join(root, 'public', 'words5.txt'), encoding='utf-8').read())
 print('ok', len(h))

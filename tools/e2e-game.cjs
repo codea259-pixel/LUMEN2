@@ -231,6 +231,34 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     ok('out of play time, races and rounds cannot start, but Pet Pals is still open');
     await a.evaluate(() => { BT = null; DAY().play = playAllowed() });
 
+    // Next Level (the second Arcade tab): it works with no play time left and uses none
+    await a.evaluate(() => toHub()); await a.click('.arctabs button.next'); await a.waitForSelector('.nl .nltiles');
+    const nlT = await a.$$eval('.nltile .nlname', b => b.map(x => x.textContent).join(', ')); if (nlT !== 'Cipher, Equation Code, Market Sim') fail('Next Level tiles: ' + nlT);
+    if (await a.evaluate(() => GM.arc) !== 'next') fail('the Next Level tab was not remembered');
+    const nlPlay = await a.evaluate(() => DAY().play);
+    await a.click('.nltile:has-text("Cipher")'); await a.waitForSelector('.pzgrid');
+    await a.keyboard.type('zzxqv'); await a.keyboard.press('Enter'); await a.waitForFunction(() => /Not in the word list/.test($('pzmsg').textContent));
+    for (let i = 0; i < 5; i++) await a.keyboard.press('Backspace');
+    const cw = await a.evaluate(() => cipherOf()[1]), cx0 = await a.evaluate(() => XP()); await a.keyboard.type(cw); await a.keyboard.press('Enter'); await a.waitForSelector('.pzend');
+    const cst = await a.evaluate(x => ({ w: NL().st.c.w, xp: XP() - x, d: document.querySelector('.pzend').textContent }), cx0);
+    if (cst.w !== 1 || cst.xp < 15 || !cst.d.toUpperCase().includes(cw.toUpperCase())) fail('Cipher win not recorded: ' + JSON.stringify(cst));
+    await a.evaluate(() => nlOpen('eqcode')); await a.waitForSelector('.pzgrid'); await a.keyboard.type('12+35=48'); await a.keyboard.press('Enter');
+    await a.waitForFunction(() => /isn't true/.test($('pzmsg').textContent)); for (let i = 0; i < 8; i++) await a.keyboard.press('Backspace');
+    const [eqT, eqP] = await a.evaluate(() => [eqOf(), eqProblem(eqOf())]); if (eqT.length !== 8 || eqP) fail('bad equation of the day: ' + eqT + ' ' + eqP);
+    await a.keyboard.type(eqT); await a.keyboard.press('Enter'); await a.waitForSelector('.pzend'); if (await a.evaluate(() => NL().st.e.w) !== 1) fail('Equation Code win not recorded');
+    await a.evaluate(() => nlOpen('market')); await a.click('text=Start investing'); await a.waitForSelector('.mka');
+    await a.fill('#mkqLEAF', '10'); await a.click('.mka:has-text("GreenLeaf") button:text-is("Buy")');
+    const mk1 = await a.evaluate(() => ({ cash: MK().cash, hold: MK().hold.LEAF })); if (mk1.hold !== 10 || Math.abs(mk1.cash - (10000 - 300 - 2)) > .001) fail('buying shares went wrong: ' + JSON.stringify(mk1));
+    const lg0 = await a.evaluate(() => GEMS()); await a.click('text=Next month ▶'); await a.waitForSelector('.mknews h3');
+    const loop = await a.evaluate(g => ({ streak: NL().streak, gems: GEMS() - g }), lg0); if (loop.streak !== 1 || loop.gems !== 5) fail('daily loop reward wrong: ' + JSON.stringify(loop));
+    await a.click('text=Next month ▶'); await a.click('text=Next month ▶'); await a.click('text=Take the question'); await answerQM(a, true);
+    await a.waitForSelector('.mkrep:has-text("Research report")');
+    while (!(await a.$('text=Year complete'))) await a.click('text=Next month ▶');
+    const mkEnd = await a.evaluate(() => ({ runs: NL().st.mk.runs, got: NL().got, play: DAY().play })); if (mkEnd.runs !== 1 || !mkEnd.got.includes('investor')) fail('Market Sim year end wrong: ' + JSON.stringify(mkEnd));
+    if (mkEnd.play !== nlPlay) fail('Next Level used play time');
+    ok('Next Level: its own Arcade tab, remembered; Cipher rejects words not in the word list and records a win; Equation Code rejects a false equation and solves today\'s; Market Sim buys shares with a $2 fee, the daily loop paid +5 gems with a 1-day streak, the Research Desk showed next month\'s headline after a right answer, and a full year earned the Investor title, all with no play time left'); await shot(a, 'g-next');
+    await a.evaluate(() => { GM.arc = 'young'; toHub() });
+
     // Classwork turned in: XP and gems once
     await a.click('#tabs >> text=My classes'); await a.waitForSelector('button:text-is("Start")');
     await a.click('button:text-is("Start")'); await a.waitForSelector('.items');
