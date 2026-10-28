@@ -5,6 +5,7 @@ import os
 D=os.path.dirname(os.path.abspath(__file__))
 src, out = os.path.join(D,'base.html'), os.path.join(D,'..','public','app.html')
 layers = [os.path.join(D,f) for f in ('firebase.html','bridge.html','ui.html','features.html','video.html','vendor-qrcode.html','printables.html','assess.html','game.html','realm.html','member.html','arcade.html','games.html','dungeon.html','snake.html','next.html','compete.html')]
+# Phase 2 of Next Level, written but not yet tested (add after next.html when ready): nlpath.html (Skill Tree), nlhist.html (Crossroads), nllab.html (Lab Bench)
 import re
 # Snake Arena's engine lives in snake-arena/src as JavaScript modules (it also runs on its own page and in Node).
 # For the app, the modules are joined in dependency order inside one function scope, in place of /*@SNAKE_ENGINE@*/.

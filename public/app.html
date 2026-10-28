@@ -8013,6 +8013,15 @@ ART.snake=()=>sceneSvg(`${[[22,24,'#22d3ee'],[60,104,'#f472b6'],[140,18,'#facc15
 .nlprof .ban{height:64px;border-radius:14px;background:linear-gradient(120deg,var(--acc),color-mix(in srgb,var(--acc) 30%,#0B1020));margin:-4px -4px 0}
 .nlprof .who{display:flex;gap:12px;align-items:flex-end;margin-top:-26px;padding:0 6px}
 .nlprof .av{width:62px;height:62px;border-radius:16px;background:#0B1020;border:3px solid var(--acc);display:grid;place-items:center;font:800 1.6rem "Bricolage Grotesque",sans-serif;color:var(--acc);flex:none}
+.nlprof .ban.bn-aurora{background:linear-gradient(120deg,#22D3EE,#A78BFA 50%,#F472B6)}
+.nlprof .ban.bn-circuit{background:#0F172A repeating-linear-gradient(90deg,transparent 0 22px,color-mix(in srgb,var(--acc) 55%,transparent) 22px 24px),repeating-linear-gradient(0deg,transparent 0 22px,color-mix(in srgb,var(--acc) 35%,transparent) 22px 24px)}
+.nlprof .ban.bn-nebula{background:radial-gradient(circle at 20% 40%,#F472B6 0,transparent 40%),radial-gradient(circle at 75% 60%,#60A5FA 0,transparent 45%),#1E1B4B}
+.nlprof .ban.bn-blueprint{background:#1D4ED8 linear-gradient(rgba(255,255,255,.25) 1px,transparent 1px) 0 0/14px 14px,linear-gradient(90deg,rgba(255,255,255,.25) 1px,transparent 1px) 0 0/14px 14px}
+.nlprof .ban.bn-ember{background:linear-gradient(120deg,#F97316,#DC2626 55%,#7C2D12)}
+.nlprof .av.fr-hex{clip-path:polygon(25% 3%,75% 3%,100% 50%,75% 97%,25% 97%,0 50%);border-radius:0}
+.nlprof .av.fr-neon{box-shadow:0 0 0 3px #0B1020,0 0 16px 4px var(--acc)}
+.nlprof .av.fr-prism{border-image:linear-gradient(45deg,#22D3EE,#A78BFA,#F472B6,#FBBF24) 1;border-radius:0}
+.nlprof .av.fr-laurel{border-color:#FBBF24;box-shadow:0 0 0 4px rgba(251,191,36,.25)}
 .nlprof .ttl{color:var(--acc);font-weight:800;font-size:.85rem}
 .nlxp{height:8px;border-radius:99px;background:rgba(148,163,184,.18);overflow:hidden;margin:6px 0 2px}.nlxp i{display:block;height:100%;background:var(--acc)}
 .nlstat{display:grid;grid-template-columns:118px 1fr 48px;gap:8px;align-items:center;font-size:.88rem;margin:5px 0}
@@ -8103,9 +8112,20 @@ const NLLOOP=[['cipher','🔤','Cipher','Crack today\'s five-letter word'],['eqc
 function nlLoopDone(id){const N=NL(),d=dstr();if(id==='market')return N.loop.mk===d;const P=N.pz&&N.pz.d===d?N.pz[id==='cipher'?'c':'e']:null;return !!(P&&P.done)}
 /* All three done today: +1 streak (if yesterday was done too), +20 XP and +5 gems, once a day */
 function nlLoopCheck(){const N=NL(),d=dstr();if(N.loopDay===d||!NLLOOP.every(([id])=>nlLoopDone(id)))return;
-  N.streak=N.last===nlYesterday()?(N.streak||0)+1:1;N.last=d;N.loopDay=d;N.best=Math.max(N.best||0,N.streak);addXP(20,'your daily loop');addGems(5);SYNC();
-  setTimeout(()=>celebrate([`Daily loop complete! 🔥 ${N.streak}-day streak`,'+20 XP and +5 💎'],true),400);nlAwards()}
-const nlStreak=()=>{const N=NL();return N.last===dstr()||N.last===nlYesterday()?N.streak||0:0};
+  const kept=N.last===nlYesterday(),froze=!kept&&N.last===nlDaysAgo(2)&&(N.freeze||0)>0;if(froze)N.freeze--;
+  N.streak=kept||froze?(N.streak||0)+1:1;N.last=d;N.loopDay=d;N.best=Math.max(N.best||0,N.streak);const xp=Math.round(20*nlMult(N.streak));addXP(xp,'your daily loop');addGems(5);SYNC();
+  setTimeout(()=>celebrate([`Daily loop complete! 🔥 ${N.streak}-day streak`,`+${xp} XP${xp>20?` (×${nlMult(N.streak).toFixed(1)} streak bonus)`:''} and +5 💎`,...(froze?['🧊 A streak freeze saved your streak!']:[])],true),400);nlAwards()}
+/* Streak multiplier for the loop's XP: +10% a day in a row, up to ×1.5 */
+const nlMult=s=>1+.1*Math.min(5,Math.max(0,s-1));
+const nlDaysAgo=n=>{const d=new Date();d.setDate(d.getDate()-n);return dstr(d)};
+const nlStreak=()=>{const N=NL();return N.last===dstr()||N.last===nlYesterday()||(N.last===nlDaysAgo(2)&&(N.freeze||0)>0)?N.streak||0:0};
+/* Next Level games, in hub order. Later layers push their own. */
+const NLGAMES=[
+  {id:'cipher',tag:'Daily puzzle',n:'Cipher',p:'Six tries to crack the academic word of the day. Every guess must be a real word.'},
+  {id:'eqcode',tag:'Daily puzzle',n:'Equation Code',p:'Find the hidden 8-character equation. Every guess must be a true equation.',art:'eq'},
+  {id:'market',tag:'Simulation',n:'Market Sim',p:'Invest $10,000 for a year of news, booms and crashes. Can you beat the market?'}];
+/* A line under the loop (the skill tree layer fills it in with the learner's goal) */
+let nlNextUp=()=>'';
 
 function nlHub(){const N=NL(),P=lvProg(),st=nlStats(),t=NLTITLES.find(x=>x.id===N.title)||NLTITLES[0],done=NLLOOP.filter(([id])=>nlLoopDone(id)).length,sk=nlStreak();nlAwards();
   const tile=(id,tag,name,pitch,art)=>`<button class="nltile" onclick="nlOpen('${id}')" aria-label="${esc(name)}"><span aria-hidden="true">${art}</span><span class="nlb"><span class="tag">${tag}</span><span class="nlname">${name}</span><span class="mt">${pitch}</span></span></button>`;
@@ -8113,13 +8133,9 @@ function nlHub(){const N=NL(),P=lvProg(),st=nlStats(),t=NLTITLES.find(x=>x.id===
   <div class="nlgrid"><div>
     <div class="nlcard"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><h3 style="margin:0">⏱️ Today's loop <span class="mt" style="font-weight:600">· about 5 minutes</span></h3><span class="nlpill">${done} of 3</span></div>
       <div class="nlloop">${NLLOOP.map(([id,i,n,d])=>{const ok=nlLoopDone(id);return `<div class="nlstep ${ok?'done':''}"><span class="ic" aria-hidden="true">${ok?'✅':i}</span><div><b>${n}</b><span class="mt">${d}</span></div><button class="nlbtn ${ok?'ghost':''} sm" onclick="nlOpen('${id}')" aria-label="${ok?'Open':'Play'} ${n}">${ok?'Open':'Play'}</button></div>`}).join('')}</div>
-      <p class="mt" style="margin:10px 0 0;font-size:.88rem">Finish all three for +20 XP, +5 💎 and a longer streak.</p></div>
-    <div class="nltiles">
-      ${tile('cipher','Daily puzzle','Cipher','Six tries to crack the academic word of the day. Every guess must be a real word.',NLART.cipher)}
-      ${tile('eqcode','Daily puzzle','Equation Code','Find the hidden 8-character equation. Every guess must be a true equation.',NLART.eq)}
-      ${tile('market','Simulation','Market Sim','Invest $10,000 for a year of news, booms and crashes. Can you beat the market?',NLART.market)}
-    </div></div>
-  <div class="nlcard nlprof"><div class="ban" aria-hidden="true"></div><div class="who"><div class="av" aria-hidden="true">${esc((ME.display||'?')[0].toUpperCase())}</div><div><div class="ttl">${esc(t.n)}</div><h3 style="margin:0">${esc(ME.display||'Player')}</h3></div></div>
+      <p class="mt" style="margin:10px 0 0;font-size:.88rem">Finish all three for +${Math.round(20*nlMult(sk+1))} XP${sk?` (×${nlMult(sk+1).toFixed(1)} streak bonus)`:''}, +5 💎 and a longer streak.${NL().freeze?` 🧊 ${NL().freeze} streak freeze${NL().freeze>1?'s':''} ready.`:''}</p></div>
+    ${nlNextUp()}<div class="nltiles">${NLGAMES.map(g=>tile(g.id,g.tag,g.n,g.p,NLART[g.art||g.id])).join('')}</div></div>
+  <div class="nlcard nlprof"><div class="ban ${'bn-'+(N.perk&&N.perk.banner||'')}" aria-hidden="true"></div><div class="who"><div class="av ${'fr-'+(N.perk&&N.perk.frame||'')}" aria-hidden="true">${N.perk&&N.perk.emblem?N.perk.emblem:esc((ME.display||'?')[0].toUpperCase())}</div><div><div class="ttl">${esc(t.n)}</div><h3 style="margin:0">${esc(ME.display||'Player')}</h3></div></div>
     <div style="margin-top:12px;display:flex;justify-content:space-between;font-size:.88rem"><b>Level ${P.L} · ${esc(rankOf(P.L))}</b><span class="mt">${P.into} / ${P.need} XP</span></div><div class="nlxp" role="progressbar" aria-label="XP to the next level" aria-valuenow="${P.pct}" aria-valuemin="0" aria-valuemax="100"><i style="width:${P.pct}%"></i></div>
     <h4 style="margin:14px 0 4px">Stats <span class="mt" style="font-weight:600;font-size:.82rem">· from your real mastery</span></h4>
     ${st.map(x=>`<div class="nlstat"><span>${x.i} ${x.n}</span><span class="bar" role="img" aria-label="${Math.round(x.b*100)}% of your grade's ${esc(SUBN[x.s])} skills Proficient"><i style="width:${Math.round(x.b*100)}%"></i></span><b style="text-align:right">Lv ${x.lv}</b></div>`).join('')}

@@ -1,0 +1,84 @@
+<style>
+/* ===== Next Level: Skill Tree ===== */
+.ptbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.ptwrap{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:16px;align-items:start}@media(max-width:900px){.ptwrap{grid-template-columns:1fr}}
+.pttier{display:grid;grid-template-columns:92px 1fr;gap:12px;align-items:start;padding:12px 0;border-top:1px solid var(--ln)}.pttier:first-child{border-top:0}
+.pttier .gl{font:800 .78rem/1.2 "Atkinson Hyperlegible",sans-serif;color:var(--mt);text-transform:uppercase;letter-spacing:.06em;padding-top:10px}
+@media(max-width:560px){.pttier{grid-template-columns:1fr;gap:6px}.pttier .gl{padding-top:0}}
+.ptnodes{display:flex;flex-wrap:wrap;gap:8px}
+.ptn{display:flex;align-items:center;gap:8px;padding:6px 12px 6px 6px;border-radius:12px;border:1px solid var(--ln);background:var(--card2);color:var(--tx);cursor:pointer;font:700 .86rem/1.25 "Atkinson Hyperlegible",sans-serif;max-width:280px;text-align:left}
+.ptn:hover{border-color:color-mix(in srgb,var(--acc) 70%,transparent)}.ptn:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.ptn .ring{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex:none;background:conic-gradient(var(--acc) calc(var(--p)*1%),rgba(148,163,184,.22) 0)}
+.ptn .ring span{width:23px;height:23px;border-radius:50%;background:var(--card2);display:grid;place-items:center;font-size:.8rem}
+.ptn.mastered .ring,.ptn.mastered .ring span{background:#FBBF24;color:#0B1020}
+.ptn.prof .ring,.ptn.prof .ring span{background:var(--acc);color:#0B1020}
+.ptn.ready{border-color:color-mix(in srgb,var(--acc) 55%,transparent);box-shadow:0 0 14px -4px var(--acc)}
+.ptn.locked{opacity:.55}
+.ptn.route{outline:2px dashed var(--acc);outline-offset:2px}
+.ptn.rel{border-color:#FBBF24}
+.ptn.sel{background:color-mix(in srgb,var(--acc) 20%,var(--card2));border-color:var(--acc)}
+.ptleg{display:flex;gap:12px;flex-wrap:wrap;font-size:.8rem;color:var(--mt);margin:4px 0 6px}
+.ptside{display:grid;gap:14px;position:sticky;top:76px}@media(max-width:900px){.ptside{position:static}}
+.ptsp{font:800 2rem/1 "Bricolage Grotesque",sans-serif;color:var(--acc)}
+.perkg{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 12px}
+.perk{display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:10px;border:1px solid var(--ln);background:var(--card2);color:var(--tx);font:700 .82rem "Atkinson Hyperlegible",sans-serif;cursor:pointer}
+.perk.on{border-color:var(--acc);color:var(--acc)}.perk .sw{width:18px;height:18px;border-radius:5px}
+.perk small{color:var(--mt);font-weight:600}
+</style>
+<script type="text/x-lumen">
+/* ===== Next Level: Skill Tree. The real skill map as an RPG talent tree: tiers are grades, nodes are skills,
+   and a node lights up as its mastery grows. Every skill that reaches Proficient earns a skill point (Mastered
+   earns one more). Points buy cosmetic perks for the player card and streak freezes. A goal skill lights up the
+   route of prerequisites still to learn, and the Next Level hub shows the next step. "Train" opens the lesson. */
+const ptState=k=>{const lv=level(k);if(lv===4)return'mastered';if(lv===3)return'prof';if(lv>=1)return'prac';return SK[k].pre.filter(p=>SK[p]).every(p=>level(p)>=2)?'ready':'locked'};
+const PTLAB={mastered:'Mastered',prof:'Proficient',prac:'In progress',ready:'Ready to learn',locked:'Builds on skills you haven\'t practiced yet'};
+function ptSP(){const N=NL();let e=0;for(const k of ORDER){const l=level(k);if(l>=3)e++;if(l===4)e++}const sp=N.spent||0;return{earned:e,spent:sp,left:e-sp}}
+/* The goal plus every prerequisite (and theirs) not yet Proficient */
+function ptRoute(goal){const need=new Set();const walk=k=>{if(!SK[k]||need.has(k)||(level(k)>=3&&k!==goal))return;need.add(k);SK[k].pre.forEach(walk)};if(goal&&SK[goal])walk(goal);return need}
+function ptNext(goal){const R=[...ptRoute(goal)].filter(k=>level(k)<3);if(!R.length)return null;const g=k=>ST.gr[k]??0;
+  const open=R.filter(k=>SK[k].pre.every(p=>!SK[p]||level(p)>=3||!R.includes(p)));return (open.length?open:R).sort((a,b)=>g(a)-g(b)||ORDER.indexOf(a)-ORDER.indexOf(b))[0]}
+function ptTrain(k){if(!SK[k])return;ST.subj=SK[k].sub;sv();go('learn');setTimeout(()=>openSkill(k),60)}
+function ptGoal(k){const N=NL();N.goal=N.goal===k?'':k;SYNC();rerealm()}
+/* A goal reached since the last visit: celebrate it and count it */
+function ptGoalCheck(){const N=NL();if(N.goal&&SK[N.goal]&&level(N.goal)>=3){const n=SK[N.goal].n;N.goalsDone=(N.goalsDone||0)+1;N.goal='';SYNC();setTimeout(()=>celebrate([`🎯 Goal reached: ${n}!`,'Pick your next goal in the Skill Tree.'],true),300);nlAwards()}}
+const PERKS={
+  banner:{t:'Banners',items:[['aurora','Aurora',1,'linear-gradient(120deg,#22D3EE,#A78BFA,#F472B6)'],['circuit','Circuit',1,'#0F172A'],['nebula','Nebula',1,'#1E1B4B'],['blueprint','Blueprint',1,'#1D4ED8'],['ember','Ember',1,'linear-gradient(120deg,#F97316,#DC2626)']]},
+  frame:{t:'Avatar frames',items:[['hex','Hex',2],['neon','Neon',2],['prism','Prism',2],['laurel','Laurel',2]]},
+  emblem:{t:'Emblems',items:[['🦉','Owl',1],['🐉','Dragon',1],['⚡','Bolt',1],['🧠','Brain',1],['🚀','Rocket',1],['🎯','Target',1]]}};
+/* Buy once, then tap to wear or take off */
+function ptPerk(cat,id){const N=NL(),P=N.perk||(N.perk={own:[]}),it=PERKS[cat].items.find(x=>x[0]===id);if(!it)return;P.own=P.own||[];const key=cat+':'+id;
+  if(!P.own.includes(key)){if(ptSP().left<it[2]){msg(`That costs ${it[2]} skill point${it[2]>1?'s':''}. Reach Proficient in more skills to earn points!`);return}N.spent=(N.spent||0)+it[2];P.own.push(key)}
+  P[cat]=P[cat]===id?'':id;SYNC();rerealm()}
+function ptFreeze(){const N=NL();if((N.freeze||0)>=2){msg('You can hold 2 streak freezes at a time.');return}if(ptSP().left<2){msg('A streak freeze costs 2 skill points.');return}
+  N.spent=(N.spent||0)+2;N.freeze=(N.freeze||0)+1;SYNC();rerealm()}
+let PTSEL=null,PTALL=false;
+function ptNode(k,R,rel,sel){const st=ptState(k),p=st==='prac'?Math.round(Math.min(1,S[k].p/.85)*100):0;
+  return `<button class="ptn ${st} ${R.has(k)?'route':''} ${rel.has(k)?'rel':''} ${sel===k?'sel':''}" onclick="PTSEL='${k}';rerealm()" aria-pressed="${sel===k}" aria-label="${esc(SK[k].n)}, ${PTLAB[st]}${R.has(k)?', on your goal path':''}"><span class="ring" style="--p:${p}"><span aria-hidden="true">${{mastered:'★',prof:'✓',prac:p+'',ready:'◆',locked:'🔒'}[st]}</span></span>${esc(SK[k].n)}</button>`}
+function ptDetail(k){const N=NL(),st=ptState(k),z=S[k],pre=SK[k].pre.filter(p=>SK[p]),next=ORDER.filter(x=>SK[x].pre.includes(k)),chip=x=>`<button class="nlchip" onclick="PTSEL='${x}';rerealm()">${{mastered:'★',prof:'✓',prac:'◐',ready:'◆',locked:'🔒'}[ptState(x)]} ${esc(SK[x].n)}</button>`;
+  return `<div class="nlcard"><div class="kick">${esc(SUBN[SK[k].sub])} · ${esc(GLAB(ST.gr[k]))}</div><h3 style="margin:6px 0 4px">${esc(SK[k].n)}</h3><p class="mt" style="margin:0 0 10px">${PTLAB[st]} · ${Math.round(z.p*100)}% confidence · ${z.att} question${z.att===1?'':'s'}</p>
+    ${pre.length?`<h4 style="margin:8px 0 6px">Builds on</h4><div class="nlchips">${pre.map(chip).join('')}</div>`:''}${next.length?`<h4 style="margin:10px 0 6px">Unlocks</h4><div class="nlchips">${next.slice(0,8).map(chip).join('')}</div>`:''}
+    <div class="row" style="gap:8px;margin-top:14px"><button class="nlbtn" onclick="ptTrain('${k}')">⚔️ Train this skill</button><button class="nlbtn ghost" aria-pressed="${N.goal===k}" onclick="ptGoal('${k}')">${N.goal===k?'✖ Clear goal':'🎯 Set as goal'}</button></div></div>`}
+function ptPerks(){const N=NL(),P=N.perk||{},own=P.own||[],sp=ptSP();
+  return `<div class="nlcard"><div style="display:flex;justify-content:space-between;align-items:center"><div><div class="kick">Skill points</div><div class="ptsp">${sp.left}</div></div><p class="mt" style="margin:0;max-width:200px;font-size:.84rem;text-align:right">+1 for every skill that reaches Proficient, +1 more when it's Mastered. Earned ${sp.earned}.</p></div>
+    ${Object.entries(PERKS).map(([cat,G])=>`<h4 style="margin:12px 0 0">${G.t}</h4><div class="perkg">${G.items.map(([id,n,c,sw])=>{const has=own.includes(cat+':'+id),on=P[cat]===id;
+      return `<button class="perk ${on?'on':''}" aria-pressed="${on}" onclick="ptPerk('${cat}','${id}')">${cat==='banner'?`<span class="sw" style="background:${sw}"></span>`:cat==='emblem'?`<span aria-hidden="true">${id}</span>`:''}${esc(n)} <small>${has?(on?'wearing':'owned'):`${c} pt${c>1?'s':''}`}</small></button>`}).join('')}</div>`).join('')}
+    <h4 style="margin:4px 0 0">Streak freeze</h4><p class="mt" style="margin:4px 0 8px;font-size:.86rem">Saves your daily-loop streak if you miss one day. You hold ${N.freeze||0} of 2.</p><button class="nlbtn sm" onclick="ptFreeze()">🧊 Buy for 2 points</button></div>`}
+GVIEW.path=function(){const N=NL();ptGoalCheck();const subs=Object.keys(SUBN).filter(s=>ORDER.some(k=>SK[k].sub===s)),sub=subs.includes(N.psub)?N.psub:subs.includes(ST.subj)?ST.subj:'math',g=myGrade(),lo=PTALL?-9:Math.max(-1,g-1);
+  const ks=ORDER.filter(k=>SK[k].sub===sub&&(ST.gr[k]??0)>=lo),tiers=[...new Set(ks.map(k=>ST.gr[k]??0))].sort((a,b)=>a-b),R=ptRoute(N.goal),sel=PTSEL&&SK[PTSEL]&&SK[PTSEL].sub===sub?PTSEL:null;
+  const rel=sel?new Set([...SK[sel].pre,...ORDER.filter(x=>SK[x].pre.includes(sel))]):new Set(),done=ks.filter(k=>level(k)>=3).length,nx=ptNext(N.goal);
+  return nlWrap(nlHeadBar('Skill Tree','Your real skills as a talent tree. Light up nodes by mastering skills, earn skill points, and choose your own path.')+`
+  <div class="ptbar" role="group" aria-label="Subject">${subs.map(s=>`<button class="nlchip ${s===sub?'on':''}" aria-pressed="${s===sub}" onclick="NL().psub='${s}';PTSEL=null;SYNC();rerealm()">${esc(SUBN[s])}</button>`).join('')}
+    <label class="mt" style="margin-left:auto;font-size:.88rem;display:flex;gap:6px;align-items:center"><input type="checkbox" ${PTALL?'checked':''} onchange="PTALL=this.checked;rerealm()"> Show earlier grades</label></div>
+  ${N.goal&&SK[N.goal]?`<div class="nlcard" style="margin-bottom:14px;display:flex;gap:12px;align-items:center;flex-wrap:wrap"><span style="font-size:1.4rem" aria-hidden="true">🎯</span><div style="flex:1;min-width:200px"><b>Goal: ${esc(SK[N.goal].n)}</b><div class="mt">${R.size} skill${R.size===1?'':'s'} to go on your path${nx?` · next: <b style="color:var(--tx)">${esc(SK[nx].n)}</b>`:''}</div></div>${nx?`<button class="nlbtn sm" onclick="ptTrain('${nx}')">⚔️ Train next skill</button>`:''}</div>`:''}
+  <div class="ptwrap"><div class="nlcard"><div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap"><h3 style="margin:0">${esc(SUBN[sub])} tree</h3><span class="nlpill">${done} of ${ks.length} lit</span></div>
+    <div class="ptleg"><span>★ Mastered</span><span>✓ Proficient</span><span>% In progress</span><span>◆ Ready</span><span>🔒 Locked</span><span style="outline:2px dashed var(--acc);outline-offset:2px;border-radius:4px;padding:0 4px">Goal path</span></div>
+    ${tiers.map(t=>`<div class="pttier"><div class="gl">${esc(GLAB(t))}</div><div class="ptnodes">${ks.filter(k=>(ST.gr[k]??0)===t).map(k=>ptNode(k,R,rel,sel)).join('')}</div></div>`).join('')}</div>
+  <div class="ptside">${sel?ptDetail(sel):`<div class="nlcard"><h3>How it works</h3><ul class="pearn"><li>Each node is a real skill. It fills up as you practice and lights up at <b>Proficient</b>.</li><li>Tap a node to see what it builds on and unlocks, then <b>Train</b> it or set it as your <b>goal</b>.</li><li>Your goal path glows, and the Next Level hub always shows your next step.</li><li>Skill points buy banners, frames, emblems and streak freezes.</li></ul></div>`}${ptPerks()}</div></div>`)};
+NLGAMES.unshift({id:'path',tag:'Progression',n:'Skill Tree',p:'Your real skills as an RPG talent tree. Earn skill points, unlock perks, and pick your own path.'});
+NLART.path=`<svg viewBox="0 0 240 110" xmlns="http://www.w3.org/2000/svg"><rect width="240" height="110" fill="#0B1220"/><g stroke="#334155" stroke-width="2"><path d="M60 82L90 55M120 82L90 55M120 82L150 55M180 82L150 55M90 55L120 28M150 55L120 28"/></g>${[[60,82,'#22D3EE','✓'],[120,82,'#22D3EE','✓'],[180,82,'#FBBF24','★'],[90,55,'#22D3EE','✓'],[150,55,'#1E293B','◆'],[120,28,'#1E293B','🔒']].map(([x,y,c,t])=>`<circle cx="${x}" cy="${y}" r="13" fill="${c}" stroke="#0B1220" stroke-width="3"/><text x="${x}" y="${y+5}" font-size="12" font-weight="800" text-anchor="middle" fill="${c==='#1E293B'?'#94A3B8':'#0B1020'}" font-family="sans-serif">${t}</text>`).join('')}<circle cx="150" cy="55" r="18" fill="none" stroke="#22D3EE" stroke-dasharray="4 4"/></svg>`;
+/* The hub shows the goal and the next step on its path */
+nlNextUp=()=>{const N=NL();ptGoalCheck();const nx=ptNext(N.goal),sp=ptSP().left;
+  return N.goal&&SK[N.goal]?`<div class="nlcard" style="margin-top:14px;display:flex;gap:12px;align-items:center;flex-wrap:wrap"><span style="font-size:1.3rem" aria-hidden="true">🎯</span><div style="flex:1;min-width:180px"><b>Next on your path: ${esc(SK[nx||N.goal].n)}</b><div class="mt">Goal: ${esc(SK[N.goal].n)}${sp?` · ${sp} skill point${sp>1?'s':''} to spend`:''}</div></div><button class="nlbtn sm" onclick="ptTrain('${nx||N.goal}')">⚔️ Train</button></div>`
+    :`<div class="nlcard" style="margin-top:14px;display:flex;gap:12px;align-items:center;flex-wrap:wrap"><span style="font-size:1.3rem" aria-hidden="true">🌳</span><div style="flex:1;min-width:180px"><b>Choose your path</b><div class="mt">Pick a goal skill in the Skill Tree and we'll light up the way.${sp?` You have ${sp} skill point${sp>1?'s':''} to spend.`:''}</div></div><button class="nlbtn sm ghost" onclick="nlOpen('path')">Open Skill Tree</button></div>`};
+NLTITLES.push({id:'pathfinder',n:'Pathfinder',d:'Reach a Skill Tree goal',ok:N=>(N.goalsDone||0)>=1},{id:'collector',n:'Skill Collector',d:'Earn 10 skill points',ok:()=>ptSP().earned>=10});
+</script>

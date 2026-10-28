@@ -1,0 +1,136 @@
+<style>
+/* ===== Next Level: Lab Bench ===== */
+.lbtabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.lbgrid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:16px;align-items:start}@media(max-width:940px){.lbgrid{grid-template-columns:1fr}}
+.pjcv{display:block;width:100%;height:auto;aspect-ratio:2.3/1;border-radius:14px;background:#0B1220}
+.lbctl{display:grid;gap:10px;margin-top:12px}
+.lbctl label{display:grid;grid-template-columns:110px 1fr 70px;gap:10px;align-items:center;font-weight:700;font-size:.92rem}
+.lbctl input[type=range]{width:100%;accent-color:var(--acc)}
+.lbtbl{width:100%;border-collapse:collapse;font-size:.88rem;font-variant-numeric:tabular-nums}
+.lbtbl th,.lbtbl td{padding:6px 8px;border-bottom:1px solid var(--ln);text-align:right}.lbtbl th:first-child,.lbtbl td:first-child{text-align:left}
+.lbtbl th{color:var(--mt);font-weight:700}
+.lbtbl tr.pick td{background:color-mix(in srgb,var(--acc) 14%,transparent)}
+.lbstep{display:flex;gap:10px;align-items:flex-start;margin:10px 0}.lbstep .n{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:rgba(148,163,184,.15);font-weight:800;font-size:.85rem}
+.lbstep.ok .n{background:var(--good);color:#0B1020}
+.lbopt{display:grid;gap:6px;margin-top:6px}.lbopt button{text-align:left}
+.lbfb{border-radius:12px;padding:10px 12px;margin-top:10px;font-weight:600}.lbfb.ok{background:rgba(34,197,94,.15);color:#86EFAC}.lbfb.no{background:rgba(244,63,94,.12);color:#FECDD3}
+.ttwrap{display:grid;grid-template-columns:150px 1fr;gap:16px;align-items:center}@media(max-width:520px){.ttwrap{grid-template-columns:1fr}}
+.ttmeter{font:800 2.4rem/1 "Bricolage Grotesque",sans-serif;font-variant-numeric:tabular-nums}
+.ttflask path.liq{transition:fill .35s}
+.lbstars{color:#FBBF24;font-size:1.3rem;letter-spacing:2px}
+</style>
+<script type="text/x-lumen">
+/* ===== Next Level: Lab Bench. Two virtual labs that follow real scientific practice:
+   Projectile Lab (physics): hypothesis, a fair test that changes one variable, a graph of the data, and a
+   claim-evidence-reasoning conclusion that must match the learner's own data; plus a target challenge.
+   Titration Lab (chemistry): neutralise an acid drop by drop with an indicator, mark the endpoint, then use
+   M1V1 = M2V2 to find an unknown concentration. All the physics and chemistry is computed, not scripted. */
+const LB=()=>{const N=NL(),L=N.lab||(N.lab={});L.p=L.p||{trials:[],chal:{}};L.t=L.t||{mode:'practice',ind:'phph'};return L};
+const GRAV={earth:['Earth',9.8],moon:['Moon',1.62],mars:['Mars',3.71]};
+const pjCalc=(a,v,g)=>{const r=a*Math.PI/180;return{R:v*v*Math.sin(2*r)/g,T:2*v*Math.sin(r)/g,H:v*v*Math.sin(r)**2/(2*g)}};
+let PJ={a:30,v:20,g:'earth',fly:null,raf:0};
+const PJTARGETS=[{d:15,g:'earth'},{d:32,g:'earth'},{d:80,g:'moon'}];
+/* Draw the launcher, past landing spots, the current flight and (in the challenge) the target */
+function pjDraw(prog){const cv=$('pjcv');if(!cv)return;const w=cv.clientWidth,h=cv.clientHeight,dpr=Math.min(2,devicePixelRatio||1);if(cv.width!==Math.round(w*dpr)){cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr)}
+  const x=cv.getContext('2d'),L=LB().p,g=GRAV[PJ.g][1],tg=L.mode==='chal'?PJTARGETS[L.ti||0]:null;x.setTransform(dpr,0,0,dpr,0,0);x.clearRect(0,0,w,h);
+  const Rmax=PJ.v*PJ.v/g,span=Math.max(10,Rmax,tg?tg.d:0)*1.12,k=Math.min((w-40)/span,(h-40)/(Math.max(Rmax,tg?tg.d:0)*.52)),X=m=>24+m*k,Y=m=>h-22-m*k;
+  x.fillStyle='#1E293B';x.fillRect(0,h-22,w,22);x.strokeStyle='#334155';x.lineWidth=1;x.font='11px system-ui';x.fillStyle='#94A3B8';
+  const stepM=[1,2,5,10,20,50,100,200][[1,2,5,10,20,50,100,200].findIndex(s=>span/s<=10)]||500;for(let m=0;m<=span;m+=stepM){x.beginPath();x.moveTo(X(m),h-22);x.lineTo(X(m),h-16);x.stroke();x.fillText(m+' m',X(m)-8,h-5)}
+  if(tg){x.fillStyle='#F43F5E';x.fillRect(X(tg.d)-3,h-52,3,30);x.beginPath();x.moveTo(X(tg.d),h-52);x.lineTo(X(tg.d)+16,h-46);x.lineTo(X(tg.d),h-40);x.fill();x.fillText('target '+tg.d+' m',X(tg.d)-20,h-58)}
+  for(const t of L.trials.slice(-12))if(t.g===PJ.g&&(!tg||L.mode==='chal')){x.fillStyle='rgba(148,163,184,.55)';x.beginPath();x.arc(X(t.R),h-22,3,0,7);x.fill()}
+  const r=PJ.a*Math.PI/180;x.save();x.translate(X(0),h-22);x.rotate(-r);x.fillStyle='#64748B';x.fillRect(0,-5,26,10);x.restore();x.fillStyle='#475569';x.beginPath();x.arc(X(0),h-22,9,Math.PI,0);x.fill();
+  const F=PJ.fly;if(F){const {R,T,H}=pjCalc(F.a,F.v,g),n=60,upto=Math.max(0,Math.min(1,prog));x.strokeStyle=NLACC[NL().acc];x.lineWidth=2.5;x.setLineDash([]);x.beginPath();
+    for(let i=0;i<=n*upto;i++){const t=T*i/n,px=F.v*Math.cos(F.a*Math.PI/180)*t,py=F.v*Math.sin(F.a*Math.PI/180)*t-g*t*t/2;i?x.lineTo(X(px),Y(py)):x.moveTo(X(px),Y(py))}x.stroke();
+    const t=T*upto,bx=F.v*Math.cos(F.a*Math.PI/180)*t,by=Math.max(0,F.v*Math.sin(F.a*Math.PI/180)*t-g*t*t/2);x.fillStyle='#FBBF24';x.beginPath();x.arc(X(bx),Y(by),6,0,7);x.fill();
+    if(upto>=1){x.fillStyle='#E2E8F0';x.font='700 13px system-ui';x.fillText(`${R.toFixed(1)} m`,X(R)-16,h-28);x.setLineDash([4,4]);x.strokeStyle='rgba(251,191,36,.6)';x.beginPath();x.moveTo(X(R/2),Y(H));x.lineTo(X(R/2),h-22);x.stroke();x.setLineDash([]);x.fillStyle='#94A3B8';x.font='11px system-ui';x.fillText(`peak ${H.toFixed(1)} m`,X(R/2)+4,Y(H)+12)}}}
+function pjLaunch(){const L=LB().p,g=GRAV[PJ.g][1],c=pjCalc(PJ.a,PJ.v,g);cancelAnimationFrame(PJ.raf);PJ.fly={a:PJ.a,v:PJ.v};const t0=performance.now(),dur=calmOn()?0:900+Math.min(1200,c.T*120);
+  const done=()=>{pjDraw(1);const tr={a:PJ.a,v:PJ.v,g:PJ.g,R:+c.R.toFixed(2),T:+c.T.toFixed(2),H:+c.H.toFixed(2)};
+    if(L.mode==='chal'){const tg=PJTARGETS[L.ti||0],C=L.chal,key='t'+(L.ti||0);C[key]=C[key]||{shots:0,hit:0};if(!C[key].hit){C[key].shots++;const hit=PJ.g===tg.g&&Math.abs(c.R-tg.d)<=Math.max(.5,tg.d*.03);
+      if(hit){C[key].hit=1;C[key].stars=C[key].shots===1?3:C[key].shots<=3?2:1;msg(`🎯 Hit! ${'★'.repeat(C[key].stars)}`);if(PJTARGETS.every((_,i)=>C['t'+i]&&C['t'+i].hit)&&!C.paid){C.paid=1;addXP(15,'the target challenge')}}
+      else msg(PJ.g!==tg.g?`This target is on the ${GRAV[tg.g][0]}. Switch gravity first.`:`${c.R.toFixed(1)} m: ${c.R<tg.d?'too short':'too far'} by ${Math.abs(c.R-tg.d).toFixed(1)} m.`)}}
+    else L.trials.push(tr);SYNC();rerealm()};
+  if(!dur){done();return}const f=t=>{const p=(t-t0)/dur;pjDraw(p);if(p<1)PJ.raf=requestAnimationFrame(f);else done()};PJ.raf=requestAnimationFrame(f)}
+/* The fair test: the (speed, gravity) pair with the most different angles */
+function pjFair(L){const by={};for(const t of L.trials){const k=t.v+'|'+t.g;(by[k]=by[k]||new Map()).set(t.a,t)}let best=null;for(const [k,m] of Object.entries(by))if(!best||m.size>best.m.size)best={k,m};return best?{v:+best.k.split('|')[0],g:best.k.split('|')[1],trials:[...best.m.values()].sort((a,b)=>a.a-b.a)}:{trials:[]}}
+const PJCLAIMS=['The bigger the angle, the farther it goes.','An angle of about 45° sends it the farthest.','The smallest angle sends it the farthest.','The angle makes no difference.'];
+const PJREASONS=['At 45°, the launch speed is shared evenly between going up (which keeps it in the air longer) and going forward (which carries it sideways), so time in the air × forward speed is largest.','Steeper launches always stay up longer, so they always land farther away.','Gravity is weaker when you launch at 45°.'];
+function pjCheck(){const L=LB().p,F=pjFair(L),best=F.trials.reduce((a,b)=>!a||b.R>a.R?b:a,null),ev=L.trials[L.ev],fb=[];
+  if(F.trials.length<5)fb.push('Test at least 5 different angles at the same speed and gravity first.');
+  if(L.claim!==1)fb.push('Look at your graph again: which angle gave the longest range?');
+  if(!ev||!best||ev.v!==F.v||ev.g!==F.g)fb.push('Pick a trial from your fair test as your evidence.');else if(ev.R<best.R-1e-9)fb.push(`Your best evidence is the trial with the longest range (${best.a}°, ${best.R} m).`);
+  if(best&&best.a!==45&&!F.trials.some(t=>t.a===45))fb.push('Your data doesn\'t include 45° yet. Test it to make your case stronger!');
+  if(L.reason!==0)fb.push('Think about how the speed is split between going up and going forward.');
+  L.fb=fb.length?fb:null;if(!fb.length&&!L.done){L.done=1;addXP(25,'the Projectile Lab');nlAwards()}SYNC();rerealm()}
+function pjGraph(F){if(F.trials.length<1)return '<p class="mt">Your graph appears here after your first launches.</p>';const w=360,h=200,max=Math.max(...F.trials.map(t=>t.R))*1.15||1,X=a=>36+a/90*(w-50),Y=r=>h-26-r/max*(h-44);
+  return `<svg viewBox="0 0 ${w} ${h}" style="width:100%;height:auto" role="img" aria-label="Range against launch angle at ${F.v} meters per second on ${GRAV[F.g][0]}"><line x1="36" y1="${h-26}" x2="${w-10}" y2="${h-26}" stroke="#475569"/><line x1="36" y1="10" x2="36" y2="${h-26}" stroke="#475569"/>
+    ${[0,15,30,45,60,75,90].map(a=>`<text x="${X(a)}" y="${h-10}" font-size="10" fill="#94A3B8" text-anchor="middle">${a}°</text>`).join('')}<text x="12" y="${h/2}" font-size="10" fill="#94A3B8" transform="rotate(-90 12 ${h/2})" text-anchor="middle">range (m)</text>
+    <polyline points="${F.trials.map(t=>`${X(t.a)},${Y(t.R)}`).join(' ')}" fill="none" stroke="#475569" stroke-dasharray="4 4"/>${F.trials.map(t=>`<circle cx="${X(t.a)}" cy="${Y(t.R)}" r="5" fill="var(--acc)"><title>${t.a}°: ${t.R} m</title></circle>`).join('')}
+    <text x="${w-10}" y="20" font-size="10" fill="#94A3B8" text-anchor="end">${F.v} m/s · ${GRAV[F.g][0]}</text></svg>`}
+function pjView(){const L=LB().p,F=pjFair(L),chal=L.mode==='chal';setTimeout(()=>pjDraw(PJ.fly?1:0),0);
+  const ctl=`<div class="lbctl"><label>Angle <input type="range" min="5" max="85" step="5" value="${PJ.a}" oninput="PJ.a=+this.value;this.nextElementSibling.textContent=this.value+'°';PJ.fly=null;pjDraw(0)" aria-label="Launch angle"><b>${PJ.a}°</b></label>
+    <label>Speed <input type="range" min="5" max="30" step="1" value="${PJ.v}" oninput="PJ.v=+this.value;this.nextElementSibling.textContent=this.value+' m/s';PJ.fly=null;pjDraw(0)" aria-label="Launch speed"><b>${PJ.v} m/s</b></label>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><span class="mt" style="width:110px;font-weight:700">Gravity</span>${Object.entries(GRAV).map(([k,[n,v]])=>`<button class="nlchip ${PJ.g===k?'on':''}" aria-pressed="${PJ.g===k}" onclick="PJ.g='${k}';PJ.fly=null;rerealm()">${n} (${v} m/s²)</button>`).join('')}</div>
+    <button class="nlbtn" style="min-height:52px" onclick="pjLaunch()">🚀 Launch</button></div>`;
+  const left=`<div class="nlcard"><canvas class="pjcv" id="pjcv" role="img" aria-label="Launch area. The last launch went ${L.trials.length?L.trials[L.trials.length-1].R+' meters':'nowhere yet'}."></canvas>${ctl}</div>`;
+  if(chal){const C=L.chal,ti=L.ti||0;return `<div class="lbgrid">${left}<div class="nlcard"><h3>🎯 Target challenge</h3><p class="mt">Hit each target within 3%. Fewer shots earn more stars. Tip: range = speed² × sin(2 × angle) ÷ gravity.</p>
+    ${PJTARGETS.map((t,i)=>{const c=C['t'+i]||{};return `<div class="nlstep ${c.hit?'done':''}" style="margin-top:8px"><span class="ic" aria-hidden="true">${c.hit?'✅':'🎯'}</span><div><b>${t.d} m on the ${GRAV[t.g][0]}</b><span class="mt">${c.hit?`Hit in ${c.shots} shot${c.shots>1?'s':''} <span class="lbstars">${'★'.repeat(c.stars)}</span>`:c.shots?`${c.shots} shot${c.shots>1?'s':''} so far`:'Not tried yet'}</span></div><button class="nlbtn sm ${i===ti?'':'ghost'}" onclick="LB().p.ti=${i};PJ.g='${t.g}';PJ.fly=null;rerealm()">${i===ti?'Aiming':'Aim here'}</button></div>`}).join('')}
+    <button class="nlbtn ghost sm" style="margin-top:12px" onclick="LB().p.mode='inv';rerealm()">← Back to the investigation</button></div></div>`}
+  const st=(n,ok,t,body)=>`<div class="lbstep ${ok?'ok':''}"><span class="n">${ok?'✓':n}</span><div style="flex:1"><b>${t}</b>${body||''}</div></div>`;
+  return `<div class="lbgrid"><div>${left}
+    <div class="nlcard" style="margin-top:14px"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><h3 style="margin:0">Data</h3>${L.trials.length?`<button class="nlbtn ghost sm" onclick="if(confirm('Clear all your trials?')){const P=LB().p;P.trials=[];P.ev=null;P.fb=null;SYNC();rerealm()}">Clear data</button>`:''}</div>
+      ${L.trials.length?`<div style="overflow:auto;max-height:260px;margin-top:8px"><table class="lbtbl"><thead><tr><th>Trial</th><th>Angle</th><th>Speed</th><th>Gravity</th><th>Range</th><th>Time</th><th>Peak</th></tr></thead><tbody>${L.trials.map((t,i)=>`<tr class="${L.ev===i?'pick':''}"><td>${i+1}</td><td>${t.a}°</td><td>${t.v} m/s</td><td>${GRAV[t.g][0]}</td><td>${t.R} m</td><td>${t.T} s</td><td>${t.H} m</td></tr>`).join('')}</tbody></table></div>`:'<p class="mt">Every launch is recorded here.</p>'}</div>
+    <div class="nlcard" style="margin-top:14px"><h3 style="margin:0 0 6px">Graph: range vs. angle</h3>${pjGraph(F)}</div></div>
+  <div class="nlcard"><div class="kick">Investigation</div><h3 style="margin:6px 0">Which launch angle sends a ball the farthest?</h3><p class="mt" style="margin:0">On flat ground, with no air resistance.</p>
+    ${st(1,L.hyp!=null,'Hypothesis: I predict the best angle is…',`<div class="nlchips" style="margin-top:6px">${[15,30,45,60,75].map(a=>`<button class="nlchip ${L.hyp===a?'on':''}" aria-pressed="${L.hyp===a}" onclick="LB().p.hyp=${a};SYNC();rerealm()">${a}°</button>`).join('')}</div>`)}
+    ${st(2,F.trials.length>=5,'Run a fair test',`<p class="mt" style="margin:4px 0 0">Keep speed and gravity the same and change only the angle. Test at least 5 different angles. ${F.trials.length?`So far: <b style="color:var(--tx)">${F.trials.length} angle${F.trials.length>1?'s':''}</b> at ${F.v} m/s on the ${GRAV[F.g][0]}.`:''}</p>`)}
+    ${st(3,L.claim!=null,'Claim',`<div class="lbopt">${PJCLAIMS.map((c,i)=>`<button class="nlchip ${L.claim===i?'on':''}" aria-pressed="${L.claim===i}" onclick="LB().p.claim=${i};SYNC();rerealm()">${esc(c)}</button>`).join('')}</div>`)}
+    ${st(4,L.ev!=null,'Evidence: pick the trial that best supports your claim',F.trials.length?`<div class="nlchips" style="margin-top:6px">${L.trials.map((t,i)=>t.v===F.v&&t.g===F.g?`<button class="nlchip ${L.ev===i?'on':''}" aria-pressed="${L.ev===i}" onclick="LB().p.ev=${i};SYNC();rerealm()">#${i+1}: ${t.a}° → ${t.R} m</button>`:'').join('')}</div>`:'<p class="mt" style="margin:4px 0 0">Launch first.</p>')}
+    ${st(5,L.reason!=null,'Reasoning: why does it happen?',`<div class="lbopt">${PJREASONS.map((c,i)=>`<button class="nlchip ${L.reason===i?'on':''}" aria-pressed="${L.reason===i}" style="text-align:left;border-radius:12px" onclick="LB().p.reason=${i};SYNC();rerealm()">${esc(c)}</button>`).join('')}</div>`)}
+    <button class="nlbtn" style="margin-top:8px" onclick="pjCheck()">Check my conclusion</button>
+    ${L.done?`<div class="lbfb ok">✅ Great science! Your data shows that 45° gives the greatest range${L.hyp===45?', just as you predicted':`, not ${L.hyp}° as you predicted. Changing your mind because of evidence is what scientists do`}. Bonus: try 30° and 60° at the same speed. They land in exactly the same spot!</div>`:L.fb?`<div class="lbfb no">${L.fb.map(esc).join('<br>')}</div>`:''}
+    <hr style="border:0;border-top:1px solid var(--ln);margin:16px 0"><button class="nlbtn ghost" onclick="LB().p.mode='chal';PJ.fly=null;const T=PJTARGETS[LB().p.ti||0];PJ.g=T.g;rerealm()">🎯 Try the target challenge</button></div></div>`}
+
+/* ---------- Titration: HCl in the flask, 0.100 M NaOH from the burette ---------- */
+const TTCB=.1,TTVA=25,IND={phph:['Phenolphthalein',ph=>ph<8.2?'rgba(226,232,240,.35)':ph<10?'#F472B6':'#C026D3','colourless below pH 8.2, pink above'],btb:['Bromothymol blue',ph=>ph<6?'#FACC15':ph<7.6?'#22C55E':'#3B82F6','yellow below pH 6, green to 7.6, blue above'],mo:['Methyl orange',ph=>ph<3.1?'#EF4444':ph<4.4?'#F97316':'#FACC15','red below pH 3.1, orange to 4.4, yellow above']};
+/* pH of a strong acid / strong base mixture at 25 °C */
+function ttPH(ca,vb){const na=ca*TTVA/1000,nb=TTCB*vb/1000,v=(TTVA+vb)/1000;if(Math.abs(na-nb)<1e-12)return 7;return na>nb?-Math.log10((na-nb)/v):14+Math.log10((nb-na)/v)}
+function ttInit(mode){const T=LB().t;T.mode=mode;T.ca=mode==='unknown'?Math.round((.06+Math.random()*.08)*1000)/1000:.1;T.vb=0;T.pts=[[0,+ttPH(T.ca,0).toFixed(2)]];T.end=null;T.ans=null;T.fb=null;T.stars=0}
+function ttNew(mode){ttInit(mode);SYNC();rerealm()}
+function ttAdd(ml){const T=LB().t;if(T.end!=null)return;if(T.vb+ml>50.0001){msg('The burette only holds 50 mL.');return}T.vb=Math.round((T.vb+ml)*100)/100;T.pts.push([T.vb,+ttPH(T.ca,T.vb).toFixed(2)]);SYNC();rerealm()}
+function ttEnd(){const T=LB().t;if(T.end!=null||!T.vb)return;T.end=T.vb;const veq=T.ca*TTVA/TTCB,err=Math.abs(T.end-veq);T.stars=err<=.1?3:err<=.5?2:err<=1.5?1:0;
+  if(T.mode==='practice'&&T.stars>=2&&!T.paidP){T.paidP=1;addXP(15,'a titration')}SYNC();rerealm()}
+function ttAnswer(){const T=LB().t,v=parseFloat(($('ttans')||{}).value);if(!(v>0)){msg('Type the concentration as a decimal, like 0.085');return}
+  const fromYours=TTCB*T.end/TTVA,ok=Math.abs(v-fromYours)/fromYours<=.02,close=Math.abs(v-T.ca)/T.ca;T.ans=v;
+  T.fb=ok?`✅ Correct method: ${TTCB.toFixed(3)} M × ${T.end.toFixed(2)} mL ÷ ${TTVA.toFixed(2)} mL = ${fromYours.toFixed(4)} M. The true value was ${T.ca.toFixed(3)} M, so you were ${(close*100).toFixed(1)}% off${close<=.01?'. Excellent lab work!':'. A more exact endpoint gets you closer.'}`:`Not quite. At the endpoint, moles of base = moles of acid, so M(acid) × V(acid) = M(base) × V(base). Use your endpoint volume of ${T.end.toFixed(2)} mL.`;
+  if(ok&&!T.solved){T.solved=1;addXP(25,'finding an unknown concentration');NL().chemist=1;nlAwards()}SYNC();rerealm()}
+function ttGraph(T){const w=360,h=200,X=v=>34+v/50*(w-44),Y=p=>h-24-p/14*(h-36);
+  return `<svg viewBox="0 0 ${w} ${h}" style="width:100%;height:auto" role="img" aria-label="pH against volume of base added"><line x1="34" y1="${h-24}" x2="${w-10}" y2="${h-24}" stroke="#475569"/><line x1="34" y1="12" x2="34" y2="${h-24}" stroke="#475569"/>
+    ${[0,10,20,30,40,50].map(v=>`<text x="${X(v)}" y="${h-8}" font-size="10" fill="#94A3B8" text-anchor="middle">${v}</text>`).join('')}${[0,7,14].map(p=>`<text x="28" y="${Y(p)+4}" font-size="10" fill="#94A3B8" text-anchor="end">${p}</text>`).join('')}
+    <line x1="34" x2="${w-10}" y1="${Y(7)}" y2="${Y(7)}" stroke="#334155" stroke-dasharray="3 4"/><text x="${w-12}" y="${h-28}" font-size="10" fill="#94A3B8" text-anchor="end">mL of NaOH added</text>
+    <polyline points="${T.pts.map(([v,p])=>`${X(v)},${Y(p)}`).join(' ')}" fill="none" stroke="var(--acc)" stroke-width="2"/>${T.pts.slice(-1).map(([v,p])=>`<circle cx="${X(v)}" cy="${Y(p)}" r="4" fill="var(--acc)"/>`).join('')}
+    ${T.end!=null?`<line x1="${X(T.end)}" x2="${X(T.end)}" y1="12" y2="${h-24}" stroke="#FBBF24" stroke-dasharray="4 3"/>`:''}</svg>`}
+function ttView(){const T=LB().t;if(!T.pts)ttInit('practice');const ph=ttPH(T.ca,T.vb),col=IND[T.ind][1](ph),lvl=Math.max(0,50-T.vb);
+  const flask=`<svg class="ttflask" viewBox="0 0 120 230" style="width:100%;max-width:150px" role="img" aria-label="Burette with ${lvl.toFixed(2)} mL left above a flask"><rect x="52" y="4" width="16" height="120" rx="3" fill="rgba(148,163,184,.15)" stroke="#64748B"/><rect x="54" y="${6+(1-lvl/50)*116}" width="12" height="${lvl/50*116}" fill="rgba(147,197,253,.55)"/>
+    ${[0,10,20,30,40,50].map(m=>`<line x1="52" x2="58" y1="${6+m/50*116}" y2="${6+m/50*116}" stroke="#94A3B8"/>`).join('')}<rect x="48" y="124" width="24" height="7" rx="2" fill="#475569"/><rect x="58" y="131" width="4" height="12" fill="#64748B"/>
+    <path d="M44 150h32v22l26 46a6 6 0 0 1-5 9H23a6 6 0 0 1-5-9l26-46z" fill="rgba(148,163,184,.12)" stroke="#94A3B8" stroke-width="2"/><path class="liq" d="M35 190h50l15 27a5 5 0 0 1-4 8H24a5 5 0 0 1-4-8z" fill="${col}"/></svg>`;
+  const unk=T.mode==='unknown';
+  return `<div class="lbgrid"><div><div class="nlcard"><div class="ttwrap">${flask}<div><div class="kick">${unk?'Unknown acid':'Practice'} · 25.00 mL of HCl${unk?'':' (0.100 M)'} · NaOH 0.100 M in the burette</div>
+      <div style="display:flex;gap:24px;flex-wrap:wrap;margin:10px 0"><div><span class="mt">Base added</span><div class="ttmeter">${T.vb.toFixed(2)}<span style="font-size:1rem"> mL</span></div></div><div><span class="mt">pH meter</span><div class="ttmeter" style="color:${ph<6.5?'#FB7185':ph>7.5?'#60A5FA':'#4ADE80'}">${ph.toFixed(2)}</div></div></div>
+      <div class="row" style="gap:6px">${[[1,'+1.00 mL'],[.1,'+0.10 mL'],[.05,'+1 drop']].map(([v,l])=>`<button class="nlbtn sm ${v<1?'ghost':''}" ${T.end!=null?'disabled':''} onclick="ttAdd(${v})">${l}</button>`).join('')}<button class="nlbtn sm" style="background:#FBBF24" ${T.end!=null||!T.vb?'disabled':''} onclick="ttEnd()">🎯 Mark endpoint</button></div>
+      <div class="nlchips" style="margin-top:10px" role="group" aria-label="Indicator">${Object.entries(IND).map(([k,[n]])=>`<button class="nlchip ${T.ind===k?'on':''}" aria-pressed="${T.ind===k}" ${T.vb?'disabled':''} onclick="LB().t.ind='${k}';SYNC();rerealm()">${n}</button>`).join('')}</div>
+      <p class="mt" style="font-size:.84rem;margin:6px 0 0">${esc(IND[T.ind][0])}: ${esc(IND[T.ind][2])}. Choose before you start.</p></div></div></div>
+    <div class="nlcard" style="margin-top:14px"><h3 style="margin:0 0 6px">pH curve</h3>${ttGraph(T)}</div></div>
+  <div class="nlcard"><div class="kick">Titration Lab</div><h3 style="margin:6px 0">${unk?'Find the concentration of an unknown acid':'Neutralise the acid exactly'}</h3>
+    <p class="mt">HCl + NaOH → NaCl + H₂O. At the <b>equivalence point</b>, the moles of base added equal the moles of acid. Add base until the indicator just changes colour (the <b>endpoint</b>). Go fast at first, then drop by drop.</p>
+    ${T.end!=null?`<div class="lbfb ${T.stars>=2?'ok':'no'}">Endpoint marked at <b>${T.end.toFixed(2)} mL</b>. ${unk?'':`The equivalence point was ${(T.ca*TTVA/TTCB).toFixed(2)} mL.`} <span class="lbstars">${'★'.repeat(T.stars)}${'☆'.repeat(3-T.stars)}</span>${T.stars<2?' Next time, slow down to single drops as the colour starts to change.':''}</div>`:''}
+    ${unk&&T.end!=null?`<div style="margin-top:12px"><b>Now calculate:</b> what was the acid's concentration?<p class="mt" style="margin:4px 0 8px">M(acid) × V(acid) = M(base) × V(base)</p><div class="row" style="gap:8px"><input id="ttans" inputmode="decimal" placeholder="0.000" aria-label="Acid concentration in mol per liter" style="width:120px;min-height:40px;border-radius:10px;border:1px solid var(--ln);background:#0F172A;color:var(--tx);padding:0 10px;font:inherit" value="${T.ans??''}"><span class="mt">M</span><button class="nlbtn sm" onclick="ttAnswer()">Check</button></div>${T.fb?`<div class="lbfb ${T.solved?'ok':'no'}">${esc(T.fb)}</div>`:''}</div>`:''}
+    <div class="xrnote" style="margin-top:14px"><b>Why the jump?</b> Near the equivalence point there is almost no acid or base left, so a single drop changes the pH from about 4 to about 10. That's why one drop can flip the indicator's colour.</div>
+    <div class="row" style="gap:8px;margin-top:14px"><button class="nlbtn ${unk?'ghost':''}" onclick="ttNew('practice')">↻ Practice run</button><button class="nlbtn ${unk?'':'ghost'}" onclick="ttNew('unknown')">🧪 Unknown acid</button></div></div></div>`}
+GVIEW.lab=function(){const L=LB(),tab=L.tab||'proj';
+  return nlWrap(nlHeadBar('Lab Bench','Real experiments, real data. Form a hypothesis, test it fairly, and back your claim with evidence.')+`<div class="lbtabs" role="tablist"><button role="tab" class="nlchip ${tab==='proj'?'on':''}" aria-selected="${tab==='proj'}" onclick="LB().tab='proj';SYNC();rerealm()">🚀 Projectile Lab (physics)</button><button role="tab" class="nlchip ${tab==='tit'?'on':''}" aria-selected="${tab==='tit'}" onclick="LB().tab='tit';SYNC();rerealm()">🧪 Titration Lab (chemistry)</button></div>${tab==='tit'?ttView():pjView()}`)};
+addEventListener('resize',()=>{if(AR.mode==='lab'&&$('pjcv'))pjDraw(PJ.fly?1:0)});
+NLGAMES.push({id:'lab',tag:'Science lab',n:'Lab Bench',p:'Launch projectiles on Earth, the Moon and Mars, or titrate an unknown acid. Real science, real data.'});
+NLART.lab=`<svg viewBox="0 0 240 110" xmlns="http://www.w3.org/2000/svg"><rect width="240" height="110" fill="#0B1220"/><path d="M20 92Q80 -10 150 92" stroke="#22D3EE" stroke-width="3" fill="none" stroke-dasharray="6 5"/><circle cx="118" cy="44" r="6" fill="#FBBF24"/><rect x="10" y="92" width="150" height="4" fill="#334155"/><path d="M188 30h16v20l18 34a5 5 0 0 1-4 7h-44a5 5 0 0 1-4-7l18-34z" fill="none" stroke="#94A3B8" stroke-width="2.5"/><path d="M178 72h36l7 13a4 4 0 0 1-3 6h-44a4 4 0 0 1-3-6z" fill="#F472B6"/></svg>`;
+NLTITLES.push({id:'physicist',n:'Physicist',d:'Complete the Projectile Lab investigation',ok:N=>!!(N.lab&&N.lab.p&&N.lab.p.done)},
+  {id:'chemist',n:'Chemist',d:'Find the concentration of an unknown acid',ok:N=>!!N.chemist});
+</script>
