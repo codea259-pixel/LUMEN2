@@ -17,6 +17,7 @@
 .nl .nltitle{font:800 clamp(1.7rem,4vw,2.4rem)/1.1 "Bricolage Grotesque",sans-serif;margin:6px 0 4px}
 .nl .mt{color:var(--mt)}
 .nlhead{display:flex;justify-content:space-between;gap:14px;align-items:flex-end;flex-wrap:wrap;margin-bottom:18px}
+.nlhb{display:flex;gap:14px;align-items:center}@media(max-width:560px){.nlhb{flex-direction:column;align-items:flex-start;gap:10px}}
 .nlcard{background:var(--card);border:1px solid var(--ln);border-radius:18px;padding:16px}
 .nlgrid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:16px;align-items:start}@media(max-width:880px){.nlgrid{grid-template-columns:1fr}}
 .nlbtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:12px;border:1px solid transparent;background:var(--acc);color:#0B1020;font:800 1rem "Bricolage Grotesque",sans-serif;cursor:pointer}
@@ -111,7 +112,7 @@ function arcTabs(){const t=arcTab();
   return `<div class="arctabs" role="tablist" aria-label="Arcade sections"><button role="tab" aria-selected="${t==='young'}" class="${t==='young'?'on':''}" onclick="GM.arc='young';SYNC();rerealm()">🧸 Young Explorers<small>Pre-K to grade 5 · playful learning games</small></button><button role="tab" aria-selected="${t==='next'}" class="next ${t==='next'?'on':''}" onclick="GM.arc='next';SYNC();rerealm()">🚀 Next Level<small>Grades 6 to 12 · puzzles, strategy and simulations</small></button></div>`}
 const _hubNL=hubView;hubView=function(){return arcTabs()+(arcTab()==='next'?nlHub():_hubNL().replace('<h2 class="gtitle">Bose Arcade</h2><p class="gsub">Every move is powered by what you learn.</p>','<h2 class="gtitle">Young Explorers</h2><p class="gsub">Games for younger learners. Every move is powered by what you learn.</p>'))};
 function nlOpen(id){AR.mode=id;rerealm();scrollTo({top:0,behavior:calmOn()?'auto':'smooth'})}
-const nlHeadBar=(t,s)=>`<div class="nlhead"><div style="display:flex;gap:14px;align-items:center"><button class="nlbtn ghost sm" onclick="toHub()">← Next Level</button><div><div class="kick">Next Level</div><h2 class="nltitle" style="margin:2px 0 0">${t}</h2><p class="mt" style="margin:4px 0 0">${s}</p></div></div></div>`;
+const nlHeadBar=(t,s)=>`<div class="nlhead"><div class="nlhb"><button class="nlbtn ghost sm" onclick="toHub()">← Next Level</button><div><div class="kick">Next Level</div><h2 class="nltitle" style="margin:2px 0 0">${t}</h2><p class="mt" style="margin:4px 0 0">${s}</p></div></div></div>`;
 const nlWrap=html=>`<div class="nl" style="--acc:${NLACC[NL().acc]}">${html}</div>`;
 
 /* ---------- Stats from real mastery, titles and the daily loop ---------- */

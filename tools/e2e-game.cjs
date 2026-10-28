@@ -233,7 +233,7 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
 
     // Next Level (the second Arcade tab): it works with no play time left and uses none
     await a.evaluate(() => toHub()); await a.click('.arctabs button.next'); await a.waitForSelector('.nl .nltiles');
-    const nlT = await a.$$eval('.nltile .nlname', b => b.map(x => x.textContent).join(', ')); if (nlT !== 'Cipher, Equation Code, Market Sim') fail('Next Level tiles: ' + nlT);
+    const nlT = await a.$$eval('.nltile .nlname', b => b.map(x => x.textContent).join(', ')); if (nlT !== 'Skill Tree, Cipher, Equation Code, Market Sim, Crossroads, Lab Bench') fail('Next Level tiles: ' + nlT);
     if (await a.evaluate(() => GM.arc) !== 'next') fail('the Next Level tab was not remembered');
     const nlPlay = await a.evaluate(() => DAY().play);
     await a.click('.nltile:has-text("Cipher")'); await a.waitForSelector('.pzgrid');
@@ -257,6 +257,40 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     const mkEnd = await a.evaluate(() => ({ runs: NL().st.mk.runs, got: NL().got, play: DAY().play })); if (mkEnd.runs !== 1 || !mkEnd.got.includes('investor')) fail('Market Sim year end wrong: ' + JSON.stringify(mkEnd));
     if (mkEnd.play !== nlPlay) fail('Next Level used play time');
     ok('Next Level: its own Arcade tab, remembered; Cipher rejects words not in the word list and records a win; Equation Code rejects a false equation and solves today\'s; Market Sim buys shares with a $2 fee, the daily loop paid +5 gems with a 1-day streak, the Research Desk showed next month\'s headline after a right answer, and a full year earned the Investor title, all with no play time left'); await shot(a, 'g-next');
+    // Skill Tree: skill points from mastery, perks, a goal path, and reaching the goal
+    await a.evaluate(() => { window.__S0 = JSON.parse(JSON.stringify(S)) });
+    const tk = await a.evaluate(() => { const ks = ORDER.filter(k => SK[k].sub === 'math' && !SK[k].pre.length).slice(0, 3); ks.forEach((k, i) => Object.assign(S[k], { att: 8, p: .92, mastered: i === 0 })); GM.calm = true; return ks });
+    await a.evaluate(() => nlOpen('path')); await a.waitForSelector('.pttier'); const sp0 = await a.evaluate(() => ptSP()); if (sp0.earned !== 4 || sp0.left !== 4) fail('skill points wrong: ' + JSON.stringify(sp0));
+    await a.click('.perk:has-text("Aurora")'); await a.click('.perk:has-text("Hex")'); const pk = await a.evaluate(() => ({ p: NL().perk, sp: ptSP().left })); if (pk.p.banner !== 'aurora' || pk.p.frame !== 'hex' || pk.sp !== 1) fail('perks wrong: ' + JSON.stringify(pk));
+    await a.click('text=Buy for 2 points'); if (await a.evaluate(() => NL().freeze || 0)) fail('a streak freeze was bought without enough points');
+    const gk = await a.evaluate(() => ORDER.find(k => SK[k].sub === 'math' && SK[k].pre.length && level(k) < 3)); await a.evaluate(k => { PTSEL = k; rerealm() }, gk); await a.click('text=Set as goal');
+    const gpath = await a.evaluate(() => ({ goal: NL().goal, route: ptRoute(NL().goal).size, shown: document.querySelectorAll('.ptn.route').length })); if (gpath.goal !== gk || gpath.route < 1 || gpath.shown < 1) fail('goal path wrong: ' + JSON.stringify(gpath));
+    await a.evaluate(() => toHub()); if (!/Next on your path/.test(await a.textContent('.nl'))) fail('the hub does not show the next step on the goal path');
+    await a.evaluate(k => Object.assign(S[k], { att: 8, p: .92 }), gk); await a.evaluate(() => rerealm()); await a.waitForFunction(() => (NL().goalsDone || 0) === 1 && !NL().goal && NL().got.includes('pathfinder'));
+    ok('Skill Tree: 3 Proficient skills (one Mastered) gave 4 skill points, a banner and a frame were bought and worn, a streak freeze was refused without points, a goal lit its path on the tree and the hub, and reaching it earned Pathfinder');
+    // Crossroads: the historical path in Thirteen Days, then a choice that ends in war
+    await a.evaluate(() => nlOpen('xr')); await a.click('.xrcard:has-text("Thirteen Days") >> text=Begin');
+    for (let i = 0; i < 5; i++) { await a.waitForSelector('.xropt'); const j = await a.evaluate(() => { const Z = NL().xr; return XR.find(x => x.id === Z.id).steps[Z.i].o.findIndex(o => o.h) }); await a.click(`.xropt >> nth=${j}`); await a.waitForSelector('.xrnote'); await a.click('.nlbtn:has-text("→")') }
+    await a.waitForSelector('text=Historian\'s eye'); const xe = await a.evaluate(() => ({ t: document.querySelector('#xrtop h2').textContent, hist: NL().xr.hist, got: NL().got }));
+    if (!/peaceful solution/.test(xe.t) || xe.hist !== 5 || !xe.got.includes('strategist') || !xe.got.includes('steady')) fail('Crossroads ending wrong: ' + JSON.stringify(xe));
+    await a.click('text=Try different choices'); await a.click('.xropt >> nth=0'); await a.click('.nlbtn:has-text("→")'); await a.click('.xropt >> nth=0'); await a.click('text=See what happened');
+    if (!/turns into war/.test(await a.textContent('#xrtop h2'))) fail('bombing then invading did not end in war');
+    ok('Crossroads: Thirteen Days with history\'s choices ended in "A peaceful solution" with a Historian\'s eye of 5 of 5 (Strategist and Steady Hand titles); bombing and then invading ended the story in war');
+    // Lab Bench: a fair test, a conclusion that must match the data, and titrations
+    await a.evaluate(() => nlOpen('lab')); await a.waitForSelector('#pjcv'); await a.click('.nlchip:text-is("45°")');
+    for (const [n, ang] of [15, 30, 45, 60, 75].entries()) { await a.evaluate(x => { PJ.a = x; PJ.v = 20; PJ.g = 'earth' }, ang); await a.click('text=🚀 Launch'); await a.waitForFunction(c => LB().p.trials.length === c, n + 1) }
+    const r45 = await a.evaluate(() => LB().p.trials.find(t => t.a === 45).R); if (Math.abs(r45 - 400 / 9.8) > .01) fail('projectile range at 45° should be v²/g: ' + r45);
+    await a.click('.lbopt .nlchip >> nth=0'); await a.click('text=Check my conclusion'); if (await a.evaluate(() => LB().p.done)) fail('a wrong claim was accepted');
+    await a.click('.lbopt .nlchip >> nth=1'); const e45 = await a.evaluate(() => LB().p.trials.findIndex(t => t.a === 45)); await a.click(`.nlchip:has-text("#${e45 + 1}:")`); await a.click('.lbopt >> nth=1 >> .nlchip >> nth=0'); await a.click('text=Check my conclusion');
+    if (!(await a.evaluate(() => LB().p.done && NL().got.includes('physicist')))) fail('the Projectile Lab conclusion was not accepted');
+    await a.click('text=Titration Lab'); await a.waitForSelector('.ttmeter'); await a.evaluate(() => { const T = LB().t; T.vb = 24.9; T.pts.push([24.9, +ttPH(T.ca, 24.9).toFixed(2)]); rerealm() });
+    const ph249 = await a.evaluate(() => ttPH(.1, 24.9)); await a.click('button:text-is("+1 drop")'); await a.click('button:text-is("+1 drop")'); await a.click('text=Mark endpoint');
+    const tt = await a.evaluate(() => ({ end: LB().t.end, stars: LB().t.stars, ph: ttPH(.1, 25.1) })); if (tt.end !== 25 || tt.stars !== 3 || Math.abs(ph249 - 3.7) > .02 || Math.abs(tt.ph - 10.3) > .02) fail('titration wrong: ' + JSON.stringify({ ph249, ...tt }));
+    await a.click('text=Unknown acid'); await a.evaluate(() => { const T = LB().t, v = Math.round(T.ca * 250 * 100) / 100; T.vb = v; T.pts.push([v, +ttPH(T.ca, v).toFixed(2)]); rerealm() }); await a.click('text=Mark endpoint');
+    await a.fill('#ttans', '0.5'); await a.click('#ttans ~ button:text-is("Check")'); if (await a.evaluate(() => LB().t.solved)) fail('a wrong concentration was accepted');
+    await a.evaluate(() => { $('ttans').value = (0.1 * LB().t.end / 25).toFixed(4) }); await a.click('#ttans ~ button:text-is("Check")'); if (!(await a.evaluate(() => LB().t.solved && NL().got.includes('chemist')))) fail('the unknown acid was not solved');
+    await a.evaluate(() => { GM.calm = false; for (const k of Object.keys(window.__S0)) S[k] = window.__S0[k] }); if (await a.evaluate(() => DAY().play) !== nlPlay) fail('Next Level phase 2 used play time');
+    ok('Lab Bench: 5 angles at 20 m/s gave v²/g at 45°, a wrong claim was rejected and the right claim, evidence and reasoning earned Physicist; titration pH is 3.70 at 24.90 mL and 10.30 at 25.10 mL, a 25.00 mL endpoint scored 3 stars, and the unknown acid was solved with M1V1 = M2V2 (Chemist)'); await shot(a, 'g-lab');
     await a.evaluate(() => { GM.arc = 'young'; toHub() });
 
     // Classwork turned in: XP and gems once
@@ -265,10 +299,11 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     const n = await a.$$eval('.items > li', l => l.length);
     for (let i = 0; i < n; i++) { const li = (await a.$$('.items > li'))[i];
       if (await li.$('input[type=radio]')) await (await li.$$('input[type=radio]'))[0].check(); else if (await li.$('input[type=text]')) await (await li.$('input[type=text]')).fill('12'); else await (await li.$('textarea')).fill('my answer') }
-    const before = await a.evaluate(() => ({ xp: XP(), gems: GEMS(), cw: DAY().cw, food: PET().food }));
+    const before = await a.evaluate(() => ({ xp: XP(), gems: GEMS(), cw: DAY().cw, food: PET().food, tre: GM.tre.length }));
     await a.click('button:has-text("Turn in")'); await a.waitForSelector('text=Nice work');
-    const after = await a.evaluate(() => ({ xp: XP(), gems: GEMS(), cw: DAY().cw, done: GM.done.length, food: PET().food }));
-    if (after.xp - before.xp !== 30 || after.gems - before.gems !== 5 || after.cw !== before.cw + 1 || after.food - before.food !== 2) fail('classwork reward wrong: ' + JSON.stringify([before, after]));
+    const after = await a.evaluate(() => ({ xp: XP(), gems: GEMS(), cw: DAY().cw, done: GM.done.length, food: PET().food, tre: GM.tre.length }));
+    // Turning in work can also complete a treasure (10 gems each), counted separately
+    if (after.xp - before.xp !== 30 || after.gems - before.gems - 10 * (after.tre - before.tre) !== 5 || after.cw !== before.cw + 1 || after.food - before.food !== 2) fail('classwork reward wrong: ' + JSON.stringify([before, after]));
     ok('turning in classwork gave +30 XP, +5 gems and 2 pet snacks'); await save(a);
 
     // Student B learns a little

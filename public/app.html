@@ -7992,6 +7992,7 @@ ART.snake=()=>sceneSvg(`${[[22,24,'#22d3ee'],[60,104,'#f472b6'],[140,18,'#facc15
 .nl .nltitle{font:800 clamp(1.7rem,4vw,2.4rem)/1.1 "Bricolage Grotesque",sans-serif;margin:6px 0 4px}
 .nl .mt{color:var(--mt)}
 .nlhead{display:flex;justify-content:space-between;gap:14px;align-items:flex-end;flex-wrap:wrap;margin-bottom:18px}
+.nlhb{display:flex;gap:14px;align-items:center}@media(max-width:560px){.nlhb{flex-direction:column;align-items:flex-start;gap:10px}}
 .nlcard{background:var(--card);border:1px solid var(--ln);border-radius:18px;padding:16px}
 .nlgrid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:16px;align-items:start}@media(max-width:880px){.nlgrid{grid-template-columns:1fr}}
 .nlbtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:12px;border:1px solid transparent;background:var(--acc);color:#0B1020;font:800 1rem "Bricolage Grotesque",sans-serif;cursor:pointer}
@@ -8086,7 +8087,7 @@ function arcTabs(){const t=arcTab();
   return `<div class="arctabs" role="tablist" aria-label="Arcade sections"><button role="tab" aria-selected="${t==='young'}" class="${t==='young'?'on':''}" onclick="GM.arc='young';SYNC();rerealm()">🧸 Young Explorers<small>Pre-K to grade 5 · playful learning games</small></button><button role="tab" aria-selected="${t==='next'}" class="next ${t==='next'?'on':''}" onclick="GM.arc='next';SYNC();rerealm()">🚀 Next Level<small>Grades 6 to 12 · puzzles, strategy and simulations</small></button></div>`}
 const _hubNL=hubView;hubView=function(){return arcTabs()+(arcTab()==='next'?nlHub():_hubNL().replace('<h2 class="gtitle">Bose Arcade</h2><p class="gsub">Every move is powered by what you learn.</p>','<h2 class="gtitle">Young Explorers</h2><p class="gsub">Games for younger learners. Every move is powered by what you learn.</p>'))};
 function nlOpen(id){AR.mode=id;rerealm();scrollTo({top:0,behavior:calmOn()?'auto':'smooth'})}
-const nlHeadBar=(t,s)=>`<div class="nlhead"><div style="display:flex;gap:14px;align-items:center"><button class="nlbtn ghost sm" onclick="toHub()">← Next Level</button><div><div class="kick">Next Level</div><h2 class="nltitle" style="margin:2px 0 0">${t}</h2><p class="mt" style="margin:4px 0 0">${s}</p></div></div></div>`;
+const nlHeadBar=(t,s)=>`<div class="nlhead"><div class="nlhb"><button class="nlbtn ghost sm" onclick="toHub()">← Next Level</button><div><div class="kick">Next Level</div><h2 class="nltitle" style="margin:2px 0 0">${t}</h2><p class="mt" style="margin:4px 0 0">${s}</p></div></div></div>`;
 const nlWrap=html=>`<div class="nl" style="--acc:${NLACC[NL().acc]}">${html}</div>`;
 
 /* ---------- Stats from real mastery, titles and the daily loop ---------- */
@@ -8414,6 +8415,383 @@ GVIEW.market=function(){const N=NL(),M=N.mk,S=N.st.mk,head=nlHeadBar('Market Sim
       <button class="nlbtn" style="min-height:56px;font-size:1.15rem" onclick="mkNext()">Next month ▶</button>`}
       <div class="nlcard"><h4>Your year so far</h4>${mkChart(M)}</div>
     </div></div>`)};
+</script>
+
+<style>
+/* ===== Next Level: Skill Tree ===== */
+.ptbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.ptwrap{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:16px;align-items:start}@media(max-width:900px){.ptwrap{grid-template-columns:1fr}}
+.pttier{display:grid;grid-template-columns:92px 1fr;gap:12px;align-items:start;padding:12px 0;border-top:1px solid var(--ln)}.pttier:first-child{border-top:0}
+.pttier .gl{font:800 .78rem/1.2 "Atkinson Hyperlegible",sans-serif;color:var(--mt);text-transform:uppercase;letter-spacing:.06em;padding-top:10px}
+@media(max-width:560px){.pttier{grid-template-columns:1fr;gap:6px}.pttier .gl{padding-top:0}}
+.ptnodes{display:flex;flex-wrap:wrap;gap:8px}
+.ptn{display:flex;align-items:center;gap:8px;padding:6px 12px 6px 6px;border-radius:12px;border:1px solid var(--ln);background:var(--card2);color:var(--tx);cursor:pointer;font:700 .86rem/1.25 "Atkinson Hyperlegible",sans-serif;max-width:280px;text-align:left}
+.ptn:hover{border-color:color-mix(in srgb,var(--acc) 70%,transparent)}.ptn:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.ptn .ring{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex:none;background:conic-gradient(var(--acc) calc(var(--p)*1%),rgba(148,163,184,.22) 0)}
+.ptn .ring span{width:23px;height:23px;border-radius:50%;background:var(--card2);display:grid;place-items:center;font-size:.8rem}
+.ptn.mastered .ring,.ptn.mastered .ring span{background:#FBBF24;color:#0B1020}
+.ptn.prof .ring,.ptn.prof .ring span{background:var(--acc);color:#0B1020}
+.ptn.ready{border-color:color-mix(in srgb,var(--acc) 55%,transparent);box-shadow:0 0 14px -4px var(--acc)}
+.ptn.locked{opacity:.55}
+.ptn.route{outline:2px dashed var(--acc);outline-offset:2px}
+.ptn.rel{border-color:#FBBF24}
+.ptn.sel{background:color-mix(in srgb,var(--acc) 20%,var(--card2));border-color:var(--acc)}
+.ptleg{display:flex;gap:12px;flex-wrap:wrap;font-size:.8rem;color:var(--mt);margin:4px 0 6px}
+.ptside{display:grid;gap:14px;position:sticky;top:76px}@media(max-width:900px){.ptside{position:static}}
+.ptsp{font:800 2rem/1 "Bricolage Grotesque",sans-serif;color:var(--acc)}
+.perkg{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 12px}
+.perk{display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:10px;border:1px solid var(--ln);background:var(--card2);color:var(--tx);font:700 .82rem "Atkinson Hyperlegible",sans-serif;cursor:pointer}
+.perk.on{border-color:var(--acc);color:var(--acc)}.perk .sw{width:18px;height:18px;border-radius:5px}
+.perk small{color:var(--mt);font-weight:600}
+</style>
+<script type="text/x-lumen">
+/* ===== Next Level: Skill Tree. The real skill map as an RPG talent tree: tiers are grades, nodes are skills,
+   and a node lights up as its mastery grows. Every skill that reaches Proficient earns a skill point (Mastered
+   earns one more). Points buy cosmetic perks for the player card and streak freezes. A goal skill lights up the
+   route of prerequisites still to learn, and the Next Level hub shows the next step. "Train" opens the lesson. */
+const ptState=k=>{const lv=level(k);if(lv===4)return'mastered';if(lv===3)return'prof';if(lv>=1)return'prac';return SK[k].pre.filter(p=>SK[p]).every(p=>level(p)>=2)?'ready':'locked'};
+const PTLAB={mastered:'Mastered',prof:'Proficient',prac:'In progress',ready:'Ready to learn',locked:'Builds on skills you haven\'t practiced yet'};
+function ptSP(){const N=NL();let e=0;for(const k of ORDER){const l=level(k);if(l>=3)e++;if(l===4)e++}const sp=N.spent||0;return{earned:e,spent:sp,left:e-sp}}
+/* The goal plus every prerequisite (and theirs) not yet Proficient */
+function ptRoute(goal){const need=new Set();const walk=k=>{if(!SK[k]||need.has(k)||(level(k)>=3&&k!==goal))return;need.add(k);SK[k].pre.forEach(walk)};if(goal&&SK[goal])walk(goal);return need}
+function ptNext(goal){const R=[...ptRoute(goal)].filter(k=>level(k)<3);if(!R.length)return null;const g=k=>ST.gr[k]??0;
+  const open=R.filter(k=>SK[k].pre.every(p=>!SK[p]||level(p)>=3||!R.includes(p)));return (open.length?open:R).sort((a,b)=>g(a)-g(b)||ORDER.indexOf(a)-ORDER.indexOf(b))[0]}
+function ptTrain(k){if(!SK[k])return;ST.subj=SK[k].sub;sv();go('learn');setTimeout(()=>openSkill(k),60)}
+function ptGoal(k){const N=NL();N.goal=N.goal===k?'':k;SYNC();rerealm()}
+/* A goal reached since the last visit: celebrate it and count it */
+function ptGoalCheck(){const N=NL();if(N.goal&&SK[N.goal]&&level(N.goal)>=3){const n=SK[N.goal].n;N.goalsDone=(N.goalsDone||0)+1;N.goal='';SYNC();setTimeout(()=>celebrate([`🎯 Goal reached: ${n}!`,'Pick your next goal in the Skill Tree.'],true),300);nlAwards()}}
+const PERKS={
+  banner:{t:'Banners',items:[['aurora','Aurora',1,'linear-gradient(120deg,#22D3EE,#A78BFA,#F472B6)'],['circuit','Circuit',1,'#0F172A'],['nebula','Nebula',1,'#1E1B4B'],['blueprint','Blueprint',1,'#1D4ED8'],['ember','Ember',1,'linear-gradient(120deg,#F97316,#DC2626)']]},
+  frame:{t:'Avatar frames',items:[['hex','Hex',2],['neon','Neon',2],['prism','Prism',2],['laurel','Laurel',2]]},
+  emblem:{t:'Emblems',items:[['🦉','Owl',1],['🐉','Dragon',1],['⚡','Bolt',1],['🧠','Brain',1],['🚀','Rocket',1],['🎯','Target',1]]}};
+/* Buy once, then tap to wear or take off */
+function ptPerk(cat,id){const N=NL(),P=N.perk||(N.perk={own:[]}),it=PERKS[cat].items.find(x=>x[0]===id);if(!it)return;P.own=P.own||[];const key=cat+':'+id;
+  if(!P.own.includes(key)){if(ptSP().left<it[2]){msg(`That costs ${it[2]} skill point${it[2]>1?'s':''}. Reach Proficient in more skills to earn points!`);return}N.spent=(N.spent||0)+it[2];P.own.push(key)}
+  P[cat]=P[cat]===id?'':id;SYNC();rerealm()}
+function ptFreeze(){const N=NL();if((N.freeze||0)>=2){msg('You can hold 2 streak freezes at a time.');return}if(ptSP().left<2){msg('A streak freeze costs 2 skill points.');return}
+  N.spent=(N.spent||0)+2;N.freeze=(N.freeze||0)+1;SYNC();rerealm()}
+let PTSEL=null,PTALL=false;
+function ptNode(k,R,rel,sel){const st=ptState(k),p=st==='prac'?Math.round(Math.min(1,S[k].p/.85)*100):0;
+  return `<button class="ptn ${st} ${R.has(k)?'route':''} ${rel.has(k)?'rel':''} ${sel===k?'sel':''}" onclick="PTSEL='${k}';rerealm()" aria-pressed="${sel===k}" aria-label="${esc(SK[k].n)}, ${PTLAB[st]}${R.has(k)?', on your goal path':''}"><span class="ring" style="--p:${p}"><span aria-hidden="true">${{mastered:'★',prof:'✓',prac:p+'',ready:'◆',locked:'🔒'}[st]}</span></span>${esc(SK[k].n)}</button>`}
+function ptDetail(k){const N=NL(),st=ptState(k),z=S[k],pre=SK[k].pre.filter(p=>SK[p]),next=ORDER.filter(x=>SK[x].pre.includes(k)),chip=x=>`<button class="nlchip" onclick="PTSEL='${x}';rerealm()">${{mastered:'★',prof:'✓',prac:'◐',ready:'◆',locked:'🔒'}[ptState(x)]} ${esc(SK[x].n)}</button>`;
+  return `<div class="nlcard"><div class="kick">${esc(SUBN[SK[k].sub])} · ${esc(GLAB(ST.gr[k]))}</div><h3 style="margin:6px 0 4px">${esc(SK[k].n)}</h3><p class="mt" style="margin:0 0 10px">${PTLAB[st]} · ${Math.round(z.p*100)}% confidence · ${z.att} question${z.att===1?'':'s'}</p>
+    ${pre.length?`<h4 style="margin:8px 0 6px">Builds on</h4><div class="nlchips">${pre.map(chip).join('')}</div>`:''}${next.length?`<h4 style="margin:10px 0 6px">Unlocks</h4><div class="nlchips">${next.slice(0,8).map(chip).join('')}</div>`:''}
+    <div class="row" style="gap:8px;margin-top:14px"><button class="nlbtn" onclick="ptTrain('${k}')">⚔️ Train this skill</button><button class="nlbtn ghost" aria-pressed="${N.goal===k}" onclick="ptGoal('${k}')">${N.goal===k?'✖ Clear goal':'🎯 Set as goal'}</button></div></div>`}
+function ptPerks(){const N=NL(),P=N.perk||{},own=P.own||[],sp=ptSP();
+  return `<div class="nlcard"><div style="display:flex;justify-content:space-between;align-items:center"><div><div class="kick">Skill points</div><div class="ptsp">${sp.left}</div></div><p class="mt" style="margin:0;max-width:200px;font-size:.84rem;text-align:right">+1 for every skill that reaches Proficient, +1 more when it's Mastered. Earned ${sp.earned}.</p></div>
+    ${Object.entries(PERKS).map(([cat,G])=>`<h4 style="margin:12px 0 0">${G.t}</h4><div class="perkg">${G.items.map(([id,n,c,sw])=>{const has=own.includes(cat+':'+id),on=P[cat]===id;
+      return `<button class="perk ${on?'on':''}" aria-pressed="${on}" onclick="ptPerk('${cat}','${id}')">${cat==='banner'?`<span class="sw" style="background:${sw}"></span>`:cat==='emblem'?`<span aria-hidden="true">${id}</span>`:''}${esc(n)} <small>${has?(on?'wearing':'owned'):`${c} pt${c>1?'s':''}`}</small></button>`}).join('')}</div>`).join('')}
+    <h4 style="margin:4px 0 0">Streak freeze</h4><p class="mt" style="margin:4px 0 8px;font-size:.86rem">Saves your daily-loop streak if you miss one day. You hold ${N.freeze||0} of 2.</p><button class="nlbtn sm" onclick="ptFreeze()">🧊 Buy for 2 points</button></div>`}
+GVIEW.path=function(){const N=NL();ptGoalCheck();const subs=Object.keys(SUBN).filter(s=>ORDER.some(k=>SK[k].sub===s)),sub=subs.includes(N.psub)?N.psub:subs.includes(ST.subj)?ST.subj:'math',g=myGrade(),lo=PTALL?-9:Math.max(-1,g-1);
+  const ks=ORDER.filter(k=>SK[k].sub===sub&&(ST.gr[k]??0)>=lo),tiers=[...new Set(ks.map(k=>ST.gr[k]??0))].sort((a,b)=>a-b),R=ptRoute(N.goal),sel=PTSEL&&SK[PTSEL]&&SK[PTSEL].sub===sub?PTSEL:null;
+  const rel=sel?new Set([...SK[sel].pre,...ORDER.filter(x=>SK[x].pre.includes(sel))]):new Set(),done=ks.filter(k=>level(k)>=3).length,nx=ptNext(N.goal);
+  return nlWrap(nlHeadBar('Skill Tree','Your real skills as a talent tree. Light up nodes by mastering skills, earn skill points, and choose your own path.')+`
+  <div class="ptbar" role="group" aria-label="Subject">${subs.map(s=>`<button class="nlchip ${s===sub?'on':''}" aria-pressed="${s===sub}" onclick="NL().psub='${s}';PTSEL=null;SYNC();rerealm()">${esc(SUBN[s])}</button>`).join('')}
+    <label class="mt" style="margin-left:auto;font-size:.88rem;display:flex;gap:6px;align-items:center"><input type="checkbox" ${PTALL?'checked':''} onchange="PTALL=this.checked;rerealm()"> Show earlier grades</label></div>
+  ${N.goal&&SK[N.goal]?`<div class="nlcard" style="margin-bottom:14px;display:flex;gap:12px;align-items:center;flex-wrap:wrap"><span style="font-size:1.4rem" aria-hidden="true">🎯</span><div style="flex:1;min-width:200px"><b>Goal: ${esc(SK[N.goal].n)}</b><div class="mt">${R.size} skill${R.size===1?'':'s'} to go on your path${nx?` · next: <b style="color:var(--tx)">${esc(SK[nx].n)}</b>`:''}</div></div>${nx?`<button class="nlbtn sm" onclick="ptTrain('${nx}')">⚔️ Train next skill</button>`:''}</div>`:''}
+  <div class="ptwrap"><div class="nlcard"><div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap"><h3 style="margin:0">${esc(SUBN[sub])} tree</h3><span class="nlpill">${done} of ${ks.length} lit</span></div>
+    <div class="ptleg"><span>★ Mastered</span><span>✓ Proficient</span><span>% In progress</span><span>◆ Ready</span><span>🔒 Locked</span><span style="outline:2px dashed var(--acc);outline-offset:2px;border-radius:4px;padding:0 4px">Goal path</span></div>
+    ${tiers.map(t=>`<div class="pttier"><div class="gl">${esc(GLAB(t))}</div><div class="ptnodes">${ks.filter(k=>(ST.gr[k]??0)===t).map(k=>ptNode(k,R,rel,sel)).join('')}</div></div>`).join('')}</div>
+  <div class="ptside">${sel?ptDetail(sel):`<div class="nlcard"><h3>How it works</h3><ul class="pearn"><li>Each node is a real skill. It fills up as you practice and lights up at <b>Proficient</b>.</li><li>Tap a node to see what it builds on and unlocks, then <b>Train</b> it or set it as your <b>goal</b>.</li><li>Your goal path glows, and the Next Level hub always shows your next step.</li><li>Skill points buy banners, frames, emblems and streak freezes.</li></ul></div>`}${ptPerks()}</div></div>`)};
+NLGAMES.unshift({id:'path',tag:'Progression',n:'Skill Tree',p:'Your real skills as an RPG talent tree. Earn skill points, unlock perks, and pick your own path.'});
+NLART.path=`<svg viewBox="0 0 240 110" xmlns="http://www.w3.org/2000/svg"><rect width="240" height="110" fill="#0B1220"/><g stroke="#334155" stroke-width="2"><path d="M60 82L90 55M120 82L90 55M120 82L150 55M180 82L150 55M90 55L120 28M150 55L120 28"/></g>${[[60,82,'#22D3EE','✓'],[120,82,'#22D3EE','✓'],[180,82,'#FBBF24','★'],[90,55,'#22D3EE','✓'],[150,55,'#1E293B','◆'],[120,28,'#1E293B','🔒']].map(([x,y,c,t])=>`<circle cx="${x}" cy="${y}" r="13" fill="${c}" stroke="#0B1220" stroke-width="3"/><text x="${x}" y="${y+5}" font-size="12" font-weight="800" text-anchor="middle" fill="${c==='#1E293B'?'#94A3B8':'#0B1020'}" font-family="sans-serif">${t}</text>`).join('')}<circle cx="150" cy="55" r="18" fill="none" stroke="#22D3EE" stroke-dasharray="4 4"/></svg>`;
+/* The hub shows the goal and the next step on its path */
+nlNextUp=()=>{const N=NL();ptGoalCheck();const nx=ptNext(N.goal),sp=ptSP().left;
+  return N.goal&&SK[N.goal]?`<div class="nlcard" style="margin-top:14px;display:flex;gap:12px;align-items:center;flex-wrap:wrap"><span style="font-size:1.3rem" aria-hidden="true">🎯</span><div style="flex:1;min-width:180px"><b>Next on your path: ${esc(SK[nx||N.goal].n)}</b><div class="mt">Goal: ${esc(SK[N.goal].n)}${sp?` · ${sp} skill point${sp>1?'s':''} to spend`:''}</div></div><button class="nlbtn sm" onclick="ptTrain('${nx||N.goal}')">⚔️ Train</button></div>`
+    :`<div class="nlcard" style="margin-top:14px;display:flex;gap:12px;align-items:center;flex-wrap:wrap"><span style="font-size:1.3rem" aria-hidden="true">🌳</span><div style="flex:1;min-width:180px"><b>Choose your path</b><div class="mt">Pick a goal skill in the Skill Tree and we'll light up the way.${sp?` You have ${sp} skill point${sp>1?'s':''} to spend.`:''}</div></div><button class="nlbtn sm ghost" onclick="nlOpen('path')">Open Skill Tree</button></div>`};
+NLTITLES.push({id:'pathfinder',n:'Pathfinder',d:'Reach a Skill Tree goal',ok:N=>(N.goalsDone||0)>=1},{id:'collector',n:'Skill Collector',d:'Earn 10 skill points',ok:()=>ptSP().earned>=10});
+</script>
+
+<style>
+/* ===== Next Level: Crossroads ===== */
+.xrcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.xrcard{display:flex;flex-direction:column;gap:8px}
+.xrmeters{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:14px}
+.xrm{background:var(--card);border:1px solid var(--ln);border-radius:14px;padding:10px 12px}
+.xrm span{font-size:.82rem;color:var(--mt);display:flex;justify-content:space-between}.xrm b{color:var(--tx)}
+.xrm .bar{height:8px;border-radius:99px;background:rgba(148,163,184,.18);overflow:hidden;margin-top:6px}.xrm .bar i{display:block;height:100%;transition:width .5s}
+.xrsrc{border-left:4px solid #FBBF24;background:rgba(251,191,36,.08);padding:10px 14px;border-radius:0 12px 12px 0;font-style:italic;margin:12px 0}
+.xrsrc small{display:block;font-style:normal;color:var(--mt);margin-top:6px}
+.xropts{display:grid;gap:10px;margin-top:14px}
+.xropt{text-align:left;padding:14px 16px;border-radius:14px;border:1px solid var(--ln);background:var(--card2);color:var(--tx);font:700 1rem/1.4 "Atkinson Hyperlegible",sans-serif;cursor:pointer;display:flex;gap:12px;align-items:flex-start}
+.xropt:hover{border-color:var(--acc)}.xropt:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.xropt .k{flex:none;width:28px;height:28px;border-radius:8px;background:rgba(148,163,184,.15);display:grid;place-items:center;font-weight:800}
+.xrfx{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.xrfx span{border-radius:99px;padding:3px 10px;font-weight:800;font-size:.85rem}
+.xrfx .g{background:rgba(34,197,94,.18);color:#4ADE80}.xrfx .b{background:rgba(244,63,94,.18);color:#FB7185}
+.xrnote{border-left:4px solid var(--acc);background:color-mix(in srgb,var(--acc) 8%,transparent);padding:10px 14px;border-radius:0 12px 12px 0;margin-top:12px}
+.xrpath{display:grid;gap:8px;margin-top:12px}.xrpath>div{display:flex;gap:10px;align-items:flex-start;background:var(--card2);border:1px solid var(--ln);border-radius:12px;padding:10px 12px}
+</style>
+<script type="text/x-lumen">
+/* ===== Next Level: Crossroads. Historical decision simulators: the learner takes a real role, makes five
+   decisions, and watches three meters respond. Every choice explains its consequence and what really happened.
+   The end compares the learner's path with history ("Historian's eye") and adds context. */
+const XR=[
+ {id:'cuba',t:'Thirteen Days',era:'The Cuban Missile Crisis · October 1962',i:'🚢',role:'You sit on the ExComm, the small team advising President John F. Kennedy.',
+  meters:[['war','Risk of war',45,-1],['sec','U.S. security',40,1],['ally','Allies\' trust',60,1]],
+  fail:[['war','>=',100,'The crisis turns into war','Historians believe a war in October 1962 could have killed millions of people. That is why the real leaders searched so hard for a way out that let both sides step back.']],
+  steps:[
+   {d:'October 16, 1962',h:'Missiles in Cuba',x:'Photos from a U-2 spy plane show Soviet nuclear missile sites being built in Cuba, about 90 miles from Florida. Once ready, the missiles could reach most of the United States within minutes. Nobody outside this room knows yet. What do you advise?',
+    o:[{t:'Bomb the missile sites right away, before they are finished.',fx:{war:25,sec:5,ally:-10},c:'The Air Force warns it can\'t promise to destroy every missile. Any that survive could be fired, and Soviet soldiers at the sites would be killed.'},
+       {t:'Keep it secret for a few days and study every option carefully.',fx:{sec:5},c:'You gain time to think, and Moscow doesn\'t know you have found the missiles.',h:1},
+       {t:'Announce it on TV tonight, before there is a plan.',fx:{war:10,sec:-5,ally:-5},c:'The news causes fear, and the Soviets get time to hide the missiles or speed up their work while you are still deciding.'}],
+    n:'Kennedy formed the ExComm and kept the discovery secret for almost a week while it debated every option, from doing nothing to invading Cuba.'},
+   {d:'October 18-21, 1962',h:'Choosing a response',x:'The ExComm agrees the missiles must go. But how?',
+    o:[{t:'Invade Cuba with U.S. troops.',fx:{war:35,sec:5,ally:-10},c:'A huge risk. Decades later we learned that Soviet forces in Cuba also had short-range nuclear weapons that could have been used against an invasion.'},
+       {t:'Set up a naval "quarantine": stop ships bringing more weapons to Cuba, and demand the missiles be removed.',fx:{war:10,sec:10,ally:10},c:'It is firm but leaves room to talk. Calling it a quarantine instead of a blockade, which can count as an act of war, lowers the temperature.',h:1},
+       {t:'Do nothing. The U.S. has missiles near the Soviet Union too.',fx:{war:-5,sec:-25,ally:-20},c:'War is less likely today, but allies wonder whether America will stand by them, and the Soviets may try something bolder next.'}],
+    n:'Kennedy chose the naval quarantine. U.S. ships began enforcing it on October 24.'},
+   {d:'October 22, 1962',h:'Telling the world',x:'How should the United States explain the crisis?',
+    src:['It shall be the policy of this Nation to regard any nuclear missile launched from Cuba against any nation in the Western Hemisphere as an attack by the Soviet Union on the United States, requiring a full retaliatory response upon the Soviet Union.','President Kennedy, televised address, October 22, 1962'],
+    o:[{t:'Speak to the nation on TV, and show the spy-plane photos to the world at the United Nations.',fx:{ally:15,war:5,sec:5},c:'Showing the evidence wins support from allies and from countries across Latin America.',h:1},
+       {t:'Say nothing in public. Only send private messages to Moscow.',fx:{ally:-10},c:'Allies feel left out, and without public pressure the Soviets can deny everything.'},
+       {t:'Give a 24-hour ultimatum: remove the missiles or face an attack.',fx:{war:25,sec:5,ally:-5},c:'A deadline leaves Khrushchev no way to back down without looking weak, and the clock pushes both sides toward war.'}],
+    n:'Kennedy spoke on TV on October 22. On October 25, U.S. Ambassador Adlai Stevenson showed the photos to the United Nations Security Council.'},
+   {d:'October 27, 1962',h:'Black Saturday',x:'The most dangerous day. A U-2 is shot down over Cuba and its pilot is killed. Soviet leader Nikita Khrushchev has sent two messages: the first offers to remove the missiles if the U.S. promises not to invade Cuba; the second also demands that the U.S. remove its Jupiter missiles from Turkey.',
+    o:[{t:'Strike back: bomb the missile sites and air defenses.',fx:{war:35,sec:5},c:'Retaliation could start a chain of attacks that no one can stop.'},
+       {t:'Publicly accept the first offer (no invasion of Cuba), and privately agree to remove the missiles from Turkey later.',fx:{war:-30,sec:10,ally:-5},c:'Both leaders get a way out. Keeping the Turkey part quiet protects NATO\'s trust.',h:1},
+       {t:'Publicly trade the missiles in Turkey for the missiles in Cuba.',fx:{war:-20,ally:-20},c:'War becomes less likely, but NATO allies feel their safety was traded away in public.'}],
+    n:'That evening Robert Kennedy met Soviet Ambassador Anatoly Dobrynin. The U.S. promised not to invade Cuba and secretly agreed to remove the Jupiter missiles from Turkey, which it did by April 1963.'},
+   {d:'October 28, 1962',h:'After the storm',x:'Khrushchev announces on the radio that the missiles will be removed. What now?',
+    o:[{t:'Set up a direct "hotline" between Washington and Moscow so leaders can talk quickly in a crisis.',fx:{war:-15,ally:5},c:'Faster, clearer communication makes the next crisis less dangerous.',h:1},
+       {t:'Celebrate the win loudly and mock the Soviets.',fx:{war:10,ally:-5},c:'Humiliating a rival that has nuclear weapons makes them want to get even.'},
+       {t:'Keep stopping and searching every ship near Cuba, forever.',fx:{war:5,sec:5,ally:-5},c:'Endless pressure keeps tension high and annoys other countries.'}],
+    n:'Kennedy told his team not to gloat. The Washington-Moscow hotline was agreed in June 1963, and the Limited Test Ban Treaty followed in August 1963.'}],
+  end:M=>M.war<=25&&M.sec>=50?['A peaceful solution','Like the real ExComm, you kept the United States firm while giving both sides a way to step back. The missiles left Cuba and nuclear war was avoided.']
+    :M.war<=60?['Peace, but just barely','The missiles left Cuba, but the world came closer to war than it needed to.']:['A dangerous peace','War was avoided, but tension stayed so high that the next crisis could be worse.'],
+  wrap:'In the end, the Soviet Union removed its missiles from Cuba, the United States promised not to invade Cuba, and it quietly removed its own missiles from Turkey. Both sides learned how close they had come, and began talking more.'},
+ {id:'apollo',t:'Houston, We\'ve Had a Problem',era:'Apollo 13 · April 1970',i:'🚀',role:'You are a flight director in Mission Control, responsible for bringing three astronauts home.',
+  meters:[['safe','Crew safety',70,1],['power','Power left',60,1],['air','Clean air',70,1]],
+  fail:[['safe','<=',10,'The rescue fails','In this version of the story the crew could not be saved. In reality every decision had to be right, and thanks to thousands of people working together, they were.'],['power','<=',0,'The batteries run dry','Without power for the trip through the atmosphere, the crew could not get home. Saving every bit of power was one of the hardest parts of the real rescue.'],['air','<=',0,'The air becomes unsafe','Too much carbon dioxide built up. In the real mission, engineers solved this with an amazing improvised fix.']],
+  steps:[
+   {d:'April 13, 1970 · 56 hours after launch',h:'The explosion',x:'An oxygen tank in the Service Module has exploded. The Command Module, Odyssey, is losing oxygen and power fast. The Lunar Module, Aquarius, which was meant to land on the Moon, is still attached and working.',src:['Houston, we\'ve had a problem.','Astronaut Jim Lovell, April 13, 1970'],
+    o:[{t:'Keep going. Maybe the Moon landing can still happen.',fx:{safe:-30,power:-10},c:'With the main oxygen supply leaking away, a landing is impossible. Every minute spent hoping uses up precious power.'},
+       {t:'Cancel the landing. Move the crew into Aquarius as a lifeboat and shut Odyssey down to save its batteries for the trip back through the atmosphere.',fx:{safe:20,power:15},c:'Aquarius was built for two people for two days. Now it must keep three alive for about four days, but it is their best chance.',h:1},
+       {t:'Keep Odyssey running while engineers figure out what broke.',fx:{safe:-15,power:-30},c:'Odyssey\'s batteries are needed to get home. Draining them now could leave the crew with no way back.'}],
+    n:'Mission Control told the crew to power up Aquarius and shut down Odyssey. Its batteries were saved for the final hours of the trip.'},
+   {d:'April 14, 1970',h:'The way home',x:'The spacecraft is still heading for the Moon. How do you turn it around?',
+    o:[{t:'Fire Odyssey\'s big engine to turn around right now.',fx:{safe:-30},c:'That engine sits right next to the explosion. If it is damaged, firing it could make everything worse, and the crew would have to leave their lifeboat behind to go fast enough.'},
+       {t:'Loop around the Moon and let its gravity swing the spacecraft back toward Earth, using Aquarius\'s engine to steer.',fx:{safe:15,power:-5},c:'It takes longer, but it follows a safe, well-understood path called a free-return trajectory.',h:1},
+       {t:'Stay in orbit around the Moon while engineers think.',fx:{safe:-20,power:-25,air:-10},c:'Waiting uses up oxygen, water and power that the crew needs to get home.'}],
+    n:'The crew fired Aquarius\'s descent engine to get back on a free-return path and swung around the far side of the Moon.'},
+   {d:'April 14, 1970',h:'Behind the Moon',x:'After rounding the Moon, the crew can fire Aquarius\'s engine again to speed up. Fuel, power and water are all running low.',
+    o:[{t:'Fire the engine now to get home about 10 hours sooner.',fx:{safe:10,power:10,air:10},c:'Getting home sooner means less oxygen, water and power used along the way.',h:1},
+       {t:'Skip the burn and coast home slowly to save fuel.',fx:{safe:-10,power:-15,air:-15},c:'Coasting is gentle on the engine, but the crew may run out of supplies before they arrive.'},
+       {t:'Burn almost all the fuel to get home as fast as possible.',fx:{safe:-10,power:5},c:'With no fuel left, the crew couldn\'t fix small steering errors later, and a tiny error could make them miss Earth\'s atmosphere.'}],
+    n:'About two hours after passing behind the Moon, the crew fired the descent engine for over four minutes (the "PC+2 burn"), cutting about 10 hours off the trip.'},
+   {d:'April 15, 1970',h:'The air turns dangerous',x:'Carbon dioxide from the crew\'s breathing is building up. Aquarius\'s air filters are nearly used up. Odyssey has spare filters, but they are square, and Aquarius\'s holders are round.',
+    o:[{t:'Have engineers design an adapter from things on board (plastic bags, cardboard, duct tape) and radio up the steps.',fx:{air:35,safe:10},c:'Engineers on the ground build and test it using only items the astronauts have. The crew nicknames it "the mailbox."',h:1},
+       {t:'Have the crew breathe from their spacesuits for the rest of the trip.',fx:{air:5,safe:-15,power:-10},c:'The suits weren\'t made for days of use, and running them costs power and oxygen the crew can\'t spare.'},
+       {t:'Power Odyssey back on early to use its air system.',fx:{air:15,power:-35},c:'It helps for a while, but it eats into the battery power needed for the trip through the atmosphere.'}],
+    n:'Engineers designed the "mailbox" adapter on the ground, and the crew built it from flight-plan covers, plastic bags, hoses and duct tape. The carbon dioxide level dropped.'},
+   {d:'April 17, 1970',h:'Coming home',x:'Odyssey has been cold and dark for days, with water drops on its panels. It must be powered back up with very little battery to spare, using steps no one has ever tried.',
+    o:[{t:'Write the start-up steps carefully and test them in a simulator on the ground first.',fx:{safe:20,power:10},c:'Astronaut Ken Mattingly and engineers test every step so the start-up uses as little power as possible.',h:1},
+       {t:'Switch everything on at once, just to be sure it all works.',fx:{power:-35,safe:-10},c:'The batteries could run dry before splashdown.'},
+       {t:'Skip the checks to save time.',fx:{safe:-25},c:'An untested system could fail during the most dangerous part of the trip.'}],
+    n:'Mattingly and the team worked out the power-up steps in simulators, and the crew followed them exactly.'}],
+  end:M=>M.safe>=80?['A successful failure','Apollo 13 never landed on the Moon, but its crew splashed down safely in the Pacific Ocean. Commander Jim Lovell later called it "a successful failure."']
+    :M.safe>=50?['Home, just barely','The crew made it home, but with almost nothing to spare.']:['A very close call','The crew survived, but a few more problems would have been too many.'],
+  wrap:'On April 17, 1970, Jim Lovell, Jack Swigert and Fred Haise splashed down safely near Samoa. An investigation found that damaged wiring inside the oxygen tank had sparked the explosion, and later Apollo spacecraft were redesigned to prevent it.'},
+ {id:'const',t:'A More Perfect Union',era:'The Constitutional Convention · 1787',i:'📜',role:'You are a delegate in Philadelphia, helping write a new plan of government for the United States.',
+  meters:[['big','Large states\' support',50,1],['small','Small states\' support',50,1],['trust','People\'s trust',50,1]],
+  fail:[['big','<=',0,'The large states walk out','Without Virginia, Pennsylvania and Massachusetts, there could be no new nation. The real delegates kept talking through a hot summer until they found compromises.'],['small','<=',0,'The small states walk out','Without the small states, the Union would split apart. The real delegates found a compromise that both sides could accept.']],
+  steps:[
+   {d:'May-July 1787 · Philadelphia',h:'Who gets the votes?',x:'Under the Articles of Confederation, Congress was so weak it could not even collect taxes. Delegates from 12 states (Rhode Island stayed home) have met to fix it. The first big fight: how should the states be represented in Congress?',
+    o:[{t:'The Virginia Plan: states with more people get more votes, in both houses of Congress.',fx:{big:25,small:-30},c:'Large states love it. Small states like Delaware threaten to walk out.'},
+       {t:'The New Jersey Plan: every state gets the same number of votes.',fx:{small:25,big:-30},c:'Small states are happy, but Virginia and Pennsylvania say it is unfair to their many citizens.'},
+       {t:'A compromise: seats in the House by population, and two senators for every state.',fx:{big:10,small:10,trust:5},c:'Neither side gets everything, which is exactly why both can accept it.',h:1}],
+    n:'The "Great Compromise" (also called the Connecticut Compromise), proposed by Roger Sherman and Oliver Ellsworth, passed on July 16, 1787.'},
+   {d:'Summer 1787',h:'Who runs the government?',x:'The country needs someone to carry out its laws. What kind of leader should it have?',
+    o:[{t:'One president, chosen by electors from each state, for a four-year term.',fx:{trust:15,big:5,small:5},c:'One leader can act quickly, and elections every four years keep that power in check.',h:1},
+       {t:'A council of three people who share the job.',fx:{trust:-5},c:'Some delegates feared one person would act like a king, but a council could argue and stall in an emergency.'},
+       {t:'A president who serves for life, as long as they behave well.',fx:{trust:-25},c:'Many Americans had just fought a war against a king. A ruler for life sounds too much like one.'}],
+    n:'The delegates chose a single president with a four-year term, chosen through the Electoral College. Alexander Hamilton had suggested a president who could serve for life, but few agreed.'},
+   {d:'Summer 1787',h:'Stopping a takeover',x:'How do you keep any one part of the government from taking over?',
+    o:[{t:'Split power among Congress, the president and the courts, and let each check the others: vetoes, overrides, and Senate approval of judges.',fx:{trust:20,big:5,small:5},c:'Each branch can block the others\' mistakes. It is slower, on purpose.',h:1},
+       {t:'Make Congress the boss of the other two branches.',fx:{trust:-10,big:5},c:'Whoever controls Congress would control everything.'},
+       {t:'Let each state cancel any national law it doesn\'t like.',fx:{trust:-15,small:5},c:'That is close to the weak Articles that got the country into trouble.'}],
+    n:'The Constitution separates power into three branches with checks and balances, an idea James Madison and others drew from the French writer Montesquieu.'},
+   {d:'September 1787 - 1788',h:'Winning ratification',x:'The Constitution is signed on September 17, 1787, but 9 of the 13 states must ratify it. Anti-Federalists warn that it has no list of the people\'s rights.',
+    o:[{t:'Promise to add a Bill of Rights once the Constitution is approved.',fx:{trust:25,big:5,small:5},c:'Doubters in big states like Massachusetts and Virginia agree to vote yes.',h:1},
+       {t:'Refuse: the Constitution already limits the government enough.',fx:{trust:-20},c:'Several large states may vote no, and the Union could fall apart.'},
+       {t:'Throw it out and hold a brand-new convention.',fx:{trust:-20,big:-10,small:-10},c:'Months of hard-won compromises would be lost.'}],
+    n:'Federalists promised amendments. New Hampshire became the ninth state to ratify on June 21, 1788, and the Bill of Rights was ratified in 1791.'},
+   {d:'1787',h:'Changing it later',x:'No plan is perfect. How should future generations be able to change the Constitution?',src:['We the People of the United States, in Order to form a more perfect Union, establish Justice, insure domestic Tranquility, provide for the common defence, promote the general Welfare, and secure the Blessings of Liberty to ourselves and our Posterity, do ordain and establish this Constitution for the United States of America.','Preamble to the U.S. Constitution'],
+    o:[{t:'Allow amendments, but only with wide agreement: two-thirds of Congress and three-fourths of the states.',fx:{trust:15},c:'Change is possible but hard, so rights can\'t be erased by a passing mood.',h:1},
+       {t:'Make it impossible to change.',fx:{trust:-15},c:'A country that can\'t fix its mistakes may break instead.'},
+       {t:'Let a simple majority of Congress change it at any time.',fx:{trust:-10},c:'Then any right could be voted away in a single afternoon.'}],
+    n:'Article V set up the amendment process. It has been used 27 times, including to end slavery (13th Amendment), guarantee equal protection of the laws (14th) and protect voting rights (15th, 19th and 26th).'}],
+  end:M=>M.big>=60&&M.small>=60&&M.trust>=60?['A more perfect union','Large and small states both signed on, and the people trusted the plan. Like the real delegates, you built a government that could last.']
+    :M.trust>=50?['Ratified, but shaky','The Constitution passed, but many people doubted it would work.']:['Not ratified','Too many states said no, and the young country stayed weak and divided.'],
+  wrap:'The Constitution was also shaped by compromises over slavery, such as counting an enslaved person as three-fifths of a person when dividing seats in the House. Those compromises protected slavery for decades, until the Civil War and the 13th, 14th and 15th Amendments. Today the Constitution is the oldest written national constitution still in use.'}];
+const XRS=()=>{const N=NL();return N.xrs||(N.xrs={})};
+function xrStart(id){const s=XR.find(x=>x.id===id);NL().xr={id,i:0,m:Object.fromEntries(s.meters.map(([k,,v])=>[k,v])),picks:[],ph:'choose'};SYNC();rerealm();scrollTo({top:0})}
+function xrPick(j){const Z=NL().xr;if(!Z||Z.ph!=='choose')return;const s=XR.find(x=>x.id===Z.id),o=s.steps[Z.i].o[j];
+  for(const [k,v] of Object.entries(o.fx||{}))Z.m[k]=Math.max(0,Math.min(100,Z.m[k]+v));Z.picks.push(j);
+  const f=s.fail.find(([k,op,v])=>op==='>='?Z.m[k]>=v:Z.m[k]<=v);Z.ph='result';Z.fail=f?f.slice(3):null;SYNC();rerealm()}
+function xrNext(){const N=NL(),Z=N.xr,s=XR.find(x=>x.id===Z.id);if(Z.fail||Z.i>=s.steps.length-1){xrFinish();return}Z.i++;Z.ph='choose';SYNC();rerealm();const c=$('xrtop');if(c)c.scrollIntoView({block:'start',behavior:calmOn()?'auto':'smooth'})}
+function xrFinish(){const N=NL(),Z=N.xr,s=XR.find(x=>x.id===Z.id),hist=Z.picks.filter((j,i)=>s.steps[i].o[j].h).length,R=XRS(),r=R[s.id]||(R[s.id]={runs:0,best:0});
+  Z.ph='end';Z.hist=hist;r.runs++;if(!Z.fail){r.done=(r.done||0)+1;r.best=Math.max(r.best,hist);if(s.id==='cuba'&&Z.m.war<=25)N.steady=1}
+  addXP(15+3*hist,'a history decision');SYNC();nlAwards();rerealm()}
+const xrBar=(s,k,v)=>{const m=s.meters.find(x=>x[0]===k),good=m[3]>0?v:100-v;return `<div class="xrm"><span>${esc(m[1])}<b>${v}</b></span><div class="bar" role="img" aria-label="${esc(m[1])}: ${v} out of 100"><i style="width:${v}%;background:${good>=60?'#22C55E':good>=35?'#FBBF24':'#F43F5E'}"></i></div></div>`};
+const xrFx=(s,fx)=>`<div class="xrfx">${Object.entries(fx||{}).map(([k,v])=>{const m=s.meters.find(x=>x[0]===k),good=v*m[3]>0;return `<span class="${good?'g':'b'}">${esc(m[1])} ${v>0?'+':'−'}${Math.abs(v)}</span>`}).join('')}</div>`;
+GVIEW.xr=function(){const N=NL(),Z=N.xr,head=nlHeadBar('Crossroads','Step into history. Make the hard calls, live with the consequences, then see what really happened.');
+  if(!Z){const R=XRS();return nlWrap(head+`<div class="xrcards">${XR.map(s=>{const r=R[s.id];return `<div class="nlcard xrcard"><div style="font-size:2rem" aria-hidden="true">${s.i}</div><div class="kick">${esc(s.era)}</div><h3 style="margin:0">${esc(s.t)}</h3><p class="mt" style="margin:0">${esc(s.role)}</p>
+    <p class="mt" style="margin:0;font-size:.86rem">${r&&r.done?`Best Historian's eye: <b style="color:var(--tx)">${r.best} of 5</b>`:'Not played yet'}</p><button class="nlbtn" style="margin-top:auto" onclick="xrStart('${s.id}')">${r?'▶ Play again':'▶ Begin'}</button></div>`}).join('')}</div>
+    <p class="mt" style="margin-top:14px">Each story has five decisions. Your choices move three meters, and after every choice you'll learn what really happened. There's no single right path, but history has lessons.</p>`)}
+  const s=XR.find(x=>x.id===Z.id),st=s.steps[Z.i],meters=`<div class="xrmeters">${s.meters.map(([k])=>xrBar(s,k,Z.m[k])).join('')}</div>`;
+  if(Z.ph==='end'){const [t,x]=Z.fail||s.end(Z.m);
+    return nlWrap(head+`<div class="nlcard" id="xrtop"><div class="kick">${esc(s.era)}</div><h2 class="nltitle" style="font-size:1.8rem">${Z.fail?'⚠️':'🏁'} ${esc(t)}</h2><p>${esc(x)}</p>${meters}
+      <h3>Your path vs. history <span class="mt" style="font-weight:600">· Historian's eye ${Z.hist} of ${s.steps.length}</span></h3><div class="xrpath">${Z.picks.map((j,i)=>{const o=s.steps[i].o[j],real=s.steps[i].o.find(q=>q.h);return `<div><span aria-hidden="true">${o.h?'✅':'↪️'}</span><div><b>${esc(s.steps[i].h)}:</b> ${esc(o.t)}${o.h?'':`<div class="mt" style="margin-top:4px">History chose: ${esc(real.t)}</div>`}</div></div>`}).join('')}</div>
+      <div class="xrnote"><b>The bigger picture.</b> ${esc(s.wrap)}</div>
+      <div class="row" style="gap:8px;margin-top:14px"><button class="nlbtn" onclick="xrStart('${s.id}')">↻ Try different choices</button><button class="nlbtn ghost" onclick="NL().xr=null;SYNC();rerealm()">Choose another story</button></div></div>`)}
+  const pick=Z.ph==='result'?st.o[Z.picks[Z.picks.length-1]]:null;
+  return nlWrap(head+`<div id="xrtop"><div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px"><div><div class="kick">${esc(s.t)} · decision ${Z.i+1} of ${s.steps.length}</div><p class="mt" style="margin:4px 0 0">${esc(s.role)}</p></div><button class="nlbtn ghost sm" onclick="if(confirm('Leave this story? Your progress in it will be lost.')){NL().xr=null;SYNC();rerealm()}">Leave story</button></div>
+    ${meters}<div class="nlcard"><div class="kick">${esc(st.d)}</div><h3 style="margin:6px 0">${esc(st.h)}</h3><p style="margin:0">${esc(st.x)}</p>${st.src?`<blockquote class="xrsrc">"${esc(st.src[0])}"<small>${esc(st.src[1])}</small></blockquote>`:''}
+    ${pick?`<div class="xrnote" style="border-color:#94A3B8;background:rgba(148,163,184,.08)"><b>You chose:</b> ${esc(pick.t)}</div><p style="margin:12px 0 0">${esc(pick.c)}</p>${xrFx(s,pick.fx)}<div class="xrnote"><b>${pick.h?'✅ That\'s what really happened.':'📖 What really happened:'}</b> ${esc(st.n)}</div>
+      <button class="nlbtn" style="margin-top:14px" onclick="xrNext()">${Z.fail?'See what happened →':Z.i>=s.steps.length-1?'See how it ends →':'Next decision →'}</button>`
+    :`<div class="xropts">${st.o.map((o,j)=>`<button class="xropt" onclick="xrPick(${j})"><span class="k" aria-hidden="true">${'ABC'[j]}</span><span>${esc(o.t)}</span></button>`).join('')}</div>`}</div></div>`)};
+NLGAMES.push({id:'xr',tag:'History simulation',n:'Crossroads',p:'Advise President Kennedy, run Apollo 13\'s rescue, or write the Constitution. Your choices change history.'});
+NLART.xr=`<svg viewBox="0 0 240 110" xmlns="http://www.w3.org/2000/svg"><rect width="240" height="110" fill="#1C1917"/><path d="M120 100V58M120 58L70 18M120 58L170 18" stroke="#FBBF24" stroke-width="6" stroke-linecap="round" fill="none"/><circle cx="120" cy="58" r="7" fill="#FBBF24"/><rect x="40" y="6" width="60" height="18" rx="4" fill="#292524" stroke="#78716C"/><text x="70" y="19" font-size="10" font-weight="800" text-anchor="middle" fill="#E7E5E4" font-family="sans-serif">1962</text><rect x="140" y="6" width="60" height="18" rx="4" fill="#292524" stroke="#78716C"/><text x="170" y="19" font-size="10" font-weight="800" text-anchor="middle" fill="#E7E5E4" font-family="sans-serif">1787</text><text x="120" y="96" font-size="9" font-weight="700" text-anchor="middle" fill="#A8A29E" font-family="sans-serif">YOUR CHOICE</text></svg>`;
+NLTITLES.push({id:'strategist',n:'Strategist',d:'Finish a Crossroads story',ok:N=>Object.values(N.xrs||{}).some(r=>r.done)},
+  {id:'historian',n:'Historian',d:'Finish all three Crossroads stories',ok:N=>XR.every(s=>(N.xrs||{})[s.id]&&N.xrs[s.id].done)},
+  {id:'steady',n:'Steady Hand',d:'End Thirteen Days with the risk of war at 25 or less',ok:N=>!!N.steady});
+</script>
+
+<style>
+/* ===== Next Level: Lab Bench ===== */
+.lbtabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.lbgrid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:16px;align-items:start}@media(max-width:940px){.lbgrid{grid-template-columns:1fr}}
+.pjcv{display:block;width:100%;height:auto;aspect-ratio:2.3/1;border-radius:14px;background:#0B1220}
+.lbctl{display:grid;gap:10px;margin-top:12px}
+.lbctl label{display:grid;grid-template-columns:110px 1fr 70px;gap:10px;align-items:center;font-weight:700;font-size:.92rem}
+.lbctl input[type=range]{width:100%;accent-color:var(--acc)}
+.lbtbl{width:100%;border-collapse:collapse;font-size:.88rem;font-variant-numeric:tabular-nums}
+.lbtbl th,.lbtbl td{padding:6px 8px;border-bottom:1px solid var(--ln);text-align:right}.lbtbl th:first-child,.lbtbl td:first-child{text-align:left}
+.lbtbl th{color:var(--mt);font-weight:700}
+.lbtbl tr.pick td{background:color-mix(in srgb,var(--acc) 14%,transparent)}
+.lbstep{display:flex;gap:10px;align-items:flex-start;margin:10px 0}.lbstep .n{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:rgba(148,163,184,.15);font-weight:800;font-size:.85rem}
+.lbstep.ok .n{background:var(--good);color:#0B1020}
+.lbopt{display:grid;gap:6px;margin-top:6px}.lbopt button{text-align:left}
+.lbfb{border-radius:12px;padding:10px 12px;margin-top:10px;font-weight:600}.lbfb.ok{background:rgba(34,197,94,.15);color:#86EFAC}.lbfb.no{background:rgba(244,63,94,.12);color:#FECDD3}
+.ttwrap{display:grid;grid-template-columns:150px 1fr;gap:16px;align-items:center}@media(max-width:520px){.ttwrap{grid-template-columns:1fr}}
+.ttmeter{font:800 2.4rem/1 "Bricolage Grotesque",sans-serif;font-variant-numeric:tabular-nums}
+.ttflask path.liq{transition:fill .35s}
+.lbstars{color:#FBBF24;font-size:1.3rem;letter-spacing:2px}
+</style>
+<script type="text/x-lumen">
+/* ===== Next Level: Lab Bench. Two virtual labs that follow real scientific practice:
+   Projectile Lab (physics): hypothesis, a fair test that changes one variable, a graph of the data, and a
+   claim-evidence-reasoning conclusion that must match the learner's own data; plus a target challenge.
+   Titration Lab (chemistry): neutralise an acid drop by drop with an indicator, mark the endpoint, then use
+   M1V1 = M2V2 to find an unknown concentration. All the physics and chemistry is computed, not scripted. */
+const LB=()=>{const N=NL(),L=N.lab||(N.lab={});L.p=L.p||{trials:[],chal:{}};L.t=L.t||{mode:'practice',ind:'phph'};return L};
+const GRAV={earth:['Earth',9.8],moon:['Moon',1.62],mars:['Mars',3.71]};
+const pjCalc=(a,v,g)=>{const r=a*Math.PI/180;return{R:v*v*Math.sin(2*r)/g,T:2*v*Math.sin(r)/g,H:v*v*Math.sin(r)**2/(2*g)}};
+let PJ={a:30,v:20,g:'earth',fly:null,raf:0};
+const PJTARGETS=[{d:15,g:'earth'},{d:32,g:'earth'},{d:80,g:'moon'}];
+/* Draw the launcher, past landing spots, the current flight and (in the challenge) the target */
+function pjDraw(prog){const cv=$('pjcv');if(!cv)return;const w=cv.clientWidth,h=cv.clientHeight,dpr=Math.min(2,devicePixelRatio||1);if(cv.width!==Math.round(w*dpr)){cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr)}
+  const x=cv.getContext('2d'),L=LB().p,g=GRAV[PJ.g][1],tg=L.mode==='chal'?PJTARGETS[L.ti||0]:null;x.setTransform(dpr,0,0,dpr,0,0);x.clearRect(0,0,w,h);
+  const Rmax=PJ.v*PJ.v/g,span=Math.max(10,Rmax,tg?tg.d:0)*1.12,k=Math.min((w-40)/span,(h-40)/(Math.max(Rmax,tg?tg.d:0)*.52)),X=m=>24+m*k,Y=m=>h-22-m*k;
+  x.fillStyle='#1E293B';x.fillRect(0,h-22,w,22);x.strokeStyle='#334155';x.lineWidth=1;x.font='11px system-ui';x.fillStyle='#94A3B8';
+  const stepM=[1,2,5,10,20,50,100,200][[1,2,5,10,20,50,100,200].findIndex(s=>span/s<=10)]||500;for(let m=0;m<=span;m+=stepM){x.beginPath();x.moveTo(X(m),h-22);x.lineTo(X(m),h-16);x.stroke();x.fillText(m+' m',X(m)-8,h-5)}
+  if(tg){x.fillStyle='#F43F5E';x.fillRect(X(tg.d)-3,h-52,3,30);x.beginPath();x.moveTo(X(tg.d),h-52);x.lineTo(X(tg.d)+16,h-46);x.lineTo(X(tg.d),h-40);x.fill();x.fillText('target '+tg.d+' m',X(tg.d)-20,h-58)}
+  for(const t of L.trials.slice(-12))if(t.g===PJ.g&&(!tg||L.mode==='chal')){x.fillStyle='rgba(148,163,184,.55)';x.beginPath();x.arc(X(t.R),h-22,3,0,7);x.fill()}
+  const r=PJ.a*Math.PI/180;x.save();x.translate(X(0),h-22);x.rotate(-r);x.fillStyle='#64748B';x.fillRect(0,-5,26,10);x.restore();x.fillStyle='#475569';x.beginPath();x.arc(X(0),h-22,9,Math.PI,0);x.fill();
+  const F=PJ.fly;if(F){const {R,T,H}=pjCalc(F.a,F.v,g),n=60,upto=Math.max(0,Math.min(1,prog));x.strokeStyle=NLACC[NL().acc];x.lineWidth=2.5;x.setLineDash([]);x.beginPath();
+    for(let i=0;i<=n*upto;i++){const t=T*i/n,px=F.v*Math.cos(F.a*Math.PI/180)*t,py=F.v*Math.sin(F.a*Math.PI/180)*t-g*t*t/2;i?x.lineTo(X(px),Y(py)):x.moveTo(X(px),Y(py))}x.stroke();
+    const t=T*upto,bx=F.v*Math.cos(F.a*Math.PI/180)*t,by=Math.max(0,F.v*Math.sin(F.a*Math.PI/180)*t-g*t*t/2);x.fillStyle='#FBBF24';x.beginPath();x.arc(X(bx),Y(by),6,0,7);x.fill();
+    if(upto>=1){x.fillStyle='#E2E8F0';x.font='700 13px system-ui';x.fillText(`${R.toFixed(1)} m`,X(R)-16,h-28);x.setLineDash([4,4]);x.strokeStyle='rgba(251,191,36,.6)';x.beginPath();x.moveTo(X(R/2),Y(H));x.lineTo(X(R/2),h-22);x.stroke();x.setLineDash([]);x.fillStyle='#94A3B8';x.font='11px system-ui';x.fillText(`peak ${H.toFixed(1)} m`,X(R/2)+4,Y(H)+12)}}}
+function pjLaunch(){const L=LB().p,g=GRAV[PJ.g][1],c=pjCalc(PJ.a,PJ.v,g);cancelAnimationFrame(PJ.raf);PJ.fly={a:PJ.a,v:PJ.v};const t0=performance.now(),dur=calmOn()?0:900+Math.min(1200,c.T*120);
+  const done=()=>{pjDraw(1);const tr={a:PJ.a,v:PJ.v,g:PJ.g,R:+c.R.toFixed(2),T:+c.T.toFixed(2),H:+c.H.toFixed(2)};
+    if(L.mode==='chal'){const tg=PJTARGETS[L.ti||0],C=L.chal,key='t'+(L.ti||0);C[key]=C[key]||{shots:0,hit:0};if(!C[key].hit){C[key].shots++;const hit=PJ.g===tg.g&&Math.abs(c.R-tg.d)<=Math.max(.5,tg.d*.03);
+      if(hit){C[key].hit=1;C[key].stars=C[key].shots===1?3:C[key].shots<=3?2:1;msg(`🎯 Hit! ${'★'.repeat(C[key].stars)}`);if(PJTARGETS.every((_,i)=>C['t'+i]&&C['t'+i].hit)&&!C.paid){C.paid=1;addXP(15,'the target challenge')}}
+      else msg(PJ.g!==tg.g?`This target is on the ${GRAV[tg.g][0]}. Switch gravity first.`:`${c.R.toFixed(1)} m: ${c.R<tg.d?'too short':'too far'} by ${Math.abs(c.R-tg.d).toFixed(1)} m.`)}}
+    else L.trials.push(tr);SYNC();rerealm()};
+  if(!dur){done();return}const f=t=>{const p=(t-t0)/dur;pjDraw(p);if(p<1)PJ.raf=requestAnimationFrame(f);else done()};PJ.raf=requestAnimationFrame(f)}
+/* The fair test: the (speed, gravity) pair with the most different angles */
+function pjFair(L){const by={};for(const t of L.trials){const k=t.v+'|'+t.g;(by[k]=by[k]||new Map()).set(t.a,t)}let best=null;for(const [k,m] of Object.entries(by))if(!best||m.size>best.m.size)best={k,m};return best?{v:+best.k.split('|')[0],g:best.k.split('|')[1],trials:[...best.m.values()].sort((a,b)=>a.a-b.a)}:{trials:[]}}
+const PJCLAIMS=['The bigger the angle, the farther it goes.','An angle of about 45° sends it the farthest.','The smallest angle sends it the farthest.','The angle makes no difference.'];
+const PJREASONS=['At 45°, the launch speed is shared evenly between going up (which keeps it in the air longer) and going forward (which carries it sideways), so time in the air × forward speed is largest.','Steeper launches always stay up longer, so they always land farther away.','Gravity is weaker when you launch at 45°.'];
+function pjCheck(){const L=LB().p,F=pjFair(L),best=F.trials.reduce((a,b)=>!a||b.R>a.R?b:a,null),ev=L.trials[L.ev],fb=[];
+  if(F.trials.length<5)fb.push('Test at least 5 different angles at the same speed and gravity first.');
+  if(L.claim!==1)fb.push('Look at your graph again: which angle gave the longest range?');
+  if(!ev||!best||ev.v!==F.v||ev.g!==F.g)fb.push('Pick a trial from your fair test as your evidence.');else if(ev.R<best.R-1e-9)fb.push(`Your best evidence is the trial with the longest range (${best.a}°, ${best.R} m).`);
+  if(best&&best.a!==45&&!F.trials.some(t=>t.a===45))fb.push('Your data doesn\'t include 45° yet. Test it to make your case stronger!');
+  if(L.reason!==0)fb.push('Think about how the speed is split between going up and going forward.');
+  L.fb=fb.length?fb:null;if(!fb.length&&!L.done){L.done=1;addXP(25,'the Projectile Lab');nlAwards()}SYNC();rerealm()}
+function pjGraph(F){if(F.trials.length<1)return '<p class="mt">Your graph appears here after your first launches.</p>';const w=360,h=200,max=Math.max(...F.trials.map(t=>t.R))*1.15||1,X=a=>36+a/90*(w-50),Y=r=>h-26-r/max*(h-44);
+  return `<svg viewBox="0 0 ${w} ${h}" style="width:100%;height:auto" role="img" aria-label="Range against launch angle at ${F.v} meters per second on ${GRAV[F.g][0]}"><line x1="36" y1="${h-26}" x2="${w-10}" y2="${h-26}" stroke="#475569"/><line x1="36" y1="10" x2="36" y2="${h-26}" stroke="#475569"/>
+    ${[0,15,30,45,60,75,90].map(a=>`<text x="${X(a)}" y="${h-10}" font-size="10" fill="#94A3B8" text-anchor="middle">${a}°</text>`).join('')}<text x="12" y="${h/2}" font-size="10" fill="#94A3B8" transform="rotate(-90 12 ${h/2})" text-anchor="middle">range (m)</text>
+    <polyline points="${F.trials.map(t=>`${X(t.a)},${Y(t.R)}`).join(' ')}" fill="none" stroke="#475569" stroke-dasharray="4 4"/>${F.trials.map(t=>`<circle cx="${X(t.a)}" cy="${Y(t.R)}" r="5" fill="var(--acc)"><title>${t.a}°: ${t.R} m</title></circle>`).join('')}
+    <text x="${w-10}" y="20" font-size="10" fill="#94A3B8" text-anchor="end">${F.v} m/s · ${GRAV[F.g][0]}</text></svg>`}
+function pjView(){const L=LB().p,F=pjFair(L),chal=L.mode==='chal';setTimeout(()=>pjDraw(PJ.fly?1:0),0);
+  const ctl=`<div class="lbctl"><label>Angle <input type="range" min="5" max="85" step="5" value="${PJ.a}" oninput="PJ.a=+this.value;this.nextElementSibling.textContent=this.value+'°';PJ.fly=null;pjDraw(0)" aria-label="Launch angle"><b>${PJ.a}°</b></label>
+    <label>Speed <input type="range" min="5" max="30" step="1" value="${PJ.v}" oninput="PJ.v=+this.value;this.nextElementSibling.textContent=this.value+' m/s';PJ.fly=null;pjDraw(0)" aria-label="Launch speed"><b>${PJ.v} m/s</b></label>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><span class="mt" style="width:110px;font-weight:700">Gravity</span>${Object.entries(GRAV).map(([k,[n,v]])=>`<button class="nlchip ${PJ.g===k?'on':''}" aria-pressed="${PJ.g===k}" onclick="PJ.g='${k}';PJ.fly=null;rerealm()">${n} (${v} m/s²)</button>`).join('')}</div>
+    <button class="nlbtn" style="min-height:52px" onclick="pjLaunch()">🚀 Launch</button></div>`;
+  const left=`<div class="nlcard"><canvas class="pjcv" id="pjcv" role="img" aria-label="Launch area. The last launch went ${L.trials.length?L.trials[L.trials.length-1].R+' meters':'nowhere yet'}."></canvas>${ctl}</div>`;
+  if(chal){const C=L.chal,ti=L.ti||0;return `<div class="lbgrid">${left}<div class="nlcard"><h3>🎯 Target challenge</h3><p class="mt">Hit each target within 3%. Fewer shots earn more stars. Tip: range = speed² × sin(2 × angle) ÷ gravity.</p>
+    ${PJTARGETS.map((t,i)=>{const c=C['t'+i]||{};return `<div class="nlstep ${c.hit?'done':''}" style="margin-top:8px"><span class="ic" aria-hidden="true">${c.hit?'✅':'🎯'}</span><div><b>${t.d} m on the ${GRAV[t.g][0]}</b><span class="mt">${c.hit?`Hit in ${c.shots} shot${c.shots>1?'s':''} <span class="lbstars">${'★'.repeat(c.stars)}</span>`:c.shots?`${c.shots} shot${c.shots>1?'s':''} so far`:'Not tried yet'}</span></div><button class="nlbtn sm ${i===ti?'':'ghost'}" onclick="LB().p.ti=${i};PJ.g='${t.g}';PJ.fly=null;rerealm()">${i===ti?'Aiming':'Aim here'}</button></div>`}).join('')}
+    <button class="nlbtn ghost sm" style="margin-top:12px" onclick="LB().p.mode='inv';rerealm()">← Back to the investigation</button></div></div>`}
+  const st=(n,ok,t,body)=>`<div class="lbstep ${ok?'ok':''}"><span class="n">${ok?'✓':n}</span><div style="flex:1"><b>${t}</b>${body||''}</div></div>`;
+  return `<div class="lbgrid"><div>${left}
+    <div class="nlcard" style="margin-top:14px"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><h3 style="margin:0">Data</h3>${L.trials.length?`<button class="nlbtn ghost sm" onclick="if(confirm('Clear all your trials?')){const P=LB().p;P.trials=[];P.ev=null;P.fb=null;SYNC();rerealm()}">Clear data</button>`:''}</div>
+      ${L.trials.length?`<div style="overflow:auto;max-height:260px;margin-top:8px"><table class="lbtbl"><thead><tr><th>Trial</th><th>Angle</th><th>Speed</th><th>Gravity</th><th>Range</th><th>Time</th><th>Peak</th></tr></thead><tbody>${L.trials.map((t,i)=>`<tr class="${L.ev===i?'pick':''}"><td>${i+1}</td><td>${t.a}°</td><td>${t.v} m/s</td><td>${GRAV[t.g][0]}</td><td>${t.R} m</td><td>${t.T} s</td><td>${t.H} m</td></tr>`).join('')}</tbody></table></div>`:'<p class="mt">Every launch is recorded here.</p>'}</div>
+    <div class="nlcard" style="margin-top:14px"><h3 style="margin:0 0 6px">Graph: range vs. angle</h3>${pjGraph(F)}</div></div>
+  <div class="nlcard"><div class="kick">Investigation</div><h3 style="margin:6px 0">Which launch angle sends a ball the farthest?</h3><p class="mt" style="margin:0">On flat ground, with no air resistance.</p>
+    ${st(1,L.hyp!=null,'Hypothesis: I predict the best angle is…',`<div class="nlchips" style="margin-top:6px">${[15,30,45,60,75].map(a=>`<button class="nlchip ${L.hyp===a?'on':''}" aria-pressed="${L.hyp===a}" onclick="LB().p.hyp=${a};SYNC();rerealm()">${a}°</button>`).join('')}</div>`)}
+    ${st(2,F.trials.length>=5,'Run a fair test',`<p class="mt" style="margin:4px 0 0">Keep speed and gravity the same and change only the angle. Test at least 5 different angles. ${F.trials.length?`So far: <b style="color:var(--tx)">${F.trials.length} angle${F.trials.length>1?'s':''}</b> at ${F.v} m/s on the ${GRAV[F.g][0]}.`:''}</p>`)}
+    ${st(3,L.claim!=null,'Claim',`<div class="lbopt">${PJCLAIMS.map((c,i)=>`<button class="nlchip ${L.claim===i?'on':''}" aria-pressed="${L.claim===i}" onclick="LB().p.claim=${i};SYNC();rerealm()">${esc(c)}</button>`).join('')}</div>`)}
+    ${st(4,L.ev!=null,'Evidence: pick the trial that best supports your claim',F.trials.length?`<div class="nlchips" style="margin-top:6px">${L.trials.map((t,i)=>t.v===F.v&&t.g===F.g?`<button class="nlchip ${L.ev===i?'on':''}" aria-pressed="${L.ev===i}" onclick="LB().p.ev=${i};SYNC();rerealm()">#${i+1}: ${t.a}° → ${t.R} m</button>`:'').join('')}</div>`:'<p class="mt" style="margin:4px 0 0">Launch first.</p>')}
+    ${st(5,L.reason!=null,'Reasoning: why does it happen?',`<div class="lbopt">${PJREASONS.map((c,i)=>`<button class="nlchip ${L.reason===i?'on':''}" aria-pressed="${L.reason===i}" style="text-align:left;border-radius:12px" onclick="LB().p.reason=${i};SYNC();rerealm()">${esc(c)}</button>`).join('')}</div>`)}
+    <button class="nlbtn" style="margin-top:8px" onclick="pjCheck()">Check my conclusion</button>
+    ${L.done?`<div class="lbfb ok">✅ Great science! Your data shows that 45° gives the greatest range${L.hyp===45?', just as you predicted':`, not ${L.hyp}° as you predicted. Changing your mind because of evidence is what scientists do`}. Bonus: try 30° and 60° at the same speed. They land in exactly the same spot!</div>`:L.fb?`<div class="lbfb no">${L.fb.map(esc).join('<br>')}</div>`:''}
+    <hr style="border:0;border-top:1px solid var(--ln);margin:16px 0"><button class="nlbtn ghost" onclick="LB().p.mode='chal';PJ.fly=null;const T=PJTARGETS[LB().p.ti||0];PJ.g=T.g;rerealm()">🎯 Try the target challenge</button></div></div>`}
+
+/* ---------- Titration: HCl in the flask, 0.100 M NaOH from the burette ---------- */
+const TTCB=.1,TTVA=25,IND={phph:['Phenolphthalein',ph=>ph<8.2?'rgba(226,232,240,.35)':ph<10?'#F472B6':'#C026D3','colourless below pH 8.2, pink above'],btb:['Bromothymol blue',ph=>ph<6?'#FACC15':ph<7.6?'#22C55E':'#3B82F6','yellow below pH 6, green to 7.6, blue above'],mo:['Methyl orange',ph=>ph<3.1?'#EF4444':ph<4.4?'#F97316':'#FACC15','red below pH 3.1, orange to 4.4, yellow above']};
+/* pH of a strong acid / strong base mixture at 25 °C */
+function ttPH(ca,vb){const na=ca*TTVA/1000,nb=TTCB*vb/1000,v=(TTVA+vb)/1000;if(Math.abs(na-nb)<1e-12)return 7;return na>nb?-Math.log10((na-nb)/v):14+Math.log10((nb-na)/v)}
+function ttInit(mode){const T=LB().t;T.mode=mode;T.ca=mode==='unknown'?Math.round((.06+Math.random()*.08)*1000)/1000:.1;T.vb=0;T.pts=[[0,+ttPH(T.ca,0).toFixed(2)]];T.end=null;T.ans=null;T.fb=null;T.stars=0}
+function ttNew(mode){ttInit(mode);SYNC();rerealm()}
+function ttAdd(ml){const T=LB().t;if(T.end!=null)return;if(T.vb+ml>50.0001){msg('The burette only holds 50 mL.');return}T.vb=Math.round((T.vb+ml)*100)/100;T.pts.push([T.vb,+ttPH(T.ca,T.vb).toFixed(2)]);SYNC();rerealm()}
+function ttEnd(){const T=LB().t;if(T.end!=null||!T.vb)return;T.end=T.vb;const veq=T.ca*TTVA/TTCB,err=Math.abs(T.end-veq);T.stars=err<=.1?3:err<=.5?2:err<=1.5?1:0;
+  if(T.mode==='practice'&&T.stars>=2&&!T.paidP){T.paidP=1;addXP(15,'a titration')}SYNC();rerealm()}
+function ttAnswer(){const T=LB().t,v=parseFloat(($('ttans')||{}).value);if(!(v>0)){msg('Type the concentration as a decimal, like 0.085');return}
+  const fromYours=TTCB*T.end/TTVA,ok=Math.abs(v-fromYours)/fromYours<=.02,close=Math.abs(v-T.ca)/T.ca;T.ans=v;
+  T.fb=ok?`✅ Correct method: ${TTCB.toFixed(3)} M × ${T.end.toFixed(2)} mL ÷ ${TTVA.toFixed(2)} mL = ${fromYours.toFixed(4)} M. The true value was ${T.ca.toFixed(3)} M, so you were ${(close*100).toFixed(1)}% off${close<=.01?'. Excellent lab work!':'. A more exact endpoint gets you closer.'}`:`Not quite. At the endpoint, moles of base = moles of acid, so M(acid) × V(acid) = M(base) × V(base). Use your endpoint volume of ${T.end.toFixed(2)} mL.`;
+  if(ok&&!T.solved){T.solved=1;addXP(25,'finding an unknown concentration');NL().chemist=1;nlAwards()}SYNC();rerealm()}
+function ttGraph(T){const w=360,h=200,X=v=>34+v/50*(w-44),Y=p=>h-24-p/14*(h-36);
+  return `<svg viewBox="0 0 ${w} ${h}" style="width:100%;height:auto" role="img" aria-label="pH against volume of base added"><line x1="34" y1="${h-24}" x2="${w-10}" y2="${h-24}" stroke="#475569"/><line x1="34" y1="12" x2="34" y2="${h-24}" stroke="#475569"/>
+    ${[0,10,20,30,40,50].map(v=>`<text x="${X(v)}" y="${h-8}" font-size="10" fill="#94A3B8" text-anchor="middle">${v}</text>`).join('')}${[0,7,14].map(p=>`<text x="28" y="${Y(p)+4}" font-size="10" fill="#94A3B8" text-anchor="end">${p}</text>`).join('')}
+    <line x1="34" x2="${w-10}" y1="${Y(7)}" y2="${Y(7)}" stroke="#334155" stroke-dasharray="3 4"/><text x="${w-12}" y="${h-28}" font-size="10" fill="#94A3B8" text-anchor="end">mL of NaOH added</text>
+    <polyline points="${T.pts.map(([v,p])=>`${X(v)},${Y(p)}`).join(' ')}" fill="none" stroke="var(--acc)" stroke-width="2"/>${T.pts.slice(-1).map(([v,p])=>`<circle cx="${X(v)}" cy="${Y(p)}" r="4" fill="var(--acc)"/>`).join('')}
+    ${T.end!=null?`<line x1="${X(T.end)}" x2="${X(T.end)}" y1="12" y2="${h-24}" stroke="#FBBF24" stroke-dasharray="4 3"/>`:''}</svg>`}
+function ttView(){const T=LB().t;if(!T.pts)ttInit('practice');const ph=ttPH(T.ca,T.vb),col=IND[T.ind][1](ph),lvl=Math.max(0,50-T.vb);
+  const flask=`<svg class="ttflask" viewBox="0 0 120 230" style="width:100%;max-width:150px" role="img" aria-label="Burette with ${lvl.toFixed(2)} mL left above a flask"><rect x="52" y="4" width="16" height="120" rx="3" fill="rgba(148,163,184,.15)" stroke="#64748B"/><rect x="54" y="${6+(1-lvl/50)*116}" width="12" height="${lvl/50*116}" fill="rgba(147,197,253,.55)"/>
+    ${[0,10,20,30,40,50].map(m=>`<line x1="52" x2="58" y1="${6+m/50*116}" y2="${6+m/50*116}" stroke="#94A3B8"/>`).join('')}<rect x="48" y="124" width="24" height="7" rx="2" fill="#475569"/><rect x="58" y="131" width="4" height="12" fill="#64748B"/>
+    <path d="M44 150h32v22l26 46a6 6 0 0 1-5 9H23a6 6 0 0 1-5-9l26-46z" fill="rgba(148,163,184,.12)" stroke="#94A3B8" stroke-width="2"/><path class="liq" d="M35 190h50l15 27a5 5 0 0 1-4 8H24a5 5 0 0 1-4-8z" fill="${col}"/></svg>`;
+  const unk=T.mode==='unknown';
+  return `<div class="lbgrid"><div><div class="nlcard"><div class="ttwrap">${flask}<div><div class="kick">${unk?'Unknown acid':'Practice'} · 25.00 mL of HCl${unk?'':' (0.100 M)'} · NaOH 0.100 M in the burette</div>
+      <div style="display:flex;gap:24px;flex-wrap:wrap;margin:10px 0"><div><span class="mt">Base added</span><div class="ttmeter">${T.vb.toFixed(2)}<span style="font-size:1rem"> mL</span></div></div><div><span class="mt">pH meter</span><div class="ttmeter" style="color:${ph<6.5?'#FB7185':ph>7.5?'#60A5FA':'#4ADE80'}">${ph.toFixed(2)}</div></div></div>
+      <div class="row" style="gap:6px">${[[1,'+1.00 mL'],[.1,'+0.10 mL'],[.05,'+1 drop']].map(([v,l])=>`<button class="nlbtn sm ${v<1?'ghost':''}" ${T.end!=null?'disabled':''} onclick="ttAdd(${v})">${l}</button>`).join('')}<button class="nlbtn sm" style="background:#FBBF24" ${T.end!=null||!T.vb?'disabled':''} onclick="ttEnd()">🎯 Mark endpoint</button></div>
+      <div class="nlchips" style="margin-top:10px" role="group" aria-label="Indicator">${Object.entries(IND).map(([k,[n]])=>`<button class="nlchip ${T.ind===k?'on':''}" aria-pressed="${T.ind===k}" ${T.vb?'disabled':''} onclick="LB().t.ind='${k}';SYNC();rerealm()">${n}</button>`).join('')}</div>
+      <p class="mt" style="font-size:.84rem;margin:6px 0 0">${esc(IND[T.ind][0])}: ${esc(IND[T.ind][2])}. Choose before you start.</p></div></div></div>
+    <div class="nlcard" style="margin-top:14px"><h3 style="margin:0 0 6px">pH curve</h3>${ttGraph(T)}</div></div>
+  <div class="nlcard"><div class="kick">Titration Lab</div><h3 style="margin:6px 0">${unk?'Find the concentration of an unknown acid':'Neutralise the acid exactly'}</h3>
+    <p class="mt">HCl + NaOH → NaCl + H₂O. At the <b>equivalence point</b>, the moles of base added equal the moles of acid. Add base until the indicator just changes colour (the <b>endpoint</b>). Go fast at first, then drop by drop.</p>
+    ${T.end!=null?`<div class="lbfb ${T.stars>=2?'ok':'no'}">Endpoint marked at <b>${T.end.toFixed(2)} mL</b>. ${unk?'':`The equivalence point was ${(T.ca*TTVA/TTCB).toFixed(2)} mL.`} <span class="lbstars">${'★'.repeat(T.stars)}${'☆'.repeat(3-T.stars)}</span>${T.stars<2?' Next time, slow down to single drops as the colour starts to change.':''}</div>`:''}
+    ${unk&&T.end!=null?`<div style="margin-top:12px"><b>Now calculate:</b> what was the acid's concentration?<p class="mt" style="margin:4px 0 8px">M(acid) × V(acid) = M(base) × V(base)</p><div class="row" style="gap:8px"><input id="ttans" inputmode="decimal" placeholder="0.000" aria-label="Acid concentration in mol per liter" style="width:120px;min-height:40px;border-radius:10px;border:1px solid var(--ln);background:#0F172A;color:var(--tx);padding:0 10px;font:inherit" value="${T.ans??''}"><span class="mt">M</span><button class="nlbtn sm" onclick="ttAnswer()">Check</button></div>${T.fb?`<div class="lbfb ${T.solved?'ok':'no'}">${esc(T.fb)}</div>`:''}</div>`:''}
+    <div class="xrnote" style="margin-top:14px"><b>Why the jump?</b> Near the equivalence point there is almost no acid or base left, so a single drop changes the pH from about 4 to about 10. That's why one drop can flip the indicator's colour.</div>
+    <div class="row" style="gap:8px;margin-top:14px"><button class="nlbtn ${unk?'ghost':''}" onclick="ttNew('practice')">↻ Practice run</button><button class="nlbtn ${unk?'':'ghost'}" onclick="ttNew('unknown')">🧪 Unknown acid</button></div></div></div>`}
+GVIEW.lab=function(){const L=LB(),tab=L.tab||'proj';
+  return nlWrap(nlHeadBar('Lab Bench','Real experiments, real data. Form a hypothesis, test it fairly, and back your claim with evidence.')+`<div class="lbtabs" role="tablist"><button role="tab" class="nlchip ${tab==='proj'?'on':''}" aria-selected="${tab==='proj'}" onclick="LB().tab='proj';SYNC();rerealm()">🚀 Projectile Lab (physics)</button><button role="tab" class="nlchip ${tab==='tit'?'on':''}" aria-selected="${tab==='tit'}" onclick="LB().tab='tit';SYNC();rerealm()">🧪 Titration Lab (chemistry)</button></div>${tab==='tit'?ttView():pjView()}`)};
+addEventListener('resize',()=>{if(AR.mode==='lab'&&$('pjcv'))pjDraw(PJ.fly?1:0)});
+NLGAMES.push({id:'lab',tag:'Science lab',n:'Lab Bench',p:'Launch projectiles on Earth, the Moon and Mars, or titrate an unknown acid. Real science, real data.'});
+NLART.lab=`<svg viewBox="0 0 240 110" xmlns="http://www.w3.org/2000/svg"><rect width="240" height="110" fill="#0B1220"/><path d="M20 92Q80 -10 150 92" stroke="#22D3EE" stroke-width="3" fill="none" stroke-dasharray="6 5"/><circle cx="118" cy="44" r="6" fill="#FBBF24"/><rect x="10" y="92" width="150" height="4" fill="#334155"/><path d="M188 30h16v20l18 34a5 5 0 0 1-4 7h-44a5 5 0 0 1-4-7l18-34z" fill="none" stroke="#94A3B8" stroke-width="2.5"/><path d="M178 72h36l7 13a4 4 0 0 1-3 6h-44a4 4 0 0 1-3-6z" fill="#F472B6"/></svg>`;
+NLTITLES.push({id:'physicist',n:'Physicist',d:'Complete the Projectile Lab investigation',ok:N=>!!(N.lab&&N.lab.p&&N.lab.p.done)},
+  {id:'chemist',n:'Chemist',d:'Find the concentration of an unknown acid',ok:N=>!!N.chemist});
 </script>
 
 <style>
