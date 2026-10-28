@@ -1,0 +1,200 @@
+<style>
+/* ===== Snake Arena ===== */
+.snwrap{position:relative;border-radius:22px;overflow:hidden;border:3px solid rgba(255,255,255,.85);box-shadow:0 7px 0 var(--ga-lip),0 18px 30px rgba(15,23,42,.3);background:#0a0d17}
+.sncv{display:block;width:100%;height:min(64vh,600px);touch-action:none;user-select:none;-webkit-user-select:none;cursor:crosshair}
+.sncv.sndemo{height:clamp(240px,40vh,380px);cursor:default}
+.snsplit{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:18px;align-items:start}@media(max-width:820px){.snsplit{grid-template-columns:1fr}}
+.snbrain{position:absolute;left:10px;bottom:10px}
+.snset{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:12px}.snset .chip{background:var(--bg);color:var(--ink);border:2px solid var(--line)}.snset .chip.on{background:#0f172a;color:#fff;border-color:#0f172a}
+.snq{display:flex;gap:10px 16px;align-items:center;flex-wrap:wrap;background:#0f172a;color:#f8fafc;border-radius:18px;padding:10px 16px;margin:0 0 10px;min-height:62px;border:2px solid #334155}
+.snqq{font:800 1.2rem/1.35 "Bricolage Grotesque",sans-serif}.snqq .fr i{border-color:#f8fafc}
+.snopts{display:flex;gap:8px;flex-wrap:wrap}
+.snopt{display:inline-flex;align-items:center;gap:6px;background:color-mix(in srgb,var(--c) 22%,#0f172a);color:#f8fafc;border:2px solid var(--c);border-radius:99px;padding:3px 12px 3px 4px;font-weight:800}
+.snopt i{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--c);color:#0f172a;font-style:normal;font-size:.8rem}
+.snsay{margin:0;font-size:1.05rem}.snsay.ok{color:#86efac}.snsay.no{color:#fecdd3}
+.snhud{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px}.snhud>span{background:rgba(15,23,42,.78);color:#fff;border-radius:99px;padding:5px 12px;font-weight:800;font-size:.88rem;white-space:nowrap}
+.snhud .shield{background:#a16207}
+.snboard{position:absolute;top:10px;right:10px;margin:0;padding:6px 10px 6px 30px;background:rgba(15,23,42,.72);color:#e2e8f0;border-radius:12px;font-size:.8rem;min-width:150px;pointer-events:none}
+.snboard li span{float:right;margin-left:10px;opacity:.75}.snboard li.me{color:#fde68a;font-weight:800}
+.snfeed{position:absolute;left:12px;top:10px;color:#e2e8f0;font-size:.85rem;font-weight:700;pointer-events:none;text-shadow:0 1px 3px #000}
+.snmini{position:absolute;right:10px;bottom:10px;width:96px;height:96px;pointer-events:none}
+.snpause{position:absolute;inset:0;display:grid;place-items:center;background:rgba(15,23,42,.55);padding:12px}.snpause[hidden]{display:none}
+.snctl{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:12px}
+.snstats{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:10px;margin:12px 0 4px}.snstats div{background:var(--bg);border-radius:14px;padding:10px;text-align:center}.snstats b{display:block;font:800 1.4rem "Bricolage Grotesque",sans-serif}
+@media(max-width:600px){.snboard{min-width:0;font-size:.72rem;padding-left:24px}.snmini{width:72px;height:72px}.snqq{font-size:1.05rem}}
+</style>
+<script type="text/x-lumen">
+/* ===== Snake Arena: grow the longest snake against AI snakes. =====
+   The engine (snakes, food, collisions, the bots' AI and drawing) is snake-arena/src, which tools/build.py
+   bundles in place of the marker below; it also runs on its own page and in Node for testing.
+   Learning: a question shows above the arena and three glowing answer orbs carry the choices. Steering into
+   the right orb grows the snake and gives a 5-second star shield; a wrong one shrinks it a little. One knock-out
+   per round can be undone by answering a question. Rounds last 3 minutes and use play time. */
+/*@SNAKE_ENGINE@*/
+const SNROUND=180,SNCOL=['#22d3ee','#f472b6','#facc15'],SNLV={easy:'Easy',normal:'Normal',hard:'Hard'};
+let SNZ=null,SNDEMO=null,SNBRAIN=false;
+const SNK=new Set();
+GSTOP.push(()=>{if(SNZ&&SNZ.ph!=='over')SNZ=null;snDemoStop();SNK.clear()});
+
+function snRebind(ren,cv){ren.canvas=cv;ren.ctx=cv.getContext('2d');ren.bg=null}
+
+/* ---------- The start screen: computer snakes play live behind the settings ---------- */
+function snMount(){const cv=$('sncv');if(!cv||AR.mode!=='snake'||(SNZ&&SNZ.ph!=='over'))return;
+  if(SNDEMO){snRebind(SNDEMO.ren,cv);return}
+  const g=new SnakeArena.Game({seed:(Math.random()*1e9)|0,difficulty:'easy',bots:12});
+  for(let i=0;i<240;i++)g.step();
+  const ren=new SnakeArena.Renderer(cv);ren.setGame(g);ren.debug=SNBRAIN;ren.calm=calmOn();
+  SNDEMO={g,ren,last:0,acc:0,raf:0,focus:null};
+  const f=t=>{const D=SNDEMO;if(!D)return;const c=$('sncv');
+    if(!c||AR.mode!=='snake'||tab!=='play'||(SNZ&&SNZ.ph!=='over')){snDemoStop();return}
+    if(D.ren.canvas!==c)snRebind(D.ren,c);
+    const dt=D.last?Math.min(.1,(t-D.last)/1000):0;D.last=t;
+    if(!calmOn()){D.acc+=dt;let k=0;while(D.acc>=1/60&&k<4){D.g.step();D.acc-=1/60;k++}if(k===4)D.acc=0}
+    if(!D.focus||!D.focus.alive)D.focus=pick(D.g.leaders(4))||null;
+    D.ren.focus=D.focus;D.ren.follow(D.focus,dt);D.ren.draw(t/1000);D.raf=requestAnimationFrame(f)};
+  SNDEMO.raf=requestAnimationFrame(f)}
+function snDemoStop(){if(SNDEMO)cancelAnimationFrame(SNDEMO.raf);SNDEMO=null}
+function snBrains(btn){SNBRAIN=!SNBRAIN;for(const D of [SNDEMO,SNZ])if(D&&D.ren)D.ren.debug=SNBRAIN;document.querySelectorAll('[data-snbrain]').forEach(b=>b.setAttribute('aria-pressed',SNBRAIN))}
+
+/* ---------- A round ---------- */
+function snStart(){if(!canStart())return;stopGames();const S=ARS('snake');
+  const g=new SnakeArena.Game({seed:(Math.random()*1e9)|0,difficulty:S.diff||'normal',bots:S.bots||20});
+  const p=g.addPlayer('You');p.shield=3;
+  SNZ={ph:'run',g,ren:null,t:SNROUND,last:0,acc:0,q:null,qid:0,orbs:[],fx:[],next:1.5,ok:0,n:0,streak:0,kills:0,revived:false,peak:p.mass,best:99,killer:null,say:null,boost:false,kb:false,mouse:null,where:{x:p.x,y:p.y}};
+  g.on(snEvent);AR.run=true;AR.paused=false;rerealm();snBind();AR.raf=requestAnimationFrame(snFrame)}
+function snBind(){const Z=SNZ,cv=$('sncv');if(!Z||!cv)return;
+  if(!Z.ren){Z.ren=new SnakeArena.Renderer(cv);Z.ren.setGame(Z.g);Z.ren.cam.x=Z.g.player.x;Z.ren.cam.y=Z.g.player.y;Z.ren.onWorld=snDrawOrbs}
+  else if(Z.ren.canvas!==cv)snRebind(Z.ren,cv);
+  Z.ren.debug=SNBRAIN;Z.ren.calm=calmOn()}
+function snFrame(t){const Z=SNZ;if(!Z||!AR.run||AR.mode!=='snake')return;const cv=$('sncv');if(!cv){stopGames();return}
+  if(Z.ren.canvas!==cv)snBind();
+  if(Z.ph==='run'&&outOfTime()){snEnd('time');return}
+  const dt=Z.last?Math.min(.1,(t-Z.last)/1000):0;Z.last=t;
+  if(Z.ph==='run'){
+    // Fixed 1/60 s steps, like the standalone game
+    Z.acc+=dt;let k=0;while(Z.acc>=1/60&&k<4&&Z.ph==='run'){snInput();Z.g.step(1/60);if(Z.ph==='run')snOrbs(1/60);Z.acc-=1/60;k++}if(k===4)Z.acc=0;
+    if(Z.ph==='run'){Z.t-=dt;if(Z.t<=0){snEnd('done');return}}
+    if(!SNZ||SNZ!==Z||!AR.run)return}
+  const p=Z.g.player;if(p)Z.where={x:p.x,y:p.y};
+  Z.ren.follow(p||Z.where,dt);Z.ren.draw(t/1000);snArrows();Z.ren.drawMinimap($('snmini'),p);
+  if(t-(Z.ht||0)>200){Z.ht=t;snHud()}
+  AR.raf=requestAnimationFrame(snFrame)}
+
+/* Mouse or finger: head toward the pointer. Arrow keys / A and D: turn. */
+function snInput(){const Z=SNZ,p=Z.g.player;if(!p)return;
+  const turn=(SNK.has('r')?1:0)-(SNK.has('l')?1:0);
+  if(turn){Z.kb=true;p.wantAngle=p.angle+turn*1.2}
+  else if(Z.kb)p.wantAngle=p.angle;
+  else if(Z.mouse){const w=Z.ren.screenToWorld(Z.mouse.x,Z.mouse.y);p.wantAngle=Math.atan2(w.y-p.y,w.x-p.x)}
+  p.wantBoost=Z.boost||SNK.has('boost')}
+function snPointer(e){const Z=SNZ;if(!Z||Z.ph!=='run')return;const r=e.currentTarget.getBoundingClientRect();
+  if(e.type==='pointermove'||e.type==='pointerdown'){Z.mouse={x:e.clientX-r.left,y:e.clientY-r.top};Z.kb=false}
+  if(e.type==='pointerdown'&&e.pointerType==='mouse')Z.boost=true;
+  if(e.type==='pointerup'||e.type==='pointercancel'||e.type==='pointerleave')Z.boost=false}
+function snBoost(e,on){e.preventDefault();if(SNZ)SNZ.boost=on&&SNZ.ph==='run'}
+
+/* ---------- Answer orbs ---------- */
+function snOrbs(dt){const Z=SNZ,p=Z.g.player;if(!p)return;
+  for(const f of Z.fx)f.age=(f.age||0)+dt;Z.fx=Z.fx.filter(f=>f.age<.7);
+  if(!Z.q){Z.next-=dt;if(Z.next<=0)snNewQ();return}
+  for(const o of Z.orbs)if(Math.hypot(o.x-p.x,o.y-p.y)<p.radius+o.r){snResolve(o);return}
+  if(Z.orbs.every(o=>Math.hypot(o.x-p.x,o.y-p.y)>1700))snPlace()}
+function snNewQ(){const Z=SNZ,x=rquestion();if(!x){Z.next=1e9;return}
+  Z.q={id:++Z.qid,k:x.k,q:x.q,...kartChoices(x.q)};snPlace()}
+/* Three orbs, ahead and to both sides at about the same distance, so the nearest isn't always the answer */
+function snPlace(){const Z=SNZ,g=Z.g,p=g.player,R=SnakeArena.WORLD.radius-220,n=Z.q.L.length,base=p.angle+(Math.random()-.5)*.6;
+  Z.orbs=Z.q.L.map((label,i)=>{let a=base+(i-(n-1)/2)*1.9+(Math.random()-.5)*.4,d=420+Math.random()*160,x=0,y=0;
+    for(let k=0;k<10;k++){x=p.x+Math.cos(a)*d;y=p.y+Math.sin(a)*d;if(x*x+y*y<R*R&&!SnakeArena.bodyAt(g,x,y,40,null))break;a+=.5}
+    const m=Math.hypot(x,y);if(m>R){x*=R/m;y*=R/m}
+    return{i,label,x,y,r:26,c:SNCOL[i]}})}
+function snResolve(o){const Z=SNZ,g=Z.g,p=g.player,Q=Z.q,ok=o.i===Q.cor;Z.n++;
+  if(ok){Z.ok++;Z.streak++;const add=Math.min(80,20+10*Z.streak);p.grow(add);p.shield=Math.max(p.shield,5);
+    Z.say={id:Z.n,ok:true,until:g.time+2.2,html:`✨ ${pick(['Right!','Correct!','Brilliant!','You got it!'])} +${add} length and a ⭐ star shield${Z.streak>1?` · ${Z.streak} in a row!`:''}`};heroMood('beam',800)}
+  else{Z.streak=0;const loss=Math.round(p.mass*.12);p.mass=Math.max(SnakeArena.SNAKE.startMass,p.mass-loss);
+    Z.say={id:Z.n,ok:false,until:g.time+3.8,html:`Not quite. The answer was <span class="snopt" style="--c:${SNCOL[Q.cor]}"><i>${'ABC'[Q.cor]}</i>${esc(Q.L[Q.cor])}</span> (−${loss} length)`}}
+  Z.fx.push({x:o.x,y:o.y,c:ok?'#fde047':'#fb7185'});Z.q=null;Z.orbs=[];Z.next=ok?2.2:3.8;snHud()}
+function snDrawOrbs(x,V,time){const Z=SNZ;if(!Z)return;const calm=calmOn(),z=Z.ren.cam.zoom;
+  for(const o of Z.orbs){const y=o.y+(calm?0:Math.sin(time*3+o.i*2)*4),r=o.r+(calm?0:Math.sin(time*5+o.i)*2);
+    const gr=x.createRadialGradient(o.x,y,r*.3,o.x,y,r*2.4);gr.addColorStop(0,o.c+'cc');gr.addColorStop(1,o.c+'00');
+    x.fillStyle=gr;x.beginPath();x.arc(o.x,y,r*2.4,0,Math.PI*2);x.fill();
+    x.fillStyle=o.c;x.strokeStyle='#0f172a';x.lineWidth=4;x.beginPath();x.arc(o.x,y,r,0,Math.PI*2);x.fill();x.stroke();
+    x.fillStyle='#0f172a';x.textAlign='center';x.textBaseline='middle';x.font=`800 ${Math.round(r*1.1)}px system-ui,sans-serif`;x.fillText('ABC'[o.i],o.x,y+1);
+    if(o.label.length<=10){x.font=`800 ${Math.max(16,15/z)}px system-ui,sans-serif`;x.lineWidth=5;x.strokeStyle='#0f172a';x.strokeText(o.label,o.x,y+r+16);x.fillStyle='#fff';x.fillText(o.label,o.x,y+r+16)}}
+  for(const f of Z.fx){const k=(f.age||0)/.7;x.strokeStyle=f.c;x.globalAlpha=1-k;x.lineWidth=6;x.beginPath();x.arc(f.x,f.y,30+k*90,0,Math.PI*2);x.stroke();x.globalAlpha=1}
+  x.textBaseline='alphabetic'}
+/* Orbs off screen get a colored pointer at the edge of the arena view */
+function snArrows(){const Z=SNZ;if(!Z.orbs.length)return;const cv=Z.ren.canvas,x=Z.ren.ctx,w=cv.clientWidth,h=cv.clientHeight,dpr=cv.width/w,c=Z.ren.cam,m=30;
+  x.setTransform(dpr,0,0,dpr,0,0);
+  for(const o of Z.orbs){const sx=(o.x-c.x)*c.zoom+w/2,sy=(o.y-c.y)*c.zoom+h/2;if(sx>m&&sx<w-m&&sy>m&&sy<h-m)continue;
+    const a=Math.atan2(sy-h/2,sx-w/2),k=Math.min((w/2-m)/Math.abs(Math.cos(a)||1e-6),(h/2-m)/Math.abs(Math.sin(a)||1e-6)),px=w/2+Math.cos(a)*k,py=h/2+Math.sin(a)*k;
+    x.fillStyle=o.c;x.beginPath();x.moveTo(px+Math.cos(a)*22,py+Math.sin(a)*22);x.lineTo(px+Math.cos(a+2.4)*14,py+Math.sin(a+2.4)*14);x.lineTo(px+Math.cos(a-2.4)*14,py+Math.sin(a-2.4)*14);x.fill();
+    x.beginPath();x.arc(px,py,13,0,Math.PI*2);x.fill();x.fillStyle='#0f172a';x.font='800 14px system-ui,sans-serif';x.textAlign='center';x.textBaseline='middle';x.fillText('ABC'[o.i],px,py+1);x.textBaseline='alphabetic'}}
+
+/* ---------- Knock-outs, the second chance, and the end of a round ---------- */
+function snEvent(ev){const Z=SNZ;if(!Z||ev.type!=='death')return;const {victim,killer}=ev;
+  if(killer&&killer.isPlayer){Z.kills++;snFeed(`💥 You beat ${victim.name}!`)}
+  if(!victim.isPlayer)return;
+  Z.peak=Math.max(Z.peak,victim.peakMass);Z.lost=victim.mass;Z.killer=killer?killer.name:null;Z.where={x:victim.x,y:victim.y};
+  if(Z.revived)snEnd('over');else snRevive()}
+function snRevive(){const Z=SNZ;Z.ph='ask';AR.paused=true;SNK.clear();Z.boost=false;Z.revived=true;
+  qAsk({title:'Second chance!',intro:`${Z.killer?Z.killer+' got you':'You bumped the edge'}! Answer right to jump back in with half your length.`,cancel:true}).then(ok=>{
+    if(SNZ!==Z||Z.ph!=='ask')return;
+    if(!ok){snEnd('over');return}
+    const p=Z.g.addPlayer('You',Math.max(SnakeArena.SNAKE.startMass,Z.lost*.5));p.shield=3;
+    Z.ph='run';AR.paused=false;Z.last=0;Z.acc=0;Z.q=null;Z.orbs=[];Z.next=2;Z.ren.cam.x=p.x;Z.ren.cam.y=p.y;snFeed('❤️ Back in the arena!')})}
+function snFeed(t){const f=$('snfeed');if(!f)return;const d=document.createElement('div');d.textContent=t;f.prepend(d);while(f.children.length>3)f.lastChild.remove();setTimeout(()=>d.remove(),4000)}
+function snPause(){const Z=SNZ;if(!Z||QM)return;if(Z.ph==='run')Z.ph='pause';else if(Z.ph==='pause'){Z.ph='run';Z.last=0}else return;
+  AR.paused=Z.ph==='pause';SNK.clear();Z.boost=false;const el=$('snpause');if(el){el.hidden=Z.ph!=='pause';if(Z.ph==='pause')el.querySelector('button').focus()}}
+/* Gems: 1 per right answer (up to 8), plus 3 for finishing first, 2 for the top 3 or 1 for the top 5 */
+function snEnd(why){const Z=SNZ;if(!Z||Z.ph==='over')return;AR.run=false;AR.paused=false;cancelAnimationFrame(AR.raf);if(QM)qmClose(true);SNK.clear();
+  const g=Z.g,p=g.player;if(p)Z.peak=Math.max(Z.peak,p.peakMass);
+  Z.rank=p?g.leaders(g.snakes.length).indexOf(p)+1:0;if(Z.rank)Z.best=Math.min(Z.best,Z.rank);
+  Z.place=Z.rank===1?3:Z.rank&&Z.rank<=3?2:Z.rank&&Z.rank<=5?1:0;Z.gems=Math.min(8,Z.ok)+Z.place;Z.why=why;Z.ph='over';
+  const S=ARS('snake'),best=Math.round(Z.peak);Z.pb=best>(S.best||0);if(Z.pb)S.best=best;if(Z.best<99)S.rank=Math.min(S.rank||99,Z.best);
+  S.rounds=(S.rounds||0)+1;S.right=(S.right||0)+Z.ok;if(Z.rank===1)S.wins=(S.wins||0)+1;
+  if(Z.gems)addGems(Z.gems);SYNC();gameCheck();rerealm()}
+function snEndCard(Z){const why={done:'⏰ Time! The round is over.',over:Z.killer?`${esc(Z.killer)} got you this time.`:'You bumped into the edge of the arena.',time:'Play time is up for today.',quit:'You ended the round.'}[Z.why];
+  return `<div class="gcard endcard" style="margin-bottom:16px"><div class="big" aria-hidden="true">🏁</div><h3>Round over!</h3><p>${why}</p>
+  <div class="snstats"><div><b>${Math.round(Z.peak)}</b>longest${Z.pb?' · best!':''}</div><div><b>${Z.rank?'#'+Z.rank:'Out'}</b>${Z.rank?'final place':'at the end'}</div><div><b>${Z.best<99?'#'+Z.best:'–'}</b>best place</div><div><b>${Z.kills}</b>snakes beaten</div><div><b>${Z.ok} of ${Z.n}</b>answers right</div></div>
+  ${Z.gems?`<p>💎 +${Z.gems} gem${Z.gems>1?'s':''}: ${Math.min(8,Z.ok)} for right answers${Z.place?` and ${Z.place} for finishing #${Z.rank}`:''}</p>`:'<p class="sol">Steer into the right answer orbs to earn gems!</p>'}</div>`}
+
+/* ---------- Screens ---------- */
+function snQHtml(){const Z=SNZ,g=Z.g;
+  if(Z.say&&g.time<Z.say.until)return `<p class="snsay ${Z.say.ok?'ok':'no'}"><b>${Z.say.html}</b></p>`;
+  if(!Z.q)return `<p style="margin:0;color:#cbd5e1;font-weight:700">🔮 ${Z.next>1e8?'No questions for this subject yet. Pick another one before your next round.':'Answer orbs coming up… keep eating and stay safe!'}</p>`;
+  return `<div class="snqq">${Z.q.q.q}</div><div class="snopts">${Z.q.L.map((l,i)=>`<span class="snopt" style="--c:${SNCOL[i]}"><i>${'ABC'[i]}</i>${esc(l)}</span>`).join('')}</div>`}
+function snHud(){const Z=SNZ;if(!Z||!Z.g)return;const g=Z.g,p=g.player,all=g.leaders(g.snakes.length),rank=p?all.indexOf(p)+1:0;if(rank)Z.best=Math.min(Z.best,rank);
+  const h=$('snhud');if(h)h.innerHTML=`<span>🐍 ${p?Math.round(p.mass):0} long</span><span>🏆 ${rank?`#${rank} of ${all.length}`:'Out'}</span><span>💥 ${Z.kills} beaten</span><span>✅ ${Z.ok} of ${Z.n} right</span><span>⏱ ${mmss(Math.max(0,Math.ceil(Z.t)))}</span>${p&&p.shield>0?`<span class="shield">⭐ Shield ${Math.ceil(p.shield)}s</span>`:''}<span>${Z.revived?'💔 Second chance used':'❤️ Second chance ready'}</span>`;
+  const b=$('snboard');if(b){const top=all.slice(0,5);if(p&&rank>5)top.push(p);b.innerHTML=top.map(s=>`<li value="${all.indexOf(s)+1}" class="${s.isPlayer?'me':''}">${esc(s.name)}<span>${Math.round(s.mass)}</span></li>`).join('')}
+  const q=$('snq'),key=Z.say&&g.time<Z.say.until?'s'+Z.say.id:Z.q?'q'+Z.q.id:'w'+(Z.next>1e8?'x':'');if(q&&q.dataset.k!==key){q.dataset.k=key;q.innerHTML=snQHtml()}}
+function snPlayHtml(){const Z=SNZ;
+  return `<div class="snq" id="snq" aria-live="polite"></div><div class="snhud" id="snhud"></div>
+  <div class="snwrap"><canvas class="sncv" id="sncv" role="img" aria-label="The snake arena. Steer with the mouse, a finger, or the arrow keys; Space boosts; P pauses." onpointermove="snPointer(event)" onpointerdown="snPointer(event)" onpointerup="snPointer(event)" onpointercancel="snPointer(event)" onpointerleave="snPointer(event)"></canvas>
+    <ol class="snboard" id="snboard" aria-label="Leaderboard"></ol><div class="snfeed" id="snfeed" aria-live="polite"></div><canvas class="snmini" id="snmini" width="192" height="192" aria-hidden="true"></canvas>
+    <div class="snpause" id="snpause" ${Z.ph==='pause'?'':'hidden'}><div class="gcard" style="text-align:center"><h3>Paused</h3><div class="row" style="justify-content:center"><button class="abtn" onclick="snPause()">▶ Resume</button><button class="abtn sec" onclick="snEnd('quit')">End round</button></div></div></div></div>
+  <div class="snctl"><button class="abtn gold" id="snboost" onpointerdown="snBoost(event,true)" onpointerup="snBoost(event,false)" onpointerleave="snBoost(event,false)" onpointercancel="snBoost(event,false)">⚡ Boost (hold, or Space)</button><button class="abtn sec" data-snbrain aria-pressed="${SNBRAIN}" onclick="snBrains()">🧠 Bot brains (B)</button><button class="abtn sec" onclick="snPause()">⏸ Pause (P)</button></div>`}
+GVIEW.snake=function(){const S=ARS('snake'),Z=SNZ,head=`<div class="gworld">${clouds()}${gameHead('Snake Arena','Grow the longest snake in the arena, and steer into the right answers to power up!')}`;
+  if(Z&&Z.ph!=='over'){setTimeout(()=>{snBind();snHud()},0);return head+snPlayHtml()+'</div>'}
+  const out=outOfTime(),d=S.diff||'normal',n=S.bots||20;setTimeout(snMount,0);
+  return head+`${out?restCard():''}${Z?snEndCard(Z):''}${subjChips()}
+  <div class="gcard"><div class="snsplit"><div><div class="snwrap"><canvas class="sncv sndemo" id="sncv" role="img" aria-label="Computer snakes playing in the arena"></canvas><button class="abtn sec sm snbrain" data-snbrain aria-pressed="${SNBRAIN}" onclick="snBrains()">🧠 Bot brains</button></div>
+    <p class="sol" style="margin:8px 2px 0">Turn on <b>Bot brains</b> to see what the computer snakes are thinking: the paths they test (green is safe, red means a crash), where they're heading, and who scares them.</p></div>
+  <div><h3 style="margin-top:0">🐍 How to play</h3><ul class="pearn"><li>Steer with the mouse, a finger, or the arrow keys. Hold the mouse button, Space or ⚡ to boost (it costs a little length).</li><li>Eat the glowing dots to grow. If your head touches another snake you're out, so make them crash into <i>you</i>!</li><li>A question pops up with three colored <b>answer orbs</b> in the arena. Steer into the right one for a growth spurt and a ⭐ star shield that lets you slide through snakes for 5 seconds. A wrong orb shrinks you a little.</li><li>Knocked out? Answer one question for a second chance.</li><li>Rounds last 3 minutes. Finish as long, and as high on the leaderboard, as you can!</li></ul>
+    <div class="snset" role="group" aria-label="How good the computer snakes are"><span class="sol"><b>Computer snakes:</b></span>${['easy','normal','hard'].map(k=>`<button class="chip ${d===k?'on':''}" aria-pressed="${d===k}" onclick="ARS('snake').diff='${k}';SYNC();rerealm()">${SNLV[k]}</button>`).join('')}</div>
+    <div class="snset" role="group" aria-label="How many computer snakes"><span class="sol"><b>How many:</b></span>${[10,20,30].map(k=>`<button class="chip ${n===k?'on':''}" aria-pressed="${n===k}" onclick="ARS('snake').bots=${k};SYNC();rerealm()">${k}</button>`).join('')}</div>
+    <div class="row" style="margin-top:16px;align-items:center"><button class="abtn big" ${out?'disabled':''} onclick="snStart()">🐍 Start a round</button>${S.best?`<span class="sol">Best: <b>${S.best}</b> long${S.rank?` · best place <b>#${S.rank}</b>`:''}${S.wins?` · <b>${S.wins}</b> win${S.wins>1?'s':''}`:''}</span>`:''}</div></div></div></div></div>`};
+
+addEventListener('keydown',e=>{if(AR.mode!=='snake'||typeof tab==='undefined'||tab!=='play'||QM||e.ctrlKey||e.metaKey||e.altKey)return;const tg=e.target;if(tg&&/^(INPUT|TEXTAREA|SELECT)$/.test(tg.tagName))return;
+  const Z=SNZ,k=e.key;if(k==='b'||k==='B'){snBrains();return}if(!Z||Z.ph==='over')return;
+  if(Z.ph==='run'){const dir={ArrowLeft:'l',a:'l',A:'l',ArrowRight:'r',d:'r',D:'r'}[k];if(dir){e.preventDefault();SNK.add(dir);return}if(k===' '){e.preventDefault();SNK.add('boost');return}if(k==='ArrowUp'||k==='ArrowDown')e.preventDefault()}
+  if(k==='p'||k==='P'||k==='Escape'){e.preventDefault();snPause()}});
+addEventListener('keyup',e=>{const dir={ArrowLeft:'l',a:'l',A:'l',ArrowRight:'r',d:'r',D:'r',' ':'boost'}[e.key];if(dir)SNK.delete(dir)});
+
+/* On the Arcade hub, after Dungeon Dash */
+GAMES.splice(2,0,{id:'snake',n:'Snake Arena',p:'Slither past computer snakes, grow the longest, and steer into the right answer orbs to power up.'});
+ART.snake=()=>sceneSvg(`${[[22,24,'#22d3ee'],[60,104,'#f472b6'],[140,18,'#facc15'],[184,70,'#4ade80'],[112,112,'#a78bfa'],[34,70,'#fb923c'],[176,112,'#22d3ee']].map(([x,y,c])=>`<circle cx="${x}" cy="${y}" r="7" fill="${c}" opacity=".3"/><circle cx="${x}" cy="${y}" r="3" fill="${c}"/>`).join('')}
+  <path d="M18 98C40 60 70 112 96 80S140 40 150 66" stroke="#14532d" stroke-width="17" fill="none" stroke-linecap="round"/><path d="M18 98C40 60 70 112 96 80S140 40 150 66" stroke="#4ade80" stroke-width="13" fill="none" stroke-linecap="round"/><path d="M18 98C40 60 70 112 96 80S140 40 150 66" stroke="#bbf7d0" stroke-width="9" fill="none" stroke-linecap="round" stroke-dasharray="6 9"/>
+  <circle cx="150" cy="66" r="10" fill="#4ade80" stroke="#14532d" stroke-width="2"/><circle cx="154" cy="62" r="3.4" fill="#fff"/><circle cx="154" cy="70" r="3.4" fill="#fff"/><circle cx="155" cy="62" r="1.6" fill="#111827"/><circle cx="155" cy="70" r="1.6" fill="#111827"/>
+  <circle cx="178" cy="40" r="13" fill="#facc15" opacity=".35"/><circle cx="178" cy="40" r="9" fill="#facc15" stroke="#0f172a" stroke-width="2"/><text x="178" y="44" font-size="11" font-weight="800" text-anchor="middle" fill="#0f172a" font-family="sans-serif">8</text>
+  <rect x="58" y="8" width="64" height="18" rx="9" fill="#0f172a" stroke="#334155"/><text x="90" y="21" font-size="11" font-weight="800" text-anchor="middle" fill="#fff" font-family="sans-serif">5 + 3 = ?</text>`,'#162038','#0b1120');
+</script>

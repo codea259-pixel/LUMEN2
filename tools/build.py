@@ -4,7 +4,22 @@ import sys
 import os
 D=os.path.dirname(os.path.abspath(__file__))
 src, out = os.path.join(D,'base.html'), os.path.join(D,'..','public','app.html')
-layers = [os.path.join(D,f) for f in ('firebase.html','bridge.html','ui.html','features.html','video.html','vendor-qrcode.html','printables.html','assess.html','game.html','realm.html','member.html','arcade.html','games.html','dungeon.html','compete.html')]
+layers = [os.path.join(D,f) for f in ('firebase.html','bridge.html','ui.html','features.html','video.html','vendor-qrcode.html','printables.html','assess.html','game.html','realm.html','member.html','arcade.html','games.html','dungeon.html','snake.html','compete.html')]
+import re
+# Snake Arena's engine lives in snake-arena/src as JavaScript modules (it also runs on its own page and in Node).
+# For the app, the modules are joined in dependency order inside one function scope, in place of /*@SNAKE_ENGINE@*/.
+SNAKE_SRC = os.path.join(D, '..', 'snake-arena', 'src')
+SNAKE_ORDER = ('math', 'config', 'spatial', 'food', 'snake', 'collision', 'ai/personalities', 'ai/perception', 'ai/steering', 'ai/brain', 'ai/wander', 'bot', 'game', 'render/renderer')
+def snake_engine():
+    parts = []
+    for m in SNAKE_ORDER:
+        js = open(os.path.join(SNAKE_SRC, m + '.js'), encoding='utf-8').read()
+        js = '\n'.join(l for l in js.split('\n') if not l.startswith('import '))
+        parts.append(f'/* snake-arena/src/{m}.js */\n' + re.sub(r'^export ', '', js, flags=re.M))
+    return "const SnakeArena=(()=>{'use strict';\n" + '\n'.join(parts) + '\nreturn {Game,Renderer,PERSONALITIES,KINDS,WORLD,SNAKE,DIFFICULTY,bodyAt};\n})();'
+def layer(f):
+    t = open(f, encoding='utf-8').read()
+    return t.replace('/*@SNAKE_ENGINE@*/', snake_engine()) if '/*@SNAKE_ENGINE@*/' in t else t
 import subprocess
 subprocess.run([sys.executable, os.path.join(D, 'build_assess.py')], check=True)  # server/assessments.json
 h = open(src, encoding='utf-8').read()
@@ -28,7 +43,7 @@ rep('<script>\nconst rnd=', '<script type="text/x-lumen">\nconst rnd=')
 rep('<script>\n/* ===== Grades, teacher tools', '<script type="text/x-lumen">\n/* ===== Grades, teacher tools')
 rep("const can=t=>", "let can=t=>")
 rep("const isMod=()=>ST.role==='owner'||ST.role==='teacher',who=()=>ST.me.name;", "let isMod=()=>ST.role==='owner'||ST.role==='teacher',who=()=>ST.me.name;")
-rep('</body>', ''.join(open(f, encoding='utf-8').read() + '\n' for f in layers) + '</body>')
+rep('</body>', ''.join(layer(f) + '\n' for f in layers) + '</body>')
 open(out, 'w', encoding='utf-8').write(h)
 # GitHub Pages serves the repo root without the server, so keep copies there (the app runs in demo mode)
 root = os.path.join(D, '..')

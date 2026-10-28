@@ -2,6 +2,8 @@
 
 A browser snake arena where you play against 10 to 50 AI snakes, or watch them play each other. The bots hunt, cut each other off, coil around smaller snakes, flee from bigger ones, race to fresh food piles and boost only with a reason. Plain JavaScript modules, no dependencies, no build step.
 
+In Bose Academy, Snake Arena is an Arcade game (`tools/snake.html`): `tools/build.py` bundles the modules in `src/` into the app, and the Arcade adds answer orbs, a second chance for a right answer, play time and gems. After changing anything in `src/`, run `python3 tools/build.py`. The page in this folder is the stand-alone version for testing the AI.
+
 ## Run it
 
 ```bash

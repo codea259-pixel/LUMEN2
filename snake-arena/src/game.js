@@ -67,9 +67,9 @@ export class Game {
     return b;
   }
 
-  addPlayer(name = 'You') {
+  addPlayer(name = 'You', mass = SNAKE.startMass) {
     this.names.add(name);
-    this.player = this.spawnSnake({ name, skin: { hue: 48, hue2: 20, kind: 'player' }, isPlayer: true });
+    this.player = this.spawnSnake({ name, mass, skin: { hue: 48, hue2: 20, kind: 'player' }, isPlayer: true });
     return this.player;
   }
 

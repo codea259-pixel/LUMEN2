@@ -32,6 +32,7 @@ export class Snake {
     this.mass = mass;
     this.peakMass = mass;
     this.boostBank = 0;          // mass waiting to be dropped as pellets
+    this.shield = 0;             // seconds of protection from bodies (not from the arena edge)
     this.alive = true;
     this.kills = 0;
     this.born = 0;
@@ -64,6 +65,7 @@ export class Snake {
   get turnRadius() { return this.speed / this.turnRate; }
 
   update(dt) {
+    if (this.shield > 0) this.shield = Math.max(0, this.shield - dt);
     // Smooth turning: rotate toward the wanted angle, limited by the turn rate.
     const maxTurn = this.turnRate * dt;
     this.angle = wrapAngle(this.angle + clamp(angleDiff(this.angle, this.wantAngle), -maxTurn, maxTurn));

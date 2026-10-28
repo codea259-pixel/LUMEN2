@@ -5560,7 +5560,7 @@ const ktOpen=i=>!i||((ARS('kart').med||{})[KTRACKS[i-1].id]||0)>0;
 const ktCur=()=>{let i=KTRACKS.findIndex(t=>t.id===ARS('kart').tr);if(i<0||!ktOpen(i))i=0;return KTRACKS[i]};
 /* Three lane answers: the right one plus two others (near misses for numbers) */
 function kartChoices(q){if(q.choices){const c=q.choices[q.a[0]],L=shuf([c,...shuf(q.choices.filter((_,i)=>i!==q.a[0])).slice(0,2)]);return{L,cor:L.indexOf(c)}}
-  const [n,d]=q.a,dec=/\d\.\d/.test(q.q)&&[1,2,4,5,8,10,20,25,50,100,1000].includes(d),f=(x,y)=>{const g=gcd(Math.abs(x),y)||1;x/=g;y/=g;return dec?String(+(x/y).toFixed(3)):y===1?String(x):`${x}/${y}`};
+  const [n,d]=q.a,dec=(/\d\.\d/.test(q.q)||/decimal/i.test(strip(q.q)))&&[1,2,4,5,8,10,20,25,50,100,1000].includes(d),f=(x,y)=>{const g=gcd(Math.abs(x),y)||1;x/=g;y/=g;return dec?String(+(x/y).toFixed(3)):y===1?String(x):`${x}/${y}`};
   const cands=dec?[[n*10,d],[n,d*10],[n+d/10,d],[n-d/10,d],[n+d/100,d],[n-d/100,d]].filter(([x])=>x>=0).map(([x,y])=>[Math.round(x*100),y*100])
     :d===1?[n+1,n-1,n+2,n-2,n+10,n-10,n*2,n+5].filter(x=>n<0||x>=0).map(x=>[x,1]):[[n+1,d],[n-1,d],[n,d+1],[n+d,d],[n*2,d]].filter(([x,y])=>x>0&&y>0);
   const c=f(n,d),seen=new Set([c]),o=[];for(const [x,y] of shuf(cands)){const s=f(x,y);if(!seen.has(s)&&!eq([x,y],[n,d])){seen.add(s);o.push(s)}if(o.length===2)break}
@@ -6199,6 +6199,1778 @@ GAMES.splice(1,0,{id:'dash',n:'Dungeon Dash',p:'Pick one of four heroes, dodge f
 ART.dash=()=>{const k=DSEL(),url=ddCache('tile'+k,()=>{const c=pxRoom(200,130,0,[[40,22],[160,22]],[],36,2,6),x=c.getContext('2d');x.imageSmoothingEnabled=false;pxFlame(x,40,22,0,true);pxFlame(x,160,22,0,true);
     const h=pxHero(k,0),m=pxMon('slime',0),i=pxMon('imp',0),j=pxArt(...PXI.jewel);x.drawImage(h,62,46,h.width*2,h.height*2);x.drawImage(m,130,92,m.width*2,m.height*2);x.drawImage(i,150,52,i.width*2,i.height*2);x.drawImage(j,110,100,j.width*2,j.height*2);return c.toDataURL()});
   return `<svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice"><image href="${url}" width="200" height="130" style="image-rendering:pixelated"/></svg>`};
+</script>
+
+<style>
+/* ===== Snake Arena ===== */
+.snwrap{position:relative;border-radius:22px;overflow:hidden;border:3px solid rgba(255,255,255,.85);box-shadow:0 7px 0 var(--ga-lip),0 18px 30px rgba(15,23,42,.3);background:#0a0d17}
+.sncv{display:block;width:100%;height:min(64vh,600px);touch-action:none;user-select:none;-webkit-user-select:none;cursor:crosshair}
+.sncv.sndemo{height:clamp(240px,40vh,380px);cursor:default}
+.snsplit{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:18px;align-items:start}@media(max-width:820px){.snsplit{grid-template-columns:1fr}}
+.snbrain{position:absolute;left:10px;bottom:10px}
+.snset{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:12px}.snset .chip{background:var(--bg);color:var(--ink);border:2px solid var(--line)}.snset .chip.on{background:#0f172a;color:#fff;border-color:#0f172a}
+.snq{display:flex;gap:10px 16px;align-items:center;flex-wrap:wrap;background:#0f172a;color:#f8fafc;border-radius:18px;padding:10px 16px;margin:0 0 10px;min-height:62px;border:2px solid #334155}
+.snqq{font:800 1.2rem/1.35 "Bricolage Grotesque",sans-serif}.snqq .fr i{border-color:#f8fafc}
+.snopts{display:flex;gap:8px;flex-wrap:wrap}
+.snopt{display:inline-flex;align-items:center;gap:6px;background:color-mix(in srgb,var(--c) 22%,#0f172a);color:#f8fafc;border:2px solid var(--c);border-radius:99px;padding:3px 12px 3px 4px;font-weight:800}
+.snopt i{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--c);color:#0f172a;font-style:normal;font-size:.8rem}
+.snsay{margin:0;font-size:1.05rem}.snsay.ok{color:#86efac}.snsay.no{color:#fecdd3}
+.snhud{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px}.snhud>span{background:rgba(15,23,42,.78);color:#fff;border-radius:99px;padding:5px 12px;font-weight:800;font-size:.88rem;white-space:nowrap}
+.snhud .shield{background:#a16207}
+.snboard{position:absolute;top:10px;right:10px;margin:0;padding:6px 10px 6px 30px;background:rgba(15,23,42,.72);color:#e2e8f0;border-radius:12px;font-size:.8rem;min-width:150px;pointer-events:none}
+.snboard li span{float:right;margin-left:10px;opacity:.75}.snboard li.me{color:#fde68a;font-weight:800}
+.snfeed{position:absolute;left:12px;top:10px;color:#e2e8f0;font-size:.85rem;font-weight:700;pointer-events:none;text-shadow:0 1px 3px #000}
+.snmini{position:absolute;right:10px;bottom:10px;width:96px;height:96px;pointer-events:none}
+.snpause{position:absolute;inset:0;display:grid;place-items:center;background:rgba(15,23,42,.55);padding:12px}.snpause[hidden]{display:none}
+.snctl{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:12px}
+.snstats{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:10px;margin:12px 0 4px}.snstats div{background:var(--bg);border-radius:14px;padding:10px;text-align:center}.snstats b{display:block;font:800 1.4rem "Bricolage Grotesque",sans-serif}
+@media(max-width:600px){.snboard{min-width:0;font-size:.72rem;padding-left:24px}.snmini{width:72px;height:72px}.snqq{font-size:1.05rem}}
+</style>
+<script type="text/x-lumen">
+/* ===== Snake Arena: grow the longest snake against AI snakes. =====
+   The engine (snakes, food, collisions, the bots' AI and drawing) is snake-arena/src, which tools/build.py
+   bundles in place of the marker below; it also runs on its own page and in Node for testing.
+   Learning: a question shows above the arena and three glowing answer orbs carry the choices. Steering into
+   the right orb grows the snake and gives a 5-second star shield; a wrong one shrinks it a little. One knock-out
+   per round can be undone by answering a question. Rounds last 3 minutes and use play time. */
+const SnakeArena=(()=>{'use strict';
+/* snake-arena/src/math.js */
+// Small math helpers shared by the simulation, the AI and the renderer.
+
+const TAU = Math.PI * 2;
+const clamp = (v, lo, hi) => (v < lo ? lo : v > hi ? hi : v);
+const lerp = (a, b, t) => a + (b - a) * t;
+
+/** Wrap an angle into [-PI, PI). */
+function wrapAngle(a) {
+  a = (a + Math.PI) % TAU;
+  if (a < 0) a += TAU;
+  return a - Math.PI;
+}
+
+/** Signed shortest turn from angle `from` to angle `to`. */
+const angleDiff = (from, to) => wrapAngle(to - from);
+
+function dist2(ax, ay, bx, by) {
+  const dx = ax - bx, dy = ay - by;
+  return dx * dx + dy * dy;
+}
+
+/** Squared distance from point P to the segment AB. */
+function distToSegment2(px, py, ax, ay, bx, by) {
+  const abx = bx - ax, aby = by - ay, len2 = abx * abx + aby * aby;
+  let t = len2 > 0 ? ((px - ax) * abx + (py - ay) * aby) / len2 : 0;
+  t = clamp(t, 0, 1);
+  return dist2(px, py, ax + abx * t, ay + aby * t);
+}
+
+/**
+ * Seedable random numbers (mulberry32), so a simulation with the same seed
+ * plays out the same way. Use this instead of Math.random in game code.
+ */
+function makeRng(seed = 1) {
+  let s = seed >>> 0;
+  const rng = () => {
+    s = (s + 0x6d2b79f5) | 0;
+    let t = Math.imul(s ^ (s >>> 15), 1 | s);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+  rng.range = (a, b) => a + (b - a) * rng();
+  rng.int = (a, b) => Math.floor(a + (b - a + 1) * rng());
+  rng.pick = (arr) => arr[Math.floor(rng() * arr.length)];
+  rng.chance = (p) => rng() < p;
+  /** Roughly normal, mean 0, sd 1 (sum of uniforms). */
+  rng.gauss = () => (rng() + rng() + rng() + rng() - 2) * 1.7;
+  return rng;
+}
+
+/* snake-arena/src/config.js */
+// All tuning numbers in one place. Distances are in world pixels, times in seconds.
+
+const WORLD = {
+  radius: 3000,        // the arena is a circle; touching its edge is fatal
+  cellSize: 100,       // spatial grid cell size (must be >= the widest snake)
+  foodTarget: 2400,    // natural pellets kept on the map
+  tickRate: 60,        // fixed simulation steps per second
+  hotspotEvery: 0.25,  // seconds between "where are snakes fighting?" scans
+  deathMemory: 8,      // seconds a death site stays interesting to scavengers
+};
+
+const SNAKE = {
+  startMass: 20,
+  baseSpeed: 165,
+  boostSpeed: 330,
+  accel: 900,              // px/s² when changing between cruise and boost
+  baseTurn: 4.4,           // rad/s for a small snake
+  minTurnFactor: 0.45,     // the biggest snakes turn at 45% of that
+  boostTurnFactor: 0.85,   // boosting makes turning slightly wider
+  minBoostMass: 24,        // cannot boost below this
+  boostDrain: 7,           // mass lost per second of boosting...
+  boostDropShare: 0.6,     // ...and this share of it is dropped as pellets behind you
+  eatReach: 16,            // pellets this far past the head's edge get eaten
+  suction: 46,             // pellets inside this extra range drift toward the head
+  deathDropShare: 0.75,    // share of a dead snake's mass left as food
+  maxSegments: 4000,
+};
+
+/** Body radius grows with the square root of mass, so big snakes are long more than fat. */
+const radiusFor = (mass) => Math.min(30, 8 + Math.sqrt(mass) * 0.45);
+/** Body length in pixels. */
+const lengthFor = (mass) => 60 + mass * 2;
+
+/**
+ * Difficulty changes how well a bot thinks, not how fast its snake moves:
+ *  thinkEvery  frames between full decisions (reaction time)
+ *  rays        directions sampled by the steering system
+ *  horizon     seconds of look-ahead for collision prediction
+ *  view        how far the bot can see
+ *  aimNoise    random error (radians) added to each decision
+ *  emergency   re-think instantly when something appears right ahead
+ *  mistake     chance per decision to ignore danger completely (a blunder)
+ */
+const DIFFICULTY = {
+  easy:   { thinkEvery: 9, rays: 16, horizon: 0.7, view: 450, aimNoise: 0.22, emergency: false, mistake: 0.08 },
+  normal: { thinkEvery: 5, rays: 24, horizon: 1.0, view: 600, aimNoise: 0.08, emergency: true,  mistake: 0.015 },
+  hard:   { thinkEvery: 3, rays: 32, horizon: 1.3, view: 760, aimNoise: 0.02, emergency: true,  mistake: 0 },
+};
+
+/* snake-arena/src/spatial.js */
+
+/**
+ * A uniform grid over the square that holds the circular arena.
+ * Rebuilt every tick: clearing only touches cells that were used, so it stays
+ * cheap even with tens of thousands of body segments.
+ */
+class SpatialGrid {
+  constructor(worldRadius, cellSize) {
+    this.cell = cellSize;
+    this.min = -worldRadius;
+    this.n = Math.ceil((2 * worldRadius) / cellSize) + 1;
+    this.cells = Array.from({ length: this.n * this.n }, () => []);
+    this.used = [];
+  }
+
+  cellX(x) { return clamp(Math.floor((x - this.min) / this.cell), 0, this.n - 1); }
+  cellY(y) { return clamp(Math.floor((y - this.min) / this.cell), 0, this.n - 1); }
+  key(x, y) { return this.cellY(y) * this.n + this.cellX(x); }
+
+  clear() {
+    for (const k of this.used) this.cells[k].length = 0;
+    this.used.length = 0;
+  }
+
+  insert(x, y, item) {
+    const k = this.key(x, y), c = this.cells[k];
+    if (c.length === 0) this.used.push(k);
+    c.push(item);
+  }
+
+  /**
+   * Calls fn(item) for every item in the cells that overlap the circle (x, y, r).
+   * If fn returns true the search stops and query returns true.
+   */
+  query(x, y, r, fn) {
+    const x0 = this.cellX(x - r), x1 = this.cellX(x + r);
+    const y0 = this.cellY(y - r), y1 = this.cellY(y + r);
+    for (let cy = y0; cy <= y1; cy++) {
+      const row = cy * this.n;
+      for (let cx = x0; cx <= x1; cx++) {
+        const arr = this.cells[row + cx];
+        for (let i = 0; i < arr.length; i++) if (fn(arr[i])) return true;
+      }
+    }
+    return false;
+  }
+
+  /** Visits each non-empty cell overlapping the circle: fn(items, centerX, centerY). */
+  forCells(x, y, r, fn) {
+    const x0 = this.cellX(x - r), x1 = this.cellX(x + r);
+    const y0 = this.cellY(y - r), y1 = this.cellY(y + r);
+    const h = this.cell / 2;
+    for (let cy = y0; cy <= y1; cy++) {
+      for (let cx = x0; cx <= x1; cx++) {
+        const arr = this.cells[cy * this.n + cx];
+        if (arr.length) fn(arr, this.min + cx * this.cell + h, this.min + cy * this.cell + h);
+      }
+    }
+  }
+}
+
+/* snake-arena/src/food.js */
+
+/** One glowing pellet. `natural` pellets are respawned; dropped ones are not. */
+class Food {
+  constructor(x, y, value, hue, natural) {
+    this.x = x; this.y = y;
+    this.value = value;
+    this.hue = hue;
+    this.natural = natural;
+    this.alive = true;
+    this.phase = (x * 0.37 + y * 0.11) % TAU; // for the renderer's pulse
+  }
+}
+
+/**
+ * Every pellet on the map, plus:
+ *  - a spatial grid (rebuilt each tick) for eating and for the AI's food search
+ *  - a coarse "smell" map of total food per large block, so a bot that sees no
+ *    food still heads somewhere promising instead of wandering at random
+ */
+class FoodField {
+  constructor(rng) {
+    this.rng = rng;
+    this.items = [];
+    this.natural = 0;
+    this.grid = new SpatialGrid(WORLD.radius, WORLD.cellSize);
+    this.coarseSize = 600;
+    this.coarseN = Math.ceil((2 * WORLD.radius) / this.coarseSize);
+    this.coarse = new Float32Array(this.coarseN * this.coarseN);
+  }
+
+  add(x, y, value, hue, natural = false) {
+    const f = new Food(x, y, value, hue, natural);
+    this.items.push(f);
+    if (natural) this.natural++;
+    return f;
+  }
+
+  /** A natural pellet at a random spot: mostly small, some medium. */
+  spawnNatural() {
+    const r = this.rng, a = r() * TAU, d = Math.sqrt(r()) * (WORLD.radius - 40);
+    const value = r() < 0.75 ? 1 : r() < 0.8 ? 2 : 3;
+    this.add(Math.cos(a) * d, Math.sin(a) * d, value, Math.floor(r() * 12) * 30, true);
+  }
+
+  /** Keep the natural pellet count near the target, a few per tick. */
+  refill(perTick = 24) {
+    for (let i = 0; i < perTick && this.natural < WORLD.foodTarget; i++) this.spawnNatural();
+  }
+
+  eat(f) {
+    if (!f.alive) return 0;
+    f.alive = false;
+    if (f.natural) this.natural--;
+    return f.value;
+  }
+
+  /** Drop eaten pellets and rebuild the grid. Called once per tick. */
+  rebuild() {
+    let w = 0;
+    const items = this.items;
+    for (let i = 0; i < items.length; i++) if (items[i].alive) items[w++] = items[i];
+    items.length = w;
+    this.grid.clear();
+    for (const f of items) this.grid.insert(f.x, f.y, f);
+  }
+
+  /** Total food value per 600 px block, refreshed about once a second. */
+  rebuildCoarse() {
+    const c = this.coarse, s = this.coarseSize, n = this.coarseN, min = -WORLD.radius;
+    c.fill(0);
+    for (const f of this.items) {
+      const cx = Math.min(n - 1, Math.max(0, Math.floor((f.x - min) / s)));
+      const cy = Math.min(n - 1, Math.max(0, Math.floor((f.y - min) / s)));
+      c[cy * n + cx] += f.value;
+    }
+  }
+}
+
+/* snake-arena/src/snake.js */
+
+let nextId = 1;
+
+/**
+ * A snake is a head that moves forward continuously, plus a body that follows
+ * the exact path the head took. The path is kept as a "trail" of head
+ * positions; each tick the body is re-sampled from it at an even spacing.
+ * That makes a coiling snake's body hold the circle it drew, which is what
+ * lets one snake trap another.
+ *
+ * Whoever controls the snake (a human or a bot brain) only sets two things:
+ *   wantAngle  the direction it would like to face
+ *   wantBoost  whether it would like to go fast
+ * The snake turns toward wantAngle no faster than its turn rate, so a
+ * 180-degree turn always takes time and draws a curve.
+ */
+class Snake {
+  constructor({ x, y, angle, mass = SNAKE.startMass, name = 'Snake', skin = null, isPlayer = false }) {
+    this.id = nextId++;
+    this.slot = -1;              // index in game.slots, used by the spatial grid
+    this.name = name;
+    this.skin = skin;            // { hue, hue2 } for the renderer
+    this.isPlayer = isPlayer;
+    this.x = x; this.y = y;
+    this.angle = angle;
+    this.wantAngle = angle;
+    this.wantBoost = false;
+    this.boosting = false;
+    this.speed = SNAKE.baseSpeed;
+    this.mass = mass;
+    this.peakMass = mass;
+    this.boostBank = 0;          // mass waiting to be dropped as pellets
+    this.shield = 0;             // seconds of protection from bodies (not from the arena edge)
+    this.alive = true;
+    this.kills = 0;
+    this.born = 0;
+    this.bot = null;             // set for AI snakes
+    // trail: flat [x, y, x, y, ...], oldest first; t0 = first point still needed
+    this.trail = [];
+    this.t0 = 0;
+    // body points, head first
+    this.bx = [];
+    this.by = [];
+    this.n = 0;
+    // Lay the starting body out in a straight line behind the head.
+    const L = this.length, step = 4;
+    for (let d = L; d > 0; d -= step) this.trail.push(x - Math.cos(angle) * d, y - Math.sin(angle) * d);
+    this.trail.push(x, y);
+    this.resample();
+  }
+
+  get radius() { return radiusFor(this.mass); }
+  get length() { return lengthFor(this.mass); }
+  get spacing() { return this.radius * 0.5; }
+
+  /** Max turning speed in rad/s: big snakes and boosting snakes turn wider. */
+  get turnRate() {
+    const f = Math.max(SNAKE.minTurnFactor, 1 - this.mass / 6000);
+    return SNAKE.baseTurn * f * (this.boosting ? SNAKE.boostTurnFactor : 1);
+  }
+
+  /** Radius of the tightest circle the snake can drive. */
+  get turnRadius() { return this.speed / this.turnRate; }
+
+  update(dt) {
+    if (this.shield > 0) this.shield = Math.max(0, this.shield - dt);
+    // Smooth turning: rotate toward the wanted angle, limited by the turn rate.
+    const maxTurn = this.turnRate * dt;
+    this.angle = wrapAngle(this.angle + clamp(angleDiff(this.angle, this.wantAngle), -maxTurn, maxTurn));
+
+    // Boosting costs mass; part of it is left behind as a trail of pellets.
+    this.boosting = this.wantBoost && this.mass > SNAKE.minBoostMass;
+    const target = this.boosting ? SNAKE.boostSpeed : SNAKE.baseSpeed;
+    this.speed += clamp(target - this.speed, -SNAKE.accel * dt, SNAKE.accel * dt);
+    if (this.boosting) {
+      const loss = SNAKE.boostDrain * dt;
+      this.mass -= loss;
+      this.boostBank += loss * SNAKE.boostDropShare;
+    }
+
+    this.x += Math.cos(this.angle) * this.speed * dt;
+    this.y += Math.sin(this.angle) * this.speed * dt;
+    this.trail.push(this.x, this.y);
+    this.resample();
+  }
+
+  grow(value) {
+    this.mass += value;
+    if (this.mass > this.peakMass) this.peakMass = this.mass;
+  }
+
+  /** Walk the trail back from the head, placing a body point every `spacing` px. */
+  resample() {
+    const sp = this.spacing, tr = this.trail;
+    const maxN = Math.min(SNAKE.maxSegments, Math.floor(this.length / sp) + 1);
+    let px = this.x, py = this.y, left = sp, n = 1, i = tr.length - 2;
+    this.bx[0] = px; this.by[0] = py;
+    for (; i >= this.t0 && n < maxN; i -= 2) {
+      const qx = tr[i], qy = tr[i + 1];
+      let d = Math.hypot(qx - px, qy - py);
+      while (d >= left && n < maxN) {
+        const t = left / d;
+        px += (qx - px) * t; py += (qy - py) * t;
+        this.bx[n] = px; this.by[n] = py; n++;
+        d -= left; left = sp;
+      }
+      left -= d; px = qx; py = qy;
+    }
+    this.n = n;
+    // Trail points older than the tail are no longer needed. (A growing snake
+    // therefore lengthens as it moves, from the tail, like the real game.)
+    if (n >= maxN && i > this.t0) this.t0 = i;
+    if (this.t0 > 6000) { tr.splice(0, this.t0); this.t0 = 0; }
+  }
+}
+
+/* snake-arena/src/collision.js */
+
+/**
+ * Body segments go into the spatial grid as single numbers: slot * SEG + index.
+ * That avoids creating thousands of small objects every tick.
+ */
+const SEG = 4096;
+
+/**
+ * Returns the first snake (other than `ignore`) whose body overlaps the circle
+ * (x, y, rad), or null. Used both for real collisions and by the AI to test
+ * points along a path it is considering.
+ */
+function bodyAt(game, x, y, rad, ignore) {
+  const g = game.segGrid, reach = rad + 32;
+  const x0 = g.cellX(x - reach), x1 = g.cellX(x + reach);
+  const y0 = g.cellY(y - reach), y1 = g.cellY(y + reach);
+  for (let cy = y0; cy <= y1; cy++) {
+    for (let cx = x0; cx <= x1; cx++) {
+      const arr = g.cells[cy * g.n + cx];
+      for (let k = 0; k < arr.length; k++) {
+        const e = arr[k], o = game.slots[(e / SEG) | 0];
+        if (!o || o === ignore) continue;
+        const i = e % SEG, rr = rad + o.radius, dx = x - o.bx[i], dy = y - o.by[i];
+        if (dx * dx + dy * dy < rr * rr) return o;
+      }
+    }
+  }
+  return null;
+}
+
+/**
+ * Finds every snake that dies this tick: its head left the arena, or touched
+ * another snake's body (or head). Snakes never collide with themselves.
+ * Returns [victim, killer] pairs; killer is null for the arena wall.
+ * Collisions are slightly forgiving (85% of the touching distance), like the real game.
+ * A shielded snake can pass through bodies, but the edge still counts.
+ */
+function findCollisions(game) {
+  const out = [], R = WORLD.radius;
+  for (const s of game.snakes) {
+    const r = s.radius;
+    if (s.x * s.x + s.y * s.y > (R - r) * (R - r)) { out.push([s, null]); continue; }
+    if (s.shield > 0) continue;
+    const killer = bodyAt(game, s.x, s.y, r * 0.85 - 2, s);
+    if (killer) out.push([s, killer]);
+  }
+  return out;
+}
+
+/* snake-arena/src/ai/personalities.js */
+/**
+ * Personality = a set of weights the brain reads when it scores its options.
+ * The same decision code runs for every bot; only these numbers differ.
+ *
+ *  aggression   how much it wants to hunt and trap other snakes
+ *  caution      how strongly threats and crowds push it away
+ *  greed        how much it values food
+ *  opportunism  how much it watches fights and races to fresh death sites
+ *  boostiness   how willing it is to spend length on speed
+ *  risk         how much danger it accepts to get what it wants (0..1)
+ *  preyRatio    attacks snakes up to this size relative to its own (1.2 = even a bit bigger ones)
+ *  fleeRatio    a snake this many times its size is "fully scary"
+ *  encircle     how much it likes the coil-around-them kill
+ *  margin       extra clearance (px) it keeps from other bodies
+ *  lead         how far ahead of a victim it aims when cutting it off
+ */
+const PERSONALITIES = {
+  aggressive: {
+    label: 'Aggressive', icon: '🔥', hues: [0, 14, 28], blurb: 'Hunts other snakes and takes risks.',
+    aggression: 0.95, caution: 0.3, greed: 0.55, opportunism: 0.2, boostiness: 0.85, risk: 0.7,
+    preyRatio: 1.15, fleeRatio: 2.4, encircle: 0.8, margin: 4, lead: 1.2,
+  },
+  defensive: {
+    label: 'Defensive', icon: '🛡️', hues: [190, 205, 172], blurb: 'Plays safe and grows steadily.',
+    aggression: 0.12, caution: 0.95, greed: 0.8, opportunism: 0.25, boostiness: 0.3, risk: 0.12,
+    preyRatio: 0.35, fleeRatio: 0.85, encircle: 0.25, margin: 16, lead: 0.8,
+  },
+  balanced: {
+    label: 'Balanced', icon: '⚖️', hues: [105, 130, 88], blurb: 'Hunts when it is safe, eats otherwise.',
+    aggression: 0.55, caution: 0.6, greed: 0.7, opportunism: 0.4, boostiness: 0.55, risk: 0.4,
+    preyRatio: 0.75, fleeRatio: 1.4, encircle: 0.5, margin: 9, lead: 1,
+  },
+  opportunistic: {
+    label: 'Opportunistic', icon: '🦊', hues: [275, 292, 310], blurb: 'Lurks near fights, then steals the food.',
+    aggression: 0.35, caution: 0.7, greed: 0.6, opportunism: 0.95, boostiness: 0.6, risk: 0.35,
+    preyRatio: 0.5, fleeRatio: 1.15, encircle: 0.3, margin: 11, lead: 1,
+  },
+  // Not a real opponent: a control group for the simulator that just meanders.
+  wanderer: {
+    label: 'Wanderer', icon: '🌀', hues: [45], blurb: 'Control group: wanders at random.',
+    aggression: 0, caution: 0, greed: 0, opportunism: 0, boostiness: 0, risk: 1,
+    preyRatio: 0, fleeRatio: 99, encircle: 0, margin: 0, lead: 1,
+  },
+};
+
+/** The four kinds that play in normal games. */
+const KINDS = ['aggressive', 'defensive', 'balanced', 'opportunistic'];
+
+const TRAITS = ['aggression', 'caution', 'greed', 'opportunism', 'boostiness', 'risk', 'preyRatio', 'fleeRatio', 'encircle', 'margin', 'lead'];
+const UNIT = new Set(['aggression', 'caution', 'greed', 'opportunism', 'boostiness', 'risk', 'encircle']);
+
+/**
+ * A copy of the preset with every trait nudged by up to ±15%, plus a few
+ * quirks (which way it likes to circle, how much it wiggles, its colors),
+ * so no two bots play exactly alike.
+ */
+function makePersonality(kind, rng) {
+  const base = PERSONALITIES[kind];
+  const p = { kind, label: base.label, icon: base.icon };
+  for (const k of TRAITS) {
+    const v = base[k] * (1 + rng.range(-0.15, 0.15));
+    p[k] = UNIT.has(k) ? Math.min(1, Math.max(0, v)) : v;
+  }
+  p.circleDir = rng() < 0.5 ? 1 : -1;
+  p.wobble = rng.range(0.6, 1.4);
+  const hue = (rng.pick(base.hues) + rng.int(-6, 6) + 360) % 360;
+  p.skin = { hue, hue2: (hue + rng.pick([22, -22, 40])) % 360, kind };
+  return p;
+}
+
+const NAMES = ['Viper', 'Noodle', 'Sir Hiss', 'Zigzag', 'Mamba', 'Slinky', 'Pretzel', 'Comet', 'Wiggles', 'Nova', 'Sprout', 'Bolt',
+  'Ziggy', 'Pickle', 'Cobra Kai', 'Danger Noodle', 'Twister', 'Ribbon', 'Echo', 'Fang', 'Jellybean', 'Rocket', 'Squiggle', 'Blaze',
+  'Pebble', 'Lasso', 'Tango', 'Gizmo', 'Marble', 'Sparky', 'Waffles', 'Orbit', 'Pixel', 'Taffy', 'Rascal', 'Ninja', 'Zephyr',
+  'Biscuit', 'Glimmer', 'Turbo', 'Mochi', 'Scribble', 'Nugget', 'Kraken', 'Mango', 'Shadow', 'Basil', 'Quasar', 'Dizzy', 'Jinx',
+  'Sapphire', 'Pudding', 'Hydra', 'Cricket', 'Doodle', 'Maverick', 'Sherbet', 'Raptor', 'Lumen', 'Boomer'];
+
+/** A name not already used in this game (falls back to adding a number). */
+function pickName(rng, used) {
+  for (let i = 0; i < 20; i++) {
+    const n = rng.pick(NAMES);
+    if (!used.has(n)) { used.add(n); return n; }
+  }
+  const n = rng.pick(NAMES) + ' ' + rng.int(2, 99);
+  used.add(n);
+  return n;
+}
+
+/* snake-arena/src/ai/perception.js */
+
+/**
+ * PERCEPTION: turns the raw world into the handful of facts a decision needs.
+ * Everything here is limited to what the bot can "see" (its view radius,
+ * which depends on difficulty), apart from the coarse food smell.
+ *
+ * Returns:
+ *  threats     every snake head in view, with a 0..1+ threat level
+ *  topThreat   the scariest one (threat = its level)
+ *  prey        smaller snakes worth attacking, best first (vuln = how open they are)
+ *  food        the best food target (value-weighted center of a rich cell)
+ *  foodAlt     the runner-up, used as a weak secondary goal
+ *  smell       when no food is in view: a promising far-away area
+ *  death       the most attractive recent death site (fresh food)
+ *  hotspot     the nearest fight between other snakes
+ *  trapped     0..1, how much of the space around us is walled off by bodies
+ *  gapAngle    the direction of the widest opening when trapped
+ *  wall        0..1, closeness to the arena edge; centerAngle points inward
+ */
+function perceive(me, game, P, D, mem) {
+  const S = {
+    view: D.view, threats: [], topThreat: null, threat: 0, prey: [],
+    food: null, foodScore: 0, foodAlt: null, smell: null, death: null, hotspot: null,
+    trapped: 0, gapAngle: me.angle, wall: 0, centerAngle: Math.atan2(-me.y, -me.x),
+  };
+  senseSnakes(me, game, P, S, mem);
+  senseTrap(me, game, S);
+  senseFood(me, game, P, S, mem);
+  senseEvents(me, game, P, S);
+  S.wall = clamp((Math.hypot(me.x, me.y) - (WORLD.radius - 700)) / 600, 0, 1);
+  return S;
+}
+
+/** Threat and prey assessment for every snake head within view. */
+function senseSnakes(me, game, P, S, mem) {
+  const mvx = Math.cos(me.angle) * me.speed, mvy = Math.sin(me.angle) * me.speed;
+  for (const o of game.snakes) {
+    if (o === me) continue;
+    const dx = me.x - o.x, dy = me.y - o.y, d = Math.hypot(dx, dy);
+    if (d > S.view) continue;
+    const ratio = o.mass / me.mass;
+    // Is its head pointed at me, or at the spot just in front of me (a cut-off)?
+    const aim = Math.cos(angleDiff(o.angle, Math.atan2(dy, dx)));
+    const ahead = Math.min(d, 220);
+    const ax = me.x + Math.cos(me.angle) * ahead, ay = me.y + Math.sin(me.angle) * ahead;
+    const aimAhead = Math.cos(angleDiff(o.angle, Math.atan2(ay - o.y, ax - o.x)));
+    const intent = Math.max(0, aim, aimAhead);
+    // Closing speed: how fast the gap between our heads is shrinking.
+    const ux = dx / (d || 1), uy = dy / (d || 1);
+    const closing = (Math.cos(o.angle) * o.speed - mvx) * ux + (Math.sin(o.angle) * o.speed - mvy) * uy;
+    const prox = 1 - d / S.view;
+    const level = Math.pow(prox, 1.2)
+      * (0.35 + 0.65 * intent)
+      * (1 + clamp(closing / 300, -0.5, 0.8))
+      * (o.boosting ? 1.25 : 1)
+      * clamp(ratio / P.fleeRatio, 0.2, 1.6);
+    const info = { s: o, x: o.x, y: o.y, d, ratio, intent, closing, level };
+    S.threats.push(info);
+    if (level > S.threat) { S.threat = level; S.topThreat = info; }
+    // Prey: smaller snakes, best when close, not facing us, near the edge, or not boosting away.
+    if (ratio <= P.preyRatio && o.mass >= 10 && !(mem.ignore && mem.ignore.has(o.id))) {
+      const edge = clamp((Math.hypot(o.x, o.y) - (WORLD.radius - 600)) / 600, 0, 1);
+      const vuln = prox * (1 - 0.6 * Math.max(0, aim)) * (1 + 0.5 * edge)
+        * (1 + 0.5 * (P.preyRatio - ratio)) * (o.boosting ? 0.85 : 1);
+      S.prey.push({ s: o, d, ratio, vuln });
+    }
+  }
+  S.prey.sort((a, b) => b.vuln - a.vuln);
+}
+
+/**
+ * Encirclement check: split the circle around our head into 16 sectors and mark
+ * the ones blocked by another body (or the arena edge). If most are blocked we
+ * are being coiled, and the widest open run of sectors is the way out.
+ */
+const BINS = 16, bins = new Uint8Array(BINS);
+function senseTrap(me, game, S) {
+  const rT = clamp(me.turnRadius * 3 + 120, 170, 330), rT2 = rT * rT;
+  bins.fill(0);
+  game.segGrid.query(me.x, me.y, rT, (e) => {
+    const o = game.slots[(e / SEG) | 0];
+    if (!o || o === me) return false;
+    const i = e % SEG, dx = o.bx[i] - me.x, dy = o.by[i] - me.y;
+    if (dx * dx + dy * dy > rT2) return false;
+    bins[Math.floor(((Math.atan2(dy, dx) + Math.PI) / TAU) * BINS) % BINS] = 1;
+    return false;
+  });
+  const lim = (WORLD.radius - 20) ** 2;
+  for (let b = 0; b < BINS; b++) {
+    const a = ((b + 0.5) / BINS) * TAU - Math.PI, x = me.x + Math.cos(a) * rT, y = me.y + Math.sin(a) * rT;
+    if (x * x + y * y > lim) bins[b] = 1;
+  }
+  let blocked = 0;
+  for (let b = 0; b < BINS; b++) blocked += bins[b];
+  S.trapped = clamp((blocked / BINS - 0.5) / 0.35, 0, 1);
+  if (S.trapped > 0 && blocked < BINS) {
+    // Longest circular run of open sectors.
+    let best = 0, bestStart = 0, run = 0, start = 0;
+    for (let k = 0; k < BINS * 2; k++) {
+      const b = k % BINS;
+      if (!bins[b]) { if (!run) start = k; run++; if (run > best && run <= BINS) { best = run; bestStart = start; } }
+      else run = 0;
+    }
+    S.gapAngle = ((bestStart + best / 2) / BINS) * TAU - Math.PI;
+  }
+}
+
+/**
+ * Food search. Rather than chase single pellets, score each grid cell in view
+ * by its total value against the time to get there (distance plus the time
+ * spent turning), so bots go for rich clusters like death trails. Cells near
+ * other snakes count for less (more so for cautious bots), food inside our
+ * own turning circle is skipped (we'd only orbit it), and the previous
+ * target gets a small bonus so the bot doesn't flip-flop.
+ */
+function senseFood(me, game, P, S, mem) {
+  const spd = Math.max(me.speed, SNAKE.baseSpeed), turn = me.turnRate, tR = spd / turn;
+  const seg = game.segGrid, edge2 = (WORLD.radius - 140) ** 2, view = S.view;
+  let best = null, bestS = 0, alt = null, altS = 0;
+  game.food.grid.forCells(me.x, me.y, view, (arr) => {
+    let v = 0, sx = 0, sy = 0;
+    for (let i = 0; i < arr.length; i++) {
+      const f = arr[i];
+      if (f.alive) { v += f.value; sx += f.x * f.value; sy += f.y * f.value; }
+    }
+    if (!v) return;
+    const tx = sx / v, ty = sy / v, dx = tx - me.x, dy = ty - me.y, d = Math.hypot(dx, dy);
+    if (d > view) return;
+    const ang = Math.abs(angleDiff(me.angle, Math.atan2(dy, dx)));
+    if (ang > 1.1 && d < tR * 1.9) return;
+    let score = Math.pow(v, 0.85) / (d / spd + ang / turn + 0.3);
+    // Crowding: other bodies in that cell, weighted by how big they are compared with us.
+    const cell = seg.cells[seg.key(tx, ty)];
+    let crowd = 0;
+    for (let i = 0; i < cell.length; i++) {
+      const o = game.slots[(cell[i] / SEG) | 0];
+      if (o && o !== me) crowd += Math.min(2, o.mass / me.mass) / 6;
+    }
+    score /= 1 + P.caution * crowd;
+    if (tx * tx + ty * ty > edge2) score *= 0.25;
+    if (mem.food && Math.abs(mem.food.x - tx) < 70 && Math.abs(mem.food.y - ty) < 70) score *= 1.25;
+    if (score > bestS) { alt = best; altS = bestS; best = { x: tx, y: ty, value: v }; bestS = score; }
+    else if (score > altS) { alt = { x: tx, y: ty, value: v }; altS = score; }
+  });
+  S.food = best; S.foodScore = bestS; S.foodAlt = alt;
+  mem.food = best;
+  if (!best) {
+    // Nothing in view: follow the "smell" of the coarse food map.
+    const F = game.food, n = F.coarseN, s = F.coarseSize, min = -WORLD.radius;
+    let bs = 0;
+    for (let cy = 0; cy < n; cy++) for (let cx = 0; cx < n; cx++) {
+      const x = min + (cx + 0.5) * s, y = min + (cy + 0.5) * s;
+      if (x * x + y * y > (WORLD.radius - 300) ** 2) continue;
+      const sc = F.coarse[cy * n + cx] / (1 + Math.hypot(x - me.x, y - me.y) / 900);
+      if (sc > bs) { bs = sc; S.smell = { x, y }; }
+    }
+  }
+}
+
+/** Fresh death sites (food piles) and ongoing fights between other snakes. */
+function senseEvents(me, game, P, S) {
+  const spd = Math.max(me.speed, SNAKE.baseSpeed), range = S.view * (1.6 + 1.4 * P.opportunism);
+  let best = 0;
+  for (const d of game.deaths) {
+    if (d.victim === me) continue;
+    const dist = Math.hypot(d.x - me.x, d.y - me.y);
+    if (dist > range) continue;
+    const fresh = 1 - (game.time - d.t) / WORLD.deathMemory;
+    const score = (d.value * fresh) / (dist / spd + 1.5);
+    if (score > best) {
+      let contested = 0;
+      for (const o of game.snakes) if (o !== me && Math.hypot(o.x - d.x, o.y - d.y) < 320) contested++;
+      best = score; S.death = { x: d.x, y: d.y, value: d.value * fresh, d: dist, score, contested };
+    }
+  }
+  let near = Infinity;
+  for (const h of game.hotspots) {
+    if (h.a === me || h.b === me) continue;
+    const dist = Math.hypot(h.x - me.x, h.y - me.y);
+    if (dist < near && dist < range) { near = dist; S.hotspot = { x: h.x, y: h.y, intensity: h.intensity, d: dist }; }
+  }
+}
+
+/* snake-arena/src/ai/steering.js */
+
+/**
+ * STEERING: "context steering" with collision prediction.
+ *
+ * The bot considers K headings spread evenly around itself (K = difficulty's
+ * `rays`). For each one it builds two numbers:
+ *
+ *   danger    0..1  Simulates driving toward that heading for `horizon`
+ *                   seconds, turning no faster than the snake really can,
+ *                   and checks every sample point against other bodies,
+ *                   the arena edge and where other heads will be. Hitting
+ *                   something immediately = 1, near the horizon = ~0.
+ *   interest  any   How well that heading serves the current goals (food,
+ *                   an intercept point, an escape direction...) minus how
+ *                   much it points at things to avoid.
+ *
+ * Survival first: only headings whose danger is within a small tolerance of
+ * the safest heading are allowed, and among those the most interesting one
+ * wins. Risk-takers get a bigger tolerance, so they cut closer.
+ *
+ * opts: { rays, horizon, margin, risk, goals:[{angle,w,sharp}], avoid:[{angle,w}],
+ *         momentum, prey (snake we are allowed to cut in front of), ignoreDanger }
+ */
+function steer(me, game, opts) {
+  const K = opts.rays, step = TAU / K;
+  const dirs = new Array(K), danger = new Array(K), interest = new Array(K);
+  const heads = nearbyHeads(me, game, opts);
+  for (let j = 0; j < K; j++) {
+    const a = wrapAngle(me.angle + j * step); // j = 0 is straight ahead
+    dirs[j] = a;
+    danger[j] = opts.ignoreDanger ? 0 : castArc(me, game, a, opts, heads);
+    let v = opts.momentum * Math.max(0, Math.cos(j * step));
+    for (const g of opts.goals) {
+      const c = Math.cos(angleDiff(a, g.angle));
+      if (c > 0) v += g.w * Math.pow(c, g.sharp || 2);
+    }
+    for (const g of opts.avoid) {
+      const c = Math.cos(angleDiff(a, g.angle));
+      if (c > 0) v -= g.w * c * c;
+    }
+    interest[j] = v;
+  }
+
+  let minDanger = 1;
+  for (let j = 0; j < K; j++) if (danger[j] < minDanger) minDanger = danger[j];
+  const tol = 0.06 + opts.risk * 0.14;
+  const score = (j) => (danger[j] > minDanger + tol ? -Infinity : interest[j] - danger[j] * 0.8);
+  let best = 0, bestV = -Infinity;
+  for (let j = 0; j < K; j++) {
+    const v = score(j);
+    if (v > bestV) { bestV = v; best = j; }
+  }
+  // Refine between neighbouring rays (parabola through three scores) for smoother aim.
+  let angle = dirs[best];
+  const l = score((best + K - 1) % K), r = score((best + 1) % K);
+  if (Number.isFinite(l) && Number.isFinite(r)) {
+    const den = l - 2 * bestV + r;
+    if (den < 0) angle = wrapAngle(angle + clamp((0.5 * (l - r)) / den, -0.5, 0.5) * step);
+  }
+  return { angle, best, dirs, danger, interest, minDanger, ahead: danger[0] };
+}
+
+/** Other heads near enough to matter within the look-ahead, with their velocity. */
+function nearbyHeads(me, game, opts) {
+  const out = [], reach = (Math.max(me.speed, SNAKE.baseSpeed) + SNAKE.boostSpeed) * opts.horizon + 80;
+  for (const o of game.snakes) {
+    if (o === me) continue;
+    if (Math.abs(o.x - me.x) > reach || Math.abs(o.y - me.y) > reach) continue;
+    out.push({
+      x: o.x, y: o.y, r: o.radius,
+      vx: Math.cos(o.angle) * o.speed, vy: Math.sin(o.angle) * o.speed,
+      // The stretch a head is about to drive over will soon be its body.
+      // We ignore that for our prey, because cutting across it is the point.
+      swept: o !== opts.prey,
+    });
+  }
+  return out;
+}
+
+/** Danger of heading toward `theta`: 1 = blocked right away, 0 = clear to the horizon. */
+function castArc(me, game, theta, opts, heads) {
+  const T = opts.horizon, dt = 0.07, R = WORLD.radius;
+  const sp = Math.max(me.speed, SNAKE.baseSpeed), tr = me.turnRate, pad = me.radius + opts.margin;
+  const edge2 = (R - pad) * (R - pad);
+  let x = me.x, y = me.y, a = me.angle;
+  for (let t = dt; t <= T + 1e-9; t += dt) {
+    const m = tr * dt;
+    a += clamp(angleDiff(a, theta), -m, m);
+    x += Math.cos(a) * sp * dt;
+    y += Math.sin(a) * sp * dt;
+    const k = 1 - (t - dt) / T;
+    if (x * x + y * y > edge2) return k;
+    if (bodyAt(game, x, y, pad, me)) return k;
+    for (const h of heads) {
+      const hx = h.x + h.vx * t, hy = h.y + h.vy * t, rr = pad + h.r + 6;
+      if (dist2(x, y, hx, hy) < rr * rr) return k;
+      if (h.swept && distToSegment2(x, y, h.x, h.y, hx, hy) < (pad + h.r) * (pad + h.r)) return k;
+    }
+  }
+  return 0;
+}
+
+/** Cheap per-frame check: is something right in front of us? */
+function blockedAhead(me, game, seconds = [0.12, 0.25]) {
+  const R = WORLD.radius, c = Math.cos(me.angle), s = Math.sin(me.angle), pad = me.radius + 4;
+  for (const t of seconds) {
+    const x = me.x + c * me.speed * t, y = me.y + s * me.speed * t;
+    if (x * x + y * y > (R - pad) ** 2 || bodyAt(game, x, y, pad, me)) return true;
+  }
+  return false;
+}
+
+/* snake-arena/src/ai/brain.js */
+
+/**
+ * The bot's decision maker. Each decision ("think") runs four steps:
+ *
+ *   1. PERCEIVE  what's around me? (perception.js)
+ *   2. CHOOSE    score every state with a utility function weighted by the
+ *                personality, and switch to the best one (with hysteresis so
+ *                it doesn't flicker between two close options)
+ *   3. PLAN      turn that state into goals: directions to go toward and
+ *                directions to stay away from
+ *   4. STEER     context steering picks the safest good heading (steering.js),
+ *                then decide whether to boost
+ *
+ * States:
+ *   forage    eat the best food nearby (or follow the food smell)
+ *   hunt      cut in front of a smaller snake so it crashes into us
+ *   encircle  coil around a much smaller snake and tighten the circle
+ *   flee      get away from a dangerous snake
+ *   escape    we are being coiled: race for the widest gap
+ *   scavenge  rush to a fresh death site and eat the remains
+ *   lurk      circle at a safe distance from a fight, waiting for a death
+ *
+ * A full think runs only every few frames (difficulty's `thinkEvery`, plus a
+ * random offset so the bots don't all think on the same frame). In between,
+ * the snake keeps the chosen heading. On Normal and Hard, a cheap probe
+ * straight ahead runs every frame and forces an early think if something
+ * appears in front of us: a reflex.
+ */
+class BotBrain {
+  constructor(bot, game) {
+    this.bot = bot;
+    this.game = game;
+    this.p = bot.personality;
+    this.reset();
+  }
+
+  reset() {
+    const r = this.game.rng, s = this.bot.snake;
+    this.state = 'forage';
+    this.stateAt = this.game.time;
+    this.timer = r.int(0, 8);
+    this.angle = s ? s.angle : 0;
+    this.boost = false;
+    this.boostUntil = 0;
+    this.food = null;       // memory for target stickiness (written by perception)
+    this.coilR = 0;
+    this.chase = null;      // { id, since } for the snake we are hunting
+    this.ignore = new Map(); // snake id -> time until which we leave it alone
+    this.lastReflex = -1;
+    this.wobblePhase = r() * TAU;
+    this.debug = null;
+  }
+
+  /** Called every tick. */
+  update() {
+    const s = this.bot.snake, g = this.game, D = g.diff;
+    let think = --this.timer <= 0;
+    if (!think && D.emergency && g.time - this.lastReflex > 0.05 && blockedAhead(s, g)) {
+      this.lastReflex = g.time;
+      think = true;
+    }
+    if (think) {
+      this.think();
+      this.timer = D.thinkEvery + g.rng.int(0, 2);
+    }
+    // A small, personal wiggle while calmly foraging makes the bots look alive.
+    const calm = this.state === 'forage' && this.debug && this.debug.minDanger < 0.05;
+    s.wantAngle = calm ? this.angle + Math.sin(g.time * 2.3 * this.p.wobble + this.wobblePhase) * 0.06 : this.angle;
+    s.wantBoost = this.boost;
+  }
+
+  think() {
+    const s = this.bot.snake, g = this.game, P = this.p, D = g.diff, rng = g.rng;
+    const S = perceive(s, g, P, D, this);
+    this.trackChase(S);
+
+    // 2. CHOOSE: utility scores with hysteresis and a short minimum commitment.
+    const u = this.utilities(s, S);
+    let next = this.state, bestU = (u[this.state] || 0) * 1.2;
+    for (const k in u) if (u[k] > bestU) { bestU = u[k]; next = k; }
+    const urgent = next === 'flee' || next === 'escape';
+    if (next !== this.state && !urgent && g.time - this.stateAt < 0.5 && (u[this.state] || 0) > 0.1) next = this.state;
+    if (next !== this.state) {
+      this.state = next;
+      this.stateAt = g.time;
+      this.coilR = 0;
+    }
+
+    // 3. PLAN
+    const plan = this.plan(s, S);
+
+    // 4. STEER (an Easy bot sometimes blunders and ignores danger entirely)
+    const blunder = D.mistake > 0 && rng.chance(D.mistake);
+    const st = steer(s, g, {
+      rays: D.rays, horizon: D.horizon, margin: P.margin, risk: P.risk,
+      goals: plan.goals, avoid: plan.avoid, momentum: 0.12, prey: plan.prey && plan.prey.s, ignoreDanger: blunder,
+    });
+    // Aim noise is smaller when the situation is tight, so mistakes stay believable.
+    this.angle = wrapAngle(st.angle + rng.gauss() * D.aimNoise * (st.minDanger > 0.3 ? 0.3 : 1));
+    this.boost = this.decideBoost(s, S, plan, st);
+
+    this.debug = {
+      state: this.state, u, threat: S.threat, trapped: S.trapped, view: S.view, blunder,
+      target: plan.target ? { x: plan.target.x, y: plan.target.y, kind: plan.kind } : null,
+      threats: S.threats.filter((t) => t.level > 0.15).sort((a, b) => b.level - a.level).slice(0, 4)
+        .map((t) => ({ x: t.x, y: t.y, level: t.level, name: t.s.name })),
+      dirs: st.dirs, danger: st.danger, best: st.best, angle: this.angle, minDanger: st.minDanger, boost: this.boost,
+    };
+  }
+
+  /**
+   * Real players give up on a chase that is going nowhere. After 6 seconds on
+   * the same victim we leave it alone for a while (perception skips it).
+   */
+  trackChase(S) {
+    const g = this.game, pr = S.prey[0], hunting = this.state === 'hunt' || this.state === 'encircle';
+    for (const [id, until] of this.ignore) if (g.time > until) this.ignore.delete(id);
+    if (!hunting || !pr) { this.chase = null; return; }
+    if (!this.chase || this.chase.id !== pr.s.id) this.chase = { id: pr.s.id, since: g.time };
+    else if (g.time - this.chase.since > 6) {
+      this.ignore.set(pr.s.id, g.time + 6);
+      this.chase = null;
+      S.prey.shift();
+    }
+  }
+
+  /** How much each state is worth right now (roughly 0..1.6). */
+  utilities(s, S) {
+    const P = this.p, u = {};
+    u.forage = 0.22 + 0.55 * P.greed * clamp(S.foodScore / 10, 0, 1.2);
+    const pr = S.prey[0], canHunt = pr && s.mass >= 28 && S.trapped < 0.3;
+    u.hunt = canHunt ? 1.25 * P.aggression * clamp(pr.vuln * 1.6, 0, 1) : 0;
+    // Coiling needs a long body, a much smaller victim close by, and us beside or
+    // ahead of it (from behind, a moving snake just drags the circle along).
+    const beside = pr && Math.abs(angleDiff(pr.s.angle, Math.atan2(s.y - pr.s.y, s.x - pr.s.x))) < 1.9;
+    u.encircle = canHunt && beside && pr.ratio < 0.45 && s.length > TAU * 110 && pr.d < 320
+      ? 1.8 * P.aggression * (0.4 + 0.6 * P.encircle) * clamp(pr.vuln * 2, 0, 1) : 0;
+    u.flee = S.topThreat ? clamp(S.threat * (0.6 + P.caution) * 1.4, 0, 1.6) : 0;
+    u.escape = S.trapped > 0 ? 0.9 + S.trapped : 0;
+    u.scavenge = S.death
+      ? clamp(S.death.score / 12, 0, 1.2) * (0.35 + 0.9 * P.opportunism) * (1 - 0.4 * Math.min(1, S.death.contested * P.caution * 0.5))
+      : 0;
+    u.lurk = S.hotspot && !S.death && S.hotspot.d > 220 && S.hotspot.d < 1500
+      ? P.opportunism * 0.75 * clamp(S.hotspot.intensity / 150, 0, 1) : 0;
+    return u;
+  }
+
+  /** Goals (attract) and avoids (repel) for the current state. */
+  plan(s, S) {
+    const P = this.p, goals = [], avoid = [], plan = { goals, avoid, target: null, kind: '', prey: null };
+    const toward = (x, y) => Math.atan2(y - s.y, x - s.x);
+    const hunting = this.state === 'hunt' || this.state === 'encircle';
+    // Threats push every state away a little; cautious bots and fleeing bots more.
+    for (const t of S.threats) {
+      if (t.level < 0.15 || (hunting && S.prey[0] && t.s === S.prey[0].s)) continue;
+      avoid.push({ angle: toward(t.x, t.y), w: t.level * (0.3 + P.caution) * (this.state === 'flee' ? 1.6 : 0.6) });
+    }
+    if (S.wall > 0) goals.push({ angle: S.centerAngle, w: S.wall * 1.2, sharp: 1 });
+    const food = (w) => { if (S.food) goals.push({ angle: toward(S.food.x, S.food.y), w, sharp: 2 }); };
+
+    switch (this.state) {
+      case 'hunt': {
+        const pr = S.prey[0], T = this.intercept(s, pr.s);
+        goals.push({ angle: toward(T.x, T.y), w: 1.4, sharp: 4 });
+        food(0.15);
+        Object.assign(plan, { target: T, kind: 'prey', prey: pr });
+        break;
+      }
+      case 'encircle': {
+        const pr = S.prey[0], T = this.orbit(s, pr.s);
+        goals.push({ angle: toward(T.x, T.y), w: 1.6, sharp: 4 });
+        Object.assign(plan, { target: T, kind: 'coil', prey: pr });
+        break;
+      }
+      case 'flee': {
+        // Run along the sum of "away from each threat" vectors, weighted by threat level.
+        let ex = 0, ey = 0;
+        for (const t of S.threats) { ex += ((s.x - t.x) / (t.d || 1)) * t.level; ey += ((s.y - t.y) / (t.d || 1)) * t.level; }
+        const a = Math.atan2(ey, ex);
+        goals.push({ angle: a, w: 1.3, sharp: 1.5 });
+        food(0.25);
+        Object.assign(plan, { target: { x: s.x + Math.cos(a) * 220, y: s.y + Math.sin(a) * 220 }, kind: 'flee' });
+        break;
+      }
+      case 'escape':
+        goals.push({ angle: S.gapAngle, w: 2, sharp: 3 });
+        Object.assign(plan, { target: { x: s.x + Math.cos(S.gapAngle) * 200, y: s.y + Math.sin(S.gapAngle) * 200 }, kind: 'gap' });
+        break;
+      case 'scavenge':
+        goals.push({ angle: toward(S.death.x, S.death.y), w: 1.2, sharp: 3 });
+        if (S.death.d < 260) food(0.8);
+        Object.assign(plan, { target: S.death, kind: 'death' });
+        break;
+      case 'lurk': {
+        // Orbit the fight at a safe distance, ready to pounce on the remains.
+        const h = S.hotspot, keep = 380, phi = Math.atan2(s.y - h.y, s.x - h.x) + P.circleDir * 0.5;
+        const T = { x: h.x + Math.cos(phi) * keep, y: h.y + Math.sin(phi) * keep };
+        goals.push({ angle: toward(T.x, T.y), w: 1, sharp: 2 });
+        food(0.5);
+        Object.assign(plan, { target: T, kind: 'lurk' });
+        break;
+      }
+      default:
+        if (S.food) {
+          food(1);
+          if (S.foodAlt) goals.push({ angle: toward(S.foodAlt.x, S.foodAlt.y), w: 0.3, sharp: 2 });
+          Object.assign(plan, { target: S.food, kind: 'food' });
+        } else if (S.smell) {
+          goals.push({ angle: toward(S.smell.x, S.smell.y), w: 0.8, sharp: 1 });
+          Object.assign(plan, { target: S.smell, kind: 'smell' });
+        }
+    }
+    return plan;
+  }
+
+  /**
+   * Where to aim to cut a snake off: predict where its head will be by the
+   * time we get there, then aim a bit past that point, crossing to the far
+   * side of its path so our body ends up across it.
+   */
+  intercept(s, o) {
+    const sp = Math.max(s.speed, SNAKE.baseSpeed);
+    let px = o.x, py = o.y;
+    for (let k = 0; k < 3; k++) {
+      const t = Math.hypot(px - s.x, py - s.y) / sp;
+      px = o.x + Math.cos(o.angle) * o.speed * t;
+      py = o.y + Math.sin(o.angle) * o.speed * t;
+    }
+    const fx = Math.cos(o.angle), fy = Math.sin(o.angle), nx = -fy, ny = fx;
+    const side = Math.sign((s.x - o.x) * nx + (s.y - o.y) * ny) || 1;
+    const ahead = (70 + 110 * this.p.aggression) * this.p.lead;
+    return { x: px + fx * ahead - nx * side * 40, y: py + fy * ahead - ny * side * 40 };
+  }
+
+  /** A point a little further around a shrinking circle centred on the victim's head. */
+  orbit(s, o) {
+    if (!this.coilR) this.coilR = clamp(s.length / TAU * 0.6, 90, 320);
+    this.coilR = Math.max(s.turnRadius * 1.3 + o.radius, this.coilR * 0.985);
+    const cx = o.x + Math.cos(o.angle) * o.speed * 0.6, cy = o.y + Math.sin(o.angle) * o.speed * 0.6;
+    const phi = Math.atan2(s.y - cy, s.x - cx) + this.p.circleDir * 0.75;
+    return { x: cx + Math.cos(phi) * this.coilR, y: cy + Math.sin(phi) * this.coilR };
+  }
+
+  /** Boost only with a reason: closing on prey, running from danger, escaping a coil, or racing for food. */
+  decideBoost(s, S, plan, st) {
+    const P = this.p, g = this.game, rng = g.rng;
+    if (s.mass < SNAKE.minBoostMass + 8) return false;
+    const clear = st.danger[st.best] < 0.2;
+    let want = false;
+    switch (this.state) {
+      case 'hunt': {
+        const pr = plan.prey, T = plan.target;
+        const facing = Math.abs(angleDiff(s.angle, Math.atan2(T.y - s.y, T.x - s.x))) < 0.5;
+        want = facing && pr.d < 160 + 320 * P.boostiness && s.mass > pr.s.mass * 0.6 + 30 && rng() < 0.4 + 0.6 * P.boostiness;
+        break;
+      }
+      case 'encircle': {
+        // Speed up to get around the victim while we are still abeam or behind it.
+        const o = plan.prey.s, rel = Math.abs(angleDiff(o.angle, Math.atan2(s.y - o.y, s.x - o.x)));
+        want = rel > 0.9 && s.mass > SNAKE.minBoostMass + 40 && rng() < 0.5 + 0.5 * P.boostiness;
+        break;
+      }
+      case 'flee': want = S.threat > 0.75 - 0.35 * P.boostiness && S.topThreat && S.topThreat.closing > -20; break;
+      case 'escape': want = S.trapped > 0.4; break;
+      case 'scavenge': want = S.death.d < 700 && S.death.contested > 0 && S.death.value > 30 && rng() < P.boostiness; break;
+    }
+    // Never boost into danger, except to dash through a closing gap.
+    if (want && !clear && this.state !== 'escape') want = false;
+    if (want) this.boostUntil = g.time + 0.35;
+    // Once started, keep going for a moment so the boost doesn't flicker.
+    return want || (this.boost && g.time < this.boostUntil && clear);
+  }
+}
+
+/* snake-arena/src/ai/wander.js */
+
+/**
+ * Control group for the simulator: meanders at random (turning back from the
+ * arena edge so it isn't just a wall test) and never looks at food or snakes.
+ * Comparing real bots with these shows the AI is doing real work.
+ */
+class WanderBrain {
+  constructor(bot, game) { this.bot = bot; this.game = game; this.reset(); }
+  reset() { this.debug = null; this.next = 0; this.angle = this.bot.snake ? this.bot.snake.angle : 0; }
+  update() {
+    const s = this.bot.snake, g = this.game;
+    if (g.time >= this.next) {
+      this.angle = wrapAngle(this.angle + g.rng.range(-1.2, 1.2));
+      this.next = g.time + g.rng.range(0.4, 1.6);
+    }
+    if (Math.hypot(s.x, s.y) > WORLD.radius - 350) this.angle = Math.atan2(-s.y, -s.x);
+    s.wantAngle = this.angle;
+    s.wantBoost = false;
+  }
+}
+
+/* snake-arena/src/bot.js */
+
+/**
+ * A bot is a seat in the game: a name, a personality and a brain that
+ * survive between lives. When its snake dies, it waits a moment and respawns
+ * somewhere safe. It also keeps the stats the simulator reports.
+ */
+class Bot {
+  constructor(game, kind, spawnAt = null) {
+    this.game = game;
+    this.kind = kind;
+    this.name = pickName(game.rng, game.names);
+    this.personality = makePersonality(kind, game.rng);
+    this.snake = null;
+    this.respawnAt = 0;
+    this.stats = { lives: 0, aliveTime: 0, peak: 0, kills: 0, wall: 0, eaten: 0 };
+    this.brain = kind === 'wanderer' ? new WanderBrain(this, game) : new BotBrain(this, game);
+    this.spawn(spawnAt);
+  }
+
+  spawn(at = null) {
+    this.snake = this.game.spawnSnake({ name: this.name, skin: this.personality.skin, ...(at || {}) });
+    this.snake.bot = this;
+    this.stats.lives++;
+    this.brain.reset();
+  }
+
+  update(dt) {
+    if (!this.snake) {
+      if (this.game.time >= this.respawnAt) this.spawn();
+      return;
+    }
+    this.stats.aliveTime += dt;
+    this.brain.update(dt);
+  }
+
+  onDeath(killer) {
+    const s = this.snake, st = this.stats;
+    st.peak = Math.max(st.peak, s.peakMass);
+    st.kills += s.kills;
+    if (killer) st.eaten++; else st.wall++;
+    this.snake = null;
+    this.respawnAt = this.game.time + this.game.rng.range(1.5, 3.5);
+  }
+}
+
+/* snake-arena/src/game.js */
+
+/**
+ * The whole world, with no drawing code, so it runs the same in a browser
+ * and in Node (see sim/). One call to step(dt) is one fixed tick:
+ *
+ *   1. bots think (every few ticks) and steer
+ *   2. every snake moves; boosting snakes drop pellets
+ *   3. snakes eat (and suck in) nearby food
+ *   4. rebuild the body grid, find collisions, turn the dead into food
+ *   5. respawn food, track fights and death sites for the AI
+ */
+class Game {
+  /**
+   * @param {object} o
+   * @param {number} [o.seed]        same seed + same settings = same game
+   * @param {string} [o.difficulty]  'easy' | 'normal' | 'hard'
+   * @param {number} [o.bots]        how many AI snakes
+   * @param {string[]} [o.mix]       personality kinds to cycle through (default: all four)
+   * @param {number} [o.control]     extra random "wanderer" snakes (for comparisons)
+   * @param {boolean} [o.food]       scatter and respawn natural food (tests turn this off)
+   */
+  constructor({ seed = 1, difficulty = 'normal', bots = 24, mix = KINDS, control = 0, food = true } = {}) {
+    this.rng = makeRng(seed);
+    this.time = 0;
+    this.tick = 0;
+    this.setDifficulty(difficulty);
+    this.snakes = [];
+    this.slots = [];        // slot -> snake, for decoding grid entries
+    this.freeSlots = [];
+    this.bots = [];
+    this.names = new Set();
+    this.player = null;
+    this.deaths = [];       // recent death sites: { x, y, value, t, victim, killer }
+    this.hotspots = [];     // places where snakes are fighting: { x, y, intensity, t, a, b }
+    this.listeners = new Set();
+    this.food = new FoodField(this.rng);
+    this.segGrid = new SpatialGrid(WORLD.radius, WORLD.cellSize);
+    this.naturalFood = food;
+    if (food) for (let i = 0; i < WORLD.foodTarget; i++) this.food.spawnNatural();
+    this.food.rebuild();
+    this.food.rebuildCoarse();
+    for (let i = 0; i < bots; i++) this.addBot(mix[i % mix.length]);
+    for (let i = 0; i < control; i++) this.addBot('wanderer');
+    this.rebuildGrid();
+  }
+
+  setDifficulty(key) {
+    this.difficulty = DIFFICULTY[key] ? key : 'normal';
+    this.diff = DIFFICULTY[this.difficulty];
+  }
+
+  /** Subscribe to events ({ type: 'death', victim, killer }). Returns an unsubscribe function. */
+  on(fn) { this.listeners.add(fn); return () => this.listeners.delete(fn); }
+  emit(ev) { for (const fn of this.listeners) fn(ev); }
+
+  addBot(kind, spawnAt = null) {
+    const b = new Bot(this, kind, spawnAt);
+    this.bots.push(b);
+    return b;
+  }
+
+  addPlayer(name = 'You', mass = SNAKE.startMass) {
+    this.names.add(name);
+    this.player = this.spawnSnake({ name, mass, skin: { hue: 48, hue2: 20, kind: 'player' }, isPlayer: true });
+    return this.player;
+  }
+
+  /** A point away from other snakes, so nobody spawns into a body. */
+  safeSpot() {
+    const r = this.rng;
+    let best = null, bestGap = -1;
+    for (let k = 0; k < 30; k++) {
+      const a = r() * TAU, d = Math.sqrt(r()) * WORLD.radius * 0.8;
+      const x = Math.cos(a) * d, y = Math.sin(a) * d;
+      let gap = Infinity;
+      for (const s of this.snakes) {
+        for (let i = 0; i < s.n; i += 6) gap = Math.min(gap, Math.hypot(s.bx[i] - x, s.by[i] - y));
+      }
+      if (gap > 450) return { x, y };
+      if (gap > bestGap) { bestGap = gap; best = { x, y }; }
+    }
+    return best;
+  }
+
+  /** Creates a snake (at a safe spot unless x/y are given) and registers it. */
+  spawnSnake(o = {}) {
+    const at = o.x == null ? this.safeSpot() : { x: o.x, y: o.y };
+    const s = new Snake({ ...o, x: at.x, y: at.y, angle: o.angle ?? this.rng() * TAU });
+    s.slot = this.freeSlots.length ? this.freeSlots.pop() : this.slots.length;
+    this.slots[s.slot] = s;
+    s.born = this.time;
+    this.snakes.push(s);
+    return s;
+  }
+
+  step(dt = 1 / WORLD.tickRate) {
+    this.time += dt;
+    this.tick++;
+    for (const b of this.bots) b.update(dt);
+    for (const s of this.snakes) s.update(dt);
+    this.dropBoostFood();
+    this.eatFood(dt);
+    this.rebuildGrid();
+    const dead = findCollisions(this);
+    if (dead.length) {
+      for (const [victim, killer] of dead) this.kill(victim, killer);
+      this.snakes = this.snakes.filter((s) => s.alive);
+      this.rebuildGrid();
+    }
+    if (this.naturalFood) this.food.refill();
+    this.food.rebuild();
+    if (this.tick % 60 === 0) {
+      this.food.rebuildCoarse();
+      this.deaths = this.deaths.filter((d) => this.time - d.t < WORLD.deathMemory);
+    }
+    if (this.tick % Math.round(WORLD.hotspotEvery * WORLD.tickRate) === 0) this.scanHotspots();
+  }
+
+  /** Every body segment into the grid, encoded as one number (see collision.js). */
+  rebuildGrid() {
+    const g = this.segGrid;
+    g.clear();
+    for (const s of this.snakes) {
+      const base = s.slot * SEG;
+      for (let i = 0; i < s.n; i++) g.insert(s.bx[i], s.by[i], base + i);
+    }
+  }
+
+  dropBoostFood() {
+    for (const s of this.snakes) {
+      if (s.boostBank >= 1.2) {
+        const i = s.n - 1;
+        this.food.add(s.bx[i] + this.rng.range(-4, 4), s.by[i] + this.rng.range(-4, 4), s.boostBank, s.skin.hue);
+        s.boostBank = 0;
+      }
+    }
+  }
+
+  /** Heads eat pellets they touch and pull in pellets just out of reach. */
+  eatFood(dt) {
+    const grid = this.food.grid;
+    for (const s of this.snakes) {
+      const reach = s.radius + SNAKE.eatReach, pull = reach + SNAKE.suction;
+      grid.query(s.x, s.y, pull, (f) => {
+        if (!f.alive) return false;
+        const dx = s.x - f.x, dy = s.y - f.y, d = Math.hypot(dx, dy);
+        if (d < reach) s.grow(this.food.eat(f));
+        else if (d < pull) { const m = Math.min(1, (260 * dt) / d); f.x += dx * m; f.y += dy * m; }
+        return false;
+      });
+    }
+  }
+
+  /** A dead snake turns into a trail of pellets worth most of its mass. */
+  kill(victim, killer) {
+    if (!victim.alive) return;
+    victim.alive = false;
+    const total = victim.mass * SNAKE.deathDropShare, n = victim.n, r = victim.radius;
+    const count = clamp(Math.round(victim.mass / 3), 6, 300), each = total / count;
+    for (let k = 0; k < count; k++) {
+      const i = Math.floor((k * (n - 1)) / Math.max(1, count - 1));
+      this.food.add(victim.bx[i] + this.rng.range(-r, r), victim.by[i] + this.rng.range(-r, r), each, victim.skin.hue);
+    }
+    if (killer) killer.kills++;
+    const mid = Math.floor(n / 3);
+    this.deaths.push({ x: victim.bx[mid], y: victim.by[mid], value: total, t: this.time, victim, killer });
+    this.slots[victim.slot] = null;
+    this.freeSlots.push(victim.slot);
+    if (victim.bot) victim.bot.onDeath(killer);
+    if (victim === this.player) this.player = null;
+    this.emit({ type: 'death', victim, killer });
+  }
+
+  /** Remember where heads are close together: opportunists watch these. */
+  scanHotspots() {
+    const S = this.snakes, now = this.time;
+    for (let i = 0; i < S.length; i++) {
+      for (let j = i + 1; j < S.length; j++) {
+        const a = S[i], b = S[j], d = Math.hypot(a.x - b.x, a.y - b.y);
+        if (d > 280) continue;
+        const x = (a.x + b.x) / 2, y = (a.y + b.y) / 2;
+        const heat = ((a.mass + b.mass) / 2) * (a.boosting || b.boosting ? 1.5 : 1);
+        const h = this.hotspots.find((q) => Math.hypot(q.x - x, q.y - y) < 300);
+        if (h) Object.assign(h, { x: (h.x + x) / 2, y: (h.y + y) / 2, intensity: Math.max(h.intensity * 0.8, heat), t: now, a, b });
+        else this.hotspots.push({ x, y, intensity: heat, t: now, a, b });
+      }
+    }
+    this.hotspots = this.hotspots.filter((h) => now - h.t < 3);
+  }
+
+  /** The longest snakes, biggest first. */
+  leaders(k = 10) {
+    return [...this.snakes].sort((a, b) => b.mass - a.mass).slice(0, k);
+  }
+}
+
+/* snake-arena/src/render/renderer.js */
+
+const TARGET_COLORS = {
+  food: '#fde047', smell: '#94a3b8', prey: '#f87171', coil: '#fb7185', flee: '#67e8f9',
+  gap: '#ffffff', death: '#fb923c', lurk: '#c084fc',
+};
+
+/**
+ * Draws a Game onto a canvas. Reads game state only; never changes it.
+ * The camera eases after a snake and zooms out as that snake grows.
+ */
+class Renderer {
+  constructor(canvas) {
+    this.canvas = canvas;
+    this.ctx = canvas.getContext('2d');
+    this.game = null;
+    this.cam = { x: 0, y: 0, zoom: 1 };
+    this.debug = false;
+    this.focus = null;
+    this.glow = new Map();
+    this.bg = null;
+    this.calm = false;     // no pulsing food (for reduced motion)
+    this.onWorld = null;   // optional hook: draw extra things in world space, under the snakes
+  }
+
+  setGame(game) { this.game = game; }
+
+  /** Ease the camera toward a snake (or the arena centre). */
+  follow(snake, dt) {
+    const c = this.cam, k = 1 - Math.exp(-dt * 6);
+    const tx = snake ? snake.x : 0, ty = snake ? snake.y : 0;
+    c.x += (tx - c.x) * k; c.y += (ty - c.y) * k;
+    const fit = clamp(Math.min(this.canvas.clientWidth, this.canvas.clientHeight) / 900, 0.5, 1.25);
+    const grow = snake ? clamp(1.15 - Math.log10(Math.max(20, snake.mass) / 20) * 0.28, 0.5, 1.15) : 0.55;
+    c.zoom += (fit * grow - c.zoom) * k;
+  }
+
+  screenToWorld(sx, sy) {
+    const c = this.cam;
+    return { x: c.x + (sx - this.canvas.clientWidth / 2) / c.zoom, y: c.y + (sy - this.canvas.clientHeight / 2) / c.zoom };
+  }
+
+  draw(time) {
+    const cv = this.canvas, x = this.ctx, g = this.game, dpr = Math.min(2, window.devicePixelRatio || 1);
+    const w = cv.clientWidth, h = cv.clientHeight;
+    if (cv.width !== Math.round(w * dpr) || cv.height !== Math.round(h * dpr)) { cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); }
+    const z = this.cam.zoom * dpr;
+    x.setTransform(1, 0, 0, 1, 0, 0);
+    x.fillStyle = '#0a0d17';
+    x.fillRect(0, 0, cv.width, cv.height);
+    if (!g) return;
+    x.setTransform(z, 0, 0, z, cv.width / 2 - this.cam.x * z, cv.height / 2 - this.cam.y * z);
+    const vw = w / this.cam.zoom / 2, vh = h / this.cam.zoom / 2;
+    const V = { x0: this.cam.x - vw, x1: this.cam.x + vw, y0: this.cam.y - vh, y1: this.cam.y + vh };
+    this.view = V;
+
+    this.drawArena(V);
+    this.drawFood(V, time);
+    if (this.onWorld) this.onWorld(x, V, time);
+    const order = [...g.snakes].sort((a, b) => a.mass - b.mass);
+    for (const s of order) if (this.visible(s, V)) this.drawSnake(s);
+    if (this.debug) for (const s of g.snakes) if (s.bot && this.visible(s, V)) this.drawDebug(s, s === this.focus);
+    for (const s of order) if (this.visible(s, V)) this.drawName(s);
+  }
+
+  /** Rough cull: is any part of this snake near the screen? */
+  visible(s, V) {
+    const m = 60 + s.radius;
+    for (let i = 0; i < s.n; i += 8) {
+      if (s.bx[i] > V.x0 - m && s.bx[i] < V.x1 + m && s.by[i] > V.y0 - m && s.by[i] < V.y1 + m) return true;
+    }
+    return false;
+  }
+
+  drawArena(V) {
+    const x = this.ctx, R = WORLD.radius;
+    if (!this.bg) this.bg = x.createPattern(hexTile(), 'repeat');
+    x.save();
+    x.beginPath(); x.arc(0, 0, R, 0, TAU); x.clip();
+    x.fillStyle = this.bg; x.fillRect(V.x0, V.y0, V.x1 - V.x0, V.y1 - V.y0);
+    x.restore();
+    // Outside the arena: dim red
+    x.beginPath(); x.rect(V.x0, V.y0, V.x1 - V.x0, V.y1 - V.y0); x.arc(0, 0, R, 0, TAU);
+    x.fillStyle = 'rgba(90, 10, 25, 0.55)'; x.fill('evenodd');
+    x.beginPath(); x.arc(0, 0, R, 0, TAU);
+    x.lineWidth = 10; x.strokeStyle = 'rgba(255, 70, 90, 0.55)'; x.stroke();
+  }
+
+  drawFood(V, time) {
+    const x = this.ctx, grid = this.game.food.grid, cx = (V.x0 + V.x1) / 2, cy = (V.y0 + V.y1) / 2;
+    const r = Math.max(V.x1 - V.x0, V.y1 - V.y0) / 2 + 40;
+    x.globalCompositeOperation = 'lighter';
+    grid.forCells(cx, cy, r, (arr) => {
+      for (const f of arr) {
+        if (!f.alive) continue;
+        const pulse = this.calm ? 1 : 1 + 0.15 * Math.sin(time * 3 + f.phase), size = (7 + Math.sqrt(f.value) * 5) * pulse;
+        x.drawImage(this.sprite(f.hue), f.x - size, f.y - size, size * 2, size * 2);
+      }
+    });
+    x.globalCompositeOperation = 'source-over';
+  }
+
+  /** A soft glowing dot, cached per hue. */
+  sprite(hue) {
+    const key = Math.round(hue / 15) * 15;
+    let c = this.glow.get(key);
+    if (!c) {
+      c = document.createElement('canvas'); c.width = c.height = 48;
+      const x = c.getContext('2d'), gr = x.createRadialGradient(24, 24, 0, 24, 24, 24);
+      gr.addColorStop(0, `hsla(${key}, 100%, 82%, 1)`);
+      gr.addColorStop(0.25, `hsla(${key}, 100%, 62%, 0.9)`);
+      gr.addColorStop(1, `hsla(${key}, 100%, 50%, 0)`);
+      x.fillStyle = gr; x.fillRect(0, 0, 48, 48);
+      this.glow.set(key, c);
+    }
+    return c;
+  }
+
+  /** Body as one thick stroked path (fast), stripes via a dashed stroke, then head and eyes. */
+  drawSnake(s) {
+    const x = this.ctx, n = s.n, r = s.radius, { hue, hue2 } = s.skin;
+    x.lineCap = 'round'; x.lineJoin = 'round';
+    x.beginPath(); x.moveTo(s.bx[0], s.by[0]);
+    for (let i = 1; i < n; i++) x.lineTo(s.bx[i], s.by[i]);
+    if (s.boosting) { x.strokeStyle = `hsla(${hue}, 100%, 65%, 0.28)`; x.lineWidth = r * 2 + 16; x.stroke(); }
+    x.strokeStyle = `hsl(${hue}, 60%, 18%)`; x.lineWidth = r * 2 + 3; x.stroke();
+    x.strokeStyle = `hsl(${hue}, 78%, 50%)`; x.lineWidth = r * 2; x.stroke();
+    x.setLineDash([r * 0.8, r * 1.7]);
+    x.strokeStyle = `hsl(${hue2}, 85%, 63%)`; x.lineWidth = r * 1.55; x.stroke();
+    x.setLineDash([]);
+    x.strokeStyle = 'rgba(255, 255, 255, 0.13)'; x.lineWidth = r * 0.5; x.stroke();
+    if (s.shield > 0) {
+      x.strokeStyle = `rgba(253, 224, 71, ${0.35 + 0.3 * Math.min(1, s.shield)})`; x.lineWidth = r * 2 + 12;
+      x.beginPath(); x.moveTo(s.bx[0], s.by[0]);
+      for (let i = 1; i < n; i++) x.lineTo(s.bx[i], s.by[i]);
+      x.stroke();
+    }
+    if (s.isPlayer) { x.strokeStyle = 'rgba(255, 255, 255, 0.5)'; x.lineWidth = 2 / this.cam.zoom; x.beginPath(); x.arc(s.x, s.y, r * 1.5, 0, TAU); x.stroke(); }
+    // Head
+    x.fillStyle = `hsl(${hue}, 80%, 55%)`;
+    x.beginPath(); x.arc(s.x, s.y, r * 1.08, 0, TAU); x.fill();
+    const fx = Math.cos(s.angle), fy = Math.sin(s.angle), nx = -fy, ny = fx;
+    const lx = Math.cos(s.wantAngle), ly = Math.sin(s.wantAngle);
+    for (const side of [-1, 1]) {
+      const ex = s.x + fx * r * 0.35 + nx * side * r * 0.5, ey = s.y + fy * r * 0.35 + ny * side * r * 0.5;
+      x.fillStyle = '#fff'; x.beginPath(); x.arc(ex, ey, r * 0.38, 0, TAU); x.fill();
+      x.fillStyle = '#111827'; x.beginPath(); x.arc(ex + lx * r * 0.15, ey + ly * r * 0.15, r * 0.2, 0, TAU); x.fill();
+    }
+  }
+
+  drawName(s) {
+    const x = this.ctx, z = this.cam.zoom, k = s.bot ? PERSONALITIES[s.bot.kind] : null;
+    x.font = `600 ${13 / z}px system-ui, sans-serif`;
+    x.textAlign = 'center';
+    x.fillStyle = s.isPlayer ? '#fde68a' : 'rgba(255, 255, 255, 0.82)';
+    const label = (k && this.debug ? k.icon + ' ' : '') + s.name;
+    x.fillText(label, s.x, s.y - s.radius - 12 / z);
+  }
+
+  /**
+   * Debug view of a bot's mind: the danger of every heading it considered
+   * (green = clear, red = blocked soon), the heading it chose (white), its
+   * target (coloured by what it is), lines to threats (red, thicker = scarier),
+   * its view radius, and its current state.
+   */
+  drawDebug(s, focused) {
+    const d = s.bot.brain.debug, x = this.ctx, z = this.cam.zoom;
+    if (!d) return;
+    const lw = 1.4 / z;
+    x.lineWidth = lw;
+    if (d.dirs) {
+      for (let j = 0; j < d.dirs.length; j++) {
+        const dg = d.danger[j], len = 30 + (1 - dg) * 70;
+        x.strokeStyle = `hsla(${120 * (1 - dg)}, 90%, 55%, ${focused ? 0.8 : 0.45})`;
+        x.beginPath(); x.moveTo(s.x, s.y); x.lineTo(s.x + Math.cos(d.dirs[j]) * len, s.y + Math.sin(d.dirs[j]) * len); x.stroke();
+      }
+    }
+    x.strokeStyle = '#fff'; x.lineWidth = 3 / z;
+    x.beginPath(); x.moveTo(s.x, s.y); x.lineTo(s.x + Math.cos(d.angle) * 130, s.y + Math.sin(d.angle) * 130); x.stroke();
+    x.lineWidth = lw;
+    if (focused) {
+      x.setLineDash([8 / z, 8 / z]); x.strokeStyle = 'rgba(255, 255, 255, 0.18)';
+      x.beginPath(); x.arc(s.x, s.y, d.view, 0, TAU); x.stroke(); x.setLineDash([]);
+    }
+    if (d.target) {
+      x.strokeStyle = TARGET_COLORS[d.target.kind] || '#fff';
+      x.setLineDash(d.target.kind === 'smell' ? [10 / z, 8 / z] : []);
+      x.beginPath(); x.moveTo(s.x, s.y); x.lineTo(d.target.x, d.target.y); x.stroke(); x.setLineDash([]);
+      x.beginPath(); x.arc(d.target.x, d.target.y, 7 / z, 0, TAU); x.stroke();
+    }
+    for (const t of d.threats) {
+      x.strokeStyle = `rgba(255, 60, 60, ${clamp(t.level, 0.2, 0.9)})`; x.lineWidth = (1 + t.level * 4) / z;
+      x.beginPath(); x.moveTo(t.x, t.y); x.lineTo(s.x, s.y); x.stroke();
+    }
+    x.font = `700 ${11 / z}px ui-monospace, monospace`; x.textAlign = 'center';
+    x.fillStyle = d.blunder ? '#f87171' : '#e2e8f0';
+    x.fillText(`${d.state.toUpperCase()}${d.boost ? ' ⚡' : ''}  threat ${d.threat.toFixed(2)}`, s.x, s.y - s.radius - 28 / z);
+  }
+
+  /** The small round map in the corner. */
+  drawMinimap(mini, player) {
+    const x = mini.getContext('2d'), W = mini.width, R = W / 2 - 4, k = R / WORLD.radius, g = this.game;
+    x.clearRect(0, 0, W, W);
+    x.fillStyle = 'rgba(15, 23, 42, 0.75)'; x.beginPath(); x.arc(W / 2, W / 2, R, 0, TAU); x.fill();
+    x.strokeStyle = 'rgba(255, 70, 90, 0.6)'; x.lineWidth = 2; x.stroke();
+    if (!g) return;
+    for (const s of g.snakes) {
+      x.fillStyle = s === player ? '#fde68a' : `hsla(${s.skin.hue}, 80%, 60%, 0.85)`;
+      const r = s === player ? 3.5 : clamp(Math.sqrt(s.mass) / 9, 1.2, 4);
+      x.beginPath(); x.arc(W / 2 + s.x * k, W / 2 + s.y * k, r, 0, TAU); x.fill();
+    }
+    const V = this.view;
+    if (V) {
+      x.strokeStyle = 'rgba(255, 255, 255, 0.35)'; x.lineWidth = 1;
+      x.strokeRect(W / 2 + V.x0 * k, W / 2 + V.y0 * k, (V.x1 - V.x0) * k, (V.y1 - V.y0) * k);
+    }
+  }
+}
+
+/** One tile of the hexagon floor pattern. */
+function hexTile() {
+  const s = 34, w = s * Math.sqrt(3), c = document.createElement('canvas');
+  c.width = Math.round(w); c.height = Math.round(s * 3);
+  const x = c.getContext('2d');
+  x.fillStyle = '#121a2e'; x.fillRect(0, 0, c.width, c.height);
+  x.strokeStyle = '#1c2742'; x.lineWidth = 2;
+  const hex = (cx, cy) => {
+    x.beginPath();
+    for (let i = 0; i < 6; i++) { const a = Math.PI / 6 + (i * Math.PI) / 3; x.lineTo(cx + Math.cos(a) * s, cy + Math.sin(a) * s); }
+    x.closePath(); x.stroke();
+  };
+  for (const [cx, cy] of [[0, 0], [w, 0], [w / 2, s * 1.5], [0, s * 3], [w, s * 3]]) hex(cx, cy);
+  return c;
+}
+
+return {Game,Renderer,PERSONALITIES,KINDS,WORLD,SNAKE,DIFFICULTY,bodyAt};
+})();
+const SNROUND=180,SNCOL=['#22d3ee','#f472b6','#facc15'],SNLV={easy:'Easy',normal:'Normal',hard:'Hard'};
+let SNZ=null,SNDEMO=null,SNBRAIN=false;
+const SNK=new Set();
+GSTOP.push(()=>{if(SNZ&&SNZ.ph!=='over')SNZ=null;snDemoStop();SNK.clear()});
+
+function snRebind(ren,cv){ren.canvas=cv;ren.ctx=cv.getContext('2d');ren.bg=null}
+
+/* ---------- The start screen: computer snakes play live behind the settings ---------- */
+function snMount(){const cv=$('sncv');if(!cv||AR.mode!=='snake'||(SNZ&&SNZ.ph!=='over'))return;
+  if(SNDEMO){snRebind(SNDEMO.ren,cv);return}
+  const g=new SnakeArena.Game({seed:(Math.random()*1e9)|0,difficulty:'easy',bots:12});
+  for(let i=0;i<240;i++)g.step();
+  const ren=new SnakeArena.Renderer(cv);ren.setGame(g);ren.debug=SNBRAIN;ren.calm=calmOn();
+  SNDEMO={g,ren,last:0,acc:0,raf:0,focus:null};
+  const f=t=>{const D=SNDEMO;if(!D)return;const c=$('sncv');
+    if(!c||AR.mode!=='snake'||tab!=='play'||(SNZ&&SNZ.ph!=='over')){snDemoStop();return}
+    if(D.ren.canvas!==c)snRebind(D.ren,c);
+    const dt=D.last?Math.min(.1,(t-D.last)/1000):0;D.last=t;
+    if(!calmOn()){D.acc+=dt;let k=0;while(D.acc>=1/60&&k<4){D.g.step();D.acc-=1/60;k++}if(k===4)D.acc=0}
+    if(!D.focus||!D.focus.alive)D.focus=pick(D.g.leaders(4))||null;
+    D.ren.focus=D.focus;D.ren.follow(D.focus,dt);D.ren.draw(t/1000);D.raf=requestAnimationFrame(f)};
+  SNDEMO.raf=requestAnimationFrame(f)}
+function snDemoStop(){if(SNDEMO)cancelAnimationFrame(SNDEMO.raf);SNDEMO=null}
+function snBrains(btn){SNBRAIN=!SNBRAIN;for(const D of [SNDEMO,SNZ])if(D&&D.ren)D.ren.debug=SNBRAIN;document.querySelectorAll('[data-snbrain]').forEach(b=>b.setAttribute('aria-pressed',SNBRAIN))}
+
+/* ---------- A round ---------- */
+function snStart(){if(!canStart())return;stopGames();const S=ARS('snake');
+  const g=new SnakeArena.Game({seed:(Math.random()*1e9)|0,difficulty:S.diff||'normal',bots:S.bots||20});
+  const p=g.addPlayer('You');p.shield=3;
+  SNZ={ph:'run',g,ren:null,t:SNROUND,last:0,acc:0,q:null,qid:0,orbs:[],fx:[],next:1.5,ok:0,n:0,streak:0,kills:0,revived:false,peak:p.mass,best:99,killer:null,say:null,boost:false,kb:false,mouse:null,where:{x:p.x,y:p.y}};
+  g.on(snEvent);AR.run=true;AR.paused=false;rerealm();snBind();AR.raf=requestAnimationFrame(snFrame)}
+function snBind(){const Z=SNZ,cv=$('sncv');if(!Z||!cv)return;
+  if(!Z.ren){Z.ren=new SnakeArena.Renderer(cv);Z.ren.setGame(Z.g);Z.ren.cam.x=Z.g.player.x;Z.ren.cam.y=Z.g.player.y;Z.ren.onWorld=snDrawOrbs}
+  else if(Z.ren.canvas!==cv)snRebind(Z.ren,cv);
+  Z.ren.debug=SNBRAIN;Z.ren.calm=calmOn()}
+function snFrame(t){const Z=SNZ;if(!Z||!AR.run||AR.mode!=='snake')return;const cv=$('sncv');if(!cv){stopGames();return}
+  if(Z.ren.canvas!==cv)snBind();
+  if(Z.ph==='run'&&outOfTime()){snEnd('time');return}
+  const dt=Z.last?Math.min(.1,(t-Z.last)/1000):0;Z.last=t;
+  if(Z.ph==='run'){
+    // Fixed 1/60 s steps, like the standalone game
+    Z.acc+=dt;let k=0;while(Z.acc>=1/60&&k<4&&Z.ph==='run'){snInput();Z.g.step(1/60);if(Z.ph==='run')snOrbs(1/60);Z.acc-=1/60;k++}if(k===4)Z.acc=0;
+    if(Z.ph==='run'){Z.t-=dt;if(Z.t<=0){snEnd('done');return}}
+    if(!SNZ||SNZ!==Z||!AR.run)return}
+  const p=Z.g.player;if(p)Z.where={x:p.x,y:p.y};
+  Z.ren.follow(p||Z.where,dt);Z.ren.draw(t/1000);snArrows();Z.ren.drawMinimap($('snmini'),p);
+  if(t-(Z.ht||0)>200){Z.ht=t;snHud()}
+  AR.raf=requestAnimationFrame(snFrame)}
+
+/* Mouse or finger: head toward the pointer. Arrow keys / A and D: turn. */
+function snInput(){const Z=SNZ,p=Z.g.player;if(!p)return;
+  const turn=(SNK.has('r')?1:0)-(SNK.has('l')?1:0);
+  if(turn){Z.kb=true;p.wantAngle=p.angle+turn*1.2}
+  else if(Z.kb)p.wantAngle=p.angle;
+  else if(Z.mouse){const w=Z.ren.screenToWorld(Z.mouse.x,Z.mouse.y);p.wantAngle=Math.atan2(w.y-p.y,w.x-p.x)}
+  p.wantBoost=Z.boost||SNK.has('boost')}
+function snPointer(e){const Z=SNZ;if(!Z||Z.ph!=='run')return;const r=e.currentTarget.getBoundingClientRect();
+  if(e.type==='pointermove'||e.type==='pointerdown'){Z.mouse={x:e.clientX-r.left,y:e.clientY-r.top};Z.kb=false}
+  if(e.type==='pointerdown'&&e.pointerType==='mouse')Z.boost=true;
+  if(e.type==='pointerup'||e.type==='pointercancel'||e.type==='pointerleave')Z.boost=false}
+function snBoost(e,on){e.preventDefault();if(SNZ)SNZ.boost=on&&SNZ.ph==='run'}
+
+/* ---------- Answer orbs ---------- */
+function snOrbs(dt){const Z=SNZ,p=Z.g.player;if(!p)return;
+  for(const f of Z.fx)f.age=(f.age||0)+dt;Z.fx=Z.fx.filter(f=>f.age<.7);
+  if(!Z.q){Z.next-=dt;if(Z.next<=0)snNewQ();return}
+  for(const o of Z.orbs)if(Math.hypot(o.x-p.x,o.y-p.y)<p.radius+o.r){snResolve(o);return}
+  if(Z.orbs.every(o=>Math.hypot(o.x-p.x,o.y-p.y)>1700))snPlace()}
+function snNewQ(){const Z=SNZ,x=rquestion();if(!x){Z.next=1e9;return}
+  Z.q={id:++Z.qid,k:x.k,q:x.q,...kartChoices(x.q)};snPlace()}
+/* Three orbs, ahead and to both sides at about the same distance, so the nearest isn't always the answer */
+function snPlace(){const Z=SNZ,g=Z.g,p=g.player,R=SnakeArena.WORLD.radius-220,n=Z.q.L.length,base=p.angle+(Math.random()-.5)*.6;
+  Z.orbs=Z.q.L.map((label,i)=>{let a=base+(i-(n-1)/2)*1.9+(Math.random()-.5)*.4,d=420+Math.random()*160,x=0,y=0;
+    for(let k=0;k<10;k++){x=p.x+Math.cos(a)*d;y=p.y+Math.sin(a)*d;if(x*x+y*y<R*R&&!SnakeArena.bodyAt(g,x,y,40,null))break;a+=.5}
+    const m=Math.hypot(x,y);if(m>R){x*=R/m;y*=R/m}
+    return{i,label,x,y,r:26,c:SNCOL[i]}})}
+function snResolve(o){const Z=SNZ,g=Z.g,p=g.player,Q=Z.q,ok=o.i===Q.cor;Z.n++;
+  if(ok){Z.ok++;Z.streak++;const add=Math.min(80,20+10*Z.streak);p.grow(add);p.shield=Math.max(p.shield,5);
+    Z.say={id:Z.n,ok:true,until:g.time+2.2,html:`✨ ${pick(['Right!','Correct!','Brilliant!','You got it!'])} +${add} length and a ⭐ star shield${Z.streak>1?` · ${Z.streak} in a row!`:''}`};heroMood('beam',800)}
+  else{Z.streak=0;const loss=Math.round(p.mass*.12);p.mass=Math.max(SnakeArena.SNAKE.startMass,p.mass-loss);
+    Z.say={id:Z.n,ok:false,until:g.time+3.8,html:`Not quite. The answer was <span class="snopt" style="--c:${SNCOL[Q.cor]}"><i>${'ABC'[Q.cor]}</i>${esc(Q.L[Q.cor])}</span> (−${loss} length)`}}
+  Z.fx.push({x:o.x,y:o.y,c:ok?'#fde047':'#fb7185'});Z.q=null;Z.orbs=[];Z.next=ok?2.2:3.8;snHud()}
+function snDrawOrbs(x,V,time){const Z=SNZ;if(!Z)return;const calm=calmOn(),z=Z.ren.cam.zoom;
+  for(const o of Z.orbs){const y=o.y+(calm?0:Math.sin(time*3+o.i*2)*4),r=o.r+(calm?0:Math.sin(time*5+o.i)*2);
+    const gr=x.createRadialGradient(o.x,y,r*.3,o.x,y,r*2.4);gr.addColorStop(0,o.c+'cc');gr.addColorStop(1,o.c+'00');
+    x.fillStyle=gr;x.beginPath();x.arc(o.x,y,r*2.4,0,Math.PI*2);x.fill();
+    x.fillStyle=o.c;x.strokeStyle='#0f172a';x.lineWidth=4;x.beginPath();x.arc(o.x,y,r,0,Math.PI*2);x.fill();x.stroke();
+    x.fillStyle='#0f172a';x.textAlign='center';x.textBaseline='middle';x.font=`800 ${Math.round(r*1.1)}px system-ui,sans-serif`;x.fillText('ABC'[o.i],o.x,y+1);
+    if(o.label.length<=10){x.font=`800 ${Math.max(16,15/z)}px system-ui,sans-serif`;x.lineWidth=5;x.strokeStyle='#0f172a';x.strokeText(o.label,o.x,y+r+16);x.fillStyle='#fff';x.fillText(o.label,o.x,y+r+16)}}
+  for(const f of Z.fx){const k=(f.age||0)/.7;x.strokeStyle=f.c;x.globalAlpha=1-k;x.lineWidth=6;x.beginPath();x.arc(f.x,f.y,30+k*90,0,Math.PI*2);x.stroke();x.globalAlpha=1}
+  x.textBaseline='alphabetic'}
+/* Orbs off screen get a colored pointer at the edge of the arena view */
+function snArrows(){const Z=SNZ;if(!Z.orbs.length)return;const cv=Z.ren.canvas,x=Z.ren.ctx,w=cv.clientWidth,h=cv.clientHeight,dpr=cv.width/w,c=Z.ren.cam,m=30;
+  x.setTransform(dpr,0,0,dpr,0,0);
+  for(const o of Z.orbs){const sx=(o.x-c.x)*c.zoom+w/2,sy=(o.y-c.y)*c.zoom+h/2;if(sx>m&&sx<w-m&&sy>m&&sy<h-m)continue;
+    const a=Math.atan2(sy-h/2,sx-w/2),k=Math.min((w/2-m)/Math.abs(Math.cos(a)||1e-6),(h/2-m)/Math.abs(Math.sin(a)||1e-6)),px=w/2+Math.cos(a)*k,py=h/2+Math.sin(a)*k;
+    x.fillStyle=o.c;x.beginPath();x.moveTo(px+Math.cos(a)*22,py+Math.sin(a)*22);x.lineTo(px+Math.cos(a+2.4)*14,py+Math.sin(a+2.4)*14);x.lineTo(px+Math.cos(a-2.4)*14,py+Math.sin(a-2.4)*14);x.fill();
+    x.beginPath();x.arc(px,py,13,0,Math.PI*2);x.fill();x.fillStyle='#0f172a';x.font='800 14px system-ui,sans-serif';x.textAlign='center';x.textBaseline='middle';x.fillText('ABC'[o.i],px,py+1);x.textBaseline='alphabetic'}}
+
+/* ---------- Knock-outs, the second chance, and the end of a round ---------- */
+function snEvent(ev){const Z=SNZ;if(!Z||ev.type!=='death')return;const {victim,killer}=ev;
+  if(killer&&killer.isPlayer){Z.kills++;snFeed(`💥 You beat ${victim.name}!`)}
+  if(!victim.isPlayer)return;
+  Z.peak=Math.max(Z.peak,victim.peakMass);Z.lost=victim.mass;Z.killer=killer?killer.name:null;Z.where={x:victim.x,y:victim.y};
+  if(Z.revived)snEnd('over');else snRevive()}
+function snRevive(){const Z=SNZ;Z.ph='ask';AR.paused=true;SNK.clear();Z.boost=false;Z.revived=true;
+  qAsk({title:'Second chance!',intro:`${Z.killer?Z.killer+' got you':'You bumped the edge'}! Answer right to jump back in with half your length.`,cancel:true}).then(ok=>{
+    if(SNZ!==Z||Z.ph!=='ask')return;
+    if(!ok){snEnd('over');return}
+    const p=Z.g.addPlayer('You',Math.max(SnakeArena.SNAKE.startMass,Z.lost*.5));p.shield=3;
+    Z.ph='run';AR.paused=false;Z.last=0;Z.acc=0;Z.q=null;Z.orbs=[];Z.next=2;Z.ren.cam.x=p.x;Z.ren.cam.y=p.y;snFeed('❤️ Back in the arena!')})}
+function snFeed(t){const f=$('snfeed');if(!f)return;const d=document.createElement('div');d.textContent=t;f.prepend(d);while(f.children.length>3)f.lastChild.remove();setTimeout(()=>d.remove(),4000)}
+function snPause(){const Z=SNZ;if(!Z||QM)return;if(Z.ph==='run')Z.ph='pause';else if(Z.ph==='pause'){Z.ph='run';Z.last=0}else return;
+  AR.paused=Z.ph==='pause';SNK.clear();Z.boost=false;const el=$('snpause');if(el){el.hidden=Z.ph!=='pause';if(Z.ph==='pause')el.querySelector('button').focus()}}
+/* Gems: 1 per right answer (up to 8), plus 3 for finishing first, 2 for the top 3 or 1 for the top 5 */
+function snEnd(why){const Z=SNZ;if(!Z||Z.ph==='over')return;AR.run=false;AR.paused=false;cancelAnimationFrame(AR.raf);if(QM)qmClose(true);SNK.clear();
+  const g=Z.g,p=g.player;if(p)Z.peak=Math.max(Z.peak,p.peakMass);
+  Z.rank=p?g.leaders(g.snakes.length).indexOf(p)+1:0;if(Z.rank)Z.best=Math.min(Z.best,Z.rank);
+  Z.place=Z.rank===1?3:Z.rank&&Z.rank<=3?2:Z.rank&&Z.rank<=5?1:0;Z.gems=Math.min(8,Z.ok)+Z.place;Z.why=why;Z.ph='over';
+  const S=ARS('snake'),best=Math.round(Z.peak);Z.pb=best>(S.best||0);if(Z.pb)S.best=best;if(Z.best<99)S.rank=Math.min(S.rank||99,Z.best);
+  S.rounds=(S.rounds||0)+1;S.right=(S.right||0)+Z.ok;if(Z.rank===1)S.wins=(S.wins||0)+1;
+  if(Z.gems)addGems(Z.gems);SYNC();gameCheck();rerealm()}
+function snEndCard(Z){const why={done:'⏰ Time! The round is over.',over:Z.killer?`${esc(Z.killer)} got you this time.`:'You bumped into the edge of the arena.',time:'Play time is up for today.',quit:'You ended the round.'}[Z.why];
+  return `<div class="gcard endcard" style="margin-bottom:16px"><div class="big" aria-hidden="true">🏁</div><h3>Round over!</h3><p>${why}</p>
+  <div class="snstats"><div><b>${Math.round(Z.peak)}</b>longest${Z.pb?' · best!':''}</div><div><b>${Z.rank?'#'+Z.rank:'Out'}</b>${Z.rank?'final place':'at the end'}</div><div><b>${Z.best<99?'#'+Z.best:'–'}</b>best place</div><div><b>${Z.kills}</b>snakes beaten</div><div><b>${Z.ok} of ${Z.n}</b>answers right</div></div>
+  ${Z.gems?`<p>💎 +${Z.gems} gem${Z.gems>1?'s':''}: ${Math.min(8,Z.ok)} for right answers${Z.place?` and ${Z.place} for finishing #${Z.rank}`:''}</p>`:'<p class="sol">Steer into the right answer orbs to earn gems!</p>'}</div>`}
+
+/* ---------- Screens ---------- */
+function snQHtml(){const Z=SNZ,g=Z.g;
+  if(Z.say&&g.time<Z.say.until)return `<p class="snsay ${Z.say.ok?'ok':'no'}"><b>${Z.say.html}</b></p>`;
+  if(!Z.q)return `<p style="margin:0;color:#cbd5e1;font-weight:700">🔮 ${Z.next>1e8?'No questions for this subject yet. Pick another one before your next round.':'Answer orbs coming up… keep eating and stay safe!'}</p>`;
+  return `<div class="snqq">${Z.q.q.q}</div><div class="snopts">${Z.q.L.map((l,i)=>`<span class="snopt" style="--c:${SNCOL[i]}"><i>${'ABC'[i]}</i>${esc(l)}</span>`).join('')}</div>`}
+function snHud(){const Z=SNZ;if(!Z||!Z.g)return;const g=Z.g,p=g.player,all=g.leaders(g.snakes.length),rank=p?all.indexOf(p)+1:0;if(rank)Z.best=Math.min(Z.best,rank);
+  const h=$('snhud');if(h)h.innerHTML=`<span>🐍 ${p?Math.round(p.mass):0} long</span><span>🏆 ${rank?`#${rank} of ${all.length}`:'Out'}</span><span>💥 ${Z.kills} beaten</span><span>✅ ${Z.ok} of ${Z.n} right</span><span>⏱ ${mmss(Math.max(0,Math.ceil(Z.t)))}</span>${p&&p.shield>0?`<span class="shield">⭐ Shield ${Math.ceil(p.shield)}s</span>`:''}<span>${Z.revived?'💔 Second chance used':'❤️ Second chance ready'}</span>`;
+  const b=$('snboard');if(b){const top=all.slice(0,5);if(p&&rank>5)top.push(p);b.innerHTML=top.map(s=>`<li value="${all.indexOf(s)+1}" class="${s.isPlayer?'me':''}">${esc(s.name)}<span>${Math.round(s.mass)}</span></li>`).join('')}
+  const q=$('snq'),key=Z.say&&g.time<Z.say.until?'s'+Z.say.id:Z.q?'q'+Z.q.id:'w'+(Z.next>1e8?'x':'');if(q&&q.dataset.k!==key){q.dataset.k=key;q.innerHTML=snQHtml()}}
+function snPlayHtml(){const Z=SNZ;
+  return `<div class="snq" id="snq" aria-live="polite"></div><div class="snhud" id="snhud"></div>
+  <div class="snwrap"><canvas class="sncv" id="sncv" role="img" aria-label="The snake arena. Steer with the mouse, a finger, or the arrow keys; Space boosts; P pauses." onpointermove="snPointer(event)" onpointerdown="snPointer(event)" onpointerup="snPointer(event)" onpointercancel="snPointer(event)" onpointerleave="snPointer(event)"></canvas>
+    <ol class="snboard" id="snboard" aria-label="Leaderboard"></ol><div class="snfeed" id="snfeed" aria-live="polite"></div><canvas class="snmini" id="snmini" width="192" height="192" aria-hidden="true"></canvas>
+    <div class="snpause" id="snpause" ${Z.ph==='pause'?'':'hidden'}><div class="gcard" style="text-align:center"><h3>Paused</h3><div class="row" style="justify-content:center"><button class="abtn" onclick="snPause()">▶ Resume</button><button class="abtn sec" onclick="snEnd('quit')">End round</button></div></div></div></div>
+  <div class="snctl"><button class="abtn gold" id="snboost" onpointerdown="snBoost(event,true)" onpointerup="snBoost(event,false)" onpointerleave="snBoost(event,false)" onpointercancel="snBoost(event,false)">⚡ Boost (hold, or Space)</button><button class="abtn sec" data-snbrain aria-pressed="${SNBRAIN}" onclick="snBrains()">🧠 Bot brains (B)</button><button class="abtn sec" onclick="snPause()">⏸ Pause (P)</button></div>`}
+GVIEW.snake=function(){const S=ARS('snake'),Z=SNZ,head=`<div class="gworld">${clouds()}${gameHead('Snake Arena','Grow the longest snake in the arena, and steer into the right answers to power up!')}`;
+  if(Z&&Z.ph!=='over'){setTimeout(()=>{snBind();snHud()},0);return head+snPlayHtml()+'</div>'}
+  const out=outOfTime(),d=S.diff||'normal',n=S.bots||20;setTimeout(snMount,0);
+  return head+`${out?restCard():''}${Z?snEndCard(Z):''}${subjChips()}
+  <div class="gcard"><div class="snsplit"><div><div class="snwrap"><canvas class="sncv sndemo" id="sncv" role="img" aria-label="Computer snakes playing in the arena"></canvas><button class="abtn sec sm snbrain" data-snbrain aria-pressed="${SNBRAIN}" onclick="snBrains()">🧠 Bot brains</button></div>
+    <p class="sol" style="margin:8px 2px 0">Turn on <b>Bot brains</b> to see what the computer snakes are thinking: the paths they test (green is safe, red means a crash), where they're heading, and who scares them.</p></div>
+  <div><h3 style="margin-top:0">🐍 How to play</h3><ul class="pearn"><li>Steer with the mouse, a finger, or the arrow keys. Hold the mouse button, Space or ⚡ to boost (it costs a little length).</li><li>Eat the glowing dots to grow. If your head touches another snake you're out, so make them crash into <i>you</i>!</li><li>A question pops up with three colored <b>answer orbs</b> in the arena. Steer into the right one for a growth spurt and a ⭐ star shield that lets you slide through snakes for 5 seconds. A wrong orb shrinks you a little.</li><li>Knocked out? Answer one question for a second chance.</li><li>Rounds last 3 minutes. Finish as long, and as high on the leaderboard, as you can!</li></ul>
+    <div class="snset" role="group" aria-label="How good the computer snakes are"><span class="sol"><b>Computer snakes:</b></span>${['easy','normal','hard'].map(k=>`<button class="chip ${d===k?'on':''}" aria-pressed="${d===k}" onclick="ARS('snake').diff='${k}';SYNC();rerealm()">${SNLV[k]}</button>`).join('')}</div>
+    <div class="snset" role="group" aria-label="How many computer snakes"><span class="sol"><b>How many:</b></span>${[10,20,30].map(k=>`<button class="chip ${n===k?'on':''}" aria-pressed="${n===k}" onclick="ARS('snake').bots=${k};SYNC();rerealm()">${k}</button>`).join('')}</div>
+    <div class="row" style="margin-top:16px;align-items:center"><button class="abtn big" ${out?'disabled':''} onclick="snStart()">🐍 Start a round</button>${S.best?`<span class="sol">Best: <b>${S.best}</b> long${S.rank?` · best place <b>#${S.rank}</b>`:''}${S.wins?` · <b>${S.wins}</b> win${S.wins>1?'s':''}`:''}</span>`:''}</div></div></div></div></div>`};
+
+addEventListener('keydown',e=>{if(AR.mode!=='snake'||typeof tab==='undefined'||tab!=='play'||QM||e.ctrlKey||e.metaKey||e.altKey)return;const tg=e.target;if(tg&&/^(INPUT|TEXTAREA|SELECT)$/.test(tg.tagName))return;
+  const Z=SNZ,k=e.key;if(k==='b'||k==='B'){snBrains();return}if(!Z||Z.ph==='over')return;
+  if(Z.ph==='run'){const dir={ArrowLeft:'l',a:'l',A:'l',ArrowRight:'r',d:'r',D:'r'}[k];if(dir){e.preventDefault();SNK.add(dir);return}if(k===' '){e.preventDefault();SNK.add('boost');return}if(k==='ArrowUp'||k==='ArrowDown')e.preventDefault()}
+  if(k==='p'||k==='P'||k==='Escape'){e.preventDefault();snPause()}});
+addEventListener('keyup',e=>{const dir={ArrowLeft:'l',a:'l',A:'l',ArrowRight:'r',d:'r',D:'r',' ':'boost'}[e.key];if(dir)SNK.delete(dir)});
+
+/* On the Arcade hub, after Dungeon Dash */
+GAMES.splice(2,0,{id:'snake',n:'Snake Arena',p:'Slither past computer snakes, grow the longest, and steer into the right answer orbs to power up.'});
+ART.snake=()=>sceneSvg(`${[[22,24,'#22d3ee'],[60,104,'#f472b6'],[140,18,'#facc15'],[184,70,'#4ade80'],[112,112,'#a78bfa'],[34,70,'#fb923c'],[176,112,'#22d3ee']].map(([x,y,c])=>`<circle cx="${x}" cy="${y}" r="7" fill="${c}" opacity=".3"/><circle cx="${x}" cy="${y}" r="3" fill="${c}"/>`).join('')}
+  <path d="M18 98C40 60 70 112 96 80S140 40 150 66" stroke="#14532d" stroke-width="17" fill="none" stroke-linecap="round"/><path d="M18 98C40 60 70 112 96 80S140 40 150 66" stroke="#4ade80" stroke-width="13" fill="none" stroke-linecap="round"/><path d="M18 98C40 60 70 112 96 80S140 40 150 66" stroke="#bbf7d0" stroke-width="9" fill="none" stroke-linecap="round" stroke-dasharray="6 9"/>
+  <circle cx="150" cy="66" r="10" fill="#4ade80" stroke="#14532d" stroke-width="2"/><circle cx="154" cy="62" r="3.4" fill="#fff"/><circle cx="154" cy="70" r="3.4" fill="#fff"/><circle cx="155" cy="62" r="1.6" fill="#111827"/><circle cx="155" cy="70" r="1.6" fill="#111827"/>
+  <circle cx="178" cy="40" r="13" fill="#facc15" opacity=".35"/><circle cx="178" cy="40" r="9" fill="#facc15" stroke="#0f172a" stroke-width="2"/><text x="178" y="44" font-size="11" font-weight="800" text-anchor="middle" fill="#0f172a" font-family="sans-serif">8</text>
+  <rect x="58" y="8" width="64" height="18" rx="9" fill="#0f172a" stroke="#334155"/><text x="90" y="21" font-size="11" font-weight="800" text-anchor="middle" fill="#fff" font-family="sans-serif">5 + 3 = ?</text>`,'#162038','#0b1120');
 </script>
 
 <style>

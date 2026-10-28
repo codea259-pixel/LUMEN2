@@ -34,12 +34,14 @@ export function bodyAt(game, x, y, rad, ignore) {
  * another snake's body (or head). Snakes never collide with themselves.
  * Returns [victim, killer] pairs; killer is null for the arena wall.
  * Collisions are slightly forgiving (85% of the touching distance), like the real game.
+ * A shielded snake can pass through bodies, but the edge still counts.
  */
 export function findCollisions(game) {
   const out = [], R = WORLD.radius;
   for (const s of game.snakes) {
     const r = s.radius;
     if (s.x * s.x + s.y * s.y > (R - r) * (R - r)) { out.push([s, null]); continue; }
+    if (s.shield > 0) continue;
     const killer = bodyAt(game, s.x, s.y, r * 0.85 - 2, s);
     if (killer) out.push([s, killer]);
   }

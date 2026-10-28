@@ -21,6 +21,8 @@ export class Renderer {
     this.focus = null;
     this.glow = new Map();
     this.bg = null;
+    this.calm = false;     // no pulsing food (for reduced motion)
+    this.onWorld = null;   // optional hook: draw extra things in world space, under the snakes
   }
 
   setGame(game) { this.game = game; }
@@ -56,6 +58,7 @@ export class Renderer {
 
     this.drawArena(V);
     this.drawFood(V, time);
+    if (this.onWorld) this.onWorld(x, V, time);
     const order = [...g.snakes].sort((a, b) => a.mass - b.mass);
     for (const s of order) if (this.visible(s, V)) this.drawSnake(s);
     if (this.debug) for (const s of g.snakes) if (s.bot && this.visible(s, V)) this.drawDebug(s, s === this.focus);
@@ -92,7 +95,7 @@ export class Renderer {
     grid.forCells(cx, cy, r, (arr) => {
       for (const f of arr) {
         if (!f.alive) continue;
-        const pulse = 1 + 0.15 * Math.sin(time * 3 + f.phase), size = (7 + Math.sqrt(f.value) * 5) * pulse;
+        const pulse = this.calm ? 1 : 1 + 0.15 * Math.sin(time * 3 + f.phase), size = (7 + Math.sqrt(f.value) * 5) * pulse;
         x.drawImage(this.sprite(f.hue), f.x - size, f.y - size, size * 2, size * 2);
       }
     });
@@ -128,6 +131,12 @@ export class Renderer {
     x.strokeStyle = `hsl(${hue2}, 85%, 63%)`; x.lineWidth = r * 1.55; x.stroke();
     x.setLineDash([]);
     x.strokeStyle = 'rgba(255, 255, 255, 0.13)'; x.lineWidth = r * 0.5; x.stroke();
+    if (s.shield > 0) {
+      x.strokeStyle = `rgba(253, 224, 71, ${0.35 + 0.3 * Math.min(1, s.shield)})`; x.lineWidth = r * 2 + 12;
+      x.beginPath(); x.moveTo(s.bx[0], s.by[0]);
+      for (let i = 1; i < n; i++) x.lineTo(s.bx[i], s.by[i]);
+      x.stroke();
+    }
     if (s.isPlayer) { x.strokeStyle = 'rgba(255, 255, 255, 0.5)'; x.lineWidth = 2 / this.cam.zoom; x.beginPath(); x.arc(s.x, s.y, r * 1.5, 0, TAU); x.stroke(); }
     // Head
     x.fillStyle = `hsl(${hue}, 80%, 55%)`;

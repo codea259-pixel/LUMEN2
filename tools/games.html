@@ -167,7 +167,7 @@ const ktOpen=i=>!i||((ARS('kart').med||{})[KTRACKS[i-1].id]||0)>0;
 const ktCur=()=>{let i=KTRACKS.findIndex(t=>t.id===ARS('kart').tr);if(i<0||!ktOpen(i))i=0;return KTRACKS[i]};
 /* Three lane answers: the right one plus two others (near misses for numbers) */
 function kartChoices(q){if(q.choices){const c=q.choices[q.a[0]],L=shuf([c,...shuf(q.choices.filter((_,i)=>i!==q.a[0])).slice(0,2)]);return{L,cor:L.indexOf(c)}}
-  const [n,d]=q.a,dec=/\d\.\d/.test(q.q)&&[1,2,4,5,8,10,20,25,50,100,1000].includes(d),f=(x,y)=>{const g=gcd(Math.abs(x),y)||1;x/=g;y/=g;return dec?String(+(x/y).toFixed(3)):y===1?String(x):`${x}/${y}`};
+  const [n,d]=q.a,dec=(/\d\.\d/.test(q.q)||/decimal/i.test(strip(q.q)))&&[1,2,4,5,8,10,20,25,50,100,1000].includes(d),f=(x,y)=>{const g=gcd(Math.abs(x),y)||1;x/=g;y/=g;return dec?String(+(x/y).toFixed(3)):y===1?String(x):`${x}/${y}`};
   const cands=dec?[[n*10,d],[n,d*10],[n+d/10,d],[n-d/10,d],[n+d/100,d],[n-d/100,d]].filter(([x])=>x>=0).map(([x,y])=>[Math.round(x*100),y*100])
     :d===1?[n+1,n-1,n+2,n-2,n+10,n-10,n*2,n+5].filter(x=>n<0||x>=0).map(x=>[x,1]):[[n+1,d],[n-1,d],[n,d+1],[n+d,d],[n*2,d]].filter(([x,y])=>x>0&&y>0);
   const c=f(n,d),seen=new Set([c]),o=[];for(const [x,y] of shuf(cands)){const s=f(x,y);if(!seen.has(s)&&!eq([x,y],[n,d])){seen.add(s);o.push(s)}if(o.length===2)break}

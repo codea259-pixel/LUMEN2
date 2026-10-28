@@ -71,7 +71,7 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     // Lumi's Realm: battle with real questions until the monster is beaten
     await a.click('#tabs >> text=Arcade'); await a.waitForSelector('.tiles');
     const tiles = await a.$$eval('.tile', t => t.map(x => x.querySelector('.tname').textContent + (x.classList.contains('soon') ? ' (soon)' : '')));
-    if (tiles.length !== 6 || tiles[0] !== 'Spell Quest' || tiles[1] !== 'Dungeon Dash' || tiles.some(x => x.includes('(soon)'))) fail('arcade tiles wrong: ' + tiles.join(', '));
+    if (tiles.length !== 7 || tiles[0] !== 'Spell Quest' || tiles[1] !== 'Dungeon Dash' || tiles[2] !== 'Snake Arena' || tiles.some(x => x.includes('(soon)'))) fail('arcade tiles wrong: ' + tiles.join(', '));
     const p0 = await a.evaluate(() => DAY().play); await a.evaluate(() => realmTick(5)); if (await a.evaluate(() => DAY().play) !== p0) fail('play time ticked on the hub');
     await a.click('.hubhero .livehero'); if (!(await a.evaluate(() => document.querySelector('.hubhero .livehero').classList.contains('wave')))) fail('hero did not wave when tapped');
     ok('Arcade hub: ' + tiles.join(', ') + '; browsing the hub uses no play time; the hero waves when tapped');
@@ -205,6 +205,26 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     if (sc.a !== 5 || sc.b !== 30 || sc.c !== 5 * Math.max(0, 3 - Math.min(3, sc.l0))) fail('study coins wrong: ' + JSON.stringify(sc));
     await a.evaluate(() => { stopGames(); rerealm() }); await a.waitForSelector('.ddnewc'); if (!/studying earned/.test(await a.textContent('.ddnewc')) || !(await a.isVisible('.ddearn'))) fail('the dashboard does not show study coins or how to earn them');
     ok('Upgrade coins come from studying: 5 right practice answers gave 5 coins, a mission plus classwork gave 30, lessons count up to 3 a day, and the upgrade dashboard shows what was earned and how to earn more');
+    // Snake Arena: answer orbs, a second chance, and gems at the end of a round
+    await a.evaluate(() => toHub()); await a.click('.tile:has-text("Snake Arena")'); await a.waitForSelector('text=Start a round');
+    await a.waitForFunction(() => SNDEMO && SNDEMO.g.snakes.length > 5); await a.click('.snset button:text-is("Easy")'); await a.click('.snset button:text-is("10")');
+    await a.click('text=Start a round'); await a.waitForSelector('#snhud span');
+    const sn0 = await a.evaluate(() => ({ run: AR.run, bots: SNZ.g.bots.length, diff: SNZ.g.difficulty, demo: !!SNDEMO })); if (!sn0.run || sn0.bots !== 10 || sn0.diff !== 'easy' || sn0.demo) fail('snake round did not start right: ' + JSON.stringify(sn0));
+    await a.waitForFunction(() => SNZ.q && SNZ.orbs.length === 3, null, { timeout: 8000 });
+    const snR = await a.evaluate(() => { const Z = SNZ, p = Z.g.player, o = Z.orbs[Z.q.cor], m = p.mass; p.x = o.x; p.y = o.y; return m });
+    await a.waitForFunction(() => SNZ.ok === 1); const snR1 = await a.evaluate(() => ({ m: SNZ.g.player.mass, sh: SNZ.g.player.shield }));
+    if (!(snR1.m >= snR + 29 && snR1.sh > 4)) fail('a right answer orb should grow the snake by 30 and shield it: ' + JSON.stringify({ snR, snR1 }));
+    await a.waitForFunction(() => SNZ.q && SNZ.orbs.length === 3, null, { timeout: 8000 });
+    const snW = await a.evaluate(() => { const Z = SNZ, p = Z.g.player, o = Z.orbs[(Z.q.cor + 1) % 3], m = p.mass; p.x = o.x; p.y = o.y; return m });
+    await a.waitForFunction(() => SNZ.n === 2); const snW1 = await a.evaluate(() => SNZ.g.player.mass); if (!(snW1 < snW)) fail('a wrong answer orb should shrink the snake');
+    await a.keyboard.press('p'); const snT = await a.evaluate(() => [SNZ.g.time, AR.paused]); await a.waitForTimeout(300); if (snT[0] !== await a.evaluate(() => SNZ.g.time) || !snT[1]) fail('pausing Snake Arena did not stop the game'); await a.keyboard.press('p');
+    await a.evaluate(() => { const s = SNZ.g.player; s.shield = 0; s.x = 2995; s.y = 0 }); await a.waitForFunction(() => QM && QM.phase === 'ask');
+    if (!/Second chance/.test(await a.textContent('#qmt'))) fail('no second-chance question after a knock-out'); await answerQM(a, true);
+    await a.waitForFunction(() => !QM && SNZ.ph === 'run'); const snB = await a.evaluate(() => ({ m: SNZ.g.player.mass, lost: SNZ.lost, sh: SNZ.g.player.shield })); if (Math.abs(snB.m - Math.max(20, snB.lost / 2)) > 1 || !(snB.sh > 0)) fail('second chance should bring back half the length with a shield: ' + JSON.stringify(snB));
+    const sng0 = await a.evaluate(() => GEMS()); await a.evaluate(() => { const s = SNZ.g.player; s.shield = 0; s.x = 2995; s.y = 0 }); await a.waitForSelector('text=Round over!');
+    const snEnd = await a.evaluate(g => ({ gems: GEMS() - g, S: ARS('snake'), run: AR.run }), sng0); if (snEnd.gems !== 1 || snEnd.S.rounds !== 1 || snEnd.S.right !== 1 || !snEnd.S.best || snEnd.run) fail('Snake Arena round end wrong: ' + JSON.stringify(snEnd));
+    ok('Snake Arena: easy bots, a right answer orb grew the snake and gave a star shield, a wrong one shrank it, P paused, a knock-out offered a second chance that brought back half the length, and the round paid 1 gem per right answer'); await shot(a, 'g-snake');
+
     // Out of play time: the action games stop at the start screen; the pet can still be visited
     await a.evaluate(() => { DAY().play = playAllowed(); toHub() }); if (!(await a.isVisible('.tile:has-text("Pet Pals") >> text=Visit'))) fail('Pet Pals is not open when play time is over');
     await a.click('.tile:has-text("Turbo Trivia Kart")'); if (!(await a.isDisabled('text=Start race'))) fail('a race can start with no play time left');
