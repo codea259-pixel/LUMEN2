@@ -8,7 +8,7 @@ const B = process.env.LUMEN_URL || 'http://localhost:3922';
 const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail = m => { throw new Error(m); };
 (async () => {
   const br = await chromium.launch();
-  const mk = async (w = 1280) => { const ctx = await br.newContext({ viewport: { width: w, height: 900 } }); const p = await ctx.newPage();
+  const mk = async (w = 1280) => { const ctx = await br.newContext({ viewport: { width: w, height: 900 } }); await ctx.addInitScript(() => { window.NO_FREE_DAY = true }); const p = await ctx.newPage();
     p.on('pageerror', e => errs.push('pageerror: ' + e.message)); p.on('console', m => { if (m.type() === 'error' && !/fonts\.g|status of (400|401|403|404|409)/.test(m.text())) errs.push('console: ' + m.text()) });
     p.on('dialog', d => d.accept()); return p };
   const shot = async (pg, n) => { if (SH) await pg.screenshot({ path: `${SH}/${n}.png`, fullPage: true }) };
@@ -388,6 +388,12 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     await ow.click(`tr:has-text("${creds[0][1]}") >> text=End now`); await ow.waitForSelector('text=Membership ended.');
     await ow.click(`tr:has-text("${code}") >> text=End now`); await ow.waitForSelector('text=Membership ended.');
     await a.reload(); await a.waitForSelector('#avatarBtn'); if (await a.evaluate(() => isMember())) fail('membership did not end'); ok('owner ended both memberships; the daily limit is back');
+    // A free membership day: everyone has unlimited play and there is nothing to pay
+    await a.evaluate(() => { window.NO_FREE_DAY = false; if (!FREE_DAYS.includes(dstr())) FREE_DAYS.push(dstr()); DAY().play = playAllowed() + 999; go('play') }); await a.waitForSelector('text=🎉 Free day: unlimited play');
+    const fd = await a.evaluate(() => ({ member: isMember(), limit: noLimit(), out: outOfTime() })); if (!fd.member || !fd.limit || fd.out) fail('free day did not give unlimited play: ' + JSON.stringify(fd));
+    await a.evaluate(() => go('member')); await a.waitForSelector('text=Membership is free today!'); if (await a.$('.paybtn')) fail('pay buttons still show on a free day');
+    await a.evaluate(() => { window.NO_FREE_DAY = true; go('learn') }); if (await a.evaluate(() => isMember())) fail('switching the free day off did not end it');
+    ok('free membership day: a learner out of play time had unlimited play, and the Membership page said it is free with no pay buttons');
     const sm = await call(a, 'POST', '/api/owner/members', { who: creds[0][1], until: Date.now() + 9e9 }), tm2 = await call(t, 'POST', '/api/owner/members', { who: code, until: Date.now() + 9e9 }), sl = await call(a, 'GET', '/api/owner/members');
     if (sm.s !== 403 || tm2.s !== 403 || sl.s !== 403) fail(`students or teachers could switch on membership: ${sm.s} ${tm2.s} ${sl.s}`);
     ok('students and teachers get 403 when they try to switch on membership');

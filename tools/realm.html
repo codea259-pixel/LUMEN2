@@ -94,7 +94,10 @@ function monsterSvg(m,boss,label){const [n,shape,c,acc]=m,d=shade(c,.78),A=a=>ac
 
 /* ---------- Play time ---------- */
 const GSET=()=>Object.assign({base:10,per:5,max:30},(BOOT.settings&&BOOT.settings.game)||{});
-const isMember=()=>(ME.member||0)>Date.now();                 /* membership (unlimited play), switched on by the Owner for an account or a class */
+/* Free membership days, by each viewer's own date: everyone gets unlimited play and nothing needs paying. Tests set window.NO_FREE_DAY. */
+const FREE_DAYS=['2026-10-27','2026-10-28'];
+const freeDay=()=>!window.NO_FREE_DAY&&FREE_DAYS.includes(dstr());
+const isMember=()=>freeDay()||(ME.member||0)>Date.now();     /* membership (unlimited play), switched on by the Owner for an account or a class */
 const noLimit=()=>BOOT.role!=='student'||isMember();          /* teachers, parents and the Owner can preview without a limit */
 const memberNote=()=>BOOT.settings.member&&BOOT.settings.member.on?`<p class="sol" style="margin-top:10px">Want to play longer? Ask a parent or teacher about membership.</p><button class="alt" onclick="BT=null;go('member')">⭐ Membership (for grown-ups)</button>`:'';
 const playAllowed=()=>{const g=GSET();return Math.min(g.max,g.base+Math.floor(DAY().study/60)*g.per/10)*60};
@@ -107,7 +110,7 @@ function realmTick(sec){if(tab!=='play'||!gameOn()||document.hidden||Date.now()-
   if(BT?['ask','fb'].includes(BT.phase):AR.mode==='spell'||(!!AR.run&&!AR.paused)){if(!noLimit()&&playLeft()>0){DAY().play+=sec;if(DAY().play%60===0)SYNC()}}
   const e=$('ptime');if(e)e.outerHTML=ptimeHtml();
   if(!noLimit()&&playLeft()<=0&&BT&&BT.phase==='ask'){BT.phase='timeup';renderBattle()}}
-function ptimeHtml(){const l=playLeft(),a=noLimit()?1:playAllowed();return `<div class="ptime" id="ptime" title="${esc(noLimit()?'Only learners have a daily play time.':earnNote())}"><span aria-hidden="true">⏳</span><span>${l===Infinity?(isMember()&&BOOT.role==='student'?'⭐ Member: unlimited play':'No time limit (preview)'):l>0?mmss(l)+' of play left today':'Out of play time today'}</span>${l===Infinity?'':`<div class="bar" aria-hidden="true"><i style="width:${Math.min(100,l/a*100)}%"></i></div>`}</div>`}
+function ptimeHtml(){const l=playLeft(),a=noLimit()?1:playAllowed();return `<div class="ptime" id="ptime" title="${esc(noLimit()?'Only learners have a daily play time.':earnNote())}"><span aria-hidden="true">⏳</span><span>${l===Infinity?(freeDay()?'🎉 Free day: unlimited play':isMember()&&BOOT.role==='student'?'⭐ Member: unlimited play':'No time limit (preview)'):l>0?mmss(l)+' of play left today':'Out of play time today'}</span>${l===Infinity?'':`<div class="bar" aria-hidden="true"><i style="width:${Math.min(100,l/a*100)}%"></i></div>`}</div>`}
 
 /* ---------- World map and lands ---------- */
 const POS=[[110,330],[260,200],[410,312],[545,150],[690,292],[830,140],[920,320]];

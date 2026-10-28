@@ -43,7 +43,8 @@ function mrefSync(){const r=$('mref').value.trim(),bad=r!==''&&!okRef(r);$('mref
 function payClick(e){const i=$('mref');if(i&&okRef(i.value.trim()))return;e.preventDefault();$('mrefmsg').textContent="Type the learner's username or a class code first.";i&&i.focus()}
 VIEWS.member=function(){const m=MSET(),mine=isMember();
   let body;
-  if(mine)body=`<div class="card"><h3>⭐ You're a member</h3><p>Unlimited play in the Arcade until <b>${fmtDay(ME.member)}</b>. Thank you for supporting Bose Academy!</p>${gameOn()?`<button class="lamp" onclick="go('play')">⚔️ Play</button>`:''}</div>`;
+  if(freeDay())body=`<div class="card"><h3>🎉 Membership is free today!</h3><p>Everyone gets unlimited play in the Arcade today, and there's nothing to pay. Enjoy!</p>${gameOn()?`<button class="lamp" onclick="go('play')">⚔️ Play</button>`:''}</div>`;
+  else if(mine)body=`<div class="card"><h3>⭐ You're a member</h3><p>Unlimited play in the Arcade until <b>${fmtDay(ME.member)}</b>. Thank you for supporting Bose Academy!</p>${gameOn()?`<button class="lamp" onclick="go('play')">⚔️ Play</button>`:''}</div>`;
   else if(!m.on||!PLANS(m).length)body=`<div class="card"><p>Membership isn't available yet. Everyone gets daily play time, and learning more earns more.</p></div>`;
   else if(BOOT.role==='student'&&!(MGATE&&MGATE.ok)){if(!MGATE)MGATE={a:11+Math.floor(Math.random()*9),b:12+Math.floor(Math.random()*8)};
     body=`<div class="card gate"><h3>For parents and teachers</h3><p>Ask a grown-up to answer this question to see membership.</p><form onsubmit="event.preventDefault();gateCheck()"><p><b>What is ${MGATE.a} × ${MGATE.b}?</b></p><div class="row"><input id="gatein" inputmode="numeric" autocomplete="off" aria-label="Answer"><button class="lamp">Continue</button></div></form><p class="sol" id="gatemsg" role="alert"></p></div>`}

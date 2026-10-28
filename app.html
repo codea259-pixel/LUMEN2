@@ -5043,7 +5043,10 @@ function monsterSvg(m,boss,label){const [n,shape,c,acc]=m,d=shade(c,.78),A=a=>ac
 
 /* ---------- Play time ---------- */
 const GSET=()=>Object.assign({base:10,per:5,max:30},(BOOT.settings&&BOOT.settings.game)||{});
-const isMember=()=>(ME.member||0)>Date.now();                 /* membership (unlimited play), switched on by the Owner for an account or a class */
+/* Free membership days, by each viewer's own date: everyone gets unlimited play and nothing needs paying. Tests set window.NO_FREE_DAY. */
+const FREE_DAYS=['2026-10-27','2026-10-28'];
+const freeDay=()=>!window.NO_FREE_DAY&&FREE_DAYS.includes(dstr());
+const isMember=()=>freeDay()||(ME.member||0)>Date.now();     /* membership (unlimited play), switched on by the Owner for an account or a class */
 const noLimit=()=>BOOT.role!=='student'||isMember();          /* teachers, parents and the Owner can preview without a limit */
 const memberNote=()=>BOOT.settings.member&&BOOT.settings.member.on?`<p class="sol" style="margin-top:10px">Want to play longer? Ask a parent or teacher about membership.</p><button class="alt" onclick="BT=null;go('member')">⭐ Membership (for grown-ups)</button>`:'';
 const playAllowed=()=>{const g=GSET();return Math.min(g.max,g.base+Math.floor(DAY().study/60)*g.per/10)*60};
@@ -5056,7 +5059,7 @@ function realmTick(sec){if(tab!=='play'||!gameOn()||document.hidden||Date.now()-
   if(BT?['ask','fb'].includes(BT.phase):AR.mode==='spell'||(!!AR.run&&!AR.paused)){if(!noLimit()&&playLeft()>0){DAY().play+=sec;if(DAY().play%60===0)SYNC()}}
   const e=$('ptime');if(e)e.outerHTML=ptimeHtml();
   if(!noLimit()&&playLeft()<=0&&BT&&BT.phase==='ask'){BT.phase='timeup';renderBattle()}}
-function ptimeHtml(){const l=playLeft(),a=noLimit()?1:playAllowed();return `<div class="ptime" id="ptime" title="${esc(noLimit()?'Only learners have a daily play time.':earnNote())}"><span aria-hidden="true">⏳</span><span>${l===Infinity?(isMember()&&BOOT.role==='student'?'⭐ Member: unlimited play':'No time limit (preview)'):l>0?mmss(l)+' of play left today':'Out of play time today'}</span>${l===Infinity?'':`<div class="bar" aria-hidden="true"><i style="width:${Math.min(100,l/a*100)}%"></i></div>`}</div>`}
+function ptimeHtml(){const l=playLeft(),a=noLimit()?1:playAllowed();return `<div class="ptime" id="ptime" title="${esc(noLimit()?'Only learners have a daily play time.':earnNote())}"><span aria-hidden="true">⏳</span><span>${l===Infinity?(freeDay()?'🎉 Free day: unlimited play':isMember()&&BOOT.role==='student'?'⭐ Member: unlimited play':'No time limit (preview)'):l>0?mmss(l)+' of play left today':'Out of play time today'}</span>${l===Infinity?'':`<div class="bar" aria-hidden="true"><i style="width:${Math.min(100,l/a*100)}%"></i></div>`}</div>`}
 
 /* ---------- World map and lands ---------- */
 const POS=[[110,330],[260,200],[410,312],[545,150],[690,292],[830,140],[920,320]];
@@ -5200,7 +5203,8 @@ function mrefSync(){const r=$('mref').value.trim(),bad=r!==''&&!okRef(r);$('mref
 function payClick(e){const i=$('mref');if(i&&okRef(i.value.trim()))return;e.preventDefault();$('mrefmsg').textContent="Type the learner's username or a class code first.";i&&i.focus()}
 VIEWS.member=function(){const m=MSET(),mine=isMember();
   let body;
-  if(mine)body=`<div class="card"><h3>⭐ You're a member</h3><p>Unlimited play in the Arcade until <b>${fmtDay(ME.member)}</b>. Thank you for supporting Bose Academy!</p>${gameOn()?`<button class="lamp" onclick="go('play')">⚔️ Play</button>`:''}</div>`;
+  if(freeDay())body=`<div class="card"><h3>🎉 Membership is free today!</h3><p>Everyone gets unlimited play in the Arcade today, and there's nothing to pay. Enjoy!</p>${gameOn()?`<button class="lamp" onclick="go('play')">⚔️ Play</button>`:''}</div>`;
+  else if(mine)body=`<div class="card"><h3>⭐ You're a member</h3><p>Unlimited play in the Arcade until <b>${fmtDay(ME.member)}</b>. Thank you for supporting Bose Academy!</p>${gameOn()?`<button class="lamp" onclick="go('play')">⚔️ Play</button>`:''}</div>`;
   else if(!m.on||!PLANS(m).length)body=`<div class="card"><p>Membership isn't available yet. Everyone gets daily play time, and learning more earns more.</p></div>`;
   else if(BOOT.role==='student'&&!(MGATE&&MGATE.ok)){if(!MGATE)MGATE={a:11+Math.floor(Math.random()*9),b:12+Math.floor(Math.random()*8)};
     body=`<div class="card gate"><h3>For parents and teachers</h3><p>Ask a grown-up to answer this question to see membership.</p><form onsubmit="event.preventDefault();gateCheck()"><p><b>What is ${MGATE.a} × ${MGATE.b}?</b></p><div class="row"><input id="gatein" inputmode="numeric" autocomplete="off" aria-label="Answer"><button class="lamp">Continue</button></div></form><p class="sol" id="gatemsg" role="alert"></p></div>`}
@@ -5352,7 +5356,7 @@ function gemBar(p=lvProg(),sweep){const gems=Array.from({length:10},(_,i)=>{cons
   return `<div><div class="gembar ${sweep?'sweep':''}" role="progressbar" aria-label="Level ${p.L}: ${p.into} of ${p.need} XP to level ${p.L+1}" aria-valuemin="0" aria-valuemax="${p.need}" aria-valuenow="${p.into}"><span class="lvshield" aria-hidden="true">${p.L}</span>${gems}</div><div class="gemnums">${p.into} / ${p.need} XP to level ${p.L+1}</div></div>`}
 function tubeHtml(frac,label,c,id,low){const f=Math.max(0,Math.min(1,frac));return `<div class="tube ${low?'low':''}" ${id?`id="${id}"`:''} style="--f:${f.toFixed(3)};--c:${c||'#67E8F9'}" role="progressbar" aria-label="${esc(label)}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(f*100)}"><div class="liq">${f>0?'<i style="left:12%;animation-delay:-.4s"></i><i style="left:46%;animation-delay:-1.5s"></i><i style="left:78%;animation-delay:-2.1s"></i>':''}</div><span class="tl">${esc(label)}</span></div>`}
 /* The time-left tube used by the hub and every game */
-function timeTube(){const l=playLeft();if(l===Infinity)return tubeHtml(1,isMember()&&BOOT.role==='student'?'⭐ Unlimited play':'No time limit (preview)','#A78BFA','ptime');
+function timeTube(){const l=playLeft();if(l===Infinity)return tubeHtml(1,freeDay()?'🎉 Free day: unlimited play':isMember()&&BOOT.role==='student'?'⭐ Unlimited play':'No time limit (preview)','#A78BFA','ptime');
   return tubeHtml(l/Math.max(1,playAllowed()),l>0?`⏳ ${mmss(l)} left today`:'🌙 Out of play time','#0891B2','ptime',l>0&&l<=60)}
 ptimeHtml=timeTube;
 /* A hero who blinks, follows the pointer with their eyes, and reacts to taps */

@@ -19,7 +19,7 @@ const errs = [], ok = s => console.log('✓', s);
 (async () => {
   const b = await chromium.launch();
   const page = async (google) => {
-    const ctx = await b.newContext({ viewport: { width: 1280, height: 900 } }), p = await ctx.newPage();
+    const ctx = await b.newContext({ viewport: { width: 1280, height: 900 } }); await ctx.addInitScript(() => { window.NO_FREE_DAY = true }); const p = await ctx.newPage();
     await ctx.route('**/firebase-config.js', r => r.fulfill({ contentType: 'text/javascript', body: `window.FIREBASE_CONFIG={apiKey:'demo-key',authDomain:'localhost',projectId:'demo-bose'};window.FIREBASE_EMULATOR=true;${google ? 'window.FIREBASE_TEST_GOOGLE=' + JSON.stringify(google) + ';' : ''}` }));
     await ctx.route('https://www.gstatic.com/firebasejs/**', r => r.fulfill({ contentType: 'text/javascript', body: fs.readFileSync(path.join(SDK, path.basename(new URL(r.request().url()).pathname))) }));
     p.on('pageerror', e => errs.push(e.message)); p.on('dialog', d => d.accept()); return p;
