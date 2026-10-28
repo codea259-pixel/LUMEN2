@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Snake Arena</title>
+<meta name="description" content="A Slither-style snake arena with AI bots that hunt, flee and scavenge.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="cv" aria-label="The snake arena"></canvas>
+
+<div id="hud" hidden>
+  <div id="stats" class="panel"></div>
+  <ol id="board" class="panel" aria-label="Leaderboard"></ol>
+  <div id="feed" aria-live="polite"></div>
+  <div id="bar" class="panel">
+    <label>Bots <select id="hudDiff" aria-label="Bot difficulty"><option value="easy">Easy</option><option value="normal">Normal</option><option value="hard">Hard</option></select></label>
+    <button id="dbgBtn" aria-label="Debug view" aria-pressed="false" title="Show what each bot is thinking (B)">🧠<span class="wide"> Debug</span></button>
+    <button id="pauseBtn" aria-label="Pause" title="Pause (P)">⏸</button>
+    <button id="menuBtn" aria-label="Menu" title="Menu (Esc)">☰</button>
+  </div>
+  <div id="inspect" class="panel" hidden></div>
+  <canvas id="mini" width="150" height="150" aria-hidden="true"></canvas>
+  <button id="boostBtn" aria-label="Boost">⚡</button>
+</div>
+
+<div id="menu" class="overlay">
+  <div class="card">
+    <h1>Snake Arena</h1>
+    <p class="sub">Eat glowing food to grow. Make other snakes crash into you. Don't touch anyone else's body!</p>
+    <label class="field">Your name <input id="name" maxlength="16" placeholder="You" autocomplete="off"></label>
+    <div class="field">Bot difficulty
+      <div class="seg" role="radiogroup" aria-label="Bot difficulty">
+        <label><input type="radio" name="diff" value="easy"><span>Easy</span></label>
+        <label><input type="radio" name="diff" value="normal" checked><span>Normal</span></label>
+        <label><input type="radio" name="diff" value="hard"><span>Hard</span></label>
+      </div>
+    </div>
+    <label class="field">Bots: <b id="nbotsOut">24</b> <input id="nbots" type="range" min="10" max="50" value="24"></label>
+    <div class="row"><button id="play" class="primary">▶ Play</button><button id="watch">👀 Watch the bots</button></div>
+    <ul class="kinds" id="kinds"></ul>
+    <p class="help">Steer with the mouse (or drag on a touch screen). Hold the mouse button or Space to boost. <b>B</b> shows what the bots are thinking, <b>P</b> pauses. While watching, click a snake to follow it.</p>
+  </div>
+</div>
+
+<div id="dead" class="overlay" hidden>
+  <div class="card">
+    <h2 id="deadTitle">You were eaten!</h2>
+    <p id="deadText"></p>
+    <div class="row"><button id="again" class="primary">▶ Play again</button><button id="deadWatch">👀 Keep watching</button><button id="deadMenu">☰ Menu</button></div>
+  </div>
+</div>
+
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

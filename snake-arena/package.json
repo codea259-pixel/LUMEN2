@@ -1,0 +1,12 @@
+{
+  "name": "snake-arena",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A Slither-style snake arena with AI bots. No dependencies.",
+  "scripts": {
+    "start": "python3 -m http.server 8080",
+    "sim": "node sim/headless.js",
+    "check": "node sim/headless.js --check && node sim/scenarios.js"
+  }
+}
