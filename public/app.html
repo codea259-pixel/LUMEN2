@@ -5566,8 +5566,10 @@ const ktCur=()=>{let i=KTRACKS.findIndex(t=>t.id===ARS('kart').tr);if(i<0||!ktOp
 function kartChoices(q){if(q.choices){const c=q.choices[q.a[0]],L=shuf([c,...shuf(q.choices.filter((_,i)=>i!==q.a[0])).slice(0,2)]);return{L,cor:L.indexOf(c)}}
   const [n,d]=q.a,dec=(/\d\.\d/.test(q.q)||/decimal/i.test(strip(q.q)))&&[1,2,4,5,8,10,20,25,50,100,1000].includes(d),f=(x,y)=>{const g=gcd(Math.abs(x),y)||1;x/=g;y/=g;return dec?String(+(x/y).toFixed(3)):y===1?String(x):`${x}/${y}`};
   const cands=dec?[[n*10,d],[n,d*10],[n+d/10,d],[n-d/10,d],[n+d/100,d],[n-d/100,d]].filter(([x])=>x>=0).map(([x,y])=>[Math.round(x*100),y*100])
-    :d===1?[n+1,n-1,n+2,n-2,n+10,n-10,n*2,n+5].filter(x=>n<0||x>=0).map(x=>[x,1]):[[n+1,d],[n-1,d],[n,d+1],[n+d,d],[n*2,d]].filter(([x,y])=>x>0&&y>0);
+    :d===1?[n+1,n-1,n+2,n-2,n+10,n-10,n*2,n+5].filter(x=>n<0||x>=0).map(x=>[x,1]):[[n+1,d],[n-1,d],[n,d+1],[n+d,d],[n*2,d],[-n,d],[n-d,d]].filter(([x,y])=>y>0&&(n<0||x>0));
   const c=f(n,d),seen=new Set([c]),o=[];for(const [x,y] of shuf(cands)){const s=f(x,y);if(!seen.has(s)&&!eq([x,y],[n,d])){seen.add(s);o.push(s)}if(o.length===2)break}
+  // Always offer two wrong answers: fall back to the answer plus or minus whole numbers
+  for(let k=1;o.length<2&&k<9;k++)for(const x of [n+k*d,n-k*d]){const s=f(x,d);if(o.length<2&&!seen.has(s)){seen.add(s);o.push(s)}}
   if(o.length<2)return null;const L=shuf([c,...o]);return{L,cor:L.indexOf(c)}}
 const kartWin=()=>(ARS('kart').relax??myGrade()<=2)?8000:5000;
 function kartStart(){if(!canStart())return;stopGames();const tr=ktCur();KT={ph:'go',i:0,ok:0,lane:1,pen:0,t0:performance.now(),win:kartWin(),tr,n:tr.g};AR.run=true;rerealm();kartNext();if(KT&&KT.ph==='go')AR.raf=requestAnimationFrame(kartFrame)}
@@ -8168,13 +8170,13 @@ const CIPHER=[
   ['math','scale','The ratio between measurements on a map or model and the real thing.'],['math','limit','The value a function gets closer and closer to as its input approaches a number.'],
   ['math','radii','The plural of radius: segments from a circle\'s center to its edge.'],['math','solve','To find the value that makes an equation true.'],
   ['math','graph','A diagram that shows how quantities are related.'],['math','plane','A flat surface that extends forever in every direction.'],
-  ['math','round','To replace a number with a nearby, simpler number, like 47 → 50.'],['math','cubic','Having three dimensions; cubic units measure volume.'],
+  ['math','round','To replace a number with a nearby, simpler number, like 47 → 50.'],['math','cubic','Having three dimensions, like the units (cm³ or in³) used to measure volume.'],
   ['sci','atoms','The tiny building blocks of all matter.'],['sci','cells','The smallest units of life; every living thing is made of them.'],
   ['sci','force','A push or a pull on an object.'],['sci','orbit','The curved path of one object around another, like Earth around the Sun.'],
   ['sci','lunar','Having to do with the Moon.'],['sci','solar','Having to do with the Sun.'],
   ['sci','fungi','Living things like mushrooms and molds that absorb food from their surroundings.'],['sci','genes','Sections of DNA that pass traits from parents to offspring.'],
   ['sci','ozone','A form of oxygen (O₃); a layer of it high in the atmosphere blocks much of the Sun\'s UV light.'],['sci','magma','Melted rock beneath Earth\'s surface.'],
-  ['sci','fault','A crack in Earth\'s crust where blocks of rock move past each other.'],['sci','vapor','A substance in its gas form, like water vapor.'],
+  ['sci','fault','A crack in Earth\'s crust where blocks of rock move past each other.'],['sci','vapor','A substance in its gas form, like the steam rising from a kettle.'],
   ['sci','alloy','A mixture of a metal with other elements, like steel or bronze.'],['sci','virus','A tiny particle that can only copy itself inside a living cell.'],
   ['sci','trait','A characteristic, like eye color, that can be passed from parents to offspring.'],['sci','biome','A large region with a similar climate, plants and animals, like a desert or tundra.'],
   ['sci','delta','Land built up where a river drops its sediment as it flows into a larger body of water.'],['sci','joule','The SI unit of energy and work.'],

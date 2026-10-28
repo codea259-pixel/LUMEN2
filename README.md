@@ -102,6 +102,18 @@ The top of the Learn page has a search box. Typing a word (like "fraction", "ver
 
 XP, gems and play time are kept with each learner's own progress, so a determined student could change their own numbers; the game is for motivation, not grades. The Firestore rules let learners write only their own leaderboard row and claim only their own bonus gems, once. `tools/e2e-game.cjs` tests the game against a running server.
 
+## Finding mistakes in the content
+
+- **`node tools/audit.cjs`** checks everything learners see, mechanically, in a headless browser (run `python3 tools/build.py` first):
+  - every practice skill's questions, 120 per skill: no crashes or broken text, distinct choices, answers that grade as correct (and decimal answers when asked for), hints and worked steps, and no question with two different answers;
+  - the Arcade answer choices;
+  - the Next Level content (Cipher words and definitions, a year of daily equations, Crossroads decisions, Market Sim questions and news, the lab physics and chemistry);
+  - test bank text.
+
+  Options: `--spell` lists words not in an English word list (after `npm i --no-save an-array-of-english-words@2.0.0`), `--sample math 6` prints practice questions with answers to read, and `--json file` saves the findings.
+- **`node tools/validate-assess.cjs`** builds, grades and prints every lesson, test and benchmark.
+- **The content-auditor agent** (`.claude/agents/content-auditor.md`) runs both and then reads the content like a careful teacher: it works every question out, checks answer keys, facts, wording, grade level and spelling, and fixes clear mistakes with the smallest edit. It lists anything uncertain for a person and never pushes to the live branch. In Claude Code, ask: "Use the content-auditor agent to check math grades 6 to 8."
+
 ## Ask Lumi (AI tutor)
 
 Practice questions have an **Ask Lumi** button. With `ANTHROPIC_API_KEY` set on the server, Lumi uses Claude as a Socratic tutor that asks guiding questions and is instructed never to reveal or confirm answers (model: `LUMEN_TUTOR_MODEL`, default `claude-haiku-5-5`; limited to 30 messages per student per 10 minutes). Without a key, or with the "AI tutor feedback" flag off in the Owner console, it falls back to built-in guiding questions from each problem's hint ladder.
