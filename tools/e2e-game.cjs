@@ -162,7 +162,23 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     await a.waitForSelector('text=Tower full!'); const bgem = await a.evaluate(g => GEMS() - g, bg0); if (bgem !== 2) fail('Block Builder paid ' + bgem + ' gems for 9 clears');
     ok('Block Builder: 4 + 6 side by side and 2 + 8 stacked both cleared, the 5th clear reached level 2, and a full tower ends the round with 2 gems for 9 clears'); await shot(a, 'g-blocks');
     // Dungeon Dash: move, recharge magic with answers, level up, dodge, take the stairs
-    await a.evaluate(() => toHub()); await a.click('.tile:has-text("Dungeon Dash")'); await a.click('text=Enter the dungeon'); await a.waitForSelector('#ddcv');
+    await a.evaluate(() => toHub()); await a.click('.tile:has-text("Dungeon Dash")'); await a.waitForSelector('.ddhero');
+    const heroes = await a.$$eval('.ddhero > b', b => b.map(x => x.textContent)); if (heroes.length !== 4 || !(await a.isVisible('#dddash'))) fail('hero select or upgrade dashboard missing: ' + heroes.join(', '));
+    await a.evaluate(() => { ARS('dash').gold = 100; rerealm() }); await a.click('#dddash [data-up=hp]'); await a.click('#dddash [data-up=hp]');
+    const bought = await a.evaluate(() => ({ gold: ARS('dash').gold, hp: dLv('thromar', 'hp') })); if (bought.gold !== 40 || bought.hp !== 2) fail('upgrade dashboard purchase wrong: ' + JSON.stringify(bought));
+    if (!(await a.isDisabled('#dddash [data-up=hp]'))) fail('an upgrade was buyable without enough coins');
+    await a.click('.ddhero[data-hero=vespera]'); await a.click('text=Enter the dungeon as Vespera'); await a.waitForSelector('#ddcv');
+    const vh = await a.evaluate(() => ({ hero: DD.hero, max: DD.h.max })); if (vh.hero !== 'vespera' || vh.max !== 4) fail('Vespera did not start with 4 hearts: ' + JSON.stringify(vh));
+    const sp = await a.evaluate(() => { const r = {}, H = DD.h, put = (k, dx, dy) => { DD.mons = []; ddSpawn(k); const m = DD.mons[0]; m.x = H.x + dx; m.y = H.y + dy; m.cd = 99; return m };
+      DD.ch = 40; let m = put('imp', 200, 0); H.sp = 0; ddSpecial(); r.blink = [Math.round(Math.hypot(H.x - m.x, H.y - m.y)), H.stealth > 0, m.hp < m.max];
+      DD.hero = 'thromar'; DD.mons = []; H.sp = 0; H.stealth = 0; ddSpecial(); m = put('slime', 0, 0); m.hp = 50; m.max = 50; ddStep(.016); r.ward = [m.hp < 50, m.stun > DD.t];
+      DD.hero = 'aegis'; DD.mons = []; H.sp = 0; m = put('slime', 220, 0); m.cd = 99; ddSpecial(); const w = DD.walls[0]; DD.mons = []; DD.foes = [{ k: 'fire', x: w.x + w.nx * 40, y: w.y + w.ny * 40, vx: -w.nx * 300, vy: -w.ny * 300, r: 9, b: 3, life: 5 }]; for (let i = 0; i < 10; i++) ddStep(.016); r.shield = DD.foes.length === 0 && H.hp === H.max;
+      DD.hero = 'malakor'; DD.walls = []; DD.zones = []; H.sp = 0; H.hp = 2; ddSpecial(); for (let i = 0; i < 40; i++) ddStep(.025); r.mist = H.hp;
+      DD.hero = 'vespera'; DD.mons = []; DD.foes = []; DD.zones = []; H.hp = H.max; H.inv = 0; H.stealth = 0; return r });
+    if (!(sp.blink[0] < 80 && sp.blink[1] && sp.blink[2]) || !sp.ward[0] || !sp.ward[1] || !sp.shield || sp.mist < 3) fail('special moves wrong: ' + JSON.stringify(sp));
+    ok('Dungeon Dash heroes: 4 to choose from; the upgrade dashboard sold 2 heart levels for 60 coins and blocked a third without coins; Vespera started with 4 hearts; Blink Strike, Rune Ward, Energy Shield and Healing Mist all worked: ' + JSON.stringify(sp));
+    await a.evaluate(() => { stopGames(); ARS('dash').hero = 'thromar'; rerealm() }); await a.click('text=Enter the dungeon as Thromar'); await a.waitForSelector('#ddcv');
+    if (await a.evaluate(() => DD.h.max) !== 9) fail('Thromar\'s 2 heart upgrades did not apply');
     const dp0 = await a.evaluate(() => DAY().play); await a.evaluate(() => realmTick(5)); if (await a.evaluate(() => DAY().play) !== dp0 + 5) fail('a dungeon run did not use play time');
     await a.keyboard.press('p'); const pz = await a.evaluate(() => { const d = DAY().play; realmTick(5); return [DD.ph, DAY().play - d] }); await a.keyboard.press('p');
     if (pz[0] !== 'pause' || pz[1] !== 0 || await a.evaluate(() => DD.ph) !== 'run') fail('pausing did not stop the play-time clock: ' + pz.join(' '));
@@ -171,16 +187,24 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     await a.evaluate(() => { DD.ch = 0; DD.low = .01 }); await answerQM(a, true); await a.waitForFunction(() => !QM && !DD.asking); const ch1 = await a.evaluate(() => DD.ch); if (ch1 < 15) fail('a right answer gave only ' + ch1 + ' charges');
     await a.evaluate(() => { DD.ch = 0; ddRecharge() }); for (let i = 0; i < 3; i++) { await answerQM(a, false); await a.waitForSelector('#qmok'); await a.click('#qmok') }
     await a.waitForFunction(() => !QM && !DD.asking); const ch2 = await a.evaluate(() => ({ ch: DD.ch, streak: DD.streak })); if (ch2.ch !== 6 || ch2.streak !== 0) fail('3 misses should lend 6 charges: ' + JSON.stringify(ch2));
-    const up0 = await a.evaluate(() => JSON.stringify(DD.up) + DD.h.max); await a.evaluate(() => { DD.jw = DD.need }); await answerQM(a, true); await a.waitForSelector('.ddpick'); await a.click('.ddpick button >> nth=0'); await a.waitForFunction(() => !QM && !DD.asking);
-    const up1 = await a.evaluate(() => ({ s: JSON.stringify(DD.up) + DD.h.max, lvl: DD.lvl })); if (up1.s === up0 || up1.lvl !== 2) fail('level up did not give a power-up: ' + JSON.stringify(up1));
+    await a.evaluate(() => { DD.force = 'phoenix'; DD.jw = DD.need }); await answerQM(a, true); await a.waitForSelector('#ddeq'); const rt = await a.textContent('#ddrt'); const luck = await a.isVisible('.ddluck'); await a.click('#ddeq'); await a.waitForFunction(() => !QM && !DD.asking);
+    const up1 = await a.evaluate(() => ({ gear: DD.gear.join(), fx: DD.fx.phoenix, lvl: DD.lvl, found: !!(ARS('dash').found || {}).phoenix })); if (!/LEGENDARY/.test(rt) || !luck || up1.gear !== 'phoenix' || up1.fx !== 1 || up1.lvl !== 2 || !up1.found) fail('the level-up gear roll went wrong: ' + rt + ' ' + JSON.stringify(up1));
+    const rev = await a.evaluate(() => { const H = DD.h; H.hp = 1; H.inv = 0; ddHurt(); return { hp: H.hp, max: H.max, fx: DD.fx.phoenix, ph: DD.ph } }); if (rev.hp !== rev.max || rev.fx !== 2 || rev.ph !== 'run') fail('the Phoenix Feather did not revive the hero: ' + JSON.stringify(rev));
+    const dist = await a.evaluate(() => { const Z = DD, P0 = { ...Z.pity }, c = [0, 0, 0, 0]; for (let i = 0; i < 4000; i++) { Z.pity = { n: 0, m: 0 }; c[ddRollPick(false).r]++ } Z.pity = P0; return c.map(x => x / 40) });
+    if (!(dist[0] > dist[1] && dist[1] > dist[2] && dist[2] > dist[3] && dist[3] > 1 && dist[3] < 7)) fail('gear rarities are off: ' + dist.join('% / ') + '%');
     const hp = await a.evaluate(() => { const H = DD.h; H.inv = 0; const h0 = H.hp; DD.foes.push({ k: 'fire', x: H.x, y: H.y, vx: 0, vy: 0, r: 9, b: 3, life: 5 }, { k: 'missile', x: H.x + 2, y: H.y, vx: 1, vy: 0, r: 8, life: 5 }); ddStep(.016); return [h0, H.hp] });
     if (hp[1] !== hp[0] - 1) fail('a fireball and a missile together should cost exactly one heart: ' + hp.join(' -> '));
     await a.evaluate(() => { DD.wave = 5; DD.gated = 0; DD.left = 0; DD.mons = []; DD.waveDone = 1; DD.between = .01 }); await a.waitForFunction(() => QM && QM.phase === 'ask');
     if (!/Stairs to floor 2/.test(await a.textContent('#qmt'))) fail('wave 5 did not lead to the stairs question'); await answerQM(a, true); await a.waitForFunction(() => !QM && !DD.asking);
     const fl = await a.evaluate(() => ({ floor: DD.floor, wave: DD.wave })); if (fl.floor !== 1 || fl.wave !== 6) fail('the stairs did not lead to floor 2, wave 6: ' + JSON.stringify(fl));
     const dg0 = await a.evaluate(() => GEMS()); await a.evaluate(() => { DD.cleared = 5; DD.h.hp = 1; DD.h.inv = 0; ddHurt() }); await a.waitForSelector('text=Your hero needs a rest!');
-    const dres = await a.evaluate(g => ({ gems: GEMS() - g, best: ARS('dash').wave }), dg0); if (dres.gems !== 5 || dres.best !== 6) fail('run result wrong: ' + JSON.stringify(dres));
-    ok('Dungeon Dash: P pauses the game and the play-time clock, the arrow keys move the hero, a right answer recharges 15+ bolts, 3 misses still lend 6, levelling up gives a power-up, a fireball plus a missile cost one heart, wave 5 opens the stairs to floor 2 with a question, and the run paid 1 gem per wave cleared'); await shot(a, 'g-dash');
+    const dres = await a.evaluate(g => ({ gems: GEMS() - g, best: ARS('dash').wave, gold: ARS('dash').gold }), dg0); if (dres.gems !== 5 || dres.best !== 6 || dres.gold !== 40) fail('run result wrong (upgrade coins must come from studying, not the run): ' + JSON.stringify(dres));
+    ok(`Dungeon Dash: P pauses the game and the play-time clock, the arrow keys move the hero, a right answer recharges 15+ bolts, 3 misses still lend 6, a first-try level-up rolls luckier gear (forced Legendary Phoenix Feather, which then revived the hero), rarities fall from Common to Legendary (${dist.map(x => x.toFixed(1)).join('/')}%), a fireball plus a missile cost one heart, wave 5 opens the stairs to floor 2 with a question, and the run paid 1 gem per wave cleared without adding upgrade coins`); await shot(a, 'g-dash');
+    // Upgrade coins are earned by studying
+    const sc = await a.evaluate(() => { const S = ARS('dash'), g0 = S.gold || 0, D = DAY(); D.ok += 5; gameCheck(); const g1 = S.gold; D.mis++; D.cw++; gameCheck(); const g2 = S.gold; const l0 = D.les; D.les = Math.max(D.les, 3) + 4; gameCheck(); const g3 = S.gold; return { a: g1 - g0, b: g2 - g1, c: g3 - g2, l0 } });
+    if (sc.a !== 5 || sc.b !== 30 || sc.c !== 5 * Math.max(0, 3 - Math.min(3, sc.l0))) fail('study coins wrong: ' + JSON.stringify(sc));
+    await a.evaluate(() => { stopGames(); rerealm() }); await a.waitForSelector('.ddnewc'); if (!/studying earned/.test(await a.textContent('.ddnewc')) || !(await a.isVisible('.ddearn'))) fail('the dashboard does not show study coins or how to earn them');
+    ok('Upgrade coins come from studying: 5 right practice answers gave 5 coins, a mission plus classwork gave 30, lessons count up to 3 a day, and the upgrade dashboard shows what was earned and how to earn more');
     // Out of play time: the action games stop at the start screen; the pet can still be visited
     await a.evaluate(() => { DAY().play = playAllowed(); toHub() }); if (!(await a.isVisible('.tile:has-text("Pet Pals") >> text=Visit'))) fail('Pet Pals is not open when play time is over');
     await a.click('.tile:has-text("Turbo Trivia Kart")'); if (!(await a.isDisabled('text=Start race'))) fail('a race can start with no play time left');

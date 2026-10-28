@@ -1,178 +1,420 @@
 <style>
 /* ===== Dungeon Dash ===== */
 .ddwrap{position:relative}
-.ddcv{display:block;width:100%;border-radius:22px;border:3px solid rgba(255,255,255,.85);box-shadow:0 7px 0 var(--ga-lip),0 18px 30px rgba(15,23,42,.3);background:#2A2438;touch-action:none;user-select:none;-webkit-user-select:none;cursor:crosshair}
+.ddcv{display:block;width:100%;border-radius:22px;border:3px solid rgba(255,255,255,.85);box-shadow:0 7px 0 var(--ga-lip),0 18px 30px rgba(15,23,42,.3);background:#1d1714;touch-action:none;user-select:none;-webkit-user-select:none;cursor:crosshair}
 .ddhud{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px;min-height:32px}.ddhud>span{background:rgba(30,27,75,.55);color:#fff;border-radius:99px;padding:5px 12px;font-weight:800;font-size:.9rem;white-space:nowrap}
 .ddbar{display:inline-block;width:56px;height:8px;border-radius:4px;background:rgba(255,255,255,.25);vertical-align:middle;margin-left:6px;overflow:hidden}.ddbar i{display:block;height:100%;background:#C084FC}
 .ddctl{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:14px}
 .ddpause{position:absolute;inset:0;display:grid;place-items:center;background:rgba(15,23,42,.55);border-radius:22px;padding:12px}.ddpause[hidden]{display:none}
 .ddpick{display:grid;gap:10px}.ddpick .abtn{flex-direction:column;align-items:flex-start;text-align:left;width:100%;padding:10px 18px}.ddpick small{display:block;font:600 .82rem/1.3 "Atkinson Hyperlegible",sans-serif;opacity:.85}
 .ddstats{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin:12px 0 4px}.ddstats div{background:var(--bg);border-radius:14px;padding:10px;text-align:center}.ddstats b{display:block;font:800 1.4rem "Bricolage Grotesque",sans-serif}
+.ddheroes{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.ddhero{display:flex;flex-direction:column;gap:6px;text-align:left;padding:12px;border-radius:18px;border:2px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer;font:inherit;box-shadow:0 4px 0 var(--line)}
+.ddhero.on{border:3px solid var(--ga-gold);box-shadow:0 4px 0 #b8862a,0 0 0 4px color-mix(in srgb,var(--ga-gold) 25%,transparent)}.ddhero:focus-visible{outline:3px solid var(--ga-glow);outline-offset:3px}
+.ddhero b{font:800 1.02rem/1.2 "Bricolage Grotesque",sans-serif}.ddrole{font-size:.76rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:#7C3AED}.ddstat{font-size:.85rem;font-weight:700}.ddab{font-size:.86rem}
+.ddport{display:grid;place-items:end center;height:168px;border-radius:12px;overflow:hidden;background:repeating-linear-gradient(0deg,transparent 0 17px,rgba(0,0,0,.35) 17px 19px),repeating-linear-gradient(90deg,transparent 0 31px,rgba(0,0,0,.3) 31px 33px),linear-gradient(#4a3f3a 0 62%,#2f2724 62%)}
+.ddport img{height:150px;image-rendering:pixelated;margin-bottom:2px}
+.dddash .ddsplit{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:16px}@media(max-width:760px){.dddash .ddsplit{grid-template-columns:1fr}}
+.ddnewc{background:#E9F9EE;color:#14532D;border-radius:12px;padding:8px 12px;margin:0 0 10px;font-weight:700}.ddearn{margin-top:16px;background:color-mix(in srgb,var(--ga-gold) 12%,transparent);border-radius:14px;padding:12px 14px}
+.ddgold{background:#FFF1D6;color:#3B2A12;border-radius:99px;padding:5px 12px;font-weight:800;white-space:nowrap}
+.ddstatbox{background:#1d1714;color:#f2e6dc;border-radius:16px;padding:14px;display:grid;gap:12px;align-content:start;border:2px solid #3b322e}
+.ddsrow{display:grid;grid-template-columns:1fr auto;gap:4px 8px;font-size:.9rem}.ddsrow b{font-family:"Bricolage Grotesque",sans-serif}.ddsbar{grid-column:1/-1;height:8px;border-radius:4px;background:rgba(255,255,255,.14);overflow:hidden}.ddsbar i{display:block;height:100%;background:linear-gradient(90deg,#f2a900,#fde047)}
+.ddupgs{display:grid;gap:8px}.ddup{display:flex;gap:10px;align-items:center;padding:8px 10px;border-radius:14px;background:var(--bg)}.ddupi{font-size:22px;flex:none}.ddupt{flex:1;min-width:0;display:flex;flex-direction:column}.ddupt .sol{font-size:.82rem}.ddup .abtn{flex:none;min-width:84px}
+.ddroll .qpanel{text-align:center;position:relative;overflow:hidden}.ddluck{color:#16A34A;font-weight:800;margin:0 0 6px}
+.ddreel{position:relative;height:200px;display:grid;place-items:center;margin:8px 0 12px;overflow:hidden;border-radius:18px;background:#1d1714;border:3px solid #3b322e}
+.ddrays{position:absolute;inset:-60%;opacity:0;transition:opacity .4s}.ddrays.r1,.ddrays.r2,.ddrays.r3{opacity:.55;animation:ddspin 7s linear infinite}
+.ddrays.r1{background:repeating-conic-gradient(#3B82F6 0 9deg,transparent 9deg 22deg)}.ddrays.r2{background:repeating-conic-gradient(#A855F7 0 9deg,transparent 9deg 20deg);animation-duration:5s}
+.ddrays.r3{opacity:.8;background:repeating-conic-gradient(#F59E0B 0 7deg,#FDE047 7deg 11deg,transparent 11deg 18deg);animation-duration:3s}
+.ddslot{position:relative;z-index:1;width:210px;padding:14px 10px;border-radius:16px;border:4px solid var(--rc,#9AA4B2);background:#2a2320;color:#fff;display:flex;flex-direction:column;align-items:center;gap:4px;box-shadow:0 0 0 3px #120b16}
+.ddslot .ddgi{font-size:54px;line-height:1.1}.ddslot b{font:800 1.05rem "Bricolage Grotesque",sans-serif}.ddrr{font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--rc)}
+.ddslot.final{animation:ddpop .5s ease}.ddslot.final.r2{box-shadow:0 0 26px #A855F7,0 0 0 3px #120b16}.ddslot.final.r3{box-shadow:0 0 40px #F59E0B,0 0 0 3px #120b16;animation:ddpop .5s ease,ddshine 1.2s ease-in-out .5s infinite}
+@keyframes ddpop{0%{transform:scale(.55)}60%{transform:scale(1.18)}100%{transform:scale(1)}}@keyframes ddspin{to{transform:rotate(360deg)}}@keyframes ddshine{50%{filter:brightness(1.3)}}
+.ddgd{margin:0 0 12px}.ddconf{position:absolute;inset:0;pointer-events:none}.ddconf i{position:absolute;top:-12px;width:8px;height:8px;animation:ddfall 1.8s ease-in forwards}@keyframes ddfall{to{transform:translateY(460px) rotate(540deg);opacity:0}}
+.ddgearhud{display:inline-flex;gap:4px}.ddgearhud i{font-style:normal;border:2px solid var(--rc);border-radius:8px;padding:0 3px;background:rgba(0,0,0,.25)}
+.ddgchip{display:inline-block;border:2px solid var(--rc);border-radius:99px;padding:2px 10px;margin:2px;font-weight:700;font-size:.88rem}
+.ddcoll{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:8px}.ddcg{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 6px;border-radius:12px;border:3px solid var(--rc);background:var(--bg);text-align:center}
+.ddcg span{font-size:26px;line-height:1.2}.ddcg b{font-size:.76rem;line-height:1.2}.ddcg.no{opacity:.45;border-style:dashed}.ddcg.no span{font:800 22px "Bricolage Grotesque",sans-serif;color:var(--rc)}
+body[data-calm] .ddrays,body[data-calm] .ddslot,body[data-calm] .ddconf{animation:none!important}@media(prefers-reduced-motion:reduce){.ddrays,.ddslot,.ddconf i{animation:none!important}}
+.ddupt .pips{color:#f2a900;letter-spacing:2px;font-size:.72rem;margin-left:4px}.ddupt .pips .off{color:#cbd5e1}
 </style>
 <script type="text/x-lumen">
-/* ===== Dungeon Dash: move your hero around a dungeon arena, dodge bouncing fireballs and homing missiles, and collect the
-   jewels and coins monsters drop. Magic bolts need charges and charges come from right answers; levelling up and going down
-   to the next floor also ask a question. Waves get harder every floor, with a boss every 5 waves. ===== */
-let DD=null,DW=960,DH=600;const DWALL=34,DPR_=34;
+/* ===== Dungeon Dash: pick one of four pixel-art heroes, move around a dungeon arena, dodge bouncing fireballs and homing
+   missiles, and collect the jewels and coins monsters drop. Attacks need charges and charges come from right answers;
+   levelling up and going down to the next floor also ask a question. Coins buy lasting upgrades on the upgrade dashboard.
+   Waves get harder every floor, with a boss every 5 waves. ===== */
+let DD=null,DW=960,DH=600;const DS=36,DT=96,DPH=33;
 GSTOP.push(()=>{if(DD&&['run','pause'].includes(DD.ph))DD=null;DKEYS.clear()});
-const DFLOORS=[{n:'Stone Halls',a:'#5B5670',b:'#524D66',w:'#2E2A3D'},{n:'Mossy Crypt',a:'#4E6B55',b:'#46614C',w:'#24372A'},{n:'Lava Depths',a:'#6E4A45',b:'#63423E',w:'#3A2220'},{n:'Crystal Vault',a:'#4A5A80',b:'#425176',w:'#232C4A'}];
-let DPILLARS=[],DTORCH=[];
-/* Wide screens get a wide arena; phones get a tall one so the dungeon fills the screen */
-function ddLayout(){const tall=innerWidth<640;DW=tall?600:960;DH=tall?840:600;
-  DPILLARS=tall?[[170,260],[430,260],[170,580],[430,580]]:[[250,190],[710,190],[250,410],[710,410]];DTORCH=tall?[[150,17],[450,17],[150,DH-17],[450,DH-17]]:[[180,17],[480,17],[780,17],[180,583],[480,583],[780,583]]}
-ddLayout();
-const DMON={slime:{m:['Slime','blob','#7ED957',[]],r:17,hp:2,sp:62,xp:1},bat:{m:['Bat','ball','#6D5BA8',['wings','ears']],r:14,hp:1,sp:118,xp:1},
-  imp:{m:['Imp','bean','#FF7A59',['horns']],r:18,hp:3,sp:55,xp:2,fire:3},wisp:{m:['Wisp','ball','#7FE3F0',['antenna','crystals']],r:17,hp:3,sp:48,xp:2,missile:4.5},
-  boss:{m:['Ogre King','block','#9B7653',['horns','claws']],r:42,hp:36,sp:46,xp:10,ring:4,boss:1}};
-const DUPS=[{id:'spd',n:'👟 Swift boots',d:'Move 15% faster'},{id:'rapid',n:'⚡ Rapid fire',d:'Cast bolts 15% faster'},{id:'double',n:'✨ Double bolt',d:'Cast one more bolt each time'},{id:'pierce',n:'🏹 Piercing bolts',d:'Bolts pass through one more monster'},
-  {id:'magnet',n:'🧲 Jewel magnet',d:'Pull jewels and coins from farther away'},{id:'heart',n:'❤️ Extra heart',d:'One more heart, and heal one'},{id:'dmg',n:'💥 Power bolts',d:'Bolts hit harder'},{id:'charge',n:'🔋 Bigger battery',d:'5 more charges for every right answer'}];
-const DKEYS=new Set();
-
-/* Sprites: the hero and monster SVGs are drawn once into small canvases */
-const DSPR={};
-function ddSprite(key,svg,px){if(DSPR[key])return DSPR[key];const c=document.createElement('canvas');c.width=c.height=px;DSPR[key]=c;const img=new Image();
-  img.onload=()=>c.getContext('2d').drawImage(img,0,0,px,px);img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg.includes('xmlns=')?svg:svg.replace('<svg','<svg xmlns="http://www.w3.org/2000/svg"'));return c}
-/* Outside the page there is no CSS, so keep only the hero's smiling mouth */
-const ddHero=()=>ddSprite('hero'+JSON.stringify([GM.hero,GM.eq]),heroSvg(GM,{bg:false,label:''}).replace(/<path class="m-beam"[^>]*\/>/,'').replace(/<ellipse class="m-oops"[^>]*\/>/,''),160);
-function ddFloor(f){const key=`floor${f}:${DW}`;if(DSPR[key])return DSPR[key];const F=DFLOORS[f%DFLOORS.length],c=document.createElement('canvas');c.width=DW;c.height=DH;DSPR[key]=c;const x=c.getContext('2d');
-  x.fillStyle=F.w;x.fillRect(0,0,DW,DH);x.strokeStyle='rgba(0,0,0,.35)';x.lineWidth=2;
-  for(let y=0;y<DH;y+=17)for(let i=((y/17)%2)*14;i<DW;i+=28)x.strokeRect(i,y,28,17);
-  let s=11;const rnd=()=>(s=(s*16807)%2147483647)/2147483647,T=48;
-  for(let iy=0;DWALL+iy*T<DH-DWALL;iy++)for(let ix=0;DWALL+ix*T<DW-DWALL;ix++){const X=DWALL+ix*T,Y=DWALL+iy*T,w=Math.min(T,DW-DWALL-X),h=Math.min(T,DH-DWALL-Y);
-    x.fillStyle=(ix+iy)%2?F.a:F.b;x.fillRect(X,Y,w,h);x.fillStyle=`rgba(0,0,0,${(.04+rnd()*.07).toFixed(3)})`;x.fillRect(X+3,Y+3,w-6,h-6);x.fillStyle='rgba(255,255,255,.05)';x.fillRect(X,Y,w,2)}
-  x.fillStyle='rgba(0,0,0,.25)';x.fillRect(DWALL,DWALL,DW-2*DWALL,6);
-  for(const [px,py] of DPILLARS){x.fillStyle='rgba(0,0,0,.3)';x.beginPath();x.ellipse(px,py+10,DPR_+4,DPR_*.6,0,0,7);x.fill();const g=x.createRadialGradient(px-10,py-12,4,px,py,DPR_);g.addColorStop(0,'#A3AFBD');g.addColorStop(1,'#5B6478');x.fillStyle=g;x.beginPath();x.arc(px,py,DPR_,0,7);x.fill();x.strokeStyle='rgba(0,0,0,.3)';x.lineWidth=3;x.stroke()}
+/* Pixel art painter: shapes on a tiny canvas, then an automatic dark outline */
+const PXO='#120b16';
+function pxArt(w,h,draw,ol=PXO){const c=document.createElement('canvas');c.width=w+2;c.height=h+2;const x=c.getContext('2d');
+  const fill=(col,a,b,ww,hh)=>{x.fillStyle=col;x.fillRect(a+1,b+1,ww,hh)};
+  const P={r:(a,b,ww,hh,col)=>fill(col,a,b,ww,hh),p:(a,b,col)=>fill(col,a,b,1,1),
+    e:(cx,cy,rx,ry,col)=>{for(let yy=Math.floor(cy-ry-1);yy<=Math.ceil(cy+ry);yy++)for(let xx=Math.floor(cx-rx-1);xx<=Math.ceil(cx+rx);xx++){const dx=(xx+.5-cx)/rx,dy=(yy+.5-cy)/ry;if(dx*dx+dy*dy<=1)fill(col,xx,yy,1,1)}},
+    l:(x0,y0,x1,y1,col)=>{let dx=Math.abs(x1-x0),dy=-Math.abs(y1-y0),sx=x0<x1?1:-1,sy=y0<y1?1:-1,er=dx+dy;for(;;){fill(col,x0,y0,1,1);if(x0===x1&&y0===y1)break;const e2=2*er;if(e2>=dy){er+=dy;x0+=sx}if(e2<=dx){er+=dx;y0+=sy}}}};
+  draw(P);
+  if(ol){const W=w+2,H=h+2,d=x.getImageData(0,0,W,H),a=d.data,o=[1,3,5].map(i=>parseInt(ol.slice(i,i+2),16)),mk=[];
+    const S=i=>a[i*4+3]>200;for(let yy=0;yy<H;yy++)for(let xx=0;xx<W;xx++){const i=yy*W+xx;if(S(i))continue;if((xx>0&&S(i-1))||(xx<W-1&&S(i+1))||(yy>0&&S(i-W))||(yy<H-1&&S(i+W)))mk.push(i)}
+    for(const i of mk){a[i*4]=o[0];a[i*4+1]=o[1];a[i*4+2]=o[2];a[i*4+3]=255}x.putImageData(d,0,0)}
   return c}
 
+/* ---------- Heroes: 26 x 28 art pixels, standing on y=27; f = 0 standing, 1 and 2 walking ---------- */
+const pxLegs=(P,f,a,b,col,w,h)=>{const o=f===1?[-1,1]:f===2?[1,-1]:[0,0];P.r(a,27-h+Math.min(0,o[0]),w,h-Math.min(0,o[0]),col);P.r(b,27-h+Math.min(0,o[1]),w,h-Math.min(0,o[1]),col)};
+const PXH={
+ vespera:(P,f)=>{const sk='#f2d3b8',sk2='#d8ae8e',hood='#3b2d57',hood2='#2a1f40',cl='#2b2238',le='#5a3e2c',le2='#46301f';
+  P.r(7,12,12,12,cl);P.r(6,20,14,4,cl);P.r(5,22,3,2,hood2);P.r(18,22,3,2,hood2);
+  pxLegs(P,f,9,14,'#2e2836',3,6);pxLegs(P,f,9,14,'#3a2a20',3,3);
+  P.r(9,12,8,10,le);P.r(9,12,3,10,'#6c4c37');P.r(15,13,2,9,le2);P.r(9,18,8,1,'#2a1d16');P.p(12,18,'#c9cede');P.r(14,19,2,2,'#7a5a3a');
+  P.r(7,13,2,7,le2);P.r(17,13,2,7,le2);P.p(7,20,sk);P.p(18,20,sk);
+  P.l(6,20,3,14,'#d6dbe8');P.l(7,20,4,14,'#9aa2b5');P.p(3,14,'#ffffff');P.p(5,21,'#6b4a32');
+  P.l(19,20,23,24,'#d6dbe8');P.l(19,21,22,24,'#9aa2b5');P.p(23,24,'#ffffff');P.p(18,20,'#6b4a32');
+  P.r(8,10,10,3,'#3c3550');P.r(16,12,2,5,'#3c3550');
+  P.e(13,6.5,6.4,6.2,hood);P.r(7,6,1,6,hood2);P.e(13,7.5,4.2,4.2,sk);P.r(15,5,2,7,sk2);P.r(9,3,8,2,'#cfc9e6');P.p(9,5,'#cfc9e6');
+  P.r(10,7,2,1,'#2a1f40');P.r(14,7,2,1,'#2a1f40');P.p(10,8,'#a26bff');P.p(14,8,'#a26bff');P.p(11,8,'#120b16');P.p(15,8,'#120b16');P.r(12,10,2,1,'#c48a74');
+  P.p(19,7,sk);P.p(20,6,sk);P.p(21,5,sk2)},
+ thromar:(P,f)=>{const sk='#e0a27a',sk2='#c07a52',st='#8a8f9c',st2='#5c6170',be='#c8642a',be2='#9a4618',le='#5e4433';
+  pxLegs(P,f,8,14,'#3a2a20',4,4);
+  P.r(5,15,15,8,le);P.r(5,15,4,8,'#6f5240');P.e(5.5,16,2.6,2.2,st);P.e(19.5,16,2.6,2.2,st);P.p(5,15,'#b3b9c6');P.p(19,15,'#b3b9c6');
+  P.r(5,21,15,2,'#2a1d16');P.r(11,21,3,2,'#e5b53a');P.p(12,21,'#5fd0ff');
+  P.r(2,16,3,6,le);P.e(3.5,22.5,1.8,1.6,sk);
+  P.r(20,8,2,16,'#7a5a3a');P.r(20,8,1,16,'#94704a');P.r(17,3,8,6,st);P.r(17,3,8,1,'#c4c9d4');P.r(17,8,8,1,st2);P.r(19,5,4,2,'#2b8ccf');P.p(20,5,'#9fe6ff');P.p(22,6,'#9fe6ff');P.e(21,18,1.8,1.6,sk);
+  P.e(12,6,7,4.8,st);P.r(9,2,4,1,'#c4c9d4');P.r(5,8,14,2,st2);P.r(11,1,2,8,'#a4aab6');
+  P.r(3,5,2,2,'#efe3c8');P.p(2,3,'#efe3c8');P.p(2,4,'#efe3c8');P.r(19,5,2,2,'#efe3c8');P.p(21,3,'#efe3c8');P.p(21,4,'#efe3c8');
+  P.r(7,10,10,4,sk);P.r(15,10,2,4,sk2);P.r(8,10,3,1,'#6b3b1f');P.r(13,10,3,1,'#6b3b1f');P.r(8,11,2,1,'#f2e6dc');P.r(13,11,2,1,'#f2e6dc');P.p(9,11,'#120b16');P.p(14,11,'#120b16');P.r(11,11,2,2,sk2);
+  P.e(12,17.2,6.5,4.4,be);P.r(7,13,10,1,'#e08a48');P.p(6,14,'#e08a48');P.p(17,14,'#e08a48');P.r(8,19,8,2,be2);P.r(11,20,2,3,be);P.p(11,22,be2);P.p(10,16,'#e8a060');P.p(14,17,'#e8a060')},
+ aegis:(P,f)=>{const br='#8e7d60',br2='#6a5a44',br3='#5a4c3a',hi='#b8a47e',core='#5fe0ff';
+  pxLegs(P,f,8,14,br3,4,7);P.r(7,26,6,1,br2);P.r(13,26,6,1,br2);
+  P.e(4.5,12,3.6,3.2,br2);P.e(21.5,12,3.6,3.2,br2);P.p(3,10,hi);P.p(20,10,hi);
+  P.r(2,13,4,8,br2);P.r(20,13,4,8,br2);P.r(1,20,5,4,br3);P.r(20,20,5,4,br3);P.p(22,17,core);P.p(22,18,'#2a9cc0');
+  P.e(13,15,8.4,7.4,br);P.r(7,10,12,3,hi);P.r(18,11,2,9,br2);P.r(8,19,10,2,br2);P.p(9,13,'#a0583a');P.p(16,18,'#a0583a');P.p(10,18,'#a0583a');
+  P.e(13,15,3,3,'#2a9cc0');P.e(13,15,2,2,core);P.p(12,14,'#e8fdff');
+  P.r(9,3,8,7,br);P.r(9,3,8,1,hi);P.r(16,4,1,6,br2);P.r(10,5,6,2,core);P.p(10,5,'#e8fdff');P.r(10,7,6,1,'#2a9cc0');P.r(12,1,1,2,'#ffd34d');P.p(12,0,'#fff2a8')},
+ malakor:(P,f)=>{const co='#3a2f3a',co2='#2a222a',ma='#e8dcc0',ma2='#c9b896';
+  pxLegs(P,f,9,13,'#2a1d16',3,3);
+  P.r(7,12,11,12,co);P.r(14,12,4,12,co2);P.r(6,20,13,4,co);P.r(6,23,13,1,co2);P.r(7,18,11,1,'#5a3a24');P.p(8,17,'#7fe08a');P.p(10,17,'#ff7ad9');P.p(16,17,'#ffd34d');P.r(12,13,1,5,co2);
+  P.r(5,13,2,7,co);P.r(18,13,2,7,co2);
+  P.r(20,6,1,20,'#6b4a32');P.r(19,4,3,3,'#e5b53a');P.p(20,5,'#fff2a8');P.p(19,20,ma2);
+  P.e(4,22,2.4,2.2,'#62d36e');P.r(3,18,2,2,'#c4c9d4');P.p(3,21,'#c8ffd0');P.p(5,13,ma2);
+  P.r(8,6,8,6,ma);P.r(14,6,2,6,ma2);P.r(15,8,4,3,ma);P.r(18,9,2,2,ma);P.p(20,10,ma2);P.r(15,10,5,1,ma2);
+  P.e(10,8,1.6,1.6,'#3a3a3a');P.e(13.5,8,1.6,1.6,'#3a3a3a');P.p(10,8,'#7fe08a');P.p(13,8,'#7fe08a');
+  P.r(5,4,15,2,'#2a2230');P.r(8,0,9,5,'#2a2230');P.r(8,3,9,1,'#7a1f2b');P.r(9,0,3,1,'#4a4050')}};
+const PXHERO_W=26,PXHERO_H=28;
+const pxHero=(k,f=0)=>pxArt(PXHERO_W,PXHERO_H,P=>PXH[k](P,f));
+
+/* ---------- Monsters ---------- */
+const PXM={
+ slime:{w:16,h:13,d:(P,f)=>{const g='#5ccf4a';P.e(8,8+f*.3,7.5,5.3-f*.3,g);P.r(1,10,14,3,'#3a9a32');P.e(5.5,5.5,2,1.2,'#a8f08a');P.r(4,7,2,2,'#120b16');P.r(10,7,2,2,'#120b16');P.p(4,7,'#fff');P.p(10,7,'#fff');P.r(7,10,2,1,'#2a6a22')}},
+ bat:{w:18,h:11,d:(P,f)=>{const c='#6d4fa8',c2='#4a3478';P.e(9,5.5,3.2,3.2,c);if(f){P.r(1,2,5,3,c2);P.r(0,4,3,2,c2);P.r(12,2,5,3,c2);P.r(15,4,3,2,c2)}else{P.r(1,5,5,3,c2);P.r(0,7,3,2,c2);P.r(12,5,5,3,c2);P.r(15,7,3,2,c2)}
+   P.p(7,2,c);P.p(11,2,c);P.p(8,5,'#ffd34d');P.p(10,5,'#ffd34d');P.p(8,8,'#fff');P.p(10,8,'#fff')}},
+ imp:{w:16,h:16,d:(P,f)=>{const c='#e2553a',c2='#b03a24';P.r(5,10,6,5,c2);P.r(5,14+f,2,2,c2);P.r(9,15-f,2,1,c2);P.l(11,13,14,10,c2);P.p(15,9,c2);
+   P.e(8,7,4.6,4.2,c);P.r(5,3,1,2,'#f2e6c8');P.p(4,2,'#f2e6c8');P.r(10,3,1,2,'#f2e6c8');P.p(11,2,'#f2e6c8');P.p(6,7,'#ffd34d');P.p(9,7,'#ffd34d');P.r(6,9,4,1,'#5a1a10');P.p(7,9,'#fff');
+   P.e(2,11,1.8,1.8,'#ffb13b');P.p(2,11,'#fff2a8')}},
+ wisp:{w:16,h:16,d:(P,f)=>{P.e(8,10,5.4,5,'#4fc3d9');P.r(5,3+f,2,4,'#7fe3f0');P.r(8,1,2,6,'#7fe3f0');P.r(11,4-f,2,3,'#7fe3f0');P.e(8,10.5,3.4,3,'#a8f2ff');P.e(8,11,1.8,1.6,'#f0fdff');P.p(6,9,'#123a5a');P.p(10,9,'#123a5a');P.r(4,14,2,1,'#4fc3d9');P.r(10,15,2,1,'#4fc3d9')}},
+ boss:{w:32,h:30,d:(P,f)=>{const c='#8a6a4a',c2='#6a4e34',c3='#a8865c';P.r(9,25,5,4,c2);P.r(18,25,5,4,c2);
+   P.e(16,19,12,8.5,c);P.e(16,21,7,5,c3);P.r(9,24,14,2,'#3a2a1c');P.r(15,24,3,2,'#e5b53a');
+   P.e(4,18,3.4,5,c2);P.e(28,17,3.4,5,c2);P.r(27,2,3,16,'#6b4a32');P.e(28.5,4,3.4,3.6,'#5a3e28');P.p(27,2,'#7a5a3a');P.p(30,5,'#3a2a1c');
+   P.e(16,10,7.4,6.4,c);P.r(11,8,4,2,'#120b16');P.r(17,8,4,2,'#120b16');P.p(12,9,'#ff4a3a');P.p(19,9,'#ff4a3a');P.r(11,7,4,1,c2);P.r(17,7,4,1,c2);
+   P.r(13,13,6,1,'#3a1a10');P.r(12,12,1,3,'#f2e6c8');P.r(19,12,1,3,'#f2e6c8');
+   P.r(10,1,12,3,'#e5b53a');P.p(10,0,'#e5b53a');P.p(13,0,'#e5b53a');P.p(16,0,'#e5b53a');P.p(19,0,'#e5b53a');P.p(21,0,'#e5b53a');P.p(13,2,'#ff4a6a');P.p(18,2,'#5fd0ff');P.r(10,3,12,1,'#b8862a')}}};
+const pxMon=(k,f=0)=>pxArt(PXM[k].w,PXM[k].h,P=>PXM[k].d(P,f));
+
+/* ---------- The dungeon room, painted at 1 art pixel = 3 game units ---------- */
+const PXFLOORS=[
+ {n:'Stone Halls',wall:['#4a3f3a','#40362f','#54473f'],mortar:'#1f1917',floor:['#4a4038','#433932','#504538'],gap:'#241d19',sp:null},
+ {n:'Mossy Crypt',wall:['#3c4a3a','#334033','#465544'],mortar:'#161d15',floor:['#3f4a3b','#384334','#465241'],gap:'#1a2117',sp:'#5f9a3a'},
+ {n:'Lava Depths',wall:['#4a2f2a','#3f2723','#563630'],mortar:'#1c0f0c',floor:['#3f2c27','#372622','#46322b'],gap:'#24120e',sp:'#ff8a2a',lava:1},
+ {n:'Crystal Vault',wall:['#2f3a55','#28324a','#384565'],mortar:'#111522',floor:['#343f5a','#2e3851','#3a4663'],gap:'#151a2a',sp:'#8fd8ff'}];
+function pxRoom(W,H,f,torches,pillars,TOP,S=3,SIDE=12){const w=Math.ceil(W/S),h=Math.ceil(H/S),T=Math.round(TOP/S),F=PXFLOORS[f%PXFLOORS.length],c=document.createElement('canvas');c.width=w;c.height=h;const x=c.getContext('2d');
+  let seed=17+f*101;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647,px=(a,b,col)=>{x.fillStyle=col;x.fillRect(a,b,1,1)},rc=(a,b,ww,hh,col)=>{x.fillStyle=col;x.fillRect(a,b,ww,hh)};
+  rc(0,0,w,h,F.gap);
+  for(let ty=T;ty<h;ty+=9)for(let tx=SIDE-((ty/9)%2?6:0);tx<w;tx+=12){const col=F.floor[Math.floor(rnd()*3)];rc(tx+1,ty+1,11,8,col);rc(tx+1,ty+1,11,1,'rgba(255,255,255,.06)');rc(tx+1,ty+8,11,1,'rgba(0,0,0,.18)');
+    if(rnd()<.35){const cx=tx+2+Math.floor(rnd()*8),cy=ty+2+Math.floor(rnd()*5);px(cx,cy,'rgba(0,0,0,.25)');px(cx+1,cy+1,'rgba(0,0,0,.25)')}
+    if(F.sp&&rnd()<.22){px(tx+2+Math.floor(rnd()*8),ty+2+Math.floor(rnd()*6),F.sp)}
+    if(F.lava&&rnd()<.12){let cx=tx+1,cy=ty+2+Math.floor(rnd()*5);for(let i=0;i<10;i++){px(cx+i,cy,'#ff6a1a');if(rnd()<.35)cy+=rnd()<.5?-1:1;cy=Math.max(ty+1,Math.min(ty+8,cy))}}}
+  const bricks=(a,b,ww,hh,dark)=>{rc(a,b,ww,hh,F.mortar);for(let yy=b;yy<b+hh;yy+=6)for(let xx=a-((yy-b)/6%2?5:0);xx<a+ww;xx+=10){const col=F.wall[Math.floor(rnd()*3)],x0=Math.max(a,xx+1),x1=Math.min(a+ww,xx+10);if(x1<=x0)continue;
+    rc(x0,yy+1,x1-x0,5,col);rc(x0,yy+1,x1-x0,1,'rgba(255,255,255,.08)');rc(x0,yy+5,x1-x0,1,'rgba(0,0,0,.22)');if(dark)rc(x0,yy+1,x1-x0,5,'rgba(0,0,0,.25)')}};
+  bricks(0,0,w,T);rc(0,T-2,w,2,'rgba(0,0,0,.45)');rc(0,T,w,2,'rgba(0,0,0,.35)');
+  bricks(0,T,SIDE,h-T,1);bricks(w-SIDE,T,SIDE,h-T,1);bricks(0,h-SIDE,w,SIDE,1);rc(SIDE,T,1,h-T-SIDE,'rgba(0,0,0,.4)');rc(w-SIDE-1,T,1,h-T-SIDE,'rgba(0,0,0,.4)');
+  for(const [tx,ty] of torches){const a=Math.round(tx/S),b=Math.round(ty/S);rc(a-1,b,3,5,'#3a2a1c');rc(a-2,b,5,1,'#5a4030');rc(a-1,b+5,3,1,'#2a1d16')}
+  for(const [px_,py_] of pillars){const a=Math.round(px_/S)-11,b=Math.round(py_/S)-11;rc(a+2,b+20,22,5,'rgba(0,0,0,.4)');
+    rc(a,b,22,14,F.mortar);for(let yy=0;yy<14;yy+=5)for(let xx=-(yy%10?4:0);xx<22;xx+=8){const x0=Math.max(0,xx+1),x1=Math.min(22,xx+8);if(x1>x0)rc(a+x0,b+yy+1,x1-x0,4,F.wall[2])}
+    rc(a,b+14,22,8,F.mortar);for(let xx=-3;xx<22;xx+=7){const x0=Math.max(0,xx+1),x1=Math.min(22,xx+7);if(x1>x0)rc(a+x0,b+15,x1-x0,6,F.wall[1])}rc(a,b+14,22,1,'rgba(0,0,0,.35)');rc(a+1,b+1,20,1,'rgba(255,255,255,.18)')}
+  const d=x.getImageData(0,0,w,h),A=d.data;
+  for(let yy=0;yy<h;yy++)for(let xx=0;xx<w;xx++){let L=.55;for(const [tx,ty] of torches){const dx=xx-tx/S,dy=yy-ty/S;L+=.7*Math.exp(-(dx*dx+dy*dy)/(2*40*40))}
+    const ex=Math.min(xx,w-1-xx)/w,ey=Math.min(yy,h-1-yy)/h;L*=.75+.25*Math.min(1,Math.min(ex,ey)*6);L=Math.min(1.25,L);const i=(yy*w+xx)*4;
+    A[i]=Math.min(255,A[i]*L*1.08);A[i+1]=Math.min(255,A[i+1]*L*.98);A[i+2]=Math.min(255,A[i+2]*L*.86)}
+  x.putImageData(d,0,0);
+  const out=document.createElement('canvas');out.width=W;out.height=H;const o=out.getContext('2d');o.imageSmoothingEnabled=false;o.drawImage(c,0,0,w*S,h*S);return out}
+/* Torch flames are drawn every frame on top of the room */
+function pxFlame(ctx,x,y,t,calm){const S=3,k=calm?0:Math.floor(t*10)%3,fl=[[[0,-3],[-1,-2],[0,-2],[1,-2],[-1,-1],[0,-1],[1,-1]],[[1,-4],[0,-3],[-1,-2],[0,-2],[1,-2],[-1,-1],[0,-1],[1,-1]],[[-1,-4],[0,-3],[-1,-2],[0,-2],[1,-2],[-1,-1],[0,-1],[1,-1]]][k];
+  ctx.fillStyle='rgba(255,170,70,.12)';ctx.fillRect(x-18,y-24,36,30);for(const [a,b] of fl){ctx.fillStyle=b<=-3?'#ffd34d':b===-2?'#ff9a2a':'#ff6a1a';ctx.fillRect(x+a*S-1,y+b*S,S,S)}ctx.fillStyle='#fff2a8';ctx.fillRect(x-1,y-2*S,S,S)}
+
+/* ---------- Heroes, monsters and power-ups ---------- */
+const DHEROES={
+  thromar:{n:'Thromar the Runesmither',short:'Thromar',role:'Frontline tank and support',hp:7,spd:175,r:19,
+    atk:{k:'hammer',cd:.55,dmg:2,v:380,stun:.7},sp:{id:'ward',n:'Rune Ward',icon:'🛡️',cost:5,cd:6},
+    d:'A weathered dwarf who carves ancestral magic into the dungeon stones.',a:'Throws a runic warhammer that stuns monsters.',s:'Carves a glowing rune on the floor. Standing on it keeps him safe, and it explodes when a monster steps on it.'},
+  vespera:{n:'Vespera, the Shadow-Weaver',short:'Vespera',role:'Fast striker',hp:4,spd:255,r:16,
+    atk:{k:'dagger',cd:.42,dmg:1,v:700,n:2,prio:1},sp:{id:'blink',n:'Blink Strike',icon:'🌑',cost:5,cd:4},
+    d:'An exiled elven rogue who slips through the shadows.',a:'Throws two shadow daggers at a time, aimed at the most dangerous monster.',s:'Blinks behind the strongest monster for a big hit, then hides in the shadows for a moment.'},
+  aegis:{n:'Aegis-7, the Relic Sentinel',short:'Aegis-7',role:'Heavy tank',hp:9,spd:160,r:21,
+    atk:{k:'orb',cd:.6,dmg:2,v:440},sp:{id:'shield',n:'Energy Shield',icon:'🔷',cost:5,cd:7},
+    d:'An ancient automaton built to guard royal vaults, powered by a glowing core.',a:'Fires heavy blasts from his magic core.',s:'Raises a tall energy wall that blocks fireballs, missiles and charging monsters.'},
+  malakor:{n:'Malakor the Alchemical Mystic',short:'Malakor',role:'Support and area control',hp:5,spd:205,r:17,
+    atk:{k:'flask',cd:.75,dmg:1},sp:{id:'mist',n:'Healing Mist',icon:'💚',cost:5,cd:8},
+    d:'A masked scholar who brews bubbling potions.',a:'Lobs flasks that leave acid pools, hurting and slowing every monster inside.',s:'Drops a healing mist: stand in it to win hearts back while monsters inside slow down.'}};
+const DSEL=()=>DHEROES[ARS('dash').hero]?ARS('dash').hero:'thromar';
+const DMON={slime:{r:17,hp:2,sp:62,xp:1,pr:1},bat:{r:14,hp:1,sp:118,xp:1,pr:2},imp:{r:18,hp:3,sp:55,xp:2,fire:3,pr:3},wisp:{r:17,hp:3,sp:48,xp:2,missile:4.5,pr:4},boss:{r:42,hp:36,sp:46,xp:10,ring:4,boss:1,pr:9}};
+/* Level-up gear: 4 rarities. Higher rarities are rarer and more powerful. u: unique (found once per run) */
+const DRAR=[{n:'Common',c:'#9AA4B2',w:58},{n:'Rare',c:'#3B82F6',w:28},{n:'Mystic',c:'#A855F7',w:11},{n:'Legendary',c:'#F59E0B',w:3}];
+const DGEAR=[
+  {id:'boots',r:0,i:'👢',n:'Leather Boots',d:'Run 10% faster',fx:Z=>Z.up.spd*=1.1},
+  {id:'gloves',r:0,i:'🧤',n:'Iron Gauntlets',d:'Attack 8% faster',fx:Z=>Z.up.rapid*=.92},
+  {id:'ring',r:0,i:'💍',n:'Magnet Ring',d:'Pull jewels and coins from farther away',fx:Z=>Z.up.magnet+=45},
+  {id:'vest',r:0,i:'🦺',n:'Padded Vest',d:'One more heart, and heal one',fx:Z=>{Z.h.max++;Z.h.hp=Math.min(Z.h.max,Z.h.hp+1)}},
+  {id:'pouch',r:0,i:'👝',n:'Spark Pouch',d:'3 more charges for every right answer',fx:Z=>Z.up.charge+=3},
+  {id:'whet',r:0,i:'🪨',n:'Whetstone',d:'15% more damage',fx:Z=>Z.up.mul*=1.15},
+  {id:'twin',r:1,i:'⚔️',n:'Twin Fang',d:'One more bolt, dagger or flask with every attack',fx:Z=>Z.up.double=Math.min(4,Z.up.double+1)},
+  {id:'quiver',r:1,i:'🏹',n:"Hunter's Quiver",d:'Shots pass through one more monster',fx:Z=>Z.up.pierce=Math.min(4,Z.up.pierce+1)},
+  {id:'grip',r:1,i:'🥊',n:'Swiftblade Grip',d:'Attack 20% faster',fx:Z=>Z.up.rapid*=.8},
+  {id:'mail',r:1,i:'🛡️',n:'Ogre-Hide Mail',d:'Two more hearts, and heal two',fx:Z=>{Z.h.max+=2;Z.h.hp=Math.min(Z.h.max,Z.h.hp+2)}},
+  {id:'ember',r:1,i:'🔥',n:'Ember Edge',d:'35% more damage',fx:Z=>Z.up.mul*=1.35},
+  {id:'clover',r:1,i:'🍀',n:'Lucky Clover',d:'Every jewel counts twice, so you level up (and roll) faster',fx:Z=>Z.fx.clover=(Z.fx.clover||1)*2},
+  {id:'bubble',r:2,u:1,i:'🫧',n:'Starlight Bubble',d:'A magic bubble blocks the next hit, and comes back every 10 seconds',fx:Z=>Z.fx.bubble={t:0,on:1}},
+  {id:'storm',r:2,u:1,i:'⚡',n:'Storm Crown',d:'Lightning strikes 3 monsters every 4 seconds',fx:Z=>Z.fx.storm={t:0}},
+  {id:'blades',r:2,u:1,i:'🌀',n:'Orbiting Blades',d:'Three spinning blades circle you and slice monsters',fx:Z=>Z.fx.blades={a:0}},
+  {id:'nova',r:2,u:1,i:'❄️',n:'Frost Nova Amulet',d:'Every 6 seconds, every monster near you freezes solid',fx:Z=>Z.fx.nova={t:0,ring:0}},
+  {id:'ghost',r:2,u:1,i:'👻',n:'Ghost Boots',d:'Run 25% faster and pass right through monsters',fx:Z=>{Z.up.spd*=1.25;Z.fx.ghost=1}},
+  {id:'phoenix',r:3,u:1,i:'🪶',n:'Phoenix Feather',d:'A second life! If you fall, you rise again with full hearts in a blast of fire',fx:Z=>Z.fx.phoenix=1},
+  {id:'fury',r:3,u:1,i:'💪',n:"Titan's Fury",d:'Right now and every 30 seconds: 10 seconds of triple damage, double-speed attacks and healing',fx:Z=>Z.fx.fury={t:10,cd:30,heal:0}},
+  {id:'dragon',r:3,u:1,i:'🐉',n:'Dragon Familiar',d:'A baby dragon flies beside you and breathes fire on monsters',fx:Z=>Z.fx.dragon={cd:0,x:Z.h.x,y:Z.h.y-60,br:null}},
+  {id:'time',r:3,u:1,i:'⏳',n:'Crown of Time',d:'Every 20 seconds, monsters and their shots slow to a crawl for 5 seconds',fx:Z=>Z.fx.time={t:14,on:0}}];
+const DKEYS=new Set();
+
+/* ---------- The room: walls (side DS, top DT), stone-block pillars (half size DPH) and torches ---------- */
+let DPILLARS=[],DTORCH=[];
+function ddLayout(){const tall=innerWidth<640;DW=tall?600:960;DH=tall?840:600;
+  DPILLARS=tall?[[170,300],[430,300],[170,620],[430,620]]:[[250,230],[710,230],[250,450],[710,450]];
+  DTORCH=tall?[[150,60],[450,60],[18,460],[582,460]]:[[180,60],[480,60],[780,60],[18,330],[942,330]]}
+ddLayout();
+function ddKeepIn(o,r){o.x=Math.max(DS+r,Math.min(DW-DS-r,o.x));o.y=Math.max(DT+r*.4,Math.min(DH-DS-r,o.y));
+  for(const [px,py] of DPILLARS){const dx=o.x-px,dy=o.y-py,ox=DPH+r-Math.abs(dx),oy=DPH+r-Math.abs(dy);if(ox>0&&oy>0){if(ox<oy)o.x+=(dx<0?-1:1)*ox;else o.y+=(dy<0?-1:1)*oy}}}
+const ddPillarAt=(x,y,r)=>DPILLARS.find(([px,py])=>Math.abs(x-px)<DPH+r&&Math.abs(y-py)<DPH+r);
+const ddOut=(x,y)=>x<DS||x>DW-DS||y<DT-24||y>DH-DS;
+
+/* Sprites are painted once and cached */
+const DSPR={};const ddCache=(k,fn)=>DSPR[k]||(DSPR[k]=fn());
+const ddRoom=f=>ddCache(`room${f}:${DW}`,()=>pxRoom(DW,DH,f,DTORCH,DPILLARS,DT));
+const PXI={jewel:[7,7,P=>{P.p(3,0,'#d8b4fe');P.r(2,1,3,1,'#c084fc');P.r(1,2,5,3,'#a855f7');P.r(2,5,3,1,'#7e3fd0');P.p(3,6,'#7e3fd0');P.r(2,2,1,2,'#f3e8ff')}],
+  coin:[6,6,P=>{P.e(3,3,3,3,'#d99a00');P.e(2.7,2.7,2.1,2.1,'#fde047');P.p(2,2,'#fff7c2')}],
+  heart:[7,6,P=>{const c='#fb7185';P.r(1,0,2,1,c);P.r(4,0,2,1,c);P.r(0,1,7,2,c);P.r(1,3,5,1,c);P.r(2,4,3,1,c);P.p(3,5,c);P.p(1,1,'#ffd1d9')}],
+  hammer:[8,8,P=>{P.r(3,3,2,5,'#7a5a3a');P.r(0,0,8,3,'#8a8f9c');P.r(0,0,8,1,'#c4c9d4');P.p(3,1,'#5fd0ff');P.p(4,1,'#9fe6ff')}],
+  dagger:[10,3,P=>{P.r(0,1,2,1,'#6b4a32');P.r(2,0,1,3,'#3a2a20');P.r(3,1,6,1,'#d6dbe8');P.r(3,0,5,1,'#9aa2b5');P.p(9,1,'#b48cff')}],
+  orb:[6,6,P=>{P.e(3,3,3,3,'#2a9cc0');P.e(3,3,2,2,'#5fe0ff');P.p(2,2,'#e8fdff')}],
+  flask:[5,7,P=>{P.r(2,0,1,2,'#c4c9d4');P.e(2.5,4.5,2.5,2.5,'#62d36e');P.p(1,3,'#c8ffd0')}],
+  fire:[6,6,P=>{P.e(3,3,3,3,'#ff6a1a');P.e(3,3,2,2,'#ffb13b');P.p(3,3,'#fff2a8')}],
+  blade:[8,3,P=>{P.r(0,1,6,1,'#e5e7eb');P.r(0,0,5,1,'#9ca3af');P.r(6,0,1,3,'#6b4a32');P.p(7,1,'#fde047')}],
+  dragon:[13,10,P=>{const c='#4ade80',d='#16a34a';P.r(0,1,4,3,'#86efac');P.r(1,0,2,1,d);P.e(6,6,3.6,3,c);P.e(10,3.6,2.6,2.3,c);P.p(10,3,'#120b16');P.p(12,4,'#fca5a5');P.r(3,8,2,2,d);P.r(7,8,2,2,d);P.l(3,6,0,8,d);P.p(9,1,'#fde047')}],
+  missile:[8,5,P=>{P.r(0,1,5,3,'#7c3aed');P.r(5,1,2,3,'#a855f7');P.p(7,2,'#f0abfc');P.p(0,0,'#5b21b6');P.p(0,4,'#5b21b6');P.p(3,2,'#c4b5fd')}]};
+const pxI=k=>ddCache('i'+k,()=>pxArt(...PXI[k]));
+/* A hero portrait as an image (hero select and the hub tile) */
+function pxURL(k,s=5){return ddCache(`u${k}${s}`,()=>{const c=pxHero(k,0),o=document.createElement('canvas');o.width=c.width*s;o.height=c.height*s;const x=o.getContext('2d');x.imageSmoothingEnabled=false;x.drawImage(c,0,0,o.width,o.height);return o.toDataURL()})}
+
 /* ---------- Running a dungeon ---------- */
-function ddNew(){const g=myGrade()<=2?.8:1;return{ph:'run',t:0,floor:0,wave:0,left:0,cd:0,gap:1,between:1.4,waveDone:0,gated:0,gentle:g,asking:false,
-  h:{x:DW/2,y:DH/2+110,hp:5,max:5,inv:0,face:1,cd:0,burst:0},up:{spd:1,rapid:1,double:1,pierce:0,magnet:80,dmg:1,charge:0},
-  ch:16,streak:0,mons:[],bolts:[],foes:[],drops:[],parts:[],lvl:1,jw:0,need:6,score:0,coins:0,kills:0,cleared:0,banner:null,id:0,stick:null,last:0}}
-function ddStart(){if(!canStart())return;stopGames();ddLayout();DD=ddNew();AR.run=true;rerealm();ddSize();AR.raf=requestAnimationFrame(ddFrame)}
+function ddNew(hero){const g=myGrade()<=2?.8:1,Hd=DHEROES[hero],L=id=>dLv(hero,id),M={dmg:1+.2*L('atk'),cd:1-.08*L('rate'),sp:1+.25*L('sp'),spcd:.5*L('sp'),spd:1+.06*L('move')};return{ph:'run',hero,M,t:0,floor:0,wave:0,left:0,cd:0,gap:1,between:1.4,waveDone:0,gated:0,gentle:g,asking:false,
+  h:{x:DW/2,y:(DT+DH-DS)/2+60,r:Hd.r,hp:Hd.hp+L('hp'),max:Hd.hp+L('hp'),inv:0,face:1,cd:0,sp:0,stealth:0,moving:0},up:{spd:1,rapid:1,double:1,pierce:0,magnet:80,dmg:1,mul:1,charge:2*L('bat')},gear:[],fx:{},zaps:[],pity:{n:0,m:0},
+  ch:16,streak:0,mons:[],bolts:[],lobs:[],zones:[],walls:[],foes:[],drops:[],parts:[],ghost:{x:0,y:0},lvl:1,jw:0,need:6,score:0,coins:0,kills:0,cleared:0,banner:null,id:0,stick:null,last:0}}
+function ddStart(){if(!canStart())return;stopGames();ddLayout();DD=ddNew(DSEL());AR.run=true;rerealm();ddSize();AR.raf=requestAnimationFrame(ddFrame)}
 function ddSize(){const cv=$('ddcv');if(!cv||!DD)return;const dpr=Math.min(2,devicePixelRatio||1),w=cv.clientWidth||DW;cv.width=Math.round(w*dpr);cv.height=Math.round(w*dpr*DH/DW);DD.sc=cv.width/DW}
 addEventListener('resize',()=>{if(DD&&$('ddcv'))ddSize()});
 function ddFrame(t){const Z=DD;if(!AR.run||!Z||AR.mode!=='dash')return;if(!$('ddcv')){stopGames();return}if(outOfTime()){ddOver('time');return}
   const dt=Z.last?Math.min(.05,(t-Z.last)/1000):0;Z.last=t;if(Z.ph==='run'&&!Z.asking&&!QM)ddStep(dt);if(DD!==Z||!AR.run)return;
   ddDraw();if(t-(Z.ht||0)>150){Z.ht=t;ddHud()}AR.raf=requestAnimationFrame(ddFrame)}
-function ddKeepIn(o,r){o.x=Math.max(DWALL+r,Math.min(DW-DWALL-r,o.x));o.y=Math.max(DWALL+r,Math.min(DH-DWALL-r,o.y));
-  for(const [px,py] of DPILLARS){const dx=o.x-px,dy=o.y-py,d=Math.hypot(dx,dy);if(d<DPR_+r){const k=(DPR_+r)/(d||1);o.x=px+dx*k;o.y=py+dy*k}}}
-const ddPillarAt=(x,y,r)=>DPILLARS.find(([px,py])=>Math.hypot(x-px,y-py)<DPR_+r);
 function ddInput(){let x=0,y=0;if(DKEYS.has('l'))x--;if(DKEYS.has('r'))x++;if(DKEYS.has('u'))y--;if(DKEYS.has('d'))y++;const s=DD&&DD.stick;if(s&&s.on){x+=s.dx;y+=s.dy}return[x,y]}
 function ddNearest(x,y,r){let b=null,bd=r;for(const m of DD.mons){const d=Math.hypot(m.x-x,m.y-y);if(d<bd){bd=d;b=m}}return b}
+/* Vespera aims for the most dangerous monster in range; everyone else for the nearest */
+function ddTarget(prio,range){const H=DD.h;let b=null,bs=0;for(const m of DD.mons){const d=Math.hypot(m.x-H.x,m.y-H.y);if(d>range)continue;const s=(prio?DMON[m.k].pr*1000:0)-d;if(!b||s>bs){b=m;bs=s}}return b}
 function ddBanner(a,b){DD.banner={a,b:b||'',t:2};const s=$('ddsay');if(s)s.textContent=a+(b?'. '+b:'')}
-function ddPop(x,y,c,n){if(calmOn())n=Math.ceil(n/3);for(let i=0;i<n;i++){const a=Math.random()*7,s=60+Math.random()*140;DD.parts.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,r:2+Math.random()*3,c,life:.5,max:.5})}}
+function ddPop(x,y,c,n){if(calmOn())n=Math.ceil(n/3);for(let i=0;i<n;i++){const a=Math.random()*7,s=60+Math.random()*140;DD.parts.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,r:3+Math.floor(Math.random()*2)*3,c,life:.5,max:.5})}}
 function ddDrop(k,x,y){DD.drops.push({k,x:x+(Math.random()-.5)*28,y:y+(Math.random()-.5)*28,life:k==='heart'?12:16})}
 function ddPick(){const w=DD.wave,r=Math.random();if(w>=4&&r<.15)return'wisp';if(w>=3&&r<.35)return'imp';if(w>=2&&r<.6)return'bat';return'slime'}
-function ddSpawn(type){const T=DMON[type],Z=DD,sc=1+.08*(Z.wave-1)+.2*Z.floor;let x=DWALL+24,y=DWALL+24;
-  for(let i=0;i<20;i++){const e=Math.floor(Math.random()*4),rx=DWALL+24+Math.random()*(DW-2*DWALL-48),ry=DWALL+24+Math.random()*(DH-2*DWALL-48);
-    x=e===0?DWALL+24:e===1?DW-DWALL-24:rx;y=e===2?DWALL+24:e===3?DH-DWALL-24:ry;if(Math.hypot(x-Z.h.x,y-Z.h.y)>240)break}
+function ddSpawn(type){const T=DMON[type],Z=DD,sc=1+.08*(Z.wave-1)+.2*Z.floor;let x=DS+24,y=DT+24;
+  for(let i=0;i<20;i++){const e=Math.floor(Math.random()*4),rx=DS+24+Math.random()*(DW-2*DS-48),ry=DT+24+Math.random()*(DH-DT-DS-48);
+    x=e===0?DS+24:e===1?DW-DS-24:rx;y=e===2?DT+24:e===3?DH-DS-24:ry;if(Math.hypot(x-Z.h.x,y-Z.h.y)>240&&!ddPillarAt(x,y,T.r))break}
   const hp=Math.max(1,Math.round(T.hp*(T.boss?1+.35*Z.floor:sc))),rate=T.fire||T.missile||T.ring||0;
-  Z.mons.push({id:++Z.id,k:type,x,y,r:T.r,hp,max:hp,sp:T.sp*(1+.02*Z.wave)*Z.gentle,cd:rate*(.6+Math.random()*.6),hit:0,ph:Math.random()*6})}
+  Z.mons.push({id:++Z.id,k:type,x,y,r:T.r,hp,max:hp,sp:T.sp*(1+.02*Z.wave)*Z.gentle,cd:rate*(.6+Math.random()*.6),hit:0,stun:0,ph:Math.random()*6})}
 function ddStartWave(){const Z=DD;Z.wave++;Z.waveDone=0;const boss=Z.wave%5===0;Z.left=boss?4+2*Z.floor:Math.min(36,4+2*Z.wave);Z.gap=Math.max(.45,1.3-.05*Z.wave);Z.cd=.6;
   if(boss)ddSpawn('boss');ddBanner(boss?`Wave ${Z.wave}: Boss!`:`Wave ${Z.wave}`,boss?'The Ogre King guards the stairs!':Z.wave===1?'Move with WASD or the arrow keys':'')}
 function ddNextWave(){const Z=DD;if(Z.wave&&Z.wave%5===0&&Z.gated!==Z.wave){Z.gated=Z.wave;ddFloorGate();return}ddStartWave()}
-function ddCast(a){const Z=DD,H=Z.h,n=Z.up.double,c=magicOf(GM.rsub)[2];for(let i=0;i<n;i++){const b=a+(i-(n-1)/2)*.16;Z.bolts.push({x:H.x,y:H.y,vx:Math.cos(b)*520,vy:Math.sin(b)*520,life:1.2,c,hit:[]})}}
-function ddBurst(){const Z=DD;if(!Z||Z.ph!=='run'||Z.asking||Z.ch<5||Z.h.burst>0)return;Z.ch-=5;Z.h.burst=4;const H=Z.h,c=magicOf(GM.rsub)[2];
-  for(let i=0;i<12;i++){const a=i/12*Math.PI*2;Z.bolts.push({x:H.x,y:H.y,vx:Math.cos(a)*480,vy:Math.sin(a)*480,life:1,c,hit:[]})}ddPop(H.x,H.y,c,14);if(!Z.ch)Z.low=.35}
+function ddAttack(tg){const Z=DD,H=Z.h,A=DHEROES[Z.hero].atk,n=(A.n||1)+Z.up.double-1,a=Math.atan2(tg.y-(H.y-18),tg.x-H.x),dmg=(A.dmg+Z.up.dmg-1)*ddPow();
+  if(A.k==='flask'){for(let i=0;i<Math.min(n,3);i++){const tx=tg.x+(i?(Math.random()-.5)*110:0),ty=tg.y+(i?(Math.random()-.5)*110:0);Z.lobs.push({x0:H.x,y0:H.y-24,tx,ty,t:0,T:Math.max(.25,Math.hypot(tx-H.x,ty-H.y)/460)})}return}
+  for(let i=0;i<n;i++){const b=a+(i-(n-1)/2)*.14;Z.bolts.push({k:A.k,x:H.x,y:H.y-18,vx:Math.cos(b)*A.v,vy:Math.sin(b)*A.v,life:1.3,dmg,stun:A.stun||0,hit:[]})}}
+/* Space: the hero's special move, for 5 charges */
+function ddSpecial(){const Z=DD;if(!Z||Z.ph!=='run'||Z.asking||QM)return;const S=DHEROES[Z.hero].sp,H=Z.h;if(Z.ch<S.cost||H.sp>0)return;
+  if(S.id==='blink'){const tg=ddTarget(true,9999);if(!tg)return;const dx=tg.x-H.x,dy=tg.y-H.y,d=Math.hypot(dx,dy)||1;Z.ghost={x:H.x,y:H.y};ddPop(H.x,H.y-20,'#7c5cff',14);
+    H.x=tg.x+dx/d*(tg.r+30);H.y=tg.y+dy/d*(tg.r+30);ddKeepIn(H,H.r);tg.hp-=(6+Z.up.dmg-1)*Z.M.sp;tg.stun=Z.t+.6;tg.hit=.2;H.stealth=1.3*Z.M.sp;H.face=dx<0?1:-1;ddPop(tg.x,tg.y,'#b48cff',16)}
+  else if(S.id==='ward')Z.zones.push({k:'ward',x:H.x,y:H.y,r:70*Math.sqrt(Z.M.sp),t:8});
+  else if(S.id==='mist')Z.zones.push({k:'mist',x:H.x,y:H.y,r:66*Math.sqrt(Z.M.sp),t:6,heal:2+Math.round((Z.M.sp-1)*4),tick:.6});
+  else{const tg=ddNearest(H.x,H.y,9999);let nx=H.face,ny=0;if(tg){const dx=tg.x-H.x,dy=tg.y-H.y,d=Math.hypot(dx,dy)||1;nx=dx/d;ny=dy/d}Z.walls.push({x:H.x+nx*64,y:H.y-10+ny*64,nx,ny,half:96*Math.sqrt(Z.M.sp),t:6*Z.M.sp})}
+  Z.ch-=S.cost;H.sp=Math.max(1.5,S.cd-Z.M.spcd);if(!Z.ch)Z.low=.35;ddBanner(S.n+'!','')}
 function ddShoot(m,T){const Z=DD,H=Z.h,a=Math.atan2(H.y-m.y,H.x-m.x),g=Z.gentle;
   if(T.fire){const b=a+(Math.random()-.5)*.3;Z.foes.push({k:'fire',x:m.x,y:m.y,vx:Math.cos(b)*170*g,vy:Math.sin(b)*170*g,r:9,b:3,life:8})}
   else if(T.missile)Z.foes.push({k:'missile',x:m.x,y:m.y,vx:Math.cos(a)*130*g,vy:Math.sin(a)*130*g,r:8,life:5});
   else if(T.ring)for(let i=0;i<10;i++){const b=i/10*Math.PI*2+Z.t;Z.foes.push({k:'fire',x:m.x,y:m.y,vx:Math.cos(b)*150*g,vy:Math.sin(b)*150*g,r:9,b:1,life:6})}}
-/* A hit costs one heart, gives a moment of safety and knocks nearby monsters back */
-function ddHurt(){const Z=DD,H=Z.h;if(H.inv>0||Z.ph!=='run')return;H.hp--;H.inv=1.6;ddPop(H.x,H.y,'#FB7185',12);heroMood('oops',700);
-  for(const m of Z.mons){const dx=m.x-H.x,dy=m.y-H.y,d=Math.hypot(dx,dy)||1;if(d<140){m.x+=dx/d*90;m.y+=dy/d*90;ddKeepIn(m,m.r)}}if(H.hp<=0)ddOver('over')}
-function ddStep(dt){const Z=DD,H=Z.h;Z.t+=dt;
+const ddPow=()=>DD.M.dmg*DD.up.mul*(DD.fx.fury&&DD.fx.fury.t>0?3:1);
+const ddInZone=(o,k)=>DD.zones.some(z=>z.k===k&&Math.hypot(o.x-z.x,o.y-z.y)<z.r);
+/* Energy walls: distance across (s) and along (t) the wall */
+const ddWallHit=(o,r)=>DD.walls.find(w=>{const s=(o.x-w.x)*w.nx+(o.y-w.y)*w.ny,t=(o.x-w.x)*-w.ny+(o.y-w.y)*w.nx;return Math.abs(t)<w.half+r*.5&&Math.abs(s)<r+8});
+function ddWallPush(o){for(const w of DD.walls){const s=(o.x-w.x)*w.nx+(o.y-w.y)*w.ny,t=(o.x-w.x)*-w.ny+(o.y-w.y)*w.nx;if(Math.abs(t)<w.half+o.r*.5&&Math.abs(s)<o.r+8){const k=(s>=0?1:-1)*(o.r+8)-s;o.x+=w.nx*k;o.y+=w.ny*k}}}
+/* A hit costs one heart, gives a moment of safety and knocks nearby monsters back. Thromar's ward blocks hits. */
+function ddHurt(){const Z=DD,H=Z.h;if(H.inv>0||H.stealth>0||Z.ph!=='run')return;if(ddInZone(H,'ward')){H.inv=.4;ddPop(H.x,H.y-20,'#5fd0ff',8);return}
+  if(Z.fx.bubble&&Z.fx.bubble.on){Z.fx.bubble.on=0;Z.fx.bubble.t=0;H.inv=.8;ddPop(H.x,H.y-20,'#bfe9ff',16);return}
+  H.hp--;H.inv=1.6;ddPop(H.x,H.y-20,'#fb7185',12);heroMood('oops',700);
+  for(const m of Z.mons){const dx=m.x-H.x,dy=m.y-H.y,d=Math.hypot(dx,dy)||1;if(d<140){m.x+=dx/d*90;m.y+=dy/d*90;ddKeepIn(m,m.r)}}
+  if(H.hp<=0&&Z.fx.phoenix===1){Z.fx.phoenix=2;H.hp=H.max;H.inv=3;for(const m of Z.mons)if(Math.hypot(m.x-H.x,m.y-H.y)<260){m.hp-=10*ddPow();m.hit=.2}Z.foes=[];ddPop(H.x,H.y-20,'#ff9a2a',40);ddPop(H.x,H.y-20,'#fde047',30);ddBanner('PHOENIX REBORN!','Your second life!');heroMood('jump beam',1200);return}
+  if(H.hp<=0)ddOver('over')}
+function ddStep(dt){const Z=DD,H=Z.h,Hd=DHEROES[Z.hero];Z.t+=dt;
   if(!Z.wave||Z.waveDone){if((Z.between-=dt)<=0){Z.between=2.5;ddNextWave();if(Z.asking)return}}
   else{if(Z.left>0&&(Z.cd-=dt)<=0){Z.left--;Z.cd=Z.gap;ddSpawn(ddPick())}
-    if(!Z.left&&!Z.mons.length){Z.waveDone=1;Z.cleared++;Z.score+=50;Z.between=2.5;ddBanner(`Wave ${Z.wave} cleared!`,'+50 points');for(let i=0;i<3;i++)ddDrop('coin',DW/2,DH/2)}}
-  let [mx,my]=ddInput();const l=Math.hypot(mx,my);if(l>1){mx/=l;my/=l}const sp=210*Z.up.spd;H.x+=mx*sp*dt;H.y+=my*sp*dt;if(Math.abs(mx)>.1)H.face=mx>0?1:-1;ddKeepIn(H,18);
-  if(H.inv>0)H.inv-=dt;H.cd-=dt;H.burst-=dt;
-  if(H.cd<=0&&Z.ch>0){const tg=ddNearest(H.x,H.y,430);if(tg){H.cd=.38*Z.up.rapid;Z.ch--;ddCast(Math.atan2(tg.y-H.y,tg.x-H.x));if(!Z.ch)Z.low=.35}}
+    if(!Z.left&&!Z.mons.length){Z.waveDone=1;Z.cleared++;Z.score+=50;Z.between=2.5;ddBanner(`Wave ${Z.wave} cleared!`,'+50 points');for(let i=0;i<3;i++)ddDrop('coin',DW/2,(DT+DH)/2)}}
+  let [mx,my]=ddInput();const l=Math.hypot(mx,my);if(l>1){mx/=l;my/=l}H.x+=mx*Hd.spd*Z.up.spd*Z.M.spd*dt;H.y+=my*Hd.spd*Z.up.spd*Z.M.spd*dt;H.moving=l>.1;if(Math.abs(mx)>.1)H.face=mx>0?1:-1;ddKeepIn(H,H.r);
+  if(H.inv>0)H.inv-=dt;if(H.stealth>0)H.stealth-=dt;H.cd-=dt;H.sp-=dt;
+  if(H.cd<=0&&Z.ch>0){const tg=ddTarget(Hd.atk.prio,430);if(tg){H.cd=Hd.atk.cd*Z.up.rapid*Z.M.cd*(Z.fx.fury&&Z.fx.fury.t>0?.5:1);Z.ch--;ddAttack(tg);if(!Z.ch)Z.low=.35}}
   if(Z.low!=null&&(Z.low-=dt)<=0){Z.low=null;ddRecharge();return}
-  for(const m of Z.mons){const T=DMON[m.k],dx=H.x-m.x,dy=H.y-m.y,d=Math.hypot(dx,dy)||1;m.ph+=dt*6;let vx=dx/d,vy=dy/d;
+  const slowT=ddGear(dt);
+  for(const m of Z.mons){const T=DMON[m.k];m.ph+=dt*6;if(m.hit>0)m.hit-=dt;if(m.stun>Z.t)continue;
+    const tx=H.stealth>0?Z.ghost.x:H.x,ty=H.stealth>0?Z.ghost.y:H.y,dx=tx-m.x,dy=ty-m.y,d=Math.hypot(dx,dy)||1;let vx=dx/d,vy=dy/d;
     if(T.fire||T.missile){if(d<210){vx=-vx;vy=-vy}else if(d<290){const s=vx;vx=-vy;vy=s}}
     if(m.k==='bat'){const s=Math.sin(m.ph)*.8;vx+=-dy/d*s;vy+=dx/d*s}
-    m.x+=vx*m.sp*dt;m.y+=vy*m.sp*dt;ddKeepIn(m,m.r);if(m.hit>0)m.hit-=dt;
-    const rate=T.fire||T.missile||T.ring;if(rate&&(m.cd-=dt)<=0){m.cd=rate/Z.gentle;ddShoot(m,T)}
-    if(d<m.r+15)ddHurt()}
+    const sl=ddInZone(m,'acid')||ddInZone(m,'mist')?.5:1;m.x+=vx*m.sp*sl*slowT*dt;m.y+=vy*m.sp*sl*slowT*dt;ddKeepIn(m,m.r);ddWallPush(m);
+    const rate=T.fire||T.missile||T.ring;if(rate&&H.stealth<=0&&(m.cd-=dt*slowT)<=0){m.cd=rate/Z.gentle;ddShoot(m,T)}
+    if(!Z.fx.ghost&&Math.hypot(H.x-m.x,H.y-m.y)<m.r+H.r*.8)ddHurt()}
   if(Z.ph!=='run')return;
-  for(const b of Z.bolts){b.x+=b.vx*dt;b.y+=b.vy*dt;b.life-=dt;if(b.x<DWALL||b.x>DW-DWALL||b.y<DWALL||b.y>DH-DWALL||ddPillarAt(b.x,b.y,4)){b.life=0;continue}
-    for(const f of Z.foes)if(f.k==='missile'&&f.life>0&&Math.hypot(f.x-b.x,f.y-b.y)<f.r+6){f.life=0;b.life=0;Z.score+=3;ddPop(f.x,f.y,'#C084FC',8);break}
+  for(const b of Z.bolts){b.x+=b.vx*dt;b.y+=b.vy*dt;b.life-=dt;if(ddOut(b.x,b.y)||ddPillarAt(b.x,b.y,4)){b.life=0;continue}
+    for(const f of Z.foes)if(f.k==='missile'&&f.life>0&&Math.hypot(f.x-b.x,f.y-b.y)<f.r+8){f.life=0;b.life=0;Z.score+=3;ddPop(f.x,f.y,'#c084fc',8);break}
     if(b.life<=0)continue;
-    for(const m of Z.mons){if(m.hp<=0||b.hit.includes(m.id)||Math.hypot(m.x-b.x,m.y-b.y)>=m.r+6)continue;m.hp-=Z.up.dmg;m.hit=.12;b.hit.push(m.id);ddPop(b.x,b.y,b.c,4);if(b.hit.length>Z.up.pierce){b.life=0;break}}}
+    for(const m of Z.mons){if(m.hp<=0||b.hit.includes(m.id)||Math.hypot(m.x-b.x,m.y-b.y)>=m.r+8)continue;m.hp-=b.dmg;m.hit=.12;if(b.stun)m.stun=Z.t+b.stun;b.hit.push(m.id);ddPop(b.x,b.y,b.k==='dagger'?'#b48cff':b.k==='orb'?'#5fe0ff':'#c4c9d4',4);if(b.hit.length>Z.up.pierce){b.life=0;break}}}
   Z.bolts=Z.bolts.filter(b=>b.life>0);
-  for(const m of Z.mons.filter(m=>m.hp<=0)){const T=DMON[m.k];Z.kills++;Z.score+=T.boss?100:5;ddPop(m.x,m.y,T.m[2],T.boss?26:10);for(let i=0;i<T.xp;i++)ddDrop('jewel',m.x,m.y);
+  for(const L of Z.lobs){L.t+=dt;if(L.t>=L.T){L.done=1;Z.zones.push({k:'acid',x:L.tx,y:L.ty,r:44+12*Z.up.pierce,t:3,tick:0});ddPop(L.tx,L.ty,'#62d36e',8)}}Z.lobs=Z.lobs.filter(L=>!L.done);
+  for(const z of Z.zones){z.t-=dt;
+    if(z.k==='acid'){if((z.tick-=dt)<=0){z.tick=.5;for(const m of Z.mons)if(Math.hypot(m.x-z.x,m.y-z.y)<z.r+m.r*.5){m.hp-=(1+Math.floor((Z.up.dmg-1)/2))*ddPow();m.hit=.1}}}
+    else if(z.k==='ward'){if(Z.mons.some(m=>Math.hypot(m.x-z.x,m.y-z.y)<z.r)){z.t=0;for(const m of Z.mons)if(Math.hypot(m.x-z.x,m.y-z.y)<z.r+40){m.hp-=(5+Z.up.dmg-1)*Z.M.sp;m.stun=Z.t+1.5;m.hit=.15}ddPop(z.x,z.y,'#5fd0ff',24);ddBanner('Rune blast!','')}}
+    else if(z.k==='mist'&&z.heal>0&&H.hp<H.max&&Math.hypot(H.x-z.x,H.y-z.y)<z.r&&(z.tick-=dt)<=0){z.tick=2;z.heal--;H.hp++;ddPop(H.x,H.y-24,'#7fe08a',10)}}
+  Z.zones=Z.zones.filter(z=>z.t>0);for(const w of Z.walls)w.t-=dt;Z.walls=Z.walls.filter(w=>w.t>0);
+  for(const m of Z.mons.filter(m=>m.hp<=0)){const T=DMON[m.k];Z.kills++;Z.score+=T.boss?100:5;ddPop(m.x,m.y,m.k==='slime'?'#5ccf4a':m.k==='bat'?'#6d4fa8':m.k==='imp'?'#e2553a':m.k==='wisp'?'#7fe3f0':'#8a6a4a',T.boss?26:10);for(let i=0;i<T.xp;i++)ddDrop('jewel',m.x,m.y);
     if(Math.random()<(T.boss?1:.5))ddDrop('coin',m.x,m.y);if((T.boss||Math.random()<.05)&&H.hp<H.max)ddDrop('heart',m.x,m.y);if(T.boss)ddBanner('The Ogre King is down!','The stairs are open')}
   Z.mons=Z.mons.filter(m=>m.hp>0);
   for(const f of Z.foes){f.life-=dt;
-    if(f.k==='missile'){const a=Math.atan2(H.y-f.y,H.x-f.x),c=Math.atan2(f.vy,f.vx),s=Math.hypot(f.vx,f.vy);let da=a-c;while(da>Math.PI)da-=2*Math.PI;while(da<-Math.PI)da+=2*Math.PI;const n=c+Math.max(-2.2*dt,Math.min(2.2*dt,da));f.vx=Math.cos(n)*s;f.vy=Math.sin(n)*s}
-    f.x+=f.vx*dt;f.y+=f.vy*dt;
-    if(f.k==='fire'){if(f.x<DWALL+f.r||f.x>DW-DWALL-f.r){f.vx=-f.vx;f.b--;f.x=Math.max(DWALL+f.r,Math.min(DW-DWALL-f.r,f.x))}if(f.y<DWALL+f.r||f.y>DH-DWALL-f.r){f.vy=-f.vy;f.b--;f.y=Math.max(DWALL+f.r,Math.min(DH-DWALL-f.r,f.y))}
-      const p=ddPillarAt(f.x,f.y,f.r);if(p){const nx=f.x-p[0],ny=f.y-p[1],nl=Math.hypot(nx,ny)||1,dot=(f.vx*nx+f.vy*ny)/nl;f.vx-=2*dot*nx/nl;f.vy-=2*dot*ny/nl;f.x=p[0]+nx/nl*(DPR_+f.r+1);f.y=p[1]+ny/nl*(DPR_+f.r+1);f.b--}
+    if(f.k==='missile'){const a=Math.atan2((H.stealth>0?Z.ghost.y:H.y)-16-f.y,(H.stealth>0?Z.ghost.x:H.x)-f.x),c=Math.atan2(f.vy,f.vx),s=Math.hypot(f.vx,f.vy);let da=a-c;while(da>Math.PI)da-=2*Math.PI;while(da<-Math.PI)da+=2*Math.PI;const n=c+Math.max(-2.2*dt,Math.min(2.2*dt,da));f.vx=Math.cos(n)*s;f.vy=Math.sin(n)*s}
+    f.x+=f.vx*dt*slowT;f.y+=f.vy*dt*slowT;if(ddWallHit(f,f.r)){f.life=0;ddPop(f.x,f.y,'#5fe0ff',6);continue}
+    if(f.k==='fire'){if(f.x<DS+f.r||f.x>DW-DS-f.r){f.vx=-f.vx;f.b--;f.x=Math.max(DS+f.r,Math.min(DW-DS-f.r,f.x))}if(f.y<DT+f.r||f.y>DH-DS-f.r){f.vy=-f.vy;f.b--;f.y=Math.max(DT+f.r,Math.min(DH-DS-f.r,f.y))}
+      const p=ddPillarAt(f.x,f.y,f.r);if(p){const dx=f.x-p[0],dy=f.y-p[1];if(DPH+f.r-Math.abs(dx)<DPH+f.r-Math.abs(dy)){f.vx=-f.vx;f.x=p[0]+(dx<0?-1:1)*(DPH+f.r+1)}else{f.vy=-f.vy;f.y=p[1]+(dy<0?-1:1)*(DPH+f.r+1)}f.b--}
       if(f.b<0)f.life=0}
-    else if(f.x<DWALL||f.x>DW-DWALL||f.y<DWALL||f.y>DH-DWALL||ddPillarAt(f.x,f.y,f.r))f.life=0;
-    if(f.life>0&&Math.hypot(f.x-H.x,f.y-H.y)<f.r+13){f.life=0;ddHurt();if(Z.ph!=='run')return}}
+    else if(ddOut(f.x,f.y)||ddPillarAt(f.x,f.y,f.r))f.life=0;
+    if(f.life>0&&Math.hypot(f.x-H.x,f.y-(H.y-16))<f.r+H.r*.75){f.life=0;ddHurt();if(Z.ph!=='run')return}}
   Z.foes=Z.foes.filter(f=>f.life>0);
   for(const p of Z.drops){p.life-=dt;const d=Math.hypot(H.x-p.x,H.y-p.y);if(d<Z.up.magnet&&d>1){const k=Math.min(1,380*dt/d);p.x+=(H.x-p.x)*k;p.y+=(H.y-p.y)*k}
-    if(d<24){p.life=0;if(p.k==='jewel'){Z.jw++;Z.score+=2}else if(p.k==='coin'){Z.coins++;Z.score+=10}else H.hp=Math.min(H.max,H.hp+1);ddPop(p.x,p.y,p.k==='jewel'?'#C084FC':p.k==='coin'?'#FDE047':'#FB7185',5)}}
+    if(d<26){p.life=0;if(p.k==='jewel'){Z.jw+=Z.fx.clover||1;Z.score+=2}else if(p.k==='coin'){Z.coins++;Z.score+=10}else H.hp=Math.min(H.max,H.hp+1);ddPop(p.x,p.y,p.k==='jewel'?'#c084fc':p.k==='coin'?'#fde047':'#fb7185',5)}}
   Z.drops=Z.drops.filter(p=>p.life>0);
   for(const p of Z.parts){p.x+=p.vx*dt;p.y+=p.vy*dt;p.life-=dt}Z.parts=Z.parts.filter(p=>p.life>0);
   if(Z.banner&&(Z.banner.t-=dt)<=0)Z.banner=null;
   if(Z.jw>=Z.need&&!Z.asking)ddLevelUp()}
 
+/* Gear powers that act on their own each frame. Returns how fast monsters move (Crown of Time slows them) */
+function ddGear(dt){const Z=DD,H=Z.h,F=Z.fx,P=ddPow();
+  if(F.time){if(F.time.on>0)F.time.on-=dt;else if((F.time.t+=dt)>=20){F.time.t=0;F.time.on=5;ddBanner('Time slows down!','Crown of Time')}}
+  if(F.fury){const f=F.fury;if(f.t>0){f.t-=dt;if((f.heal+=dt)>=2.5){f.heal=0;if(H.hp<H.max){H.hp++;ddPop(H.x,H.y-24,'#7fe08a',8)}}}else if((f.cd-=dt)<=0){f.cd=30;f.t=10;ddBanner("TITAN'S FURY!",'Triple damage!')}}
+  if(F.bubble&&!F.bubble.on&&(F.bubble.t+=dt)>=10)F.bubble.on=1;
+  if(F.storm&&(F.storm.t+=dt)>=4){F.storm.t=0;for(const m of shuf(Z.mons).slice(0,3)){m.hp-=4*P;m.hit=.15;m.stun=Math.max(m.stun,Z.t+.3);Z.zaps.push({x:m.x,y:m.y,t:.3});ddPop(m.x,m.y,'#fde047',8)}}
+  if(F.blades){F.blades.a+=dt*3.2;for(let k=0;k<3;k++){const q=F.blades.a+k*2.094,bx=H.x+Math.cos(q)*74,by=H.y-16+Math.sin(q)*60;for(const m of Z.mons)if((m.bl||0)<Z.t&&Math.hypot(m.x-bx,m.y-by)<m.r+16){m.hp-=2*P;m.hit=.1;m.bl=Z.t+.5;ddPop(bx,by,'#e5e7eb',4)}}}
+  if(F.nova){if(F.nova.ring>0)F.nova.ring-=dt;if((F.nova.t+=dt)>=6){F.nova.t=0;F.nova.ring=.5;for(const m of Z.mons)if(Math.hypot(m.x-H.x,m.y-H.y)<180){m.stun=Z.t+2;m.hit=.1}}}
+  if(F.dragon){const D=F.dragon,tx=H.x-H.face*46,ty=H.y-70;D.x+=(tx-D.x)*Math.min(1,dt*5);D.y+=(ty-D.y)*Math.min(1,dt*5);if(D.br&&(D.br.t-=dt)<=0)D.br=null;
+    if((D.cd-=dt)<=0){let tg=null,bd=290;for(const m of Z.mons){const d=Math.hypot(m.x-D.x,m.y-D.y);if(d<bd){bd=d;tg=m}}if(tg){D.cd=1.2;D.br={x:tg.x,y:tg.y,t:.35};for(const m of Z.mons)if(Math.hypot(m.x-tg.x,m.y-tg.y)<75){m.hp-=3*P;m.hit=.12}ddPop(tg.x,tg.y,'#ff9a2a',10)}}}
+  for(const z of Z.zaps)z.t-=dt;Z.zaps=Z.zaps.filter(z=>z.t>0);
+  return F.time&&F.time.on>0?.3:1}
+
+/* ---------- The gear roll: a slot-machine reel that slows down and reveals the rarity ---------- */
+function ddRollPick(first){const Z=DD,P=Z.pity,w=DRAR.map(r=>r.w);if(first){w[0]-=10;w[1]+=4;w[2]+=4;w[3]+=2}w[3]+=Math.min(12,2*P.n);
+  let r=0;if(P.m>=4)r=Math.random()<.85?2:3;else{let x=Math.random()*w.reduce((a,b)=>a+b);for(r=0;r<3&&(x-=w[r])>0;r++);}
+  let pool=[];for(;r>=0&&!(pool=DGEAR.filter(g=>g.r===r&&!(g.u&&Z.gear.includes(g.id)))).length;r--);
+  const g=(Z.force&&DGEAR.find(x=>x.id===Z.force))||pick(pool);Z.force=null;P.n=g.r===3?0:P.n+1;P.m=g.r>=2?0:P.m+1;return g}
+function ddConfetti(r){const c=document.querySelector('.ddroll');if(!c)return;const d=document.createElement('div');d.className='ddconf';d.setAttribute('aria-hidden','true');
+  const cols=r===3?['#F59E0B','#FDE047','#FB7185','#5FE0FF','#A855F7','#4ADE80']:['#A855F7','#C084FC','#E9D5FF','#5FE0FF'];d.innerHTML=Array.from({length:r===3?70:40},(_,i)=>`<i style="left:${Math.random()*100}%;background:${cols[i%cols.length]};animation-delay:${(Math.random()*.5).toFixed(2)}s"></i>`).join('');c.appendChild(d)}
+function ddRoll(first){return new Promise(res=>{const Z=DD,g=ddRollPick(first),calm=calmOn(),N=calm?0:18,seq=[];
+  for(let i=0;i<N;i++){const r=i>=N-3?g.r:Math.random()<.55?0:Math.random()<.6?1:Math.random()<.7?2:3;seq.push(pick(DGEAR.filter(x=>x.r===r)))}seq.push(g);
+  QM={o:{cancel:false},phase:'menu',res:()=>{}};const el=qmEl();
+  el.innerHTML=`<div class="qm-back"><div class="gworld qm-card ddroll" role="dialog" aria-modal="true" aria-labelledby="ddrt"><div class="qpanel"><h3 id="ddrt">Level ${Z.lvl}! Rolling for new gear…</h3>${first?'<p class="ddluck">🍀 Right on the first try: a luckier roll!</p>':''}
+    <div class="ddreel"><div class="ddrays" id="ddrays"></div><div class="ddslot" id="ddslot"></div></div><div id="ddres" aria-live="polite"></div></div></div></div>`;
+  const show=(x,fin)=>{const s=$('ddslot');if(!s)return;s.className='ddslot r'+x.r+(fin?' final':'');s.style.setProperty('--rc',DRAR[x.r].c);s.innerHTML=`<span class="ddgi" aria-hidden="true">${x.i}</span><b>${esc(x.n)}</b><span class="ddrr">${DRAR[x.r].n}</span>`};
+  let i=0;const tick=()=>{if(!$('ddslot'))return;const fin=i===seq.length-1;show(seq[i],fin);if(!fin){const d=55+Math.pow(i/N,2.4)*430;i++;setTimeout(tick,d)}else reveal()};
+  const reveal=()=>{const R=DRAR[g.r],S=ARS('dash');g.fx(Z);Z.gear.push(g.id);(S.found||(S.found={}))[g.id]=1;SYNC();
+    $('ddrays').className='ddrays r'+g.r;$('ddrt').textContent=g.r===3?'⭐ LEGENDARY! ⭐':g.r===2?'✨ MYSTIC! ✨':g.r===1?'Rare gear!':'New gear!';
+    $('ddres').innerHTML=`<p class="ddgd"><b>${esc(g.n)}:</b> ${esc(g.d)}.</p><button class="abtn ${g.r>=2?'gold':''}" id="ddeq">Equip it!</button>`;if(g.r>=2&&!calm)ddConfetti(g.r);heroMood('jump beam',900);
+    const b=$('ddeq');b.focus();b.onclick=()=>{qmClose(true);ddBanner(`${R.n}: ${g.n}`,g.r===3?'Legendary power!':g.r===2?'Mystic power!':'');res(g)}};
+  tick()})}
+
 /* ---------- Questions: recharging, levelling up and going down a floor ---------- */
 /* Up to 3 tries; a miss shows the answer and how to solve it. Returns true (right), false (3 misses) or null (no questions / left the game) */
-async function ddAsk(title,intro){for(let n=0;n<3;n++){const ok=await qAsk({title,intro:n?'Here is another one. You can do it!':intro});if(!DD||DD.ph==='over'||DD.ph==='time')return null;if(ok===null)return null;if(ok)return true}return false}
+async function ddAsk(title,intro){for(let n=0;n<3;n++){const ok=await qAsk({title,intro:n?'Here is another one. You can do it!':intro});if(!DD||DD.ph==='over'||DD.ph==='time')return null;if(ok===null)return null;if(ok){DD.tries=n+1;return true}}return false}
 async function ddRecharge(){const Z=DD;if(!Z||Z.asking||Z.ph!=='run'||QM)return;Z.asking=true;Z.low=null;DKEYS.clear();
-  const r=await ddAsk('Recharge your magic!','Answer to fill up your magic bolts.');if(DD!==Z)return;
+  const r=await ddAsk('Recharge your magic!','Answer to fill up your magic.');if(DD!==Z)return;
   if(r===true){Z.streak++;const add=20+Z.up.charge+Math.min(9,3*(Z.streak-1));Z.ch=Math.min(80,Z.ch+add);ddBanner(`⚡ +${add} magic`,Z.streak>1?`${Z.streak} right in a row!`:'')}
   else{Z.streak=0;Z.ch=Math.min(80,Z.ch+6);ddBanner('Lumi lends you some magic','⚡ +6')}
   Z.asking=false;Z.last=0}
 async function ddLevelUp(){const Z=DD;Z.asking=true;DKEYS.clear();Z.jw-=Z.need;Z.lvl++;Z.need=6+4*Z.lvl;
-  const r=await ddAsk(`Level ${Z.lvl}!`,'Answer to power up your hero.');if(DD!==Z)return;
-  if(r===true){const can=u=>u.id==='double'?Z.up.double<3:u.id==='pierce'?Z.up.pierce<3:true;await ddChoose(shuf(DUPS.filter(can)).slice(0,3))}
+  const r=await ddAsk(`Level ${Z.lvl}!`,'Answer to roll for new gear. Right on the first try means a luckier roll!');if(DD!==Z)return;
+  if(r===true)await ddRoll(Z.tries===1);
   else{Z.h.hp=Math.min(Z.h.max,Z.h.hp+1);ddBanner(`Level ${Z.lvl}`,'A heart restored')}
   if(DD!==Z)return;Z.asking=false;Z.last=0}
-function ddChoose(pool){return new Promise(res=>{DD.pickRes=res;qmMenu(`<h3>Choose a power-up</h3><p class="sol" style="margin:0 0 10px">Your right answer powers up your hero.</p><div class="ddpick">${pool.map(u=>`<button class="abtn sec" data-up="${u.id}" onclick="ddPickUp('${u.id}')"><span>${u.n}</span><small>${u.d}</small></button>`).join('')}</div>`,()=>{const Z=DD;if(Z&&Z.pickRes){const r=Z.pickRes;Z.pickRes=null;r()}})})}
-function ddPickUp(id){const Z=DD;if(!Z)return;const U=Z.up,H=Z.h;({spd:()=>U.spd*=1.15,rapid:()=>U.rapid*=.85,double:()=>U.double++,pierce:()=>U.pierce++,magnet:()=>U.magnet+=50,heart:()=>{H.max++;H.hp=Math.min(H.max,H.hp+1)},dmg:()=>U.dmg++,charge:()=>U.charge+=5})[id]();
-  ddBanner(DUPS.find(u=>u.id===id).n.replace(/^\S+ /,'')+'!','');qmClose(false,null)}
-async function ddFloorGate(){const Z=DD;Z.asking=true;DKEYS.clear();const nx=DFLOORS[(Z.floor+1)%DFLOORS.length];
+async function ddFloorGate(){const Z=DD;Z.asking=true;DKEYS.clear();const nx=PXFLOORS[(Z.floor+1)%PXFLOORS.length];
   const r=await ddAsk(`Stairs to floor ${Z.floor+2}: ${nx.n}`,'Answer to open the stairs down.');if(DD!==Z)return;
-  Z.floor++;Z.h.hp=Math.min(Z.h.max,Z.h.hp+1);Z.foes=[];Z.asking=false;Z.last=0;ddStartWave();ddBanner(`Floor ${Z.floor+1}: ${nx.n}`,r===true?'The stairs open! +1 heart':'Lumi opened the stairs for you')}
+  Z.floor++;Z.h.hp=Math.min(Z.h.max,Z.h.hp+1);Z.foes=[];Z.zones=[];Z.walls=[];Z.asking=false;Z.last=0;ddStartWave();ddBanner(`Floor ${Z.floor+1}: ${nx.n}`,r===true?'The stairs open! +1 heart':'Lumi opened the stairs for you')}
 function ddPause(){const Z=DD;if(!Z||Z.asking||QM)return;if(Z.ph==='run')Z.ph='pause';else if(Z.ph==='pause'){Z.ph='run';Z.last=0}else return;AR.paused=Z.ph==='pause';DKEYS.clear();const p=$('ddpause');if(p){p.hidden=Z.ph!=='pause';if(Z.ph==='pause')p.querySelector('button').focus()}}
 function ddOver(why){const Z=DD;if(!Z)return;AR.run=false;cancelAnimationFrame(AR.raf);if(QM)qmClose(true);Z.ph=why==='time'?'time':'over';DKEYS.clear();
   const S=ARS('dash');Z.gems=Math.min(12,Z.cleared);Z.pbw=Z.wave>(S.wave||0);Z.pbs=Z.score>(S.score||0);if(Z.pbw)S.wave=Z.wave;if(Z.pbs)S.score=Z.score;S.floor=Math.max(S.floor||0,Z.floor+1);S.runs=(S.runs||0)+1;
   if(Z.gems)addGems(Z.gems);SYNC();gameCheck();rerealm()}
 
-/* ---------- Drawing ---------- */
-function ddDraw(){const Z=DD,cv=$('ddcv');if(!cv||!Z)return;if(!Z.sc)ddSize();const x=cv.getContext('2d'),calm=calmOn(),H=Z.h;x.setTransform(Z.sc,0,0,Z.sc,0,0);x.imageSmoothingEnabled=true;
-  x.drawImage(ddFloor(Z.floor),0,0,DW,DH);
-  for(const [tx,ty] of DTORCH){const f=calm?1:.85+Math.sin(Z.t*9+tx)*.15;x.fillStyle=`rgba(255,170,70,${(.16*f).toFixed(3)})`;x.beginPath();x.arc(tx,ty,44*f,0,7);x.fill();x.fillStyle='#FFB13B';x.beginPath();x.ellipse(tx,ty-2,6*f,10*f,0,0,7);x.fill();x.fillStyle='#FFE27A';x.beginPath();x.ellipse(tx,ty,3,5*f,0,0,7);x.fill()}
-  for(const p of Z.drops){if(p.life<3&&Math.floor(p.life*6)%2)continue;const y=p.y+(calm?0:Math.sin(Z.t*5+p.x)*2);
-    if(p.k==='jewel'){x.save();x.translate(p.x,y);x.rotate(Math.PI/4);x.fillStyle='#A855F7';x.fillRect(-6,-6,12,12);x.fillStyle='#E9D5FF';x.fillRect(-6,-6,5,5);x.restore()}
-    else if(p.k==='coin'){x.fillStyle='#D99A00';x.beginPath();x.arc(p.x,y,8,0,7);x.fill();x.fillStyle='#FDE047';x.beginPath();x.arc(p.x-1,y-1,5.5,0,7);x.fill()}
-    else{x.fillStyle='#FB7185';x.beginPath();x.moveTo(p.x,y+9);x.bezierCurveTo(p.x-15,y-2,p.x-7,y-13,p.x,y-4);x.bezierCurveTo(p.x+7,y-13,p.x+15,y-2,p.x,y+9);x.fill()}}
-  for(const m of Z.mons){const T=DMON[m.k],s=ddSprite('m'+m.k,monsterSvg(T.m,!!T.boss,''),128),bob=calm?0:Math.sin(m.ph)*3,R=m.r*1.4;
-    x.fillStyle='rgba(0,0,0,.25)';x.beginPath();x.ellipse(m.x,m.y+m.r*.9,m.r,m.r*.35,0,0,7);x.fill();x.save();if(m.hit>0)x.filter='brightness(2.2)';x.drawImage(s,m.x-R,m.y-R+bob,R*2,R*2);x.restore();
-    if(m.hp<m.max||T.boss){x.fillStyle='rgba(0,0,0,.45)';x.fillRect(m.x-m.r,m.y-R-6,m.r*2,5);x.fillStyle='#FB7185';x.fillRect(m.x-m.r,m.y-R-6,m.r*2*Math.max(0,m.hp)/m.max,5)}}
-  if(!(H.inv>0&&Math.floor(H.inv*10)%2)){x.fillStyle='rgba(0,0,0,.28)';x.beginPath();x.ellipse(H.x,H.y+17,16,6,0,0,7);x.fill();x.save();x.translate(H.x,H.y);x.scale(H.face,1);x.drawImage(ddHero(),-30,-40,60,60);x.restore()}
-  for(const b of Z.bolts){x.fillStyle=b.c;x.globalAlpha=.35;x.beginPath();x.arc(b.x-b.vx*.02,b.y-b.vy*.02,8,0,7);x.fill();x.globalAlpha=1;x.beginPath();x.arc(b.x,b.y,5.5,0,7);x.fill();x.fillStyle='#fff';x.beginPath();x.arc(b.x,b.y,2.2,0,7);x.fill()}
-  for(const f of Z.foes){if(f.k==='fire'){x.fillStyle='rgba(255,122,26,.35)';x.beginPath();x.arc(f.x,f.y,f.r+5,0,7);x.fill();x.fillStyle='#FF7A1A';x.beginPath();x.arc(f.x,f.y,f.r,0,7);x.fill();x.fillStyle='#FFE27A';x.beginPath();x.arc(f.x,f.y,f.r*.5,0,7);x.fill()}
-    else{x.save();x.translate(f.x,f.y);x.rotate(Math.atan2(f.vy,f.vx));x.fillStyle='#A855F7';x.beginPath();x.moveTo(13,0);x.lineTo(-8,-7);x.lineTo(-4,0);x.lineTo(-8,7);x.closePath();x.fill();x.fillStyle='#F0ABFC';x.beginPath();x.arc(-7,0,3+(calm?0:Math.random()*2),0,7);x.fill();x.restore()}}
-  for(const p of Z.parts){x.globalAlpha=Math.max(0,p.life/p.max);x.fillStyle=p.c;x.beginPath();x.arc(p.x,p.y,p.r,0,7);x.fill()}x.globalAlpha=1;
+/* ---------- Drawing: everything on a 3-unit pixel grid ---------- */
+function ddSpr(x,s,cx,cy,k=3,flip=1){x.save();x.translate(Math.round(cx),Math.round(cy));x.scale(flip,1);x.drawImage(s,-s.width*k/2,-s.height*k/2,s.width*k,s.height*k);x.restore()}
+function ddDraw(){const Z=DD,cv=$('ddcv');if(!cv||!Z)return;if(!Z.sc)ddSize();const x=cv.getContext('2d'),calm=calmOn(),H=Z.h,px=(a,b,s,c)=>{x.fillStyle=c;x.fillRect(Math.round(a/3)*3,Math.round(b/3)*3,s,s)};
+  x.setTransform(Z.sc,0,0,Z.sc,0,0);x.imageSmoothingEnabled=false;x.drawImage(ddRoom(Z.floor),0,0,DW,DH);
+  for(const [tx,ty] of DTORCH)pxFlame(x,tx,ty,Z.t,calm);
+  for(const z of Z.zones){const a=Math.min(1,z.t);x.globalAlpha=.85*a;
+    if(z.k==='ward'){const sp=calm?0:Z.t*1.5;for(let i=0;i<20;i++){const q=i/20*Math.PI*2;px(z.x+Math.cos(q)*z.r,z.y+Math.sin(q)*z.r*.6,6,i%2?'#5fd0ff':'#2b8ccf')}for(let i=0;i<6;i++){const q=i/6*Math.PI*2+sp;px(z.x+Math.cos(q)*z.r*.55,z.y+Math.sin(q)*z.r*.33,6,'#9fe6ff')}px(z.x-3,z.y-3,9,'#9fe6ff')}
+    else{const c=z.k==='acid'?['#3fa34d','#62d36e']:['#a8f0b8','#e3fbe8'];for(let yy=-z.r;yy<=z.r;yy+=6)for(let xx=-z.r;xx<=z.r;xx+=6){const dd=(xx*xx)/(z.r*z.r)+(yy*yy)/(z.r*z.r*.36);if(dd<=1&&((xx+yy)/6+Math.floor(Z.t*(calm?0:4)))%3)px(z.x+xx,z.y+yy*.6,6,dd>.7?c[0]:c[1])}}x.globalAlpha=1}
+  for(const p of Z.drops){if(p.life<3&&Math.floor(p.life*6)%2)continue;ddSpr(x,pxI(p.k),p.x,p.y+(calm?0:Math.round(Math.sin(Z.t*5+p.x)*2)))}
+  const actors=[...Z.mons.map(m=>({y:m.y,m})),{y:H.y,h:1}].sort((a,b)=>a.y-b.y);
+  for(const A of actors){if(A.m){const m=A.m,T=DMON[m.k],f=calm?0:Math.floor(Z.t*4+m.id)%2,s=ddCache(`m${m.k}${f}`,()=>pxMon(m.k,f)),hh=s.height*3;
+      x.fillStyle='rgba(0,0,0,.3)';x.fillRect(Math.round(m.x-m.r),Math.round(m.y+m.r*.55),m.r*2,6);x.save();if(m.hit>0)x.filter='brightness(2.4)';ddSpr(x,s,m.x,m.y-hh/2+m.r*.8,3,(H.x<m.x?-1:1)*(m.k==='imp'?-1:1));x.restore();
+      if(m.stun>Z.t){for(let i=0;i<3;i++){const q=Z.t*5+i*2.1;px(m.x+Math.cos(q)*m.r,m.y-hh+m.r*.8-4+Math.sin(q)*4,6,'#fde047')}}
+      if(m.hp<m.max||T.boss){const w=m.r*2,y0=m.y-hh+m.r*.8-12;x.fillStyle='#120b16';x.fillRect(Math.round(m.x-w/2)-3,y0-3,w+6,9);x.fillStyle='#fb7185';x.fillRect(Math.round(m.x-w/2),y0,Math.round(w*Math.max(0,m.hp)/m.max),3)}}
+    else{if(H.inv>0&&H.stealth<=0&&Math.floor(H.inv*10)%2)continue;const f=H.moving&&!calm?1+Math.floor(Z.t*8)%2:0,s=ddCache(`h${Z.hero}${f}`,()=>pxHero(Z.hero,f));
+      x.fillStyle='rgba(0,0,0,.35)';x.fillRect(Math.round(H.x-18),Math.round(H.y+H.r*.5),36,6);x.globalAlpha=H.stealth>0?.4:1;ddSpr(x,s,H.x,H.y-s.height*1.5+H.r*.6,3,H.face);x.globalAlpha=1}}
+  for(const w of Z.walls){const tx=-w.ny,ty=w.nx,fl=calm?0:Math.floor(Z.t*10)%2;x.globalAlpha=Math.min(1,w.t)*.9;for(let i=-w.half;i<=w.half;i+=6)for(let j=0;j<5;j++)px(w.x+tx*i,w.y+ty*i-j*6,6,(Math.floor(i/6)+j+fl)%3?'#5fe0ff':'#2a9cc0');x.globalAlpha=1}
+  const F=Z.fx;
+  if(F.bubble&&F.bubble.on){for(let i=0;i<24;i++){const q=i/24*Math.PI*2;px(H.x+Math.cos(q)*34,H.y-22+Math.sin(q)*38,6,i%3?'rgba(191,233,255,.85)':'#ffffff')}}
+  if(F.fury&&F.fury.t>0&&!calm){for(let i=0;i<10;i++){const q=Z.t*4+i*.63;px(H.x+Math.cos(q)*30,H.y-20+Math.sin(q*1.3)*36,6,i%2?'#fde047':'#f59e0b')}}
+  if(F.blades){for(let k=0;k<3;k++){const q=F.blades.a+k*2.094,s=pxI('blade');x.save();x.translate(Math.round(H.x+Math.cos(q)*74),Math.round(H.y-16+Math.sin(q)*60));x.rotate(q*3);x.drawImage(s,-s.width*1.5,-s.height*1.5,s.width*3,s.height*3);x.restore()}}
+  if(F.nova&&F.nova.ring>0){const rr=180*(1-F.nova.ring/.5);for(let i=0;i<36;i++){const q=i/36*Math.PI*2;px(H.x+Math.cos(q)*rr,H.y-16+Math.sin(q)*rr*.7,6,'#bfe9ff')}}
+  for(const z of Z.zaps){let lx=z.x+(Math.random()-.5)*20,ly=DT;while(ly<z.y-20){const nx=z.x+(Math.random()-.5)*36,ny=ly+24;x.strokeStyle='#fde047';x.lineWidth=6;x.beginPath();x.moveTo(lx,ly);x.lineTo(nx,ny);x.stroke();x.strokeStyle='#fff';x.lineWidth=2;x.stroke();lx=nx;ly=ny}}
+  if(F.dragon){const D=F.dragon,s=pxI('dragon');ddSpr(x,s,D.x,D.y+(calm?0:Math.round(Math.sin(Z.t*6)*4)),3,H.face);if(D.br){for(let i=0;i<8;i++){const k=i/8;px(D.x+(D.br.x-D.x)*k+(Math.random()-.5)*12,D.y+(D.br.y-D.y)*k+(Math.random()-.5)*12,6,i%2?'#ff9a2a':'#fde047')}}}
+  for(const b of Z.bolts){const s=pxI(b.k);x.save();x.translate(Math.round(b.x),Math.round(b.y));if(b.k==='hammer')x.rotate(calm?0:Z.t*14);else if(b.k==='dagger')x.rotate(Math.atan2(b.vy,b.vx));x.drawImage(s,-s.width*1.5,-s.height*1.5,s.width*3,s.height*3);x.restore()}
+  for(const L of Z.lobs){const k=L.t/L.T,lx=L.x0+(L.tx-L.x0)*k,ly=L.y0+(L.ty-L.y0)*k-Math.sin(Math.PI*k)*80;x.fillStyle='rgba(0,0,0,.25)';x.fillRect(Math.round(L.x0+(L.tx-L.x0)*k)-6,Math.round(L.y0+(L.ty-L.y0)*k)+18,12,4);ddSpr(x,pxI('flask'),lx,ly)}
+  for(const f of Z.foes){x.save();x.translate(Math.round(f.x),Math.round(f.y));if(f.k==='missile')x.rotate(Math.atan2(f.vy,f.vx));const s=pxI(f.k==='fire'?'fire':'missile');x.drawImage(s,-s.width*1.5,-s.height*1.5,s.width*3,s.height*3);x.restore();if(f.k==='fire'&&!calm)px(f.x-f.vx*.04,f.y-f.vy*.04,6,'rgba(255,154,42,.6)')}
+  for(const p of Z.parts){x.globalAlpha=Math.max(0,p.life/p.max);px(p.x,p.y,p.r,p.c)}x.globalAlpha=1;
+  if(F.time&&F.time.on>0){x.fillStyle='rgba(90,130,255,.14)';x.fillRect(0,0,DW,DH)}
   if(Z.stick&&Z.stick.on){x.strokeStyle='rgba(255,255,255,.55)';x.lineWidth=3;x.beginPath();x.arc(Z.stick.ox,Z.stick.oy,60,0,7);x.stroke();x.fillStyle='rgba(255,255,255,.45)';x.beginPath();x.arc(Z.stick.ox+Z.stick.dx*60,Z.stick.oy+Z.stick.dy*60,22,0,7);x.fill()}
-  const txt=(s,y,size,fill)=>{x.font=`800 ${size}px "Bricolage Grotesque",sans-serif`;x.textAlign='center';x.lineJoin='round';x.lineWidth=size/5;x.strokeStyle='#1E1B4B';x.strokeText(s,DW/2,y);x.fillStyle=fill;x.fillText(s,DW/2,y)};
-  if(Z.banner){txt(Z.banner.a,DH/2-14,46,'#fff');if(Z.banner.b)txt(Z.banner.b,DH/2+24,24,'#FDE047')}
-  else if(!Z.ch&&!Z.asking)txt('⚡ Out of magic! Press E to recharge',DH-60,26,'#FDE047')}
-function ddHud(){const Z=DD,e=$('ddhud');if(!e)return;const H=Z.h;
-  e.innerHTML=`<span role="img" aria-label="${H.hp} of ${H.max} hearts">${'❤️'.repeat(Math.max(0,H.hp))}${'🤍'.repeat(Math.max(0,H.max-H.hp))}</span><span>⚡ ${Z.ch}</span><span>🌊 Wave ${Math.max(1,Z.wave)}</span><span>🏰 Floor ${Z.floor+1}</span><span>⭐ Lv ${Z.lvl}<span class="ddbar" aria-hidden="true"><i style="width:${Math.min(100,Z.jw/Z.need*100).toFixed(0)}%"></i></span></span><span>💰 ${Z.score}</span>`;
-  const r=$('ddre');if(r)r.disabled=Z.asking||Z.ph!=='run';const b=$('ddbu');if(b)b.disabled=Z.ch<5||Z.h.burst>0||Z.ph!=='run'||Z.asking}
+  const txt=(s,y,size,fill)=>{x.font=`800 ${size}px "Bricolage Grotesque",sans-serif`;x.textAlign='center';x.lineJoin='round';x.lineWidth=size/5;x.strokeStyle='#120b16';x.strokeText(s,DW/2,y);x.fillStyle=fill;x.fillText(s,DW/2,y)};
+  const my=(DT+DH-DS)/2;if(Z.banner){txt(Z.banner.a,my-14,46,'#fff');if(Z.banner.b)txt(Z.banner.b,my+24,24,'#fde047')}
+  else if(!Z.ch&&!Z.asking)txt('⚡ Out of magic! Press E to recharge',DH-DS-24,26,'#fde047')}
+function ddHud(){const Z=DD,e=$('ddhud');if(!e)return;const H=Z.h,S=DHEROES[Z.hero].sp;
+  e.innerHTML=`<span>${esc(DHEROES[Z.hero].short)}</span><span role="img" aria-label="${H.hp} of ${H.max} hearts">${'❤️'.repeat(Math.max(0,H.hp))}${'🤍'.repeat(Math.max(0,H.max-H.hp))}</span><span>⚡ ${Z.ch}</span><span>🌊 Wave ${Math.max(1,Z.wave)}</span><span>🏰 Floor ${Z.floor+1}</span><span>⭐ Lv ${Z.lvl}<span class="ddbar" aria-hidden="true"><i style="width:${Math.min(100,Z.jw/Z.need*100).toFixed(0)}%"></i></span></span><span>🪙 ${Z.coins}</span><span>💰 ${Z.score}</span>${Z.gear.length?`<span class="ddgearhud" role="img" aria-label="Gear: ${esc(Z.gear.map(id=>DGEAR.find(g=>g.id===id).n).join(', '))}">${Z.gear.map(id=>{const g=DGEAR.find(x=>x.id===id);return `<i style="--rc:${DRAR[g.r].c}" title="${esc(DRAR[g.r].n+': '+g.n)}">${g.i}</i>`}).join('')}</span>`:''}`;
+  const r=$('ddre');if(r)r.disabled=Z.asking||Z.ph!=='run';const b=$('ddbu');if(b){b.disabled=Z.ch<S.cost||H.sp>0||Z.ph!=='run'||Z.asking;b.textContent=`${S.icon} ${S.n} (Space)${H.sp>0?` · ${Math.ceil(H.sp)}s`:''}`}}
 
 /* ---------- Controls: keyboard, and drag anywhere on the dungeon to steer on a touch screen ---------- */
 const DDIR={ArrowLeft:'l',a:'l',ArrowRight:'r',d:'r',ArrowUp:'u',w:'u',ArrowDown:'d',s:'d'};
 addEventListener('keydown',e=>{if(AR.mode!=='dash'||!DD||typeof tab==='undefined'||tab!=='play'||QM||e.ctrlKey||e.metaKey||e.altKey)return;const tg=e.target;if(tg&&/^(INPUT|TEXTAREA|SELECT)$/.test(tg.tagName))return;
   const k=e.key.length===1?e.key.toLowerCase():e.key,dir=DDIR[k];
-  if(dir&&DD.ph==='run'){e.preventDefault();DKEYS.add(dir)}else if(k===' '&&DD.ph==='run'){e.preventDefault();ddBurst()}else if((k==='e'||k==='q')&&DD.ph==='run'){e.preventDefault();ddRecharge()}else if((k==='p'||k==='Escape')&&['run','pause'].includes(DD.ph)){e.preventDefault();ddPause()}});
+  if(dir&&DD.ph==='run'){e.preventDefault();DKEYS.add(dir)}else if(k===' '&&DD.ph==='run'){e.preventDefault();ddSpecial()}else if((k==='e'||k==='q')&&DD.ph==='run'){e.preventDefault();ddRecharge()}else if((k==='p'||k==='Escape')&&['run','pause'].includes(DD.ph)){e.preventDefault();ddPause()}});
 addEventListener('keyup',e=>{const k=e.key.length===1?e.key.toLowerCase():e.key;if(DDIR[k])DKEYS.delete(DDIR[k])});
 addEventListener('blur',()=>DKEYS.clear());
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&DD&&DD.ph==='run'&&!DD.asking&&!QM)ddPause()});
@@ -181,19 +423,50 @@ function ddPointer(e,cv){const Z=DD;if(!Z||Z.ph!=='run')return;const r=cv.getBou
   else if(Z.stick&&Z.stick.on){if(e.type==='pointermove'){const dx=x-Z.stick.ox,dy=y-Z.stick.oy,d=Math.hypot(dx,dy);Z.stick.dx=d>8?dx/Math.max(d,60):0;Z.stick.dy=d>8?dy/Math.max(d,60):0}else Z.stick.on=false}}
 function ddQuit(){if(DD&&['run','pause'].includes(DD.ph))ddOver('over')}
 
-GVIEW.dash=function(){const Z=DD,S=ARS('dash'),head=`<div class="gworld">${clouds()}${gameHead('Dungeon Dash','Dodge, grab the jewels, and power your magic with right answers!')}`;
-  if(!Z||!['run','pause'].includes(Z.ph)){const out=outOfTime();let card='';
-    if(Z&&Z.ph==='over')card=`<div class="gcard endcard" style="margin-bottom:16px"><div class="big" aria-hidden="true">💫</div><h3>Your hero needs a rest!</h3><p>Every right answer powered your magic. Ready for another run?</p>
-      <div class="ddstats"><div><b>${Z.wave}</b>wave${Z.pbw?' · best!':''}</div><div><b>${Z.floor+1}</b>floor</div><div><b>${Z.score}</b>points${Z.pbs?' · best!':''}</div><div><b>${Z.lvl}</b>hero level</div><div><b>${Z.kills}</b>monsters</div></div>${Z.gems?`<p>💎 +${Z.gems} gem${Z.gems>1?'s':''} for ${Z.cleared} wave${Z.cleared>1?'s':''} cleared</p>`:''}</div>`;
-    return head+`${out?restCard():''}${card}${subjChips()}<div class="gcard"><h3>🗡️ How to play</h3><ul class="pearn"><li>Move with WASD or the arrow keys. On a touch screen, drag anywhere on the dungeon to steer.</li><li>Your hero casts magic bolts at the nearest monster all by themselves. Each bolt uses one ⚡ charge.</li><li>Out of charges? Answer a question to recharge. Right answers in a row give extra. Press E to recharge any time.</li><li>Dodge bouncing fireballs and homing missiles, and shoot the missiles down! Space casts a burst of 12 bolts.</li><li>Collect the jewels monsters drop to level up and pick a power-up. Every 5 waves a boss guards the stairs to a deeper floor.</li></ul>
-      <div class="row" style="margin-top:14px;align-items:center"><button class="abtn big" ${out?'disabled':''} onclick="ddStart()">⚔️ Enter the dungeon</button>${S.wave?`<span class="sol">Best: wave <b>${S.wave}</b> · floor <b>${S.floor||1}</b> · <b>${S.score}</b> points</span>`:''}</div></div></div>`}
-  return head+`<div class="ddhud" id="ddhud"></div><div class="ddwrap"><canvas class="ddcv" id="ddcv" style="aspect-ratio:${DW}/${DH}" role="img" aria-label="The dungeon arena. Move with the arrow keys or WASD; press E to recharge, Space to burst, P to pause." onpointerdown="ddPointer(event,this)" onpointermove="ddPointer(event,this)" onpointerup="ddPointer(event,this)" onpointercancel="ddPointer(event,this)"></canvas>
-    <div class="ddpause" id="ddpause" ${Z.ph==='pause'?'':'hidden'}><div class="gcard" style="text-align:center"><h3>Paused</h3><div class="row" style="justify-content:center"><button class="abtn" onclick="ddPause()">▶ Resume</button><button class="abtn sec" onclick="ddQuit()">End run</button></div></div></div></div>
-    <p class="bsr" id="ddsay" aria-live="polite"></p><div class="ddctl"><button class="abtn sun" id="ddre" onclick="ddRecharge()">⚡ Recharge (E)</button><button class="abtn gold" id="ddbu" onclick="ddBurst()">💥 Burst (Space)</button><button class="abtn sec" onclick="ddPause()">⏸ Pause (P)</button></div></div>`};
+/* ---------- The upgrade dashboard: coins from runs buy lasting upgrades for each hero ---------- */
+const DUPG=[{id:'atk',n:'Attack power',i:'⚔️',d:l=>l?`+${20*l}% damage`:'Base damage'},{id:'rate',n:'Attack speed',i:'⚡',d:l=>l?`${8*l}% faster attacks`:'Base speed'},
+  {id:'sp',n:'Special power',i:'✨',d:(l,h)=>l?`${({ward:'Bigger, stronger rune blasts',blink:'Harder strikes and longer shadows',shield:'Longer walls that last longer',mist:'Heals more hearts in a bigger mist'})[h.sp.id]}; ready ${(l*.5).toFixed(1)}s sooner`:`Upgrade ${h.sp.n}`},
+  {id:'hp',n:'Extra hearts',i:'❤️',max:3,d:l=>l?`+${l} heart${l===1?'':'s'}`:'No extra hearts yet'},{id:'move',n:'Boots',i:'👟',d:l=>l?`${6*l}% faster running`:'Base running speed'},{id:'bat',n:'Battery',i:'🔋',d:l=>l?`+${2*l} charges for every right answer`:'20 charges for every right answer'}];
+const DCOST=[20,40,70,110,160];
+/* Upgrade coins come from studying, not from the dungeon: each right practice answer, mission, lesson (3 a day), classwork or quiz, and skill reaching Proficient */
+const DCOIN={ok:1,mis:10,les:5,cw:20,pro:15};
+function ddStudySync(){const S=ARS('dash'),D=DAY();if(!S.sl||S.sl.d!==D.d)S.sl={d:D.d,ok:0,mis:0,les:0,cw:0};const L=S.sl;
+  const n=DCOIN.ok*(D.ok-L.ok)+DCOIN.mis*(D.mis-L.mis)+DCOIN.les*(Math.min(3,D.les)-Math.min(3,L.les))+DCOIN.cw*(D.cw-L.cw);
+  Object.assign(L,{ok:D.ok,mis:D.mis,les:D.les,cw:D.cw});if(n>0){S.gold=(S.gold||0)+n;S.newc=(S.newc||0)+n}return n}
+const _gcD=gameCheck;gameCheck=function(...a){ddStudySync();return _gcD(...a)};
+const _udD=update;update=function(k,ok,...a){const L0=level(k);_udD(k,ok,...a);if(level(k)>=3&&level(k)>L0){const S=ARS('dash');S.gold=(S.gold||0)+DCOIN.pro;S.newc=(S.newc||0)+DCOIN.pro}};
+const dUpg=k=>{const S=ARS('dash'),U=S.upg||(S.upg={});return U[k]||(U[k]={})};
+const dLv=(k,id)=>dUpg(k)[id]||0;
+function ddBuy(k,id){const S=ARS('dash'),u=DUPG.find(x=>x.id===id),l=dLv(k,id),c=DCOST[l];if(!u||l>=(u.max||5)||(S.gold||0)<c)return;
+  S.gold-=c;dUpg(k)[id]=l+1;SYNC();rerealm();msg(`${DHEROES[k].short}: ${u.n} is now level ${l+1}!`);const d=$('dddash');if(d)d.scrollIntoView({block:'nearest'})}
+function ddDashboard(k){const S=ARS('dash');ddStudySync();const nc=S.newc;S.newc=0;const h=DHEROES[k],g=S.gold||0,L=id=>dLv(k,id),aps=(h.atk.n||1)/(h.atk.cd*(1-.08*L('rate')));
+  const stats=[['❤️ Hearts',h.hp+L('hp'),12],['⚔️ Damage per hit',+(h.atk.dmg*(1+.2*L('atk'))).toFixed(1),4],['⚡ Hits per second',+aps.toFixed(1),7],['✨ '+h.sp.n,`Level ${L('sp')}`,L('sp')/5*100,1],['👟 Running speed',Math.round(h.spd*(1+.06*L('move'))),330],['🔋 Charges per answer',20+2*L('bat'),30]];
+  return `<div class="gcard dddash" id="dddash" style="margin-top:16px"><div class="split"><h3>⚒️ Upgrade dashboard: ${esc(h.short)}</h3><span class="ddgold" aria-label="${g} coins to spend">🪙 ${g} coins</span></div>
+  ${nc?`<p class="ddnewc" role="status">🎉 Your studying earned <b>${nc} coin${nc>1?'s':''}</b> since your last visit!</p>`:''}
+  <p class="sol" style="margin:0 0 12px">Upgrade coins come from studying on the Learn page. Spend them here on lasting upgrades for each hero.</p>
+  <div class="ddsplit"><div class="ddstatbox" aria-label="${esc(h.short)}'s stats">${stats.map(([n,v,m,pct])=>`<div class="ddsrow"><span>${n}</span><b>${v}</b><span class="ddsbar" aria-hidden="true"><i style="width:${Math.min(100,pct?m:v/m*100).toFixed(0)}%"></i></span></div>`).join('')}</div>
+  <div class="ddupgs">${DUPG.map(u=>{const l=L(u.id),max=u.max||5,c=DCOST[l],full=l>=max;return `<div class="ddup"><span class="ddupi" aria-hidden="true">${u.i}</span><div class="ddupt"><b>${u.n} <span class="pips" role="img" aria-label="Level ${l} of ${max}">${'■'.repeat(l)}<span class="off">${'■'.repeat(max-l)}</span></span></b><span class="sol">${u.d(l,h)}</span></div><button class="abtn sm ${!full&&g>=c?'gold':'sec'}" ${full||g<c?'disabled':''} data-up="${u.id}" aria-label="${full?`${u.n} is at the top level`:`Upgrade ${u.n} for ${c} coins`}" onclick="ddBuy('${k}','${u.id}')">${full?'Max':`🪙 ${c}`}</button></div>`}).join('')}</div></div>
+  <div class="ddearn"><h3 style="margin:0 0 6px">📚 How to earn upgrade coins</h3><ul class="pearn"><li>Each right answer in practice: 🪙 ${DCOIN.ok}</li><li>Finishing a practice mission: 🪙 ${DCOIN.mis}</li><li>Opening a lesson: 🪙 ${DCOIN.les} (up to 3 a day)</li><li>Turning in classwork or a lesson quiz: 🪙 ${DCOIN.cw}</li><li>A skill reaching Proficient or Mastered: 🪙 ${DCOIN.pro}</li></ul><p class="sol" style="margin:8px 0 0">Coins in the dungeon add to your score. Upgrade coins are earned by learning!</p><button class="abtn sm" style="margin-top:10px" onclick="go('learn')">📖 Go learn</button></div>
+  <h3 style="margin:18px 0 4px">🎒 Gear collection: ${DGEAR.filter(x=>(S.found||{})[x.id]).length} of ${DGEAR.length} found</h3><p class="sol" style="margin:0 0 10px">Every level-up in the dungeon rolls for gear. Answer the level-up question right on the first try for a luckier roll!</p>
+  <div class="ddcoll">${[3,2,1,0].map(r=>DGEAR.filter(x=>x.r===r).map(x=>{const f=(S.found||{})[x.id];return `<div class="ddcg ${f?'':'no'}" style="--rc:${DRAR[r].c}" title="${f?esc(x.n+': '+x.d):'Not found yet'}"><span aria-hidden="true">${f?x.i:'?'}</span><b>${f?esc(x.n):DRAR[r].n}</b></div>`}).join('')).join('')}</div></div>`}
 
-/* On the Arcade hub, right after Spell Quest */
-GAMES.splice(1,0,{id:'dash',n:'Dungeon Dash',p:'Dodge fireballs, grab jewels and power your magic with right answers. How deep can you go?'});
-ART.dash=()=>sceneSvg(`<rect width="200" height="64" fill="#2E2A3D"/>${[0,1,2,3,4,5,6].map(i=>`<rect x="${i*30-5}" y="64" width="30" height="33" fill="${i%2?'#5B5670':'#524D66'}"/><rect x="${i*30-5}" y="97" width="30" height="33" fill="${i%2?'#524D66':'#5B5670'}"/>`).join('')}
-  ${[30,100,170].map(x=>`<circle cx="${x}" cy="32" r="15" fill="#FFAA46" opacity=".25"/><ellipse cx="${x}" cy="32" rx="5" ry="8" fill="#FFB13B"/><ellipse cx="${x}" cy="34" rx="2.5" ry="4" fill="#FFE27A"/>`).join('')}
-  ${nest(heroSvg(GM,{bg:false,label:''}),14,50,72,72)}<circle cx="100" cy="86" r="6" fill="${magicOf(GM.rsub||'math')[2]}"/><circle cx="128" cy="74" r="9" fill="#FF7A1A"/><circle cx="128" cy="74" r="4.5" fill="#FFE27A"/><rect x="92" y="108" width="10" height="10" transform="rotate(45 97 113)" fill="#A855F7"/><circle cx="116" cy="114" r="5" fill="#FDE047"/>${nest(monsterSvg(DMON.imp.m,false,''),136,52,62,62)}`,'#3B3352','#241F33');
+/* ---------- The Dungeon Dash screen: pick a hero, then play ---------- */
+GVIEW.dash=function(){const Z=DD,S=ARS('dash'),head=`<div class="gworld">${clouds()}${gameHead('Dungeon Dash','Pick a hero, dodge the monsters, grab the jewels, and power your magic with right answers!')}`;
+  if(!Z||!['run','pause'].includes(Z.ph)){const out=outOfTime(),sel=DSEL();let card='';
+    if(Z&&Z.ph==='over')card=`<div class="gcard endcard" style="margin-bottom:16px"><div class="big" aria-hidden="true"><img src="${pxURL(Z.hero,3)}" alt="" style="height:84px;image-rendering:pixelated"></div><h3>Your hero needs a rest!</h3><p>${esc(DHEROES[Z.hero].short)} fought bravely, and every right answer powered the magic. Ready for another run?</p>
+      <div class="ddstats"><div><b>${Z.wave}</b>wave${Z.pbw?' · best!':''}</div><div><b>${Z.floor+1}</b>floor</div><div><b>${Z.score}</b>points${Z.pbs?' · best!':''}</div><div><b>${Z.lvl}</b>hero level</div><div><b>${Z.kills}</b>monsters</div></div>${Z.gems?`<p>💎 +${Z.gems} gem${Z.gems>1?'s':''} for ${Z.cleared} wave${Z.cleared>1?'s':''} cleared</p>`:''}${Z.gear.length?`<p>🎒 Gear this run: ${Z.gear.map(id=>{const g=DGEAR.find(x=>x.id===id);return `<span class="ddgchip" style="--rc:${DRAR[g.r].c}">${g.i} ${esc(g.n)}</span>`}).join(' ')}</p>`:''}<p>🪙 Want stronger heroes? Upgrade coins come from studying. <a href="#dddash" onclick="event.preventDefault();$('dddash').scrollIntoView({behavior:calmOn()?'auto':'smooth'})">See how to earn them ↓</a></p></div>`;
+    return head+`${out?restCard():''}${card}${subjChips()}<div class="gcard"><h3>🗡️ Choose your hero</h3><div class="ddheroes" role="group" aria-label="Choose your hero">${Object.entries(DHEROES).map(([k,h])=>`<button class="ddhero ${k===sel?'on':''}" data-hero="${k}" aria-pressed="${k===sel}" onclick="ARS('dash').hero='${k}';SYNC();rerealm()"><span class="ddport"><img src="${pxURL(k)}" alt=""></span><b>${esc(h.n)}</b><span class="ddrole">${esc(h.role)}</span><span class="ddstat">❤️ ${h.hp+dLv(k,'hp')} hearts · 👟 ${h.spd>=240?'Very quick':h.spd>=200?'Quick':h.spd>=170?'Steady':'Slow'}</span><span class="sol">${esc(h.d)}</span><span class="ddab"><b>Attack:</b> ${esc(h.a)}</span><span class="ddab"><b>${h.sp.icon} ${esc(h.sp.n)} (Space):</b> ${esc(h.s)}</span></button>`).join('')}</div>
+      ${ddDashboard(sel)}
+      <h3 style="margin-top:18px">How to play</h3><ul class="pearn"><li>Move with WASD or the arrow keys. On a touch screen, drag anywhere on the dungeon to steer.</li><li>Your hero attacks the nearest monster all by themselves. Each attack uses one ⚡ charge.</li><li>Out of charges? Answer a question to recharge. Right answers in a row give extra. Press E to recharge any time.</li><li>Dodge bouncing fireballs and homing missiles, and shoot the missiles down! Space uses your hero's special move for 5 charges.</li><li>Collect the jewels monsters drop to level up and roll for gear: Common, Rare, Mystic or Legendary! Gold coins add to your score. Every 5 waves a boss guards the stairs to a deeper floor.</li></ul>
+      <div class="row" style="margin-top:14px;align-items:center"><button class="abtn big" ${out?'disabled':''} onclick="ddStart()">⚔️ Enter the dungeon as ${esc(DHEROES[sel].short)}</button>${S.wave?`<span class="sol">Best: wave <b>${S.wave}</b> · floor <b>${S.floor||1}</b> · <b>${S.score}</b> points</span>`:''}</div></div></div>`}
+  const Sp=DHEROES[Z.hero].sp;
+  return head+`<div class="ddhud" id="ddhud"></div><div class="ddwrap"><canvas class="ddcv" id="ddcv" style="aspect-ratio:${DW}/${DH}" role="img" aria-label="The dungeon. Move with the arrow keys or WASD; press E to recharge, Space for your special move, P to pause." onpointerdown="ddPointer(event,this)" onpointermove="ddPointer(event,this)" onpointerup="ddPointer(event,this)" onpointercancel="ddPointer(event,this)"></canvas>
+    <div class="ddpause" id="ddpause" ${Z.ph==='pause'?'':'hidden'}><div class="gcard" style="text-align:center"><h3>Paused</h3><div class="row" style="justify-content:center"><button class="abtn" onclick="ddPause()">▶ Resume</button><button class="abtn sec" onclick="ddQuit()">End run</button></div></div></div></div>
+    <p class="bsr" id="ddsay" aria-live="polite"></p><div class="ddctl"><button class="abtn sun" id="ddre" onclick="ddRecharge()">⚡ Recharge (E)</button><button class="abtn gold" id="ddbu" onclick="ddSpecial()">${Sp.icon} ${esc(Sp.n)} (Space)</button><button class="abtn sec" onclick="ddPause()">⏸ Pause (P)</button></div></div>`};
+
+/* On the Arcade hub, right after Spell Quest, with a pixel-art tile */
+GAMES.splice(1,0,{id:'dash',n:'Dungeon Dash',p:'Pick one of four heroes, dodge fireballs, grab jewels and power your magic with right answers. How deep can you go?'});
+ART.dash=()=>{const k=DSEL(),url=ddCache('tile'+k,()=>{const c=pxRoom(200,130,0,[[40,22],[160,22]],[],36,2,6),x=c.getContext('2d');x.imageSmoothingEnabled=false;pxFlame(x,40,22,0,true);pxFlame(x,160,22,0,true);
+    const h=pxHero(k,0),m=pxMon('slime',0),i=pxMon('imp',0),j=pxArt(...PXI.jewel);x.drawImage(h,62,46,h.width*2,h.height*2);x.drawImage(m,130,92,m.width*2,m.height*2);x.drawImage(i,150,52,i.width*2,i.height*2);x.drawImage(j,110,100,j.width*2,j.height*2);return c.toDataURL()});
+  return `<svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice"><image href="${url}" width="200" height="130" style="image-rendering:pixelated"/></svg>`};
 </script>

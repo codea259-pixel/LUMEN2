@@ -41,6 +41,18 @@ const errs = [];
     if (await s.$('text=Practice again')) await s.click('text=Practice again');
   }
   step(`student answered ${answered} questions on "${skill}"`);
+
+  // Skill search at the top of the Learn page: find a skill in another subject and open it
+  await s.evaluate(() => { view = 'home'; render() }); await s.waitForSelector('#sksq', { state: 'visible' });
+  await s.fill('#sksq', 'verb'); await s.waitForSelector('#sksr .skr');
+  const hit = await s.$eval('#sksr .skr', b => ({ k: b.dataset.k, n: b.querySelector('b').textContent }));
+  if (!/verb/i.test(hit.n)) throw new Error('skill search: first result for "verb" was ' + hit.n);
+  await s.press('#sksq', 'Enter'); await s.waitForSelector('.info');
+  const opened = await s.evaluate(() => ({ h: document.querySelector('#panel h2').textContent, subj: ST.subj, q: $('sksq').value, focus: document.activeElement.className }));
+  if (opened.h !== hit.n || opened.subj !== 'ela' || opened.q !== '' || opened.focus !== 'go') throw new Error('skill search did not open the skill: ' + JSON.stringify(opened));
+  await s.fill('#sksq', 'zzqqx'); if (!/No skills match/.test(await s.textContent('#sksn'))) throw new Error('skill search: no "nothing found" message');
+  await s.press('#sksq', 'Escape'); await s.evaluate(() => { ST.subj = 'math'; sv(); gradeBar(); view = 'home'; render() });
+  step(`skill search: "verb" found ${hit.n}, Enter opened it and switched to English / ELA`);
   await s.waitForTimeout(1800);
   const st = await s.evaluate(() => fetch('/api/state').then(r => r.json()));
   const att = Object.values(st.S).reduce((a, x) => a + (x.att || 0), 0); step(`server saved progress: ${att} attempts, gems ${st.gems}, days ${st.days}`);

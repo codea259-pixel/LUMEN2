@@ -97,6 +97,19 @@ svg.orb{display:inline-block;vertical-align:middle;flex:none}
 @media(max-width:700px){.mission{grid-template-columns:1fr;padding:20px}.mission .side{flex-direction:row;max-width:none;align-items:flex-start}.hello{align-items:flex-start}}
 
 /* Selectors */
+#skbar{max-width:1180px;margin:0 auto;padding:0 24px}#skbar[hidden]{display:none}
+@media(max-width:880px){#skbar{padding-left:14px;padding-right:14px}}
+.sks{padding:16px 0 0}
+.skin{display:flex;align-items:center;gap:8px;max-width:680px;background:var(--panel);border:2px solid var(--line);border-radius:14px;padding:2px 12px}
+.skin:focus-within{border-color:var(--teal);box-shadow:0 0 0 3px color-mix(in srgb,var(--teal) 25%,transparent)}
+.skin input{flex:1;min-width:0;border:0;outline:0;background:transparent;color:var(--ink);font:inherit;font-weight:600;padding:11px 2px}
+.sksn{margin:6px 2px 0;font-size:.9rem}.sksn:empty{display:none}
+.sksr ul{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+.skr{width:100%;height:100%;display:grid;grid-template-columns:1fr auto;align-items:center;gap:2px 10px;text-align:left;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-weight:400}
+.skr:hover{border-color:var(--teal)}.skr:focus-visible{outline:3px solid var(--teal);outline-offset:1px}
+.skr b{font-weight:800}.skr span{grid-column:1;font-size:.82rem;color:var(--mute)}
+.skr .skl{grid-column:2;grid-row:1/3;font-size:.75rem;font-weight:700;padding:3px 8px;border-radius:99px;background:var(--node);color:var(--ink);white-space:nowrap}
+.skr .skl.l3,.skr .skl.l4{background:var(--lamp-soft);color:#7A5200}
 .filters{display:flex;gap:10px;flex-wrap:wrap;align-items:center;padding:16px 0 4px}
 .filters label{display:flex;align-items:center;gap:6px;font-weight:700;font-size:.92rem}
 .filters select{font-weight:700;padding:8px 12px;border-radius:12px;background:var(--panel)}
@@ -222,6 +235,30 @@ gradeBar=function(){const gb=$('gradebar');if(tab!=='learn'){gb.innerHTML='';ret
   <label>Grade <select onchange="setGrade(this.value)">${GLIST.map(x=>`<option value="${x}" ${g==x?'selected':''}>${GLAB(x)}</option>`).join('')}</select></label>
   <label>Learning level <select onchange="setLvl(this.value)"><option value="mine" ${L==='mine'?'selected':''}>My level</option><option value="review" ${L==='review'?'selected':''}>Review earlier grades</option><option value="stretch" ${L==='stretch'?'selected':''}>Stretch ahead</option><option value="all" ${L==='all'?'selected':''}>All grades</option>${L==='custom'?'<option value="custom" selected>Custom</option>':''}</select></label>
   <details ${L==='custom'?'open':''}><summary>Advanced filters</summary><div class="gb">${['all',...GLIST].map(x=>`<button class="chip ${ST.grades.includes(x)?'on':''}" aria-pressed="${ST.grades.includes(x)}" onclick="togG('${x}')">${x==='all'?'All':GN(x)}</button>`).join('')}</div><p class="sol">Pick any mix of grades. The map shows skills within one grade of each pick.</p></details></div>`};
+/* ---------- Skill search: find any skill in any subject or grade, then open its lesson ---------- */
+const skNorm=t=>strip(t).toLowerCase().replace(/[^\p{L}\p{N}+×÷=%./]+/gu,' ').trim();
+let SKIX=null;
+function skIndex(){if(!SKIX||SKIX.n!==ORDER.length)SKIX={n:ORDER.length,a:ORDER.map(k=>{const s=SK[k];return{k,n:skNorm(s.n),u:skNorm(s.unit||''),c:skNorm(s.c||'').slice(0,500),sub:skNorm(SUBN[s.sub]||'')}})};return SKIX.a}
+function skFind(q){const ws=skNorm(q).split(' ').filter(Boolean),g=myGrade(),out=[];if(!ws.length)return out;
+  skIndex().forEach(x=>{let sc=0;for(const w of ws){if((' '+x.n).includes(' '+w))sc+=x.n.startsWith(w)?12:9;else if(x.n.includes(w))sc+=6;else if(x.u.includes(w))sc+=4;else if(x.sub.includes(w))sc+=2;else if(w.length>2&&x.c.includes(w))sc+=1;else return}
+    out.push([sc-Math.min(4,Math.abs((ST.gr[x.k]??g)-g))*.4+(SK[x.k].sub===ST.subj?.5:0),x.k])});
+  return out.sort((a,b)=>b[0]-a[0]).map(x=>x[1])}
+const SKMAX=8;
+function skSearch(v){const r=$('sksr'),n=$('sksn');if(!r)return;const q=v.trim();if(!q){r.innerHTML='';n.textContent='';return}
+  const all=skFind(q),top=all.slice(0,SKMAX);
+  n.textContent=top.length?`${all.length} skill${all.length===1?'':'s'} found${all.length>SKMAX?`. Showing the best ${SKMAX}: keep typing to narrow it down`:''}.`:`No skills match “${q}”. Try a shorter word, like “fraction” or “verb”.`;
+  r.innerHTML=top.length?`<ul>${top.map(k=>{const s=SK[k],lv=level(k);return `<li><button class="skr" data-k="${k}" onclick="skGo('${k}')" onkeydown="skKey(event)"><b>${esc(s.n)}</b><span>${esc(SUBN[s.sub]||'')} · ${GLAB(ST.gr[k])}${s.unit?' · '+esc(s.unit):''}</span><span class="skl l${lv}">${lv===4?'★ ':lv===3?'✓ ':''}${LV[lv]}</span></button></li>`}).join('')}</ul>`:''}
+function skKey(e){const bs=[...document.querySelectorAll('#sksr .skr')],i=bs.indexOf(document.activeElement),inp=$('sksq');
+  if(e.key==='ArrowDown'){e.preventDefault();(bs[i+1]||bs[0])?.focus()}
+  else if(e.key==='ArrowUp'){e.preventDefault();(i>0?bs[i-1]:inp).focus()}
+  else if(e.key==='Enter'&&e.target===inp&&bs[0]){e.preventDefault();bs[0].click()}
+  else if(e.key==='Escape'){inp.value='';skSearch('');inp.focus()}}
+function skGo(k){if(!SK[k])return;const sw=SK[k].sub!==ST.subj;if(sw){ST.subj=SK[k].sub;sv();gradeBar()}const i=$('sksq');if(i){i.value='';skSearch('')}openSkill(k);if(sw)nav();
+  const p=$('panel');if(p){p.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'nearest'});const b=p.querySelector('button.go');if(b)b.focus({preventScroll:true})}}
+const skBox=()=>`<div class="sks" role="search"><div class="skin"><span aria-hidden="true">🔍</span><input id="sksq" type="search" placeholder="Search for a skill to practice, like fractions, verbs or planets" aria-label="Search for a skill in any subject or grade" aria-describedby="sksn" autocomplete="off" spellcheck="false" oninput="skSearch(this.value)" onkeydown="skKey(event)"></div><p class="sol sksn" id="sksn" aria-live="polite"></p><div class="sksr" id="sksr"></div></div>`;
+/* The search sits at the top of the Learn page and shows whenever the welcome dashboard does */
+$('dash').insertAdjacentHTML('beforebegin',`<section id="skbar" aria-label="Find a skill">${skBox()}</section>`);
+{const sync=()=>{$('skbar').hidden=$('dash').hidden};sync();new MutationObserver(sync).observe($('dash'),{attributes:true,attributeFilter:['hidden']})}
 function missionState(){const r=recommend(),act=cur&&cur.k===r&&cur.mode==='practice'&&cur.n<cur.total&&view!=='summary';if(!ST.daily||ST.daily.d!==today())ST.daily={d:today(),n:0};
   return{r,act,done:act?cur.n:Math.min(5,ST.daily.n),total:5}}
 function dashHtml(){const n=ME.display||'',fresh=!ORDER.some(k=>S[k].att),m=missionState(),k=m.r,sk=SK[k],lv=level(k);
