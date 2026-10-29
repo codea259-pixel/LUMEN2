@@ -24,6 +24,8 @@ Items (the digit is the DOK level, 1 to 3):
   mc2: question | correct answer | wrong | wrong | wrong      multiple choice, 1 point
   num2: question | answer            a number answer, scored automatically, 1 point: 24, -3, 2.5, 3/4 or 2 1/2.
                                      Equivalent forms count (0.75 = 3/4); a student's $, commas and units are ignored.
+                                     A question that counts from today writes {year}, which becomes the year the test is
+                                     made, and its answer is written like {year}-1776 ("How many years ago from {year}?").
   sa2: prompt | sample answer        short written answer, 2 points
   cer3: prompt | sample answer       claim, evidence and reasoning, 4 points (standard CER rubric added)
   wr3: prompt | sample or key points [| score 4 | score 3 | score 2 | score 1]   extended writing, 4 points (standard writing rubric unless given)
@@ -63,6 +65,7 @@ WR_RUB = ['Clear focus and strong organization; ideas fully developed with relev
           'Focus or organization is inconsistent; limited development or evidence; errors sometimes interfere with meaning.',
           'Little focus or organization; minimal development; frequent errors.']
 NUM = re.compile(r'^-?(\d+(\.\d+)?|\.\d+|\d+/\d+|\d+ \d+/\d+)$')
+YEAR_ANS = re.compile(r'^\{year\}-\d+$')  # a number answer counted back from the year the test is made
 AUTO, WRITTEN = ('mc', 'num'), ('sa', 'cer', 'wr', 'task', 'ex')
 errors = []
 SKILLS = json.load(open(os.path.join(SRC, 'skills.json'), encoding='utf-8')) if os.path.exists(os.path.join(SRC, 'skills.json')) else None
@@ -77,12 +80,15 @@ def item(tag, parts, where):
     if len(parts) not in need or not all(parts):
         errors.append(f'{where}: {t} needs {" or ".join(map(str, need))} non-empty fields separated by |, has {len(parts)}'); return False
     it = {'t': t, 'q': parts[0], 'dok': dok}
+    bad = sorted({w for p in parts for w in re.findall(r'\{[a-z]+\}', p)} - {'{year}'})
+    if bad: errors.append(f'{where}: unknown placeholder {", ".join(bad)} (only {{year}} is filled in)'); return False
     if t == 'mc':
         if len(set(parts[1:])) != 4: errors.append(f'{where}: answer choices repeat')
         it['ch'] = parts[1:]
     elif t == 'num':
         a = parts[1].replace(',', '')
-        if not NUM.match(a): errors.append(f'{where}: number answer "{parts[1]}" must be like 24, -3, 2.5, 3/4 or 2 1/2'); return False
+        if not (NUM.match(a) or YEAR_ANS.match(a)): errors.append(f'{where}: number answer "{parts[1]}" must be like 24, -3, 2.5, 3/4, 2 1/2 or {{year}}-1776'); return False
+        if YEAR_ANS.match(a) and '{year}' not in parts[0]: errors.append(f'{where}: an answer counted from {{year}} needs {{year}} in the question'); return False
         it['a'] = a
     elif t == 'task': it['rub'] = parts[1:]
     else:

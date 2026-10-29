@@ -29,6 +29,7 @@ Read this, the rules at the top of `tools/build_assess.py`, and `tools/assess-sr
 - Everything is original. Never copy or closely paraphrase questions, passages or text from any publisher or program (Eureka Math, Benchmark Advance, Collections, Mystery Science, Discovery Education or others). Following a program's unit order and topics is fine; its words are not.
 - Every answer must be correct. For multiple choice, the correct answer comes first in the line; the app shuffles the choices. Wrong answers should be believable mistakes, not silly ones, and every choice must be different.
 - Facts must be accurate and grade-appropriate. If you are not sure of a fact, leave it out.
+- Never write the current year into a question that counts from today: write `{year}`, which becomes the year the test is made, and give the answer as `{year}-1776` (for example `num2: The Declaration of Independence was signed in 1776. How many years ago was that from {year}? | {year}-1776`).
 - Plain characters only (Latin-1): straight quotes ' and ", hyphens instead of dashes, x for times and / for divide (or the symbols in Latin-1: x, ÷, ×, °, ½). Never use the character `|` inside text (write absolute value as abs(x)).
 - Respect every student: no stereotypes; use a variety of names, families and communities from California and the world.
 

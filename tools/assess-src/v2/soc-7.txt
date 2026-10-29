@@ -87,7 +87,7 @@ mc1: The great domed church built in Constantinople under Justinian is the | Hag
 mc2: Theodora was important in the Byzantine Empire because she | advised Justinian and helped pass laws protecting women | led the Visigoths | founded Constantinople | was a Persian queen
 mc2: Justinian tried to | reconquer lands of the former Western Empire, including Italy and North Africa | conquer India | join the Huns | end Christianity
 mc2: Constantinople's strong walls and its harbor helped it | survive many attacks for centuries | avoid all trade | stay small | become part of Persia
-num2: The Hagia Sophia was completed in 537 CE. How many years ago was that from 2026? | 1489
+num2: The Hagia Sophia was completed in 537 CE. How many years ago was that from {year}? | {year}-537
 mc3: How did the Byzantine Empire help preserve Greek and Roman culture? | Its scholars copied and studied ancient texts while the West was divided | It burned ancient books | It spoke only Latin | It banned schools
 cer3: Source A: Justinian's legal experts collected and organized hundreds of years of Roman laws into one code, finished in 534 CE. Source B: Centuries later, many European countries based their legal systems on this code, and it shaped the idea of written civil law. Make a claim about Justinian's most important legacy. Use evidence from both sources and explain your reasoning. | Claim: Justinian's most important legacy was his law code. Evidence: Source A shows he organized hundreds of years of Roman laws into one code. Source B shows that European legal systems were later based on it. Reasoning: Because the code put Roman law into a clear, organized form, it outlasted his empire and shaped how laws were written in many countries.
 
@@ -470,8 +470,8 @@ mc2: Timbuktu became famous as | a center of Islamic learning with mosques, scho
 hint: Scholars came to study there.
 mc2: Many rulers of Mali became Muslims, while many ordinary people | kept their traditional religious beliefs or blended them with Islam | stopped practicing any religion | became Christians | moved to Arabia
 hint: Religious change often happened first among rulers and merchants.
-num2: The Djinguereber Mosque in Timbuktu was built in 1327. How many years ago was that from 2026? | 699
-hint: Subtract 1327 from 2026.
+num2: The Djinguereber Mosque in Timbuktu was built in 1327. How many years ago was that from {year}? | {year}-1327
+hint: Subtract 1327 from {year}.
 sa2: Explain why oral tradition is an important source for West African history. | Much history was passed down by griots rather than written, so oral traditions preserve stories, family lines, laws and values, such as the Epic of Sundiata, that would otherwise be lost.
 hint: How was history kept if few people wrote it down?
 quiz:
@@ -531,7 +531,7 @@ mc2: Buddhism came to Japan in the 500s CE mainly by way of | Korea | India by s
 mc2: Prince Shotoku, a regent in the early 600s, is known for | promoting Buddhism and borrowing Chinese ideas of government | founding the samurai class | writing the Tale of Genji | defeating the Mongols
 mc2: Japanese writing first used | Chinese characters, later adapted with Japanese symbols called kana | the Latin alphabet | cuneiform | Arabic letters
 mc2: Prince Shotoku sent officials and students to China in order to | learn about Chinese government, religion and culture | conquer China | trade for gold only | bring back Roman law
-num2: Prince Shotoku issued his Seventeen Article Constitution in 604 CE. How many years ago was that from 2026? | 1422
+num2: Prince Shotoku issued his Seventeen Article Constitution in 604 CE. How many years ago was that from {year}? | {year}-604
 mc3: The first article of Prince Shotoku's constitution says (translated by W. G. Aston, 1896), "Harmony is to be valued, and an avoidance of wanton opposition to be honoured." Which belief system most influenced this idea of harmony and proper relationships? | Confucianism | Legalism | Christianity | Islam
 sa2: Explain how Japan combined borrowed ideas with its own traditions. Give an example. | Japan adopted Buddhism but kept Shinto, and many people practiced both; it used Chinese characters but added kana; it borrowed Chinese government ideas while keeping its own emperor and clan system.
 

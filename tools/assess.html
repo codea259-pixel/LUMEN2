@@ -74,14 +74,17 @@ function genSrc(u,n){const ks=(u.skills||[]).filter(k=>G[k]),out=[],seen=new Set
     else out.push([{t:'num',q:t,dok:1,h,k:{a:q.a,exact:!!q.exact,txt:ansText(q)}},null])}
   return out}
 /* freezes [item, passages] pairs into public items, a key and the passages they use (choices shuffled, answers removed) */
+/* {year} in the bank becomes the year the test is made, and a number answer like {year}-1776 is worked out from it */
+const YR=s=>typeof s==='string'?s.replace(/\{year\}/g,new Date().getFullYear()):s,
+  YA=a=>{const m=/^\{year\}-(\d+)$/.exec(a);return m?String(new Date().getFullYear()-m[1]):a};
 function freeze(src,o={}){const pm=new Map(),P=[],items=[],key=[],seen=new Set();
   src.forEach(([it,ps])=>{if(!it||seen.has(it.q))return;seen.add(it.q);let p;
-    if(it.p!=null&&ps&&ps[it.p]){const k=ps[it.p];if(!pm.has(k)){pm.set(k,P.length);P.push({t:k.t,x:k.x})}p=pm.get(k)}
-    const b={t:it.t==='ex'?'sa':it.t,q:it.q,dok:it.dok||1};if(p!=null)b.p=p;if(o.hints&&it.h)b.h=it.h;
-    if(b.t==='mc'){const ch=shuf(it.ch);items.push({...b,ch});key.push({a:ch.indexOf(it.ch[0]),txt:it.ch[0]})}
-    else if(b.t==='num'){items.push(b);key.push(it.k||{a:it.a,txt:it.a})}
+    if(it.p!=null&&ps&&ps[it.p]){const k=ps[it.p];if(!pm.has(k)){pm.set(k,P.length);P.push({t:k.t,x:YR(k.x)})}p=pm.get(k)}
+    const b={t:it.t==='ex'?'sa':it.t,q:YR(it.q),dok:it.dok||1};if(p!=null)b.p=p;if(o.hints&&it.h)b.h=YR(it.h);
+    if(b.t==='mc'){const c0=it.ch.map(YR),ch=shuf(c0);items.push({...b,ch});key.push({a:ch.indexOf(c0[0]),txt:c0[0]})}
+    else if(b.t==='num'){items.push(b);key.push(it.k||{a:YA(it.a),txt:YA(it.a)})}
     else if(b.t==='task'){items.push({...b,rub:it.rub});key.push({rub:it.rub})}
-    else{const rub=it.rub||(b.t==='cer'?CER_RUB:b.t==='wr'?WR_RUB:null);if(rub)b.rub=rub;items.push(b);key.push({ans:it.ans,...(rub?{rub}:{})})}});
+    else{const rub=it.rub||(b.t==='cer'?CER_RUB:b.t==='wr'?WR_RUB:null);if(rub)b.rub=rub;items.push(b);key.push({ans:YR(it.ans),...(rub?{rub}:{})})}});
   return{items,key,passages:P}}
 function buildA(uid,kind,li=0,ver){const u=unitById(uid),vs=versionsFor(u,kind,li),v=vs.find(x=>x.id===ver)||vs.find(x=>x.id===defVer(vs))||vs[0],L=u.lessons[li]||u.lessons[0];
   let src=v.items.map(it=>[it,v.passages]);

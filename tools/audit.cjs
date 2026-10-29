@@ -125,7 +125,7 @@ const ROOT = path.join(__dirname, '..'), arg = n => process.argv.includes('--' +
     for (const [cell, c] of Object.entries(bank.cells)) for (const u of c.units) {
       strs(u, x => texts.push(x));
       const allItems = [...u.lessons.flatMap(L => [...(L.practice || []), ...(L.quiz || [])]), ...(u.test || [])];
-      allItems.forEach(it => strs(it, x => { if (BROKENT(x, it.q || '')) add('test bank', `${cell} ${u.id}`, `broken text in "${plain(it.q).slice(0, 50)}": ${x.slice(0, 60)}`) }));
+      allItems.forEach(it => strs(it, x => { if (BROKENT(x.replace(/\{year\}/g, '2026'), it.q || '')) add('test bank', `${cell} ${u.id}`, `broken text in "${plain(it.q).slice(0, 50)}": ${x.slice(0, 60)}`) }));
       strs(u.passages || [], x => { if (BROKENT(x)) add('test bank', `${cell} ${u.id}`, 'broken passage text: ' + x.slice(0, 80)) });
       const groups = [...u.lessons.flatMap((L, i) => [[`lesson ${i + 1} practice`, L.practice], [`lesson ${i + 1} quiz`, L.quiz]]), ['unit test', u.test]];
       for (const [name, items] of groups) { const qs = (items || []).map(it => plain(it.q).toLowerCase());
