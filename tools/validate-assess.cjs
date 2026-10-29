@@ -12,7 +12,11 @@ const fs = require('fs'), path = require('path'), OUT = process.argv[2];
   const bank = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'server', 'assessments.json'), 'utf8'));
   const r = await p.evaluate(async ({ bank, save }) => {
     AS.bank = bank; AS.vers = []; const probs = [], files = []; let n = 0, items = 0, overflow = 0; const D0 = PDFK.Doc;
-    const check = (label, a, u) => {
+    // passage titles in each grade and subject, so a question naming one can be checked against the test it lands in
+    const UT = {}, titlesOf = c => { const T = new Set(), walk = o => { if (Array.isArray(o)) o.forEach(walk); else if (o && typeof o === 'object') { if (typeof o.t === 'string' && typeof o.x === 'string') T.add(o.t.replace(/ \(.*\)$/, '')); Object.values(o).forEach(walk) } }; walk(c); return T };
+    for (const c of Object.values(bank.cells)) { const T = titlesOf(c); c.units.forEach(u => UT[u.id] = T) }
+    for (const v of bank.versions || []) for (const pk of Object.keys(v.parts)) { const uid = pk.split('|')[0], T = UT[uid] || (UT[uid] = new Set()); titlesOf(v.parts[pk]).forEach(t => T.add(t)) }
+    const check = (label, a, u, titles = new Set()) => {
       n++; items += a.items.length;
       if (!a.items.length) probs.push(`${label}: no questions`);
       a.items.forEach((it, i) => { const k = a.key[i] || {};
@@ -20,6 +24,7 @@ const fs = require('fs'), path = require('path'), OUT = process.argv[2];
         if (it.t === 'mc' && !(k.a >= 0 && k.a < it.ch.length)) probs.push(`${label} #${i + 1}: bad key`);
         if (it.t === 'mc' && new Set(it.ch).size !== it.ch.length) probs.push(`${label} #${i + 1}: repeated choices`);
         if (it.p != null && !a.passages[it.p]) probs.push(`${label} #${i + 1}: missing passage`);
+        (String(it.q).match(/"[^"]+"/g) || []).map(m => m.slice(1, -1)).filter(t => titles.has(t) && !a.passages.some(P => P.t === t || P.t.startsWith(t + ' ('))).forEach(t => probs.push(`${label} #${i + 1}: asks about the passage "${t}", which this test does not include`));
         if (it.t === 'num' && !numOk(k, String(k.txt))) probs.push(`${label} #${i + 1}: key "${k.txt}" does not grade as correct`);
         ['input', 'key', 'result'].forEach(m => { try { qHtml(it, i, m, { key: k, ans: '1', mark: 0 }) } catch (e) { probs.push(`${label} #${i + 1}: render ${m} failed: ${e.message}`) } }) });
       try { itemsHtml(a.items, a.passages, 'key', i => ({ key: a.key[i] })) } catch (e) { probs.push(`${label}: list render failed ${e.message}`) }
@@ -36,16 +41,16 @@ const fs = require('fs'), path = require('path'), OUT = process.argv[2];
       for (const u0 of c.units) {
         (u0.skills || []).forEach(k => { if (!SK[k]) probs.push(`${u0.id}: unknown skill ${k}`) });
         const u = unitById(u0.id);
-        u0.lessons.forEach((L, li) => ['classwork', 'quiz'].forEach(kind => { try { check(`${u0.id} L${li + 1} ${kind}`, buildA(u0.id, kind, li), u) } catch (e) { probs.push(`${u0.id} L${li + 1} ${kind}: build failed ${e.message}`) } }));
-        try { check(`${u0.id} test`, buildA(u0.id, 'test', 0), u) } catch (e) { probs.push(`${u0.id} test: build failed ${e.message}`) }
+        u0.lessons.forEach((L, li) => ['classwork', 'quiz'].forEach(kind => { try { check(`${u0.id} L${li + 1} ${kind}`, buildA(u0.id, kind, li), u, UT[u0.id]) } catch (e) { probs.push(`${u0.id} L${li + 1} ${kind}: build failed ${e.message}`) } }));
+        try { check(`${u0.id} test`, buildA(u0.id, 'test', 0), u, UT[u0.id]) } catch (e) { probs.push(`${u0.id} test: build failed ${e.message}`) }
       }
-      try { const nums = c.units.map((_, j) => j + 1).slice(0, 3), a = buildBench(sub, +g, 'Trimester 1', nums, 30); check(`${sub}-${g} benchmark`, a, unitMeta(a.unit)) } catch (e) { probs.push(`${key} benchmark: build failed ${e.message}`) }
+      try { const nums = c.units.map((_, j) => j + 1).slice(0, 3), a = buildBench(sub, +g, 'Trimester 1', nums, 30); check(`${sub}-${g} benchmark`, a, unitMeta(a.unit), UT[c.units[0].id]) } catch (e) { probs.push(`${key} benchmark: build failed ${e.message}`) }
     }
     // question versions from tools/assess-src/versions (for example each trimester's new set)
     for (const v of bank.versions || []) for (const pk of Object.keys(v.parts)) {
       const [uid, part] = pk.split('|'), m = part.match(/^L(\d+):(quiz|practice)$/), kind = m ? (m[2] === 'quiz' ? 'quiz' : 'classwork') : 'test', li = m ? +m[1] - 1 : 0;
       const label = `version ${v.id} ${uid} ${part}`;
-      try { const a = buildA(uid, kind, li, 'f:' + v.id); if (a.ver !== 'f:' + v.id) probs.push(`${label}: the site does not pick this version`); check(label, a, unitById(uid)) } catch (e) { probs.push(`${label}: build failed ${e.message}`) }
+      try { const a = buildA(uid, kind, li, 'f:' + v.id); if (a.ver !== 'f:' + v.id) probs.push(`${label}: the site does not pick this version`); check(label, a, unitById(uid), UT[uid]) } catch (e) { probs.push(`${label}: build failed ${e.message}`) }
     }
     return { probs, files, n, items, overflow };
   }, { bank, save: !!OUT });

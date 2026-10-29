@@ -754,7 +754,7 @@ mc3: Doubling the radius of a sphere multiplies its volume by | 8 | 2 | 4 | 6
 sa2: Find the arc length of a 150-degree arc in a circle of radius 12, showing the fraction of the circle. | 150/360 x 24 pi = 10 pi, about 31.4.
 sa2: A cylindrical tank has diameter 4 m and height 5 m. How many liters does it hold? (1 cubic meter = 1,000 liters, use 3.14.) | 3.14 x 4 x 5 = 62.8 cubic m = 62,800 liters.
 ex2: Explain how the area of a sector relates to the area of the whole circle. | It is the fraction (central angle / 360) of the whole circle's area.
-task3: A company sells ice cream in a cone (radius 3 cm, height 12 cm) topped with a half-sphere scoop of the same radius. Find the total volume of ice cream if the cone is filled. Then design a cup (cylinder) with the same volume and a radius of 4 cm, and find its height. Show formulas and explain (use 3.14). | Cone 113.04 + hemisphere 56.52 = 169.56 cubic cm, cup height about 3.37 cm, clear formulas and work. | Correct total with a cup error. | Correct formulas with calculation errors. | Little correct work.
+task3: A company sells ice cream in a cone (radius 3 cm, height 12 cm) topped with a half-sphere scoop of the same radius. Find the total volume of ice cream if the cone is filled. Then design a cup (cylinder) with the same volume and a radius of 4 cm, and find its height. Show formulas and explain (use 3.14). | Cone 113.04 + hemisphere 56.52 = 169.56 cubic cm, cup height about 3.38 cm, clear formulas and work. | Correct total with a cup error. | Correct formulas with calculation errors. | Little correct work.
 
 @grade 11
 about: Algebra II extends work to polynomial, rational, radical, exponential and logarithmic functions, introduces trigonometric functions on the unit circle, and develops series, probability and statistical inference.
@@ -799,7 +799,7 @@ mc2: 135 degrees in radians is | 3pi/4 | 2pi/3 | 5pi/6 | 3pi/2
 mc2: Period of y = sin(2x)? | pi | 2 pi | 4 pi | pi/2
 mc2: Amplitude of y = 3 cos(x) + 1? | 3 | 1 | 4 | 2
 mc2: If sin(t) = 3/5 and t is in quadrant II, cos(t) = | -4/5 | 4/5 | -3/5 | 5/4
-mc3: A Ferris wheel's height is h = 20 - 18 cos(pi t / 5). How long is one full turn? | 10 minutes | 5 minutes | 20 minutes | 18 minutes
+mc3: A Ferris wheel's height is h = 20 - 18 cos(pi t / 5), with t in minutes. How long is one full turn? | 10 minutes | 5 minutes | 20 minutes | 18 minutes
 sa2: Explain why sin^2(t) + cos^2(t) = 1 using the unit circle. | A point on the unit circle is (cos t, sin t) and its distance from the origin is 1, so by the Pythagorean theorem cos^2 + sin^2 = 1.
 sa2: Find all angles from 0 to 2 pi where sin(x) = 1/2. | pi/6 and 5pi/6.
 ex2: Explain what a radian measures. | The angle that cuts off an arc equal in length to the radius.
@@ -851,7 +851,7 @@ mc3: Position is s(t) = t^3 - 6t^2 + 9t. When is the velocity 0? | t = 1 and t =
 sa2: Find the equation of the tangent line to y = x^2 + 1 at x = 2. | Slope 4, point (2, 5): y = 4x - 3.
 sa2: Use the definition of the derivative to find f'(x) for f(x) = x^2. | (x + h)^2 - x^2 over h = 2x + h, which approaches 2x.
 ex2: Explain what the derivative tells you about a function's graph. | It gives the slope of the tangent line at each point: positive where the graph rises, negative where it falls.
-task3: A ball is thrown upward with height h(t) = -4.9t^2 + 19.6t + 2 meters. Find the velocity function, the time and height of the peak, the velocity when it hits the ground, and explain what the sign of the velocity means at each stage. | v = -9.8t + 19.6, peak at t = 2 s and 21.6 m, lands near t = 4.1 s with v about -20.5 m/s, clear sign interpretation. | Correct velocity and peak, landing velocity error. | Correct derivative only. | Little correct work.
+task3: A ball is thrown upward with height h(t) = -4.9t^2 + 19.6t + 2 meters. Find the velocity function, the time and height of the peak, the velocity when it hits the ground, and explain what the sign of the velocity means at each stage. | v = -9.8t + 19.6, peak at t = 2 s and 21.6 m, lands near t = 4.1 s with v about -20.6 m/s, clear sign interpretation. | Correct velocity and peak, landing velocity error. | Correct derivative only. | Little correct work.
 unit: Applications of derivatives | CALC.APP | g12vert
 mc1: f'(x) > 0 on an interval means f is | increasing | decreasing | constant | concave down
 mc2: f(x) = x^2 - 6x + 5 has a minimum at x = | 3 | -3 | 5 | 6

@@ -133,7 +133,7 @@ function petAnim(c){const el=document.querySelector('#palbtn .pal');if(!el||calm
 function petPick(kind){const P=PET();if(P.kind||!PALS[kind])return;P.kind=kind;P.name=PALS[kind].nm;SYNC();rerealm()}
 function petFeed(t){const P=PET(),s0=pstage(P.g),g0=P.g;if(t?!P.treat:!P.food)return;if(t){P.treat--;P.g+=3}else{P.food--;P.g+=1}SYNC();rerealm();setTimeout(()=>petAnim('munch'),30);
   const s1=pstage(P.g),acc=PACC.filter(a=>a.g>g0&&a.g<=P.g).map(a=>`New dress-up item: ${a.n}`);
-  if(s1>s0)setTimeout(()=>celebrate([s0?`${P.name} grew into ${PSTAGE[s1][0]}!`:`${P.name} hatched!`,...acc],true),350);else if(acc.length)msg(acc.join('. '))}
+  if(s1>s0)setTimeout(()=>celebrate([s0?`${P.name} ${s1>=3?'reached hero form':'is growing up'}!`:`${P.name} hatched!`,...acc],true),350);else if(acc.length)msg(acc.join('. '))}
 function petWear(id){const P=PET(),a=PACC.find(x=>x.id===id);if(!a||P.g<a.g)return;P.wear=P.wear===id?'':id;SYNC();rerealm()}
 function petAsk(){const P=PET();if(P.ask===dstr()||!P.kind)return;
   qAsk({title:`${P.name} needs help`,intro:pick(['Help me count my berries!','I found a riddle in the garden!','Can you help me with my homework?','Lumi gave me a puzzle!']),cancel:true}).then(ok=>{

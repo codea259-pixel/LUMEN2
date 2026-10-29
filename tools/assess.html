@@ -96,13 +96,20 @@ function buildA(uid,kind,li=0,ver){const u=unitById(uid),vs=versionsFor(u,kind,l
     minutes:kind==='classwork'||u.g<=1?0:kind==='quiz'?15:u.g<=5?45:55}}
 /* a trimester benchmark: a fresh mix from the chosen units' tests (all versions) and lesson quizzes */
 function buildBench(sub,g,term,nums,len){const c=cellOf(sub,g),U=nums.map(n=>c&&c.units[n-1]).filter(Boolean).map(u=>({...u,sub,g}));if(!U.length)return null;
+  /* passages a question names other than its own ("How is the frog in "Life in the Pond" like...") */
+  const refs=([it,ps])=>(ps||[]).filter((P,i)=>i!==it.p&&it.q.includes(`"${P.t.replace(/ \(.*\)$/,'')}"`));
   const pools=U.map(u=>{const auto=[],sa=[],big=[],blocks=[];
-    versionsFor(u,'test',0).forEach(v=>{const byP={};v.items.forEach(it=>{const x=[it,v.passages];if(it.p!=null){(byP[it.p]=byP[it.p]||[]).push(x);return}if(AUTO(it.t))auto.push(x);else if(it.t==='sa'||it.t==='ex')sa.push(x);else big.push(x)});Object.values(byP).forEach(b=>blocks.push(b))});
-    u.lessons.forEach(L=>L.quiz.forEach(it=>{if(it.p==null&&AUTO(it.t))auto.push([it,u.passages])}));
+    versionsFor(u,'test',0).forEach(v=>{const byP={};v.items.forEach(it=>{const x=[it,v.passages];if(it.p!=null){(byP[it.p]=byP[it.p]||[]).push(x);return}if(refs(x).length)return;if(AUTO(it.t))auto.push(x);else if(it.t==='sa'||it.t==='ex')sa.push(x);else big.push(x)});Object.values(byP).forEach(b=>blocks.push(b))});
+    u.lessons.forEach(L=>L.quiz.forEach(it=>{if(it.p==null&&AUTO(it.t)&&!refs([it,u.passages]).length)auto.push([it,u.passages])}));
     return{auto:shuf(auto),sa:shuf(sa),big:shuf(big),blocks:shuf(blocks)}});
   const pick=(k,n)=>{const out=[];for(let r=0;out.length<n&&r<n*pools.length*2+50;r++){const p=pools[r%pools.length][k];if(p.length)out.push(p.shift())}return out};
   let pre=[],big=null;
-  if(sub==='ela'){const bl=shuf(pools.flatMap(p=>p.blocks)).slice(0,len>=30?2:1);bl.forEach(b=>pre.push(...b.filter(x=>AUTO(x[0].t)).slice(0,8)));big=bl.flatMap(b=>b.filter(x=>x[0].t==='wr'))[0]||null}
+  if(sub==='ela'){const all=pools.flatMap(p=>p.blocks),bl=shuf(all).slice(0,len>=30?2:1);big=bl.flatMap(b=>b.filter(x=>x[0].t==='wr'))[0]||null;
+    /* a writing task that compares two passages brings the other passage (and its questions) along;
+       other questions that name a passage left out are skipped */
+    const blk=P=>b=>b[0][1][b[0][0].p]===P,has=P=>bl.some(blk(P));
+    if(big)refs(big).forEach(P=>{const m=!has(P)&&all.find(blk(P));if(m)bl.push(m)});
+    bl.forEach(b=>pre.push(...b.filter(x=>AUTO(x[0].t)&&refs(x).every(has)).slice(0,8)))}
   if(!big)big=pick('big',1)[0]||null;
   const sa=pick('sa',len>=30?2:1),auto=pick('auto',Math.max(0,len-pre.length-sa.length-(big?1:0))),f=freeze([...pre,...auto,...sa,...(big?[big]:[])]);
   return{kind:'benchmark',ver:'std',unit:`B:${sub}:${g}:${nums.join('.')}`,title:`Benchmark${term?' '+term:''}: ${GL(g)} ${ASUB(sub)}`.slice(0,140),items:f.items,key:f.key,passages:f.passages,skills:[],minutes:g<=1?0:60}}
