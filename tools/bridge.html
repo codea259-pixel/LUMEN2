@@ -34,6 +34,11 @@ function SYNC(){
 addEventListener('pagehide',()=>{if(BOOT.local){if(_syncT)saveLocal();return}if(BOOT.fb){if(_syncT){clearTimeout(_syncT);_syncT=null;api('PUT','/api/state',stateBody()).catch(()=>{})}return}if(_syncT){clearTimeout(_syncT);_syncT=null;try{fetch('/api/state',{method:'PUT',keepalive:true,credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify(stateBody())})}catch(e){}}});
 
 function authPage(mode){
+  /* How old is the learner: no answer is picked in advance. Under 13, a parent says yes by email (Firebase) or on this form (own server). */
+  const AGE=`<label class="ck"><input type="radio" name="age" value="13plus" required> 13 or older</label><label class="ck"><input type="radio" name="age" value="under13"> Under 13</label>
+  <div id="pg" hidden><p class="sol" style="margin-top:4px">Learners under 13 need a parent or guardian's OK.</p><label>Parent or guardian's email<input name="parentEmail" type="email" autocomplete="off"></label>
+  ${BOOT.fb?`<p class="sol">We'll email them a link to say yes. Until they do, progress is saved on this device only. <a href="privacy.html" target="_blank">What we save</a></p>`:`<label class="ck"><input type="checkbox" name="parentOk"> I'm this learner's parent or guardian. I agree to Bose Academy saving their learning progress. They can read the Community, and can post there once they're 13.</label>`}</div>`;
+  const ageReq=on=>document.querySelectorAll('[name=age]').forEach(r=>r.required=on);
   const e=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   document.querySelector('.wrap2').hidden=true;document.querySelector('.app').hidden=true;const v=document.getElementById('views');v.hidden=false;
   const G=BOOT.fb?`<button type="button" class="alt" id="gsi" style="width:100%;margin-top:14px;display:flex;gap:10px;justify-content:center;align-items:center"><svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.6l6.7-6.7C35.6 2.4 30.2 0 24 0 14.6 0 6.6 5.4 2.7 13.3l7.8 6C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.6c0-1.6-.1-3.1-.4-4.6H24v9h12.4c-.5 2.9-2.2 5.3-4.6 6.9l7.5 5.8c4.4-4 6.8-10 6.8-17.1z"/><path fill="#FBBC05" d="M10.5 28.7c-.5-1.4-.8-3-.8-4.7s.3-3.2.8-4.7l-7.8-6C1 16.6 0 20.2 0 24s1 7.4 2.7 10.7l7.8-6z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.5-5.8c-2.1 1.4-4.8 2.3-8.4 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.8 6C6.6 42.6 14.6 48 24 48z"/></svg>Continue with Google</button><p class="sol" style="text-align:center;margin:10px 0 0">or use a username</p>`:'';
@@ -41,11 +46,9 @@ function authPage(mode){
   <label>I am a<select name="role" id="ar"><option value="student">Learner</option><option value="parent">Parent or guardian</option><option value="teacher">Teacher</option></select></label>
   <label>Display name (shown to others, not your full name)<input name="display" required minlength="2" maxlength="20"></label>
   <fieldset id="ag" style="border:2px solid var(--line);border-radius:12px;margin-top:12px;padding:8px 12px"><legend style="font-weight:700;font-size:15px;padding:0 4px">How old is the learner?</legend>
-  <label class="ck"><input type="radio" name="age" value="13plus" checked> 13 or older</label><label class="ck"><input type="radio" name="age" value="under13"> Under 13</label>
-  <div id="pg" hidden><p class="sol" style="margin-top:4px">Learners under 13 set up their account with a parent or guardian.</p><label>Parent or guardian's email<input name="parentEmail" type="email" autocomplete="off"></label>
-  <label class="ck"><input type="checkbox" name="parentOk"> I'm this learner's parent or guardian. I agree to Bose Academy saving their learning progress. They can read the Community, and can post there once they're 13.</label></div></fieldset>
+${AGE}</fieldset>
   <p class="err" id="ae" role="alert"></p><button class="lamp" type="submit">Continue</button></form><p><a href="#" id="so">Sign out</a></p></div>`;
-    const ar=document.getElementById('ar');ar.onchange=()=>{document.getElementById('ag').hidden=ar.value!=='student'};const ageUI=()=>{const u=(document.querySelector('[name=age]:checked')||{}).value==='under13';document.getElementById('pg').hidden=!u;document.querySelector('[name=parentEmail]').required=u;document.querySelector('[name=parentOk]').required=u};document.querySelectorAll('[name=age]').forEach(r=>r.onchange=ageUI);
+    const ar=document.getElementById('ar');ar.onchange=()=>{document.getElementById('ag').hidden=ar.value!=='student';ageReq(ar.value==='student')};const ageUI=()=>{const u=(document.querySelector('[name=age]:checked')||{}).value==='under13';document.getElementById('pg').hidden=!u;document.querySelector('[name=parentEmail]').required=u;const po=document.querySelector('[name=parentOk]');if(po)po.required=u};document.querySelectorAll('[name=age]').forEach(r=>r.onchange=ageUI);
     document.getElementById('so').onclick=async ev=>{ev.preventDefault();await api('POST','/api/logout',{}).catch(()=>{});location.reload()};
     document.getElementById('af').onsubmit=async ev=>{ev.preventDefault();const f=Object.fromEntries(new FormData(ev.target));f.under13=f.age==='under13';f.age13=!f.under13;f.parentOk=!!f.parentOk;const b=ev.target.querySelector('button');b.disabled=true;
       try{await api('POST','/api/finish',f);location.reload()}catch(err){document.getElementById('ae').textContent=err.message;b.disabled=false}};
@@ -60,19 +63,54 @@ function authPage(mode){
   <label id="em" hidden>Email<input name="email" type="email" autocomplete="email"></label>
   <label>Password (8+ characters)<input name="password" type="password" autocomplete="new-password" required minlength="8" maxlength="100"></label>
   <fieldset id="ag" style="border:2px solid var(--line);border-radius:12px;margin-top:12px;padding:8px 12px"><legend style="font-weight:700;font-size:15px;padding:0 4px">How old is the learner?</legend>
-  <label class="ck"><input type="radio" name="age" value="13plus" checked> 13 or older</label><label class="ck"><input type="radio" name="age" value="under13"> Under 13</label>
-  <div id="pg" hidden><p class="sol" style="margin-top:4px">Learners under 13 set up their account with a parent or guardian.</p><label>Parent or guardian's email<input name="parentEmail" type="email" autocomplete="off"></label>
-  <label class="ck"><input type="checkbox" name="parentOk"> I'm this learner's parent or guardian. I agree to Bose Academy saving their learning progress. They can read the Community, and can post there once they're 13.</label></div></fieldset>
+${AGE}</fieldset>
   <p class="err" id="ae" role="alert"></p><button class="lamp" type="submit">Create account</button></form>
   <p>Already have an account? <a href="#" id="sw">Sign in</a></p>
-  <p class="sol">Bose Academy never sells student data and shows no ads.</p>`}</div>`;
+  <p class="sol">Bose Academy never sells student data and shows no ads. <a href="privacy.html" target="_blank">Privacy policy</a> · <a href="terms.html" target="_blank">Terms</a></p>`}</div>`;
   const gb=document.getElementById('gsi');if(gb)gb.onclick=async()=>{gb.disabled=true;try{await api('POST','/api/google',{});location.reload()}catch(err){document.getElementById('ae').textContent=/popup-closed|cancelled/.test(err.message)?'':err.message;gb.disabled=false}};
   document.getElementById('sw').onclick=ev=>{ev.preventDefault();authPage(mode==='login'?'signup':'login')};
-  const ar=document.getElementById('ar');if(ar)ar.onchange=()=>{const s=ar.value==='student';document.getElementById('em').hidden=s;document.querySelector('#em input').required=!s;document.getElementById('ag').hidden=!s};if(document.getElementById('pg')){const ageUI=()=>{const u=(document.querySelector('[name=age]:checked')||{}).value==='under13';document.getElementById('pg').hidden=!u;document.querySelector('[name=parentEmail]').required=u;document.querySelector('[name=parentOk]').required=u};document.querySelectorAll('[name=age]').forEach(r=>r.onchange=ageUI);}
+  const ar=document.getElementById('ar');if(ar)ar.onchange=()=>{const s=ar.value==='student';document.getElementById('em').hidden=s;document.querySelector('#em input').required=!s;document.getElementById('ag').hidden=!s;ageReq(s)};if(document.getElementById('pg')){const ageUI=()=>{const u=(document.querySelector('[name=age]:checked')||{}).value==='under13';document.getElementById('pg').hidden=!u;document.querySelector('[name=parentEmail]').required=u;const po=document.querySelector('[name=parentOk]');if(po)po.required=u};document.querySelectorAll('[name=age]').forEach(r=>r.onchange=ageUI);}
   document.getElementById('af').onsubmit=async ev=>{ev.preventDefault();const f=Object.fromEntries(new FormData(ev.target));if(mode==='signup'){f.under13=f.age==='under13';f.age13=!f.under13;f.parentOk=!!f.parentOk;}
     const b=ev.target.querySelector('button');b.disabled=true;
     try{await api('POST',mode==='login'?'/api/login':'/api/signup',f);location.reload()}catch(err){document.getElementById('ae').textContent=err.message;b.disabled=false}};
+  let note='';try{note=sessionStorage.getItem('lumen_note')||'';sessionStorage.removeItem('lumen_note')}catch(e){}if(note)document.getElementById('ae').textContent=note;
   v.querySelector('input,select').focus();
+}
+
+/* Parents and guardians of learners under 13: app.html?parent=<learner> opens from the emailed link; app.html?parent=me is their page.
+   They read what we save, say yes, download a learner's data or delete the account. */
+async function parentPage(kid){
+  const e=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])),g=id=>document.getElementById(id);
+  document.querySelector('.wrap2').hidden=true;document.querySelector('.app').hidden=true;const v=g('views');v.hidden=false;
+  const home=location.origin+location.pathname+'?parent=me';
+  const shell=h=>{v.innerHTML=`<div class="auth" style="max-width:660px"><h2>For parents and guardians</h2>${h}<p class="sol" style="margin-top:18px"><a href="privacy.html">Privacy policy</a> · <a href="terms.html">Terms</a> · <a href="./">Bose Academy home</a></p></div>`};
+  const emailForm=(text,btn,go)=>{shell(`<form class="card" id="pf"><p>${text}</p><label>Your email<input name="email" type="email" required autocomplete="email"></label><p class="err" id="pe" role="alert"></p><button class="lamp" type="submit">${btn}</button></form>`);
+    g('pf').onsubmit=async ev=>{ev.preventDefault();const b=ev.target.querySelector('button');b.disabled=true;try{await go(new FormData(ev.target).get('email'))}catch(err){g('pe').textContent=err.message;b.disabled=false}}};
+  const ask=(note='')=>emailForm(note||"Enter your email and we'll send you a sign-in link. Use the email your child gave when they signed up.",'Email me a link',async m=>{await FBM.parentLink(m);
+    shell(`<div class="card"><h3>Check your email</h3><p>We sent a link titled <b>Sign in to Bose Academy</b> to ${e(m)}. Open it on this device to continue.</p></div>`)});
+  let r=false;try{r=await FBM.parentLinkIn()}catch(err){return ask(e(err.message))}
+  if(r==='email')return emailForm('To finish signing in, type the email address this link was sent to.','Continue',async m=>{await FBM.parentLinkIn(m);parentPage(kid)});
+  if(!FBM.email())return ask();
+  let d;try{d=await api('GET','/api/parent/kids')}catch(err){return ask(e(err.message))}
+  const focus=d.kids.find(k=>k.id===kid&&k.consent!=='yes');
+  const notice=k=>`<div class="card"><h3>${e(k.display)} would like to use Bose Academy</h3>
+    <p>Bose Academy is a free learning site with lessons, practice and learning games. Because ${e(k.display)} is under 13, we need your permission before we save anything to their account. If you say yes, we save:</p>
+    <ul><li>their username and the nickname they chose (we ask children not to use their real name);</li><li>their learning progress: the skills they practice, which answers were right, time spent and game rewards;</li><li>your email address, so we can reach you about their account;</li><li>if they join a teacher's class with a class code, their work in that class, which the teacher can see;</li><li>if they earn a certificate, the name they put on it. Anyone with the certificate's code can check it.</li></ul>
+    <p>Children under 13 can read the Community but can't post in it. We never sell their information, never show ads and use it only to run the site. Google Firebase stores the data for us.</p>
+    <p>You can come back at any time to see their progress, download everything we have about them, or delete their account: <a href="${e(home)}">${e(home)}</a>. If you don't answer within 14 days, we delete your email address.</p>
+    <p><a href="privacy.html" target="_blank">Read the full privacy policy</a></p>
+    <div class="row"><button class="lamp" data-kid="${e(k.id)}" data-act="yes">Yes, I agree</button><button class="alt" data-kid="${e(k.id)}" data-act="del">No, delete their account</button></div></div>`;
+  const card=k=>`<div class="card" style="margin-top:12px"><h3>${e(k.display)} <span class="sol">(username ${e(k.username)})</span></h3>
+    <p>${k.consent==='yes'?`You said yes on ${new Date(k.at).toLocaleDateString()}.`:'Waiting for your answer.'} ${k.practiced} skill${k.practiced===1?'':'s'} practiced, ${k.mastered} mastered, ${k.minutes} minute${k.minutes===1?'':'s'} of practice saved.</p>
+    <div class="row">${k.consent==='yes'?'':`<button class="lamp" data-kid="${e(k.id)}" data-act="yes">Yes, I agree</button>`}<button class="alt" data-kid="${e(k.id)}" data-act="export">Download their data</button><button class="alt" data-kid="${e(k.id)}" data-act="del">Delete their account and data</button></div></div>`;
+  shell(`${focus?notice(focus):''}<p class="sol" style="margin-top:12px">Signed in as ${e(d.email)}. <a href="#" id="pso">Sign out</a></p>
+    ${d.kids.length?`<h3 style="margin-top:12px">Your children's accounts</h3>${d.kids.map(card).join('')}`:'<div class="card"><p>No learner has given this email. If your child used a different email, open the link sent to that one.</p></div>'}<p class="ok" id="pm" role="status"></p>`);
+  g('pso').onclick=async ev=>{ev.preventDefault();await FBM.signOut();location.href=home};
+  v.querySelectorAll('button[data-act]').forEach(b=>b.onclick=async()=>{const k=d.kids.find(x=>x.id===b.dataset.kid),a=b.dataset.act;b.disabled=true;
+    try{if(a==='yes'){await api('POST',`/api/parent/kids/${encodeURIComponent(k.id)}/consent`,{});await parentPage('me');g('pm').textContent=`Thank you. ${k.display} can keep learning, and their progress now saves to their account.`}
+      else if(a==='export'){const j=await api('GET',`/api/parent/kids/${encodeURIComponent(k.id)}/export`,{}),u=URL.createObjectURL(new Blob([JSON.stringify(j,null,2)],{type:'application/json'})),l=document.createElement('a');l.href=u;l.download=`bose-academy-${k.username}.json`;document.body.appendChild(l);l.click();l.remove();b.disabled=false}
+      else if(confirm(`Delete ${k.display}'s account and everything saved about them? This cannot be undone.`)){await api('DELETE',`/api/parent/kids/${encodeURIComponent(k.id)}`,{});await parentPage('me');g('pm').textContent=`${k.display}'s account and data were deleted.`}
+      else b.disabled=false}catch(err){alert(err.message);b.disabled=false}});
 }
 
 /* Public certificate check: app.html#verify=ID (no sign-in needed) */
@@ -89,6 +127,7 @@ async function verifyPage(id){document.querySelector('.wrap2').hidden=true;docum
   /* No server here (for example GitHub Pages): use Firebase when it is set up in firebase-config.js */
   if(!mode&&window.FIREBASE_CONFIG){try{await FBM.start();BOOT.fb=true;mode='firebase';try{me=await api('GET','/api/me')}catch(e){finish=e.status===428}}catch(e){console.error(e);mode=null}}
   const vm=location.hash.match(/^#verify=([A-Za-z0-9-]{8,30})$/);if(vm&&mode)return verifyPage(vm[1]);
+  const pk=new URLSearchParams(location.search).get('parent');if(pk!==null&&mode==='firebase')return parentPage(pk);
   if(finish)return authPage('finish');
   if(mode&&!me)return authPage(location.hash==='#signup'?'signup':'login');
   if(!me){let st={};try{st=JSON.parse(localStorage.getItem('lumen_local')||'{}')}catch(e){}
@@ -138,7 +177,7 @@ function joinClass(){busy(async()=>{const r=await api('POST','/api/classes/join'
 addClass=function(){const n=$('cn').value.trim();if(!n)return msg('Enter a class name.');busy(async()=>{await api('POST','/api/classes',{name:n,grade:+$('cg').value,region:($('cc')||{value:''}).value.trim()});reload('teacher')})};
 const _classCard=classCard;
 classCard=function(c){return _classCard(c)
-  .replace(/<h4>Add students<\/h4>[\s\S]*?simulated in this demo\.<\/p>/,`<h4>Add students</h4><p class="sol">Type one student name per line. Bose Academy creates a username and password for each, so students under 13 never need an email. Students 13 or older can also sign up and join with the code above.</p>
+  .replace(/<h4>Add students<\/h4>[\s\S]*?simulated in this demo\.<\/p>/,`<h4>Add students</h4><p class="sol">Type one student name per line. Bose Academy creates a username and password for each, so students under 13 never need an email. Only the first name is kept. Creating logins for students under 13 means your school gives permission for this school use, in place of their parents (as the US children's privacy law, COPPA, allows). Students 13 or older can also sign up and join with the code above.</p>
 <div class="row"><textarea id="sn${c.id}" placeholder="Ava Smith&#10;Ben Lee" aria-label="Student names, one per line"></textarea></div><div class="row"><button class="lamp" onclick="addStu(${c.id})">Create student logins</button><label class="sol">Or upload a list (one name per line)<br><input type="file" accept=".csv,.txt" onchange="fileIn(${c.id},this)"></label></div>
 ${c.students.length?`<div class="row"><select id="rs${c.id}" aria-label="Student">${c.students.map(s=>`<option value="${s.uid}">${esc(s.name)} (${esc(s.email)})</option>`).join('')}</select><button class="alt" onclick="resetPw(${c.id})">Reset password</button></div>`:''}<div id="cred${c.id}"></div>`)
   .replace('Start live view (simulated)','Start live view')

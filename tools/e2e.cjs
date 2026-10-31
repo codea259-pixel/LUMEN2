@@ -7,6 +7,9 @@ const errs = [];
     p.on('pageerror', e => errs.push('pageerror: ' + e.message)); p.on('console', m => { if (m.type() === 'error' && !/fonts\.g/.test(m.text())) errs.push('console: ' + m.text()) });
     p.on('dialog', d => d.accept()); return p };
   const step = (s) => console.log('✓', s);
+  const q0footer = async () => { const f = await mk(); await f.goto(B + '/app'); await f.waitForSelector('#af'); const signedOut = await f.$('footer.sitefoot');
+    const p = await mk(); await p.goto(B + '/app'); await p.fill('[name=username]', 'owner'); await p.fill('[name=password]', 'ownerpass1234'); await p.click('#af button'); await p.waitForSelector('footer.sitefoot a[href="privacy.html"]');
+    return (await p.$$eval('footer.sitefoot a', a => a.map(x => x.textContent))).join(', ') + (signedOut ? '' : ' (sign-in page links in the form)') };
   const menu = async (pg, label) => { await pg.click('#avatarBtn'); await pg.click(`#pmenu button:has-text("${label}")`); };
 
   // Landing page links to the app
@@ -83,6 +86,24 @@ const errs = [];
   // Owner can't be self-promoted; wrong password rejected
   const bad = await mk(); await bad.goto(B + '/app'); await bad.fill('[name=username]', 'owner'); await bad.fill('[name=password]', 'nope'); await bad.click('#af button');
   await bad.waitForFunction(() => document.getElementById('ae').textContent); step('bad login: ' + await bad.textContent('#ae'));
+
+  // Privacy policy, terms and footer links
+  const lg = await mk(); await lg.goto(B + '/privacy.html'); step('privacy policy: ' + await lg.textContent('h1') + ', operator named: ' + (await lg.textContent('#who + p + p')).includes('Gourab Basu'));
+  await lg.goto(B + '/terms.html'); step('terms: ' + await lg.textContent('h1'));
+  await lg.goto(B + '/'); step('landing page footer: ' + (await lg.$$eval('footer nav a', a => a.map(x => x.textContent))).join(', ') + '; not affiliated: ' + /not affiliated with, endorsed by or connected to Bose Corporation/.test(await lg.textContent('#about')));
+  step('app footer: ' + (await q0footer()));
+  // A learner 13 or older signs up, deletes their own post (California's law for minors), downloads their data and deletes the account
+  const q = await mk(); await q.goto(B + '/app#signup'); await q.waitForSelector('#af'); await q.selectOption('#ar', 'student');
+  await q.fill('[name=username]', 'nora15'); await q.fill('[name=display]', 'Nora'); await q.fill('[name=password]', 'norapass12'); await q.click('#af button');
+  step('age question has no answer picked in advance: ' + (await q.evaluate(() => document.querySelector('[name=age]').validity.valueMissing ? 'must be answered' : 'skipped')));
+  await q.check('[name=age][value="13plus"]'); await q.click('#af button'); await q.waitForSelector('#avatarBtn');
+  await q.click('#tabs >> text=Community'); await q.fill('#pt', 'Tips for long division?'); await q.fill('#pb', 'I lose my place halfway through.'); await q.click('#views button:has-text("Post")');
+  await q.waitForSelector('.card.post:has-text("Tips for long division?") button:has-text("Delete")'); await q.click('.card.post:has-text("Tips for long division?") button:has-text("Delete")');
+  await q.waitForSelector('text=Tips for long division?', { state: 'detached' }); step('learner deleted their own post');
+  await q.click('#avatarBtn'); await q.click('#pmenu button:has-text("Settings")'); await q.waitForSelector('#mydata');
+  const [dl] = await Promise.all([q.waitForEvent('download'), q.click('#mydata button:has-text("Download my data")')]); step('downloaded data for ' + JSON.parse(require('fs').readFileSync(await dl.path(), 'utf8')).account.username);
+  await q.click('#mydata summary'); await q.fill('#dl1', 'DELETE'); await q.fill('#dl2', 'norapass12'); await q.click('#mydata button:has-text("Delete my account forever")'); await q.waitForSelector('#af'); step('account deleted: ' + await q.textContent('#ae'));
+  await q.evaluate(() => { document.getElementById('ae').textContent = '' }); await q.fill('[name=username]', 'nora15'); await q.fill('[name=password]', 'norapass12'); await q.click('#af button'); await q.waitForFunction(() => document.getElementById('ae').textContent); step('signing in again: ' + await q.textContent('#ae'));
 
   await br.close();
   console.log(errs.length ? 'ERRORS:\n' + errs.join('\n') : 'no browser errors');

@@ -312,8 +312,8 @@ return `<h2>Community</h2><div class="row"><label>Display name <input id="dn" va
 function newForm(type,gid){return `<div class="card" style="margin-top:12px"><h3>${type=='q'?'Ask a question':'Start a discussion'}</h3><div class="row">${gid?'':sSel('ps',ST.cs.subj=='all'?'Math':ST.cs.subj)+gSel('pg',ST.cs.grade=='all'?(ST.grades.find(g=>g!=='all')||5):+ST.cs.grade)}</div><div class="row"><input id="pt" placeholder="Title" style="flex:1" aria-label="Title"></div><div class="row"><textarea id="pb" placeholder="Add detail: what have you tried?" aria-label="Details"></textarea></div><div class="row"><button class="lamp" onclick="post('${type}',${gid||0})">Post</button></div></div>`}
 function post(type,gid){const w=who();if(!w)return msg('Save a display name first.');const t=$('pt').value.trim(),b=$('pb').value.trim();if(t.length<5||b.length<10)return msg('Add a title (5+ characters) and some detail (10+).');const e=clean(t+' '+b);if(e)return msg(e);const g=gid?ST.groups.find(x=>x.id==gid):null;ST.posts.push({id:Date.now(),type,group:gid||null,subject:g?g.subject:$('ps').value,grade:g?g.grade:+$('pg').value,title:t,body:b,author:w,ts:Date.now(),votes:[],replies:[],reports:[],hidden:false});sv();r2()}
 function postCard(p){const w=who();return `<div class="card post ${p.hidden?'hid':''}"><div class="split"><h3>${esc(p.title)}</h3><span class="sol">${esc(p.subject)}, ${GLAB(p.grade)}</span></div><p>${esc(p.body)}</p><p class="sol">${esc(p.author)}, ${new Date(p.ts).toLocaleDateString()}${p.pinned?', pinned':''}${p.locked?', locked':''}${p.hidden?', hidden':''}</p>
-<div class="row" style="margin-top:6px">${p.type=='q'?`<button class="chip ${p.votes.includes(w)?'on':''}" aria-label="Upvote" onclick="vote(${p.id})">▲ ${p.votes.length}</button>`:''}<button class="chip" onclick="rep(${p.id},'p')">Report</button>${isMod()?`<button class="chip" onclick="mod(${p.id},'hide')">${p.hidden?'Restore':'Hide'}</button><button class="chip" onclick="mod(${p.id},'pin')">${p.pinned?'Unpin':'Pin'}</button><button class="chip" onclick="mod(${p.id},'lock')">${p.locked?'Unlock':'Lock'}</button><button class="chip" onclick="mod(${p.id},'del')">Delete</button>`:''}</div>
-${p.replies.filter(r=>!r.hidden||isMod()).map(r=>`<div class="reply"><p>${esc(r.body)}</p><p class="sol">${esc(r.author)} <button class="chip" onclick="rep(${p.id},${r.id})">Report</button>${isMod()?` <button class="chip" onclick="modR(${p.id},${r.id})">${r.hidden?'Restore':'Hide'}</button>`:''}</p></div>`).join('')}
+<div class="row" style="margin-top:6px">${p.type=='q'?`<button class="chip ${p.votes.includes(w)?'on':''}" aria-label="Upvote" onclick="vote(${p.id})">▲ ${p.votes.length}</button>`:''}<button class="chip" onclick="rep(${p.id},'p')">Report</button>${p.mine&&!isMod()?`<button class="chip" onclick="delMine(${p.id})">Delete</button>`:''}${isMod()?`<button class="chip" onclick="mod(${p.id},'hide')">${p.hidden?'Restore':'Hide'}</button><button class="chip" onclick="mod(${p.id},'pin')">${p.pinned?'Unpin':'Pin'}</button><button class="chip" onclick="mod(${p.id},'lock')">${p.locked?'Unlock':'Lock'}</button><button class="chip" onclick="mod(${p.id},'del')">Delete</button>`:''}</div>
+${p.replies.filter(r=>!r.hidden||isMod()).map(r=>`<div class="reply"><p>${esc(r.body)}</p><p class="sol">${esc(r.author)} <button class="chip" onclick="rep(${p.id},${r.id})">Report</button>${r.mine?` <button class="chip" onclick="delMineR(${p.id},${r.id})">Delete</button>`:''}${isMod()?` <button class="chip" onclick="modR(${p.id},${r.id})">${r.hidden?'Restore':'Hide'}</button>`:''}</p></div>`).join('')}
 ${p.locked?'':`<div class="row"><input id="pr${p.id}" placeholder="Write a reply" aria-label="Reply" style="flex:1"><button onclick="reply(${p.id})">Reply</button></div>`}</div>`}
 function reply(id){const w=who();if(!w)return msg('Save a display name first.');const p=ST.posts.find(x=>x.id==id),b=$('pr'+id).value.trim();if(b.length<2)return;const e=clean(b);if(e)return msg(e);p.replies.push({id:Date.now(),author:w,body:b,reports:[],hidden:false});sv();r2()}
 function vote(id){const w=who();if(!w)return msg('Save a display name first.');const v=ST.posts.find(x=>x.id==id).votes,i=v.indexOf(w);i<0?v.push(w):v.splice(i,1);sv();r2()}
@@ -835,6 +835,19 @@ const FBM=(()=>{
     if(/permission-denied/.test(c))return new E(403,'Not allowed.');
     if(/network|unavailable/.test(c))return new E(503,'No connection. Check your internet and try again.');
     return e instanceof E?e:new E(500,e&&e.message||'Something went wrong. Please try again.')};
+  /* Learners under 13 who sign up themselves need a parent's OK by email (COPPA). The sign-up sends the parent a
+     sign-in link; only someone signed in with that verified email can answer, in consents/{uid} (see firestore.rules).
+     Until then progress is kept on this device. Teacher-made logins count as the school's OK. Requests expire after 14 days. */
+  const WAIT=14*864e5,POLICY='2026-10-31',mask=e=>String(e||'').replace(/^(.)[^@]*(@.*)$/,'$1\u2022\u2022\u2022$2');
+  let consent=null,pHint='';
+  const consentOf=async()=>{pHint='';if(!profile||!profile.under13||profile.role!=='student')return null;if(profile.managedBy)return 'school';
+    const [c,p]=await Promise.all([doc('consents',me.uid).get().catch(()=>null),doc('private',me.uid).get().catch(()=>null)]);
+    if(c&&c.exists&&c.data().decision==='yes')return 'yes';const r=p&&p.exists?p.data():{};
+    if(r.parentEmail&&r.requested&&now()-r.requested>=WAIT){await p.ref.update({parentEmail:FV.delete(),requested:FV.delete()}).catch(()=>{});return 'ask'}
+    pHint=mask(r.parentEmail);return r.parentEmail&&r.requested?'pending':'ask'};
+  const waiting=()=>consent==='pending'||consent==='ask';
+  const askParent=(email,uid)=>auth.sendSignInLinkToEmail(email,{url:location.origin+location.pathname+'?parent='+uid,handleCodeInApp:true});
+  const LK=()=>'lumen_wait_'+me.uid,lget=()=>{try{return JSON.parse(localStorage.getItem(LK())||'null')}catch(e){return null}};
   const userOut=()=>({id:me.uid,username:profile.username,display:profile.display,role:isOwner()?'owner':profile.role,verified:!!profile.verified,under13:!!profile.under13});
 
   async function start(){
@@ -850,22 +863,26 @@ const FBM=(()=>{
   /* Each request the app makes, answered with Firestore */
   const R=[];const route=(m,p,fn)=>R.push([m,new RegExp('^'+p.replace(/:(\w+)/g,'(?<$1>[^/]+)')+'$'),fn]);
 
-  route('GET','/api/me',async()=>{if(!me)throw new E(401,'Please sign in.');if(!profile)throw new E(428,'Finish setting up your account.');if(profile.locked){await auth.signOut();throw new E(401,'This account is locked.')}
+  route('GET','/api/me',async()=>{if(!me)throw new E(401,'Please sign in.');
+    if(!profile&&/@accounts\.bose\.academy$/.test(me.email||'')){await auth.signOut();me=null;try{sessionStorage.setItem('lumen_note','This account was deleted.')}catch(e){}throw new E(401,'This account was deleted.')}
+    if(!profile)throw new E(428,'Finish setting up your account.');if(profile.locked){await auth.signOut();throw new E(401,'This account is locked.')}
     let member=+profile.memberUntil||0;if(profile.role==='student'){try{(await db.collection('classes').where('members','array-contains',me.uid).get()).forEach(d=>{member=Math.max(member,+d.data().memberUntil||0)})}catch(e){}}
-    return{user:{...userOut(),member}}});
+    consent=await consentOf();
+    return{user:{...userOut(),member,consent,parentHint:pHint,managed:!!profile.managedBy,google:!!profile.google}}});
   route('POST','/api/signup',async b=>{
     const role=b.role;if(!ROLES.includes(role))throw new E(400,'Choose learner, parent or teacher.');
     const username=str(b.username,3,20,'Usernames').toLowerCase();if(!/^[a-z0-9_]+$/.test(username))throw new E(400,'Usernames use letters, numbers and underscores only.');
     const password=String(b.password||'');if(password.length<8||password.length>100)throw new E(400,'Passwords need at least 8 characters.');
     const display=str(b.display,2,20,'Display names');const bad=typeof clean==='function'?clean(display):'';if(bad)throw new E(400,bad);
     let parentEmail=null;const under13=role==='student'&&!!b.under13;
-    if(under13){parentEmail=str(b.parentEmail,5,100,'Email');if(!/^\S+@\S+\.\S+$/.test(parentEmail))throw new E(400,"Enter the parent or guardian's email.");if(!b.parentOk)throw new E(400,'A parent or guardian needs to tick the permission box.')}
+    if(under13){parentEmail=str(b.parentEmail,5,100,'Email').toLowerCase();if(!/^\S+@\S+\.\S+$/.test(parentEmail))throw new E(400,"Enter the parent or guardian's email.")}
     let email=null;if(role!=='student'){email=str(b.email,5,100,'Email');if(!/^\S+@\S+\.\S+$/.test(email))throw new E(400,'Enter a valid email address.')}
     const cred=await auth.createUserWithEmailAndPassword(emailOf(username),password);const uid=cred.user.uid;
     await doc('users',uid).set({username,display,role,verified:false,locked:false,under13,created:now()});
     await doc('state',uid).set({json:'{}',updated:now(),readers:[]});
-    if(email||parentEmail)await doc('private',uid).set(parentEmail?{parentEmail,consent:now()}:{email});
-    return{ok:true}});
+    if(email||parentEmail)await doc('private',uid).set(parentEmail?{parentEmail}:{email});
+    let sent=false;if(parentEmail)try{await askParent(parentEmail,uid);await doc('private',uid).update({requested:now()});sent=true}catch(e){console.warn(e)}
+    return{ok:true,sent}});
   route('POST','/api/login',async b=>{const u=String(b.username||'').trim().toLowerCase();if(!/^[a-z0-9_]{3,20}$/.test(u))throw new E(401,'Wrong username or password.');
     await auth.signInWithEmailAndPassword(emailOf(u),String(b.password||''));
     const p=await doc('users',auth.currentUser.uid).get();if(p.exists&&p.data().locked){await auth.signOut();throw new E(403,'This account is locked. Ask your teacher or the site owner.')}return{ok:true}});
@@ -875,17 +892,24 @@ const FBM=(()=>{
   route('POST','/api/finish',async b=>{if(!me)throw new E(401,'Please sign in.');if(profile)return{ok:true};const role=b.role;if(!ROLES.includes(role))throw new E(400,'Choose learner, parent or teacher.');
     const display=str(b.display,2,20,'Display names');
     let parentEmail=null;const under13=role==='student'&&!!b.under13;
-    if(under13){parentEmail=str(b.parentEmail,5,100,'Email');if(!/^\S+@\S+\.\S+$/.test(parentEmail))throw new E(400,"Enter the parent or guardian's email.");if(!b.parentOk)throw new E(400,'A parent or guardian needs to tick the permission box.')}
+    if(under13){parentEmail=str(b.parentEmail,5,100,'Email').toLowerCase();if(!/^\S+@\S+\.\S+$/.test(parentEmail))throw new E(400,"Enter the parent or guardian's email.")}
 
     const username=((me.email||'user').split('@')[0].toLowerCase().replace(/[^a-z0-9_]/g,'').slice(0,14)||'user')+rand(3,'23456789');
     await doc('users',me.uid).set({username,display,role,verified:false,locked:false,under13,created:now(),google:true});
-    await doc('state',me.uid).set({json:'{}',updated:now(),readers:[]},{merge:true});if(me.email||parentEmail)await doc('private',me.uid).set({...(me.email?{email:me.email}:{}),...(parentEmail?{parentEmail,consent:now()}:{})});return{ok:true}});
+    await doc('state',me.uid).set({json:'{}',updated:now(),readers:[]},{merge:true});if(me.email||parentEmail)await doc('private',me.uid).set({...(me.email?{email:me.email}:{}),...(parentEmail?{parentEmail}:{})});
+    let sent=false;if(parentEmail)try{await askParent(parentEmail,me.uid);await doc('private',me.uid).update({requested:now()});sent=true}catch(e){console.warn(e)}
+    return{ok:true,sent}});
   route('POST','/api/logout',async()=>{await auth.signOut();return{ok:true}});
   route('PATCH','/api/me',async b=>{need();const d=str(b.display,2,20,'Display names');await doc('users',me.uid).update({display:d});profile.display=d;return{display:d}});
   route('GET','/api/settings',async()=>({flags:{...DEF.flags,...site.flags},retDays:site.retDays??DEF.retDays,gr:site.gr||{},impact:site.impact||DEF.impact,programs:site.programs||{},terms:site.terms||[],game:site.game||DEF.game,member:site.member||DEF.member}));
   route('GET','/api/curriculum',async()=>{try{const r=await fetch('server/curriculum.json');if(r.ok)return r.json()}catch(e){}return{courses:[],milestones:[]}});
-  route('GET','/api/state',async()=>{need();const s=await stateOf(me.uid);lastSaved=s;return s});
+  route('GET','/api/state',async()=>{need();
+    if(waiting()){const l=lget();if(l){lastSaved=l;return l}}
+    let s=await stateOf(me.uid);
+    if(consent==='yes'){const l=lget();if(l){await doc('state',me.uid).set({json:JSON.stringify(l),updated:now()},{merge:true});localStorage.removeItem(LK());s=l}}
+    lastSaved=s;return s});
   route('PUT','/api/state',async b=>{need();const json=JSON.stringify(b);if(json.length>400000)throw new E(413,'Too large.');
+    if(waiting()){try{localStorage.setItem(LK(),json)}catch(e){}lastSaved=b;return{ok:true,local:true}}
     await doc('state',me.uid).set({json,updated:now()},{merge:true});
     /* public Impact counters */
     try{const q=x=>Object.values((x&&x.S)||{}).reduce((a,s)=>a+(s.att||0),0),was=lastSaved?q(lastSaved):0,n=q(b),dq=Math.max(0,Math.min(50,n-was)),ds=Math.max(0,Math.min(3600,(b.secs||0)-((lastSaved&&lastSaved.secs)||0)));
@@ -898,8 +922,8 @@ const FBM=(()=>{
   route('GET','/api/community',async()=>{need();const mod=isMod();
     const pq=mod?db.collection('posts'):db.collection('posts').where('hidden','==',false);const rq=mod?db.collection('replies'):db.collection('replies').where('hidden','==',false);
     const [ps,rs,gs]=await Promise.all([pq.limit(300).get(),rq.limit(1000).get(),db.collection('groups').limit(200).get()]);
-    const reps={};rs.forEach(d=>{const r=d.data();(reps[r.postId]=reps[r.postId]||[]).push({id:num(d.id),author:r.authorName,body:r.body,hidden:!!r.hidden,ts:r.ts,reports:mod?nm(r.reports):[]})});
-    const posts=[];ps.forEach(d=>{const p=d.data();posts.push({id:num(d.id),type:p.type,group:p.grp?num(p.grp):null,subject:p.subject,grade:p.grade,title:p.title,body:p.body,author:p.authorName,ts:p.ts,hidden:!!p.hidden,pinned:!!p.pinned,locked:!!p.locked,votes:nm(p.votes),reports:mod?nm(p.reports):[],replies:(reps[d.id]||[]).sort((a,b)=>a.ts-b.ts)})});
+    const reps={};rs.forEach(d=>{const r=d.data();(reps[r.postId]=reps[r.postId]||[]).push({id:num(d.id),mine:r.authorId===me.uid,author:r.authorName,body:r.body,hidden:!!r.hidden,ts:r.ts,reports:mod?nm(r.reports):[]})});
+    const posts=[];ps.forEach(d=>{const p=d.data();posts.push({id:num(d.id),mine:p.authorId===me.uid,type:p.type,group:p.grp?num(p.grp):null,subject:p.subject,grade:p.grade,title:p.title,body:p.body,author:p.authorName,ts:p.ts,hidden:!!p.hidden,pinned:!!p.pinned,locked:!!p.locked,votes:nm(p.votes),reports:mod?nm(p.reports):[],replies:(reps[d.id]||[]).sort((a,b)=>a.ts-b.ts)})});
     posts.sort((a,b)=>b.ts-a.ts);const groups=[];gs.forEach(d=>{const g=d.data();groups.push({id:num(d.id),name:g.name,subject:g.subject,grade:g.grade,members:nm(g.members,g.memberNames)})});
     return{posts,groups}});
   const noKids=()=>{if(profile&&profile.under13)throw new E(403,"Posting in the Community opens when you're 13.")};
@@ -914,7 +938,8 @@ const FBM=(()=>{
     const reps=d.data().reports||[];if(reps.includes(me.uid))return{ok:true};await r.update(reps.length+1>=3?{reports:FV.arrayUnion(me.uid),hidden:true}:{reports:FV.arrayUnion(me.uid)});return{ok:true}});
   route('PATCH','/api/posts/:id',async(b,p)=>{need(isMod());const col={hide:'hidden',pin:'pinned',lock:'locked'}[b.action];if(!col)throw new E(400,'Unknown action.');const r=doc('posts',sid(p.id)),d=await r.get();await r.update({[col]:!d.data()[col]});return{ok:true}});
   route('POST','/api/posts/:id/keep',async(b,p)=>{need(isOwner());await doc('posts',sid(p.id)).update({hidden:false,reports:[]});return{ok:true}});
-  route('DELETE','/api/posts/:id',async(b,p)=>{need(isMod());const rs=await db.collection('replies').where('postId','==',sid(p.id)).get();await Promise.all(rs.docs.map(d=>d.ref.delete()));await doc('posts',sid(p.id)).delete();return{ok:true}});
+  route('DELETE','/api/posts/:id',async(b,p)=>{need();const pd=await doc('posts',sid(p.id)).get();if(!pd.exists)throw new E(404,'Not found.');if(!isMod()&&pd.data().authorId!==me.uid)throw new E(403,'Not allowed.');const rq=db.collection('replies').where('postId','==',sid(p.id)),rs=await (isMod()?rq:rq.where('hidden','==',false)).get();await Promise.all(rs.docs.map(d=>d.ref.delete()));await doc('posts',sid(p.id)).delete();return{ok:true}});
+  route('DELETE','/api/replies/:id',async(b,p)=>{need();const r=doc('replies',sid(p.id)),d=await r.get();if(!d.exists)throw new E(404,'Not found.');if(!isMod()&&d.data().authorId!==me.uid)throw new E(403,'Not allowed.');await r.delete();return{ok:true}});
   route('PATCH','/api/replies/:id',async(b,p)=>{need(isMod());const r=doc('replies',sid(p.id)),d=await r.get();await r.update({hidden:!d.data().hidden});return{ok:true}});
   route('POST','/api/groups',async b=>{need();noKids();const n=str(b.name,3,40,'Group names');await db.collection('groups').add({name:n,subject:String(b.subject).slice(0,40),grade:+b.grade,members:[me.uid],memberNames:{[me.uid]:profile.display}});return{ok:true}});
   route('POST','/api/groups/:id/join',async(b,p)=>{need();const r=doc('groups',sid(p.id)),d=await r.get();if(!d.exists)throw new E(404,'Not found.');const inG=(d.data().members||[]).includes(me.uid);
@@ -1035,7 +1060,7 @@ const FBM=(()=>{
 
   /* Certificates */
   route('GET','/api/certs',async()=>{need();const q=await db.collection('certs').where('uid','==',me.uid).get();return{certs:q.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>a.date<b.date?-1:1)}});
-  route('POST','/api/certs/claim',async b=>{need();const key=String(b.key||''),full=str(b.full,2,40,'Names'),st=await stateOf(me.uid),Sx=st.S||{},cur=await (await fetch('server/curriculum.json')).json();
+  route('POST','/api/certs/claim',async b=>{need();if(waiting())throw new E(403,"Certificates with your name need your parent's OK first.");const key=String(b.key||''),full=str(b.full,2,40,'Names'),st=await stateOf(me.uid),Sx=st.S||{},cur=await (await fetch('server/curriculum.json')).json();
     const course=cur.courses.find(x=>x.id===key),mil=cur.milestones.find(x=>x.id===key);let ok=false,label,kind='course';
     if(course){ok=course.skills.every(k=>lvl(Sx[k])>=3);label=course.name}
     else if(mil){const q=Object.values(Sx).reduce((a,s)=>a+(s.att||0),0);ok={m10:q>=10,m100:q>=100,m500:q>=500,m1:Object.values(Sx).some(s=>lvl(s)===4),m5:(st.days||[]).length>=5}[key];label=mil.label;kind='badge'}
@@ -1065,12 +1090,74 @@ const FBM=(()=>{
       for(const l of [link,ylink])if(l&&!/^https:\/\/[^\s"'<>]{4,300}$/.test(l))throw new E(400,'The payment link must start with https://');if(contact&&!/^\S+@\S+\.\S+$/.test(contact))throw new E(400,'Enter a valid contact email.');
       up.member={on:!!m.on,price:price(m.price),link,yprice:price(m.yprice),ylink,contact:contact.slice(0,100)}}
     await doc('config','site').set(up,{merge:true});Object.assign(site,up);return{ok:true}});
+  /* Parent's permission, from the learner's side: send (or resend) the email */
+  route('POST','/api/consent/send',async b=>{need();if(!waiting())return{ok:true,status:consent};
+    const pr=doc('private',me.uid),pd=await pr.get(),r=pd.exists?pd.data():{};
+    const email=b.parentEmail?str(b.parentEmail,5,100,'Email').toLowerCase():r.parentEmail;if(!email||!/^\S+@\S+\.\S+$/.test(email))throw new E(400,"Enter your parent or guardian's email.");
+    if(r.requested&&now()-r.requested<60000)throw new E(429,'We just sent it. Please wait a minute before sending it again.');
+    await pr.set({parentEmail:email},{merge:true});await askParent(email,me.uid);await pr.update({requested:now()});
+    consent='pending';pHint=mask(email);return{ok:true,status:consent,hint:pHint}});
+
+  /* Everything stored about one learner: for "Download my data" and for parents */
+  const exportOf=async uid=>{const one=async c=>{const d=await doc(c,uid).get().catch(()=>null);return d&&d.exists?d.data():null};
+    const many=async(c,f)=>{try{return(await db.collection(c).where(f,'==',uid).limit(500).get()).docs.map(d=>({id:d.id,...d.data()}))}catch(e){return[]}};
+    const [account,priv,st,perm,posts,replies,certificates]=await Promise.all([one('users'),one('private'),one('state'),one('consents'),many('posts','authorId'),many('replies','authorId'),many('certs','uid')]);
+    let progress=null;try{progress=st&&st.json?JSON.parse(st.json):null}catch(e){}
+    if(me&&uid===me.uid&&waiting())progress=lget()||progress;
+    return{site:'Bose Academy (bose.academy)',exported:new Date().toISOString(),account,contact:priv,progress,parentPermission:perm,posts,replies,certificates}};
+  /* Delete everything stored about one learner. The private record goes last: the rules use it to recognise the parent. */
+  const wipe=async uid=>{const all=async(c,f)=>{try{return(await db.collection(c).where(f,'==',uid).limit(500).get()).docs}catch(e){return[]}};
+    for(const d of await all('posts','authorId')){try{for(const r of (await db.collection('replies').where('postId','==',d.id).where('hidden','==',false).get()).docs)await r.ref.delete()}catch(e){}await d.ref.delete().catch(()=>{})}
+    for(const d of [...await all('replies','authorId'),...await all('certs','uid')])await d.ref.delete().catch(()=>{});
+    try{for(const c of (await db.collection('classes').where('members','array-contains',uid).get()).docs){await c.ref.collection('board').doc(uid).delete().catch(()=>{});await c.ref.update({members:FV.arrayRemove(uid)}).catch(()=>{})}}catch(e){}
+    try{for(const g of (await db.collection('groups').where('members','array-contains',uid).get()).docs)await g.ref.update({members:FV.arrayRemove(uid)}).catch(()=>{})}catch(e){}
+    for(const c of ['state','consents','users','private'])await doc(c,uid).delete().catch(e=>{if(c!=='consents')throw e})};
+
+  route('GET','/api/me/export',async()=>{need();return exportOf(me.uid)});
+  route('DELETE','/api/me',async b=>{need();if(isOwner())throw new E(403,'The Owner account cannot be deleted here.');
+    if(profile.managedBy)throw new E(403,'Your teacher made this login, so ask your teacher to remove it.');
+    if(isTeacher()&&!(await db.collection('classes').where('teacherId','==',me.uid).limit(1).get()).empty)throw new E(409,'You still have classes. Email us and we will delete your classes and your account together.');
+    try{if(profile.google){const pr=new firebase.auth.GoogleAuthProvider();if(window.FIREBASE_TEST_GOOGLE)await me.reauthenticateWithCredential(firebase.auth.GoogleAuthProvider.credential(JSON.stringify(window.FIREBASE_TEST_GOOGLE)));else await me.reauthenticateWithPopup(pr)}
+      else await me.reauthenticateWithCredential(firebase.auth.EmailAuthProvider.credential(emailOf(profile.username),String(b.password||'')))}
+    catch(e){throw /popup-closed|cancelled/.test(e.code||'')?new E(400,'Deleting was cancelled.'):new E(401,'That password is not right.')}
+    await wipe(me.uid);try{localStorage.removeItem(LK())}catch(e){}await me.delete();me=null;profile=null;return{ok:true}});
+
+  /* Parents: signed in with the link we emailed them (a verified email), they see the learners who listed that email */
+  const parentMail=()=>{if(!me||!me.email||!me.emailVerified)throw new E(401,'Open the link in the email we sent you, or ask for a new one.');return me.email.toLowerCase()};
+  const kidOf=async id=>{const em=parentMail(),p=await doc('private',id).get().catch(()=>null);if(!p||!p.exists||p.data().parentEmail!==em)throw new E(403,'This learner did not give your email.');return em};
+  route('GET','/api/parent/kids',async()=>{const em=parentMail(),q=await db.collection('private').where('parentEmail','==',em).limit(20).get(),kids=[];
+    for(const d of q.docs){const [u,c,st]=await Promise.all([doc('users',d.id).get(),doc('consents',d.id).get(),stateOf(d.id)]);if(!u.exists)continue;const x=u.data(),V=Object.values(st.S||{});
+      kids.push({id:d.id,display:x.display,username:x.username,created:x.created||0,consent:c.exists?c.data().decision:null,at:c.exists?c.data().at:0,
+        practiced:V.filter(v=>v&&v.att).length,mastered:V.filter(v=>lvl(v)===4).length,minutes:Math.round((st.secs||0)/60)})}
+    return{email:em,kids}});
+  route('POST','/api/parent/kids/:id/consent',async(b,p)=>{const em=await kidOf(p.id);
+    await doc('consents',p.id).set({decision:'yes',parentUid:me.uid,parentEmail:em,at:now(),method:'email link',policy:POLICY});return{ok:true}});
+  route('GET','/api/parent/kids/:id/export',async(b,p)=>{await kidOf(p.id);return exportOf(p.id)});
+  route('DELETE','/api/parent/kids/:id',async(b,p)=>{await kidOf(p.id);await wipe(p.id);return{ok:true}});
+
+  /* Owner: remove parent emails whose request was never answered within 14 days */
+  route('POST','/api/owner/expire-consents',async()=>{need(isOwner());const q=await db.collection('users').where('under13','==',true).limit(1000).get();let n=0;
+    for(const d of q.docs){if(d.data().managedBy)continue;const c=await doc('consents',d.id).get();if(c.exists&&c.data().decision==='yes')continue;
+      const pd=await doc('private',d.id).get(),r=pd.exists?pd.data():null;if(r&&r.parentEmail&&(!r.requested||now()-r.requested>=WAIT)){await pd.ref.update({parentEmail:FV.delete(),requested:FV.delete()});n++}}
+    return{removed:n}});
+  /* Owner: delete accounts of learners under 13 that nobody has used for two years (the privacy policy's retention rule) */
+  route('POST','/api/owner/delete-inactive',async()=>{need(isOwner());const q=await db.collection('users').where('under13','==',true).limit(1000).get(),cut=now()-730*864e5;let n=0;
+    for(const d of q.docs){const st=await doc('state',d.id).get(),last=Math.max(d.data().created||0,st.exists?st.data().updated||0:0);if(last<cut){await wipe(d.id);n++}}
+    return{deleted:n}});
   route('POST','/api/tutor',async()=>{throw new E(503,'The AI tutor needs the hosted version of the site.')});
 
   async function api(method,path,body){for(const [m,re,fn] of R){if(m!==method)continue;const mt=re.exec(path);if(!mt)continue;
       try{return await fn(body||{},mt.groups||{})}catch(e){throw friendly(e)}}
     throw new E(404,'Not found.')}
-  return{start,api,uid:()=>me&&me.uid,isOwner};
+  /* The parent page: finish signing in with an emailed link, or send a new one */
+  const parentLinkIn=async email=>{if(!auth.isSignInWithEmailLink(location.href))return false;
+    email=String(email||localStorage.getItem('lumen_parent_email')||'').trim().toLowerCase();if(!email)return 'email';
+    try{me=(await auth.signInWithEmailLink(email,location.href)).user}catch(e){throw new E(400,/invalid-email|mismatch/.test(e.code||'')?'That is not the email this link was sent to.':'This link has expired or was already used. Ask for a new one below.')}
+    const p=await doc('users',me.uid).get();profile=p.exists?p.data():null;localStorage.removeItem('lumen_parent_email');
+    const k=new URLSearchParams(location.search).get('parent')||'';history.replaceState(null,'',location.pathname+'?parent='+encodeURIComponent(k));return true};
+  const parentLink=async email=>{email=str(email,5,100,'Email').toLowerCase();if(!/^\S+@\S+\.\S+$/.test(email))throw new E(400,'Enter a valid email address.');
+    localStorage.setItem('lumen_parent_email',email);await auth.sendSignInLinkToEmail(email,{url:location.origin+location.pathname+'?parent=me',handleCodeInApp:true}).catch(e=>{throw friendly(e)})};
+  return{start,api,uid:()=>me&&me.uid,isOwner,parentLinkIn,parentLink,email:()=>me&&me.emailVerified?me.email:null,signOut:()=>auth.signOut()};
 })();
 </script>
 
@@ -1110,6 +1197,11 @@ function SYNC(){
 addEventListener('pagehide',()=>{if(BOOT.local){if(_syncT)saveLocal();return}if(BOOT.fb){if(_syncT){clearTimeout(_syncT);_syncT=null;api('PUT','/api/state',stateBody()).catch(()=>{})}return}if(_syncT){clearTimeout(_syncT);_syncT=null;try{fetch('/api/state',{method:'PUT',keepalive:true,credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify(stateBody())})}catch(e){}}});
 
 function authPage(mode){
+  /* How old is the learner: no answer is picked in advance. Under 13, a parent says yes by email (Firebase) or on this form (own server). */
+  const AGE=`<label class="ck"><input type="radio" name="age" value="13plus" required> 13 or older</label><label class="ck"><input type="radio" name="age" value="under13"> Under 13</label>
+  <div id="pg" hidden><p class="sol" style="margin-top:4px">Learners under 13 need a parent or guardian's OK.</p><label>Parent or guardian's email<input name="parentEmail" type="email" autocomplete="off"></label>
+  ${BOOT.fb?`<p class="sol">We'll email them a link to say yes. Until they do, progress is saved on this device only. <a href="privacy.html" target="_blank">What we save</a></p>`:`<label class="ck"><input type="checkbox" name="parentOk"> I'm this learner's parent or guardian. I agree to Bose Academy saving their learning progress. They can read the Community, and can post there once they're 13.</label>`}</div>`;
+  const ageReq=on=>document.querySelectorAll('[name=age]').forEach(r=>r.required=on);
   const e=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   document.querySelector('.wrap2').hidden=true;document.querySelector('.app').hidden=true;const v=document.getElementById('views');v.hidden=false;
   const G=BOOT.fb?`<button type="button" class="alt" id="gsi" style="width:100%;margin-top:14px;display:flex;gap:10px;justify-content:center;align-items:center"><svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9 3.6l6.7-6.7C35.6 2.4 30.2 0 24 0 14.6 0 6.6 5.4 2.7 13.3l7.8 6C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.6c0-1.6-.1-3.1-.4-4.6H24v9h12.4c-.5 2.9-2.2 5.3-4.6 6.9l7.5 5.8c4.4-4 6.8-10 6.8-17.1z"/><path fill="#FBBC05" d="M10.5 28.7c-.5-1.4-.8-3-.8-4.7s.3-3.2.8-4.7l-7.8-6C1 16.6 0 20.2 0 24s1 7.4 2.7 10.7l7.8-6z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.5-5.8c-2.1 1.4-4.8 2.3-8.4 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.8 6C6.6 42.6 14.6 48 24 48z"/></svg>Continue with Google</button><p class="sol" style="text-align:center;margin:10px 0 0">or use a username</p>`:'';
@@ -1117,11 +1209,9 @@ function authPage(mode){
   <label>I am a<select name="role" id="ar"><option value="student">Learner</option><option value="parent">Parent or guardian</option><option value="teacher">Teacher</option></select></label>
   <label>Display name (shown to others, not your full name)<input name="display" required minlength="2" maxlength="20"></label>
   <fieldset id="ag" style="border:2px solid var(--line);border-radius:12px;margin-top:12px;padding:8px 12px"><legend style="font-weight:700;font-size:15px;padding:0 4px">How old is the learner?</legend>
-  <label class="ck"><input type="radio" name="age" value="13plus" checked> 13 or older</label><label class="ck"><input type="radio" name="age" value="under13"> Under 13</label>
-  <div id="pg" hidden><p class="sol" style="margin-top:4px">Learners under 13 set up their account with a parent or guardian.</p><label>Parent or guardian's email<input name="parentEmail" type="email" autocomplete="off"></label>
-  <label class="ck"><input type="checkbox" name="parentOk"> I'm this learner's parent or guardian. I agree to Bose Academy saving their learning progress. They can read the Community, and can post there once they're 13.</label></div></fieldset>
+${AGE}</fieldset>
   <p class="err" id="ae" role="alert"></p><button class="lamp" type="submit">Continue</button></form><p><a href="#" id="so">Sign out</a></p></div>`;
-    const ar=document.getElementById('ar');ar.onchange=()=>{document.getElementById('ag').hidden=ar.value!=='student'};const ageUI=()=>{const u=(document.querySelector('[name=age]:checked')||{}).value==='under13';document.getElementById('pg').hidden=!u;document.querySelector('[name=parentEmail]').required=u;document.querySelector('[name=parentOk]').required=u};document.querySelectorAll('[name=age]').forEach(r=>r.onchange=ageUI);
+    const ar=document.getElementById('ar');ar.onchange=()=>{document.getElementById('ag').hidden=ar.value!=='student';ageReq(ar.value==='student')};const ageUI=()=>{const u=(document.querySelector('[name=age]:checked')||{}).value==='under13';document.getElementById('pg').hidden=!u;document.querySelector('[name=parentEmail]').required=u;const po=document.querySelector('[name=parentOk]');if(po)po.required=u};document.querySelectorAll('[name=age]').forEach(r=>r.onchange=ageUI);
     document.getElementById('so').onclick=async ev=>{ev.preventDefault();await api('POST','/api/logout',{}).catch(()=>{});location.reload()};
     document.getElementById('af').onsubmit=async ev=>{ev.preventDefault();const f=Object.fromEntries(new FormData(ev.target));f.under13=f.age==='under13';f.age13=!f.under13;f.parentOk=!!f.parentOk;const b=ev.target.querySelector('button');b.disabled=true;
       try{await api('POST','/api/finish',f);location.reload()}catch(err){document.getElementById('ae').textContent=err.message;b.disabled=false}};
@@ -1136,19 +1226,54 @@ function authPage(mode){
   <label id="em" hidden>Email<input name="email" type="email" autocomplete="email"></label>
   <label>Password (8+ characters)<input name="password" type="password" autocomplete="new-password" required minlength="8" maxlength="100"></label>
   <fieldset id="ag" style="border:2px solid var(--line);border-radius:12px;margin-top:12px;padding:8px 12px"><legend style="font-weight:700;font-size:15px;padding:0 4px">How old is the learner?</legend>
-  <label class="ck"><input type="radio" name="age" value="13plus" checked> 13 or older</label><label class="ck"><input type="radio" name="age" value="under13"> Under 13</label>
-  <div id="pg" hidden><p class="sol" style="margin-top:4px">Learners under 13 set up their account with a parent or guardian.</p><label>Parent or guardian's email<input name="parentEmail" type="email" autocomplete="off"></label>
-  <label class="ck"><input type="checkbox" name="parentOk"> I'm this learner's parent or guardian. I agree to Bose Academy saving their learning progress. They can read the Community, and can post there once they're 13.</label></div></fieldset>
+${AGE}</fieldset>
   <p class="err" id="ae" role="alert"></p><button class="lamp" type="submit">Create account</button></form>
   <p>Already have an account? <a href="#" id="sw">Sign in</a></p>
-  <p class="sol">Bose Academy never sells student data and shows no ads.</p>`}</div>`;
+  <p class="sol">Bose Academy never sells student data and shows no ads. <a href="privacy.html" target="_blank">Privacy policy</a> · <a href="terms.html" target="_blank">Terms</a></p>`}</div>`;
   const gb=document.getElementById('gsi');if(gb)gb.onclick=async()=>{gb.disabled=true;try{await api('POST','/api/google',{});location.reload()}catch(err){document.getElementById('ae').textContent=/popup-closed|cancelled/.test(err.message)?'':err.message;gb.disabled=false}};
   document.getElementById('sw').onclick=ev=>{ev.preventDefault();authPage(mode==='login'?'signup':'login')};
-  const ar=document.getElementById('ar');if(ar)ar.onchange=()=>{const s=ar.value==='student';document.getElementById('em').hidden=s;document.querySelector('#em input').required=!s;document.getElementById('ag').hidden=!s};if(document.getElementById('pg')){const ageUI=()=>{const u=(document.querySelector('[name=age]:checked')||{}).value==='under13';document.getElementById('pg').hidden=!u;document.querySelector('[name=parentEmail]').required=u;document.querySelector('[name=parentOk]').required=u};document.querySelectorAll('[name=age]').forEach(r=>r.onchange=ageUI);}
+  const ar=document.getElementById('ar');if(ar)ar.onchange=()=>{const s=ar.value==='student';document.getElementById('em').hidden=s;document.querySelector('#em input').required=!s;document.getElementById('ag').hidden=!s;ageReq(s)};if(document.getElementById('pg')){const ageUI=()=>{const u=(document.querySelector('[name=age]:checked')||{}).value==='under13';document.getElementById('pg').hidden=!u;document.querySelector('[name=parentEmail]').required=u;const po=document.querySelector('[name=parentOk]');if(po)po.required=u};document.querySelectorAll('[name=age]').forEach(r=>r.onchange=ageUI);}
   document.getElementById('af').onsubmit=async ev=>{ev.preventDefault();const f=Object.fromEntries(new FormData(ev.target));if(mode==='signup'){f.under13=f.age==='under13';f.age13=!f.under13;f.parentOk=!!f.parentOk;}
     const b=ev.target.querySelector('button');b.disabled=true;
     try{await api('POST',mode==='login'?'/api/login':'/api/signup',f);location.reload()}catch(err){document.getElementById('ae').textContent=err.message;b.disabled=false}};
+  let note='';try{note=sessionStorage.getItem('lumen_note')||'';sessionStorage.removeItem('lumen_note')}catch(e){}if(note)document.getElementById('ae').textContent=note;
   v.querySelector('input,select').focus();
+}
+
+/* Parents and guardians of learners under 13: app.html?parent=<learner> opens from the emailed link; app.html?parent=me is their page.
+   They read what we save, say yes, download a learner's data or delete the account. */
+async function parentPage(kid){
+  const e=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])),g=id=>document.getElementById(id);
+  document.querySelector('.wrap2').hidden=true;document.querySelector('.app').hidden=true;const v=g('views');v.hidden=false;
+  const home=location.origin+location.pathname+'?parent=me';
+  const shell=h=>{v.innerHTML=`<div class="auth" style="max-width:660px"><h2>For parents and guardians</h2>${h}<p class="sol" style="margin-top:18px"><a href="privacy.html">Privacy policy</a> · <a href="terms.html">Terms</a> · <a href="./">Bose Academy home</a></p></div>`};
+  const emailForm=(text,btn,go)=>{shell(`<form class="card" id="pf"><p>${text}</p><label>Your email<input name="email" type="email" required autocomplete="email"></label><p class="err" id="pe" role="alert"></p><button class="lamp" type="submit">${btn}</button></form>`);
+    g('pf').onsubmit=async ev=>{ev.preventDefault();const b=ev.target.querySelector('button');b.disabled=true;try{await go(new FormData(ev.target).get('email'))}catch(err){g('pe').textContent=err.message;b.disabled=false}}};
+  const ask=(note='')=>emailForm(note||"Enter your email and we'll send you a sign-in link. Use the email your child gave when they signed up.",'Email me a link',async m=>{await FBM.parentLink(m);
+    shell(`<div class="card"><h3>Check your email</h3><p>We sent a link titled <b>Sign in to Bose Academy</b> to ${e(m)}. Open it on this device to continue.</p></div>`)});
+  let r=false;try{r=await FBM.parentLinkIn()}catch(err){return ask(e(err.message))}
+  if(r==='email')return emailForm('To finish signing in, type the email address this link was sent to.','Continue',async m=>{await FBM.parentLinkIn(m);parentPage(kid)});
+  if(!FBM.email())return ask();
+  let d;try{d=await api('GET','/api/parent/kids')}catch(err){return ask(e(err.message))}
+  const focus=d.kids.find(k=>k.id===kid&&k.consent!=='yes');
+  const notice=k=>`<div class="card"><h3>${e(k.display)} would like to use Bose Academy</h3>
+    <p>Bose Academy is a free learning site with lessons, practice and learning games. Because ${e(k.display)} is under 13, we need your permission before we save anything to their account. If you say yes, we save:</p>
+    <ul><li>their username and the nickname they chose (we ask children not to use their real name);</li><li>their learning progress: the skills they practice, which answers were right, time spent and game rewards;</li><li>your email address, so we can reach you about their account;</li><li>if they join a teacher's class with a class code, their work in that class, which the teacher can see;</li><li>if they earn a certificate, the name they put on it. Anyone with the certificate's code can check it.</li></ul>
+    <p>Children under 13 can read the Community but can't post in it. We never sell their information, never show ads and use it only to run the site. Google Firebase stores the data for us.</p>
+    <p>You can come back at any time to see their progress, download everything we have about them, or delete their account: <a href="${e(home)}">${e(home)}</a>. If you don't answer within 14 days, we delete your email address.</p>
+    <p><a href="privacy.html" target="_blank">Read the full privacy policy</a></p>
+    <div class="row"><button class="lamp" data-kid="${e(k.id)}" data-act="yes">Yes, I agree</button><button class="alt" data-kid="${e(k.id)}" data-act="del">No, delete their account</button></div></div>`;
+  const card=k=>`<div class="card" style="margin-top:12px"><h3>${e(k.display)} <span class="sol">(username ${e(k.username)})</span></h3>
+    <p>${k.consent==='yes'?`You said yes on ${new Date(k.at).toLocaleDateString()}.`:'Waiting for your answer.'} ${k.practiced} skill${k.practiced===1?'':'s'} practiced, ${k.mastered} mastered, ${k.minutes} minute${k.minutes===1?'':'s'} of practice saved.</p>
+    <div class="row">${k.consent==='yes'?'':`<button class="lamp" data-kid="${e(k.id)}" data-act="yes">Yes, I agree</button>`}<button class="alt" data-kid="${e(k.id)}" data-act="export">Download their data</button><button class="alt" data-kid="${e(k.id)}" data-act="del">Delete their account and data</button></div></div>`;
+  shell(`${focus?notice(focus):''}<p class="sol" style="margin-top:12px">Signed in as ${e(d.email)}. <a href="#" id="pso">Sign out</a></p>
+    ${d.kids.length?`<h3 style="margin-top:12px">Your children's accounts</h3>${d.kids.map(card).join('')}`:'<div class="card"><p>No learner has given this email. If your child used a different email, open the link sent to that one.</p></div>'}<p class="ok" id="pm" role="status"></p>`);
+  g('pso').onclick=async ev=>{ev.preventDefault();await FBM.signOut();location.href=home};
+  v.querySelectorAll('button[data-act]').forEach(b=>b.onclick=async()=>{const k=d.kids.find(x=>x.id===b.dataset.kid),a=b.dataset.act;b.disabled=true;
+    try{if(a==='yes'){await api('POST',`/api/parent/kids/${encodeURIComponent(k.id)}/consent`,{});await parentPage('me');g('pm').textContent=`Thank you. ${k.display} can keep learning, and their progress now saves to their account.`}
+      else if(a==='export'){const j=await api('GET',`/api/parent/kids/${encodeURIComponent(k.id)}/export`,{}),u=URL.createObjectURL(new Blob([JSON.stringify(j,null,2)],{type:'application/json'})),l=document.createElement('a');l.href=u;l.download=`bose-academy-${k.username}.json`;document.body.appendChild(l);l.click();l.remove();b.disabled=false}
+      else if(confirm(`Delete ${k.display}'s account and everything saved about them? This cannot be undone.`)){await api('DELETE',`/api/parent/kids/${encodeURIComponent(k.id)}`,{});await parentPage('me');g('pm').textContent=`${k.display}'s account and data were deleted.`}
+      else b.disabled=false}catch(err){alert(err.message);b.disabled=false}});
 }
 
 /* Public certificate check: app.html#verify=ID (no sign-in needed) */
@@ -1165,6 +1290,7 @@ async function verifyPage(id){document.querySelector('.wrap2').hidden=true;docum
   /* No server here (for example GitHub Pages): use Firebase when it is set up in firebase-config.js */
   if(!mode&&window.FIREBASE_CONFIG){try{await FBM.start();BOOT.fb=true;mode='firebase';try{me=await api('GET','/api/me')}catch(e){finish=e.status===428}}catch(e){console.error(e);mode=null}}
   const vm=location.hash.match(/^#verify=([A-Za-z0-9-]{8,30})$/);if(vm&&mode)return verifyPage(vm[1]);
+  const pk=new URLSearchParams(location.search).get('parent');if(pk!==null&&mode==='firebase')return parentPage(pk);
   if(finish)return authPage('finish');
   if(mode&&!me)return authPage(location.hash==='#signup'?'signup':'login');
   if(!me){let st={};try{st=JSON.parse(localStorage.getItem('lumen_local')||'{}')}catch(e){}
@@ -1214,7 +1340,7 @@ function joinClass(){busy(async()=>{const r=await api('POST','/api/classes/join'
 addClass=function(){const n=$('cn').value.trim();if(!n)return msg('Enter a class name.');busy(async()=>{await api('POST','/api/classes',{name:n,grade:+$('cg').value,region:($('cc')||{value:''}).value.trim()});reload('teacher')})};
 const _classCard=classCard;
 classCard=function(c){return _classCard(c)
-  .replace(/<h4>Add students<\/h4>[\s\S]*?simulated in this demo\.<\/p>/,`<h4>Add students</h4><p class="sol">Type one student name per line. Bose Academy creates a username and password for each, so students under 13 never need an email. Students 13 or older can also sign up and join with the code above.</p>
+  .replace(/<h4>Add students<\/h4>[\s\S]*?simulated in this demo\.<\/p>/,`<h4>Add students</h4><p class="sol">Type one student name per line. Bose Academy creates a username and password for each, so students under 13 never need an email. Only the first name is kept. Creating logins for students under 13 means your school gives permission for this school use, in place of their parents (as the US children's privacy law, COPPA, allows). Students 13 or older can also sign up and join with the code above.</p>
 <div class="row"><textarea id="sn${c.id}" placeholder="Ava Smith&#10;Ben Lee" aria-label="Student names, one per line"></textarea></div><div class="row"><button class="lamp" onclick="addStu(${c.id})">Create student logins</button><label class="sol">Or upload a list (one name per line)<br><input type="file" accept=".csv,.txt" onchange="fileIn(${c.id},this)"></label></div>
 ${c.students.length?`<div class="row"><select id="rs${c.id}" aria-label="Student">${c.students.map(s=>`<option value="${s.uid}">${esc(s.name)} (${esc(s.email)})</option>`).join('')}</select><button class="alt" onclick="resetPw(${c.id})">Reset password</button></div>`:''}<div id="cred${c.id}"></div>`)
   .replace('Start live view (simulated)','Start live view')
@@ -5228,7 +5354,7 @@ const _tmM=toggleMenu;toggleMenu=function(){_tmM();const m=$('pmenu');if(m.hidde
 O.member=function(){const m=MSET(),L=ST.members||{users:[],classes:[]},now=Date.now(),st=u=>u>now?`Until ${fmtDay(u)}`:`Ended ${fmtDay(u)}`;
   return `<div class="card mform"><h3>Membership offer</h3><p class="sol">Members get unlimited play in the Arcade. Payments go through Stripe Payment Links:</p>
   <ol class="msteps sol"><li>In the Stripe Dashboard, open <b>Payment Links</b> and make one link for each plan, with a one-month price and a one-year price.</li><li>In each link's options, add a custom field named <b>Username or class code</b>.</li><li>Paste the links below. They start with https://buy.stripe.com/.</li></ol>
-  <p class="sol">Each payment also carries the username or class code as its <b>client reference ID</b>. One-time prices are simplest, because membership is switched on for the time paid; with a subscription, switch on another month or year at each renewal. Parents and teachers see the plans; learners see them only after a grown-up check.</p>
+  <p class="sol">Each payment also carries the username or class code as its <b>client reference ID</b>. Use one-time prices: membership is switched on for the time paid, and the Terms of Service promise that it doesn't renew by itself. (If you ever switch to subscriptions, update the terms first: California's automatic renewal law requires clear renewal terms before payment and an easy online way to cancel.) Parents and teachers see the plans; learners see them only after a grown-up check.</p>
   <label class="ck"><input type="checkbox" id="mon" ${m.on?'checked':''}> Offer membership</label>
   <fieldset><legend>Monthly plan</legend><label>Price shown (for example "$4.99 a month")<input id="mpr" maxlength="60" value="${esc(m.price)}"></label>
   <label>Stripe payment link for one month<input id="mln" maxlength="300" placeholder="https://buy.stripe.com/..." value="${esc(m.link)}"></label></fieldset>
@@ -8872,6 +8998,64 @@ setTimeout(claimAwards,2500);
 if(!GM.seen)GM.seen=LVL();
 if(BOOT.role==='student'&&!BOOT.local)api('GET','/api/classes').then(r=>{ST.joined=r.joined||[]}).catch(()=>{});
 nav();if(tab==='learn')render();else if(VIEWS[tab])showTab(tab);setTimeout(gameCheck,1500);
+</script>
+
+<style>
+/* ===== Privacy: waiting for a parent's OK, "Your data" in Settings, footer links ===== */
+.cban{max-width:1180px;margin:10px auto 0;padding:12px 16px;border:2px solid var(--lamp,#f2b84b);border-radius:14px;background:var(--panel);color:var(--ink);line-height:1.5}
+.cban .chip{margin-left:4px}.cban input{padding:6px 10px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);min-width:220px}
+#mydata details{margin-top:10px}#mydata summary{cursor:pointer;font-weight:700}#mydata label{display:block;margin-top:8px}
+.sitefoot{max-width:1180px;margin:28px auto 18px;padding:0 16px;color:var(--mute);font-size:13px;line-height:1.6;text-align:center}
+.sitefoot a{color:inherit}
+</style>
+<script type="text/x-lumen">
+/* Download a file made in the browser */
+const saveJSON=(name,obj)=>{const u=URL.createObjectURL(new Blob([JSON.stringify(obj,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),2000)};
+
+/* Learners under 13 who signed up themselves: until a parent says yes by email, progress stays on this device */
+const CBAN=(()=>{const u=BOOT.user||{};if(!['pending','ask'].includes(u.consent))return null;
+  const b=document.createElement('div');b.id='cban';b.className='cban';b.setAttribute('role','status');
+  const draw=(st,hint)=>{b.innerHTML=st==='pending'
+    ?`<b>Waiting for your parent's OK.</b> We emailed ${esc(hint||'your parent or guardian')} a link. Until they say yes, your progress is saved on this device only. <button class="chip" onclick="cbSend()">Send it again</button><button class="chip" onclick="CBAN.draw('ask')">Use a different email</button>`
+    :`<b>Ask a parent or guardian to say yes.</b> Type their email and we'll send them a link. Until then, your progress is saved on this device only. <input id="cbe" type="email" placeholder="parent@example.com" aria-label="Parent or guardian's email"><button class="chip" onclick="cbSend(1)">Send</button>`};
+  draw(u.consent,u.parentHint);const app=document.querySelector('.app');app.parentNode.insertBefore(b,app);return{draw}})();
+function cbSend(typed){const m=typed?($('cbe').value||'').trim():'';if(typed&&!m)return msg("Type your parent or guardian's email.");
+  busy(async()=>{const r=await api('POST','/api/consent/send',typed?{parentEmail:m}:{});CBAN.draw('pending',r.hint);msg('Sent. Ask them to check their email.')})}
+
+/* Delete your own posts and replies (California's law for minors, Business and Professions Code 22581) */
+function delMine(id){if(!confirm('Delete your post and its replies?'))return;busy(async()=>{await api('DELETE',`/api/posts/${id}`,{});reload('community')})}
+function delMineR(pid,rid){if(!confirm('Delete your reply?'))return;busy(async()=>{await api('DELETE',`/api/replies/${rid}`,{});reload('community')})}
+
+/* Settings: download everything stored about you, or delete your account */
+function myData(){if(BOOT.local){let d={};try{d=JSON.parse(localStorage.getItem('lumen_local')||'{}')}catch(e){}return saveJSON('bose-academy-my-data.json',{site:'Bose Academy (bose.academy)',exported:new Date().toISOString(),savedInThisBrowser:d})}
+  busy(async()=>saveJSON(`bose-academy-${(BOOT.user&&BOOT.user.username)||'my-data'}.json`,await api('GET','/api/me/export')))}
+function delMe(){const ok=($('dl1').value||'').trim()==='DELETE',pw=$('dl2')?$('dl2').value:'';
+  if(!ok)return $('dle').textContent='Type DELETE in capital letters to confirm.';if($('dl2')&&!pw)return $('dle').textContent='Enter your password.';
+  $('dle').textContent='';busy(async()=>{try{await api('DELETE','/api/me',{password:pw})}catch(e){$('dle').textContent=e.message;return}
+    try{sessionStorage.setItem('lumen_note','Your account and its data were deleted.')}catch(e){}location.href=location.pathname})}
+const _setP=VIEWS.settings;VIEWS.settings=function(){const u=BOOT.user||{};
+  const del=BOOT.local?''
+    :u.managed?'<p class="sol">Your teacher made this login, so ask your teacher if you want it removed.</p>'
+    :BOOT.role==='owner'?''
+    :`<details><summary>Delete my account</summary><p class="sol">This deletes your account, your saved progress, your Community posts and your certificates. It cannot be undone.${BOOT.role==='teacher'?' If you have classes, email us instead so we can delete them with your account.':''}</p>
+      <label>Type DELETE to confirm<input id="dl1" autocomplete="off"></label>${u.google?'<p class="sol">You will be asked to sign in with Google again.</p>':'<label>Your password<input id="dl2" type="password" autocomplete="current-password"></label>'}
+      <p class="err" id="dle" role="alert"></p><button class="alt" onclick="delMe()">Delete my account forever</button></details>`;
+  return _setP()+`<div class="card set" id="mydata" style="margin-top:14px"><h3>Your data</h3>
+    <p class="sol">${BOOT.local?'Without an account, your progress is saved only in this browser.':'Download a copy of everything Bose Academy stores about you, or delete your account.'}</p>
+    <div class="row"><button class="alt" onclick="myData()">Download my data</button>${BOOT.local?`<button class="alt" onclick="if(confirm('Erase all progress saved in this browser?')){localStorage.removeItem('lumen_local');location.reload()}">Erase my progress</button>`:''}</div>${del}
+    <p class="sol" style="margin-top:10px"><a href="privacy.html" target="_blank">Privacy policy</a> · <a href="terms.html" target="_blank">Terms of service</a></p></div>`};
+
+/* Owner console: remove parent emails from requests nobody answered within 14 days */
+if(BOOT.fb){const _ovP=VIEWS.owner;VIEWS.owner=function(){return _ovP()+`<div class="card" style="margin-top:16px"><h3>Parent permission (under 13)</h3>
+  <p class="sol">Learners under 13 who sign up themselves wait for a parent to say yes by email. If nobody answers within 14 days, the parent's email must be deleted. Their own sign-in removes it too; this button removes all of them at once.</p>
+  <button class="alt" onclick="busy(async()=>{const r=await api('POST','/api/owner/expire-consents',{});msg('Removed '+r.removed+' unanswered parent email'+(r.removed===1?'':'s')+'.')})">Remove unanswered requests</button>
+  <p class="sol" style="margin-top:12px">The privacy policy promises that accounts of learners under 13 that nobody uses for two years are deleted. Do this at least once a year.</p>
+  <button class="alt" onclick="if(confirm('Delete every account of a learner under 13 that has not been used for two years?'))busy(async()=>{const r=await api('POST','/api/owner/delete-inactive',{});msg('Deleted '+r.deleted+' unused account'+(r.deleted===1?'':'s')+'.')})">Delete unused under-13 accounts</button></div>`}}
+
+/* Footer on every view: privacy policy, terms and who we are */
+(()=>{const f=document.createElement('footer');f.className='sitefoot';
+  f.innerHTML=`<a href="privacy.html">Privacy policy</a> · <a href="terms.html">Terms of service</a> · <a href="./#about">About</a><br>© ${new Date().getFullYear()} Bose Academy. Lessons and practice questions are original. Bose Academy is an independent learning project and is not affiliated with Bose Corporation.`;
+  const t=$('toast');t.parentNode.insertBefore(f,t)})();
 </script>
 
 </body>

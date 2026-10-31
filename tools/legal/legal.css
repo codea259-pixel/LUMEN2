@@ -1,0 +1,20 @@
+:root{--bg:#EEF3F8;--panel:#fff;--ink:#1B2A41;--mute:#546580;--line:#D5DEE9;--lamp:#F2A900;--soft:#FCEFC7;--teal:#0F8B8D}
+@media (prefers-color-scheme:dark){:root{--bg:#121B2B;--panel:#1B2740;--ink:#EAF0F8;--mute:#A3B5CF;--line:#2F3E5C;--soft:#3A3319;--teal:#3CC1C3}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 "Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:760px;margin:0 auto;padding:0 18px 40px}
+nav{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 0 8px}
+nav a{color:var(--ink);font-weight:700}nav .brand{font:800 22px "Bricolage Grotesque",system-ui,sans-serif;text-decoration:none}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.2;letter-spacing:-.01em}
+h1{font-size:clamp(30px,6vw,42px);margin:18px 0 4px}h2{font-size:22px;margin:34px 0 8px}h3{font-size:18px;margin:20px 0 6px}
+.meta{color:var(--mute);margin:0 0 18px}
+a{color:var(--teal)}
+ul,ol{padding-left:22px}li{margin:4px 0}
+.short{background:var(--soft);border-radius:16px;padding:6px 20px 10px;margin:8px 0 10px}.short h2{margin-top:14px}
+.card{background:var(--panel);border:2px solid var(--line);border-radius:14px;padding:12px 16px}
+table{width:100%;border-collapse:collapse;background:var(--panel);border-radius:12px;overflow:hidden;font-size:16px}
+th,td{text-align:left;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--line)}th{background:var(--soft)}
+mark.todo{background:#FFE08A;color:#1B2A41;padding:0 4px;border-radius:4px}
+footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);color:var(--mute);font-size:14px;text-align:center}
+footer a{color:inherit}
+@media print{nav,footer{display:none}body{background:#fff}}

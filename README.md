@@ -35,7 +35,7 @@ GitHub Pages can't run the server, so `index.html` and `app.html` at the repo ro
 With Firebase set up, the GitHub Pages site gets real accounts: sign-up, sign-in (username or "Continue with Google"), progress saved to the account, teacher classes, community, certificates and the owner console. Firebase's free plan covers it.
 
 1. Create a project at console.firebase.google.com (Analytics not needed).
-2. **Authentication → Sign-in method:** enable **Email/Password** and **Google**. Under **Settings → Authorized domains**, add `bose.academy` and `codea259-pixel.github.io`.
+2. **Authentication → Sign-in method:** enable **Email/Password**, and inside it **Email link (passwordless sign-in)** (parents of learners under 13 answer by email), and **Google**. Under **Settings → Authorized domains**, add `bose.academy` and `codea259-pixel.github.io`. In **Project settings**, set the public-facing name to "Bose Academy" so the parent email says "Sign in to Bose Academy".
 3. **Firestore Database → Create database** (production mode).
 4. **Firestore → Rules:** paste `firestore.rules`, replace `PASTE_OWNER_GMAIL` with the owner's Gmail address, and publish. Keep the Gmail out of the repo.
 5. **Project settings → Your apps → Web app:** copy the `firebaseConfig` object into `firebase-config.js` at the repo root (these values are public).
@@ -120,7 +120,22 @@ Practice questions have an **Ask Lumi** button. With `ANTHROPIC_API_KEY` set on 
 
 ## Accounts
 
-- **Learners of any age** sign up themselves. Under 13, a parent or guardian gives their email and ticks a permission box (COPPA), and the account can read but not post in the Community.
-- **Classes**: a teacher can also create logins from the Teacher tab (type the names, Bose Academy makes usernames and passwords, no email needed).
+- **Learners of any age** sign up themselves. The age question has no answer picked in advance. Under 13 (COPPA):
+  - On Firebase, the learner gives a parent's or guardian's email and Firebase emails the parent a sign-in link. It opens `app.html?parent=<learner>`, which explains what is saved and asks the parent to agree or to delete the account.
+  - Until a parent agrees, the learner's progress is saved only on their device (`lumen_wait_<uid>` in the browser) and certificates are off. A banner lets them resend the email or change it. If nobody answers in 14 days, the parent's email is deleted.
+  - `firestore.rules` lets only someone signed in with that verified email record the answer (`consents/{uid}`), read the child's progress, or delete the child's data.
+  - On the own server, the parent ticks a permission box instead, because the server can't send email.
+  - Under-13 accounts can read the Community but not post.
+- **Classes**: a teacher can also create logins from the Teacher tab (type the names, Bose Academy makes usernames and passwords, no email needed, only the first name is kept). These count as the school's permission for school use, so they don't wait for a parent.
 - **Teachers and parents** sign up with an email. The Owner can mark teachers as verified, which lets them moderate the community.
 - **Owner**: created on the server only, never through the website.
+
+## Privacy and the law
+
+- **`privacy.html` and `terms.html`** (built from `tools/legal/` by `tools/build.py`) are linked from the landing page, the app's footer, sign-up and Settings. The contact details live in `tools/legal/legal.json`. COPPA requires the operator's name, mailing address, phone and email; blanks show as highlighted gaps and the build prints a reminder. Update the `updated` date, and `POLICY` in `tools/firebase.html`, whenever the policy changes.
+- **Your data** (Settings): anyone can download everything stored about them as JSON, or delete their account (password or Google sign-in again). Teacher-made logins are removed by the teacher. Teachers with classes email the owner instead.
+- **Parents** use `app.html?parent=me` (they get a sign-in link by email) to see each child's progress, download their data, say yes, or delete the account.
+- **Community**: authors can delete their own posts and replies (California Business and Professions Code 22581).
+- **Owner console → Parent permission**: remove unanswered parent emails, and at least once a year delete under-13 accounts that nobody has used for two years. The privacy policy promises both.
+- Have a lawyer review the policy and terms before relying on them for schools or payments.
+

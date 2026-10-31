@@ -26,7 +26,7 @@ const errs = [], ok = s => console.log('✓', s);
   };
   const signup = async (p, role, user, display, email) => {
     await p.goto(B + 'app.html#signup'); await p.waitForSelector('#af'); await p.selectOption('#ar', role);
-    await p.fill('[name=username]', user); await p.fill('[name=display]', display); if (email) await p.fill('[name=email]', email);
+    await p.fill('[name=username]', user); await p.fill('[name=display]', display); if (email) await p.fill('[name=email]', email); if (role === 'student') await p.check('[name=age][value="13plus"]');
     await p.fill('[name=password]', 'password123');
     await p.click('#af button'); await p.waitForSelector('#avatarBtn', { timeout: 20000 });
   };
@@ -166,13 +166,55 @@ const errs = [], ok = s => console.log('✓', s);
   await l.waitForSelector('text=How do I add fractions?', { timeout: 15000 }); ok('learner posted');
   await s.click('#tabs >> text=Community'); await s.waitForSelector('text=How do I add fractions?', { timeout: 15000 }); await s.click('.card.post button[aria-label=Upvote]'); await s.waitForSelector('.card.post button[aria-label=Upvote].on', { timeout: 10000 }); ok('student upvoted');
 
-  // 6b. A learner under 13 signs up with a parent's permission: progress saves, Community is read-only
-  const k = await page(); await k.goto(B + 'app.html#signup'); await k.waitForSelector('#af'); await k.selectOption('#ar', 'student');
-  await k.fill('[name=username]', 'maya7'); await k.fill('[name=display]', 'Maya7'); await k.fill('[name=password]', 'password123'); await k.check('[name=age][value=under13]');
-  await k.click('#af button'); ok('under-13 without parent details: ' + (await k.evaluate(() => document.querySelector('[name=parentEmail]').validity.valueMissing ? 'blocked by the form' : 'not blocked')));
-  await k.fill('[name=parentEmail]', 'parent@example.com'); await k.check('[name=parentOk]'); await k.click('#af button'); await k.waitForSelector('#avatarBtn', { timeout: 20000 }); ok('under-13 learner signed up with parent permission');
-  await k.click('#tabs >> text=Community'); await k.waitForSelector('text=Reading only for now', { timeout: 15000 }); ok('under-13 sees read-only Community, reply boxes: ' + (await k.$$('input[id^=pr]')).length);
+  // 6b. A learner under 13 signs up: we email the parent a link, and progress stays on the device until the parent says yes
+  const OOB = 'http://localhost:9099/emulator/v1/projects/demo-bose/oobCodes';
+  const linkFor = async email => { const r = await (await fetch(OOB)).json(), c = (r.oobCodes || []).filter(x => x.email === email && x.requestType === 'EMAIL_SIGNIN').pop(); if (!c) throw new Error('no email link for ' + email);
+    const cont = new URL(c.oobLink).searchParams.get('continueUrl'); return cont + (cont.includes('?') ? '&' : '?') + 'mode=signIn&oobCode=' + c.oobCode + '&apiKey=demo-key' };
+  const kidSignup = async (un, parent) => { const p = await page(); await p.goto(B + 'app.html#signup'); await p.waitForSelector('#af'); await p.selectOption('#ar', 'student');
+    await p.fill('[name=username]', un); await p.fill('[name=display]', un[0].toUpperCase() + un.slice(1)); await p.fill('[name=password]', 'password123'); await p.check('[name=age][value=under13]');
+    if (parent) { await p.fill('[name=parentEmail]', parent); await p.click('#af button'); await p.waitForSelector('#cban', { timeout: 20000 }) } return p };
+  const db = (p, fn, arg) => p.evaluate(fn, arg);
+  const k = await kidSignup('maya7'); await k.click('#af button');
+  ok('under-13 without a parent email: ' + (await k.evaluate(() => document.querySelector('[name=parentEmail]').validity.valueMissing ? 'blocked by the form' : 'not blocked')) + '; tick box shown: ' + !!(await k.$('[name=parentOk]')));
+  await k.fill('[name=parentEmail]', 'Parent@Example.com'); await k.click('#af button'); await k.waitForSelector('#cban', { timeout: 20000 }); ok('under-13 signed up and waits: ' + (await k.textContent('#cban')).replace(/\s+/g, ' ').slice(0, 90));
+  const kid = await k.evaluate(() => FBM.uid());
+  await k.evaluate(() => { S[ORDER[0]] = { att: 6, ok: 5, p: .85 }; SYNC() }); await k.waitForFunction(u => !!localStorage.getItem('lumen_wait_' + u), kid, { timeout: 15000 });
+  ok('progress kept on the device only: account ' + await db(k, async () => (await firebase.app().firestore().collection('state').doc(FBM.uid()).get()).data().json) + ', device ' + await k.evaluate(u => !!localStorage.getItem('lumen_wait_' + u), kid));
+  ok('learner writing their own permission: ' + await db(k, async () => { try { await firebase.app().firestore().collection('consents').doc(FBM.uid()).set({ decision: 'yes', parentUid: FBM.uid(), parentEmail: 'x@x.com', at: 1 }); return 'ALLOWED' } catch (e) { return 'blocked' } }));
+  ok('learner saving progress straight to the database: ' + await db(k, async () => { try { await firebase.app().firestore().collection('state').doc(FBM.uid()).set({ json: '{"S":{"x":1}}' }, { merge: true }); return 'ALLOWED' } catch (e) { return 'blocked' } }));
+  ok('certificate before the parent says yes: ' + await db(k, async () => { try { await FBM.api('POST', '/api/certs/claim', { key: 'x', full: 'Maya L' }); return 'ALLOWED' } catch (e) { return e.message } }));
+  ok('under-13 sees read-only Community: ' + await (async () => { await k.click('#tabs >> text=Community'); await k.waitForSelector('text=Reading only for now', { timeout: 15000 }); return (await k.$$('input[id^=pr]')).length + ' reply boxes' })());
   ok('under-13 posting straight to the database: ' + await k.evaluate(async () => { try { await firebase.app().firestore().collection('posts').add({ authorId: FBM.uid(), authorName: 'x', title: 'hello there', body: 'hello there everyone', hidden: false, pinned: false, locked: false, votes: [], reports: [], ts: 1 }); return 'ALLOWED' } catch (e) { return 'blocked' } }));
+
+  // The parent opens the emailed link on another device
+  const pp = await page(); await pp.goto(await linkFor('parent@example.com')); await pp.waitForSelector('#pf', { timeout: 20000 }); ok('link on another device asks for the email: ' + (await pp.textContent('#pf p')).slice(0, 60));
+  await pp.fill('#pf [name=email]', 'someone@else.com'); await pp.click('#pf button'); await pp.waitForFunction(() => (document.getElementById('pe') || {}).textContent, null, { timeout: 15000 }); ok('wrong email: ' + await pp.textContent('#pe'));
+  await pp.fill('#pf [name=email]', 'parent@example.com'); await pp.click('#pf button'); await pp.waitForSelector('button[data-act=yes]', { timeout: 20000 }); ok('parent reads the notice: ' + await pp.textContent('#views .card h3'));
+  const [dl] = await Promise.all([pp.waitForEvent('download'), pp.click('button[data-act=export]')]); const exp = JSON.parse(fs.readFileSync(await dl.path(), 'utf8'));
+  ok(`parent downloads the data: ${exp.account.username}, parent email ${exp.contact.parentEmail}`);
+  await pp.click('button[data-act=yes]'); await pp.waitForFunction(() => /Thank you/.test((document.getElementById('pm') || {}).textContent || ''), null, { timeout: 20000 }); ok('parent said yes: ' + await pp.textContent('#pm'));
+  await k.reload(); await k.waitForSelector('#avatarBtn', { timeout: 20000 }); await k.waitForTimeout(1000);
+  ok('learner no longer waits: banner ' + !!(await k.$('#cban')) + ', device progress moved to the account: ' + await db(k, async () => Object.keys(JSON.parse((await firebase.app().firestore().collection('state').doc(FBM.uid()).get()).data().json).S || {}).length + ' skill'));
+  await pp.goto(B + 'app.html?parent=me'); await pp.waitForSelector('button[data-act=export]', { timeout: 20000 }); ok('parent page: ' + (await pp.textContent('#views .card p')).replace(/\s+/g, ' ').trim().slice(0, 80));
+
+  // Another parent can't answer for this child or see them
+  const op = await page(); await op.goto(B + 'app.html?parent=me'); await op.waitForSelector('#pf'); await op.fill('#pf [name=email]', 'other@example.com'); await op.click('#pf button'); await op.waitForSelector('text=Check your email', { timeout: 15000 });
+  await op.goto(await linkFor('other@example.com')); await op.waitForSelector('text=No learner has given this email', { timeout: 20000 }); ok('another parent sees no children');
+  ok('another parent answering for this child: ' + await db(op, async u => { try { await firebase.app().firestore().collection('consents').doc(u).set({ decision: 'yes', parentUid: FBM.uid(), parentEmail: 'other@example.com', at: 1 }); return 'ALLOWED' } catch (e) { return 'blocked' } }, kid));
+  ok("another parent reading the child's progress: " + await db(op, async u => { try { await firebase.app().firestore().collection('state').doc(u).get(); return 'ALLOWED' } catch (e) { return 'blocked' } }, kid));
+  ok("learner changing the parent email after a yes: " + await db(k, async () => { try { await firebase.app().firestore().collection('private').doc(FBM.uid()).update({ parentEmail: 'other@example.com' }); return 'ALLOWED' } catch (e) { return 'blocked' } }));
+
+  // A parent says no: the account and its data are deleted
+  const k2 = await kidSignup('leo8', 'parent2@example.com'); const p2 = await page(); await p2.goto(await linkFor('parent2@example.com')); await p2.waitForSelector('#pf'); await p2.fill('#pf [name=email]', 'parent2@example.com'); await p2.click('#pf button');
+  await p2.waitForSelector('button[data-act=del]', { timeout: 20000 }); await p2.click('button[data-act=del]'); await p2.waitForFunction(() => /deleted/.test((document.getElementById('pm') || {}).textContent || ''), null, { timeout: 20000 }); ok('parent said no: ' + await p2.textContent('#pm'));
+  await login(k2, 'leo8', 'password123'); await k2.waitForFunction(() => (document.getElementById('ae') || {}).textContent, null, { timeout: 20000 }); ok('that learner signing in: ' + await k2.textContent('#ae'));
+
+  // Requests nobody answers within 14 days: the parent email is removed, and the learner can send a new one
+  const k3 = await kidSignup('zoe9', 'parent3@example.com'), z = await k3.evaluate(() => FBM.uid());
+  await db(o, async u => firebase.app().firestore().collection('private').doc(u).update({ requested: 1 }), z);
+  ok('owner removes unanswered requests: ' + JSON.stringify(await o.evaluate(() => FBM.api('POST', '/api/owner/expire-consents', {}))) + ', parent email kept: ' + await db(o, async u => !!(await firebase.app().firestore().collection('private').doc(u).get()).data().parentEmail, z));
+  ok('owner deletes under-13 accounts unused for two years: ' + JSON.stringify(await o.evaluate(() => FBM.api('POST', '/api/owner/delete-inactive', {}))) + ', active learner kept: ' + await db(o, async u => (await firebase.app().firestore().collection('users').doc(u).get()).exists, z));
+  await k3.reload(); await k3.waitForSelector('#cbe', { timeout: 20000 }); await k3.fill('#cbe', 'parent3@example.com'); await k3.click('#cban button'); await k3.waitForFunction(() => /Waiting/.test(document.getElementById('cban').textContent), null, { timeout: 15000 }); ok('learner asks again: ' + (await k3.textContent('#cban')).replace(/\s+/g, ' ').slice(0, 60));
 
   // 7. Owner console: verify the teacher, lock an account
   await menu(o, 'Owner console'); await o.waitForSelector('.vs', { timeout: 15000 }); ok('owner sees ' + ((await o.$$('.vs tr')).length - 1) + ' users');
@@ -190,6 +232,16 @@ const errs = [], ok = s => console.log('✓', s);
 
   // 10. Wrong password
   const w = await page(); await login(w, 'gourab', 'nope-nope'); await w.waitForFunction(() => document.getElementById('ae').textContent, null, { timeout: 15000 }); ok('bad login: ' + await w.textContent('#ae'));
+
+  // 11. Authors delete their own posts (California's law for minors), and anyone can delete their account
+  await l.click('#tabs >> text=Community'); await l.waitForSelector('.card.post:has-text("How do I add fractions?") button:has-text("Delete")', { timeout: 15000 });
+  await l.click('.card.post:has-text("How do I add fractions?") button:has-text("Delete")'); await l.waitForSelector('text=How do I add fractions?', { state: 'detached', timeout: 15000 }); ok('learner deleted their own post');
+  await menu(l, 'Settings'); await l.waitForSelector('#mydata'); const [d2] = await Promise.all([l.waitForEvent('download'), l.click('#mydata button:has-text("Download my data")')]);
+  ok('learner downloads their data: ' + JSON.parse(fs.readFileSync(await d2.path(), 'utf8')).account.username);
+  await l.click('#mydata summary'); await l.fill('#dl1', 'DELETE'); await l.fill('#dl2', 'wrong-password'); await l.click('#mydata button:has-text("Delete my account forever")'); await l.waitForFunction(() => document.getElementById('dle').textContent, null, { timeout: 15000 }); ok('wrong password: ' + await l.textContent('#dle'));
+  await l.fill('#dl2', 'password123'); await l.click('#mydata button:has-text("Delete my account forever")'); await l.waitForSelector('#af', { timeout: 20000 }); ok('account deleted: ' + await l.textContent('#ae'));
+  ok('its data left in the database: ' + await o.evaluate(async () => { const db = firebase.app().firestore(), u = await db.collection('users').where('username', '==', 'priya16').get(); return u.size + ' profiles' }));
+  await login(l, 'priya16', 'password123'); await l.waitForFunction(() => (document.getElementById('ae') || {}).textContent, null, { timeout: 15000 }); ok('signing in again: ' + await l.textContent('#ae'));
 
   await b.close(); srv.close();
   console.log(errs.length ? 'PAGE ERRORS:\n' + errs.join('\n') : 'no page errors');

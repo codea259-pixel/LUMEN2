@@ -33,6 +33,19 @@ const FBM=(()=>{
     if(/permission-denied/.test(c))return new E(403,'Not allowed.');
     if(/network|unavailable/.test(c))return new E(503,'No connection. Check your internet and try again.');
     return e instanceof E?e:new E(500,e&&e.message||'Something went wrong. Please try again.')};
+  /* Learners under 13 who sign up themselves need a parent's OK by email (COPPA). The sign-up sends the parent a
+     sign-in link; only someone signed in with that verified email can answer, in consents/{uid} (see firestore.rules).
+     Until then progress is kept on this device. Teacher-made logins count as the school's OK. Requests expire after 14 days. */
+  const WAIT=14*864e5,POLICY='2026-10-31',mask=e=>String(e||'').replace(/^(.)[^@]*(@.*)$/,'$1\u2022\u2022\u2022$2');
+  let consent=null,pHint='';
+  const consentOf=async()=>{pHint='';if(!profile||!profile.under13||profile.role!=='student')return null;if(profile.managedBy)return 'school';
+    const [c,p]=await Promise.all([doc('consents',me.uid).get().catch(()=>null),doc('private',me.uid).get().catch(()=>null)]);
+    if(c&&c.exists&&c.data().decision==='yes')return 'yes';const r=p&&p.exists?p.data():{};
+    if(r.parentEmail&&r.requested&&now()-r.requested>=WAIT){await p.ref.update({parentEmail:FV.delete(),requested:FV.delete()}).catch(()=>{});return 'ask'}
+    pHint=mask(r.parentEmail);return r.parentEmail&&r.requested?'pending':'ask'};
+  const waiting=()=>consent==='pending'||consent==='ask';
+  const askParent=(email,uid)=>auth.sendSignInLinkToEmail(email,{url:location.origin+location.pathname+'?parent='+uid,handleCodeInApp:true});
+  const LK=()=>'lumen_wait_'+me.uid,lget=()=>{try{return JSON.parse(localStorage.getItem(LK())||'null')}catch(e){return null}};
   const userOut=()=>({id:me.uid,username:profile.username,display:profile.display,role:isOwner()?'owner':profile.role,verified:!!profile.verified,under13:!!profile.under13});
 
   async function start(){
@@ -48,22 +61,26 @@ const FBM=(()=>{
   /* Each request the app makes, answered with Firestore */
   const R=[];const route=(m,p,fn)=>R.push([m,new RegExp('^'+p.replace(/:(\w+)/g,'(?<$1>[^/]+)')+'$'),fn]);
 
-  route('GET','/api/me',async()=>{if(!me)throw new E(401,'Please sign in.');if(!profile)throw new E(428,'Finish setting up your account.');if(profile.locked){await auth.signOut();throw new E(401,'This account is locked.')}
+  route('GET','/api/me',async()=>{if(!me)throw new E(401,'Please sign in.');
+    if(!profile&&/@accounts\.bose\.academy$/.test(me.email||'')){await auth.signOut();me=null;try{sessionStorage.setItem('lumen_note','This account was deleted.')}catch(e){}throw new E(401,'This account was deleted.')}
+    if(!profile)throw new E(428,'Finish setting up your account.');if(profile.locked){await auth.signOut();throw new E(401,'This account is locked.')}
     let member=+profile.memberUntil||0;if(profile.role==='student'){try{(await db.collection('classes').where('members','array-contains',me.uid).get()).forEach(d=>{member=Math.max(member,+d.data().memberUntil||0)})}catch(e){}}
-    return{user:{...userOut(),member}}});
+    consent=await consentOf();
+    return{user:{...userOut(),member,consent,parentHint:pHint,managed:!!profile.managedBy,google:!!profile.google}}});
   route('POST','/api/signup',async b=>{
     const role=b.role;if(!ROLES.includes(role))throw new E(400,'Choose learner, parent or teacher.');
     const username=str(b.username,3,20,'Usernames').toLowerCase();if(!/^[a-z0-9_]+$/.test(username))throw new E(400,'Usernames use letters, numbers and underscores only.');
     const password=String(b.password||'');if(password.length<8||password.length>100)throw new E(400,'Passwords need at least 8 characters.');
     const display=str(b.display,2,20,'Display names');const bad=typeof clean==='function'?clean(display):'';if(bad)throw new E(400,bad);
     let parentEmail=null;const under13=role==='student'&&!!b.under13;
-    if(under13){parentEmail=str(b.parentEmail,5,100,'Email');if(!/^\S+@\S+\.\S+$/.test(parentEmail))throw new E(400,"Enter the parent or guardian's email.");if(!b.parentOk)throw new E(400,'A parent or guardian needs to tick the permission box.')}
+    if(under13){parentEmail=str(b.parentEmail,5,100,'Email').toLowerCase();if(!/^\S+@\S+\.\S+$/.test(parentEmail))throw new E(400,"Enter the parent or guardian's email.")}
     let email=null;if(role!=='student'){email=str(b.email,5,100,'Email');if(!/^\S+@\S+\.\S+$/.test(email))throw new E(400,'Enter a valid email address.')}
     const cred=await auth.createUserWithEmailAndPassword(emailOf(username),password);const uid=cred.user.uid;
     await doc('users',uid).set({username,display,role,verified:false,locked:false,under13,created:now()});
     await doc('state',uid).set({json:'{}',updated:now(),readers:[]});
-    if(email||parentEmail)await doc('private',uid).set(parentEmail?{parentEmail,consent:now()}:{email});
-    return{ok:true}});
+    if(email||parentEmail)await doc('private',uid).set(parentEmail?{parentEmail}:{email});
+    let sent=false;if(parentEmail)try{await askParent(parentEmail,uid);await doc('private',uid).update({requested:now()});sent=true}catch(e){console.warn(e)}
+    return{ok:true,sent}});
   route('POST','/api/login',async b=>{const u=String(b.username||'').trim().toLowerCase();if(!/^[a-z0-9_]{3,20}$/.test(u))throw new E(401,'Wrong username or password.');
     await auth.signInWithEmailAndPassword(emailOf(u),String(b.password||''));
     const p=await doc('users',auth.currentUser.uid).get();if(p.exists&&p.data().locked){await auth.signOut();throw new E(403,'This account is locked. Ask your teacher or the site owner.')}return{ok:true}});
@@ -73,17 +90,24 @@ const FBM=(()=>{
   route('POST','/api/finish',async b=>{if(!me)throw new E(401,'Please sign in.');if(profile)return{ok:true};const role=b.role;if(!ROLES.includes(role))throw new E(400,'Choose learner, parent or teacher.');
     const display=str(b.display,2,20,'Display names');
     let parentEmail=null;const under13=role==='student'&&!!b.under13;
-    if(under13){parentEmail=str(b.parentEmail,5,100,'Email');if(!/^\S+@\S+\.\S+$/.test(parentEmail))throw new E(400,"Enter the parent or guardian's email.");if(!b.parentOk)throw new E(400,'A parent or guardian needs to tick the permission box.')}
+    if(under13){parentEmail=str(b.parentEmail,5,100,'Email').toLowerCase();if(!/^\S+@\S+\.\S+$/.test(parentEmail))throw new E(400,"Enter the parent or guardian's email.")}
 
     const username=((me.email||'user').split('@')[0].toLowerCase().replace(/[^a-z0-9_]/g,'').slice(0,14)||'user')+rand(3,'23456789');
     await doc('users',me.uid).set({username,display,role,verified:false,locked:false,under13,created:now(),google:true});
-    await doc('state',me.uid).set({json:'{}',updated:now(),readers:[]},{merge:true});if(me.email||parentEmail)await doc('private',me.uid).set({...(me.email?{email:me.email}:{}),...(parentEmail?{parentEmail,consent:now()}:{})});return{ok:true}});
+    await doc('state',me.uid).set({json:'{}',updated:now(),readers:[]},{merge:true});if(me.email||parentEmail)await doc('private',me.uid).set({...(me.email?{email:me.email}:{}),...(parentEmail?{parentEmail}:{})});
+    let sent=false;if(parentEmail)try{await askParent(parentEmail,me.uid);await doc('private',me.uid).update({requested:now()});sent=true}catch(e){console.warn(e)}
+    return{ok:true,sent}});
   route('POST','/api/logout',async()=>{await auth.signOut();return{ok:true}});
   route('PATCH','/api/me',async b=>{need();const d=str(b.display,2,20,'Display names');await doc('users',me.uid).update({display:d});profile.display=d;return{display:d}});
   route('GET','/api/settings',async()=>({flags:{...DEF.flags,...site.flags},retDays:site.retDays??DEF.retDays,gr:site.gr||{},impact:site.impact||DEF.impact,programs:site.programs||{},terms:site.terms||[],game:site.game||DEF.game,member:site.member||DEF.member}));
   route('GET','/api/curriculum',async()=>{try{const r=await fetch('server/curriculum.json');if(r.ok)return r.json()}catch(e){}return{courses:[],milestones:[]}});
-  route('GET','/api/state',async()=>{need();const s=await stateOf(me.uid);lastSaved=s;return s});
+  route('GET','/api/state',async()=>{need();
+    if(waiting()){const l=lget();if(l){lastSaved=l;return l}}
+    let s=await stateOf(me.uid);
+    if(consent==='yes'){const l=lget();if(l){await doc('state',me.uid).set({json:JSON.stringify(l),updated:now()},{merge:true});localStorage.removeItem(LK());s=l}}
+    lastSaved=s;return s});
   route('PUT','/api/state',async b=>{need();const json=JSON.stringify(b);if(json.length>400000)throw new E(413,'Too large.');
+    if(waiting()){try{localStorage.setItem(LK(),json)}catch(e){}lastSaved=b;return{ok:true,local:true}}
     await doc('state',me.uid).set({json,updated:now()},{merge:true});
     /* public Impact counters */
     try{const q=x=>Object.values((x&&x.S)||{}).reduce((a,s)=>a+(s.att||0),0),was=lastSaved?q(lastSaved):0,n=q(b),dq=Math.max(0,Math.min(50,n-was)),ds=Math.max(0,Math.min(3600,(b.secs||0)-((lastSaved&&lastSaved.secs)||0)));
@@ -96,8 +120,8 @@ const FBM=(()=>{
   route('GET','/api/community',async()=>{need();const mod=isMod();
     const pq=mod?db.collection('posts'):db.collection('posts').where('hidden','==',false);const rq=mod?db.collection('replies'):db.collection('replies').where('hidden','==',false);
     const [ps,rs,gs]=await Promise.all([pq.limit(300).get(),rq.limit(1000).get(),db.collection('groups').limit(200).get()]);
-    const reps={};rs.forEach(d=>{const r=d.data();(reps[r.postId]=reps[r.postId]||[]).push({id:num(d.id),author:r.authorName,body:r.body,hidden:!!r.hidden,ts:r.ts,reports:mod?nm(r.reports):[]})});
-    const posts=[];ps.forEach(d=>{const p=d.data();posts.push({id:num(d.id),type:p.type,group:p.grp?num(p.grp):null,subject:p.subject,grade:p.grade,title:p.title,body:p.body,author:p.authorName,ts:p.ts,hidden:!!p.hidden,pinned:!!p.pinned,locked:!!p.locked,votes:nm(p.votes),reports:mod?nm(p.reports):[],replies:(reps[d.id]||[]).sort((a,b)=>a.ts-b.ts)})});
+    const reps={};rs.forEach(d=>{const r=d.data();(reps[r.postId]=reps[r.postId]||[]).push({id:num(d.id),mine:r.authorId===me.uid,author:r.authorName,body:r.body,hidden:!!r.hidden,ts:r.ts,reports:mod?nm(r.reports):[]})});
+    const posts=[];ps.forEach(d=>{const p=d.data();posts.push({id:num(d.id),mine:p.authorId===me.uid,type:p.type,group:p.grp?num(p.grp):null,subject:p.subject,grade:p.grade,title:p.title,body:p.body,author:p.authorName,ts:p.ts,hidden:!!p.hidden,pinned:!!p.pinned,locked:!!p.locked,votes:nm(p.votes),reports:mod?nm(p.reports):[],replies:(reps[d.id]||[]).sort((a,b)=>a.ts-b.ts)})});
     posts.sort((a,b)=>b.ts-a.ts);const groups=[];gs.forEach(d=>{const g=d.data();groups.push({id:num(d.id),name:g.name,subject:g.subject,grade:g.grade,members:nm(g.members,g.memberNames)})});
     return{posts,groups}});
   const noKids=()=>{if(profile&&profile.under13)throw new E(403,"Posting in the Community opens when you're 13.")};
@@ -112,7 +136,8 @@ const FBM=(()=>{
     const reps=d.data().reports||[];if(reps.includes(me.uid))return{ok:true};await r.update(reps.length+1>=3?{reports:FV.arrayUnion(me.uid),hidden:true}:{reports:FV.arrayUnion(me.uid)});return{ok:true}});
   route('PATCH','/api/posts/:id',async(b,p)=>{need(isMod());const col={hide:'hidden',pin:'pinned',lock:'locked'}[b.action];if(!col)throw new E(400,'Unknown action.');const r=doc('posts',sid(p.id)),d=await r.get();await r.update({[col]:!d.data()[col]});return{ok:true}});
   route('POST','/api/posts/:id/keep',async(b,p)=>{need(isOwner());await doc('posts',sid(p.id)).update({hidden:false,reports:[]});return{ok:true}});
-  route('DELETE','/api/posts/:id',async(b,p)=>{need(isMod());const rs=await db.collection('replies').where('postId','==',sid(p.id)).get();await Promise.all(rs.docs.map(d=>d.ref.delete()));await doc('posts',sid(p.id)).delete();return{ok:true}});
+  route('DELETE','/api/posts/:id',async(b,p)=>{need();const pd=await doc('posts',sid(p.id)).get();if(!pd.exists)throw new E(404,'Not found.');if(!isMod()&&pd.data().authorId!==me.uid)throw new E(403,'Not allowed.');const rq=db.collection('replies').where('postId','==',sid(p.id)),rs=await (isMod()?rq:rq.where('hidden','==',false)).get();await Promise.all(rs.docs.map(d=>d.ref.delete()));await doc('posts',sid(p.id)).delete();return{ok:true}});
+  route('DELETE','/api/replies/:id',async(b,p)=>{need();const r=doc('replies',sid(p.id)),d=await r.get();if(!d.exists)throw new E(404,'Not found.');if(!isMod()&&d.data().authorId!==me.uid)throw new E(403,'Not allowed.');await r.delete();return{ok:true}});
   route('PATCH','/api/replies/:id',async(b,p)=>{need(isMod());const r=doc('replies',sid(p.id)),d=await r.get();await r.update({hidden:!d.data().hidden});return{ok:true}});
   route('POST','/api/groups',async b=>{need();noKids();const n=str(b.name,3,40,'Group names');await db.collection('groups').add({name:n,subject:String(b.subject).slice(0,40),grade:+b.grade,members:[me.uid],memberNames:{[me.uid]:profile.display}});return{ok:true}});
   route('POST','/api/groups/:id/join',async(b,p)=>{need();const r=doc('groups',sid(p.id)),d=await r.get();if(!d.exists)throw new E(404,'Not found.');const inG=(d.data().members||[]).includes(me.uid);
@@ -233,7 +258,7 @@ const FBM=(()=>{
 
   /* Certificates */
   route('GET','/api/certs',async()=>{need();const q=await db.collection('certs').where('uid','==',me.uid).get();return{certs:q.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>a.date<b.date?-1:1)}});
-  route('POST','/api/certs/claim',async b=>{need();const key=String(b.key||''),full=str(b.full,2,40,'Names'),st=await stateOf(me.uid),Sx=st.S||{},cur=await (await fetch('server/curriculum.json')).json();
+  route('POST','/api/certs/claim',async b=>{need();if(waiting())throw new E(403,"Certificates with your name need your parent's OK first.");const key=String(b.key||''),full=str(b.full,2,40,'Names'),st=await stateOf(me.uid),Sx=st.S||{},cur=await (await fetch('server/curriculum.json')).json();
     const course=cur.courses.find(x=>x.id===key),mil=cur.milestones.find(x=>x.id===key);let ok=false,label,kind='course';
     if(course){ok=course.skills.every(k=>lvl(Sx[k])>=3);label=course.name}
     else if(mil){const q=Object.values(Sx).reduce((a,s)=>a+(s.att||0),0);ok={m10:q>=10,m100:q>=100,m500:q>=500,m1:Object.values(Sx).some(s=>lvl(s)===4),m5:(st.days||[]).length>=5}[key];label=mil.label;kind='badge'}
@@ -263,11 +288,73 @@ const FBM=(()=>{
       for(const l of [link,ylink])if(l&&!/^https:\/\/[^\s"'<>]{4,300}$/.test(l))throw new E(400,'The payment link must start with https://');if(contact&&!/^\S+@\S+\.\S+$/.test(contact))throw new E(400,'Enter a valid contact email.');
       up.member={on:!!m.on,price:price(m.price),link,yprice:price(m.yprice),ylink,contact:contact.slice(0,100)}}
     await doc('config','site').set(up,{merge:true});Object.assign(site,up);return{ok:true}});
+  /* Parent's permission, from the learner's side: send (or resend) the email */
+  route('POST','/api/consent/send',async b=>{need();if(!waiting())return{ok:true,status:consent};
+    const pr=doc('private',me.uid),pd=await pr.get(),r=pd.exists?pd.data():{};
+    const email=b.parentEmail?str(b.parentEmail,5,100,'Email').toLowerCase():r.parentEmail;if(!email||!/^\S+@\S+\.\S+$/.test(email))throw new E(400,"Enter your parent or guardian's email.");
+    if(r.requested&&now()-r.requested<60000)throw new E(429,'We just sent it. Please wait a minute before sending it again.');
+    await pr.set({parentEmail:email},{merge:true});await askParent(email,me.uid);await pr.update({requested:now()});
+    consent='pending';pHint=mask(email);return{ok:true,status:consent,hint:pHint}});
+
+  /* Everything stored about one learner: for "Download my data" and for parents */
+  const exportOf=async uid=>{const one=async c=>{const d=await doc(c,uid).get().catch(()=>null);return d&&d.exists?d.data():null};
+    const many=async(c,f)=>{try{return(await db.collection(c).where(f,'==',uid).limit(500).get()).docs.map(d=>({id:d.id,...d.data()}))}catch(e){return[]}};
+    const [account,priv,st,perm,posts,replies,certificates]=await Promise.all([one('users'),one('private'),one('state'),one('consents'),many('posts','authorId'),many('replies','authorId'),many('certs','uid')]);
+    let progress=null;try{progress=st&&st.json?JSON.parse(st.json):null}catch(e){}
+    if(me&&uid===me.uid&&waiting())progress=lget()||progress;
+    return{site:'Bose Academy (bose.academy)',exported:new Date().toISOString(),account,contact:priv,progress,parentPermission:perm,posts,replies,certificates}};
+  /* Delete everything stored about one learner. The private record goes last: the rules use it to recognise the parent. */
+  const wipe=async uid=>{const all=async(c,f)=>{try{return(await db.collection(c).where(f,'==',uid).limit(500).get()).docs}catch(e){return[]}};
+    for(const d of await all('posts','authorId')){try{for(const r of (await db.collection('replies').where('postId','==',d.id).where('hidden','==',false).get()).docs)await r.ref.delete()}catch(e){}await d.ref.delete().catch(()=>{})}
+    for(const d of [...await all('replies','authorId'),...await all('certs','uid')])await d.ref.delete().catch(()=>{});
+    try{for(const c of (await db.collection('classes').where('members','array-contains',uid).get()).docs){await c.ref.collection('board').doc(uid).delete().catch(()=>{});await c.ref.update({members:FV.arrayRemove(uid)}).catch(()=>{})}}catch(e){}
+    try{for(const g of (await db.collection('groups').where('members','array-contains',uid).get()).docs)await g.ref.update({members:FV.arrayRemove(uid)}).catch(()=>{})}catch(e){}
+    for(const c of ['state','consents','users','private'])await doc(c,uid).delete().catch(e=>{if(c!=='consents')throw e})};
+
+  route('GET','/api/me/export',async()=>{need();return exportOf(me.uid)});
+  route('DELETE','/api/me',async b=>{need();if(isOwner())throw new E(403,'The Owner account cannot be deleted here.');
+    if(profile.managedBy)throw new E(403,'Your teacher made this login, so ask your teacher to remove it.');
+    if(isTeacher()&&!(await db.collection('classes').where('teacherId','==',me.uid).limit(1).get()).empty)throw new E(409,'You still have classes. Email us and we will delete your classes and your account together.');
+    try{if(profile.google){const pr=new firebase.auth.GoogleAuthProvider();if(window.FIREBASE_TEST_GOOGLE)await me.reauthenticateWithCredential(firebase.auth.GoogleAuthProvider.credential(JSON.stringify(window.FIREBASE_TEST_GOOGLE)));else await me.reauthenticateWithPopup(pr)}
+      else await me.reauthenticateWithCredential(firebase.auth.EmailAuthProvider.credential(emailOf(profile.username),String(b.password||'')))}
+    catch(e){throw /popup-closed|cancelled/.test(e.code||'')?new E(400,'Deleting was cancelled.'):new E(401,'That password is not right.')}
+    await wipe(me.uid);try{localStorage.removeItem(LK())}catch(e){}await me.delete();me=null;profile=null;return{ok:true}});
+
+  /* Parents: signed in with the link we emailed them (a verified email), they see the learners who listed that email */
+  const parentMail=()=>{if(!me||!me.email||!me.emailVerified)throw new E(401,'Open the link in the email we sent you, or ask for a new one.');return me.email.toLowerCase()};
+  const kidOf=async id=>{const em=parentMail(),p=await doc('private',id).get().catch(()=>null);if(!p||!p.exists||p.data().parentEmail!==em)throw new E(403,'This learner did not give your email.');return em};
+  route('GET','/api/parent/kids',async()=>{const em=parentMail(),q=await db.collection('private').where('parentEmail','==',em).limit(20).get(),kids=[];
+    for(const d of q.docs){const [u,c,st]=await Promise.all([doc('users',d.id).get(),doc('consents',d.id).get(),stateOf(d.id)]);if(!u.exists)continue;const x=u.data(),V=Object.values(st.S||{});
+      kids.push({id:d.id,display:x.display,username:x.username,created:x.created||0,consent:c.exists?c.data().decision:null,at:c.exists?c.data().at:0,
+        practiced:V.filter(v=>v&&v.att).length,mastered:V.filter(v=>lvl(v)===4).length,minutes:Math.round((st.secs||0)/60)})}
+    return{email:em,kids}});
+  route('POST','/api/parent/kids/:id/consent',async(b,p)=>{const em=await kidOf(p.id);
+    await doc('consents',p.id).set({decision:'yes',parentUid:me.uid,parentEmail:em,at:now(),method:'email link',policy:POLICY});return{ok:true}});
+  route('GET','/api/parent/kids/:id/export',async(b,p)=>{await kidOf(p.id);return exportOf(p.id)});
+  route('DELETE','/api/parent/kids/:id',async(b,p)=>{await kidOf(p.id);await wipe(p.id);return{ok:true}});
+
+  /* Owner: remove parent emails whose request was never answered within 14 days */
+  route('POST','/api/owner/expire-consents',async()=>{need(isOwner());const q=await db.collection('users').where('under13','==',true).limit(1000).get();let n=0;
+    for(const d of q.docs){if(d.data().managedBy)continue;const c=await doc('consents',d.id).get();if(c.exists&&c.data().decision==='yes')continue;
+      const pd=await doc('private',d.id).get(),r=pd.exists?pd.data():null;if(r&&r.parentEmail&&(!r.requested||now()-r.requested>=WAIT)){await pd.ref.update({parentEmail:FV.delete(),requested:FV.delete()});n++}}
+    return{removed:n}});
+  /* Owner: delete accounts of learners under 13 that nobody has used for two years (the privacy policy's retention rule) */
+  route('POST','/api/owner/delete-inactive',async()=>{need(isOwner());const q=await db.collection('users').where('under13','==',true).limit(1000).get(),cut=now()-730*864e5;let n=0;
+    for(const d of q.docs){const st=await doc('state',d.id).get(),last=Math.max(d.data().created||0,st.exists?st.data().updated||0:0);if(last<cut){await wipe(d.id);n++}}
+    return{deleted:n}});
   route('POST','/api/tutor',async()=>{throw new E(503,'The AI tutor needs the hosted version of the site.')});
 
   async function api(method,path,body){for(const [m,re,fn] of R){if(m!==method)continue;const mt=re.exec(path);if(!mt)continue;
       try{return await fn(body||{},mt.groups||{})}catch(e){throw friendly(e)}}
     throw new E(404,'Not found.')}
-  return{start,api,uid:()=>me&&me.uid,isOwner};
+  /* The parent page: finish signing in with an emailed link, or send a new one */
+  const parentLinkIn=async email=>{if(!auth.isSignInWithEmailLink(location.href))return false;
+    email=String(email||localStorage.getItem('lumen_parent_email')||'').trim().toLowerCase();if(!email)return 'email';
+    try{me=(await auth.signInWithEmailLink(email,location.href)).user}catch(e){throw new E(400,/invalid-email|mismatch/.test(e.code||'')?'That is not the email this link was sent to.':'This link has expired or was already used. Ask for a new one below.')}
+    const p=await doc('users',me.uid).get();profile=p.exists?p.data():null;localStorage.removeItem('lumen_parent_email');
+    const k=new URLSearchParams(location.search).get('parent')||'';history.replaceState(null,'',location.pathname+'?parent='+encodeURIComponent(k));return true};
+  const parentLink=async email=>{email=str(email,5,100,'Email').toLowerCase();if(!/^\S+@\S+\.\S+$/.test(email))throw new E(400,'Enter a valid email address.');
+    localStorage.setItem('lumen_parent_email',email);await auth.sendSignInLinkToEmail(email,{url:location.origin+location.pathname+'?parent=me',handleCodeInApp:true}).catch(e=>{throw friendly(e)})};
+  return{start,api,uid:()=>me&&me.uid,isOwner,parentLinkIn,parentLink,email:()=>me&&me.emailVerified?me.email:null,signOut:()=>auth.signOut()};
 })();
 </script>

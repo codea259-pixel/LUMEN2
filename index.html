@@ -53,7 +53,9 @@ section h2{font-size:clamp(30px,5vw,46px);max-width:20ch;margin-bottom:14px}
 .free h2{max-width:22ch}
 .free ul{columns:2;padding-left:20px;margin:16px 0 28px}
 .free li{margin:6px 0;break-inside:avoid}
-footer{padding:36px 0 48px;color:var(--mute);font-size:15px;border-top:1px solid var(--line)}
+footer{padding:36px 0 48px;color:var(--mute);font-size:15px;border-top:1px solid var(--line);line-height:1.7}
+footer nav{display:flex;gap:18px;flex-wrap:wrap;padding:0 0 8px}footer nav a{font-weight:700}
+.about{max-width:62ch;margin-top:8px}.about p{color:var(--mute)}
 @media(max-width:860px){.steps{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr;gap:28px}.free ul{columns:1}}
 @media(max-width:520px){.steps{grid-template-columns:1fr}body{font-size:17px}}
 @media(prefers-reduced-motion:reduce){.chain button,.chain i{transition:none}}
@@ -113,13 +115,19 @@ footer{padding:36px 0 48px;color:var(--mute);font-size:15px;border-top:1px solid
 
 <section>
 <div class="free">
-<h2>Every feature, free for every learner. No ads, ever.</h2>
+<h2>All the learning is free, for every learner. No ads, ever.</h2>
 <ul><li>All lessons and practice</li><li>Knowledge map and mastery tracking</li><li>Teacher dashboards and classes</li><li>Certificates anyone can verify</li></ul>
-<p style="color:var(--mute);margin:0 0 24px">Every learner and teacher gets every feature. Student data is never sold.</p>
+<p style="color:var(--mute);margin:0 0 24px">Every lesson, practice question and teacher tool is free. Learning earns play time in the games, and an optional membership adds more. Student data is never sold.</p>
 <a class="btn" href="app.html">Start learning</a>
 </div>
 </section>
-<footer>Bose Academy · Master every skill. Understand every concept.</footer>
+<section id="about" class="about">
+<h2>About Bose Academy</h2>
+<p>Bose Academy is an independent learning project, built by a young student with help from family, so that every learner can practice for free. It is not affiliated with, endorsed by or connected to Bose Corporation.</p>
+</section>
+<footer><nav aria-label="Site"><a href="privacy.html">Privacy policy</a><a href="terms.html">Terms of service</a><a href="app.html?parent=me">For parents</a><a href="#about">About</a></nav>
+© <span id="yr">2026</span> Bose Academy · Master every skill. Understand every concept.<br>Lessons and practice questions are original. Bose Academy is not affiliated with Bose Corporation. Questions about privacy? <a href="privacy.html#contact">Contact us</a></footer>
+<script>document.getElementById('yr').textContent=new Date().getFullYear()</script>
 </div>
 
 <script>

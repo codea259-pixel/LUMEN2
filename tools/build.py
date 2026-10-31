@@ -4,7 +4,7 @@ import sys
 import os
 D=os.path.dirname(os.path.abspath(__file__))
 src, out = os.path.join(D,'base.html'), os.path.join(D,'..','public','app.html')
-layers = [os.path.join(D,f) for f in ('firebase.html','bridge.html','ui.html','features.html','video.html','vendor-qrcode.html','printables.html','assess.html','game.html','realm.html','member.html','arcade.html','games.html','dungeon.html','snake.html','next.html','nlpath.html','nlhist.html','nllab.html','compete.html')]
+layers = [os.path.join(D,f) for f in ('firebase.html','bridge.html','ui.html','features.html','video.html','vendor-qrcode.html','printables.html','assess.html','game.html','realm.html','member.html','arcade.html','games.html','dungeon.html','snake.html','next.html','nlpath.html','nlhist.html','nllab.html','compete.html','privacy.html')]
 import re
 # Snake Arena's engine lives in snake-arena/src as JavaScript modules (it also runs on its own page and in Node).
 # For the app, the modules are joined in dependency order inside one function scope, in place of /*@SNAKE_ENGINE@*/.
@@ -52,4 +52,18 @@ open(os.path.join(root, 'index.html'), 'w', encoding='utf-8').write(open(os.path
 open(os.path.join(root, '.nojekyll'), 'w').close()
 # Next Level's Cipher checks guesses against this word list (fetched only when the puzzle opens)
 open(os.path.join(root, 'words5.txt'), 'w', encoding='utf-8').write(open(os.path.join(root, 'public', 'words5.txt'), encoding='utf-8').read())
+# Privacy policy and terms: the contact details live in tools/legal/legal.json; blanks show as highlighted gaps
+import datetime, json, html as _html
+L = json.load(open(os.path.join(D, 'legal', 'legal.json'), encoding='utf-8'))
+css = open(os.path.join(D, 'legal', 'legal.css'), encoding='utf-8').read()
+missing = [k for k in ('operator', 'email', 'address', 'phone') if not str(L.get(k, '')).strip()]
+val = lambda k, what: _html.escape(str(L[k]).strip()) if str(L.get(k, '')).strip() else f'<mark class="todo">[{what} to be added]</mark>'
+for name in ('privacy.html', 'terms.html'):
+    t = open(os.path.join(D, 'legal', name), encoding='utf-8').read()
+    for k, v in {'CSS': css, 'OPERATOR': val('operator', 'name'), 'EMAIL': val('email', 'email'), 'ADDRESS': val('address', 'mailing address'),
+                 'PHONE': val('phone', 'phone number'), 'UPDATED': _html.escape(L.get('updated', '')), 'YEAR': str(datetime.date.today().year)}.items():
+        t = t.replace('{{' + k + '}}', v)
+    if '{{' in t: sys.exit(f'{name}: unknown placeholder {t[t.index("{{"):t.index("{{")+20]}')
+    for d in (os.path.join(root, 'public'), root): open(os.path.join(d, name), 'w', encoding='utf-8').write(t)
+if missing: print('legal pages: still to fill in tools/legal/legal.json:', ', '.join(missing))
 print('ok', len(h))

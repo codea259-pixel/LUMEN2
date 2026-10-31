@@ -1,0 +1,57 @@
+<style>
+/* ===== Privacy: waiting for a parent's OK, "Your data" in Settings, footer links ===== */
+.cban{max-width:1180px;margin:10px auto 0;padding:12px 16px;border:2px solid var(--lamp,#f2b84b);border-radius:14px;background:var(--panel);color:var(--ink);line-height:1.5}
+.cban .chip{margin-left:4px}.cban input{padding:6px 10px;border:2px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);min-width:220px}
+#mydata details{margin-top:10px}#mydata summary{cursor:pointer;font-weight:700}#mydata label{display:block;margin-top:8px}
+.sitefoot{max-width:1180px;margin:28px auto 18px;padding:0 16px;color:var(--mute);font-size:13px;line-height:1.6;text-align:center}
+.sitefoot a{color:inherit}
+</style>
+<script type="text/x-lumen">
+/* Download a file made in the browser */
+const saveJSON=(name,obj)=>{const u=URL.createObjectURL(new Blob([JSON.stringify(obj,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),2000)};
+
+/* Learners under 13 who signed up themselves: until a parent says yes by email, progress stays on this device */
+const CBAN=(()=>{const u=BOOT.user||{};if(!['pending','ask'].includes(u.consent))return null;
+  const b=document.createElement('div');b.id='cban';b.className='cban';b.setAttribute('role','status');
+  const draw=(st,hint)=>{b.innerHTML=st==='pending'
+    ?`<b>Waiting for your parent's OK.</b> We emailed ${esc(hint||'your parent or guardian')} a link. Until they say yes, your progress is saved on this device only. <button class="chip" onclick="cbSend()">Send it again</button><button class="chip" onclick="CBAN.draw('ask')">Use a different email</button>`
+    :`<b>Ask a parent or guardian to say yes.</b> Type their email and we'll send them a link. Until then, your progress is saved on this device only. <input id="cbe" type="email" placeholder="parent@example.com" aria-label="Parent or guardian's email"><button class="chip" onclick="cbSend(1)">Send</button>`};
+  draw(u.consent,u.parentHint);const app=document.querySelector('.app');app.parentNode.insertBefore(b,app);return{draw}})();
+function cbSend(typed){const m=typed?($('cbe').value||'').trim():'';if(typed&&!m)return msg("Type your parent or guardian's email.");
+  busy(async()=>{const r=await api('POST','/api/consent/send',typed?{parentEmail:m}:{});CBAN.draw('pending',r.hint);msg('Sent. Ask them to check their email.')})}
+
+/* Delete your own posts and replies (California's law for minors, Business and Professions Code 22581) */
+function delMine(id){if(!confirm('Delete your post and its replies?'))return;busy(async()=>{await api('DELETE',`/api/posts/${id}`,{});reload('community')})}
+function delMineR(pid,rid){if(!confirm('Delete your reply?'))return;busy(async()=>{await api('DELETE',`/api/replies/${rid}`,{});reload('community')})}
+
+/* Settings: download everything stored about you, or delete your account */
+function myData(){if(BOOT.local){let d={};try{d=JSON.parse(localStorage.getItem('lumen_local')||'{}')}catch(e){}return saveJSON('bose-academy-my-data.json',{site:'Bose Academy (bose.academy)',exported:new Date().toISOString(),savedInThisBrowser:d})}
+  busy(async()=>saveJSON(`bose-academy-${(BOOT.user&&BOOT.user.username)||'my-data'}.json`,await api('GET','/api/me/export')))}
+function delMe(){const ok=($('dl1').value||'').trim()==='DELETE',pw=$('dl2')?$('dl2').value:'';
+  if(!ok)return $('dle').textContent='Type DELETE in capital letters to confirm.';if($('dl2')&&!pw)return $('dle').textContent='Enter your password.';
+  $('dle').textContent='';busy(async()=>{try{await api('DELETE','/api/me',{password:pw})}catch(e){$('dle').textContent=e.message;return}
+    try{sessionStorage.setItem('lumen_note','Your account and its data were deleted.')}catch(e){}location.href=location.pathname})}
+const _setP=VIEWS.settings;VIEWS.settings=function(){const u=BOOT.user||{};
+  const del=BOOT.local?''
+    :u.managed?'<p class="sol">Your teacher made this login, so ask your teacher if you want it removed.</p>'
+    :BOOT.role==='owner'?''
+    :`<details><summary>Delete my account</summary><p class="sol">This deletes your account, your saved progress, your Community posts and your certificates. It cannot be undone.${BOOT.role==='teacher'?' If you have classes, email us instead so we can delete them with your account.':''}</p>
+      <label>Type DELETE to confirm<input id="dl1" autocomplete="off"></label>${u.google?'<p class="sol">You will be asked to sign in with Google again.</p>':'<label>Your password<input id="dl2" type="password" autocomplete="current-password"></label>'}
+      <p class="err" id="dle" role="alert"></p><button class="alt" onclick="delMe()">Delete my account forever</button></details>`;
+  return _setP()+`<div class="card set" id="mydata" style="margin-top:14px"><h3>Your data</h3>
+    <p class="sol">${BOOT.local?'Without an account, your progress is saved only in this browser.':'Download a copy of everything Bose Academy stores about you, or delete your account.'}</p>
+    <div class="row"><button class="alt" onclick="myData()">Download my data</button>${BOOT.local?`<button class="alt" onclick="if(confirm('Erase all progress saved in this browser?')){localStorage.removeItem('lumen_local');location.reload()}">Erase my progress</button>`:''}</div>${del}
+    <p class="sol" style="margin-top:10px"><a href="privacy.html" target="_blank">Privacy policy</a> · <a href="terms.html" target="_blank">Terms of service</a></p></div>`};
+
+/* Owner console: remove parent emails from requests nobody answered within 14 days */
+if(BOOT.fb){const _ovP=VIEWS.owner;VIEWS.owner=function(){return _ovP()+`<div class="card" style="margin-top:16px"><h3>Parent permission (under 13)</h3>
+  <p class="sol">Learners under 13 who sign up themselves wait for a parent to say yes by email. If nobody answers within 14 days, the parent's email must be deleted. Their own sign-in removes it too; this button removes all of them at once.</p>
+  <button class="alt" onclick="busy(async()=>{const r=await api('POST','/api/owner/expire-consents',{});msg('Removed '+r.removed+' unanswered parent email'+(r.removed===1?'':'s')+'.')})">Remove unanswered requests</button>
+  <p class="sol" style="margin-top:12px">The privacy policy promises that accounts of learners under 13 that nobody uses for two years are deleted. Do this at least once a year.</p>
+  <button class="alt" onclick="if(confirm('Delete every account of a learner under 13 that has not been used for two years?'))busy(async()=>{const r=await api('POST','/api/owner/delete-inactive',{});msg('Deleted '+r.deleted+' unused account'+(r.deleted===1?'':'s')+'.')})">Delete unused under-13 accounts</button></div>`}}
+
+/* Footer on every view: privacy policy, terms and who we are */
+(()=>{const f=document.createElement('footer');f.className='sitefoot';
+  f.innerHTML=`<a href="privacy.html">Privacy policy</a> · <a href="terms.html">Terms of service</a> · <a href="./#about">About</a><br>© ${new Date().getFullYear()} Bose Academy. Lessons and practice questions are original. Bose Academy is an independent learning project and is not affiliated with Bose Corporation.`;
+  const t=$('toast');t.parentNode.insertBefore(f,t)})();
+</script>

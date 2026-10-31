@@ -27,6 +27,22 @@ service cloud.firestore {
       let before = resource.data.get(f, []).toSet();
       return after.difference(before) == [request.auth.uid].toSet() && before.difference(after).size() == 0;
     }
+    function removedSelf(f) {
+      let after = request.resource.data.get(f, []).toSet();
+      let before = resource.data.get(f, []).toSet();
+      return before.difference(after) == [request.auth.uid].toSet() && after.difference(before).size() == 0;
+    }
+    // A parent: signed in with the verified email that a learner under 13 gave at sign-up (kept in private/{uid})
+    function isParentOf(uid) {
+      return signedIn() && request.auth.token.email_verified == true && request.auth.token.get('email', '') != ''
+        && exists(/databases/$(db)/documents/private/$(uid))
+        && get(/databases/$(db)/documents/private/$(uid)).data.get('parentEmail', '') == request.auth.token.email.lower();
+    }
+    function parentSaidYes(uid) {
+      return exists(/databases/$(db)/documents/consents/$(uid)) && get(/databases/$(db)/documents/consents/$(uid)).data.decision == 'yes';
+    }
+    // Learners under 13 who signed up themselves save to their account only after a parent says yes (teacher-made logins: the school's OK)
+    function kidOK() { return me().get('under13', false) != true || me().get('managedBy', '') != '' || parentSaidYes(request.auth.uid); }
     function okText(f, lo, hi) { return request.resource.data[f] is string && request.resource.data[f].size() >= lo && request.resource.data[f].size() <= hi; }
 
     // Site settings: anyone can read; only the owner can change them (the owner also claims the site here once)
@@ -37,26 +53,51 @@ service cloud.firestore {
 
     // Public profiles: username, display name, role. Nobody can make themselves owner, verified or unlocked.
     match /users/{uid} {
-      allow read: if signedIn() && (request.auth.uid == uid || isTeacher());
+      allow read: if signedIn() && (request.auth.uid == uid || isTeacher() || isParentOf(uid));
       allow create: if signedIn() && request.auth.uid == uid
         && request.resource.data.role in ['student', 'parent', 'teacher']
         && request.resource.data.verified == false && request.resource.data.locked == false
         && request.resource.data.get('memberUntil', 0) == 0
-        && okText('display', 2, 20) && okText('username', 3, 20);
+        && okText('display', 2, 20) && okText('username', 3, 20)
+        && (request.resource.data.get('managedBy', '') == ''
+            || get(/databases/$(db)/documents/config/site).data.get('ownerUid', '') == request.resource.data.managedBy
+            || get(/databases/$(db)/documents/users/$(request.resource.data.managedBy)).data.role in ['teacher', 'school_admin']);
       allow update: if isOwner()
         || (request.auth.uid == uid && active() && changedOnly(['display']) && okText('display', 2, 20));
+      allow delete: if signedIn() && (request.auth.uid == uid || isOwner() || isParentOf(uid));
     }
 
-    // Private details (email): only the person and the owner
+    // Private details (email, a parent's email): the person, the owner, and the parent whose email it is.
+    // A learner can change the parent email only until a parent has said yes.
     match /private/{uid} {
-      allow read, write: if signedIn() && (request.auth.uid == uid || isOwner());
+      allow read: if signedIn() && (request.auth.uid == uid || isOwner()
+        || (request.auth.token.email_verified == true && resource.data.get('parentEmail', '') != ''
+            && resource.data.get('parentEmail', '') == request.auth.token.get('email', '').lower()));
+      allow create: if signedIn() && (request.auth.uid == uid || isOwner());
+      allow update: if signedIn() && (isOwner() || (request.auth.uid == uid
+        && (request.resource.data.get('parentEmail', '') == resource.data.get('parentEmail', '') || !parentSaidYes(uid))));
+      allow delete: if signedIn() && (request.auth.uid == uid || isOwner() || isParentOf(uid));
     }
 
-    // Saved progress: the learner writes their own; their teachers (listed in readers) and the owner can read it
+    // A parent's answer for a learner under 13. Only the parent writes it, signed in with the emailed link.
+    match /consents/{uid} {
+      allow read: if signedIn() && (request.auth.uid == uid || isOwner() || isParentOf(uid));
+      allow create, update: if isParentOf(uid)
+        && request.resource.data.keys().hasOnly(['decision', 'parentUid', 'parentEmail', 'at', 'method', 'policy'])
+        && request.resource.data.decision == 'yes' && request.resource.data.parentUid == request.auth.uid
+        && request.resource.data.parentEmail == request.auth.token.email.lower() && request.resource.data.at is int;
+      allow delete: if signedIn() && (request.auth.uid == uid || isOwner() || isParentOf(uid));
+    }
+
+    // Saved progress: the learner writes their own (under 13: once a parent says yes); their teachers (listed in readers),
+    // their parent and the owner can read it
     match /state/{uid} {
-      allow read: if signedIn() && (request.auth.uid == uid || isOwner() || request.auth.uid in resource.data.get('readers', []));
+      allow read: if signedIn() && (request.auth.uid == uid || isOwner() || request.auth.uid in resource.data.get('readers', []) || isParentOf(uid));
       allow create, update: if signedIn() && request.auth.uid == uid
-        && request.resource.data.get('json', '').size() < 400000;
+        && request.resource.data.get('json', '').size() < 400000
+        && (kidOK() || request.resource.data.get('json', '{}') == '{}'
+            || (resource != null && request.resource.data.get('json', '') == resource.data.get('json', '')));
+      allow delete: if signedIn() && (request.auth.uid == uid || isOwner() || isParentOf(uid));
     }
 
     // Classes: the teacher manages them; students can only add themselves with a join code
@@ -68,7 +109,8 @@ service cloud.firestore {
       // Teachers manage their classes, but only the Owner can switch on a class membership (memberUntil)
       allow update: if signedIn() && (
         (resource.data.teacherId == request.auth.uid && isTeacher() && request.resource.data.get('memberUntil', 0) == resource.data.get('memberUntil', 0)) || isOwner()
-        || (active() && me().role == 'student' && changedOnly(['members']) && addedSelf('members')));
+        || (active() && me().role == 'student' && changedOnly(['members']) && addedSelf('members'))
+        || (signedIn() && changedOnly(['members']) && removedSelf('members')));
       allow delete: if signedIn() && (resource.data.teacherId == request.auth.uid || isOwner());
 
       match /assignments/{aid} {
@@ -142,8 +184,9 @@ service cloud.firestore {
     }
 
     // Community posts and replies
+    // Authors can delete their own posts and replies (California's law for minors: Business and Professions Code 22581)
     match /posts/{pid} {
-      allow read: if active() && (resource.data.hidden == false || isMod());
+      allow read: if active() && (resource.data.hidden == false || isMod() || resource.data.authorId == request.auth.uid);
       allow create: if active() && me().get('under13', false) != true && request.resource.data.authorId == request.auth.uid
         && request.resource.data.hidden == false && request.resource.data.pinned == false && request.resource.data.locked == false
         && request.resource.data.votes.size() == 0 && request.resource.data.reports.size() == 0
@@ -152,17 +195,19 @@ service cloud.firestore {
         (changedOnly(['votes']) && toggledSelf('votes'))
         || (changedOnly(['reports']) && addedSelf('reports'))
         || (changedOnly(['reports', 'hidden']) && addedSelf('reports') && request.resource.data.hidden == true && request.resource.data.reports.size() >= 3)));
-      allow delete: if isMod();
+      allow delete: if isMod() || (signedIn() && resource.data.authorId == request.auth.uid);
     }
     match /replies/{rid} {
-      allow read: if active() && (resource.data.hidden == false || isMod());
+      allow read: if active() && (resource.data.hidden == false || isMod() || resource.data.authorId == request.auth.uid);
       allow create: if active() && me().get('under13', false) != true && request.resource.data.authorId == request.auth.uid
         && request.resource.data.hidden == false && request.resource.data.reports.size() == 0 && okText('body', 2, 2000)
         && get(/databases/$(db)/documents/posts/$(request.resource.data.postId)).data.locked != true;
       allow update: if isMod() || (active() && (
         (changedOnly(['reports']) && addedSelf('reports'))
         || (changedOnly(['reports', 'hidden']) && addedSelf('reports') && request.resource.data.hidden == true && request.resource.data.reports.size() >= 3)));
-      allow delete: if isMod();
+      allow delete: if isMod() || (signedIn() && (resource.data.authorId == request.auth.uid
+        || (exists(/databases/$(db)/documents/posts/$(resource.data.postId))
+            && get(/databases/$(db)/documents/posts/$(resource.data.postId)).data.authorId == request.auth.uid)));
     }
 
     // Study groups: anyone signed in can join or leave
@@ -175,8 +220,9 @@ service cloud.firestore {
     // Certificates: anyone with the ID can verify one; people create only their own
     match /certs/{id} {
       allow get: if true;
-      allow list: if signedIn() && resource.data.uid == request.auth.uid;
-      allow create: if active() && request.resource.data.uid == request.auth.uid && okText('name', 2, 40);
+      allow list: if signedIn() && (resource.data.uid == request.auth.uid || isOwner() || isParentOf(resource.data.uid));
+      allow create: if active() && kidOK() && request.resource.data.uid == request.auth.uid && okText('name', 2, 40);
+      allow delete: if signedIn() && (resource.data.uid == request.auth.uid || isOwner() || isParentOf(resource.data.uid));
     }
 
     // Public Impact counters (only ever go up)

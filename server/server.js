@@ -101,11 +101,11 @@ const int = (v, lo, hi) => { v = Math.trunc(+v); if (!Number.isFinite(v) || v < 
 const str = (v, lo, hi) => { v = String(v ?? '').trim(); if (v.length < lo || v.length > hi) throw new E(400, `Text must be ${lo} to ${hi} characters.`); return v; };
 const need = (c, ok = true) => { if (!c.u) throw new E(401, 'auth'); if (!ok) throw new E(403, 'Not allowed.'); };
 
-function postOut(p, mod) {
+function postOut(p, mod, uid) {
   const rs = Q('SELECT * FROM replies WHERE post_id=? ORDER BY ts', p.id).filter(r => mod || !r.hidden);
-  return { id: p.id, type: p.type, group: p.grp, subject: p.subject, grade: p.grade, title: p.title, body: p.body, author: nameOf(p.author_id), ts: p.ts, hidden: !!p.hidden, pinned: !!p.pinned, locked: !!p.locked,
+  return { id: p.id, mine: p.author_id === uid, type: p.type, group: p.grp, subject: p.subject, grade: p.grade, title: p.title, body: p.body, author: nameOf(p.author_id), ts: p.ts, hidden: !!p.hidden, pinned: !!p.pinned, locked: !!p.locked,
     votes: JSON.parse(p.votes).map(nameOf), reports: mod ? JSON.parse(p.reports).map(nameOf) : [],
-    replies: rs.map(r => ({ id: r.id, author: nameOf(r.author_id), body: r.body, hidden: !!r.hidden, reports: mod ? JSON.parse(r.reports).map(nameOf) : [] })) };
+    replies: rs.map(r => ({ id: r.id, mine: r.author_id === uid, author: nameOf(r.author_id), body: r.body, hidden: !!r.hidden, reports: mod ? JSON.parse(r.reports).map(nameOf) : [] })) };
 }
 // Game: gems earned in total (spending never lowers a class goal), XP, this week's XP and the hero's look
 const gemsEarned = st => +((st.game && st.game.ge) ?? st.gems) || 0;
@@ -156,6 +156,23 @@ route('POST', '/api/login', (c, res) => {
 route('POST', '/api/logout', (c, res) => { res.cookie = 'x'; res.clear = true; return { ok: true }; });
 const memberUntil = u => Math.max(+u.member_until || 0, ...Q('SELECT c.member_until m FROM class_members x JOIN classes c ON c.id=x.class_id WHERE x.user_id=?', u.id).map(r => +r.m || 0));
 route('GET', '/api/me', c => { need(c); return { user: { ...userOut(c.u), member: memberUntil(c.u) } }; });
+// Your data: download everything stored about you, or delete your account and its data
+route('GET', '/api/me/export', c => { need(c); const id = c.u.id, { hash, salt, ...account } = c.u, st = Q1('SELECT json FROM state WHERE user_id=?', id);
+  return { site: 'Bose Academy', exported: new Date().toISOString(), account, progress: st && st.json ? JSON.parse(st.json) : null,
+    posts: Q('SELECT id, type, subject, grade, title, body, ts FROM posts WHERE author_id=?', id), replies: Q('SELECT id, post_id, body, ts FROM replies WHERE author_id=?', id),
+    certificates: Q('SELECT id, name, course, kind, date FROM certs WHERE user_id=?', id), classes: Q('SELECT c.name FROM classes c JOIN class_members m ON m.class_id=c.id WHERE m.user_id=?', id).map(r => r.name),
+    work: Q('SELECT test_id, answers, started, submitted, result FROM subs WHERE user_id=?', id) }; });
+route('DELETE', '/api/me', (c, res) => { need(c); const u = c.u; if (u.role === 'owner') throw new E(403, 'The Owner account cannot be deleted here.');
+  limit('del' + c.ip, 10, 600e3);
+  if (!crypto.timingSafeEqual(Buffer.from(hashPw(String(c.body.password || ''), u.salt)), Buffer.from(u.hash))) throw new E(401, 'That password is not right.');
+  if (Q1('SELECT 1 FROM classes WHERE teacher_id=?', u.id)) throw new E(409, 'You still have classes. Email us and we will delete your classes and your account together.');
+  db.exec('BEGIN'); try {
+    X('DELETE FROM replies WHERE author_id=? OR post_id IN (SELECT id FROM posts WHERE author_id=?)', u.id, u.id); X('DELETE FROM posts WHERE author_id=?', u.id);
+    for (const g of Q('SELECT * FROM groups')) { const m = JSON.parse(g.members); if (m.includes(u.id)) X('UPDATE groups SET members=? WHERE id=?', JSON.stringify(m.filter(x => x !== u.id)), g.id); }
+    for (const t of ['certs', 'class_members', 'awards', 'state']) X(`DELETE FROM ${t} WHERE user_id=?`, u.id);
+    X('DELETE FROM qvers WHERE owner_id=?', u.id); X('DELETE FROM users WHERE id=?', u.id); db.exec('COMMIT');
+  } catch (e) { db.exec('ROLLBACK'); throw e; }
+  res.cookie = 'x'; res.clear = true; return { ok: true }; });
 route('PATCH', '/api/me', c => { need(c); const d = str(c.body.display, 2, 20), bad = clean(d); if (bad) throw new E(400, bad); if (Q1('SELECT 1 FROM users WHERE display=? AND id<>?', d, c.u.id)) throw new E(409, 'That display name is taken.'); X('UPDATE users SET display=? WHERE id=?', d, c.u.id); return { display: d }; });
 route('GET', '/api/settings', () => ({ flags: S('flags'), retDays: S('retDays'), gr: S('gr'), impact: S('impact'), programs: S('programs'), terms: S('terms'), game: S('game'), member: S('member') }));
 route('GET', '/api/curriculum', () => ({ courses: CUR.courses, milestones: CUR.milestones }));
@@ -164,7 +181,7 @@ route('PUT', '/api/state', c => { need(c); const j = JSON.stringify(c.body); if 
 
 // community
 route('GET', '/api/community', c => { need(c); const m = isMod(c.u);
-  return { posts: Q('SELECT * FROM posts ORDER BY ts DESC LIMIT 300').filter(p => m || !p.hidden).map(p => postOut(p, m)),
+  return { posts: Q('SELECT * FROM posts ORDER BY ts DESC LIMIT 300').filter(p => m || !p.hidden).map(p => postOut(p, m, c.u.id)),
     groups: Q('SELECT * FROM groups ORDER BY id DESC LIMIT 200').map(g => ({ id: g.id, name: g.name, subject: g.subject, grade: g.grade, members: JSON.parse(g.members).map(nameOf) })) }; });
 const noKids = c => { if (c.u.under13) throw new E(403, "Posting in the Community opens when you're 13."); };
 route('POST', '/api/posts', c => { need(c); noKids(c); limit('po' + c.u.id, 8, 60e3); const b = c.body, t = str(b.title, 5, 120), body = str(b.body, 10, 2000), bad = clean(t + ' ' + body); if (bad) throw new E(400, bad);
@@ -180,7 +197,9 @@ route('POST', '/api/posts/:id/report', c => { need(c); const rid = c.body.rid; c
 route('PATCH', '/api/posts/:id', c => { need(c, isMod(c.u)); const p = Q1('SELECT * FROM posts WHERE id=?', int(c.params.id, 1, 1e12)); if (!p) throw new E(404, 'Not found.'); const a = c.body.action;
   const col = { hide: 'hidden', pin: 'pinned', lock: 'locked' }[a]; if (!col) throw new E(400, 'Unknown action.'); X(`UPDATE posts SET ${col}=? WHERE id=?`, p[col] ? 0 : 1, p.id); return { ok: true }; });
 route('POST', '/api/posts/:id/keep', c => { need(c, c.u.role === 'owner'); const id = int(c.params.id, 1, 1e12); X("UPDATE posts SET hidden=0, reports='[]' WHERE id=?", id); return { ok: true }; });
-route('DELETE', '/api/posts/:id', c => { need(c, isMod(c.u)); const id = int(c.params.id, 1, 1e12); X('DELETE FROM replies WHERE post_id=?', id); X('DELETE FROM posts WHERE id=?', id); return { ok: true }; });
+// Authors can delete their own posts and replies (California's law for minors, Business and Professions Code 22581)
+route('DELETE', '/api/posts/:id', c => { need(c); const id = int(c.params.id, 1, 1e12), p = Q1('SELECT author_id FROM posts WHERE id=?', id); if (!p) throw new E(404, 'Not found.'); need(c, isMod(c.u) || p.author_id === c.u.id); X('DELETE FROM replies WHERE post_id=?', id); X('DELETE FROM posts WHERE id=?', id); return { ok: true }; });
+route('DELETE', '/api/replies/:id', c => { need(c); const r = Q1('SELECT * FROM replies WHERE id=?', int(c.params.id, 1, 1e12)); if (!r) throw new E(404, 'Not found.'); need(c, isMod(c.u) || r.author_id === c.u.id); X('DELETE FROM replies WHERE id=?', r.id); return { ok: true }; });
 route('PATCH', '/api/replies/:id', c => { need(c, isMod(c.u)); const r = Q1('SELECT * FROM replies WHERE id=?', int(c.params.id, 1, 1e12)); if (!r) throw new E(404, 'Not found.'); X('UPDATE replies SET hidden=? WHERE id=?', r.hidden ? 0 : 1, r.id); return { ok: true }; });
 route('POST', '/api/groups', c => { need(c); noKids(c); limit('gr' + c.u.id, 5, 3600e3); const n = str(c.body.name, 3, 40), bad = clean(n); if (bad) throw new E(400, bad); X('INSERT INTO groups(name,subject,grade,members) VALUES(?,?,?,?)', n, str(c.body.subject, 2, 40), int(c.body.grade, -1, 13), JSON.stringify([c.u.id])); return { ok: true }; });
 route('POST', '/api/groups/:id/join', c => { need(c); const g = Q1('SELECT * FROM groups WHERE id=?', int(c.params.id, 1, 1e12)); if (!g) throw new E(404, 'Not found.'); const m = JSON.parse(g.members), i = m.indexOf(c.u.id); i < 0 ? m.push(c.u.id) : m.splice(i, 1); X('UPDATE groups SET members=? WHERE id=?', JSON.stringify(m), g.id); return { ok: true }; });
