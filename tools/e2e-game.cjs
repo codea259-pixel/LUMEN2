@@ -128,15 +128,35 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
         const right = x.q.choices ? c.L[c.cor] === x.q.choices[x.q.a[0]] : Math.abs(v(c.L[c.cor]) - x.q.a[0] / x.q.a[1]) < 1e-9; if (c.L.length !== 3 || new Set(c.L).size !== 3 || !right) bad.push(x.q.q + ' -> ' + c.L.join('|')) } }
       GM.rsub = 'math'; return { n, bad } });
     if (kc.bad.length || kc.n < 100) fail('kart lanes wrong: ' + JSON.stringify(kc).slice(0, 300));
-    await a.evaluate(() => toHub()); await a.click('.tile:has-text("Turbo Trivia Kart")'); await a.click('text=Start race'); await a.waitForSelector('#kgate span');
+    await a.evaluate(() => toHub()); await a.click('.tile:has-text("Turbo Trivia Kart")'); await a.waitForSelector('.ktracks2'); await a.click('text=▶ Start race');
+    await a.waitForFunction(() => AG.cur && AG.cur.phase === 'play' && AG.cur.st, null, { timeout: 10000 });
     const kg0 = await a.evaluate(() => GEMS()), kp0 = await a.evaluate(() => DAY().play); await a.evaluate(() => realmTick(5)); if (await a.evaluate(() => DAY().play) !== kp0 + 5) fail('a race did not use play time');
-    for (let i = 0; i < 10; i++) { await a.waitForFunction(() => KT && KT.ph === 'go', null, { timeout: 8000 }); const c = await a.evaluate(() => KT.cor), want = i === 4 ? (c + 1) % 3 : c;
-      if (i % 2) await a.keyboard.press(String(want + 1)); else await a.click(`.klanes button >> nth=${want}`);
-      await a.evaluate(() => { KT.gs -= KT.win }); await a.waitForFunction(() => KT.ph !== 'go');
-      if (i === 4 && !/Bump! It was/.test(await a.textContent('#kfb'))) fail('a wrong lane does not show the answer') }
-    await a.waitForSelector('text=Gold medal!'); const kr = await a.evaluate(g => ({ gems: GEMS() - g, best: (ARS('kart').bt || {}).sun, ok: KT.ok, n: KT.n, next: ktOpen(1), last: ktOpen(3) }), kg0);
-    if (kr.ok !== 9 || kr.n !== 10 || kr.gems !== 6 || kr.best == null || !kr.next || kr.last || !(await a.isVisible('text=New track unlocked: Candy Canyon'))) fail('race result wrong: ' + JSON.stringify(kr));
-    ok(`Turbo Trivia Kart: ${kc.n} questions all made 3 different lanes with the right answer; 9 of 10 gates right (taps and number keys) won gold and 6 gems (3 for gold, 3 for a first best time) and unlocked Candy Canyon (12 gates); a wrong lane shows the answer; racing uses play time`); await shot(a, 'g-kart');
+    // pause with P: the kart stops; a hidden tab pauses too
+    await a.keyboard.press('p'); await a.waitForSelector('#agover:not([hidden]) >> text=Paused'); const kz0 = await a.evaluate(() => AG.cur.st.pos); await a.waitForTimeout(400);
+    if (await a.evaluate(() => AG.cur.st.pos) !== kz0) fail('the kart moved while paused'); await a.keyboard.press('p'); await a.waitForFunction(() => !AG.paused());
+    await a.evaluate(() => { Object.defineProperty(document, 'hidden', { configurable: true, get: () => true }); document.dispatchEvent(new Event('visibilitychange')); delete document.hidden });
+    if (!(await a.evaluate(() => AG.holds.has('away')))) fail('a hidden tab did not pause the race'); await a.click('#agres'); await a.waitForFunction(() => !AG.paused());
+    // eight gates: lane buttons and number keys; the 4th gate on purpose in the wrong lane
+    for (let i = 0; i < 8; i++) {
+      await a.evaluate(i => { const T = AG.cur.st, g = T.Z.gates[i]; T.pos = Math.max(T.pos, g.z - T.tier.vmax * T.tier.read * .4 - KCAMH * KCAMD) }, i);
+      await a.waitForFunction(() => AG.cur.st.q && !AG.cur.st.q.none, null, { timeout: 8000 }); const c = await a.evaluate(() => AG.cur.st.q.cor), want = i === 3 ? (c + 1) % 3 : c;
+      if (i % 2) await a.keyboard.press(String(want + 1)); else await a.click(`.klanes2 button >> nth=${want}`);
+      if (await a.evaluate(() => AG.cur.st.lane) !== want) fail('picking a lane did not steer to it');
+      await a.evaluate(w => { const T = AG.cur.st; T.x = [-.62, 0, .62][w]; T.pos = T.q.g.z - KCAMH * KCAMD - 20 }, want);
+      await a.waitForFunction(i => AG.cur.st.Z.gates[i].done, i, { timeout: 8000 });
+      if (i === 3) { await a.waitForTimeout(150); if (!/It was/.test(await a.textContent('#kfb2'))) fail('a wrong lane does not show the answer: ' + await a.textContent('#kfb2')) } }
+    await a.evaluate(() => { const T = AG.cur.st; T.pos = T.Z.fin - 5 }); await a.waitForSelector('text=Silver medal!', { timeout: 10000 }); await a.waitForTimeout(1600);
+    const kr = await a.evaluate(g => { const S = ARS('kart'), r = AG.cur.res; return { gems: GEMS() - g, rg: r.gems, medal: r.medal, ok: r.ok, n: r.n, pb: (S.pb.neon || {}).time, ghost: ((S.gh.neon || {}).s || []).length, next: ktOpen(1), after: ktOpen(2), ach: AG.got('kart', 'first'), paint: AG.has('kart.paint.yellow') } }, kg0);
+    if (kr.medal !== 2 || kr.ok !== 7 || kr.n !== 8 || kr.pb == null || kr.ghost < 4 || !kr.next || kr.after || !kr.ach || !kr.paint || kr.gems < kr.rg + 1 || !(await a.isVisible('text=New track: Frozen Mountain Pass'))) fail('race result wrong: ' + JSON.stringify(kr));
+    ok(`Turbo Trivia Kart: ${kc.n} questions all made 3 different lanes with the right answer; P and a hidden tab pause the race; lane buttons and number keys steer; 7 of 8 gates won silver, ${kr.gems} gems, a best time and a ghost, unlocked Frozen Mountain Pass, the "First finish" achievement and Sunny Yellow paint; a wrong lane shows the answer; racing uses play time`); await shot(a, 'g-kart');
+    // the new paint, Restart and the Collection Book
+    await a.click('.kcust button[aria-label="Sunny Yellow"]'); if (await a.evaluate(() => ktPaint()) !== 'yellow') fail('picking a paint did not stick');
+    await a.click('text=▶ Start race'); await a.waitForFunction(() => AG.cur && AG.cur.phase === 'play' && AG.cur.st && AG.cur.st.time > .8); const kst = await a.evaluate(() => AG.cur.st);
+    await a.click('.agbar >> text=↻ Restart'); await a.waitForFunction(() => AG.cur.phase === 'play' && AG.cur.st && AG.cur.st.time < .8); if (await a.evaluate(() => AG.cur.st.pos) > 3000) fail('Restart did not start the race again');
+    await a.evaluate(() => { AG.stop(); AG.cur = null; AR.run = false; rerealm() }); await a.click('text=📖 Collection Book'); await a.waitForSelector('text=🏅 Achievements');
+    const bk = await a.evaluate(() => ({ got: document.querySelectorAll('.bitem:not(.locked)').length, txt: document.querySelector('.gworld').textContent.includes('Sunny Yellow') }));
+    if (bk.got < 4 || !bk.txt) fail('Collection Book wrong: ' + JSON.stringify(bk)); ok(`picked the new paint, Restart began the race again, the Collection Book shows ${bk.got} unlocked things`);
+    await a.click('text=← Back to Turbo Trivia Kart'); await a.waitForSelector('.ktracks2');
     // Goblin Gate: build with a right answer, the field pauses during questions, upgrades need answers in a row
     await a.evaluate(() => toHub()); await a.click('.tile:has-text("Goblin Gate")'); await a.click('text=Start defending'); await a.waitForSelector('#gp0');
     await a.click('#gp0'); await a.click('.tpick button:has-text("Laser tower")'); await answerQM(a, true); await a.waitForFunction(() => !QM && GT.tw[0] && GT.tw[0].lv === 1);

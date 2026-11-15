@@ -1,0 +1,210 @@
+<style>
+/* ===== Arcade engine: the shared frame around every arcade game (see the note at the top of the script) ===== */
+.agstage{position:relative;border-radius:20px;overflow:hidden;background:#0b1026;border:3px solid rgba(255,255,255,.85);box-shadow:0 8px 0 var(--ga-lip),0 18px 30px rgba(15,23,42,.35);touch-action:none;user-select:none;-webkit-user-select:none}
+.ag{scroll-margin-top:76px}
+.agstage canvas{display:block;width:100%;height:auto}
+/* the play area fits the window, leaving room for the game's question and buttons (--agv) */
+.ag .agstage{max-width:min(100%,calc((100vh - var(--agv,230px)) * var(--ar,1.78)));max-width:min(100%,calc((100dvh - var(--agv,230px)) * var(--ar,1.78)));margin:0 auto}
+.agstage.px canvas{image-rendering:pixelated;image-rendering:crisp-edges}
+.agbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 12px}
+.agbar .abtn{min-height:44px;padding:0 14px;font-size:.95rem}
+.agbar .agt{flex:1;min-width:140px}.agbar .agt h2{margin:0;font:800 clamp(1.25rem,3vw,1.7rem)/1.1 "Bricolage Grotesque",sans-serif;color:#fff;text-shadow:0 2px 0 #312E81}
+.agbar .agt small{display:block;color:rgba(255,255,255,.88);font-weight:700}
+.agover{position:absolute;inset:0;display:grid;place-items:center;background:rgba(11,16,38,.66);z-index:6;padding:14px;overflow:auto}
+.agover[hidden]{display:none}.agover .gcard{max-width:460px;width:100%;text-align:center}
+.agover .gcard h3{margin:0 0 6px;font:800 1.5rem "Bricolage Grotesque",sans-serif}
+.agover .row{justify-content:center}
+.agpad{display:none;gap:12px;justify-content:space-between;align-items:center;margin-top:12px}
+.agpad .grp{display:flex;gap:10px}
+.agpad button{min-width:68px;min-height:68px;border-radius:20px;border:3px solid rgba(255,255,255,.8);background:rgba(30,27,75,.55);color:#fff;font:800 1.4rem/1 "Bricolage Grotesque",sans-serif;touch-action:none;box-shadow:0 5px 0 var(--ga-lip)}
+.agpad button.on{background:rgba(242,169,0,.85);color:#1E1B4B}
+.agpad.show{display:flex}
+@media (pointer:coarse){.agpad{display:flex}}
+.agvol{display:inline-flex;gap:8px;align-items:center;font-weight:700}.agvol input{width:110px}
+.agtoast{position:fixed;left:50%;top:14px;transform:translateX(-50%);z-index:70;display:flex;gap:10px;align-items:center;max-width:min(92vw,440px);padding:10px 16px;border-radius:16px;background:#1E1B4B;color:#fff;border:2px solid var(--ga-gold);box-shadow:0 10px 24px rgba(0,0,0,.35);font-weight:700}
+.agtoast small{display:block;font-weight:400;opacity:.9}.agtoast .i{font-size:1.6rem}
+.agtier{display:inline-block;padding:3px 10px;border-radius:99px;background:rgba(255,255,255,.18);color:#fff;font-weight:800;font-size:.8rem}
+.gcard .agtier{background:#EEF2FF;color:#3730A3}
+.aghelp{margin:8px 0 0;padding-left:20px;text-align:left}.aghelp li{margin:4px 0}
+.agkeys{font-size:.9rem;color:var(--mute);margin:8px 0 0}
+.agkeys kbd{display:inline-block;min-width:22px;padding:1px 6px;border:1px solid var(--line);border-bottom-width:3px;border-radius:6px;background:var(--panel);font:700 .8rem ui-monospace,monospace;text-align:center}
+/* Collection Book */
+.bookgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:10px}
+.bitem{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;padding:12px 10px;border-radius:16px;background:var(--panel);color:var(--ink);border:2px solid var(--line)}
+.bitem .bi{font-size:2rem;line-height:1.1}.bitem b{font-size:.95rem}.bitem small{color:var(--mute)}
+.bitem.locked{opacity:.55;filter:grayscale(.9)}.bitem.locked .bi{filter:brightness(.4)}
+.bitem .sw{width:44px;height:30px;border-radius:8px;border:2px solid rgba(0,0,0,.15)}
+.booktabs{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 12px}
+</style>
+<script type="text/x-lumen">
+/* ===== Arcade engine =====
+   Every arcade game registers with AG.def({...}) and gets the same frame:
+   - a start card with short instructions (AG.intro), then a play screen (AG.screen) with Pause, Restart, Sound and Exit;
+   - a requestAnimationFrame loop: game logic runs in fixed 1/60 s steps (step), drawing runs once a frame (draw),
+     so speed is the same on fast and slow screens;
+   - pause and resume: the Pause button, P or Esc, a hidden browser tab, and while a question is open (AG.ask);
+   - Restart without reloading, and a recovery card if a game hits an error;
+   - input from keys (arrows/WASD, Space, Enter; the page doesn't scroll), the mouse and touch buttons (AG.pad);
+   - adaptive difficulty (AD): Beginner, Intermediate, Advanced, Expert, eased gently after misses;
+   - rewards: gems, a little XP for right answers (capped each day), achievements and cosmetic items for the Collection Book;
+   - sound effects made in the browser (SND), with volume and mute;
+   - saving: everything lives in GM (saved to the account, or this browser in demo mode).
+   A game: {id,name,sub,help:[...],keys:[...],w,h,snd, start(opts)->state, step(dt), draw(alpha), key(k,down), end?, ach:{}, items:{}} */
+const AG={G:{},cur:null,raf:0,last:0,acc:0,STEP:1/60,held:new Set(),holds:new Set(),slow:0,frames:0};
+AG.def=g=>(AG.G[g.id]=g);
+AG.set=()=>GM.ag||(GM.ag={vol:.5,mute:false,low:false});
+AG.low=()=>!!(AG.set().low||ST.lite);
+AG.on=id=>!!(AG.cur&&AG.cur.id===id&&['load','play'].includes(AG.cur.phase));
+AG.paused=()=>!!(AG.cur&&AG.holds.size);
+
+/* ---------- Starting, the loop, pausing ---------- */
+AG.play=async(id,opts={})=>{if(!canStart())return;stopGames();const g=AG.G[id];if(!g)return;
+  AG.cur={id,g,opts,phase:'load',st:null,t:0,res:null};AG.holds.clear();AG.held.clear();AR.mode=id;AR.run=true;rerealm();
+  const top=document.querySelector('.ag');if(top)top.scrollIntoView({block:'start',behavior:'auto'});
+  try{if(g.load)await g.load();if(!AG.cur||AG.cur.id!==id)return;AG.fit();AG.cur.st=g.start(opts);AG.cur.phase='play';AG.ui();AG.loop()}
+  catch(e){AG.crash(e)}};
+AG.loop=()=>{cancelAnimationFrame(AG.raf);AG.last=0;AG.acc=0;AG.raf=requestAnimationFrame(AG.frame)};
+AG.frame=ts=>{const C=AG.cur;if(!C||C.phase!=='play')return;const cv=$('agcv');if(!cv){AG.stop();return}
+  const dt=AG.last?Math.min(.1,(ts-AG.last)/1000):0;AG.last=ts;
+  try{if(!AG.paused()){if(outOfTime()&&C.g.timeup!==false){AG.finish({why:'time'});return}
+      AG.acc+=dt;let n=0;while(AG.acc>=AG.STEP&&n++<6){C.t+=AG.STEP;C.g.step(AG.STEP,C.st);AG.acc-=AG.STEP;if(AG.cur!==C||C.phase!=='play')return}
+      if(n>=6)AG.acc=0}
+    C.g.draw(AG.acc/AG.STEP,C.st);
+    /* slow device: switch to low effects after about two seconds of slow frames */
+    if(!AG.set().low&&dt>.034){if(++AG.slow>120){AG.set().low=true;SYNC();AG.toast('🐢 Smoother mode on','Fewer effects, so the game runs better on this device.')}}else if(AG.slow>0)AG.slow--}
+  catch(e){AG.crash(e);return}
+  AG.raf=requestAnimationFrame(AG.frame)};
+AG.stop=()=>{cancelAnimationFrame(AG.raf);AG.raf=0;AG.held.clear();if(AG.cur&&AG.cur.g.stop)try{AG.cur.g.stop(AG.cur.st)}catch(e){}SND.hush()};
+GSTOP.push(()=>{AG.stop();if(AG.cur&&['load','play'].includes(AG.cur.phase))AG.cur=null});
+/* why: 'pause' (the menu), 'away' (hidden tab), 'q' (a question is open) */
+AG.hold=why=>{AG.holds.add(why);AG.held.clear();AR.paused=true;AG.ui()};
+AG.release=why=>{AG.holds.delete(why);if(!AG.holds.size){AR.paused=false;AG.last=0}AG.ui()};
+AG.pause=()=>{if(AG.cur&&AG.cur.phase==='play'){AG.hold('pause');SND.play('click');AG.save()}};
+AG.resume=()=>{AG.release('pause');AG.release('away');SND.play('click');const cv=$('agcv');if(cv)cv.focus({preventScroll:true})};
+AG.restart=()=>{const C=AG.cur;if(!C)return;AG.stop();if(C.g.stop)try{C.g.stop(C.st)}catch(e){}AG.play(C.id,C.opts)};
+AG.quit=()=>{const C=AG.cur;if(C&&C.phase==='play'&&C.t>3&&!confirm('Leave this game? This round will end.'))return;AG.stop();AG.cur=null;AR.run=false;rerealm()};
+/* The game is over: res is the game's result, shown by its menu */
+AG.finish=res=>{const C=AG.cur;if(!C)return;AG.stop();C.phase='end';C.res=res;AR.run=false;try{if(C.g.end)C.g.end(res,C.st)}catch(e){console.error(e)}AG.save();rerealm();gameCheck()};
+AG.crash=e=>{console.error(e);AG.stop();const C=AG.cur;if(C)C.phase='crash';AR.run=false;AG.save();
+  const o=$('agover');if(o){o.hidden=false;o.innerHTML=`<div class="gcard"><div class="big" aria-hidden="true">🔧</div><h3>Oops, the game hit a snag</h3><p>Your progress is saved. Try again, or go back to the Arcade.</p><div class="row"><button class="abtn" onclick="AG.restart()">↻ Restart</button><button class="abtn sec" onclick="AG.quit()">← Arcade</button></div></div>`}
+  else{AG.cur=null;msg('The game hit a snag. Please try again.');rerealm()}};
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&AG.cur&&AG.cur.phase==='play')AG.hold('away')});
+setInterval(()=>{if(AG.cur&&AG.cur.phase==='play'&&!AG.paused())AG.save()},20000);
+AG.save=()=>SYNC();
+
+/* ---------- The canvas: drawn in the game's own units (g.w x g.h), sharp on any screen ---------- */
+AG.fit=()=>{const C=AG.cur,cv=$('agcv');if(!C||!cv)return;const g=C.g,dpr=Math.min(2,devicePixelRatio||1),cw=cv.parentNode.clientWidth||g.w,
+  W=Math.round(Math.min(cw*dpr,(AG.low()?.6:1)*(g.maxW||1600)));cv.width=W;cv.height=Math.round(W*g.h/g.w);AG.cx=cv.getContext('2d');AG.sc=W/g.w;
+  AG.cx.setTransform(AG.sc,0,0,AG.sc,0,0);AG.cx.imageSmoothingEnabled=!g.pixel};
+addEventListener('resize',()=>{clearTimeout(AG._rz);AG._rz=setTimeout(()=>{if(AG.cur&&AG.cur.phase==='play'){AG.fit();if(AG.cur.g.resize)AG.cur.g.resize(AG.cur.st)}},150)});
+
+/* ---------- The play screen ---------- */
+AG.screen=(id,o={})=>{const g=AG.G[id],C=AG.cur;
+  return `<div class="gworld ag" data-game="${id}">${clouds()}<div class="agbar"><button class="abtn sec sm" onclick="AG.quit()" aria-label="Leave the game">←</button><div class="agt"><h2>${esc(g.name)}</h2><small id="agsub">${esc(g.sub||'')}</small></div>
+    <button class="abtn sec sm" id="agpb" onclick="AG.paused()?AG.resume():AG.pause()">⏸ Pause</button><button class="abtn sec sm" onclick="AG.restart()">↻ Restart</button><button class="abtn sec sm" id="agmute" onclick="SND.toggle()" aria-pressed="${!!AG.set().mute}">${AG.set().mute?'🔇':'🔊'}</button>${ptimeHtml()}</div>
+    ${o.above||''}<div class="agstage ${g.pixel?'px':''}" id="agstage" style="--ar:${(g.w/g.h).toFixed(3)};--agv:${g.vh||230}px"><canvas id="agcv" tabindex="0" width="${g.w}" height="${g.h}" aria-label="${esc(g.name)}"></canvas>${o.over||''}
+    <div class="agover" id="agover" ${C&&C.phase==='load'?'':'hidden'}>${C&&C.phase==='load'?`<div class="gcard"><h3>Loading…</h3><p class="sol">Getting ${esc(g.name)} ready.</p></div>`:''}</div></div>${o.below||''}</div>`};
+/* The pause card, and the Pause button's label */
+AG.ui=()=>{const o=$('agover'),b=$('agpb');if(b)b.textContent=AG.paused()?'▶ Resume':'⏸ Pause';if(!o||!AG.cur||AG.cur.phase!=='play')return;
+  const show=AG.holds.has('pause')||AG.holds.has('away');o.hidden=!show;if(!show){o.innerHTML='';return}const g=AG.cur.g;
+  o.innerHTML=`<div class="gcard" role="dialog" aria-modal="true" aria-label="Paused"><h3>${AG.holds.has('away')?'Welcome back!':'Paused'}</h3><p class="sol">${AG.holds.has('away')?'The game paused while you were away.':'Take a breath. The game waits for you.'}</p>
+    <div class="row" style="margin:12px 0"><button class="abtn" id="agres" onclick="AG.resume()">▶ Resume</button><button class="abtn sec" onclick="AG.restart()">↻ Restart</button><button class="abtn sec" onclick="AG.quit()">Quit</button></div>
+    <details style="text-align:left"><summary><b>How to play</b></summary>${AG.helpHtml(g)}</details><p style="margin-top:12px">${SND.ui()}</p></div>`;
+  const r=$('agres');if(r)r.focus({preventScroll:true})};
+AG.helpHtml=g=>`<ul class="aghelp">${(g.help||[]).map(h=>`<li>${h}</li>`).join('')}</ul>${g.keys?`<p class="agkeys">${g.keys.map(([k,t])=>`${k.split(' ').map(x=>`<kbd>${esc(x)}</kbd>`).join(' ')} ${esc(t)}`).join(' · ')}</p>`:''}`;
+/* The start card: instructions, the difficulty level and a Start button */
+AG.intro=(id,startJs,extra='')=>{const g=AG.G[id],out=outOfTime();
+  return `<div class="gcard"><div class="split"><h3>🎮 How to play</h3><span class="agtier" title="Changes with how you're doing">${AD.T[AD.tier(id)]}</span></div>${AG.helpHtml(g)}${extra}
+    <div class="row" style="margin-top:14px;align-items:center"><button class="abtn big" ${out?'disabled':''} onclick="${startJs}">▶ ${esc(g.go||'Start')}</button><span>${SND.ui()}</span><button class="abtn sec sm" onclick="AR.mode='book';AG.book='${id}';rerealm()">📖 Collection Book</button></div></div>`};
+
+/* ---------- Input ---------- */
+const AGKEY={ArrowLeft:'left',a:'left',ArrowRight:'right',d:'right',ArrowUp:'up',w:'up',ArrowDown:'down',s:'down',' ':'act',Enter:'enter',Shift:'alt',x:'alt',z:'act',1:'1',2:'2',3:'3',4:'4'};
+addEventListener('keydown',e=>{const C=AG.cur;if(!C||C.phase!=='play'||tab!=='play')return;const tg=e.target;
+  if(QM||(tg&&/^(INPUT|TEXTAREA|SELECT)$/.test(tg.tagName))||e.ctrlKey||e.metaKey||e.altKey)return;
+  const raw=e.key.length===1?e.key.toLowerCase():e.key;
+  if(raw==='p'||raw==='Escape'){e.preventDefault();AG.paused()?AG.resume():AG.pause();return}
+  if(raw==='m'){SND.toggle();return}
+  if(AG.paused()){if(raw==='Enter'&&!(tg&&tg.tagName==='BUTTON')){e.preventDefault();AG.resume()}return}
+  const k=AGKEY[raw];if(!k)return;if(tg&&tg.tagName==='BUTTON'&&(k==='act'||k==='enter'))return;
+  e.preventDefault();if(!AG.held.has(k)){AG.held.add(k);if(C.g.key)C.g.key(k,true,C.st)}});
+addEventListener('keyup',e=>{const raw=e.key.length===1?e.key.toLowerCase():e.key,k=AGKEY[raw];if(!k||!AG.held.has(k))return;AG.held.delete(k);const C=AG.cur;if(C&&C.phase==='play'&&C.g.key)C.g.key(k,false,C.st)});
+addEventListener('blur',()=>AG.held.clear());
+/* Touch buttons: [{k:'left',l:'◀',a:'Steer left'},...] in groups; held while pressed */
+AG.pad=groups=>`<div class="agpad" id="agpad">${groups.map(gr=>`<div class="grp">${gr.map(b=>`<button type="button" data-k="${b.k}" aria-label="${esc(b.a||b.l)}">${b.l}</button>`).join('')}</div>`).join('')}</div>`;
+const agPadUp=e=>{const b=e.target.closest&&e.target.closest('.agpad button');if(!b)return;const k=b.dataset.k,C=AG.cur;b.classList.remove('on');if(AG.held.delete(k)&&C&&C.g.key)C.g.key(k,false,C.st)};
+addEventListener('pointerdown',e=>{const b=e.target.closest&&e.target.closest('.agpad button');if(!b)return;e.preventDefault();const k=b.dataset.k,C=AG.cur;if(!C||C.phase!=='play'||AG.paused())return;
+  try{b.setPointerCapture(e.pointerId)}catch(_){}b.classList.add('on');if(!AG.held.has(k)){AG.held.add(k);if(C.g.key)C.g.key(k,true,C.st)}});
+['pointerup','pointercancel','lostpointercapture'].forEach(t=>addEventListener(t,agPadUp));
+
+/* ---------- Adaptive difficulty: a rating from 0 to 4 per game, from how the learner answers ---------- */
+const AD={T:['Beginner','Intermediate','Advanced','Expert'],
+  /* the first rating comes from the learner's progress in the chosen subject */
+  seed:()=>{const L=rpool(GM.rsub||'math').filter(k=>S[k]&&S[k].att);if(!L.length)return .6;const p=L.reduce((a,k)=>a+(S[k].p||0),0)/L.length;return Math.max(.2,Math.min(2.6,.3+p*2.5))},
+  get:id=>{const A=GM.ad||(GM.ad={});return A[id]||(A[id]={r:+AD.seed().toFixed(2),w:0})},
+  tier:id=>Math.min(3,Math.floor(AD.get(id).r)),
+  /* right and quick: up a little; a miss: down; two misses in a row: down more (returns true: ease off now) */
+  answer:(id,ok,ms)=>{const a=AD.get(id);if(ok){a.w=0;a.r=Math.min(3.99,a.r+(ms<8000?.15:.07))}else{a.w++;a.r=Math.max(0,a.r-(a.w>=2?.4:.18))}a.r=+a.r.toFixed(2);return !ok&&a.w>=2}};
+/* A question for the current game, at the level the rating asks for. Expert mixes in skills from the next grade. */
+AG.question=id=>{const sub=GM.rsub||'math',t=AD.tier(id),L=rpool(sub),seen=L.filter(k=>S[k]&&S[k].att);
+  const up=t===3?subSkills(sub).filter(k=>G[k]&&ST.gr[k]===myGrade()+1):[];
+  for(let i=0;i<15&&L.length;i++){const k=up.length&&Math.random()<.35?pick(up):seen.length&&Math.random()<.7?pick(seen):pick(L);
+    try{const s=S[k]||{p:0},base=s.p<.4?1:s.p<.7?2:3,lv=t===0?1:t===1?base:t===2?Math.max(2,base):3,q=G[k](lv);if(q&&q.q&&q.a)return{k,q}}catch(e){}}return null};
+/* After any game question: adaptive rating, quest counts and a little XP (up to 20 a day from games) */
+AG.answered=(id,ok,ms)=>{const ease=AD.answer(id,ok,ms),D=DAY();D.gq=(D.gq||0)+1;if(ok){D.gok=(D.gok||0)+1;if((D.gxp||0)<20){D.gxp=(D.gxp||0)+1;addXP(1,'a right answer in a game')}}SYNC();return ease};
+/* A question in the shared question window; the game pauses while it is open. Resolves true, false or null. */
+AG.ask=(o={})=>new Promise(res=>{const C=AG.cur,id=C?C.id:AR.mode,x=AG.question(id);if(!x){msg('No questions here yet. Pick another subject, or choose your grade on the Learn page.');return res(null)}
+  const t0=performance.now();AG.hold('q');QM={o,k:x.k,q:x.q,phase:'ask',fb:'',res:v=>{AG.release('q');if(v!=null){const ease=AG.answered(id,v,performance.now()-t0);if(ease&&C&&C.g.ease)C.g.ease(C.st)}res(v)}};qmRender()});
+
+/* ---------- Rewards: achievements and cosmetic items ---------- */
+const ACH=()=>GM.ach||(GM.ach={}),COL=()=>GM.col||(GM.col={});
+AG.has=item=>!!COL()[item]||!!(AG.item(item)||{}).free;
+AG.item=item=>{const [gid]=item.split('.');return(AG.G[gid]&&AG.G[gid].items||{})[item]};
+AG.give=(item,quiet)=>{if(AG.has(item))return false;COL()[item]=Date.now();const it=AG.item(item);if(it&&!quiet)AG.toast(`${it.i||'🎁'} New: ${it.n}`,'Added to your Collection Book.');SYNC();
+  if(tab==='play'&&!(AG.cur&&AG.cur.phase==='play')&&!QM)rerealm();return true};
+AG.ach=(gid,key)=>{const d=((AG.G[gid]||{}).ach||{})[key],k=gid+'.'+key;if(!d||ACH()[k])return false;ACH()[k]=Date.now();if(d.gems)addGems(d.gems);
+  AG.toast(`${d.i} ${d.n}`,d.d+(d.gems?` · 💎 +${d.gems}`:''));SND.play('unlock');if(d.give)setTimeout(()=>AG.give(d.give),1400);SYNC();return true};
+AG.got=(gid,key)=>!!ACH()[gid+'.'+key];
+/* Toasts, one at a time */
+AG.toast=(t,s)=>{(AG._tq=AG._tq||[]).push([t,s]);if(!AG._tt)AG._tnext()};
+AG._tnext=()=>{const n=AG._tq.shift();let el=$('agtoast');if(!n){if(el)el.remove();AG._tt=0;return}
+  if(!el){el=document.createElement('div');el.id='agtoast';el.className='agtoast';el.setAttribute('role','status');document.body.appendChild(el)}
+  el.innerHTML=`<div><b>${esc(n[0])}</b>${n[1]?`<small>${esc(n[1])}</small>`:''}</div>`;AG._tt=setTimeout(AG._tnext,2800)};
+
+/* ---------- Sound: tiny synthesized effects, a different feel for each game ---------- */
+const SND={ac:null,out:null,
+  init(){if(this.ac)return this.ac;try{const A=window.AudioContext||window.webkitAudioContext;if(!A)return null;this.ac=new A();this.out=this.ac.createGain();this.out.connect(this.ac.destination)}catch(e){this.ac=null}return this.ac},
+  live(){const s=AG.set();if(s.mute||!(s.vol>0))return null;const ac=this.init();if(!ac)return null;if(ac.state==='suspended')ac.resume();this.out.gain.value=s.vol*.6;return ac},
+  tone(f,d,type='sine',v=.2,at=0,f2=0){const ac=this.ac,t=ac.currentTime+at,o=ac.createOscillator(),g=ac.createGain();o.type=type;o.frequency.setValueAtTime(f,t);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t+d);
+    g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+.012);g.gain.exponentialRampToValueAtTime(.0005,t+d);o.connect(g);g.connect(this.out);o.start(t);o.stop(t+d+.05)},
+  noise(d,v=.15,at=0,hz=1200){const ac=this.ac,t=ac.currentTime+at,n=Math.ceil(ac.sampleRate*d),b=ac.createBuffer(1,n,ac.sampleRate),c=b.getChannelData(0);for(let i=0;i<n;i++)c[i]=Math.random()*2-1;
+    const s=ac.createBufferSource(),f=ac.createBiquadFilter(),g=ac.createGain();s.buffer=b;f.type='bandpass';f.frequency.value=hz;g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0005,t+d);s.connect(f);f.connect(g);g.connect(this.out);s.start(t)},
+  play(name,theme){if(!this.live())return;const P=SFX[theme||(AG.cur&&AG.cur.g.snd)||'ui']||SFX.ui,fx=P[name]||SFX.ui[name];if(fx)try{fx(this)}catch(e){}},
+  /* a held sound (an engine), set(pitch, volume) each frame */
+  hum(type='sawtooth'){if(!this.live())return null;const ac=this.ac,o=ac.createOscillator(),f=ac.createBiquadFilter(),g=ac.createGain();o.type=type;f.type='lowpass';f.frequency.value=700;g.gain.value=0;o.connect(f);f.connect(g);g.connect(this.out);o.start();
+    const h={set:(hz,v)=>{const t=ac.currentTime;o.frequency.setTargetAtTime(hz,t,.05);g.gain.setTargetAtTime(v,t,.08)},stop:()=>{try{g.gain.setTargetAtTime(0,ac.currentTime,.05);o.stop(ac.currentTime+.3)}catch(e){}}};(this._hums=this._hums||[]).push(h);return h},
+  hush(){(this._hums||[]).forEach(h=>h.stop());this._hums=[]},
+  toggle(){const s=AG.set();s.mute=!s.mute;if(s.mute)this.hush();SYNC();const b=$('agmute');if(b){b.textContent=s.mute?'🔇':'🔊';b.setAttribute('aria-pressed',s.mute)}document.querySelectorAll('.agvol input').forEach(i=>i.disabled=s.mute);if(!s.mute)this.play('click')},
+  vol(v){AG.set().vol=Math.max(0,Math.min(1,+v));SYNC();this.play('click')},
+  ui(){const s=AG.set();return `<span class="agvol"><button class="abtn sec sm" type="button" onclick="SND.toggle();rerealmSafe()" aria-pressed="${!!s.mute}" aria-label="${s.mute?'Sound is off':'Sound is on'}">${s.mute?'🔇 Sound off':'🔊 Sound'}</button><input type="range" min="0" max="1" step="0.05" value="${s.vol}" aria-label="Volume" ${s.mute?'disabled':''} onchange="SND.vol(this.value)"></span>`}};
+/* Redraw the menu after a sound change, but never in the middle of a game */
+function rerealmSafe(){if(!AG.cur||AG.cur.phase!=='play')rerealm();else AG.ui()}
+const SFX={
+  ui:{click:S=>S.tone(700,.05,'triangle',.12),ok:S=>{S.tone(660,.12,'triangle',.2);S.tone(990,.16,'triangle',.18,.08)},no:S=>S.tone(240,.25,'triangle',.18,0,170),
+    unlock:S=>[523,659,784,1047].forEach((f,i)=>S.tone(f,.22,'triangle',.16,i*.08)),win:S=>[523,659,784,1047,1319].forEach((f,i)=>S.tone(f,.3,'triangle',.18,i*.1)),lose:S=>[392,330,262].forEach((f,i)=>S.tone(f,.3,'triangle',.16,i*.14))},
+  pets:{ok:S=>[784,988,1175].forEach((f,i)=>S.tone(f,.25,'sine',.16,i*.07)),pop:S=>S.tone(880,.12,'sine',.18,0,1320),coin:S=>S.tone(1319,.15,'sine',.14),no:S=>S.tone(330,.3,'sine',.14,0,262)},
+  kart:{ok:S=>{S.tone(523,.08,'square',.12);S.tone(784,.08,'square',.12,.07);S.tone(1047,.18,'square',.12,.14)},coin:S=>{S.tone(1568,.06,'square',.08);S.tone(2093,.1,'square',.08,.05)},
+    boost:S=>{S.noise(.5,.18,0,900);S.tone(220,.5,'sawtooth',.1,0,880)},hit:S=>{S.noise(.25,.25,0,300);S.tone(160,.25,'square',.12,0,90)},no:S=>S.tone(300,.3,'square',.1,0,180),pow:S=>[660,880,1320].forEach((f,i)=>S.tone(f,.12,'square',.1,i*.05))},
+  blocks:{place:S=>S.tone(420,.07,'triangle',.18),clear:S=>[523,784,1047].forEach((f,i)=>S.tone(f,.14,'triangle',.18,i*.05)),combo:S=>[659,880,1175,1568].forEach((f,i)=>S.tone(f,.14,'triangle',.16,i*.05)),move:S=>S.tone(300,.03,'triangle',.08)},
+  gate:{place:S=>{S.tone(392,.1,'triangle',.18);S.tone(588,.14,'triangle',.16,.07)},pop:S=>S.noise(.12,.14,0,1800),zap:S=>S.tone(1200,.08,'sawtooth',.06,0,400),boom:S=>{S.noise(.35,.2,0,200);S.tone(110,.3,'triangle',.14,0,60)},hurt:S=>S.tone(200,.3,'triangle',.16,0,120)}};
+
+/* ---------- The Collection Book: achievements, items and places from every game ---------- */
+GVIEW.book=function(){const ids=Object.keys(AG.G),cur=ids.includes(AG.book)?AG.book:ids[0],g=AG.G[cur];
+  const ach=Object.entries(g.ach||{}),items=Object.entries(g.items||{}),places=g.places?g.places():[],got=ach.filter(([k])=>AG.got(cur,k)).length;
+  const card=(on,icon,name,sub)=>`<div class="bitem ${on?'':'locked'}"><span class="bi" aria-hidden="true">${on?icon:'❔'}</span><b>${esc(on?name:'Locked')}</b><small>${esc(sub)}</small></div>`;
+  return `<div class="gworld">${clouds()}${gameHead('📖 Collection Book','Everything you have unlocked. All of it is just for fun: nothing here makes learning harder or easier.')}
+  <div class="booktabs" role="group" aria-label="Game">${ids.map(i=>`<button class="chip ${i===cur?'on':''}" aria-pressed="${i===cur}" onclick="AG.book='${i}';rerealm()">${esc(AG.G[i].name)}</button>`).join('')}</div>
+  <div class="gcard"><div class="split"><h3>🏅 Achievements</h3><span class="sol">${got} of ${ach.length}</span></div><div class="bookgrid">${ach.map(([k,d])=>card(AG.got(cur,k),d.i,d.n,d.d)).join('')||'<p class="sol">None yet.</p>'}</div></div>
+  ${items.length?`<div class="gcard" style="margin-top:14px"><h3>🎨 Items</h3><div class="bookgrid">${items.map(([k,d])=>`<div class="bitem ${AG.has(k)?'':'locked'}">${d.c?`<span class="sw" style="background:${d.c}" aria-hidden="true"></span>`:`<span class="bi" aria-hidden="true">${d.i||'🎁'}</span>`}<b>${esc(d.n)}</b><small>${esc(AG.has(k)?(d.k||'Unlocked'):d.how||'Keep playing to unlock')}</small></div>`).join('')}</div></div>`:''}
+  ${places.length?`<div class="gcard" style="margin-top:14px"><h3>🗺️ Places</h3><div class="bookgrid">${places.map(p=>card(p.on,p.i,p.n,p.on?p.s||'Open':p.how)).join('')}</div></div>`:''}
+  <div class="row" style="margin-top:16px"><button class="abtn sec" onclick="AR.mode='${cur}';rerealm()">← Back to ${esc(g.name)}</button></div></div>`};
+</script>

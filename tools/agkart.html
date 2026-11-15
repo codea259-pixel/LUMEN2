@@ -1,0 +1,279 @@
+<style>
+/* ===== Turbo Trivia Kart ===== */
+.kqbox{min-height:88px;margin-bottom:10px;padding:12px 16px;border-radius:18px;background:var(--panel);color:var(--ink);border:2px solid rgba(255,255,255,.75);box-shadow:0 6px 0 var(--ga-lip)}
+.kqbox .kqt{font:700 clamp(1.05rem,2.6vw,1.35rem)/1.3 "Atkinson Hyperlegible",sans-serif}
+.kqbox .kqbar{height:6px;border-radius:99px;background:#E0E7FF;margin-top:8px;overflow:hidden}.kqbox .kqbar i{display:block;height:100%;width:100%;background:linear-gradient(90deg,#22B35E,#F2A900);transform-origin:left}
+.kqbox.idle{display:flex;align-items:center;color:var(--mute)}
+.khud2{position:absolute;left:10px;top:10px;display:flex;gap:6px;flex-wrap:wrap;z-index:2;pointer-events:none}
+.khud2 span{background:rgba(15,10,40,.62);color:#fff;border-radius:99px;padding:4px 10px;font:800 .85rem/1.2 "Atkinson Hyperlegible",sans-serif}
+.kfb2{position:absolute;left:50%;top:38%;transform:translate(-50%,-50%);z-index:3;max-width:88%;text-align:center;font:800 clamp(1.2rem,3.6vw,1.9rem) "Bricolage Grotesque",sans-serif;color:#fff;text-shadow:0 3px 0 rgba(0,0,0,.45);pointer-events:none;transition:opacity .25s}
+.kfb2.off{opacity:0}
+.klanes2{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
+.klanes2 button{display:flex;gap:8px;align-items:center;justify-content:center;min-height:58px;padding:6px 10px;border-radius:16px;border:2px solid rgba(255,255,255,.8);background:var(--panel);color:var(--ink);font:700 1rem/1.2 "Atkinson Hyperlegible",sans-serif;box-shadow:0 5px 0 var(--ga-lip);overflow-wrap:anywhere}
+.klanes2 button.on{border:3px solid var(--ga-gold);box-shadow:0 5px 0 var(--ga-gold),0 0 0 3px rgba(242,169,0,.35)}
+.klanes2 button .key{display:grid;place-items:center;flex:none;width:26px;height:26px;border-radius:8px;background:#EEF2FF;color:#4338CA;font-weight:800}
+.klanes2 button.right{border-color:#22B35E;background:#E3F6EA}.klanes2 button.wrong{border-color:#E4572E;background:#FDECEC}
+.kpow{position:absolute;right:10px;top:10px;z-index:2;min-width:56px;min-height:56px;border-radius:16px;border:3px solid rgba(255,255,255,.85);background:rgba(15,10,40,.62);color:#fff;font:800 1.6rem/1 sans-serif;display:grid;place-items:center}
+.kpow small{display:block;font-size:.6rem;font-weight:800;margin-top:2px}
+.kpow[disabled]{opacity:.45}
+.ktracks2{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}
+.ktr2{display:flex;flex-direction:column;gap:4px;text-align:left;padding:8px;border-radius:16px;border:2px solid var(--line);background:var(--panel);color:var(--ink);font:inherit}
+.ktr2.on{border:3px solid var(--ga-gold)}.ktr2[disabled]{opacity:.6;cursor:not-allowed}.ktr2 b{font:800 1rem "Bricolage Grotesque",sans-serif}
+.ktr2 img{width:100%;height:auto;border-radius:10px;display:block}
+.kcust{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}.kcust button{width:42px;height:42px;border-radius:12px;border:3px solid var(--line);font-size:1.2rem}.kcust button.on{border-color:var(--ga-gold);box-shadow:0 0 0 3px rgba(242,169,0,.35)}
+.kcust button[disabled]{opacity:.35}
+.kpbs{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-top:8px}.kpbs div{padding:8px;border-radius:12px;background:#EEF2FF;color:#1E1B4B;text-align:center}.kpbs b{display:block;font-size:1.15rem}
+</style>
+<script type="text/x-lumen">
+/* ===== Turbo Trivia Kart: a real (gentle) racing game =====
+   The road is drawn the classic arcade way: the track is a long list of short segments, each with a curve and a height,
+   projected from a camera behind the kart. The kart steers smoothly and picks up coins; cones and rocks slow it down.
+   Before each gate a question appears, with one answer over each lane: steer into the right one for a boost and a
+   power-up. A wrong lane only slows the kart and shows the answer. Difficulty (AD) sets the speed, the number of
+   obstacles, the time to read each question and the question level. Saved in GM.ar.kart: medals, personal bests,
+   the best run's ghost, the chosen paint and trail. ===== */
+const KTR=[
+  {id:'neon',n:'Neon Sunset Highway',g:8,sky:['#140a33','#7a2a8c','#ff6aa2','#ffc06a'],sun:['#ffe46b','#ff4f8a'],far:'#3a1660',far2:'#5b1f7a',gr:['#26103f','#200d37'],road:['#1b1532','#1e1838'],rb:['#ff3fa4','#29e6ff'],ln:'#29e6ff',grid:'#ff3fa4',deco:['palm','pole'],obs:'cone',curvy:3,hilly:500},
+  {id:'frost',n:'Frozen Mountain Pass',g:9,sky:['#5aa6e8','#8ec8f5','#cfe9ff','#eef8ff'],sun:['#ffffff','#dff1ff'],far:'#9db8d4',far2:'#c9dcee',gr:['#eef6ff','#e2eefb'],road:['#6b7889','#646f7f'],rb:['#e2554a','#ffffff'],ln:'#ffffff',snow:1,deco:['pine','snowman'],obs:'rock',curvy:4,hilly:1300},
+  {id:'jungle',n:'Jungle Circuit',g:10,sky:['#46b6e8','#86d4f0','#c8f0d8','#e8f8d0'],sun:['#fff6a8','#ffe066'],far:'#2f7a3c',far2:'#4a9a4a',gr:['#2f8a3a','#2a7d34'],road:['#8a6a4a','#806246'],rb:['#f5c542','#2f6e2f'],ln:'#f8e6b0',deco:['palmj','fern'],obs:'log',curvy:6,hilly:900},
+  {id:'space',n:'Space Speedway',g:11,sky:['#03030f','#0b0b2a','#1c1650','#2e2070'],sun:['#c9a6ff','#6b4bd6'],far:'#22205a',far2:'#33307a',gr:['#13163a','#0f1231'],road:['#2b3157','#262b4f'],rb:['#b18cff','#5ff3ff'],ln:'#5ff3ff',grid:'#5ff3ff',stars:1,deco:['pylon','crystal'],obs:'rocky',curvy:4,hilly:2000},
+  {id:'candy',n:'Candy Coast',g:12,sky:['#ff9fd0','#ffc2e2','#ffe3ef','#fff4c8'],sun:['#fff7a8','#ffd166'],far:'#ff8cc6',far2:'#ffb3d9',gr:['#ffc8e3','#ffbddc'],road:['#b892d6','#b18acf'],rb:['#ffffff','#ff4f6d'],ln:'#ffffff',deco:['lolly','cane'],obs:'gum',curvy:5,hilly:1100}];
+const KSEG=200,KRW=2000,KCAMH=1000,KDRAW=160,KCAMD=1/Math.tan(50*Math.PI/180),KW=640,KH=360;
+const KPOW={nitro:['🚀','Nitro','A big burst of speed'],magnet:['🧲','Magnet','Pulls coins to you'],shield:['🛡️','Shield','Blocks the next bump'],x2:['💎','Double Gems','Coins count double'],jump:['🦘','Turbo Jump','Jump over the next obstacles']};
+const KPAINT={red:'#E4572E',blue:'#2D7FF9',yellow:'#F5C542',pink:'#FF4FA3',mint:'#2ED6A4',purple:'#8B5CF6',gold:'#E5B53A',night:'#1E2A44'};
+const KTRAIL={none:'',spark:'#FFD34D',rainbow:'rainbow',bubble:'#9FE3FF',star:'#FFFFFF'};
+const ktS=()=>{const S=ARS('kart');
+  /* older saves used other track names: carry medals and best times across */
+  if(!S.v2){const M={sun:'neon',candy:'frost',jungle:'jungle',moon:'space'};['med','bt'].forEach(f=>{if(S[f]){const o={};for(const [k,v] of Object.entries(S[f]))o[M[k]||k]=v;S[f]=o}});S.v2=1}
+  S.med=S.med||{};S.pb=S.pb||{};S.gh=S.gh||{};return S};
+const ktOpen=i=>!i||(ktS().med[KTR[i-1].id]||0)>0;
+const ktCur=()=>{let i=KTR.findIndex(t=>t.id===ktS().tr);if(i<0||!ktOpen(i))i=0;return KTR[i]};
+const ktPaint=()=>{const p=ktS().paint;return KPAINT[p]&&AG.has('kart.paint.'+p)?p:'red'};
+const ktTrail=()=>{const t=ktS().trail;return KTRAIL[t]!=null&&AG.has('kart.trail.'+t)?t:'none'};
+const krng=a=>()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};
+
+/* ---------- Pictures, painted once and kept ---------- */
+const KIMG={};const kimg=(k,w,h,fn)=>KIMG[k]||(KIMG[k]=(()=>{const c=document.createElement('canvas');c.width=w;c.height=h;fn(c.getContext('2d'),w,h);return c})());
+const kpoly=(x,pts,col)=>{x.fillStyle=col;x.beginPath();pts.forEach(([a,b],i)=>i?x.lineTo(a,b):x.moveTo(a,b));x.closePath();x.fill()};
+const kcirc=(x,a,b,r,col)=>{x.fillStyle=col;x.beginPath();x.arc(a,b,r,0,7);x.fill()};
+/* roadside and obstacle sprites; ww = width in road half-widths */
+const KSPR={
+  palm:{ww:.55,w:60,h:110,d:(x)=>{x.strokeStyle='#29e6ff';x.lineWidth=4;x.beginPath();x.moveTo(30,110);x.quadraticCurveTo(26,60,34,22);x.stroke();x.strokeStyle='#ff3fa4';x.lineWidth=4;[[-28,-6],[28,-4],[-20,12],[22,14],[0,-16]].forEach(([dx,dy])=>{x.beginPath();x.moveTo(34,22);x.quadraticCurveTo(34+dx*.6,22+dy-8,34+dx,22+dy+10);x.stroke()})}},
+  pole:{ww:.3,w:30,h:120,d:(x)=>{x.fillStyle='#5b4b8a';x.fillRect(13,10,4,110);x.fillRect(4,8,22,4);kcirc(x,5,14,4,'#ffe46b');kcirc(x,25,14,4,'#ffe46b')}},
+  pine:{ww:.55,w:60,h:100,d:(x)=>{x.fillStyle='#6b4a2e';x.fillRect(26,80,8,20);[[30,4,6,30],[30,22,10,50],[30,44,14,72],[30,62,18,88]].forEach(([c,t,_,b],i)=>{kpoly(x,[[c,t],[c-14-i*4,b],[c+14+i*4,b]],'#2f6a55');kpoly(x,[[c,t],[c-6-i*2,t+10],[c+6+i*2,t+10]],'#ffffff')})}},
+  snowman:{ww:.3,w:40,h:60,d:(x)=>{kcirc(x,20,44,14,'#ffffff');kcirc(x,20,22,10,'#ffffff');x.fillStyle='#1b2a41';x.fillRect(16,19,2,2);x.fillRect(22,19,2,2);kpoly(x,[[20,23],[28,25],[20,26]],'#f58a2a');x.fillRect(11,8,18,4);x.fillRect(14,0,12,9)}},
+  palmj:{ww:.6,w:70,h:110,d:(x)=>{x.strokeStyle='#7a5634';x.lineWidth=7;x.beginPath();x.moveTo(36,110);x.quadraticCurveTo(30,60,38,26);x.stroke();[[-30,-4],[30,0],[-22,16],[24,16],[0,-14]].forEach(([dx,dy])=>{x.fillStyle='#2f9a3c';x.beginPath();x.ellipse(38+dx*.55,26+dy*.6,18,6,Math.atan2(dy,dx),0,7);x.fill()})}},
+  fern:{ww:.35,w:50,h:40,d:(x)=>{for(let i=0;i<7;i++){x.fillStyle=i%2?'#3fae4a':'#2f8a3a';x.beginPath();x.ellipse(25+(i-3)*5,26,5,16,(i-3)*.32,0,7);x.fill()}}},
+  pylon:{ww:.3,w:30,h:120,d:(x)=>{x.fillStyle='#3a3f72';x.fillRect(12,14,6,106);kcirc(x,15,12,8,'#5ff3ff');kcirc(x,15,12,4,'#ffffff')}},
+  crystal:{ww:.35,w:40,h:60,d:(x)=>{kpoly(x,[[20,0],[34,24],[26,60],[14,60],[6,24]],'#b18cff');kpoly(x,[[20,0],[26,24],[20,60],[14,24]],'#e3d4ff')}},
+  lolly:{ww:.35,w:40,h:110,d:(x)=>{x.fillStyle='#ffffff';x.fillRect(18,40,4,70);kcirc(x,20,22,19,'#ff4f8a');kcirc(x,20,22,13,'#ffd166');kcirc(x,20,22,7,'#7ad7f0')}},
+  cane:{ww:.25,w:30,h:100,d:(x)=>{x.lineWidth=7;x.strokeStyle='#ffffff';x.beginPath();x.moveTo(20,100);x.lineTo(20,22);x.arc(12,22,8,0,Math.PI,true);x.stroke();x.strokeStyle='#ff4f6d';x.setLineDash([7,7]);x.beginPath();x.moveTo(20,100);x.lineTo(20,22);x.arc(12,22,8,0,Math.PI,true);x.stroke();x.setLineDash([])}},
+  cone:{ww:.13,w:30,h:36,d:(x)=>{kpoly(x,[[15,0],[25,30],[5,30]],'#ff7a1a');x.fillStyle='#ffffff';x.fillRect(9,12,12,5);x.fillStyle='#ff7a1a';x.fillRect(0,30,30,6)}},
+  rock:{ww:.2,w:40,h:30,d:(x)=>{x.fillStyle='#7d8798';x.beginPath();x.ellipse(20,18,19,12,0,0,7);x.fill();x.fillStyle='#a3adbd';x.beginPath();x.ellipse(15,13,8,5,0,0,7);x.fill();x.fillStyle='#ffffff';x.fillRect(8,5,20,3)}},
+  log:{ww:.24,w:50,h:24,d:(x)=>{x.fillStyle='#8a5a32';x.fillRect(4,4,42,16);kcirc(x,46,12,8,'#b07a4a');kcirc(x,46,12,4,'#8a5a32')}},
+  rocky:{ww:.2,w:40,h:34,d:(x)=>{x.fillStyle='#5a5470';x.beginPath();x.ellipse(20,18,19,15,0,0,7);x.fill();kcirc(x,13,14,4,'#3e3a52');kcirc(x,26,22,3,'#3e3a52')}},
+  gum:{ww:.17,w:36,h:30,d:(x)=>{x.fillStyle='#43c06a';x.beginPath();x.ellipse(18,20,17,13,0,Math.PI,0);x.lineTo(35,30);x.lineTo(1,30);x.fill();x.fillStyle='#ffffff';x.fillRect(10,10,3,3);x.fillRect(22,14,3,3)}},
+  coin:{ww:.09,w:24,h:24,d:(x)=>{kcirc(x,12,12,11,'#b8860b');kcirc(x,12,12,9,'#ffd34d');x.fillStyle='#fff6c8';x.fillRect(9,6,3,12)}}};
+const kspr=k=>kimg('s'+k,KSPR[k].w*2,KSPR[k].h*2,(x)=>{x.scale(2,2);KSPR[k].d(x)});
+/* The kart from behind, in a paint colour */
+const kkart=(paint,ghost)=>kimg('k'+paint+(ghost?'g':''),192,128,(x)=>{x.scale(2,2);const c=KPAINT[paint]||KPAINT.red,d=shade(c,.7);
+  x.fillStyle='rgba(0,0,0,.25)';x.beginPath();x.ellipse(48,60,40,5,0,0,7);x.fill();
+  x.fillStyle='#14121e';x.fillRect(6,34,18,24);x.fillRect(72,34,18,24);x.fillStyle='#3a3650';x.fillRect(9,38,12,4);x.fillRect(75,38,12,4);
+  kpoly(x,[[20,50],[76,50],[84,30],[70,18],[26,18],[12,30]],c);kpoly(x,[[20,50],[76,50],[80,42],[16,42]],d);
+  x.fillStyle=d;x.fillRect(14,10,68,7);x.fillStyle=c;x.fillRect(18,6,60,5);x.fillStyle='#14121e';x.fillRect(24,11,4,10);x.fillRect(68,11,4,10);
+  kcirc(x,48,22,11,'#f2f2f7');x.fillStyle='#2a2f4a';x.fillRect(39,19,18,6);x.fillStyle='#ffd34d';x.fillRect(30,44,8,4);x.fillRect(58,44,8,4);
+  if(ghost){x.globalCompositeOperation='source-atop';x.fillStyle='rgba(180,220,255,.55)';x.fillRect(0,0,96,64)}});
+/* room above and below the road for the question and the lane buttons */
+/* Sky and far hills for a track: painted once */
+const ksky=t=>kimg('sky'+t.id,KW,KH,(x)=>{const g=x.createLinearGradient(0,0,0,KH*.6);t.sky.forEach((c,i)=>g.addColorStop(i/(t.sky.length-1),c));x.fillStyle=g;x.fillRect(0,0,KW,KH);
+  const R=krng(7);if(t.stars)for(let i=0;i<140;i++){x.fillStyle=R()<.15?'#c9a6ff':'#ffffff';x.fillRect(Math.floor(R()*KW),Math.floor(R()*KH*.6),R()<.1?2:1,R()<.1?2:1)}
+  const sy=KH*.42,sr=t.stars?36:48,sg=x.createLinearGradient(0,sy-sr,0,sy+sr);sg.addColorStop(0,t.sun[0]);sg.addColorStop(1,t.sun[1]);x.fillStyle=sg;x.beginPath();x.arc(KW*.5,sy,sr,0,7);x.fill();
+  if(t.grid){x.fillStyle=t.sky[1];for(let i=0;i<6;i++)x.fillRect(KW*.5-sr,sy+4+i*7,sr*2,1+i*.6)}
+  if(t.stars){x.fillStyle='rgba(255,255,255,.25)';x.beginPath();x.ellipse(KW*.5,sy,sr*1.9,6,-.2,0,7);x.fill()}});
+const khill=(t,far)=>kimg('h'+t.id+far,KW*2,120,(x)=>{const R=krng(far?11:23),col=far?t.far2:t.far;x.fillStyle=col;x.beginPath();x.moveTo(0,120);let y=far?60:80;
+  for(let i=0;i<=KW*2;i+=16){y=Math.max(far?18:38,Math.min(110,y+(R()-.5)*(far?26:18)));x.lineTo(i,y)}x.lineTo(KW*2,120);x.fill();
+  if(t.snow){x.globalCompositeOperation='source-atop';x.fillStyle='rgba(255,255,255,.85)';x.fillRect(0,0,KW*2,far?44:58)}});
+
+/* ---------- Building a track ---------- */
+function ktBuild(tr,tier){const R=krng([...tr.id].reduce((h,c)=>h*31+c.charCodeAt(0),7)),S=[],ease=(a,b,p)=>a+(b-a)*((1-Math.cos(p*Math.PI))/2);
+  const lastY=()=>S.length?S[S.length-1].y2:0;
+  const add=(n,curve,dy)=>{const y0=lastY(),y1=y0+dy;for(let i=0;i<n;i++){const p=n>1?i/(n-1):1,cv=i<n*.25?curve*i/(n*.25):i>n*.75?curve*(n-i)/(n*.25):curve;
+    S.push({i:S.length,curve:cv,y1:ease(y0,y1,i/n),y2:ease(y0,y1,(i+1)/n),sp:[],p1:{},p2:{},clip:0})}};
+  const gap=Math.round(tier.vmax*(tier.read+4.5)/KSEG),startN=60,len=startN+gap*(tr.g+.6)+120;
+  add(startN,0,0);while(S.length<len){const r=R(),n=40+Math.floor(R()*80),h=(R()-.5)*2*tr.hilly;
+    if(r<.3)add(n,0,h*.4);else if(r<.75)add(n,(R()<.5?-1:1)*(1.2+R()*tr.curvy),h);else{add(n,tr.curvy*.8,h*.5);add(n,-tr.curvy*.8,-h*.5)}}
+  const fin=S.length;add(260,0,-lastY()*.3);
+  /* gates, then coins, obstacles and scenery between them */
+  const gates=[];for(let k=0;k<tr.g;k++){const gi=startN+Math.round(gap*(k+1));gates.push({seg:gi,z:gi*KSEG,done:0});S[gi].gate=k}
+  const lanes=[-.62,0,.62];
+  for(let i=startN+20;i<fin-10;i++){const s=S[i];
+    if(i%14===0)for(const side of[-1,1])s.sp.push({k:pick(tr.deco),x:side*(1.25+R()*1.4)});
+    const nearGate=gates.some(g=>Math.abs(g.seg-i)<30);if(nearGate)continue;
+    if(i%90===20){const ln=lanes[Math.floor(R()*3)];for(let c=0;c<6;c++)S[i+c*4].sp.push({k:'coin',x:ln,coin:1})}
+    if(i%60===45&&R()<tier.obs){const ln=lanes[Math.floor(R()*3)];s.sp.push({k:tr.obs,x:ln,obs:1})}}
+  return{S,gates,fin:fin*KSEG,gap}}
+const kseg=(Z,z)=>Z.S[Math.max(0,Math.floor(z/KSEG))%Z.S.length];
+
+/* ---------- The game ---------- */
+const KTIER=[{vmax:5200,read:9,obs:.25},{vmax:6200,read:8,obs:.5},{vmax:7200,read:7,obs:.8},{vmax:8200,read:6,obs:1}];
+AG.def({id:'kart',name:'Turbo Trivia Kart',w:KW,h:KH,maxW:1280,vh:360,snd:'kart',go:'Start race',
+  sub:'Steer into the lane with the right answer!',
+  help:['Your kart speeds up by itself. Steer to stay on the road, collect coins and dodge obstacles.','Before each gate a question appears, with one answer over each lane. Drive through the right one.','Right: a boost and a power-up. Wrong: a little slow-down, and you see the answer.','Use a power-up with Space or the power button. Medals unlock the next track.'],
+  keys:[['← →','steer'],['1 2 3','pick a lane'],['Space','power-up'],['P','pause']],
+  ach:{first:{i:'🏁',n:'First finish',d:'Finish a race',gems:1,give:'kart.paint.yellow'},gold:{i:'🥇',n:'Golden racer',d:'Win a gold medal',gems:2,give:'kart.paint.gold'},
+    streak:{i:'🔥',n:'Hot streak',d:'5 right gates in a row',gems:1,give:'kart.trail.spark'},coins:{i:'🪙',n:'Coin collector',d:'40 coins in one race',gems:1,give:'kart.paint.mint'},
+    clean:{i:'✨',n:'Clean driver',d:'Finish a race without a bump',gems:1,give:'kart.paint.pink'},ghost:{i:'👻',n:'Faster than before',d:'Beat your own ghost',gems:1,give:'kart.trail.rainbow'},
+    power:{i:'⚡',n:'Power player',d:'Use 10 power-ups',gems:1,give:'kart.trail.star'},tour:{i:'🗺️',n:'Road tripper',d:'Unlock every track',gems:3,give:'kart.paint.purple'},
+    night:{i:'🌙',n:'Night rider',d:'Finish Space Speedway',gems:1,give:'kart.paint.night'},bubble:{i:'🫧',n:'Smooth sailing',d:'Use a shield to block a bump',gems:1,give:'kart.trail.bubble'}},
+  items:{'kart.paint.red':{n:'Racing Red',c:KPAINT.red,free:1,k:'Paint'},'kart.paint.blue':{n:'Ocean Blue',c:KPAINT.blue,free:1,k:'Paint'},'kart.paint.yellow':{n:'Sunny Yellow',c:KPAINT.yellow,k:'Paint',how:'Finish a race'},
+    'kart.paint.mint':{n:'Mint',c:KPAINT.mint,k:'Paint',how:'40 coins in one race'},'kart.paint.pink':{n:'Neon Pink',c:KPAINT.pink,k:'Paint',how:'Finish without a bump'},'kart.paint.gold':{n:'Gold',c:KPAINT.gold,k:'Paint',how:'Win a gold medal'},
+    'kart.paint.purple':{n:'Galaxy Purple',c:KPAINT.purple,k:'Paint',how:'Unlock every track'},'kart.paint.night':{n:'Midnight',c:KPAINT.night,k:'Paint',how:'Finish Space Speedway'},
+    'kart.trail.none':{n:'No trail',i:'➖',free:1,k:'Trail'},'kart.trail.spark':{n:'Spark trail',i:'✨',k:'Trail',how:'5 right gates in a row'},'kart.trail.rainbow':{n:'Rainbow trail',i:'🌈',k:'Trail',how:'Beat your own ghost'},
+    'kart.trail.star':{n:'Star trail',i:'⭐',k:'Trail',how:'Use 10 power-ups'},'kart.trail.bubble':{n:'Bubble trail',i:'🫧',k:'Trail',how:'Block a bump with a shield'}},
+  places:()=>KTR.map((t,i)=>({on:ktOpen(i),i:'🏁',n:t.n,s:['No medal yet','Bronze','Silver','Gold'][ktS().med[t.id]||0],how:i?`Win a medal on ${KTR[i-1].n}`:''})),
+  start(o){const tr=ktCur(),relax=ktS().relax,t=relax?0:AD.tier('kart'),tier=KTIER[t],Z=ktBuild(tr,tier),gh=ktS().gh[tr.id];
+    return{tr,tier:{...tier},t,Z,pos:0,x:0,vx:0,v:0,lane:-1,steer:0,time:0,coins:0,ok:0,n:0,run:0,best:0,hits:0,pows:0,
+      pw:null,boost:0,mag:0,x2:0,jump:0,shield:0,spin:0,shake:0,q:null,fb:null,parts:[],ghost:gh&&gh.s?gh:null,rec:[],recT:0,skyX:0,hudT:0,hum:SND.hum(),eased:0}},
+  step(dt,T){const Z=T.Z,tier=T.tier,vmax=tier.vmax*(T.boost>0?1.4:1)*(T.spin>0?.55:1);
+    /* speed: always accelerating; slower off the road */
+    const off=Math.abs(T.x)>1.05,cap=off?vmax*.45:vmax;T.v+=(T.v<cap?vmax/3.2:-vmax/1.6)*dt;T.v=Math.max(0,T.v);
+    /* steering: smooth, with a little momentum; lane keys steer to that lane by themselves */
+    let s=(AG.held.has('left')?-1:0)+(AG.held.has('right')?1:0);if(s)T.lane=-1;else if(T.lane>=0){const goal=[-.62,0,.62][T.lane],d=goal-T.x;s=Math.abs(d)<.02?0:Math.max(-1,Math.min(1,d*6))}
+    const pct=T.v/tier.vmax;T.vx+=(s*2.1*Math.min(1,pct+.25)-T.vx)*Math.min(1,dt*10);const seg=kseg(Z,T.pos+KCAMH*KCAMD);
+    T.x+=T.vx*dt-seg.curve*pct*pct*dt*.22;T.x=Math.max(-2.2,Math.min(2.2,T.x));T.steer=T.vx;
+    T.pos+=T.v*dt;T.time+=dt;T.skyX+=seg.curve*pct*dt*.8;
+    for(const k of['boost','mag','x2','jump','spin','shake'])if(T[k]>0)T[k]=Math.max(0,T[k]-dt);
+    if(T.fb&&(T.fb.t-=dt)<=0)T.fb=null;
+    if(T.hum)T.hum.set(70+pct*120+(T.boost>0?40:0),.05+pct*.04);
+    /* the ghost of the best run: a sample every quarter second */
+    if((T.recT+=dt)>=.25){T.recT=0;T.rec.push(Math.round(T.pos/10),Math.round(T.x*100))}
+    /* coins and obstacles where the kart is */
+    const pz=T.pos+KCAMH*KCAMD;for(let n=-1;n<=1;n++){const sg=kseg(Z,pz+n*KSEG);for(const p of sg.sp){if(p.gone||!(p.coin||p.obs))continue;
+      if(p.coin&&T.mag>0&&n>=0)p.x+=(T.x-p.x)*Math.min(1,dt*6);
+      if(n===0&&Math.abs(p.x-T.x)<(p.coin?(T.mag>0?.5:.22):.24)){if(p.coin){p.gone=1;T.coins+=T.x2>0?2:1;SND.play('coin');kpuff(T,'#ffd34d',4)}
+        else if(T.jump>0){}else if(T.shield){T.shield=0;p.gone=1;SND.play('pow');kfb(T,'🛡️ Shield!','');AG.ach('kart','bubble')}
+        else{p.gone=1;T.hits++;T.spin=.7;T.v*=.55;T.shake=.3;SND.play('hit');kfb(T,'💥 Bump!','')}}}}
+    /* questions: shown before each gate, resolved when the kart passes it */
+    const g=Z.gates.find(x=>!x.done);
+    if(g&&!T.q&&g.z-pz<tier.vmax*tier.read)kask(T,g);
+    if(g&&T.q&&pz>=g.z)kpass(T,g);
+    if(T.pos>=Z.fin)AG.finish(kresult(T));
+    /* sparks and trail */
+    const tc=KTRAIL[ktTrail()];if((T.boost>0||tc)&&!AG.low()&&Math.random()<(T.boost>0?.9:.35))kpuff(T,tc==='rainbow'?`hsl(${(T.time*300)%360},90%,60%)`:tc||'#ffb347',1,1);
+    for(const p of T.parts)if(p.l>0){p.l-=dt;p.x+=p.vx*dt;p.y+=p.vy*dt}
+    if((T.hudT+=dt)>.12){T.hudT=0;khud(T)}},
+  draw(a,T){kdraw(T)},
+  key(k,down,T){if(!down)return;if(k==='1'||k==='2'||k==='3')T.lane=+k-1;else if(k==='act'||k==='up')kuse(T)},
+  ease(T){},
+  stop(T){if(T&&T.hum)T.hum.stop()}});
+const kfb=(T,a,b)=>{T.fb={a,b,t:1.6}};
+const kpuff=(T,col,n,trail)=>{for(let i=0;i<n;i++){let p=T.parts.find(q=>q.l<=0);if(!p){if(T.parts.length>=70)return;p={};T.parts.push(p)}
+  Object.assign(p,{x:KW/2+(Math.random()-.5)*(trail?50:60),y:KH-26-(Math.random()*(trail?6:30)),vx:(Math.random()-.5)*(trail?40:120),vy:trail?40+Math.random()*60:-40-Math.random()*80,l:trail?.45:.6,c:col})}};
+
+/* A question for the next gate: the question at the top, one answer over each lane */
+function kask(T,g){let x=null,c=null;for(let i=0;i<12&&!c;i++){x=AG.question('kart');if(!x)break;if(strip(x.q.q).length<=110)c=kartChoices(x.q)}
+  if(!c){T.q={none:1};g.done=1;return}T.q={k:x.k,q:x.q,L:c.L,cor:c.cor,g,t0:performance.now(),z0:T.pos};kqshow(T)}
+function kpass(T,g){const q=T.q;g.done=1;T.q=null;if(q.none)return;const lane=T.x<-.31?0:T.x>.31?2:1,ok=lane===q.cor;T.n++;
+  const ease=AG.answered('kart',ok,performance.now()-q.t0);
+  if(ok){T.ok++;T.run++;T.best=Math.max(T.best,T.run);T.boost=Math.max(T.boost,1.4);SND.play('ok');setTimeout(()=>SND.play('boost'),120);
+    let gift='';if(!T.pw){T.pw=pick(T.t<2?['nitro','magnet','shield','shield','x2','jump']:['nitro','nitro','magnet','shield','x2','jump']);gift=` ${KPOW[T.pw][0]} ${KPOW[T.pw][1]}!`}
+    kfb(T,pick(['🚀 Boost!','⚡ Zoom!','🌟 Turbo!','🔥 Right!']),gift);if(T.run>=5)AG.ach('kart','streak')}
+  else{T.run=0;T.v*=.7;SND.play('no');kfb(T,'Not that lane',`It was ${q.L[q.cor]}`);
+    if(ease&&T.t>0){T.t--;Object.assign(T.tier,{vmax:KTIER[T.t].vmax,read:KTIER[T.t].read});kfb(T,'Taking it a little easier',`It was ${q.L[q.cor]}`)}}
+  kqshow(T,q,lane)}
+function kuse(T){const p=T.pw;if(!p)return;T.pw=null;T.pows++;const S=ktS();S.pows=(S.pows||0)+1;if(S.pows>=10)AG.ach('kart','power');SND.play('pow');
+  if(p==='nitro'){T.boost=2.4;SND.play('boost')}else if(p==='magnet')T.mag=7;else if(p==='shield')T.shield=1;else if(p==='x2')T.x2=10;else if(p==='jump')T.jump=1.3;
+  kfb(T,`${KPOW[p][0]} ${KPOW[p][1]}!`,KPOW[p][2]);khud(T)}
+
+/* ---------- Drawing: sky, hills, the road from near to far, then sprites from far to near, then the kart ---------- */
+function kdraw(T){const x=AG.cx,Z=T.Z,tr=T.tr,S=Z.S,N=S.length;if(!x)return;
+  x.drawImage(ksky(tr),0,0,KW,KH);
+  for(const [far,y,sp] of[[1,KH*.5-70,.5],[0,KH*.5-48,1]]){const img=khill(tr,far),ox=((-T.skyX*60*sp)%(KW)+KW)%KW;x.drawImage(img,-ox,y,KW*2,120)}
+  const base=kseg(Z,T.pos),bp=(T.pos%KSEG)/KSEG,pseg=kseg(Z,T.pos+KCAMH*KCAMD),pp=((T.pos+KCAMH*KCAMD)%KSEG)/KSEG,py=pseg.y1+(pseg.y2-pseg.y1)*pp,camY=KCAMH+py,camX=T.x*KRW;
+  let maxy=KH,dx=-(base.curve*bp),cx=0;
+  for(let n=0;n<KDRAW;n++){const s=S[(base.i+n)%N],loop=s.i<base.i?N*KSEG:0,z1=s.i*KSEG+loop-T.pos,z2=z1+KSEG;s.clip=maxy;
+    kproj(s.p1,camX-cx,camY,z1,s.y1);kproj(s.p2,camX-cx-dx,camY,z2,s.y2);cx+=dx;dx+=s.curve;
+    if(z1<=KCAMD||s.p2.sy>=maxy||s.p2.sy>=s.p1.sy)continue;
+    kroadseg(x,tr,s,(s.i>>2)&1);maxy=s.p2.sy}
+  /* scenery, coins, obstacles, gates and the ghost, far to near */
+  const pz=T.pos+KCAMH*KCAMD,gz=kghostZ(T);
+  for(let n=KDRAW-1;n>0;n--){const s=S[(base.i+n)%N],p=s.p1;if(!(p.sc>0))continue;
+    for(const sp of s.sp){if(sp.gone)continue;const K=KSPR[sp.k],img=kspr(sp.k),w=K.ww*p.sw*2.2,h=w*img.height/img.width,bob=sp.coin?Math.sin(T.time*6+s.i)*w*.15:0;ksprite(x,img,p.sx+p.sw*sp.x-w/2,p.sy-h-bob,w,h,s.clip)}
+    if(s.gate!=null)kgatedraw(x,T,s,p);
+    if(gz&&Math.floor(gz.z/KSEG)===s.i&&gz.z>pz){const img=kkart(ktPaint(),1),w=p.sw*.62,h=w*img.height/img.width;x.globalAlpha=.55;ksprite(x,img,p.sx+p.sw*gz.x-w/2,p.sy-h,w,h,s.clip);x.globalAlpha=1}}
+  /* the kart, with its shadow, tilt, jump and shield */
+  const img=kkart(ktPaint()),kw=150,kh=100,jy=T.jump>0?Math.sin(T.jump/1.3*Math.PI)*46:0,sh=T.shake>0&&!calmOn()?(Math.random()-.5)*6:0,bounce=calmOn()?0:Math.sin(T.time*20)*T.v/T.tier.vmax*1.2;
+  for(const p of T.parts)if(p.l>0){x.globalAlpha=Math.min(1,p.l*2);x.fillStyle=p.c;x.fillRect(p.x,p.y,4,4)}x.globalAlpha=1;
+  x.save();x.translate(KW/2+sh,KH-12-jy+bounce);x.rotate(T.spin>0&&!calmOn()?Math.sin(T.spin*18)*.25:T.steer*.06);x.drawImage(img,-kw/2,-kh,kw,kh);
+  if(T.shield){x.strokeStyle='rgba(120,220,255,.85)';x.lineWidth=4;x.beginPath();x.ellipse(0,-kh/2,kw*.62,kh*.62,0,0,7);x.stroke()}x.restore();
+  if(T.boost>0&&!calmOn()){x.strokeStyle='rgba(255,255,255,.55)';x.lineWidth=2;for(let i=0;i<10;i++){const a=(i/10)*Math.PI*2+T.time*3,r1=KH*.45,r2=KH*.62;x.beginPath();x.moveTo(KW/2+Math.cos(a)*r1,KH*.55+Math.sin(a)*r1*.6);x.lineTo(KW/2+Math.cos(a)*r2,KH*.55+Math.sin(a)*r2*.6);x.stroke()}}
+  kspeedo(x,T)}
+function kproj(p,camX,camY,z,wy){p.sc=KCAMD/z;p.sx=Math.round(KW/2+p.sc*(-camX)*KW/2);p.sy=Math.round(KH/2-p.sc*(wy-camY)*KH/2);p.sw=Math.round(p.sc*KRW*KW/2)}
+function kroadseg(x,tr,s,alt){const a=s.p1,b=s.p2;
+  x.fillStyle=tr.gr[alt];x.fillRect(0,b.sy,KW,a.sy-b.sy+1);
+  if(tr.grid&&alt){x.fillStyle=tr.grid;x.globalAlpha=.35;x.fillRect(0,b.sy,KW,1);x.globalAlpha=1}
+  const r1=a.sw/7,r2=b.sw/7;kpoly(x,[[a.sx-a.sw-r1,a.sy],[a.sx-a.sw,a.sy],[b.sx-b.sw,b.sy],[b.sx-b.sw-r2,b.sy]],tr.rb[alt]);kpoly(x,[[a.sx+a.sw+r1,a.sy],[a.sx+a.sw,a.sy],[b.sx+b.sw,b.sy],[b.sx+b.sw+r2,b.sy]],tr.rb[alt]);
+  kpoly(x,[[a.sx-a.sw,a.sy],[a.sx+a.sw,a.sy],[b.sx+b.sw,b.sy],[b.sx-b.sw,b.sy]],tr.road[alt]);
+  if(alt){const l1=a.sw/40,l2=b.sw/40;for(const f of[-1/3,1/3]){const ax=a.sx+a.sw*f*2,bx=b.sx+b.sw*f*2;kpoly(x,[[ax-l1,a.sy],[ax+l1,a.sy],[bx+l2,b.sy],[bx-l2,b.sy]],tr.ln)}}}
+/* A sprite, cut off where a nearer hill hides it */
+function ksprite(x,img,dx,dy,w,h,clip){if(w<1||h<1)return;const ch=clip?Math.max(0,dy+h-clip):0;if(ch>=h)return;x.drawImage(img,0,0,img.width,img.height*(1-ch/h),dx,dy,w,h-ch)}
+/* A gate: an arch over the road, one answer over each lane */
+function kgatedraw(x,T,s,p){const g=T.Z.gates[s.gate],q=T.q&&T.q.g===g?T.q:null,w=p.sw,h=w*.55,top=p.sy-h;if(top>s.clip||w<6)return;
+  x.fillStyle='#ffffff';x.fillRect(p.sx-w*1.08,top,w*.06,h);x.fillRect(p.sx+w*1.02,top,w*.06,h);
+  x.fillStyle='rgba(30,20,70,.88)';x.fillRect(p.sx-w*1.08,top-h*.32,w*2.16,h*.34);
+  if(q&&w>40){x.font=`800 ${Math.max(8,Math.min(26,w*.09))}px "Atkinson Hyperlegible",sans-serif`;x.textAlign='center';x.textBaseline='middle';
+    q.L.forEach((t,i)=>{const cx=p.sx+w*(i-1)*.68;x.fillStyle=['#ff7aa8','#ffd34d','#5ff3ff'][i];x.fillText(String(t).slice(0,14),cx,top-h*.15)})}}
+function kspeedo(x,T){const v=Math.round(T.v/KTIER[2].vmax*140),cx=58,cy=KH-30;x.fillStyle='rgba(15,10,40,.62)';x.beginPath();x.arc(cx,cy,30,Math.PI,0);x.fill();
+  x.strokeStyle=T.boost>0?'#ff7a1a':'#5ff3ff';x.lineWidth=5;x.beginPath();x.arc(cx,cy,24,Math.PI,Math.PI+Math.PI*Math.min(1,v/160));x.stroke();
+  x.fillStyle='#fff';x.font='800 15px "Atkinson Hyperlegible",sans-serif';x.textAlign='center';x.textBaseline='alphabetic';x.fillText(v,cx,cy-4);x.font='700 8px sans-serif';x.fillText('KM/H',cx,cy+6)}
+/* Where the ghost of the best run is now */
+function kghostZ(T){const g=T.ghost;if(!g)return null;const i=Math.floor(T.time/.25)*2,s=g.s;if(i+3>=s.length)return null;const f=(T.time%.25)/.25;return{z:(s[i]+(s[i+2]-s[i])*f)*10,x:(s[i+1]+(s[i+3]-s[i+1])*f)/100}}
+
+/* ---------- The words around the road ---------- */
+function kqshow(T,done,lane){const box=$('kq'),L=document.querySelectorAll('.klanes2 button');if(!box)return;const q=done||T.q;
+  if(!q||q.none){box.className='kqbox idle';box.innerHTML='<span>🏎️ Drive on! The next question appears before the next gate.</span>';L.forEach(b=>{b.className='';b.querySelector('.kl').textContent='…';b.disabled=true});return}
+  box.className='kqbox';box.innerHTML=`<span class="sol">Gate ${q.g.seg?T.Z.gates.indexOf(q.g)+1:''} of ${T.Z.gates.length}${SK[q.k]?' · '+esc(SK[q.k].n):''}</span><div class="kqt">${q.q.q}</div>${done?'':'<div class="kqbar"><i id="kqbar"></i></div>'}`;
+  L.forEach((b,i)=>{b.querySelector('.kl').textContent=q.L[i];b.disabled=!!done;b.className=done?(i===q.cor?'right':i===lane?'wrong':''):''});
+  if(done)setTimeout(()=>{if(AG.cur&&AG.cur.st===T&&!T.q)kqshow(T)},1600)}
+function khud(T){const h=$('khud');if(!h)return;const g=T.Z.gates,gi=Math.min(g.length,g.filter(x=>x.done).length+1),gz=kghostZ(T);
+  let gd='';if(gz){const d=(gz.z-T.pos)/Math.max(1500,T.v);gd=`<span>👻 ${d>0?'+':''}${d.toFixed(1)} s</span>`}
+  h.innerHTML=`<span>🏁 ${gi}/${g.length}</span><span>⏱ ${T.time.toFixed(1)}</span><span>🪙 ${T.coins}${T.x2>0?' ×2':''}</span><span>✅ ${T.ok}</span>${gd}`;
+  const lane=T.x<-.31?0:T.x>.31?2:1;document.querySelectorAll('.klanes2 button').forEach((b,i)=>{b.classList.toggle('on',i===lane);b.setAttribute('aria-pressed',i===lane)});
+  const bar=$('kqbar');if(bar&&T.q&&!T.q.none){const tot=T.q.g.z-(T.q.z0+KCAMH*KCAMD),left=T.q.g.z-(T.pos+KCAMH*KCAMD);bar.style.transform=`scaleX(${Math.max(0,Math.min(1,left/tot))})`}
+  const p=$('kpow');if(p){p.disabled=!T.pw;p.innerHTML=T.pw?`${KPOW[T.pw][0]}<small>${KPOW[T.pw][1]}</small>`:`·<small>Power</small>`;p.setAttribute('aria-label',T.pw?`Use ${KPOW[T.pw][1]}`:'No power-up yet')}
+  const f=$('kfb2');if(f){f.classList.toggle('off',!T.fb);if(T.fb)f.innerHTML=`${esc(T.fb.a)}${T.fb.b?`<br><small style="font-size:.7em">${esc(T.fb.b)}</small>`:''}`}}
+
+/* ---------- The end of a race: medals, personal bests, the ghost, gems and achievements ---------- */
+function kresult(T){const tr=T.tr,S=ktS(),f=T.n?T.ok/T.n:0,medal=f>=.9?3:f>=.7?2:f>=.5?1:0,time=+T.time.toFixed(1),score=T.coins*10+T.ok*100+T.best*25+Math.max(0,Math.round((T.Z.gates.length*14-time)*5));
+  const pb=S.pb[tr.id]||{},nb={time:medal&&(pb.time==null||time<pb.time),ok:T.ok>(pb.ok||0),score:score>(pb.score||0),streak:T.best>(pb.streak||0)};
+  const beatGhost=!!(T.ghost&&medal&&nb.time);
+  S.pb[tr.id]={time:nb.time?time:pb.time,ok:Math.max(T.ok,pb.ok||0),score:Math.max(score,pb.score||0),streak:Math.max(T.best,pb.streak||0)};
+  if(nb.time)S.gh[tr.id]={s:T.rec.slice(0,1600)};
+  const i=KTR.indexOf(tr),unlock=medal>0&&!(S.med[tr.id]>0)&&KTR[i+1];S.med[tr.id]=Math.max(S.med[tr.id]||0,medal);S.races=(S.races||0)+1;
+  const gems=medal+(nb.time&&medal?2:0)+Math.min(2,Math.floor(T.coins/40));if(gems)addGems(gems);
+  AG.ach('kart','first');if(medal===3)AG.ach('kart','gold');if(T.coins>=40)AG.ach('kart','coins');if(!T.hits)AG.ach('kart','clean');if(beatGhost)AG.ach('kart','ghost');
+  if(tr.id==='space')AG.ach('kart','night');if(KTR.every((_,j)=>ktOpen(j)))AG.ach('kart','tour');
+  SND.play(medal?'win':'lose','ui');return{why:'done',tr:tr.id,medal,time,score,coins:T.coins,ok:T.ok,n:T.n,best:T.best,nb,beatGhost,unlock:unlock&&unlock.n,gems}}
+
+/* ---------- The menu: tracks, the kart, personal bests and the last result ---------- */
+const ktThumb=t=>kimg('th'+t.id,160,72,(x)=>{x.drawImage(ksky(t),0,0,KW,KH*.9,0,0,160,72);x.fillStyle=t.gr[0];x.fillRect(0,46,160,26);kpoly(x,[[60,46],[100,46],[150,72],[10,72]],t.road[0]);kpoly(x,[[78,46],[82,46],[84,72],[76,72]],t.ln)});
+GVIEW.kart=function(){const C=AG.cur&&AG.cur.id==='kart'?AG.cur:null;
+  if(C&&['load','play','crash'].includes(C.phase))return AG.screen('kart',{above:`<div class="kqbox idle" id="kq" aria-live="polite"><span>🏎️ Get ready…</span></div>`,
+    over:`<div class="khud2" id="khud"></div><button class="kpow" id="kpow" disabled onclick="AG.cur&&kuse(AG.cur.st)" aria-label="No power-up yet">·</button><div class="kfb2 off" id="kfb2" role="status"></div>`,
+    below:`<div class="klanes2" role="group" aria-label="Pick a lane">${[0,1,2].map(i=>`<button onclick="AG.cur&&(AG.cur.st.lane=${i})" disabled><span class="key" aria-hidden="true">${i+1}</span><span class="kl">…</span></button>`).join('')}</div>${AG.pad([[{k:'left',l:'◀',a:'Steer left'},{k:'right',l:'▶',a:'Steer right'}],[{k:'act',l:'⚡',a:'Use power-up'}]])}`});
+  const S=ktS(),tr=ktCur(),r=C&&C.phase==='end'?C.res:null,pb=S.pb[tr.id]||{};let card='';
+  if(r&&r.why==='done')card=`<div class="gcard endcard" style="margin-bottom:16px"><div class="big" aria-hidden="true">${['🏁','🥉','🥈','🥇'][r.medal]}</div><h3>${r.medal?['','Bronze','Silver','Gold'][r.medal]+' medal!':'Race finished!'}</h3>
+    <p>${r.ok} of ${r.n} gates right · ${r.time} s · 🪙 ${r.coins} · ${r.score} points${r.gems?` · 💎 +${r.gems}`:''}</p>
+    ${Object.entries({time:'⏱ New best time!',score:'🏆 New high score!',streak:'🔥 Longest streak!',ok:'✅ Most right answers!'}).filter(([k])=>r.nb[k]).map(([,t])=>`<span class="agtier">${t}</span>`).join(' ')}
+    ${r.beatGhost?'<p><b>👻 You beat your own ghost!</b></p>':''}${r.unlock?`<p><b>🔓 New track: ${esc(r.unlock)}!</b></p>`:''}${r.medal?'':`<p class="sol">Get half the gates right for a medal. Every wrong lane showed you the answer, so try again!</p>`}</div>`;
+  else if(r&&r.why==='time')card=`<div class="gcard" style="margin-bottom:16px"><h3>🌙 Play time is over for today</h3><p>${esc(earnNote())}</p></div>`;
+  const paint=ktPaint(),trail=ktTrail();
+  return `<div class="gworld">${clouds()}${gameHead('Turbo Trivia Kart',`${tr.n}: race, answer, boost!`)}${outOfTime()?restCard():''}${card}${subjChips()}
+  <div class="gcard"><h3>🏆 Pick a track</h3><div class="ktracks2">${KTR.map((t,i)=>{const o=ktOpen(i),md=S.med[t.id]||0,b=(S.pb[t.id]||{}).time;return `<button class="ktr2 ${t.id===tr.id?'on':''}" ${o?'':'disabled'} aria-pressed="${t.id===tr.id}" onclick="ARS('kart').tr='${t.id}';SYNC();rerealm()"><img src="${ktThumb(t).toDataURL()}" alt=""><b>${o?'':'🔒 '}${esc(t.n)}</b><span class="sol">${t.g} gates · ${o?(md?['','🥉','🥈','🥇'][md]+(b!=null?` ${b} s`:''):'No medal yet'):'Win a medal on '+esc(KTR[i-1].n)}</span></button>`}).join('')}</div>
+  <h3 style="margin-top:16px">📊 Personal bests on ${esc(tr.n)}</h3><div class="kpbs"><div><b>${pb.time!=null?pb.time+' s':'–'}</b>Best time</div><div><b>${pb.ok||0}</b>Most right</div><div><b>${pb.score||0}</b>High score</div><div><b>${pb.streak||0}</b>Longest streak</div></div>
+  <p class="sol">${S.gh[tr.id]?'👻 Your best run races with you as a ghost. Beat it!':'Win a medal and your best run becomes a ghost to race against.'}</p>
+  <h3 style="margin-top:16px">🎨 Your kart</h3><p class="sol" style="margin:0">Paint</p><div class="kcust">${Object.keys(KPAINT).map(p=>{const h=AG.has('kart.paint.'+p),it=AG.item('kart.paint.'+p);return `<button style="background:${KPAINT[p]}" ${h?'':'disabled'} class="${p===paint?'on':''}" aria-pressed="${p===paint}" aria-label="${esc(it.n)}${h?'':': '+esc(it.how)}" title="${esc(it.n)}${h?'':': '+esc(it.how)}" onclick="ARS('kart').paint='${p}';SYNC();rerealm()"></button>`}).join('')}</div>
+  <p class="sol" style="margin:8px 0 0">Trail</p><div class="kcust">${Object.keys(KTRAIL).map(t=>{const h=AG.has('kart.trail.'+t),it=AG.item('kart.trail.'+t);return `<button ${h?'':'disabled'} class="${t===trail?'on':''}" aria-pressed="${t===trail}" aria-label="${esc(it.n)}${h?'':': '+esc(it.how)}" title="${esc(it.n)}${h?'':': '+esc(it.how)}" onclick="ARS('kart').trail='${t}';SYNC();rerealm()">${it.i}</button>`}).join('')}</div>
+  <label class="ckline" style="margin-top:12px"><input type="checkbox" ${S.relax?'checked':''} onchange="ARS('kart').relax=this.checked;SYNC()"> Relaxed driving: the slowest speed and the most time to read</label></div>
+  <div style="margin-top:14px">${AG.intro('kart','AG.play(\'kart\')')}</div></div>`};
+</script>
