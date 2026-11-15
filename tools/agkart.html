@@ -22,6 +22,22 @@
 .ktr2 img{width:100%;height:auto;border-radius:10px;display:block}
 .kcust{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}.kcust button{width:42px;height:42px;border-radius:12px;border:3px solid var(--line);font-size:1.2rem}.kcust button.on{border-color:var(--ga-gold);box-shadow:0 0 0 3px rgba(242,169,0,.35)}
 .kcust button[disabled]{opacity:.35}
+.kcust button.w{width:auto;padding:0 10px;font-size:.9rem;font-weight:700}
+.kprev{display:flex;gap:14px;align-items:center;margin:6px 0 4px}.kprev img{width:150px;height:auto;background:radial-gradient(#E0E7FF,#C7D2FE);border-radius:14px;padding:6px}
+.endcard,.kcard{position:relative;overflow:hidden}
+.kwinfx{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+.kwinfx i{position:absolute;display:block;font-style:normal}
+.kwinfx.confetti i{width:8px;height:12px;top:-14px;animation:kconf 2.6s ease-in forwards}
+@keyframes kconf{to{transform:translateY(420px) rotate(540deg);opacity:.2}}
+.kwinfx.balloons i{bottom:-50px;font-size:2rem;animation:kballoon 3.2s ease-out forwards}
+@keyframes kballoon{to{transform:translateY(-520px) translateX(var(--dx,0));opacity:.7}}
+.kwinfx.stars i{font-size:1.6rem;opacity:0;animation:kstar 1.6s ease-in-out 2 forwards}
+@keyframes kstar{0%{opacity:0;transform:scale(.2) rotate(0)}50%{opacity:1;transform:scale(1.2) rotate(90deg)}100%{opacity:0;transform:scale(.4) rotate(180deg)}}
+.kwinfx.fireworks i{width:6px;height:6px;border-radius:50%;opacity:0;animation:kfire 1.4s ease-out forwards}
+@keyframes kfire{0%{opacity:1;transform:translate(0,0)}100%{opacity:0;transform:translate(var(--dx),var(--dy))}}
+.kwinfx.trophy i{left:50%;top:30%;font-size:4.5rem;animation:ktrophy 2.2s ease-out forwards}
+@keyframes ktrophy{0%{transform:translate(-50%,-50%) scale(0) rotateY(0)}40%{transform:translate(-50%,-50%) scale(1.3) rotateY(360deg)}70%{transform:translate(-50%,-50%) scale(1) rotateY(720deg)}100%{transform:translate(-50%,-50%) scale(1) rotateY(720deg);opacity:0}}
+body[data-calm] .kwinfx{display:none}@media(prefers-reduced-motion:reduce){.kwinfx{display:none}}
 .kpbs{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-top:8px}.kpbs div{padding:8px;border-radius:12px;background:#EEF2FF;color:#1E1B4B;text-align:center}.kpbs b{display:block;font-size:1.15rem}
 </style>
 <script type="text/x-lumen">
@@ -40,6 +56,9 @@ const KTR=[
   {id:'candy',n:'Candy Coast',g:12,sky:['#ff9fd0','#ffc2e2','#ffe3ef','#fff4c8'],sun:['#fff7a8','#ffd166'],far:'#ff8cc6',far2:'#ffb3d9',gr:['#ffc8e3','#ffbddc'],road:['#b892d6','#b18acf'],rb:['#ffffff','#ff4f6d'],ln:'#ffffff',deco:['lolly','cane'],obs:'gum',curvy:5,hilly:1100}];
 const KSEG=200,KRW=2000,KCAMH=1000,KDRAW=160,KCAMD=1/Math.tan(50*Math.PI/180),KW=640,KH=360;
 const KPOW={nitro:['🚀','Nitro','A big burst of speed'],magnet:['🧲','Magnet','Pulls coins to you'],shield:['🛡️','Shield','Blocks the next bump'],x2:['💎','Double Gems','Coins count double'],jump:['🦘','Turbo Jump','Jump over the next obstacles']};
+const KWHEEL={classic:['#3a3650','⚫'],chrome:['#C9D1DC','⚪'],flame:['#FF7A3D','🔥'],neon:['#5FF3FF','💠'],gold:['#F2C14E','🟡']};
+const KDRIVER={white:['#f2f2f7','⛑️','Classic helmet'],racer:['#E4572E','🏁','Racer'],astro:['#E5E7EB','👩‍🚀','Astronaut'],cat:['#FFB3C7','🐱','Cat ears'],bee:['#FACC15','🐝','Bumblebee'],crown:['#f2f2f7','👑','Royal']};
+const KWIN={confetti:['🎊','Confetti'],fireworks:['🎆','Fireworks'],balloons:['🎈','Balloons'],stars:['⭐','Shooting stars'],trophy:['🏆','Trophy spin']};
 const KPAINT={red:'#E4572E',blue:'#2D7FF9',yellow:'#F5C542',pink:'#FF4FA3',mint:'#2ED6A4',purple:'#8B5CF6',gold:'#E5B53A',night:'#1E2A44'};
 const KTRAIL={none:'',spark:'#FFD34D',rainbow:'rainbow',bubble:'#9FE3FF',star:'#FFFFFF'};
 const ktS=()=>{const S=ARS('kart');
@@ -50,6 +69,18 @@ const ktOpen=i=>!i||(ktS().med[KTR[i-1].id]||0)>0;
 const ktCur=()=>{let i=KTR.findIndex(t=>t.id===ktS().tr);if(i<0||!ktOpen(i))i=0;return KTR[i]};
 const ktPaint=()=>{const p=ktS().paint;return KPAINT[p]&&AG.has('kart.paint.'+p)?p:'red'};
 const ktTrail=()=>{const t=ktS().trail;return KTRAIL[t]!=null&&AG.has('kart.trail.'+t)?t:'none'};
+const ktWheel=()=>{const t=ktS().wheel;return KWHEEL[t]&&AG.has('kart.wheel.'+t)?t:'classic'};
+const ktDriver=()=>{const t=ktS().driver;return KDRIVER[t]&&AG.has('kart.driver.'+t)?t:'white'};
+const ktWin=()=>{const t=ktS().win;return KWIN[t]&&AG.has('kart.win.'+t)?t:'confetti'};
+/* A victory animation over a card: CSS only, it plays once */
+function kwinFx(kind){const R=krng(Date.now()&1023),n={confetti:40,fireworks:48,balloons:12,stars:14,trophy:1}[kind]||0,C=['#E4572E','#F5C542','#2ED6A4','#2D7FF9','#FF4FA3','#8B5CF6'];let h='';
+  for(let i=0;i<n;i++){const l=(R()*100).toFixed(1),d=(R()*.9).toFixed(2);
+    if(kind==='confetti')h+=`<i style="left:${l}%;background:${C[i%6]};animation-delay:${d}s"></i>`;
+    else if(kind==='balloons')h+=`<i style="left:${l}%;--dx:${Math.round(R()*80-40)}px;animation-delay:${d}s">🎈</i>`;
+    else if(kind==='stars')h+=`<i style="left:${l}%;top:${(R()*80).toFixed(0)}%;animation-delay:${(R()*1.2).toFixed(2)}s">⭐</i>`;
+    else if(kind==='fireworks'){const b=Math.floor(i/16),cx=[25,70,48][b],cy=[30,26,48][b],a=i%16*Math.PI/8,r=60+R()*30;h+=`<i style="left:${cx}%;top:${cy}%;background:${C[(b*2+i)%6]};--dx:${Math.round(Math.cos(a)*r)}px;--dy:${Math.round(Math.sin(a)*r)}px;animation-delay:${b*.35}s"></i>`}
+    else h+='<i>🏆</i>'}
+  return `<div class="kwinfx ${kind}" aria-hidden="true">${h}</div>`}
 const krng=a=>()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};
 
 /* ---------- Pictures, painted once and kept ---------- */
@@ -76,12 +107,20 @@ const KSPR={
   coin:{ww:.09,w:24,h:24,d:(x)=>{kcirc(x,12,12,11,'#b8860b');kcirc(x,12,12,9,'#ffd34d');x.fillStyle='#fff6c8';x.fillRect(9,6,3,12)}}};
 const kspr=k=>kimg('s'+k,KSPR[k].w*2,KSPR[k].h*2,(x)=>{x.scale(2,2);KSPR[k].d(x)});
 /* The kart from behind, in a paint colour */
-const kkart=(paint,ghost)=>kimg('k'+paint+(ghost?'g':''),192,128,(x)=>{x.scale(2,2);const c=KPAINT[paint]||KPAINT.red,d=shade(c,.7);
+const kkart=(paint,ghost,wheel='classic',driver='white')=>kimg('k'+paint+(ghost?'g':'')+wheel+driver,192,128,(x)=>{x.scale(2,2);const c=KPAINT[paint]||KPAINT.red,d=shade(c,.7),W=KWHEEL[wheel]||KWHEEL.classic,D=KDRIVER[driver]||KDRIVER.white;
   x.fillStyle='rgba(0,0,0,.25)';x.beginPath();x.ellipse(48,60,40,5,0,0,7);x.fill();
-  x.fillStyle='#14121e';x.fillRect(6,34,18,24);x.fillRect(72,34,18,24);x.fillStyle='#3a3650';x.fillRect(9,38,12,4);x.fillRect(75,38,12,4);
+  x.fillStyle='#14121e';x.fillRect(6,34,18,24);x.fillRect(72,34,18,24);x.fillStyle=W[0];x.fillRect(9,38,12,4);x.fillRect(75,38,12,4);
+  if(wheel==='flame'){x.fillStyle='#FFD34D';x.fillRect(11,46,3,8);x.fillRect(16,48,3,6);x.fillRect(77,46,3,8);x.fillRect(82,48,3,6)}
+  if(wheel==='chrome'||wheel==='gold'){x.fillStyle='#FFFFFF';x.fillRect(10,38,4,2);x.fillRect(76,38,4,2)}
+  if(wheel==='neon'){x.strokeStyle='#5FF3FF';x.lineWidth=1.5;x.strokeRect(6,34,18,24);x.strokeRect(72,34,18,24)}
   kpoly(x,[[20,50],[76,50],[84,30],[70,18],[26,18],[12,30]],c);kpoly(x,[[20,50],[76,50],[80,42],[16,42]],d);
   x.fillStyle=d;x.fillRect(14,10,68,7);x.fillStyle=c;x.fillRect(18,6,60,5);x.fillStyle='#14121e';x.fillRect(24,11,4,10);x.fillRect(68,11,4,10);
-  kcirc(x,48,22,11,'#f2f2f7');x.fillStyle='#2a2f4a';x.fillRect(39,19,18,6);x.fillStyle='#ffd34d';x.fillRect(30,44,8,4);x.fillRect(58,44,8,4);
+  if(driver==='cat'){kpoly(x,[[38,16],[40,6],[46,13]],D[0]);kpoly(x,[[58,16],[56,6],[50,13]],D[0])}
+  kcirc(x,48,22,driver==='astro'?12:11,D[0]);
+  if(driver==='racer'||driver==='bee'){x.save();x.beginPath();x.arc(48,22,11,0,7);x.clip();x.fillStyle=driver==='bee'?'#1E1B2E':'#FFFFFF';if(driver==='bee'){x.fillRect(36,12,24,3);x.fillRect(36,28,24,3)}else x.fillRect(46,10,4,24);x.restore()}
+  x.fillStyle=driver==='astro'?'#F2C14E':'#2a2f4a';driver==='astro'?x.fillRect(37,17,22,9):x.fillRect(39,19,18,6);
+  if(driver==='astro'){x.fillStyle='#9CA3AF';x.fillRect(47,4,2,7);kcirc(x,48,4,2,'#FF4FA3')}
+  if(driver==='crown')kpoly(x,[[39,13],[41,4],[45,9],[48,2],[51,9],[55,4],[57,13]],'#F2C14E');x.fillStyle='#ffd34d';x.fillRect(30,44,8,4);x.fillRect(58,44,8,4);
   if(ghost){x.globalCompositeOperation='source-atop';x.fillStyle='rgba(180,220,255,.55)';x.fillRect(0,0,96,64)}});
 /* room above and below the road for the question and the lane buttons */
 /* Sky and far hills for a track: painted once */
@@ -124,12 +163,25 @@ AG.def({id:'kart',name:'Turbo Trivia Kart',w:KW,h:KH,maxW:1280,vh:360,snd:'kart'
     streak:{i:'🔥',n:'Hot streak',d:'5 right gates in a row',gems:1,give:'kart.trail.spark'},coins:{i:'🪙',n:'Coin collector',d:'40 coins in one race',gems:1,give:'kart.paint.mint'},
     clean:{i:'✨',n:'Clean driver',d:'Finish a race without a bump',gems:1,give:'kart.paint.pink'},ghost:{i:'👻',n:'Faster than before',d:'Beat your own ghost',gems:1,give:'kart.trail.rainbow'},
     power:{i:'⚡',n:'Power player',d:'Use 10 power-ups',gems:1,give:'kart.trail.star'},tour:{i:'🗺️',n:'Road tripper',d:'Unlock every track',gems:3,give:'kart.paint.purple'},
-    night:{i:'🌙',n:'Night rider',d:'Finish Space Speedway',gems:1,give:'kart.paint.night'},bubble:{i:'🫧',n:'Smooth sailing',d:'Use a shield to block a bump',gems:1,give:'kart.trail.bubble'}},
+    night:{i:'🌙',n:'Night rider',d:'Finish Space Speedway',gems:1,give:'kart.paint.night'},bubble:{i:'🫧',n:'Smooth sailing',d:'Use a shield to block a bump',gems:1,give:'kart.trail.bubble'},
+    gates50:{i:'🚦',n:'Gate master',d:'Drive through 50 right gates in all',gems:1,give:'kart.wheel.chrome'},silver:{i:'🥈',n:'Silver streak',d:'Win a silver medal or better',gems:1,give:'kart.wheel.flame'},
+    medals3:{i:'🎖️',n:'Medal collector',d:'Win 3 medals',gems:1,give:'kart.driver.racer'},races10:{i:'🔟',n:'Road regular',d:'Finish 10 races',gems:1,give:'kart.win.fireworks'},
+    perfect:{i:'💯',n:'Perfect race',d:'Get every gate right in a race',gems:2,give:'kart.wheel.gold'},spacegold:{i:'🚀',n:'Star pilot',d:'Win gold on Space Speedway',gems:2,give:'kart.driver.astro'},
+    candy:{i:'🍭',n:'Sweet ride',d:'Win a medal on Candy Coast',gems:1,give:'kart.driver.cat'},ghost3:{i:'🏎️',n:'Ghost buster',d:'Beat your own ghost 3 times',gems:1,give:'kart.win.balloons'},
+    jungle:{i:'🐝',n:'Jungle buzz',d:'Win a medal on Jungle Circuit',gems:1,give:'kart.driver.bee'},neonw:{i:'🌃',n:'Neon nights',d:'Win gold on Neon Sunset Highway',gems:1,give:'kart.wheel.neon'},
+    allgold:{i:'👑',n:'Kart royalty',d:'Win gold on every track',gems:3,give:'kart.driver.crown'},streak10:{i:'🌠',n:'Unstoppable',d:'10 right gates in a row',gems:1,give:'kart.win.stars'},
+    first3:{i:'🏆',n:'Champion',d:'Win 3 gold medals',gems:2,give:'kart.win.trophy'}},
   items:{'kart.paint.red':{n:'Racing Red',c:KPAINT.red,free:1,k:'Paint'},'kart.paint.blue':{n:'Ocean Blue',c:KPAINT.blue,free:1,k:'Paint'},'kart.paint.yellow':{n:'Sunny Yellow',c:KPAINT.yellow,k:'Paint',how:'Finish a race'},
     'kart.paint.mint':{n:'Mint',c:KPAINT.mint,k:'Paint',how:'40 coins in one race'},'kart.paint.pink':{n:'Neon Pink',c:KPAINT.pink,k:'Paint',how:'Finish without a bump'},'kart.paint.gold':{n:'Gold',c:KPAINT.gold,k:'Paint',how:'Win a gold medal'},
     'kart.paint.purple':{n:'Galaxy Purple',c:KPAINT.purple,k:'Paint',how:'Unlock every track'},'kart.paint.night':{n:'Midnight',c:KPAINT.night,k:'Paint',how:'Finish Space Speedway'},
     'kart.trail.none':{n:'No trail',i:'➖',free:1,k:'Trail'},'kart.trail.spark':{n:'Spark trail',i:'✨',k:'Trail',how:'5 right gates in a row'},'kart.trail.rainbow':{n:'Rainbow trail',i:'🌈',k:'Trail',how:'Beat your own ghost'},
-    'kart.trail.star':{n:'Star trail',i:'⭐',k:'Trail',how:'Use 10 power-ups'},'kart.trail.bubble':{n:'Bubble trail',i:'🫧',k:'Trail',how:'Block a bump with a shield'}},
+    'kart.trail.star':{n:'Star trail',i:'⭐',k:'Trail',how:'Use 10 power-ups'},'kart.trail.bubble':{n:'Bubble trail',i:'🫧',k:'Trail',how:'Block a bump with a shield'},
+    'kart.wheel.classic':{n:'Classic wheels',i:'⚫',free:1,k:'Wheels'},'kart.wheel.chrome':{n:'Chrome wheels',i:'⚪',k:'Wheels',how:'50 right gates in all'},'kart.wheel.flame':{n:'Flame wheels',i:'🔥',k:'Wheels',how:'Win a silver medal'},
+    'kart.wheel.neon':{n:'Neon wheels',i:'💠',k:'Wheels',how:'Gold on Neon Sunset Highway'},'kart.wheel.gold':{n:'Gold wheels',i:'🟡',k:'Wheels',how:'Get every gate right in a race'},
+    'kart.driver.white':{n:'Classic helmet',i:'⛑️',free:1,k:'Driver'},'kart.driver.racer':{n:'Racer helmet',i:'🏁',k:'Driver',how:'Win 3 medals'},'kart.driver.astro':{n:'Astronaut helmet',i:'👩‍🚀',k:'Driver',how:'Gold on Space Speedway'},
+    'kart.driver.cat':{n:'Cat-ear helmet',i:'🐱',k:'Driver',how:'A medal on Candy Coast'},'kart.driver.bee':{n:'Bumblebee helmet',i:'🐝',k:'Driver',how:'A medal on Jungle Circuit'},'kart.driver.crown':{n:'Royal crown',i:'👑',k:'Driver',how:'Gold on every track'},
+    'kart.win.confetti':{n:'Confetti',i:'🎊',free:1,k:'Victory'},'kart.win.fireworks':{n:'Fireworks',i:'🎆',k:'Victory',how:'Finish 10 races'},'kart.win.balloons':{n:'Balloons',i:'🎈',k:'Victory',how:'Beat your ghost 3 times'},
+    'kart.win.stars':{n:'Shooting stars',i:'⭐',k:'Victory',how:'10 right gates in a row'},'kart.win.trophy':{n:'Trophy spin',i:'🏆',k:'Victory',how:'Win 3 gold medals'}},
   places:()=>KTR.map((t,i)=>({on:ktOpen(i),i:'🏁',n:t.n,s:['No medal yet','Bronze','Silver','Gold'][ktS().med[t.id]||0],how:i?`Win a medal on ${KTR[i-1].n}`:''})),
   start(o){const tr=ktCur(),relax=ktS().relax,t=relax?0:AD.tier('kart'),tier=KTIER[t],Z=ktBuild(tr,tier),gh=ktS().gh[tr.id];
     return{tr,tier:{...tier},t,Z,pos:0,x:0,vx:0,v:0,lane:-1,steer:0,time:0,coins:0,ok:0,n:0,run:0,best:0,hits:0,pows:0,
@@ -202,7 +254,7 @@ function kdraw(T){const x=AG.cx,Z=T.Z,tr=T.tr,S=Z.S,N=S.length;if(!x)return;
     if(s.gate!=null)kgatedraw(x,T,s,p);
     if(gz&&Math.floor(gz.z/KSEG)===s.i&&gz.z>pz){const img=kkart(ktPaint(),1),w=p.sw*.62,h=w*img.height/img.width;x.globalAlpha=.55;ksprite(x,img,p.sx+p.sw*gz.x-w/2,p.sy-h,w,h,s.clip);x.globalAlpha=1}}
   /* the kart, with its shadow, tilt, jump and shield */
-  const img=kkart(ktPaint()),kw=150,kh=100,jy=T.jump>0?Math.sin(T.jump/1.3*Math.PI)*46:0,sh=T.shake>0&&!calmOn()?(Math.random()-.5)*6:0,bounce=calmOn()?0:Math.sin(T.time*20)*T.v/T.tier.vmax*1.2;
+  const img=kkart(ktPaint(),0,ktWheel(),ktDriver()),kw=150,kh=100,jy=T.jump>0?Math.sin(T.jump/1.3*Math.PI)*46:0,sh=T.shake>0&&!calmOn()?(Math.random()-.5)*6:0,bounce=calmOn()?0:Math.sin(T.time*20)*T.v/T.tier.vmax*1.2;
   for(const p of T.parts)if(p.l>0){x.globalAlpha=Math.min(1,p.l*2);x.fillStyle=p.c;x.fillRect(p.x,p.y,4,4)}x.globalAlpha=1;
   x.save();x.translate(KW/2+sh,KH-12-jy+bounce);x.rotate(T.spin>0&&!calmOn()?Math.sin(T.spin*18)*.25:T.steer*.06);x.drawImage(img,-kw/2,-kh,kw,kh);
   if(T.shield){x.strokeStyle='rgba(120,220,255,.85)';x.lineWidth=4;x.beginPath();x.ellipse(0,-kh/2,kw*.62,kh*.62,0,0,7);x.stroke()}x.restore();
@@ -253,27 +305,36 @@ function kresult(T){const tr=T.tr,S=ktS(),f=T.n?T.ok/T.n:0,medal=f>=.9?3:f>=.7?2
   const gems=medal+(nb.time&&medal?2:0)+Math.min(2,Math.floor(T.coins/40));if(gems)addGems(gems);
   AG.ach('kart','first');if(medal===3)AG.ach('kart','gold');if(T.coins>=40)AG.ach('kart','coins');if(!T.hits)AG.ach('kart','clean');if(beatGhost)AG.ach('kart','ghost');
   if(tr.id==='space')AG.ach('kart','night');if(KTR.every((_,j)=>ktOpen(j)))AG.ach('kart','tour');
+  S.tok=(S.tok||0)+T.ok;if(medal){S.meds=(S.meds||0)+1;if(medal===3)S.golds=(S.golds||0)+1}if(beatGhost)S.ghb=(S.ghb||0)+1;
+  if(S.tok>=50)AG.ach('kart','gates50');if(medal>=2)AG.ach('kart','silver');if(S.meds>=3)AG.ach('kart','medals3');if(S.races>=10)AG.ach('kart','races10');if(T.n&&T.ok===T.n&&T.n>=tr.g)AG.ach('kart','perfect');
+  if(medal===3&&tr.id==='space')AG.ach('kart','spacegold');if(medal&&tr.id==='candy')AG.ach('kart','candy');if(medal&&tr.id==='jungle')AG.ach('kart','jungle');if(medal===3&&tr.id==='neon')AG.ach('kart','neonw');
+  if(S.ghb>=3)AG.ach('kart','ghost3');if(KTR.every(t=>S.med[t.id]===3))AG.ach('kart','allgold');if(T.best>=10)AG.ach('kart','streak10');if((S.golds||0)>=3)AG.ach('kart','first3');
   SND.play(medal?'win':'lose','ui');return{why:'done',tr:tr.id,medal,time,score,coins:T.coins,ok:T.ok,n:T.n,best:T.best,nb,beatGhost,unlock:unlock&&unlock.n,gems}}
 
 /* ---------- The menu: tracks, the kart, personal bests and the last result ---------- */
+function kwinPreview(){const c=$('kcard');if(!c)return;const o=c.querySelector('.kwinfx');if(o)o.remove();c.insertAdjacentHTML('afterbegin',kwinFx(ktWin()));setTimeout(()=>{const f=c.querySelector('.kwinfx');if(f)f.remove()},3800)}
 const ktThumb=t=>kimg('th'+t.id,160,72,(x)=>{x.drawImage(ksky(t),0,0,KW,KH*.9,0,0,160,72);x.fillStyle=t.gr[0];x.fillRect(0,46,160,26);kpoly(x,[[60,46],[100,46],[150,72],[10,72]],t.road[0]);kpoly(x,[[78,46],[82,46],[84,72],[76,72]],t.ln)});
 GVIEW.kart=function(){const C=AG.cur&&AG.cur.id==='kart'?AG.cur:null;
   if(C&&['load','play','crash'].includes(C.phase))return AG.screen('kart',{above:`<div class="kqbox idle" id="kq" aria-live="polite"><span>🏎️ Get ready…</span></div>`,
     over:`<div class="khud2" id="khud"></div><button class="kpow" id="kpow" disabled onclick="AG.cur&&kuse(AG.cur.st)" aria-label="No power-up yet">·</button><div class="kfb2 off" id="kfb2" role="status"></div>`,
     below:`<div class="klanes2" role="group" aria-label="Pick a lane">${[0,1,2].map(i=>`<button onclick="AG.cur&&(AG.cur.st.lane=${i})" disabled><span class="key" aria-hidden="true">${i+1}</span><span class="kl">…</span></button>`).join('')}</div>${AG.pad([[{k:'left',l:'◀',a:'Steer left'},{k:'right',l:'▶',a:'Steer right'}],[{k:'act',l:'⚡',a:'Use power-up'}]])}`});
   const S=ktS(),tr=ktCur(),r=C&&C.phase==='end'?C.res:null,pb=S.pb[tr.id]||{};let card='';
-  if(r&&r.why==='done')card=`<div class="gcard endcard" style="margin-bottom:16px"><div class="big" aria-hidden="true">${['🏁','🥉','🥈','🥇'][r.medal]}</div><h3>${r.medal?['','Bronze','Silver','Gold'][r.medal]+' medal!':'Race finished!'}</h3>
+  if(r&&r.why==='done')card=`<div class="gcard endcard" style="margin-bottom:16px">${r.medal&&!r.seen?kwinFx(ktWin()):''}<div class="big" aria-hidden="true">${['🏁','🥉','🥈','🥇'][r.medal]}</div><h3>${r.medal?['','Bronze','Silver','Gold'][r.medal]+' medal!':'Race finished!'}</h3>
     <p>${r.ok} of ${r.n} gates right · ${r.time} s · 🪙 ${r.coins} · ${r.score} points${r.gems?` · 💎 +${r.gems}`:''}</p>
     ${Object.entries({time:'⏱ New best time!',score:'🏆 New high score!',streak:'🔥 Longest streak!',ok:'✅ Most right answers!'}).filter(([k])=>r.nb[k]).map(([,t])=>`<span class="agtier">${t}</span>`).join(' ')}
     ${r.beatGhost?'<p><b>👻 You beat your own ghost!</b></p>':''}${r.unlock?`<p><b>🔓 New track: ${esc(r.unlock)}!</b></p>`:''}${r.medal?'':`<p class="sol">Get half the gates right for a medal. Every wrong lane showed you the answer, so try again!</p>`}</div>`;
+  if(r&&r.why==='done')r.seen=1;
   else if(r&&r.why==='time')card=`<div class="gcard" style="margin-bottom:16px"><h3>🌙 Play time is over for today</h3><p>${esc(earnNote())}</p></div>`;
   const paint=ktPaint(),trail=ktTrail();
   return `<div class="gworld">${clouds()}${gameHead('Turbo Trivia Kart',`${tr.n}: race, answer, boost!`)}${outOfTime()?restCard():''}${card}${subjChips()}
-  <div class="gcard"><h3>🏆 Pick a track</h3><div class="ktracks2">${KTR.map((t,i)=>{const o=ktOpen(i),md=S.med[t.id]||0,b=(S.pb[t.id]||{}).time;return `<button class="ktr2 ${t.id===tr.id?'on':''}" ${o?'':'disabled'} aria-pressed="${t.id===tr.id}" onclick="ARS('kart').tr='${t.id}';SYNC();rerealm()"><img src="${ktThumb(t).toDataURL()}" alt=""><b>${o?'':'🔒 '}${esc(t.n)}</b><span class="sol">${t.g} gates · ${o?(md?['','🥉','🥈','🥇'][md]+(b!=null?` ${b} s`:''):'No medal yet'):'Win a medal on '+esc(KTR[i-1].n)}</span></button>`}).join('')}</div>
+  <div class="gcard kcard" id="kcard"><h3>🏆 Pick a track</h3><div class="ktracks2">${KTR.map((t,i)=>{const o=ktOpen(i),md=S.med[t.id]||0,b=(S.pb[t.id]||{}).time;return `<button class="ktr2 ${t.id===tr.id?'on':''}" ${o?'':'disabled'} aria-pressed="${t.id===tr.id}" onclick="ARS('kart').tr='${t.id}';SYNC();rerealm()"><img src="${ktThumb(t).toDataURL()}" alt=""><b>${o?'':'🔒 '}${esc(t.n)}</b><span class="sol">${t.g} gates · ${o?(md?['','🥉','🥈','🥇'][md]+(b!=null?` ${b} s`:''):'No medal yet'):'Win a medal on '+esc(KTR[i-1].n)}</span></button>`}).join('')}</div>
   <h3 style="margin-top:16px">📊 Personal bests on ${esc(tr.n)}</h3><div class="kpbs"><div><b>${pb.time!=null?pb.time+' s':'–'}</b>Best time</div><div><b>${pb.ok||0}</b>Most right</div><div><b>${pb.score||0}</b>High score</div><div><b>${pb.streak||0}</b>Longest streak</div></div>
   <p class="sol">${S.gh[tr.id]?'👻 Your best run races with you as a ghost. Beat it!':'Win a medal and your best run becomes a ghost to race against.'}</p>
-  <h3 style="margin-top:16px">🎨 Your kart</h3><p class="sol" style="margin:0">Paint</p><div class="kcust">${Object.keys(KPAINT).map(p=>{const h=AG.has('kart.paint.'+p),it=AG.item('kart.paint.'+p);return `<button style="background:${KPAINT[p]}" ${h?'':'disabled'} class="${p===paint?'on':''}" aria-pressed="${p===paint}" aria-label="${esc(it.n)}${h?'':': '+esc(it.how)}" title="${esc(it.n)}${h?'':': '+esc(it.how)}" onclick="ARS('kart').paint='${p}';SYNC();rerealm()"></button>`}).join('')}</div>
+  <h3 style="margin-top:16px">🎨 Your kart</h3><div class="kprev"><img id="kprevimg" src="${kkart(paint,0,ktWheel(),ktDriver()).toDataURL()}" alt="Your kart from behind"><span class="sol">Unlock wheels, helmets and victory animations with kart achievements. See them all in the 📖 Collection Book.</span></div><p class="sol" style="margin:0">Paint</p><div class="kcust">${Object.keys(KPAINT).map(p=>{const h=AG.has('kart.paint.'+p),it=AG.item('kart.paint.'+p);return `<button style="background:${KPAINT[p]}" ${h?'':'disabled'} class="${p===paint?'on':''}" aria-pressed="${p===paint}" aria-label="${esc(it.n)}${h?'':': '+esc(it.how)}" title="${esc(it.n)}${h?'':': '+esc(it.how)}" onclick="ARS('kart').paint='${p}';SYNC();rerealm()"></button>`}).join('')}</div>
   <p class="sol" style="margin:8px 0 0">Trail</p><div class="kcust">${Object.keys(KTRAIL).map(t=>{const h=AG.has('kart.trail.'+t),it=AG.item('kart.trail.'+t);return `<button ${h?'':'disabled'} class="${t===trail?'on':''}" aria-pressed="${t===trail}" aria-label="${esc(it.n)}${h?'':': '+esc(it.how)}" title="${esc(it.n)}${h?'':': '+esc(it.how)}" onclick="ARS('kart').trail='${t}';SYNC();rerealm()">${it.i}</button>`}).join('')}</div>
+  <p class="sol" style="margin:8px 0 0">Wheels</p><div class="kcust">${Object.keys(KWHEEL).map(t=>{const h=AG.has('kart.wheel.'+t),it=AG.item('kart.wheel.'+t),on=t===ktWheel();return `<button ${h?'':'disabled'} class="${on?'on':''}" aria-pressed="${on}" aria-label="${esc(it.n)}${h?'':': '+esc(it.how)}" title="${esc(it.n)}${h?'':': '+esc(it.how)}" onclick="ARS('kart').wheel='${t}';SYNC();rerealm()">${it.i}</button>`}).join('')}</div>
+  <p class="sol" style="margin:8px 0 0">Driver</p><div class="kcust">${Object.keys(KDRIVER).map(t=>{const h=AG.has('kart.driver.'+t),it=AG.item('kart.driver.'+t),on=t===ktDriver();return `<button ${h?'':'disabled'} class="${on?'on':''}" aria-pressed="${on}" aria-label="${esc(it.n)}${h?'':': '+esc(it.how)}" title="${esc(it.n)}${h?'':': '+esc(it.how)}" onclick="ARS('kart').driver='${t}';SYNC();rerealm()">${it.i}</button>`}).join('')}</div>
+  <p class="sol" style="margin:8px 0 0">Victory animation</p><div class="kcust">${Object.keys(KWIN).map(t=>{const h=AG.has('kart.win.'+t),it=AG.item('kart.win.'+t),on=t===ktWin();return `<button ${h?'':'disabled'} class="w ${on?'on':''}" aria-pressed="${on}" aria-label="${esc(it.n)}${h?'':': '+esc(it.how)}" title="${esc(it.n)}${h?'':': '+esc(it.how)}" onclick="ARS('kart').win='${t}';SYNC();rerealm()">${it.i} ${esc(it.n)}</button>`}).join('')}<button class="w" onclick="kwinPreview()">▶ Preview</button></div>
   <label class="ckline" style="margin-top:12px"><input type="checkbox" ${S.relax?'checked':''} onchange="ARS('kart').relax=this.checked;SYNC()"> Relaxed driving: the slowest speed and the most time to read</label></div>
   <div style="margin-top:14px">${AG.intro('kart','AG.play(\'kart\')')}</div></div>`};
 </script>
