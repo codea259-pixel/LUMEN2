@@ -67,7 +67,7 @@ AG.paused=()=>!!(AG.cur&&AG.holds.size);
 AG.play=async(id,opts={})=>{if(!canStart())return;stopGames();const g=AG.G[id];if(!g)return;
   AG.cur={id,g,opts,phase:'load',st:null,t:0,res:null};AG.holds.clear();AG.held.clear();AR.mode=id;AR.run=true;rerealm();
   const top=document.querySelector('.ag');if(top)top.scrollIntoView({block:'start',behavior:'auto'});
-  try{if(g.load)await g.load();if(!AG.cur||AG.cur.id!==id)return;AG.fit();AG.cur.st=g.start(opts);AG.cur.phase='play';AG.ui();AG.loop();
+  try{if(g.load)await g.load();if(!AG.cur||AG.cur.id!==id)return;AG.fit();AG.cur.st=g.start(opts);AG.cur.phase='play';AG.ui();if(g.ready)g.ready(AG.cur.st);AG.loop();
     const cv=$('agcv');if(cv&&g.tap)cv.onpointerdown=e=>{const C=AG.cur;if(!C||C.phase!=='play'||AG.paused())return;e.preventDefault();cv.focus({preventScroll:true});const r=cv.getBoundingClientRect();g.tap((e.clientX-r.left)/r.width*g.w,(e.clientY-r.top)/r.height*g.h,C.st)}}
   catch(e){AG.crash(e)}};
 AG.loop=()=>{cancelAnimationFrame(AG.raf);AG.last=0;AG.acc=0;AG.raf=requestAnimationFrame(AG.frame)};

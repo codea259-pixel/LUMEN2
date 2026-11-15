@@ -104,8 +104,8 @@ function petFeed(t){const P=PET(),s0=pstage(P.g),g0=P.g;if(t?!P.treat:!P.food)re
   if(s1>s0)setTimeout(()=>celebrate([s0?`${P.name} ${s1>=3?'reached hero form':'is growing up'}!`:`${P.name} hatched!`,...acc],true),350);else if(acc.length)msg(acc.join('. '))}
 function petWear(id){const P=PET(),a=PACC.find(x=>x.id===id);if(!a||P.g<a.g)return;P.wear=P.wear===id?'':id;SYNC();rerealm()}
 function petAsk(){const P=PET();if(P.ask===dstr()||!P.kind)return;
-  qAsk({title:`${P.name} needs help`,intro:pick(['Help me count my berries!','I found a riddle in the garden!','Can you help me with my homework?','Lumi gave me a puzzle!']),cancel:true}).then(ok=>{
-    if(ok===null)return;P.ask=dstr();if(ok)P.treat++;SYNC();rerealm();if(ok){msg(`${P.name} says thank you! +1 treat 🍪`);setTimeout(()=>petAnim('happy'),60)}})}
+  return qAsk({title:`${P.name} needs help`,intro:pick(['Help me count my berries!','I found a riddle in the garden!','Can you help me with my homework?','Lumi gave me a puzzle!']),cancel:true}).then(ok=>{
+    if(ok===null)return;P.ask=dstr();if(ok)P.treat++;SYNC();rerealm();if(ok){msg(`${P.name} says thank you! +1 treat 🍪`);setTimeout(()=>petAnim('happy'),60)}return ok})}
 GVIEW.pets=function(){const P=PET();petSync();
   if(!P.kind)return `<div class="gworld">${clouds()}${gameHead('Pet Pals','Your learning feeds a pet that grows and cheers you on.')}<div class="gcard"><h3>Pick your pet egg</h3><p class="sol">Each egg hatches into a different friend. Choose the one you like best: it stays with you.</p>
     <div class="eggs">${Object.entries(PALS).map(([id,k])=>`<button class="tile eggpick" data-kind="${id}" onclick="petPick('${id}')"><span class="tart">${palSvg({kind:id,g:0},{stage:0,label:k.n+' egg'})}</span><span class="tbody"><span class="tname">${k.n} egg</span><span class="tpitch">Hatches into ${k.nm} the ${k.n.toLowerCase()}.</span></span></button>`).join('')}</div>

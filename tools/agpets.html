@@ -1,0 +1,194 @@
+<style>
+/* ===== Pet Pals: personality, memories, mini-games, evolution ===== */
+.pal.pers-playful.palidle:not(.munch):not(.happy){animation:palbounce 1.5s ease-in-out infinite;transform-origin:50% 95%}
+.pal.pers-curious.palidle:not(.munch):not(.happy){animation:paltilt 4.5s ease-in-out infinite;transform-origin:50% 90%}
+.pal.pers-sleepy.palidle:not(.munch):not(.happy){animation:palbreathe 5.5s ease-in-out infinite;transform-origin:50% 95%}
+.pal.pers-adventurous.palidle:not(.munch):not(.happy){animation:palstride 3.2s ease-in-out infinite;transform-origin:50% 95%}
+.pal.pers-shy.palidle:not(.munch):not(.happy){animation:palpeek 5s ease-in-out infinite;transform-origin:50% 95%}
+@keyframes palbounce{0%,100%{transform:translateY(0)}30%{transform:translateY(-10px) scaleY(1.03)}55%{transform:translateY(0) scaleY(.97)}}
+@keyframes paltilt{0%,100%{transform:rotate(0)}25%{transform:rotate(-6deg)}60%{transform:rotate(5deg)}}
+@keyframes palstride{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px) rotate(-2deg)}75%{transform:translateX(6px) rotate(2deg)}}
+@keyframes palpeek{0%,70%,100%{transform:scale(1)}80%{transform:scale(.96) translateX(-5px)}90%{transform:scale(.98) translateX(3px)}}
+@media(prefers-reduced-motion:reduce){.pal[class*=pers-]{animation:none!important}}body[data-calm] .pal[class*=pers-]{animation:none!important}
+.palstage{position:relative;padding-top:58px}
+.palsay{position:absolute;left:50%;top:10px;transform:translateX(-50%);width:max-content;max-width:86%;background:#fff;color:#1E1B4B;border-radius:16px;padding:8px 14px;font:700 .95rem/1.3 "Atkinson Hyperlegible",sans-serif;box-shadow:0 4px 0 rgba(0,0,0,.12);text-align:center}
+.palsay::after{content:'';position:absolute;left:50%;bottom:-8px;margin-left:-8px;border:8px solid transparent;border-top-color:#fff;border-bottom:0}
+.palzz{position:absolute;right:18%;top:32%;font:800 1.2rem "Bricolage Grotesque",sans-serif;color:#7C3AED;opacity:.8}
+.perslist{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:10px}
+.perslist button{display:flex;flex-direction:column;gap:2px;text-align:left;padding:10px;border-radius:14px;border:2px solid var(--line);background:var(--panel);color:var(--ink);font:inherit}
+.perslist button b{font:800 1rem "Bricolage Grotesque",sans-serif}
+.pgames{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:8px}
+.pgames button{display:flex;flex-direction:column;gap:4px;text-align:left;padding:12px;border-radius:16px;border:2px solid var(--line);background:var(--panel);color:var(--ink);font:inherit}
+.pgames button .em{font-size:1.8rem}.pgames button b{font:800 1.05rem "Bricolage Grotesque",sans-serif}
+.pmem{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:6px}.pmem li{display:flex;gap:10px;align-items:center;padding:6px 10px;border-radius:12px;background:#FFF7E6;color:#3B2A12}
+.pmem li .d{margin-left:auto;font-size:.85rem;opacity:.75}
+.pevo{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:8px}
+.pevo button{display:flex;flex-direction:column;gap:4px;text-align:left;padding:10px;border-radius:14px;border:2px solid var(--line);background:var(--panel);color:var(--ink);font:inherit}
+.pevo button.on{border:3px solid var(--ga-gold)}.pevo button[disabled]{opacity:.55}.pevo button b{font:800 1rem "Bricolage Grotesque",sans-serif}
+.psort{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}.psort button{min-height:64px;font-size:1.1rem}
+.khud2 span:empty{display:none}
+.psortfb{min-height:28px;margin-top:10px;text-align:center;font-weight:700;color:#fff}
+</style>
+<script type="text/x-lumen">
+/* ===== Pet Pals: a pet that feels alive =====
+   On top of feeding and growing (games.html): a personality picked at hatching (it changes how the pet moves and what
+   it says), a memory book of milestones the pet remembers, two mini-games on the arcade engine (Star Catch and Sort
+   It!, which use play time; caring for the pet never does) and cosmetic evolution paths after Hero form, unlocked by
+   learning progress. Saved in GM.pet. ===== */
+const PPERS={playful:{n:'Playful',i:'🎈',d:'Bouncy and full of games'},curious:{n:'Curious',i:'🔍',d:'Wants to know everything'},sleepy:{n:'Sleepy',i:'😴',d:'Loves naps and cozy corners'},
+  adventurous:{n:'Adventurous',i:'🧭',d:'Always ready to explore'},shy:{n:'Shy',i:'🌸',d:'Gentle, and slowly opens up'}};
+/* What the pet says, by personality and moment */
+const PSAY={
+  playful:{hi:['Yay, you\'re here! Wanna play?','Let\'s do something fun!','Boing boing! Hi!'],pat:['Hee hee, that tickles!','Again, again!','Best. Pats. Ever.'],eat:['Yum yum yum!','Crunchy! More please!'],ok:['We did it! High five!','Woohoo, you got it!'],no:['Oops! Let\'s try again!','That\'s okay, we\'ll get the next one!']},
+  curious:{hi:['Hello! What will we learn today?','Did you know stars are made of gas?','I wonder what\'s new today!'],pat:['Ooh, what was that for?','Hmm, nice!'],eat:['Interesting flavor!','What is this made of? Yum.'],ok:['Fascinating! You figured it out!','So that\'s how it works!'],no:['Hmm, now we know the answer!','Every mistake teaches us something!']},
+  sleepy:{hi:['*yawn* Oh, hi there...','Mmm... is it snack time?','Zzz... oh! You\'re back!'],pat:['Mmm, cozy...','*happy sleepy noises*'],eat:['Mmm, a snack before my nap.','Yummy... *yawn*'],ok:['You did it! Now nap time?','Nice one... *yawn*'],no:['That\'s okay... let\'s rest and try again.']},
+  adventurous:{hi:['Ready for an adventure?','Let\'s go explore!','Hi, partner! Where to today?'],pat:['Onward!','Thanks, partner!'],eat:['Fuel for adventure!','Trail snack, yum!'],ok:['Victory! On to the next quest!','We conquered it!'],no:['Every explorer gets lost sometimes!','Let\'s find another path!']},
+  shy:{hi:['Oh... hi. I missed you.','*peeks out* Hello...','I\'m happy you came.'],pat:['*blushes*','...thank you.'],eat:['Thank you... it\'s yummy.','*nibbles quietly*'],ok:['You\'re really good at this...','I knew you could do it.'],no:['It\'s okay... I get things wrong too.']}};
+const PMEMK={hatch:['🐣','Hatched!'],snack:['🍎','First snack'],treat:['🍪','First treat'],question:['❓','First question of the day'],grow:['🌱','Grew up a little'],hero:['🦸','Reached hero form'],
+  pers:['💖','Found out their personality'],game:['🎮','Played a mini-game together'],stars50:['⭐','Caught 50 stars in one game'],sort:['🧺','Sorted 10 things right in a row'],evo:['✨','Evolved'],dress:['👒','Tried on an outfit']};
+const PEVO={forest:{n:'Forest Guardian',i:'🌿',d:'Leaves and vines',need:'10 skills at Proficient or better',ok:()=>ORDER.filter(k=>level(k)>=3).length>=10},
+  crystal:{n:'Crystal Sprite',i:'💎',d:'Shining crystals',need:'5 skills Mastered',ok:()=>ORDER.filter(k=>level(k)===4).length>=5},
+  solar:{n:'Sun Spirit',i:'☀️',d:'A sun-bright glow',need:'a 7-day learning streak',ok:()=>streak()>=7}};
+const ppSay=(k)=>{const P=PET(),L=(PSAY[P.pers]||PSAY.playful)[k]||PSAY.playful.hi;return pick(L)};
+/* The pet remembers a moment once, with the date */
+function ppMem(k,extra){const P=PET();P.mem=P.mem||[];if(P.mem.some(m=>m.k===k))return;P.mem.push({k,d:dstr(),x:extra||''});SYNC()}
+function ppTalk(k){const el=$('palsay');if(el)el.textContent=ppSay(k)}
+
+/* Personality and evolution on the drawing */
+const _palP=palSvg;palSvg=function(P,o={}){let s=_palP(P,o);const st=o.stage??pstage(P.g);
+  if(P.pers&&st)s=s.replace('class="pal palidle','class="pal palidle pers-'+P.pers);
+  if(P.evo&&st===3){const e=P.evo;
+    const back=e==='forest'?`<circle cx="80" cy="96" r="66" fill="none" stroke="#4E9E45" stroke-width="3" stroke-dasharray="6 8" opacity=".7"/>`:e==='crystal'?`<path d="M30 110L22 70L40 96ZM130 110L138 70L120 96ZM58 60L50 26L68 52ZM102 60L110 26L92 52Z" fill="#7FE3F0" stroke="#3FB8C8" stroke-width="2"/>`
+      :`<circle cx="80" cy="80" r="62" fill="#FFE27A" opacity=".35"/>${Array.from({length:12},(_,i)=>{const a=i*Math.PI/6;return `<path d="M${80+Math.cos(a)*64} ${80+Math.sin(a)*64}L${80+Math.cos(a)*76} ${80+Math.sin(a)*76}" stroke="#F2A900" stroke-width="4" stroke-linecap="round"/>`}).join('')}`;
+    const front=e==='forest'?`<path d="M56 42Q62 26 72 36Q76 22 86 34Q94 24 104 42" fill="#5FB548" stroke="#3E8A33" stroke-width="2"/><circle cx="72" cy="34" r="3" fill="#FF8FB1"/>`:e==='crystal'?`<path d="M132 40l3 7 7 3-7 3-3 7-3-7-7-3 7-3z" fill="#C3F5FB"/><path d="M26 58l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="#C3F5FB"/>`
+      :`<circle cx="28" cy="40" r="5" fill="#FFD34D"/><circle cx="134" cy="48" r="4" fill="#FFD34D"/><circle cx="140" cy="118" r="3" fill="#FFE27A"/>`;
+    s=s.replace('fill="rgba(0,0,0,.12)"/>','fill="rgba(0,0,0,.12)"/>'+back).replace(/<\/svg>$/,front+'</svg>')}
+  return s};
+/* Milestones from feeding, the question of the day and dressing up */
+const _pfP=petFeed;petFeed=function(t){const P=PET(),s0=pstage(P.g);_pfP(t);const s1=pstage(P.g);ppMem(t?'treat':'snack');if(s1>s0)ppMem(s1===1?'hatch':s1===3?'hero':'grow');setTimeout(()=>ppTalk('eat'),60)};
+const _paP=petAsk;petAsk=function(){const p=_paP();if(p)p.then(ok=>{if(ok==null)return;ppMem('question');setTimeout(()=>ppTalk(ok?'ok':'no'),80)})};
+const _pwP=petWear;petWear=function(id){_pwP(id);if(PET().wear)ppMem('dress')};
+function ppPers(k){const P=PET();if(!PPERS[k])return;P.pers=k;ppMem('pers',PPERS[k].n);SYNC();rerealm();setTimeout(()=>ppTalk('hi'),40)}
+function ppEvo(k){const P=PET(),e=PEVO[k];if(!e||!e.ok()||pstage(P.g)<3)return;P.evo=P.evo===k?'':k;if(P.evo){ppMem('evo',e.n);celebrate([`${P.name} became a ${e.n}!`],true)}SYNC();rerealm()}
+/* Snacks from mini-games: up to 2 a day, so learning stays the main way to grow */
+function ppGameSnack(n){const P=PET(),D=dstr();if(!P.gsn||P.gsn.d!==D)P.gsn={d:D,n:0};const k=Math.max(0,Math.min(n,2-P.gsn.n));P.gsn.n+=k;P.food+=k;return k}
+
+/* ---------- The pet's image for the mini-games ---------- */
+const ppImg=()=>new Promise(res=>{const P=PET(),img=new Image(),svg=palSvg(P,{label:''}).replace('<svg ','<svg width="320" height="320" ');img.onload=()=>res(img);img.onerror=()=>res(null);img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg)});
+
+/* ---------- Star Catch: the pet catches falling stars; ? stars ask a question ---------- */
+const PCW=640,PCH=360;
+AG.def({id:'petstars',name:'Star Catch',w:PCW,h:PCH,maxW:1280,vh:240,snd:'pets',go:'Catch stars',sub:'Catch the falling stars!',
+  help:['Move your pet to catch falling stars. Gold stars are worth 1, rainbow stars 3.','A ? star asks a question: a right answer brings a shower of stars. A wrong one just shows you the answer.','Missed stars are fine: there is no way to lose. The round lasts 45 seconds.'],
+  keys:[['← →','move'],['P','pause']],
+  ach:{first:{i:'⭐',n:'Stargazer',d:'Play Star Catch',gems:1},s25:{i:'🌟',n:'Star collector',d:'Catch 25 stars in one round',gems:1},s50:{i:'🌠',n:'Starfall',d:'Catch 50 stars in one round',gems:2},smart:{i:'💡',n:'Bright idea',d:'Answer 3 question stars right in one round',gems:2}},
+  async load(){AG._ppimg=await ppImg()},
+  start(){const t=AD.tier('petstars');return{t,x:PCW/2,vx:0,stars:[],caught:0,time:0,left:45,spawn:0,parts:[],happy:0,qn:0,qok:0,tx:null}},
+  step(dt,Z){Z.time+=dt;Z.left-=dt;if(Z.left<=0)return AG.finish(ppResult(Z));
+    const s=(AG.held.has('left')?-1:0)+(AG.held.has('right')?1:0);if(s)Z.tx=null;const goal=Z.tx!=null?Math.max(-1,Math.min(1,(Z.tx-Z.x)/40)):s;Z.vx+=(goal*420-Z.vx)*Math.min(1,dt*10);Z.x=Math.max(40,Math.min(PCW-40,Z.x+Z.vx*dt));
+    if((Z.spawn-=dt)<=0){Z.spawn=[.75,.6,.5,.42][Z.t];const r=Math.random(),k=r<.1&&Z.qn<6?'q':r<.25?'rain':'gold',o=ppFree(Z.stars,40);if(o)Object.assign(o,{on:1,k,x:30+Math.random()*(PCW-60),y:-20,v:[70,90,110,130][Z.t]+Math.random()*40,a:Math.random()*6})}
+    for(const o of Z.stars){if(!o.on)continue;o.y+=o.v*dt;o.a+=dt*3;if(o.y>PCH+20){o.on=0;continue}
+      if(o.y>PCH-90&&o.y<PCH-30&&Math.abs(o.x-Z.x)<46){o.on=0;if(o.k==='q'){Z.qn++;ppStarQ(Z)}else{const n=o.k==='rain'?3:1;Z.caught+=n;Z.happy=.4;SND.play('coin');ppPuff(Z,o.x,o.y,o.k==='rain'?'#c084fc':'#ffd34d')}}}
+    for(const p of Z.parts)if(p.l>0){p.l-=dt;p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=200*dt}
+    if(Z.happy>0)Z.happy-=dt;
+    if((Z.hud=(Z.hud||0)+dt)>.2){Z.hud=0;const h=$('pchud');if(h)h.textContent=`⭐ ${Z.caught} · ⏱ ${Math.ceil(Z.left)} s`}},
+  draw(a,Z){const x=AG.cx;if(!x)return;x.drawImage(ppSky(x),0,0,PCW,PCH);
+    for(const o of Z.stars){if(!o.on)continue;ppStar(x,o.x,o.y,o.k==='q'?16:o.k==='rain'?14:11,o.a,o.k)}
+    for(const p of Z.parts)if(p.l>0){x.globalAlpha=Math.min(1,p.l*2);x.fillStyle=p.c;x.fillRect(p.x,p.y,4,4)}x.globalAlpha=1;
+    const img=AG._ppimg,bob=calmOn()?0:(Z.happy>0?-Math.sin(Z.happy/.4*Math.PI)*16:Math.sin(Z.time*4)*2);
+    if(img)x.drawImage(img,Z.x-48,PCH-118+bob,96,96);else{x.fillStyle='#F59E4B';x.beginPath();x.arc(Z.x,PCH-60+bob,34,0,7);x.fill()}
+},
+  key(){},
+  tap(x,y,Z){Z.tx=x},
+  timeout:Z=>ppResult(Z,'time')});
+function ppStar(x,cx,cy,r,a,k){x.save();x.translate(cx,cy);x.rotate(a*.3);x.beginPath();for(let i=0;i<10;i++){const rr=i%2?r*.45:r,t=i*Math.PI/5-Math.PI/2;x.lineTo(Math.cos(t)*rr,Math.sin(t)*rr)}x.closePath();
+  if(k==='rain'){if(!AG._pprain||AG._pprain.x!==x){const g=x.createLinearGradient(-14,-14,14,14);['#ff6b8a','#ffd34d','#5ff3a0','#5fb8ff'].forEach((c,i)=>g.addColorStop(i/3,c));AG._pprain={x,g}}x.fillStyle=AG._pprain.g}else x.fillStyle=k==='q'?'#a78bfa':'#ffd34d';
+  x.fill();x.strokeStyle='rgba(255,255,255,.7)';x.lineWidth=1.5;x.stroke();if(k==='q'){x.rotate(-a*.3);x.fillStyle='#fff';x.font='800 14px sans-serif';x.textAlign='center';x.textBaseline='middle';x.fillText('?',0,1)}x.restore()}
+/* Reuse a finished star or spark instead of making a new one each time */
+const ppFree=(L,max)=>{for(const o of L)if(!o.on&&!(o.l>0))return o;if(L.length>=max)return null;const o={};L.push(o);return o};
+const ppPuff=(Z,x0,y0,c)=>{for(let i=0;i<(calmOn()?2:7);i++){const p=ppFree(Z.parts,80);if(!p)return;Object.assign(p,{x:x0,y:y0,vx:(Math.random()-.5)*180,vy:-60-Math.random()*120,l:.6,c})}};
+/* The night sky is drawn once, then copied each frame */
+function ppSky(cx){if(AG._ppsky&&AG._ppsky.cx===cx)return AG._ppsky.c;const c=document.createElement('canvas'),s=AG.sc||1;c.width=Math.round(PCW*s);c.height=Math.round(PCH*s);const x=c.getContext('2d');x.scale(s,s);
+  const g=x.createLinearGradient(0,0,0,PCH);g.addColorStop(0,'#1b1f4a');g.addColorStop(1,'#4b3a8a');x.fillStyle=g;x.fillRect(0,0,PCW,PCH);
+  const R=krng(3);x.fillStyle='rgba(255,255,255,.55)';for(let i=0;i<70;i++)x.fillRect(R()*PCW,R()*PCH*.8,1.2,1.2);
+  x.fillStyle='#2f6a3a';x.fillRect(0,PCH-24,PCW,24);x.fillStyle='#3f8a4a';for(let i=0;i<PCW;i+=18)x.fillRect(i,PCH-26,10,4);AG._ppsky={cx,c};return c}
+async function ppStarQ(Z){const ok=await AG.ask({title:'Star question',intro:PET().name+' found a question star!'});if(!AG.on('petstars')||AG.cur.st!==Z)return;
+  const s=$('pcsay');if(ok){Z.caught+=5;Z.qok++;Z.happy=.6;if(Z.qok>=3)AG.ach('petstars','smart');for(let i=0;i<8;i++){const o=ppFree(Z.stars,48);if(o)Object.assign(o,{on:1,k:'gold',x:Math.max(30,Math.min(PCW-30,Z.x-120+i*34)),y:-20-i*30,v:120,a:i})}if(s)s.textContent=ppSay('ok')}
+  else if(ok===false&&s)s.textContent=ppSay('no')}
+function ppResult(Z,why){const snacks=ppGameSnack(Math.floor(Z.caught/15)),gems=Math.min(2,Math.floor(Z.caught/30));if(gems)addGems(gems);ppMem('game','Star Catch');if(Z.caught>=50)ppMem('stars50');
+  AG.ach('petstars','first');if(Z.caught>=25)AG.ach('petstars','s25');if(Z.caught>=50)AG.ach('petstars','s50');
+  const S=ARS('petstars');const pb=Z.caught>(S.best||0);if(pb)S.best=Z.caught;S.plays=(S.plays||0)+1;SND.play('win','ui');return{why:why||'done',caught:Z.caught,snacks,gems,pb}}
+
+/* ---------- Sort It!: put each thing in the right group ---------- */
+/* Small lists checked by hand. a and b are the two groups; each item belongs to exactly one. */
+const PSORT=[
+  {sub:'math',g:[0,3],n:'Even or odd?',a:['Even',[2,4,6,8,10,12,14,16,18,20,22,24,30,36,40,48]],b:['Odd',[1,3,5,7,9,11,13,15,17,19,21,23,25,31,35,47]],why:'Even numbers end in 0, 2, 4, 6 or 8.'},
+  {sub:'math',g:[0,1],n:'More or less than 10?',a:['More than 10',[11,12,14,15,17,19,20,25]],b:['Less than 10',[1,2,3,4,5,6,7,8,9]],why:'Count up: numbers after 10 are more than 10.'},
+  {sub:'math',g:[3,5],n:'A multiple of 3?',a:['Multiple of 3',[3,6,9,12,15,18,21,24,27,30,33,36,45,60]],b:['Not a multiple of 3',[4,7,10,11,14,16,20,22,25,28,31,35,40,50]],why:'Multiples of 3 have digits that add up to a multiple of 3.'},
+  {sub:'math',g:[5,9],n:'Prime or composite?',a:['Prime',[2,3,5,7,11,13,17,19,23,29,31,37,41,43]],b:['Composite',[4,6,8,9,10,12,15,21,25,27,33,35,39,49]],why:'A prime number has exactly two factors: 1 and itself.'},
+  {sub:'math',g:[4,9],n:'Less or more than one half?',a:['Less than 1/2',['1/3','1/4','2/5','3/8','1/5','2/7','3/10','1/6']],b:['More than 1/2',['2/3','3/4','3/5','5/8','4/5','5/7','7/10','5/6']],why:'Compare the top number with half of the bottom number.'},
+  {sub:'ela',g:[1,4],n:'Noun or verb?',a:['Noun',['dog','table','teacher','apple','river','pencil','garden','mountain','cookie','window','castle','doctor']],b:['Verb',['jump','eat','write','sing','swim','think','build','laugh','carry','shout','climb','whisper']],why:'A noun names a person, place or thing. A verb is an action.'},
+  {sub:'ela',g:[0,3],n:'One or more than one?',a:['One',['cat','box','child','mouse','foot','tooth','bus','leaf']],b:['More than one',['cats','boxes','children','mice','feet','teeth','buses','leaves']],why:'Plural words name more than one. Some change their spelling, like mouse and mice.'},
+  {sub:'sci',g:[0,3],n:'Living or nonliving?',a:['Living',['tree','frog','bird','fish','flower','worm','mushroom','bee','grass','horse']],b:['Nonliving',['rock','water','cloud','chair','sand','coin','spoon','book','bicycle','pencil']],why:'Living things grow, need food and water, and make more of their kind.'},
+  {sub:'sci',g:[1,5],n:'Solid or liquid?',a:['Solid',['ice','rock','wood','coin','pencil','apple','brick','spoon']],b:['Liquid',['water','milk','juice','oil','honey','vinegar','rain','soup broth']],why:'Solids keep their shape. Liquids take the shape of their container.'},
+  {sub:'sci',g:[2,6],n:'Does a magnet pull it?',a:['Magnetic',['iron nail','steel paper clip','iron filings','fridge magnet','steel bolt','iron key ring']],b:['Not magnetic',['plastic cup','wooden block','glass marble','aluminum can','copper penny','rubber band']],why:'Magnets pull on iron and most steel, but not on plastic, wood, glass, aluminum or copper.'},
+  {sub:'soc',g:[2,8],n:'Continent or country?',a:['Continent',['Africa','Asia','Europe','Antarctica','South America','North America']],b:['Country',['Mexico','Japan','Brazil','Kenya','Canada','India','France','Egypt']],why:'There are seven continents. Countries are the nations on them.'},
+  {sub:'soc',g:[0,3],n:'Need or want?',a:['Need',['food','water','shelter','warm clothes','medicine','sleep']],b:['Want',['toys','candy','video games','jewelry','stickers','trading cards']],why:'Needs are things we must have to live. Wants are nice to have.'},
+  {sub:'fin',g:[0,8],n:'Need or want?',a:['Need',['food','water','shelter','warm clothes','medicine','sleep']],b:['Want',['toys','candy','video games','jewelry','stickers','trading cards']],why:'Needs are things we must have to live. Wants are nice to have.'}];
+const ppSortSet=()=>{const g=Math.max(0,myGrade()),sub=GM.rsub||'math';let L=PSORT.filter(s=>s.sub===sub&&g>=s.g[0]&&g<=s.g[1]);if(!L.length)L=PSORT.filter(s=>s.sub==='math'&&g>=s.g[0]&&g<=s.g[1]);if(!L.length)L=[PSORT[0]];return pick(L)};
+AG.def({id:'petsort',name:'Sort It!',w:PCW,h:PCH,maxW:1280,vh:330,snd:'pets',go:'Start sorting',sub:'Put each thing in the right basket!',
+  help:['Your pet holds up a card. Put it in the right basket: ← left or → right, or tap the basket button.','Right answers in a row build a streak. A wrong one shows you why, then you keep going.','Twelve cards a round. Take your time: there is no timer.'],
+  keys:[['←','left basket'],['→','right basket'],['P','pause']],
+  ach:{first:{i:'🧺',n:'Tidy helper',d:'Finish a round of Sort It!',gems:1},run10:{i:'🔥',n:'On a roll',d:'Sort 10 cards right in a row',gems:1},perfect:{i:'🏆',n:'Perfect sort',d:'Sort all 12 cards right',gems:2}},
+  ready(Z){const b=document.querySelectorAll('.psort button');if(b.length===2){b[0].textContent='◀ '+Z.set.a[0];b[1].textContent=Z.set.b[0]+' ▶'}const a=$('psname');if(a)a.textContent=Z.set.n},
+  async load(){AG._ppimg=await ppImg()},
+  start(){const set=ppSortSet(),items=shuf([...shuf(set.a[1]).slice(0,6).map(v=>[v,0]),...shuf(set.b[1]).slice(0,6).map(v=>[v,1])]);
+    return{set,items,i:0,ok:0,run:0,best:0,time:0,fly:null,happy:0,oops:0,t0:performance.now()}},
+  step(dt,Z){Z.time+=dt;if(Z.happy>0)Z.happy-=dt;if(Z.oops>0)Z.oops-=dt;if(Z.fly){Z.fly.t+=dt*2.2;if(Z.fly.t>=1){Z.fly=null;if(Z.i>=Z.items.length)return AG.finish(ppSortResult(Z))}}},
+  draw(a,Z){const x=AG.cx;if(!x)return;const g=x.createLinearGradient(0,0,0,PCH);g.addColorStop(0,'#FFF1D6');g.addColorStop(1,'#FFD9A8');x.fillStyle=g;x.fillRect(0,0,PCW,PCH);
+    x.fillStyle='#E8B26A';x.fillRect(0,PCH-60,PCW,60);
+    for(const [bx,lab] of[[120,Z.set.a[0]],[520,Z.set.b[0]]]){x.fillStyle='#B8752E';x.beginPath();x.moveTo(bx-80,PCH-110);x.lineTo(bx+80,PCH-110);x.lineTo(bx+64,PCH-30);x.lineTo(bx-64,PCH-30);x.fill();
+      x.strokeStyle='#8A5520';x.lineWidth=3;for(let k=0;k<4;k++){x.beginPath();x.moveTo(bx-76+k*4,PCH-90+k*16);x.lineTo(bx+76-k*4,PCH-90+k*16);x.stroke()}
+      x.fillStyle='#fff';x.font='800 18px "Bricolage Grotesque",sans-serif';x.textAlign='center';x.textBaseline='middle';x.fillText(lab,bx,PCH-126)}
+    const img=AG._ppimg,bob=calmOn()?0:Z.happy>0?-Math.sin(Z.happy/.5*Math.PI)*14:Z.oops>0?Math.sin(Z.oops*30)*3:Math.sin(Z.time*3)*2;
+    if(img)x.drawImage(img,PCW/2-60,PCH-200+bob,120,120);
+    const it=Z.items[Z.fly?Z.i-1:Z.i];if(!it)return;let cx=PCW/2,cy=70;if(Z.fly){const tx=Z.fly.to?520:120,ty=PCH-80;cx=cx+(tx-cx)*Z.fly.t;cy=cy+(ty-cy)*Z.fly.t-Math.sin(Z.fly.t*Math.PI)*40}
+    x.fillStyle='rgba(0,0,0,.15)';x.fillRect(cx-88,cy-30+4,176,60);x.fillStyle='#fff';x.fillRect(cx-90,cy-32,180,62);x.strokeStyle='#7C3AED';x.lineWidth=3;x.strokeRect(cx-90,cy-32,180,62);
+    x.fillStyle='#1E1B4B';const s=String(it[0]);x.font=`800 ${s.length>12?18:26}px "Bricolage Grotesque",sans-serif`;x.fillText(s,cx,cy)},
+  key(k,down,Z){if(down&&(k==='left'||k==='right'))ppSortPick(Z,k==='left'?0:1)},
+  timeout:Z=>ppSortResult(Z,'time')});
+function ppSortPick(Z,b){if(!Z||!AG.on('petsort')||AG.paused()||Z.fly||Z.i>=Z.items.length)return;const it=Z.items[Z.i],ok=it[1]===b,fb=$('psfb');Z.i++;
+  AG.answered('petsort',ok,performance.now()-Z.t0);Z.t0=performance.now();
+  if(ok){Z.ok++;Z.run++;Z.best=Math.max(Z.best,Z.run);Z.happy=.5;SND.play('ok');if(fb)fb.textContent=`✓ ${it[0]}: ${Z.set[b?'b':'a'][0]}. ${ppSay('ok')}`;if(Z.run>=10){ppMem('sort');AG.ach('petsort','run10')}}
+  else{Z.run=0;Z.oops=.5;SND.play('no');if(fb)fb.textContent=`${it[0]} goes in "${Z.set[it[1]?'b':'a'][0]}". ${Z.set.why}`}
+  Z.fly={t:0,to:it[1]};const h=$('pshud');if(h)h.textContent=`Card ${Math.min(Z.i+1,Z.items.length)} of ${Z.items.length} · ✓ ${Z.ok} · 🔥 ${Z.run}`}
+function ppSortResult(Z,why){const snacks=ppGameSnack(Z.ok>=10?1:0),gems=Z.ok>=11?1:0;if(gems)addGems(gems);ppMem('game','Sort It!');if(Z.i>=Z.items.length)AG.ach('petsort','first');if(Z.ok===Z.items.length)AG.ach('petsort','perfect');const S=ARS('petsort');S.best=Math.max(S.best||0,Z.ok);S.plays=(S.plays||0)+1;SND.play(Z.ok>=8?'win':'lose','ui');
+  return{why:why||'done',ok:Z.ok,n:Z.items.length,best:Z.best,snacks,gems,name:Z.set.n}}
+
+/* ---------- The mini-games' screens ---------- */
+const ppEnd=(id,r)=>{const P=PET();return `<div class="gworld">${clouds()}${gameHead(AG.G[id].name,`${esc(P.name)} played with you!`)}<div class="gcard endcard"><div class="big" aria-hidden="true">${id==='petstars'?'⭐':'🧺'}</div>
+  <h3>${id==='petstars'?`${r.caught} stars caught!`:`${r.ok} of ${r.n} sorted right!`}</h3><p>${esc(ppSay(id==='petstars'?(r.caught>=20?'ok':'hi'):(r.ok>=8?'ok':'no')))}</p>
+  <p>${r.snacks?`🍎 +${r.snacks} snack${r.snacks>1?'s':''} for ${esc(P.name)}`:'No more game snacks today: learning earns more!'}${r.gems?` · 💎 +${r.gems}`:''}${r.pb?' · 🏆 Best ever!':''}</p>
+  <div class="row" style="justify-content:center"><button class="abtn" onclick="AG.play('${id}')">Play again</button><button class="abtn sec" onclick="AG.cur=null;AR.mode='pets';rerealm()">Back to ${esc(P.name)}</button></div></div></div>`};
+GVIEW.petstars=function(){const C=AG.cur&&AG.cur.id==='petstars'?AG.cur:null;if(C&&['load','play','crash'].includes(C.phase))return AG.screen('petstars',{over:'<div class="khud2"><span id="pchud">⭐ 0</span><span id="pcsay"></span></div>',below:AG.pad([[{k:'left',l:'◀',a:'Move left'},{k:'right',l:'▶',a:'Move right'}]])});
+  if(C&&C.phase==='end')return ppEnd('petstars',C.res);AR.mode='pets';return GVIEW.pets()};
+GVIEW.petsort=function(){const C=AG.cur&&AG.cur.id==='petsort'?AG.cur:null;
+  if(C&&['load','play','crash'].includes(C.phase)){const Z=C.st;return AG.screen('petsort',{above:`<div class="kqbox" style="min-height:0"><b id="psname">${esc(Z?Z.set.n:'Sort It!')}</b> <span class="sol" id="pshud">Card 1 of 12</span></div>`,
+    below:`<div class="psort"><button class="abtn sec" onclick="AG.cur&&ppSortPick(AG.cur.st,0)">◀ ${esc(Z?Z.set.a[0]:'Left')}</button><button class="abtn sec" onclick="AG.cur&&ppSortPick(AG.cur.st,1)">${esc(Z?Z.set.b[0]:'Right')} ▶</button></div><p class="psortfb" id="psfb" role="status"></p>`})}
+  if(C&&C.phase==='end')return ppEnd('petsort',C.res);AR.mode='pets';return GVIEW.pets()};
+
+/* ---------- The Pet Pals page, with the new parts ---------- */
+const _gvP=GVIEW.pets;GVIEW.pets=function(){const P=PET();let h=_gvP();if(!P.kind)return h;const st=pstage(P.g);
+  /* the pet talks, by personality */
+  h=h.replace('<div class="palstage">',`<div class="palstage"><div class="palsay" id="palsay" aria-live="polite">${esc(P.pers?ppSay('hi'):st?'Hi! Who am I? Pick my personality below!':'*wiggle wiggle*')}</div>${P.pers==='sleepy'&&!calmOn()?'<span class="palzz" aria-hidden="true">z z</span>':''}`)
+    .replace(`onclick="petAnim('happy')"`,`onclick="petAnim('happy');ppTalk('pat')"`);
+  const pers=st&&!P.pers?`<div class="gcard parch" style="margin-bottom:16px"><h3>💖 What is ${esc(P.name)} like?</h3><p style="margin:0">Pick a personality. It changes how ${esc(P.name)} moves and what ${esc(P.name)} says.</p><div class="perslist">${Object.entries(PPERS).map(([k,v])=>`<button onclick="ppPers('${k}')"><span aria-hidden="true">${v.i}</span><b>${v.n}</b><span class="sol">${v.d}</span></button>`).join('')}</div></div>`:'';
+  const games=`<div class="gcard" style="margin-top:16px"><h3>🎮 Play together</h3><div class="pgames"><button ${outOfTime()?'disabled':''} onclick="AG.play('petstars')"><span class="em" aria-hidden="true">⭐</span><b>Star Catch</b><span class="sol">Catch falling stars. ? stars ask a question.</span></button><button ${outOfTime()?'disabled':''} onclick="AG.play('petsort')"><span class="em" aria-hidden="true">🧺</span><b>Sort It!</b><span class="sol">Sort each card into the right basket.</span></button></div><p class="sol" style="margin:8px 0 0">Mini-games use play time and can earn up to 2 snacks a day.${outOfTime()?' Play time is over for today.':''}</p></div>`;
+  const evo=st===3?`<div class="gcard" style="margin-top:16px"><h3>✨ Evolve</h3><p class="sol" style="margin:0">Hero pets can take on a new look. Learning unlocks each one.</p><div class="pevo">${Object.entries(PEVO).map(([k,e])=>{const ok=e.ok();return `<button ${ok?'':'disabled'} class="${P.evo===k?'on':''}" aria-pressed="${P.evo===k}" onclick="ppEvo('${k}')"><span aria-hidden="true">${e.i}</span><b>${e.n}</b><span class="sol">${ok?e.d:'Needs '+e.need}</span></button>`}).join('')}</div></div>`:'';
+  const mem=(P.mem||[]).slice(-8).reverse(),memo=`<div class="gcard" style="margin-top:16px"><h3>📔 ${esc(P.name)}'s memories</h3>${mem.length?`<ul class="pmem">${mem.map(m=>{const K=PMEMK[m.k]||['💭',m.k];return `<li><span aria-hidden="true">${K[0]}</span><span>${esc(K[1])}${m.x?`: ${esc(m.x)}`:''}</span><span class="d">${new Date(m.d+'T12:00').toLocaleDateString()}</span></li>`}).join('')}</ul>`:'<p class="sol">Memories appear here as you grow together.</p>'}</div>`;
+  const persTag=P.pers?` · ${PPERS[P.pers].i} ${PPERS[P.pers].n}`:'';
+  h=h.replace(`<h3 style="margin:14px 0 8px">${esc(P.name)} <span class="sol">· ${PSTAGE[st][0]}</span></h3>`,`<h3 style="margin:14px 0 8px">${esc(P.name)} <span class="sol">· ${PSTAGE[st][0]}${persTag}${P.evo&&st===3?' · '+PEVO[P.evo].n:''}</span></h3>`);
+  h=h.replace('<div class="ppwrap"><div class="gcard">',pers+'<div class="ppwrap"><div><div class="gcard">').replace('</div></div>\n  <div><div class="gcard parch">',`</div></div>${memo}</div>\n  <div><div class="gcard parch">`);
+  h=h.replace('<div class="gcard" style="margin-top:16px"><h3>👒 Dress up</h3>',games+evo+'<div class="gcard" style="margin-top:16px"><h3>👒 Dress up</h3>');
+  return h};
+</script>

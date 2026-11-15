@@ -122,6 +122,30 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     if (await a.evaluate(() => PET().treat) !== tr0 + 1 || !(await a.isDisabled('#petq'))) fail('the question of the day did not give one treat');
     if (!(await a.evaluate(() => heroCard().includes('palmini')))) fail('the pet does not visit the Learn page');
     ok(`Pet Pals: ${food0.food} snacks from today's learning, Sparky hatched after 2 snacks, the question of the day gave a treat, the pet shows on the Learn page; no play time used`); await shot(a, 'g-pet');
+    // Pet Pals: personality, memories, the two mini-games and evolution
+    await a.waitForSelector('.perslist'); await a.click('.perslist button:has-text("Curious")'); await a.waitForSelector('.pal.pers-curious');
+    if (!(await a.textContent('#palsay')).trim()) fail('the pet does not talk');
+    const mk = await a.evaluate(() => PET().mem.map(m => m.k)); for (const k of ['snack', 'hatch', 'question', 'pers']) if (!mk.includes(k)) fail(`the memory book is missing "${k}": ` + mk);
+    if ((await a.$$('.pmem li')).length !== Math.min(8, mk.length)) fail('the memory book does not show the latest memories');
+    await a.click('.pgames button:has-text("Sort It")'); await a.waitForFunction(() => AG.on('petsort') && AG.cur.phase === 'play');
+    const srt = await a.evaluate(() => { const Z = AG.cur.st, b = [...document.querySelectorAll('.psort button')].map(x => x.textContent); return { b, a: Z.set.a, bb: Z.set.b, n: Z.items.length, mix: Z.items.filter(i => i[1]).length } });
+    if (!srt.b[0].includes(srt.a[0]) || !srt.b[1].includes(srt.bb[0])) fail('the basket buttons do not name the groups: ' + JSON.stringify(srt));
+    if (srt.n !== 12 || srt.mix !== 6) fail('a Sort It! round is not 6 cards of each group');
+    const badSets = await a.evaluate(() => PSORT.filter(s => new Set([...s.a[1], ...s.b[1]].map(String)).size !== s.a[1].length + s.b[1].length || s.a[1].length < 6 || s.b[1].length < 6).map(s => s.n));
+    if (badSets.length) fail("Sort It! sets with a card in both groups or too few cards: " + badSets);
+    const pl0 = await a.evaluate(() => DAY().play); await a.evaluate(() => realmTick(5)); if (await a.evaluate(() => DAY().play) <= pl0) fail('a pet mini-game did not use play time');
+    await a.keyboard.press('p'); if (!(await a.evaluate(() => AG.paused()))) fail('P did not pause Sort It!'); await a.keyboard.press('ArrowLeft'); if (await a.evaluate(() => AG.cur.st.i) !== 0) fail('a card was sorted while paused'); await a.keyboard.press('p');
+    for (let i = 0; i < 12; i++) { const r = await a.evaluate(() => AG.cur.st.items[AG.cur.st.i][1]); await a.keyboard.press((i === 0 ? !r : r) ? 'ArrowRight' : 'ArrowLeft'); await a.waitForFunction(() => !AG.on('petsort') || !AG.cur.st.fly) }
+    await a.waitForSelector('.endcard'); if (!(await a.textContent('.endcard h3')).includes('11 of 12')) fail('Sort It! did not count 11 of 12 right');
+    await a.click('text=Back to Sparky'); await a.click('.pgames button:has-text("Star Catch")'); await a.waitForFunction(() => AG.on('petstars') && AG.cur.phase === 'play');
+    await a.keyboard.down('ArrowRight'); await a.waitForTimeout(600); await a.keyboard.up('ArrowRight'); if (await a.evaluate(() => AG.cur.st.x) <= 320) fail('the pet did not move right in Star Catch');
+    await a.evaluate(() => { AG.cur.st.caught = 60; AG.cur.st.left = .01 }); await a.waitForSelector('.endcard');
+    const gs = await a.evaluate(() => PET().gsn.n); if (gs > 2) fail('mini-games gave more than 2 snacks today: ' + gs);
+    if (!(await a.evaluate(() => AG.got('petstars', 's50') && AG.got('petsort', 'first')))) fail('the pet mini-game achievements did not unlock');
+    await a.click('text=Back to Sparky'); await a.evaluate(() => { PET().g = 20; rerealm() }); await a.waitForSelector('.pevo');
+    const ev = await a.evaluate(() => [...document.querySelectorAll('.pevo button')].map((b, i) => b.disabled === !Object.values(PEVO)[i].ok()));
+    if (ev.length !== 3 || ev.includes(false)) fail('the evolution choices are not locked by learning progress');
+    ok(`Pet Pals: a Curious personality, ${mk.length} memories, Sort It! (${srt.a[0]} / ${srt.bb[0]}) scored 11 of 12 and paused, Star Catch moved and ended, ${gs} game snacks (cap 2), evolutions locked by progress`); await shot(a, 'g-pet2');
     // Turbo Trivia Kart: three different lane answers, the right one included
     const kc = await a.evaluate(() => { const bad = [], v = s => s.includes('/') ? s.split('/')[0] / s.split('/')[1] : +s; let n = 0;
       for (const sub of Object.keys(SUBN)) { GM.rsub = sub; for (let i = 0; i < 60; i++) { const x = rquestion(); if (!x) break; const c = kartChoices(x.q); if (!c) continue; n++;
