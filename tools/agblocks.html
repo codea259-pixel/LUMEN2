@@ -1,0 +1,200 @@
+<style>
+/* ===== Block Builder ===== */
+.bbs{background:var(--panel);color:var(--ink);border-radius:18px;padding:12px 14px;border:2px solid rgba(255,255,255,.75);box-shadow:0 5px 0 var(--ga-lip)}
+.bbs small{display:block;color:var(--mute);font-weight:700}.bbs b{font:800 1.5rem/1.1 "Bricolage Grotesque",sans-serif}
+.bbrow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.bbnext{display:flex;gap:12px;align-items:center}.bbnext canvas{width:64px;height:64px;flex:none}
+.bbfeed{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:4px;font-weight:700}.bbfeed li{padding:4px 8px;border-radius:10px;background:#EEF2FF;color:#1E1B4B}.bbfeed li.new{background:#E3F6EA;color:#14532D}
+.bbgoal{height:10px;border-radius:99px;background:#E0E7FF;overflow:hidden;margin-top:6px}.bbgoal i{display:block;height:100%;background:linear-gradient(90deg,#22B35E,#F2A900)}
+.bbmodes{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.bbmode{display:flex;flex-direction:column;gap:4px;text-align:left;padding:12px;border-radius:16px;border:2px solid var(--line);background:var(--panel);color:var(--ink);font:inherit}
+.bbmode.on{border:3px solid var(--ga-gold)}.bbmode b{font:800 1.05rem "Bricolage Grotesque",sans-serif}.bbmode .em{font-size:1.6rem}
+.bbskins{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}.bbskins button{display:flex;gap:6px;align-items:center;padding:6px 10px;border-radius:12px;border:3px solid var(--line);background:var(--panel);color:var(--ink);font:700 .9rem inherit}
+.bbskins button.on{border-color:var(--ga-gold)}.bbskins button[disabled]{opacity:.45}
+</style>
+<script type="text/x-lumen">
+/* ===== Block Builder: a math block puzzle =====
+   Number blocks fall into a 7 x 10 well. Two or three blocks in a line that add up to the target (or two that multiply
+   to it) clear. Special blocks: + and x operator blocks (a line like 3 x 4 clears when it equals the target), a
+   wildcard that becomes whatever number completes a group, x2 blocks that double the points, and mystery blocks that
+   ask a question when they land (a right answer turns them into the perfect number). Clears in a row build a combo
+   (points x2, x4, x8...). Modes: Endless (high score) and three challenges with levels: Target Sprint, Equation
+   Builder and Missing Numbers. If the tower gets tall, a rescue question clears the top rows (a miss still clears
+   some). Difficulty (AD) sets the fall speed, the special blocks and the question level. Saved in GM.ar.blocks. ===== */
+const BBW=7,BBH=10,BBCS=52,BBX=14,BBY=70,BBGW=392,BBGH=600;
+const BTGT=[{id:'s10',op:'+',t:10,n:'Make 10'},{id:'s20',op:'+',t:20,n:'Make 20'},{id:'m24',op:'×',t:24,n:'Make 24'},{id:'m36',op:'×',t:36,n:'Make 36'}];
+const BMODES=[{id:'endless',e:'♾️',n:'Endless',d:'Keep stacking. Every 6 clears is a new level. How high can you score?'},{id:'sprint',e:'🎯',n:'Target Sprint',d:'Clear the groups the level asks for. The target changes as you go.'},
+  {id:'eq',e:'🧮',n:'Equation Builder',d:'Clear groups that use a + or × block, like 3 × 4 = 12.'},{id:'miss',e:'🧩',n:'Missing Numbers',d:'Some blocks are already in the well. Find the numbers that clear them all.'}];
+const BSKIN={classic:{n:'Classic',i:'🟦'},neon:{n:'Neon',i:'💡'},candy:{n:'Candy',i:'🍬'},pixel:{n:'Pixel',i:'👾'},galaxy:{n:'Galaxy',i:'🌌'}};
+const BCOL2=['#E4572E','#F97316','#D97706','#16A34A','#0D9488','#2563EB','#4F46E5','#7C3AED','#DB2777','#0EA5E9'];
+const bbS=()=>{const S=ARS('blocks');S.ch=S.ch||{};return S};
+const bbTgt=()=>BTGT.find(p=>p.id===bbS().pz)||BTGT[myGrade()<=2?0:myGrade()<=3?1:2];
+const bbMode=()=>BMODES.find(m=>m.id===bbS().mode)||BMODES[0];
+const bbSkin=()=>{const k=bbS().skin;return BSKIN[k]&&AG.has('blocks.skin.'+k)?k:'classic'};
+const bbVals=p=>p.op==='+'?Array.from({length:p.t-1},(_,i)=>i+1):Array.from({length:p.t},(_,i)=>i+1).filter(x=>p.t%x===0&&x>1&&x<p.t);
+/* Targets for a sprint level: sums for beginners, products later */
+const bbSprint=(lv,t)=>{const sums=[10,12,15,20,25,30],prods=[12,18,24,36,48];return t<2||lv%2?{op:'+',t:pick(sums.slice(0,2+Math.min(4,t+lv)))}:{op:'×',t:pick(prods.slice(0,2+Math.min(3,t+1)))}};
+const BSPEC=[{m:.05,w:.07,o:.03},{m:.07,w:.05,o:.06},{m:.08,w:.04,o:.1},{m:.1,w:.03,o:.14}];
+
+/* ---------- Groups that clear ---------- */
+const bbAt=(Z,r,c)=>r>=0&&r<BBH&&c>=0&&c<BBW?Z.g[r][c]:null;
+const bbOp=(a,o,b)=>o==='+'?a+b:a*b;
+/* A group through (r,c): 3 in a line first (an operator in the middle, or three numbers adding up), then 2 */
+function bbGroup(Z,r,c){const p=Z.p;for(const n of[3,2])for(const [dr,dc] of[[0,1],[1,0]])for(let k=0;k<n;k++){const cells=[];for(let i=0;i<n;i++){const rr=r+(i-k)*dr,cc=c+(i-k)*dc,b=bbAt(Z,rr,cc);if(!b)break;cells.push([rr,cc,b])}
+  if(cells.length!==n)continue;const B=cells.map(x=>x[2]);
+  if(n===3&&B[1].k==='op'&&B[0].k==='n'&&B[2].k==='n'&&bbOp(B[0].v,B[1].op,B[2].v)===p.t)return{cells,eq:`${B[0].v} ${B[1].op} ${B[2].v} = ${p.t}`,op:1};
+  if(B.every(b=>b.k==='n')){if(p.op==='+'&&B.reduce((s,b)=>s+b.v,0)===p.t)return{cells,eq:`${B.map(b=>b.v).join(' + ')} = ${p.t}`};if(p.op==='×'&&n===2&&B[0].v*B[1].v===p.t)return{cells,eq:`${B[0].v} × ${B[1].v} = ${p.t}`}}}return null}
+function bbScan(Z){for(let r=BBH-1;r>=0;r--)for(let c=0;c<BBW;c++)if(Z.g[r][c]){const x=bbGroup(Z,r,c);if(x)return x}return null}
+/* The number that would make a group at (r,c), if any: used by wildcards, mystery blocks and the dealer */
+function bbFit(Z,r,c){const was=Z.g[r][c];for(const v of shuf(bbVals(Z.p))){Z.g[r][c]={k:'n',v};const ok=bbGroup(Z,r,c);if(ok){Z.g[r][c]=was;return v}}Z.g[r][c]=was;return 0}
+
+/* ---------- The dealer ---------- */
+function bbDeal(Z){const sp=BSPEC[Z.t],r=Math.random(),eqm=Z.mode==='eq';
+  if(r<sp.m)return{k:'myst'};if(r<sp.m+sp.w)return{k:'wild'};
+  if(r<sp.m+sp.w+(eqm?.28:sp.o))return{k:'op',op:Z.p.op==='+'?(Math.random()<.7?'×':'+'):(Math.random()<.7?'+':'×')};
+  const V=bbVals(Z.p);let v=pick(V);
+  /* most blocks can finish something already showing at the top of a column */
+  if(Math.random()<(Z.mode==='miss'?.85:.65)){const tops=[];for(let c=0;c<BBW;c++){const r0=Z.g.findIndex(row=>row[c]);if(r0>0)tops.push([r0-1,c])}
+    for(const [rr,cc] of shuf(tops)){const f=bbFit(Z,rr,cc);if(f){v=f;break}}}
+  return{k:'n',v,x2:Math.random()<.06}}
+function bbSpawn(Z){const b=Z.nx||bbDeal(Z);Z.nx=bbDeal(Z);if(Z.g[0][3]){bbOver(Z);return}Z.cur={b,c:3,x:3,y:-.9,lock:0};Z.phase='fall';bbsay(Z)}
+
+/* ---------- The game ---------- */
+const BSPD=[.9,1.25,1.65,2.1];
+AG.def({id:'blocks',name:'Block Builder',w:BBGW,h:BBGH,maxW:900,vh:200,snd:'blocks',go:'Start',
+  sub:'Make groups that equal the target!',
+  help:['Number blocks fall into the well. Line up 2 or 3 blocks that add up to the target (or 2 that multiply to it) to clear them.','A + or × block in the middle of three makes an equation: 3 × 4 clears when the target is 12.','★ becomes whatever number helps. ? asks a question when it lands: get it right for the perfect number. ×2 doubles the points.','Clears in a row build a combo: double the points each time!'],
+  keys:[['← →','move'],['↓','faster'],['Space','drop'],['P','pause']],
+  ach:{first:{i:'🧱',n:'First clear',d:'Clear your first group',gems:1,give:'blocks.skin.candy'},chain4:{i:'⛓️',n:'Chain reaction',d:'Reach a ×4 combo',gems:1,give:'blocks.skin.neon'},
+    chain8:{i:'🌟',n:'Combo master',d:'Reach a ×8 combo',gems:2},eq:{i:'🧮',n:'Equation engineer',d:'Clear 10 equations with + or × blocks',gems:1,give:'blocks.skin.pixel'},
+    myst:{i:'❓',n:'Mystery solver',d:'Solve 5 mystery blocks',gems:1},k1:{i:'🏅',n:'Thousand club',d:'Score 1,000 in one game',gems:1},k5:{i:'🚀',n:'High flyer',d:'Score 5,000 in one game',gems:2,give:'blocks.skin.galaxy'},
+    lv10:{i:'🗼',n:'Tall tower',d:'Reach level 10 in Endless',gems:2},puzzle:{i:'🧩',n:'Puzzle pro',d:'Finish 5 challenge levels',gems:2},rescue:{i:'🛟',n:'Saved!',d:'Use a rescue question',gems:0}},
+  items:{'blocks.skin.classic':{n:'Classic blocks',i:'🟦',free:1,k:'Block style'},'blocks.skin.candy':{n:'Candy blocks',i:'🍬',k:'Block style',how:'Clear your first group'},'blocks.skin.neon':{n:'Neon blocks',i:'💡',k:'Block style',how:'Reach a ×4 combo'},
+    'blocks.skin.pixel':{n:'Pixel blocks',i:'👾',k:'Block style',how:'Clear 10 equations'},'blocks.skin.galaxy':{n:'Galaxy blocks',i:'🌌',k:'Block style',how:'Score 5,000 in one game'}},
+  places:()=>BMODES.slice(1).map(m=>({on:true,i:m.e,n:m.n,s:`Level ${(bbS().ch[m.id]||0)} done`})),
+  start(o){const S=bbS(),mode=bbMode().id,t=AD.tier('blocks'),lv=mode==='endless'?1:Math.min(20,(S.ch[mode]||0)+1);
+    const p=mode==='sprint'?bbSprint(lv,t):{...bbTgt()};
+    const Z={mode,lv,t,p,g:Array.from({length:BBH},()=>Array(BBW).fill(null)),cur:null,nx:null,phase:'fall',score:0,clears:0,combo:0,maxc:0,eqs:0,feed:[],goal:0,got:0,
+      parts:[],texts:[],flash:null,ft:0,off:{},rescued:0,rep:{},time:0,sayT:0,swap:3};
+    if(mode==='sprint')Z.goal=4+lv;else if(mode==='eq')Z.goal=2+Math.ceil(lv/2);else if(mode==='miss'){bbPrefill(Z);Z.goal=Z.pins}
+    bbSpawn(Z);bbhud(Z);return Z},
+  step(dt,Z){Z.time+=dt;
+    for(const p of Z.parts)if(p.l>0){p.l-=dt;p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=500*dt}
+    for(const t of Z.texts)if(t.l>0){t.l-=dt;t.y-=30*dt}
+    for(const k in Z.off){Z.off[k]=Math.max(0,Z.off[k]-14*dt);if(!Z.off[k])delete Z.off[k]}
+    if(Z.phase==='clear'){if((Z.ft-=dt)<=0)bbRemove(Z);return}
+    if(Z.phase==='drop'){if(!Object.keys(Z.off).length)bbAfterDrop(Z);return}
+    if(Z.phase!=='fall'||!Z.cur)return;const c=Z.cur;
+    /* held keys repeat after a short wait */
+    for(const [k,d] of[['left',-1],['right',1]]){if(AG.held.has(k)){Z.rep[k]=(Z.rep[k]||0)+dt;if(Z.rep[k]>.2){Z.rep[k]-=.075;bbMove(Z,d)}}else Z.rep[k]=0}
+    c.x+=(c.c-c.x)*Math.min(1,dt*20);
+    const land=bbLandRow(Z,c.c),spd=BSPD[Z.t]*(1+.08*(Z.lv-1))*(AG.held.has('down')?9:1);
+    if(c.y<land){c.y=Math.min(land,c.y+spd*dt);c.lock=0}else{c.y=land;if((c.lock+=dt)>.28)bbPlace(Z)}
+    if((Z.sayT+=dt)>.15){Z.sayT=0;bbhud(Z)}},
+  draw(a,Z){bbdraw(Z)},
+  key(k,down,Z){if(!down||Z.phase!=='fall'||!Z.cur)return;if(k==='left')bbMove(Z,-1);else if(k==='right')bbMove(Z,1);else if(k==='act'||k==='enter'||k==='up')bbDrop(Z)},
+  /* tap a column to slide the block there; tap its own column to drop it */
+  timeout:Z=>bbresult(Z,'time'),
+  tap(x,y,Z){if(Z.phase!=='fall'||!Z.cur)return;const q=Math.floor((x-BBX)/BBCS);if(q<0||q>=BBW)return;if(q===Z.cur.c)return bbDrop(Z);const d=q>Z.cur.c?1:-1;while(Z.cur.c!==q&&bbMove(Z,d));}});
+const bbLandRow=(Z,c)=>{let r=Math.max(0,Math.ceil(Z.cur?Z.cur.y:0));if(Z.g[r]&&Z.g[r][c])return r-1;while(r+1<BBH&&!Z.g[r+1][c])r++;return r};
+function bbMove(Z,d){const c=Z.cur,n=c.c+d;if(n<0||n>=BBW)return false;const r1=Math.floor(Math.max(0,c.y)),r2=Math.ceil(Math.max(0,c.y));if(Z.g[r1][n]||Z.g[r2][n])return false;c.c=n;c.lock=0;SND.play('move');return true}
+function bbDrop(Z){const c=Z.cur;c.y=bbLandRow(Z,c.c);bbPlace(Z)}
+
+/* A block lands: mystery blocks ask, wildcards pick their number, then groups clear */
+async function bbPlace(Z){const c=Z.cur;if(!c)return;Z.cur=null;const r=Math.round(c.y),q=c.c;if(r<0){bbOver(Z);return}Z.g[r][q]={...c.b};SND.play('place');Z.last=[r,q];
+  const b=Z.g[r][q];
+  if(b.k==='wild'){const v=bbFit(Z,r,q)||pick(bbVals(Z.p));Z.g[r][q]={k:'n',v};bbtext(Z,q,r,'★ '+v,'#ffd34d')}
+  if(b.k==='myst'){Z.phase='ask';const ok=await AG.ask({title:'Mystery block',intro:'Answer to turn the ? into a helpful number!'});if(AG.cur&&AG.cur.st!==Z)return;
+    if(ok){const v=bbFit(Z,r,q)||pick(bbVals(Z.p));Z.g[r][q]={k:'n',v,x2:true};Z.score+=50;bbtext(Z,q,r,'+50','#5ff3a0');const S=bbS();S.myst=(S.myst||0)+1;if(S.myst>=5)AG.ach('blocks','myst');SND.play('ok','ui')}
+    else Z.g[r][q]={k:'n',v:pick(bbVals(Z.p))}}
+  const g=bbGroup(Z,r,q);if(g)bbClear(Z,g);else{Z.combo=0;bbAfterLand(Z)}}
+function bbClear(Z,g){Z.combo++;Z.maxc=Math.max(Z.maxc,Z.combo);Z.flash=g;Z.ft=calmOn()?.12:.3;Z.phase='clear';
+  const mult=Math.min(16,2**(Z.combo-1)),x2=g.cells.some(([,,b])=>b.x2)?2:1,pts=Math.round(100*mult*x2*(1+.1*(Z.lv-1)));Z.score+=pts;Z.clears++;Z.got++;if(g.op){Z.eqs++;const S=bbS();S.eqs=(S.eqs||0)+1;if(S.eqs>=10)AG.ach('blocks','eq')}
+  const [r0,c0]=g.cells[1]||g.cells[0];bbtext(Z,c0,r0,`+${pts}${mult>1?`  ×${mult}`:''}`,mult>1?'#ffd34d':'#ffffff');
+  Z.feed.unshift(g.eq+(mult>1?`  (combo ×${mult})`:''));Z.feed=Z.feed.slice(0,6);SND.play(Z.combo>1?'combo':'clear');AG.ach('blocks','first');if(Z.combo>=4)AG.ach('blocks','chain4');if(Z.combo>=8)AG.ach('blocks','chain8');
+  if(Z.score>=1000)AG.ach('blocks','k1');if(Z.score>=5000)AG.ach('blocks','k5');bbhud(Z)}
+function bbRemove(Z){const g=Z.flash;Z.flash=null;for(const [r,c,b] of g.cells){Z.g[r][c]=null;if(b.pin)Z.pins--;bbpop(Z,c,r,b)}
+  /* everything above falls down, smoothly */
+  for(let c=0;c<BBW;c++){const col=[];for(let r=BBH-1;r>=0;r--)if(Z.g[r][c])col.push([r,Z.g[r][c]]);for(let r=0;r<BBH;r++)Z.g[r][c]=null;col.forEach(([r0,b],i)=>{const r=BBH-1-i;Z.g[r][c]=b;if(r!==r0)Z.off[r+','+c]=r-r0})}
+  Z.phase='drop'}
+function bbAfterDrop(Z){if(Z.mode==='miss'&&Z.pins<=0)return bbWin(Z);if(Z.goal&&Z.mode!=='miss'&&Z.got>=Z.goal)return bbWin(Z);
+  const g=bbScan(Z);if(g)return bbClear(Z,g);
+  if(Z.mode==='endless'&&Z.clears>=Z.lv*6){Z.lv++;Z.score+=50*Z.lv;bbtext(Z,3,4,`Level ${Z.lv}!`,'#5ff3ff');SND.play('unlock','ui');if(Z.lv>=10)AG.ach('blocks','lv10')}
+  if(Z.mode==='sprint'&&Z.got>=Z.swap){Z.swap+=3;Z.p=bbSprint(Z.lv+Z.got,Z.t);bbtext(Z,3,3,`New target: ${Z.p.op==='+'?'make':'multiply to'} ${Z.p.t}`,'#ffd34d')}
+  bbAfterLand(Z)}
+/* When the tower gets tall: one rescue question per game (a miss still clears some) */
+async function bbAfterLand(Z){const tall=Z.g[1].some(Boolean)||Z.g[2].some(Boolean);
+  if(tall&&Z.rescued<(Z.mode==='endless'?2:1)){Z.rescued++;Z.phase='ask';const ok=await AG.ask({title:'Rescue!',intro:'Your tower is getting tall. Answer to clear the top rows.'});if(AG.cur&&AG.cur.st!==Z)return;
+    const rows=ok?4:2;let n=0;for(let r=0;r<BBH&&n<rows;r++)if(Z.g[r].some(Boolean)){Z.g[r]=Array(BBW).fill(null).map((_,c)=>Z.g[r][c]&&Z.g[r][c].pin?Z.g[r][c]:null);n++}
+    bbtext(Z,3,3,ok?'Rescued!':'Some rows cleared','#5ff3ff');AG.ach('blocks','rescue')}
+  bbSpawn(Z)}
+/* Missing Numbers: blocks already in the well, each with a partner to find */
+function bbPrefill(Z){const n=Math.min(10,3+Z.lv),V=bbVals(Z.p);Z.pins=0;const used=new Set();
+  for(let i=0;i<n*4&&Z.pins<n;i++){const c=Math.floor(Math.random()*BBW),r=BBH-1-Math.floor(Math.random()*3);if(used.has(r+','+c))continue;
+    const below=r===BBH-1||Z.g[r+1][c];if(!below)continue;Z.g[r][c]={k:'n',v:pick(V),pin:true};used.add(r+','+c);Z.pins++}
+  /* nothing may clear on its own before the learner plays */
+  let g,k=0;while((g=bbScan(Z))&&k++<300){const [r,c]=[g.cells[0][0],g.cells[0][1]];Z.g[r][c].v=pick(V)}}
+function bbWin(Z){const S=bbS(),lv=Z.lv;S.ch[Z.mode]=Math.max(S.ch[Z.mode]||0,lv);S.chd=(S.chd||0)+1;if(S.chd>=5)AG.ach('blocks','puzzle');AG.finish(bbresult(Z,'win'))}
+function bbOver(Z){AG.finish(bbresult(Z,'over'))}
+function bbresult(Z,why){const S=bbS(),pb=Z.mode==='endless'&&Z.score>(S.best||0);if(pb)S.best=Z.score;S.lv=Math.max(S.lv||0,Z.lv);S.rounds=(S.rounds||0)+1;
+  const gems=Math.min(8,Math.floor(Z.clears/4))+(why==='win'?2:0);if(gems)addGems(gems);SND.play(why==='win'?'win':'lose','ui');
+  return{why,mode:Z.mode,lv:Z.lv,score:Z.score,clears:Z.clears,maxc:Z.maxc,eqs:Z.eqs,pb,gems,goal:Z.goal,got:Z.got}}
+
+/* ---------- Drawing ---------- */
+const bbRR=(x,X,Y,W,H,r)=>{x.beginPath();x.moveTo(X+r,Y);x.arcTo(X+W,Y,X+W,Y+H,r);x.arcTo(X+W,Y+H,X,Y+H,r);x.arcTo(X,Y+H,X,Y,r);x.arcTo(X,Y,X+W,Y,r);x.closePath()};
+function bbBlock(x,b,X,Y,S,skin,t){const r=skin==='pixel'?0:S*.18,pad=2;X+=pad;Y+=pad;S-=pad*2;
+  let col=b.k==='n'?BCOL2[b.v%BCOL2.length]:b.k==='op'?'#ffffff':b.k==='wild'?'#ffd34d':'#3b2a6e';
+  if(skin==='candy'&&b.k==='n')col=tint(col,.35);if(skin==='galaxy'&&b.k==='n')col=shade(col,.75);
+  if(skin==='neon'){x.fillStyle='#120b26';bbRR(x,X,Y,S,S,r);x.fill();x.strokeStyle=col;x.lineWidth=3;bbRR(x,X+1.5,Y+1.5,S-3,S-3,r);x.stroke()}
+  else{x.fillStyle=col;bbRR(x,X,Y,S,S,r);x.fill();if(skin!=='pixel'){x.fillStyle='rgba(255,255,255,.28)';bbRR(x,X+3,Y+3,S-6,S*.32,r*.6);x.fill()}
+    x.fillStyle='rgba(0,0,0,.22)';x.fillRect(X+r*.5,Y+S-5,S-r,5)}
+  if(skin==='galaxy'&&b.k==='n'){x.fillStyle='rgba(255,255,255,.8)';x.fillRect(X+S*.2,Y+S*.25,2,2);x.fillRect(X+S*.7,Y+S*.6,2,2)}
+  if(b.k==='wild'&&skin!=='neon'){const g=x.createLinearGradient(X,Y,X+S,Y+S);['#ff6b8a','#ffd34d','#5ff3a0','#5fb8ff'].forEach((c,i)=>g.addColorStop(i/3,c));x.fillStyle=g;bbRR(x,X,Y,S,S,r);x.fill()}
+  const txt=b.k==='n'?String(b.v):b.k==='op'?b.op:b.k==='wild'?'★':'?';
+  x.fillStyle=b.k==='op'?'#5b21b6':skin==='neon'?col:'#ffffff';x.font=`800 ${txt.length>1?S*.42:S*.52}px ${skin==='pixel'?'ui-monospace,monospace':'"Bricolage Grotesque",sans-serif'}`;x.textAlign='center';x.textBaseline='middle';
+  if(b.k==='myst'&&!calmOn())x.globalAlpha=.75+.25*Math.sin(t*5);x.fillText(txt,X+S/2,Y+S/2+2);x.globalAlpha=1;
+  if(b.x2){x.fillStyle='#ffd34d';x.fillRect(X+S-20,Y,20,12);x.fillStyle='#3b2a00';x.font='800 9px sans-serif';x.fillText('×2',X+S-10,Y+6.5)}
+  if(b.pin){x.strokeStyle='rgba(255,255,255,.9)';x.setLineDash([4,3]);x.lineWidth=2;bbRR(x,X+2,Y+2,S-4,S-4,r);x.stroke();x.setLineDash([])}}
+function bbdraw(Z){const x=AG.cx;if(!x)return;const skin=bbSkin(),bg=skin==='neon'||skin==='galaxy'?'#0b0820':'#1E1B4B';
+  x.fillStyle=bg;x.fillRect(0,0,BBGW,BBGH);
+  if(skin==='galaxy'){const R=krng(5);x.fillStyle='rgba(255,255,255,.6)';for(let i=0;i<60;i++)x.fillRect(R()*BBGW,R()*BBGH,1,1)}
+  x.fillStyle='#ffffff';x.font='800 30px "Bricolage Grotesque",sans-serif';x.textAlign='center';x.textBaseline='middle';x.fillText(Z.p.op==='+'?`Make ${Z.p.t}`:`Multiply to ${Z.p.t}`,BBGW/2,28);
+  x.font='700 13px "Atkinson Hyperlegible",sans-serif';x.fillStyle='rgba(255,255,255,.75)';x.fillText(Z.p.op==='+'?'2 or 3 in a line that add up':'2 in a line that multiply, or an equation',BBGW/2,54);
+  for(let r=0;r<BBH;r++)for(let c=0;c<BBW;c++){x.fillStyle=(r+c)%2?'rgba(255,255,255,.05)':'rgba(255,255,255,.08)';x.fillRect(BBX+c*BBCS+1,BBY+r*BBCS+1,BBCS-2,BBCS-2)}
+  const C=Z.cur;if(C){x.fillStyle='rgba(255,255,255,.07)';x.fillRect(BBX+C.x*BBCS,BBY,BBCS,BBH*BBCS);const lr=bbLandRow(Z,C.c);if(lr>=0){x.strokeStyle='rgba(255,255,255,.45)';x.setLineDash([5,4]);x.lineWidth=2;bbRR(x,BBX+C.c*BBCS+4,BBY+lr*BBCS+4,BBCS-8,BBCS-8,8);x.stroke();x.setLineDash([])}}
+  const fl=Z.flash?new Set(Z.flash.cells.map(([r,c])=>r+','+c)):null;x.save();x.beginPath();x.rect(BBX,BBY-2,BBW*BBCS,BBH*BBCS+4);x.clip();
+  for(let r=0;r<BBH;r++)for(let c=0;c<BBW;c++){const b=Z.g[r][c];if(!b)continue;const oy=Z.off[r+','+c]||0;bbBlock(x,b,BBX+c*BBCS,BBY+(r-oy)*BBCS,BBCS,skin,Z.time);
+    if(fl&&fl.has(r+','+c)){x.fillStyle=`rgba(255,255,255,${.35+.35*Math.sin(Z.time*40)})`;x.fillRect(BBX+c*BBCS+2,BBY+r*BBCS+2,BBCS-4,BBCS-4)}}
+  if(C&&C.y>-1)bbBlock(x,C.b,BBX+C.x*BBCS,BBY+C.y*BBCS,BBCS,skin,Z.time);x.restore();
+  for(const p of Z.parts)if(p.l>0){x.globalAlpha=Math.min(1,p.l*2);x.fillStyle=p.c;x.fillRect(p.x,p.y,5,5)}x.globalAlpha=1;
+  x.font='800 20px "Bricolage Grotesque",sans-serif';for(const t of Z.texts)if(t.l>0){x.globalAlpha=Math.min(1,t.l*1.5);x.fillStyle='rgba(0,0,0,.4)';x.fillText(t.s,t.x+1,t.y+2);x.fillStyle=t.c;x.fillText(t.s,t.x,t.y)}x.globalAlpha=1}
+const bbtext=(Z,c,r,s,col)=>{let t=Z.texts.find(q=>q.l<=0);if(!t){if(Z.texts.length>12)return;t={};Z.texts.push(t)}Object.assign(t,{x:Math.max(70,Math.min(BBGW-70,BBX+c*BBCS+BBCS/2)),y:BBY+r*BBCS+BBCS/2,s,c:col,l:1.3})};
+const bbpop=(Z,c,r,b)=>{if(AG.low()&&Z.parts.length>20)return;const col=b.k==='n'?BCOL2[b.v%BCOL2.length]:'#ffd34d';for(let i=0;i<(calmOn()?3:9);i++){let p=Z.parts.find(q=>q.l<=0);if(!p){if(Z.parts.length>90)return;p={};Z.parts.push(p)}
+  Object.assign(p,{x:BBX+c*BBCS+BBCS/2,y:BBY+r*BBCS+BBCS/2,vx:(Math.random()-.5)*260,vy:-60-Math.random()*220,l:.6,c:col})}};
+/* The side panel and a sentence for screen readers */
+function bbhud(Z){const set=(id,v)=>{const e=$(id);if(e&&e.textContent!==String(v))e.textContent=v};set('bbscore',Z.score);set('bbcombo',Z.combo>1?'×'+Math.min(16,2**(Z.combo-1)):'–');
+  set('bblv',Z.mode==='endless'?`Level ${Z.lv}`:`${bbMode().n} ${Z.lv}`);const g=$('bbgoal');
+  if(g){if(Z.mode==='endless'){const d=Z.clears-(Z.lv-1)*6;g.style.width=Math.min(100,d/6*100)+'%';set('bbgoalt',`${6-d} more to level ${Z.lv+1} · best ${bbS().best||0}`)}
+    else{const done=Z.mode==='miss'?Z.goal-Z.pins:Z.got;g.style.width=Math.min(100,done/Z.goal*100)+'%';set('bbgoalt',`${done} of ${Z.goal}${Z.mode==='miss'?' starting blocks cleared':Z.mode==='eq'?' equations':' groups'}`)}}
+  const f=$('bbfeed');if(f&&f.dataset.n!==String(Z.clears)){f.dataset.n=Z.clears;f.innerHTML=Z.feed.map((s,i)=>`<li${i?'':' class="new"'}>${esc(s)} ✓</li>`).join('')||'<li class="sol">Your equations show up here.</li>'}
+  const n=$('bbnx');if(n&&Z.nx){const k=JSON.stringify(Z.nx);if(n.dataset.k!==k){n.dataset.k=k;const x=n.getContext('2d');x.clearRect(0,0,64,64);bbBlock(x,Z.nx,4,4,56,bbSkin(),0)}}
+  bbsay(Z)}
+function bbsay(Z){const e=$('bbnow');if(!e||!Z.cur)return;const b=Z.cur.b,s=`Falling: ${b.k==='n'?b.v:b.k==='op'?'the '+b.op+' block':b.k==='wild'?'a wildcard':'a mystery block'}, column ${Z.cur.c+1}.`;if(e.textContent!==s)e.textContent=s}
+
+/* ---------- The menu ---------- */
+GVIEW.blocks=function(){const C=AG.cur&&AG.cur.id==='blocks'?AG.cur:null;
+  if(C&&['load','play','crash'].includes(C.phase))return AG.screen('blocks',{side:`<div class="bbrow"><div class="bbs"><small>Score</small><b id="bbscore">0</b></div><div class="bbs"><small>Combo</small><b id="bbcombo">–</b></div></div>
+    <div class="bbs"><small id="bblv">Level 1</small><div class="bbgoal"><i id="bbgoal"></i></div><small id="bbgoalt" style="margin-top:4px"></small></div>
+    <div class="bbs bbnext"><canvas id="bbnx" width="64" height="64" aria-hidden="true"></canvas><div><small>Next block</small><span class="sol" id="bbnow" aria-live="polite"></span></div></div>
+    <div class="bbs"><small>Cleared</small><ul class="bbfeed" id="bbfeed"><li class="sol">Your equations show up here.</li></ul></div>`,
+    below:AG.pad([[{k:'left',l:'◀',a:'Move left'},{k:'right',l:'▶',a:'Move right'}],[{k:'down',l:'▼',a:'Fall faster'},{k:'act',l:'⤓',a:'Drop'}]])});
+  const S=bbS(),m=bbMode(),tg=bbTgt(),r=C&&C.phase==='end'?C.res:null,skin=bbSkin();let card='';
+  if(r){const M=BMODES.find(x=>x.id===r.mode);card=`<div class="gcard endcard" style="margin-bottom:16px"><div class="big" aria-hidden="true">${r.why==='win'?'🏆':r.why==='time'?'🌙':'🧱'}</div>
+    <h3>${r.why==='win'?`${M.n} level ${r.lv} complete!`:r.why==='time'?'Play time is over for today':'Tower full!'}</h3><p>${r.score} points · ${r.clears} groups cleared · best combo ×${Math.min(16,2**Math.max(0,r.maxc-1))}${r.eqs?` · ${r.eqs} equations`:''}${r.gems?` · 💎 +${r.gems}`:''}</p>
+    ${r.pb?'<p><b>🏆 New high score!</b></p>':''}${r.why==='over'&&r.mode!=='endless'?`<p class="sol">You cleared ${r.got} of ${r.goal}. Try the level again: every clear counts!</p>`:''}</div>`}
+  return `<div class="gworld">${clouds()}${gameHead('Block Builder','A math block puzzle: make groups that equal the target.')}${outOfTime()?restCard():''}${card}${subjChips()}
+  <div class="gcard"><h3>🧱 Pick a mode</h3><div class="bbmodes">${BMODES.map(x=>`<button class="bbmode ${x.id===m.id?'on':''}" aria-pressed="${x.id===m.id}" onclick="ARS('blocks').mode='${x.id}';SYNC();rerealm()"><span class="em" aria-hidden="true">${x.e}</span><b>${x.n}</b><span class="sol">${x.d}</span><span class="sol"><b>${x.id==='endless'?`High score: ${S.best||0}`:`Next: level ${Math.min(20,(S.ch[x.id]||0)+1)}`}</b></span></button>`).join('')}</div>
+  ${m.id==='sprint'?'':`<h3 style="margin-top:16px">🎯 Target</h3><div class="row">${BTGT.map(p=>`<button class="chip ${p.id===tg.id?'on':''}" aria-pressed="${p.id===tg.id}" onclick="ARS('blocks').pz='${p.id}';SYNC();rerealm()">${p.n}${p.op==='×'?' (×)':''}</button>`).join('')}</div>`}
+  <h3 style="margin-top:16px">🎨 Block style</h3><div class="bbskins">${Object.entries(BSKIN).map(([k,v])=>{const h=AG.has('blocks.skin.'+k),it=AG.item('blocks.skin.'+k);return `<button ${h?'':'disabled'} class="${k===skin?'on':''}" aria-pressed="${k===skin}" title="${esc(h?it.n:it.how)}" onclick="ARS('blocks').skin='${k}';SYNC();rerealm()"><span aria-hidden="true">${v.i}</span>${esc(v.n)}${h?'':' 🔒'}</button>`}).join('')}</div></div>
+  <div style="margin-top:14px">${AG.intro('blocks','AG.play(\'blocks\')')}</div></div>`};
+</script>

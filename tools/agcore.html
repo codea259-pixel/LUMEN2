@@ -7,6 +7,10 @@
 .ag .agstage{max-width:min(100%,calc((100vh - var(--agv,230px)) * var(--ar,1.78)));max-width:min(100%,calc((100dvh - var(--agv,230px)) * var(--ar,1.78)));margin:0 auto}
 .agstage.px canvas{image-rendering:pixelated;image-rendering:crisp-edges}
 .agbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 12px}
+.agrow{display:grid;grid-template-columns:auto minmax(220px,1fr);gap:16px;align-items:start}
+.agrow .agstage{width:min(100%,calc((100vh - var(--agv,230px)) * var(--ar,1)));width:min(100%,calc((100dvh - var(--agv,230px)) * var(--ar,1)));margin:0}
+@media(max-width:760px){.agrow{grid-template-columns:1fr}.agrow .agstage{margin:0 auto}}
+.agside{display:grid;gap:10px;align-content:start}
 .agbar .abtn{min-height:44px;padding:0 14px;font-size:.95rem}
 .agbar .agt{flex:1;min-width:140px}.agbar .agt h2{margin:0;font:800 clamp(1.25rem,3vw,1.7rem)/1.1 "Bricolage Grotesque",sans-serif;color:#fff;text-shadow:0 2px 0 #312E81}
 .agbar .agt small{display:block;color:rgba(255,255,255,.88);font-weight:700}
@@ -50,6 +54,8 @@
    - sound effects made in the browser (SND), with volume and mute;
    - saving: everything lives in GM (saved to the account, or this browser in demo mode).
    A game: {id,name,sub,help:[...],keys:[...],w,h,snd, start(opts)->state, step(dt), draw(alpha), key(k,down), end?, ach:{}, items:{}} */
+/* A colour mixed toward white (f from 0 to 1) */
+const tint=(c,f)=>{const n=parseInt(c.slice(1),16),m=v=>Math.round(v+(255-v)*f);return '#'+[n>>16,(n>>8)&255,n&255].map(v=>m(v).toString(16).padStart(2,'0')).join('')};
 const AG={G:{},cur:null,raf:0,last:0,acc:0,STEP:1/60,held:new Set(),holds:new Set(),slow:0,frames:0};
 AG.def=g=>(AG.G[g.id]=g);
 AG.set=()=>GM.ag||(GM.ag={vol:.5,mute:false,low:false});
@@ -61,12 +67,13 @@ AG.paused=()=>!!(AG.cur&&AG.holds.size);
 AG.play=async(id,opts={})=>{if(!canStart())return;stopGames();const g=AG.G[id];if(!g)return;
   AG.cur={id,g,opts,phase:'load',st:null,t:0,res:null};AG.holds.clear();AG.held.clear();AR.mode=id;AR.run=true;rerealm();
   const top=document.querySelector('.ag');if(top)top.scrollIntoView({block:'start',behavior:'auto'});
-  try{if(g.load)await g.load();if(!AG.cur||AG.cur.id!==id)return;AG.fit();AG.cur.st=g.start(opts);AG.cur.phase='play';AG.ui();AG.loop()}
+  try{if(g.load)await g.load();if(!AG.cur||AG.cur.id!==id)return;AG.fit();AG.cur.st=g.start(opts);AG.cur.phase='play';AG.ui();AG.loop();
+    const cv=$('agcv');if(cv&&g.tap)cv.onpointerdown=e=>{const C=AG.cur;if(!C||C.phase!=='play'||AG.paused())return;e.preventDefault();cv.focus({preventScroll:true});const r=cv.getBoundingClientRect();g.tap((e.clientX-r.left)/r.width*g.w,(e.clientY-r.top)/r.height*g.h,C.st)}}
   catch(e){AG.crash(e)}};
 AG.loop=()=>{cancelAnimationFrame(AG.raf);AG.last=0;AG.acc=0;AG.raf=requestAnimationFrame(AG.frame)};
 AG.frame=ts=>{const C=AG.cur;if(!C||C.phase!=='play')return;const cv=$('agcv');if(!cv){AG.stop();return}
   const dt=AG.last?Math.min(.1,(ts-AG.last)/1000):0;AG.last=ts;
-  try{if(!AG.paused()){if(outOfTime()&&C.g.timeup!==false){AG.finish({why:'time'});return}
+  try{if(!AG.paused()){if(outOfTime()&&C.g.timeup!==false){AG.finish(C.g.timeout?C.g.timeout(C.st):{why:'time'});return}
       AG.acc+=dt;let n=0;while(AG.acc>=AG.STEP&&n++<6){C.t+=AG.STEP;C.g.step(AG.STEP,C.st);AG.acc-=AG.STEP;if(AG.cur!==C||C.phase!=='play')return}
       if(n>=6)AG.acc=0}
     C.g.draw(AG.acc/AG.STEP,C.st);
@@ -102,8 +109,8 @@ addEventListener('resize',()=>{clearTimeout(AG._rz);AG._rz=setTimeout(()=>{if(AG
 AG.screen=(id,o={})=>{const g=AG.G[id],C=AG.cur;
   return `<div class="gworld ag" data-game="${id}">${clouds()}<div class="agbar"><button class="abtn sec sm" onclick="AG.quit()" aria-label="Leave the game">←</button><div class="agt"><h2>${esc(g.name)}</h2><small id="agsub">${esc(g.sub||'')}</small></div>
     <button class="abtn sec sm" id="agpb" onclick="AG.paused()?AG.resume():AG.pause()">⏸ Pause</button><button class="abtn sec sm" onclick="AG.restart()">↻ Restart</button><button class="abtn sec sm" id="agmute" onclick="SND.toggle()" aria-pressed="${!!AG.set().mute}">${AG.set().mute?'🔇':'🔊'}</button>${ptimeHtml()}</div>
-    ${o.above||''}<div class="agstage ${g.pixel?'px':''}" id="agstage" style="--ar:${(g.w/g.h).toFixed(3)};--agv:${g.vh||230}px"><canvas id="agcv" tabindex="0" width="${g.w}" height="${g.h}" aria-label="${esc(g.name)}"></canvas>${o.over||''}
-    <div class="agover" id="agover" ${C&&C.phase==='load'?'':'hidden'}>${C&&C.phase==='load'?`<div class="gcard"><h3>Loading…</h3><p class="sol">Getting ${esc(g.name)} ready.</p></div>`:''}</div></div>${o.below||''}</div>`};
+    ${o.above||''}${o.side?'<div class="agrow">':''}<div class="agstage ${g.pixel?'px':''}" id="agstage" style="--ar:${(g.w/g.h).toFixed(3)};--agv:${g.vh||230}px"><canvas id="agcv" tabindex="0" width="${g.w}" height="${g.h}" aria-label="${esc(g.name)}"></canvas>${o.over||''}
+    <div class="agover" id="agover" ${C&&C.phase==='load'?'':'hidden'}>${C&&C.phase==='load'?`<div class="gcard"><h3>Loading…</h3><p class="sol">Getting ${esc(g.name)} ready.</p></div>`:''}</div></div>${o.side?`<aside class="agside">${o.side}</aside></div>`:''}${o.below||''}</div>`};
 /* The pause card, and the Pause button's label */
 AG.ui=()=>{const o=$('agover'),b=$('agpb');if(b)b.textContent=AG.paused()?'▶ Resume':'⏸ Pause';if(!o||!AG.cur||AG.cur.phase!=='play')return;
   const show=AG.holds.has('pause')||AG.holds.has('away');o.hidden=!show;if(!show){o.innerHTML='';return}const g=AG.cur.g;

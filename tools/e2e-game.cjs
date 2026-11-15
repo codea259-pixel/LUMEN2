@@ -169,18 +169,30 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     await a.waitForSelector('text=The castle is safe!'); const gr = await a.evaluate(g => ({ gems: GEMS() - g, stars: GT.stars, best: (ARS('gate').st || {}).meadow, forest: gmOpen(1), snow: gmOpen(2) }), gg0);
     if (gr.gems !== [0, 3, 5, 8][gr.stars] || gr.best !== gr.stars || !gr.forest || gr.snow || !(await a.isVisible('text=New map unlocked: Forest Trail'))) fail('castle reward wrong: ' + JSON.stringify(gr));
     ok(`Goblin Gate: a right answer built a laser tower, goblins froze while a menu was open, a miss stopped the upgrade, 4 waves of Meadow Path defended for ${gr.stars} stars and ${gr.gems} gems, unlocking Forest Trail (6 waves)`); await shot(a, 'g-gate');
-    // Block Builder: side-by-side and stacked blocks that make 10 clear
-    await a.evaluate(() => toHub()); await a.click('.tile:has-text("Block Builder")'); await a.click('.accs >> text=Make 10'); await a.click('text=Start building'); await a.waitForSelector('.bcell.cur');
-    await a.evaluate(() => { BB.g[8][0] = 4; BB.cur = { v: 6, c: 3, r: 0 }; bbPaint() }); await a.keyboard.press('ArrowLeft'); await a.keyboard.press('ArrowLeft'); await a.keyboard.press(' ');
-    const bb1 = await a.evaluate(() => ({ clears: BB.clears, row: BB.g[8].join(), feed: BB.feed[0] }));
-    if (bb1.clears !== 1 || bb1.row !== '0,0,0,0,0,0' || bb1.feed !== '4 + 6 = 10') fail('side-by-side clear wrong: ' + JSON.stringify(bb1));
-    await a.evaluate(() => { BB.g[8][5] = 2; BB.cur = { v: 8, c: 5, r: 0 }; bbPaint() }); await a.click('.bcell >> nth=5');
-    if (await a.evaluate(() => BB.clears) !== 2) fail('a stacked 2 + 8 did not clear (tapping the block\'s own column should drop it)');
-    const lv = await a.evaluate(() => { BB.clears = 4; BB.g[8][0] = 9; BB.cur = { v: 1, c: 1, r: 8 }; bbDrop(); return { lv: BB.lv, feed: BB.feed[0] } });
-    if (lv.lv !== 2 || !/Level 2/.test(lv.feed)) fail('5 clears did not reach level 2: ' + JSON.stringify(lv));
-    const bg0 = await a.evaluate(() => GEMS()); await a.evaluate(() => { for (let r = 0; r < 9; r++) for (let c = 0; c < 6; c++) BB.g[r][c] = r === 0 && c === 2 ? 0 : 1; BB.clears = 8; BB.cur = { v: 1, c: 2, r: 0 }; bbDrop() });
-    await a.waitForSelector('text=Tower full!'); const bgem = await a.evaluate(g => GEMS() - g, bg0); if (bgem !== 2) fail('Block Builder paid ' + bgem + ' gems for 9 clears');
-    ok('Block Builder: 4 + 6 side by side and 2 + 8 stacked both cleared, the 5th clear reached level 2, and a full tower ends the round with 2 gems for 9 clears'); await shot(a, 'g-blocks');
+    // Block Builder: 4 + 6 side by side (keys), 8 + 2 stacked (tapping the column), 3 × 4 = 12, a mystery block, level 2, a rescue, a full tower, a challenge level
+    await a.evaluate(() => toHub()); await a.click('.tile:has-text("Block Builder")'); await a.waitForSelector('.bbmodes'); await a.click('.bbmode:has-text("Endless")'); await a.click('.chip:has-text("Make 10")'); await a.click('text=▶ Start');
+    await a.waitForFunction(() => AG.cur && AG.cur.phase === 'play' && AG.cur.st && AG.cur.st.phase === 'fall');
+    const bset = (cells, cur, t = 10) => a.evaluate(([cells, cur, t]) => { const Z = AG.cur.st; Z.p = { op: '+', t }; Z.g = Z.g.map(r => r.map(() => null)); for (const [r, c, b] of cells) Z.g[r][c] = b; Z.cur = { b: cur.b, c: cur.c, x: cur.c, y: cur.y || 0, lock: 0 }; Z.phase = 'fall'; Z.combo = 0 }, [cells, cur, t]);
+    const bwait = n => a.waitForFunction(n => AG.cur.st.clears >= n && AG.cur.st.phase === 'fall', n, { timeout: 8000 }), bfeed = () => a.evaluate(() => AG.cur.st.feed[0]);
+    await bset([[9, 1, { k: 'n', v: 4 }]], { b: { k: 'n', v: 6 }, c: 3 }); await a.keyboard.press('ArrowLeft'); await a.keyboard.press(' '); await bwait(1);
+    if (await bfeed() !== '4 + 6 = 10' || !(await a.evaluate(() => AG.cur.st.g[9].every(x => !x)))) fail('side-by-side clear wrong: ' + await bfeed());
+    await bset([[9, 5, { k: 'n', v: 2 }]], { b: { k: 'n', v: 8 }, c: 5 }); const bbox = await a.locator('#agcv').boundingBox();
+    await a.mouse.click(bbox.x + (14 + 5 * 52 + 26) / 392 * bbox.width, bbox.y + .5 * bbox.height); await bwait(2); if (await bfeed() !== '8 + 2 = 10') fail('a stacked 8 + 2 did not clear by tapping its column: ' + await bfeed());
+    await bset([[9, 0, { k: 'n', v: 3 }], [9, 1, { k: 'op', op: '×' }]], { b: { k: 'n', v: 4 }, c: 2, y: 8 }, 12); await a.keyboard.press(' '); await bwait(3); if (await bfeed() !== '3 × 4 = 12') fail('the 3 × 4 equation did not clear: ' + await bfeed());
+    await bset([[9, 0, { k: 'n', v: 7 }]], { b: { k: 'myst' }, c: 1, y: 8 }); await a.keyboard.press(' '); await answerQM(a, true); await bwait(4);
+    if (!/^(7 \+ 3|3 \+ 7)( \+ \d+)? = 10/.test(await bfeed())) fail('a right answer on a mystery block did not make the number that clears: ' + await bfeed());
+    await a.evaluate(() => { AG.cur.st.clears = 5 }); await bset([[9, 0, { k: 'n', v: 5 }]], { b: { k: 'n', v: 5 }, c: 1, y: 8 }); await a.keyboard.press(' '); await bwait(6);
+    if (await a.evaluate(() => AG.cur.st.lv) !== 2) fail('6 clears did not reach level 2');
+    await a.evaluate(() => { const Z = AG.cur.st; Z.rescued = 0; Z.g = Z.g.map((r, i) => r.map((_, c) => i >= 1 && c !== 3 ? { k: 'n', v: 1 } : null)); Z.cur = { b: { k: 'n', v: 1 }, c: 3, x: 3, y: 0, lock: 0 }; Z.phase = 'fall' });
+    await a.keyboard.press(' '); await answerQM(a, true); await a.waitForFunction(() => AG.cur.st.phase === 'fall'); const resc = await a.evaluate(() => AG.cur.st.g.slice(1, 5).every(r => r.every(x => !x)));
+    if (!resc) fail('a right rescue answer did not clear the top rows');
+    const bg0 = await a.evaluate(() => GEMS()); await a.evaluate(() => { const Z = AG.cur.st; Z.rescued = 9; Z.clears = 8; Z.g = Z.g.map((r, i) => r.map((_, c) => i === 0 && c === 3 ? null : { k: 'n', v: 1 })); Z.cur = { b: { k: 'n', v: 1 }, c: 3, x: 3, y: 0, lock: 0 }; Z.phase = 'fall' });
+    await a.keyboard.press(' '); await a.waitForSelector('text=Tower full!'); const bres = await a.evaluate(g => ({ d: GEMS() - g, r: AG.cur.res.gems, best: ARS('blocks').best }), bg0);
+    if (bres.r !== 2 || bres.d < 2 || !bres.best) fail('Block Builder result wrong: ' + JSON.stringify(bres));
+    await a.click('.bbmode:has-text("Equation Builder")'); await a.click('text=▶ Start'); await a.waitForFunction(() => AG.cur && AG.cur.phase === 'play' && AG.cur.st && AG.cur.st.phase === 'fall');
+    await a.evaluate(() => { AG.cur.st.goal = 1 }); await bset([[9, 0, { k: 'n', v: 2 }], [9, 1, { k: 'op', op: '×' }]], { b: { k: 'n', v: 5 }, c: 2, y: 8 }, 10); await a.keyboard.press(' ');
+    await a.waitForSelector('text=Equation Builder level 1 complete!'); if (await a.evaluate(() => ARS('blocks').ch.eq) !== 1) fail('the challenge level was not saved');
+    ok('Block Builder: 4 + 6 side by side and 8 + 2 stacked cleared, 3 × 4 = 12 made an equation, a mystery block became the number that clears, 6 clears reached level 2, a rescue cleared the top rows, a full tower paid 2 gems for 8 clears, and Equation Builder level 1 was completed'); await shot(a, 'g-blocks');
     // Dungeon Dash: move, recharge magic with answers, level up, dodge, take the stairs
     await a.evaluate(() => toHub()); await a.click('.tile:has-text("Dungeon Dash")'); await a.waitForSelector('.ddhero');
     const heroes = await a.$$eval('.ddhero > b', b => b.map(x => x.textContent)); if (heroes.length !== 4 || !(await a.isVisible('#dddash'))) fail('hero select or upgrade dashboard missing: ' + heroes.join(', '));
