@@ -5514,7 +5514,7 @@ const ART={
   blocks:()=>sceneSvg(`${[['3',20,70,'#F97316'],['+',52,70,'#8B5CF6'],['9',84,70,'#22B35E'],['=',116,70,'#8B5CF6'],['12',148,70,'#2D9CDB'],['7',52,30,'#E4572E'],['5',148,100,'#F2A900'],['5',116,100,'#D94F8A'],['8',84,100,'#22B35E']].map(([t,x,y,c])=>`<rect x="${x}" y="${y}" width="30" height="28" rx="6" fill="${c}"/><rect x="${x}" y="${y}" width="30" height="8" rx="4" fill="#fff" opacity=".35"/><text x="${x+15}" y="${y+20}" font-size="15" font-weight="800" text-anchor="middle" fill="#fff" font-family="sans-serif">${t}</text>`).join('')}<path d="M14 66H186" stroke="#FFE27A" stroke-width="2" stroke-dasharray="4 4"/>`,'#312E81','#1E1B4B'),
   gate:()=>sceneSvg(`<path d="M0 90Q100 70 200 90V130H0Z" fill="#6DBF62"/><path d="M0 112C50 96 120 118 200 100" stroke="#D9B98A" stroke-width="12" fill="none"/><path d="M150 38h40v62h-40z" fill="#A3AFBD"/><path d="M150 38v-8h8v8h8v-8h8v8h8v-8h8v8" fill="#A3AFBD"/><rect x="163" y="74" width="14" height="26" rx="6" fill="#5B6478"/><rect x="96" y="58" width="16" height="30" fill="#8C8FA3"/><circle cx="104" cy="54" r="9" fill="#67E8F9"/><path d="M104 54L60 92" stroke="#67E8F9" stroke-width="3"/>${nest(monsterSvg(['Goblin','ball','#7ED957',['ears']],false,''),26,70,44,44)}`,'#BFE6FF','#E9F8FF')};
 const GAMES=[
-  {id:'spell',n:'Spell Quest',p:'Cast spells with smart answers and befriend the monsters of seven magic lands.'},
+  {id:'spell',n:'Spell Quest',p:'A pixel adventure: explore seven lands, meet creatures in the tall grass and befriend them with smart answers.'},
   {id:'pets',n:'Pet Pals',p:'Your learning feeds a pet that grows, evolves and cheers you on.'},
   {id:'kart',n:'Turbo Trivia Kart',p:'A real racing game: steer into the right answer for boosts and power-ups on five tracks.'},
   {id:'blocks',n:'Block Builder',p:'A math block puzzle: make groups and equations that hit the target, with combos and challenges.'},
@@ -5743,7 +5743,7 @@ AG.paused=()=>!!(AG.cur&&AG.holds.size);
 AG.play=async(id,opts={})=>{if(!canStart())return;stopGames();const g=AG.G[id];if(!g)return;
   AG.cur={id,g,opts,phase:'load',st:null,t:0,res:null};AG.holds.clear();AG.held.clear();AR.mode=id;AR.run=true;rerealm();
   const top=document.querySelector('.ag');if(top)top.scrollIntoView({block:'start',behavior:'auto'});
-  try{if(g.load)await g.load();if(!AG.cur||AG.cur.id!==id)return;AG.fit();AG.cur.st=g.start(opts);AG.cur.phase='play';AG.ui();if(g.ready)g.ready(AG.cur.st);AG.loop();
+  try{if(g.load)await g.load();if(!AG.cur||AG.cur.id!==id)return;AG.fit();AG.cur.st=g.start(opts);AG.cur.phase='play';AG.ui();SND.music(g.music||g.snd);if(g.ready)g.ready(AG.cur.st);AG.loop();
     const cv=$('agcv');if(cv&&g.tap)cv.onpointerdown=e=>{const C=AG.cur;if(!C||C.phase!=='play'||AG.paused())return;e.preventDefault();cv.focus({preventScroll:true});const r=cv.getBoundingClientRect();g.tap((e.clientX-r.left)/r.width*g.w,(e.clientY-r.top)/r.height*g.h,C.st)}}
   catch(e){AG.crash(e)}};
 AG.loop=()=>{cancelAnimationFrame(AG.raf);AG.last=0;AG.acc=0;AG.raf=requestAnimationFrame(AG.frame)};
@@ -5760,8 +5760,8 @@ AG.frame=ts=>{const C=AG.cur;if(!C||C.phase!=='play')return;const cv=$('agcv');i
 AG.stop=()=>{cancelAnimationFrame(AG.raf);AG.raf=0;AG.held.clear();if(AG.cur&&AG.cur.g.stop)try{AG.cur.g.stop(AG.cur.st)}catch(e){}SND.hush()};
 GSTOP.push(()=>{AG.stop();if(AG.cur&&['load','play'].includes(AG.cur.phase))AG.cur=null});
 /* why: 'pause' (the menu), 'away' (hidden tab), 'q' (a question is open) */
-AG.hold=why=>{AG.holds.add(why);AG.held.clear();AR.paused=true;AG.ui()};
-AG.release=why=>{AG.holds.delete(why);if(!AG.holds.size){AR.paused=false;AG.last=0}AG.ui()};
+AG.hold=why=>{AG.holds.add(why);AG.held.clear();AR.paused=true;SND.musicPause();AG.ui()};
+AG.release=why=>{AG.holds.delete(why);if(!AG.holds.size){AR.paused=false;AG.last=0;SND.musicResume()}AG.ui()};
 AG.pause=()=>{if(AG.cur&&AG.cur.phase==='play'){AG.hold('pause');SND.play('click');AG.save()}};
 AG.resume=()=>{AG.release('pause');AG.release('away');SND.play('click');const cv=$('agcv');if(cv)cv.focus({preventScroll:true})};
 AG.restart=()=>{const C=AG.cur;if(!C)return;AG.stop();if(C.g.stop)try{C.g.stop(C.st)}catch(e){}AG.play(C.id,C.opts)};
@@ -5865,10 +5865,36 @@ const SND={ac:null,out:null,
   /* a held sound (an engine), set(pitch, volume) each frame */
   hum(type='sawtooth'){if(!this.live())return null;const ac=this.ac,o=ac.createOscillator(),f=ac.createBiquadFilter(),g=ac.createGain();o.type=type;f.type='lowpass';f.frequency.value=700;g.gain.value=0;o.connect(f);f.connect(g);g.connect(this.out);o.start();
     const h={set:(hz,v)=>{const t=ac.currentTime;o.frequency.setTargetAtTime(hz,t,.05);g.gain.setTargetAtTime(v,t,.08)},stop:()=>{try{g.gain.setTargetAtTime(0,ac.currentTime,.05);o.stop(ac.currentTime+.3)}catch(e){}}};(this._hums=this._hums||[]).push(h);return h},
-  hush(){(this._hums||[]).forEach(h=>h.stop());this._hums=[]},
-  toggle(){const s=AG.set();s.mute=!s.mute;if(s.mute)this.hush();SYNC();const b=$('agmute');if(b){b.textContent=s.mute?'🔇':'🔊';b.setAttribute('aria-pressed',s.mute)}document.querySelectorAll('.agvol input').forEach(i=>i.disabled=s.mute);if(!s.mute)this.play('click')},
+  hush(){(this._hums||[]).forEach(h=>h.stop());this._hums=[];this.musicStop();this.mus.held=''},
+  /* ---- Music: short original loops (eighth notes, MIDI numbers, 0 = rest), scheduled a little ahead ---- */
+  mus:{name:'',tr:0,i:0,t:0,timer:0,gain:null,held:''},
+  music(name,tr=0){const M=this.mus;if(M.timer&&M.name===name&&M.tr===tr)return;this.musicStop();M.held='';const song=MUSIC[name];if(!song||AG.set().music===false||!this.live())return;
+    Object.assign(M,{name,tr,i:0,t:this.ac.currentTime+.06,gain:this.ac.createGain()});M.gain.gain.value=.3;M.gain.connect(this.out);M.timer=setInterval(()=>this.musTick(),80);this.musTick()},
+  musTick(){const M=this.mus,S=MUSIC[M.name],ac=this.ac;if(!S||!ac||!M.gain)return;const st=60/S.bpm/2;
+    while(M.t<ac.currentTime+.3){const i=M.i,n=S.lead[i%S.lead.length],b=S.bass[i%S.bass.length],d=S.drum?S.drum[i%S.drum.length]:'.';
+      if(n)this.mnote(n+M.tr,st*.85,S.lw||'square',.08,M.t);if(b)this.mnote(b+M.tr,st*.95,S.bw||'triangle',.13,M.t);
+      if(d==='k')this.mnote(36,.09,'sine',.22,M.t,24);else if(d==='s')this.mhit(.08,.07,M.t,1800);else if(d==='h')this.mhit(.03,.03,M.t,7000);M.t+=st;M.i++}},
+  mnote(m,d,type,v,t,m2){const ac=this.ac,o=ac.createOscillator(),g=ac.createGain(),f=440*2**((m-69)/12);o.type=type;o.frequency.setValueAtTime(f,t);if(m2)o.frequency.exponentialRampToValueAtTime(440*2**((m2-69)/12),t+d);
+    g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+.01);g.gain.exponentialRampToValueAtTime(.0005,t+d);o.connect(g);g.connect(this.mus.gain);o.start(t);o.stop(t+d+.03)},
+  mhit(d,v,t,hz){const ac=this.ac;if(!this._nb){const n=Math.ceil(ac.sampleRate*.1),b=ac.createBuffer(1,n,ac.sampleRate),c=b.getChannelData(0);for(let i=0;i<n;i++)c[i]=Math.random()*2-1;this._nb=b}
+    const s=ac.createBufferSource(),f=ac.createBiquadFilter(),g=ac.createGain();s.buffer=this._nb;f.type='highpass';f.frequency.value=hz;g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0005,t+d);s.connect(f);f.connect(g);g.connect(this.mus.gain);s.start(t);s.stop(t+d+.02)},
+  musicStop(){const M=this.mus;clearInterval(M.timer);M.timer=0;if(M.gain&&this.ac){const g=M.gain;try{g.gain.setTargetAtTime(0,this.ac.currentTime,.04)}catch(e){}setTimeout(()=>{try{g.disconnect()}catch(e){}},400)}M.gain=null;M.name=''},
+  musicPause(){const M=this.mus;if(M.timer){const h=[M.name,M.tr];this.musicStop();M.held=h}},
+  musicResume(){const M=this.mus;if(M.held){const [n,t]=M.held;M.held='';this.music(n,t)}},
+  musicToggle(){const s=AG.set();s.music=s.music===false;SYNC();if(s.music===false)this.musicStop();else if(AG.cur&&AG.cur.phase==='play'&&!AG.paused())this.music(AG.cur.g.music||AG.cur.g.snd);this.play('click')},
+  toggle(){const s=AG.set();s.mute=!s.mute;if(s.mute)this.hush();SYNC();const b=$('agmute');if(b){b.textContent=s.mute?'🔇':'🔊';b.setAttribute('aria-pressed',s.mute)}document.querySelectorAll('.agvol input').forEach(i=>i.disabled=s.mute);if(!s.mute){this.play('click');if(AG.cur&&AG.cur.phase==='play'&&!AG.paused())this.music(AG.cur.g.music||AG.cur.g.snd)}},
   vol(v){AG.set().vol=Math.max(0,Math.min(1,+v));SYNC();this.play('click')},
-  ui(){const s=AG.set();return `<span class="agvol"><button class="abtn sec sm" type="button" onclick="SND.toggle();rerealmSafe()" aria-pressed="${!!s.mute}" aria-label="${s.mute?'Sound is off':'Sound is on'}">${s.mute?'🔇 Sound off':'🔊 Sound'}</button><input type="range" min="0" max="1" step="0.05" value="${s.vol}" aria-label="Volume" ${s.mute?'disabled':''} onchange="SND.vol(this.value)"></span>`}};
+  ui(){const s=AG.set();return `<span class="agvol"><button class="abtn sec sm" type="button" onclick="SND.toggle();rerealmSafe()" aria-pressed="${!!s.mute}" aria-label="${s.mute?'Sound is off':'Sound is on'}">${s.mute?'🔇 Sound off':'🔊 Sound'}</button><input type="range" min="0" max="1" step="0.05" value="${s.vol}" aria-label="Volume" ${s.mute?'disabled':''} onchange="SND.vol(this.value)"><button class="abtn sec sm" type="button" onclick="SND.musicToggle();rerealmSafe()" aria-pressed="${s.music!==false}">${s.music===false?'🎵 Music off':'🎵 Music'}</button></span>`}};
+/* Original tunes, one per game feel. lead and bass are MIDI notes per eighth note (0 = rest); drum: k kick, s snare, h hat */
+const MUSIC={
+  pets:{bpm:96,lw:'triangle',bw:'sine',lead:[72,0,76,0,79,0,76,0,77,0,74,0,71,0,74,0,72,0,76,0,79,0,81,0,79,77,76,74,72,0,0,0],bass:[48,0,0,0,55,0,0,0,53,0,0,0,55,0,0,0,48,0,0,0,57,0,0,0,53,0,55,0,48,0,0,0]},
+  kart:{bpm:150,lead:[76,76,0,79,0,76,74,72,74,74,0,76,0,74,72,71,72,72,0,76,0,79,81,79,77,76,74,72,74,0,71,0],bass:[45,0,57,0,45,0,57,0,43,0,55,0,43,0,55,0,41,0,53,0,41,0,53,0,43,0,55,0,43,0,55,0],drum:'k.h.s.h.k.k.s.h.'},
+  blocks:{bpm:112,lw:'triangle',lead:[64,67,72,67,64,67,72,67,65,69,72,69,65,69,72,69,67,71,74,71,67,71,74,71,64,67,72,76,74,72,71,67],bass:[48,0,0,0,48,0,0,0,53,0,0,0,53,0,0,0,55,0,0,0,55,0,0,0,48,0,0,0,55,0,0,0]},
+  gate:{bpm:120,lead:[69,0,69,72,76,0,74,72,71,0,71,74,77,0,76,74,72,0,72,76,79,0,77,76,74,72,71,68,69,0,0,0],bass:[45,0,52,0,45,0,52,0,44,0,52,0,44,0,52,0,45,0,52,0,43,0,50,0,40,0,47,0,45,0,0,0],drum:'k...s...k.k.s...'},
+  sq:{bpm:132,lead:[67,0,72,74,76,0,74,72,74,0,71,67,69,0,71,0,72,0,76,79,81,79,77,76,74,0,77,76,74,72,71,0,67,0,72,74,76,0,79,76,77,0,76,74,72,0,74,0,76,0,72,69,71,72,74,71,72,0,0,0,0,0,67,0],
+    bass:[48,0,55,0,48,0,55,0,43,0,50,0,43,0,50,0,45,0,52,0,41,0,48,0,43,0,50,0,43,0,50,0],drum:'k...h...s...h...'},
+  sqb:{bpm:160,lead:[69,72,76,72,69,72,76,79,77,76,74,72,74,76,77,0,74,77,81,77,74,77,81,84,83,81,79,76,79,0,80,0],
+    bass:[45,45,57,45,45,45,57,45,50,50,62,50,50,50,62,50,41,41,53,41,41,41,53,41,40,40,52,40,44,44,56,44],drum:'k.h.s.hkk.h.s.hh'}};
 /* Redraw the menu after a sound change, but never in the middle of a game */
 function rerealmSafe(){if(!AG.cur||AG.cur.phase!=='play')rerealm();else AG.ui()}
 const SFX={
@@ -6806,6 +6832,327 @@ const _gvP=GVIEW.pets;GVIEW.pets=function(){const P=PET();let h=_gvP();if(!P.kin
   h=h.replace('<div class="ppwrap"><div class="gcard">',pers+'<div class="ppwrap"><div><div class="gcard">').replace('</div></div>\n  <div><div class="gcard parch">',`</div></div>${memo}</div>\n  <div><div class="gcard parch">`);
   h=h.replace('<div class="gcard" style="margin-top:16px"><h3>👒 Dress up</h3>',games+evo+'<div class="gcard" style="margin-top:16px"><h3>👒 Dress up</h3>');
   return h};
+</script>
+
+<style>
+/* ===== Spell Quest: a pixel adventure ===== */
+.sqbox{margin-top:10px;min-height:96px;padding:12px 16px;border-radius:12px;background:#FFFDF6;color:#1E1B2E;border:4px solid #1E1B2E;box-shadow:inset 0 0 0 3px #F2D88A,0 5px 0 rgba(0,0,0,.25);font:700 1.05rem/1.45 "Atkinson Hyperlegible",sans-serif}
+.sqbox .who{display:block;font:800 .8rem "Bricolage Grotesque",sans-serif;text-transform:uppercase;letter-spacing:.06em;color:#7C3AED;margin-bottom:2px}
+.sqbox .row{margin-top:10px;gap:8px;flex-wrap:wrap}
+.sqbox .sqmenu{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin-top:10px}
+.sqbox .sqmenu button{min-height:52px;font-size:1rem}
+.sqbox .key{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:6px;background:rgba(0,0,0,.12);font-size:.8rem;margin-right:6px}
+.sqbox .drop{margin-top:10px}
+.sqfoe,.sqme{position:absolute;z-index:2;background:#FFFDF6;color:#1E1B2E;border:3px solid #1E1B2E;border-radius:8px;padding:5px 10px;min-width:150px;width:32%;font:800 .85rem/1.2 "Atkinson Hyperlegible",sans-serif;pointer-events:none}
+.sqfoe{left:3%;top:5%}.sqme{right:3%;bottom:7%}
+.sqbar{height:8px;border-radius:99px;background:#3A3550;margin-top:4px;overflow:hidden;border:1px solid #1E1B2E}.sqbar i{display:block;height:100%;width:100%;background:#4ADE80;transition:none}
+.sqbar i.mid{background:#FACC15}.sqbar i.low{background:#F87171}
+.sqme small{display:block;text-align:right;margin-top:2px;font-weight:700}
+.sqgo{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center}
+.sqgo img,.sqjr img{image-rendering:pixelated;image-rendering:crisp-edges}
+.sqgo .pv{display:flex;gap:6px;flex-wrap:wrap}.sqgo .pv img{width:64px;height:64px;background:rgba(255,255,255,.6);border-radius:12px}
+@media(max-width:620px){.sqgo{grid-template-columns:1fr}}
+.sqjr{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:10px}
+.sqjr .c{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px;border-radius:14px;border:2px solid var(--line);background:var(--panel);color:var(--ink);text-align:center}
+.sqjr .c img{width:72px;height:72px}.sqjr .c.unk img{filter:brightness(0) opacity(.35)}.sqjr .c.bud{border:3px solid var(--ga-gold)}
+.sqjr .c b{font:800 .95rem "Bricolage Grotesque",sans-serif}
+</style>
+<script type="text/x-lumen">
+/* ===== Spell Quest: a pixel adventure =====
+   Walk a tile map in each of the seven lands, meet creatures in the tall grass, and befriend them in turn-based battles where
+   a right answer casts a spell. Befriending a land's three creatures opens the gate to its boss. Everything is drawn here as
+   pixel art from the creature data (MONS) and the lands (LANDS), and saves into the same land progress as before (GM.lands),
+   plus GM.sq (journal, buddy, health, where you stood). All creatures, places and words are this site's own. ===== */
+const SQ=()=>GM.sq||(GM.sq={seen:{},buddy:'',hp:100,at:{},chest:{}});
+const sqName=m=>m[0][0].toUpperCase()+m[0].slice(1);
+const sqHas=(land,i)=>{const st=LS(land);return i===3?!!st.boss:!!st.won[i]};
+const sqFriends=()=>LANDS.reduce((n,l)=>{const st=LS(l.id);return n+st.won.filter(Boolean).length+(st.boss?1:0)},0);
+const SQTR=[0,-2,-4,2,-5,3,-7];
+const SQD={up:[0,-1],down:[0,1],left:[-1,0],right:[1,0]},SQDIRS=['up','down','left','right'];
+
+/* ---------- Colors for each land ---------- */
+const SQPAL={meadow:{g:'#7CCB6B',g2:'#6AB85A',t:'#3E9E4B',p:'#E8D29A',p2:'#D4BA7A',w:'#4FA8E8',w2:'#A8DCFA',e:'#2F8A3E',e2:'#1F6A2C',tr:'#7A5634',sky:['#BFE6FF','#E9F8FF']},
+  woods:{g:'#4E8F45',g2:'#447F3C',t:'#2A6A2A',p:'#B89868',p2:'#A08050',w:'#3F8FC8',w2:'#8FC8EC',e:'#1F6A2C',e2:'#154F20',tr:'#5A3E24',sky:['#CDE8C9','#EEF8EA']},
+  caves:{g:'#5B5288',g2:'#514880',t:'#8FE7F2',p:'#8C84B8',p2:'#7A72A6',w:'#2B2450',w2:'#4F44A0',e:'#3B3466',e2:'#2A2450',tr:'#7FE3F0',sky:['#3B3F6B','#6B5FA8']},
+  peaks:{g:'#EEF4FA',g2:'#DCE8F2',t:'#8FA8C0',p:'#C8D8E8',p2:'#B0C4D8',w:'#7FC8F8',w2:'#D8F2FF',e:'#2F6A5A',e2:'#FFFFFF',tr:'#5A4A3A',sky:['#DCEFFF','#F6FBFF']},
+  volcano:{g:'#6B4A3A',g2:'#5E4032',t:'#A0704A',p:'#8A6A5A',p2:'#7A5A4A',w:'#E4572E',w2:'#FFB347',e:'#3B2A22',e2:'#2A1E18',tr:'#FF7A3D',sky:['#FFB38A','#FFE0C7']},
+  sky:{g:'#F1F6FF',g2:'#E0EAFA',t:'#A8C8EC',p:'#FFE9A8',p2:'#F2D88A',w:'#9FD3FF',w2:'#E0F2FF',e:'#FFFFFF',e2:'#C8D8F0',tr:'#C8961E',sky:['#9FD3FF','#E3F3FF']},
+  keep:{g:'#4A3F55',g2:'#40364A',t:'#7A68A0',p:'#7A6E88',p2:'#6A5E78',w:'#16111F',w2:'#3A2A4A',e:'#2A2235',e2:'#1E1828',tr:'#8E6CEF',sky:['#2A1F3D','#5B3A5E']}};
+
+/* ---------- The maps: 22 x 14 inside a border. # wall or trees, . ground, , tall grass, = path, ~ water (or lava, or sky),
+   o rock, * flowers, S start, R rest stone, N a person, T a sign, C a chest, G the boss gate, B the boss ---------- */
+const SQMAPS={
+  meadow:['S..=.....,,,,,....***.','...=..T..,,,,,.....**.','...=.....,,,,,..N.....','...======.........,,,,','o.......=..~~~....,,,,','..**....=..~~~~...,,,,','........=...~~........','.,,,,...=========...C.','.,,,,.......R...=.....','.,,,,.....o.....=.....','..o..........###G#####','.,,,,........#........','.,,,,........#...B....','*............#........'],
+  woods:['S.=..#####....,,,,,...','..=..#####.N..,,,,,...','..=...###.....,,,,,.T.','..====......########..',',,,,.=......#,,,,,,#..',',,,,.=..*...#,,,,,,...',',,,,.=......#,,,,,,#..','....=====R..########..','##......=.........C...','##.,,,,.=======.......','...,,,,.......###G####','...,,,,.......#.......','..*...........#..B....','......,,,,....#.......'],
+  caves:['S...~~~~...,,,,,..#...','....~~~~...,,,,,..#.C.','..T.......o,,,,,..#...','##====....o.........##','..,,=,,...###...N.....','..,,=,,...###.........','..,,=,,....R....,,,,,.','....======......,,,,,.','o.........=.....,,,,,.','..~~~.....========....','..~~~..,,,,...###G####','.......,,,,...#.......','...o...,,,,...#..B....','..............#.......'],
+  peaks:['S..,,,,,,....#####....','=..,,,,,,....#####.C..','=..,,,,,,..........T..','=======.....oo........','......=...........,,,,','.~~~..=...N.......,,,,','.~~~..=.....R.....,,,,','.~~~..=======.....,,,,','............=.........',',,,,,,......=========.',',,,,,,.......###G#####',',,,,,,.......#........','...o.........#...B....','.............#........'],
+  volcano:['S.....~~~~~....,,,,,..','=.....~~~~~....,,,,,..','=..T...~~~.....,,,,,..','==========........N...',',,,,....o=..o.........',',,,,.....=....~~~~....',',,,,.....=R...~~~~.C..',',,,,.....=....~~~~....','.........=........,,,,','..o......========.,,,,','..............##G#####','.,,,,,........#.......','.,,,,,........#..B....','.,,,,,........#.......'],
+  sky:['S....~~~~~~~~....,,,,.','=....~~~~~~~~....,,,,.','=..T...........N.,,,,.','========...........C..','~~~~..=..,,,,,..~~~~~~','~~~~..=..,,,,,..~~~~~~','......=..,,,,,..R.....','..#...=.........#.....','..#...======..........',',,,,.......=====......',',,,,..........##G#####',',,,,..~~~.....#.......','......~~~.....#..B....','..............#.......'],
+  keep:['S..#....,,,,,...#....C','=..#....,,,,,...#.....','=..#....,,,,,...#..N..','=.........=.........T.','==========...~~~......','####..........~~~.####',',,,,,,...R............',',,,,,,....==========..',',,,,,,....#........=..','..........#..,,,,..=..','..o.......#..,,,,##G##','..........#..,,,,#....','..........#......#.B..','..........#......#....']};
+const SQNPC={meadow:{n:'Farmer Fen',h:'#5A3825',c:'#C0392B',say:['Hello, traveler! Creatures love to hide in the tall grass.','Walk through it, and one might hop out to meet you.','Answer well and they will want to be your friend!']},
+  woods:{n:'Ranger Ivy',h:'#B83A26',c:'#2E7D32',say:['Shh... the Whispering Woods are full of shy creatures.','Befriend all three and the old gate will open.','Old Grumbleroot waits beyond it. Be brave!']},
+  caves:{n:'Miner Oz',h:'#4A4A4A',c:'#E0A030',say:['My lantern is out, but the crystals glow enough!','Glimmer Bats hang out near the water. Watch your step.','Gemjaw guards the deepest cave. Bring your best spells.']},
+  peaks:{n:'Climber Sol',h:'#D9A441',c:'#2D9CDB',say:['Brr! Keep moving and you will stay warm.','Snowpuffs are friendly, but Frostfang is shy at first.','The Yeti Queen only listens to the wise.']},
+  volcano:{n:'Smith Rook',h:'#2B1B12',c:'#6B6F80',say:['Mind the lava! It is hot enough to melt a spoon.','Ember Imps love riddles. Lava Slimes love naps.','Magmaw rumbles past the gate. Stay cool!']},
+  sky:{n:'Captain Wren',h:'#EADBB0',c:'#7B5BD6',say:['Welcome to the Sky Castle grounds!','Do not step off the clouds. It is a long way down.','The Storm Griffin rules these skies. Show it what you know!']},
+  keep:{n:'Sage Orla',h:'#EADBB0',c:'#3B3355',say:['You have come so far, hero.','The Dragon\'s Keep tests everything you have learned.','Befriend its guardians, then face the Elder Dragon.']}};
+const SQSIGN={meadow:'Rest Stone ahead. Step on it to feel all better.',woods:'Lost? Follow the path. It always leads somewhere.',caves:'Careful: underground lake. No swimming!',peaks:'Frost Peaks: the air is thin, but the views are wonderful.',
+  volcano:'Danger: lava. Stay on the path.',sky:'Cloud path: soft, bouncy and totally safe.',keep:'Only the brave and the curious may pass.'};
+const SQHIT={blob:'bounces into',ball:'tumbles into',bean:'bops',block:'bumps into',bird:'swoops at',stump:'swats'};
+
+/* ---------- Pixel art: shapes are filled into a grid of color codes, then outlined ---------- */
+const SQIMG={},SQC={};
+function sqGrid(N,fill,pal){const g=new Uint8Array(N*N),set=(x,y,c)=>{x=Math.round(x);y=Math.round(y);if(x>=0&&y>=0&&x<N&&y<N)g[y*N+x]=c};fill(set,g,N);
+  const cv=document.createElement('canvas');cv.width=cv.height=N;const x=cv.getContext('2d'),im=x.createImageData(N,N),d=im.data,rgb={};
+  for(const k in pal){const h=pal[k];rgb[k]=[parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)]}
+  for(let y=0;y<N;y++)for(let i=0;i<N;i++){const v=g[y*N+i];let c=v?rgb[v]:null;
+    if(!v){const n=(a,b)=>a>=0&&b>=0&&a<N&&b<N&&g[b*N+a];if(n(i-1,y)||n(i+1,y)||n(i,y-1)||n(i,y+1))c=rgb.o}
+    if(c){const j=(y*N+i)*4;d[j]=c[0];d[j+1]=c[1];d[j+2]=c[2];d[j+3]=255}}
+  x.putImageData(im,0,0);return cv}
+/* A creature from its MONS entry [name, shape, color, accessories], N x N pixels */
+function sqMon(m,N=32){const key=m[0]+N;if(SQC[key])return SQC[key];const [,shape,c,acc]=m,A=a=>acc.includes(a),s=N/32,
+  ac=A('flame')?'#FF8A3D':A('crystals')?'#7FE3F0':A('cap')?'#E04E4E':A('leaf')?'#5FB548':A('cloud')?'#FFFFFF':'#FFE27A';
+  const pal={o:'#1E1B2E',1:c,2:tint(c,.4),3:shade(c,.62),4:'#1B1B2F',5:'#FFFFFF',6:'#FFE27A',7:'#FF8FB1',8:ac,9:tint(c,.2),10:shade(c,.82)};
+  const cv=sqGrid(N,(set,g)=>{const S=v=>v*s,P=(x,y,k)=>set(S(x),S(y),k),
+    ell=(cx,cy,rx,ry,k)=>{for(let y=Math.floor(S(cy-ry));y<=Math.ceil(S(cy+ry));y++)for(let x=Math.floor(S(cx-rx));x<=Math.ceil(S(cx+rx));x++){const dx=(x+.5-S(cx))/S(rx),dy=(y+.5-S(cy))/S(ry);if(dx*dx+dy*dy<=1)set(x,y,k)}},
+    rect=(x0,y0,x1,y1,k)=>{for(let y=Math.round(S(y0));y<=Math.round(S(y1));y++)for(let x=Math.round(S(x0));x<=Math.round(S(x1));x++)set(x,y,k)},
+    tri=(ax,ay,bx,by,cx,cy,k)=>{[ax,ay,bx,by,cx,cy]=[ax,ay,bx,by,cx,cy].map(S);const D=(bx-ax)*(cy-ay)-(by-ay)*(cx-ax);if(!D)return;
+      for(let y=Math.floor(Math.min(ay,by,cy));y<=Math.ceil(Math.max(ay,by,cy));y++)for(let x=Math.floor(Math.min(ax,bx,cx));x<=Math.ceil(Math.max(ax,bx,cx));x++){
+        const X=x+.5,Y=y+.5,u=((bx-X)*(cy-Y)-(by-Y)*(cx-X))/D,v=((cx-X)*(ay-Y)-(cy-Y)*(ax-X))/D;if(u>=-.02&&v>=-.02&&1-u-v>=-.02)set(x,y,k)}};
+    const top={blob:12,ball:6,bean:5,block:8,bird:9,stump:9}[shape],ey={blob:18,ball:14,bean:12,block:14,bird:15,stump:16}[shape],cx=16;
+    /* behind the body */
+    if(A('wings'))[[5,16],[27,16]].forEach(([x,y])=>ell(x,y,4.5,7,3));
+    if(A('claws')){rect(2,17,6,21,3);rect(26,17,30,21,3)}
+    if(A('crystals')){tri(4,24,9,14,12,24,8);tri(20,24,23,14,28,24,8)}
+    /* the body */
+    if(shape==='blob'){ell(16,21,12.5,9.5,1);rect(4,21,28,28,1);ell(16,24,7,3.5,2)}
+    else if(shape==='ball'){ell(16,17,11.5,11.5,1);ell(16,21,6,5,2);rect(10,27,13,29,3);rect(19,27,22,29,3)}
+    else if(shape==='bean'){ell(16,17,9.5,12.5,1);ell(16,21,5,6,2);rect(11,28,14,29,3);rect(18,28,21,29,3)}
+    else if(shape==='block'){rect(7,8,25,28,1);P(7,8,0);P(25,8,0);P(7,28,0);P(25,28,0);rect(11,18,21,25,2)}
+    else if(shape==='bird'){ell(16,18,9.5,9.5,1);ell(16,22,5,5,2);rect(11,27,13,29,6);rect(19,27,21,29,6)}
+    else{rect(8,10,24,28,1);ell(16,10,8,3,2);rect(5,26,9,28,3);rect(23,26,27,28,3)}
+    /* light from the top left: highlight and shade the body */
+    for(let y=0;y<N;y++)for(let x=0;x<N;x++)if(g[y*N+x]===1){const d=(x-S(cx))+(y-S(18));if(d>S(9))g[y*N+x]=10;else if(d<-S(11))g[y*N+x]=9}
+    /* stripes only recolor the body */
+    if(A('stripes'))for(const y0 of [ey+4,ey+8])for(let y=Math.round(S(y0));y<=Math.round(S(y0+1));y++)for(let x=0;x<N;x++){const v=g[y*N+x];if(v===1||v===9||v===10||v===2)g[y*N+x]=3}
+    /* on top */
+    if(A('ears')){tri(cx-9,top+4,cx-3,top+1,cx-8,top-5,1);tri(cx+9,top+4,cx+3,top+1,cx+8,top-5,1);tri(cx-7,top+2,cx-5,top+1,cx-7,top-2,7);tri(cx+7,top+2,cx+5,top+1,cx+7,top-2,7)}
+    if(A('horns')){tri(cx-7,top+2,cx-3,top+1,cx-7,top-6,6);tri(cx+7,top+2,cx+3,top+1,cx+7,top-6,6)}
+    if(A('spikes'))for(let k=-2;k<=2;k++)tri(cx+k*4-2,top+3,cx+k*4+2,top+3,cx+k*4,top-3,3);
+    if(A('leaf')){tri(cx,top+1,cx+7,top-5,cx+1,top-7,8);rect(cx,top-1,cx,top+1,3)}
+    if(A('flower')){ell(cx-3,top-1,2.5,2.5,7);ell(cx+3,top-1,2.5,2.5,7);ell(cx,top-4,2.5,2.5,7);ell(cx,top+1,2,2,7);ell(cx,top-1,1.6,1.6,6)}
+    /* a mushroom cap: the top half of a wide ellipse, with spots */
+    if(A('cap')){for(let y=Math.floor(S(top-4));y<=Math.round(S(top+4));y++)for(let x=Math.floor(S(cx-13));x<=Math.ceil(S(cx+13));x++){const dx=(x+.5-S(cx))/S(13),dy=(y+.5-S(top+4))/S(8);if(dx*dx+dy*dy<=1)set(x,y,8)}
+      ell(cx-6,top,2,1.6,5);ell(cx+5,top-1,2,1.6,5);ell(cx,top-3,1.6,1.4,5);rect(cx-12,top+4,cx+12,top+4,3)}
+    if(A('antenna')){tri(cx-4,top+1,cx-3,top+1,cx-7,top-6,3);tri(cx+4,top+1,cx+3,top+1,cx+7,top-6,3);ell(cx-7,top-6,1.6,1.6,6);ell(cx+7,top-6,1.6,1.6,6)}
+    if(A('flame')){tri(cx-5,top+2,cx+5,top+2,cx,top-9,8);tri(cx-2,top+2,cx+2,top+2,cx,top-4,6)}
+    if(A('crystals'))tri(cx-2,top+1,cx+2,top+1,cx,top-6,8);
+    if(A('cloud'))[[8,28],[16,29],[24,28]].forEach(([x,y])=>ell(x,y,5,3,5));
+    /* the face */
+    const ew=N>=24?2:1,eh=N>=24?3:2;
+    for(const ex of [cx-5,cx+3]){for(let y=0;y<eh;y++)for(let x=0;x<ew;x++)set(Math.round(S(ex))+x,Math.round(S(ey))+y,4);if(N>=24)set(Math.round(S(ex)),Math.round(S(ey)),5)}
+    if(N>=24){rect(cx-1,ey+5,cx+1,ey+5,4);rect(cx-8,ey+4,cx-7,ey+4,7);rect(cx+7,ey+4,cx+8,ey+4,7);if(shape==='bird')rect(cx-1,ey+3,cx+1,ey+4,6)}
+  },pal);SQC[key]=cv;return cv}
+/* The hero, or a person: dir up / down / left / right, frame 0 standing, 1 and 2 walking */
+function sqPerson(dir,f,c){const key=`p${dir}${f}${c.s}${c.h}${c.c}`;if(SQC[key])return SQC[key];const L=dir==='left',d=L?'right':dir;
+  const cv=sqGrid(16,(set0)=>{const set=(x,y,k)=>set0(L?15-x:x,y,k),rect=(x0,y0,x1,y1,k)=>{for(let y=y0;y<=y1;y++)for(let x=x0;x<=x1;x++)set(x,y,k)};
+    if(d==='down'){rect(4,1,11,3,3);rect(4,4,11,8,2);rect(4,4,4,6,3);rect(11,4,11,6,3);rect(5,4,10,4,3);set(6,6,4);set(9,6,4);set(7,8,7)}
+    else if(d==='up'){rect(4,1,11,8,3);rect(5,8,10,8,2)}
+    else{rect(5,1,10,3,3);rect(4,3,6,7,3);rect(7,4,10,8,2);rect(7,4,10,4,3);set(9,6,4)}
+    rect(4,9,11,12,1);rect(4,12,11,12,6);
+    if(d==='right'){const a=f===1?1:f===2?-1:0;rect(7+a,9,8+a,11,1);set(7+a,12,2)}else{rect(3,9,3,11,1);rect(12,9,12,11,1);set(3,12,2);set(12,12,2)}
+    if(d==='right'){if(f){rect(5,13,6,14,5);rect(9,13,10,14,5);set(5,15,8);set(6,15,8);set(9,15,8);set(10,15,8)}else{rect(6,13,9,14,5);rect(6,15,7,15,8);rect(8,15,9,15,8)}}
+    else{const a=f===1,b=f===2;rect(5,13,6,a?13:14,5);rect(9,13,10,b?13:14,5);rect(5,a?14:15,6,a?14:15,8);rect(9,b?14:15,10,b?14:15,8)}
+  },{o:'#1E1B2E',1:c.c,2:c.s,3:c.h,4:'#1B1B2F',5:'#3B3B6B',6:shade(c.c,.6),7:'#C2410C',8:'#4A3020'});SQC[key]=cv;return cv}
+const sqMe=()=>{const h=GM.hero||{};return{s:SKIN[h.skin??1],h:HAIRC[h.hc??1],c:'#2BA59B'}};
+/* Map tiles, 16 x 16, per land; fr is the animation frame */
+function sqTile(land,ch,fr){const k=land+ch+fr;if(SQC[k])return SQC[k];const cv=document.createElement('canvas');cv.width=cv.height=16;const x=cv.getContext('2d'),P=SQPAL[land],
+  px=(X,Y,w,h,c)=>{x.fillStyle=c;x.fillRect(X,Y,w,h)},R=krng(ch.charCodeAt(0)*31+7),rows=(W,c,y0)=>W.forEach((w,i)=>{if(w)px(8-w/2,y0+i,w,1,c)});
+  const ground=()=>{px(0,0,16,16,P.g);for(let i=0;i<7;i++)px(R()*16|0,R()*16|0,1,1,P.g2)};
+  if('.SNB'.includes(ch))ground();
+  else if(ch===','){ground();for(let i=0;i<4;i++){const X=1+i*4,Y=i%2?7:3;px(X,Y+2,1,5,P.t);px(X+1,Y,1,7,P.t);px(X+2,Y+3,1,4,P.t);px(X+1,Y+8,2,1,shade(P.t,.7))}}
+  else if(ch==='*'){ground();[[3,3,'#FF6FA8'],[10,8,'#FFE27A'],[5,11,'#FFFFFF']].forEach(([a,b,c])=>{px(a,b+2,1,2,P.t);px(a-1,b,3,1,c);px(a,b-1,1,3,c);px(a,b,1,1,'#FFD34D')})}
+  else if(ch==='='){px(0,0,16,16,P.p);for(let i=0;i<6;i++)px(R()*14|0,R()*15|0,2,1,P.p2)}
+  else if(ch==='~'){px(0,0,16,16,P.w);for(let i=0;i<3;i++)px((i*6+fr*3)%14,2+i*5,4,1,P.w2)}
+  else if(ch==='o'){ground();rows([6,10,12,12,12,12,10,8],'#8C8FA3',5);px(5,6,4,2,'#C0C3D0');px(4,13,8,1,'#5E6175')}
+  else if(ch==='R'){ground();px(4,12,8,3,'#8C8FA3');px(4,12,8,1,'#B0B4C2');rows([2,4,4,6,6,6,6,6],'#7FE3F0',4);px(7,5,1,5,'#E0FBFF');px(fr?3:12,fr?4:2,1,1,'#FFFFFF');px(fr?12:3,fr?8:7,1,1,'#FFFFFF')}
+  else if(ch==='C'){ground();px(2,5,12,9,'#8A5A2B');px(2,5,12,3,'#B07A3A');px(2,8,12,1,'#5A3A1B');px(7,7,2,3,'#FFD34D');px(2,13,12,1,'#5A3A1B')}
+  else if(ch==='c'){ground();px(2,8,12,6,'#8A5A2B');px(2,4,12,4,'#5A3A1B');px(3,5,10,2,'#3A2410');px(2,13,12,1,'#5A3A1B')}
+  else if(ch==='T'){ground();px(7,9,2,6,'#7A5634');px(2,2,12,8,'#8A5A2B');px(3,3,10,6,'#D8AA6A');px(4,4,8,1,'#8A5A2B');px(4,6,6,1,'#8A5A2B')}
+  else if(ch==='G'){ground();for(let i=0;i<4;i++)px(1+i*4,1,2,15,'#6B6F80');px(0,3,16,2,'#4A4E5E');px(0,11,16,2,'#4A4E5E');px(7,6,2,3,'#FFD34D')}
+  else if(ch==='#'){
+    if(land==='meadow'||land==='woods'){ground();rows([6,10,12,14,14,14,14,12,10,6],P.e,0);px(4,2,4,2,tint(P.e,.25));px(6,10,4,5,P.tr);px(3,9,10,1,P.e2)}
+    else if(land==='caves'){px(0,0,16,16,P.e);px(0,0,16,2,P.e2);rows([2,2,4,4,4,6,6,6],P.tr,5);px(7,6,1,6,'#E0FBFF')}
+    else if(land==='peaks'){ground();rows([2,4,4,6,8,8,10,12,12,14],P.e,1);rows([2,4,2,0,4,2],P.e2,1);px(7,11,2,4,P.tr)}
+    else if(land==='volcano'){px(0,0,16,16,P.e);px(0,0,16,1,P.e2);px(3,4,1,5,P.tr);px(4,8,4,1,P.tr);px(11,2,1,4,P.tr);px(9,11,4,1,P.tr)}
+    else if(land==='sky'){px(0,0,16,16,P.w);[[5,8,5],[11,9,5],[8,5,4],[8,11,6]].forEach(([a,b,r])=>{for(let y=-r;y<=r;y++){const w=Math.round(Math.sqrt(r*r-y*y))*2;px(a-w/2,b+y,w,1,'#FFFFFF')}});px(1,14,14,2,P.e2)}
+    else{px(0,0,16,16,P.e);px(0,5,16,1,P.e2);px(0,11,16,1,P.e2);px(5,0,1,5,P.e2);px(12,6,1,5,P.e2);px(3,12,1,4,P.e2);px(1,1,3,1,shade(P.e,1.4))}}
+  else ground();
+  SQC[k]=cv;return cv}
+/* the battle backdrop for a land, drawn once */
+function sqBack(land){const k='bg'+land;if(SQC[k])return SQC[k];const cv=document.createElement('canvas');cv.width=320;cv.height=192;const x=cv.getContext('2d'),P=SQPAL[land],L=LANDS.find(l=>l.id===land);
+  const g=x.createLinearGradient(0,0,0,120);g.addColorStop(0,P.sky[0]);g.addColorStop(1,P.sky[1]);x.fillStyle=g;x.fillRect(0,0,320,120);x.fillStyle=L.gr;x.fillRect(0,112,320,80);
+  const R=krng(land.length*13);x.fillStyle=shade(L.gr,.9);for(let i=0;i<40;i++)x.fillRect(R()*320|0,112+R()*80|0,3,1);
+  const pad=(cx,cy,rx,ry)=>{for(let y=-ry;y<=ry;y++){const w=Math.round(Math.sqrt(1-(y*y)/(ry*ry))*rx)*2;x.fillStyle=y<0?shade(L.gr,.78):shade(L.gr,.68);x.fillRect(cx-w/2,cy+y,w,1)}};
+  pad(236,98,56,10);pad(82,172,64,12);SQC[k]=cv;return cv}
+const sqImg=(m,N)=>{const k=m[0]+N;return SQIMG[k]||(SQIMG[k]=sqMon(m,N).toDataURL())};
+
+/* ---------- The game ---------- */
+const SQV=[320,192];
+AG.def({id:'sq',name:'Spell Quest',w:320,h:192,maxW:1280,vh:300,pixel:true,snd:'ui',music:'sq',go:'Explore',sub:'A pixel adventure',
+  help:['Walk with the arrow keys or WASD, or tap where you want to go.','Tall grass hides creatures. When one appears, cast spells by answering questions.','Tire a creature out, or make friends once it is tired, to befriend it. Befriend all three to open the gate to the boss.','Press Space next to people, signs and chests. Step on the Rest Stone to heal.'],
+  keys:[['← → ↑ ↓','walk'],['Space','talk or check'],['1 2 3','battle choices'],['P','pause']],
+  ach:{first:{i:'🤝',n:'First friend',d:'Befriend a creature in the adventure',gems:1},ten:{i:'👥',n:'Friend circle',d:'Have 10 creature friends',gems:3},all:{i:'🌈',n:'Friend of the realm',d:'Befriend all 28 creatures',gems:10},
+    boss:{i:'👑',n:'Brave heart',d:'Befriend a boss in the adventure',gems:3},hero:{i:'🏆',n:'Realm hero',d:'Befriend all seven bosses',gems:10},seen:{i:'📔',n:'Field researcher',d:'Meet 14 different creatures',gems:2},
+    chest:{i:'🧰',n:'Treasure finder',d:'Open 3 treasure chests',gems:2},streak:{i:'🔥',n:'Spell streak',d:'Cast 5 right spells in a row in one battle',gems:2}},
+  places:()=>LANDS.map(l=>{const st=LS(l.id);return{on:landOpen(l),i:l.e,n:l.n,s:`${st.won.filter(Boolean).length+(st.boss?1:0)} of 4 friends`,how:`Opens at level ${l.lv}`}}),
+  start(o){const land=o&&o.land&&landOpen(LANDS.find(l=>l.id===o.land))?o.land:curLand(),li=LANDS.findIndex(l=>l.id===land),m=SQMAPS[land],Q=SQ();
+    const map=['#'.repeat(24),...m.map(r=>'#'+r+'#'),'#'.repeat(24)].map(r=>r.split(''));let sx=1,sy=1,rx=1,ry=1;
+    map.forEach((r,y)=>r.forEach((ch,x)=>{if(ch==='S'){sx=x;sy=y}if(ch==='R'){rx=x;ry=y}if(ch==='G'&&LS(land).won.every(Boolean))r[x]='=';if(ch==='C'&&Q.chest[land])r[x]='c'}));
+    let [x,y]=Q.at[land]||[sx,sy];if(!'.,=*SR'.includes((map[y]||[])[x]||'#')){x=sx;y=sy}
+    const hp=Math.max(30,Math.min(100,Q.hp||100));
+    return{land,li,L:LANDS[li],m:map,x,y,ox:x,oy:y,mt:1,dir:'down',bx:x,by:y,bx0:x,by0:y,rest:[rx,ry],hp,mode:'walk',talk:null,B:null,steps:0,since:0,path:null,pathAct:null,t:0,tt:0,trip:{f:0,g:0,b:0},hudT:0,cam:[0,0],me:sqMe()}},
+  ready(Z){SND.music('sq',SQTR[Z.li]);sqBox(Z);sqHud(Z,1);if(!SQ().met){SQ().met=1;sqTalk(Z,'Lumi',['Welcome to Spell Quest! Walk with the arrow keys, or tap where you want to go.','Creatures hide in the tall grass. Answer questions to cast spells and make friends!'])}},
+  step(dt,Z){Z.t+=dt;
+    if(Z.mode==='trans'){if((Z.tt+=dt)>.7){Z.mode='battle';sqBox(Z);sqHud(Z,1)}return}
+    if(Z.mode==='battle'){const B=Z.B;if(!B)return;B.hpS+=(B.hp-B.hpS)*Math.min(1,dt*6);Z.hpS+=(Z.hp-Z.hpS)*Math.min(1,dt*6);if(B.fx>0)B.fx-=dt;if(B.atk>0)B.atk-=dt;if(B.cast>0)B.cast-=dt;
+      for(const d of B.dmg)if(d.t>0){d.t-=dt;d.y-=dt*18}if((Z.hudT+=dt)>.06){Z.hudT=0;sqHud(Z)}return}
+    if(Z.mode!=='walk')return;
+    if(Z.mt<1){Z.mt=Math.min(1,Z.mt+dt*6.5);if(Z.mt>=1)sqArrive(Z);return}
+    let d=null;if(Z.path&&Z.path.length){const [nx,ny]=Z.path[0];d=nx>Z.x?'right':nx<Z.x?'left':ny>Z.y?'down':'up'}else for(const k of SQDIRS)if(AG.held.has(k)){d=k;break}
+    if(!d){if(Z.path&&!Z.path.length){Z.path=null;if(Z.pathAct)sqFaceAct(Z)}return}
+    Z.dir=d;const [dx,dy]=SQD[d],nx=Z.x+dx,ny=Z.y+dy;
+    if(sqWalk(Z,nx,ny)){Z.bx0=Z.bx;Z.by0=Z.by;Z.bx=Z.x;Z.by=Z.y;Z.ox=Z.x;Z.oy=Z.y;Z.x=nx;Z.y=ny;Z.mt=0;if(Z.path)Z.path.shift()}else Z.path=null},
+  draw(a,Z){const x=AG.cx;if(!x)return;const o=Z.off||(Z.off=document.createElement('canvas'));if(o.width!==320){o.width=320;o.height=192}const c=o.getContext('2d');c.imageSmoothingEnabled=false;
+    if(Z.mode==='battle')sqDrawBattle(c,Z);else sqDrawMap(c,Z);
+    if(Z.mode==='trans'){const k=Z.tt/.7;c.fillStyle='#1E1B2E';for(let i=0;i<12;i++){const w=Math.min(1,k*1.6-i*.04)*160;if(w>0){c.fillRect(0,i*16,w,16);c.fillRect(320-w,i*16+8,w,8)}}if((Z.tt*10|0)%2===0&&k<.35){c.fillStyle='rgba(255,255,255,.6)';c.fillRect(0,0,320,192)}}
+    x.imageSmoothingEnabled=false;x.drawImage(o,0,0,320,192)},
+  key(k,down,Z){if(!down)return;const B=Z.B;
+    if(Z.mode==='talk'){if(k==='act'||k==='enter')sqNext(Z);return}
+    if(Z.mode==='walk'){if(k==='act'||k==='enter')sqAct(Z);else if(SQD[k])Z.path=null;return}
+    if(Z.mode==='battle'&&B){if(B.ph==='menu'){if(k==='1')sqCast(Z);else if(k==='2')sqFriend(Z);else if(k==='3')sqRun(Z)}else if((k==='act'||k==='enter')&&B.next&&['intro','msg','won'].includes(B.ph))sqBNext(Z)}},
+  tap(px,py,Z){if(Z.mode==='talk')return sqNext(Z);if(Z.mode!=='walk')return;const tx=Math.floor((px+Z.cam[0])/16),ty=Math.floor((py+Z.cam[1])/16);sqPath(Z,tx,ty)},
+  timeout:Z=>sqTrip(Z,'time'),
+  stop(Z){if(Z){const Q=SQ();Q.at[Z.land]=[Z.x,Z.y];Q.hp=Z.hp}}});
+const sqWalk=(Z,x,y)=>{const ch=Z.m[y]&&Z.m[y][x];return !!ch&&'.,=*SR'.includes(ch)};
+function sqArrive(Z){Z.steps++;const Q=SQ(),ch=Z.m[Z.y][Z.x];Q.at[Z.land]=[Z.x,Z.y];if(Z.steps%12===0)SYNC();
+  if(ch==='R'&&Z.hp<100){Z.hp=100;Q.hp=100;SND.play('unlock');sqHud(Z,1);Z.path=null;return sqTalk(Z,'',['You touch the Rest Stone. You feel all better!'])}
+  if(ch===','){Z.since++;if(Z.since>=3&&Math.random()<(Z.forceMeet?1:.14)){Z.since=0;Z.path=null;sqMeet(Z)}}}
+/* Walk to a tapped tile (or next to a person, sign or chest, then check it) */
+function sqPath(Z,tx,ty){const M=Z.m,W=M[0].length,H=M.length;if(tx<0||ty<0||tx>=W||ty>=H)return;const ok=sqWalk(Z,tx,ty),
+  goal=ok?[[tx,ty]]:[[tx,ty+1],[tx,ty-1],[tx-1,ty],[tx+1,ty]].filter(([a,b])=>sqWalk(Z,a,b)||(a===Z.x&&b===Z.y));if(!goal.length)return;
+  const K=(a,b)=>b*W+a,prev=new Map([[K(Z.x,Z.y),-1]]),q=[[Z.x,Z.y]];let end=null;
+  while(q.length){const [a,b]=q.shift();if(goal.some(([c,d])=>c===a&&d===b)){end=K(a,b);break}for(const [dx,dy] of [[0,1],[0,-1],[-1,0],[1,0]]){const c=a+dx,d=b+dy;if(!prev.has(K(c,d))&&sqWalk(Z,c,d)){prev.set(K(c,d),K(a,b));q.push([c,d])}}}
+  if(end==null)return;const path=[];for(let k=end;k!==K(Z.x,Z.y);k=prev.get(k))path.unshift([k%W,(k/W)|0]);Z.path=path;Z.pathAct=ok?null:[tx,ty]}
+function sqFaceAct(Z){const [tx,ty]=Z.pathAct;Z.pathAct=null;const dx=tx-Z.x,dy=ty-Z.y;if(Math.abs(dx)+Math.abs(dy)!==1)return;Z.dir=dx>0?'right':dx<0?'left':dy>0?'down':'up';sqAct(Z)}
+/* Check what is in front of you */
+function sqAct(Z){if(Z.mt<1)return;const [dx,dy]=SQD[Z.dir],fx=Z.x+dx,fy=Z.y+dy,ch=Z.m[fy]&&Z.m[fy][fx],L=Z.L,M=MONS[Z.land],st=LS(Z.land),Q=SQ();
+  if(ch==='N'){const p=SQNPC[Z.land];return sqTalk(Z,p.n,p.say)}
+  if(ch==='T')return sqTalk(Z,'Sign',[SQSIGN[Z.land]]);
+  if(ch==='C'){Z.m[fy][fx]='c';Q.chest[Z.land]=1;addGems(3);Z.trip.g+=3;SND.play('unlock');SYNC();if(Object.keys(Q.chest).length>=3)AG.ach('sq','chest');return sqTalk(Z,'',['You found a treasure chest! +3 💎'])}
+  if(ch==='c')return sqTalk(Z,'',['The chest is empty.']);
+  if(ch==='G'){const n=st.won.filter(Boolean).length;return sqTalk(Z,'',[`The gate is shut tight. Befriend this land's three creatures to open it. (${n} of 3 so far)`])}
+  if(ch==='B'){const nm=sqName(M[3]);return sqTalk(Z,nm,st.boss?[`${nm} is happy to see you again! Want a friendly rematch?`]:[`${nm} blocks the way!`,'Show what you know to win its friendship!'],()=>sqBattle(Z,3))}}
+/* ---------- Talking ---------- */
+function sqTalk(Z,who,lines,then){Z.mode='talk';Z.talk={who,lines,i:0,then};Z.path=null;AG.held.clear();sqBox(Z)}
+function sqNext(Z){const T=Z.talk;if(!T)return;if(++T.i<T.lines.length)return sqBox(Z);Z.talk=null;Z.mode='walk';if(T.then)T.then();else sqBox(Z)}
+/* ---------- Battles ---------- */
+function sqMeet(Z){const st=LS(Z.land),w=[0,1,2].map(i=>st.won[i]?1:3),r=Math.random()*(w[0]+w[1]+w[2]);sqBattle(Z,r<w[0]?0:r<w[0]+w[1]?1:2)}
+function sqBattle(Z,i){const m=MONS[Z.land][i],hp=monHp(Z.L,i),Q=SQ(),key=Z.land+':'+i;if(!Q.seen[key]){Q.seen[key]=1;if(Object.keys(Q.seen).length>=14)AG.ach('sq','seen')}
+  const nm=sqName(m);Z.B={i,m,nm,boss:i===3,hp,max:hp,hpS:hp,run:0,ph:'intro',msg:i===3?`${nm} is ready for battle!`:pick([`${nm} pops out of the tall grass!`,`${nm} jumps out to say hello!`,`A rustle in the grass... it's ${nm}!`]),next:()=>sqMenu(Z),fx:0,atk:0,cast:0,dmg:[{t:0},{t:0},{t:0}]};
+  Z.hpS=Z.hp;Z.mode='trans';Z.tt=0;AG.held.clear();SND.play('pow','kart');SND.music('sqb',i===3?-3:SQTR[Z.li]>0?2:0);sqBox(Z)}
+function sqMenu(Z){const B=Z.B;B.ph='menu';B.next=null;sqBox(Z)}
+function sqSay(Z,msg,next){const B=Z.B;B.ph='msg';B.msg=msg;B.next=next;sqBox(Z)}
+function sqBNext(Z){const B=Z.B,n=B&&B.next;if(n){B.next=null;n()}}
+function sqPop(B,n,x,y,c){const d=B.dmg.find(q=>q.t<=0)||B.dmg[0];Object.assign(d,{n,x,y,c,t:1})}
+async function sqCast(Z){const B=Z.B;if(!B||B.ph!=='menu')return;B.ph='wait';sqBox(Z);const mg=magicOf(GM.rsub),ok=await AG.ask({title:'Cast a spell',intro:`${mg[0]} Answer to cast ${mg[1]}!`});
+  if(!AG.on('sq')||AG.cur.st!==Z||Z.B!==B)return;if(ok==null)return sqSay(Z,'No questions here yet. Pick another kind of magic on the world map.',()=>sqEnd(Z));
+  if(ok){B.run++;const bud=SQ().buddy,dmg=22+Math.floor(Math.random()*9)+Math.min(3,B.run-1)*6+(bud?4:0)+(GM.eq&&GM.eq.pet?5:0);B.hp=Math.max(0,B.hp-dmg);B.cast=.45;B.fx=.8;SND.play('ok');sqPop(B,'-'+dmg,240,40,'#FFE27A');if(B.run>=5)AG.ach('sq','streak');
+    const bn=bud&&sqBud();sqSay(Z,`${mg[0]} Your spell hits! ${dmg} damage.${bn?` ${bn.nm} helps out!`:''}${B.run>1?` ${B.run} in a row!`:''}`,()=>B.hp<=0?sqWin(Z,'tired'):sqMenu(Z))}
+  else{B.run=0;sqHurt(Z,1,`${B.nm} ${SQHIT[B.m[1]]||'bumps into'} you!`)}}
+function sqHurt(Z,f,what){const B=Z.B,dmg=Math.round((16+3*Z.li+Math.floor(Math.random()*6)+(B.boss&&B.hp<B.max/2?4:0))*f);Z.hp=Math.max(0,Z.hp-dmg);SQ().hp=Z.hp;B.atk=.5;SND.play('hit','kart');sqPop(B,'-'+dmg,90,120,'#FCA5A5');
+  sqSay(Z,`${what} -${dmg} ❤️`,()=>Z.hp<=0?sqLose(Z):sqMenu(Z))}
+async function sqFriend(Z){const B=Z.B;if(!B||B.ph!=='menu'||B.hp>B.max*.4)return;B.ph='wait';sqBox(Z);const ok=await AG.ask({title:'Make friends',intro:`Answer to show ${B.nm} you are a friend!`});
+  if(!AG.on('sq')||AG.cur.st!==Z||Z.B!==B)return;if(ok==null)return sqMenu(Z);if(ok){SND.play('ok');sqWin(Z,'friend')}else sqHurt(Z,.5,`${B.nm} isn't sure yet...`)}
+function sqRun(Z){const B=Z.B;if(!B||B.ph!=='menu'||B.boss)return;sqSay(Z,'You slip away safely.',()=>sqEnd(Z))}
+function sqWin(Z,how){const B=Z.B,st=LS(Z.land),first=B.boss?!st.boss:!st.won[B.i],g=(B.boss?(first?25:8):(first?6:2))+(how==='friend'?1:0);
+  if(B.boss)st.boss=1;else st.won[B.i]=1;st.wins++;GM.bw=(GM.bw||0)+1;DAY().bat=(DAY().bat||0)+1;addGems(g);Z.trip.g+=g;Z.trip.b++;if(first)Z.trip.f++;
+  const drop=Math.random()<.25||(B.boss&&first)?gearDrop(B.boss&&first):null;SYNC();gameCheck();SND.play('win','ui');SND.music('sq',SQTR[Z.li]);
+  AG.ach('sq','first');const n=sqFriends();if(n>=10)AG.ach('sq','ten');if(n>=28)AG.ach('sq','all');if(B.boss){AG.ach('sq','boss');if(LANDS.every(l=>LS(l.id).boss))AG.ach('sq','hero')}
+  B.ph='won';B.rw={first,g,drop,how};B.next=()=>sqEnd(Z);sqBox(Z)}
+function sqLose(Z){Z.hp=100;SQ().hp=100;Z.B=null;Z.mode='walk';[Z.x,Z.y]=Z.rest;Z.ox=Z.bx=Z.bx0=Z.x;Z.oy=Z.by=Z.by0=Z.y;Z.mt=1;SND.music('sq',SQTR[Z.li]);sqHud(Z,1);
+  sqTalk(Z,'Lumi',['You feel too tired to go on...','Lumi carries you back to the Rest Stone. All better! Every miss showed you the trick, so try again.'])}
+function sqEnd(Z){Z.B=null;Z.mode='walk';SND.music('sq',SQTR[Z.li]);sqHud(Z,1);
+  if(LS(Z.land).won.every(Boolean)){let opened=false;Z.m.forEach(r=>r.forEach((ch,x)=>{if(ch==='G'){r[x]='=';opened=true}}));if(opened){SND.play('unlock');return sqTalk(Z,'',['With a rumble, the gate swings open!',`${sqName(MONS[Z.land][3])} waits beyond it.`])}}
+  sqBox(Z)}
+const sqBud=()=>{const b=SQ().buddy;if(!b)return null;const [land,i]=b.split(':'),m=MONS[land]&&MONS[land][+i];return m&&sqHas(land,+i)?{m,nm:sqName(m)}:null};
+const sqTrip=(Z,why)=>({why,land:Z.land,f:Z.trip.f,g:Z.trip.g,b:Z.trip.b});
+
+/* ---------- Drawing ---------- */
+function sqDrawMap(c,Z){const fr=(Z.t*2|0)&1,e=Z.mt,px=Math.round((Z.ox+(Z.x-Z.ox)*e)*16),py=Math.round((Z.oy+(Z.y-Z.oy)*e)*16),W=Z.m[0].length*16,H=Z.m.length*16;
+  const cx=Math.max(0,Math.min(W-320,px+8-160)),cy=Math.max(0,Math.min(H-192,py+8-96));Z.cam[0]=cx;Z.cam[1]=cy;
+  const x0=cx>>4,y0=cy>>4;for(let ty=y0;ty<=y0+12&&ty<Z.m.length;ty++)for(let tx=x0;tx<=x0+20&&tx<Z.m[0].length;tx++){const ch=Z.m[ty][tx];c.drawImage(sqTile(Z.land,ch,'~R'.includes(ch)?fr:0),tx*16-cx,ty*16-cy)}
+  const bob=calmOn()?0:fr;
+  for(let ty=y0;ty<=y0+12&&ty<Z.m.length;ty++)for(let tx=x0;tx<=x0+20&&tx<Z.m[0].length;tx++){const ch=Z.m[ty][tx];
+    if(ch==='N'){const p=SQNPC[Z.land];c.drawImage(sqPerson('down',0,{s:SKIN[1],h:p.h,c:p.c}),tx*16-cx,ty*16-cy-bob)}
+    else if(ch==='B')c.drawImage(sqMon(MONS[Z.land][3],32),tx*16-cx-8,ty*16-cy-16-bob)}
+  const bud=sqBud();if(bud&&(Z.bx!==Z.x||Z.by!==Z.y||Z.bx0!==Z.x)){const bx=Math.round((Z.bx0+(Z.bx-Z.bx0)*e)*16),by=Math.round((Z.by0+(Z.by-Z.by0)*e)*16);c.drawImage(sqMon(bud.m,16),bx-cx,by-cy-(e<1?(e*4|0)%2:0))}
+  const f=e<1&&e>.15&&e<.85?1+(Z.steps&1):0;c.drawImage(sqPerson(Z.dir,f,Z.me),px-cx,py-cy-(f?1:0));
+  if(Z.m[Z.y][Z.x]===','&&e>=1){const t=sqTile(Z.land,',',0);c.drawImage(t,0,10,16,6,px-cx,py-cy+10,16,6)}}
+function sqDrawBattle(c,Z){const B=Z.B;c.drawImage(sqBack(Z.land),0,0);const t=Z.t,calm=calmOn();
+  const big=B.boss?3:2,spr=sqMon(B.m,32),sz=32*big,fx0=B.boss?190:204,fy0=B.boss?4:36,lunge=B.atk>0?-Math.round(Math.sin((B.atk/.5)*Math.PI)*16):0,shake=B.fx>.4&&!calm?Math.round(Math.sin(t*70)*3):0;
+  if(!(B.fx>.55&&((t*14|0)%2)))c.drawImage(spr,fx0+lunge+shake,fy0+(calm?0:Math.round(Math.sin(t*3)*2)),sz,sz);
+  const me=sqPerson('up',0,Z.me),hit=B.atk>0&&B.atk<.3&&((t*16|0)%2);if(!hit)c.drawImage(me,58,116,48,48);
+  const bud=sqBud();if(bud)c.drawImage(sqMon(bud.m,32),112,136+(calm?0:Math.round(Math.sin(t*4+1)*1)));
+  if(B.cast>0){const k=1-B.cast/.45,col=magicOf(GM.rsub)[2]||'#FFD34D';c.fillStyle=col;for(let i=0;i<5;i++){const q=Math.max(0,Math.min(1,k-i*.06)),X=Math.round(96+(fx0+sz/2-96)*q),Y=Math.round(130+(fy0+sz/2-130)*q-Math.sin(q*Math.PI)*30);c.fillRect(X-2,Y-2,5,5);c.fillStyle='#FFFFFF'}}
+  for(const d of B.dmg)if(d.t>0){sqNum(c,d.n,Math.round(d.x)+2,Math.round(d.y)+2,'#1E1B2E');sqNum(c,d.n,Math.round(d.x),Math.round(d.y),d.c)}}
+/* Damage numbers in a tiny pixel font (3 x 5 digits, drawn at double size) */
+const SQFONT={'0':'111101101101111','1':'010110010010111','2':'111001111100111','3':'111001111001111','4':'101101111001001','5':'111100111001111','6':'111100111101111','7':'111001010010010','8':'111101111101111','9':'111101111001111','-':'000000111000000'};
+function sqNum(c,s,x,y,col){c.fillStyle=col;const w=s.length*8;let X=x-w/2;for(const ch of s){const f=SQFONT[ch];if(f)for(let i=0;i<15;i++)if(f[i]==='1')c.fillRect(X+(i%3)*2,y+((i/3)|0)*2,2,2);X+=8}}
+/* The heads-up boxes over the canvas */
+function sqHud(Z,force){const B=Z.mode==='battle'?Z.B:null,f=$('sqfoe'),m=$('sqme'),h=$('sqhudw');if(!h)return;
+  h.style.display=B?'none':'';f.hidden=m.hidden=!B;const st=LS(Z.land);
+  if(!B){if(force){$('sqland').textContent=`${Z.L.e} ${Z.L.n}`;$('sqhp').textContent=`❤️ ${Z.hp}/100`;$('sqfr').textContent=`🤝 ${st.won.filter(Boolean).length} of 3${st.boss?' · 👑':''}`}return}
+  const bar=(el,v,max)=>{const p=Math.max(0,v/max);el.style.width=(p*100).toFixed(1)+'%';el.className=p<.25?'low':p<.5?'mid':''};
+  $('sqfn').textContent=(B.boss?'👑 ':'')+B.nm+(sqHas(Z.land,B.i)?' ✓':'');bar($('sqfb'),B.hpS,B.max);bar($('sqmb'),Z.hpS,100);$('sqmh').textContent=`${Math.round(Z.hpS)}/100`;$('sqmn').textContent=ME.display||'You'}
+/* The text box under the canvas */
+function sqBox(Z){const el=$('sqbox');if(!el)return;const B=Z.B,nx=(t,js)=>`<div class="row"><button class="abtn sm" id="sqnext" onclick="${js}">${t}</button></div>`;let h='';
+  if(Z.mode==='talk'){const T=Z.talk;h=`${T.who?`<span class="who">${esc(T.who)}</span>`:''}${esc(T.lines[T.i])}${nx(T.i<T.lines.length-1||T.then?'▼ Next':'OK','AG.cur&&sqNext(AG.cur.st)')}`}
+  else if(Z.mode==='walk'){const st=LS(Z.land);h=`<span class="who">${esc(Z.L.n)}</span>${st.won.every(Boolean)?(st.boss?'You have befriended everyone here! Explore, or travel to another land.':'The gate is open. The boss waits beyond it!'):'Walk through the tall grass to meet creatures. Press Space next to people, signs and chests.'}
+    <div class="row"><button class="abtn sec sm" onclick="AG.cur&&AG.finish(sqTrip(AG.cur.st,'map'))">🗺️ World map</button></div>`}
+  else if(Z.mode==='trans')h=`<span class="who">Battle!</span>Something stirs...`;
+  else if(B){const ok=B.ph==='menu';
+    if(B.ph==='intro'||B.ph==='msg')h=`${esc(B.msg)}${nx('▼ Next','AG.cur&&sqBNext(AG.cur.st)')}`;
+    else if(B.ph==='won'){const r=B.rw;h=`<span class="who">${r.how==='friend'?'New friend!':'Friends!'}</span>${r.how==='tired'?`${esc(B.nm)} is all tired out... and wants to be your friend!`:`${esc(B.nm)} wants to be your friend!`}
+      <br>${r.first?`${esc(B.nm)} joined your Creature Journal!`:`${esc(B.nm)} is happy to see you again!`} +${r.g} 💎${r.drop?dropHtml(r.drop).replace('renderBattle()','sqBox(AG.cur.st)'):''}${nx('Continue ▶','AG.cur&&sqBNext(AG.cur.st)')}`}
+    else{const fr=B.hp<=B.max*.4;h=`${ok?`What will you do?`:'Thinking...'}<div class="sqmenu" role="group" aria-label="Battle choices">
+      <button class="abtn" ${ok?'':'disabled'} onclick="AG.cur&&sqCast(AG.cur.st)"><span class="key" aria-hidden="true">1</span>✨ Cast a spell</button>
+      <button class="abtn gold" ${ok&&fr?'':'disabled'} onclick="AG.cur&&sqFriend(AG.cur.st)"><span class="key" aria-hidden="true">2</span>🤝 Make friends${fr?'':' (tire it out first)'}</button>
+      ${B.boss?'':`<button class="abtn sec" ${ok?'':'disabled'} onclick="AG.cur&&sqRun(AG.cur.st)"><span class="key" aria-hidden="true">3</span>🏃 Run away</button>`}</div>`}}
+  el.innerHTML=h;const n=$('sqnext');if(n&&!QM)n.focus({preventScroll:true})}
+
+/* ---------- Screens ---------- */
+GVIEW.sq=function(){const C=AG.cur&&AG.cur.id==='sq'?AG.cur:null;
+  if(C&&['load','play','crash'].includes(C.phase))return AG.screen('sq',{over:`<div class="khud2" id="sqhudw"><span id="sqland"></span><span id="sqhp"></span><span id="sqfr"></span></div>
+    <div class="sqfoe" id="sqfoe" hidden><b id="sqfn"></b><div class="sqbar"><i id="sqfb"></i></div></div><div class="sqme" id="sqme" hidden><b id="sqmn">You</b><div class="sqbar"><i id="sqmb"></i></div><small id="sqmh"></small></div>`,
+    below:`<div class="sqbox" id="sqbox" aria-live="polite"></div>${AG.pad([[{k:'left',l:'◀',a:'Walk left'},{k:'up',l:'▲',a:'Walk up'},{k:'down',l:'▼',a:'Walk down'},{k:'right',l:'▶',a:'Walk right'}],[{k:'act',l:'A',a:'Talk or check'}]])}`});
+  if(C&&C.phase==='end'){const r=C.res||{},L=LANDS.find(l=>l.id===r.land)||LANDS[0];return `<div class="gworld">${clouds()}${gameHead('Spell Quest',`${L.e} ${esc(L.n)}`)}<div class="gcard endcard"><div class="big" aria-hidden="true">${r.why==='time'?'🌙':'🗺️'}</div>
+    <h3>${r.why==='time'?'Play time is over for today':'Adventure saved!'}</h3><p>This trip: ${r.b||0} battle${r.b===1?'':'s'} won, ${r.f||0} new friend${r.f===1?'':'s'}, ${r.g||0} 💎</p>${r.why==='time'?`<p class="sol">${esc(earnNote())}</p>`:''}
+    <div class="row" style="justify-content:center">${r.why==='time'?'':`<button class="abtn" onclick="AG.play('sq',{land:'${L.id}'})">▶ Keep exploring</button>`}<button class="abtn sec" onclick="AG.cur=null;AR.mode='spell';rerealm()">🗺️ World map</button><button class="abtn sec" onclick="AG.cur=null;AR.mode='sqbook';rerealm()">📔 Creature Journal</button></div></div></div>`}
+  AR.mode='spell';return mapView()};
+/* The Creature Journal: everyone you have met, and your buddy */
+GVIEW.sqbook=function(){const Q=SQ(),seen=Object.keys(Q.seen).length;
+  return `<div class="gworld">${clouds()}${gameHead('📔 Creature Journal',`${sqFriends()} of 28 befriended · ${seen} met`)}
+  ${LANDS.map(l=>`<div class="gcard" style="margin-top:14px"><h3>${l.e} ${esc(l.n)}${landOpen(l)?'':` <span class="sol">· opens at level ${l.lv}</span>`}</h3><div class="sqjr">${MONS[l.id].map((m,i)=>{const k=l.id+':'+i,f=sqHas(l.id,i),s=f||Q.seen[k],bud=Q.buddy===k;
+    return `<div class="c ${s?'':'unk'} ${bud?'bud':''}"><img src="${sqImg(m,32)}" alt="${s?esc(sqName(m)):'Not met yet'}" width="72" height="72"><b>${s?esc(sqName(m)):'???'}</b><span class="sol">${f?(i===3?'👑 Boss friend':'✓ Friend'):s?'Met, not a friend yet':'Not met yet'}</span>
+      ${f?`<button class="abtn sm ${bud?'gold':'sec'}" aria-pressed="${bud}" onclick="SQ().buddy=SQ().buddy==='${k}'?'':'${k}';SYNC();rerealm()">${bud?'⭐ Your buddy':'Make buddy'}</button>`:''}</div>`}).join('')}</div></div>`).join('')}
+  <p class="gnote">Your buddy follows you on your adventure and helps your spells hit a little harder.</p><div class="row" style="margin-top:12px"><button class="abtn sec" onclick="AR.mode='spell';rerealm()">← World map</button></div></div>`};
+/* The world map's land card: explore it */
+const _lpSQ=landPanel;landPanel=function(){const l=LANDS.find(x=>x.id===curLand()),st=LS(l.id),out=outOfTime();
+  return `<div class="gcard sqgo" style="margin-top:18px"><div class="pv">${MONS[l.id].map((m,i)=>`<img src="${sqImg(m,32)}" alt="" width="64" height="64" style="${sqHas(l.id,i)||SQ().seen[l.id+':'+i]?'':'filter:brightness(0) opacity(.3)'}">`).join('')}</div>
+    <div><h3 style="margin:0 0 4px">🗺️ Explore ${l.e} ${esc(l.n)}</h3><p class="sol" style="margin:0 0 10px">Walk the land, meet creatures in the tall grass and befriend them with smart answers. Befriend all three to open the gate to ${esc(sqName(MONS[l.id][3]))}.</p>
+    <div class="row"><button class="abtn big" ${out?'disabled':''} onclick="AG.play('sq',{land:'${l.id}'})">▶ Explore</button><button class="abtn sec" onclick="AR.mode='sqbook';rerealm()">📔 Creature Journal</button><button class="abtn sec sm" onclick="AR.mode='book';AG.book='sq';rerealm()">📖 Collection Book</button></div></div></div>
+  ${_lpSQ().replace('<div class="gcard" id="landpanel" style="margin-top:18px">','<div class="gcard" id="landpanel" style="margin-top:14px"><p class="sol" style="margin:0 0 8px"><b>Quick battles:</b> skip the walk and battle a creature right away.</p>')}`};
 </script>
 
 <style>

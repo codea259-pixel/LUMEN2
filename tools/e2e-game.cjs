@@ -146,6 +146,50 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     const ev = await a.evaluate(() => [...document.querySelectorAll('.pevo button')].map((b, i) => b.disabled === !Object.values(PEVO)[i].ok()));
     if (ev.length !== 3 || ev.includes(false)) fail('the evolution choices are not locked by learning progress');
     ok(`Pet Pals: a Curious personality, ${mk.length} memories, Sort It! (${srt.a[0]} / ${srt.bb[0]}) scored 11 of 12 and paused, Star Catch moved and ended, ${gs} game snacks (cap 2), evolutions locked by progress`); await shot(a, 'g-pet2');
+    // Spell Quest, the pixel adventure: maps, walking, a battle, befriending, the gate, the boss, music and the journal
+    const sqMaps = await a.evaluate(() => { const bad = [];
+      for (const [land, rows] of Object.entries(SQMAPS)) { if (rows.length !== 14 || rows.some(r => r.length !== 22)) { bad.push(land + ': size'); continue }
+        const M = ['#'.repeat(24), ...rows.map(r => '#' + r + '#'), '#'.repeat(24)]; const cnt = c => M.join('').split(c).length - 1; for (const c of 'SRNTCGB') if (cnt(c) !== 1) bad.push(`${land}: ${c} x${cnt(c)}`);
+        const reach = open => { const seen = new Set(), q = []; M.forEach((r, y) => { const x = r.indexOf('S'); if (x >= 0) { q.push([x, y]); seen.add(y * 24 + x) } });
+          while (q.length) { const [x, y] = q.shift(); for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) { const X = x + dx, Y = y + dy, ch = M[Y] && M[Y][X]; if (ch && ('.,=*SR'.includes(ch) || (open && ch === 'G')) && !seen.has(Y * 24 + X)) { seen.add(Y * 24 + X); q.push([X, Y]) } } } return seen };
+        const near = (seen, c) => M.some((r, y) => [...r].some((ch, x) => ch === c && [[1, 0], [-1, 0], [0, 1], [0, -1]].some(([dx, dy]) => seen.has((y + dy) * 24 + x + dx))));
+        const shut = reach(false), open = reach(true); for (const c of 'NTCG') if (!near(shut, c)) bad.push(`${land}: can't reach ${c}`);
+        if (near(shut, 'B') || !near(open, 'B')) bad.push(`${land}: the boss is not behind the gate`);
+        M.forEach((r, y) => [...r].forEach((ch, x) => { if ((ch === ',' || ch === 'R') && !open.has(y * 24 + x)) bad.push(`${land}: ${ch} at ${x},${y} unreachable`) })) } return bad });
+    if (sqMaps.length) fail('Spell Quest maps: ' + sqMaps.join('; '));
+    const sqSpr = await a.evaluate(() => Object.values(MONS).flat().filter(m => { const d = sqMon(m, 32).getContext('2d').getImageData(0, 0, 32, 32).data; let n = 0; for (let i = 3; i < d.length; i += 4) if (d[i]) n++; return n < 150 }).map(m => m[0]));
+    if (sqSpr.length) fail('creatures that do not draw: ' + sqSpr);
+    await a.evaluate(() => { DAY().play = 0; GM.sq = null; GM.lands.meadow = { won: [0, 0, 0], boss: 0, wins: 0 }; AR.mode = 'spell'; rerealm() }); await a.waitForSelector('.sqgo');
+    await a.click('.sqgo button:has-text("Explore")'); await a.waitForFunction(() => AG.on('sq') && AG.cur.phase === 'play' && AG.cur.st.mode === 'talk');
+    await a.keyboard.press('Space'); await a.keyboard.press('Space'); if (await a.evaluate(() => AG.cur.st.mode) !== 'walk') fail('the welcome talk did not close');
+    await a.keyboard.down('ArrowDown'); await a.waitForTimeout(420); await a.keyboard.up('ArrowDown'); await a.waitForTimeout(250); if (await a.evaluate(() => AG.cur.st.y) < 3) fail('the hero did not walk down');
+    await a.evaluate(() => sqPath(AG.cur.st, 7, 2)); await a.waitForFunction(() => AG.cur.st.mode === 'talk', null, { timeout: 8000 }); if (!(await a.textContent('#sqbox')).includes('Rest Stone')) fail('tapping the sign did not walk there and read it'); await a.keyboard.press('Space');
+    const sqAns = async right => { await a.waitForFunction(() => QM && QM.phase === 'ask'); const ch = await a.evaluate(() => QM.q.choices ? QM.q.choices.length : 0), a0 = await a.evaluate(() => QM.q.a[0]);
+      if (ch) await a.click(`#qmodal .bchoices button >> nth=${right ? a0 : (a0 + 1) % ch}`); else { await a.fill('#qmin', right ? await a.evaluate(() => fmtA(QM.q)) : '987654'); await a.click('#qmodal .bans button') }
+      if (!right) { await a.waitForSelector('#qmok'); await a.click('#qmok') } await a.waitForFunction(() => !QM) };
+    await a.evaluate(() => sqBattle(AG.cur.st, 0)); await a.waitForFunction(() => AG.cur.st.mode === 'battle'); await a.click('#sqnext'); await a.waitForSelector('.sqmenu');
+    if (!(await a.isDisabled('.sqmenu button:has-text("Make friends")'))) fail('Make friends was open at full health');
+    if (!(await a.evaluate(() => getComputedStyle($('sqhudw')).display === 'none' && !$('sqfoe').hidden))) fail('the battle boxes did not replace the map HUD');
+    await a.keyboard.press('1'); await sqAns(false); await a.waitForFunction(() => AG.cur.st.B.ph === 'msg'); if (await a.evaluate(() => AG.cur.st.hp) >= 100) fail('a wrong answer did not hurt the hero'); await a.click('#sqnext');
+    let sqn = 0; while (await a.evaluate(() => AG.cur.st.B && AG.cur.st.B.ph === 'menu' && AG.cur.st.B.hp > AG.cur.st.B.max * .4) && sqn++ < 8) { await a.keyboard.press('1'); await sqAns(true); await a.waitForFunction(() => AG.cur.st.B.ph === 'msg'); await a.click('#sqnext') }
+    if (await a.evaluate(() => AG.cur.st.B.ph) === 'menu') { await a.click('.sqmenu button:has-text("Make friends")'); await sqAns(true) }
+    await a.waitForFunction(() => AG.cur.st.B && AG.cur.st.B.ph === 'won'); if (!(await a.textContent('#sqbox')).includes('joined your Creature Journal')) fail('a first friend did not join the journal'); await a.click('#sqnext');
+    if (!(await a.evaluate(() => LS('meadow').won[0] === 1 && SQ().seen['meadow:0'] && AG.got('sq', 'first')))) fail('befriending did not save');
+    await a.evaluate(() => { LS('meadow').won = [1, 1, 0] }); await a.evaluate(() => sqBattle(AG.cur.st, 2)); await a.waitForFunction(() => AG.cur.st.mode === 'battle'); await a.click('#sqnext');
+    await a.evaluate(() => { AG.cur.st.B.hp = 5 }); await a.keyboard.press('1'); await sqAns(true); await a.waitForFunction(() => AG.cur.st.B.ph === 'msg'); await a.click('#sqnext'); await a.waitForFunction(() => AG.cur.st.B && AG.cur.st.B.ph === 'won'); await a.click('#sqnext');
+    await a.waitForFunction(() => AG.cur.st.mode === 'talk'); if (!(await a.textContent('#sqbox')).includes('gate swings open') || await a.evaluate(() => AG.cur.st.m.flat().includes('G'))) fail('the gate did not open after 3 friends');
+    await a.keyboard.press('Space'); await a.keyboard.press('Space'); await a.evaluate(() => sqPath(AG.cur.st, 18, 13)); await a.waitForFunction(() => AG.cur.st.mode === 'talk', null, { timeout: 15000 });
+    if (!(await a.textContent('#sqbox')).includes('Thornback')) fail('walking to the boss did not start its talk');
+    await a.keyboard.press('Space'); await a.keyboard.press('Space'); await a.waitForFunction(() => AG.cur.st.mode === 'battle' && AG.cur.st.B.boss); await a.click('#sqnext'); await a.waitForSelector('.sqmenu');
+    if (await a.$('.sqmenu button:has-text("Run away")')) fail('you can run from a boss');
+    const sqMus = await a.evaluate(() => SND.mus.name); await a.keyboard.press('p'); const sqMp = await a.evaluate(() => !!SND.mus.timer); await a.keyboard.press('p');
+    if (sqMp) fail('the music kept playing while paused');
+    await a.evaluate(() => { AG.cur.st.B.hp = 5 }); await a.keyboard.press('1'); await sqAns(true); await a.waitForFunction(() => AG.cur.st.B.ph === 'msg'); await a.click('#sqnext'); await a.waitForFunction(() => AG.cur.st.B && AG.cur.st.B.ph === 'won');
+    if (!(await a.evaluate(() => LS('meadow').boss === 1 && AG.got('sq', 'boss')))) fail('the boss win did not save'); await a.click('#sqnext');
+    await a.click('#sqbox >> text=World map'); await a.waitForSelector('.endcard'); await a.click('.endcard >> text=Creature Journal'); await a.waitForSelector('.sqjr');
+    await a.click('.sqjr .c >> text=Make buddy >> nth=0'); if (await a.evaluate(() => SQ().buddy) !== 'meadow:0') fail('could not pick a buddy');
+    ok(`Spell Quest: 7 maps reachable with each boss behind its gate, 28 creatures drawn, walked and read a sign, a battle (a miss hurt, spells, befriended Slimey), the gate opened after 3 friends, walked to Thornback and befriended it (no running from a boss), ${sqMus} music paused with the game, a buddy picked in the journal`); await shot(a, 'g-sq');
+    await a.evaluate(() => { AR.mode = null; toHub() });
     // Turbo Trivia Kart: three different lane answers, the right one included
     const kc = await a.evaluate(() => { const bad = [], v = s => s.includes('/') ? s.split('/')[0] / s.split('/')[1] : +s; let n = 0;
       for (const sub of Object.keys(SUBN)) { GM.rsub = sub; for (let i = 0; i < 60; i++) { const x = rquestion(); if (!x) break; const c = kartChoices(x.q); if (!c) continue; n++;

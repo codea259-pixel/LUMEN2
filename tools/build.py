@@ -4,7 +4,7 @@ import sys
 import os
 D=os.path.dirname(os.path.abspath(__file__))
 src, out = os.path.join(D,'base.html'), os.path.join(D,'..','public','app.html')
-layers = [os.path.join(D,f) for f in ('firebase.html','bridge.html','ui.html','features.html','video.html','vendor-qrcode.html','printables.html','assess.html','game.html','realm.html','member.html','arcade.html','games.html','agcore.html','agkart.html','agblocks.html','agate.html','agpets.html','dungeon.html','snake.html','next.html','nlpath.html','nlhist.html','nllab.html','compete.html','privacy.html')]
+layers = [os.path.join(D,f) for f in ('firebase.html','bridge.html','ui.html','features.html','video.html','vendor-qrcode.html','printables.html','assess.html','game.html','realm.html','member.html','arcade.html','games.html','agcore.html','agkart.html','agblocks.html','agate.html','agpets.html','agspell.html','dungeon.html','snake.html','next.html','nlpath.html','nlhist.html','nllab.html','compete.html','privacy.html')]
 import re
 # Snake Arena's engine lives in snake-arena/src as JavaScript modules (it also runs on its own page and in Node).
 # For the app, the modules are joined in dependency order inside one function scope, in place of /*@SNAKE_ENGINE@*/.
