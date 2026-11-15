@@ -289,6 +289,28 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     await a.evaluate(() => { AG.cur.st.goal = 1 }); await bset([[9, 0, { k: 'n', v: 2 }], [9, 1, { k: 'op', op: '×' }]], { b: { k: 'n', v: 5 }, c: 2, y: 8 }, 10); await a.keyboard.press(' ');
     await a.waitForSelector('text=Equation Builder level 1 complete!'); if (await a.evaluate(() => ARS('blocks').ch.eq) !== 1) fail('the challenge level was not saved');
     ok('Block Builder: 4 + 6 side by side and 8 + 2 stacked cleared, 3 × 4 = 12 made an equation, a mystery block became the number that clears, 6 clears reached level 2, a rescue cleared the top rows, a full tower paid 2 gems for 8 clears, and Equation Builder level 1 was completed'); await shot(a, 'g-blocks');
+    // Building mode: bricks from the puzzle rounds, tap and drag to build, undo, erase, out of bricks, the math challenges, save
+    await a.evaluate(() => { DAY().play = 0; AG.cur = null; AR.mode = 'blocks'; rerealm() }); await a.waitForSelector('.bbbuild');
+    const bd0 = await a.evaluate(() => ({ b: bdS().bricks, e: bdS().bearn || 0 })); if (!bd0.e || bd0.b !== 40 + bd0.e) fail('the puzzle rounds did not earn bricks: ' + JSON.stringify(bd0));
+    await a.click('.bbbuild button:has-text("Build")'); await a.waitForFunction(() => AG.on('bbuild') && AG.cur.phase === 'play'); await a.waitForSelector('#bdpanel .bbpal');
+    const bdCv = await (await a.$('#agcv')).boundingBox(), bdAt = (c, r) => [bdCv.x + (c + .5) / 20 * bdCv.width, bdCv.y + (r + .5) * 24 / 312 * bdCv.height];
+    const bdN = () => a.evaluate(() => [AG.cur.st.g.filter(v => v !== '.').length, bdS().bricks]);
+    await a.mouse.click(...bdAt(2, 11)); let bdv = await bdN(); if (bdv[0] !== 1 || bdv[1] !== bd0.b - 1) fail('a tap did not place one block for one brick: ' + bdv);
+    await a.mouse.move(...bdAt(4, 11)); await a.mouse.down(); for (let c = 5; c <= 8; c++) await a.mouse.move(...bdAt(c, 11), { steps: 2 }); await a.mouse.up(); bdv = await bdN(); if (bdv[0] !== 6) fail('dragging did not paint 5 blocks: ' + bdv);
+    await a.click('#bdpanel button:has-text("Undo")'); bdv = await bdN(); if (bdv[0] !== 1 || bdv[1] !== bd0.b - 1) fail('Undo did not take back the whole drag and its bricks: ' + bdv);
+    await a.click('#bdpanel button:has-text("Erase")'); await a.mouse.click(...bdAt(2, 11)); bdv = await bdN(); if (bdv[0] !== 0 || bdv[1] !== bd0.b) fail('erasing did not give the brick back: ' + bdv);
+    await a.click('#bdpanel .bbpal button >> nth=0'); await a.evaluate(() => { ARS('blocks').bricks = 0 }); await a.mouse.click(...bdAt(3, 11)); if ((await bdN())[0] !== 0 || !(await a.textContent('#bdmsg')).includes('Out of bricks')) fail('a block was placed with no bricks');
+    await a.evaluate(() => { ARS('blocks').bricks = 300 });
+    const bdc = await a.evaluate(() => { const g = (f) => { const a = Array(240).fill('.'); f((c, r, v) => a[r * 20 + c] = v); return bdCheck(a.join('')) };
+      return { tower: g(s => { for (let r = 4; r < 12; r++) s(0, r, 's') }).tower, notower: g(s => { for (let r = 3; r < 11; r++) s(0, r, 's') }).tower,
+        sym: g(s => { for (let r = 4; r < 12; r++) { s(3, r, 'r'); s(16, r, 'r') } }).sym, nosym: g(s => { for (let r = 4; r < 12; r++) { s(3, r, 'r'); s(16, r, 'b') } }).sym,
+        rect: g(s => { for (let r = 9; r < 12; r++) for (let c = 2; c < 6; c++) s(c, r, 'g') }).rect, line: g(s => { for (let c = 2; c < 14; c++) s(c, 11, 'g') }).rect, big: g(s => { for (let r = 9; r < 12; r++) for (let c = 2; c < 10; c++) s(c, r, 'g') }).rect,
+        rain: g(s => 'roygbp'.split('').forEach((v, j) => s(5 + j, 11, v))).rainbow, norain: g(s => 'roygbr'.split('').forEach((v, j) => s(5 + j, 11, v))).rainbow } });
+    if (!bdc.tower || bdc.notower || !bdc.sym || bdc.nosym || !bdc.rect || bdc.line || bdc.big || !bdc.rain || bdc.norain) fail('a building challenge checks wrongly: ' + JSON.stringify(bdc));
+    await a.evaluate(() => { const Z = AG.cur.st; for (let r = 4; r < 12; r++) Z.g[r * 20] = 's'; bdAfter(Z) }); if (!(await a.evaluate(() => AG.got('bbuild', 'tower'))) || !(await a.$('#bdchl li.ok'))) fail('finishing a challenge did not unlock it');
+    if (!(await a.isDisabled('#bdpanel .bbpal button[aria-label^="Rainbow"]'))) fail('the Rainbow block was open before 200 bricks earned');
+    await a.click('#bdpanel button:has-text("Done")'); await a.waitForSelector('.bbbuild img'); if ((await a.evaluate(() => bdS().bslots[bdS().bslot].replace(/\./g, '').length)) !== 8) fail('the build was not saved');
+    ok(`Building mode: ${bd0.e} bricks earned in the puzzles, a tap placed a block for a brick, a drag painted 5, Undo took back the drag, erasing refunded, no bricks means no block, the tower/symmetry/area-12/rainbow checks are right, the build saved`); await shot(a, 'g-build');
     // Dungeon Dash: move, recharge magic with answers, level up, dodge, take the stairs
     await a.evaluate(() => toHub()); await a.click('.tile:has-text("Dungeon Dash")'); await a.waitForSelector('.ddhero');
     const heroes = await a.$$eval('.ddhero > b', b => b.map(x => x.textContent)); if (heroes.length !== 4 || !(await a.isVisible('#dddash'))) fail('hero select or upgrade dashboard missing: ' + heroes.join(', '));

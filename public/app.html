@@ -7232,6 +7232,126 @@ const _lpSQ=landPanel;landPanel=function(){const l=LANDS.find(x=>x.id===curLand(
 </script>
 
 <style>
+/* ===== Block Builder: building mode ===== */
+#bdpanel{margin-top:10px;padding:12px 14px;border-radius:18px;background:var(--panel);color:var(--ink)}
+.bbpal{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.bbpal button{width:46px;height:46px;border-radius:10px;border:3px solid transparent;padding:0;background:none;position:relative}
+.bbpal button img{width:100%;height:100%;image-rendering:pixelated;border-radius:6px;display:block}
+.bbpal button.on{border-color:var(--ga-gold);box-shadow:0 0 0 2px #1E1B4B}
+.bbpal button[disabled]{opacity:.35}.bbpal button small{position:absolute;inset:auto 0 -2px;font-size:.6rem;font-weight:800;color:#fff;text-shadow:0 1px 2px #000}
+.bbtools{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;align-items:center}
+.bbtools .chip.on{outline:3px solid var(--ga-gold)}
+.bbbrk{font:800 1rem "Bricolage Grotesque",sans-serif;padding:6px 12px;border-radius:99px;background:#FFF7E6;color:#3B2A12}
+.bbchl{list-style:none;padding:0;margin:10px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px}
+.bbchl li{padding:6px 10px;border-radius:10px;background:var(--panel);border:2px solid var(--line);font-size:.92rem}.bbchl li.ok{border-color:#22C55E;background:#ECFDF3;color:#14532D}
+.bbbuild{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center}.bbbuild img{width:180px;border-radius:12px;image-rendering:pixelated;border:3px solid var(--line)}
+@media(max-width:620px){.bbbuild{grid-template-columns:1fr}}
+</style>
+<script type="text/x-lumen">
+/* ===== Block Builder: building mode =====
+   Build anything on a 20 x 12 grid with bricks earned in the puzzle modes (one brick per group cleared; new builders get 40).
+   Placing a block on an empty cell costs a brick; erasing gives it back. Special blocks unlock as you earn more bricks.
+   Four math challenges check the build as you go: a tall tower, line symmetry, a rectangle with an area of 12, a rainbow row.
+   Three save slots in ARS('blocks'). ===== */
+const BW2=20,BH2=12,BC=24,BGND=24;
+const BBLK=[['r','Red','#E4572E',0],['o','Orange','#F97316',0],['y','Yellow','#FACC15',0],['g','Green','#22C55E',0],['b','Blue','#3B82F6',0],['p','Purple','#8B5CF6',0],['k','Pink','#EC4899',0],['w','White','#F1F5F9',0],
+  ['d','Wood','#A0703A',0],['s','Stone','#8C8FA3',0],['l','Leaves','#2F8A3E',0],['i','Glass','#BAE6FD',25],['G','Gold','#F2C14E',60],['S','Star','#FDE047',120],['R','Rainbow','#FF6FA8',200]];
+const BRAIN='roygbpk';
+const bdS=()=>{const S=bbS();if(S.bricks==null)S.bricks=40;S.bslots=S.bslots||['.'.repeat(240),'.'.repeat(240),'.'.repeat(240)];S.bslot=S.bslot||0;return S};
+const bdOpen=b=>(bdS().bearn||0)>=b[3];
+const BDC={};
+/* one block as a little cube, 24 x 24 */
+function bdBlock(id){if(BDC[id])return BDC[id];const b=BBLK.find(x=>x[0]===id),cv=document.createElement('canvas');cv.width=cv.height=BC;const x=cv.getContext('2d'),c=b[2],px=(X,Y,w,h,f)=>{x.fillStyle=f;x.fillRect(X,Y,w,h)};
+  if(id==='i'){px(0,0,24,24,'rgba(186,230,253,.55)');px(4,4,3,10,'rgba(255,255,255,.9)');px(8,4,2,5,'rgba(255,255,255,.7)')}
+  else if(id==='R'){['#EF4444','#F97316','#FACC15','#22C55E','#3B82F6','#8B5CF6'].forEach((f,i)=>px(0,i*4,24,4,f))}
+  else{px(0,0,24,24,c);px(0,0,24,3,tint(c,.35));px(0,0,3,24,tint(c,.25));px(0,21,24,3,shade(c,.7));px(21,0,3,24,shade(c,.78))}
+  if(id==='d'){px(3,8,18,1,shade(c,.7));px(3,15,18,1,shade(c,.7));px(10,3,1,5,shade(c,.7));px(15,9,1,6,shade(c,.7))}
+  if(id==='s'){px(6,6,5,1,shade(c,.65));px(10,6,1,4,shade(c,.65));px(13,14,6,1,shade(c,.65));px(13,14,1,4,shade(c,.65))}
+  if(id==='l'){[[5,6],[12,4],[16,10],[7,14],[14,16],[10,10]].forEach(([a,b])=>px(a,b,2,2,tint(c,.3)))}
+  if(id==='G'){px(6,5,2,2,'#FFFFFF');px(15,13,2,2,'#FFF7C2');px(16,6,1,1,'#FFFFFF')}
+  if(id==='S'){x.fillStyle='#F97316';x.beginPath();for(let i=0;i<10;i++){const r=i%2?3.5:8.5,a=i*Math.PI/5-Math.PI/2;x.lineTo(12+Math.cos(a)*r,12.5+Math.sin(a)*r)}x.fill()}
+  x.strokeStyle='rgba(30,27,46,.55)';x.lineWidth=1;x.strokeRect(.5,.5,23,23);BDC[id]=cv;return cv}
+const bdImg=id=>{const k='img'+id;return BDC[k]||(BDC[k]=bdBlock(id).toDataURL())};
+/* the build as a small picture for the menu */
+function bdThumb(str){const cv=document.createElement('canvas'),s=8;cv.width=BW2*s;cv.height=BH2*s+s;const x=cv.getContext('2d');x.fillStyle='#CFEAFF';x.fillRect(0,0,cv.width,cv.height);x.fillStyle='#5FB548';x.fillRect(0,BH2*s,cv.width,s);
+  for(let i=0;i<240;i++){const id=str[i];if(id&&id!=='.')x.drawImage(bdBlock(id),(i%BW2)*s,((i/BW2)|0)*s,s,s)}return cv.toDataURL()}
+/* ---------- The math challenges ---------- */
+const BCH=[{k:'tower',i:'🗼',n:'Sky tower',d:'Build a tower 8 blocks tall, from the ground up'},{k:'sym',i:'🦋',n:'Mirror master',d:'Make a build with line symmetry: the left half mirrors the right (at least 12 blocks)'},
+  {k:'rect',i:'📐',n:'Area architect',d:'Build a solid rectangle of one block type with an area of exactly 12 (no side of 1)'},{k:'rainbow',i:'🌈',n:'Rainbow road',d:'Put 6 different colors side by side in one row'},{k:'big',i:'🏰',n:'Master builder',d:'Use 100 blocks in one build'}];
+function bdCheck(g){const at=(r,c)=>g[r*BW2+c],n=[...g].filter(v=>v!=='.').length,out={big:n>=100};
+  out.tower=Array.from({length:BW2},(_,c)=>{let h=0;for(let r=BH2-1;r>=0&&at(r,c)!=='.';r--)h++;return h}).some(h=>h>=8);
+  out.sym=n>=12&&Array.from({length:BH2},(_,r)=>r).every(r=>Array.from({length:BW2/2},(_,c)=>at(r,c)===at(r,BW2-1-c)).every(Boolean));
+  out.rainbow=Array.from({length:BH2},(_,r)=>r).some(r=>{for(let c=0;c+6<=BW2;c++){const s=new Set();let ok=true;for(let j=0;j<6;j++){const v=at(r,c+j);if(!BRAIN.includes(v)||v==='.'){ok=false;break}s.add(v)}if(ok&&s.size===6)return true}return false});
+  const seen=new Uint8Array(240);out.rect=false;
+  for(let i=0;i<240&&!out.rect;i++){if(seen[i]||g[i]==='.')continue;const id=g[i],q=[i];seen[i]=1;let k=0,r0=99,r1=-1,c0=99,c1=-1;
+    while(k<q.length){const j=q[k++],r=(j/BW2)|0,c=j%BW2;r0=Math.min(r0,r);r1=Math.max(r1,r);c0=Math.min(c0,c);c1=Math.max(c1,c);
+      for(const [dr,dc] of [[1,0],[-1,0],[0,1],[0,-1]]){const R=r+dr,C=c+dc,J=R*BW2+C;if(R>=0&&R<BH2&&C>=0&&C<BW2&&!seen[J]&&g[J]===id){seen[J]=1;q.push(J)}}}
+    const w=c1-c0+1,h=r1-r0+1;if(q.length===12&&w*h===12&&w>=2&&h>=2)out.rect=true}
+  return out}
+
+AG.def({id:'bbuild',name:'Building mode',w:BW2*BC,h:BH2*BC+BGND,maxW:1200,vh:330,pixel:true,snd:'blocks',music:'blocks',go:'Build',sub:'Build anything with your bricks',
+  help:['Pick a block, then tap or drag on the grid to build. Pick the eraser to take blocks away.','Each new block uses a brick. Erasing gives the brick back. Earn more bricks by clearing groups in the puzzle modes.','Try the math challenges: a tall tower, a symmetric build, a rectangle with an area of 12, a rainbow row.'],
+  keys:[['← → ↑ ↓','move the cursor'],['Space','place'],['X','erase'],['P','pause']],
+  ach:Object.fromEntries(BCH.map(c=>[c.k,{i:c.i,n:c.n,d:c.d,gems:2}])),
+  start(){const S=bdS(),g=S.bslots[S.bslot].split('');return{g,cur:[10,BH2-1],hov:null,tool:'place',sel:S.bsel&&BBLK.some(b=>b[0]===S.bsel&&bdOpen(b))?S.bsel:'r',undo:[],stroke:0,t:0,done:bdCheck(g.join('')),dirty:0}},
+  ready(Z){bdPanel(Z);const cv=$('agcv');if(!cv)return;const cell=e=>{const r=cv.getBoundingClientRect(),x=(e.clientX-r.left)/r.width*BW2*BC,y=(e.clientY-r.top)/r.height*(BH2*BC+BGND);return[Math.floor(x/BC),Math.floor(y/BC)]};
+    cv.onpointermove=e=>{const C=AG.cur;if(!C||C.st!==Z||AG.paused())return;const [c,r]=cell(e);Z.hov=r<BH2?[c,r]:null;if((e.buttons&1)&&Z.hov)bdApply(Z,c,r)};
+    cv.onpointerleave=()=>{Z.hov=null};cv.style.touchAction='none'},
+  step(dt,Z){Z.t+=dt;if(Z.dirty&&(Z.dirty+=dt)>1.5){Z.dirty=0;bdSave(Z);SYNC()}},
+  draw(a,Z){const x=AG.cx;if(!x)return;const W=BW2*BC,H=BH2*BC;
+    if(!BDC.sky){const cv=document.createElement('canvas');cv.width=W;cv.height=H+BGND;const c=cv.getContext('2d'),gr=c.createLinearGradient(0,0,0,H);gr.addColorStop(0,'#9FD8FF');gr.addColorStop(1,'#E6F6FF');c.fillStyle=gr;c.fillRect(0,0,W,H);
+      c.fillStyle='rgba(255,255,255,.35)';for(let i=1;i<BW2;i++)c.fillRect(i*BC,0,1,H);for(let i=1;i<BH2;i++)c.fillRect(0,i*BC,W,1);
+      c.fillStyle='#5FB548';c.fillRect(0,H,W,BGND);c.fillStyle='#4E9E3B';for(let i=0;i<W;i+=12)c.fillRect(i,H,6,4);c.fillStyle='#8A5A2B';c.fillRect(0,H+12,W,12);BDC.sky=cv}
+    x.drawImage(BDC.sky,0,0);for(let i=0;i<240;i++){const id=Z.g[i];if(id!=='.')x.drawImage(bdBlock(id),(i%BW2)*BC,((i/BW2)|0)*BC)}
+    const mark=(c,r,col)=>{x.strokeStyle=col;x.lineWidth=2;x.strokeRect(c*BC+1,r*BC+1,BC-2,BC-2)};
+    if(Z.hov){const [c,r]=Z.hov;if(Z.tool==='place'&&Z.g[r*BW2+c]==='.'){x.globalAlpha=.5;x.drawImage(bdBlock(Z.sel),c*BC,r*BC);x.globalAlpha=1}mark(c,r,Z.tool==='erase'?'#EF4444':'#1E1B4B')}
+    if((Z.t*2|0)%2===0||!Z.hov)mark(Z.cur[0],Z.cur[1],'#F2A900')},
+  key(k,down,Z){if(!down)return;const D={left:[-1,0],right:[1,0],up:[0,-1],down:[0,1]}[k];
+    if(D){Z.cur[0]=Math.max(0,Math.min(BW2-1,Z.cur[0]+D[0]));Z.cur[1]=Math.max(0,Math.min(BH2-1,Z.cur[1]+D[1]));return}
+    if(k==='act'||k==='enter'){Z.stroke++;bdApply(Z,Z.cur[0],Z.cur[1],'place')}else if(k==='alt'){Z.stroke++;bdApply(Z,Z.cur[0],Z.cur[1],'erase')}},
+  tap(px,py,Z){const c=Math.floor(px/BC),r=Math.floor(py/BC);if(r>=BH2)return;Z.stroke++;Z.cur=[c,r];bdApply(Z,c,r)},
+  timeout:Z=>{bdSave(Z);return{why:'time'}},
+  stop(Z){if(Z)bdSave(Z)}});
+const bdSave=Z=>{const S=bdS();S.bslots[S.bslot]=Z.g.join('')};
+/* place or erase one cell */
+function bdApply(Z,c,r,tool){tool=tool||Z.tool;if(c<0||r<0||c>=BW2||r>=BH2)return;const i=r*BW2+c,S=bdS(),was=Z.g[i],now=tool==='erase'?'.':Z.sel;if(was===now)return;
+  if(was==='.'&&now!=='.'){if(S.bricks<=0){bdMsg('Out of bricks! Clear groups in the puzzle modes to earn more.');SND.play('no','ui');return}S.bricks--}
+  else if(now==='.')S.bricks++;
+  Z.g[i]=now;Z.undo.push([i,was,now,Z.stroke]);if(Z.undo.length>400)Z.undo.shift();Z.dirty=Z.dirty||.01;SND.play(now==='.'?'move':'place');bdAfter(Z)}
+function bdUndo(Z){const s=Z.undo.length&&Z.undo[Z.undo.length-1][3];if(!Z.undo.length)return;const S=bdS();
+  while(Z.undo.length&&Z.undo[Z.undo.length-1][3]===s){const [i,was,now]=Z.undo.pop();if(now==='.'&&was!=='.')S.bricks--;else if(was==='.'&&now!=='.')S.bricks++;Z.g[i]=was}Z.dirty=.01;bdAfter(Z)}
+function bdClear(Z){const n=Z.g.filter(v=>v!=='.').length;if(!n||!confirm('Clear the whole build? Your bricks come back.'))return;Z.stroke++;const S=bdS();Z.g.forEach((v,i)=>{if(v!=='.'){Z.undo.push([i,v,'.',Z.stroke]);Z.g[i]='.'}});S.bricks+=n;Z.dirty=.01;bdAfter(Z)}
+function bdAfter(Z){const d=bdCheck(Z.g.join(''));for(const c of BCH)if(d[c.k]&&!Z.done[c.k]){if(AG.ach('bbuild',c.k))bdMsg(`${c.i} Challenge done: ${c.n}!`);SND.play('combo')}Z.done=d;
+  const b=$('bdbr');if(b)b.textContent=`🧱 ${bdS().bricks} bricks`;const L=$('bdchl');if(L)L.innerHTML=bdChl(Z)}
+const bdChl=Z=>BCH.map(c=>`<li class="${Z.done[c.k]?'ok':''}">${Z.done[c.k]?'✅':c.i} <b>${c.n}:</b> ${c.d}</li>`).join('');
+const bdMsg=t=>{const e=$('bdmsg');if(e)e.textContent=t};
+function bdSel(id){const C=AG.cur;if(!C||C.id!=='bbuild')return;const Z=C.st,b=BBLK.find(x=>x[0]===id);if(!b||!bdOpen(b))return;Z.sel=id;Z.tool='place';bdS().bsel=id;bdPanel(Z)}
+function bdTool(t){const C=AG.cur;if(!C||C.id!=='bbuild')return;C.st.tool=t;bdPanel(C.st)}
+function bdSlot(n){const C=AG.cur;if(!C||C.id!=='bbuild')return;const Z=C.st,S=bdS();bdSave(Z);S.bslot=n;
+  const g=S.bslots[n].split(''),diff=g.filter(v=>v!=='.').length;Z.g=g;Z.undo=[];Z.done=bdCheck(g.join(''));SYNC();bdPanel(Z);bdMsg(`Build ${n+1} loaded (${diff} blocks).`)}
+function bdPanel(Z){const el=$('bdpanel');if(!el)return;const S=bdS(),earn=S.bearn||0;
+  el.innerHTML=`<div class="bbtools"><span class="bbbrk" id="bdbr">🧱 ${S.bricks} bricks</span><button class="chip ${Z.tool==='place'?'on':''}" aria-pressed="${Z.tool==='place'}" onclick="bdTool('place')">✏️ Build</button><button class="chip ${Z.tool==='erase'?'on':''}" aria-pressed="${Z.tool==='erase'}" onclick="bdTool('erase')">🧽 Erase</button>
+    <button class="chip" onclick="AG.cur&&bdUndo(AG.cur.st)">↩️ Undo</button><button class="chip" onclick="AG.cur&&bdClear(AG.cur.st)">🗑️ Clear</button>
+    <span class="sol" style="margin-left:auto">Save slot:</span>${[0,1,2].map(n=>`<button class="chip ${S.bslot===n?'on':''}" aria-pressed="${S.bslot===n}" onclick="bdSlot(${n})">${n+1}</button>`).join('')}
+    <button class="abtn sm" onclick="AG.cur&&(bdSave(AG.cur.st),AG.finish({why:'done'}))">✅ Done</button></div>
+  <div class="bbpal" role="group" aria-label="Blocks">${BBLK.map(b=>{const o=bdOpen(b);return `<button ${o?'':'disabled'} class="${Z.sel===b[0]&&Z.tool==='place'?'on':''}" aria-pressed="${Z.sel===b[0]}" title="${esc(b[1])}${o?'':`: unlocks after earning ${b[3]} bricks (you have earned ${earn})`}" aria-label="${esc(b[1])}${o?'':' (locked)'}" onclick="bdSel('${b[0]}')"><img src="${bdImg(b[0])}" alt="">${o?'':'<small>🔒</small>'}</button>`}).join('')}</div>
+  <p class="sol" id="bdmsg" role="status" style="min-height:1.4em;margin:8px 0 0"></p><ul class="bbchl" id="bdchl">${bdChl(Z)}</ul>`}
+GVIEW.bbuild=function(){const C=AG.cur&&AG.cur.id==='bbuild'?AG.cur:null;
+  if(C&&['load','play','crash'].includes(C.phase))return AG.screen('bbuild',{below:`<div id="bdpanel"></div>`});
+  AG.cur=null;AR.mode='blocks';return GVIEW.blocks()};
+/* Bricks from the puzzle modes */
+const _bbrB=bbresult;bbresult=function(Z,why){const r=_bbrB(Z,why),n=Math.min(60,Z.clears||0);if(n){const S=bdS();S.bricks+=n;S.bearn=(S.bearn||0)+n;r.bricks=n}return r};
+/* The Block Builder menu: a card for building mode */
+const _gvB=GVIEW.blocks;GVIEW.blocks=function(){const h=_gvB(),C=AG.cur&&AG.cur.id==='blocks'?AG.cur:null;if(C&&['load','play','crash'].includes(C.phase))return h;
+  const S=bdS(),r=C&&C.phase==='end'?C.res:null,locked=BBLK.filter(b=>!bdOpen(b)),nx=locked[0];
+  const card=`<div class="gcard bbbuild" style="margin-top:14px"><img src="${bdThumb(S.bslots[S.bslot])}" alt="Your build"><div><h3 style="margin:0 0 4px">🏗️ Building mode</h3>
+    <p class="sol" style="margin:0 0 8px">Build anything with the bricks you earn: every group you clear in a puzzle gives you a brick. Try the math challenges too!</p>
+    <p style="margin:0 0 10px"><span class="bbbrk">🧱 ${S.bricks} bricks</span>${r&&r.bricks?` <b>+${r.bricks} from this round!</b>`:''}${nx?` <span class="sol">· ${esc(nx[1])} blocks unlock at ${nx[3]} bricks earned (${S.bearn||0} so far)</span>`:''}</p>
+    <button class="abtn" ${outOfTime()?'disabled':''} onclick="AG.play('bbuild')">▶ Build</button></div></div>`;
+  return h.replace(/<\/div>$/,card+'</div>')};
+</script>
+
+<style>
 /* ===== Dungeon Dash ===== */
 .ddwrap{position:relative}
 .ddcv{display:block;width:100%;border-radius:22px;border:3px solid rgba(255,255,255,.85);box-shadow:0 7px 0 var(--ga-lip),0 18px 30px rgba(15,23,42,.3);background:#1d1714;touch-action:none;user-select:none;-webkit-user-select:none;cursor:crosshair}
