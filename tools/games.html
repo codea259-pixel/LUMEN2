@@ -20,11 +20,6 @@
 .eggs{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;margin-top:12px}.eggs .tart{height:150px;background:#FFF7E6}
 .accs{display:flex;flex-wrap:wrap;gap:8px}.accs .chip{background:var(--bg);color:var(--ink);border-color:var(--line)}.accs .chip.on{background:var(--ga-gold);color:#1E1B4B;border-color:var(--ga-gold)}
 .palmini{display:inline-flex;align-items:center;gap:8px;margin-top:10px;border:2px solid var(--line);background:var(--bg);border-radius:14px;padding:3px 12px 3px 3px;cursor:pointer;font:700 .9rem inherit;color:var(--ink)}.palmini svg{width:44px;height:44px;display:block}
-/* Goblin Gate */
-.gfield{position:relative;aspect-ratio:16/9;border-radius:24px;overflow:hidden;border:3px solid rgba(255,255,255,.85);box-shadow:0 7px 0 var(--ga-lip)}.gfield>svg{position:absolute;inset:0;width:100%;height:100%;display:block}
-.gpad{position:absolute;transform:translate(-50%,-50%);width:10%;min-width:40px;aspect-ratio:1;border-radius:50%;border:3px dashed rgba(255,255,255,.95);background:rgba(255,255,255,.28);display:grid;place-items:center;cursor:pointer;padding:0;color:#fff;font:800 clamp(1rem,2.6vw,1.5rem)/1 "Bricolage Grotesque",sans-serif;box-shadow:0 3px 0 rgba(0,0,0,.18)}
-.gpad.built{border:3px solid #fff;background:#F8FAFC}.gpad svg{width:78%;height:78%;display:block}.gpad .pips{position:absolute;bottom:-9px;left:50%;transform:translateX(-50%);background:#1E1B4B;color:#FDE047;border-radius:99px;padding:1px 6px;font-size:.62rem;letter-spacing:1px}
-.gpad:focus-visible{outline:3px solid var(--ga-glow);outline-offset:3px}
 @media(prefers-reduced-motion:reduce){.pal{animation:none!important}}
 body[data-calm] .pal{animation:none!important}
 </style>
@@ -139,73 +134,6 @@ function kartChoices(q){if(q.choices){const c=q.choices[q.a[0]],L=shuf([c,...shu
   // Always offer two wrong answers: fall back to the answer plus or minus whole numbers
   for(let k=1;o.length<2&&k<9;k++)for(const x of [n+k*d,n-k*d]){const s=f(x,d);if(o.length<2&&!seen.has(s)){seen.add(s);o.push(s)}}
   if(o.length<2)return null;const L=shuf([c,...o]);return{L,cor:L.indexOf(c)}}
-/* ---------- Goblin Gate: towers built with right answers; the field pauses while a question is open ---------- */
-let GT=null;
-GSTOP.push(()=>{if(GT&&['build','wave'].includes(GT.ph))GT=null});
-const GMAPS=[
-  {id:'meadow',n:'Meadow Path',waves:4,hp:1,sp:1,bg:'#7CCB6B',bg2:'#6DBF62',tree:'#5FAE53',road:['#C9A46A','#E2C48F'],path:[[-30,80],[140,80],[140,270],[320,270],[320,100],[480,100],[480,230],[600,230]],pads:[[70,165],[230,195],[230,40],[400,185],[400,38],[560,150]],trees:[[40,320],[210,330],[380,320],[600,40],[30,30],[300,190]]},
-  {id:'forest',n:'Forest Trail',waves:6,hp:1.35,sp:1.08,bg:'#3F8F4A',bg2:'#367D40',tree:'#2D6B36',road:['#8B6B47','#A8865C'],path:[[-30,290],[110,290],[110,70],[290,70],[290,280],[470,280],[470,80],[600,80]],pads:[[40,200],[200,180],[200,326],[380,180],[380,36],[555,190]],trees:[[40,30],[380,330],[560,320],[620,250],[160,18]]},
-  {id:'snow',n:'Snowy Pass',waves:8,hp:1.75,sp:1.15,bg:'#E3EEF7',bg2:'#D3E3F0',tree:'#9FB8CC',road:['#9AAAB9','#BDCAD6'],path:[[-30,180],[100,180],[100,60],[250,60],[250,300],[400,300],[400,60],[520,60],[520,240],[600,240]],pads:[[40,95],[175,165],[175,300],[325,180],[460,170],[570,120]],trees:[[40,320],[460,330],[620,330],[330,40],[175,15]]}];
-GMAPS.forEach(m=>m.len=m.path.slice(1).reduce((s,p,i)=>s+Math.hypot(p[0]-m.path[i][0],p[1]-m.path[i][1]),0));
-/* A map opens after winning the map before it */
-const gmOpen=i=>!i||((ARS('gate').st||{})[GMAPS[i-1].id]||0)>0;
-const gmCur=()=>{let i=GMAPS.findIndex(m=>m.id===ARS('gate').map);if(i<0||!gmOpen(i))i=0;return GMAPS[i]};
-const GTOW={laser:{n:'Laser tower',c:'#FB7185',r:120,rate:.55,d:[9,14,20],tip:'Zaps one goblin hard'},frost:{n:'Frost tower',c:'#38BDF8',r:105,rate:.9,d:[4,6,8],slow:[1.4,1.9,2.5],tip:'Slows goblins down'},bubble:{n:'Bubble tower',c:'#A78BFA',r:110,rate:1.1,d:[7,10,14],splash:44,tip:'Bubbles a whole group'}};
-const gwave=w=>{const m=GT.m;return{n:6+2*w,hp:Math.round((24+14*w)*m.hp),sp:(40+5*w)*m.sp,gap:Math.max(.55,1.25-.1*w),boss:w===m.waves-1}};
-function gpos(d){const P=GT.m.path;for(let i=1;i<P.length;i++){const [x0,y0]=P[i-1],[x1,y1]=P[i],l=Math.hypot(x1-x0,y1-y0);if(d<=l)return[x0+(x1-x0)*d/l,y0+(y1-y0)*d/l];d-=l}return P[P.length-1]}
-const towerIcon=(t,lv)=>`<svg viewBox="0 0 40 40" aria-hidden="true"><rect x="11" y="17" width="18" height="20" rx="3" fill="#8C8FA3"/><path d="M11 17h18v-4h-4v3h-3v-3h-4v3h-3v-3h-4z" fill="#A3AFBD"/><circle cx="20" cy="${t==='bubble'?11:12}" r="${7+(lv||1)}" fill="${GTOW[t].c}" stroke="#fff" stroke-width="2"/></svg>`;
-function gateStart(){if(!canStart())return;stopGames();GT={ph:'build',m:gmCur(),w:0,cookies:10,tw:Array(6).fill(null),gobs:[],shots:[],pops:[],sp:null,time:0,paused:false,id:0,last:0};AR.run=true;rerealm();gatePaint(true);AR.raf=requestAnimationFrame(gateFrame)}
-function gateWave(){if(!GT||GT.ph!=='build')return;const W=gwave(GT.w);GT.ph='wave';GT.sp={left:W.n,cd:0,W};gatePaint(true)}
-function gateFrame(t){const Z=GT;if(!AR.run||!Z||AR.mode!=='gate')return;if(!$('gfield')){stopGames();return}if(outOfTime()){gateOver('time');return}
-  const dt=Z.last?Math.min(.05,(t-Z.last)/1000):0;Z.last=t;if(!Z.paused&&Z.ph==='wave')gateStep(dt);if(GT===Z&&AR.run){gatePaint();AR.raf=requestAnimationFrame(gateFrame)}}
-function gateStep(dt){const Z=GT,sp=Z.sp;Z.time+=dt;
-  if(sp&&sp.left>0&&(sp.cd-=dt)<=0){sp.left--;sp.cd=sp.W.gap;const boss=sp.W.boss&&sp.left===0,hp=boss?sp.W.hp*6:sp.W.hp;Z.gobs.push({id:++Z.id,d:0,hp,max:hp,sp:boss?sp.W.sp*.7:sp.W.sp,boss,slow:0})}
-  for(const g of Z.gobs){g.d+=g.sp*(g.slow>Z.time?.5:1)*dt;if(g.d>=Z.m.len){g.out=1;Z.cookies--}}
-  Z.gobs=Z.gobs.filter(g=>!g.out);if(Z.cookies<=0){Z.cookies=0;gateOver('lost');return}
-  Z.tw.forEach((T,i)=>{if(!T||(T.cd-=dt)>0)return;const D=GTOW[T.t],[px,py]=Z.m.pads[i],r=D.r+12*(T.lv-1);let b=null;
-    for(const g of Z.gobs){const [x,y]=gpos(g.d);if(Math.hypot(x-px,y-py)<=r&&(!b||g.d>b.d))b=g}if(!b)return;T.cd=D.rate;
-    const dmg=D.d[T.lv-1],[bx,by]=gpos(b.d);Z.shots.push({x0:px,y0:py,x1:bx,y1:by,c:D.c,k:T.t,t:Z.time+.15});
-    if(D.splash)Z.gobs.forEach(g=>{const [x,y]=gpos(g.d);if(Math.hypot(x-bx,y-by)<=D.splash)g.hp-=dmg});else b.hp-=dmg;if(D.slow)b.slow=Z.time+D.slow[T.lv-1]});
-  Z.gobs.filter(g=>g.hp<=0).forEach(g=>Z.pops.push({p:gpos(g.d),t:Z.time+.7}));Z.gobs=Z.gobs.filter(g=>g.hp>0);
-  Z.shots=Z.shots.filter(s=>s.t>Z.time);Z.pops=Z.pops.filter(p=>p.t>Z.time);
-  if(sp&&sp.left<=0&&!Z.gobs.length){Z.w++;Z.sp=null;if(Z.w>=Z.m.waves)gateOver('won');else{Z.ph='build';gatePaint(true)}}}
-function gateOver(why){const Z=GT;if(!Z)return;AR.run=false;cancelAnimationFrame(AR.raf);if(QM)qmClose(true);Z.ph=why;
-  if(why==='won'){const S=ARS('gate'),mi=GMAPS.indexOf(Z.m),st=Z.cookies>=8?3:Z.cookies>=4?2:1,pay=[0,3,5,8].map(x=>x&&x+2*mi);S.st=S.st||{};const b=S.st[Z.m.id]||0;
-    Z.stars=st;Z.gems=st>b?pay[st]-pay[b]:1;Z.unlock=!b&&GMAPS[mi+1];S.st[Z.m.id]=Math.max(b,st);S.wins=(S.wins||0)+1;addGems(Z.gems);SYNC();gameCheck()}
-  rerealm()}
-const gobSvg=(g,x,y,frz)=>`<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)})${g.boss?' scale(1.6)':''}"><ellipse cy="13" rx="11" ry="3" fill="rgba(0,0,0,.18)"/><path d="M-12 -4L-21 -11L-9 -9ZM12 -4L21 -11L9 -9Z" fill="#5FB548"/><circle r="12" fill="${frz?'#A5E8F7':'#7ED957'}" stroke="#4E9E3A" stroke-width="1.5"/><path d="M-10 -8Q0 -21 10 -8Z" fill="#8C8FA3"/><circle cx="-4" cy="-1" r="2.6" fill="#1B2A41"/><circle cx="4" cy="-1" r="2.6" fill="#1B2A41"/><path d="M-4 5Q0 8 4 5" stroke="#1B2A41" stroke-width="1.6" fill="none"/><rect x="-11" y="-23" width="22" height="3.5" rx="1.5" fill="rgba(0,0,0,.3)"/><rect x="-11" y="-23" width="${(22*Math.max(0,g.hp)/g.max).toFixed(1)}" height="3.5" rx="1.5" fill="#FB7185"/></g>`;
-function gatePaint(full){const Z=GT,dyn=$('gdyn');if(!Z||!dyn)return;
-  dyn.innerHTML=Z.gobs.map(g=>{const [x,y]=gpos(g.d);return gobSvg(g,x,y,g.slow>Z.time)}).join('')
-    +Z.shots.map(s=>s.k==='bubble'?`<circle cx="${s.x1.toFixed(1)}" cy="${s.y1.toFixed(1)}" r="${GTOW.bubble.splash}" fill="${s.c}" opacity=".28"/>`:`<line x1="${s.x0}" y1="${s.y0}" x2="${s.x1.toFixed(1)}" y2="${s.y1.toFixed(1)}" stroke="${s.c}" stroke-width="${s.k==='laser'?4:3}" stroke-linecap="round"/>`).join('')
-    +Z.pops.map(p=>{const f=(p.t-Z.time)/.7;return `<g transform="translate(${p.p[0].toFixed(1)} ${(p.p[1]-34*(1-f)).toFixed(1)})" opacity="${f.toFixed(2)}"><circle r="15" fill="#BFE9FF" stroke="#fff" stroke-width="2" opacity=".7"/><circle r="8" fill="#7ED957"/></g>`}).join('');
-  const c=$('gcook');if(c&&c.textContent!=String(Z.cookies))c.textContent=Z.cookies;
-  if(full){$('ghud').innerHTML=gateHud();Z.tw.forEach((T,i)=>{const b=$('gp'+i);if(!b)return;b.className='gpad'+(T?' built':'');b.innerHTML=T?`${towerIcon(T.t,T.lv)}<span class="pips" aria-hidden="true">${'★'.repeat(T.lv)}</span>`:'<span aria-hidden="true">+</span>';
-    b.setAttribute('aria-label',T?`${GTOW[T.t].n}, level ${T.lv}${T.lv<3?'. Tap to upgrade':''}`:`Empty pad ${i+1}. Tap to build a tower`)});const w=$('gwrow');if(w)w.innerHTML=waveBtn()}}
-const gateHud=()=>`<span>🍪 <b id="gcook">${GT.cookies}</b> cookies</span><span>🌊 Wave ${Math.min(GT.w+1,GT.m.waves)} of ${GT.m.waves}</span><span>🗼 ${GT.tw.filter(Boolean).length} of 6 towers</span>`;
-const waveBtn=()=>GT.ph==='build'?`<button class="abtn sun big" id="gwave" onclick="gateWave()">⚔️ Start wave ${GT.w+1}</button>`:'<p class="gsub" style="margin:0">Goblins incoming! Tap a pad to build or upgrade. The game pauses while you answer.</p>';
-function padTap(i){const Z=GT;if(!Z||!['build','wave'].includes(Z.ph)||QM)return;const T=Z.tw[i];if(T&&T.lv>=3)return msg('This tower is fully upgraded!');
-  Z.paused=!ARS('gate').speedy;const go_=()=>{if(GT)GT.paused=false};
-  if(!T)return qmMenu(`<h3>Build a tower</h3><p class="sol" style="margin:0 0 10px">Pick a tower, then answer a question to build it.</p><div class="tpick">${Object.entries(GTOW).map(([id,D])=>`<button class="abtn sec" onclick="gateBuild(${i},'${id}')">${towerIcon(id)}<span>${D.n}<small>${D.tip}</small></span></button>`).join('')}</div>`,go_);
-  qmMenu(`<h3>Upgrade the ${GTOW[T.t].n.toLowerCase()}</h3><p style="margin:0 0 10px">Answer ${T.lv+1} questions in a row to reach level ${T.lv+1}.</p><button class="abtn" onclick="gateUp(${i})">Start the upgrade</button>`,go_)}
-async function gateBuild(i,t){qmClose(true);const Z=GT;if(!Z)return;Z.paused=!ARS('gate').speedy;const ok=await qAsk({title:'Build a '+GTOW[t].n.toLowerCase(),cancel:true});
-  if(GT!==Z)return;Z.paused=false;if(ok&&!Z.tw[i]&&['build','wave'].includes(Z.ph)){Z.tw[i]={t,lv:1,cd:0};gatePaint(true)}}
-async function gateUp(i){qmClose(true);const Z=GT,T=Z&&Z.tw[i];if(!T)return;const need=T.lv+1;Z.paused=!ARS('gate').speedy;
-  for(let n=1;n<=need;n++){const ok=await qAsk({title:`Upgrade: question ${n} of ${need}`,cancel:n===1});if(GT!==Z)return;if(!ok){Z.paused=false;if(ok===false)msg('So close! Try the upgrade again.');return}}
-  Z.paused=false;if(Z.tw[i]===T){T.lv=need;gatePaint(true);msg(`${GTOW[T.t].n} is now level ${need}!`)}}
-const gateSvg=m=>{const d=m.path.map(([x,y],i)=>(i?'L':'M')+x+' '+y).join(' '),e=m.path[m.path.length-1];return `<svg viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="640" height="360" fill="${m.bg}"/><path d="M0 300Q160 270 320 320T640 300V360H0Z" fill="${m.bg2}"/>
-  ${m.trees.map(([x,y])=>`<circle cx="${x}" cy="${y}" r="16" fill="${m.tree}"/><circle cx="${x+14}" cy="${y+4}" r="12" fill="${m.tree}"/>`).join('')}
-  <path d="${d}" fill="none" stroke="${m.road[0]}" stroke-width="40" stroke-linejoin="round"/><path d="${d}" fill="none" stroke="${m.road[1]}" stroke-width="30" stroke-linejoin="round"/>
-  <g transform="translate(596 ${e[1]-80})"><rect x="0" y="20" width="44" height="100" fill="#A3AFBD"/><path d="M0 20V8h9v12h9V8h8v12h9V8h9v12" fill="#A3AFBD"/><rect x="-6" y="62" width="20" height="36" rx="9" fill="#5B6478"/><path d="M22 0V-26L40 -18L22 -10" fill="#FB7185"/><text x="22" y="56" font-size="22" text-anchor="middle">🍪</text></g><g id="gdyn"></g></svg>`};
-GVIEW.gate=function(){const Z=GT,S=ARS('gate'),run=Z&&['build','wave'].includes(Z.ph),m=run?Z.m:gmCur(),head=`<div class="gworld">${clouds()}${gameHead('Goblin Gate',`${m.n}: answer questions to build towers and keep the goblins away from your cookies!`)}`;
-  if(!run){const out=outOfTime(),st=S.st||{};let card='';
-    if(Z&&Z.ph==='won')card=`<div class="gcard endcard" style="margin-bottom:16px"><div class="big" aria-hidden="true">🏰</div><h3>The castle is safe!</h3><p>${stars3(Z.stars)}<br>${esc(Z.m.n)} · ${Z.cookies} of 10 cookies saved · 💎 +${Z.gems} gem${Z.gems>1?'s':''}</p>${Z.unlock?`<p><b>🔓 New map unlocked: ${esc(Z.unlock.n)}!</b></p>`:''}</div>`;
-    else if(Z&&Z.ph==='lost')card=`<div class="gcard endcard" style="margin-bottom:16px"><div class="big" aria-hidden="true">🍪</div><h3>The goblins ate all the cookies!</h3><p>More towers and upgrades will stop them, and every question you answer builds your defense. Try again!</p></div>`;
-    return head+`${out?restCard():''}${card}${subjChips()}<div class="gcard"><h3>🗺️ Pick a map</h3><div class="ktracks">${GMAPS.map((g,i)=>{const o=gmOpen(i),on=g.id===m.id;return `<button class="ktr ${on?'on':''}" ${o?'':'disabled'} aria-pressed="${on}" onclick="ARS('gate').map='${g.id}';SYNC();rerealm()"><span class="ktrart" aria-hidden="true" style="background:linear-gradient(135deg,${g.bg} 0 42%,${g.road[1]} 42% 58%,${g.bg2} 58%)"></span><b>${o?'':'🔒 '}${esc(g.n)}</b><span class="sol">${g.waves} waves · ${o?(st[g.id]?stars3(st[g.id]):'Not won yet'):'Win the map before'}</span></button>`}).join('')}</div>
-      <h3 style="margin-top:18px">🏰 How to play</h3><ul class="pearn"><li>Tap an empty pad, pick a tower and answer a question to build it.</li><li>Tap a tower to upgrade it: 2 right in a row for level 2, 3 in a row for level 3.</li><li>Stop every wave of goblins before they eat your 10 cookies. The game pauses while you answer. Winning a map unlocks the next one, with tougher goblins.</li></ul>
-      <label class="ckline"><input type="checkbox" ${S.speedy?'checked':''} onchange="ARS('gate').speedy=this.checked;SYNC()"> Speedy mode: goblins keep moving while you answer</label>
-      <div class="row" style="margin-top:14px;align-items:center"><button class="abtn big" ${out?'disabled':''} onclick="gateStart()">🛡️ Start defending</button></div></div></div>`}
-  return head+`<div class="ghud" id="ghud"></div><div class="gfield" id="gfield">${gateSvg(m)}${m.pads.map(([x,y],i)=>`<button class="gpad" id="gp${i}" style="left:${(x/6.4).toFixed(2)}%;top:${(y/3.6).toFixed(2)}%" onclick="padTap(${i})"></button>`).join('')}</div><div class="row" style="margin-top:14px;justify-content:center;text-align:center" id="gwrow"></div></div>`};
-
 /* ---------- Keys for the games and the question modal ---------- */
 addEventListener('keydown',e=>{if(typeof tab==='undefined'||tab!=='play')return;const tg=e.target,typing=tg&&/^(INPUT|TEXTAREA|SELECT)$/.test(tg.tagName);
   if(QM){if(QM.phase==='ask'&&QM.q&&QM.q.choices&&!typing&&/^[1-4]$/.test(e.key)&&+e.key<=QM.q.choices.length){e.preventDefault();qmAns(+e.key-1)}else if(e.key==='Escape'&&QM.o.cancel&&QM.phase!=='fb')qmClose(false,null);return}

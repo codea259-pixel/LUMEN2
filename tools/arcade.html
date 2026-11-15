@@ -135,8 +135,8 @@ const GAMES=[
   {id:'spell',n:'Spell Quest',p:'Cast spells with smart answers and befriend the monsters of seven magic lands.'},
   {id:'pets',n:'Pet Pals',p:'Your learning feeds a pet that grows, evolves and cheers you on.'},
   {id:'kart',n:'Turbo Trivia Kart',p:'A real racing game: steer into the right answer for boosts and power-ups on five tracks.'},
-  {id:'blocks',n:'Block Builder',p:'Stack falling number blocks that add or multiply to the target to clear them.'},
-  {id:'gate',n:'Goblin Gate',p:'Answer questions to build towers and keep the goofy goblins out.'}];
+  {id:'blocks',n:'Block Builder',p:'A math block puzzle: make groups and equations that hit the target, with combos and challenges.'},
+  {id:'gate',n:'Goblin Gate',p:'A tower defense: build Ice, Fire, Lightning and Catapult towers, and answer to upgrade them and beat the boss.'}];
 let AR={mode:null};
 function openGame(id){const g=GAMES.find(x=>x.id===id);if(!g||g.soon)return;AR.mode=id;rerealm();scrollTo({top:0,behavior:calmOn()?'auto':'smooth'})}
 function toHub(){if(BT&&BT.phase==='ask'&&BT.n&&!confirm('Leave this battle?'))return;BT=null;AR.mode=null;rerealm()}

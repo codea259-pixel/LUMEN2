@@ -157,18 +157,30 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     const bk = await a.evaluate(() => ({ got: document.querySelectorAll('.bitem:not(.locked)').length, txt: document.querySelector('.gworld').textContent.includes('Sunny Yellow') }));
     if (bk.got < 4 || !bk.txt) fail('Collection Book wrong: ' + JSON.stringify(bk)); ok(`picked the new paint, Restart began the race again, the Collection Book shows ${bk.got} unlocked things`);
     await a.click('text=← Back to Turbo Trivia Kart'); await a.waitForSelector('.ktracks2');
-    // Goblin Gate: build with a right answer, the field pauses during questions, upgrades need answers in a row
-    await a.evaluate(() => toHub()); await a.click('.tile:has-text("Goblin Gate")'); await a.click('text=Start defending'); await a.waitForSelector('#gp0');
-    await a.click('#gp0'); await a.click('.tpick button:has-text("Laser tower")'); await answerQM(a, true); await a.waitForFunction(() => !QM && GT.tw[0] && GT.tw[0].lv === 1);
-    await a.click('#gwave'); await a.waitForFunction(() => GT.gobs.length > 0 && GT.gobs[0].d > 20); await a.click('#gp1'); await a.waitForSelector('.tpick');
-    const gd0 = await a.evaluate(() => GT.gobs.map(g => g.d.toFixed(2)).join()); await a.waitForTimeout(700); const gd1 = await a.evaluate(() => GT.gobs.map(g => g.d.toFixed(2)).join());
-    if (gd0 !== gd1) fail('goblins kept moving while a question menu was open'); await a.click('#qmodal >> text=Not now'); await a.waitForFunction(() => !QM && !GT.paused);
-    await a.click('#gp0'); await a.click('text=Start the upgrade'); await answerQM(a, true); await answerQM(a, false); await a.waitForSelector('#qmok'); await a.click('#qmok'); await a.waitForFunction(() => !QM);
-    if (await a.evaluate(() => GT.tw[0].lv) !== 1) fail('an upgrade went through after a miss');
-    const gg0 = await a.evaluate(() => GEMS()); await a.evaluate(() => { GT.tw = GT.tw.map((t, i) => ({ t: ['laser', 'frost', 'bubble'][i % 3], lv: 3, cd: 0 })); for (let i = 0; i < 6000 && ['build', 'wave'].includes(GT.ph); i++) { if (GT.ph === 'build') gateWave(); gateStep(.05) } });
-    await a.waitForSelector('text=The castle is safe!'); const gr = await a.evaluate(g => ({ gems: GEMS() - g, stars: GT.stars, best: (ARS('gate').st || {}).meadow, forest: gmOpen(1), snow: gmOpen(2) }), gg0);
-    if (gr.gems !== [0, 3, 5, 8][gr.stars] || gr.best !== gr.stars || !gr.forest || gr.snow || !(await a.isVisible('text=New map unlocked: Forest Trail'))) fail('castle reward wrong: ' + JSON.stringify(gr));
-    ok(`Goblin Gate: a right answer built a laser tower, goblins froze while a menu was open, a miss stopped the upgrade, 4 waves of Meadow Path defended for ${gr.stars} stars and ${gr.gems} gems, unlocking Forest Trail (6 waves)`); await shot(a, 'g-gate');
+    // Goblin Gate: build by tapping a pad, an upgrade needs a right answer (a miss changes nothing), goblins freeze while a question is open, the boss cannon, a won map
+    await a.evaluate(() => toHub()); await a.click('.tile:has-text("Goblin Gate")'); await a.waitForSelector('.ggmaps'); await a.click('text=▶ Start defending');
+    await a.waitForFunction(() => AG.cur && AG.cur.phase === 'play' && AG.cur.st); const gg0 = await a.evaluate(() => GEMS());
+    const gbox = await a.locator('#agcv').boundingBox(), gp = await a.evaluate(() => AG.cur.st.m.pads[0]);
+    await a.mouse.click(gbox.x + gp[0] / 640 * gbox.width, gbox.y + gp[1] / 360 * gbox.height); await a.waitForSelector('.ggbuild');
+    if (await a.evaluate(() => AG.cur.st.sel) !== 0) fail('tapping a pad did not select it');
+    await a.click('.ggbuild >> nth=0'); if (await a.evaluate(() => (AG.cur.st.tw[0] || {}).t) !== 'ice') fail('tapping Ice tower did not build it');
+    await a.evaluate(() => { AG.cur.st.gold = 500; ggpanel(AG.cur.st) }); await a.click('.ggup >> nth=2'); await answerQM(a, false); await a.click('#qmok'); await a.waitForFunction(() => !QM);
+    if (await a.evaluate(() => AG.cur.st.tw[0].tier) !== 0) fail('a wrong answer upgraded the tower');
+    await a.click('.ggup >> nth=2'); await answerQM(a, true); await a.waitForFunction(() => !QM && AG.cur.st.tw[0].tier === 1);
+    const gu = await a.evaluate(() => ({ path: AG.cur.st.tw[0].path, gold: AG.cur.st.gold })); if (gu.path !== 2 || gu.gold !== 470) fail('upgrade wrong: ' + JSON.stringify(gu));
+    await a.click('text=⚔️ Start wave 1'); await a.waitForFunction(() => AG.cur.st.gobs.length > 0 && AG.cur.st.gobs[0].d > 20);
+    await a.click('.ggup >> nth=0'); await a.waitForFunction(() => QM && QM.phase === 'ask'); const gd0 = await a.evaluate(() => AG.cur.st.gobs.map(g => g.d.toFixed(2)).join()); await a.waitForTimeout(600);
+    if (gd0 !== await a.evaluate(() => AG.cur.st.gobs.map(g => g.d.toFixed(2)).join())) fail('goblins kept moving while a question was open'); await answerQM(a, true); await a.waitForFunction(() => !QM && AG.cur.st.tw[0].tier === 2);
+    // strong towers, then waves until the boss arrives: answer to fire the castle cannon
+    await a.evaluate(() => { const Z = AG.cur.st; Z.tw = Z.tw.map(() => ({ t: 'bolt', path: 2, tier: 2, cd: 0 })); let n = 0; while (n++ < 60000 && AG.cur.phase === 'play' && !Z.boss) { if (Z.ph === 'build') ggWave(Z); AG.G.gate.step(1 / 60, Z) } ggpanel(Z) });
+    if (!(await a.evaluate(() => !!AG.cur.st.boss))) fail('no boss came in the last wave');
+    await a.click('#ggcannon'); await answerQM(a, true); await a.waitForFunction(() => !QM); await a.waitForTimeout(700);
+    const gb = await a.evaluate(() => { const b = AG.cur.st.boss; return b ? b.hp / b.max : 0 }); if (gb > .9) fail('the castle cannon did not hit the boss: ' + gb);
+    await a.evaluate(() => { const Z = AG.cur.st; let n = 0; while (n++ < 80000 && AG.cur.phase === 'play') { if (Z.ph === 'build') ggWave(Z); AG.G.gate.step(1 / 60, Z) } });
+    await a.waitForSelector('text=The castle is safe!'); await a.waitForTimeout(1600);
+    const gr = await a.evaluate(g => ({ gems: GEMS() - g, r: AG.cur.res, st: ARS('gate').st.valley, next: ggOpen(1), after: ggOpen(2), boss: AG.got('gate', 'boss'), flag: AG.has('gate.flag.blue') }), gg0);
+    if (gr.st < 1 || !gr.next || gr.after || !gr.boss || !gr.flag || gr.gems < gr.r.gems || !(await a.isVisible('text=New map: Frozen Kingdom'))) fail('Goblin Gate result wrong: ' + JSON.stringify(gr));
+    ok(`Goblin Gate: tapping a pad and Ice tower built it, a miss left the upgrade undone and a right answer upgraded it (30 gold), goblins froze while a question was open, the boss came in the last wave and a right answer fired the castle cannon, the map was won with ${gr.r.stars} stars and ${gr.gems} gems, unlocking Frozen Kingdom, the boss achievement and the blue banner`); await shot(a, 'g-gate');
     // Block Builder: 4 + 6 side by side (keys), 8 + 2 stacked (tapping the column), 3 × 4 = 12, a mystery block, level 2, a rescue, a full tower, a challenge level
     await a.evaluate(() => toHub()); await a.click('.tile:has-text("Block Builder")'); await a.waitForSelector('.bbmodes'); await a.click('.bbmode:has-text("Endless")'); await a.click('.chip:has-text("Make 10")'); await a.click('text=▶ Start');
     await a.waitForFunction(() => AG.cur && AG.cur.phase === 'play' && AG.cur.st && AG.cur.st.phase === 'fall');
