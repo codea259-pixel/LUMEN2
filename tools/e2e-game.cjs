@@ -146,6 +146,22 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     const ev = await a.evaluate(() => [...document.querySelectorAll('.pevo button')].map((b, i) => b.disabled === !Object.values(PEVO)[i].ok()));
     if (ev.length !== 3 || ev.includes(false)) fail('the evolution choices are not locked by learning progress');
     ok(`Pet Pals: a Curious personality, ${mk.length} memories, Sort It! (${srt.a[0]} / ${srt.bb[0]}) scored 11 of 12 and paused, Star Catch moved and ended, ${gs} game snacks (cap 2), evolutions locked by progress`); await shot(a, 'g-pet2');
+    // Pet Pals exploring: places open with growth, three trips a day, finds, the mystery spot, a full set makes a home backdrop
+    await a.waitForSelector('.pxlist'); const pxl = await a.$$eval('.pxlist button', b => b.map(x => x.disabled)); if (pxl.join() !== 'false,false,false,false,true') fail('places did not open by growth: ' + pxl);
+    const pxPlay = await a.evaluate(() => DAY().play); await a.click('.pxlist button:has-text("Enchanted Forest")'); await a.waitForSelector('.pxscene');
+    for (const i of [0, 1, 2]) await a.click(`.pxspot >> nth=${i}`);
+    await a.click('.pxspot >> nth=3'); await a.waitForFunction(() => QM && QM.phase === 'ask'); { const c = await a.evaluate(() => QM.q.choices ? QM.q.choices.length : 0), r = await a.evaluate(() => QM.q.a[0]);
+      if (c) await a.click(`#qmodal .bchoices button >> nth=${(r + 1) % c}`); else { await a.fill('#qmin', '987654'); await a.click('#qmodal .bans button') } await a.click('#qmok'); await a.waitForFunction(() => !QM) }
+    const px1 = await a.evaluate(() => ({ f: PET().x.forest, t: pxTrips(), shut: PX.spots[3] }));
+    if (px1.f.slice(0, 4).reduce((s, v) => s + (v ? 1 : 0), 0) < 1 || px1.f.slice(4).some(Boolean) || px1.shut !== '🔒' || px1.t !== 2) fail('an exploring trip went wrong: ' + JSON.stringify(px1));
+    if (await a.evaluate(() => DAY().play) !== pxPlay) fail('exploring used play time');
+    await a.click('text=Head home'); await a.evaluate(() => { PET().x.forest = [1, 1, 1, 1, 1, 0]; rerealm() }); await a.click('.pxlist button:has-text("Enchanted Forest")'); await a.click('.pxspot >> nth=3');
+    await a.waitForFunction(() => QM && QM.phase === 'ask'); { const c = await a.evaluate(() => QM.q.choices ? QM.q.choices.length : 0), r = await a.evaluate(() => QM.q.a[0]);
+      if (c) await a.click(`#qmodal .bchoices button >> nth=${r}`); else { await a.fill('#qmin', await a.evaluate(() => fmtA(QM.q))); await a.click('#qmodal .bans button') } await a.waitForFunction(() => !QM) }
+    if (!(await a.textContent('.pxfind')).includes('whole set')) fail('finishing a set did not say so');
+    await a.click('text=Head home'); await a.click('.accs button:has-text("Enchanted Forest")'); if (!(await a.$('.palstage.bd-forest'))) fail('the forest backdrop did not show');
+    await a.evaluate(() => { PET().xt.n = 3; rerealm() }); if ((await a.$$eval('.pxlist button', b => b.filter(x => !x.disabled).length)) !== 0) fail('a fourth trip was allowed');
+    ok('Pet Pals exploring: places open with growth, a trip found things and the mystery spot stayed shut after a miss, a full set unlocked the forest backdrop, 3 trips a day, no play time used'); await shot(a, 'g-pet3');
     // Spell Quest, the pixel adventure: maps, walking, a battle, befriending, the gate, the boss, music and the journal
     const sqMaps = await a.evaluate(() => { const bad = [];
       for (const [land, rows] of Object.entries(SQMAPS)) { if (rows.length !== 14 || rows.some(r => r.length !== 22)) { bad.push(land + ': size'); continue }

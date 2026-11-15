@@ -44,6 +44,13 @@ rep('<script>\n/* ===== Grades, teacher tools', '<script type="text/x-lumen">\n/
 rep("const can=t=>", "let can=t=>")
 rep("const isMod=()=>ST.role==='owner'||ST.role==='teacher',who=()=>ST.me.name;", "let isMod=()=>ST.role==='owner'||ST.role==='teacher',who=()=>ST.me.name;")
 rep('</body>', ''.join(layer(f) + '\n' for f in layers) + '</body>')
+# Two layers declaring the same top-level function: the later one silently replaces the earlier one. Stop the build.
+_seen = {}
+for f in [src] + layers:
+    for m in re.finditer(r'^(?:async )?function ([A-Za-z_$][\w$]*)\s*\(', open(f, encoding='utf-8').read(), re.M):
+        if m.group(1) in _seen and _seen[m.group(1)] != f:
+            sys.exit(f'build stopped: function {m.group(1)} is declared in both {os.path.basename(_seen[m.group(1)])} and {os.path.basename(f)}')
+        _seen[m.group(1)] = f
 open(out, 'w', encoding='utf-8').write(h)
 # GitHub Pages serves the repo root without the server, so keep copies there (the app runs in demo mode)
 root = os.path.join(D, '..')
