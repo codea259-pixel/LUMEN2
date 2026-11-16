@@ -6779,7 +6779,7 @@ function ggdraw(Z){const x=AG.cx;if(!x)return;const m=Z.m,L=GGC.low||(GGC.low=Ob
   if(Z.boss&&!Z.boss.dead){const B=Z.boss,w=300,fr=Math.max(0,B.hp/B.max);x.fillStyle='rgba(15,10,25,.7)';x.fillRect(170,8,w,20);x.fillStyle=B.k==='king'?'#DC2626':'#F97316';x.fillRect(172,10,(w-4)*fr,16);if(B.shieldU>Z.time){x.fillStyle='rgba(159,227,255,.55)';x.fillRect(172,10,w-4,16)}x.font='800 11px "Bricolage Grotesque",sans-serif';x.fillStyle='#fff';x.fillText(`${B.k==='king'?'🤴 THE GOBLIN KING':'👑 BOSS'}  ${Math.ceil(B.hp)} / ${B.max}`,320,18.5)}
   x.font='800 14px "Bricolage Grotesque",sans-serif';for(const tx of Z.texts)if(tx.l>0){x.globalAlpha=Math.min(1,tx.l*1.5);x.fillStyle='rgba(0,0,0,.5)';x.fillText(tx.s,tx.x+1,tx.y+1);x.fillStyle=tx.c;x.fillText(tx.s,tx.x,tx.y)}x.globalAlpha=1}
 const ggfx=(Z,k,x0,y0,a,b,d)=>{let f=Z.fx.find(q=>q.l<=0);if(!f){if(Z.fx.length>70)return null;f={};Z.fx.push(f)}Object.assign(f,{k,x:x0,y:y0,a,b,l:d,d,c:null});return f};
-const ggtext=(Z,x0,y0,s,c)=>{let t=Z.texts.find(q=>q.l<=0);if(!t){if(Z.texts.length>14)return;t={};Z.texts.push(t)}Object.assign(t,{x:Math.max(60,Math.min(GGW-60,x0)),y:Math.max(Z.boss?46:16,y0),s,c,l:1.4})};
+const ggtext=(Z,x0,y0,s,c)=>{let t=Z.texts.find(q=>q.l<=0);if(!t){if(Z.texts.length>14)return;t={};Z.texts.push(t)}const hw=Math.min(300,[...s].length*4.2+10);Object.assign(t,{x:Math.max(hw,Math.min(GGW-hw,x0)),y:Math.max(Z.boss?46:16,y0),s,c,l:1.4})};
 
 /* ---------- The side panel: status, the wave button, building and upgrading ---------- */
 function gghud(Z){const h=$('gghud');if(!h)return;const s=`<span>🍪 ${Z.cookies}</span><span>💰 ${Z.gold}</span><span>🌊 ${Math.min(Z.w+1,Z.m.waves)}/${Z.m.waves}</span>`;if(h.innerHTML!==s)h.innerHTML=s;
