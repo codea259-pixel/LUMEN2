@@ -206,6 +206,26 @@ const FBM=(()=>{
     if(gems<1||gems>20)throw new E(400,'Give 1 to 20 gems.');let ids=c.members||[];
     if(to.startsWith('t:')){const t=+to.slice(2);ids=ids.filter(u=>g.tm[u]===t)}else if(to!=='all'){const u=sid(to);ids=ids.filter(x=>x===u)}
     if(!ids.length)throw new E(400,'Nobody to give gems to.');const ts=now();await Promise.all(ids.map(u=>cd.ref.collection('awards').add({uid:u,gems,reason,ts,claimed:false,cname:c.name})));return{ok:true,count:ids.length}});
+  /* Goblin Gate maps shared with a class (classes/{c}/maps/{m}). The rules check who writes and each field's shape; the road is checked here, and again by the game before it plays one. */
+  const MTH=['valley','frozen','crystal','swamp','lava','sky','fortress'],MC=15,MR=9;
+  const mInt=(v,lo,hi)=>{v=Math.trunc(+v);if(!Number.isFinite(v)||v<lo||v>hi)throw new E(400,'Invalid number.');return v};
+  const mCells=(v,lo,hi)=>{const t=String(v??'');if(!/^[0-9a-z]*$/.test(t)||t.length%2||t.length<lo*2||t.length>hi*2)throw new E(400,'That map is not finished.');return t.match(/../g).map(x=>parseInt(x,36))};
+  const mClean=b=>{const o={na:mInt(b.na,0,15),nb:mInt(b.nb,0,15),th:String(b.th||''),w:mInt(b.w,5,10),d:mInt(b.d,0,2),b:!!b.b},r=mCells(b.road,MC,MC*MR),p=mCells(b.pads,3,8);
+    if(!MTH.includes(o.th))throw new E(400,'Pick a land for the map.');const adj=(a,c)=>Math.abs(a%MC-c%MC)+Math.abs(Math.floor(a/MC)-Math.floor(c/MC))===1;
+    if(r.some(i=>i>=MC*MR)||new Set(r).size!==r.length||r[0]%MC!==0||r[r.length-1]%MC!==MC-1||r.some((i,k)=>k&&!adj(r[k-1],i)))throw new E(400,'The road has to go from the left edge to the castle, one square at a time.');
+    if(p.some(i=>i>=MC*MR||r.includes(i))||new Set(p).size!==p.length)throw new E(400,'Stone pads go beside the road.');return{...o,road:String(b.road),pads:String(b.pads)}};
+  const mClass=async id=>{const cd=await doc('classes',sid(id)).get();if(!cd.exists)throw new E(404,'Class not found.');const c=cd.data(),t=c.teacherId===me.uid||isOwner();if(!t&&!(c.members||[]).includes(me.uid))throw new E(404,'Class not found.');return{cd,t}};
+  const mOne=async(cd,mid)=>{const g=await cd.ref.collection('maps').doc(sid(mid)).get();if(!g.exists)throw new E(404,'That map is gone.');return g};
+  route('GET','/api/classes/:id/maps',async(b,p)=>{need();const {cd}=await mClass(p.id),q=await cd.ref.collection('maps').get();
+    return{maps:q.docs.map(d=>{const v=d.data(),L=v.likes||[];return{id:num(d.id),by:v.by,mine:v.uid===me.uid,na:v.na,nb:v.nb,th:v.th,w:v.w,d:v.d,b:!!v.b,road:v.road,pads:v.pads,likes:L.length,liked:L.includes(me.uid),plays:v.plays||0,ts:v.ts}}).sort((a,b)=>b.ts-a.ts)}});
+  route('POST','/api/classes/:id/maps',async(b,p)=>{need();const {cd,t}=await mClass(p.id),d=mClean(b),q=await cd.ref.collection('maps').get();
+    if(q.docs.filter(x=>x.data().uid===me.uid).length>=(t?6:3))throw new E(400,`You can share up to ${t?6:3} maps with a class. Remove one first.`);
+    if(q.size>=60)throw new E(400,'This class has 60 maps already. Ask your teacher to remove some.');
+    const r=await cd.ref.collection('maps').add({uid:me.uid,by:profile.display,...d,likes:[],plays:0,ts:now()});return{ok:true,id:num(r.id)}});
+  route('DELETE','/api/classes/:id/maps/:mid',async(b,p)=>{need();const {cd,t}=await mClass(p.id),g=await mOne(cd,p.mid);need(t||g.data().uid===me.uid);await g.ref.delete();return{ok:true}});
+  route('POST','/api/classes/:id/maps/:mid/like',async(b,p)=>{need();const {cd}=await mClass(p.id),g=await mOne(cd,p.mid),L=g.data().likes||[],on=!L.includes(me.uid);
+    await g.ref.update({likes:on?FV.arrayUnion(me.uid):FV.arrayRemove(me.uid)});return{ok:true,liked:on,likes:L.length+(on?1:-1)}});
+  route('POST','/api/classes/:id/maps/:mid/play',async(b,p)=>{need();const {cd}=await mClass(p.id),g=await mOne(cd,p.mid);await g.ref.update({plays:FV.increment(1)});return{ok:true}});
   route('GET','/api/awards',async()=>{need();if(myCls===null)myCls=(await db.collection('classes').where('members','array-contains',me.uid).get()).docs.map(d=>d.id);
     const out=[];for(const c of myCls){const r=await doc('classes',c).collection('awards').where('uid','==',me.uid).where('claimed','==',false).get();r.forEach(d=>{const v=d.data();out.push({id:num(c+'|'+d.id),gems:v.gems,reason:v.reason,ts:v.ts,cls:v.cname})})}
     return{awards:out.sort((a,b)=>a.ts-b.ts).slice(0,50)}});
@@ -309,7 +329,7 @@ const FBM=(()=>{
   const wipe=async uid=>{const all=async(c,f)=>{try{return(await db.collection(c).where(f,'==',uid).limit(500).get()).docs}catch(e){return[]}};
     for(const d of await all('posts','authorId')){try{for(const r of (await db.collection('replies').where('postId','==',d.id).where('hidden','==',false).get()).docs)await r.ref.delete()}catch(e){}await d.ref.delete().catch(()=>{})}
     for(const d of [...await all('replies','authorId'),...await all('certs','uid')])await d.ref.delete().catch(()=>{});
-    try{for(const c of (await db.collection('classes').where('members','array-contains',uid).get()).docs){await c.ref.collection('board').doc(uid).delete().catch(()=>{});await c.ref.update({members:FV.arrayRemove(uid)}).catch(()=>{})}}catch(e){}
+    try{for(const c of (await db.collection('classes').where('members','array-contains',uid).get()).docs){await c.ref.collection('board').doc(uid).delete().catch(()=>{});try{for(const m of (await c.ref.collection('maps').where('uid','==',uid).get()).docs)await m.ref.delete().catch(()=>{})}catch(e){}await c.ref.update({members:FV.arrayRemove(uid)}).catch(()=>{})}}catch(e){}
     try{for(const g of (await db.collection('groups').where('members','array-contains',uid).get()).docs)await g.ref.update({members:FV.arrayRemove(uid)}).catch(()=>{})}catch(e){}
     for(const c of ['state','consents','users','private'])await doc(c,uid).delete().catch(e=>{if(c!=='consents')throw e})};
 

@@ -45,6 +45,7 @@ try { db.exec("ALTER TABLE tests ADD COLUMN passages TEXT DEFAULT '[]'"); } catc
 try { db.exec('ALTER TABLE classes ADD COLUMN game TEXT'); } catch { /* already there */ }
 for (const t of ['users', 'classes']) { try { db.exec(`ALTER TABLE ${t} ADD COLUMN member_until INTEGER DEFAULT 0`); } catch { /* already there */ } }
 db.exec('CREATE TABLE IF NOT EXISTS awards(id INTEGER PRIMARY KEY, class_id INTEGER, user_id INTEGER, gems INTEGER, reason TEXT, ts INTEGER, claimed INTEGER DEFAULT 0)');
+db.exec("CREATE TABLE IF NOT EXISTS class_maps(id INTEGER PRIMARY KEY, class_id INTEGER, author_id INTEGER, data TEXT, likes TEXT DEFAULT '[]', plays INTEGER DEFAULT 0, ts INTEGER)");
 const Q = (sql, ...p) => db.prepare(sql).all(...p);
 const Q1 = (sql, ...p) => db.prepare(sql).get(...p);
 const X = (sql, ...p) => db.prepare(sql).run(...p);
@@ -172,6 +173,7 @@ route('DELETE', '/api/me', (c, res) => { need(c); const u = c.u; if (u.role === 
     X('DELETE FROM replies WHERE author_id=? OR post_id IN (SELECT id FROM posts WHERE author_id=?)', u.id, u.id); X('DELETE FROM posts WHERE author_id=?', u.id);
     for (const g of Q('SELECT * FROM groups')) { const m = JSON.parse(g.members); if (m.includes(u.id)) X('UPDATE groups SET members=? WHERE id=?', JSON.stringify(m.filter(x => x !== u.id)), g.id); }
     for (const t of ['certs', 'class_members', 'awards', 'state']) X(`DELETE FROM ${t} WHERE user_id=?`, u.id);
+    X('DELETE FROM class_maps WHERE author_id=?', u.id);
     X('DELETE FROM qvers WHERE owner_id=?', u.id); X('DELETE FROM users WHERE id=?', u.id); db.exec('COMMIT');
   } catch (e) { db.exec('ROLLBACK'); throw e; }
   res.cookie = 'x'; res.clear = true; return { ok: true }; });
@@ -360,6 +362,31 @@ route('POST', '/api/classes/:id/awards', c => { need(c, isTeacher(c.u)); const k
   if (to.startsWith('t:')) { const t = int(to.slice(2), 0, 5); ids = ids.filter(u => g.tm[u] === t); } else if (to !== 'all') { const u = int(to, 1, 1e12); ids = ids.filter(x => x === u); }
   if (!ids.length) throw new E(400, 'Nobody to give gems to.');
   const now = Date.now(); ids.forEach(u => X('INSERT INTO awards(class_id,user_id,gems,reason,ts) VALUES(?,?,?,?,?)', k.id, u, gems, reason, now)); return { ok: true, count: ids.length }; });
+// Goblin Gate maps shared with a class: a 15 x 9 grid with a road from the left edge to the right edge, 3 to 8 stone pads beside it,
+// and a name made from two word lists (no free text). Classmates play and like them; the author or the teacher removes them.
+const GGTH = ['valley', 'frozen', 'crystal', 'swamp', 'lava', 'sky', 'fortress'], GMC = 15, GMR = 9;
+const ggCells = (v, lo, hi) => { const t = String(v ?? ''); if (!/^[0-9a-z]*$/.test(t) || t.length % 2 || t.length < lo * 2 || t.length > hi * 2) throw new E(400, 'That map is not finished.'); return t.match(/../g).map(x => parseInt(x, 36)); };
+function mapClean(b) {
+  const o = { na: int(b.na, 0, 15), nb: int(b.nb, 0, 15), th: String(b.th || ''), w: int(b.w, 5, 10), d: int(b.d, 0, 2), b: !!b.b }, r = ggCells(b.road, GMC, GMC * GMR), p = ggCells(b.pads, 3, 8);
+  if (!GGTH.includes(o.th)) throw new E(400, 'Pick a land for the map.');
+  const adj = (a, c) => Math.abs(a % GMC - c % GMC) + Math.abs(Math.floor(a / GMC) - Math.floor(c / GMC)) === 1;
+  if (r.some(i => i >= GMC * GMR) || new Set(r).size !== r.length || r[0] % GMC !== 0 || r[r.length - 1] % GMC !== GMC - 1 || r.some((i, k) => k && !adj(r[k - 1], i))) throw new E(400, 'The road has to go from the left edge to the castle, one square at a time.');
+  if (p.some(i => i >= GMC * GMR || r.includes(i)) || new Set(p).size !== p.length) throw new E(400, 'Stone pads go beside the road.');
+  return { ...o, road: String(b.road), pads: String(b.pads) };
+}
+const mapClass = (c, id) => { const k = Q1('SELECT * FROM classes WHERE id=?', int(id, 1, 1e12)); if (!k) throw new E(404, 'Class not found.');
+  const t = k.teacher_id === c.u.id || c.u.role === 'owner'; if (!t && !Q1('SELECT 1 FROM class_members WHERE class_id=? AND user_id=?', k.id, c.u.id)) throw new E(404, 'Class not found.'); return { k, t }; };
+const mapOut = (r, uid) => { const L = JSON.parse(r.likes); return { id: r.id, by: nameOf(r.author_id), mine: r.author_id === uid, ...JSON.parse(r.data), likes: L.length, liked: L.includes(uid), plays: r.plays, ts: r.ts }; };
+route('GET', '/api/classes/:id/maps', c => { need(c); const { k } = mapClass(c, c.params.id); return { maps: Q('SELECT * FROM class_maps WHERE class_id=? ORDER BY ts DESC, id DESC', k.id).map(r => mapOut(r, c.u.id)) }; });
+route('POST', '/api/classes/:id/maps', c => { need(c); limit('mp' + c.u.id, 12, 600e3); const { k, t } = mapClass(c, c.params.id), d = mapClean(c.body);
+  if (Q1('SELECT COUNT(*) n FROM class_maps WHERE class_id=? AND author_id=?', k.id, c.u.id).n >= (t ? 6 : 3)) throw new E(400, `You can share up to ${t ? 6 : 3} maps with a class. Remove one first.`);
+  if (Q1('SELECT COUNT(*) n FROM class_maps WHERE class_id=?', k.id).n >= 60) throw new E(400, 'This class has 60 maps already. Ask your teacher to remove some.');
+  const r = X('INSERT INTO class_maps(class_id,author_id,data,ts) VALUES(?,?,?,?)', k.id, c.u.id, JSON.stringify(d), Date.now()); return { ok: true, id: Number(r.lastInsertRowid) }; });
+const oneMap = (c, k, mid) => { const r = Q1('SELECT * FROM class_maps WHERE id=? AND class_id=?', int(mid, 1, 1e12), k.id); if (!r) throw new E(404, 'That map is gone.'); return r; };
+route('DELETE', '/api/classes/:id/maps/:mid', c => { need(c); const { k, t } = mapClass(c, c.params.id), r = oneMap(c, k, c.params.mid); need(c, t || r.author_id === c.u.id); X('DELETE FROM class_maps WHERE id=?', r.id); return { ok: true }; });
+route('POST', '/api/classes/:id/maps/:mid/like', c => { need(c); const { k } = mapClass(c, c.params.id), r = oneMap(c, k, c.params.mid), L = JSON.parse(r.likes), i = L.indexOf(c.u.id);
+  i < 0 ? L.push(c.u.id) : L.splice(i, 1); X('UPDATE class_maps SET likes=? WHERE id=?', JSON.stringify(L), r.id); return { ok: true, liked: i < 0, likes: L.length }; });
+route('POST', '/api/classes/:id/maps/:mid/play', c => { need(c); limit('mpp' + c.u.id, 60, 600e3); const { k } = mapClass(c, c.params.id), r = oneMap(c, k, c.params.mid); X('UPDATE class_maps SET plays=plays+1 WHERE id=?', r.id); return { ok: true }; });
 route('GET', '/api/awards', c => { need(c); return { awards: Q('SELECT a.id,a.gems,a.reason,a.ts,c.name cls FROM awards a JOIN classes c ON c.id=a.class_id WHERE a.user_id=? AND a.claimed=0 ORDER BY a.ts LIMIT 50', c.u.id) }; });
 route('POST', '/api/awards/claim', c => { need(c); const got = [];
   for (const id of (Array.isArray(c.body.ids) ? c.body.ids : []).slice(0, 50)) { const r = X('UPDATE awards SET claimed=1 WHERE id=? AND user_id=? AND claimed=0', int(id, 1, 1e12), c.u.id); if (r.changes) got.push(+id); }

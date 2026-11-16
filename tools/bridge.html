@@ -12,6 +12,7 @@ const BOOT={state:{},settings:{},curriculum:{courses:[],milestones:[]},user:null
 async function api(method,path,body){
   if(BOOT.fb)return FBM.api(method,path,body);
   if(BOOT.local)throw new Error('This part of Bose Academy needs an account on the full Bose Academy site.');
+  if(body===undefined&&method!=='GET')body={};/* the server takes JSON on every change, even an empty one */
   const r=await fetch(path,{method,credentials:'same-origin',headers:body===undefined?{}:{'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body)});
   let j={};try{j=await r.json()}catch(e){}
   if(r.status===401&&path!=='/api/login'&&path!=='/api/me'){location.reload();throw new Error('Please sign in again.')}

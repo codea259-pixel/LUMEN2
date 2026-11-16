@@ -159,6 +159,30 @@ service cloud.firestore {
         allow delete: if signedIn() && (request.auth.uid == uid || cls().teacherId == request.auth.uid || isOwner());
       }
 
+      // Goblin Gate maps shared with the class. Class members and the teacher add their own (the name is two numbers for two word
+      // lists, so there's no free text, and the author's name must be their display name); anyone in the class can like a map
+      // (only themselves) or count one play; the author or the teacher removes it.
+      match /maps/{mid} {
+        function inClass() { return request.auth.uid in cls().members || cls().teacherId == request.auth.uid; }
+        allow read: if signedIn() && (inClass() || isOwner());
+        allow create: if signedIn() && active() && inClass()
+          && request.resource.data.keys().hasOnly(['uid', 'by', 'na', 'nb', 'th', 'w', 'd', 'b', 'road', 'pads', 'likes', 'plays', 'ts'])
+          && request.resource.data.uid == request.auth.uid && request.resource.data.by == me().display
+          && request.resource.data.na is int && request.resource.data.na >= 0 && request.resource.data.na <= 15
+          && request.resource.data.nb is int && request.resource.data.nb >= 0 && request.resource.data.nb <= 15
+          && request.resource.data.th in ['valley', 'frozen', 'crystal', 'swamp', 'lava', 'sky', 'fortress']
+          && request.resource.data.w is int && request.resource.data.w >= 5 && request.resource.data.w <= 10
+          && request.resource.data.d is int && request.resource.data.d >= 0 && request.resource.data.d <= 2
+          && request.resource.data.b is bool
+          && request.resource.data.road is string && request.resource.data.road.size() >= 30 && request.resource.data.road.size() <= 270 && request.resource.data.road.matches('[0-9a-z]+')
+          && request.resource.data.pads is string && request.resource.data.pads.size() >= 6 && request.resource.data.pads.size() <= 16 && request.resource.data.pads.matches('[0-9a-z]+')
+          && request.resource.data.likes == [] && request.resource.data.plays == 0 && request.resource.data.ts is int;
+        allow update: if signedIn() && active() && inClass() && (
+          (changedOnly(['likes']) && toggledSelf('likes'))
+          || (changedOnly(['plays']) && request.resource.data.plays == resource.data.plays + 1));
+        allow delete: if signedIn() && (resource.data.uid == request.auth.uid || cls().teacherId == request.auth.uid || isOwner());
+      }
+
       // Bonus gems from the teacher. A learner can only mark their own gift as claimed, once.
       match /awards/{aid} {
         allow read: if signedIn() && (cls().teacherId == request.auth.uid || isOwner() || resource.data.uid == request.auth.uid);

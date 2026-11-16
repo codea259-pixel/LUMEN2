@@ -148,6 +148,34 @@ const errs = [], ok = s => console.log('✓', s);
     return out; }).catch(e => ({ error: e.message }));
   ok('student attacks on the game: ' + JSON.stringify(ga)); if (ga['own board row saved'] !== 'yes' || Object.entries(ga).some(([k, v]) => k !== 'own board row saved' && v !== 'blocked')) errs.push('game rule allowed an attack or the board row was not saved');
 
+  // 5c2. Goblin Gate maps shared with the class: the teacher and a student share; likes and plays count; the rules block forged or changed maps
+  { const cid = await t.evaluate(() => ST.classes[0].id), mk = () => { const e = a => a.map(i => i.toString(36).padStart(2, '0')).join(''); return { na: 2, nb: 3, th: 'frozen', w: 6, d: 1, b: false, road: e([...Array(15)].map((_, i) => 60 + i)), pads: e([45, 48, 51, 79]) } };
+    const tm = await t.evaluate(async ([id, m]) => (await api('POST', `/api/classes/${id}/maps`, m)).id, [cid, mk()]);
+    const sm = await s.evaluate(async ([m]) => { const c = (await api('GET', '/api/classes')).joined[0], out = {}; out.list = (await api('GET', `/api/classes/${c.id}/maps`)).maps.map(x => [x.na, x.nb, x.th, x.mine, x.likes]);
+      const L = (await api('GET', `/api/classes/${c.id}/maps`)).maps[0]; out.like = await api('POST', `/api/classes/${c.id}/maps/${L.id}/like`, {}); await api('POST', `/api/classes/${c.id}/maps/${L.id}/play`, {});
+      try { await api('POST', `/api/classes/${c.id}/maps`, { ...m, road: '0001' }); out.bad = 'saved' } catch (e) { out.bad = 'refused' }
+      out.mine = (await api('POST', `/api/classes/${c.id}/maps`, m)).id; out.after = (await api('GET', `/api/classes/${c.id}/maps`)).maps.map(x => [x.mine, x.likes, x.plays, x.liked]).sort(); return out }, [mk()]);
+    if (sm.list.length !== 1 || sm.list[0].join() !== '2,3,frozen,false,0' || !sm.like.liked || sm.bad !== 'refused' || JSON.stringify(sm.after) !== '[[false,1,1,true],[true,0,0,false]]') errs.push('class maps went wrong (Firebase): ' + JSON.stringify(sm));
+    else ok('the teacher and a student shared Goblin Gate maps; the student liked and played the teacher\'s map; a broken map was refused (Firebase)');
+    const mt = await s.evaluate(async m => { const db = firebase.app().firestore(), uid = FBM.uid(), out = {}, c = (await db.collection('classes').where('members', 'array-contains', uid).get()).docs[0], col = c.ref.collection('maps');
+      const tryIt = async (k, fn) => { try { await fn(); out[k] = 'ALLOWED' } catch (e) { out[k] = 'blocked' } };
+      const me = (await db.collection('users').doc(uid).get()).data().display, all = (await col.get()).docs, theirs = all.find(d => d.data().uid !== uid), mine = all.find(d => d.data().uid === uid), base = { uid, by: me, ...m, likes: [], plays: 0, ts: Date.now() };
+      await tryIt('share as someone else', () => col.add({ ...base, uid: theirs.data().uid }));
+      await tryIt('share under a made-up name', () => col.add({ ...base, by: 'Mr Nobody' }));
+      await tryIt('share with free text', () => col.add({ ...base, note: 'hello' }));
+      await tryIt('share with a big number name', () => col.add({ ...base, na: 99 }));
+      await tryIt('share with likes already', () => col.add({ ...base, likes: ['x', 'y'] }));
+      await tryIt('share with 500 plays', () => col.add({ ...base, plays: 500 }));
+      await tryIt('add 50 plays', () => theirs.ref.update({ plays: firebase.firestore.FieldValue.increment(50) }));
+      await tryIt('like for someone else', () => theirs.ref.update({ likes: firebase.firestore.FieldValue.arrayUnion('someone') }));
+      await tryIt('change a classmate\'s road', () => theirs.ref.update({ road: m.road.slice(0, 30) }));
+      await tryIt('rename own map to free text', () => mine.ref.update({ by: 'anything' }));
+      await tryIt('remove the teacher\'s map', () => theirs.ref.delete());
+      return out }, mk()).catch(e => ({ error: e.message }));
+    ok('student attacks on class maps: ' + JSON.stringify(mt)); if (Object.values(mt).some(v => v !== 'blocked')) errs.push('a class map rule allowed an attack (Firebase)');
+    const md = await t.evaluate(async ([id, mid]) => { const L = (await api('GET', `/api/classes/${id}/maps`)).maps, st = L.find(x => !x.mine); await api('DELETE', `/api/classes/${id}/maps/${st.id}`); await api('DELETE', `/api/classes/${id}/maps/${mid}`); return (await api('GET', `/api/classes/${id}/maps`)).maps.length }, [cid, tm]);
+    if (md !== 0) errs.push('the teacher could not remove class maps (Firebase): ' + md); else ok('the teacher removed the student\'s map and their own (Firebase)') }
+
   // 5d. Membership: only the Owner switches it on (by username or class code); students and teachers cannot grant it
   const sUser = creds[0][1], cCode = code;
   const plans = await o.evaluate(async () => { await api('PUT', '/api/owner/settings', { member: { on: true, price: '$4.99 a month', link: 'https://buy.stripe.com/test_M1', yprice: '$39.99 a year', ylink: 'https://buy.stripe.com/test_Y1' } });

@@ -1008,6 +1008,26 @@ const FBM=(()=>{
     if(gems<1||gems>20)throw new E(400,'Give 1 to 20 gems.');let ids=c.members||[];
     if(to.startsWith('t:')){const t=+to.slice(2);ids=ids.filter(u=>g.tm[u]===t)}else if(to!=='all'){const u=sid(to);ids=ids.filter(x=>x===u)}
     if(!ids.length)throw new E(400,'Nobody to give gems to.');const ts=now();await Promise.all(ids.map(u=>cd.ref.collection('awards').add({uid:u,gems,reason,ts,claimed:false,cname:c.name})));return{ok:true,count:ids.length}});
+  /* Goblin Gate maps shared with a class (classes/{c}/maps/{m}). The rules check who writes and each field's shape; the road is checked here, and again by the game before it plays one. */
+  const MTH=['valley','frozen','crystal','swamp','lava','sky','fortress'],MC=15,MR=9;
+  const mInt=(v,lo,hi)=>{v=Math.trunc(+v);if(!Number.isFinite(v)||v<lo||v>hi)throw new E(400,'Invalid number.');return v};
+  const mCells=(v,lo,hi)=>{const t=String(v??'');if(!/^[0-9a-z]*$/.test(t)||t.length%2||t.length<lo*2||t.length>hi*2)throw new E(400,'That map is not finished.');return t.match(/../g).map(x=>parseInt(x,36))};
+  const mClean=b=>{const o={na:mInt(b.na,0,15),nb:mInt(b.nb,0,15),th:String(b.th||''),w:mInt(b.w,5,10),d:mInt(b.d,0,2),b:!!b.b},r=mCells(b.road,MC,MC*MR),p=mCells(b.pads,3,8);
+    if(!MTH.includes(o.th))throw new E(400,'Pick a land for the map.');const adj=(a,c)=>Math.abs(a%MC-c%MC)+Math.abs(Math.floor(a/MC)-Math.floor(c/MC))===1;
+    if(r.some(i=>i>=MC*MR)||new Set(r).size!==r.length||r[0]%MC!==0||r[r.length-1]%MC!==MC-1||r.some((i,k)=>k&&!adj(r[k-1],i)))throw new E(400,'The road has to go from the left edge to the castle, one square at a time.');
+    if(p.some(i=>i>=MC*MR||r.includes(i))||new Set(p).size!==p.length)throw new E(400,'Stone pads go beside the road.');return{...o,road:String(b.road),pads:String(b.pads)}};
+  const mClass=async id=>{const cd=await doc('classes',sid(id)).get();if(!cd.exists)throw new E(404,'Class not found.');const c=cd.data(),t=c.teacherId===me.uid||isOwner();if(!t&&!(c.members||[]).includes(me.uid))throw new E(404,'Class not found.');return{cd,t}};
+  const mOne=async(cd,mid)=>{const g=await cd.ref.collection('maps').doc(sid(mid)).get();if(!g.exists)throw new E(404,'That map is gone.');return g};
+  route('GET','/api/classes/:id/maps',async(b,p)=>{need();const {cd}=await mClass(p.id),q=await cd.ref.collection('maps').get();
+    return{maps:q.docs.map(d=>{const v=d.data(),L=v.likes||[];return{id:num(d.id),by:v.by,mine:v.uid===me.uid,na:v.na,nb:v.nb,th:v.th,w:v.w,d:v.d,b:!!v.b,road:v.road,pads:v.pads,likes:L.length,liked:L.includes(me.uid),plays:v.plays||0,ts:v.ts}}).sort((a,b)=>b.ts-a.ts)}});
+  route('POST','/api/classes/:id/maps',async(b,p)=>{need();const {cd,t}=await mClass(p.id),d=mClean(b),q=await cd.ref.collection('maps').get();
+    if(q.docs.filter(x=>x.data().uid===me.uid).length>=(t?6:3))throw new E(400,`You can share up to ${t?6:3} maps with a class. Remove one first.`);
+    if(q.size>=60)throw new E(400,'This class has 60 maps already. Ask your teacher to remove some.');
+    const r=await cd.ref.collection('maps').add({uid:me.uid,by:profile.display,...d,likes:[],plays:0,ts:now()});return{ok:true,id:num(r.id)}});
+  route('DELETE','/api/classes/:id/maps/:mid',async(b,p)=>{need();const {cd,t}=await mClass(p.id),g=await mOne(cd,p.mid);need(t||g.data().uid===me.uid);await g.ref.delete();return{ok:true}});
+  route('POST','/api/classes/:id/maps/:mid/like',async(b,p)=>{need();const {cd}=await mClass(p.id),g=await mOne(cd,p.mid),L=g.data().likes||[],on=!L.includes(me.uid);
+    await g.ref.update({likes:on?FV.arrayUnion(me.uid):FV.arrayRemove(me.uid)});return{ok:true,liked:on,likes:L.length+(on?1:-1)}});
+  route('POST','/api/classes/:id/maps/:mid/play',async(b,p)=>{need();const {cd}=await mClass(p.id),g=await mOne(cd,p.mid);await g.ref.update({plays:FV.increment(1)});return{ok:true}});
   route('GET','/api/awards',async()=>{need();if(myCls===null)myCls=(await db.collection('classes').where('members','array-contains',me.uid).get()).docs.map(d=>d.id);
     const out=[];for(const c of myCls){const r=await doc('classes',c).collection('awards').where('uid','==',me.uid).where('claimed','==',false).get();r.forEach(d=>{const v=d.data();out.push({id:num(c+'|'+d.id),gems:v.gems,reason:v.reason,ts:v.ts,cls:v.cname})})}
     return{awards:out.sort((a,b)=>a.ts-b.ts).slice(0,50)}});
@@ -1111,7 +1131,7 @@ const FBM=(()=>{
   const wipe=async uid=>{const all=async(c,f)=>{try{return(await db.collection(c).where(f,'==',uid).limit(500).get()).docs}catch(e){return[]}};
     for(const d of await all('posts','authorId')){try{for(const r of (await db.collection('replies').where('postId','==',d.id).where('hidden','==',false).get()).docs)await r.ref.delete()}catch(e){}await d.ref.delete().catch(()=>{})}
     for(const d of [...await all('replies','authorId'),...await all('certs','uid')])await d.ref.delete().catch(()=>{});
-    try{for(const c of (await db.collection('classes').where('members','array-contains',uid).get()).docs){await c.ref.collection('board').doc(uid).delete().catch(()=>{});await c.ref.update({members:FV.arrayRemove(uid)}).catch(()=>{})}}catch(e){}
+    try{for(const c of (await db.collection('classes').where('members','array-contains',uid).get()).docs){await c.ref.collection('board').doc(uid).delete().catch(()=>{});try{for(const m of (await c.ref.collection('maps').where('uid','==',uid).get()).docs)await m.ref.delete().catch(()=>{})}catch(e){}await c.ref.update({members:FV.arrayRemove(uid)}).catch(()=>{})}}catch(e){}
     try{for(const g of (await db.collection('groups').where('members','array-contains',uid).get()).docs)await g.ref.update({members:FV.arrayRemove(uid)}).catch(()=>{})}catch(e){}
     for(const c of ['state','consents','users','private'])await doc(c,uid).delete().catch(e=>{if(c!=='consents')throw e})};
 
@@ -1177,6 +1197,7 @@ const BOOT={state:{},settings:{},curriculum:{courses:[],milestones:[]},user:null
 async function api(method,path,body){
   if(BOOT.fb)return FBM.api(method,path,body);
   if(BOOT.local)throw new Error('This part of Bose Academy needs an account on the full Bose Academy site.');
+  if(body===undefined&&method!=='GET')body={};/* the server takes JSON on every change, even an empty one */
   const r=await fetch(path,{method,credentials:'same-origin',headers:body===undefined?{}:{'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body)});
   let j={};try{j=await r.json()}catch(e){}
   if(r.status===401&&path!=='/api/login'&&path!=='/api/me'){location.reload();throw new Error('Please sign in again.')}
@@ -6488,6 +6509,13 @@ GVIEW.blocks=function(){const C=AG.cur&&AG.cur.id==='blocks'?AG.cur:null;
 body[data-calm] .ggreveal img{animation:none}
 .ggstage{position:absolute;top:6px;left:6px;width:28px;height:28px;border-radius:50%;background:#1E1B4B;color:#fff;display:grid;place-items:center;font:800 .95rem "Bricolage Grotesque",sans-serif;box-shadow:0 2px 0 rgba(0,0,0,.3)}
 .ggmap{position:relative}
+.ggedwrap{position:relative;border-radius:16px;overflow:hidden;border:3px solid #1E1B4B;box-shadow:0 5px 0 rgba(30,27,75,.35);margin:8px 0}
+.ggedwrap canvas{display:block;width:100%;height:auto;image-rendering:pixelated;touch-action:none;cursor:crosshair}.ggedwrap canvas:focus-visible{outline:4px solid #F2A900;outline-offset:-4px}
+.ggtools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0}
+.ggtools .chip,.ggedrows .chip,.ggmine .chip{background:#EEF2FF;color:#1E1B4B;border:2px solid #C7D2FE;box-shadow:none}.ggtools .chip.on,.ggedrows .chip.on,.ggmine .chip.on{background:#1E1B4B;color:#fff;border-color:#1E1B4B}.ggedrows .chip[disabled]{opacity:.5}
+.ggedrows{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px 18px;margin:10px 0}.ggedrows label{display:flex;flex-direction:column;gap:4px;font-weight:700}
+.ggedrows .chips{display:flex;flex-wrap:wrap;gap:6px}.ggmsg{font-weight:700;padding:8px 12px;border-radius:12px;background:#EEF2FF;color:#1E1B4B;margin:6px 0}.ggmsg.ok{background:#DCFCE7;color:#14532D}
+.ggmine .ggmap .acts{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}.ggmine .ggmap .acts button{font-size:.75rem;padding:3px 8px}.ggmine .ggmap.live{border-color:#22C55E}
 </style>
 <script type="text/x-lumen">
 /* ===== Goblin Gate: a tower defense =====
@@ -6537,15 +6565,18 @@ const ggS=()=>{const S=ARS('gate');
   if(!S.v2){const M={meadow:'valley',forest:'frozen',snow:'crystal'};if(S.st){const o={};for(const [k,v] of Object.entries(S.st))o[M[k]||k]=v;S.st=o}if(M[S.map])S.map=M[S.map];S.v2=1}
   S.st=S.st||{};if(!S.own){S.own=['archer','ice','fire','cat','bolt'];S.load=S.own.slice();S.coins=20;S.cp={};S.pity=0}S.cp=S.cp||{};S.load=(S.load||[]).filter(k=>S.own.includes(k)).slice(0,5);if(!S.load.length)S.load=S.own.slice(0,5);return S};
 const ggOpen=i=>!i||(ggS().st[GGMAPS[i-1].id]||0)>0||(ggS().st[GGMAPS[i].id]||0)>0;
-const ggCur=()=>{let i=GGMAPS.findIndex(m=>m.id===ggS().map);if(i<0||!ggOpen(i))i=0;return GGMAPS[i]};
+let GGPLAY=null;
+const ggCur=()=>{if(GGPLAY)return GGPLAY;let i=GGMAPS.findIndex(m=>m.id===ggS().map);if(i<0||!ggOpen(i))i=0;return GGMAPS[i]};
 const ggFlag=()=>{const f=ggS().flag;return GFLAG[f]&&AG.has('gate.flag.'+f)?f:'red'};
 
 /* ---------- The road and the stone pads ---------- */
-GGMAPS.forEach(m=>{const P=m.path;m.seg=[];m.len=0;for(let i=1;i<P.length;i++){const l=Math.hypot(P[i][0]-P[i-1][0],P[i][1]-P[i-1][1]);m.seg.push([P[i-1],P[i],l,m.len]);m.len+=l}
+function ggPrep(m){const P=m.path;m.seg=[];m.len=0;for(let i=1;i<P.length;i++){const l=Math.hypot(P[i][0]-P[i-1][0],P[i][1]-P[i-1][1]);m.seg.push([P[i-1],P[i],l,m.len]);m.len+=l}
+  if(m.fixedPads){m.pads=m.fixedPads.map(q=>q.slice());return m}
   /* pads: spots near the road that see the most of it, spread apart */
   const near=(x,y)=>{let best=1e9;for(const [a,b] of m.seg){const dx=b[0]-a[0],dy=b[1]-a[1],t=Math.max(0,Math.min(1,((x-a[0])*dx+(y-a[1])*dy)/(dx*dx+dy*dy)));best=Math.min(best,Math.hypot(x-a[0]-t*dx,y-a[1]-t*dy))}return best};
   const C=[];for(let y=34;y<=330;y+=10)for(let x=40;x<=570;x+=10){const d=near(x,y);if(d<38||d>66)continue;let cov=0;for(let s=0;s<m.len;s+=20){const [px,py]=ggPosOf(m,s);if(Math.hypot(px-x,py-y)<110)cov++}C.push([x,y,cov])}
-  C.sort((a,b)=>b[2]-a[2]);m.pads=[];for(const [x,y] of C){if(m.pads.length>=8)break;if(m.pads.every(([a,b])=>Math.hypot(a-x,b-y)>=74))m.pads.push([x,y])}});
+  C.sort((a,b)=>b[2]-a[2]);m.pads=[];for(const [x,y] of C){if(m.pads.length>=8)break;if(m.pads.every(([a,b])=>Math.hypot(a-x,b-y)>=74))m.pads.push([x,y])}return m}
+GGMAPS.forEach(ggPrep);
 function ggPosOf(m,d){for(const [a,b,l,s0] of m.seg||[])if(d<=s0+l){const f=(d-s0)/l;return[a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f]}const e=m.path[m.path.length-1];return[e[0],e[1]]}
 
 /* ---------- The game ---------- */
@@ -6565,7 +6596,7 @@ AG.def({id:'gate',name:'Goblin Gate',w:GGW,h:GGH,maxW:1280,vh:200,pixel:true,snd
     perfect:{i:'💯',n:'Not one cookie',d:'Win a stage without losing a cookie',gems:2,give:'gate.flag.purple'},cannon:{i:'💥',n:'Cannon captain',d:'Fire the castle cannon 5 times',gems:1},
     freeze:{i:'🧊',n:'Deep freeze',d:'Freeze 30 goblins solid',gems:1},chain:{i:'🌩️',n:'Chain reaction',d:'Hit 4 goblins with one lightning strike',gems:1},
     tour:{i:'🗺️',n:'Kingdom guard',d:'Unlock every stage',gems:2},stars:{i:'⭐',n:'Star defender',d:'3 stars on every stage',gems:3,give:'gate.flag.rainbow'},
-    king:{i:'🤴',n:'King toppler',d:'Defeat the Goblin King on stage 7',gems:5},collect:{i:'🗃️',n:'Tower collector',d:'Own 10 different towers',gems:2},legend:{i:'🌟',n:'Legendary!',d:'Get a Legendary tower',gems:2}},
+    king:{i:'🤴',n:'King toppler',d:'Defeat the Goblin King on stage 7',gems:5},maker:{i:'🛠️',n:'Map maker',d:'Make your own map',gems:1},share:{i:'📤',n:'Map sharer',d:'Share a map with your class',gems:1},beat:{i:'🤝',n:'Good classmate',d:"Win on a classmate's map",gems:1},collect:{i:'🗃️',n:'Tower collector',d:'Own 10 different towers',gems:2},legend:{i:'🌟',n:'Legendary!',d:'Get a Legendary tower',gems:2}},
   items:{'gate.flag.red':{n:'Red banner',c:GFLAG.red,free:1,k:'Castle banner'},'gate.flag.blue':{n:'Blue banner',c:GFLAG.blue,k:'Castle banner',how:'Win a stage'},'gate.flag.gold':{n:'Gold banner',c:GFLAG.gold,k:'Castle banner',how:'Defeat a boss'},
     'gate.flag.green':{n:'Green banner',c:GFLAG.green,k:'Castle banner',how:'Build 5 different towers'},'gate.flag.purple':{n:'Royal banner',c:GFLAG.purple,k:'Castle banner',how:'Win without losing a cookie'},'gate.flag.rainbow':{n:'Rainbow banner',i:'🌈',k:'Castle banner',how:'3 stars on every stage'}},
   places:()=>GGMAPS.map((m,i)=>({on:ggOpen(i),i:'🏰',n:`Stage ${i+1}: ${m.n}`,s:'★'.repeat(ggS().st[m.id]||0)||'Not won yet',how:i?`Win stage ${i}`:''})),
@@ -6608,7 +6639,7 @@ function ggWaveList(Z){const w=Z.w,L=[],n=6+2*w;for(let i=0;i<n;i++)L.push([w>=1
   else if(Z.m.king&&w===Math.floor(Z.m.waves/2))L.push(['boss',2]);return L}
 function ggWave(Z){if(Z.ph!=='build')return;Z.ph='wave';Z.q=ggWaveList(Z);Z.qcd=.5;Z.lostWave=0;Z.bonusOn=0;SND.play('place');ggpanel(Z)}
 const ggCoin=(Z,n)=>{const S=ggS();S.coins=(S.coins||0)+n;Z.stats.coins+=n};
-function ggWaveDone(Z){Z.w++;const pay=20+5*Z.w;let mine=0;Z.tw.forEach((T,i)=>{if(T&&T.t==='mine')mine+=ggStat(T,Z,i).gold});Z.gold+=pay+mine;ggCoin(Z,Z.lostWave?1:2);
+function ggWaveDone(Z){Z.w++;const pay=20+5*Z.w;let mine=0;Z.tw.forEach((T,i)=>{if(T&&T.t==='mine')mine+=ggStat(T,Z,i).gold});Z.gold+=pay+mine;if(!Z.m.custom)ggCoin(Z,Z.lostWave?1:2);
   if(!Z.lostWave){Z.stats.perfect++;Z.gold+=10;ggtext(Z,320,60,`Perfect wave! +${pay+10} gold${mine?` · mines +${mine}`:''}`,'#ffd34d')}else ggtext(Z,320,60,`Wave cleared! +${pay} gold${mine?` · mines +${mine}`:''}`,'#ffffff');
   if(Z.w>=Z.m.waves)return ggWin(Z);Z.ph='build';Z.bonusOn=1;SND.play('ok','ui');ggpanel(Z)}
 function ggFire(Z,T,i,s,g){const D=GGT[T.t],[px,py]=Z.m.pads[i],[gx,gy]=ggPosOf(Z.m,g.d+g.sp*.25);
@@ -6627,7 +6658,7 @@ function ggIce(Z,g,s){g.slowU=Z.time+s.slowT;g.slowF=s.slow;if(s.freeze&&Math.ra
 function ggBurn(Z,g,s){g.burnU=Z.time+2;g.burn=Math.max(g.burn,s.burn)}
 function ggDmg(Z,g,d,pierce){if(g.dead)return;if(g.shieldU>Z.time){if(Math.random()<.05){const [x,y]=ggPosOf(Z.m,g.d);ggtext(Z,x,y-40,'🛡️','#9fe3ff')}return}g.hp-=d*(pierce?1:1-g.armor);g.hit=Z.time+.12;if(g.hp<=0)ggKill(Z,g)}
 function ggKill(Z,g){if(g.dead)return;g.dead=1;const G=GGOB[g.k],[x,y]=ggPosOf(Z.m,g.d);Z.gold+=G.gold;ggtext(Z,x,y-14,'+'+G.gold,'#ffd34d');ggfx(Z,'poof',x,y,g.r,0,.45);SND.play('pop');
-  if(g.k==='boss'||g.k==='king'){if(Z.boss===g)Z.boss=null;AG.ach('gate','boss');if(g.k==='king'){AG.ach('gate','king');Z.stats.king=1;ggtext(Z,320,120,'🤴 The Goblin King is defeated!','#ffd34d');ggCoin(Z,20)}else ggtext(Z,320,120,'👑 Boss defeated!','#ffd34d');ggpanel(Z)}}
+  if(g.k==='boss'||g.k==='king'){if(Z.boss===g)Z.boss=null;AG.ach('gate','boss');if(g.k==='king'){Z.stats.king=1;ggtext(Z,320,120,'🤴 The Goblin King is defeated!','#ffd34d');if(!Z.m.custom){AG.ach('gate','king');ggCoin(Z,20)}}else ggtext(Z,320,120,'👑 Boss defeated!','#ffd34d');ggpanel(Z)}}
 /* Questions: level-ups, the boss cannon, the bonus between waves, and the rescue. Right answers here also pay a Gate coin (up to 20 a day) */
 const ggQCoin=Z=>{const D=DAY();if((D.ggc||0)<20){D.ggc=(D.ggc||0)+1;ggCoin(Z,1)}};
 const ggUpCost=T=>Math.round(GGT[T.t].cost*(.45+.2*(T.lvl||1)));
@@ -6648,6 +6679,7 @@ function ggSell(Z){const i=Z.sel,T=Z.tw[i];if(!T)return;const back=Math.round(T.
 function ggWin(Z){AG.finish(ggresult(Z,'won'))}
 function ggOver(Z){AG.finish(ggresult(Z,'lost'))}
 function ggresult(Z,why){Z.ph='end';const S=ggS(),m=Z.m,mi=Z.mi;let stars=0,goal=false,gems=0,unlock=null;
+  if(m.custom){SND.play(why==='won'?'win':'lose','ui');if(why==='won'&&m.cls&&!m.cls.mine)AG.ach('gate','beat');SYNC();return{why,custom:1,name:m.n,by:m.cls?m.cls.by:'',test:!!m.test,cookies:Z.cookies,waves:Z.w,coins:Z.stats.coins,king:!!Z.stats.king}}
   if(why==='won'){const g=m.goal[0],nt=Z.tw.filter(Boolean).length;goal=g==='variety'?Object.keys(Z.stats.built).length>=5:g==='perfect'?Z.cookies>=10:g==='few'?nt<=5:g==='lvl5'?Z.stats.maxL>=5:g==='upg'?Z.stats.upg>=6:g==='few7'?Z.cookies>=7:Z.stats.cannon>=3;
     stars=1+(Z.cookies>=8?1:0)+(goal?1:0);const pay=[0,3,5,8].map(x=>x&&x+2*mi),b=S.st[m.id]||0;gems=stars>b?pay[stars]-pay[b]:1;unlock=!b&&GGMAPS[mi+1];S.st[m.id]=Math.max(b,stars);S.wins=(S.wins||0)+1;addGems(gems);ggCoin(Z,5+2*mi+stars);
     AG.ach('gate','win');if(Z.cookies>=10)AG.ach('gate','perfect');if(GGMAPS.every((_,j)=>ggOpen(j)))AG.ach('gate','tour');if(GGMAPS.every(x=>(S.st[x.id]||0)>=3))AG.ach('gate','stars');SND.play('win','ui')}
@@ -6681,13 +6713,13 @@ const GGPAL={valley:{g:['#5FA84E','#6DB85A','#4E9142','#7CC968'],road:'cobble',r
   sky:{g:['#DCEBFA','#C9DFF5','#B6D2F0','#EEF6FE'],road:'cobble',r:['#F2E3B5','#D9C894','#FFF4CF','#B8A36E'],pool:['#7FC8F8','#BFE6FF']},
   swamp:{g:['#4B5D2E','#58703A','#3E4E26','#6A8444'],road:'dirt',r:['#6B5A3A','#584A2E','#85704A','#3A3020'],pool:['#3F5A34','#7FA35A']},
   fortress:{g:['#3A3A44','#45454F','#2E2E36','#55555F'],road:'flag',r:['#57534E','#44403C','#6B6560','#B91C1C'],pool:['#7F1D1D','#DC2626']}};
-function ggBg(m){const k='bg'+m.id;if(GGC[k])return GGC[k];const W=320,H=180,cv=document.createElement('canvas');cv.width=W;cv.height=H;const x=cv.getContext('2d'),im=x.createImageData(W,H),d=im.data,P=GGPAL[m.id]||GGPAL.valley,R=krng(m.id.length*131);
+function ggBg(m){const k='bg'+m.id;if(GGC[k])return GGC[k];const th=m.th||m.id,W=320,H=180,cv=document.createElement('canvas');cv.width=W;cv.height=H;const x=cv.getContext('2d'),im=x.createImageData(W,H),d=im.data,P=GGPAL[th]||GGPAL.valley,R=krng(m.seed||m.id.length*131);
   const G=P.g.map(gRGB),RD=P.r.map(gRGB),PL=P.pool.map(gRGB),noise=(()=>{const n=Array.from({length:64*36},()=>R());return(i,y)=>{const fx=i/8,fy=y/8,x0=Math.floor(fx),y0=Math.floor(fy),tx=fx-x0,ty=fy-y0,v=(a,b)=>n[((b%36)*64+(a%64))];const a=v(x0,y0)+(v(x0+1,y0)-v(x0,y0))*tx,b=v(x0,y0+1)+(v(x0+1,y0+1)-v(x0,y0+1))*tx;return a+(b-a)*ty}})();
   const roadD=(i,y)=>{const gx=i*2+1,gy=y*2+1;let best=1e9;for(const [a,b] of m.seg){const dx=b[0]-a[0],dy=b[1]-a[1],t=Math.max(0,Math.min(1,((gx-a[0])*dx+(gy-a[1])*dy)/(dx*dx+dy*dy)));best=Math.min(best,Math.hypot(gx-a[0]-t*dx,gy-a[1]-t*dy))}return best/2};
   const pools=[];for(let n=0;n<2;n++){const px=30+R()*260,py=20+R()*140;if(roadD(px|0,py|0)>22&&m.pads.every(([a,b])=>Math.hypot(a/2-px,b/2-py)>22))pools.push([px,py,8+R()*7])}
   for(let y=0;y<H;y++)for(let i=0;i<W;i++){const j=(y*W+i)*4,b=GBAY[(y%4)*4+(i%4)]/16,rd=roadD(i,y);let c;
     if(rd<10.5){if(rd>9.2)c=RD[3];else if(P.road==='cobble'){const row=Math.floor(y/3),off=row%2?2:0,mortar=(y%3===0)||((i+off)%5===0);c=mortar?RD[1]:(((i+off)/5|0)+row)%3===0?RD[2]:RD[0]}
-      else if(P.road==='flag'){const cell=((i/6|0)*7+(y/5|0)*13)%5,edge=i%6===0||y%5===0;c=edge?(m.id==='lava'&&((i*3+y)%7===0)?RD[3]:RD[1]):cell<2?RD[2]:RD[0]}
+      else if(P.road==='flag'){const cell=((i/6|0)*7+(y/5|0)*13)%5,edge=i%6===0||y%5===0;c=edge?(th==='lava'&&((i*3+y)%7===0)?RD[3]:RD[1]):cell<2?RD[2]:RD[0]}
       else{const v=noise(i*3,y*3);c=v+b*.3>.78?RD[2]:v+b*.3<.35?RD[1]:RD[0]}}
     else{const pl=pools.find(([px,py,r])=>Math.hypot(i-px,(y-py)*1.4)<r);if(pl){const e=Math.hypot(i-pl[0],(y-pl[1])*1.4)>pl[2]-1.5;c=e?PL[1]:((i+y*2)%9===0?PL[1]:PL[0])}
       else{const v=noise(i,y)+(b-.5)*.22;c=v<.32?G[2]:v<.62?G[0]:v<.86?G[1]:G[3];if(rd<12.5&&(i+y)%3===0)c=G[2]}}
@@ -6695,9 +6727,9 @@ function ggBg(m){const k='bg'+m.id;if(GGC[k])return GGC[k];const W=320,H=180,cv=
   x.putImageData(im,0,0);
   /* scenery, away from the road and the pads */
   const clear=(a,b)=>roadD(a|0,b|0)>16&&m.pads.every(([px,py])=>Math.hypot(px/2-a,py/2-b)>15)&&a<280&&!pools.some(([px,py,r])=>Math.hypot(a-px,b-py)<r+6);
-  const deco=[];for(let i=0;i<(m.id==='fortress'?30:m.id==='swamp'?46:70);i++){const a=4+R()*272,b=8+R()*168;if(clear(a,b))deco.push([a,b,R()])}deco.sort((p,q)=>p[1]-q[1]);for(const [a,b,v] of deco){const s=ggDecoPx(m.id,v);x.drawImage(s,Math.round(a-s.width/2),Math.round(b-s.height+2))}
+  const deco=[];for(let i=0;i<(m.noDeco?0:th==='fortress'?30:th==='swamp'?46:70);i++){const a=4+R()*272,b=8+R()*168;if(clear(a,b))deco.push([a,b,R()])}deco.sort((p,q)=>p[1]-q[1]);for(const [a,b,v] of deco){const s=ggDecoPx(th,v);x.drawImage(s,Math.round(a-s.width/2),Math.round(b-s.height+2))}
   /* grass tufts and pebbles */x.fillStyle=`rgb(${G[2].join()})`;for(let i=0;i<120;i++){const a=R()*W|0,b=R()*H|0;if(roadD(a,b)>12){x.fillRect(a,b,1,2);x.fillRect(a+1,b+1,1,1)}}
-  /* the castle at the end of the road */const e=m.path[m.path.length-1],cs=ggCastle();x.drawImage(cs,Math.round(e[0]/2-17),Math.round(e[1]/2-cs.height+12));
+  /* the castle at the end of the road */if(m.noCastle||!m.path.length)return GGC[k]=cv;const e=m.path[m.path.length-1],cs=ggCastle();x.drawImage(cs,Math.round(e[0]/2-17),Math.round(e[1]/2-cs.height+12));
   return GGC[k]=cv}
 function ggDecoPx(id,v){const kind={valley:'tree',frozen:'pine',crystal:'crystal',lava:'rock',sky:'cloud',swamp:'reed',fortress:'spike'}[id]||'tree',vv=Math.floor(v*3);return ggPx('d'+kind+vv,20,24,x=>{
   if(kind==='tree'){x.fillStyle='rgba(0,0,0,.25)';x.beginPath();x.ellipse(10,22,7,2,0,0,7);x.fill();x.fillStyle='#7A5634';x.fillRect(9,14,2.5,8);const g=['#3E8E3A','#4E9E45','#357F33'][vv];x.fillStyle=g;x.beginPath();x.arc(10,10,7,0,7);x.arc(6,13,4.5,0,7);x.arc(14,13,4.5,0,7);x.fill();x.fillStyle='#7CC968';x.beginPath();x.arc(8,7,2.6,0,7);x.fill()}
@@ -6800,20 +6832,140 @@ function ggpanel(Z){const el=$('ggpanel');if(!el)return;const i=Z.sel,T=i>=0?Z.t
 
 /* ---------- The menu ---------- */
 const ggThumb=m=>kimg('ggth'+m.id,320,180,(x)=>{x.imageSmoothingEnabled=false;x.drawImage(ggBg(m),0,0,320,180)});
+/* ---------- Map Maker: draw a road, place stone pads, pick the land, waves and boss; play it, and share it with your class ----------
+   A map is a grid of 15 x 9 squares. Its name comes from two word lists, so there's no free text to check. Shared maps live with
+   the class (GET/POST /api/classes/:id/maps); classmates play and like them, and the teacher can remove any. */
+const GGNA=['Twisty','Sneaky','Spooky','Sunny','Frosty','Mighty','Secret','Rocky','Windy','Golden','Crystal','Shadow','Misty','Wild','Tiny','Giant'];
+const GGNB=['Trail','Canyon','Valley','Maze','Pass','Path','Ridge','Hollow','Fortress','Garden','Bridge','Woods','Marsh','Peak','Road','Castle'];
+const GGTH=['valley','frozen','crystal','swamp','lava','sky','fortress'],GGTHI={valley:'🌳',frozen:'❄️',crystal:'💎',swamp:'🐸',lava:'🌋',sky:'☁️',fortress:'🏯'},
+  GGTHN={valley:'Green valley',frozen:'Snow',crystal:'Crystal forest',swamp:'Swamp',lava:'Lava',sky:'Sky',fortress:'Stronghold'};
+const GGDIFF=[['Easy',1],['Medium',1.7],['Hard',2.4]],GMC=15,GMR=9,GCELL=40;
+const ggEnc=a=>a.map(i=>i.toString(36).padStart(2,'0')).join(''),ggDec=v=>Array.isArray(v)?v.slice():(String(v||'').match(/../g)||[]).map(x=>parseInt(x,36));
+const ggName=o=>`${GGNA[o.na]||'Secret'} ${GGNB[o.nb]||'Trail'}`,ggAdj=(a,b)=>Math.abs(a%GMC-b%GMC)+Math.abs((a/GMC|0)-(b/GMC|0))===1;
+const ggCtr=i=>[(i%GMC)*GCELL+GCELL/2,(i/GMC|0)*GCELL+GCELL/2];
+/* what's still missing ('' when the map is ready): a road from the left edge to the castle on the right, one square at a time, and 3 to 8 pads beside it */
+function ggCheck(o){const r=ggDec(o.road),p=ggDec(o.pads);
+  if(!r.length)return 'Draw the road: start in the left column, then keep tapping (or dragging) to the right.';
+  if(r.some(i=>!(i>=0&&i<GMC*GMR))||new Set(r).size!==r.length)return "The road can't cross itself.";
+  if(r[0]%GMC)return 'Start the road in the left column.';
+  for(let i=1;i<r.length;i++)if(!ggAdj(r[i-1],r[i]))return 'Each road square has to touch the one before it.';
+  if(r[r.length-1]%GMC!==GMC-1)return 'Keep going: the road has to reach the castle on the right edge.';
+  if(p.some(i=>!(i>=0&&i<GMC*GMR)||r.includes(i))||new Set(p).size!==p.length)return 'Stone pads go beside the road, not on it.';
+  if(p.length<3)return `Now switch to Stone pads and put at least 3 beside the road (${p.length} so far).`;if(p.length>8)return 'Use 8 stone pads or fewer.';
+  if(!(o.na>=0&&o.na<16&&o.nb>=0&&o.nb<16&&GGTH.includes(o.th)&&o.w>=5&&o.w<=10&&o.d>=0&&o.d<=2))return 'Pick a name, a land, waves and difficulty.';return ''}
+const ggHash=t=>{let h=5381;for(const ch of t)h=((h*33)^ch.charCodeAt(0))>>>0;return h.toString(36)};
+/* the playable map */
+function ggMakeMap(o){const r=ggDec(o.road),p=ggDec(o.pads),T=GGMAPS.find(m=>m.id===o.th)||GGMAPS[0],e=ggCtr(r[r.length-1]);
+  let pts=[[-30,ggCtr(r[0])[1]],...r.map(ggCtr),[592,e[1]]];pts=pts.filter((q,i)=>{if(!i||i===pts.length-1)return true;const a=pts[i-1],b=pts[i+1];return !((a[0]===q[0]&&q[0]===b[0])||(a[1]===q[1]&&q[1]===b[1]))});
+  const key=ggHash(o.th+ggEnc(r)+ggEnc(p));
+  return ggPrep({id:'c'+key,seed:parseInt(key.slice(0,5),36)||7,th:o.th,n:ggName(o),custom:1,waves:o.w,hp:GGDIFF[o.d][1],d:o.d,bg:T.bg,road:T.road,deco:T.deco,snow:T.snow,ember:T.ember,king:!!o.b,goal:['none',''],path:pts,fixedPads:p.map(ggCtr)})}
+const ggMapOf=v=>({na:+v.na,nb:+v.nb,th:v.th,w:+v.w,d:+v.d,b:!!v.b,road:ggDec(v.road),pads:ggDec(v.pads)});
+const ggWire=o=>({na:o.na,nb:o.nb,th:o.th,w:o.w,d:o.d,b:!!o.b,road:ggEnc(ggDec(o.road)),pads:ggEnc(ggDec(o.pads))});
+const ggKingOK=()=>(ggS().st.fortress||0)>0;
+let GGED=null,GGCM=null;
+function ggEdit(k){const S=ggS(),v=k>=0&&(S.mine||[])[k];GGED={k:v?k:-1,tool:'road',cur:GMC*4,err:'',o:v?ggMapOf(v):{na:Math.random()*16|0,nb:Math.random()*16|0,th:'valley',w:6,d:0,b:false,road:[],pads:[]}};GGPLAY=null;
+  if(AG.cur&&AG.cur.id==='gate'&&AG.cur.phase==='end')AG.cur=null;rerealm();setTimeout(()=>{const c=$('ggedcv');if(c)c.focus({preventScroll:true})},0)}
+function ggEdView(res){const E=GGED,o=E.o,chk=ggCheck(o),em=E.err;E.err='';setTimeout(ggEdInit,0);
+  const tv=res?`<div class="ggmsg ${res.why==='won'?'ok':''}">${res.why==='won'?`🏰 Test play: you won with ${res.cookies} cookies left!`:res.why==='lost'?`🍪 Test play: the goblins got through after ${res.waves} wave${res.waves===1?'':'s'}. Maybe more pads or an easier setting?`:'Play time is over for today.'}</div>`:'';
+  const sel=(id,L,v)=>`<select id="${id}" onchange="ggEdSet()">${L.map((t,i)=>`<option value="${i}" ${i===v?'selected':''}>${esc(t)}</option>`).join('')}</select>`;
+  return `<div class="gworld">${clouds()}${gameHead('Goblin Gate','Map Maker')}<div class="gcard"><div class="split"><h3 style="margin:0">🛠️ ${E.k>=0?'Edit your map':'Make a map'}: <span id="ggedname">${esc(ggName(o))}</span></h3><button class="abtn sec sm" onclick="GGED=null;rerealm()">✖ Close</button></div>${tv}
+    <div class="ggtools" role="toolbar" aria-label="Map tools"><button class="chip ${E.tool==='road'?'on':''}" aria-pressed="${E.tool==='road'}" onclick="ggEdTool('road')">🛤️ Road</button><button class="chip ${E.tool==='pad'?'on':''}" aria-pressed="${E.tool==='pad'}" onclick="ggEdTool('pad')">🪨 Stone pads <span id="ggedpads">${o.pads.length}</span>/8</button>
+      <button class="chip" onclick="ggEdUndo()">↩️ Undo</button><button class="chip" onclick="ggEdClear()">🧹 Clear</button></div>
+    <div class="ggedwrap"><canvas id="ggedcv" width="640" height="360" tabindex="0" aria-label="Map grid, 15 by 9 squares. Arrow keys move the cursor; Space or Enter uses the tool." aria-describedby="ggedmsg"></canvas></div>
+    <div class="ggmsg ${chk||em?'':'ok'}" id="ggedmsg" role="status" aria-live="polite">${esc(em||chk||'✅ Ready! Test play it, then save it.')}</div>
+    <div class="ggedrows"><label>Map name<span style="display:flex;gap:6px">${sel('ggna',GGNA,o.na)}${sel('ggnb',GGNB,o.nb)}</span></label>
+      <label>Land<span class="chips">${GGTH.map(t=>`<button class="chip ${o.th===t?'on':''}" aria-pressed="${o.th===t}" onclick="GGED.o.th='${t}';rerealm()">${GGTHI[t]} ${esc(GGTHN[t])}</button>`).join('')}</span></label>
+      <label>Waves<select id="ggw" onchange="ggEdSet()">${[5,6,7,8,9,10].map(w=>`<option value="${w}" ${o.w===w?'selected':''}>${w} waves</option>`).join('')}</select></label>
+      <label>Difficulty<span class="chips">${GGDIFF.map(([n],i)=>`<button class="chip ${o.d===i?'on':''}" aria-pressed="${o.d===i}" onclick="GGED.o.d=${i};rerealm()">${n}</button>`).join('')}</span></label>
+      <label>Final boss<span class="chips"><button class="chip ${!o.b?'on':''}" aria-pressed="${!o.b}" onclick="GGED.o.b=false;rerealm()">👑 Goblin boss</button><button class="chip ${o.b?'on':''}" aria-pressed="${!!o.b}" ${ggKingOK()?'':'disabled title="Beat stage 7 first"'} onclick="GGED.o.b=true;rerealm()">🤴 Goblin King${ggKingOK()?'':' (beat stage 7 first)'}</button></span></label></div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px"><button class="abtn" onclick="ggEdSave()">💾 Save map</button><button class="abtn sec" onclick="ggEdTest()">▶ Test play</button></div>
+    <p class="sol" style="margin:10px 0 0">Tip: towers reach about 2 squares, so put pads where they can see lots of road. Made maps don't give stars or wave coins.</p></div></div>`};
+function ggEdSet(){const o=GGED.o;o.na=+$('ggna').value;o.nb=+$('ggnb').value;o.w=+$('ggw').value;const n=$('ggedname');if(n)n.textContent=ggName(o)}
+function ggEdTool(t){GGED.tool=t;GGED.err='';rerealm()}
+function ggEdUndo(){const o=GGED.o;GGED.err='';if(GGED.tool==='pad'&&o.pads.length)o.pads.pop();else o.road.pop();ggEdRefresh()}
+function ggEdClear(){const o=GGED.o;if(GGED.tool==='pad')o.pads=[];else o.road=[];GGED.err='';ggEdRefresh()}
+/* use the tool on one square; dragging the road backwards undoes it */
+function ggEdApply(i,drag){const E=GGED,o=E.o,r=o.road;if(!(i>=0&&i<GMC*GMR))return;E.err='';
+  if(E.tool==='road'){if(o.pads.includes(i)){if(!drag)E.err='A stone pad is there. Switch to Stone pads to move it.';return}
+    if(!r.length){if(i%GMC===0)r.push(i);else if(!drag)E.err='Start the road in the left column (it glows).'}
+    else{const last=r[r.length-1];if(i===last)return;if(r.length>1&&i===r[r.length-2])r.pop();
+      else if(last%GMC===GMC-1&&r.length>1){if(!drag)E.err='The road already reaches the castle. Undo to change it.'}
+      else if(r.includes(i)){if(!drag)E.err="The road can't cross itself."}else if(ggAdj(last,i))r.push(i);else if(!drag)E.err='Tap a glowing square next to the end of the road.'}}
+  else{const k=o.pads.indexOf(i);if(k>=0)o.pads.splice(k,1);else if(r.includes(i))E.err='Stone pads go beside the road, not on it.';else if(o.pads.length>=8)E.err="That's 8 pads, the most a map can have.";else o.pads.push(i)}}
+function ggEdRefresh(){const o=GGED.o,m=$('ggedmsg'),chk=ggCheck(o);if(m){m.textContent=GGED.err||chk||'✅ Ready! Test play it, then save it.';m.className='ggmsg'+(chk||GGED.err?'':' ok')}const pc=$('ggedpads');if(pc)pc.textContent=o.pads.length;ggEdBgSoon();ggEdDraw()}
+/* the real pixel background, redrawn a moment after the road changes */
+let GGEDBG=null,GGEDT=0;
+function ggEdBgSoon(){clearTimeout(GGEDT);GGEDT=setTimeout(()=>{if(!GGED)return;const o=GGED.o,r=o.road,done=r.length>1&&r[0]%GMC===0&&r[r.length-1]%GMC===GMC-1;
+  const pts=r.length?[[-30,ggCtr(r[0])[1]],...r.map(ggCtr)].concat(done?[[592,ggCtr(r[r.length-1])[1]]]:[]):[];delete GGC.bged;
+  GGEDBG=ggBg(ggPrep({id:'ed',seed:11,th:o.th,path:pts,fixedPads:o.pads.map(ggCtr),noCastle:!done,noDeco:1}));delete GGC.bged;ggEdDraw()},70)}
+function ggEdDraw(){const c=$('ggedcv');if(!c||!GGED)return;const x=c.getContext('2d'),E=GGED,o=E.o,r=o.road,t=performance.now()/1000;x.imageSmoothingEnabled=false;
+  if(GGEDBG)x.drawImage(GGEDBG,0,0,640,360);else{x.fillStyle=(GGPAL[o.th]||GGPAL.valley).g[0];x.fillRect(0,0,640,360)}
+  x.fillStyle='rgba(15,10,30,.35)';x.fillRect(600,0,40,360);
+  x.strokeStyle='rgba(255,255,255,.22)';x.lineWidth=1;x.beginPath();for(let i=0;i<=GMC;i++){x.moveTo(i*GCELL+.5,0);x.lineTo(i*GCELL+.5,360)}for(let j=0;j<=GMR;j++){x.moveTo(0,j*GCELL+.5);x.lineTo(600,j*GCELL+.5)}x.stroke();
+  /* where the road can go next */const glow=[];if(E.tool==='road'){if(!r.length)for(let j=0;j<GMR;j++)glow.push(j*GMC);else{const l=r[r.length-1];if(!(l%GMC===GMC-1&&r.length>1))for(const d of [1,-1,GMC,-GMC]){const n=l+d;if(n>=0&&n<GMC*GMR&&ggAdj(l,n)&&!r.includes(n)&&!o.pads.includes(n))glow.push(n)}}}
+  x.fillStyle=`rgba(255,214,77,${.28+.12*Math.sin(t*5)})`;for(const i of glow){const [a,b]=ggCtr(i);x.fillRect(a-19,b-19,38,38)}
+  if(E.tool==='road'&&r.length&&!(r[r.length-1]%GMC===GMC-1)){x.fillStyle='rgba(255,214,77,.16)';for(let j=0;j<GMR;j++)x.fillRect(560,j*GCELL,40,GCELL)}
+  /* the road's path, its start and end */if(r.length){x.strokeStyle='rgba(255,255,255,.55)';x.lineWidth=3;x.setLineDash([6,6]);x.beginPath();r.forEach((i,k)=>{const [a,b]=ggCtr(i);k?x.lineTo(a,b):x.moveTo(a,b)});x.stroke();x.setLineDash([]);
+    const [a,b]=ggCtr(r[r.length-1]);x.fillStyle='#FDE047';x.beginPath();x.arc(a,b,6,0,7);x.fill();x.strokeStyle='#1E1B4B';x.lineWidth=2;x.stroke();
+    const [sa,sb]=ggCtr(r[0]);x.font='800 13px "Bricolage Grotesque",sans-serif';x.textAlign='left';x.fillStyle='#1E1B4B';x.fillRect(sa-19,sb-19,8,14);x.fillStyle='#E4572E';x.fillRect(sa-11,sb-19,8,6)}
+  /* stone pads */o.pads.forEach(i=>{const [a,b]=ggCtr(i);x.fillStyle='rgba(0,0,0,.35)';x.beginPath();x.ellipse(a,b+4,16,8,0,0,7);x.fill();x.fillStyle='#B9BDCB';x.beginPath();x.ellipse(a,b,16,8,0,0,7);x.fill();x.fillStyle='#8C90A0';x.fillRect(a-10,b-1,20,2);x.fillRect(a-1,b-6,2,12)});
+  if(document.activeElement===c){const [a,b]=ggCtr(E.cur);x.strokeStyle='#F2A900';x.lineWidth=3;x.strokeRect(a-19,b-19,38,38)}
+  if(!r.length){x.font='800 15px "Bricolage Grotesque",sans-serif';x.textAlign='center';x.fillStyle='rgba(15,10,30,.75)';x.fillRect(150,158,340,44);x.fillStyle='#fff';x.fillText('Start the road in a glowing square on the left',320,185)}}
+function ggEdInit(){const c=$('ggedcv');if(!c||c.dataset.on)return;c.dataset.on=1;ggEdBgSoon();ggEdDraw();let last=-1,down=false;
+  const cellAt=e=>{const b=c.getBoundingClientRect(),px=(e.clientX-b.left)/b.width*640,py=(e.clientY-b.top)/b.height*360;if(px>=600)return GMC-1+GMC*Math.max(0,Math.min(GMR-1,py/GCELL|0));return Math.max(0,Math.min(GMC-1,px/GCELL|0))+GMC*Math.max(0,Math.min(GMR-1,py/GCELL|0))};
+  c.addEventListener('pointerdown',e=>{e.preventDefault();c.focus({preventScroll:true});down=true;try{c.setPointerCapture(e.pointerId)}catch(_){}const i=cellAt(e);last=i;GGED.cur=i;ggEdApply(i,false);SND.play('click');ggEdRefresh()});
+  c.addEventListener('pointermove',e=>{if(!down||GGED.tool!=='road')return;const i=cellAt(e);if(i===last)return;
+    /* a fast drag can skip squares: walk there one square at a time */let a=last;while(a!==i){const ax=a%GMC,ay=a/GMC|0,bx=i%GMC,by=i/GMC|0;a=ax!==bx?a+(bx>ax?1:-1):a+(by>ay?GMC:-GMC);ggEdApply(a,true)}last=i;GGED.cur=i;ggEdRefresh()});
+  const up=()=>{down=false};c.addEventListener('pointerup',up);c.addEventListener('pointercancel',up);
+  c.addEventListener('keydown',e=>{const E=GGED,d={ArrowLeft:-1,ArrowRight:1,ArrowUp:-GMC,ArrowDown:GMC}[e.key];
+    if(d){e.preventDefault();const n=E.cur+d;if(n>=0&&n<GMC*GMR&&ggAdj(E.cur,n))E.cur=n;ggEdDraw()}else if(e.key===' '||e.key==='Enter'){e.preventDefault();ggEdApply(E.cur,false);ggEdRefresh()}});
+  c.addEventListener('focus',ggEdDraw);c.addEventListener('blur',ggEdDraw);
+  const tick=()=>{if(!GGED||!document.body.contains(c))return;if(!calmOn())ggEdDraw();setTimeout(()=>requestAnimationFrame(tick),120)};tick()}
+function ggEdSave(){const E=GGED,o=E.o,chk=ggCheck(o);if(chk){E.err='';ggEdRefresh();return msg(chk)}const S=ggS();S.mine=S.mine||[];
+  const v={...ggWire(o),ts:Date.now()};if(E.k>=0&&S.mine[E.k])S.mine[E.k]=v;else{if(S.mine.length>=8)return msg('You can keep 8 maps. Delete one first.');S.mine.unshift(v)}
+  AG.ach('gate','maker');SYNC();GGED=null;GGPLAY=null;if(AG.cur&&AG.cur.id==='gate'&&AG.cur.phase==='end')AG.cur=null;rerealm();msg(`Saved “${ggName(o)}”!`)}
+function ggEdTest(){const o=GGED.o,chk=ggCheck(o);if(chk){ggEdRefresh();return msg(chk)}GGPLAY=ggMakeMap(o);GGPLAY.test=1;AG.play('gate')}
+function ggPlayMine(k){const v=(ggS().mine||[])[k];if(!v||ggCheck(ggMapOf(v)))return;GGED=null;GGPLAY=ggMakeMap(ggMapOf(v));if(AG.cur&&AG.cur.id==='gate'&&AG.cur.phase==='end')AG.cur=null;rerealm();window.scrollTo({top:0,behavior:calmOn()?'auto':'smooth'})}
+function ggDelMine(k){const S=ggS();if(!S.mine||!S.mine[k]||!confirm(`Delete “${ggName(S.mine[k])}”? Copies you shared stay with your class until you remove them there.`))return;S.mine.splice(k,1);SYNC();rerealm()}
+/* sharing with a class */
+const ggClasses=()=>typeof BOOT!=='undefined'&&BOOT.role==='student'&&!BOOT.local?(ST.joined||[]):[];
+async function ggShare(k,cid){const v=(ggS().mine||[])[k],c=ggClasses().find(x=>x.id===cid);if(!v||!c)return;
+  try{await api('POST',`/api/classes/${cid}/maps`,ggWire(ggMapOf(v)));AG.ach('gate','share');msg(`Shared “${ggName(v)}” with ${c.name}!`);GGCM=null;rerealm()}catch(e){msg(e.message||'Could not share the map.')}}
+async function ggCMLoad(){if(GGCM&&GGCM.busy)return;GGCM={busy:1,list:(GGCM&&GGCM.list)||[]};const L=[];
+  for(const c of ggClasses()){try{const r=await api('GET',`/api/classes/${c.id}/maps`);for(const v of r.maps||[])if(!ggCheck(ggMapOf(v)))L.push({...v,cid:c.id,cname:c.name})}catch(e){}}
+  GGCM={list:L};if(AR.mode==='gate'&&(!AG.cur||AG.cur.phase!=='play'))rerealm()}
+function ggPlayClass(cid,id){const v=GGCM&&GGCM.list.find(q=>q.cid===cid&&q.id===id);if(!v)return;GGED=null;GGPLAY=ggMakeMap(ggMapOf(v));GGPLAY.cls={cid,id,by:v.mine?'you':v.by,mine:!!v.mine};v.plays++;
+  api('POST',`/api/classes/${cid}/maps/${id}/play`,{}).catch(()=>{});if(AG.cur&&AG.cur.id==='gate'&&AG.cur.phase==='end')AG.cur=null;rerealm();window.scrollTo({top:0,behavior:calmOn()?'auto':'smooth'})}
+async function ggLike(cid,id){const v=GGCM&&GGCM.list.find(q=>q.cid===cid&&q.id===id);if(!v)return;try{const r=await api('POST',`/api/classes/${cid}/maps/${id}/like`,{});v.liked=r.liked;v.likes=r.likes;SND.play('click');rerealm()}catch(e){msg(e.message)}}
+async function ggUnshare(cid,id){const v=GGCM&&GGCM.list.find(q=>q.cid===cid&&q.id===id);if(!v||!confirm(`Remove “${ggName(v)}” from ${v.cname}?`))return;try{await api('DELETE',`/api/classes/${cid}/maps/${id}`);GGCM=null;rerealm()}catch(e){msg(e.message)}}
+const ggMapCard=(o,inner,live)=>{const m=ggMakeMap(o);return `<div class="ggmap ${live?'live':''}"><img src="${ggThumb(m).toDataURL()}" alt=""><b>${esc(m.n)}</b><span class="sol">${GGTHI[o.th]} ${o.w} waves · ${GGDIFF[o.d][0]}${o.b?' · 🤴':''}</span>${inner}</div>`};
+function ggMakerCard(){const S=ggS(),L=S.mine||[],cl=ggClasses();
+  return `<div class="gcard" style="margin-top:14px"><div class="split"><h3>🛠️ Map Maker</h3><button class="abtn sm" onclick="ggEdit(-1)">➕ Make a map</button></div><p class="sol" style="margin:2px 0 6px">Draw your own road, place the stone pads, pick the land and the final boss, then play it${cl.length?' and share it with your class':''}.</p>
+    ${L.length?`<div class="ggmaps ggmine">${L.map((v,k)=>{const o=ggMapOf(v);if(ggCheck(o))return '';const live=GGPLAY&&GGPLAY.custom&&!GGPLAY.cls&&GGPLAY.id===ggMakeMap(o).id;
+      return ggMapCard(o,`<span class="acts"><button class="chip" onclick="ggPlayMine(${k})">▶ Play</button><button class="chip" onclick="ggEdit(${k})">✏️ Edit</button>${cl.map(c=>`<button class="chip" onclick="ggShare(${k},${c.id})">📤 Share with ${esc(c.name)}</button>`).join('')}<button class="chip" aria-label="Delete ${esc(ggName(o))}" onclick="ggDelMine(${k})">🗑️</button></span>`,live)}).join('')}</div>`:'<p class="sol" style="margin:0">No maps yet.</p>'}</div>`}
+function ggClassCard(){const cl=ggClasses();if(!cl.length)return '';if(GGCM===null)setTimeout(ggCMLoad,0);const L=GGCM?GGCM.list:[];
+  return `<div class="gcard" style="margin-top:14px"><div class="split"><h3>🏫 Class maps</h3><button class="chip" onclick="GGCM=null;rerealm()">🔄 Refresh</button></div>
+    ${!GGCM||GGCM.busy&&!L.length?'<p class="sol">Loading your class maps…</p>':L.length?`<div class="ggmaps ggmine">${L.map(v=>{const o=ggMapOf(v),live=GGPLAY&&GGPLAY.cls&&GGPLAY.cls.cid===v.cid&&GGPLAY.cls.id===v.id;
+      return ggMapCard(o,`<span class="sol">by ${v.mine?'you':esc(v.by)}${cl.length>1?` · ${esc(v.cname)}`:''} · ▶ ${v.plays}</span><span class="acts"><button class="chip" onclick="ggPlayClass(${v.cid},${v.id})">▶ Play</button><button class="chip ${v.liked?'on':''}" aria-pressed="${!!v.liked}" aria-label="Like ${esc(ggName(o))}, ${v.likes} likes" onclick="ggLike(${v.cid},${v.id})">👍 ${v.likes}</button>${v.mine?`<button class="chip" onclick="ggUnshare(${v.cid},${v.id})">Remove</button>`:''}</span>`,live)}).join('')}</div>`
+    :'<p class="sol" style="margin:0">No class maps yet. Make one in the Map Maker and share it!</p>'}</div>`}
 const ggIcon=t=>{const k='ic'+t;if(GGC[k])return GGC[k];const sp=ggTowerPx({t,lvl:3}),c=document.createElement('canvas');c.width=48;c.height=112;const x=c.getContext('2d');x.imageSmoothingEnabled=false;x.drawImage(sp,0,0,48,112);return GGC[k]=c.toDataURL()};
 GVIEW.gate=function(){const C=AG.cur&&AG.cur.id==='gate'?AG.cur:null;
+  if(GGED&&!(C&&['load','play','crash'].includes(C.phase)))return ggEdView(C&&C.phase==='end'?C.res:null);
   if(C&&['load','play','crash'].includes(C.phase)){setTimeout(()=>{if(AG.cur&&AG.cur.st&&AG.cur.id==='gate')ggpanel(AG.cur.st)},0);
     return AG.screen('gate',{side:`<div class="ggs"><div class="gghud" id="gghud" aria-live="polite"></div><div style="margin-top:8px;display:flex;gap:8px;align-items:center"><span class="sol">Speed</span><button class="chip" onclick="if(AG.cur){const Z=AG.cur.st;Z.speed=Z.speed===1?2:1;this.textContent=Z.speed+'×';this.setAttribute('aria-pressed',Z.speed===2)}" aria-pressed="false">1×</button></div></div><div class="ggs" id="ggpanel"></div>`})}
   const S=ggS(),m=ggCur(),mi=GGMAPS.indexOf(m),r=C&&C.phase==='end'?C.res:null,flag=ggFlag();let card='';
-  if(r&&r.why==='won')card=`<div class="gcard endcard" style="margin-bottom:16px"><div class="big" aria-hidden="true">${r.king?'🤴':'🏰'}</div><h3>${r.king?'You defeated the Goblin King!':`Stage ${r.stage} cleared! The castle is safe!`}</h3><p>${stars3(r.stars)}<br>${r.cookies} of 10 cookies saved · ${r.goal?'🎯 Stage goal done':'Stage goal: '+esc(GGMAPS.find(x=>x.id===r.map).goal[1])} · 💎 +${r.gems} gem${r.gems>1?'s':''} · 🪙 +${r.coins} Gate coins</p>
+  if(r&&r.custom)card=`<div class="gcard endcard" style="margin-bottom:16px"><div class="big" aria-hidden="true">${r.why==='won'?'🏰':'🍪'}</div><h3>${r.why==='won'?`You defended ${esc(r.name)}!`:r.why==='lost'?`The goblins got the cookies on ${esc(r.name)}!`:'Play time is over for today'}</h3><p>${r.cookies} of 10 cookies saved · ${r.waves} wave${r.waves===1?'':'s'} cleared${r.coins?` · 🪙 +${r.coins}`:''}</p><p class="sol">Made maps are just for fun: no stars or wave coins. Right answers still earn coins.</p></div>`;
+  else if(r&&r.why==='won')card=`<div class="gcard endcard" style="margin-bottom:16px"><div class="big" aria-hidden="true">${r.king?'🤴':'🏰'}</div><h3>${r.king?'You defeated the Goblin King!':`Stage ${r.stage} cleared! The castle is safe!`}</h3><p>${stars3(r.stars)}<br>${r.cookies} of 10 cookies saved · ${r.goal?'🎯 Stage goal done':'Stage goal: '+esc(GGMAPS.find(x=>x.id===r.map).goal[1])} · 💎 +${r.gems} gem${r.gems>1?'s':''} · 🪙 +${r.coins} Gate coins</p>
     <p class="sol">Strategy bonus: ${r.bonus.perfect} perfect wave${r.bonus.perfect===1?'':'s'} · ${r.bonus.variety} kinds of tower · ${r.bonus.gold} gold left</p>${r.unlock?`<p><b>🔓 Stage ${r.unlockN} unlocked: ${esc(r.unlock)}!</b></p>`:''}</div>`;
   else if(r&&r.why==='lost')card=`<div class="gcard endcard" style="margin-bottom:16px"><div class="big" aria-hidden="true">🍪</div><h3>The goblins got the cookies!</h3><p>You held out for ${r.waves} wave${r.waves===1?'':'s'} (🪙 +${r.coins}). Level up your towers with right answers, and try new towers from a chest.</p></div>`;
   else if(r&&r.why==='time')card=`<div class="gcard" style="margin-bottom:16px"><h3>🌙 Play time is over for today</h3><p>${esc(earnNote())}</p></div>`;
   const L=GGLAST,rv=L?`<div class="ggreveal" style="--rc:${GRAR[L.rar][1]}"><img src="${ggIcon(L.t)}" alt=""><div><span class="sol" style="font-weight:800;color:${GRAR[L.rar][1]}">${L.lucky?'🍀 LUCKY ROLL · ':''}${GRAR[L.rar][0].toUpperCase()}</span><h3 style="margin:2px 0">${GGT[L.t].i} ${esc(GGT[L.t].n)}</h3><p style="margin:0">${esc(GGT[L.t].role)}</p>
     <p style="margin:6px 0 0"><b>${L.note==='new'?'✨ New tower!'+(S.load.includes(L.t)?' Added to your loadout.':''):L.note==='copy'?`Another copy: +5% power (★${S.cp[L.t]})`:'Already maxed: half your coins back'}</b></p></div><button class="abtn sec sm" style="margin-left:auto" onclick="GGLAST=null;rerealm()">OK</button></div>`:'';
   const own=new Set(S.own),pityLeft=Math.max(1,10-(S.pity||0));
-  return `<div class="gworld">${clouds()}${gameHead('Goblin Gate',`Stage ${mi+1}: ${m.n}`)}${outOfTime()?restCard():''}${card}${rv}${subjChips()}
-  <div class="gcard"><h3>🗺️ Stages</h3><div class="ggmaps">${GGMAPS.map((g,i)=>{const o=ggOpen(i),st=S.st[g.id]||0;return `<button class="ggmap ${g.id===m.id?'on':''}" ${o?'':'disabled'} aria-pressed="${g.id===m.id}" onclick="ARS('gate').map='${g.id}';SYNC();rerealm()"><span class="ggstage" aria-hidden="true">${i+1}</span><img src="${ggThumb(g).toDataURL()}" alt=""><b>${o?'':'🔒 '}Stage ${i+1}: ${esc(g.n)}</b><span class="sol">${g.waves} waves${g.king?' · 🤴 Final boss':''} · ${o?stars3(st):'Win stage '+i}</span><span class="sol">🎯 ${esc(g.goal[1])}</span></button>`}).join('')}</div></div>
+  const cust=m.custom?`<div class="gcard" style="margin-bottom:14px;border:3px solid #22C55E"><div class="split"><h3 style="margin:0">🛠️ Ready to play: ${esc(m.n)}${m.cls?` <span class="sol">by ${esc(m.cls.by)}</span>`:''}</h3><button class="abtn sec sm" onclick="GGPLAY=null;rerealm()">← Back to the stages</button></div><p class="sol" style="margin:4px 0 0">${GGTHI[m.th]} ${esc(GGTHN[m.th])} · ${m.waves} waves · ${GGDIFF[m.d][0]} · ${m.king?'🤴 Goblin King':'👑 Goblin boss'} at the end. Press Start defending below.</p></div>`:'';
+  return `<div class="gworld">${clouds()}${gameHead('Goblin Gate',m.custom?`Made map: ${esc(m.n)}`:`Stage ${mi+1}: ${m.n}`)}${outOfTime()?restCard():''}${card}${rv}${cust}${subjChips()}
+  <div class="gcard"><h3>🗺️ Stages</h3><div class="ggmaps">${GGMAPS.map((g,i)=>{const o=ggOpen(i),st=S.st[g.id]||0;return `<button class="ggmap ${g.id===m.id&&!m.custom?'on':''}" ${o?'':'disabled'} aria-pressed="${g.id===m.id}" onclick="GGPLAY=null;ARS('gate').map='${g.id}';SYNC();rerealm()"><span class="ggstage" aria-hidden="true">${i+1}</span><img src="${ggThumb(g).toDataURL()}" alt=""><b>${o?'':'🔒 '}Stage ${i+1}: ${esc(g.n)}</b><span class="sol">${g.waves} waves${g.king?' · 🤴 Final boss':''} · ${o?stars3(st):'Win stage '+i}</span><span class="sol">🎯 ${esc(g.goal[1])}</span></button>`}).join('')}</div></div>
+  ${ggMakerCard()}${ggClassCard()}
   <div class="gcard" style="margin-top:14px"><div class="split"><h3>🛡️ Your towers (${S.own.length} of ${Object.keys(GGT).length})</h3><span class="sol">Loadout: ${S.load.length} of 5 · pick the towers you take into a stage</span></div>
     <div class="ggtw">${Object.entries(GGT).map(([k,D])=>{const o=own.has(k),inL=S.load.includes(k);return `<div class="c ${o?'':'lock'} ${inL?'in':''}" style="--rc:${GRAR[D.rar][1]}"><span class="rar">${GRAR[D.rar][0]}</span><img src="${ggIcon(k)}" alt=""><b>${o?esc(D.n):'???'}</b><small>${o?esc(D.role):'Find it in a chest'}</small><small>💰 ${D.cost}${o&&S.cp[k]?` · ${'★'.repeat(S.cp[k])}`:''}</small>${o?`<button class="chip ${inL?'on':''}" aria-pressed="${inL}" onclick="ggLoad('${k}')">${inL?'✓ In loadout':'Add to loadout'}</button>`:''}</div>`}).join('')}</div></div>
   <div class="gcard" style="margin-top:14px"><div class="split"><h3>🎁 Tower chests</h3><span style="font:800 1.1rem 'Bricolage Grotesque',sans-serif">🪙 ${S.coins||0} Gate coins</span></div>
@@ -11540,7 +11692,14 @@ function arcBlock(c){const a=(c.game&&c.game.arc)||{off:false,mins:0,games:null,
   ${rows.length?`<h4 style="margin-top:12px">Arcade this week</h4><div class="tbl"><table class="vs"><tr><th>Student</th><th>Minutes played</th><th>Game questions</th><th>Right</th></tr>${rows.map(r=>`<tr><td>${esc(r.n)}</td><td>${r.m}</td><td>${r.gq}</td><td>${r.gq?Math.round(r.gok/r.gq*100)+'%':'–'}</td></tr>`).join('')}</table></div><p class="sol">Game questions are the same practice questions as the Learn page, asked inside the games.</p>`:''}</div>`}
 function arcSave(id){const games=[...document.querySelectorAll(`input[name="arcg${id}"]`)],on=games.filter(i=>i.checked).map(i=>i.value);
   setGame(id,{arc:{off:!$('arco'+id).checked,mins:+$('arcm'+id).value,sub:$('arcs'+id).value,games:on.length===games.length?null:on}})}
-const _ccC=classCard;classCard=function(c){const h=_ccC(c);return h.includes('<h4>Parent report</h4>')?h.replace('<h4>Parent report</h4>',arcBlock(c)+'<h4>Parent report</h4>'):h.replace(/<\/div>$/,arcBlock(c)+'</div>')};
+/* Goblin Gate maps students shared with the class: the teacher sees them and can remove any */
+const ARCMAPS={};
+const arcMapsList=id=>{const L=ARCMAPS[id];if(!L)return `<button class="lamp" onclick="arcMaps(${id})">Show shared maps</button>`;if(!L.length)return '<p class="sol" style="margin:4px 0">No maps shared yet. Students make them in Goblin Gate\'s Map Maker.</p>';
+  return `<div class="tbl"><table class="vs"><tr><th>Map</th><th>Made by</th><th>Plays</th><th>Likes</th><th></th></tr>${L.map(m=>`<tr><td>${GGTHI[m.th]||''} ${esc(ggName(m))}</td><td>${esc(m.by)}</td><td>${m.plays}</td><td>${m.likes}</td><td><button class="chip" onclick="arcMapDel(${id},${m.id})">Remove</button></td></tr>`).join('')}</table></div>`};
+const arcMapsBlock=c=>`<div class="gblock"><h4>🗺️ Goblin Gate maps from this class</h4><p class="sol" style="margin:0 0 6px">Students can share up to 3 maps each. Map names come from word lists, so there's no free text.</p><div id="arcmaps${c.id}">${arcMapsList(c.id)}</div></div>`;
+async function arcMaps(id){try{ARCMAPS[id]=(await api('GET',`/api/classes/${id}/maps`)).maps||[]}catch(e){return msg(e.message)}const el=$('arcmaps'+id);if(el)el.innerHTML=arcMapsList(id)}
+async function arcMapDel(id,mid){const m=(ARCMAPS[id]||[]).find(x=>x.id===mid);if(!m||!confirm(`Remove “${ggName(m)}” by ${m.by}?`))return;try{await api('DELETE',`/api/classes/${id}/maps/${mid}`);msg('Map removed.')}catch(e){return msg(e.message)}arcMaps(id)}
+const _ccC=classCard;classCard=function(c){const h=_ccC(c),b=arcBlock(c)+arcMapsBlock(c);return h.includes('<h4>Parent report</h4>')?h.replace('<h4>Parent report</h4>',b+'<h4>Parent report</h4>'):h.replace(/<\/div>$/,b+'</div>')};
 </script>
 
 </body>

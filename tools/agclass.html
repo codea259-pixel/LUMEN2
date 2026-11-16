@@ -41,5 +41,12 @@ function arcBlock(c){const a=(c.game&&c.game.arc)||{off:false,mins:0,games:null,
   ${rows.length?`<h4 style="margin-top:12px">Arcade this week</h4><div class="tbl"><table class="vs"><tr><th>Student</th><th>Minutes played</th><th>Game questions</th><th>Right</th></tr>${rows.map(r=>`<tr><td>${esc(r.n)}</td><td>${r.m}</td><td>${r.gq}</td><td>${r.gq?Math.round(r.gok/r.gq*100)+'%':'–'}</td></tr>`).join('')}</table></div><p class="sol">Game questions are the same practice questions as the Learn page, asked inside the games.</p>`:''}</div>`}
 function arcSave(id){const games=[...document.querySelectorAll(`input[name="arcg${id}"]`)],on=games.filter(i=>i.checked).map(i=>i.value);
   setGame(id,{arc:{off:!$('arco'+id).checked,mins:+$('arcm'+id).value,sub:$('arcs'+id).value,games:on.length===games.length?null:on}})}
-const _ccC=classCard;classCard=function(c){const h=_ccC(c);return h.includes('<h4>Parent report</h4>')?h.replace('<h4>Parent report</h4>',arcBlock(c)+'<h4>Parent report</h4>'):h.replace(/<\/div>$/,arcBlock(c)+'</div>')};
+/* Goblin Gate maps students shared with the class: the teacher sees them and can remove any */
+const ARCMAPS={};
+const arcMapsList=id=>{const L=ARCMAPS[id];if(!L)return `<button class="lamp" onclick="arcMaps(${id})">Show shared maps</button>`;if(!L.length)return '<p class="sol" style="margin:4px 0">No maps shared yet. Students make them in Goblin Gate\'s Map Maker.</p>';
+  return `<div class="tbl"><table class="vs"><tr><th>Map</th><th>Made by</th><th>Plays</th><th>Likes</th><th></th></tr>${L.map(m=>`<tr><td>${GGTHI[m.th]||''} ${esc(ggName(m))}</td><td>${esc(m.by)}</td><td>${m.plays}</td><td>${m.likes}</td><td><button class="chip" onclick="arcMapDel(${id},${m.id})">Remove</button></td></tr>`).join('')}</table></div>`};
+const arcMapsBlock=c=>`<div class="gblock"><h4>🗺️ Goblin Gate maps from this class</h4><p class="sol" style="margin:0 0 6px">Students can share up to 3 maps each. Map names come from word lists, so there's no free text.</p><div id="arcmaps${c.id}">${arcMapsList(c.id)}</div></div>`;
+async function arcMaps(id){try{ARCMAPS[id]=(await api('GET',`/api/classes/${id}/maps`)).maps||[]}catch(e){return msg(e.message)}const el=$('arcmaps'+id);if(el)el.innerHTML=arcMapsList(id)}
+async function arcMapDel(id,mid){const m=(ARCMAPS[id]||[]).find(x=>x.id===mid);if(!m||!confirm(`Remove “${ggName(m)}” by ${m.by}?`))return;try{await api('DELETE',`/api/classes/${id}/maps/${mid}`);msg('Map removed.')}catch(e){return msg(e.message)}arcMaps(id)}
+const _ccC=classCard;classCard=function(c){const h=_ccC(c),b=arcBlock(c)+arcMapsBlock(c);return h.includes('<h4>Parent report</h4>')?h.replace('<h4>Parent report</h4>',b+'<h4>Parent report</h4>'):h.replace(/<\/div>$/,b+'</div>')};
 </script>
