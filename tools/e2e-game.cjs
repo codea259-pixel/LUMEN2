@@ -367,7 +367,7 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     // Island Architect: build with coins, earn coins with answers, the rules for land, a day's report and growth, missions, bulldozing
     await a.evaluate(() => { DAY().play = 0; if (GM.ar) delete GM.ar.island; AG.cur = null; AR.mode = null; toHub() }); await a.waitForSelector('.wmap'); await a.click('.wmloc:has-text("Island Architect")'); await a.click('text=▶ Build'); await a.waitForFunction(() => AG.on('island') && AG.cur.phase === 'play');
     const isC = await a.evaluate(() => { const g = [], s = [], w = []; ISLAND.forEach((v, i) => { const c = [i % 16, Math.floor(i / 16)]; (v === 'g' ? g : v === 's' ? s : v === '.' ? w : g).push(c) }); return { g: g.filter((_, i) => i % 3 === 0), s, w } });
-    const isBx = await (await a.$('#agcv')).boundingBox(), isTap = ([c, r]) => a.mouse.click(isBx.x + (c + .5) / 16 * isBx.width, isBx.y + (r + .5) / 10 * isBx.height);
+    const isBx = await (await a.$('#agcv')).boundingBox(), isTap = async ([c, r]) => { const [X, Y] = await a.evaluate(([c, r]) => isoScreen(c, r), [c, r]); await a.mouse.click(isBx.x + X / 640 * isBx.width, isBx.y + Y / 400 * isBx.height) };
     for (let i = 0; i < 3; i++) await isTap(isC.g[i]); if ((await a.evaluate(() => [isS().coins, isStats().n.h])).join() !== '0,3') fail('3 houses did not cost 60 coins');
     await a.click('.ispal button:has-text("Well")'); await isTap(isC.g[3]); if (!(await a.textContent('#ismsg')).includes('You need 15 more')) fail('a building was built without enough coins');
     await a.click('text=Earn coins'); await ocAns(true); await isTap(isC.g[3]); if (await a.evaluate(() => isS().mis) !== 1) fail('the first mission did not finish');

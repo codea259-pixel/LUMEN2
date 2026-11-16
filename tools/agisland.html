@@ -33,37 +33,85 @@ AG.def({id:'island',name:'Island Architect',w:ISC*IST,h:ISR*IST,maxW:1280,vh:440
   ach:{first:{i:'🏗️',n:'Groundbreaking',d:'Put up your first building',gems:1},t10:{i:'🏘️',n:'Village',d:'Reach 10 people',gems:1},t30:{i:'🏙️',n:'Small town',d:'Reach 30 people',gems:2},
     happy:{i:'😊',n:'Happy island',d:'Make the town 90% happy',gems:2},all:{i:'🧭',n:'Master planner',d:'Finish every mission',gems:5},rich:{i:'💰',n:'Saver',d:'Have 300 coins at once',gems:1}},
   places:()=>ISM.map((m,i)=>({on:i<isS().mis,i:i<isS().mis?'✅':'📋',n:m.t,s:'Done',how:'A mission'})),
-  start(){const S=isS(),R=krng(3);return{t:0,dayT:0,cur:[8,5],hov:null,tool:'h',msg:`Day ${S.day}. Build homes and grow food and water for your townspeople!`,trip:{coins:0,built:0},walk:Array.from({length:20},()=>({x:320+R()*60,y:200+R()*40,tx:320,ty:200,w:R()*3})),hudT:0}},
-  ready(Z){isPanel(Z);const cv=$('agcv');if(cv){cv.onpointermove=e=>{const r=cv.getBoundingClientRect();Z.hov=[Math.floor((e.clientX-r.left)/r.width*ISC),Math.floor((e.clientY-r.top)/r.height*ISR)]};cv.onpointerleave=()=>{Z.hov=null}}},
-  step(dt,Z){Z.t+=dt;if((Z.dayT+=dt)>=40){Z.dayT=0;isDay(Z)}const S=isS(),st=isStats(S);
-    /* townspeople stroll between land tiles */
-    const n=Math.min(20,S.pop);for(let i=0;i<n;i++){const p=Z.walk[i];if(p.w>0){p.w-=dt;continue}const dx=p.tx-p.x,dy=p.ty-p.y,L=Math.hypot(dx,dy);if(L<2){p.w=1+Math.random()*3;let tries=0,j;do{j=Math.floor(Math.random()*ISC*ISR);tries++}while(ISLAND[j]==='.'&&tries<20);p.tx=(j%ISC)*IST+IST/2+(Math.random()-.5)*20;p.ty=((j/ISC)|0)*IST+IST/2+(Math.random()-.5)*20}else{p.x+=dx/L*22*dt;p.y+=dy/L*22*dt}}
+  start(){const S=isS(),R=krng(3),land=[];ISLAND.forEach((v,i)=>{if(v!=='.')land.push(i)});return{t:0,dayT:0,cur:[8,5],hov:null,tool:'h',msg:`Day ${S.day}. Build homes and grow food and water for your townspeople!`,trip:{coins:0,built:0},
+    walk:Array.from({length:20},()=>{const j=land[Math.floor(R()*land.length)],c=j%ISC,r=(j/ISC)|0;return{c,r,tc:c,tr:r,w:R()*3}}),land,hudT:0}},
+  ready(Z){isPanel(Z);const cv=$('agcv');if(cv){cv.onpointermove=e=>{const b=cv.getBoundingClientRect();Z.hov=isoPickS((e.clientX-b.left)/b.width*640,(e.clientY-b.top)/b.height*400)};cv.onpointerleave=()=>{Z.hov=null}}},
+  step(dt,Z){Z.t+=dt;if((Z.dayT+=dt)>=40){Z.dayT=0;isDay(Z)}const S=isS();
+    /* townspeople stroll from tile to tile on the land */
+    const n=Math.min(20,S.pop);for(let i=0;i<n;i++){const p=Z.walk[i];if(p.w>0){p.w-=dt;continue}const dc=p.tc-p.c,dr=p.tr-p.r,L=Math.hypot(dc,dr);
+      if(L<.05){p.w=1+Math.random()*3;const j=Z.land[Math.floor(Math.random()*Z.land.length)];p.tc=j%ISC+(Math.random()-.5)*.6;p.tr=((j/ISC)|0)+(Math.random()-.5)*.6}else{const s=Math.min(L,.7*dt);p.c+=dc/L*s;p.r+=dr/L*s}}
     if((Z.hudT+=dt)>.5){Z.hudT=0;const e=$('isday');if(e)e.style.width=(Z.dayT/40*100)+'%'}},
-  draw(a,Z){const x=AG.cx;if(!x)return;const S=isS();x.drawImage(isBase(),0,0);
-    const fr=(Z.t*2|0)%2;x.fillStyle='rgba(255,255,255,.35)';for(let i=0;i<14;i++){const wx=(i*97+Z.t*12)%640,wy=(i*53)%400;if(ISLAND[Math.floor(wy/IST)*ISC+Math.floor(wx/IST)]==='.')x.fillRect(wx,wy,10,2)}
-    for(let i=0;i<ISC*ISR;i++){const b=S.grid[i];if(b!=='.')isDrawB(x,b,(i%ISC)*IST,((i/ISC)|0)*IST,Z.t)}
-    const n=Math.min(20,S.pop);for(let i=0;i<n;i++){const p=Z.walk[i];x.fillStyle=['#F97316','#3B82F6','#EC4899','#A855F7','#EAB308'][i%5];x.beginPath();x.arc(p.x,p.y-4,3,0,7);x.fill();x.fillStyle='#FDE0BD';x.beginPath();x.arc(p.x,p.y-9,2.5,0,7);x.fill()}
-    const c=Z.hov||Z.cur;if(c){x.strokeStyle=Z.tool==='x'?'#EF4444':'#FDE047';x.lineWidth=3;x.strokeRect(c[0]*IST+2,c[1]*IST+2,IST-4,IST-4)}
-    if(Z.dayT>34){x.fillStyle=`rgba(249,115,22,${(Z.dayT-34)/6*.25})`;x.fillRect(0,0,640,400)}},
+  draw(a,Z){const x=AG.cx;if(!x)return;const S=isS(),t=Z.t;x.save();x.translate(320,205);x.scale(ISOZ,ISOZ);x.translate(-320,-205);x.drawImage(isoBase(),-40,-30,720,460);
+    /* sparkles on the water */
+    x.fillStyle='rgba(255,255,255,.55)';for(let i=0;i<24;i++){const k=(t*.15+i*.618)%1,wx=(i*137)%640,wy=(i*71+20)%400,a2=Math.sin(k*Math.PI);if(a2>.2&&isoLand(wx,wy)<0){x.globalAlpha=a2*.7;x.fillRect(wx-3,wy,6+i%4,1.5)}}x.globalAlpha=1;
+    /* the cursor, on the ground */
+    const cu=Z.hov||Z.cur;if(cu&&cu[0]>=0&&cu[1]>=0&&cu[0]<ISC&&cu[1]<ISR){const [X,Y]=isoP(cu[0],cu[1]),e=ISOE[ISLAND[cu[1]*ISC+cu[0]]];x.strokeStyle=Z.tool==='x'?'#EF4444':'#FFF7AE';x.lineWidth=2.5;x.fillStyle=Z.tool==='x'?'rgba(239,68,68,.25)':'rgba(255,247,174,.3)';
+      x.beginPath();x.moveTo(X,Y-11-e);x.lineTo(X+22,Y-e);x.lineTo(X,Y+11-e);x.lineTo(X-22,Y-e);x.closePath();x.fill();x.stroke()}
+    /* buildings, trees and people, from back to front */
+    const n=Math.min(20,S.pop);for(let d=0;d<ISC+ISR;d++){for(let c=Math.max(0,d-ISR+1);c<=Math.min(ISC-1,d);c++){const r=d-c,i=r*ISC+c,b=S.grid[i],v=ISLAND[i];if(v==='.')continue;const [X,Y]=isoP(c,r),e=ISOE[v];
+        if(b!=='.'){x.drawImage(isoSprite(b),X-40,Y-e-74,80,84);isoLive(x,b,X,Y-e,t)}else if(v==='t')x.drawImage(isoSprite('tree'),X-40,Y-e-74,80,84)}
+      for(let k=0;k<n;k++){const p=Z.walk[k];if(Math.floor(p.c+p.r+.5)!==d)continue;const [X,Y]=isoP(p.c,p.r),e=ISOE[ISLAND[Math.round(p.r)*ISC+Math.round(p.c)]]||10,bob=p.w>0?0:Math.abs(Math.sin(t*9+k))*1.5;
+        x.fillStyle='rgba(0,0,0,.2)';x.beginPath();x.ellipse(X,Y-e,4,2,0,0,7);x.fill();x.fillStyle=ISOPPL[k%5];x.beginPath();x.roundRect(X-2.5,Y-e-9-bob,5,7,2);x.fill();x.fillStyle='#F6D2B0';x.beginPath();x.arc(X,Y-e-11.5-bob,2.6,0,7);x.fill()}}
+    x.restore();if(Z.dayT>32){const k=(Z.dayT-32)/8;x.fillStyle=`rgba(255,120,60,${k*.22})`;x.fillRect(0,0,640,400)}},
   key(k,down,Z){if(!down)return;const D={left:[-1,0],right:[1,0],up:[0,-1],down:[0,1]}[k];if(D){Z.cur=[Math.max(0,Math.min(ISC-1,Z.cur[0]+D[0])),Math.max(0,Math.min(ISR-1,Z.cur[1]+D[1]))];Z.hov=null;return}
     if(k==='act'||k==='enter')isAt(Z,Z.cur[0],Z.cur[1]);else if(k==='alt'){const t=Z.tool;Z.tool='x';isAt(Z,Z.cur[0],Z.cur[1]);Z.tool=t}},
-  tap(px,py,Z){const c=Math.floor(px/IST),r=Math.floor(py/IST);Z.cur=[c,r];isAt(Z,c,r)},
+  tap(px,py,Z){const p=isoPickS(px,py);if(!p)return;Z.cur=p;isAt(Z,p[0],p[1])},
   timeout:Z=>isTrip(Z,'time')});
-/* the island itself, painted once */
-let ISBASE=null;
-function isBase(){if(ISBASE)return ISBASE;const cv=document.createElement('canvas');cv.width=ISC*IST;cv.height=ISR*IST;const x=cv.getContext('2d'),R=krng(5);x.fillStyle='#38BDF8';x.fillRect(0,0,cv.width,cv.height);
-  for(let i=0;i<ISC*ISR;i++){const v=ISLAND[i],X=(i%ISC)*IST,Y=((i/ISC)|0)*IST;if(v==='.')continue;x.fillStyle=v==='s'?'#FDE68A':'#7CCB6B';x.fillRect(X,Y,IST,IST);x.fillStyle=v==='s'?'#F5D776':'#6AB85A';for(let k=0;k<5;k++)x.fillRect(X+R()*36,Y+R()*36,3,2);
-    if(v==='t'){x.fillStyle='#7A5634';x.fillRect(X+18,Y+22,5,12);x.fillStyle='#2F8A3E';x.beginPath();x.arc(X+20,Y+18,11,0,7);x.fill();x.fillStyle='#3FA34D';x.beginPath();x.arc(X+16,Y+14,5,0,7);x.fill()}}
-  return ISBASE=cv}
-function isDrawB(x,b,X,Y,t){const R=(a,c,w,h,f)=>{x.fillStyle=f;x.fillRect(X+a,Y+c,w,h)},T=(p,f)=>{x.fillStyle=f;x.beginPath();x.moveTo(X+p[0],Y+p[1]);for(let i=2;i<p.length;i+=2)x.lineTo(X+p[i],Y+p[i+1]);x.fill()},C=(a,c,r,f)=>{x.fillStyle=f;x.beginPath();x.arc(X+a,Y+c,r,0,7);x.fill()};
-  if(b==='h'){R(8,18,24,16,'#FFF3DC');T([4,19,20,6,36,19],'#E4572E');R(17,25,7,9,'#8A5A2B');R(26,22,4,4,'#7FD3F5')}
-  else if(b==='f'){R(3,6,34,28,'#A16207');for(let i=0;i<4;i++)R(5,9+i*7,30,3,'#FACC15')}
-  else if(b==='w'){C(20,22,11,'#94A3B8');C(20,22,7,'#38BDF8');R(9,6,3,14,'#7A5634');R(28,6,3,14,'#7A5634');R(8,5,24,4,'#B45309')}
-  else if(b==='p'){R(4,4,32,32,'#86EFAC');C(14,16,8,'#16A34A');R(13,22,3,8,'#7A5634');R(22,26,12,3,'#B45309');C(30,12,3,'#F472B6')}
-  else if(b==='d'){R(17,14,6,22,'#E5E7EB');T([14,36,26,36,23,14,17,14],'#D1D5DB');const a=t*3;x.strokeStyle='#78716C';x.lineWidth=3;for(let i=0;i<4;i++){x.beginPath();x.moveTo(X+20,Y+14);x.lineTo(X+20+Math.cos(a+i*Math.PI/2)*14,Y+14+Math.sin(a+i*Math.PI/2)*14);x.stroke()}}
-  else if(b==='s'){R(4,14,32,22,'#FCA5A5');T([2,15,20,4,38,15],'#B91C1C');R(17,25,7,11,'#7A5634');R(8,19,6,5,'#7FD3F5');R(27,19,6,5,'#7FD3F5');R(19,0,2,8,'#57534E');R(21,0,7,4,'#2563EB')}
-  else if(b==='k'){R(5,16,30,20,'#FEF3C7');for(let i=0;i<5;i++)R(5+i*6,10,6,8,i%2?'#fff':'#16A34A');R(10,24,8,6,'#F97316');R(22,24,8,6,'#DC2626')}
-  else if(b==='l'){for(let i=0;i<4;i++)R(14,6+i*7,12,7,i%2?'#fff':'#DC2626');R(12,34,16,4,'#57534E');C(20,6,5,'#FDE047');if((t*2|0)%2){x.fillStyle='rgba(253,224,71,.35)';T([20,6,40,0,40,12],'rgba(253,224,71,.35)')}}}
+/* ---------- The island as a little 3D diorama (isometric) ---------- */
+const ISOZ=1.45,ISOX=254,ISOY=72,ISOE={'.':0,s:6,g:12,t:12},ISOPPL=['#F97316','#3B82F6','#EC4899','#A855F7','#EAB308'];
+const isoP=(c,r)=>[ISOX+(c-r)*22,ISOY+(c+r)*11+11];
+/* which tile is under a point: try each ground height, keep the tile whose own height matches */
+function isoPick(px,py){let last=null;for(const e of [12,6,0]){const u=(px-ISOX)/22,v=(py+e-ISOY-11)/11,c=Math.round((u+v)/2),r=Math.round((v-u)/2);if(c<0||r<0||c>=ISC||r>=ISR)continue;last=[c,r];if(ISOE[ISLAND[r*ISC+c]]===e)return last}return last}
+/* screen point <-> tile, with the zoom (the scene is drawn 1.45x around the middle) */
+const isoPickS=(px,py)=>isoPick((px-320)/ISOZ+320,(py-205)/ISOZ+205);
+function isoScreen(c,r){const [X,Y]=isoP(c,r),e=ISOE[ISLAND[r*ISC+c]];return[(X-320)*ISOZ+320,(Y-e-205)*ISOZ+205]}
+const isoLand=(px,py)=>{const p=isoPick(px,py);return p&&ISLAND[p[1]*ISC+p[0]]!=='.'?1:-1};
+const ISOC={};
+function isoBase(){if(ISOC.base)return ISOC.base;const cv=document.createElement('canvas');cv.width=1440;cv.height=920;const x=cv.getContext('2d'),R=krng(7);x.scale(2,2);x.translate(40,30);
+  const g=x.createRadialGradient(320,210,60,320,210,420);g.addColorStop(0,'#38C3F0');g.addColorStop(.6,'#1E88D8');g.addColorStop(1,'#1462B8');x.fillStyle=g;x.fillRect(-40,-30,720,460);
+  x.strokeStyle='rgba(255,255,255,.12)';x.lineWidth=2;for(let i=0;i<40;i++){const wx=R()*640,wy=R()*400;x.beginPath();x.moveTo(wx,wy);x.quadraticCurveTo(wx+8,wy-4,wx+16,wy);x.stroke()}
+  const at=(c,r)=>c<0||r<0||c>=ISC||r>=ISR?'.':ISLAND[r*ISC+c],dia=(X,Y,e,f)=>{x.fillStyle=f;x.beginPath();x.moveTo(X,Y-11-e);x.lineTo(X+22,Y-e);x.lineTo(X,Y+11-e);x.lineTo(X-22,Y-e);x.closePath();x.fill()};
+  /* shallow water around the shore, in two soft rings */
+  for(const [rad,col] of [[2,'rgba(125,211,252,.35)'],[1,'rgba(165,243,252,.55)']])for(let r=0;r<ISR;r++)for(let c=0;c<ISC;c++){if(at(c,r)!=='.')continue;let near=false;for(let a=-rad;a<=rad&&!near;a++)for(let b=-rad;b<=rad;b++)if(Math.abs(a)+Math.abs(b)<=rad&&at(c+a,r+b)!=='.'){near=true;break}if(near){const [X,Y]=isoP(c,r);dia(X,Y,0,col)}}
+  for(let d=0;d<ISC+ISR;d++)for(let c=Math.max(0,d-ISR+1);c<=Math.min(ISC-1,d);c++){const r=d-c,v=at(c,r);if(v==='.')continue;const [X,Y]=isoP(c,r),e=ISOE[v],sand=v==='s';
+    const el=ISOE[at(c,r+1)],er=ISOE[at(c+1,r)];
+    /* cliff faces toward the viewer: grass on top, then earth (or sand) */
+    if(e>el){x.fillStyle=sand?'#D9B56E':'#7A5233';x.beginPath();x.moveTo(X-22,Y-e);x.lineTo(X,Y+11-e);x.lineTo(X,Y+11-el);x.lineTo(X-22,Y-el);x.closePath();x.fill();if(!sand){x.fillStyle='#5FA84F';x.beginPath();x.moveTo(X-22,Y-e);x.lineTo(X,Y+11-e);x.lineTo(X,Y+14-e);x.lineTo(X-22,Y+3-e);x.closePath();x.fill()}}
+    if(e>er){x.fillStyle=sand?'#E6C682':'#94663F';x.beginPath();x.moveTo(X,Y+11-e);x.lineTo(X+22,Y-e);x.lineTo(X+22,Y-er);x.lineTo(X,Y+11-er);x.closePath();x.fill();if(!sand){x.fillStyle='#6DBA5A';x.beginPath();x.moveTo(X,Y+11-e);x.lineTo(X+22,Y-e);x.lineTo(X+22,Y+3-e);x.lineTo(X,Y+14-e);x.closePath();x.fill()}}
+    const k=R();dia(X,Y,e,sand?(k<.5?'#F7E2A6':'#F3DA98'):(k<.33?'#86CF73':k<.66?'#7EC86B':'#8AD478'));
+    /* a little texture: grass tufts or sand ripples */
+    x.fillStyle=sand?'rgba(200,160,90,.35)':'rgba(40,120,50,.35)';for(let q=0;q<4;q++){const a=(R()-.5)*26,b=(R()-.5)*12;if(Math.abs(a)/22+Math.abs(b)/11<.8)x.fillRect(X+a,Y-e+b,sand?4:2,sand?1:3)}
+    if(sand&&at(c,r+1)==='.'){x.strokeStyle='rgba(255,255,255,.8)';x.lineWidth=2;x.beginPath();x.moveTo(X-22,Y+2);x.lineTo(X,Y+13);x.stroke()}
+    if(sand&&at(c+1,r)==='.'){x.strokeStyle='rgba(255,255,255,.8)';x.lineWidth=2;x.beginPath();x.moveTo(X,Y+13);x.lineTo(X+22,Y+2);x.stroke()}}
+  return ISOC.base=cv}
+/* a building (or tree) drawn once into an 80 x 84 picture; its ground center is at (40, 74) */
+function isoSprite(k){if(ISOC[k])return ISOC[k];const cv=document.createElement('canvas');cv.width=160;cv.height=168;const x=cv.getContext('2d'),O=[40,74];x.scale(2,2);
+  const P=(a,b,h)=>[O[0]+(a-b)*22,O[1]+(a+b)*11-h],poly=(pts,f)=>{x.fillStyle=f;x.beginPath();x.moveTo(pts[0][0],pts[0][1]);for(const p of pts.slice(1))x.lineTo(p[0],p[1]);x.closePath();x.fill()};
+  const shadow=(w,h)=>{x.fillStyle='rgba(20,40,30,.22)';x.beginPath();x.ellipse(O[0]+4,O[1]+1,w,h,0,0,7);x.fill()};
+  /* a box of half-size a (along one side) and b (along the other), height h, sitting at height z */
+  const box=(a,b,h,top,left,right,z=0)=>{const N=P(-a,-b,z+h),E=P(a,-b,z+h),S=P(a,b,z+h),W=P(-a,b,z+h),Sg=P(a,b,z),Wg=P(-a,b,z),Eg=P(a,-b,z);poly([W,S,Sg,Wg],left);poly([S,E,Eg,Sg],right);poly([N,E,S,W],top);return{N,E,S,W}};
+  const onL=(a,b,u,v,z,w,h,f)=>{/* a window on the left face: u along it (0..1), v up */const A=P(-a+2*a*u,b,z+v),B=P(-a+2*a*(u+w),b,z+v),C=P(-a+2*a*(u+w),b,z+v+h),D=P(-a+2*a*u,b,z+v+h);poly([A,B,C,D],f)};
+  const onR=(a,b,u,v,z,w,h,f)=>{const A=P(a,b-2*b*u,z+v),B=P(a,b-2*b*(u+w),z+v),C=P(a,b-2*b*(u+w),z+v+h),D=P(a,b-2*b*u,z+v+h);poly([A,B,C,D],f)};
+  const gable=(a,b,h,rh,c1,c2)=>{const A=P(-a,0,h+rh),B=P(a,0,h+rh);poly([P(-a-.04,b+.06,h-1),P(a+.04,b+.06,h-1),B,A],c1);poly([P(a+.04,b+.06,h-1),P(a+.04,-b-.06,h-1),B],c2);x.strokeStyle='rgba(0,0,0,.15)';x.lineWidth=1;x.beginPath();x.moveTo(A[0],A[1]);x.lineTo(B[0],B[1]);x.stroke()};
+  const ball=(cx,cy,r,c1,c2)=>{const g=x.createRadialGradient(cx-r*.35,cy-r*.4,r*.1,cx,cy,r);g.addColorStop(0,c1);g.addColorStop(1,c2);x.fillStyle=g;x.beginPath();x.arc(cx,cy,r,0,7);x.fill()};
+  if(k==='tree'){shadow(11,5);x.fillStyle='#7A5233';x.fillRect(38,56,4,16);ball(40,50,12,'#7DD36B','#2E7D32');ball(36,40,8,'#9BE58A','#3C8E3E')}
+  else if(k==='h'){shadow(20,8);box(.3,.3,15,'#FFF4DD','#F1DDB5','#E2C99A');onL(.3,.3,.15,4,0,.22,6,'#7FD3F5');onL(.3,.3,.6,4,0,.22,6,'#7FD3F5');onR(.3,.3,.35,0,0,.3,10,'#8A5A2B');gable(.3,.3,15,10,'#E4572E','#C2412A');box(.05,.05,8,'#B45309','#92400E','#7C2D12',20)}
+  else if(k==='f'){shadow(24,9);poly([P(-.42,-.42,1),P(.42,-.42,1),P(.42,.42,1),P(-.42,.42,1)],'#8B5A2B');for(let i=0;i<5;i++){const u=-.34+i*.17;x.strokeStyle=i%2?'#E9C46A':'#7CB342';x.lineWidth=3;const a=P(u,-.36,2),b=P(u,.36,2);x.beginPath();x.moveTo(a[0],a[1]);x.lineTo(b[0],b[1]);x.stroke()}
+    box(.08,.08,7,'#F4D35E','#D9A93A','#C08B2A',0)}
+  else if(k==='w'){shadow(14,6);x.fillStyle='#8C8FA3';x.beginPath();x.ellipse(40,66,12,6,0,0,Math.PI);x.lineTo(28,60);x.ellipse(40,60,12,6,0,Math.PI,0,true);x.fill();x.fillStyle='#A9ACBC';x.beginPath();x.ellipse(40,60,12,6,0,0,7);x.fill();x.fillStyle='#38BDF8';x.beginPath();x.ellipse(40,60,8,4,0,0,7);x.fill();
+    x.fillStyle='#7A5233';x.fillRect(29,38,3,22);x.fillRect(48,38,3,22);poly([[24,40],[40,30],[56,40],[40,46]],'#B45309');poly([[24,40],[40,46],[40,48],[24,42]],'#92400E')}
+  else if(k==='p'){shadow(22,8);poly([P(-.42,-.42,1),P(.42,-.42,1),P(.42,.42,1),P(-.42,.42,1)],'#A7E39A');x.fillStyle='#F472B6';[[30,72],[52,70],[44,78]].forEach(([a,b])=>{x.beginPath();x.arc(a,b,2,0,7);x.fill()});
+    box(.16,.05,3,'#B45309','#92400E','#7C2D12',0);x.fillStyle='#7A5233';x.fillRect(46,50,4,18);ball(48,44,11,'#9BE58A','#2F8F3A')}
+  else if(k==='d'){shadow(14,6);poly([[33,72],[47,72],[44,34],[36,34]],'#F1F1F4');poly([[40,72],[47,72],[44,34],[40,34]],'#D4D4DC');poly([[34,35],[40,24],[46,35]],'#B45309');x.fillStyle='#8A5A2B';x.fillRect(38,62,4,10)}
+  else if(k==='s'){shadow(26,10);box(.38,.32,20,'#F6C9B8','#E07A5F','#C86449');for(let i=0;i<3;i++)onL(.38,.32,.12+i*.28,8,0,.16,7,'#BDE6FA');onR(.38,.32,.36,0,0,.28,13,'#7C2D12');gable(.38,.32,20,9,'#8B2E1A','#6E2212');box(.07,.07,10,'#F6C9B8','#E07A5F','#C86449',27);x.fillStyle='#57534E';x.fillRect(39,18,1.5,14)}
+  else if(k==='k'){shadow(22,9);box(.32,.3,14,'#FFF7E6','#F3E3C2','#E5D0A5');for(let i=0;i<6;i++)onL(.32,.3,i/6,14,0,1/6,5,i%2?'#FFFFFF':'#16A34A');onR(.32,.3,.1,0,0,.35,9,'#8A5A2B');box(.06,.06,5,'#F97316','#EA580C','#C2410C',0);poly([P(-.32,-.3,14),P(.32,-.3,14),P(.32,.3,14),P(-.32,.3,14)],'#FDE68A')}
+  else if(k==='l'){shadow(12,5);for(let i=0;i<5;i++){const y0=72-i*9;x.fillStyle=i%2?'#FFFFFF':'#DC2626';x.beginPath();x.moveTo(33+i*.8,y0);x.lineTo(47-i*.8,y0);x.lineTo(47-(i+1)*.8,y0-9);x.lineTo(33+(i+1)*.8,y0-9);x.fill()}
+    x.fillStyle='rgba(0,0,0,.12)';x.fillRect(40,27,7,45);x.fillStyle='#374151';x.fillRect(34,22,12,6);x.fillStyle='#FDE68A';x.fillRect(35,15,10,7);poly([[33,15],[40,8],[47,15]],'#374151')}
+  return ISOC[k]=cv}
+/* the moving parts: windmill blades, the lighthouse beam, the school flag */
+function isoLive(x,b,X,Y,t){if(b==='d'){const hx=X,hy=Y-74+34,a=t*2.5;x.strokeStyle='#8A6A52';x.lineWidth=2;x.fillStyle='rgba(255,255,255,.92)';for(let i=0;i<4;i++){const q=a+i*Math.PI/2,ex=hx+Math.cos(q)*15,ey=hy+Math.sin(q)*15*.9;x.beginPath();x.moveTo(hx,hy);x.lineTo(ex,ey);x.stroke();x.beginPath();x.moveTo(hx+Math.cos(q)*5,hy+Math.sin(q)*4.5);x.lineTo(ex,ey);x.lineTo(ex+Math.cos(q+1.4)*4,ey+Math.sin(q+1.4)*4);x.fill()}x.fillStyle='#57534E';x.beginPath();x.arc(hx,hy,2.5,0,7);x.fill()}
+  else if(b==='l'){const a=t*1.6,hx=X,hy=Y-74+18;x.fillStyle='rgba(253,230,138,.28)';x.beginPath();x.moveTo(hx,hy);x.lineTo(hx+Math.cos(a)*90,hy+Math.sin(a)*30-6);x.lineTo(hx+Math.cos(a)*90,hy+Math.sin(a)*30+6);x.fill()}
+  else if(b==='s'){const w=Math.sin(t*5)*2;x.fillStyle='#2563EB';x.beginPath();x.moveTo(X+0.5,Y-74+18);x.lineTo(X+9,Y-74+20+w);x.lineTo(X+0.5,Y-74+24);x.fill()}}
 /* build or bulldoze */
 function isAt(Z,c,r){if(c<0||r<0||c>=ISC||r>=ISR)return;const S=isS(),i=r*ISC+c,land=ISLAND[i],cur=S.grid[i];
   if(Z.tool==='x'){if(cur==='.')return isMsg(Z,'Nothing to bulldoze here.');const back=Math.floor(ISB[cur].c/2);S.grid=S.grid.slice(0,i)+'.'+S.grid.slice(i+1);S.coins+=back;SND.play('move');SYNC();isPanel(Z);return isMsg(Z,`Bulldozed the ${ISB[cur].n.toLowerCase()}. +${back} coins back (half of ${ISB[cur].c}).`)}

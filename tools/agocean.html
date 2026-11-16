@@ -65,7 +65,31 @@ function ocDraw(x,a,X,Y,d,t){const s=a.s,c=a.c;x.save();x.translate(X,Y);x.scale
   else if(a.k==='octo'){ell(0,0,s*.38,s*.32,c);ell(-s*.38,-s*.12,s*.14,s*.08+Math.sin(t*5)*2,shade(c,.85));ell(s*.38,-s*.12,s*.14,s*.08+Math.sin(t*5)*2,shade(c,.85));x.strokeStyle=c;x.lineWidth=4;for(let i=-2;i<=2;i++){x.beginPath();x.moveTo(i*s*.12,s*.25);x.lineTo(i*s*.16,s*.55);x.stroke()}eye(-s*.1,-s*.03,3);eye(s*.12,-s*.03,3)}
   else if(a.k==='cuke'){x.globalAlpha=.9;ell(0,0,s*.55,s*.2,c);for(let i=-2;i<=2;i++)ell(i*s*.2,-s*.18,3,4,tint(c,.3));x.globalAlpha=1}
   x.restore()}
-const ocIcon=a=>{const k='oc'+a.id;if(SQIMG[k])return SQIMG[k];const cv=document.createElement('canvas');cv.width=192;cv.height=112;const x=cv.getContext('2d'),sc=Math.min(1.6,120/Math.max(40,a.s*1.25));x.translate(96,56);x.scale(sc,sc);ocDraw(x,a,a.k==='mammal'||a.k==='ray'?0:0,0,1,0);return SQIMG[k]=cv.toDataURL()};
+/* ---------- The painterly look: shaded animal sprites, reef walls, kelp, sunlight ripples ---------- */
+/* each animal is painted once per direction and swim frame, then lit from above: light on top, shadow underneath */
+function ocSprite(a,d,f){const k=a.id+d+f;if(OCC[k])return OCC[k];const W=Math.ceil(a.s*2.6+30),H=Math.ceil(Math.max(a.s*1.9,56)),cv=document.createElement('canvas');cv.width=W*2;cv.height=H*2;const x=cv.getContext('2d');x.scale(2,2);
+  ocDraw(x,a,W/2,H/2,d,f*(Math.PI/3)/4+.01);x.globalCompositeOperation='source-atop';const g=x.createLinearGradient(0,H/2-a.s*.45,0,H/2+a.s*.45);g.addColorStop(0,'rgba(255,255,255,.38)');g.addColorStop(.42,'rgba(255,255,255,0)');g.addColorStop(.6,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(0,10,40,.45)');
+  x.fillStyle=g;x.fillRect(0,0,W,H);x.globalCompositeOperation='source-over';cv.w=W;cv.h=H;return OCC[k]=cv}
+/* the reef walls down each side, painted once for the whole depth */
+function ocWall(side){const k='wall'+side;if(OCC[k])return OCC[k];const H=OCZH*4+40,cv=document.createElement('canvas');cv.width=180;cv.height=H*2;const x=cv.getContext('2d');x.scale(2,2);const R=krng(side?21:12);
+  const rock=['#C9A27A','#5B6B8C','#2A3352','#151A2E'],coral=[['#FF7A9A','#FF9F45','#B57BFF','#FFD166'],['#7FA6C9','#9AB5D6','#E8C08A'],['#22D3EE','#A78BFA','#F472B6'],['#334155','#475569']];
+  for(let z=0;z<4;z++){const y0=z*OCZH,g=x.createLinearGradient(0,y0,0,y0+OCZH);g.addColorStop(0,tint(rock[z],.12));g.addColorStop(1,shade(rock[z],.8));x.fillStyle=g;x.beginPath();x.moveTo(side?90:0,y0);
+    for(let y=y0;y<=y0+OCZH+2;y+=18)x.lineTo(side?90-(28+R()*34):28+R()*34,y);x.lineTo(side?90:0,y0+OCZH+2);x.closePath();x.fill();
+    for(let i=0;i<14;i++){const y=y0+R()*OCZH,xx=side?90-(20+R()*30):20+R()*30,c=coral[z][Math.floor(R()*coral[z].length)];
+      if(z===0&&i%3===0){x.strokeStyle=c;x.lineWidth=2.5;x.lineCap='round';const br=(X,Y,a,l,n)=>{if(n<=0)return;const X2=X+Math.cos(a)*l,Y2=Y+Math.sin(a)*l;x.beginPath();x.moveTo(X,Y);x.lineTo(X2,Y2);x.stroke();br(X2,Y2,a-.5,l*.72,n-1);br(X2,Y2,a+.45,l*.72,n-1)};br(xx,y,side?Math.PI+.4:-.4,12,4)}
+      else if(z===2){x.fillStyle=c;x.globalAlpha=.85;x.beginPath();x.arc(xx,y,2.5,0,7);x.fill();x.globalAlpha=.25;x.beginPath();x.arc(xx,y,7,0,7);x.fill();x.globalAlpha=1}
+      else{x.fillStyle=c;x.beginPath();x.ellipse(xx,y,5+R()*5,3+R()*3,R()*3,0,7);x.fill();x.fillStyle='rgba(255,255,255,.25)';x.beginPath();x.arc(xx-1,y-1,1.5,0,7);x.fill()}}}
+  return OCC[k]=cv}
+/* a tile of rippling sunlight, drawn once */
+function ocCaustic(){if(OCC.caus)return OCC.caus;const cv=document.createElement('canvas');cv.width=cv.height=220;const x=cv.getContext('2d'),R=krng(5);x.filter='blur(2px)';x.strokeStyle='rgba(255,255,255,.55)';x.lineWidth=3;x.lineJoin='round';
+  for(let i=0;i<18;i++){const cx=R()*220,cy=R()*220,r=18+R()*22;x.beginPath();for(let a=0;a<=6.3;a+=.5){const rr=r*(.75+R()*.5);x.lineTo(cx+Math.cos(a)*rr,cy+Math.sin(a)*rr)}x.closePath();x.stroke()}return OCC.caus=cv}
+/* swaying kelp on the shelves of the sunlit zone */
+function ocKelp(x,t,cx,cy){for(const [kx,h,ph] of OCKELP){if(kx<cx-40||kx>cx+680)continue;const base=OCZH-6;if(base<cy||base-h>cy+380)continue;x.strokeStyle='#2F7D32';x.lineWidth=5;x.lineCap='round';x.beginPath();x.moveTo(kx,base);
+    for(let i=1;i<=6;i++){const yy=base-h*i/6;x.lineTo(kx+Math.sin(t*1.3+ph+i*.6)*8*i/6,yy)}x.stroke();x.fillStyle='#43A047';for(let i=1;i<6;i++){const yy=base-h*i/6,xx=kx+Math.sin(t*1.3+ph+i*.6)*8*i/6;x.beginPath();x.ellipse(xx+(i%2?7:-7),yy,8,3,i%2?.5:-.5,0,7);x.fill()}}x.lineCap='butt'}
+const OCKELP=(()=>{const R=krng(31),L=[];for(let i=0;i<22;i++){const left=i<11,kx=left?70+R()*250:OCW-320+R()*250;L.push([kx,90+R()*150,R()*6])}return L})();
+/* the sandy shelves the kelp grows on, at the bottom of the sunlit zone (the middle stays open) */
+function ocShelf(x){const y=OCZH-8;x.fillStyle='#D9C08A';for(const [a,b] of [[0,340],[OCW-340,OCW]]){x.beginPath();x.moveTo(a,y+16);x.quadraticCurveTo((a+b)/2,y-18,b,y+16);x.lineTo(b,y+22);x.lineTo(a,y+22);x.fill()}}
+const ocIcon=a=>{const k='oc'+a.id;if(SQIMG[k])return SQIMG[k];const cv=document.createElement('canvas');cv.width=192;cv.height=112;const x=cv.getContext('2d'),sp=ocSprite(a,1,0),sc=Math.min(170/sp.w,100/sp.h,2.2);x.drawImage(sp,96-sp.w*sc/2,56-sp.h*sc/2,sp.w*sc,sp.h*sc);return SQIMG[k]=cv.toDataURL()};
 
 /* ---------- The game ---------- */
 AG.def({id:'ocean',name:'Ocean Explorer',w:640,h:360,maxW:1280,vh:300,snd:'pets',music:'pets',go:'Dive!',sub:'Explore the ocean zones',
@@ -80,7 +104,7 @@ AG.def({id:'ocean',name:'Ocean Explorer',w:640,h:360,maxW:1280,vh:300,snd:'pets'
     for(let i=0;i<36;i++)pe.push({x:60+R()*(OCW-120),y:40+R()*(OCZH*4-90),on:1});
     for(let z=0;z<4;z++){for(let i=0;i<2;i++)ve.push({x:200+R()*(OCW-400),y:z*OCZH+OCZH-30,cd:0});if(z)st.push({x:300+R()*(OCW-600),y:z*OCZH+70})}
     const snow=Array.from({length:60},()=>({x:R()*640,y:R()*360,v:6+R()*10}));
-    return{x:160,y:20,vx:0,vy:0,d:1,air:100,an,pe,ve,st,snow,t:0,tier:t,tx:null,ty:null,scan:null,scanT:0,cd:0,trip:{scan:0,pearls:0,deep:0},hudT:0,gateAsk:0,msgT:0,cam:[0,0]}},
+    return{x:160,y:20,vx:0,vy:0,d:1,air:100,an,pe,ve,st,snow,t:0,tier:t,tx:null,ty:null,scan:null,scanT:0,cd:0,trip:{scan:0,pearls:0,deep:0},hudT:0,gateAsk:0,msgT:0,cam:[0,0],bub:Array.from({length:24},()=>({l:0,x:0,y:0,r:2})),bubT:0}},
   ready(Z){ocMsg(Z,'Captain\'s log',`Dive in! You are in the ${OCZ[0].n}. Swim close to animals and press Space to scan them.`)},
   step(dt,Z){const S=ocS();Z.t+=dt;if(Z.cd>0)Z.cd-=dt;
     let ax=(AG.held.has('right')?1:0)-(AG.held.has('left')?1:0),ay=(AG.held.has('down')?1:0)-(AG.held.has('up')?1:0);
@@ -99,21 +123,26 @@ AG.def({id:'ocean',name:'Ocean Explorer',w:640,h:360,maxW:1280,vh:300,snd:'pets'
       const dd=Math.hypot(n.x-Z.x,n.y-Z.y)-n.a.s*.4;if(dd<70&&dd<nd&&!S.log[n.a.id]){near=n;nd=dd}}
     Z.near=near;if(Z.scan){if(Z.scan!==near)Z.scan=null;else if((Z.scanT+=dt)>=1)ocScanned(Z,near)}
     for(const p of Z.pe)if(p.on&&Math.abs(p.x-Z.x)<20&&Math.abs(p.y-Z.y)<18){p.on=0;Z.trip.pearls++;S.pearls=(S.pearls||0)+1;SND.play('coin');if(S.pearls>=50)AG.ach('ocean','pearls')}
+    if((Z.bubT-=dt)<=0&&Math.hypot(Z.vx,Z.vy)>40){Z.bubT=.09;const b=Z.bub.find(q=>q.l<=0);if(b)Object.assign(b,{l:1,x:Z.x-Z.d*38,y:Z.y+(Math.random()-.5)*6,r:1.5+Math.random()*2.5})}
+    for(const b of Z.bub)if(b.l>0){b.l-=dt*.8;b.y-=dt*30;b.x+=Math.sin(b.y*.1)*.3}
     for(const s of Z.snow){s.y+=s.v*dt;if(s.y>360){s.y=0;s.x=(s.x*7.3+13)%640}}
     if(Z.msgT>0)Z.msgT-=dt;if((Z.hudT+=dt)>.15){Z.hudT=0;ocHud(Z)}},
   draw(a,Z){const x=AG.cx;if(!x)return;const S=ocS(),cx=Math.round(Math.max(0,Math.min(OCW-640,Z.x-320))),cy=Math.round(Math.max(-70,Math.min(OCZH*4+10-360,Z.y-170)));Z.cam[0]=cx;Z.cam[1]=cy;
     x.drawImage(ocBack(),0,cy+70,1,360,0,0,640,360);
     if(cy<0){const g=ocSky();x.drawImage(g,0,0,640,-cy)}
     x.save();x.translate(-cx,-cy);
+    if(cy<OCZH*.8){const C=ocCaustic(),a=Math.max(0,1-cy/(OCZH*.8))*.09,ox=(Z.t*9)%220,oy=(Z.t*5)%220;x.save();x.globalAlpha=a;x.globalCompositeOperation='lighter';for(let X=Math.floor(cx/220)*220-220;X<cx+660;X+=220)for(let Y=Math.max(0,Math.floor(cy/220)*220-220);Y<Math.min(OCZH,cy+380);Y+=220){x.drawImage(C,X+ox,Y+oy);x.drawImage(C,X-ox*.7+110,Y+oy*.6+60)}x.restore()}
     if(cy<OCZH)for(let i=0;i<5;i++){x.fillStyle='rgba(255,255,255,.07)';x.beginPath();const bx=(i*360+Z.t*8)%(OCW+200)-100;x.moveTo(bx,0);x.lineTo(bx+60,0);x.lineTo(bx+160,OCZH*.9);x.lineTo(bx+40,OCZH*.9);x.fill()}
-    x.fillStyle='#3B2F2A';x.fillRect(0,OCZH*4-14,OCW,40);x.fillStyle='#4A3B33';for(let i=0;i<OCW;i+=90)x.fillRect(i,OCZH*4-20,50,8);
+    x.drawImage(ocWall(0),0,0,90,OCZH*4+40);x.drawImage(ocWall(1),OCW-90,0,90,OCZH*4+40);ocKelp(x,Z.t,cx,cy);ocShelf(x);
+    {const g=x.createLinearGradient(0,OCZH*4-40,0,OCZH*4+30);g.addColorStop(0,'#2A2238');g.addColorStop(1,'#110D1A');x.fillStyle=g;x.beginPath();x.moveTo(0,OCZH*4-14);for(let i=0;i<=OCW;i+=80)x.quadraticCurveTo(i+40,OCZH*4-30+(i%160?6:-4),i+80,OCZH*4-14);x.lineTo(OCW,OCZH*4+40);x.lineTo(0,OCZH*4+40);x.fill()}
     /* gates */
     for(let z=1;z<4;z++){const gy=z*OCZH;if(z>=S.zones){x.fillStyle='rgba(125,211,252,.25)';x.fillRect(0,gy-6,OCW,12);x.strokeStyle='#7DD3FC';x.lineWidth=2;x.setLineDash([10,8]);x.beginPath();x.moveTo(0,gy);x.lineTo(OCW,gy);x.stroke();x.setLineDash([]);
       for(let i=60;i<OCW;i+=200){x.fillStyle='#0EA5E9';x.beginPath();x.arc(i,gy,9,0,7);x.fill();x.fillStyle='#fff';x.font='bold 11px sans-serif';x.textAlign='center';x.fillText('🔒',i,gy+4)}}}
     for(const v of Z.ve){x.fillStyle='#57534E';x.fillRect(v.x-12,v.y,24,10);x.fillStyle=v.cd>0?'rgba(255,255,255,.25)':'rgba(255,255,255,.7)';for(let i=0;i<5;i++){const by=v.y-((Z.t*60+i*30)%150);x.beginPath();x.arc(v.x+Math.sin(by*.08)*6,by,3+i%3,0,7);x.fill()}}
     for(const s of Z.st){x.fillStyle='#F59E0B';x.fillRect(s.x-3,s.y,6,OCZH-90);x.fillStyle='#FDE68A';x.beginPath();x.arc(s.x,s.y,14,0,7);x.fill();x.font='16px sans-serif';x.textAlign='center';x.fillText('🫧',s.x,s.y+6)}
     for(const p of Z.pe)if(p.on){x.fillStyle='#F5F5F4';x.beginPath();x.arc(p.x,p.y,5,0,7);x.fill();x.fillStyle='#fff';x.fillRect(p.x-2,p.y-3,2,2)}
-    for(const n of Z.an){if(n.x<cx-150||n.x>cx+790||n.y<cy-100||n.y>cy+460)continue;ocDraw(x,n.a,n.x,n.y,n.d,Z.t+n.ph);if(S.log[n.a.id]){x.fillStyle='#4ADE80';x.font='bold 12px sans-serif';x.textAlign='center';x.fillText('✓',n.x,n.y-n.a.s*.4-6)}}
+    for(const n of Z.an){if(n.x<cx-150||n.x>cx+790||n.y<cy-100||n.y>cy+460)continue;const sp=ocSprite(n.a,n.d,Math.floor((Z.t+n.ph)*6/(Math.PI*2)*4)%4);x.drawImage(sp,n.x-sp.w/2,n.y-sp.h/2,sp.w,sp.h);if(S.log[n.a.id]){x.fillStyle='#4ADE80';x.font='bold 12px sans-serif';x.textAlign='center';x.fillText('✓',n.x,n.y-n.a.s*.4-6)}}
+    for(const b of Z.bub)if(b.l>0){x.strokeStyle=`rgba(255,255,255,${b.l*.7})`;x.lineWidth=1;x.beginPath();x.arc(b.x,b.y,b.r,0,7);x.stroke();x.fillStyle=`rgba(255,255,255,${b.l*.5})`;x.fillRect(b.x-b.r*.4,b.y-b.r*.5,1.2,1.2)}
     ocSub(x,Z);
     x.restore();
     /* darkness, with the sub's headlight */
@@ -133,8 +162,14 @@ function ocSky(){if(OCC.sky)return OCC.sky;const c=document.createElement('canva
 const ocMask=()=>{if(!OCC.mask){OCC.mask=document.createElement('canvas');OCC.mask.width=640;OCC.mask.height=360}return OCC.mask};
 function ocLight(){if(OCC.light)return OCC.light;const c=document.createElement('canvas');c.width=c.height=360;const x=c.getContext('2d'),g=x.createRadialGradient(180,180,10,180,180,180);g.addColorStop(0,'rgba(0,0,0,1)');g.addColorStop(.5,'rgba(0,0,0,.9)');g.addColorStop(1,'rgba(0,0,0,0)');x.fillStyle=g;x.fillRect(0,0,360,360);return OCC.light=c}
 const ocDark=y=>{const i=ocZone(y),f=(Math.max(0,y)-i*OCZH)/OCZH,a=OCZ[i].dark,b=OCZ[Math.min(3,i+1)].dark;return a+(b-a)*Math.max(0,f-.6)/.4*(i<3?1:0)};
-function ocSub(x,Z){const X=Z.x,Y=Z.y,d=Z.d,t=Z.t;x.save();x.translate(X,Y);x.scale(d,1);x.fillStyle='#FACC15';x.beginPath();x.ellipse(0,0,26,14,0,0,7);x.fill();x.fillStyle='#EAB308';x.fillRect(-6,-22,14,10);x.fillRect(4,-28,3,8);
-  x.fillStyle='#7DD3FC';x.beginPath();x.arc(8,-1,6,0,7);x.fill();x.strokeStyle='#A16207';x.lineWidth=2;x.stroke();x.fillStyle='#A16207';x.fillRect(-30,-3,6,6);x.fillStyle='#78716C';const p=Math.sin(t*30)*6;x.fillRect(-34,-p/2-1,3,p+2);x.restore()}
+function ocSubSprite(){if(OCC.sub)return OCC.sub;const cv=document.createElement('canvas');cv.width=160;cv.height=100;const x=cv.getContext('2d');x.scale(2,2);x.translate(42,28);
+  let g=x.createLinearGradient(0,-15,0,15);g.addColorStop(0,'#FFE680');g.addColorStop(.45,'#FACC15');g.addColorStop(1,'#B7791F');x.fillStyle=g;x.beginPath();x.ellipse(0,0,28,15,0,0,7);x.fill();
+  g=x.createLinearGradient(-8,-26,10,-12);g.addColorStop(0,'#FDE68A');g.addColorStop(1,'#CA8A04');x.fillStyle=g;x.beginPath();x.roundRect(-8,-25,18,13,4);x.fill();x.fillStyle='#A16207';x.fillRect(5,-33,3,9);x.fillRect(5,-33,8,2.5);
+  x.fillStyle='#A16207';x.beginPath();x.moveTo(-26,-2);x.lineTo(-36,-10);x.lineTo(-36,10);x.lineTo(-26,4);x.fill();
+  for(const [px,py] of [[-14,4],[-4,8],[16,6]]){x.fillStyle='rgba(120,70,0,.5)';x.beginPath();x.arc(px,py,1.3,0,7);x.fill()}
+  x.fillStyle='#78350F';x.beginPath();x.arc(10,-2,8,0,7);x.fill();g=x.createRadialGradient(8,-4,1,10,-2,7);g.addColorStop(0,'#E0F7FF');g.addColorStop(1,'#38BDF8');x.fillStyle=g;x.beginPath();x.arc(10,-2,6.2,0,7);x.fill();x.fillStyle='rgba(255,255,255,.85)';x.beginPath();x.ellipse(8,-5,2.4,1.4,-.6,0,7);x.fill();
+  x.fillStyle='rgba(255,255,255,.35)';x.beginPath();x.ellipse(-4,-9,16,3,0,0,7);x.fill();x.fillStyle='#FEF9C3';x.beginPath();x.arc(26,1,2.5,0,7);x.fill();return OCC.sub=cv}
+function ocSub(x,Z){const X=Z.x,Y=Z.y,d=Z.d,t=Z.t;x.save();x.translate(X,Y);x.scale(d,1);x.drawImage(ocSubSprite(),-42,-28,80,50);x.fillStyle='#57534E';const p=Math.sin(t*30)*7;x.fillRect(-39,-p/2-1,3,p+2);x.restore()}
 /* ---------- What happens ---------- */
 function ocMsg(Z,who,t){const e=$('ocbox');Z.msgT=4;if(e)e.innerHTML=`${who?`<span class="who">${esc(who)}</span>`:''}${t}<div class="row" style="margin-top:8px"><button class="abtn sec sm" onclick="AG.cur&&AG.finish(ocTrip(AG.cur.st,'surface'))">⬆️ Surface and save</button></div>`}
 function ocAct(Z){const s=Z.st.find(q=>Math.hypot(q.x-Z.x,q.y-Z.y)<40);if(s){if(Z.cd<=0)ocStation(Z);return}if(Z.near&&!Z.scan){Z.scan=Z.near;Z.scanT=0;SND.play('pop')}}

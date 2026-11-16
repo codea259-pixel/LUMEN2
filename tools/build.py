@@ -45,12 +45,40 @@ rep("const can=t=>", "let can=t=>")
 rep("const isMod=()=>ST.role==='owner'||ST.role==='teacher',who=()=>ST.me.name;", "let isMod=()=>ST.role==='owner'||ST.role==='teacher',who=()=>ST.me.name;")
 rep('</body>', ''.join(layer(f) + '\n' for f in layers) + '</body>')
 # Two layers declaring the same top-level function: the later one silently replaces the earlier one. Stop the build.
+def _top_names(text):
+    # names declared at the top level: function X(, and every name in const/let/var A=..,B=.. (commas at bracket depth 0)
+    for m in re.finditer(r'^(?:async )?function ([A-Za-z_$][\w$]*)\s*\(', text, re.M):
+        yield m.group(1)
+    for m in re.finditer(r'^(?:const|let|var) ', text, re.M):
+        i, depth, n, name_next = m.end(), 0, len(text), True
+        while i < n:
+            ch = text[i]
+            if name_next:
+                k = re.match(r'\s*([A-Za-z_$][\w$]*)\s*=(?!=)', text[i:])
+                if k: yield k.group(1); i += k.end(); name_next = False; continue
+                name_next = False
+            if ch in '\'"`':
+                q = ch; i += 1
+                while i < n and text[i] != q:
+                    if text[i] == '\\': i += 1
+                    elif q == '`' and text.startswith('${', i):
+                        d = 1; i += 2
+                        while i < n and d:
+                            d += {'{': 1, '}': -1}.get(text[i], 0); i += 1
+                        continue
+                    i += 1
+            elif ch in '([{': depth += 1
+            elif ch in ')]}': depth -= 1
+            elif depth == 0 and ch == ',': name_next = True
+            elif depth == 0 and ch in ';\n': break
+            i += 1
 _seen = {}
 for f in [src] + layers:
-    for m in re.finditer(r'^(?:async )?function ([A-Za-z_$][\w$]*)\s*\(', open(f, encoding='utf-8').read(), re.M):
-        if m.group(1) in _seen and _seen[m.group(1)] != f:
-            sys.exit(f'build stopped: function {m.group(1)} is declared in both {os.path.basename(_seen[m.group(1)])} and {os.path.basename(f)}')
-        _seen[m.group(1)] = f
+    body = open(f, encoding='utf-8').read()
+    for nm in set(_top_names(body)):
+        if nm in _seen and _seen[nm] != f:
+            sys.exit(f'build stopped: {nm} is declared at the top level in both {os.path.basename(_seen[nm])} and {os.path.basename(f)}')
+        _seen[nm] = f
 open(out, 'w', encoding='utf-8').write(h)
 # GitHub Pages serves the repo root without the server, so keep copies there (the app runs in demo mode)
 root = os.path.join(D, '..')
