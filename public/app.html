@@ -7791,6 +7791,117 @@ ART.mansion=()=>sceneSvg(`<rect x="40" y="40" width="120" height="80" fill="#6B5
 </script>
 
 <style>
+/* ===== Island Architect ===== */
+.isbox{margin-top:10px;padding:12px 14px;border-radius:16px;background:#F0FDF4;color:#14532D;border:3px solid #22C55E;font:700 .98rem/1.45 "Atkinson Hyperlegible",sans-serif}
+.isstats{display:flex;flex-wrap:wrap;gap:6px}.isstats span{padding:4px 10px;border-radius:99px;background:#fff;border:2px solid #BBF7D0}.isstats span.bad{border-color:#FCA5A5;background:#FEF2F2;color:#991B1B}
+.ispal{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.ispal button{display:flex;flex-direction:column;align-items:center;min-width:72px;padding:6px 8px;border-radius:12px;border:2px solid #BBF7D0;background:#fff;color:#14532D;font:700 .8rem "Atkinson Hyperlegible",sans-serif}
+.ispal button .em{font-size:1.4rem}.ispal button.on{border:3px solid var(--ga-gold);background:#FEF9C3}.ispal button[disabled]{opacity:.45}
+.isrep{margin:10px 0 0;padding:8px 10px;border-radius:10px;background:#fff;border:2px dashed #86EFAC;font-weight:600}
+.ismis{list-style:none;padding:0;margin:8px 0 0;display:grid;gap:4px}.ismis li{font-size:.9rem;padding:4px 8px;border-radius:8px}.ismis li.now{background:#FEF9C3}.ismis li.ok{color:#15803D}
+</style>
+<script type="text/x-lumen">
+/* ===== Island Architect =====
+   Build a town on a little island. Coins come from right answers and from the townspeople each day. Every person needs food
+   and water; the school and the market need power from windmills; parks and the lighthouse make people happy. A day passes
+   every 40 seconds, with a report that shows the math. Missions unlock new buildings. Saved in ARS('island'). ===== */
+const ISC=16,ISR=10,IST=40;
+const ISB={h:{n:'House',e:'🏠',c:20,d:'Room for 4 people'},f:{n:'Farm',e:'🌾',c:25,d:'Grows 6 food a day'},w:{n:'Well',e:'💧',c:15,d:'Gives 6 water a day'},p:{n:'Park',e:'🌳',c:20,d:'+5 happiness'},
+  d:{n:'Windmill',e:'⚡',c:40,d:'Makes 6 power',m:1},s:{n:'School',e:'🏫',c:60,d:'+12 happiness (needs 3 power)',m:2},k:{n:'Market',e:'🏪',c:50,d:'+10 coins a day (needs 3 power)',m:2},l:{n:'Lighthouse',e:'🗼',c:80,d:'+10 happiness (on the beach)',m:3,beach:1}};
+const ISM=[{t:'Build 3 houses and a well',ok:s=>s.n.h>=3&&s.n.w>=1},{t:'Grow enough food for everyone (at least 4 people)',ok:s=>s.pop>=4&&s.food>=s.pop},{t:'Reach 20 people',ok:s=>s.pop>=20},
+  {t:'Power a school with a windmill',ok:s=>s.n.s>=1&&s.schoolOn},{t:'Make the town 80% happy or more',ok:s=>s.happy>=80},{t:'Build a lighthouse on the beach',ok:s=>s.n.l>=1},{t:'Reach 40 people',ok:s=>s.pop>=40}];
+/* the island's shape, the same for everyone: . water, s sand, g grass, t a tree on grass */
+const ISLAND=(()=>{const R=krng(9),g=[];for(let r=0;r<ISR;r++)for(let c=0;c<ISC;c++){const dx=(c-7.5)/7.1,dy=(r-4.5)/4.3,n=(R()-.5)*.28;g.push(dx*dx+dy*dy+n<.86?'g':'.')}
+  const at=(r,c)=>r<0||c<0||r>=ISR||c>=ISC?'.':g[r*ISC+c];const out=g.map((v,i)=>{if(v==='.')return'.';const r=(i/ISC)|0,c=i%ISC;return[[1,0],[-1,0],[0,1],[0,-1]].some(([a,b])=>at(r+a,c+b)==='.')?'s':R()<.16?'t':'g'});return out})();
+const isS=()=>{const S=ARS('island');if(!S.grid)Object.assign(S,{grid:'.'.repeat(ISC*ISR),coins:60,pop:2,day:1,mis:0,best:2});return S};
+/* everything that follows from the buildings */
+function isStats(S=isS()){const n={h:0,f:0,w:0,p:0,d:0,s:0,k:0,l:0};for(const v of S.grid)if(n[v]!=null)n[v]++;const pop=S.pop,power=n.d*6,useP=(n.s+n.k)*3,on=power>=useP;
+  const food=n.f*6,water=n.w*6,happy=Math.max(0,Math.min(100,45+n.p*5+(n.s&&on?12:0)+(n.l?10:0)+(food>=pop?5:-15)+(water>=pop?5:-15)));
+  return{n,pop,cap:n.h*4,food,water,power,useP,schoolOn:n.s>0&&on,marketOn:n.k>0&&on,happy,income:pop+(n.k&&on?10*n.k:0),land:ISLAND.filter(v=>v!=='.').length,used:[...S.grid].filter(v=>v!=='.').length}}
+const isOpen=k=>(ISB[k].m||0)<=isS().mis;
+
+AG.def({id:'island',name:'Island Architect',w:ISC*IST,h:ISR*IST,maxW:1280,vh:440,snd:'pets',music:'blocks',go:'Build',sub:'Grow a happy island town',
+  help:['Pick a building, then tap the island to build it. Coins pay for buildings: earn them by answering questions, and from your townspeople every day.','Every person needs 1 food and 1 water a day. Farms make food, wells make water. The school and the market need power from windmills.','Happy towns grow! Parks, the school and the lighthouse make people happy. A new day comes every 40 seconds, with a report.'],
+  keys:[['← → ↑ ↓','move'],['Space','build'],['X','bulldoze'],['P','pause']],
+  ach:{first:{i:'🏗️',n:'Groundbreaking',d:'Put up your first building',gems:1},t10:{i:'🏘️',n:'Village',d:'Reach 10 people',gems:1},t30:{i:'🏙️',n:'Small town',d:'Reach 30 people',gems:2},
+    happy:{i:'😊',n:'Happy island',d:'Make the town 90% happy',gems:2},all:{i:'🧭',n:'Master planner',d:'Finish every mission',gems:5},rich:{i:'💰',n:'Saver',d:'Have 300 coins at once',gems:1}},
+  places:()=>ISM.map((m,i)=>({on:i<isS().mis,i:i<isS().mis?'✅':'📋',n:m.t,s:'Done',how:'A mission'})),
+  start(){const S=isS(),R=krng(3);return{t:0,dayT:0,cur:[8,5],hov:null,tool:'h',msg:`Day ${S.day}. Build homes and grow food and water for your townspeople!`,trip:{coins:0,built:0},walk:Array.from({length:20},()=>({x:320+R()*60,y:200+R()*40,tx:320,ty:200,w:R()*3})),hudT:0}},
+  ready(Z){isPanel(Z);const cv=$('agcv');if(cv){cv.onpointermove=e=>{const r=cv.getBoundingClientRect();Z.hov=[Math.floor((e.clientX-r.left)/r.width*ISC),Math.floor((e.clientY-r.top)/r.height*ISR)]};cv.onpointerleave=()=>{Z.hov=null}}},
+  step(dt,Z){Z.t+=dt;if((Z.dayT+=dt)>=40){Z.dayT=0;isDay(Z)}const S=isS(),st=isStats(S);
+    /* townspeople stroll between land tiles */
+    const n=Math.min(20,S.pop);for(let i=0;i<n;i++){const p=Z.walk[i];if(p.w>0){p.w-=dt;continue}const dx=p.tx-p.x,dy=p.ty-p.y,L=Math.hypot(dx,dy);if(L<2){p.w=1+Math.random()*3;let tries=0,j;do{j=Math.floor(Math.random()*ISC*ISR);tries++}while(ISLAND[j]==='.'&&tries<20);p.tx=(j%ISC)*IST+IST/2+(Math.random()-.5)*20;p.ty=((j/ISC)|0)*IST+IST/2+(Math.random()-.5)*20}else{p.x+=dx/L*22*dt;p.y+=dy/L*22*dt}}
+    if((Z.hudT+=dt)>.5){Z.hudT=0;const e=$('isday');if(e)e.style.width=(Z.dayT/40*100)+'%'}},
+  draw(a,Z){const x=AG.cx;if(!x)return;const S=isS();x.drawImage(isBase(),0,0);
+    const fr=(Z.t*2|0)%2;x.fillStyle='rgba(255,255,255,.35)';for(let i=0;i<14;i++){const wx=(i*97+Z.t*12)%640,wy=(i*53)%400;if(ISLAND[Math.floor(wy/IST)*ISC+Math.floor(wx/IST)]==='.')x.fillRect(wx,wy,10,2)}
+    for(let i=0;i<ISC*ISR;i++){const b=S.grid[i];if(b!=='.')isDrawB(x,b,(i%ISC)*IST,((i/ISC)|0)*IST,Z.t)}
+    const n=Math.min(20,S.pop);for(let i=0;i<n;i++){const p=Z.walk[i];x.fillStyle=['#F97316','#3B82F6','#EC4899','#A855F7','#EAB308'][i%5];x.beginPath();x.arc(p.x,p.y-4,3,0,7);x.fill();x.fillStyle='#FDE0BD';x.beginPath();x.arc(p.x,p.y-9,2.5,0,7);x.fill()}
+    const c=Z.hov||Z.cur;if(c){x.strokeStyle=Z.tool==='x'?'#EF4444':'#FDE047';x.lineWidth=3;x.strokeRect(c[0]*IST+2,c[1]*IST+2,IST-4,IST-4)}
+    if(Z.dayT>34){x.fillStyle=`rgba(249,115,22,${(Z.dayT-34)/6*.25})`;x.fillRect(0,0,640,400)}},
+  key(k,down,Z){if(!down)return;const D={left:[-1,0],right:[1,0],up:[0,-1],down:[0,1]}[k];if(D){Z.cur=[Math.max(0,Math.min(ISC-1,Z.cur[0]+D[0])),Math.max(0,Math.min(ISR-1,Z.cur[1]+D[1]))];Z.hov=null;return}
+    if(k==='act'||k==='enter')isAt(Z,Z.cur[0],Z.cur[1]);else if(k==='alt'){const t=Z.tool;Z.tool='x';isAt(Z,Z.cur[0],Z.cur[1]);Z.tool=t}},
+  tap(px,py,Z){const c=Math.floor(px/IST),r=Math.floor(py/IST);Z.cur=[c,r];isAt(Z,c,r)},
+  timeout:Z=>isTrip(Z,'time')});
+/* the island itself, painted once */
+let ISBASE=null;
+function isBase(){if(ISBASE)return ISBASE;const cv=document.createElement('canvas');cv.width=ISC*IST;cv.height=ISR*IST;const x=cv.getContext('2d'),R=krng(5);x.fillStyle='#38BDF8';x.fillRect(0,0,cv.width,cv.height);
+  for(let i=0;i<ISC*ISR;i++){const v=ISLAND[i],X=(i%ISC)*IST,Y=((i/ISC)|0)*IST;if(v==='.')continue;x.fillStyle=v==='s'?'#FDE68A':'#7CCB6B';x.fillRect(X,Y,IST,IST);x.fillStyle=v==='s'?'#F5D776':'#6AB85A';for(let k=0;k<5;k++)x.fillRect(X+R()*36,Y+R()*36,3,2);
+    if(v==='t'){x.fillStyle='#7A5634';x.fillRect(X+18,Y+22,5,12);x.fillStyle='#2F8A3E';x.beginPath();x.arc(X+20,Y+18,11,0,7);x.fill();x.fillStyle='#3FA34D';x.beginPath();x.arc(X+16,Y+14,5,0,7);x.fill()}}
+  return ISBASE=cv}
+function isDrawB(x,b,X,Y,t){const R=(a,c,w,h,f)=>{x.fillStyle=f;x.fillRect(X+a,Y+c,w,h)},T=(p,f)=>{x.fillStyle=f;x.beginPath();x.moveTo(X+p[0],Y+p[1]);for(let i=2;i<p.length;i+=2)x.lineTo(X+p[i],Y+p[i+1]);x.fill()},C=(a,c,r,f)=>{x.fillStyle=f;x.beginPath();x.arc(X+a,Y+c,r,0,7);x.fill()};
+  if(b==='h'){R(8,18,24,16,'#FFF3DC');T([4,19,20,6,36,19],'#E4572E');R(17,25,7,9,'#8A5A2B');R(26,22,4,4,'#7FD3F5')}
+  else if(b==='f'){R(3,6,34,28,'#A16207');for(let i=0;i<4;i++)R(5,9+i*7,30,3,'#FACC15')}
+  else if(b==='w'){C(20,22,11,'#94A3B8');C(20,22,7,'#38BDF8');R(9,6,3,14,'#7A5634');R(28,6,3,14,'#7A5634');R(8,5,24,4,'#B45309')}
+  else if(b==='p'){R(4,4,32,32,'#86EFAC');C(14,16,8,'#16A34A');R(13,22,3,8,'#7A5634');R(22,26,12,3,'#B45309');C(30,12,3,'#F472B6')}
+  else if(b==='d'){R(17,14,6,22,'#E5E7EB');T([14,36,26,36,23,14,17,14],'#D1D5DB');const a=t*3;x.strokeStyle='#78716C';x.lineWidth=3;for(let i=0;i<4;i++){x.beginPath();x.moveTo(X+20,Y+14);x.lineTo(X+20+Math.cos(a+i*Math.PI/2)*14,Y+14+Math.sin(a+i*Math.PI/2)*14);x.stroke()}}
+  else if(b==='s'){R(4,14,32,22,'#FCA5A5');T([2,15,20,4,38,15],'#B91C1C');R(17,25,7,11,'#7A5634');R(8,19,6,5,'#7FD3F5');R(27,19,6,5,'#7FD3F5');R(19,0,2,8,'#57534E');R(21,0,7,4,'#2563EB')}
+  else if(b==='k'){R(5,16,30,20,'#FEF3C7');for(let i=0;i<5;i++)R(5+i*6,10,6,8,i%2?'#fff':'#16A34A');R(10,24,8,6,'#F97316');R(22,24,8,6,'#DC2626')}
+  else if(b==='l'){for(let i=0;i<4;i++)R(14,6+i*7,12,7,i%2?'#fff':'#DC2626');R(12,34,16,4,'#57534E');C(20,6,5,'#FDE047');if((t*2|0)%2){x.fillStyle='rgba(253,224,71,.35)';T([20,6,40,0,40,12],'rgba(253,224,71,.35)')}}}
+/* build or bulldoze */
+function isAt(Z,c,r){if(c<0||r<0||c>=ISC||r>=ISR)return;const S=isS(),i=r*ISC+c,land=ISLAND[i],cur=S.grid[i];
+  if(Z.tool==='x'){if(cur==='.')return isMsg(Z,'Nothing to bulldoze here.');const back=Math.floor(ISB[cur].c/2);S.grid=S.grid.slice(0,i)+'.'+S.grid.slice(i+1);S.coins+=back;SND.play('move');SYNC();isPanel(Z);return isMsg(Z,`Bulldozed the ${ISB[cur].n.toLowerCase()}. +${back} coins back (half of ${ISB[cur].c}).`)}
+  const B=ISB[Z.tool];if(!B||!isOpen(Z.tool))return;
+  if(land==='.')return isMsg(Z,'That\'s the ocean! Build on land.');if(cur!=='.')return isMsg(Z,'Something is already built there.');
+  if(B.beach&&land!=='s')return isMsg(Z,'A lighthouse has to go on the beach (the sand).');if(!B.beach&&land==='s'&&Z.tool!=='p')return isMsg(Z,'Sand is too soft for that. Build it on grass.');
+  if(S.coins<B.c){SND.play('no','ui');return isMsg(Z,`A ${B.n.toLowerCase()} costs ${B.c} coins, and you have ${S.coins}. You need ${B.c-S.coins} more: answer questions to earn coins!`)}
+  S.coins-=B.c;S.grid=S.grid.slice(0,i)+Z.tool+S.grid.slice(i+1);Z.trip.built++;SND.play('place','blocks');AG.ach('island','first');aqBump('isb');SYNC();
+  isMsg(Z,`Built a ${B.n.toLowerCase()} for ${B.c} coins. ${S.coins} coins left.`);isCheck(Z);isPanel(Z)}
+/* a new day: people pay, the town grows or shrinks, and a report shows the math */
+function isDay(Z){const S=isS(),s=isStats(S);S.day++;S.coins+=s.income;Z.trip.coins+=s.income;const lines=[`🌅 Day ${S.day}. ${s.pop} people need ${s.pop} food and ${s.pop} water.`];
+  lines.push(`Farms make ${s.food} food ${s.food>=s.pop?'✓':`✗ (${s.pop-s.food} short)`} · wells make ${s.water} water ${s.water>=s.pop?'✓':`✗ (${s.pop-s.water} short)`}.`);
+  let grow=0;if(s.food>=s.pop&&s.water>=s.pop&&s.happy>=60&&s.pop<s.cap){grow=Math.min(s.happy>=80?3:2,s.cap-s.pop);S.pop+=grow;lines.push(`The town is happy (${s.happy}%), so ${grow} new ${grow===1?'person moves':'people move'} in!`)}
+  else if((s.food<s.pop||s.water<s.pop)&&s.pop>2){S.pop--;lines.push('Someone left to find more food and water.')}
+  else if(s.pop>=s.cap)lines.push(`Every home is full (${s.cap} spots). Build more houses to grow!`);else if(s.happy<60)lines.push(`People need to be at least 60% happy to move in (now ${s.happy}%). Try a park!`);
+  lines.push(`+${s.income} coins: ${s.pop} from the people${s.marketOn?` and ${10*s.n.k} from the market`:''}.`);
+  S.best=Math.max(S.best||0,S.pop);if(S.pop>=10)AG.ach('island','t10');if(S.pop>=30)AG.ach('island','t30');SYNC();SND.play('coin','pets');Z.report=lines;isCheck(Z);isPanel(Z)}
+function isCheck(Z){const S=isS(),s=isStats(S);if(s.happy>=90)AG.ach('island','happy');if(S.coins>=300)AG.ach('island','rich');
+  while(S.mis<ISM.length&&ISM[S.mis].ok(s)){const m=ISM[S.mis];S.mis++;addGems(2);const nb=Object.entries(ISB).filter(([,b])=>b.m===S.mis).map(([,b])=>b.e+' '+b.n);celebrate([`Mission done: ${m.t}! +2 💎`,...(nb.length?[`New: ${nb.join(', ')}`]:[])],false);if(S.mis>=ISM.length)AG.ach('island','all')}SYNC()}
+async function isEarn(Z){const ok=await AG.ask({title:'Earn coins',intro:'Answer to earn 15 coins for your island!'});if(!AG.on('island')||AG.cur.st!==Z||ok==null)return;const S=isS();
+  if(ok){S.coins+=15;Z.trip.coins+=15;SND.play('coin','pets');isMsg(Z,`+15 coins! You have ${S.coins}.`);isCheck(Z)}else isMsg(Z,'No coins this time. Try another question!');SYNC();isPanel(Z)}
+function isMsg(Z,t){Z.msg=t;const e=$('ismsg');if(e)e.textContent=t}
+function isTool(t){const C=AG.cur;if(!C||C.id!=='island')return;C.st.tool=t;isPanel(C.st)}
+function isPanel(Z){const e=$('isbox');if(!e)return;const S=isS(),s=isStats(S),b=(ok,t)=>`<span class="${ok?'':'bad'}">${t}</span>`;
+  e.innerHTML=`<div class="isstats">${b(1,`💰 ${S.coins} coins`)}${b(1,`👥 ${s.pop} of ${s.cap} homes`)}${b(s.food>=s.pop,`🌾 ${s.food}/${s.pop} food`)}${b(s.water>=s.pop,`💧 ${s.water}/${s.pop} water`)}${s.useP?b(s.power>=s.useP,`⚡ ${s.power}/${s.useP} power`):''}${b(s.happy>=60,`😊 ${s.happy}%`)}${b(1,`🗺️ ${s.used} of ${s.land} tiles used`)}<span>📅 Day ${S.day}</span></div>
+  <div style="height:6px;border-radius:99px;background:#DCFCE7;margin-top:8px;overflow:hidden" aria-hidden="true"><i id="isday" style="display:block;height:100%;width:${Z.dayT/40*100}%;background:#F59E0B"></i></div>
+  <div class="ispal" role="group" aria-label="Buildings">${Object.entries(ISB).map(([k,v])=>{const o=isOpen(k);return `<button ${o?'':'disabled'} class="${Z.tool===k?'on':''}" aria-pressed="${Z.tool===k}" title="${esc(v.d)}" onclick="isTool('${k}')"><span class="em" aria-hidden="true">${o?v.e:'🔒'}</span>${esc(v.n)}<span>💰 ${v.c}</span></button>`}).join('')}<button class="${Z.tool==='x'?'on':''}" aria-pressed="${Z.tool==='x'}" onclick="isTool('x')"><span class="em" aria-hidden="true">🧹</span>Bulldoze<span>half back</span></button></div>
+  <div class="row" style="margin-top:10px"><button class="abtn gold" onclick="AG.cur&&isEarn(AG.cur.st)">💰 Earn coins (answer a question)</button><button class="abtn sec sm" onclick="AG.cur&&AG.finish(isTrip(AG.cur.st,'save'))">💾 Save and leave</button></div>
+  <p class="sol" id="ismsg" role="status" style="margin:8px 0 0">${esc(Z.msg||'')}</p>${Z.report?`<div class="isrep">${Z.report.map(esc).join('<br>')}</div>`:''}
+  <details style="margin-top:8px" ${S.mis<ISM.length?'open':''}><summary><b>📋 Missions (${S.mis} of ${ISM.length})</b></summary><ul class="ismis">${ISM.map((m,i)=>`<li class="${i<S.mis?'ok':i===S.mis?'now':''}">${i<S.mis?'✅':i===S.mis?'👉':'⬜'} ${esc(m.t)}</li>`).join('')}</ul></details>`}
+function isTrip(Z,why){const S=isS();SND.play('win','ui');return{why,coins:Z.trip.coins,built:Z.trip.built,pop:S.pop,day:S.day}}
+/* ---------- The menu ---------- */
+GVIEW.island=function(){const C=AG.cur&&AG.cur.id==='island'?AG.cur:null;
+  if(C&&['load','play','crash'].includes(C.phase))return AG.screen('island',{below:'<div class="isbox" id="isbox" aria-live="polite"></div>'});
+  const S=isS(),s=isStats(S),r=C&&C.phase==='end'?C.res:null;
+  const card=r?`<div class="gcard endcard" style="margin-bottom:16px"><div class="big" aria-hidden="true">${r.why==='time'?'🌙':'🏝️'}</div><h3>${r.why==='time'?'Play time is over for today':'Your island is saved!'}</h3><p>${r.built} new building${r.built===1?'':'s'} · 💰 +${r.coins} coins earned · 👥 ${r.pop} people on day ${r.day}</p></div>`:'';
+  return `<div class="gworld">${clouds()}${gameHead('Island Architect','Build a happy island town with the coins you earn.')}${outOfTime()?restCard():''}${card}${subjChips()}
+  <div class="gcard"><h3>🏝️ Your island</h3><div class="isstats" style="margin-top:6px"><span>📅 Day ${S.day}</span><span>👥 ${s.pop} people</span><span>💰 ${S.coins} coins</span><span>😊 ${s.happy}%</span><span>📋 ${S.mis} of ${ISM.length} missions</span></div>
+  <p class="sol" style="margin:8px 0 0">Next mission: ${S.mis<ISM.length?esc(ISM[S.mis].t):'All done! Keep growing your town.'}</p></div>
+  <div style="margin-top:14px">${AG.intro('island','AG.play(\'island\')')}</div></div>`};
+AQS.isb={i:'🏝️',t:'Put up 3 buildings in Island Architect',n:3,g:'island'};
+GAMES.push({id:'island',n:'Island Architect',p:'Build an island town: earn coins with smart answers, keep everyone fed and happy, and watch it grow.'});
+ART.island=()=>sceneSvg(`<rect width="200" height="130" fill="#38BDF8"/><ellipse cx="100" cy="76" rx="80" ry="40" fill="#FDE68A"/><ellipse cx="100" cy="72" rx="64" ry="30" fill="#7CCB6B"/><rect x="66" y="58" width="20" height="14" fill="#FFF3DC"/><path d="M62 59L76 48L90 59Z" fill="#E4572E"/><rect x="104" y="56" width="26" height="18" fill="#A16207"/><path d="M106 60h22M106 65h22M106 70h22" stroke="#FACC15" stroke-width="2"/><rect x="146" y="44" width="8" height="26" fill="#fff"/><rect x="146" y="50" width="8" height="5" fill="#DC2626"/><circle cx="150" cy="44" r="4" fill="#FDE047"/>`,'#7DD3FC','#E0F2FE');
+</script>
+
+<style>
 /* ===== Dungeon Dash ===== */
 .ddwrap{position:relative}
 .ddcv{display:block;width:100%;border-radius:22px;border:3px solid rgba(255,255,255,.85);box-shadow:0 7px 0 var(--ga-lip),0 18px 30px rgba(15,23,42,.3);background:#1d1714;touch-action:none;user-select:none;-webkit-user-select:none;cursor:crosshair}

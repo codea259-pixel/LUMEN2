@@ -71,7 +71,7 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     // Lumi's Realm: battle with real questions until the monster is beaten
     await a.click('#tabs >> text=Arcade'); await a.waitForSelector('.tiles');
     const tiles = await a.$$eval('.tile', t => t.map(x => x.querySelector('.tname').textContent + (x.classList.contains('soon') ? ' (soon)' : '')));
-    if (tiles.length !== 9 || !tiles.includes('Ocean Explorer') || !tiles.includes('Mystery Mansion') || tiles[0] !== 'Spell Quest' || tiles[1] !== 'Dungeon Dash' || tiles[2] !== 'Snake Arena' || tiles.some(x => x.includes('(soon)'))) fail('arcade tiles wrong: ' + tiles.join(', '));
+    if (tiles.length !== 10 || !tiles.includes('Ocean Explorer') || !tiles.includes('Mystery Mansion') || !tiles.includes('Island Architect') || tiles[0] !== 'Spell Quest' || tiles[1] !== 'Dungeon Dash' || tiles[2] !== 'Snake Arena' || tiles.some(x => x.includes('(soon)'))) fail('arcade tiles wrong: ' + tiles.join(', '));
     const p0 = await a.evaluate(() => DAY().play); await a.evaluate(() => realmTick(5)); if (await a.evaluate(() => DAY().play) !== p0) fail('play time ticked on the hub');
     await a.click('.hubhero .livehero'); if (!(await a.evaluate(() => document.querySelector('.hubhero .livehero').classList.contains('wave')))) fail('hero did not wave when tapped');
     ok('Arcade hub: ' + tiles.join(', ') + '; browsing the hub uses no play time; the hero waves when tapped');
@@ -364,6 +364,21 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     await a.click('#mmbox .mmrooms .chip:has-text("Clock Tower")'); await a.click('#mmbox .chip:has-text("The Great Clock")'); await a.waitForSelector('.endcard', { timeout: 8000 });
     if (!(await a.textContent('.endcard')).includes('ticking again') || !(await a.evaluate(() => AG.got('mansion', 'clock') && mmS().spun === 1))) fail('the Great Clock did not start');
     ok('Mystery Mansion: the puzzles check out, a lock needs both clue notes, a wrong answer smudged a note, a wrong puzzle answer was refused, all five puzzles (pattern, order, trays, flowers, trunks) gave their gears, Pip was found, and the Great Clock started'); await shot(a, 'g-mansion');
+    // Island Architect: build with coins, earn coins with answers, the rules for land, a day's report and growth, missions, bulldozing
+    await a.evaluate(() => { DAY().play = 0; if (GM.ar) delete GM.ar.island; AG.cur = null; AR.mode = null; toHub() }); await a.waitForSelector('.wmap'); await a.click('.wmloc:has-text("Island Architect")'); await a.click('text=▶ Build'); await a.waitForFunction(() => AG.on('island') && AG.cur.phase === 'play');
+    const isC = await a.evaluate(() => { const g = [], s = [], w = []; ISLAND.forEach((v, i) => { const c = [i % 16, Math.floor(i / 16)]; (v === 'g' ? g : v === 's' ? s : v === '.' ? w : g).push(c) }); return { g: g.filter((_, i) => i % 3 === 0), s, w } });
+    const isBx = await (await a.$('#agcv')).boundingBox(), isTap = ([c, r]) => a.mouse.click(isBx.x + (c + .5) / 16 * isBx.width, isBx.y + (r + .5) / 10 * isBx.height);
+    for (let i = 0; i < 3; i++) await isTap(isC.g[i]); if ((await a.evaluate(() => [isS().coins, isStats().n.h])).join() !== '0,3') fail('3 houses did not cost 60 coins');
+    await a.click('.ispal button:has-text("Well")'); await isTap(isC.g[3]); if (!(await a.textContent('#ismsg')).includes('You need 15 more')) fail('a building was built without enough coins');
+    await a.click('text=Earn coins'); await ocAns(true); await isTap(isC.g[3]); if (await a.evaluate(() => isS().mis) !== 1) fail('the first mission did not finish');
+    await isTap(isC.w[0]); if (!(await a.textContent('#ismsg')).includes('ocean')) fail('built on the ocean');
+    await a.evaluate(() => { isS().coins = 200 }); await a.click('.ispal button:has-text("Farm")'); await isTap(isC.g[4]); await isTap(isC.s[0]); if (!(await a.textContent('#ismsg')).includes('Sand is too soft')) fail('a farm went on the sand');
+    await a.click('.ispal button:has-text("Park")'); await isTap(isC.g[5]); await a.evaluate(() => isDay(AG.cur.st));
+    const isR = await a.evaluate(() => ({ rep: document.querySelector('.isrep').textContent, pop: isS().pop, mis: isS().mis }));
+    if (!isR.rep.includes('2 people need 2 food and 2 water') || !isR.rep.includes('Farms make 6 food ✓') || isR.pop !== 4 || isR.mis !== 2) fail('the day report or growth is wrong: ' + JSON.stringify(isR));
+    const isC0 = await a.evaluate(() => isS().coins); await a.click('.ispal button:has-text("Bulldoze")'); await isTap(isC.g[4]); if ((await a.evaluate(() => isS().coins)) - isC0 !== 12) fail('bulldozing a farm did not give back half (12)');
+    await a.click('#isbox >> text=Save and leave'); await a.waitForSelector('.endcard'); if (!(await a.evaluate(() => AG.got('island', 'first')))) fail('Island Architect achievement missing');
+    ok('Island Architect: 3 houses cost 60 coins, no coins means no well until a right answer earned 15, ocean and sand rules held, a day report did the food and water math and 2 people moved in, missions advanced, bulldozing gave half back'); await shot(a, 'g-island');
     // Dungeon Dash: move, recharge magic with answers, level up, dodge, take the stairs
     await a.evaluate(() => toHub()); await a.click('.tile:has-text("Dungeon Dash")'); await a.waitForSelector('.ddhero');
     const heroes = await a.$$eval('.ddhero > b', b => b.map(x => x.textContent)); if (heroes.length !== 4 || !(await a.isVisible('#dddash'))) fail('hero select or upgrade dashboard missing: ' + heroes.join(', '));
