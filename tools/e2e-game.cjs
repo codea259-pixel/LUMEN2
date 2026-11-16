@@ -427,7 +427,7 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     await a.mouse.click(...await mat(0, 1)); for (let c = 1; c <= 6; c++) await a.mouse.click(...await mat(c, 1));
     await a.mouse.move(...await mat(6, 1)); await a.mouse.down(); await a.mouse.move(...await mat(6, 6), { steps: 8 }); await a.mouse.move(...await mat(14, 6), { steps: 12 }); await a.mouse.move(...await mat(13, 6), { steps: 2 }); await a.mouse.up(); await a.mouse.click(...await mat(14, 6));
     const mr = await a.evaluate(() => ({ n: GGED.o.road.length, chk: ggCheck(GGED.o) })); if (mr.n !== 20 || !mr.chk.includes('Stone pads')) fail('the road was not drawn right: ' + JSON.stringify(mr));
-    await a.click('.ggtools >> text=Stone pads'); await a.locator('#ggedcv').scrollIntoViewIfNeeded(); for (const [c, r] of [[3, 2], [5, 0], [6, 4], [9, 5]]) await a.mouse.click(...await mat(c, r));
+    await a.click('.ggtools >> text=Stone pads'); await a.locator('#ggedcv').scrollIntoViewIfNeeded(); for (const [c, r] of [[3, 2], [5, 0], [7, 4], [9, 5]]) await a.mouse.click(...await mat(c, r));
     await a.mouse.click(...await mat(3, 1)); if (!(await a.textContent('#ggedmsg')).includes('beside the road')) fail('a stone pad on the road was allowed');
     await a.focus('#ggedcv'); await a.evaluate(() => { GGED.cur = 15 * 8 + 1 }); await a.keyboard.press('ArrowRight'); await a.keyboard.press('Enter');
     await a.click('.ggedrows .chip:has-text("Lava")'); await a.selectOption('#ggna', '0'); await a.selectOption('#ggnb', '1'); await a.selectOption('#ggw', '5');
