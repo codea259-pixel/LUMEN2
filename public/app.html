@@ -947,8 +947,10 @@ const FBM=(()=>{
 
   /* Game: gems earned in total, XP, this week's XP and the hero's look. Learners keep their own row on each class's weekly board (classes/{c}/board/{uid}). */
   const gemsEarned=st=>+((st.game&&st.game.ge)??st.gems)||0;
-  const heroOf=st=>{const g=st.game||{};return{xp:+st.xp||0,wk:g.wk&&g.wk.w?{w:String(g.wk.w).slice(0,10),xp:+g.wk.xp||0}:null,hero:g.hero?{hero:g.hero,eq:g.eq||{}}:null}};
-  const gameOf=c=>{const g=c.game||{};return{board:g.board!==false,teams:g.teams||[],tm:g.tm||{},prize:g.prize||''}};
+  const heroOf=st=>{const g=st.game||{};return{xp:+st.xp||0,wk:g.wk&&g.wk.w?{w:String(g.wk.w).slice(0,10),xp:+g.wk.xp||0,gq:+g.wk.gq||0,gok:+g.wk.gok||0,play:+g.wk.play||0}:null,hero:g.hero?{hero:g.hero,eq:g.eq||{}}:null}};
+  /* Classroom mode: a class's Arcade settings (closed, daily minutes, allowed games, question subject) */
+  const cleanArc=a=>a&&typeof a==='object'?{off:!!a.off,mins:Math.max(0,Math.min(120,Math.round(+a.mins||0))),games:Array.isArray(a.games)?a.games.slice(0,20).map(x=>String(x).toLowerCase().replace(/[^a-z]/g,'').slice(0,12)).filter(Boolean):null,sub:String(a.sub||'').replace(/[^a-z]/g,'').slice(0,12)}:null;
+  const gameOf=c=>{const g=c.game||{};return{board:g.board!==false,teams:g.teams||[],tm:g.tm||{},prize:g.prize||'',arc:cleanArc(g.arc)}};
   let myCls=null,lastBoard='';
   async function boardSync(b){if(!profile||profile.role!=='student')return;const h=heroOf(b),row={n:profile.display,xp:Math.min(1e7,Math.round(h.xp)),w:h.wk?h.wk.w:'',wx:Math.min(1e6,Math.round(h.wk?h.wk.xp:0)),hero:JSON.stringify(h.hero||{}).slice(0,390)},k=JSON.stringify(row);
     if(myCls===null)myCls=(await db.collection('classes').where('members','array-contains',me.uid).get()).docs.map(d=>d.id);
@@ -969,7 +971,7 @@ const FBM=(()=>{
     myCls=cs.docs.map(d=>d.id);
     const boardOf=async d=>{const g=gameOf(d.data());if(!g.board||(site.flags||{})['Class leaderboards']===false)return null;const r=await d.ref.collection('board').get();const mem=d.data().members||[];
       return r.docs.filter(x=>mem.includes(x.id)).map(x=>{const v=x.data();let h=null;try{h=JSON.parse(v.hero||'null')}catch(e){}return{n:v.n,me:x.id===me.uid,t:g.tm[x.id]??null,xp:+v.xp||0,wk:v.w?{w:v.w,xp:+v.wx||0}:null,hero:h&&h.hero?h:null}})};
-    return{joined:await Promise.all(cs.docs.map(async d=>{const a=await d.ref.collection('assignments').get(),g=gameOf(d.data());return{id:num(d.id),name:d.data().name,teacher:d.data().teacherName,game:{board:g.board,teams:g.teams,prize:g.prize},board:await boardOf(d),
+    return{joined:await Promise.all(cs.docs.map(async d=>{const a=await d.ref.collection('assignments').get(),g=gameOf(d.data());return{id:num(d.id),name:d.data().name,teacher:d.data().teacherName,game:{board:g.board,teams:g.teams,prize:g.prize,arc:g.arc},board:await boardOf(d),
       assigned:a.docs.map(x=>({id:x.id,...x.data()})).filter(x=>!x.target||x.target===me.uid).sort((x,y)=>y.ts-x.ts).map(x=>({id:num(x.id),title:x.title,skills:x.skills})),
       tests:await myTests(d)}}))}});
   route('POST','/api/classes',async b=>{need(isTeacher());const name=str(b.name,2,60,'Class names');let code;
@@ -1001,7 +1003,7 @@ const FBM=(()=>{
   route('PATCH','/api/classes/:id/game',async(b,p)=>{need(isTeacher());const cd=await ownClass(p.id),g=gameOf(cd.data()),mem=cd.data().members||[];
     if(b.board!==undefined)g.board=!!b.board;if(Array.isArray(b.teams))g.teams=b.teams.slice(0,6).map(t=>str(t,1,24,'Team names'));
     if(b.tm)g.tm=Object.fromEntries(Object.entries(b.tm).map(([u,t])=>[sid(u),t]).filter(([u,t])=>mem.includes(u)&&t!==null).map(([u,t])=>[u,Math.max(0,Math.min(g.teams.length-1,Math.round(+t||0)))]));
-    if(!g.teams.length)g.tm={};if(b.prize!==undefined)g.prize=String(b.prize).trim().slice(0,80);await cd.ref.update({game:g});return{ok:true}});
+    if(!g.teams.length)g.tm={};if(b.prize!==undefined)g.prize=String(b.prize).trim().slice(0,80);if(b.arc!==undefined)g.arc=cleanArc(b.arc);await cd.ref.update({game:g});return{ok:true}});
   route('POST','/api/classes/:id/awards',async(b,p)=>{need(isTeacher());const cd=await ownClass(p.id),c=cd.data(),g=gameOf(c),gems=Math.round(+b.gems||0),reason=str(b.reason||'Great work',1,60,'Reasons'),to=String(b.to??'all');
     if(gems<1||gems>20)throw new E(400,'Give 1 to 20 gems.');let ids=c.members||[];
     if(to.startsWith('t:')){const t=+to.slice(2);ids=ids.filter(u=>g.tm[u]===t)}else if(to!=='all'){const u=sid(to);ids=ids.filter(x=>x===u)}
@@ -5185,7 +5187,7 @@ const freeDay=()=>!window.NO_FREE_DAY&&FREE_DAYS.includes(dstr());
 const isMember=()=>freeDay()||(ME.member||0)>Date.now();     /* membership (unlimited play), switched on by the Owner for an account or a class */
 const noLimit=()=>BOOT.role!=='student'||isMember();          /* teachers, parents and the Owner can preview without a limit */
 const memberNote=()=>BOOT.settings.member&&BOOT.settings.member.on?`<p class="sol" style="margin-top:10px">Want to play longer? Ask a parent or teacher about membership.</p><button class="alt" onclick="BT=null;go('member')">⭐ Membership (for grown-ups)</button>`:'';
-const playAllowed=()=>{const g=GSET();return Math.min(g.max,g.base+Math.floor(DAY().study/60)*g.per/10)*60};
+const playAllowed=()=>{const g=GSET();let m=Math.min(g.max,g.base+Math.floor(DAY().study/60)*g.per/10)*60;const A=typeof ARC==='function'?ARC():null;if(A&&A.mins)m=Math.min(m,A.mins*60);return m};
 const playLeft=()=>noLimit()?Infinity:Math.max(0,Math.round(playAllowed()-DAY().play));
 const mmss=s=>`${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,'0')}`;
 function playLabel(){const l=playLeft();return l===Infinity?'no time limit':l>0?mmss(l)+' left':'out of time'}
@@ -11087,6 +11089,52 @@ if(BOOT.fb){const _ovP=VIEWS.owner;VIEWS.owner=function(){return _ovP()+`<div cl
 (()=>{const f=document.createElement('footer');f.className='sitefoot';
   f.innerHTML=`<a href="privacy.html">Privacy policy</a> · <a href="terms.html">Terms of service</a> · <a href="./#about">About</a><br>© ${new Date().getFullYear()} Bose Academy. Lessons and practice questions are original. Bose Academy is an independent learning project and is not affiliated with Bose Corporation.`;
   const t=$('toast');t.parentNode.insertBefore(f,t)})();
+</script>
+
+<style>
+/* ===== Classroom mode for the Arcade ===== */
+.arcgames{display:flex;flex-wrap:wrap;gap:6px 14px;margin:6px 0}.arcgames label{display:flex;gap:6px;align-items:center;font-weight:600}
+.arcclosed{text-align:center}.arcclosed .big{font-size:3rem}
+.tile.classoff{opacity:.55;filter:grayscale(.6)}.wmloc.classoff{background:#E2E8F0;color:#64748B;border-color:#94A3B8}
+</style>
+<script type="text/x-lumen">
+/* ===== Classroom mode for the Arcade =====
+   Teachers set the Arcade for each class: open or closed, a daily play-time cap, which games are allowed, and which subject the
+   game questions come from. Saved with the class's game settings (PATCH /api/classes/:id/game, arc). For a learner in several
+   classes the strictest rule wins. The learner's weekly Arcade numbers (game answers and minutes) go in their saved progress,
+   so the teacher sees them in the class card. ===== */
+const ARCMAP={petstars:'pets',petsort:'pets',sq:'spell',bbuild:'blocks'};
+function ARC(){if(typeof BOOT==='undefined'||BOOT.role!=='student'||BOOT.local)return null;const L=(ST.joined||[]).map(c=>c.game&&c.game.arc).filter(Boolean);if(!L.length)return null;
+  const mins=L.map(a=>a.mins).filter(m=>m>0),gl=L.filter(a=>Array.isArray(a.games));
+  return{off:L.some(a=>a.off),mins:mins.length?Math.min(...mins):0,games:gl.length?gl.reduce((s,a)=>s.filter(x=>a.games.includes(x)),gl[0].games.slice()):null,sub:(L.find(a=>a.sub)||{}).sub||''}}
+const arcOK=id=>{const A=ARC();id=ARCMAP[id]||id;return !A||!A.games||A.games.includes(id)};
+/* the learner's weekly Arcade numbers */
+const _ansC=AG.answered;AG.answered=function(id,ok,ms){const r=_ansC(id,ok,ms),W=WEEK();W.gq=(W.gq||0)+1;if(ok)W.gok=(W.gok||0)+1;return r};
+const _rtC=realmTick;realmTick=function(sec){const p0=DAY().play;_rtC(sec);const d=DAY().play-p0;if(d>0){const W=WEEK();W.play=(W.play||0)+d}};
+/* closed, not allowed, or a set subject */
+const arcClosed=()=>`<div class="gworld">${clouds()}<div class="gcard arcclosed"><div class="big" aria-hidden="true">🔒</div><h3>The Arcade is closed for now</h3><p>Your teacher closed the Arcade for your class. Keep learning, and check back later!</p><button class="abtn" onclick="go('learn')">📖 Go learn</button></div></div>`;
+const _vpC=VIEWS.play;VIEWS.play=function(){const A=ARC();if(A&&A.off){if(AG.cur&&AG.cur.phase==='play')AG.stop();AG.cur=null;return arcClosed()}if(A&&AR.mode&&!arcOK(AR.mode)&&GAMES.some(g=>g.id===(ARCMAP[AR.mode]||AR.mode))){AR.mode=null}return _vpC()};
+const _ogC=openGame;openGame=function(id){if(!arcOK(id))return msg('Your teacher turned this game off for your class. Try another one!');_ogC(id)};
+const _agpC=AG.play;AG.play=function(id,o){const A=ARC();if(A&&(A.off||!arcOK(id))){msg('Your teacher turned this game off for your class.');return Promise.resolve()}if(A&&A.sub&&subSkills(A.sub).some(k=>G[k]))GM.rsub=A.sub;return _agpC(id,o)};
+const _scC=subjChips;subjChips=function(){const A=ARC();if(A&&A.sub&&subSkills(A.sub).some(k=>G[k])){GM.rsub=A.sub;return `<div class="schools"><span class="sol"><b>Questions from:</b> ${esc(SUBN[A.sub])} <span aria-hidden="true">·</span> picked by your teacher</span></div>`}return _scC()};
+const _hvC=hubView;hubView=function(){let h=_hvC();const A=ARC();if(!A||!A.games)return h;
+  for(const g of GAMES)if(!arcOK(g.id)){h=h.replace(new RegExp(`<button class="tile ([^"]*)"([^>]*?)onclick="openGame\\('${g.id}'\\)"`),`<button class="tile classoff $1"$2onclick="openGame('${g.id}')"`)
+    .replace(new RegExp(`<button class="wmloc ([^"]*)"([^>]*?)onclick="openGame\\('${g.id}'\\)"`),`<button class="wmloc classoff $1"$2onclick="openGame('${g.id}')"`)}
+  return h.replace('<h3 style="margin:0 0 10px;color:#fff">All games</h3>','<h3 style="margin:0 0 10px;color:#fff">All games</h3><p class="sol" style="color:#E0E7FF;margin:-4px 0 10px">Greyed-out games are turned off by your teacher.</p>')};
+/* ---------- The teacher's side: the class card ---------- */
+function arcBlock(c){const a=(c.game&&c.game.arc)||{off:false,mins:0,games:null,sub:''},g=GSET(),subs=Object.keys(SUBN).filter(s=>subSkills(s).some(k=>G[k])),wk=wkId();
+  const rows=(c.students||[]).map(s=>{const w=s.wk&&s.wk.w===wk?s.wk:{};return{n:s.name,gq:w.gq||0,gok:w.gok||0,m:Math.round((w.play||0)/60)}});
+  return `<div class="gblock"><h4>🎮 Arcade (classroom mode)</h4>
+  <div class="row"><label><input type="checkbox" id="arco${c.id}" ${a.off?'':'checked'}> Arcade open for this class</label></div>
+  <div class="row"><label>Daily play time <select id="arcm${c.id}"><option value="0">Site setting (up to ${g.max} min)</option>${[5,10,15,20,30,45,60].map(m=>`<option value="${m}" ${a.mins===m?'selected':''}>Up to ${m} min</option>`).join('')}</select></label>
+    <label>Game questions from <select id="arcs${c.id}"><option value="">Each student's choice</option>${subs.map(s=>`<option value="${s}" ${a.sub===s?'selected':''}>${esc(SUBN[s])}</option>`).join('')}</select></label></div>
+  <p class="sol" style="margin:8px 0 2px">Games students can play:</p><div class="arcgames">${GAMES.map(x=>`<label><input type="checkbox" name="arcg${c.id}" value="${x.id}" ${!a.games||a.games.includes(x.id)?'checked':''}> ${esc(x.n)}</label>`).join('')}</div>
+  <button class="lamp" onclick="arcSave(${c.id})">Save Arcade settings</button>
+  <p class="sol">Play time is still earned by learning; this sets the most a student can play each day. Pet care and the learning pages are never limited.</p>
+  ${rows.length?`<h4 style="margin-top:12px">Arcade this week</h4><div class="tbl"><table class="vs"><tr><th>Student</th><th>Minutes played</th><th>Game questions</th><th>Right</th></tr>${rows.map(r=>`<tr><td>${esc(r.n)}</td><td>${r.m}</td><td>${r.gq}</td><td>${r.gq?Math.round(r.gok/r.gq*100)+'%':'–'}</td></tr>`).join('')}</table></div><p class="sol">Game questions are the same practice questions as the Learn page, asked inside the games.</p>`:''}</div>`}
+function arcSave(id){const games=[...document.querySelectorAll(`input[name="arcg${id}"]`)],on=games.filter(i=>i.checked).map(i=>i.value);
+  setGame(id,{arc:{off:!$('arco'+id).checked,mins:+$('arcm'+id).value,sub:$('arcs'+id).value,games:on.length===games.length?null:on}})}
+const _ccC=classCard;classCard=function(c){const h=_ccC(c);return h.includes('<h4>Parent report</h4>')?h.replace('<h4>Parent report</h4>',arcBlock(c)+'<h4>Parent report</h4>'):h.replace(/<\/div>$/,arcBlock(c)+'</div>')};
 </script>
 
 </body>

@@ -109,8 +109,10 @@ function postOut(p, mod, uid) {
 }
 // Game: gems earned in total (spending never lowers a class goal), XP, this week's XP and the hero's look
 const gemsEarned = st => +((st.game && st.game.ge) ?? st.gems) || 0;
-const heroOf = st => { const g = st.game || {}; return { xp: +st.xp || 0, wk: g.wk && g.wk.w ? { w: String(g.wk.w).slice(0, 10), xp: +g.wk.xp || 0 } : null, hero: g.hero ? { hero: g.hero, eq: g.eq || {} } : null }; };
-const gameOf = c => { let g = {}; try { g = c.game ? JSON.parse(c.game) : {}; } catch { g = {}; } return { board: g.board !== false, teams: g.teams || [], tm: g.tm || {}, prize: g.prize || '' }; };
+const heroOf = st => { const g = st.game || {}; return { xp: +st.xp || 0, wk: g.wk && g.wk.w ? { w: String(g.wk.w).slice(0, 10), xp: +g.wk.xp || 0, gq: +g.wk.gq || 0, gok: +g.wk.gok || 0, play: +g.wk.play || 0 } : null, hero: g.hero ? { hero: g.hero, eq: g.eq || {} } : null }; };
+// Classroom mode: a class's Arcade settings (closed, daily minutes, allowed games, question subject)
+const cleanArc = a => a && typeof a === 'object' ? { off: !!a.off, mins: Math.max(0, Math.min(120, Math.round(+a.mins || 0))), games: Array.isArray(a.games) ? a.games.slice(0, 20).map(x => String(x).toLowerCase().replace(/[^a-z]/g, '').slice(0, 12)).filter(Boolean) : null, sub: String(a.sub || '').replace(/[^a-z]/g, '').slice(0, 12) } : null;
+const gameOf = c => { let g = {}; try { g = c.game ? JSON.parse(c.game) : {}; } catch { g = {}; } return { board: g.board !== false, teams: g.teams || [], tm: g.tm || {}, prize: g.prize || '', arc: cleanArc(g.arc) }; };
 function classOut(c) {
   const mem = Q('SELECT u.id,u.display,u.username,m.grades FROM class_members m JOIN users u ON u.id=m.user_id WHERE m.class_id=? ORDER BY u.id', c.id);
   const asg = Q('SELECT * FROM assignments WHERE class_id=? ORDER BY ts', c.id);
@@ -209,7 +211,7 @@ route('GET', '/api/classes', c => { need(c);
   if (isTeacher(c.u)) return { classes: Q(c.u.role === 'owner' ? 'SELECT * FROM classes ORDER BY id' : 'SELECT * FROM classes WHERE teacher_id=? ORDER BY id', ...(c.u.role === 'owner' ? [] : [c.u.id])).map(classOut) };
   const mine = Q('SELECT c.*,m.user_id FROM class_members m JOIN classes c ON c.id=m.class_id WHERE m.user_id=?', c.u.id);
   const boardOf = k => { const g = gameOf(k); if (!g.board || S('flags')['Class leaderboards'] === false) return null; return Q('SELECT u.id,u.display FROM class_members m JOIN users u ON u.id=m.user_id WHERE m.class_id=?', k.id).map(u => ({ n: u.display, me: u.id === c.u.id, t: g.tm[u.id] ?? null, ...heroOf(stateOf(u.id)) })); };
-  return { joined: mine.map(k => ({ id: k.id, name: k.name, teacher: nameOf(k.teacher_id), game: (({ board, teams, prize }) => ({ board, teams, prize }))(gameOf(k)), board: boardOf(k), assigned: Q('SELECT * FROM assignments WHERE class_id=? AND (target IS NULL OR target=?) ORDER BY ts DESC', k.id, c.u.id).map(a => ({ id: a.id, title: a.title, skills: JSON.parse(a.skills) })),
+  return { joined: mine.map(k => ({ id: k.id, name: k.name, teacher: nameOf(k.teacher_id), game: (({ board, teams, prize, arc }) => ({ board, teams, prize, arc }))(gameOf(k)), board: boardOf(k), assigned: Q('SELECT * FROM assignments WHERE class_id=? AND (target IS NULL OR target=?) ORDER BY ts DESC', k.id, c.u.id).map(a => ({ id: a.id, title: a.title, skills: JSON.parse(a.skills) })),
     tests: Q('SELECT * FROM tests WHERE class_id=? AND (target IS NULL OR target=?) ORDER BY ts DESC', k.id, c.u.id).map(t => { const s = Q1('SELECT * FROM subs WHERE test_id=? AND user_id=?', t.id, c.u.id);
       return { id: t.id, kind: t.kind, title: t.title, minutes: t.minutes, skills: JSON.parse(t.skills), count: JSON.parse(t.items).length, released: !!t.released, ts: t.ts,
         sub: s ? { started: s.started, submitted: s.submitted, result: t.released && s.result ? JSON.parse(s.result) : null } : null }; }) })) }; });
@@ -351,6 +353,7 @@ route('PATCH', '/api/classes/:id/game', c => { need(c, isTeacher(c.u)); const k 
   if (b.tm) { const ids = new Set(Q('SELECT user_id FROM class_members WHERE class_id=?', k.id).map(m => m.user_id)); g.tm = Object.fromEntries(Object.entries(b.tm).filter(([u, t]) => ids.has(+u) && t !== null).map(([u, t]) => [+u, int(t, 0, Math.max(0, g.teams.length - 1))])); }
   if (!g.teams.length) g.tm = {};
   if (b.prize !== undefined) g.prize = String(b.prize).trim().slice(0, 80);
+  if (b.arc !== undefined) g.arc = cleanArc(b.arc);
   X('UPDATE classes SET game=? WHERE id=?', JSON.stringify(g), k.id); return { ok: true }; });
 route('POST', '/api/classes/:id/awards', c => { need(c, isTeacher(c.u)); const k = ownClass(c, c.params.id), g = gameOf(k), gems = int(c.body.gems, 1, 20), reason = str(c.body.reason || 'Great work', 1, 60), to = String(c.body.to ?? 'all');
   let ids = Q('SELECT user_id FROM class_members WHERE class_id=?', k.id).map(m => m.user_id);

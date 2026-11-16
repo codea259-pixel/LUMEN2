@@ -126,6 +126,13 @@ const errs = [], ok = s => console.log('✓', s);
   ok('teacher made teams and gave 5 bonus gems (Firebase): ' + JSON.stringify(await t.$$eval('.gblock table tr', r => r.slice(1).map(x => x.innerText.replace(/\s+/g, ' ').slice(0, 50)))));
   const g0 = await s.evaluate(() => GEMS()); await s.click('#tabs >> text=Learn'); await s.click('#tabs >> text=My classes'); await s.waitForSelector('.lb', { timeout: 15000 });
   await s.waitForFunction(g => GEMS() === g + 5, g0, { timeout: 15000 }); ok('student collected the bonus gems once and sees: ' + (await s.$$eval('.lb li', l => l.map(x => x.innerText.replace(/\s+/g, ' ')).join(' | '))));
+  // Classroom mode: the teacher's Arcade settings reach the student; a student can't change them
+  { const cid = await t.evaluate(() => ST.classes[0].id); await t.evaluate(id => api('PATCH', `/api/classes/${id}/game`, { arc: { off: false, mins: 5, games: ['kart', 'blocks', 'Bad Id!'], sub: 'math' } }), cid);
+    const sarc = await s.evaluate(async () => (await api('GET', '/api/classes')).joined[0].game.arc);
+    if (!sarc || sarc.mins !== 5 || sarc.games.join() !== 'kart,blocks,badid' || sarc.sub !== 'math') errs.push('class Arcade settings did not reach the student (Firebase): ' + JSON.stringify(sarc)); else ok('teacher Arcade settings reached the student, cleaned (Firebase): ' + JSON.stringify(sarc));
+    const tryArc = await s.evaluate(async () => { const db = firebase.app().firestore(), uid = FBM.uid(), c = (await db.collection('classes').where('members', 'array-contains', uid).get()).docs[0]; try { await c.ref.update({ 'game.arc': { off: false, mins: 120 } }); return 'ALLOWED' } catch (e) { return 'blocked' } });
+    if (tryArc !== 'blocked') errs.push('a student changed the class Arcade settings (Firebase)'); else ok('a student cannot change the class Arcade settings (Firebase)');
+    await t.evaluate(id => api('PATCH', `/api/classes/${id}/game`, { arc: null }), cid) }
   const ga = await s.evaluate(async () => { const db = firebase.app().firestore(), uid = FBM.uid(), out = {};
     const cs = await db.collection('classes').where('members', 'array-contains', uid).get(), c = cs.docs[0], other = c.data().members.find(u => u !== uid);
     const tryIt = async (k, fn) => { try { await fn(); out[k] = 'ALLOWED' } catch (e) { out[k] = 'blocked' } };

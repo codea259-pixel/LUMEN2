@@ -145,8 +145,10 @@ const FBM=(()=>{
 
   /* Game: gems earned in total, XP, this week's XP and the hero's look. Learners keep their own row on each class's weekly board (classes/{c}/board/{uid}). */
   const gemsEarned=st=>+((st.game&&st.game.ge)??st.gems)||0;
-  const heroOf=st=>{const g=st.game||{};return{xp:+st.xp||0,wk:g.wk&&g.wk.w?{w:String(g.wk.w).slice(0,10),xp:+g.wk.xp||0}:null,hero:g.hero?{hero:g.hero,eq:g.eq||{}}:null}};
-  const gameOf=c=>{const g=c.game||{};return{board:g.board!==false,teams:g.teams||[],tm:g.tm||{},prize:g.prize||''}};
+  const heroOf=st=>{const g=st.game||{};return{xp:+st.xp||0,wk:g.wk&&g.wk.w?{w:String(g.wk.w).slice(0,10),xp:+g.wk.xp||0,gq:+g.wk.gq||0,gok:+g.wk.gok||0,play:+g.wk.play||0}:null,hero:g.hero?{hero:g.hero,eq:g.eq||{}}:null}};
+  /* Classroom mode: a class's Arcade settings (closed, daily minutes, allowed games, question subject) */
+  const cleanArc=a=>a&&typeof a==='object'?{off:!!a.off,mins:Math.max(0,Math.min(120,Math.round(+a.mins||0))),games:Array.isArray(a.games)?a.games.slice(0,20).map(x=>String(x).toLowerCase().replace(/[^a-z]/g,'').slice(0,12)).filter(Boolean):null,sub:String(a.sub||'').replace(/[^a-z]/g,'').slice(0,12)}:null;
+  const gameOf=c=>{const g=c.game||{};return{board:g.board!==false,teams:g.teams||[],tm:g.tm||{},prize:g.prize||'',arc:cleanArc(g.arc)}};
   let myCls=null,lastBoard='';
   async function boardSync(b){if(!profile||profile.role!=='student')return;const h=heroOf(b),row={n:profile.display,xp:Math.min(1e7,Math.round(h.xp)),w:h.wk?h.wk.w:'',wx:Math.min(1e6,Math.round(h.wk?h.wk.xp:0)),hero:JSON.stringify(h.hero||{}).slice(0,390)},k=JSON.stringify(row);
     if(myCls===null)myCls=(await db.collection('classes').where('members','array-contains',me.uid).get()).docs.map(d=>d.id);
@@ -167,7 +169,7 @@ const FBM=(()=>{
     myCls=cs.docs.map(d=>d.id);
     const boardOf=async d=>{const g=gameOf(d.data());if(!g.board||(site.flags||{})['Class leaderboards']===false)return null;const r=await d.ref.collection('board').get();const mem=d.data().members||[];
       return r.docs.filter(x=>mem.includes(x.id)).map(x=>{const v=x.data();let h=null;try{h=JSON.parse(v.hero||'null')}catch(e){}return{n:v.n,me:x.id===me.uid,t:g.tm[x.id]??null,xp:+v.xp||0,wk:v.w?{w:v.w,xp:+v.wx||0}:null,hero:h&&h.hero?h:null}})};
-    return{joined:await Promise.all(cs.docs.map(async d=>{const a=await d.ref.collection('assignments').get(),g=gameOf(d.data());return{id:num(d.id),name:d.data().name,teacher:d.data().teacherName,game:{board:g.board,teams:g.teams,prize:g.prize},board:await boardOf(d),
+    return{joined:await Promise.all(cs.docs.map(async d=>{const a=await d.ref.collection('assignments').get(),g=gameOf(d.data());return{id:num(d.id),name:d.data().name,teacher:d.data().teacherName,game:{board:g.board,teams:g.teams,prize:g.prize,arc:g.arc},board:await boardOf(d),
       assigned:a.docs.map(x=>({id:x.id,...x.data()})).filter(x=>!x.target||x.target===me.uid).sort((x,y)=>y.ts-x.ts).map(x=>({id:num(x.id),title:x.title,skills:x.skills})),
       tests:await myTests(d)}}))}});
   route('POST','/api/classes',async b=>{need(isTeacher());const name=str(b.name,2,60,'Class names');let code;
@@ -199,7 +201,7 @@ const FBM=(()=>{
   route('PATCH','/api/classes/:id/game',async(b,p)=>{need(isTeacher());const cd=await ownClass(p.id),g=gameOf(cd.data()),mem=cd.data().members||[];
     if(b.board!==undefined)g.board=!!b.board;if(Array.isArray(b.teams))g.teams=b.teams.slice(0,6).map(t=>str(t,1,24,'Team names'));
     if(b.tm)g.tm=Object.fromEntries(Object.entries(b.tm).map(([u,t])=>[sid(u),t]).filter(([u,t])=>mem.includes(u)&&t!==null).map(([u,t])=>[u,Math.max(0,Math.min(g.teams.length-1,Math.round(+t||0)))]));
-    if(!g.teams.length)g.tm={};if(b.prize!==undefined)g.prize=String(b.prize).trim().slice(0,80);await cd.ref.update({game:g});return{ok:true}});
+    if(!g.teams.length)g.tm={};if(b.prize!==undefined)g.prize=String(b.prize).trim().slice(0,80);if(b.arc!==undefined)g.arc=cleanArc(b.arc);await cd.ref.update({game:g});return{ok:true}});
   route('POST','/api/classes/:id/awards',async(b,p)=>{need(isTeacher());const cd=await ownClass(p.id),c=cd.data(),g=gameOf(c),gems=Math.round(+b.gems||0),reason=str(b.reason||'Great work',1,60,'Reasons'),to=String(b.to??'all');
     if(gems<1||gems>20)throw new E(400,'Give 1 to 20 gems.');let ids=c.members||[];
     if(to.startsWith('t:')){const t=+to.slice(2);ids=ids.filter(u=>g.tm[u]===t)}else if(to!=='all'){const u=sid(to);ids=ids.filter(x=>x===u)}

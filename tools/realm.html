@@ -100,7 +100,7 @@ const freeDay=()=>!window.NO_FREE_DAY&&FREE_DAYS.includes(dstr());
 const isMember=()=>freeDay()||(ME.member||0)>Date.now();     /* membership (unlimited play), switched on by the Owner for an account or a class */
 const noLimit=()=>BOOT.role!=='student'||isMember();          /* teachers, parents and the Owner can preview without a limit */
 const memberNote=()=>BOOT.settings.member&&BOOT.settings.member.on?`<p class="sol" style="margin-top:10px">Want to play longer? Ask a parent or teacher about membership.</p><button class="alt" onclick="BT=null;go('member')">⭐ Membership (for grown-ups)</button>`:'';
-const playAllowed=()=>{const g=GSET();return Math.min(g.max,g.base+Math.floor(DAY().study/60)*g.per/10)*60};
+const playAllowed=()=>{const g=GSET();let m=Math.min(g.max,g.base+Math.floor(DAY().study/60)*g.per/10)*60;const A=typeof ARC==='function'?ARC():null;if(A&&A.mins)m=Math.min(m,A.mins*60);return m};
 const playLeft=()=>noLimit()?Infinity:Math.max(0,Math.round(playAllowed()-DAY().play));
 const mmss=s=>`${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,'0')}`;
 function playLabel(){const l=playLeft();return l===Infinity?'no time limit':l>0?mmss(l)+' left':'out of time'}

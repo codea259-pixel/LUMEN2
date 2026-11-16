@@ -379,6 +379,25 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     const isC0 = await a.evaluate(() => isS().coins); await a.click('.ispal button:has-text("Bulldoze")'); await isTap(isC.g[4]); if ((await a.evaluate(() => isS().coins)) - isC0 !== 12) fail('bulldozing a farm did not give back half (12)');
     await a.click('#isbox >> text=Save and leave'); await a.waitForSelector('.endcard'); if (!(await a.evaluate(() => AG.got('island', 'first')))) fail('Island Architect achievement missing');
     ok('Island Architect: 3 houses cost 60 coins, no coins means no well until a right answer earned 15, ocean and sand rules held, a day report did the food and water math and 2 people moved in, missions advanced, bulldozing gave half back'); await shot(a, 'g-island');
+    // Classroom mode: the teacher closes the Arcade, then opens it with 2 games, 5 minutes a day and math questions; the teacher sees the week's Arcade numbers
+    const arcLoad = async () => { await a.evaluate(async () => { ST.joined = (await api('GET', '/api/classes')).joined; AG.cur = null; AR.mode = null; rerealm() }) };
+    await t.evaluate(async () => { await LOAD.teacher(); if (ST.tab !== 'teacher') go('teacher') }); await t.click('#tabs >> text=Teacher'); await t.waitForSelector('[id^=arco]');
+    await t.uncheck(`#arco${cid}`); await t.click('text=Save Arcade settings'); await t.waitForFunction(id => ST.classes.find(c => c.id === id).game.arc && ST.classes.find(c => c.id === id).game.arc.off === true, cid);
+    await arcLoad(); if (!(await a.$('.arcclosed'))) fail('the Arcade did not close for the class');
+    await t.check(`#arco${cid}`); await t.selectOption(`#arcm${cid}`, '5'); await t.selectOption(`#arcs${cid}`, 'math');
+    for (const g of await t.$$eval(`input[name="arcg${cid}"]`, x => x.map(i => i.value))) if (!['kart', 'blocks'].includes(g)) await t.uncheck(`input[name="arcg${cid}"][value="${g}"]`);
+    await t.click('text=Save Arcade settings'); await t.waitForFunction(id => { const a = ST.classes.find(c => c.id === id).game.arc; return a && !a.off && a.mins === 5 && a.sub === 'math' && a.games && a.games.join() === 'kart,blocks' }, cid);
+    await arcLoad(); await a.waitForSelector('.wmap');
+    const arcHub = await a.evaluate(() => ({ off: [...document.querySelectorAll('.tile.classoff .tname')].map(x => x.textContent), on: [...document.querySelectorAll('.tile:not(.classoff) .tname')].map(x => x.textContent), cap: playAllowed() }));
+    if (arcHub.on.sort().join() !== 'Block Builder,Turbo Trivia Kart' || arcHub.off.length !== 8 || arcHub.cap > 300) fail('the class Arcade rules did not apply on the hub: ' + JSON.stringify(arcHub));
+    await a.evaluate(() => openGame('snake')); if (await a.evaluate(() => AR.mode) === 'snake') fail('a turned-off game opened');
+    await a.evaluate(() => { GM.rsub = 'ela'; openGame('kart') }); await a.waitForSelector('text=picked by your teacher'); if (await a.evaluate(() => GM.rsub) !== 'math') fail('the teacher\'s subject was not used');
+    await a.evaluate(() => { AG.answered('kart', true, 900); AG.answered('kart', false, 900); WEEK().play = (WEEK().play || 0) + 180 }); await save(a);
+    await t.evaluate(async () => { await LOAD.teacher(); go('teacher') }); await t.waitForSelector('[id^=arco]');
+    const arcRow = await t.evaluate(name => { const tr = [...document.querySelectorAll('.gblock')].find(b => b.textContent.includes('Arcade this week')); if (!tr) return null; const r = [...tr.querySelectorAll('tr')].find(x => x.cells[0].textContent === name); return r ? [...r.cells].map(c => c.textContent) : null }, creds[0][0]);
+    if (!arcRow || +arcRow[2] < 2 || +arcRow[1] < 3) fail('the teacher did not see the week\'s Arcade numbers: ' + JSON.stringify(arcRow));
+    await t.evaluate(id => setGame(id, { arc: null }), cid); await t.waitForFunction(id => !ST.classes.find(c => c.id === id).game.arc, cid); await arcLoad();
+    ok(`Classroom mode: the teacher closed the Arcade and the class saw it closed; then 2 games, 5 minutes a day and math questions applied (8 games greyed out, a turned-off game would not open, the questions switched to math); the teacher saw ${creds[0][0]}'s week: ${arcRow[1]} minutes, ${arcRow[2]} game questions, ${arcRow[3]} right`);
     // Dungeon Dash: move, recharge magic with answers, level up, dodge, take the stairs
     await a.evaluate(() => toHub()); await a.click('.tile:has-text("Dungeon Dash")'); await a.waitForSelector('.ddhero');
     const heroes = await a.$$eval('.ddhero > b', b => b.map(x => x.textContent)); if (heroes.length !== 4 || !(await a.isVisible('#dddash'))) fail('hero select or upgrade dashboard missing: ' + heroes.join(', '));
