@@ -71,7 +71,7 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     // Lumi's Realm: battle with real questions until the monster is beaten
     await a.click('#tabs >> text=Arcade'); await a.waitForSelector('.tiles');
     const tiles = await a.$$eval('.tile', t => t.map(x => x.querySelector('.tname').textContent + (x.classList.contains('soon') ? ' (soon)' : '')));
-    if (tiles.length !== 7 || tiles[0] !== 'Spell Quest' || tiles[1] !== 'Dungeon Dash' || tiles[2] !== 'Snake Arena' || tiles.some(x => x.includes('(soon)'))) fail('arcade tiles wrong: ' + tiles.join(', '));
+    if (tiles.length !== 8 || !tiles.includes('Ocean Explorer') || tiles[0] !== 'Spell Quest' || tiles[1] !== 'Dungeon Dash' || tiles[2] !== 'Snake Arena' || tiles.some(x => x.includes('(soon)'))) fail('arcade tiles wrong: ' + tiles.join(', '));
     const p0 = await a.evaluate(() => DAY().play); await a.evaluate(() => realmTick(5)); if (await a.evaluate(() => DAY().play) !== p0) fail('play time ticked on the hub');
     await a.click('.hubhero .livehero'); if (!(await a.evaluate(() => document.querySelector('.hubhero .livehero').classList.contains('wave')))) fail('hero did not wave when tapped');
     ok('Arcade hub: ' + tiles.join(', ') + '; browsing the hub uses no play time; the hero waves when tapped');
@@ -321,6 +321,27 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     if (!(await a.isDisabled('#bdpanel .bbpal button[aria-label^="Rainbow"]'))) fail('the Rainbow block was open before 200 bricks earned');
     await a.click('#bdpanel button:has-text("Done")'); await a.waitForSelector('.bbbuild img'); if ((await a.evaluate(() => bdS().bslots[bdS().bslot].replace(/\./g, '').length)) !== 8) fail('the build was not saved');
     ok(`Building mode: ${bd0.e} bricks earned in the puzzles, a tap placed a block for a brick, a drag painted 5, Undo took back the drag, erasing refunded, no bricks means no block, the tower/symmetry/area-12/rainbow checks are right, the build saved`); await shot(a, 'g-build');
+    // Ocean Explorer: steer, scan an animal (a true fact), a pressure gate, air running out, an air station, surface
+    const ocFacts = await a.evaluate(() => ({ n: OCA.length, ids: new Set(OCA.map(x => x.id)).size, zones: [0, 1, 2, 3].map(z => OCA.filter(x => x.z === z).length), short: OCA.filter(x => !x.f || x.f.length < 40).map(x => x.id) }));
+    if (ocFacts.n !== 20 || ocFacts.ids !== 20 || ocFacts.zones.some(n => n < 4) || ocFacts.short.length) fail('the Sea Log data is off: ' + JSON.stringify(ocFacts));
+    await a.evaluate(() => { DAY().play = 0; if (GM.ar) delete GM.ar.ocean; AG.cur = null; AR.mode = null; toHub() }); await a.waitForSelector('.wmap'); await a.click('.wmloc:has-text("Ocean Explorer")'); await a.waitForSelector('.oclog');
+    await a.click('text=▶ Dive!'); await a.waitForFunction(() => AG.on('ocean') && AG.cur.phase === 'play');
+    await a.keyboard.down('ArrowDown'); await a.keyboard.down('ArrowRight'); await a.waitForTimeout(700); await a.keyboard.up('ArrowDown'); await a.keyboard.up('ArrowRight');
+    if (await a.evaluate(() => AG.cur.st.y < 40 || AG.cur.st.x < 180)) fail('the submarine did not steer');
+    await a.evaluate(() => { const Z = AG.cur.st, n = Z.an.find(q => q.a.id === 'clown'); n.r = 0; Z.x = n.x - 40; Z.y = n.y; Z.vx = Z.vy = 0 }); await a.waitForFunction(() => AG.cur.st.near && AG.cur.st.near.a.id === 'clown');
+    await a.keyboard.press('Space'); await a.waitForFunction(() => ocS().log.clown, null, { timeout: 4000 }); if (!(await a.textContent('#ocbox')).includes('anemone')) fail('scanning did not show the clownfish fact');
+    const ocAns = async right => { await a.waitForFunction(() => QM && QM.phase === 'ask'); const c = await a.evaluate(() => QM.q.choices ? QM.q.choices.length : 0), r = await a.evaluate(() => QM.q.a[0]);
+      if (c) await a.click(`#qmodal .bchoices button >> nth=${right ? r : (r + 1) % c}`); else { await a.fill('#qmin', right ? await a.evaluate(() => fmtA(QM.q)) : '987654'); await a.click('#qmodal .bans button') }
+      if (!right) { await a.waitForSelector('#qmok'); await a.click('#qmok') } await a.waitForFunction(() => !QM) };
+    await a.evaluate(() => { const Z = AG.cur.st; Z.x = 600; Z.y = 380; Z.cd = 0 }); await a.keyboard.down('ArrowDown'); await a.waitForFunction(() => QM && QM.phase === 'ask', null, { timeout: 6000 }); await a.keyboard.up('ArrowDown');
+    await ocAns(false); if (await a.evaluate(() => ocS().zones) !== 1) fail('a wrong answer opened the gate');
+    await a.evaluate(() => { AG.cur.st.cd = 0 }); await a.keyboard.down('ArrowDown'); await a.waitForFunction(() => QM && QM.phase === 'ask', null, { timeout: 6000 }); await a.keyboard.up('ArrowDown'); await ocAns(true);
+    if (await a.evaluate(() => ocS().zones) !== 2 || !(await a.textContent('#ocbox')).includes('200 to 1,000 meters')) fail('the twilight gate did not open with its fact');
+    await a.evaluate(() => { const Z = AG.cur.st; Z.y = 500; Z.air = .01 }); await a.waitForFunction(() => AG.cur.st.y < 30); if (!(await a.textContent('#ocbox')).includes('surface')) fail('running out of air did not float the sub up');
+    await a.evaluate(() => { const Z = AG.cur.st, s = Z.st[0]; Z.x = s.x; Z.y = s.y + 10; Z.air = 40; Z.cd = 0 }); await a.keyboard.press('Space'); await ocAns(true); if (await a.evaluate(() => AG.cur.st.air) < 99) fail('the air station did not fill the tank');
+    await a.click('#ocbox >> text=Surface and save'); await a.waitForSelector('.endcard'); if (!(await a.textContent('.endcard')).includes('1 new animal')) fail('the surface card is wrong');
+    if (!(await a.evaluate(() => AG.got('ocean', 'scan') && AG.got('ocean', 'z2')))) fail('Ocean Explorer achievements did not unlock');
+    ok(`Ocean Explorer: 20 animals with facts across 4 zones, the sub steered, a scan logged the clownfish fact, a wrong answer kept the gate shut and a right one opened the twilight zone with its depth fact, no air floated the sub up, an air station refilled it, the trip saved`); await shot(a, 'g-ocean');
     // Dungeon Dash: move, recharge magic with answers, level up, dodge, take the stairs
     await a.evaluate(() => toHub()); await a.click('.tile:has-text("Dungeon Dash")'); await a.waitForSelector('.ddhero');
     const heroes = await a.$$eval('.ddhero > b', b => b.map(x => x.textContent)); if (heroes.length !== 4 || !(await a.isVisible('#dddash'))) fail('hero select or upgrade dashboard missing: ' + heroes.join(', '));

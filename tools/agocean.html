@@ -1,0 +1,163 @@
+<style>
+/* ===== Ocean Explorer ===== */
+.ocbox{margin-top:10px;min-height:70px;padding:12px 16px;border-radius:16px;background:#E0F2FE;color:#0C4A6E;border:3px solid #0EA5E9;font:700 1rem/1.45 "Atkinson Hyperlegible",sans-serif}
+.ocbox .who{display:block;font:800 .8rem "Bricolage Grotesque",sans-serif;text-transform:uppercase;letter-spacing:.05em;color:#0369A1}
+.ocair{display:inline-flex;align-items:center;gap:6px}.ocair i{display:inline-block;width:80px;height:9px;border-radius:99px;background:rgba(255,255,255,.3);overflow:hidden}.ocair i b{display:block;height:100%;background:#4ADE80}
+.oclog{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-top:8px}
+.oclog .c{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px;border-radius:14px;background:#0C4A6E;color:#E0F2FE;text-align:center}
+.oclog .c img{width:96px;height:56px}.oclog .c.unk img{filter:brightness(0) opacity(.45)}.oclog .c b{font:800 .95rem "Bricolage Grotesque",sans-serif}.oclog .c p{margin:0;font-size:.8rem;line-height:1.35;color:#BAE6FD}
+.oczones{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 0}.oczones span{padding:6px 12px;border-radius:99px;font-weight:700;font-size:.9rem}
+</style>
+<script type="text/x-lumen">
+/* ===== Ocean Explorer =====
+   Pilot a little submarine down through the four ocean zones. Scan real sea animals to fill the Sea Log (every fact is true),
+   collect pearls, and keep an eye on your air: bubble vents top it up and air stations refill it for a right answer.
+   A pressure gate between zones opens with a right answer. Saved in ARS('ocean'). ===== */
+const OCW=1600,OCZH=420,OCV=[640,360];
+const OCZ=[{n:'Sunlight zone',m:[0,200],c:'#38BDF8',dark:0,fact:'The sunlight zone goes from the surface down to 200 meters. There is enough light here for plants and algae to grow.'},
+  {n:'Twilight zone',m:[200,1000],c:'#1D4ED8',dark:.45,fact:'The twilight zone goes from 200 to 1,000 meters. Only a little sunlight reaches it, so it is too dark for plants.'},
+  {n:'Midnight zone',m:[1000,4000],c:'#172554',dark:.78,fact:'The midnight zone goes from 1,000 to 4,000 meters. No sunlight reaches it, and many animals here make their own light.'},
+  {n:'Abyss',m:[4000,6000],c:'#0B1026',dark:.88,fact:'The abyss goes from 4,000 to 6,000 meters. The water is cold, about 2 to 4 °C (36 to 39 °F), and the pressure is huge.'}];
+/* the animals: zone, name, how to draw it, and one true fact */
+const OCA=[
+  {id:'clown',z:0,n:'Clownfish',k:'fish',c:'#FF7A1A',s:22,st:3,f:'Clownfish live among sea anemones. A layer of slime on their skin protects them from the anemone\'s stings.'},
+  {id:'turtle',z:0,n:'Green sea turtle',k:'turtle',c:'#3E8E5A',s:46,f:'Green sea turtles get their name from the greenish color of their body fat, which comes from the seagrass and algae they eat.'},
+  {id:'dolphin',z:0,n:'Bottlenose dolphin',k:'mammal',c:'#7C8DA6',s:70,f:'Dolphins are mammals: they breathe air through a blowhole on the top of their head.'},
+  {id:'tang',z:0,n:'Blue tang',k:'fish',c:'#2563EB',c2:'#FACC15',s:26,f:'Blue tangs are surgeonfish. They have a sharp spine near the tail that they can raise to protect themselves.'},
+  {id:'jelly',z:0,n:'Moon jellyfish',k:'jelly',c:'#C7D2FE',s:26,f:'Moon jellyfish have no brain, no heart and no bones. They drift with the currents.'},
+  {id:'manta',z:0,n:'Giant manta ray',k:'ray',c:'#334155',s:90,f:'Giant manta rays can be about 7 meters (23 feet) across, yet they eat tiny plankton.'},
+  {id:'sword',z:1,n:'Swordfish',k:'fish',c:'#64748B',s:60,sw:1,f:'Swordfish can warm their eyes and brain, which helps them see better in cold, dark water.'},
+  {id:'lantern',z:1,n:'Lanternfish',k:'fish',c:'#334155',s:18,glow:'#7DD3FC',f:'Lanternfish make their own light with glowing spots called photophores. There are huge numbers of them in the ocean.'},
+  {id:'gsquid',z:1,n:'Giant squid',k:'squid',c:'#B91C1C',s:90,f:'Giant squid have eyes about as big as dinner plates, some of the largest eyes of any animal.'},
+  {id:'hatchet',z:1,n:'Hatchetfish',k:'fish',c:'#CBD5E1',s:18,deep:1,glow:'#93C5FD',f:'Hatchetfish glow on their bellies to match the faint light from above, so hunters below can\'t see their shadow.'},
+  {id:'barrel',z:1,n:'Barreleye fish',k:'fish',c:'#475569',s:28,dome:1,f:'The barreleye fish has a see-through head. Its tube-shaped eyes can look up through it.'},
+  {id:'angler',z:2,n:'Anglerfish',k:'fish',c:'#3F3F46',s:30,lure:1,glow:'#FDE68A',f:'A female deep-sea anglerfish has a glowing lure on her head that attracts prey in the dark.'},
+  {id:'vamp',z:2,n:'Vampire squid',k:'squid',c:'#7F1D1D',s:42,f:'Despite its name, the vampire squid doesn\'t drink blood. It eats "marine snow": tiny bits of food drifting down.'},
+  {id:'gulper',z:2,n:'Gulper eel',k:'eel',c:'#1F2937',s:72,f:'The gulper eel has a huge mouth that opens like a pelican\'s pouch to scoop up food.'},
+  {id:'sperm',z:2,n:'Sperm whale',k:'mammal',c:'#4B5563',s:140,box:1,f:'Sperm whales dive more than 1,000 meters deep to hunt squid, and can hold their breath for over an hour.'},
+  {id:'dragon',z:2,n:'Dragonfish',k:'fish',c:'#111827',s:34,glow:'#EF4444',f:'Some dragonfish make red light. Most deep-sea animals can\'t see red, so the dragonfish can spot prey without being seen.'},
+  {id:'dumbo',z:3,n:'Dumbo octopus',k:'octo',c:'#F9A8D4',s:28,f:'Dumbo octopuses flap ear-like fins to swim. Some live almost 7,000 meters deep, deeper than any other known octopus.'},
+  {id:'cuke',z:3,n:'Sea cucumber',k:'cuke',c:'#F472B6',s:32,floor:1,f:'Many deep-sea sea cucumbers eat seafloor mud for the tiny bits of food in it, and some can even swim.'},
+  {id:'tripod',z:3,n:'Tripod fish',k:'fish',c:'#94A3B8',s:30,legs:1,floor:1,f:'The tripod fish stands on the seafloor on three long fins and faces into the current to catch food drifting by.'},
+  {id:'gren',z:3,n:'Grenadier',k:'fish',c:'#9CA3AF',s:40,tail:1,f:'Grenadiers, also called rattails, have long, thin tails. They are some of the most common fish in the deep sea.'}];
+const ocS=()=>{const S=ARS('ocean');S.log=S.log||{};S.zones=S.zones||1;return S};
+const ocDepth=y=>{const i=Math.max(0,Math.min(3,Math.floor(y/OCZH))),Z=OCZ[i],f=Math.max(0,Math.min(1,(y-i*OCZH)/OCZH));return Math.round(Z.m[0]+f*(Z.m[1]-Z.m[0]))};
+const ocZone=y=>Math.max(0,Math.min(3,Math.floor(Math.max(0,y)/OCZH)));
+/* ---------- Drawing the animals (facing right; d=-1 flips) ---------- */
+function ocDraw(x,a,X,Y,d,t){const s=a.s,c=a.c;x.save();x.translate(X,Y);x.scale(d,1);const ell=(cx,cy,rx,ry,f)=>{x.fillStyle=f;x.beginPath();x.ellipse(cx,cy,rx,ry,0,0,7);x.fill()},
+  tri=(p,f)=>{x.fillStyle=f;x.beginPath();x.moveTo(p[0],p[1]);for(let i=2;i<p.length;i+=2)x.lineTo(p[i],p[i+1]);x.fill()},eye=(ex,ey,r)=>{ell(ex,ey,r,r,'#fff');ell(ex+r*.25,ey,r*.55,r*.55,'#111')},w=Math.sin(t*6)*s*.06;
+  if(a.k==='fish'){const L=s,H=a.deep?s*.55:s*.32;
+    tri([-L*.45,0,-L*.85,-H*.7+w,-L*.85,H*.7+w],a.c2||shade(c,.8));if(a.tail)tri([-L*.4,-H*.3,-L*1.5,w,-L*.4,H*.3],shade(c,.8));
+    ell(0,0,L*.55,H,c);if(a.st)for(let i=-1;i<=1;i++){x.fillStyle='#fff';x.fillRect(i*L*.28-2,-H*.85,4,H*1.7)}
+    tri([-L*.1,-H*.9,L*.15,-H*1.3,L*.25,-H*.8],shade(c,.75));if(a.sw)tri([L*.5,-2,L*1.2,0,L*.5,2],shade(c,.6));
+    if(a.dome){x.fillStyle='rgba(186,230,253,.45)';x.beginPath();x.ellipse(L*.25,-H*.6,L*.25,H*.6,0,0,7);x.fill();ell(L*.25,-H*.5,2.5,4,'#22C55E')}else eye(L*.3,-H*.2,Math.max(2,s*.07));
+    if(a.lure){x.strokeStyle=shade(c,.8);x.lineWidth=2;x.beginPath();x.moveTo(L*.2,-H*.9);x.quadraticCurveTo(L*.6,-H*2,L*.75,-H*1.3);x.stroke();ell(L*.75,-H*1.3,4,4,'#FDE68A');x.fillStyle='#fff';for(let i=0;i<4;i++)tri([L*.42+i*3,H*.1,L*.45+i*3,H*.45,L*.48+i*3,H*.1],'#fff')}
+    if(a.legs){x.strokeStyle=shade(c,.7);x.lineWidth=2;x.beginPath();x.moveTo(-L*.2,H*.6);x.lineTo(-L*.3,H*2.6);x.moveTo(L*.1,H*.6);x.lineTo(L*.1,H*2.6);x.moveTo(-L*.6,0);x.lineTo(-L*.75,H*2.6);x.stroke()}
+    if(a.glow==='#7DD3FC'){for(let i=0;i<4;i++)ell(-L*.3+i*L*.18,H*.5,1.6,1.6,'#7DD3FC')}if(a.glow==='#93C5FD')ell(0,H*.8,L*.4,2,'#93C5FD');if(a.glow==='#EF4444')ell(L*.32,H*.15,3,2,'#EF4444')}
+  else if(a.k==='mammal'){const L=s,H=a.box?s*.2:s*.17;tri([-L*.45,0,-L*.7,-H*1.1,-L*.7,H*1.1],shade(c,.85));
+    if(a.box){x.fillStyle=c;x.beginPath();x.roundRect(-L*.5,-H,L,H*2,H*.8);x.fill()}else{ell(0,0,L*.5,H,c);tri([L*.45,-H*.2,L*.68,H*.15,L*.45,H*.5],c)}
+    ell(0,H*.45,L*.35,H*.4,tint(c,.35));tri([-L*.05,-H*.9,L*.08,-H*1.7,L*.15,-H*.9],shade(c,.8));eye(L*.3,-H*.15,2.5)}
+  else if(a.k==='turtle'){ell(-s*.25,s*.25,s*.12,s*.08,c);ell(s*.25,s*.25,s*.12,s*.08,c);ell(-s*.3,-s*.2,s*.18,s*.08,c);ell(s*.2,-s*.25,s*.2,s*.08,c);ell(s*.48,0,s*.14,s*.11,c);ell(0,0,s*.4,s*.28,'#7A5634');ell(0,0,s*.3,s*.2,'#9A7350');eye(s*.53,-s*.03,2)}
+  else if(a.k==='ray'){tri([0,-s*.1,-s*.35,0,0,s*.25,s*.35,0],c);tri([-s*.5,-s*.05+w,0,-s*.18,0,s*.15],c);tri([s*.5,-s*.05-w,0,-s*.18,0,s*.15],c);x.strokeStyle=c;x.lineWidth=2;x.beginPath();x.moveTo(0,s*.2);x.lineTo(0,s*.55);x.stroke();ell(0,s*.05,s*.12,s*.06,tint(c,.4))}
+  else if(a.k==='jelly'){x.globalAlpha=.85;x.fillStyle=c;x.beginPath();x.arc(0,0,s*.5,Math.PI,0);x.fill();x.strokeStyle=c;x.lineWidth=1.5;for(let i=0;i<5;i++){x.beginPath();x.moveTo(-s*.4+i*s*.2,0);x.quadraticCurveTo(-s*.4+i*s*.2+Math.sin(t*3+i)*5,s*.5,-s*.4+i*s*.2,s);x.stroke()}ell(0,-s*.15,s*.18,s*.1,'#F0ABFC');x.globalAlpha=1}
+  else if(a.k==='squid'){ell(-s*.15,0,s*.38,s*.13,c);tri([-s*.5,0,-s*.7,-s*.22,-s*.7,s*.22],shade(c,.85));x.strokeStyle=c;x.lineWidth=3;for(let i=-2;i<=2;i++){x.beginPath();x.moveTo(s*.2,i*2);x.quadraticCurveTo(s*.45,i*5+Math.sin(t*4+i)*4,s*.6,i*7);x.stroke()}eye(s*.12,-s*.03,Math.max(3,s*.06))}
+  else if(a.k==='eel'){x.strokeStyle=c;x.lineWidth=5;x.beginPath();x.moveTo(-s*.6,0);for(let i=0;i<=8;i++)x.lineTo(-s*.6+i*s*.09,Math.sin(t*4+i)*5);x.stroke();tri([s*.1,0,s*.55,-s*.25,s*.55,s*.25],c);tri([s*.2,0,s*.52,-s*.17,s*.52,s*.17],'#0B0F19');eye(s*.15,-5,2)}
+  else if(a.k==='octo'){ell(0,0,s*.38,s*.32,c);ell(-s*.38,-s*.12,s*.14,s*.08+Math.sin(t*5)*2,shade(c,.85));ell(s*.38,-s*.12,s*.14,s*.08+Math.sin(t*5)*2,shade(c,.85));x.strokeStyle=c;x.lineWidth=4;for(let i=-2;i<=2;i++){x.beginPath();x.moveTo(i*s*.12,s*.25);x.lineTo(i*s*.16,s*.55);x.stroke()}eye(-s*.1,-s*.03,3);eye(s*.12,-s*.03,3)}
+  else if(a.k==='cuke'){x.globalAlpha=.9;ell(0,0,s*.55,s*.2,c);for(let i=-2;i<=2;i++)ell(i*s*.2,-s*.18,3,4,tint(c,.3));x.globalAlpha=1}
+  x.restore()}
+const ocIcon=a=>{const k='oc'+a.id;if(SQIMG[k])return SQIMG[k];const cv=document.createElement('canvas');cv.width=192;cv.height=112;const x=cv.getContext('2d'),sc=Math.min(1.6,120/Math.max(40,a.s*1.25));x.translate(96,56);x.scale(sc,sc);ocDraw(x,a,a.k==='mammal'||a.k==='ray'?0:0,0,1,0);return SQIMG[k]=cv.toDataURL()};
+
+/* ---------- The game ---------- */
+AG.def({id:'ocean',name:'Ocean Explorer',w:640,h:360,maxW:1280,vh:300,snd:'pets',music:'pets',go:'Dive!',sub:'Explore the ocean zones',
+  help:['Steer your submarine with the arrow keys or WASD, or tap where you want to go.','Swim close to an animal and press Space to scan it. Every scan adds a true fact to your Sea Log.','Watch your air! Swim through bubbles to top it up, or answer a question at an air station (🫧) to fill it. Run out, and the sub floats back to the surface.','A pressure gate blocks each deeper zone. Answer a question to open it for good.'],
+  keys:[['← → ↑ ↓','steer'],['Space','scan or use'],['P','pause']],
+  ach:{scan:{i:'🔍',n:'Marine biologist',d:'Scan your first sea animal',gems:1},z2:{i:'🌆',n:'Into the twilight',d:'Open the gate to the twilight zone',gems:1},z3:{i:'🌑',n:'Midnight diver',d:'Open the gate to the midnight zone',gems:2},
+    z4:{i:'🕳️',n:'Abyss explorer',d:'Open the gate to the abyss',gems:2},log10:{i:'📒',n:'Field notes',d:'Scan 10 different animals',gems:2},logall:{i:'🐋',n:'Ocean expert',d:'Scan all 20 animals',gems:5},
+    pearls:{i:'⚪',n:'Pearl diver',d:'Collect 50 pearls in all',gems:2},floor:{i:'🪨',n:'Touch the bottom',d:'Reach the seafloor, 6,000 meters down',gems:2}},
+  places:()=>OCZ.map((z,i)=>({on:i<ocS().zones,i:['☀️','🌆','🌑','🕳️'][i],n:z.n,s:`${z.m[0].toLocaleString()} to ${z.m[1].toLocaleString()} m`,how:'Open its pressure gate'})),
+  start(){const S=ocS(),R=krng(42),t=AD.tier('ocean'),an=[],pe=[],ve=[],st=[];
+    for(const a of OCA){const y0=a.z*OCZH,y=a.floor?OCZH*4-26:y0+70+R()*(OCZH-140),x=120+R()*(OCW-240);an.push({a,x,y,x0:x,y0:y,d:R()<.5?1:-1,r:a.floor?0:60+R()*160,ph:R()*6,sc:0})}
+    for(let i=0;i<36;i++)pe.push({x:60+R()*(OCW-120),y:40+R()*(OCZH*4-90),on:1});
+    for(let z=0;z<4;z++){for(let i=0;i<2;i++)ve.push({x:200+R()*(OCW-400),y:z*OCZH+OCZH-30,cd:0});if(z)st.push({x:300+R()*(OCW-600),y:z*OCZH+70})}
+    const snow=Array.from({length:60},()=>({x:R()*640,y:R()*360,v:6+R()*10}));
+    return{x:160,y:20,vx:0,vy:0,d:1,air:100,an,pe,ve,st,snow,t:0,tier:t,tx:null,ty:null,scan:null,scanT:0,cd:0,trip:{scan:0,pearls:0,deep:0},hudT:0,gateAsk:0,msgT:0,cam:[0,0]}},
+  ready(Z){ocMsg(Z,'Captain\'s log',`Dive in! You are in the ${OCZ[0].n}. Swim close to animals and press Space to scan them.`)},
+  step(dt,Z){const S=ocS();Z.t+=dt;if(Z.cd>0)Z.cd-=dt;
+    let ax=(AG.held.has('right')?1:0)-(AG.held.has('left')?1:0),ay=(AG.held.has('down')?1:0)-(AG.held.has('up')?1:0);
+    if(ax||ay)Z.tx=null;else if(Z.tx!=null){const dx=Z.tx-Z.x,dy=Z.ty-Z.y,L=Math.hypot(dx,dy);if(L<8)Z.tx=null;else{ax=dx/L;ay=dy/L}}
+    const sp=150;Z.vx+=(ax*sp-Z.vx)*Math.min(1,dt*4);Z.vy+=(ay*sp-Z.vy)*Math.min(1,dt*4);if(ax)Z.d=ax>0?1:-1;
+    const maxY=S.zones>=4?OCZH*4-30:S.zones*OCZH-24;Z.x=Math.max(30,Math.min(OCW-30,Z.x+Z.vx*dt));Z.y=Math.max(8,Math.min(maxY,Z.y+Z.vy*dt));
+    /* the next gate: ask once you press against it */
+    if(S.zones<4&&Z.y>=maxY-1&&Z.vy>20&&!Z.gateAsk&&Z.cd<=0)ocGate(Z);
+    const zi=ocZone(Z.y),dep=ocDepth(Z.y);if(dep>Z.trip.deep)Z.trip.deep=dep;if(dep>=5900)AG.ach('ocean','floor');
+    /* air */
+    if(Z.y<14)Z.air=Math.min(100,Z.air+dt*30);else Z.air-=dt*[.8,1,1.2,1.4][zi];
+    if(Z.air<=0){Z.air=100;Z.x=160;Z.y=20;Z.vx=Z.vy=0;Z.tx=null;ocMsg(Z,'Out of air','Your sub floated back to the surface to refill. Watch for bubbles on the way down!');SND.play('no')}
+    for(const v of Z.ve){if(v.cd>0)v.cd-=dt;else if(Math.abs(Z.x-v.x)<26&&Z.y<v.y&&Z.y>v.y-150){v.cd=8;Z.air=Math.min(100,Z.air+30);SND.play('pop');ocMsg(Z,'','Fresh bubbles! +30 air 🫧')}}
+    /* animals swim; scanning */
+    let near=null,nd=1e9;for(const n of Z.an){if(n.r){n.ph+=dt*.5;const nx=n.x0+Math.sin(n.ph)*n.r;n.d=nx>n.x?1:-1;n.x=nx;n.y=n.y0+Math.sin(n.ph*1.7)*10}
+      const dd=Math.hypot(n.x-Z.x,n.y-Z.y)-n.a.s*.4;if(dd<70&&dd<nd&&!S.log[n.a.id]){near=n;nd=dd}}
+    Z.near=near;if(Z.scan){if(Z.scan!==near)Z.scan=null;else if((Z.scanT+=dt)>=1)ocScanned(Z,near)}
+    for(const p of Z.pe)if(p.on&&Math.abs(p.x-Z.x)<20&&Math.abs(p.y-Z.y)<18){p.on=0;Z.trip.pearls++;S.pearls=(S.pearls||0)+1;SND.play('coin');if(S.pearls>=50)AG.ach('ocean','pearls')}
+    for(const s of Z.snow){s.y+=s.v*dt;if(s.y>360){s.y=0;s.x=(s.x*7.3+13)%640}}
+    if(Z.msgT>0)Z.msgT-=dt;if((Z.hudT+=dt)>.15){Z.hudT=0;ocHud(Z)}},
+  draw(a,Z){const x=AG.cx;if(!x)return;const S=ocS(),cx=Math.round(Math.max(0,Math.min(OCW-640,Z.x-320))),cy=Math.round(Math.max(-70,Math.min(OCZH*4+10-360,Z.y-170)));Z.cam[0]=cx;Z.cam[1]=cy;
+    x.drawImage(ocBack(),0,cy+70,1,360,0,0,640,360);
+    if(cy<0){const g=ocSky();x.drawImage(g,0,0,640,-cy)}
+    x.save();x.translate(-cx,-cy);
+    if(cy<OCZH)for(let i=0;i<5;i++){x.fillStyle='rgba(255,255,255,.07)';x.beginPath();const bx=(i*360+Z.t*8)%(OCW+200)-100;x.moveTo(bx,0);x.lineTo(bx+60,0);x.lineTo(bx+160,OCZH*.9);x.lineTo(bx+40,OCZH*.9);x.fill()}
+    x.fillStyle='#3B2F2A';x.fillRect(0,OCZH*4-14,OCW,40);x.fillStyle='#4A3B33';for(let i=0;i<OCW;i+=90)x.fillRect(i,OCZH*4-20,50,8);
+    /* gates */
+    for(let z=1;z<4;z++){const gy=z*OCZH;if(z>=S.zones){x.fillStyle='rgba(125,211,252,.25)';x.fillRect(0,gy-6,OCW,12);x.strokeStyle='#7DD3FC';x.lineWidth=2;x.setLineDash([10,8]);x.beginPath();x.moveTo(0,gy);x.lineTo(OCW,gy);x.stroke();x.setLineDash([]);
+      for(let i=60;i<OCW;i+=200){x.fillStyle='#0EA5E9';x.beginPath();x.arc(i,gy,9,0,7);x.fill();x.fillStyle='#fff';x.font='bold 11px sans-serif';x.textAlign='center';x.fillText('🔒',i,gy+4)}}}
+    for(const v of Z.ve){x.fillStyle='#57534E';x.fillRect(v.x-12,v.y,24,10);x.fillStyle=v.cd>0?'rgba(255,255,255,.25)':'rgba(255,255,255,.7)';for(let i=0;i<5;i++){const by=v.y-((Z.t*60+i*30)%150);x.beginPath();x.arc(v.x+Math.sin(by*.08)*6,by,3+i%3,0,7);x.fill()}}
+    for(const s of Z.st){x.fillStyle='#F59E0B';x.fillRect(s.x-3,s.y,6,OCZH-90);x.fillStyle='#FDE68A';x.beginPath();x.arc(s.x,s.y,14,0,7);x.fill();x.font='16px sans-serif';x.textAlign='center';x.fillText('🫧',s.x,s.y+6)}
+    for(const p of Z.pe)if(p.on){x.fillStyle='#F5F5F4';x.beginPath();x.arc(p.x,p.y,5,0,7);x.fill();x.fillStyle='#fff';x.fillRect(p.x-2,p.y-3,2,2)}
+    for(const n of Z.an){if(n.x<cx-150||n.x>cx+790||n.y<cy-100||n.y>cy+460)continue;ocDraw(x,n.a,n.x,n.y,n.d,Z.t+n.ph);if(S.log[n.a.id]){x.fillStyle='#4ADE80';x.font='bold 12px sans-serif';x.textAlign='center';x.fillText('✓',n.x,n.y-n.a.s*.4-6)}}
+    ocSub(x,Z);
+    x.restore();
+    /* darkness, with the sub's headlight */
+    const dk=ocDark(Z.y);if(dk>0){const D=ocMask();const c=D.getContext('2d');c.globalCompositeOperation='source-over';c.clearRect(0,0,640,360);c.fillStyle=`rgba(2,6,23,${dk})`;c.fillRect(0,0,640,360);
+      c.globalCompositeOperation='destination-out';const L=ocLight();c.drawImage(L,Z.x-cx-180+Z.d*60,Z.y-cy-180);c.drawImage(L,Z.x-cx-60,Z.y-cy-60,120,120);x.drawImage(D,0,0);
+      for(const n of Z.an)if(n.a.glow&&n.x>cx-50&&n.x<cx+690&&n.y>cy-50&&n.y<cy+410){x.fillStyle=n.a.glow;x.globalAlpha=.55+.3*Math.sin(Z.t*3+n.ph);x.beginPath();x.arc(n.x-cx+(n.a.lure?n.d*n.a.s*.75:0),n.y-cy-(n.a.lure?n.a.s*.4:0),n.a.lure?5:3,0,7);x.fill();x.globalAlpha=1}}
+    x.fillStyle='rgba(255,255,255,.35)';if(Z.y>OCZH)for(const s of Z.snow)x.fillRect(s.x,s.y,1.5,1.5);
+    if(Z.near){const n=Z.near,sx=n.x-cx,sy=n.y-cy;x.strokeStyle='#FDE047';x.lineWidth=2;x.beginPath();x.arc(sx,sy,n.a.s*.55+8,-Math.PI/2,-Math.PI/2+(Z.scan?Z.scanT:1)*Math.PI*2);x.stroke()}},
+  key(k,down,Z){if(down&&(k==='act'||k==='enter'))ocAct(Z)},
+  tap(px,py,Z){Z.tx=px+Z.cam[0];Z.ty=py+Z.cam[1];const n=Z.near;if(n&&Math.hypot(n.x-Z.tx,n.y-Z.ty)<n.a.s*.6+20)ocAct(Z)},
+  timeout:Z=>ocTrip(Z,'time')});
+/* the backdrop: a 1-pixel strip, stretched; the sky; the darkness mask and the headlight */
+const OCC={};
+function ocBack(){if(OCC.bg)return OCC.bg;const c=document.createElement('canvas');c.width=1;c.height=OCZH*4+80;const x=c.getContext('2d'),g=x.createLinearGradient(0,70,0,OCZH*4+70);
+  g.addColorStop(0,'#7DD3FC');g.addColorStop(.25,'#0EA5E9');g.addColorStop(.26,'#1D4ED8');g.addColorStop(.5,'#1E3A8A');g.addColorStop(.51,'#172554');g.addColorStop(.75,'#0F1A3D');g.addColorStop(.76,'#0B1026');g.addColorStop(1,'#060814');x.fillStyle=g;x.fillRect(0,70,1,OCZH*4+10);x.fillStyle='#BAE6FD';x.fillRect(0,0,1,70);return OCC.bg=c}
+function ocSky(){if(OCC.sky)return OCC.sky;const c=document.createElement('canvas');c.width=640;c.height=70;const x=c.getContext('2d'),g=x.createLinearGradient(0,0,0,70);g.addColorStop(0,'#BFE6FF');g.addColorStop(1,'#E9F8FF');x.fillStyle=g;x.fillRect(0,0,640,70);x.fillStyle='#FFE27A';x.beginPath();x.arc(560,24,14,0,7);x.fill();x.fillStyle='#fff';for(const [a,b] of [[120,26],[330,18]]){x.beginPath();x.arc(a,b,10,0,7);x.arc(a+12,b-4,12,0,7);x.arc(a+26,b,9,0,7);x.fill()}x.fillStyle='rgba(255,255,255,.7)';x.fillRect(0,66,640,4);return OCC.sky=c}
+const ocMask=()=>{if(!OCC.mask){OCC.mask=document.createElement('canvas');OCC.mask.width=640;OCC.mask.height=360}return OCC.mask};
+function ocLight(){if(OCC.light)return OCC.light;const c=document.createElement('canvas');c.width=c.height=360;const x=c.getContext('2d'),g=x.createRadialGradient(180,180,10,180,180,180);g.addColorStop(0,'rgba(0,0,0,1)');g.addColorStop(.5,'rgba(0,0,0,.9)');g.addColorStop(1,'rgba(0,0,0,0)');x.fillStyle=g;x.fillRect(0,0,360,360);return OCC.light=c}
+const ocDark=y=>{const i=ocZone(y),f=(Math.max(0,y)-i*OCZH)/OCZH,a=OCZ[i].dark,b=OCZ[Math.min(3,i+1)].dark;return a+(b-a)*Math.max(0,f-.6)/.4*(i<3?1:0)};
+function ocSub(x,Z){const X=Z.x,Y=Z.y,d=Z.d,t=Z.t;x.save();x.translate(X,Y);x.scale(d,1);x.fillStyle='#FACC15';x.beginPath();x.ellipse(0,0,26,14,0,0,7);x.fill();x.fillStyle='#EAB308';x.fillRect(-6,-22,14,10);x.fillRect(4,-28,3,8);
+  x.fillStyle='#7DD3FC';x.beginPath();x.arc(8,-1,6,0,7);x.fill();x.strokeStyle='#A16207';x.lineWidth=2;x.stroke();x.fillStyle='#A16207';x.fillRect(-30,-3,6,6);x.fillStyle='#78716C';const p=Math.sin(t*30)*6;x.fillRect(-34,-p/2-1,3,p+2);x.restore()}
+/* ---------- What happens ---------- */
+function ocMsg(Z,who,t){const e=$('ocbox');Z.msgT=4;if(e)e.innerHTML=`${who?`<span class="who">${esc(who)}</span>`:''}${t}<div class="row" style="margin-top:8px"><button class="abtn sec sm" onclick="AG.cur&&AG.finish(ocTrip(AG.cur.st,'surface'))">⬆️ Surface and save</button></div>`}
+function ocAct(Z){const s=Z.st.find(q=>Math.hypot(q.x-Z.x,q.y-Z.y)<40);if(s){if(Z.cd<=0)ocStation(Z);return}if(Z.near&&!Z.scan){Z.scan=Z.near;Z.scanT=0;SND.play('pop')}}
+function ocScanned(Z,n){const S=ocS(),a=n.a;Z.scan=null;S.log[a.id]=1;Z.trip.scan++;SYNC();aqBump('ocs');SND.play('ok');AG.ach('ocean','scan');const k=Object.keys(S.log).length;if(k>=10)AG.ach('ocean','log10');if(k>=OCA.length)AG.ach('ocean','logall');
+  ocMsg(Z,`New in your Sea Log: ${a.n}`,`${esc(a.f)} <span class="sol">(${k} of ${OCA.length} found)</span>`)}
+async function ocStation(Z){Z.cd=2;const ok=await AG.ask({title:'Air station',intro:'Answer to fill your air tank!'});if(!AG.on('ocean')||AG.cur.st!==Z)return;if(ok==null)return;
+  if(ok){Z.air=100;ocMsg(Z,'Air station','Tank full! 🫧')}else{Z.air=Math.min(100,Z.air+20);ocMsg(Z,'Air station','+20 air. Answer right next time for a full tank.')}}
+async function ocGate(Z){const S=ocS(),z=S.zones;Z.gateAsk=1;Z.vy=-40;const ok=await AG.ask({title:`Pressure gate: ${OCZ[z].n}`,intro:'Answer to open the gate to the next zone!'});Z.gateAsk=0;Z.cd=3;if(!AG.on('ocean')||AG.cur.st!==Z||ok==null)return;
+  if(ok){S.zones=z+1;SYNC();SND.play('unlock');AG.ach('ocean','z'+(z+1));ocMsg(Z,`Gate open: ${OCZ[z].n}!`,esc(OCZ[z].fact))}else ocMsg(Z,'The gate stays shut','Swim back down and try another question when you are ready.')}
+function ocHud(Z){const e=$('ochud');if(!e)return;const zi=ocZone(Z.y),a=Math.max(0,Z.air);e.innerHTML=`<span>${['☀️','🌆','🌑','🕳️'][zi]} ${OCZ[zi].n} · ${ocDepth(Z.y).toLocaleString()} m</span><span class="ocair">🫧 <i><b style="width:${a}%;background:${a<25?'#F87171':a<50?'#FACC15':'#4ADE80'}"></b></i></span><span>⚪ ${Z.trip.pearls}</span><span>📒 ${Object.keys(ocS().log).length}/${OCA.length}</span>${Z.near?`<span>🔍 ${esc(Z.near.a.n)}: press Space</span>`:''}`}
+function ocTrip(Z,why){const S=ocS(),gems=Math.min(4,Math.floor(Z.trip.pearls/6))+Math.min(3,Z.trip.scan);if(gems)addGems(gems);S.deep=Math.max(S.deep||0,Z.trip.deep);S.trips=(S.trips||0)+1;SND.play('win','ui');
+  return{why,scan:Z.trip.scan,pearls:Z.trip.pearls,deep:Z.trip.deep,gems}}
+/* ---------- The menu ---------- */
+GVIEW.ocean=function(){const C=AG.cur&&AG.cur.id==='ocean'?AG.cur:null;
+  if(C&&['load','play','crash'].includes(C.phase))return AG.screen('ocean',{over:'<div class="khud2" id="ochud"></div>',below:`<div class="ocbox" id="ocbox" aria-live="polite"></div>${AG.pad([[{k:'left',l:'◀',a:'Left'},{k:'up',l:'▲',a:'Up'},{k:'down',l:'▼',a:'Down'},{k:'right',l:'▶',a:'Right'}],[{k:'act',l:'🔍',a:'Scan or use'}]])}`});
+  const S=ocS(),r=C&&C.phase==='end'?C.res:null,n=Object.keys(S.log).length;
+  const card=r?`<div class="gcard endcard" style="margin-bottom:16px"><div class="big" aria-hidden="true">${r.why==='time'?'🌙':'🐠'}</div><h3>${r.why==='time'?'Play time is over for today':'Back on the surface!'}</h3><p>${r.scan} new animal${r.scan===1?'':'s'} · ⚪ ${r.pearls} pearls · deepest ${r.deep.toLocaleString()} m${r.gems?` · 💎 +${r.gems}`:''}</p></div>`:'';
+  return `<div class="gworld">${clouds()}${gameHead('Ocean Explorer','Dive through the ocean zones and discover real sea animals.')}${outOfTime()?restCard():''}${card}${subjChips()}
+  <div class="gcard"><div class="split"><h3>📒 Sea Log</h3><span class="sol">${n} of ${OCA.length} found · deepest dive ${(S.deep||0).toLocaleString()} m</span></div>
+  <div class="oczones">${OCZ.map((z,i)=>`<span style="background:${i<S.zones?z.c:'#CBD5E1'};color:${i<S.zones?'#fff':'#475569'}">${i<S.zones?'':'🔒 '}${z.n}: ${z.m[0].toLocaleString()} to ${z.m[1].toLocaleString()} m</span>`).join('')}</div>
+  ${OCZ.map((z,i)=>`<h4 style="margin:14px 0 4px">${['☀️','🌆','🌑','🕳️'][i]} ${z.n}</h4><div class="oclog">${OCA.filter(a=>a.z===i).map(a=>{const f=S.log[a.id];return `<div class="c ${f?'':'unk'}"><img src="${ocIcon(a)}" alt="${f?esc(a.n):'Not found yet'}"><b>${f?esc(a.n):'???'}</b>${f?`<p>${esc(a.f)}</p>`:'<p>Not found yet</p>'}</div>`}).join('')}</div>`).join('')}</div>
+  <div style="margin-top:14px">${AG.intro('ocean','AG.play(\'ocean\')')}</div></div>`};
+AQS.ocs={i:'🐠',t:'Scan 2 sea animals in Ocean Explorer',n:2,g:'ocean'};
+GAMES.push({id:'ocean',n:'Ocean Explorer',p:'Pilot a submarine through the ocean zones, scan real sea animals for true facts and open the pressure gates with smart answers.'});
+ART.ocean=()=>sceneSvg(`<rect x="0" y="0" width="200" height="130" fill="#0EA5E9"/><rect x="0" y="70" width="200" height="60" fill="#1D4ED8"/><ellipse cx="80" cy="60" rx="30" ry="16" fill="#FACC15"/><rect x="74" y="36" width="14" height="12" fill="#EAB308"/><circle cx="90" cy="59" r="6" fill="#7DD3FC" stroke="#A16207" stroke-width="2"/><path d="M140 90q8 -10 16 0q-8 10 -16 0z" fill="#FF7A1A"/><path d="M140 90l-8 -6v12z" fill="#FF7A1A"/><circle cx="40" cy="30" r="3" fill="#fff" opacity=".7"/><circle cx="46" cy="20" r="2" fill="#fff" opacity=".7"/>`,'#38BDF8','#0369A1');
+</script>
