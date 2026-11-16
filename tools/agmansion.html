@@ -48,18 +48,22 @@ const MMCLUE={hall:['A note behind the painting: "The coat hooks are numbered in
 const mmClue=(r,i,P)=>{const c=MMCLUE[r][i];return typeof c==='function'?c(P[r]):c};
 
 AG.def({id:'mansion',name:'Mystery Mansion',w:640,h:340,maxW:1280,vh:470,snd:'blocks',music:'blocks',go:'Enter the mansion',sub:'Find the five golden gears',
-  help:['Tap things in the room (or use the buttons under the picture) to look at them.','Two clue notes in each room open when you answer a question. Then the lock asks a logic puzzle, and the golden gear is yours.','Each gear opens the next room. Put all five in the Great Clock in the tower. And look out for Pip the mouse!'],
-  keys:[['Tab','move between things'],['Enter','look'],['P','pause']],timeup:true,
+  help:['You watch the mansion through security cameras. Turn the camera with the arrow keys or WASD; the arrows on the sides switch cameras (rooms).','Tap things to look at them, or point the middle of the camera at them and press Space. The scale at the bottom swings toward the nearest thing to look at.','Two clue notes in each room open when you answer a question. Then the lock asks a logic puzzle, and the golden gear is yours.','Each gear opens the next room. Put all five in the Great Clock in the tower. And look out for Pip the mouse!'],
+  keys:[['← → ↑ ↓','turn the camera'],['Space','snap what is in the middle'],['Q E','switch cameras'],['P','pause']],timeup:true,
   ach:{gear:{i:'⚙️',n:'First gear',d:'Find a golden gear',gems:1},clock:{i:'🕰️',n:'Clockwork hero',d:'Start the Great Clock',gems:5},pip:{i:'🐭',n:'Pip\'s friend',d:'Find Pip in all five rooms',gems:2},
     sharp:{i:'🧠',n:'Sharp mind',d:'Open a lock on the first try',gems:1},again:{i:'🔁',n:'Mystery lover',d:'Solve the mansion twice',gems:3}},
   places:()=>MMR.map((r,i)=>({on:mmOpen(i),i:r.e,n:r.n,s:mmS().gears[r.id]?'⚙️ Gear found':'Open',how:i?`Find the gear in the ${MMR[i-1].n}`:''})),
   start(o){const S=mmS();let i=MMR.findIndex(r=>r.id===(o&&o.room||S.room));if(i<0||!mmOpen(i))i=Math.max(0,MMR.findIndex((r,j)=>mmOpen(j)&&!S.gears[r.id]));if(i<0)i=5;
-    return{room:MMR[i].id,P:mmPuzzles(),hov:null,pz:null,msg:'',t:0,sort:[],trip:{gears:0,pip:0},spin:0}},
-  ready(Z){mmEnter(Z,Z.room,1);const cv=$('agcv');if(cv){cv.onpointermove=e=>{const r=cv.getBoundingClientRect();Z.hov=mmHit(Z,(e.clientX-r.left)/r.width*640,(e.clientY-r.top)/r.height*340);cv.style.cursor=Z.hov?'pointer':''};cv.onpointerleave=()=>{Z.hov=null}}},
-  step(dt,Z){Z.t+=dt;if(Z.spin>0){Z.spin+=dt;if(Z.spin>3.2){Z.spin=0;AG.finish(mmTrip(Z,'clock'))}}},
-  draw(a,Z){const x=AG.cx;if(!x)return;mmDraw(x,Z);const o=Z.hov&&MMO[Z.room].find(q=>q[0]===Z.hov);if(o&&o[2]!=='pip'){x.strokeStyle='#FDE047';x.lineWidth=3;x.setLineDash([8,6]);x.strokeRect(o[3]-4,o[4]-4,o[5]+8,o[6]+8);x.setLineDash([])}},
-  key(){},
-  tap(px,py,Z){const id=mmHit(Z,px,py);if(id)mmLook(Z,id)},
+    return{room:MMR[i].id,P:mmPuzzles(),hov:null,pz:null,msg:'',t:0,sort:[],trip:{gears:0,pip:0},spin:0,ptr:null,ptrT:-9,cam:[320,190],snap:0,stat:0,inT:0}},
+  ready(Z){mmEnter(Z,Z.room,1);const cv=$('agcv');if(cv){cv.style.cursor='none';cv.onpointermove=e=>{const r=cv.getBoundingClientRect();Z.ptr=[(e.clientX-r.left)/r.width*640,(e.clientY-r.top)/r.height*340];Z.ptrT=Z.t};cv.onpointerleave=()=>{Z.ptr=null}}},
+  step(dt,Z){Z.t+=dt;if(Z.spin>0){Z.spin+=dt;if(Z.spin>3.2){Z.spin=0;AG.finish(mmTrip(Z,'clock'))}}
+    /* turn the camera: arrow keys or WASD (or the touch pad) */
+    const dx=(AG.held.has('right')?1:0)-(AG.held.has('left')?1:0),dy=(AG.held.has('down')?1:0)-(AG.held.has('up')?1:0);if(dx||dy){Z.cam[0]+=dx*230*dt;Z.cam[1]+=dy*230*dt;Z.ptr=null}mmClamp(Z);
+    if(Z.snap>0)Z.snap-=dt;if(Z.stat>0)Z.stat-=dt;const r=mmRet(Z);Z.hov=Z.stat>0?null:mmHit(Z,...mmScene(Z,r[0],r[1]))},
+  draw(a,Z){const x=AG.cx;if(!x)return;x.fillStyle='#0B0910';x.fillRect(0,0,640,340);x.save();x.translate(320,170);x.scale(MMZ,MMZ);x.translate(-Z.cam[0],-Z.cam[1]);mmDraw(x,Z);
+    const o=Z.hov&&MMO[Z.room].find(q=>q[0]===Z.hov);if(o&&o[2]!=='pip')mmFocusBox(x,o[3]-5,o[4]-5,o[5]+10,o[6]+10,'#FDE047');x.restore();mmViewfinder(x,Z)},
+  key(k,down,Z){if(!down)return;if(k==='prev'||k==='next')return mmCamStep(Z,k==='next'?1:-1);if((k==='act'||k==='enter')&&Z.hov){Z.snap=.32;SND.play('click');mmLook(Z,Z.hov)}},
+  tap(px,py,Z){if(py>130&&py<210&&(px<56||px>584))return mmCamStep(Z,px<56?-1:1);const id=mmHit(Z,...mmScene(Z,px,py));if(id){Z.snap=.32;SND.play('click');mmLook(Z,id)}},
   timeout:Z=>mmTrip(Z,'time')});
 const mmHit=(Z,px,py)=>{const o=MMO[Z.room].find(q=>px>=q[3]&&px<=q[3]+q[5]&&py>=q[4]&&py<=q[4]+q[6]);return o?o[0]:null};
 /* ---------- The rooms: cozy isometric interiors (two papered walls, a floor, shaded furniture) ---------- */
@@ -97,6 +101,9 @@ function mmBack(r){if(MMB[r])return MMB[r];const cv=document.createElement('canv
       x.fillStyle=lg(0,0,0,30,[P.wain,shade(P.wain,.8)]);x.fillRect(0,0,1,30);x.fillStyle='rgba(255,255,255,.1)';for(let s=.03;s<1;s+=.09)x.fillRect(s,5,.06,1),x.fillRect(s,24,.06,1),x.fillRect(s,5,.004,20),x.fillRect(s+.056,5,.004,20);x.fillStyle=P.trim;x.fillRect(0,30,1,2.5)}
     x.fillStyle=P.trim;x.fillRect(0,MI.H-5,1,5);x.fillStyle=shade(P.trim,.8);x.fillRect(0,MI.H-6.5,1,1.5);x.fillStyle=shade(P.wain,.6);x.fillRect(0,0,1,4)});
   poly([mip(0,0),mip(0,0,MI.H),mip(0,0,MI.H).map((c,i)=>c+(i?0:3)),mip(0,0).map((c,i)=>c+(i?0:3))],'rgba(0,0,0,.18)');
+  /* the box: wall tops with thickness, wall ends and a floor slab */
+  {const t=.035;poly([mip(0,1,MI.H),mip(0,0,MI.H),mip(-t,-t,MI.H),mip(-t,1,MI.H)],shade(P.trim,.85));poly([mip(0,0,MI.H),mip(1,0,MI.H),mip(1,-t,MI.H),mip(-t,-t,MI.H)],P.trim);
+    poly([mip(0,1,0),mip(0,1,MI.H),mip(-t,1,MI.H),mip(-t,1,-14)],shade(P.wl,.55));poly([mip(1,0,0),mip(1,0,MI.H),mip(1,-t,MI.H),mip(1,-t,-14)],shade(P.wr,.5))}
   /* ---- floor ---- */
   plane('floor',()=>{x.fillStyle=P.f1;x.fillRect(0,0,1,1);
     if(P.fl==='wood'){for(let i=0;i<14;i++){x.fillStyle=i%2?P.f1:P.f2;x.fillRect(i/14,0,1/14,1);x.fillStyle='rgba(0,0,0,.18)';x.fillRect(i/14,0,.002,1);for(let j=0;j<4;j++){const y0=((i*37+j*29)%100)/100;x.fillRect(i/14,y0,1/14,.003)}}}
@@ -162,6 +169,8 @@ function mmBack(r){if(MMB[r])return MMB[r];const cv=document.createElement('canv
   if(r==='hall')pot(.9,.86,.8,'#F472B6');
   if(r==='kitchen')pot(.88,.3,.8,null);
   if(r==='green'){pot(.6,.84,.9,'#F472B6');pot(.45,.82,.8,'#FDE047');for(const u of [.25,.7]){const p=mip(u,0,MI.H-4);x.strokeStyle='#78716C';x.lineWidth=1;x.beginPath();x.moveTo(p[0],p[1]);x.lineTo(p[0],p[1]+22);x.stroke();x.fillStyle='#A16207';x.beginPath();x.ellipse(p[0],p[1]+26,10,5,0,0,7);x.fill();for(let k=0;k<5;k++){x.strokeStyle='#2E7D32';x.lineWidth=2;x.beginPath();x.moveTo(p[0]-6+k*3,p[1]+27);x.quadraticCurveTo(p[0]-10+k*5,p[1]+40,p[0]-7+k*3.5,p[1]+50);x.stroke()}}}
+  /* the floor slab's front edges */
+  poly([mip(-.035,1,0),mip(1,1,0),mip(1,1,-14),mip(-.035,1,-14)],shade(P.f2||P.f1,.55));poly([mip(1,1,0),mip(1,-.035,0),mip(1,-.035,-14),mip(1,1,-14)],shade(P.f2||P.f1,.42));
   /* warm light, and darker corners */
   x.fillStyle=rg(330,200,120,380,['rgba(255,200,120,0)','rgba(20,10,20,.42)']);x.fillRect(0,0,640,340);
   return MMB[r]=cv}
@@ -179,9 +188,51 @@ function mmDraw(x,Z){const r=Z.room,t=Z.t,S=mmS(),calm=calmOn();x.drawImage(mmBa
     MMR.slice(0,5).forEach((q,i)=>{const [X,Y]=mip(.3+i*.1,.62,0),on=S.gears[q.id];x.fillStyle='rgba(0,0,0,.3)';x.beginPath();x.ellipse(X,Y+3,16,7,0,0,7);x.fill();C(X,Y-6,14,on?'#F2C14E':'#3A3358');x.strokeStyle=on?'#A87420':'#57534E';x.lineWidth=2.5;x.beginPath();x.arc(X,Y-6,14,0,7);x.stroke();x.font='15px sans-serif';x.textAlign='center';x.fillText(on?'⚙️':'?',X,Y-1)})}
   /* Pip peeks out once found */
   const pp=MMO[r].find(q=>q[2]==='pip');if(pp){const px=pp[3]+pp[5]/2,py=pp[4]+pp[6]-5;if(S.pip[r]){C(px,py,6,'#A8A29E');C(px-4,py-5,2.8,'#F9A8D4');C(px+4,py-5,2.8,'#F9A8D4');C(px-2,py-1,1,'#111');C(px+2,py-1,1,'#111');C(px,py+2,1.2,'#F472B6')}else if(((t*.7)|0)%4!==0){C(px-2.5,py,1.4,'#FDE68A');C(px+2.5,py,1.4,'#FDE68A')}}
-  if(S.gears[r]){x.font='24px sans-serif';x.textAlign='center';x.fillText('⚙️',612,30)}}
+}
+/* ---------- The camera view: corner brackets, thirds, the focus ring, an exposure scale that finds clues ---------- */
+const MMZ=1.75;
+if(!AGKEY.q){AGKEY.q='prev';AGKEY.e='next'}
+/* screen <-> room (the camera looks at Z.cam, zoomed in) */
+const mmScene=(Z,px,py)=>[(px-320)/MMZ+Z.cam[0],(py-170)/MMZ+Z.cam[1]];
+const mmScr=(Z,sx,sy)=>[(sx-Z.cam[0])*MMZ+320,(sy-Z.cam[1])*MMZ+170];
+function mmClamp(Z){const hw=320/MMZ,hh=170/MMZ;Z.cam[0]=Math.max(hw-30,Math.min(640-hw+30,Z.cam[0]));Z.cam[1]=Math.max(hh-24,Math.min(350-hh+10,Z.cam[1]))}
+/* where the focus ring is: the pointer if it moved lately, else the middle of the view */
+const mmRet=Z=>Z.ptr&&Z.t-Z.ptrT<3?Z.ptr:[320,170];
+/* point the camera at a thing (also used by the tests) */
+function mmAim(Z,id){const o=MMO[Z.room].find(q=>q[0]===id);if(!o)return;Z.cam=[o[3]+o[5]/2,o[4]+o[6]/2];mmClamp(Z)}
+/* the next or previous room that's open */
+function mmCamStep(Z,d){if(Z.spin)return;let i=MMR.findIndex(q=>q.id===Z.room);for(let n=0;n<MMR.length;n++){i=(i+d+MMR.length)%MMR.length;if(mmOpen(i))break}if(MMR[i].id!==Z.room){SND.play('click');mmEnter(Z,MMR[i].id)}}
+const MMNOISE=(()=>{let c=null;return()=>{if(c)return c;c=document.createElement('canvas');c.width=160;c.height=90;const x=c.getContext('2d'),im=x.createImageData(160,90);for(let i=0;i<im.data.length;i+=4){const v=Math.random()*255;im.data[i]=im.data[i+1]=im.data[i+2]=v;im.data[i+3]=255}x.putImageData(im,0,0);return c}})();
+function mmFocusBox(x,X,Y,W,H,c){const L=Math.min(14,W/3,H/3);x.strokeStyle=c;x.lineWidth=2.5;x.beginPath();for(const [px,py,dx,dy] of [[X,Y,1,1],[X+W,Y,-1,1],[X,Y+H,1,-1],[X+W,Y+H,-1,-1]]){x.moveTo(px+dx*L,py);x.lineTo(px,py);x.lineTo(px,py+dy*L)}x.stroke()}
+function mmViewfinder(x,Z){const W=640,H=340,calm=calmOn(),line=(a,b,c,d)=>{x.beginPath();x.moveTo(a,b);x.lineTo(c,d);x.stroke()},camN=MMR.findIndex(q=>q.id===Z.room)+1,R2=MMR[camN-1];
+  /* the feed: scanlines, a little grain, darker edges */
+  x.fillStyle='rgba(0,0,0,.13)';for(let y=(Z.t*30|0)%3;y<H;y+=3)x.fillRect(0,y,W,1);
+  if(!calm){const N=MMNOISE();x.globalAlpha=.06;x.drawImage(N,(Math.random()*-80)|0,(Math.random()*-40)|0,W+160,H+80);x.globalAlpha=1}
+  {const g=x.createRadialGradient(W/2,H/2,H*.45,W/2,H/2,W*.62);g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(0,0,0,.55)');x.fillStyle=g;x.fillRect(0,0,W,H)}
+  /* switching cameras: a burst of static */
+  if(Z.stat>0){const N=MMNOISE();x.globalAlpha=Math.min(1,Z.stat/.3);x.drawImage(N,0,0,W,H);x.globalAlpha=1;x.fillStyle='#fff';x.font='bold 22px ui-monospace,Menlo,monospace';x.textAlign='center';x.fillText(`CAM ${camN}`,W/2,H/2+8)}
+  if(Z.snap>0){const k=Z.snap/.32;if(!calm){x.fillStyle='#000';const bar=Math.sin(k*Math.PI)*H*.5;x.fillRect(0,0,W,bar);x.fillRect(0,H-bar,W,bar)}x.fillStyle=`rgba(255,255,255,${(calm?.25:.5)*k})`;x.fillRect(0,0,W,H)}
+  x.save();x.shadowColor='rgba(0,0,0,.7)';x.shadowBlur=3;
+  x.strokeStyle='rgba(255,255,255,.16)';x.lineWidth=1;line(W/3,14,W/3,H-34);line(W*2/3,14,W*2/3,H-34);line(16,H/3,W-16,H/3);line(16,H*2/3,W-16,H*2/3);
+  x.strokeStyle='rgba(255,255,255,.95)';x.lineWidth=2.5;const m=14,L=30;for(const [cx,cy,dx,dy] of [[m,m,1,1],[W-m,m,-1,1],[m,H-m,1,-1],[W-m,H-m,-1,-1]]){x.beginPath();x.moveTo(cx+dx*L,cy);x.lineTo(cx,cy);x.lineTo(cx,cy+dy*L);x.stroke()}
+  /* the two arrows that switch cameras */
+  for(const [ax,d] of [[30,-1],[W-30,1]]){x.fillStyle='rgba(15,10,25,.55)';x.beginPath();x.arc(ax,H/2,20,0,7);x.fill();x.strokeStyle='rgba(255,255,255,.9)';x.lineWidth=3;x.beginPath();x.moveTo(ax-d*4,H/2-9);x.lineTo(ax+d*5,H/2);x.lineTo(ax-d*4,H/2+9);x.stroke()}
+  /* the focus ring */
+  const p=mmRet(Z),on=!!Z.hov;x.strokeStyle=on?'#FDE047':'rgba(255,255,255,.95)';x.lineWidth=on?2.5:1.5;x.beginPath();x.arc(p[0],p[1],on?15:18,0,7);x.stroke();line(p[0]-7,p[1],p[0]+7,p[1]);line(p[0],p[1]-7,p[0],p[1]+7);
+  /* the exposure scale points toward the nearest thing to look at: centered means it's in focus */
+  const q=mmScene(Z,p[0],p[1]);let lvl=0,best=1e9;for(const o of MMO[Z.room]){const cx=Math.max(o[3],Math.min(q[0],o[3]+o[5])),cy=Math.max(o[4],Math.min(q[1],o[4]+o[6])),d=Math.hypot(q[0]-cx,q[1]-cy);if(d<best){best=d;lvl=d===0?0:Math.min(3,1+Math.floor(d/35))*(o[3]+o[5]/2>q[0]?1:-1)}}
+  const sx=W/2,sy=H-14,step=22;x.fillStyle='rgba(255,255,255,.95)';x.font='bold 11px ui-monospace,Menlo,monospace';x.textAlign='center';x.textBaseline='middle';
+  [-3,-2,-1,0,1,2,3].forEach((v,i)=>{const X=sx+(i-3)*step;if(v)x.fillText(v===-3?'-3':v===3?'+3':String(Math.abs(v)),X,sy);if(i<6)x.fillRect(X+step/2-1,sy-1,2,3)});
+  const nx=sx+lvl*step;x.fillStyle=best===0?'#FDE047':'rgba(255,255,255,.95)';x.beginPath();x.moveTo(nx-4,sy-6);x.lineTo(nx+4,sy-6);x.lineTo(nx+4,sy+3);x.lineTo(nx,sy+7);x.lineTo(nx-4,sy+3);x.fill();
+  if(best===0){x.fillStyle='#FDE047';x.fillText('IN FOCUS',sx+118,sy)}
+  /* camera number and room, REC and the time */
+  const d=new Date(),pad=n=>String(n).padStart(2,'0');x.textAlign='left';x.fillStyle='rgba(255,255,255,.95)';x.font='bold 13px ui-monospace,Menlo,monospace';x.fillText(`CAM ${camN}`,30,30);x.font='bold 11px ui-monospace,Menlo,monospace';x.fillText(R2?R2.n.toUpperCase():'',30,46);
+  if(mmS().gears[Z.room]){x.fillStyle='#FDE047';x.fillText('GEAR FOUND ✓',30,60)}
+  x.textAlign='right';x.fillStyle=(Z.t*1.4|0)%2||calm?'#EF4444':'rgba(239,68,68,.25)';x.beginPath();x.arc(W-92,30,4.5,0,7);x.fill();x.fillStyle='rgba(255,255,255,.95)';x.fillText('REC',W-30,30);
+  x.fillText(`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}  ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`,W-30,46);
+  x.restore();x.textBaseline='alphabetic'}
 /* ---------- What happens ---------- */
-function mmEnter(Z,id,first){Z.room=id;Z.pz=null;Z.sort=[];const S=mmS();S.room=id;const r=MMR.find(q=>q.id===id);
+function mmEnter(Z,id,first){Z.inT=Z.t;Z.stat=first?0:.45;Z.cam=[320,190];Z.room=id;Z.pz=null;Z.sort=[];const S=mmS();S.room=id;const r=MMR.find(q=>q.id===id);
   Z.msg=id==='tower'?(MMR.slice(0,5).every(q=>S.gears[q.id])?'The Great Clock waits. Tap it to put the five golden gears back in!':'The clock needs all five gears.'):first&&id==='hall'&&!S.gears.hall?'Welcome to the mansion! The Great Clock has stopped, and its five golden gears are hidden in five rooms. Look around!':`You step into the ${r.n}.`;mmBox(Z)}
 async function mmLook(Z,id){if(QM||Z.spin)return;const S=mmS(),r=Z.room,o=MMO[r].find(q=>q[0]===id);if(!o)return;Z.pz=null;
   if(o[2]==='flavor'){Z.msg=o[7];SND.play('click')}
@@ -215,7 +266,7 @@ function mmBox(Z){const e=$('mmbox');if(!e)return;const S=mmS(),r=Z.room,R=MMR.f
   <button class="chip" style="margin-left:auto" onclick="AG.cur&&AG.finish(mmTrip(AG.cur.st,'leave'))">🚪 Leave</button></div>`}
 /* ---------- The menu ---------- */
 GVIEW.mansion=function(){const C=AG.cur&&AG.cur.id==='mansion'?AG.cur:null;
-  if(C&&['load','play','crash'].includes(C.phase))return AG.screen('mansion',{below:'<div class="mmbox" id="mmbox" aria-live="polite"></div>'});
+  if(C&&['load','play','crash'].includes(C.phase))return AG.screen('mansion',{below:'<div class="mmbox" id="mmbox" aria-live="polite"></div>'+AG.pad([[{k:'left',l:'◀',a:'Turn left'},{k:'up',l:'▲',a:'Turn up'},{k:'down',l:'▼',a:'Turn down'},{k:'right',l:'▶',a:'Turn right'}],[{k:'prev',l:'⏮',a:'Previous camera'},{k:'act',l:'📷',a:'Snap a photo'},{k:'next',l:'⏭',a:'Next camera'}]])});
   const S=mmS(),r=C&&C.phase==='end'?C.res:null,n=MMR.slice(0,5).filter(q=>S.gears[q.id]).length,done=r&&r.why==='clock';
   const card=r?`<div class="gcard endcard" style="margin-bottom:16px"><div class="big" aria-hidden="true">${done?'🕰️':r.why==='time'?'🌙':'🚪'}</div><h3>${done?'The Great Clock is ticking again!':r.why==='time'?'Play time is over for today':'See you soon!'}</h3>
     <p>${done?`You solved the mansion${r.runs>1?` ${r.runs} times`:''}! 💎 +${r.runs===1?15:5}`:`This visit: ${r.gears} gear${r.gears===1?'':'s'}, ${r.pip} Pip sighting${r.pip===1?'':'s'}.`}</p></div>`:'';
