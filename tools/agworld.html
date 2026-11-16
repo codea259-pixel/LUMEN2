@@ -1,0 +1,72 @@
+<style>
+/* ===== The Arcade world map and daily arcade quests ===== */
+.wmap{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:1000/560;margin:6px 0 18px;box-shadow:0 8px 0 rgba(0,0,0,.18),inset 0 0 0 3px rgba(255,255,255,.5);background:#4FA8E8}
+.wmap>svg{position:absolute;inset:0;width:100%;height:100%}
+.wmloc{position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:99px;border:3px solid #1E1B4B;background:#FFFDF6;color:#1E1B4B;font:800 .9rem/1.1 "Bricolage Grotesque",sans-serif;box-shadow:0 4px 0 rgba(30,27,75,.35);white-space:nowrap;cursor:pointer}
+.wmloc:hover,.wmloc:focus-visible{background:#FFE27A;transform:translate(-50%,-55%)}
+.wmloc.soon{background:#E2E8F0;color:#64748B;border-color:#94A3B8;cursor:default;box-shadow:none}.wmloc.soon:hover{transform:translate(-50%,-50%);background:#E2E8F0}
+.wmloc .bdg{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:#E4572E;color:#fff;font-size:.75rem;margin-left:2px}
+.wmloc.dim{opacity:.7}
+@media(max-width:760px){.wmloc{font-size:.72rem;padding:4px 8px;gap:4px}.wmloc .t{display:none}}
+.aqcard .quest .rw{min-width:52px;text-align:right}
+.hubbar{align-items:start}
+</style>
+<script type="text/x-lumen">
+/* ===== The Arcade world map and daily arcade quests =====
+   The hub opens on an island map: every game is a place you can click (the game tiles stay below as a list). Three arcade
+   quests a day come from the games themselves, counted by small hooks on each game's results. Saved in DAY(). ===== */
+const WMLOC={spell:[50,31,'🏰'],dash:[23,35,'🕳️'],gate:[78,38.5,'🛡️'],pets:[52,56,'🐾'],blocks:[36,63,'🧱'],kart:[70,71.5,'🏁'],snake:[21,71.5,'🐍'],mansion:[85,60,'🏚️'],ocean:[13,78,'🌊'],island:[88,77,'🏝️']};
+const WMSOON={ocean:'Ocean Explorer',mansion:'Mystery Mansion',island:'Island Architect'};
+function wmArt(){const tree=(x,y,r)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="#2F8A3E"/><circle cx="${x-r*.3}" cy="${y-r*.3}" r="${r*.45}" fill="#3FA34D"/>`;
+  return `<svg viewBox="0 0 1000 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="wmsea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7FD3F5"/><stop offset="1" stop-color="#3F95DA"/></linearGradient></defs>
+  <rect width="1000" height="560" fill="url(#wmsea)"/>${[[80,40],[860,60],[600,520],[300,530],[940,300]].map(([x,y])=>`<path d="M${x} ${y}q12 -8 24 0t24 0" stroke="#fff" stroke-width="3" fill="none" opacity=".5"/>`).join('')}
+  <path d="M90 250C70 140 170 60 320 55C470 50 560 40 700 70C850 100 930 180 910 290C895 380 820 430 700 440C560 452 470 470 330 455C190 440 105 360 90 250Z" fill="#F2D88A"/>
+  <path d="M115 250C100 155 190 82 322 78C470 74 560 66 698 94C832 122 900 190 884 288C870 368 806 410 698 418C560 430 470 446 332 432C204 418 128 352 115 250Z" fill="#7CCB6B"/>
+  <path d="M150 210L230 95L310 210ZM260 200L360 70L460 200ZM420 180L500 85L580 180Z" fill="#8C8FA3"/><path d="M230 95L250 125L215 125ZM360 70L385 105L335 105ZM500 85L520 112L480 112Z" fill="#fff"/>
+  <path d="M360 200C380 260 330 300 360 360C380 400 330 440 300 470" stroke="#5FB8F0" stroke-width="14" fill="none" stroke-linecap="round"/>
+  ${tree(620,200,22)}${tree(650,215,18)}${tree(600,225,16)}${tree(160,300,20)}${tree(185,320,16)}${tree(470,400,18)}${tree(500,410,14)}${tree(760,410,18)}
+  <g transform="translate(500 125)"><rect x="-40" y="-10" width="80" height="44" fill="#C8D2DC"/><rect x="-52" y="-30" width="22" height="64" fill="#B0BAC6"/><rect x="30" y="-30" width="22" height="64" fill="#B0BAC6"/><path d="M-56 -30L-41 -56L-26 -30ZM26 -30L41 -56L56 -30Z" fill="#7C3AED"/><rect x="-10" y="10" width="20" height="24" rx="10" fill="#5B6478"/></g>
+  <g transform="translate(230 150)"><path d="M-40 30C-40 -20 40 -20 40 30Z" fill="#3A3550"/><path d="M-24 30C-24 0 24 0 24 30Z" fill="#14121E"/></g>
+  <g transform="translate(780 175)"><rect x="-44" y="-16" width="88" height="40" fill="#A3AFBD"/><path d="M-44 -16v-10h10v10h10v-10h10v10h10v-10h10v10h10v-10h10v10h10v-10h10v10" fill="#A3AFBD"/><rect x="-9" y="2" width="18" height="22" rx="9" fill="#5B6478"/></g>
+  <g transform="translate(520 272)"><rect x="-26" y="-10" width="52" height="34" fill="#FFF3DC"/><path d="M-34 -10L0 -36L34 -10Z" fill="#E4572E"/><rect x="-6" y="6" width="12" height="18" fill="#8A5A2B"/><path d="M-60 24h120" stroke="#C99A5B" stroke-width="4"/></g>
+  <g transform="translate(360 315)">${[['#F97316',-30,0],['#8B5CF6',0,0],['#22B35E',30,0],['#2D9CDB',-15,-26],['#E4572E',15,-26]].map(([c,x,y])=>`<rect x="${x-14}" y="${y-12}" width="28" height="26" rx="5" fill="${c}"/>`).join('')}</g>
+  <g transform="translate(700 355)"><ellipse rx="70" ry="30" fill="#5B6478"/><ellipse rx="52" ry="18" fill="#7CCB6B"/><path d="M-6 -30h12v12h-12z" fill="#fff"/><path d="M0 -30h6v6h-6zM-6 -24h6v6h-6z" fill="#1E1B2E"/></g>
+  <g transform="translate(212 362)"><ellipse rx="48" ry="26" fill="#D8C08A"/><ellipse rx="36" ry="17" fill="#C9A86A"/><path d="M-22 4q10 -14 20 0t20 0" stroke="#3E9E4B" stroke-width="7" fill="none" stroke-linecap="round"/></g>
+  <g transform="translate(850 290)"><rect x="-34" y="-16" width="68" height="44" fill="#6B5A80"/><rect x="14" y="-44" width="20" height="30" fill="#5B4B70"/><path d="M10 -44L24 -64L38 -44ZM-40 -16L0 -40L40 -16Z" fill="#3B3355"/>${[[-22,-4],[-4,-4],[-22,12]].map(([x,y])=>`<rect x="${x}" y="${y}" width="10" height="10" fill="#FFE27A"/>`).join('')}</g>
+  <g transform="translate(130 488)"><rect x="-60" y="-6" width="120" height="12" fill="#8A5A2B"/>${[-50,-20,10,40].map(x=>`<rect x="${x}" y="6" width="6" height="20" fill="#6B4A2B"/>`).join('')}<ellipse cx="0" cy="-20" rx="26" ry="12" fill="#FACC15"/><rect x="-4" y="-38" width="8" height="12" fill="#FACC15"/><circle cx="10" cy="-20" r="4" fill="#7FD3F5"/></g>
+  <ellipse cx="880" cy="490" rx="76" ry="38" fill="#F2D88A"/><ellipse cx="880" cy="486" rx="56" ry="26" fill="#7CCB6B"/><path d="M900 486V446" stroke="#8A5A2B" stroke-width="5"/><path d="M900 446q-20 -4 -30 8M900 446q20 -4 30 8M900 446q-6 -16 -22 -16M900 446q6 -16 22 -16" stroke="#2F8A3E" stroke-width="6" fill="none" stroke-linecap="round"/><rect x="852" y="470" width="20" height="16" fill="#E4572E"/>
+  </svg>`}
+function wmView(){const out=!noLimit()&&playLeft()<=0,qg=new Set(aqList().filter(k=>!aqDone(k)).map(k=>AQS[k].g).filter(Boolean));
+  return `<div class="wmap" role="group" aria-label="Arcade world map">${wmArt()}${Object.entries(WMLOC).map(([id,[x,y,e]])=>{const g=GAMES.find(q=>q.id===id);
+    if(!g)return WMSOON[id]?`<span class="wmloc soon" style="left:${x}%;top:${y}%" aria-label="${esc(WMSOON[id])}, coming soon"><span aria-hidden="true">${e}</span><span class="t">${esc(WMSOON[id])}</span> · Soon</span>`:'';
+    const rest=out&&id!=='pets';return `<button class="wmloc ${rest?'dim':''}" style="left:${x}%;top:${y}%" onclick="openGame('${id}')" aria-label="${esc(g.n)}${qg.has(id)?', has a quest today':''}"><span aria-hidden="true">${e}</span><span class="t">${esc(g.n)}</span>${qg.has(id)?'<span class="bdg" aria-hidden="true">!</span>':''}</button>`}).join('')}</div>`}
+
+/* ---------- Daily arcade quests ---------- */
+const AQS={gok:{i:'✅',t:'Get 10 right answers in arcade games',n:10,v:D=>D.gok||0},games3:{i:'🎮',t:'Play 3 different arcade games',n:3,v:D=>Object.keys(D.ag||{}).length},
+  kartmed:{i:'🏎️',t:'Win a medal in Turbo Trivia Kart',n:1,g:'kart'},sqf:{i:'🤝',t:'Befriend a creature in Spell Quest',n:1,g:'spell'},bbc:{i:'🧱',t:'Clear 8 groups in Block Builder',n:8,g:'blocks'},
+  ggw:{i:'🛡️',t:'Win 3 waves in Goblin Gate',n:3,g:'gate'},px:{i:'🧭',t:'Take your pet exploring',n:1,g:'pets'},bd:{i:'🏗️',t:'Place 20 blocks in Building mode',n:20,g:'blocks'},petg:{i:'⭐',t:'Play a Pet Pals mini-game',n:1,g:'pets'}};
+const aqV=(k,D=DAY())=>Math.min(AQS[k].n,AQS[k].v?AQS[k].v(D):((D.aqk||{})[k]||0));
+const aqDone=k=>(DAY().aqd||[]).includes(k);
+function aqList(){const D=DAY();if(!D.aql||D.aql.some(k=>!AQS[k])){let h=11;for(const c of D.d+':aq:'+(ME.id||0))h=(h*31+c.charCodeAt(0))>>>0;const r=()=>(h=(h*1103515245+12345)>>>0)/4294967296;
+    const pool=Object.keys(AQS).filter(k=>!AQS[k].g||GAMES.some(g=>g.id===AQS[k].g)),out=[];while(out.length<3&&pool.length)out.push(pool.splice(Math.floor(r()*pool.length),1)[0]);D.aql=out;D.aqd=D.aqd||[]}
+  return D.aql}
+function aqCheck(){if(!gameOn())return;const D=DAY(),got=[];D.aqd=D.aqd||[];for(const k of aqList())if(!D.aqd.includes(k)&&aqV(k,D)>=AQS[k].n){D.aqd.push(k);addGems(4);got.push(`Arcade quest done: ${AQS[k].t}. +4 💎`)}
+  if(!D.aqc&&D.aqd.length>=3){D.aqc=1;addGems(8);got.push('Every arcade quest done! Arcade chest: +8 💎')}if(got.length){SYNC();celebrate(got,D.aqc===1&&got.length>0)}}
+function aqBump(k,n=1){const D=DAY();D.aqk=D.aqk||{};D.aqk[k]=(D.aqk[k]||0)+n;aqCheck()}
+const aqCard=()=>{const D=DAY(),L=aqList(),n=L.filter(aqDone).length;return `<div class="gcard parch aqcard"><div class="split"><h3>🎮 Arcade quests</h3><span class="sol">${n} of 3 done</span></div>
+  ${L.map(k=>{const Q=AQS[k],v=aqV(k),d=aqDone(k);return `<div class="quest ${d?'done':''}"><span class="qi" aria-hidden="true">${d?'✔️':Q.i}</span><div class="qt"><b>${esc(Q.t)}</b><div class="bar"><i style="width:${v/Q.n*100}%"></i></div></div><span class="rw">${d?'Done':`${v}/${Q.n}`}</span></div>`}).join('')}
+  <p class="sol" style="margin:8px 0 0">Each quest gives 4 💎. Finish all three for the arcade chest (+8 💎). New quests every day.</p></div>`};
+/* the hooks: count what happens in each game */
+const _agpW=AG.play;AG.play=function(id,o){const r=_agpW(id,o);if(AG.cur&&AG.cur.id===id){const D=DAY(),k={petstars:'pets',petsort:'pets',sq:'spell',bbuild:'blocks'}[id]||id;D.ag=D.ag||{};if(!D.ag[k]){D.ag[k]=1;aqCheck()}if(id==='petstars'||id==='petsort')aqBump('petg')}return r};
+const _ogW=openGame;openGame=function(id){_ogW(id);if(id==='dash'||id==='snake'){const D=DAY();D.ag=D.ag||{};if(!D.ag[id]){D.ag[id]=1;aqCheck()}}};
+const _ansW=AG.answered;AG.answered=function(...a){const r=_ansW(...a);aqCheck();return r};
+const _krW=kresult;kresult=function(T){const r=_krW(T);if(r.medal)aqBump('kartmed');return r};
+const _swW=sqWin;sqWin=function(Z,how){_swW(Z,how);aqBump('sqf')};
+const _bbW=bbresult;bbresult=function(Z,why){const r=_bbW(Z,why);if(Z.clears)aqBump('bbc',Z.clears);return r};
+const _gwW=ggWaveDone;ggWaveDone=function(Z){_gwW(Z);aqBump('ggw')};
+const _pxW=pxGo;pxGo=function(pl){const n=pxTrips();_pxW(pl);if(pxTrips()<n)aqBump('px')};
+const _bdW=bdApply;bdApply=function(Z,c,r,tool){const b=bdS().bricks;_bdW(Z,c,r,tool);if(bdS().bricks<b)aqBump('bd')};
+/* the hub: the map first, and the arcade quests beside today's quests */
+const _hvW=hubView;hubView=function(){const h=_hvW();return h.replace('<div class="tiles">',`${wmView()}<h3 style="margin:0 0 10px;color:#fff">All games</h3><div class="tiles">`)
+  .replace('<div class="gcard parch"><div class="split"><h3>⚔️ Today','<div style="display:grid;gap:18px;align-content:start"><div class="gcard parch"><div class="split"><h3>⚔️ Today').replace(/<\/div><\/div><\/div>$/,`</div>${aqCard()}</div></div></div>`)};
+</script>

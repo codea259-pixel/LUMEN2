@@ -75,6 +75,16 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     const p0 = await a.evaluate(() => DAY().play); await a.evaluate(() => realmTick(5)); if (await a.evaluate(() => DAY().play) !== p0) fail('play time ticked on the hub');
     await a.click('.hubhero .livehero'); if (!(await a.evaluate(() => document.querySelector('.hubhero .livehero').classList.contains('wave')))) fail('hero did not wave when tapped');
     ok('Arcade hub: ' + tiles.join(', ') + '; browsing the hub uses no play time; the hero waves when tapped');
+    // The world map and the daily arcade quests
+    const wm = await a.evaluate(() => ({ btn: [...document.querySelectorAll('.wmap button.wmloc')].map(b => b.getAttribute('aria-label').split(',')[0]), soon: document.querySelectorAll('.wmap .wmloc.soon').length, games: GAMES.map(g => g.n) }));
+    if (wm.games.some(n => !wm.btn.includes(n))) fail('a game is missing from the map: ' + JSON.stringify(wm));
+    await a.click('.wmap button.wmloc:has-text("Snake Arena")'); await a.waitForFunction(() => AR.mode === 'snake'); await a.evaluate(() => toHub()); await a.waitForSelector('.aqcard');
+    const aq = await a.evaluate(() => { const D = DAY(); D.aql = ['bbc', 'games3', 'gok']; D.aqd = []; D.aqc = 0; D.aqk = {}; D.ag = { snake: 1 }; const g0 = GEMS(), gok0 = D.gok || 0;
+      bbresult({ clears: 9, mode: 'endless', lv: 1, score: 10, maxc: 1, eqs: 0, goal: 0, got: 0 }, 'over'); const afterBB = D.aqd.slice(); const g1 = GEMS();
+      D.gok = gok0 + 10; aqCheck(); D.ag.kart = 1; aqCheck(); const two = D.aqd.length; D.ag.blocks = 1; aqCheck(); return { afterBB, two, all: D.aqd.slice(), chest: D.aqc, quest: GEMS() - g1 } });
+    if (aq.afterBB.join() !== 'bbc' || aq.two !== 2 || aq.all.length !== 3 || aq.chest !== 1 || aq.quest !== 2 * 4 + 8) fail('arcade quests went wrong: ' + JSON.stringify(aq));
+    await a.evaluate(() => { const D = DAY(); delete D.aql; D.aqd = []; D.aqc = 0; D.aqk = {}; D.ag = {}; rerealm() });
+    ok(`World map: all ${wm.btn.length} games are places on the map (${wm.soon} coming soon) and a place opens its game; arcade quests: clearing 9 groups finished "Clear 8 groups", then 10 right answers and 3 different games, each +4 💎, and all three opened the arcade chest (+8 💎)`);
     await a.click('.tile:has-text("Spell Quest")'); await a.waitForSelector('.worldmap');
     const left0 = await a.evaluate(() => playLeft()); if (left0 < 60 || left0 > 20 * 60) fail('play time left is wrong: ' + left0);
     await a.click('#landpanel .mon >> nth=0 >> button'); await a.waitForSelector('.qpanel .bq');
