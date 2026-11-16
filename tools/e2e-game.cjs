@@ -71,7 +71,7 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     // Lumi's Realm: battle with real questions until the monster is beaten
     await a.click('#tabs >> text=Arcade'); await a.waitForSelector('.tiles');
     const tiles = await a.$$eval('.tile', t => t.map(x => x.querySelector('.tname').textContent + (x.classList.contains('soon') ? ' (soon)' : '')));
-    if (tiles.length !== 8 || !tiles.includes('Ocean Explorer') || tiles[0] !== 'Spell Quest' || tiles[1] !== 'Dungeon Dash' || tiles[2] !== 'Snake Arena' || tiles.some(x => x.includes('(soon)'))) fail('arcade tiles wrong: ' + tiles.join(', '));
+    if (tiles.length !== 9 || !tiles.includes('Ocean Explorer') || !tiles.includes('Mystery Mansion') || tiles[0] !== 'Spell Quest' || tiles[1] !== 'Dungeon Dash' || tiles[2] !== 'Snake Arena' || tiles.some(x => x.includes('(soon)'))) fail('arcade tiles wrong: ' + tiles.join(', '));
     const p0 = await a.evaluate(() => DAY().play); await a.evaluate(() => realmTick(5)); if (await a.evaluate(() => DAY().play) !== p0) fail('play time ticked on the hub');
     await a.click('.hubhero .livehero'); if (!(await a.evaluate(() => document.querySelector('.hubhero .livehero').classList.contains('wave')))) fail('hero did not wave when tapped');
     ok('Arcade hub: ' + tiles.join(', ') + '; browsing the hub uses no play time; the hero waves when tapped');
@@ -342,6 +342,28 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     await a.click('#ocbox >> text=Surface and save'); await a.waitForSelector('.endcard'); if (!(await a.textContent('.endcard')).includes('1 new animal')) fail('the surface card is wrong');
     if (!(await a.evaluate(() => AG.got('ocean', 'scan') && AG.got('ocean', 'z2')))) fail('Ocean Explorer achievements did not unlock');
     ok(`Ocean Explorer: 20 animals with facts across 4 zones, the sub steered, a scan logged the clownfish fact, a wrong answer kept the gate shut and a right one opened the twilight zone with its depth fact, no air floated the sub up, an air station refilled it, the trip saved`); await shot(a, 'g-ocean');
+    // Mystery Mansion: clue notes need right answers, a lock needs both notes, each room's puzzle gives a gear, Pip, the clock
+    const mmP = await a.evaluate(() => { const S = ARS('mansion'); Object.assign(S, { seed: 12345, gears: {}, clues: {}, pip: {}, tries: {}, room: 'hall', spun: 0, runs: 0 }); const P = mmPuzzles(), bad = [];
+      const h = P.hall; if (h.seq[4] - h.seq[3] !== h.seq[1] - h.seq[0] || h.ans !== h.seq[h.hole] || !h.opts.includes(h.ans) || new Set(h.opts).size !== h.opts.length) bad.push('hall');
+      if (P.library.ans.join() !== P.library.books.slice().sort((x, y) => x - y).join()) bad.push('library');
+      const k = P.kitchen; if ((k.young ? k.M * k.kk : k.N / k.M) !== k.ans || !k.opts.includes(k.ans)) bad.push('kitchen');
+      const g = P.attic; if (g.ans === g.a || g.ans === g.b || g.a === g.b) bad.push('attic'); return { P, bad } });
+    if (mmP.bad.length) fail('mansion puzzles are wrong: ' + mmP.bad);
+    await a.evaluate(() => { DAY().play = 0; AG.cur = null; AR.mode = null; toHub() }); await a.waitForSelector('.wmap'); await a.click('.wmloc:has-text("Mystery Mansion")'); await a.click('text=▶ Enter the mansion'); await a.waitForFunction(() => AG.on('mansion') && AG.cur.phase === 'play');
+    await a.click('#mmbox .chip:has-text("Coat hooks")'); if (!(await a.textContent('#mmbox')).includes('Find both clue notes')) fail('the lock opened without the clue notes');
+    await a.click('#mmbox .chip:has-text("Painting")'); await ocAns(false); if (!(await a.textContent('#mmbox')).includes('smudged')) fail('a wrong answer read the clue');
+    await a.click('#mmbox .chip:has-text("Painting")'); await ocAns(true); await a.click('#mmbox .chip:has-text("Umbrella")'); await ocAns(true);
+    { const bx = await (await a.$('#agcv')).boundingBox(); await a.mouse.click(bx.x + 190 / 640 * bx.width, bx.y + 110 / 340 * bx.height) } await a.waitForSelector('.mmpz');
+    await a.click(`.mmpz button:text-is("${mmP.P.hall.opts.find(v => v !== mmP.P.hall.ans)}")`); if (!(await a.textContent('#mmbox')).includes('Not quite')) fail('a wrong puzzle answer was accepted');
+    await a.click(`.mmpz button:text-is("${mmP.P.hall.ans}")`); if (!(await a.evaluate(() => mmS().gears.hall))) fail('the hall puzzle gave no gear');
+    for (const [room, nm, lock, c1, c2] of [['library', 'Library', 'Bookshelf', 'Open book', 'Fireplace'], ['kitchen', 'Kitchen', 'Oven', 'Recipe book', 'Jar shelf'], ['green', 'Greenhouse', 'Flower bed', 'Watering can', 'Bench'], ['attic', 'Attic', 'Three trunks', 'Round window', 'Old map']]) {
+      await a.click(`#mmbox .mmrooms .chip:has-text("${nm}")`); await a.click(`#mmbox .chip:has-text("${c1}")`); await ocAns(true); await a.click(`#mmbox .chip:has-text("${c2}")`); await ocAns(true); await a.click(`#mmbox .chip:has-text("${lock}")`); await a.waitForSelector('.mmpz');
+      const q = mmP.P[room]; if (q.k === 'sort') for (const v of q.ans) await a.click(`.mmpz button:has-text("📕 ${v}")`); else if (q.k === 'logic') await a.click(`.mmpz button:has-text("${q.ans[0].toUpperCase() + q.ans.slice(1)} trunk")`); else if (q.k === 'pattern') await a.click(`.mmpz button[aria-label="${q.ans}"]`); else await a.click(`.mmpz button:text-is("${q.ans}")`);
+      if (!(await a.evaluate(r => mmS().gears[r], room))) fail(`the ${room} puzzle gave no gear`) }
+    await a.click('#mmbox .chip:has-text("Corners")'); if (!(await a.evaluate(() => mmS().pip.attic))) fail('Pip was not found');
+    await a.click('#mmbox .mmrooms .chip:has-text("Clock Tower")'); await a.click('#mmbox .chip:has-text("The Great Clock")'); await a.waitForSelector('.endcard', { timeout: 8000 });
+    if (!(await a.textContent('.endcard')).includes('ticking again') || !(await a.evaluate(() => AG.got('mansion', 'clock') && mmS().spun === 1))) fail('the Great Clock did not start');
+    ok('Mystery Mansion: the puzzles check out, a lock needs both clue notes, a wrong answer smudged a note, a wrong puzzle answer was refused, all five puzzles (pattern, order, trays, flowers, trunks) gave their gears, Pip was found, and the Great Clock started'); await shot(a, 'g-mansion');
     // Dungeon Dash: move, recharge magic with answers, level up, dodge, take the stairs
     await a.evaluate(() => toHub()); await a.click('.tile:has-text("Dungeon Dash")'); await a.waitForSelector('.ddhero');
     const heroes = await a.$$eval('.ddhero > b', b => b.map(x => x.textContent)); if (heroes.length !== 4 || !(await a.isVisible('#dddash'))) fail('hero select or upgrade dashboard missing: ' + heroes.join(', '));

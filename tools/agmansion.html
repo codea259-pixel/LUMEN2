@@ -1,0 +1,140 @@
+<style>
+/* ===== Mystery Mansion ===== */
+.mmbox{margin-top:10px;padding:12px 16px;border-radius:16px;background:#FDF4FF;color:#3B0764;border:3px solid #A855F7;font:700 1rem/1.45 "Atkinson Hyperlegible",sans-serif}
+.mmbox .who{display:block;font:800 .8rem "Bricolage Grotesque",sans-serif;text-transform:uppercase;letter-spacing:.05em;color:#7E22CE}
+.mmobj{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.mmobj button.found{opacity:.7}
+.mmrooms{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;padding-top:10px;border-top:2px dashed #E9D5FF}
+.mmpz{margin-top:10px;padding:10px;border-radius:12px;background:#fff;border:2px solid #E9D5FF}
+.mmpz .seq{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font:800 1.4rem "Bricolage Grotesque",sans-serif;margin:6px 0 10px}
+.mmpz .seq span{min-width:48px;padding:6px 10px;border-radius:10px;background:#F3E8FF;text-align:center}.mmpz .seq span.q{background:#FDE047}
+.mmpz .opts{display:flex;flex-wrap:wrap;gap:8px}.mmpz .opts button{min-width:64px;font-size:1.2rem}
+.mmgears{display:flex;gap:6px;font-size:1.4rem}.mmgears span.no{filter:grayscale(1);opacity:.35}
+</style>
+<script type="text/x-lumen">
+/* ===== Mystery Mansion =====
+   The Great Clock has stopped, and its five golden gears are hidden in five rooms. In each room, inspect things: two clue notes
+   open with a right answer, and then a logic lock gives up the gear (a number pattern, putting books in order, cookie trays,
+   a flower pattern, which trunk). Pip the mouse hides in every room. Put the gears in the clock tower to finish.
+   Saved in ARS('mansion'); a new mystery shuffles every puzzle. ===== */
+const MMR=[{id:'hall',n:'Front Hall',e:'🚪'},{id:'library',n:'Library',e:'📚'},{id:'kitchen',n:'Kitchen',e:'🍪'},{id:'green',n:'Greenhouse',e:'🌷'},{id:'attic',n:'Attic',e:'🧳'},{id:'tower',n:'Clock Tower',e:'🕰️'}];
+const mmS=()=>{const S=ARS('mansion');if(!S.seed)Object.assign(S,{seed:1+Math.floor(Math.random()*1e6),gears:{},clues:{},pip:{},tries:{}});S.gears=S.gears||{};S.clues=S.clues||{};S.pip=S.pip||{};S.tries=S.tries||{};return S};
+const mmOpen=i=>i===0||(i<5?!!mmS().gears[MMR[i-1].id]:MMR.slice(0,5).every(r=>mmS().gears[r.id]));
+/* this mystery's puzzles, from the seed */
+function mmPuzzles(){const S=mmS(),R=krng(S.seed),g=Math.max(0,myGrade()),ri=(a,b)=>a+Math.floor(R()*(b-a+1)),sh=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(R()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+  const opts=(ans,cands)=>sh([...new Set([ans,...cands.filter(v=>v>0&&v!==ans)])].slice(0,4));
+  const d=g<=1?ri(1,2):g<=3?ri(2,5):ri(3,9),s0=g<=1?ri(1,4):ri(2,20),seq=[0,1,2,3,4].map(i=>s0+i*d),hole=3;
+  const top=g<=1?20:g<=3?99:999,lo=g<=1?1:g<=3?10:100,books=[];while(books.length<4){const v=ri(lo,top);if(!books.includes(v))books.push(v)}
+  const M=g<=1?2:ri(2,5),k=ri(2,g<=1?4:6);
+  const fl=['🌷','🌻','🌹','🌼'],pat=[['A','B'],['A','B','C'],['A','A','B'],['A','B','B']][g<=1?ri(0,1):ri(0,3)],pick4=sh(fl.slice()),row=Array.from({length:7},(_,i)=>pick4['ABC'.indexOf(pat[i%pat.length])]),nxt=pick4['ABC'.indexOf(pat[7%pat.length])];
+  const T=['red','blue','green'],gi=ri(0,2),notA=T.filter((_,i)=>i!==gi),a=notA[ri(0,1)],b=notA.find(x=>x!==a);
+  return{hall:{k:'seq',seq,hole,ans:seq[hole],opts:opts(seq[hole],[seq[hole]+d,seq[hole]-d,seq[hole]+1,seq[hole]-1])},
+    library:{k:'sort',books,ans:books.slice().sort((x,y)=>x-y)},
+    kitchen:{k:'trays',M,kk:k,N:M*k,young:g<=1,ans:g<=1?M*k:k,opts:g<=1?opts(M*k,[M*k+M,M*k-1,M*k+1,M+k]):opts(k,[k+1,k-1,k+2,M])},
+    green:{k:'pattern',row,ans:nxt,opts:sh(fl.slice())},
+    attic:{k:'logic',T,g:T[gi],a,b,ans:T[gi]}}}
+/* each room's things: [id, name, kind, x, y, w, h, text]. clue1/clue2 need a right answer; lock is the puzzle */
+const MMO={
+  hall:[['clock','Grandfather clock','flavor',470,70,70,230,'The grandfather clock stopped at 3 o\'clock. Every clock in the mansion needs the golden gears!'],['paint','Painting','clue1',250,60,110,80],['umb','Umbrella stand','clue2',80,230,50,80],['coat','Coat hooks','lock',150,90,80,40],['pip','Mouse hole','pip',380,288,26,20]],
+  library:[['globe','Globe','flavor',440,200,70,100,'You spin the globe. It stops on the Pacific, the biggest ocean on Earth.'],['desk','Open book','clue1',300,215,90,40],['fire','Fireplace','clue2',40,150,120,150],['shelf','Bookshelf','lock',200,40,170,150],['pip','Under the armchair','pip',545,280,40,22]],
+  kitchen:[['cat','Biscuit the cat','flavor',470,240,70,50,'Biscuit the cat purrs. She is guarding the cookie jar.'],['recipe','Recipe book','clue1',300,210,70,30],['jars','Jar shelf','clue2',60,60,140,90],['oven','Oven','lock',380,120,120,130],['pip','Behind the flour sack','pip',230,262,40,36]],
+  green:[['fount','Fountain','flavor',470,190,100,100,'Plants use sunlight, water and air to make their own food.'],['can','Watering can','clue1',60,250,60,40],['bench','Bench','clue2',230,240,120,40],['bed','Flower bed','lock',60,150,380,60],['pip','Flower pot','pip',400,262,34,30]],
+  attic:[['toys','Toy box','flavor',470,240,90,60,'A box of old toys. A wind-up robot waves at you!'],['win','Round window','clue1',280,40,80,80],['map','Old map','clue2',60,70,100,70],['trunks','Three trunks','lock',140,210,300,80],['pip','Behind the lamp','pip',575,190,30,40]],
+  tower:[['face','The Great Clock','lock',220,30,200,200]]};
+const MMCLUE={hall:['A note behind the painting: "The coat hooks are numbered in a pattern."','A note in the umbrella stand: "Find the missing hook number to open the lock."'],
+  library:['A bookmark in the open book: "The gear is behind the books, if you put them in order."','A note on the fireplace: "Smallest number first, biggest number last."'],
+  kitchen:[P=>P.young?`The recipe: "Bake ${P.kk} trays of cookies."`:`The recipe: "This makes ${P.N} cookies."`,P=>`A label on the shelf: "Each baking tray holds ${P.M} cookies."`],
+  green:['A tag on the watering can: "The flowers grow in a repeating pattern."','A note on the bench: "Plant the next flower in the pattern to open the gate."'],
+  attic:[P=>`Scratched on the window frame: "The gear is not in the ${P.a} trunk."`,P=>`Written on the old map: "The ${P.b} trunk is empty."`]};
+const mmClue=(r,i,P)=>{const c=MMCLUE[r][i];return typeof c==='function'?c(P[r]):c};
+
+AG.def({id:'mansion',name:'Mystery Mansion',w:640,h:340,maxW:1280,vh:470,snd:'blocks',music:'blocks',go:'Enter the mansion',sub:'Find the five golden gears',
+  help:['Tap things in the room (or use the buttons under the picture) to look at them.','Two clue notes in each room open when you answer a question. Then the lock asks a logic puzzle, and the golden gear is yours.','Each gear opens the next room. Put all five in the Great Clock in the tower. And look out for Pip the mouse!'],
+  keys:[['Tab','move between things'],['Enter','look'],['P','pause']],timeup:true,
+  ach:{gear:{i:'⚙️',n:'First gear',d:'Find a golden gear',gems:1},clock:{i:'🕰️',n:'Clockwork hero',d:'Start the Great Clock',gems:5},pip:{i:'🐭',n:'Pip\'s friend',d:'Find Pip in all five rooms',gems:2},
+    sharp:{i:'🧠',n:'Sharp mind',d:'Open a lock on the first try',gems:1},again:{i:'🔁',n:'Mystery lover',d:'Solve the mansion twice',gems:3}},
+  places:()=>MMR.map((r,i)=>({on:mmOpen(i),i:r.e,n:r.n,s:mmS().gears[r.id]?'⚙️ Gear found':'Open',how:i?`Find the gear in the ${MMR[i-1].n}`:''})),
+  start(o){const S=mmS();let i=MMR.findIndex(r=>r.id===(o&&o.room||S.room));if(i<0||!mmOpen(i))i=Math.max(0,MMR.findIndex((r,j)=>mmOpen(j)&&!S.gears[r.id]));if(i<0)i=5;
+    return{room:MMR[i].id,P:mmPuzzles(),hov:null,pz:null,msg:'',t:0,sort:[],trip:{gears:0,pip:0},spin:0}},
+  ready(Z){mmEnter(Z,Z.room,1);const cv=$('agcv');if(cv){cv.onpointermove=e=>{const r=cv.getBoundingClientRect();Z.hov=mmHit(Z,(e.clientX-r.left)/r.width*640,(e.clientY-r.top)/r.height*340);cv.style.cursor=Z.hov?'pointer':''};cv.onpointerleave=()=>{Z.hov=null}}},
+  step(dt,Z){Z.t+=dt;if(Z.spin>0){Z.spin+=dt;if(Z.spin>3.2){Z.spin=0;AG.finish(mmTrip(Z,'clock'))}}},
+  draw(a,Z){const x=AG.cx;if(!x)return;mmDraw(x,Z);const o=Z.hov&&MMO[Z.room].find(q=>q[0]===Z.hov);if(o&&o[2]!=='pip'){x.strokeStyle='#FDE047';x.lineWidth=3;x.setLineDash([8,6]);x.strokeRect(o[3]-4,o[4]-4,o[5]+8,o[6]+8);x.setLineDash([])}},
+  key(){},
+  tap(px,py,Z){const id=mmHit(Z,px,py);if(id)mmLook(Z,id)},
+  timeout:Z=>mmTrip(Z,'time')});
+const mmHit=(Z,px,py)=>{const o=MMO[Z.room].find(q=>px>=q[3]&&px<=q[3]+q[5]&&py>=q[4]&&py<=q[4]+q[6]);return o?o[0]:null};
+/* ---------- The rooms, drawn ---------- */
+function mmDraw(x,Z){const r=Z.room,t=Z.t,S=mmS(),R=(X,Y,W,H,c)=>{x.fillStyle=c;x.fillRect(X,Y,W,H)},C=(X,Y,rad,c)=>{x.fillStyle=c;x.beginPath();x.arc(X,Y,rad,0,7);x.fill()},P=(pts,c)=>{x.fillStyle=c;x.beginPath();x.moveTo(pts[0],pts[1]);for(let i=2;i<pts.length;i+=2)x.lineTo(pts[i],pts[i+1]);x.fill()};
+  const wall={hall:'#7C5C8A',library:'#6B4A3A',kitchen:'#F2D7A6',green:'#CFEFD8',attic:'#8A6A52',tower:'#3B3355'}[r],floor={hall:'#3B2F4A',library:'#4A3426',kitchen:'#C9A06A',green:'#9AD47E',attic:'#6B4F3A',tower:'#2A2235'}[r];
+  R(0,0,640,340,wall);if(r!=='green'&&r!=='tower'){R(0,215,640,85,shade(wall,.86));R(0,212,640,5,shade(wall,.7));for(let i=20;i<640;i+=80)R(i,228,50,58,shade(wall,.8))}R(0,300,640,40,floor);
+  if(r==='hall'){x.strokeStyle='#C8961E';x.lineWidth=2;x.beginPath();x.moveTo(380,0);x.lineTo(380,30);x.stroke();R(350,30,60,6,'#C8961E');for(let i=0;i<4;i++){R(352+i*18,22,4,10,'#FEF3C7');C(354+i*18,20,3,'#FDE047')}
+    for(let i=0;i<16;i++)R(i*40,300,20,20,'#2A2235'),R(i*40+20,320,20,20,'#2A2235');P([560,300,640,300,640,120],'#5B4370');for(let i=0;i<6;i++)R(560+i*13,300-i*30,80,6,'#4A355E');
+    R(250,60,110,80,'#C8961E');R(258,68,94,64,'#9FD3FF');C(305,100,14,'#FDE68A');R(470,70,70,230,'#5A3A22');C(505,120,26,'#F4EAD5');x.strokeStyle='#3B2F2A';x.lineWidth=3;x.beginPath();x.moveTo(505,120);x.lineTo(505,102);x.moveTo(505,120);x.lineTo(518,120);x.stroke();R(495,170,20,90,'#3B2414');C(505,250,10,'#C8961E');
+    R(150,95,80,10,'#5A3A22');for(let i=0;i<4;i++){R(158+i*20,105,4,20,'#C8961E')}R(80,240,50,70,'#3B5998');x.fillStyle='#9F1239';x.beginPath();x.ellipse(330,318,130,14,0,0,7);x.fill();x.fillStyle='#BE123C';x.beginPath();x.ellipse(330,318,100,9,0,0,7);x.fill();R(90,200,6,40,'#8A5A2B');R(110,210,6,30,'#B91C1C')}
+  if(r==='library'){x.fillStyle='#1E3A8A';x.beginPath();x.ellipse(330,320,150,14,0,0,7);x.fill();for(let s=0;s<3;s++){R(200,40+s*50,170,6,'#3B2414');for(let b=0;b<11;b++)R(204+b*15,46+s*50-((b*7+s*3)%5)*3-28,12,28+((b*7+s*3)%5)*3,['#B91C1C','#2563EB','#16A34A','#CA8A04','#7C3AED'][(b+s)%5])}R(200,190,170,4,'#3B2414');
+    R(40,150,120,150,'#7A5634');R(60,190,80,110,'#1C1917');const fl=Math.sin(t*9)*4;P([75,300,100,230+fl,125,300],'#F97316');P([88,300,100,255-fl,112,300],'#FDE047');
+    R(290,250,110,8,'#5A3A22');R(300,215,90,35,'#F4EAD5');R(344,215,2,35,'#A8A29E');R(470,280,8,20,'#5A3A22');C(475,240,32,'#2563EB');P([455,225,480,215,495,240,470,250],'#16A34A');R(530,240,70,60,'#9F1239');R(530,220,70,24,'#BE123C')}
+  if(r==='kitchen'){R(0,180,640,6,'#E7C08A');R(60,60,140,8,'#8A5A2B');R(60,110,140,8,'#8A5A2B');for(let i=0;i<5;i++){R(68+i*26,36,18,24,['#FCA5A5','#FDE68A','#A7F3D0','#BFDBFE','#DDD6FE'][i]);R(68+i*26,86,18,24,['#FDE68A','#FCA5A5','#BFDBFE','#A7F3D0','#FBCFE8'][i])}
+    R(380,120,120,180,'#9CA3AF');R(392,160,96,70,'#1F2937');R(398,166,84,58,'#F97316');for(let i=0;i<4;i++)C(400+i*26,138,7,'#374151');R(280,240,140,8,'#8A5A2B');R(300,212,70,28,'#B91C1C');R(306,216,58,20,'#FEF3C7');
+    R(230,260,40,40,'#E7E5E4');R(470,262,70,30,'#F59E0B');C(540,262,12,'#F59E0B');P([532,252,536,242,542,252],'#F59E0B');P([544,252,548,242,552,252],'#F59E0B');x.strokeStyle='#F59E0B';x.lineWidth=5;x.beginPath();x.moveTo(470,270);x.quadraticCurveTo(450,250+Math.sin(t*3)*8,455,235);x.stroke()}
+  if(r==='green'){for(let i=0;i<8;i++){x.strokeStyle='rgba(255,255,255,.7)';x.lineWidth=3;x.beginPath();x.moveTo(i*90,0);x.lineTo(i*90,300);x.stroke()}R(0,120,640,3,'rgba(255,255,255,.7)');
+    R(60,195,380,20,'#7A5634');for(let i=0;i<7;i++){const f=S.gears.green||Z.pz?['🌷','🌻','🌹','🌼'][i%4]:'';R(80+i*52,175,4,20,'#16A34A');C(82+i*52,170,9,['#F43F5E','#FACC15','#DC2626','#FDE047'][(i*3)%4])}
+    R(470,250,100,40,'#A8A29E');C(520,220,10,'#7DD3FC');for(let i=0;i<4;i++)C(520+Math.sin(t*4+i)*14,230+i*5,3,'#BAE6FD');R(230,250,120,10,'#8A5A2B');R(240,260,8,40,'#5A3A22');R(332,260,8,40,'#5A3A22');R(60,260,50,30,'#64748B');R(100,262,24,6,'#64748B');R(400,268,34,30,'#C2410C')}
+  if(r==='attic'){P([0,0,320,0,0,180],'#5E4632');P([640,0,320,0,640,180],'#5E4632');C(320,80,40,'#8A6A52');C(320,80,32,'#BFE6FF');R(318,48,4,64,'#5E4632');R(288,78,64,4,'#5E4632');
+    R(60,70,100,70,'#F4EAD5');x.strokeStyle='#B45309';x.lineWidth=2;x.beginPath();x.moveTo(70,120);x.lineTo(100,90);x.lineTo(130,110);x.lineTo(150,80);x.stroke();
+    [['#DC2626',150],['#2563EB',250],['#16A34A',350]].forEach(([c,X])=>{R(X,230,80,60,c);R(X,222,80,14,shade(c,.75));R(X+34,240,12,12,'#FACC15')});
+    R(470,250,90,50,'#C2410C');R(490,232,20,20,'#94A3B8');C(500,228,6,'#94A3B8');R(585,200,8,90,'#57534E');P([570,200,608,200,598,180,580,180],'#FDE68A')}
+  if(r==='tower'){C(320,130,100,'#F4EAD5');x.strokeStyle='#C8961E';x.lineWidth=8;x.beginPath();x.arc(320,130,100,0,7);x.stroke();for(let i=0;i<12;i++){const a=i*Math.PI/6;R(320+Math.cos(a)*84-3,130+Math.sin(a)*84-3,6,6,'#3B2F2A')}
+    const sp=Z.spin?Z.spin*3:0;x.strokeStyle='#1E1B2E';x.lineWidth=6;x.beginPath();x.moveTo(320,130);x.lineTo(320+Math.cos(-Math.PI/2+sp)*70,130+Math.sin(-Math.PI/2+sp)*70);x.moveTo(320,130);x.lineTo(320+Math.cos(sp/12)*48,130+Math.sin(sp/12)*48);x.stroke();
+    MMR.slice(0,5).forEach((q,i)=>{const X=200+i*60,Y=280;C(X,Y,18,S.gears[q.id]?'#F2C14E':'#57534E');x.fillStyle='#1E1B2E';x.font='18px sans-serif';x.textAlign='center';x.fillText(S.gears[q.id]?'⚙️':'?',X,Y+6)})}
+  /* Pip peeks out where hidden, once found */
+  const pp=MMO[r].find(q=>q[2]==='pip');if(pp&&S.pip[r]){C(pp[3]+pp[5]/2,pp[4]+pp[6]-6,7,'#A8A29E');C(pp[3]+pp[5]/2-5,pp[4]+pp[6]-12,3,'#FBCFE8');C(pp[3]+pp[5]/2+5,pp[4]+pp[6]-12,3,'#FBCFE8')}
+  else if(pp){C(pp[3]+pp[5]/2,pp[4]+pp[6]-6,2,'#1E1B2E');C(pp[3]+pp[5]/2+5,pp[4]+pp[6]-6,2,'#1E1B2E')}
+  if(S.gears[r]){x.font='28px sans-serif';x.textAlign='center';x.fillText('⚙️',610,30)}}
+/* ---------- What happens ---------- */
+function mmEnter(Z,id,first){Z.room=id;Z.pz=null;Z.sort=[];const S=mmS();S.room=id;const r=MMR.find(q=>q.id===id);
+  Z.msg=id==='tower'?(MMR.slice(0,5).every(q=>S.gears[q.id])?'The Great Clock waits. Tap it to put the five golden gears back in!':'The clock needs all five gears.'):first&&id==='hall'&&!S.gears.hall?'Welcome to the mansion! The Great Clock has stopped, and its five golden gears are hidden in five rooms. Look around!':`You step into the ${r.n}.`;mmBox(Z)}
+async function mmLook(Z,id){if(QM||Z.spin)return;const S=mmS(),r=Z.room,o=MMO[r].find(q=>q[0]===id);if(!o)return;Z.pz=null;
+  if(o[2]==='flavor'){Z.msg=o[7];SND.play('click')}
+  else if(o[2]==='pip'){if(!S.pip[r]){S.pip[r]=1;Z.trip.pip++;SND.play('unlock');SYNC();Z.msg='Squeak! You found Pip the mouse! 🐭';if(MMR.slice(0,5).every(q=>S.pip[q.id]))AG.ach('mansion','pip')}else Z.msg='Pip waves a tiny paw at you. 🐭'}
+  else if(o[2]==='clue1'||o[2]==='clue2'){const ci=o[2]==='clue1'?0:1,key=r+':'+o[2];if(S.clues[key]){Z.msg=mmClue(r,ci,Z.P)}else{mmBox(Z);const ok=await AG.ask({title:o[1],intro:'Answer to read the clue!'});if(!AG.on('mansion')||AG.cur.st!==Z)return;
+      if(ok){S.clues[key]=1;SYNC();Z.msg=`📜 ${mmClue(r,ci,Z.P)}`}else if(ok===false)Z.msg='The note is too smudged to read. Try again!';else Z.msg=''}}
+  else if(o[2]==='lock'){if(r==='tower'){if(S.spun)Z.msg='The Great Clock is ticking happily. Start a new mystery from the mansion menu!';else if(MMR.slice(0,5).every(q=>S.gears[q.id])){S.spun=1;SYNC();Z.spin=.01;Z.msg='Click, click, click... the gears turn and the Great Clock starts ticking! 🎉';SND.play('win','ui')}else Z.msg='The clock needs all five golden gears.'}
+    else if(S.gears[r])Z.msg='You already found this room\'s gear. ⚙️';
+    else if(!S.clues[r+':clue1']||!S.clues[r+':clue2'])Z.msg='It\'s locked. Find both clue notes in this room first.';
+    else{Z.pz=r;Z.msg='Solve the puzzle to open it!'}}
+  mmBox(Z)}
+function mmTry(Z,v){const S=mmS(),r=Z.pz,P=Z.P[r];if(!r)return;let ok;
+  if(P.k==='sort'){Z.sort.push(v);const want=P.ans.slice(0,Z.sort.length);if(Z.sort.join()!==want.join()){Z.sort=[];S.tries[r]=(S.tries[r]||0)+1;Z.msg='Oops! Start again with the smallest number.';SND.play('no');return mmBox(Z)}
+    if(Z.sort.length<4){SND.play('click');return mmBox(Z)}ok=true}else ok=v===P.ans;
+  if(!ok){S.tries[r]=(S.tries[r]||0)+1;Z.msg='Not quite. Read the clue notes again and try once more.';SND.play('no');return mmBox(Z)}
+  if(!S.tries[r])AG.ach('mansion','sharp');S.gears[r]=1;Z.trip.gears++;const first=!S.runs;addGems(first?3:1);SYNC();SND.play('unlock');AG.ach('mansion','gear');aqBump('mmg');Z.pz=null;
+  const i=MMR.findIndex(q=>q.id===r);Z.msg=`Click! The lock opens and you find a golden gear! ⚙️ +${first?3:1} 💎 ${i<4?`The door to the ${MMR[i+1].n} is open now.`:'All five gears! Head up to the Clock Tower.'}`;mmBox(Z)}
+function mmTrip(Z,why){const S=mmS();if(why==='clock'){S.runs=(S.runs||0)+1;addGems(S.runs===1?15:5);AG.ach('mansion','clock');if(S.runs>=2)AG.ach('mansion','again')}return{why,gears:Z.trip.gears,pip:Z.trip.pip,runs:S.runs||0}}
+function mmNew(){const S=ARS('mansion');Object.assign(S,{seed:1+Math.floor(Math.random()*1e6),gears:{},clues:{},tries:{},room:'hall',spun:0});SYNC();AG.play('mansion',{room:'hall'})}
+/* the text box, the things in the room, and the puzzles */
+function mmBox(Z){const e=$('mmbox');if(!e)return;const S=mmS(),r=Z.room,R=MMR.find(q=>q.id===r),P=Z.P[Z.pz||r];let pz='';
+  if(Z.pz){if(P.k==='seq')pz=`<b>The coat hooks are numbered. What number goes on the empty hook?</b><div class="seq">${P.seq.map((v,i)=>`<span class="${i===P.hole?'q':''}">${i===P.hole?'?':v}</span>`).join('')}</div><div class="opts">${P.opts.map(v=>`<button class="abtn sec" onclick="AG.cur&&mmTry(AG.cur.st,${v})">${v}</button>`).join('')}</div>`;
+    else if(P.k==='sort')pz=`<b>Tap the books from the smallest number to the biggest.</b><div class="opts" style="margin-top:8px">${P.books.map(v=>`<button class="abtn ${Z.sort.includes(v)?'':'sec'}" ${Z.sort.includes(v)?'disabled':''} onclick="AG.cur&&mmTry(AG.cur.st,${v})">📕 ${v}</button>`).join('')}</div><p class="sol" style="margin:6px 0 0">In order so far: ${Z.sort.join(', ')||'none yet'}</p>`;
+    else if(P.k==='trays')pz=`<b>${P.young?`There are ${P.kk} trays, and each tray holds ${P.M} cookies. How many cookies in all?`:`The recipe makes ${P.N} cookies, and each tray holds ${P.M}. How many trays do you need?`}</b><div class="opts" style="margin-top:8px">${P.opts.map(v=>`<button class="abtn sec" onclick="AG.cur&&mmTry(AG.cur.st,${v})">${v}</button>`).join('')}</div>`;
+    else if(P.k==='pattern')pz=`<b>Which flower comes next in the pattern?</b><div class="seq">${P.row.map(v=>`<span>${v}</span>`).join('')}<span class="q">?</span></div><div class="opts">${P.opts.map(v=>`<button class="abtn sec" aria-label="${v}" onclick="AG.cur&&mmTry(AG.cur.st,'${v}')">${v}</button>`).join('')}</div>`;
+    else if(P.k==='logic')pz=`<b>Which trunk holds the gear? Use both clue notes.</b><ul style="margin:6px 0">${[mmClue('attic',0,Z.P),mmClue('attic',1,Z.P)].map(c=>`<li>${esc(c)}</li>`).join('')}</ul><div class="opts">${P.T.map(v=>`<button class="abtn sec" onclick="AG.cur&&mmTry(AG.cur.st,'${v}')">${v[0].toUpperCase()+v.slice(1)} trunk</button>`).join('')}</div>`;
+    pz=`<div class="mmpz">${pz}</div>`}
+  const objs=MMO[r].filter(o=>o[2]!=='pip').map(o=>{const got=(o[2]==='clue1'||o[2]==='clue2')&&S.clues[r+':'+o[2]],lk=o[2]==='lock'&&S.gears[r];return `<button class="chip ${got||lk?'found':''}" onclick="AG.cur&&mmLook(AG.cur.st,'${o[0]}')">${o[2]==='lock'?(lk?'⚙️':'🔒'):got?'📜':'🔍'} ${esc(o[1])}</button>`}).join('');
+  e.innerHTML=`<span class="who">${R.e} ${esc(R.n)}</span>${esc(Z.msg)}${pz}<div class="mmobj" role="group" aria-label="Things to look at">${objs}${r!=='tower'?`<button class="chip" onclick="AG.cur&&mmLook(AG.cur.st,'pip')" aria-label="Look in the corners">👀 Corners</button>`:''}</div>
+  <div class="mmrooms" role="group" aria-label="Rooms"><span class="mmgears" aria-label="${MMR.slice(0,5).filter(q=>S.gears[q.id]).length} of 5 gears">${MMR.slice(0,5).map(q=>`<span class="${S.gears[q.id]?'':'no'}">⚙️</span>`).join('')}</span>${MMR.map((q,i)=>`<button class="chip ${q.id===r?'on':''}" ${mmOpen(i)?'':'disabled'} aria-pressed="${q.id===r}" onclick="AG.cur&&mmEnter(AG.cur.st,'${q.id}')">${mmOpen(i)?q.e:'🔒'} ${esc(q.n)}</button>`).join('')}
+  <button class="chip" style="margin-left:auto" onclick="AG.cur&&AG.finish(mmTrip(AG.cur.st,'leave'))">🚪 Leave</button></div>`}
+/* ---------- The menu ---------- */
+GVIEW.mansion=function(){const C=AG.cur&&AG.cur.id==='mansion'?AG.cur:null;
+  if(C&&['load','play','crash'].includes(C.phase))return AG.screen('mansion',{below:'<div class="mmbox" id="mmbox" aria-live="polite"></div>'});
+  const S=mmS(),r=C&&C.phase==='end'?C.res:null,n=MMR.slice(0,5).filter(q=>S.gears[q.id]).length,done=r&&r.why==='clock';
+  const card=r?`<div class="gcard endcard" style="margin-bottom:16px"><div class="big" aria-hidden="true">${done?'🕰️':r.why==='time'?'🌙':'🚪'}</div><h3>${done?'The Great Clock is ticking again!':r.why==='time'?'Play time is over for today':'See you soon!'}</h3>
+    <p>${done?`You solved the mansion${r.runs>1?` ${r.runs} times`:''}! 💎 +${r.runs===1?15:5}`:`This visit: ${r.gears} gear${r.gears===1?'':'s'}, ${r.pip} Pip sighting${r.pip===1?'':'s'}.`}</p></div>`:'';
+  return `<div class="gworld">${clouds()}${gameHead('Mystery Mansion','Find the five golden gears and start the Great Clock.')}${outOfTime()?restCard():''}${card}${subjChips()}
+  <div class="gcard"><div class="split"><h3>🏚️ The mansion</h3><span class="mmgears">${MMR.slice(0,5).map(q=>`<span class="${S.gears[q.id]?'':'no'}">⚙️</span>`).join('')}</span></div>
+  <p class="sol" style="margin:4px 0 0">${n} of 5 gears found · Pip found in ${Object.keys(S.pip).length} of 5 rooms${S.runs?` · solved ${S.runs} time${S.runs>1?'s':''}`:''}</p>
+  ${S.runs&&n===5||done?`<div class="row" style="margin-top:10px"><button class="abtn gold" ${outOfTime()?'disabled':''} onclick="mmNew()">🔀 Start a new mystery</button><span class="sol">New puzzles, and the gears hide again.</span></div>`:''}</div>
+  <div style="margin-top:14px">${AG.intro('mansion','AG.play(\'mansion\')')}</div></div>`};
+AQS.mmg={i:'⚙️',t:'Find a golden gear in Mystery Mansion',n:1,g:'mansion'};
+GAMES.push({id:'mansion',n:'Mystery Mansion',p:'A friendly mystery: read clue notes with smart answers, solve logic locks and find the five golden gears.'});
+ART.mansion=()=>sceneSvg(`<rect x="40" y="40" width="120" height="80" fill="#6B5A80"/><path d="M30 42L100 6L170 42Z" fill="#3B3355"/><rect x="120" y="14" width="22" height="30" fill="#5B4B70"/><path d="M116 14L131 -4L146 14Z" fill="#3B3355"/>${[[56,58],[86,58],[126,58],[56,88],[126,88]].map(([x,y])=>`<rect x="${x}" y="${y}" width="16" height="16" fill="#FDE68A"/>`).join('')}<rect x="88" y="88" width="24" height="32" rx="10" fill="#3B2414"/><text x="100" y="84" font-size="16" text-anchor="middle">⚙️</text>`,'#C4B5FD','#EDE9FE');
+</script>
