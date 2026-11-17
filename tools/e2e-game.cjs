@@ -257,8 +257,8 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     const gbox = await a.locator('#agcv').boundingBox(), gp = await a.evaluate(() => AG.cur.st.m.pads[0]);
     await a.mouse.click(gbox.x + gp[0] / 640 * gbox.width, gbox.y + gp[1] / 360 * gbox.height); await a.waitForSelector('.ggbuild');
     if (await a.evaluate(() => AG.cur.st.sel) !== 0) fail('tapping a pad did not select it');
-    const gload = await a.$$eval('.ggbuild', b => b.length); if (gload !== 5) fail('the build list is not the 5-tower loadout: ' + gload);
-    await a.click('.ggbuild >> nth=1'); if (await a.evaluate(() => (AG.cur.st.tw[0] || {}).t) !== 'ice') fail('tapping Frost Spire did not build it');
+    const gload = await a.$$eval('.ggbuild', b => b.length); if (gload !== 6) fail('the build list is not the 6-tower loadout: ' + gload);
+    await a.click('.ggbuild >> nth=0'); if (await a.evaluate(() => (AG.cur.st.tw[0] || {}).t) !== 'spring') fail('tapping Spring-Bolt Sentry did not build it');
     await a.evaluate(() => { AG.cur.st.gold = 500; ggpanel(AG.cur.st) }); await a.click('.ggup'); await answerQM(a, false); await a.click('#qmok'); await a.waitForFunction(() => !QM);
     if (await a.evaluate(() => AG.cur.st.tw[0].lvl) !== 1) fail('a wrong answer upgraded the tower');
     await a.click('.ggup'); await answerQM(a, true); await a.waitForFunction(() => !QM && AG.cur.st.tw[0].lvl === 2);
@@ -267,7 +267,7 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     await a.click('.ggup'); await a.waitForFunction(() => QM && QM.phase === 'ask'); const gd0 = await a.evaluate(() => AG.cur.st.gobs.map(g => g.d.toFixed(2)).join()); await a.waitForTimeout(600);
     if (gd0 !== await a.evaluate(() => AG.cur.st.gobs.map(g => g.d.toFixed(2)).join())) fail('goblins kept moving while a question was open'); await answerQM(a, true); await a.waitForFunction(() => !QM && AG.cur.st.tw[0].lvl === 3);
     // strong towers, then waves until the boss arrives: answer to fire the castle cannon
-    await a.evaluate(() => { const Z = AG.cur.st; Z.tw = Z.tw.map(() => ({ t: 'bolt', lvl: 7, cd: 0, spent: 70 })); let n = 0; while (n++ < 60000 && AG.cur.phase === 'play' && !Z.boss) { if (Z.ph === 'build') ggWave(Z); AG.G.gate.step(1 / 60, Z) } ggpanel(Z) });
+    await a.evaluate(() => { const Z = AG.cur.st; Z.tw = Z.tw.map(() => ({ t: 'tesla', lvl: 7, cd: 0, spent: 70 })); let n = 0; while (n++ < 60000 && AG.cur.phase === 'play' && !Z.boss) { if (Z.ph === 'build') ggWave(Z); AG.G.gate.step(1 / 60, Z) } ggpanel(Z) });
     if (!(await a.evaluate(() => !!AG.cur.st.boss))) fail('no boss came in the last wave');
     await a.click('#ggcannon'); await answerQM(a, true); await a.waitForFunction(() => !QM); await a.waitForTimeout(700);
     const gb = await a.evaluate(() => { const b = AG.cur.st.boss; return b ? b.hp / b.max : 0 }); if (gb > .9) fail('the castle cannon did not hit the boss: ' + gb);
@@ -275,26 +275,38 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     await a.waitForSelector('text=The castle is safe!'); await a.waitForTimeout(1600);
     const gr = await a.evaluate(g => ({ gems: GEMS() - g, r: AG.cur.res, st: ARS('gate').st.valley, next: ggOpen(1), after: ggOpen(2), boss: AG.got('gate', 'boss'), flag: AG.has('gate.flag.blue') }), gg0);
     if (gr.st < 1 || !gr.next || gr.after || !gr.boss || !gr.flag || gr.gems < gr.r.gems || !(await a.isVisible('text=Stage 2 unlocked: Frozen Kingdom'))) fail('Goblin Gate result wrong: ' + JSON.stringify(gr));
-    ok(`Goblin Gate: tapping a pad and Frost Spire (from the 5-tower loadout) built it, a miss left the upgrade undone and a right answer took it to level 2 (33 gold), goblins froze while a question was open, the boss came in the last wave and a right answer fired the castle cannon, stage 1 was won with ${gr.r.stars} stars, ${gr.gems} gems and ${gr.r.coins} Gate coins, unlocking Frozen Kingdom, the boss achievement and the blue banner`); await shot(a, 'g-gate');
+    ok(`Goblin Gate: tapping a pad and Spring-Bolt Sentry (from the 6-tower loadout) built it, a miss left the upgrade undone and a right answer took it to level 2 (33 gold), goblins froze while a question was open, the boss came in the last wave and a right answer fired the castle cannon, stage 1 was won with ${gr.r.stars} stars, ${gr.gems} gems and ${gr.r.coins} Gate coins, unlocking Frozen Kingdom, the boss achievement and the blue banner`); await shot(a, 'g-gate');
     // chests (odds shown, pity, the lucky roll), the loadout, level 7, and the Goblin King on stage 7
     await a.evaluate(() => { AG.stop(); AG.cur = null; AR.run = false; ggS().coins = 60; rerealm() }); await a.waitForSelector('.ggshop');
-    if (!(await a.isVisible('text=Common 60% · Rare 28% · Epic 10% · Legendary 2%'))) fail('the chest odds are not shown');
+    if (!(await a.isVisible('text=Common 70% · Rare 20% · Epic 8.5% · Legendary 1.5%'))) fail('the chest odds are not shown');
     await a.click('.ggshop button >> nth=0'); await a.waitForSelector('.ggreveal'); const gc1 = await a.evaluate(() => ({ coins: ggS().coins, t: GGLAST.t, have: ggS().own.includes(GGLAST.t) }));
     await a.click('.ggreveal button'); await a.click('.ggshop button.lucky'); await a.waitForSelector('.ggreveal'); const gc2 = await a.evaluate(() => ({ coins: ggS().coins, rar: GGLAST.rar }));
     if (gc1.coins !== 50 || !gc1.have || gc2.coins !== 0 || gc2.rar < 1) fail('chests wrong: ' + JSON.stringify([gc1, gc2]));
-    const gp2 = await a.evaluate(() => { const S = ggS(), r = []; for (let k = 0; k < 20; k++) { S.coins = 10; S.pity = 9; r.push(ggRoll(false).rar) } S.coins = 5; return { pity: Math.min(...r), broke: ggRoll(false), coins: S.coins } });
-    if (gp2.pity < 2 || gp2.broke !== null || gp2.coins !== 5) fail('chest pity or cost wrong: ' + JSON.stringify(gp2));
+    const gp2 = await a.evaluate(() => { const S = ggS(), r = [], l = []; for (let k = 0; k < 20; k++) { S.coins = 10; S.pityE = 14; r.push(ggRoll(false).rar) } for (let k = 0; k < 5; k++) { S.coins = 10; S.pityL = 79; l.push(ggRoll(false).rar) } S.coins = 5; return { pity: Math.min(...r), leg: Math.min(...l), broke: ggRoll(false), coins: S.coins } });
+    if (gp2.pity < 2 || gp2.leg !== 3 || gp2.broke !== null || gp2.coins !== 5) fail('chest pity or cost wrong: ' + JSON.stringify(gp2));
+    // the shard shop: pick the exact tower you want; an old save moves to the new towers within the loadout budget
+    await a.evaluate(() => { const S = ggS(); S.own = S.own.filter(k => k !== 'sentry'); S.load = S.load.filter(k => k !== 'sentry'); S.shards = 60; GGLAST = null; SYNC(); rerealm() });
+    await a.click('.ggtw .c:has(b:has-text("Sentry Gun")) button'); await a.waitForSelector('text=Bought with shards!');
+    const gsh = await a.evaluate(() => ({ own: ggS().own.includes('sentry'), sh: ggS().shards })); if (!gsh.own || gsh.sh !== 10) fail('the shard shop did not work: ' + JSON.stringify(gsh));
+    const gmig = await a.evaluate(() => { const A = ARS('gate'), keep = JSON.stringify(A); for (const k of Object.keys(A)) delete A[k]; Object.assign(A, { own: ['archer', 'titan', 'star', 'ice'], load: ['archer', 'titan', 'star', 'ice'], cp: { archer: 3, titan: 9 }, pity: 6, coins: 12 });
+      const S = ggS(), r = { own: S.own.slice().sort().join(), load: S.load.join(), cp: S.cp, pityE: S.pityE, pts: ggPts(S.load) }; for (const k of Object.keys(A)) delete A[k]; Object.assign(A, JSON.parse(keep)); return r });
+    if (gmig.own !== 'acid,astral,dart,flame,frostp,mortar,rail,spike,spring' || gmig.load !== 'spring,rail,frostp' || gmig.cp.spring !== 3 || gmig.cp.rail !== 4 || gmig.pityE !== 6 || gmig.pts !== 8) fail('an old save did not move to the new towers: ' + JSON.stringify(gmig));
     await a.evaluate(() => { GGLAST = null; rerealm() }); const gl0 = await a.evaluate(() => ggS().load.length); await a.click('.ggtw .c.in button >> nth=0'); const gl1 = await a.evaluate(() => ggS().load.length);
     if (gl1 !== gl0 - 1) fail('taking a tower out of the loadout did not work');
     await a.evaluate(() => { const S = ggS(); for (const m of GGMAPS.slice(0, 6)) S.st[m.id] = S.st[m.id] || 1; S.map = 'fortress'; SYNC(); rerealm() }); await a.click('text=▶ Start defending');
     await a.waitForFunction(() => AG.cur && AG.cur.phase === 'play' && AG.cur.st && AG.cur.st.m.id === 'fortress');
     const gking = await a.evaluate(() => { const Z = AG.cur.st; Z.w = Z.m.waves - 1; Z.tw = Z.tw.map(() => null); Z.ph = 'wave'; Z.q = []; ggSpawn(Z, 'king');
       const k = Z.gobs.find(g => g.k === 'king'); if (!k) return null; const n0 = Z.gobs.length; for (let i = 0; i < 380; i++) AG.G.gate.step(1 / 60, Z); const r = { hp: k.max, help: Z.gobs.length - n0, bar: Z.boss === k };
-      k.hp = k.max * .6; AG.G.gate.step(1 / 60, Z); r.shield = k.shieldU > Z.time; const h0 = k.hp; ggDmg(Z, k, 999, 1); r.immune = k.hp === h0; k.shieldU = 0; Z.tw[0] = { t: 'ice', lvl: 6, cd: 0, spent: 1 }; Z.sel = 0; Z.gold = 999; ggpanel(Z); return r });
+      k.hp = k.max * .6; AG.G.gate.step(1 / 60, Z); r.shield = k.shieldU > Z.time; const h0 = k.hp; ggDmg(Z, k, 999, 1); r.immune = k.hp === h0; k.shieldU = 0; Z.tw[0] = { t: 'frostp', lvl: 6, cd: 0, spent: 1 }; Z.sel = 0; Z.gold = 999; ggpanel(Z); return r });
     if (!gking || gking.hp < 10000 || gking.help < 3 || !gking.bar || !gking.shield || !gking.immune) fail('the Goblin King is wrong: ' + JSON.stringify(gking));
     await a.click('.ggup'); await answerQM(a, true); await a.waitForFunction(() => !QM && AG.cur.st.tw[0].lvl === 7); if (!(await a.evaluate(() => AG.got('gate', 'max')))) fail('level 7 gave no achievement');
+    // level 5: pick a Mastery (B needs a second copy)
+    await a.evaluate(() => { const Z = AG.cur.st; Z.tw[1] = { t: 'tesla', lvl: 4, cd: 0, spent: 1 }; ggS().cp.tesla = 0; Z.sel = 1; ggpanel(Z) });
+    const gms = await a.$$eval('.ggup', b => b.map(x => [x.textContent.slice(0, 14), x.disabled])); if (gms.length !== 2 || gms[0][1] || !gms[1][1]) fail('the Mastery choice is wrong: ' + JSON.stringify(gms));
+    await a.click('.ggup >> nth=0'); await answerQM(a, true); await a.waitForFunction(() => !QM && AG.cur.st.tw[1].lvl === 5);
+    const gmA = await a.evaluate(() => ({ m: AG.cur.st.tw[1].m, ach: AG.got('gate', 'mastery'), chain: ggStat(AG.cur.st.tw[1], AG.cur.st, 1).chain })); if (gmA.m !== 'A' || !gmA.ach || gmA.chain < 6) fail('Mastery A did not take: ' + JSON.stringify(gmA));
     await a.evaluate(() => { const Z = AG.cur.st, k = Z.gobs.find(g => g.k === 'king'); k.hp = 1; ggDmg(Z, k, 9, 1) }); if (!(await a.evaluate(() => AG.got('gate', 'king')))) fail('defeating the Goblin King gave no achievement');
-    ok(`Goblin Gate chests: odds shown, a 10-coin chest gave ${gc1.t}, a 50-coin lucky roll gave rarity ${gc2.rar} or better, pity guarantees Epic+, too few coins buys nothing; the loadout changed; the Goblin King (${gking.hp} health) called ${gking.help} helpers and his shield blocked damage; a tower reached level 7`);
+    ok(`Goblin Gate chests: odds shown, a 10-coin chest gave ${gc1.t}, a 50-coin lucky roll gave rarity ${gc2.rar} or better, pity guarantees Epic+ and Legendary, too few coins buys nothing; 50 shards bought the Sentry Gun; an old save moved to the new towers within the 12-point budget; the loadout changed; Volt Tempest was picked as Tesla's level 5 Mastery (B locked without a second copy); the Goblin King (${gking.hp} health) called ${gking.help} helpers and his shield blocked damage; a tower reached level 7`);
     // Block Builder: 4 + 6 side by side (keys), 8 + 2 stacked (tapping the column), 3 × 4 = 12, a mystery block, level 2, a rescue, a full tower, a challenge level
     await a.evaluate(() => toHub()); await a.click('.tile:has-text("Block Builder")'); await a.waitForSelector('.bbmodes'); await a.click('.bbmode:has-text("Endless")'); await a.click('.chip:has-text("Make 10")'); await a.click('text=▶ Start');
     await a.waitForFunction(() => AG.cur && AG.cur.phase === 'play' && AG.cur.st && AG.cur.st.phase === 'fall');
@@ -434,7 +446,7 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
     const mp = await a.evaluate(() => ({ pads: GGED.o.pads.length, chk: ggCheck(GGED.o), name: ggName(GGED.o), th: GGED.o.th, w: GGED.o.w }));
     if (mp.pads !== 5 || mp.chk || mp.name !== 'Twisty Canyon' || mp.th !== 'lava' || mp.w !== 5) fail('the map settings are wrong: ' + JSON.stringify(mp));
     await a.click('text=▶ Test play'); await a.waitForFunction(() => AG.cur && AG.cur.phase === 'play' && AG.cur.st && AG.cur.st.m.custom); const mc0 = await a.evaluate(() => ggS().coins);
-    await a.evaluate(() => { const Z = AG.cur.st; Z.tw = Z.tw.map(() => ({ t: 'titan', lvl: 7, cd: 0, spent: 1 })); let n = 0; while (n++ < 80000 && AG.cur.phase === 'play') { if (Z.ph === 'build') ggWave(Z); AG.G.gate.step(1 / 60, Z) } });
+    await a.evaluate(() => { const Z = AG.cur.st; Z.tw = Z.tw.map(() => ({ t: 'rail', lvl: 7, cd: 0, spent: 1 })); let n = 0; while (n++ < 80000 && AG.cur.phase === 'play') { if (Z.ph === 'build') ggWave(Z); AG.G.gate.step(1 / 60, Z) } });
     await a.waitForSelector('#ggedcv'); if (!(await a.textContent('.ggmsg')).includes('Test play: you won')) fail('the test play result is missing'); if (await a.evaluate(() => ggS().coins) !== mc0) fail('a made map paid wave coins');
     await a.click('text=💾 Save map'); await a.waitForSelector('.ggmine'); await a.click('.ggmine .chip:has-text("Share with Dragon Class")');
     await a.waitForFunction(() => GGCM && !GGCM.busy && GGCM.list.length === 1, null, { timeout: 8000 });

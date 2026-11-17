@@ -17,6 +17,11 @@
 .ggtw .c{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 6px;border-radius:14px;border:3px solid var(--rc,#94A3B8);background:var(--panel);color:var(--ink);text-align:center;font:inherit}
 .ggtw .c img{width:40px;height:93px;margin:-14px 0 -4px;image-rendering:pixelated}.ggtw .c.lock img{filter:brightness(0) opacity(.35)}.ggtw .c b{font:800 .88rem "Bricolage Grotesque",sans-serif}.ggtw .c small{font-size:.72rem;color:var(--mute);line-height:1.2}
 .ggtw .c .rar{font-size:.68rem;font-weight:800;color:var(--rc)}.ggtw .c button{margin-top:4px;font-size:.75rem;padding:3px 8px}.ggtw .c.in{box-shadow:0 0 0 3px rgba(242,169,0,.45)}
+.ggload{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:8px;padding:10px;border-radius:16px;background:color-mix(in srgb,var(--panel) 85%,#F59E0B)}.ggload .slots{display:flex;gap:6px}
+.ggload .slot{position:relative;width:44px;height:58px;border-radius:12px;border:3px solid var(--rc,var(--line));background:var(--panel);overflow:hidden;padding:0;display:flex;align-items:flex-end;justify-content:center}.ggload .slot img{width:30px;height:70px;image-rendering:pixelated;margin-bottom:-14px}
+.ggload .slot small{position:absolute;top:1px;left:4px;font-size:.65rem;font-weight:800;color:var(--mute)}.ggload .slot.empty{border-style:dashed;opacity:.6}
+.ggrh{margin:14px 0 0;color:var(--rc);font:800 1rem "Bricolage Grotesque",sans-serif}.ggstar{color:#F59E0B;letter-spacing:-1px}
+.ggsets{display:flex;flex-direction:column;gap:4px;margin-top:8px}.ggsets span{font-size:.78rem;font-weight:700;padding:4px 8px;border-radius:10px;background:#EDE9FE;color:#3B0764}
 .ggshop{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:8px}.ggshop button{display:flex;flex-direction:column;gap:3px;text-align:left;padding:12px;border-radius:16px;border:3px solid var(--line);background:var(--panel);color:var(--ink);font:inherit}
 .ggshop button b{font:800 1.05rem "Bricolage Grotesque",sans-serif}.ggshop button.lucky{border-color:#F59E0B;background:linear-gradient(135deg,#FFF7E6,#FDE68A)}.ggshop button[disabled]{opacity:.55}
 .ggreveal{display:flex;gap:16px;align-items:center;padding:14px;border-radius:18px;border:4px solid var(--rc);background:radial-gradient(circle at 20% 50%,color-mix(in srgb,var(--rc) 30%,#fff),#fff);color:#1E1B4B;margin-bottom:14px}
@@ -51,34 +56,110 @@ const GGMAPS=[
   {id:'sky',n:'Sky Castle',waves:8,hp:2.75,bg:['#BFE3FF','#A8D4F7'],road:['#F2E3B5','#FFF4CF'],deco:'cloud',goal:['cannon','Fire the castle cannon 3 times'],path:[[-30,300],[150,300],[150,120],[300,120],[300,250],[450,250],[450,90],[592,90]]},
   {id:'fortress',n:'Goblin Stronghold',waves:10,hp:3.2,bg:['#3A3A44','#45454F'],road:['#57534E','#6B6560'],deco:'spike',ember:1,king:1,goal:['few7','Lose 3 cookies or fewer'],path:[[-30,60],[100,60],[100,300],[220,300],[220,120],[360,120],[360,300],[480,300],[480,180],[592,180]]}];
 /* 18 towers in four rarities. Stats are for level 1; each level makes them stronger (ggStat). shot: how it attacks */
-const GRAR=[['Common','#94A3B8'],['Rare','#3B82F6'],['Epic','#A855F7'],['Legendary','#F59E0B']];
+const GRAR=[['Common','#94A3B8'],['Rare','#3B82F6'],['Epic','#A855F7'],['Legendary','#F59E0B']],GRM=[1,1.2,1.3,1.35],GPTS=[1,2,3,5],GSHARD=[5,15,40,100],GSHOP=[50,150,400,1200];
+/* factions: three different towers of one faction on the field switch on its bonus (Modern Military needs both; Logistics counts toward any) */
+const GFAC={iron:['Ironworks','Physical shots pierce 1 more goblin'],volt:['Voltaic Guild','Lightning jumps once more; beams heat up faster'],blight:['Blight Hive','Poison stacks one higher'],
+  rime:['Rimeclock','Slows and freezes last 30% longer'],ember:['Emberforge','Burning ground lasts 2 seconds longer'],void:['Void Choir','Every 10th defeat: a bonus soul and 5 gold'],
+  prism:['Prism Order','Linked towers deal 15% more damage'],stone:['Stonewardens','Traps and cracks get 1 extra use'],wild:['Wildroot','Helpers have 20% more health'],
+  mil:['Modern Military','With both: every tower pierces 10% more armor'],logi:['Logistics','Counts toward any faction’s set']};
+/* 36 towers. Commons aim, Rares afflict, Epics arrange the battlefield, Legendaries break a rule (each with a limit).
+   k = how it works; dt = damage type (phys is cut by armor); A and B are the two Masteries, chosen at level 5 */
 const GGT={
-  archer:{n:'Archer Post',i:'🏹',c:'#C08A3E',rar:0,role:'Fast arrows at one goblin',cost:40,r:100,rate:.55,dmg:5,shot:'arrow'},
-  ice:{n:'Frost Spire',i:'❄️',c:'#7FD3FF',rar:0,role:'Slows goblins; freezes them from level 4',cost:50,r:95,rate:.9,dmg:4,slow:.5,slowT:1.6,shot:'ice'},
-  fire:{n:'Fire Brazier',i:'🔥',c:'#FF7A3D',rar:0,role:'Sets goblins on fire',cost:60,r:100,rate:.8,dmg:6,burn:3,shot:'fire'},
-  cat:{n:'Stone Thrower',i:'🪨',c:'#C8A46A',rar:0,role:'Throws rocks that smash groups',cost:80,r:140,rate:1.6,dmg:16,splash:34,shot:'rock'},
-  mine:{n:'Gold Mine',i:'⛏️',c:'#F2C14E',rar:0,role:'Makes gold after every wave',cost:70,r:0,rate:0,dmg:0,gold:15,shot:'none'},
-  bolt:{n:'Storm Coil',i:'⚡',c:'#FFE14D',rar:1,role:'Lightning that jumps between goblins',cost:70,r:110,rate:1.1,dmg:12,chain:1,pierce:1,shot:'bolt'},
-  xbow:{n:'Crossbow Nest',i:'🎯',c:'#8B5A2B',rar:1,role:'Very fast bolts that pierce armor',cost:90,r:120,rate:.32,dmg:6,pierce:1,shot:'arrow'},
-  drum:{n:'War Drum',i:'🥁',c:'#DC2626',rar:1,role:'Towers nearby attack faster',cost:80,r:90,rate:0,dmg:0,buff:.12,sup:'rate',shot:'none'},
-  bog:{n:'Bog Cauldron',i:'🧪',c:'#65A30D',rar:1,role:'A poison cloud hurts every goblin nearby',cost:90,r:80,rate:1,dmg:6,aura:1,shot:'aura',fx:'#84CC16'},
-  gale:{n:'Gale Mill',i:'🌬️',c:'#A5F3FC',rar:1,role:'Blows goblins back down the road',cost:85,r:90,rate:2.2,dmg:3,aura:1,knock:24,shot:'aura',fx:'#E0F2FE'},
-  cannon:{n:'Iron Cannon',i:'💣',c:'#57534E',rar:2,role:'Huge blasts on groups',cost:140,r:150,rate:2.2,dmg:45,splash:46,shot:'shell'},
-  arcane:{n:'Arcane Tower',i:'🔮',c:'#A855F7',rar:2,role:'Magic that ignores armor and jumps',cost:130,r:125,rate:.9,dmg:16,pierce:1,chain:1,shot:'magic'},
-  dragon:{n:'Dragon Roost',i:'🐉',c:'#16A34A',rar:2,role:'Breathes fire on whole groups',cost:160,r:115,rate:1.2,dmg:14,splash:40,burn:6,shot:'fire'},
-  banner:{n:'Royal Banner',i:'🚩',c:'#2563EB',rar:2,role:'Towers nearby hit harder',cost:120,r:95,rate:0,dmg:0,buff:.18,sup:'dmg',shot:'none'},
-  phoenix:{n:'Phoenix Perch',i:'🪶',c:'#F97316',rar:3,role:'A firestorm burns everything around it',cost:220,r:110,rate:1.4,dmg:30,aura:1,burn:14,shot:'aura',fx:'#FB923C'},
-  titan:{n:'Thunder Titan',i:'🌩️',c:'#FACC15',rar:3,role:'Giant lightning that stuns',cost:240,r:140,rate:1.5,dmg:60,chain:3,stun:.5,pierce:1,shot:'bolt'},
-  star:{n:'Star Mage',i:'✨',c:'#F0ABFC',rar:3,role:'A star beam at the strongest goblin',cost:230,r:160,rate:1.1,dmg:90,pierce:1,strong:1,shot:'beam'},
-  golem:{n:'Clockwork Golem',i:'⚙️',c:'#B45309',rar:3,role:'Stomps and stuns every goblin nearby',cost:210,r:85,rate:1.8,dmg:40,aura:1,stun:.8,shot:'aura',fx:'#D6A35C'}};
-const GGOB={grunt:{hp:30,sp:42,gold:5,c:'#7ED957',r:11},runner:{hp:18,sp:72,gold:5,c:'#C8E86A',r:9},brute:{hp:95,sp:30,gold:12,c:'#5AA04A',r:15,armor:.3},boss:{hp:780,sp:23,gold:60,c:'#4E7E2A',r:24,armor:.25},
-  king:{hp:5200,sp:15,gold:200,c:'#3F6212',r:30,armor:.4}};
+  spring:{n:'Spring-Bolt Sentry',i:'🏹',c:'#C08A3E',rar:0,fac:'iron',role:'Fast bolts at one goblin',cost:50,r:110,rate:.45,dmg:9,k:'shot',dt:'phys',pj:'arrow',
+    A:{n:'Arbalest Matrix',d:'Fires 3 bolts at once at different goblins',fan:3,dmg:5},B:{n:'Impact Piston',d:'Every 4th bolt knocks a goblin back',knockN:4,knock:22}},
+  mortar:{n:'Shrapnel Mortar',i:'💣',c:'#57534E',rar:0,fac:'iron',role:'Lobbed blasts that hit groups (not flying goblins)',cost:70,r:165,rate:2.2,dmg:30,k:'lob',dt:'phys',splash:34,
+    A:{n:'Cluster Core',d:'Each shell scatters 4 small grenades',cluster:4},B:{n:'Flak Shatter',d:'Can hit flying goblins, +60% against them',antiair:1,airx:1.6}},
+  buzz:{n:'Buzzsaw Dispenser',i:'🪚',c:'#A8A29E',rar:0,fac:'iron',role:'Blades bounce between 3 goblins',cost:60,r:95,rate:1,dmg:11,k:'bounce',dt:'phys',bounces:3,
+    A:{n:'Razor Chain',d:'Blades bounce between 6 goblins, a bit weaker each time',bounces:6,fall:.12},B:{n:'Rip-Saw Moat',d:'Parks a spinning blade on the road for 20 seconds',moat:20}},
+  dart:{n:'Dart Sentry',i:'🎯',c:'#8B5A2B',rar:0,fac:'iron',role:'Cheap, very fast darts',cost:35,r:105,rate:.3,dmg:4,k:'shot',dt:'phys',pj:'dart',
+    A:{n:'Needle Storm',d:'Every dart adds a bleed',bleed:1},B:{n:'Harpoon Driver',d:'Every 6 seconds pins the lead goblin',pinEvery:6,pin:1}},
+  flame:{n:'Flame Spire',i:'🔥',c:'#FF7A3D',rar:0,fac:'ember',role:'A short cone of fire that burns',cost:50,r:80,rate:.3,dmg:2.2,k:'cone',dt:'fire',burn:2,
+    A:{n:'Inferno Spray',d:'The cone sets the road burning',tileFire:3},B:{n:'Blue Fire',d:'Burns through 30% of armor',ap:.3,blue:1}},
+  spike:{n:'Spike Forge',i:'📌',c:'#78716C',rar:0,fac:'stone',role:'Spike traps on the road; they hit hidden goblins too',cost:45,r:100,rate:2,dmg:10,k:'trap',dt:'phys',piles:4,charges:6,
+    A:{n:'Barbed Carpet',d:'Spikes also make goblins bleed',bleed:1},B:{n:'Iron Caltrop Wall',d:'Traps become spiked walls that hold goblins back and hurt them',wall:150}},
+  acid:{n:'Acid Spitter',i:'🧪',c:'#84CC16',rar:0,fac:'blight',role:'Melts a goblin’s armor',cost:60,r:110,rate:.8,dmg:8,k:'shot',dt:'acid',pj:'spit',corrode:.1,
+    A:{n:'Plague Catalyst',d:'Melted goblins burst when defeated',plague:1},B:{n:'Armor Dissolver',d:'Every 3rd hit: double damage taken for 2 seconds',vulnN:3,vuln:1}},
+  sentry:{n:'Sentry Gun',i:'🔫',c:'#4B5563',rar:0,fac:'mil',role:'Spins up to a stream of fast shots',cost:65,r:120,rate:.1,dmg:3,k:'shot',dt:'phys',pj:'bullet',spin:1,
+    A:{n:'Armor-Piercing Belts',d:'Ignores 60% of armor',ap:.6},B:{n:'Suppressing Fire',d:'Goblins under fire slow down 15%',suppress:.15}},
+  antitank:{n:'Heavy Rocket Nest',i:'🚀',c:'#3F6212',rar:0,fac:'mil',role:'Slow, huge rockets; +50% against armor',cost:80,r:190,rate:4,dmg:110,k:'shot',dt:'phys',pj:'rocket',armx:1.5,
+    A:{n:'Javelin Top-Attack',d:'Rockets ignore shields',shieldP:1},B:{n:'Sticky Fire Rocket',d:'Hits leave a small burning puddle',tileFire:3}},
+  tesla:{n:'Tesla Coil',i:'⚡',c:'#FACC15',rar:1,fac:'volt',role:'Lightning that chains through 3 goblins',cost:100,r:115,rate:1.2,dmg:11,k:'chain',dt:'shock',chain:3,
+    A:{n:'Volt Tempest',d:'Chains reach 6 goblins, 8% weaker each jump',chain:6,fall:.08},B:{n:'Overcharge Capacitor',d:'Charges while idle, then fires one huge beam',charge:1}},
+  frostp:{n:'Frost Pillar',i:'❄️',c:'#7FD3FF',rar:1,fac:'rime',role:'A cold aura that slows and reveals hidden goblins',cost:65,r:85,rate:.5,dmg:1,k:'aura',dt:'frost',slow:.35,reveal:1,
+    A:{n:'Absolute Zero',d:'Goblins in the aura for 4 seconds freeze',freezeAfter:4},B:{n:'Brittle Frost',d:'Slowed goblins take 25% more physical damage',brittle:.25}},
+  venom:{n:'Venom Hive',i:'🐝',c:'#A3E635',rar:1,fac:'blight',role:'Rapid needles; each adds a slowing toxin',cost:65,r:110,rate:.28,dmg:3,k:'shot',dt:'poison',pj:'needle',neuro:4,
+    A:{n:'Neurotoxin',d:'Stacks to a 40% slow, and poisons',neuro:8,psn:.01},B:{n:'Viper Cloud',d:'Defeated goblins leave poison gas',gas:3}},
+  plasma:{n:'Plasma Beamer',i:'🔆',c:'#F472B6',rar:1,fac:'volt',role:'A beam that heats up the longer it holds',cost:80,r:115,rate:0,dmg:12,k:'beam',dt:'shock',ramp:.2,maxRamp:5,
+    A:{n:'Meltdown Ray',d:'Strips armor while it holds',strip:.1},B:{n:'Wide Diffuser',d:'Splits into 2 beams (each heats to 2x)',beams:2,maxRamp:2}},
+  blizzard:{n:'Blizzard Engine',i:'🌨️',c:'#BAE6FD',rar:1,fac:'rime',role:'Freezing wind; 3 blasts in a row freeze',cost:80,r:95,rate:.5,dmg:2.5,k:'cone',dt:'frost',slow:.25,chill:3,
+    A:{n:'Ice Wall',d:'Every 20 seconds raises an ice wall on the road',iceWall:300},B:{n:'Hailstorm',d:'Icicles hit everything in the wind hard',hail:3}},
+  cmine:{n:'Combustion Mine',i:'🧨',c:'#EF4444',rar:1,fac:'ember',role:'Mines on the road that leave fire',cost:105,r:100,rate:2.5,dmg:35,k:'trap',dt:'fire',mines:3,splash:40,tileFire:3,
+    A:{n:'Sticky Fire Carpet',d:'Burning ground also slows 20%',fireSlow:.2},B:{n:'Chain Reaction',d:'A blast sets off nearby mines, 25% stronger',chainMine:1}},
+  magma:{n:'Magma Catapult',i:'🌋',c:'#B91C1C',rar:1,fac:'ember',role:'Slow, crushing volcanic boulders',cost:115,r:170,rate:3.5,dmg:50,k:'lob',dt:'fire',splash:40,burn:5,
+    A:{n:'Volcanic Fracture',d:'Impacts leave molten pools',tileFire:4},B:{n:'Meteor Impact',d:'Every 5th boulder stuns every goblin on screen',meteor:5}},
+  refract:{n:'Refractor Crystal',i:'💎',c:'#67E8F9',rar:1,fac:'prism',role:'A laser that grows with other crystals nearby',cost:60,r:110,rate:0,dmg:10,k:'beam',dt:'magic',links:1,
+    A:{n:'Split-Beam Network',d:'+10% for each crystal in the chain (up to 5)',net:.1},B:{n:'Focal Points',d:'Heats up on one goblin, up to 10x',ramp:.15,maxRamp:10}},
+  sand:{n:'Sandstone Obelisk',i:'🏜️',c:'#D6A35C',rar:1,fac:'stone',role:'Dust that strips shields and blinds',cost:85,r:90,rate:.5,dmg:2,k:'aura',dt:'phys',strip:20,blind:1,
+    A:{n:'Erosion Mist',d:'Shield damage also hurts the goblin',erode:.5},B:{n:'Quicksand Basin',d:'Makes a patch of road that slows 40%',quick:1}},
+  spore:{n:'Spore Spreader',i:'🍄',c:'#C084FC',rar:1,fac:'blight',role:'A cloud that turns defeats into extra gold',cost:80,r:85,rate:1,dmg:3,k:'aura',dt:'poison',sporeGold:2,
+    A:{n:'Mind-Mushroom',d:'Every 15 seconds a weak goblin fights for you',mind:15},B:{n:'Decomposition',d:'+50% gold from defeats in the cloud',decomp:.5}},
+  dice:{n:'Chaos Dice',i:'🎲',c:'#F59E0B',rar:1,fac:'ember',role:'Rerolls range, speed and damage every 5 seconds',cost:75,r:120,rate:1,dmg:20,k:'shot',dt:'magic',pj:'orb',dice:1,
+    A:{n:'Jackpot Matrix',d:'A lucky roll gives 3 seconds of instant defeats',jackpot:.06},B:{n:'Loaded Die',d:'Tap to keep a roll for the whole wave',loaded:1}},
+  bunker:{n:'Bunker Barricade',i:'🧱',c:'#92400E',rar:2,fac:'iron',role:'A wall on the road that goblins must break',cost:120,r:110,rate:1,dmg:10,k:'block',dt:'phys',hp:800,
+    A:{n:'Thorned Bulwark',d:'Hurts goblins that hit it',thorns:.3},B:{n:'Phalanx Output',d:'Sends out 2 soldiers every 15 seconds',phalanx:1}},
+  bastion:{n:'Command Bastion',i:'📡',c:'#2563EB',rar:2,fac:'volt',role:'Nearby towers reach 15% farther; reveals hidden goblins',cost:120,r:120,rate:0,dmg:0,k:'support',dt:'',rangeB:.15,reveal:1,
+    A:{n:'Overclock Transmitter',d:'Nearby towers fire 30% faster',rateB:.3},B:{n:'Critical Matrix',d:'Nearby towers: 15% chance of double damage',critB:.15}},
+  vault:{n:'Alchemist Vault',i:'🏦',c:'#F2C14E',rar:2,fac:'logi',role:'Makes gold after every wave',cost:140,r:80,rate:0,dmg:0,k:'econ',dt:'',gold:45,
+    A:{n:'Bounty Hunter',d:'Defeats nearby pay 3 more gold',bounty:3},B:{n:'Interest Mint',d:'5% interest on saved gold each wave (up to 150)',interest:.05}},
+  prism:{n:'Prism Relay',i:'🔺',c:'#A78BFA',rar:2,fac:'prism',role:'Boosts beam towers nearby by 25%',cost:120,r:140,rate:0,dmg:0,k:'relay',dt:'',amp:.25,
+    A:{n:'Amplification Hub',d:'With 2 or more beams nearby: +50% instead',hub:.5},B:{n:'Reflective Shielding',d:'Boss shields last half as long',reflect:1}},
+  mirror:{n:'Mirror Mirage',i:'🪞',c:'#E0E7FF',rar:2,fac:'prism',role:'Copies the nearest tower at 60%',cost:130,r:110,rate:0,dmg:0,k:'mirror',dt:'',copy:.6,
+    A:{n:'Quantum Echo',d:'The copy is 100% as strong',copy:1},B:{n:'Shifting Focus',d:'Copies the strongest tower within 4 tiles at 75%',copy:.75,far:165}},
+  runic:{n:'Runic Monolith',i:'🗿',c:'#DC2626',rar:2,fac:'stone',role:'Two monoliths draw a laser line across the road',cost:110,r:200,rate:1.2,dmg:40,k:'grid',dt:'magic',
+    A:{n:'Totem Network',d:'Links every monolith in reach, 30% stronger',net:1.3},B:{n:'Sacred Ground',d:'Towers near a monolith get a 20% chance of double damage',sacred:.2}},
+  seismic:{n:'Seismic Slammer',i:'🔨',c:'#A16207',rar:2,fac:'stone',role:'Stomps crack the road; goblins on cracks move at half speed',cost:160,r:100,rate:3,dmg:25,k:'seismic',dt:'phys',cracks:6,
+    A:{n:'Fault Line',d:'Cracks swallow goblins under 10% health',fault:.1},B:{n:'Tectonic Heave',d:'Stomps flip big goblins: no armor for 3 seconds',heave:3}},
+  tendril:{n:'Tendril Spire',i:'🌿',c:'#16A34A',rar:2,fac:'wild',role:'Grabs a goblin and drags it back 2 tiles',cost:130,r:100,rate:6,dmg:90,k:'grab',dt:'phys',drag:80,
+    A:{n:'Constrictor Grip',d:'Grabbed goblins under 25% health are swallowed',swallow:.25},B:{n:'Thorn Whip',d:'A whirling whip hits everything nearby',whip:4}},
+  hive:{n:'Acidic Hive',i:'🪲',c:'#65A30D',rar:2,fac:'wild',role:'Seeking drones dive at the weakest goblin, flying ones too',cost:120,r:140,rate:.3,dmg:7,k:'drones',dt:'acid',drones:6,
+    A:{n:'Swarm Influx',d:'A cloud of 40 tiny wasps',rate:.09,dmg:2.4,drones:40},B:{n:'Corrosive Sacs',d:'Hits melt armor',corrode:.1}},
+  glow:{n:'Glow-Spore Bulb',i:'🌟',c:'#FDE047',rar:2,fac:'wild',role:'Fires faster with every defeat nearby',cost:120,r:110,rate:1.1,dmg:24,k:'shot',dt:'magic',pj:'spore',grow:.01,growCap:.5,
+    A:{n:'Nutrient Bloom',d:'No limit, and more range as it grows',growCap:9,growR:1},B:{n:'Spore Cloud Explosion',d:'Tap to spend its growth on one big blast',nuke:1}},
+  rail:{n:'Magnetic Railgun',i:'🧲',c:'#94A3B8',rar:3,fac:'volt',role:'A slug down an endless line through every goblin',cost:300,r:999,rate:6,dmg:420,k:'rail',dt:'phys',ap:1,lim:'Aims at the lead goblin; 6-second reload',
+    A:{n:'Vector Piercer',d:'Also hits goblins near the line',wide:40},B:{n:'EMP Slug',d:'Mechanical goblins it hits fight for you',emp:6}},
+  void:{n:'Void Singularity',i:'🌀',c:'#7C3AED',rar:3,fac:'void',role:'Opens black holes on the road that pull goblins in',cost:300,r:150,rate:12,dmg:120,k:'void',dt:'magic',lim:'One hole every 12 seconds; bosses aren’t pulled',
+    A:{n:'Event Horizon',d:'Erases goblins under 15% health',horizon:.15},B:{n:'Gravitational Collapse',d:'Once a wave, goblins past the hole loop back to it',collapse:1}},
+  chronos:{n:'Chronos Obelisk',i:'⏳',c:'#38BDF8',rar:3,fac:'rime',role:'A stasis field: goblins inside move at half speed',cost:260,r:95,rate:0,dmg:0,k:'stasis',dt:'',slow:.5,time:1,lim:'Time tower: one at a time',
+    A:{n:'Stasis Bubble',d:'Freezes a zone, then releases twice the damage it took',bubble:15},B:{n:'Time Warp Aura',d:'Nearby towers fire twice as fast',warp:1}},
+  echo:{n:'Time Echo',i:'🔁',c:'#0EA5E9',rar:3,fac:'rime',role:'Sends the lead goblin back 30% of the road',cost:280,r:999,rate:25,dmg:0,k:'rewind',dt:'',back:.3,time:1,lim:'Time tower; bosses go back only 10%',
+    A:{n:'Temporal Feedback',d:'Returned goblins explode when they land',feedback:80},B:{n:'Rewind Drive',d:'Sends the 5 lead goblins back to the start',rate:40,drive:5}},
+  reaper:{n:'Reaper Vault',i:'💀',c:'#6B21A8',rar:3,fac:'void',role:'Every defeat is a soul; 50 souls fire a laser down the whole road',cost:280,r:999,rate:0,dmg:300,k:'reaper',dt:'magic',souls:50,lim:'Souls reset each stage; bosses take a third',
+    A:{n:'Necromancer Totem',d:'Every 15 souls raise a skeleton that fights',skel:15},B:{n:'Doom Blast',d:'Tap to fire the laser when you choose: the more souls, the bigger the blast',doom:6}},
+  astral:{n:'Astral Prism',i:'🔮',c:'#F0ABFC',rar:3,fac:'void',role:'Fires with the strongest attack on the field',cost:280,r:150,rate:2,dmg:0,k:'astral',dt:'magic',lim:'Can’t copy a Legendary',
+    A:{n:'Beam Bridge',d:'Links to a Runic Monolith or Prism Relay with a laser',bridge:60},B:{n:'Stat Mirror',d:'Hits 2 goblins and echoes damage between them',twin:1}}};
+/* goblins and their traits: armored (physical damage cut), swarms, regenerating, flying (no traps, walls or ground blasts),
+   shielded (a shield to break first), camouflaged (towers can't aim until revealed), mechanical (no poison or bleed, +25% from lightning) */
+const GGOB={grunt:{hp:30,sp:42,gold:5,c:'#7ED957',r:11},runner:{hp:18,sp:72,gold:5,c:'#C8E86A',r:9},brute:{hp:95,sp:30,gold:12,c:'#5AA04A',r:15,armor:.5},
+  swarm:{hp:9,sp:78,gold:1,c:'#A3E635',r:7},troll:{hp:150,sp:27,gold:14,c:'#4D7C0F',r:16,regen:.02},bat:{hp:38,sp:58,gold:8,c:'#8B5CF6',r:10,fly:1},
+  shield:{hp:45,sp:40,gold:9,c:'#7ED957',r:11,sh:70},sneak:{hp:40,sp:56,gold:9,c:'#A1A1AA',r:10,camo:1},mech:{hp:170,sp:30,gold:16,c:'#9CA3AF',r:14,armor:.45,mech:1},
+  boss:{hp:780,sp:23,gold:60,c:'#4E7E2A',r:24,armor:.25},king:{hp:5200,sp:15,gold:200,c:'#3F6212',r:30,armor:.4}};
+const GTRAIT=[['grunt','runner','brute'],['swarm'],['brute'],['troll'],['bat'],['shield','sneak'],['mech']],GTRAITN={swarm:'Swarms',brute:'Armored brutes',troll:'Regenerating trolls',bat:'Flying bat riders',shield:'Shielded goblins',sneak:'Hidden sneaks',mech:'Mechanical goblins'};
 const GFLAG={red:'#E4572E',blue:'#2D7FF9',gold:'#E5B53A',green:'#22B35E',purple:'#8B5CF6',rainbow:'rainbow'};
-if(!AGKEY['5'])AGKEY['5']='5';
+if(!AGKEY['5'])AGKEY['5']='5';if(!AGKEY['6'])AGKEY['6']='6';
+/* the save: towers owned, copies (stars), shards, coins, pity counters and the loadout. Older saves move to the new roster */
+const GMIG={archer:'spring',ice:'frostp',fire:'flame',cat:'mortar',mine:'vault',bolt:'tesla',xbow:'dart',drum:'bastion',bog:'venom',gale:'blizzard',cannon:'antitank',arcane:'refract',dragon:'magma',banner:'prism',phoenix:'reaper',titan:'rail',star:'astral',golem:'seismic'};
+const GSTART=['spring','dart','mortar','flame','spike','acid'];
 const ggS=()=>{const S=ARS('gate');
   /* older saves used other map names: carry the stars across */
   if(!S.v2){const M={meadow:'valley',forest:'frozen',snow:'crystal'};if(S.st){const o={};for(const [k,v] of Object.entries(S.st))o[M[k]||k]=v;S.st=o}if(M[S.map])S.map=M[S.map];S.v2=1}
-  S.st=S.st||{};if(!S.own){S.own=['archer','ice','fire','cat','bolt'];S.load=S.own.slice();S.coins=20;S.cp={};S.pity=0}S.cp=S.cp||{};S.load=(S.load||[]).filter(k=>S.own.includes(k)).slice(0,5);if(!S.load.length)S.load=S.own.slice(0,5);return S};
+  S.st=S.st||{};
+  if(!S.v3){const mp=k=>GMIG[k]||k,cp={};for(const [k,v] of Object.entries(S.cp||{})){const n=mp(k);if(GGT[n])cp[n]=Math.min(4,(cp[n]||0)+(+v||0))}
+    Object.assign(S,{own:[...new Set([...(S.own||[]).map(mp),...GSTART])].filter(k=>GGT[k]),cp,load:(S.load||[]).map(mp),coins:S.coins??20,pityE:S.pity||0,pityL:0,shards:S.shards||0,v3:1});delete S.pity}
+  S.cp=S.cp||{};S.own=S.own.filter(k=>GGT[k]);const b=ggBudget();let pts=0,leg=0;S.load=[...new Set(S.load||[])].filter(k=>{if(!S.own.includes(k))return false;const r=GGT[k].rar;if(pts+GPTS[r]>b.pts||(r===3&&leg>=b.leg))return false;pts+=GPTS[r];if(r===3)leg++;return true}).slice(0,6);
+  if(!S.load.length)S.load=GSTART.filter(k=>S.own.includes(k)).slice(0,6);return S};
+const ggBudget=()=>{const L=typeof LVL==='function'?LVL():1;return{pts:L>=20?15:12,leg:L>=30?2:1}};
+const ggPts=load=>load.reduce((a,k)=>a+GPTS[GGT[k].rar],0);
+const ggStar=t=>1+Math.min(4,+((ARS('gate').cp||{})[t])||0);
 const ggOpen=i=>!i||(ggS().st[GGMAPS[i-1].id]||0)>0||(ggS().st[GGMAPS[i].id]||0)>0;
 let GGPLAY=null;
 const ggCur=()=>{if(GGPLAY)return GGPLAY;let i=GGMAPS.findIndex(m=>m.id===ggS().map);if(i<0||!ggOpen(i))i=0;return GGMAPS[i]};
@@ -96,101 +177,271 @@ function ggPosOf(m,d){for(const [a,b,l,s0] of m.seg||[])if(d<=s0+l){const f=(d-s
 
 /* ---------- The game ---------- */
 const GGTIER=[{hp:.8,sp:.88,gold:160},{hp:1,sp:1,gold:130},{hp:1.2,sp:1.08,gold:115},{hp:1.42,sp:1.15,gold:100}];
-/* a tower's numbers at its level, with copies (+5% each) and support towers nearby */
-const ggStat=(T,Z,i)=>{const D=GGT[T.t],L=T.lvl||1,cp=1+.05*Math.min(5,(ggS().cp||{})[T.t]||0);
-  const s={r:D.r?D.r+5*(L-1):0,rate:D.rate?D.rate*Math.pow(.93,L-1):0,dmg:D.dmg*(1+.42*(L-1))*cp,slow:D.slow?Math.max(.18,D.slow-.045*(L-1)):0,slowT:D.slowT?D.slowT+.15*(L-1):0,burn:D.burn?D.burn*(1+.38*(L-1))*cp:0,
-    splash:D.splash?D.splash+3*(L-1):0,chain:D.chain?D.chain+Math.floor((L-1)/2):0,stun:D.stun?D.stun+.06*(L-1):0,freeze:T.t==='ice'&&L>=4?.05*(L-3):0,knock:D.knock?D.knock+4*(L-1):0,gold:D.gold?D.gold+9*(L-1):0,buff:D.buff?D.buff+.035*(L-1):0,pierce:!!D.pierce};
-  if(Z&&i>=0)Z.tw.forEach((o,j)=>{if(!o||j===i)return;const E=GGT[o.t];if(!E.sup)return;const Lo=o.lvl||1,[ax,ay]=Z.m.pads[j],[bx,by]=Z.m.pads[i];if(Math.hypot(ax-bx,ay-by)>E.r+5*(Lo-1))return;const b=E.buff+.035*(Lo-1);if(E.sup==='rate')s.rate*=1-b;else{s.dmg*=1+b;s.burn*=1+b}});
-  return s};
-AG.def({id:'gate',name:'Goblin Gate',w:GGW,h:GGH,maxW:1280,vh:200,pixel:true,snd:'gate',go:'Start defending',
-  sub:'Build towers, answer to upgrade, save the cookies!',
-  help:['Goblins walk the road to your castle. Each one that gets in eats a cookie.','Tap a stone pad, then build one of your 5 towers. Stopped goblins give gold.','Tap a tower to level it up, all the way to level 7. Every upgrade needs a right answer.','Each stage ends with a boss (answer to fire the castle cannon). Stage 7 brings the Goblin King!','Win Gate coins to open chests for new towers.'],
-  keys:[['← →','pick a pad'],['1 2 3 4 5','build'],['Space','start the wave'],['P','pause']],
-  ach:{win:{i:'🏰',n:'Castle keeper',d:'Win a stage',gems:1,give:'gate.flag.blue'},boss:{i:'👑',n:'Boss buster',d:'Defeat a boss',gems:1,give:'gate.flag.gold'},
-    variety:{i:'🎨',n:'Master builder',d:'Build 5 different towers in one game',gems:1,give:'gate.flag.green'},max:{i:'⬆️',n:'Level 7',d:'Upgrade a tower to level 7',gems:2},
-    perfect:{i:'💯',n:'Not one cookie',d:'Win a stage without losing a cookie',gems:2,give:'gate.flag.purple'},cannon:{i:'💥',n:'Cannon captain',d:'Fire the castle cannon 5 times',gems:1},
-    freeze:{i:'🧊',n:'Deep freeze',d:'Freeze 30 goblins solid',gems:1},chain:{i:'🌩️',n:'Chain reaction',d:'Hit 4 goblins with one lightning strike',gems:1},
-    tour:{i:'🗺️',n:'Kingdom guard',d:'Unlock every stage',gems:2},stars:{i:'⭐',n:'Star defender',d:'3 stars on every stage',gems:3,give:'gate.flag.rainbow'},
-    king:{i:'🤴',n:'King toppler',d:'Defeat the Goblin King on stage 7',gems:5},maker:{i:'🛠️',n:'Map maker',d:'Make your own map',gems:1},share:{i:'📤',n:'Map sharer',d:'Share a map with your class',gems:1},beat:{i:'🤝',n:'Good classmate',d:"Win on a classmate's map",gems:1},collect:{i:'🗃️',n:'Tower collector',d:'Own 10 different towers',gems:2},legend:{i:'🌟',n:'Legendary!',d:'Get a Legendary tower',gems:2}},
-  items:{'gate.flag.red':{n:'Red banner',c:GFLAG.red,free:1,k:'Castle banner'},'gate.flag.blue':{n:'Blue banner',c:GFLAG.blue,k:'Castle banner',how:'Win a stage'},'gate.flag.gold':{n:'Gold banner',c:GFLAG.gold,k:'Castle banner',how:'Defeat a boss'},
-    'gate.flag.green':{n:'Green banner',c:GFLAG.green,k:'Castle banner',how:'Build 5 different towers'},'gate.flag.purple':{n:'Royal banner',c:GFLAG.purple,k:'Castle banner',how:'Win without losing a cookie'},'gate.flag.rainbow':{n:'Rainbow banner',i:'🌈',k:'Castle banner',how:'3 stars on every stage'}},
-  places:()=>GGMAPS.map((m,i)=>({on:ggOpen(i),i:'🏰',n:`Stage ${i+1}: ${m.n}`,s:'★'.repeat(ggS().st[m.id]||0)||'Not won yet',how:i?`Win stage ${i}`:''})),
-  start(o){const m=ggCur(),t=AD.tier('gate'),tier=GGTIER[t];
-    return{m,mi:GGMAPS.indexOf(m),t,tier,w:0,ph:'build',cookies:10,gold:tier.gold,tw:m.pads.map(()=>null),gobs:[],proj:[],fx:[],texts:[],sel:-1,speed:1,q:[],qcd:0,load:ggS().load.slice(),
-      boss:null,cannonCd:0,bonus:0,rescue:0,time:0,lostWave:0,stats:{perfect:0,built:{},upg:0,cannon:0,freeze:0,coins:0,maxL:1},hudT:0,id:0}},
-  step(dt,Z){if(Z.ph==='end')return;dt*=Z.speed;Z.time+=dt;
-    if(Z.cannonCd>0)Z.cannonCd-=dt;
-    for(const f of Z.fx)if(f.l>0)f.l-=dt;for(const t of Z.texts)if(t.l>0){t.l-=dt;t.y-=24*dt}
-    if(Z.ph==='wave'){
-      if(Z.q.length&&(Z.qcd-=dt)<=0){const [k,gap]=Z.q.shift();Z.qcd=gap;ggSpawn(Z,k)}
-      for(const g of Z.gobs){if(g.dead)continue;const now=Z.time;let sp=g.sp;if(g.frz>now||g.stun>now)sp=0;else if(g.slowU>now)sp*=g.slowF;
-        if(g.burnU>now){g.hp-=g.burn*dt;if(g.hp<=0)ggKill(Z,g)}g.d+=sp*dt;g.walk+=sp*dt*.08;
-        if(g.k==='king')ggKingAct(Z,g,dt);
-        if(g.d>=Z.m.len&&!g.dead){g.dead=1;g.out=1;Z.cookies=Math.max(0,Z.cookies-(g.k==='king'?10:g.k==='boss'?3:1));Z.lostWave=1;SND.play('hurt');ggtext(Z,600,Z.m.path[Z.m.path.length-1][1]-20,'-🍪','#ff6b6b')}}
-      Z.gobs=Z.gobs.filter(g=>!g.dead);
-      if(Z.cookies<=0)return ggOver(Z);
-      if(Z.cookies<=3&&!Z.rescue)ggRescue(Z);
-      /* towers: aim at the goblin closest to the castle (the Star Mage aims at the strongest); auras hit everyone in range */
-      Z.tw.forEach((T,i)=>{if(!T)return;const D=GGT[T.t];if(!D.rate)return;T.cd-=dt;if(T.cd>0)return;const s=ggStat(T,Z,i),[px,py]=Z.m.pads[i];let best=null;
-        for(const g of Z.gobs){const [x,y]=ggPosOf(Z.m,g.d);if(Math.hypot(x-px,y-py)<=s.r&&(!best||(D.strong?g.hp>best.hp:g.d>best.d)))best=g}
-        if(!best)return;T.cd=s.rate;ggFire(Z,T,i,s,best)});
-      for(const p of Z.proj)if(p.l>0){p.t+=dt;if(p.t>=p.dur){p.l=0;ggHit(Z,p)}}
-      if(!Z.q.length&&!Z.gobs.length)ggWaveDone(Z)}
-    if((Z.hudT+=dt)>.2){Z.hudT=0;gghud(Z)}},
-  draw(a,Z){ggdraw(Z)},
-  key(k,down,Z){if(!down)return;const n=Z.tw.length;if(k==='right'||k==='down'){Z.sel=(Z.sel+1+n)%n;ggpanel(Z)}else if(k==='left'||k==='up'){Z.sel=(Z.sel-1+n)%n;ggpanel(Z)}
-    else if(/^[1-5]$/.test(k)&&Z.sel>=0&&!Z.tw[Z.sel]&&Z.load[+k-1])ggBuild(Z,Z.load[+k-1]);else if(k==='act'||k==='enter'){if(Z.ph==='build')ggWave(Z)}},
-  tap(x,y,Z){let best=-1,bd=30;Z.m.pads.forEach(([px,py],i)=>{const d=Math.hypot(px-x,py-y);if(d<bd){bd=d;best=i}});Z.sel=best;ggpanel(Z);SND.play('click')},
-  timeout:Z=>ggresult(Z,'time')});
-function ggSpawn(Z,k,d0){const G=GGOB[k],m=Z.m,hp=Math.round(G.hp*(k==='king'?1:1+.17*Z.w)*m.hp*Z.tier.hp);const g={id:++Z.id,k,d:d0??-10,hp,max:hp,sp:G.sp*Z.tier.sp,r:G.r,armor:G.armor||0,walk:0,slowU:0,slowF:1,frz:0,stun:0,burnU:0,burn:0,sum:6,ph:0,shieldU:0};Z.gobs.push(g);
+const isBoss=g=>g.k==='boss'||g.k==='king';
+const ggXY=(Z,g)=>ggPosOf(Z.m,g.d);
+const ggD=(Z,i,j)=>{const [ax,ay]=Z.m.pads[i],[bx,by]=Z.m.pads[j];return Math.hypot(ax-bx,ay-by)};
+const ggSegD=(x,y,ax,ay,bx,by)=>{const dx=bx-ax,dy=by-ay,l=dx*dx+dy*dy||1,t=Math.max(0,Math.min(1,((x-ax)*dx+(y-ay)*dy)/l));return Math.hypot(x-ax-t*dx,y-ay-t*dy)};
+/* faction sets on the field */
+function ggSets(Z){const cnt={},seen=new Set();let logi=0;Z.tw.forEach(T=>{if(!T||seen.has(T.t))return;seen.add(T.t);const f=GGT[T.t].fac;if(f==='logi')logi++;else cnt[f]=(cnt[f]||0)+1});
+  const on={};for(const f in cnt){if(f==='mil'?cnt[f]>=2:cnt[f]+logi>=3)on[f]=1}Z.sets=on;return on}
+/* a tower's numbers: level, stars, its Mastery, faction sets and support towers nearby */
+function ggStat(T,Z,i){const D=GGT[T.t],L=T.lvl||1,M=T.m?D[T.m]:null,s={...D,...(M||{}),id:T.t};delete s.A;delete s.B;
+  s.dmg=(s.dmg||0)*(1+.35*(L-1))*(1+.03*(ggStar(T.t)-1))*GRM[D.rar];s.rate=s.rate?s.rate*Math.pow(.94,L-1):0;s.r=s.r>=999?999:(s.r||0)+4*(L-1);
+  if(s.slow)s.slow=Math.min(.65,s.slow+.02*(L-1));if(s.burn)s.burn*=1+.3*(L-1);if(s.gold)s.gold+=12*(L-1);if(s.hp)s.hp*=1+.3*(L-1);if(s.strip)s.strip*=1+.25*(L-1);if(s.whip)s.whip*=1+.35*(L-1);if(s.feedback)s.feedback*=1+.35*(L-1);
+  s.crit=0;s.ap=s.ap||0;s.pierce=s.pierce||0;
+  if(Z&&i>=0){const sets=Z.sets||{};if(sets.iron&&s.dt==='phys'&&(s.k==='shot'||s.k==='bounce'))s.pierce+=1;if(sets.volt){if(s.chain)s.chain+=1;if(s.ramp)s.ramp*=1.2}if(sets.mil)s.ap=Math.min(1,s.ap+.1);if(sets.prism&&D.fac==='prism')s.dmg*=1.15;
+    Z.tw.forEach((o,j)=>{if(!o||j===i)return;const E=GGT[o.t],Lo=o.lvl||1,dd=ggD(Z,i,j);
+      if(E.k==='support'&&dd<=E.r+4*(Lo-1)){s.r=s.r>=999?999:s.r*(1+E.rangeB+.01*(Lo-1));if(o.m==='A')s.rate/=1.3+.02*(Lo-1);if(o.m==='B')s.crit+=.15}
+      if(E.k==='stasis'&&o.m==='B'&&dd<=115)s.rate*=.5;
+      if(E.k==='grid'&&o.m==='B'&&dd<=130)s.crit+=.2;
+      if(E.k==='relay'&&s.k==='beam'&&dd<=E.r){const nb=Z.tw.filter((q,k)=>q&&GGT[q.t].k==='beam'&&ggD(Z,k,j)<=E.r).length;s.dmg*=1+(o.m==='A'&&nb>=2?.5:.25)}})}
+  if(T.dice&&s.dice){s.r*=T.dice[0];s.rate/=T.dice[1];s.dmg*=T.dice[2]}
+  if(T.grow){s.rate/=1+Math.min(s.growCap||.5,T.grow);if(s.growR)s.r*=1+.05*Math.floor(T.grow/.5)}
+  return s}
+/* targets in range: never helpers; hidden goblins only when revealed; lobbed shots can't reach flying goblins */
+const ggTargets=(Z,px,py,r,s)=>{const t=Z.time;return Z.gobs.filter(g=>{if(g.dead||g.ally)return false;if(g.camo&&!(g.revU>t))return false;if(g.fly&&s.lobbed&&!s.antiair)return false;if(r>=999)return true;const [x,y]=ggXY(Z,g);return Math.hypot(x-px,y-py)<=r})};
+const ggLead=L=>L.reduce((a,g)=>!a||g.d>a.d?g:a,null),ggLeadN=(L,n)=>L.slice().sort((a,b)=>b.d-a.d).slice(0,n);
+const ggNear=(Z,x,y,r,skip)=>{let b=null,bd=r;for(const o of Z.gobs){if(o.dead||o.ally||(skip&&skip.includes(o)))continue;const [a,c]=ggXY(Z,o),d=Math.hypot(a-x,c-y);if(d<bd){bd=d;b=o}}return b};
+/* the road points a tower can reach (for traps, walls, holes) */
+function ggRoadPts(Z,i,r){const k=i+'_'+Math.round(r);Z.rp=Z.rp||{};if(Z.rp[k])return Z.rp[k];const [px,py]=Z.m.pads[i],P=[];for(let d=10;d<Z.m.len-30;d+=6){const [x,y]=ggPosOf(Z.m,d);if(Math.hypot(x-px,y-py)<=r)P.push(d)}return Z.rp[k]=P}
+function ggTile(Z,k,d,dur,o={}){if(k==='fire'&&Z.sets.ember)dur+=2;Z.road.push({id:++Z.oid,k,d,len:14,until:Z.time+dur,trig:k==='fire'||k==='gas',...o})}
+
+/* ---------- damage, status effects and reactions ---------- */
+function ggHurt(Z,g,amt,dt,o={}){if(g.dead||g.ally)return 0;const t=Z.time;
+  if(g.shieldU>t&&!o.pierceKing){if(Math.random()<.04){const [x,y]=ggXY(Z,g);ggtext(Z,x,y-40,'🛡️','#9fe3ff')}return 0}
+  let d=amt;if(o.crit&&Math.random()<o.crit){d*=2;if(!o.dot){const [x,y]=ggXY(Z,g);ggtext(Z,x+8,y-26,'CRIT!','#FFD34D')}}
+  if(g.mech&&dt==='shock')d*=1.25;
+  if(dt==='phys'){const a=g.armorU>t?0:g.armor*(1-(o.ap||0));d*=1-a;if(g.frz>t){d*=1.5+(g.brittle?.5:0);if(!g.shat){g.shat=1;ggReact(Z,g,'shatter')}}else if(g.brittleU>t)d*=1+g.brittle}
+  if(o.armx&&g.armor>0)d*=o.armx;if(o.airx&&g.fly)d*=o.airx;if(g.vulnU>t)d*=1+(isBoss(g)?g.vulnF/2:g.vulnF);
+  if(g.sh>0&&!o.shieldP){const a=Math.min(g.sh,d);g.sh-=a;d-=a;if(g.sh<=0){const [x,y]=ggXY(Z,g);ggfx(Z,'poof',x,y-6,18,0,.3)}}
+  if(d<=0)return 0;g.hp-=d;if(!o.dot)g.hit=t+.12;
+  if(g.bub&&g.bub.u>t)g.bub.rec+=d;
+  if(o.aoe&&g.camo)g.revU=t+1.5;
+  if(g.shockU>t&&!o.chained&&!o.dot){g.shockU=0;const [x,y]=ggXY(Z,g),n=ggNear(Z,x,y,60,[g]);if(n){const [a,b]=ggXY(Z,n),f=ggfx(Z,'bolt',x,y-6,a,b-6,.12);if(f)f.c='#FDE68A';ggHurt(Z,n,d*.5,'shock',{chained:1})}}
+  if(g.hp<=0)ggKill(Z,g,o.src);return d}
+const ggDmg=(Z,g,d,pierce)=>ggHurt(Z,g,d,pierce?'true':'phys',{pierceKing:0});
+function ggSlow(Z,g,f,dur,o={}){const t=Z.time;if(isBoss(g))f/=2;if(o.frost&&Z.sets.rime)dur*=1.3;g.slowA=g.slowU>t?Math.max(g.slowA||0,f):f;g.slowU=Math.max(g.slowU||0,t+dur);
+  if(o.frost){g.frostU=Math.max(g.frostU||0,t+dur);if(o.brittle){g.brittle=o.brittle;g.brittleU=t+dur}}}
+function ggFreeze(Z,g,dur){const t=Z.time;if(g.frzImm>t)return;if(Z.sets.rime)dur*=1.3;if(isBoss(g)){ggSlow(Z,g,.5,dur/2,{frost:1});return}g.frz=t+dur;g.frzImm=g.frz+3;g.shat=0;Z.stats.freeze++;
+  const S=ggS();S.frz=(S.frz||0)+1;if(S.frz>=30)AG.ach('gate','freeze')}
+function ggBurn(Z,g,dps){const t=Z.time;if(g.frz>t||g.frostU>t){ggReact(Z,g,'steam');return}if(g.psn&&g.psn.length)ggReact(Z,g,'flare');g.burnU=t+2;g.burn=Math.max(g.burnU>t?g.burn||0:0,dps)}
+function ggPoison(Z,g,v,dur){if(g.mech)return;const t=Z.time;g.psn=(g.psn||[]).filter(q=>q.u>t);if(g.psn.length>=(Z.sets.blight?6:5))g.psn.shift();g.psn.push({v,u:t+dur});if(g.burnU>t)ggReact(Z,g,'flare')}
+function ggReact(Z,g,k){const t=Z.time,[x,y]=ggXY(Z,g);Z.stats.react++;if(Z.stats.react===10)AG.ach('gate','react');
+  const near=r=>Z.gobs.filter(o=>{if(o.dead||o.ally)return false;const [a,b]=ggXY(Z,o);return Math.hypot(a-x,b-y)<=r});
+  if(k==='steam'){g.frz=0;g.frostU=0;g.slowU=0;g.burnU=0;const f=ggfx(Z,'nova',x,y,90,0,.5);if(f)f.c='#E2E8F0';ggtext(Z,x,y-30,'Steam!','#E2E8F0');for(const o of near(40)){ggHurt(Z,o,20,'true',{});ggSlow(Z,o,.3,2)}}
+  else if(k==='flare'){let tot=0;for(const q of g.psn)tot+=q.v*g.max*Math.max(0,q.u-t);g.psn=[];const f=ggfx(Z,'boom',x,y,44,0,.4);if(f)f.c='#A3E635';ggtext(Z,x,y-30,'Toxic flare!','#A3E635');for(const o of near(40))ggHurt(Z,o,Math.min(tot,isBoss(o)?60:9999),'poison',{})}
+  else if(k==='shatter')ggtext(Z,x,y-30,'Shatter!','#BFF0FF');
+  else if(k==='conduct')ggtext(Z,x,y-30,'Conduction!','#FDE68A');
+  else if(k==='melt')ggtext(Z,x,y-30,'Meltdown!','#FB923C');
+  else if(k==='hemo')ggtext(Z,x,y-30,'Hemorrhage!','#F87171')}
+
+/* ---------- goblins ---------- */
+function ggSpawn(Z,k,d0){const G=GGOB[k],m=Z.m,hp=Math.round(G.hp*(k==='king'?1:1+.17*Z.w)*m.hp*Z.tier.hp),sh=G.sh?Math.round(G.sh*(1+.17*Z.w)*m.hp):0;
+  const g={id:++Z.id,k,d:d0??-10,hp,max:hp,sp:G.sp*Z.tier.sp,r:G.r,armor:G.armor||0,sh,shMax:sh,fly:!!G.fly,camo:!!G.camo,mech:!!G.mech,walk:0,slowU:0,slowA:0,frz:0,frzImm:0,stun:0,pin:0,held:0,burnU:0,burn:0,psn:[],bleed:0,bleedU:0,sum:6,ph:0,shieldU:0,revU:0,inFrost:0,frostSeen:0};Z.gobs.push(g);
   if(k==='boss'){Z.boss=g;ggtext(Z,120,40,'👑 A boss is coming!','#ffd34d');SND.play('boom');ggpanel(Z)}
-  if(k==='king'){Z.boss=g;ggtext(Z,320,46,'🤴 THE GOBLIN KING IS HERE!','#ff5a7a');SND.play('boom');ggfx(Z,'nova',30,m.path[0][1],120,0,.8);ggpanel(Z)}}
+  if(k==='king'){Z.boss=g;ggtext(Z,320,46,'🤴 THE GOBLIN KING IS HERE!','#ff5a7a');SND.play('boom');ggfx(Z,'nova',30,m.path[0][1],120,0,.8);ggpanel(Z)}
+  return g}
 /* the Goblin King: calls goblins to help every 6 seconds, and raises a shield (and speeds up) at 2/3 and 1/3 health */
 function ggKingAct(Z,g,dt){if(g.frz>Z.time||g.stun>Z.time)return;if((g.sum-=dt)<=0){g.sum=6;for(let k=0;k<3;k++)ggSpawn(Z,k===2&&Z.w>6?'brute':'grunt',Math.max(-10,g.d-12-k*10));ggtext(Z,320,70,'The king calls for help!','#ffd34d')}
-  const f=g.hp/g.max;if((g.ph===0&&f<.66)||(g.ph===1&&f<.33)){g.ph++;g.shieldU=Z.time+3;g.sp*=1.2;const [x,y]=ggPosOf(Z.m,g.d);ggtext(Z,x,y-50,'🛡️ The king raises his shield!','#9fe3ff');SND.play('place')}}
-/* Wave w: more goblins each wave; runners from wave 2, brutes from wave 3; the last wave brings the boss (or the king) */
-function ggWaveList(Z){const w=Z.w,L=[],n=6+2*w;for(let i=0;i<n;i++)L.push([w>=1&&i%4===3?'runner':w>=2&&i%5===4?'brute':'grunt',Math.max(.45,1.15-.06*w)]);
+  const f=g.hp/g.max;if((g.ph===0&&f<.66)||(g.ph===1&&f<.33)){g.ph++;const half=Z.tw.some(T=>T&&T.t==='prism'&&T.m==='B');g.shieldU=Z.time+(half?1.5:3);g.sp*=1.2;const [x,y]=ggXY(Z,g);ggtext(Z,x,y-50,'🛡️ The king raises his shield!','#9fe3ff');SND.play('place')}}
+/* Wave w: more goblins each wave; each stage adds a new kind of goblin (custom maps by difficulty); the last wave brings the boss or the king */
+function ggWaveList(Z){const w=Z.w,L=[],n=6+2*w,T=Z.trait;
+  for(let i=0;i<n;i++){let k='grunt';if(w>=1&&i%4===3)k='runner';if(w>=2&&i%5===4)k='brute';if(T>=3&&w>=2&&i%6===5)k='troll';if(T>=4&&w>=1&&i%5===2)k='bat';
+    if(T>=5&&w>=2&&i%6===1)k='shield';if(T>=5&&w>=1&&i%7===3)k='sneak';if(T>=6&&w>=3&&i%8===6)k='mech';L.push([k,Math.max(.45,1.15-.06*w)])}
+  if(T>=1&&w%2===1)for(let i=0;i<8+w;i++)L.splice(Math.min(L.length,3+i),0,['swarm',.16]);
   if(w===Z.m.waves-1){if(Z.m.king){L.push(['king',3]);for(let i=0;i<6;i++)L.push([i%2?'brute':'runner',.9])}else{L.push(['boss',2.5]);for(let i=0;i<4;i++)L.push(['grunt',.8])}}
   else if(Z.m.king&&w===Math.floor(Z.m.waves/2))L.push(['boss',2]);return L}
-function ggWave(Z){if(Z.ph!=='build')return;Z.ph='wave';Z.q=ggWaveList(Z);Z.qcd=.5;Z.lostWave=0;Z.bonusOn=0;SND.play('place');ggpanel(Z)}
+function ggWave(Z){if(Z.ph!=='build')return;Z.ph='wave';Z.q=ggWaveList(Z);Z.qcd=.5;Z.lostWave=0;Z.bonusOn=0;SND.play('place');
+  const fresh=GTRAIT[Z.trait]&&Z.w===0&&Z.trait>0?GTRAIT[Z.trait].map(k=>GTRAITN[k]).filter(Boolean):[];if(fresh.length)ggtext(Z,320,90,'New: '+fresh.join(' and '),'#9fe3ff');ggpanel(Z)}
 const ggCoin=(Z,n)=>{const S=ggS();S.coins=(S.coins||0)+n;Z.stats.coins+=n};
-function ggWaveDone(Z){Z.w++;const pay=20+5*Z.w;let mine=0;Z.tw.forEach((T,i)=>{if(T&&T.t==='mine')mine+=ggStat(T,Z,i).gold});Z.gold+=pay+mine;if(!Z.m.custom)ggCoin(Z,Z.lostWave?1:2);
-  if(!Z.lostWave){Z.stats.perfect++;Z.gold+=10;ggtext(Z,320,60,`Perfect wave! +${pay+10} gold${mine?` · mines +${mine}`:''}`,'#ffd34d')}else ggtext(Z,320,60,`Wave cleared! +${pay} gold${mine?` · mines +${mine}`:''}`,'#ffffff');
+function ggWaveDone(Z){Z.w++;const pay=20+5*Z.w;let extra=0;
+  Z.tw.forEach((T,i)=>{if(!T)return;const s=ggStat(T,Z,i);if(s.k==='econ'){extra+=Math.round(s.gold);if(s.interest)extra+=Math.min(150,Math.round(Z.gold*s.interest))}T.collapsed=0;T.locked=0});
+  for(const o of Z.road)if(o.k==='bunker'){o.broken=0;o.hp=o.hpMax}
+  Z.gobs=Z.gobs.filter(g=>!g.ally);Z.allies=Z.allies.filter(a=>a.k==='soldier');
+  Z.gold+=pay+extra;if(!Z.m.custom)ggCoin(Z,Z.lostWave?1:2);
+  const ex=extra?` · vault +${extra}`:'';if(!Z.lostWave){Z.stats.perfect++;Z.gold+=10;ggtext(Z,320,60,`Perfect wave! +${pay+10} gold${ex}`,'#ffd34d')}else ggtext(Z,320,60,`Wave cleared! +${pay} gold${ex}`,'#ffffff');
   if(Z.w>=Z.m.waves)return ggWin(Z);Z.ph='build';Z.bonusOn=1;SND.play('ok','ui');ggpanel(Z)}
-function ggFire(Z,T,i,s,g){const D=GGT[T.t],[px,py]=Z.m.pads[i],[gx,gy]=ggPosOf(Z.m,g.d+g.sp*.25);
-  if(D.shot==='bolt'){const hit=[g];if(s.chain){let last=g;for(let k=0;k<s.chain;k++){const [lx,ly]=ggPosOf(Z.m,last.d);let nx=null,nd=80;for(const o of Z.gobs){if(hit.includes(o))continue;const [ox,oy]=ggPosOf(Z.m,o.d),d=Math.hypot(ox-lx,oy-ly);if(d<nd){nd=d;nx=o}}if(!nx)break;hit.push(nx);last=nx}}
-    let ax=px,ay=py-22;for(const h of hit){const [hx,hy]=ggPosOf(Z.m,h.d);ggfx(Z,'bolt',ax,ay,hx,hy,.14);ax=hx;ay=hy;ggDmg(Z,h,s.dmg,1);if(s.stun)h.stun=Z.time+s.stun}if(hit.length>=4)AG.ach('gate','chain');SND.play('zap');return}
-  if(D.shot==='beam'){ggfx(Z,'beam',px,py-30,gx,gy,.25);ggDmg(Z,g,s.dmg,1);SND.play('zap');return}
-  if(D.shot==='aura'){const f=ggfx(Z,'ring',px,py,s.r,0,.4);if(f)f.c=D.fx;for(const o of Z.gobs){const [ox,oy]=ggPosOf(Z.m,o.d);if(Math.hypot(ox-px,oy-py)>s.r)continue;ggDmg(Z,o,s.dmg,s.pierce);if(s.burn)ggBurn(Z,o,s);if(s.stun&&o.k!=='king')o.stun=Z.time+s.stun;if(s.knock&&o.k!=='king'&&o.k!=='boss')o.d=Math.max(-10,o.d-s.knock)}SND.play(T.t==='golem'?'boom':'pop');return}
-  if(T.t==='ice'&&false)return;
-  let p=Z.proj.find(q=>q.l<=0);if(!p){if(Z.proj.length>90)return;p={};Z.proj.push(p)}
-  Object.assign(p,{l:1,t:0,dur:D.shot==='rock'?.7:D.shot==='shell'?.55:D.shot==='arrow'?.2:.32,k:D.shot,x0:px,y0:py-22,x1:gx,y1:gy,s,g,tt:T.t})}
-function ggHit(Z,p){const s=p.s,[x,y]=[p.x1,p.y1];
-  if(s.splash){ggfx(Z,p.k==='rock'||p.k==='shell'?'crash':'boom',x,y,s.splash,0,.35);SND.play(p.k==='fire'?'pop':'boom');for(const o of Z.gobs){const [ox,oy]=ggPosOf(Z.m,o.d);if(Math.hypot(ox-x,oy-y)<=s.splash){ggDmg(Z,o,s.dmg,s.pierce);if(s.burn)ggBurn(Z,o,s)}}return}
-  const g=p.g;if(!g||g.dead)return;ggDmg(Z,g,s.dmg,s.pierce);if(p.k==='ice')ggIce(Z,g,s);if(s.burn)ggBurn(Z,g,s);ggfx(Z,'spark',x,y,8,0,.2);
-  if(p.k==='magic'&&s.chain){const hit=[g];let last=g;for(let k=0;k<s.chain;k++){const [lx,ly]=ggPosOf(Z.m,last.d);let nx=null,nd=70;for(const o of Z.gobs){if(hit.includes(o)||o.dead)continue;const [ox,oy]=ggPosOf(Z.m,o.d),d=Math.hypot(ox-lx,oy-ly);if(d<nd){nd=d;nx=o}}if(!nx)break;const [ax,ay]=ggPosOf(Z.m,last.d),[bx,by]=ggPosOf(Z.m,nx.d);const f=ggfx(Z,'bolt',ax,ay,bx,by,.16);if(f)f.c='#E879F9';ggDmg(Z,nx,s.dmg*.7,1);hit.push(nx);last=nx}}}
-function ggIce(Z,g,s){g.slowU=Z.time+s.slowT;g.slowF=s.slow;if(s.freeze&&Math.random()<s.freeze&&g.k!=='boss'&&g.k!=='king'){g.frz=Z.time+1.1;const S=ggS();S.frz=(S.frz||0)+1;if(S.frz>=30)AG.ach('gate','freeze')}}
-function ggBurn(Z,g,s){g.burnU=Z.time+2;g.burn=Math.max(g.burn,s.burn)}
-function ggDmg(Z,g,d,pierce){if(g.dead)return;if(g.shieldU>Z.time){if(Math.random()<.05){const [x,y]=ggPosOf(Z.m,g.d);ggtext(Z,x,y-40,'🛡️','#9fe3ff')}return}g.hp-=d*(pierce?1:1-g.armor);g.hit=Z.time+.12;if(g.hp<=0)ggKill(Z,g)}
-function ggKill(Z,g){if(g.dead)return;g.dead=1;const G=GGOB[g.k],[x,y]=ggPosOf(Z.m,g.d);Z.gold+=G.gold;ggtext(Z,x,y-14,'+'+G.gold,'#ffd34d');ggfx(Z,'poof',x,y,g.r,0,.45);SND.play('pop');
-  if(g.k==='boss'||g.k==='king'){if(Z.boss===g)Z.boss=null;AG.ach('gate','boss');if(g.k==='king'){Z.stats.king=1;ggtext(Z,320,120,'🤴 The Goblin King is defeated!','#ffd34d');if(!Z.m.custom){AG.ach('gate','king');ggCoin(Z,20)}}else ggtext(Z,320,120,'👑 Boss defeated!','#ffd34d');ggpanel(Z)}}
+/* one goblin's moment: poison, bleed and fire; regeneration; speed (slows, cracks, quicksand); walls and helpers in the way; traps underfoot */
+function ggMove(Z,g,dt){const t=Z.time,G=GGOB[g.k];
+  if(g.burnU>t){ggHurt(Z,g,g.burn*dt,'fire',{dot:1});if(g.dead)return}
+  if(g.psn.length){g.psn=g.psn.filter(q=>q.u>t);let p=0;for(const q of g.psn)p+=q.v;if(p){ggHurt(Z,g,Math.min(isBoss(g)?.01:1,p)*g.max*dt,'poison',{dot:1});if(g.dead)return}}
+  if(g.bleed&&g.bleedU>t){const sl=g.slowU>t;if(sl&&!g.hem){g.hem=1;ggReact(Z,g,'hemo')}ggHurt(Z,g,3*g.bleed*dt*(sl?1.5:1),'true',{dot:1});if(g.dead)return}else if(g.bleedU<=t)g.bleed=0;
+  if(G.regen&&!g.psn.length&&!(g.bleedU>t))g.hp=Math.min(g.max,g.hp+g.max*G.regen*dt);
+  if(t-g.frostSeen>.3)g.inFrost=0;
+  if(g.k==='king')ggKingAct(Z,g,dt);
+  let sp=g.sp;if(g.frz>t||g.stun>t||g.pin>t||g.held>t)sp=0;else{let f=g.slowU>t?g.slowA:0;if(g.neuro&&g.neuroU>t)f=Math.max(f,Math.min(.4,g.neuro*.05));
+    if(!g.fly)for(const o of Z.road){if(Math.abs(o.d-g.d)>(o.len||14))continue;if(o.k==='quick'){f=Math.max(f,.4);if(!(g.vulnU>t)){g.vulnU=t+.3;g.vulnF=.1}}
+      if(o.k==='crack'){f=Math.max(f,.5);if(o.fault&&!isBoss(g)&&g.hp/g.max<o.fault){const [x,y]=ggXY(Z,g);ggtext(Z,x,y-24,'Into the crack!','#D6A35C');ggKill(Z,g,o.src);return}}
+      if(o.k==='fire'&&o.slow)f=Math.max(f,o.slow)}
+    sp*=1-f}
+  if(g.ally){g.d=Math.max(-10,g.d-sp*dt*.8);g.walk+=sp*dt*.08;if(g.allyU<t)g.ally=0;else for(const o of Z.gobs)if(!o.ally&&!o.dead&&Math.abs(o.d-g.d)<18)ggHurt(Z,o,15*dt,'true',{});return}
+  let nd=g.d+sp*dt;
+  if(!g.fly){for(const o of Z.road){if(!(o.k==='wall'||(o.k==='bunker'&&!o.broken)))continue;if(o.d<g.d-1||o.d>nd+2)continue;nd=Math.min(nd,o.d-2);o.hp-=(isBoss(g)?40:G.hp>=90?14:6)*dt;if(o.dps)ggHurt(Z,g,o.dps*dt,'phys',{src:o.src});
+      if(o.k==='bunker'){ggHurt(Z,g,(o.dmg||0)*dt,'phys',{});if(o.thorns)ggHurt(Z,g,o.thorns*(isBoss(g)?40:10)*dt,'true',{});if(o.hp<=0){o.broken=1;const [x,y]=ggPosOf(Z.m,o.d);ggfx(Z,'crash',x,y,30,0,.4);ggtext(Z,x,y-24,'The bunker broke!','#ffffff')}}}
+    for(const a of Z.allies)if(a.hp>0&&a.d>=g.d-1&&a.d<=nd+2)nd=Math.min(nd,a.d-2)}
+  if(nd>g.d){g.walk+=(nd-g.d)*.08;g.d=nd}
+  if(!g.fly)for(const o of Z.road){if(!o.trig||Math.abs(o.d-g.d)>9)continue;ggTrap(Z,o,g);if(g.dead)return}
+  if(g.d>=Z.m.len&&!g.dead){g.dead=1;g.out=1;Z.cookies=Math.max(0,Z.cookies-(g.k==='king'?10:g.k==='boss'?3:1));Z.lostWave=1;SND.play('hurt');ggtext(Z,600,Z.m.path[Z.m.path.length-1][1]-20,'-🍪','#ff6b6b')}}
+function ggTrap(Z,o,g){const t=Z.time;g.tc=g.tc||{};if((g.tc[o.id]||0)>t||(o.ch!==undefined&&o.ch<=0))return;
+  if(o.k==='pile'){g.tc[o.id]=t+.35;ggHurt(Z,g,o.dmg,'phys',{aoe:1,src:o.src});g.revU=t+1.5;if(o.bleed&&!g.mech){g.bleed=Math.min(10,(g.bleed||0)+1);g.bleedU=t+3}o.ch--}
+  else if(o.k==='saw'){g.tc[o.id]=t+.3;ggHurt(Z,g,o.dmg,'phys',{aoe:1,src:o.src});g.revU=t+1}
+  else if(o.k==='fire'){g.tc[o.id]=t+.5;ggBurn(Z,g,o.burn||4)}
+  else if(o.k==='gas'){g.tc[o.id]=t+.5;ggPoison(Z,g,.012,2)}
+  else if(o.k==='mine')ggBlast(Z,o)}
+function ggBlast(Z,o){if(o.ch<=0)return;o.ch=0;const [x,y]=ggPosOf(Z.m,o.d);ggfx(Z,'boom',x,y,o.splash,0,.4);SND.play('boom');
+  for(const g of Z.gobs){if(g.dead||g.ally||g.fly)continue;const [gx,gy]=ggXY(Z,g);if(Math.hypot(gx-x,gy-y)>o.splash)continue;const melt=g.vulnU>Z.time;if(melt&&!g.mlt){g.mlt=1;ggReact(Z,g,'melt')}ggHurt(Z,g,o.dmg,'fire',{aoe:1,src:o.src,ap:melt?1:0});if(!g.dead)ggBurn(Z,g,4)}
+  if(o.tileFire)ggTile(Z,'fire',o.d,o.tileFire,{burn:4,slow:o.fireSlow,src:o.src});
+  if(o.chainMine)for(const q of Z.road)if(q.k==='mine'&&q.ch>0&&Math.abs(q.d-o.d)<=60){q.dmg=o.dmg*1.25;ggBlast(Z,q)}}
+/* helpers on the road: soldiers hold their spot, skeletons march back toward the goblins */
+function ggAllies(Z,dt){for(const a of Z.allies){if(a.hp<=0)continue;let foe=null;for(const g of Z.gobs){if(g.dead||g.ally||g.fly)continue;if(Math.abs(g.d-a.d)<14){foe=g;break}}
+    if(foe){ggHurt(Z,foe,a.dps*dt,'phys',{});a.hp-=(isBoss(foe)?40:GGOB[foe.k].hp>=90?14:6)*dt}else if(a.walk)a.d-=30*dt;if(a.d<-10)a.hp=0}
+  Z.allies=Z.allies.filter(a=>a.hp>0)}
+
+/* ---------- towers ---------- */
+function ggProj(Z,T,s,g,px,py,o={}){const [gx,gy]=ggPosOf(Z.m,g.d+g.sp*.2);let p=Z.proj.find(q=>q.l<=0);if(!p){if(Z.proj.length>120)return;p={};Z.proj.push(p)}
+  Object.assign(p,{l:1,t:0,dur:o.lob?.6:s.pj==='rocket'?.45:s.pj==='arrow'||s.pj==='bullet'||s.pj==='dart'?.16:.3,k:o.lob?(s.dt==='fire'?'magma':'shell'):s.pj||'orb',x0:px,y0:py-24,x1:gx,y1:gy-(g.fly?16:0),s,T,g,lob:!!o.lob,meteor:!!o.meteor,d:g.d})}
+function ggHit(Z,p){const s=p.s,T=p.T,t=Z.time,g=p.g;
+  if(p.lob){const x=p.x1,y=p.y1;ggfx(Z,s.dt==='fire'?'boom':'crash',x,y,s.splash,0,.35);SND.play('boom');
+    const blast=(bx,by,r,m)=>{for(const o of Z.gobs){if(o.dead||o.ally||(o.fly&&!s.antiair))continue;const [a,b]=ggXY(Z,o);if(Math.hypot(a-bx,b-by)>r)continue;const melt=o.vulnU>t;if(melt&&!o.mlt){o.mlt=1;ggReact(Z,o,'melt')}
+      ggHurt(Z,o,s.dmg*m,s.dt,{aoe:1,src:T,ap:melt?1:s.ap,airx:s.airx,crit:s.crit});if(!o.dead&&s.dt==='fire')ggBurn(Z,o,s.burn||4)}};
+    blast(x,y,s.splash,1);if(s.cluster)for(let k=0;k<s.cluster;k++){const a=k/s.cluster*Math.PI*2+t,bx=x+Math.cos(a)*30,by=y+Math.sin(a)*20;ggfx(Z,'boom',bx,by,14,0,.25);blast(bx,by,16,.3)}
+    if(s.tileFire)ggTile(Z,'fire',p.d,s.tileFire,{burn:5,src:T});
+    if(p.meteor){for(const o of Z.gobs)if(!o.dead&&!o.ally&&!isBoss(o))o.stun=t+.5;Z.shake=t+.5;ggtext(Z,320,100,'Meteor!','#FB923C')}return}
+  if(!g||g.dead)return;
+  if(T.jack>t&&!isBoss(g)){ggHurt(Z,g,g.hp+g.sh+1,'true',{src:T});return}
+  ggHurt(Z,g,s.dmg,s.dt,{src:T,ap:s.ap,armx:s.armx,shieldP:s.shieldP,crit:s.crit});
+  if(s.pierce){let n=s.pierce;for(const o of Z.gobs){if(n<=0)break;if(o===g||o.dead||o.ally)continue;const [x,y]=ggXY(Z,o);if(Math.hypot(x-p.x1,y-p.y1)<36){ggHurt(Z,o,s.dmg*.7,s.dt,{src:T,ap:s.ap});n--}}}
+  ggfx(Z,'spark',p.x1,p.y1,8,0,.2);if(g.dead)return;
+  if(s.knockN){T.kn=(T.kn||0)+1;if(T.kn%s.knockN===0&&!isBoss(g))g.d=Math.max(-10,g.d-s.knock)}
+  if(s.bleed&&!g.mech){g.bleed=Math.min(10,(g.bleed||0)+s.bleed);g.bleedU=t+3}
+  if(s.corrode){g.armor=Math.max(0,g.armor-s.corrode);if(s.plague)g.plague=1}
+  if(s.vulnN){T.vn=(T.vn||0)+1;if(T.vn%s.vulnN===0){g.vulnU=t+2;g.vulnF=s.vuln}}
+  if(s.neuro&&!g.mech){g.neuro=Math.min(s.neuro,(g.neuro||0)+1);g.neuroU=t+2;if(s.psn&&g.neuro>=2)ggPoison(Z,g,s.psn*Math.floor(g.neuro/2),2)}
+  if(s.dt==='poison'&&!s.neuro)ggPoison(Z,g,.008,2);
+  if(s.gas)g.gas=s.gas;if(s.suppress)ggSlow(Z,g,s.suppress,.4);
+  if(s.tileFire&&s.pj==='rocket')ggTile(Z,'fire',g.d,s.tileFire,{burn:5,src:T})}
+/* what each kind of tower does, every moment */
+const GK={
+  shot(Z,T,i,s,px,py,dt,t){if(s.dice){T.rr=(T.rr??0)-dt;if(T.rr<=0&&!T.locked){T.rr=5;T.dice=[0,0,0].map(()=>.5+Math.random()*1.5);if(s.jackpot&&Math.random()<s.jackpot){T.jack=t+3;ggtext(Z,px,py-44,'🎰 JACKPOT!','#ffd34d')}}}
+    const L=ggTargets(Z,px,py,s.r,s);if(s.spin)T.spinT=L.length?Math.min(2,(T.spinT||0)+dt):Math.max(0,(T.spinT||0)-dt*2);if(s.pinEvery)T.pinT=(T.pinT??0)-dt;
+    T.cd-=dt;if(T.cd>0||!L.length)return;T.cd=s.spin?s.rate*(1+3*(1-(T.spinT||0)/2)):s.rate;
+    for(const g of s.fan?ggLeadN(L,s.fan):[ggLead(L)])ggProj(Z,T,s,g,px,py);
+    if(s.pinEvery&&T.pinT<=0){const g=ggLead(L);if(!isBoss(g)){g.pin=t+s.pin;T.pinT=s.pinEvery;const [x,y]=ggXY(Z,g);ggtext(Z,x,y-24,'Pinned!','#ffffff')}}
+    SND.play(s.pj==='rocket'?'boom':'pop')},
+  lob(Z,T,i,s,px,py,dt,t){T.cd-=dt;if(T.cd>0)return;const L=ggTargets(Z,px,py,s.r,{...s,lobbed:1});if(!L.length)return;T.cd=s.rate;T.shots=(T.shots||0)+1;ggProj(Z,T,s,ggLead(L),px,py,{lob:1,meteor:s.meteor&&T.shots%s.meteor===0})},
+  bounce(Z,T,i,s,px,py,dt,t){if(s.moat){T.mt=(T.mt??1)-dt;if(T.mt<=0){const P=ggRoadPts(Z,i,s.r);if(P.length){T.mt=s.moat;Z.road.push({id:++Z.oid,k:'saw',d:P[(Math.random()*P.length)|0],trig:1,dmg:s.dmg*.7,until:t+s.moat,src:T})}}}
+    T.cd-=dt;if(T.cd>0)return;const L=ggTargets(Z,px,py,s.r,s);if(!L.length)return;T.cd=s.rate;let g=ggLead(L),dmg=s.dmg,ax=px,ay=py-24;const hit=[];
+    for(let k=0;k<=s.bounces&&g;k++){const [x,y]=ggXY(Z,g);const f=ggfx(Z,'bolt',ax,ay,x,y-4,.14);if(f)f.c='#E7E5E4';ggHurt(Z,g,dmg,'phys',{src:T,ap:s.ap,crit:s.crit});hit.push(g);dmg*=1-(s.fall||.15);ax=x;ay=y-4;g=ggNear(Z,x,y,60,hit)}SND.play('pop')},
+  cone(Z,T,i,s,px,py,dt,t){if(s.iceWall){T.wt=(T.wt??2)-dt;if(T.wt<=0){const P=ggRoadPts(Z,i,s.r);if(P.length){T.wt=20;Z.road.push({id:++Z.oid,k:'wall',ice:1,d:P[P.length>>1],hp:s.iceWall*(1+.3*(T.lvl-1)),until:t+20,src:T})}}}
+    T.cd-=dt;if(T.cd>0)return;const L=ggTargets(Z,px,py,s.r,s);if(!L.length)return;T.cd=s.rate;const g0=ggLead(L),[gx,gy]=ggXY(Z,g0),ang=Math.atan2(gy-py,gx-px);
+    const f=ggfx(Z,'cone',px,py-20,ang,s.r,.22);if(f)f.c=s.dt==='fire'?(s.blue?'#60A5FA':'#FB923C'):'#E0F2FE';
+    for(const g of L){const [x,y]=ggXY(Z,g);let da=Math.abs(Math.atan2(y-py,x-px)-ang);if(da>Math.PI)da=2*Math.PI-da;if(da>.75)continue;
+      ggHurt(Z,g,s.dmg+(s.hail||0)*(1+.35*(T.lvl-1)),s.dt,{aoe:1,src:T,ap:s.ap,crit:s.crit});if(g.dead)continue;
+      if(s.burn)ggBurn(Z,g,s.burn);if(s.slow){ggSlow(Z,g,s.slow,1,{frost:1});if(s.chill){g.chill=g.chillU>t?(g.chill||0)+1:1;g.chillU=t+1.2;if(g.chill>=s.chill){g.chill=0;ggFreeze(Z,g,1)}}}}
+    if(s.tileFire){T.tf=(T.tf||0)-s.rate;if(T.tf<=0){T.tf=1;ggTile(Z,'fire',g0.d,s.tileFire,{burn:4,src:T})}}SND.play(s.dt==='fire'?'pop':'zap')},
+  trap(Z,T,i,s,px,py,dt,t){T.cd-=dt;if(T.cd>0)return;T.cd=s.rate;const P=ggRoadPts(Z,i,s.r);if(!P.length)return;const kind=s.mines?'mine':s.wall?'wall':'pile',max=s.mines||s.piles;
+    const mine=Z.road.filter(o=>o.src===T&&o.k===kind&&!(o.ch!==undefined&&o.ch<=0)&&!(o.hp!==undefined&&o.hp<=0));if(mine.length>=max)return;
+    const free=P.filter(q=>mine.every(o=>Math.abs(o.d-q)>24));if(!free.length)return;const d=free[(Math.random()*free.length)|0],extra=Z.sets.stone?1:0;
+    if(kind==='mine')Z.road.push({id:++Z.oid,k:'mine',d,trig:1,ch:1,dmg:s.dmg,splash:s.splash,tileFire:s.tileFire,fireSlow:s.fireSlow,chainMine:s.chainMine,src:T});
+    else if(kind==='wall'){const hp=s.wall*(1+.3*(T.lvl-1));Z.road.push({id:++Z.oid,k:'wall',d,hp,hpMax:hp,dps:s.dmg,until:t+30,src:T})}
+    else Z.road.push({id:++Z.oid,k:'pile',d,trig:1,ch:s.charges+extra,dmg:s.dmg,bleed:s.bleed,src:T})},
+  chain(Z,T,i,s,px,py,dt,t){const L=ggTargets(Z,px,py,s.r,s);if(s.charge&&!L.length)T.chg=Math.min(6,(T.chg||0)+dt);T.cd-=dt;if(T.cd>0||!L.length)return;T.cd=s.rate;let g=ggLead(L);
+    if(s.charge&&T.chg>.5){const [x,y]=ggXY(Z,g),f=ggfx(Z,'beam',px,py-30,x,y,.35);if(f)f.c='#FDE68A';ggHurt(Z,g,s.dmg*(1+1.5*T.chg),'shock',{src:T,crit:s.crit});ggtext(Z,x,y-30,'Overcharge!','#FDE68A');T.chg=0;SND.play('zap');return}
+    const hit=[g],con=g.frz>t;if(con)ggReact(Z,g,'conduct');const n=s.chain+(con?1:0),rng=con?120:70;while(hit.length<n){const [lx,ly]=ggXY(Z,hit.at(-1)),nx=ggNear(Z,lx,ly,rng,hit);if(!nx)break;hit.push(nx)}
+    let ax=px,ay=py-30;hit.forEach((h,k)=>{const [x,y]=ggXY(Z,h);ggfx(Z,'bolt',ax,ay,x,y,.14);ax=x;ay=y;ggHurt(Z,h,s.dmg*Math.pow(1-(s.fall||0),k),'shock',{src:T,crit:s.crit,chained:1});h.shockU=t+1.5});
+    if(hit.length>=4)AG.ach('gate','chain');SND.play('zap')},
+  aura(Z,T,i,s,px,py,dt,t){T.cd-=dt;const tick=T.cd<=0;if(tick)T.cd=s.rate||.5;let any=0;
+    for(const g of Z.gobs){if(g.dead||g.ally)continue;const [x,y]=ggXY(Z,g);if(Math.hypot(x-px,y-py)>s.r)continue;any=1;
+      if(s.reveal)g.revU=t+.6;
+      if(s.slow){ggSlow(Z,g,s.slow,.6,{frost:s.dt==='frost',brittle:s.brittle});if(s.freezeAfter){g.inFrost+=dt;g.frostSeen=t;if(g.inFrost>=s.freezeAfter){g.inFrost=0;ggFreeze(Z,g,1.5)}}}
+      if(tick){if(s.dmg)ggHurt(Z,g,s.dmg,s.dt,{aoe:1,src:T});if(g.dead)continue;if(s.dt==='poison')ggPoison(Z,g,.006,1.2);
+        if(s.strip&&g.sh>0){const a=Math.min(g.sh,s.strip*(s.rate||.5));g.sh-=a;if(s.erode)ggHurt(Z,g,a*s.erode,'true',{src:T})}if(s.blind)ggSlow(Z,g,.15,.8)}
+      if(s.sporeGold)g.spore={g:s.sporeGold,decomp:s.decomp||0,u:t+.6}}
+    if(tick&&any&&s.id!=='frostp'){const f=ggfx(Z,'ring',px,py,s.r*2,0,.4);if(f)f.c=s.id==='sand'?'#D6A35C':s.id==='spore'?'#C084FC':'#BFF0FF'}
+    if(s.quick&&!T.qs){const P=ggRoadPts(Z,i,s.r);if(P.length){T.qs=1;Z.road.push({id:++Z.oid,k:'quick',d:P[P.length>>1],len:28,src:T})}}
+    if(s.mind){T.mindT=(T.mindT??s.mind)-dt;if(T.mindT<=0){const c=ggTargets(Z,px,py,s.r,s).filter(g=>!isBoss(g)&&g.hp/g.max<.3);if(c.length){const g=c[0],[x,y]=ggXY(Z,g);g.ally=1;g.allyU=t+4;T.mindT=s.mind;ggtext(Z,x,y-26,'It fights for you!','#C084FC')}}}},
+  beam(Z,T,i,s,px,py,dt,t){const L=ggTargets(Z,px,py,s.r,s);T.beamTo=[];if(!L.length){T.lock=null;T.ramp=0;return}const tg=ggLeadN(L,s.beams||1);if(T.lock!==tg[0].id){T.lock=tg[0].id;T.ramp=0}
+    T.ramp=Math.min((s.maxRamp||5)-1,(T.ramp||0)+(s.ramp||0)*dt*(s.beams?1:1));let mult=1+T.ramp;
+    if(s.links){const n=Z.tw.filter((o,j)=>o&&j!==i&&o.t==='refract'&&ggD(Z,i,j)<=120).length;mult*=1+(s.net?Math.min(5,n)*s.net:.05*n)}
+    for(const g of tg){ggHurt(Z,g,s.dmg*mult*dt,s.dt,{src:T,dot:1});if(s.strip)g.armor=Math.max(0,g.armor-s.strip*dt);T.beamTo.push(g.id)}T.heat=mult},
+  block(Z,T,i,s,px,py,dt,t){let o=Z.road.find(q=>q.k==='bunker'&&q.src===T);if(!o){const P=ggRoadPts(Z,i,s.r);if(!P.length)return;o={id:++Z.oid,k:'bunker',d:P[P.length>>1],hp:s.hp,hpMax:s.hp,src:T};Z.road.push(o)}
+    o.dmg=s.dmg;o.thorns=s.thorns||0;if(o.hpMax!==s.hp){o.hp+=s.hp-o.hpMax;o.hpMax=s.hp}
+    if(s.phalanx&&!o.broken){T.ph=(T.ph??2)-dt;if(T.ph<=0){T.ph=15;for(let k=0;k<2;k++)Z.allies.push({k:'soldier',d:o.d-12-k*9,hp:60*(Z.sets.wild?1.2:1)*(1+.3*(T.lvl-1)),dps:10*(1+.35*(T.lvl-1)),src:T})}}},
+  support(Z,T,i,s,px,py,dt,t){for(const g of Z.gobs){if(g.dead)continue;const [x,y]=ggXY(Z,g);if(Math.hypot(x-px,y-py)<=s.r+40)g.revU=t+.6}},
+  econ(){},relay(){},
+  mirror(Z,T,i,s,px,py,dt,t){let best=null,bv=-1;Z.tw.forEach((o,j)=>{if(!o||j===i)return;const E=GGT[o.t];if(E.rar===3||['mirror','econ','support','relay','grid','block'].includes(E.k))return;const dd=ggD(Z,i,j);
+      if(s.far){if(dd>s.far)return;const v=ggStat(o,Z,j).dmg;if(v>bv){bv=v;best=j}}else if(dd<=s.r&&(best===null||dd<ggD(Z,i,best)))best=j});
+    T.copyOf=best;if(best===null)return;const src=Z.tw[best],q=ggStat(src,Z,best),s2={...q,dmg:q.dmg*s.copy,r:q.r>=999?999:q.r*.9,crit:q.crit,id:src.t};GK[q.k](Z,T,i,s2,px,py,dt,t)},
+  grid(Z,T,i,s,px,py,dt,t){const mates=Z.tw.map((o,j)=>[o,j]).filter(([o,j])=>o&&j!==i&&GGT[o.t].k==='grid'&&ggD(Z,i,j)<=s.r).map(([o,j])=>j);
+    T.links=s.net?mates:mates.sort((a,b)=>ggD(Z,i,a)-ggD(Z,i,b)).slice(0,1);T.cd-=dt;if(T.cd>0)return;T.cd=s.rate;
+    if(!T.links.length){const L=ggTargets(Z,px,py,120,s);if(L.length){const g=ggLead(L),[x,y]=ggXY(Z,g),f=ggfx(Z,'bolt',px,py-26,x,y,.14);if(f)f.c='#F87171';ggHurt(Z,g,s.dmg*.35,'magic',{src:T})}return}
+    for(const j of T.links){const [bx,by]=Z.m.pads[j];for(const g of Z.gobs){if(g.dead||g.ally)continue;const [x,y]=ggXY(Z,g);if(ggSegD(x,y,px,py-12,bx,by-12)<=12){ggHurt(Z,g,s.dmg*(s.net||1),'magic',{src:T});g.vulnU=t+3;g.vulnF=.1;g.revU=t+1}}}},
+  seismic(Z,T,i,s,px,py,dt,t){T.cd-=dt;if(T.cd>0)return;const L=ggTargets(Z,px,py,s.r,{...s,lobbed:1});if(!L.length)return;T.cd=s.rate;const f=ggfx(Z,'ring',px,py,s.r*2,0,.45);if(f)f.c='#D6A35C';Z.shake=t+.25;SND.play('boom');
+    for(const g of L){ggHurt(Z,g,s.dmg,'phys',{aoe:1,src:T,crit:s.crit});if(s.heave&&GGOB[g.k].hp>=90){g.armorU=t+s.heave}}
+    const mine=Z.road.filter(o=>o.k==='crack'&&o.src===T).length;if(mine<s.cracks+(Z.sets.stone?1:0)){const P=ggRoadPts(Z,i,s.r).filter(d=>!Z.road.some(o=>o.k==='crack'&&Math.abs(o.d-d)<24));if(P.length)Z.road.push({id:++Z.oid,k:'crack',d:P[(Math.random()*P.length)|0],len:14,fault:s.fault,src:T})}},
+  grab(Z,T,i,s,px,py,dt,t){if(s.whip){T.wc=(T.wc||0)-dt;if(T.wc<=0){T.wc=.5;const L=ggTargets(Z,px,py,s.r,s);if(L.length){for(const g of L)ggHurt(Z,g,s.whip,'phys',{aoe:1,src:T});T.whipT=t+.3}}}
+    T.cd-=dt;if(T.cd>0)return;const L=ggTargets(Z,px,py,s.r,s).filter(g=>!isBoss(g));if(!L.length)return;T.cd=s.rate;const g=ggLead(L),[x,y]=ggXY(Z,g),f=ggfx(Z,'vine',px,py-10,x,y,.5);if(f)f.c='#16A34A';
+    ggHurt(Z,g,s.dmg,'phys',{src:T,crit:s.crit});if(g.dead)return;if(s.swallow&&g.hp/g.max<s.swallow){ggtext(Z,x,y-26,'Swallowed!','#4ADE80');ggKill(Z,g,T);return}g.d=Math.max(-10,g.d-s.drag);g.held=t+.6;SND.play('pop')},
+  drones(Z,T,i,s,px,py,dt,t){T.cd-=dt;if(T.cd>0)return;const L=ggTargets(Z,px,py,s.r,s);if(!L.length)return;T.cd=s.rate;const g=L.reduce((a,o)=>!a||o.hp<a.hp?o:a,null);ggProj(Z,T,{...s,pj:'drone'},g,px,py)},
+  rail(Z,T,i,s,px,py,dt,t){T.cd-=dt;if(T.cd>0)return;const L=ggTargets(Z,px,py,999,s);if(!L.length)return;T.cd=s.rate;const g=ggLead(L),[gx,gy]=ggXY(Z,g),ang=Math.atan2(gy-(py-30),gx-px),ex=px+Math.cos(ang)*900,ey=py-30+Math.sin(ang)*900;
+    const f=ggfx(Z,'rail',px,py-30,ex,ey,.45);Z.shake=t+.2;SND.play('boom');
+    for(const o of Z.gobs){if(o.dead||o.ally)continue;const [x,y]=ggXY(Z,o),dd=ggSegD(x,y,px,py-30,ex,ey);const m=dd<=12?1:s.wide&&dd<=s.wide?.5:0;if(!m)continue;ggHurt(Z,o,s.dmg*m,'phys',{src:T,ap:1,crit:s.crit});
+      if(!o.dead&&s.emp&&o.mech&&!isBoss(o)){o.ally=1;o.allyU=t+s.emp;ggtext(Z,x,y-26,'Rewired!','#93C5FD')}}},
+  void(Z,T,i,s,px,py,dt,t){const h=Z.road.find(o=>o.k==='hole'&&o.src===T&&o.until>t);
+    if(h){const [hx,hy]=ggPosOf(Z.m,h.d);for(const g of Z.gobs){if(g.dead||g.ally)continue;const [x,y]=ggXY(Z,g);if(Math.hypot(x-hx,y-hy)>70)continue;if(!isBoss(g))g.d+=Math.sign(h.d-g.d)*Math.min(60*dt,Math.abs(h.d-g.d));
+      ggHurt(Z,g,s.dmg*dt,'magic',{src:T,dot:1});if(!g.dead&&s.horizon&&!isBoss(g)&&g.hp/g.max<s.horizon){ggtext(Z,x,y-26,'Erased!','#C4B5FD');ggKill(Z,g,T)}}}
+    T.cd-=dt;if(T.cd>0)return;const L=ggTargets(Z,px,py,s.r,s);if(!L.length)return;T.cd=s.rate;const g=ggLead(L),hd=Math.min(Z.m.len-20,g.d+12);Z.road.push({id:++Z.oid,k:'hole',d:hd,until:t+3,src:T});SND.play('boom');
+    if(s.collapse&&!T.collapsed){T.collapsed=1;for(const o of Z.gobs)if(!o.dead&&!o.ally&&!isBoss(o)&&o.d>hd&&o.d<hd+260)o.d=hd;ggtext(Z,320,100,'The road folds back!','#C4B5FD')}},
+  stasis(Z,T,i,s,px,py,dt,t){for(const g of Z.gobs){if(g.dead||g.ally)continue;const [x,y]=ggXY(Z,g);if(Math.hypot(x-px,y-py)<=s.r)ggSlow(Z,g,s.slow,.3)}
+    if(s.bubble){T.cd-=dt;if(T.cd<=0){T.cd=s.bubble;const B={u:t+3,rec:0,x:px,y:py};T.bub=B;for(const g of Z.gobs){if(g.dead||g.ally)continue;const [x,y]=ggXY(Z,g);if(Math.hypot(x-px,y-py)>s.r)continue;g.bub=B;if(isBoss(g))ggSlow(Z,g,.5,3);else{g.frz=t+3;g.frzImm=t+6}}ggtext(Z,px,py-40,'Stasis!','#7DD3FC')}
+      const B=T.bub;if(B&&B.u<=t){T.bub=null;const in_=Z.gobs.filter(g=>!g.dead&&g.bub===B);const each=B.rec*2/Math.max(1,in_.length);for(const g of in_){g.bub=null;ggHurt(Z,g,each,'true',{src:T})}const f=ggfx(Z,'nova',px,py,s.r*2,0,.5);if(f)f.c='#7DD3FC'}}},
+  rewind(Z,T,i,s,px,py,dt,t){T.cd-=dt;if(T.cd>0)return;const L=Z.gobs.filter(g=>!g.dead&&!g.ally);if(!L.length||ggLead(L).d<Z.m.len*.4)return;T.cd=s.rate;
+    const tg=s.drive?ggLeadN(L.filter(g=>!isBoss(g)),s.drive):[ggLead(L)];
+    for(const g of tg){const [x0,y0]=ggXY(Z,g);g.d=s.drive?-10:Math.max(-10,g.d-Z.m.len*(isBoss(g)?.1:s.back));const [x,y]=ggXY(Z,g);let f=ggfx(Z,'nova',x0,y0,40,0,.4);if(f)f.c='#7DD3FC';f=ggfx(Z,'nova',x,y,40,0,.5);if(f)f.c='#7DD3FC';
+      if(s.feedback){ggfx(Z,'boom',x,y,50,0,.4);for(const o of Z.gobs){if(o.dead||o.ally)continue;const [a,b]=ggXY(Z,o);if(Math.hypot(a-x,b-y)<=50)ggHurt(Z,o,s.feedback,'true',{src:T})}}}
+    ggtext(Z,320,100,s.drive?'Rewind!':'Back in time!','#7DD3FC');SND.play('zap')},
+  reaper(Z,T,i,s,px,py,dt,t){if(s.skel){T.ns=T.ns||s.skel;if(Z.souls>=T.ns){T.ns+=s.skel;Z.allies.push({k:'skel',d:Z.m.len-20,hp:150*(Z.sets.wild?1.2:1)*(1+.3*(T.lvl-1)),dps:30*(1+.35*(T.lvl-1)),walk:1,src:T});ggtext(Z,560,120,'A skeleton rises!','#E9D5FF')}}
+    if(!s.doom&&Z.souls>=s.souls){Z.souls-=s.souls;T.ns=Math.max(0,(T.ns||0)-s.souls);ggLaser(Z,s.dmg,T)}},
+  astral(Z,T,i,s,px,py,dt,t){if(s.bridge){T.br=Z.tw.map((o,j)=>[o,j]).filter(([o,j])=>o&&(o.t==='runic'||o.t==='prism')&&ggD(Z,i,j)<=200).map(([o,j])=>j);T.bc=(T.bc||0)-dt;
+      if(T.bc<=0&&T.br.length){T.bc=1;for(const j of T.br){const [bx,by]=Z.m.pads[j];for(const g of Z.gobs){if(g.dead||g.ally)continue;const [x,y]=ggXY(Z,g);if(ggSegD(x,y,px,py-12,bx,by-12)<=12)ggHurt(Z,g,s.bridge*(1+.35*(T.lvl-1)),'magic',{src:T})}}}}
+    T.cd-=dt;if(T.cd>0)return;const L=ggTargets(Z,px,py,s.r,s);if(!L.length)return;T.cd=s.rate;let best=0;Z.tw.forEach((o,j)=>{if(!o||j===i||GGT[o.t].rar===3)return;const v=ggStat(o,Z,j).dmg||0;if(v>best)best=v});if(!best)return;T.copyDmg=best;
+    const tg=s.twin?ggLeadN(L,2):[ggLead(L)];for(const g of tg){const [x,y]=ggXY(Z,g),f=ggfx(Z,'beam',px,py-34,x,y,.25);if(f)f.c='#F0ABFC';ggHurt(Z,g,best,'magic',{src:T,crit:s.crit})}
+    if(s.twin&&tg.length===2){let v=best*.5;for(let k=0;k<3&&v>1;k++){const a=tg[k%2],b=tg[(k+1)%2];if(a.dead||b.dead)break;const [x1,y1]=ggXY(Z,a),[x2,y2]=ggXY(Z,b),f=ggfx(Z,'bolt',x1,y1,x2,y2,.15);if(f)f.c='#F0ABFC';ggHurt(Z,b,v,'magic',{src:T});v*=.5}}SND.play('zap')}};
+function ggLaser(Z,dmg,T){for(const g of Z.gobs)if(!g.dead&&!g.ally)ggHurt(Z,g,isBoss(g)?dmg/3:dmg,'true',{src:T});const P=Z.m.path;for(let k=1;k<P.length;k++){const f=ggfx(Z,'rail',P[k-1][0],P[k-1][1],P[k][0],P[k][1],.6);if(f)f.c='#C084FC'}Z.shake=Z.time+.5;ggtext(Z,320,100,'☄️ The Reaper’s laser!','#E9D5FF');SND.play('boom')}
+function ggTower(Z,T,i,dt){const s=ggStat(T,Z,i),[px,py]=Z.m.pads[i];T.s=s;const K=GK[s.k];if(K)K(Z,T,i,s,px,py,dt,Z.time)}
+function ggKill(Z,g,src){if(g.dead)return;g.dead=1;const G=GGOB[g.k],[x,y]=ggXY(Z,g),t=Z.time;let gold=G.gold;
+  if(g.spore&&g.spore.u>t)gold+=g.spore.g+Math.round(G.gold*g.spore.decomp);
+  Z.tw.forEach((T,i)=>{if(!T)return;const [px,py]=Z.m.pads[i],dd=Math.hypot(px-x,py-y);if(T.t==='vault'&&T.m==='A'&&dd<=80+4*(T.lvl-1))gold+=3;if(T.t==='glow'&&dd<=130)T.grow=(T.grow||0)+.01});
+  Z.kills++;if(Z.tw.some(T=>T&&T.t==='reaper')){Z.souls++;if(Z.sets.void&&Z.kills%10===0){Z.souls++;gold+=5}}
+  if(g.plague){const f=ggfx(Z,'boom',x,y,40,0,.35);if(f)f.c='#A3E635';for(const o of Z.gobs){if(o.dead||o.ally)continue;const [a,b]=ggXY(Z,o);if(Math.hypot(a-x,b-y)<=40)ggHurt(Z,o,25,'acid',{})}}
+  if(g.gas)ggTile(Z,'gas',g.d,g.gas,{});
+  Z.gold+=gold;ggtext(Z,x,y-14,'+'+gold,'#ffd34d');ggfx(Z,'poof',x,y,g.r,0,.45);SND.play('pop');
+  if(isBoss(g)){if(Z.boss===g)Z.boss=null;AG.ach('gate','boss');if(g.k==='king'){Z.stats.king=1;ggtext(Z,320,120,'🤴 The Goblin King is defeated!','#ffd34d');if(!Z.m.custom){AG.ach('gate','king');ggCoin(Z,20)}}else ggtext(Z,320,120,'👑 Boss defeated!','#ffd34d');ggpanel(Z)}}
+/* buttons in the panel for towers you aim yourself */
+function ggAbility(Z,i){const T=Z.tw[i];if(!T)return;const s=ggStat(T,Z,i),[px,py]=Z.m.pads[i];
+  if(s.loaded&&T.dice){T.locked=1;ggtext(Z,px,py-40,'Roll kept!','#FCD34D')}
+  else if(s.nuke&&T.grow){const n=Math.round(T.grow*100),f=ggfx(Z,'nova',px,py,s.r*2,0,.6);if(f)f.c='#FDE047';for(const g of ggTargets(Z,px,py,s.r,s))ggHurt(Z,g,20*n,'magic',{src:T});T.grow=0;Z.shake=Z.time+.3;ggtext(Z,px,py-40,'Spore blast!','#FDE047')}
+  else if(s.doom&&Z.souls>0){ggLaser(Z,Z.souls*s.doom*(1+.35*(T.lvl-1)),T);Z.souls=0}
+  SND.play('boom');ggpanel(Z)}
 /* Questions: level-ups, the boss cannon, the bonus between waves, and the rescue. Right answers here also pay a Gate coin (up to 20 a day) */
 const ggQCoin=Z=>{const D=DAY();if((D.ggc||0)<20){D.ggc=(D.ggc||0)+1;ggCoin(Z,1)}};
 const ggUpCost=T=>Math.round(GGT[T.t].cost*(.45+.2*(T.lvl||1)));
-async function ggUpgrade(Z){const i=Z.sel,T=Z.tw[i];if(!T||T.lvl>=7)return;const cost=ggUpCost(T);if(Z.gold<cost)return;
-  const ok=await AG.ask({title:`Upgrade: ${GGT[T.t].n} to level ${T.lvl+1}`,intro:'Answer right to upgrade the tower.'});if(!AG.on('gate')||AG.cur.st!==Z)return;
-  if(ok&&Z.tw[i]===T&&Z.gold>=cost&&T.lvl<7){Z.gold-=cost;T.spent+=cost;T.lvl++;Z.stats.upg++;Z.stats.maxL=Math.max(Z.stats.maxL,T.lvl);ggQCoin(Z);SND.play('place');ggtext(Z,Z.m.pads[i][0],Z.m.pads[i][1]-34,`Level ${T.lvl}!`,'#5ff3a0');if(T.lvl>=7)AG.ach('gate','max')}
+async function ggUpgrade(Z,pick){const i=Z.sel,T=Z.tw[i];if(!T||T.lvl>=7)return;const cost=ggUpCost(T),D=GGT[T.t];if(Z.gold<cost)return;
+  if(T.lvl===4&&!pick)return;if(pick==='B'&&ggStar(T.t)<2)return msg('Get a second copy of this tower from a chest to unlock Mastery B.');
+  const ok=await AG.ask({title:`Upgrade: ${D.n} to level ${T.lvl+1}${pick?` · ${D[pick].n}`:''}`,intro:'Answer right to upgrade the tower.'});if(!AG.on('gate')||AG.cur.st!==Z)return;
+  if(ok&&Z.tw[i]===T&&Z.gold>=cost&&T.lvl<7){Z.gold-=cost;T.spent+=cost;T.lvl++;if(pick){T.m=pick;AG.ach('gate','mastery')}Z.stats.upg++;Z.stats.maxL=Math.max(Z.stats.maxL,T.lvl);ggQCoin(Z);SND.play('place');ggtext(Z,Z.m.pads[i][0],Z.m.pads[i][1]-34,pick?`${D[pick].n}!`:`Level ${T.lvl}!`,'#5ff3a0');if(T.lvl>=7)AG.ach('gate','max')}
   else if(ok===false)ggtext(Z,Z.m.pads[i][0],Z.m.pads[i][1]-34,'Almost! Try again','#ffffff');ggpanel(Z)}
 async function ggCannon(Z){if(!Z.boss||Z.cannonCd>0)return;Z.cannonCd=3;const ok=await AG.ask({title:'Castle cannon',intro:'Answer right to fire the castle cannon at the boss!'});if(!AG.on('gate')||AG.cur.st!==Z)return;
-  if(ok&&Z.boss){const b=Z.boss,[bx,by]=ggPosOf(Z.m,b.d),e=Z.m.path[Z.m.path.length-1];ggfx(Z,'cannon',e[0]-6,e[1]-40,bx,by,.4);ggQCoin(Z);setTimeout(()=>{if(!b.dead){const sh=b.shieldU;b.shieldU=0;ggDmg(Z,b,b.max*(b.k==='king'?.08:.16),1);b.shieldU=sh;b.stun=Z.time+1;ggfx(Z,'crash',bx,by,40,0,.4)}},380);
+  if(ok&&Z.boss){const b=Z.boss,[bx,by]=ggXY(Z,b),e=Z.m.path[Z.m.path.length-1];ggfx(Z,'cannon',e[0]-6,e[1]-40,bx,by,.4);ggQCoin(Z);setTimeout(()=>{if(!b.dead){const sh=b.shieldU;b.shieldU=0;ggHurt(Z,b,b.max*(b.k==='king'?.08:.16),'true',{shieldP:1});b.shieldU=sh;b.stun=Z.time+1;ggfx(Z,'crash',bx,by,40,0,.4)}},380);
     Z.stats.cannon++;const S=ggS();S.cannon=(S.cannon||0)+1;if(S.cannon>=5)AG.ach('gate','cannon');SND.play('boom')}
   else if(ok===false)ggtext(Z,320,100,'The cannon fizzled. Try another!','#ffffff');ggpanel(Z)}
 async function ggBonus(Z){if(Z.ph!=='build'||!Z.bonusOn)return;Z.bonusOn=0;const ok=await AG.ask({title:'Bonus question',intro:'Answer right for 20 bonus gold.'});if(!AG.on('gate')||AG.cur.st!==Z)return;if(ok){Z.gold+=20;ggQCoin(Z);ggtext(Z,320,80,'+20 gold','#ffd34d')}ggpanel(Z)}
 async function ggRescue(Z){Z.rescue=1;const ok=await AG.ask({title:'Rescue!',intro:'The goblins are close! Answer to freeze every goblin.'});if(!AG.on('gate')||AG.cur.st!==Z)return;
   const t=ok?5:2;for(const g of Z.gobs)g.frz=Z.time+(g.k==='king'?t/2:t);if(ok)ggQCoin(Z);ggfx(Z,'nova',320,180,400,0,.6);ggtext(Z,320,150,ok?'Frozen for 5 seconds!':'Frozen for 2 seconds','#9fe3ff')}
-function ggBuild(Z,t){const i=Z.sel;if(i<0||Z.tw[i]||!GGT[t])return;const D=GGT[t];if(Z.gold<D.cost){msg(`You need ${D.cost} gold. Stop more goblins to earn gold.`);return}
-  Z.gold-=D.cost;Z.tw[i]={t,lvl:1,cd:.3,spent:D.cost};Z.stats.built[t]=1;SND.play('place');ggfx(Z,'poof',Z.m.pads[i][0],Z.m.pads[i][1],20,0,.4);if(Object.keys(Z.stats.built).length>=5)AG.ach('gate','variety');ggpanel(Z)}
-function ggSell(Z){const i=Z.sel,T=Z.tw[i];if(!T)return;const back=Math.round(T.spent*.6);Z.gold+=back;Z.tw[i]=null;ggtext(Z,Z.m.pads[i][0],Z.m.pads[i][1]-20,'+'+back,'#ffd34d');ggpanel(Z)}
+function ggCanBuild(Z,t){const D=GGT[t];if(D.rar===3&&Z.tw.some(T=>T&&T.t===t))return 'Legendary towers are one of a kind: you already have this one.';if(D.time&&Z.tw.some(T=>T&&GGT[T.t].time))return 'Only one Time tower (Chronos Obelisk or Time Echo) at a time.';return ''}
+function ggBuild(Z,t){const i=Z.sel;if(i<0||Z.tw[i]||!GGT[t])return;const D=GGT[t],no=ggCanBuild(Z,t);if(no)return msg(no);if(Z.gold<D.cost){msg(`You need ${D.cost} gold. Stop more goblins to earn gold.`);return}
+  Z.gold-=D.cost;Z.tw[i]={t,lvl:1,cd:.3,spent:D.cost};Z.stats.built[t]=1;ggSets(Z);SND.play('place');ggfx(Z,'poof',Z.m.pads[i][0],Z.m.pads[i][1],20,0,.4);if(Object.keys(Z.stats.built).length>=5)AG.ach('gate','variety');ggpanel(Z)}
+function ggSell(Z){const i=Z.sel,T=Z.tw[i];if(!T)return;const back=Math.round(T.spent*.6);Z.gold+=back;Z.tw[i]=null;Z.road=Z.road.filter(o=>o.src!==T);Z.allies=Z.allies.filter(a=>a.src!==T);ggSets(Z);ggtext(Z,Z.m.pads[i][0],Z.m.pads[i][1]-20,'+'+back,'#ffd34d');ggpanel(Z)}
 function ggWin(Z){AG.finish(ggresult(Z,'won'))}
 function ggOver(Z){AG.finish(ggresult(Z,'lost'))}
 function ggresult(Z,why){Z.ph='end';const S=ggS(),m=Z.m,mi=Z.mi;let stars=0,goal=false,gems=0,unlock=null;
@@ -199,17 +450,59 @@ function ggresult(Z,why){Z.ph='end';const S=ggS(),m=Z.m,mi=Z.mi;let stars=0,goal
     stars=1+(Z.cookies>=8?1:0)+(goal?1:0);const pay=[0,3,5,8].map(x=>x&&x+2*mi),b=S.st[m.id]||0;gems=stars>b?pay[stars]-pay[b]:1;unlock=!b&&GGMAPS[mi+1];S.st[m.id]=Math.max(b,stars);S.wins=(S.wins||0)+1;addGems(gems);ggCoin(Z,5+2*mi+stars);
     AG.ach('gate','win');if(Z.cookies>=10)AG.ach('gate','perfect');if(GGMAPS.every((_,j)=>ggOpen(j)))AG.ach('gate','tour');if(GGMAPS.every(x=>(S.st[x.id]||0)>=3))AG.ach('gate','stars');SND.play('win','ui')}
   else if(why==='lost')SND.play('lose','ui');
-  SYNC();return{why,map:m.id,stage:mi+1,stars,goal,cookies:Z.cookies,waves:Z.w,gems,coins:Z.stats.coins,king:!!Z.stats.king,unlock:unlock&&unlock.n,unlockN:unlock?mi+2:0,bonus:{perfect:Z.stats.perfect,variety:Object.keys(Z.stats.built).length,gold:Z.gold}}}
-/* ---------- Chests: Gate coins buy a random tower; odds are always shown ---------- */
-const GGODDS={normal:[60,28,10,2],lucky:[0,45,40,15]};
+  SYNC();return{why,map:m.id,stage:mi+1,stars,goal,cookies:Z.cookies,waves:Z.w,gems,coins:Z.stats.coins,king:!!Z.stats.king,unlock:unlock&&unlock.n,unlockN:unlock?mi+2:0,bonus:{perfect:Z.stats.perfect,variety:Object.keys(Z.stats.built).length,gold:Z.gold,react:Z.stats.react}}}
+/* ---------- Chests: Gate coins buy a random tower. Odds always shown; pity guarantees an Epic within 15 chests and a Legendary within 80 ---------- */
+const GGODDS={normal:[70,20,8.5,1.5],lucky:[0,45,40,15]};
 let GGLAST=null;
-function ggRoll(lucky){const S=ggS(),cost=lucky?50:10;if((S.coins||0)<cost)return null;S.coins-=cost;S.pity=(S.pity||0)+1;let w=GGODDS[lucky?'lucky':'normal'].slice();if(!lucky&&S.pity>=10)w=[0,0,80,20];
-  let r=Math.random()*100,rar=0;for(;rar<3&&(r-=w[rar])>=0;rar++);if(rar>=2)S.pity=0;
-  const pool=Object.keys(GGT).filter(k=>GGT[k].rar===rar),t=pick(pool);let note;
-  if(!S.own.includes(t)){S.own.push(t);note='new';if(S.load.length<5)S.load.push(t)}else{S.cp[t]=(S.cp[t]||0)+1;if(S.cp[t]>5){S.cp[t]=5;S.coins+=Math.round(cost/2);note='refund'}else note='copy'}
-  if(S.own.length>=10)AG.ach('gate','collect');if(rar===3)AG.ach('gate','legend');SND.play(rar>=2?'win':'unlock','ui');SYNC();return GGLAST={t,rar,note,lucky}}
-function ggLoad(t){const S=ggS();if(!S.own.includes(t))return;const i=S.load.indexOf(t);if(i>=0){if(S.load.length>1)S.load.splice(i,1)}else{if(S.load.length>=5)return msg('Your loadout is full (5 towers). Take one out first.');S.load.push(t)}SYNC();rerealm()}
-
+function ggOdds(lucky){const S=ggS();if(lucky)return GGODDS.lucky.slice();let w=GGODDS.normal.slice();const pl=S.pityL||0;if(pl>=79)return[0,0,0,100];
+  if(pl>=60){const add=2*(pl-59);w[3]+=add;w[0]=Math.max(0,w[0]-add)}if((S.pityE||0)>=14)w=[0,0,w[2],w[3]];return w}
+function ggRoll(lucky){const S=ggS(),cost=lucky?50:10;if((S.coins||0)<cost)return null;const w=ggOdds(lucky),tot=w.reduce((a,b)=>a+b,0);S.coins-=cost;S.pityE=(S.pityE||0)+1;S.pityL=(S.pityL||0)+1;
+  let r=Math.random()*tot,rar=0;for(;rar<3&&(r-=w[rar])>=0;rar++);if(rar>=2)S.pityE=0;if(rar===3)S.pityL=0;
+  const t=pick(Object.keys(GGT).filter(k=>GGT[k].rar===rar));let note,shards=0;
+  if(!S.own.includes(t)){S.own.push(t);note='new';const b=ggBudget();if(S.load.length<6&&ggPts(S.load)+GPTS[rar]<=b.pts&&(rar<3||S.load.filter(k=>GGT[k].rar===3).length<b.leg))S.load.push(t)}
+  else if((S.cp[t]||0)<4){S.cp[t]=(S.cp[t]||0)+1;note='copy'}else{shards=GSHARD[rar];S.shards=(S.shards||0)+shards;note='shards'}
+  if(S.own.length>=10)AG.ach('gate','collect');if(S.own.length>=36)AG.ach('gate','all');if(rar===3)AG.ach('gate','legend');SND.play(rar>=2?'win':'unlock','ui');SYNC();return GGLAST={t,rar,note,lucky,shards}}
+function ggBuyShard(t){const S=ggS(),D=GGT[t],p=GSHOP[D.rar];if(S.own.includes(t)||(S.shards||0)<p)return;S.shards-=p;S.own.push(t);GGLAST={t,rar:D.rar,note:'new',shop:1};if(S.own.length>=36)AG.ach('gate','all');SYNC();rerealm()}
+function ggLoad(t){const S=ggS();if(!S.own.includes(t))return;const i=S.load.indexOf(t);if(i>=0){if(S.load.length>1)S.load.splice(i,1)}else{const b=ggBudget(),r=GGT[t].rar;
+    if(S.load.length>=6)return msg('Your loadout is full (6 towers). Take one out first.');if(ggPts(S.load)+GPTS[r]>b.pts)return msg(`That goes over your ${b.pts}-point budget. Take a tower out first.`);
+    if(r===3&&S.load.filter(k=>GGT[k].rar===3).length>=b.leg)return msg(b.leg>1?'Two Legendaries at most.':'One Legendary at a time (two from hero level 30).');S.load.push(t)}SYNC();rerealm()}
+AG.def({id:'gate',name:'Goblin Gate',w:GGW,h:GGH,maxW:1280,vh:200,pixel:true,snd:'gate',go:'Start defending',
+  sub:'Build towers, answer to upgrade, save the cookies!',
+  help:['Goblins walk the road to your castle. Each one that gets in eats a cookie.','Tap a stone pad, then build one of your 6 towers. Stopped goblins give gold.','Tap a tower to level it up to level 7. At level 5 pick its Mastery. Every upgrade needs a right answer.','Mix towers: fire on frozen goblins makes steam, frozen goblins shatter, and lightning on ice conducts.','Each stage adds a new kind of goblin, and stage 7 brings the Goblin King. Win Gate coins to open chests for new towers.'],
+  keys:[['← →','pick a pad'],['1 to 6','build'],['Space','start the wave'],['P','pause']],
+  ach:{win:{i:'🏰',n:'Castle keeper',d:'Win a stage',gems:1,give:'gate.flag.blue'},boss:{i:'👑',n:'Boss buster',d:'Defeat a boss',gems:1,give:'gate.flag.gold'},
+    variety:{i:'🎨',n:'Master builder',d:'Build 5 different towers in one game',gems:1,give:'gate.flag.green'},max:{i:'⬆️',n:'Level 7',d:'Upgrade a tower to level 7',gems:2},
+    perfect:{i:'💯',n:'Not one cookie',d:'Win a stage without losing a cookie',gems:2,give:'gate.flag.purple'},cannon:{i:'💥',n:'Cannon captain',d:'Fire the castle cannon 5 times',gems:1},
+    freeze:{i:'🧊',n:'Deep freeze',d:'Freeze 30 goblins solid',gems:1},chain:{i:'🌩️',n:'Chain reaction',d:'Hit 4 goblins with one lightning strike',gems:1},
+    tour:{i:'🗺️',n:'Kingdom guard',d:'Unlock every stage',gems:2},stars:{i:'⭐',n:'Star defender',d:'3 stars on every stage',gems:3,give:'gate.flag.rainbow'},
+    king:{i:'🤴',n:'King toppler',d:'Defeat the Goblin King on stage 7',gems:5},maker:{i:'🛠️',n:'Map maker',d:'Make your own map',gems:1},share:{i:'📤',n:'Map sharer',d:'Share a map with your class',gems:1},beat:{i:'🤝',n:'Good classmate',d:"Win on a classmate's map",gems:1},
+    collect:{i:'🗃️',n:'Tower collector',d:'Own 10 different towers',gems:2},legend:{i:'🌟',n:'Legendary!',d:'Get a Legendary tower',gems:2},
+    mastery:{i:'🎓',n:'Mastery',d:'Pick a tower’s Mastery at level 5',gems:1},react:{i:'⚗️',n:'Mad scientist',d:'Trigger 10 elemental reactions in one game',gems:2},all:{i:'🏛️',n:'Full collection',d:'Own all 36 towers',gems:5}},
+  items:{'gate.flag.red':{n:'Red banner',c:GFLAG.red,free:1,k:'Castle banner'},'gate.flag.blue':{n:'Blue banner',c:GFLAG.blue,k:'Castle banner',how:'Win a stage'},'gate.flag.gold':{n:'Gold banner',c:GFLAG.gold,k:'Castle banner',how:'Defeat a boss'},
+    'gate.flag.green':{n:'Green banner',c:GFLAG.green,k:'Castle banner',how:'Build 5 different towers'},'gate.flag.purple':{n:'Royal banner',c:GFLAG.purple,k:'Castle banner',how:'Win without losing a cookie'},'gate.flag.rainbow':{n:'Rainbow banner',i:'🌈',k:'Castle banner',how:'3 stars on every stage'}},
+  places:()=>GGMAPS.map((m,i)=>({on:ggOpen(i),i:'🏰',n:`Stage ${i+1}: ${m.n}`,s:'★'.repeat(ggS().st[m.id]||0)||'Not won yet',how:i?`Win stage ${i}`:''})),
+  start(o){const m=ggCur(),t=AD.tier('gate'),tier=GGTIER[t],mi=GGMAPS.indexOf(m);
+    return{m,mi,t,tier,trait:m.custom?[1,3,6][m.d]??1:mi,w:0,ph:'build',cookies:10,gold:tier.gold,tw:m.pads.map(()=>null),gobs:[],proj:[],fx:[],texts:[],road:[],allies:[],souls:0,kills:0,sel:-1,speed:1,q:[],qcd:0,load:ggS().load.slice(),
+      boss:null,cannonCd:0,bonus:0,rescue:0,time:0,lostWave:0,stats:{perfect:0,built:{},upg:0,cannon:0,freeze:0,coins:0,maxL:1,react:0},hudT:0,id:0,oid:0,sets:{},shake:0}},
+  step(dt,Z){if(Z.ph==='end')return;dt*=Z.speed;Z.time+=dt;const t=Z.time;if(Z.cannonCd>0)Z.cannonCd-=dt;
+    for(const f of Z.fx)if(f.l>0)f.l-=dt;for(const x of Z.texts)if(x.l>0){x.l-=dt;x.y-=24*dt}
+    if(Z.ph==='wave'){
+      if(Z.q.length&&(Z.qcd-=dt)<=0){const [k,gap]=Z.q.shift();Z.qcd=gap;ggSpawn(Z,k)}
+      Z.road=Z.road.filter(o=>!(o.until&&o.until<t)&&!(o.ch!==undefined&&o.ch<=0)&&!(o.k==='wall'&&o.hp<=0));
+      for(const g of Z.gobs)if(!g.dead)ggMove(Z,g,dt);
+      ggAllies(Z,dt);Z.gobs=Z.gobs.filter(g=>!g.dead);
+      if(Z.cookies<=0)return ggOver(Z);
+      if(Z.cookies<=3&&!Z.rescue)ggRescue(Z);
+      Z.tw.forEach((T,i)=>{if(T)ggTower(Z,T,i,dt)});
+      for(const p of Z.proj)if(p.l>0){p.t+=dt;if(p.t>=p.dur){p.l=0;ggHit(Z,p)}}
+      Z.gobs=Z.gobs.filter(g=>!g.dead);
+      if(!Z.q.length&&!Z.gobs.some(g=>!g.ally))ggWaveDone(Z)}
+    if((Z.hudT+=dt)>.2){Z.hudT=0;gghud(Z)}},
+  draw(a,Z){ggdraw(Z)},
+  key(k,down,Z){if(!down)return;const n=Z.tw.length;if(k==='right'||k==='down'){Z.sel=(Z.sel+1+n)%n;ggpanel(Z)}else if(k==='left'||k==='up'){Z.sel=(Z.sel-1+n)%n;ggpanel(Z)}
+    else if(/^[1-6]$/.test(k)&&Z.sel>=0&&!Z.tw[Z.sel]&&Z.load[+k-1])ggBuild(Z,Z.load[+k-1]);else if(k==='act'||k==='enter'){if(Z.ph==='build')ggWave(Z)}},
+  tap(x,y,Z){let best=-1,bd=30;Z.m.pads.forEach(([px,py],i)=>{const d=Math.hypot(px-x,py-y);if(d<bd){bd=d;best=i}});Z.sel=best;ggpanel(Z);SND.play('click')},
+  timeout:Z=>ggresult(Z,'time')});
 /* ---------- Drawing ---------- */
 /* ---------- Pixel art: the battlefield is painted at half size (320 x 180) and scaled up crisply ---------- */
 const GGC={},GBAY=[0,8,2,10,12,4,14,6,3,11,1,9,15,7,13,5];
@@ -261,66 +554,133 @@ function ggCastle(){return ggPx('castle',34,52,x=>{x.fillStyle='#8C96A8';x.fillR
   x.fillStyle='#3A2A22';x.beginPath();x.arc(17,42,6,Math.PI,0);x.fillRect(11,42,12,8);x.fill();x.fillStyle='#FFD34D';x.fillRect(3,16,3,4);x.fillRect(28,16,3,4);x.fillRect(15,24,4,4)})}
 /* towers: each has its own look, and grows with its level: taller, then bronze (3-4), silver (5-6) and gold trim (7) */
 const GTRIM=['','','#CD7F32','#CD7F32','#D1D5DB','#D1D5DB','#FFD34D'];
-function ggTowerPx(T){const t=T.t,L=T.lvl||1;return ggPx(`tw${t}${L}`,24,56,x=>{x.translate(0,16);const D=GGT[t],h=12+L*1.6,top=38-h,trim=GTRIM[L-1],sc=1+(L-1)*.025;
+/* towers: each has its own look and grows with its level: taller, then bronze (3-4), silver (5-6) and gold trim (7); a Mastery adds a badge */
+function ggTowerPx(T){const t=T.t,L=T.lvl||1,M=T.m||'';return ggPx(`tw${t}${L}${M}`,24,56,x=>{x.translate(0,16);const D=GGT[t],h=12+L*1.6,top=38-h,trim=GTRIM[L-1],sc=1+(L-1)*.025;
   x.fillStyle='rgba(0,0,0,.28)';x.beginPath();x.ellipse(12,37,10,3,0,0,7);x.fill();
   const stone=(c1,c2)=>{x.fillStyle=c1;x.beginPath();x.moveTo(5,38);x.lineTo(19,38);x.lineTo(17.5,top);x.lineTo(6.5,top);x.fill();x.fillStyle=c2;x.fillRect(5.5,top-2,13,3);for(let k=0;k<4;k++)x.fillRect(5.5+k*3.6,top-4,2.2,2.5);x.fillStyle=shade(c1,.78);for(let y=top+3;y<37;y+=3.5)x.fillRect(7+(y%7>3?2:0),y,3,.8);x.fillStyle='#3A2A22';x.fillRect(10.5,33,3,5);if(trim){x.fillStyle=trim;x.fillRect(5.5,top+1.2,13,1.6);if(L>=5)x.fillRect(6,36,12,1.2)}};
   const wood=()=>{x.fillStyle='#8B5A2B';x.fillRect(6,top,2,38-top);x.fillRect(16,top,2,38-top);x.fillStyle='#A16207';x.fillRect(5,top-3,14,4);x.fillStyle='#6B4226';for(let y=top+4;y<36;y+=6){x.save();x.translate(12,y);x.rotate(.5);x.fillRect(-6,-.5,12,1);x.restore()}if(trim){x.fillStyle=trim;x.fillRect(5,top-3,14,1.2)}};
+  const metal=c=>{x.fillStyle=c||'#4B5563';x.fillRect(6,top,12,38-top);x.fillStyle=shade(c||'#4B5563',1.3);x.fillRect(6,top,12,1.5);x.fillStyle='rgba(0,0,0,.25)';for(let y=top+4;y<36;y+=5)x.fillRect(6,y,12,.8);x.fillStyle='#D1D5DB';x.fillRect(7,top+2,1,1);x.fillRect(16,top+2,1,1);if(trim){x.fillStyle=trim;x.fillRect(6,top+1.5,12,1.4)}};
   const gl=(cx,cy,r,c)=>{x.fillStyle=c;x.beginPath();x.arc(cx,cy,r,0,7);x.fill();x.fillStyle='rgba(255,255,255,.7)';x.beginPath();x.arc(cx-r*.35,cy-r*.35,r*.35,0,7);x.fill()};
+  const poly=(c,pts)=>{x.fillStyle=c;x.beginPath();pts.forEach(([a,b],k)=>k?x.lineTo(a,b):x.moveTo(a,b));x.fill()};
+  const low=c=>{x.fillStyle=c||'#78716C';x.beginPath();x.ellipse(12,33,11,6,0,0,7);x.fill();if(trim){x.fillStyle=trim;x.fillRect(4,35,16,1.2)}};
   x.save();x.translate(12,38);x.scale(sc,sc);x.translate(-12,-38);
-  if(t==='archer'){wood();x.fillStyle='#B91C1C';x.beginPath();x.moveTo(4,top-3);x.lineTo(12,top-12);x.lineTo(20,top-3);x.fill();x.fillStyle='#7F1D1D';x.fillRect(4,top-3.6,16,1.2);x.fillStyle='#FDE047';x.fillRect(11.4,top-14,1.2,3);x.strokeStyle='#5B3413';x.lineWidth=1.2;x.beginPath();x.arc(8,top+4,4,-1.2,1.2);x.stroke();x.fillStyle='#E7D3A7';x.fillRect(9.5,top+3.6,7,.8)}
-  else if(t==='ice'){stone('#8C8FA3','#A3A6B8');x.fillStyle='#7FD3FF';x.beginPath();x.moveTo(12,top-13-L);x.lineTo(16,top-5);x.lineTo(12,top-1);x.lineTo(8,top-5);x.fill();x.fillStyle='#E0F7FF';x.fillRect(11.5,top-10-L,1.2,6)}
-  else if(t==='fire'){stone('#8C8FA3','#A3A6B8');x.fillStyle='#57534E';x.beginPath();x.moveTo(7,top-1);x.lineTo(17,top-1);x.lineTo(15,top-5);x.lineTo(9,top-5);x.fill()}
-  else if(t==='cat'){x.fillStyle='#8C8FA3';x.fillRect(3,30,18,8);x.fillStyle='#7A5634';x.fillRect(4,26,16,4);x.fillRect(6,top+6,2.5,20-(top+6-6));x.fillRect(15.5,top+6,2.5,20-(top+6-6));x.save();x.translate(12,24);x.rotate(-.6);x.fillStyle='#A0703A';x.fillRect(-1,-15,2,17);x.restore();x.fillStyle='#57534E';x.beginPath();x.arc(4,11,2.6,0,7);x.fill();if(trim){x.fillStyle=trim;x.fillRect(3,30,18,1.4)}}
-  else if(t==='mine'){x.fillStyle='#78716C';x.beginPath();x.ellipse(12,33,11,6,0,0,7);x.fill();x.fillStyle='#1C1917';x.beginPath();x.arc(12,32,6,Math.PI,0);x.fill();x.fillStyle='#8B5A2B';x.fillRect(5,23,2,10);x.fillRect(17,23,2,10);x.fillRect(5,22,14,2);x.fillStyle='#FFD34D';for(let k=0;k<2+Math.floor(L/2);k++){x.beginPath();x.arc(7+k*2.6,36-(k%2),1.5,0,7);x.fill()}if(trim){x.fillStyle=trim;x.fillRect(5,22,14,1)}}
-  else if(t==='bolt'){stone('#8C8FA3','#A3A6B8');x.fillStyle='#B45309';x.fillRect(11,top-12-L,2,11+L);x.strokeStyle='#F59E0B';x.lineWidth=1;for(let k=0;k<2+Math.ceil(L/2);k++){x.beginPath();x.ellipse(12,top-3-k*2.4,3.5,1,0,0,7);x.stroke()}gl(12,top-13-L,2.6,'#FFE14D')}
-  else if(t==='xbow'){wood();x.fillStyle='#57534E';x.fillRect(6,top-6,12,2);x.strokeStyle='#3F3F46';x.lineWidth=1.3;x.beginPath();x.arc(12,top-2,7,-2.5,-.64);x.stroke();x.fillStyle='#A3A6B8';x.fillRect(16,top-6.5,3,1.2)}
-  else if(t==='drum'){x.fillStyle='#8C8FA3';x.fillRect(4,31,16,7);x.fillStyle='#B91C1C';x.beginPath();x.ellipse(12,26,7,3,0,0,7);x.fill();x.fillRect(5,20,14,6);x.fillStyle='#F5F5F4';x.beginPath();x.ellipse(12,20,7,3,0,0,7);x.fill();x.strokeStyle='#FFD34D';x.lineWidth=.8;for(let k=0;k<4;k++){x.beginPath();x.moveTo(5+k*4.6,21);x.lineTo(7+k*4.6,26);x.stroke()}x.fillStyle='#7A5634';x.fillRect(4,12,1.2,9);x.fillRect(18.8,12,1.2,9);if(trim){x.fillStyle=trim;x.fillRect(4,31,16,1.3)}}
-  else if(t==='bog'){x.fillStyle='#292524';x.beginPath();x.ellipse(12,30,9,7,0,0,7);x.fill();x.fillStyle='#44403C';x.fillRect(3,24,18,2.5);x.fillStyle='#84CC16';x.beginPath();x.ellipse(12,25,7.5,2.2,0,0,7);x.fill();gl(9,22,1.6,'#A3E635');gl(14,21,1.2,'#A3E635');x.fillStyle='#57534E';x.fillRect(5,35,2,3);x.fillRect(17,35,2,3);if(trim){x.fillStyle=trim;x.fillRect(3,26.5,18,1)}}
-  else if(t==='gale'){stone('#E7E5E4','#F5F5F4');x.fillStyle='#78350F';x.beginPath();x.moveTo(7,top);x.lineTo(17,top);x.lineTo(12,top-6);x.fill()}
-  else if(t==='cannon'){stone('#57534E','#78716C');x.save();x.translate(12,top-3);x.rotate(-.35);x.fillStyle='#1F2937';x.fillRect(-2,-3,12,6);x.fillStyle='#374151';x.fillRect(8,-3.5,2.5,7);x.restore();x.fillStyle='#7A5634';x.beginPath();x.arc(10,top-1,3,0,7);x.fill()}
-  else if(t==='arcane'){x.fillStyle='#6B21A8';x.beginPath();x.moveTo(8,38);x.lineTo(16,38);x.lineTo(13.5,top);x.lineTo(10.5,top);x.fill();x.fillStyle='#7E22CE';x.fillRect(9,top,6,2);if(trim){x.fillStyle=trim;x.fillRect(9.5,top+5,5,1.2)}gl(12,top-5,3.5+L*.2,'#E879F9')}
-  else if(t==='dragon'){x.fillStyle='#57534E';x.beginPath();x.ellipse(12,33,11,6,0,0,7);x.fill();x.fillStyle='#16A34A';x.beginPath();x.ellipse(12,25,6,7,0,0,7);x.fill();x.beginPath();x.moveTo(12,20);x.quadraticCurveTo(18,14,19,9);x.lineTo(21,11);x.quadraticCurveTo(19,17,13,22);x.fill();x.fillStyle='#15803D';x.beginPath();x.moveTo(6,22);x.lineTo(1,16);x.lineTo(8,19);x.fill();x.beginPath();x.moveTo(17,22);x.lineTo(23,17);x.lineTo(16,20);x.fill();x.fillStyle='#FDE047';x.fillRect(19,9,1.2,1.2);if(trim){x.fillStyle=trim;x.fillRect(9,30,6,1.4)}}
-  else if(t==='banner'){stone('#8C8FA3','#A3A6B8');x.fillStyle='#57534E';x.fillRect(11.5,top-15,1.2,15);x.fillStyle='#2563EB';x.beginPath();x.moveTo(12.7,top-15);x.lineTo(20,top-13);x.lineTo(12.7,top-9);x.fill();x.fillStyle='#FFD34D';x.fillRect(14,top-13,1.6,1.6)}
-  else if(t==='phoenix'){x.fillStyle='#78350F';x.beginPath();x.ellipse(12,32,10,5,0,0,7);x.fill();x.strokeStyle='#A16207';x.lineWidth=1;for(let k=0;k<5;k++){x.beginPath();x.moveTo(3+k*4,30);x.lineTo(5+k*4,35);x.stroke()}x.fillStyle='#F97316';x.beginPath();x.ellipse(12,24,4.5,5,0,0,7);x.fill();x.fillStyle='#FDE047';x.beginPath();x.moveTo(8,23);x.quadraticCurveTo(1,16,4,10);x.quadraticCurveTo(7,18,10,21);x.fill();x.beginPath();x.moveTo(16,23);x.quadraticCurveTo(23,16,20,10);x.quadraticCurveTo(17,18,14,21);x.fill();x.fillStyle='#DC2626';x.beginPath();x.arc(12,18,2.4,0,7);x.fill();if(trim){x.fillStyle=trim;x.fillRect(6,36,12,1)}}
-  else if(t==='titan'){stone('#78716C','#A8A29E');x.fillStyle='#B45309';x.fillRect(10.5,top-12-L,3,11+L);x.strokeStyle='#FDE047';x.lineWidth=1.2;for(let k=0;k<4;k++){x.beginPath();x.ellipse(12,top-3-k*3.2,4.5,1.2,0,0,7);x.stroke()}gl(12,top-13-L,3.6,'#FDE047')}
-  else if(t==='star'){stone('#E7E5E4','#FAFAF9');x.fillStyle='rgba(240,171,252,.45)';x.beginPath();x.arc(12,top-8,7.5,0,7);x.fill();x.fillStyle='#F0ABFC';x.beginPath();for(let k=0;k<10;k++){const r=k%2?2.8:7,a=k*Math.PI/5-Math.PI/2;x.lineTo(12+Math.cos(a)*r,top-8+Math.sin(a)*r)}x.fill();x.fillStyle='#FFFFFF';x.beginPath();x.arc(12,top-8,1.8,0,7);x.fill()}
-  else if(t==='golem'){x.fillStyle='#B45309';x.fillRect(7,24,10,12);x.fillStyle='#92400E';x.fillRect(7.5,36,3,2);x.fillRect(13.5,36,3,2);x.fillRect(4,25,3,8);x.fillRect(17,25,3,8);x.fillStyle='#D97706';x.fillRect(8,16,8,8);x.fillStyle='#22D3EE';x.fillRect(9.5,19,2,1.6);x.fillRect(12.5,19,2,1.6);x.strokeStyle='#FDE68A';x.lineWidth=.8;x.beginPath();x.arc(12,30,2.5,0,7);x.stroke();if(trim){x.fillStyle=trim;x.fillRect(7,24,10,1.2)}}
-  x.restore();for(let k=0;k<Math.min(7,L);k++){x.fillStyle=L>=7?'#FFD34D':'#F8FAFC';x.fillRect(4+k*2.4,39,1.6,1)}})}
+  if(t==='spring'){metal('#6B7280');x.fillStyle='#7A5634';x.fillRect(4,top-5,16,2);x.strokeStyle='#3F2A1A';x.lineWidth=1.3;x.beginPath();x.arc(12,top-1,7,-2.6,-.54);x.stroke();x.strokeStyle='#D1D5DB';x.lineWidth=.8;for(let k=0;k<3;k++){x.beginPath();x.arc(8+k*1.6,top-2,1.2,0,7);x.stroke()}x.fillStyle='#F5E6C8';x.fillRect(12,top-6.5,7,.9)}
+  else if(t==='mortar'){x.fillStyle='#78716C';x.fillRect(3,30,18,8);x.fillStyle='#A8A29E';x.fillRect(3,29,18,2);x.save();x.translate(12,29);x.rotate(-.5);x.fillStyle='#292524';x.fillRect(-3,-12-L,6,13+L);x.fillStyle='#44403C';x.fillRect(-3.6,-13-L,7.2,2.4);x.restore();if(trim){x.fillStyle=trim;x.fillRect(3,30,18,1.2)}}
+  else if(t==='buzz'){metal('#57534E');x.fillStyle='#D6D3D1';x.beginPath();for(let k=0;k<16;k++){const a=k*Math.PI/8,r=k%2?4.2:6;x.lineTo(12+Math.cos(a)*r,top-6+Math.sin(a)*r)}x.fill();x.fillStyle='#57534E';x.beginPath();x.arc(12,top-6,1.6,0,7);x.fill()}
+  else if(t==='dart'){wood();x.fillStyle='#57534E';x.fillRect(6,top-6,12,2);x.strokeStyle='#3F3F46';x.lineWidth=1.3;x.beginPath();x.arc(12,top-2,7,-2.5,-.64);x.stroke();x.fillStyle='#A3A6B8';x.fillRect(16,top-6.5,3,1.2)}
+  else if(t==='flame'){stone('#8C8FA3','#A3A6B8');x.fillStyle='#57534E';x.beginPath();x.moveTo(7,top-1);x.lineTo(17,top-1);x.lineTo(15,top-5);x.lineTo(9,top-5);x.fill()}
+  else if(t==='spike'){x.fillStyle='#292524';x.fillRect(5,top+4,14,34-top);x.fillStyle='#44403C';x.fillRect(4,top+2,16,3);x.fillStyle='#F97316';x.fillRect(8,top+9,8,3);x.fillStyle='#FDE047';x.fillRect(10,top+10,4,1);x.fillStyle='#A8A29E';for(let k=0;k<4;k++)poly('#A8A29E',[[5.5+k*3.6,top+2],[7.3+k*3.6,top-4],[9.1+k*3.6,top+2]]);if(trim){x.fillStyle=trim;x.fillRect(4,top+2,16,1)}}
+  else if(t==='acid'){x.fillStyle='#57534E';x.fillRect(6,30,2,8);x.fillRect(16,30,2,8);x.fillStyle='#3F6212';x.beginPath();x.ellipse(12,top+10,7,9,0,0,7);x.fill();x.fillStyle='#84CC16';x.beginPath();x.ellipse(12,top+6,5.5,2.5,0,0,7);x.fill();gl(10,top+4,1.2,'#D9F99D');x.fillStyle='#57534E';x.fillRect(16,top+2,5,2);if(trim){x.fillStyle=trim;x.fillRect(5,top+12,14,1)}}
+  else if(t==='sentry'){x.fillStyle='#374151';x.save();x.translate(12,30);for(const a of [-.5,0,.5]){x.save();x.rotate(a);x.fillRect(-.8,0,1.6,8);x.restore()}x.restore();x.fillStyle='#4B5563';x.fillRect(7,top+8,10,8);x.fillStyle='#1F2937';for(let k=0;k<3;k++)x.fillRect(16,top+9+k*2,6,1.2);x.fillStyle='#9CA3AF';x.fillRect(8,top+9,3,2);if(trim){x.fillStyle=trim;x.fillRect(7,top+15,10,1)}}
+  else if(t==='antitank'){x.fillStyle='#A16207';for(let k=0;k<3;k++){x.beginPath();x.ellipse(6+k*6,35,3.4,2.4,0,0,7);x.fill()}x.fillStyle='#854D0E';for(let k=0;k<2;k++){x.beginPath();x.ellipse(9+k*6,31.5,3.4,2.4,0,0,7);x.fill()}x.save();x.translate(12,top+12);x.rotate(-.35);x.fillStyle='#3F6212';x.fillRect(-6,-5,13,9);x.fillStyle='#1A2E05';for(let k=0;k<2;k++)for(let q=0;q<2;q++){x.beginPath();x.arc(4,-2.5+k*4.5,1.3,0,7);x.fill()}x.restore();if(trim){x.fillStyle=trim;x.fillRect(4,33,16,1)}}
+  else if(t==='tesla'){stone('#8C8FA3','#A3A6B8');x.fillStyle='#B45309';x.fillRect(11,top-12-L,2,11+L);x.strokeStyle='#F59E0B';x.lineWidth=1;for(let k=0;k<2+Math.ceil(L/2);k++){x.beginPath();x.ellipse(12,top-3-k*2.4,3.5,1,0,0,7);x.stroke()}gl(12,top-13-L,2.6,'#FFE14D')}
+  else if(t==='frostp'){stone('#8C8FA3','#A3A6B8');x.fillStyle='#7FD3FF';x.beginPath();x.moveTo(12,top-13-L);x.lineTo(16,top-5);x.lineTo(12,top-1);x.lineTo(8,top-5);x.fill();x.fillStyle='#E0F7FF';x.fillRect(11.5,top-10-L,1.2,6)}
+  else if(t==='venom'){x.fillStyle='#78350F';x.fillRect(8,30,8,8);x.fillStyle='#A16207';x.beginPath();x.ellipse(12,top+8,8,10,0,0,7);x.fill();x.fillStyle='#FDE047';for(let k=0;k<4;k++)x.fillRect(5,top+2+k*4,14,1.4);x.fillStyle='#1C1917';x.beginPath();x.arc(12,top+12,1.8,0,7);x.fill();x.fillStyle='#A3E635';x.fillRect(16,top,2,2);x.fillRect(5,top+4,2,2);if(trim){x.fillStyle=trim;x.fillRect(8,30,8,1)}}
+  else if(t==='plasma'){metal('#374151');x.fillStyle='#1F2937';x.fillRect(10,top-4,4,4);x.fillStyle='#F9A8D4';x.beginPath();x.ellipse(12,top-6,6,3,0,0,7);x.fill();gl(12,top-6,2.2,'#EC4899')}
+  else if(t==='blizzard'){stone('#E0F2FE','#F0F9FF');x.fillStyle='#93C5FD';x.beginPath();x.arc(12,top-4,3,0,7);x.fill()}
+  else if(t==='cmine'){x.fillStyle='#92400E';x.fillRect(5,24,14,14);x.fillStyle='#78350F';x.fillRect(5,24,14,1.5);x.fillRect(5,30,14,1);x.fillStyle='#DC2626';for(let k=0;k<3;k++)x.fillRect(7+k*3.6,14,2.6,10);x.fillStyle='#FDE68A';x.fillRect(8,12,1,2);x.fillRect(11.6,11,1,3);x.fillRect(15.2,12,1,2);if(trim){x.fillStyle=trim;x.fillRect(5,36,14,1.2)}}
+  else if(t==='magma'){x.fillStyle='#44403C';x.fillRect(3,30,18,8);x.fillStyle='#57534E';x.fillRect(4,26,16,4);x.fillRect(6,top+6,2.5,20-top);x.fillRect(15.5,top+6,2.5,20-top);x.save();x.translate(12,24);x.rotate(-.6);x.fillStyle='#78350F';x.fillRect(-1,-15,2,17);x.restore();gl(4,11,3,'#F97316');x.fillStyle='#7F1D1D';x.fillRect(3,10,2,1);if(trim){x.fillStyle=trim;x.fillRect(3,30,18,1.4)}}
+  else if(t==='refract'){x.fillStyle='#164E63';x.beginPath();x.ellipse(12,35,8,3,0,0,7);x.fill();poly('#22D3EE',[[12,top-8-L],[16,top+6],[12,34],[8,top+6]]);poly('#67E8F9',[[7,top+6],[9,top+14],[7,34],[4,top+16]]);poly('#A5F3FC',[[17,top+8],[20,top+16],[17,34],[15,top+16]]);x.fillStyle='rgba(255,255,255,.75)';x.fillRect(11,top-2,1,8);if(trim){x.fillStyle=trim;x.fillRect(6,34,12,1)}}
+  else if(t==='sand'){poly('#D6A35C',[[8,38],[16,38],[14.5,top+2],[9.5,top+2]]);poly('#F5D08A',[[9.5,top+2],[14.5,top+2],[12,top-5]]);x.fillStyle='#92400E';for(let k=0;k<3;k++)x.fillRect(11,top+6+k*5,2,2.4);if(trim){x.fillStyle=trim;x.fillRect(9.5,top+3,5,1)}}
+  else if(t==='spore'){x.fillStyle='#F5F5F4';x.fillRect(10,top+8,4,30-top);x.fillStyle='#A855F7';x.beginPath();x.ellipse(12,top+8,10,7,0,Math.PI,0);x.fill();x.fillStyle='#F5D0FE';for(const [a,b] of [[8,top+4],[14,top+2],[17,top+6],[11,top+6]]){x.beginPath();x.arc(a,b,1.2,0,7);x.fill()}if(trim){x.fillStyle=trim;x.fillRect(4,top+8,16,1)}}
+  else if(t==='dice'){stone('#57534E','#78716C');x.save();x.translate(12,top-6);x.rotate(.25);x.fillStyle='#F59E0B';x.fillRect(-5,-5,10,10);x.fillStyle='#78350F';for(const [a,b] of [[-2.6,-2.6],[2.6,2.6],[0,0],[2.6,-2.6],[-2.6,2.6]])x.fillRect(a-.8,b-.8,1.6,1.6);x.restore()}
+  else if(t==='bunker'){x.fillStyle='#A16207';for(let k=0;k<4;k++){x.beginPath();x.ellipse(4+k*5.4,35,3,2.3,0,0,7);x.fill()}for(let k=0;k<3;k++){x.beginPath();x.ellipse(6.6+k*5.4,31.5,3,2.3,0,0,7);x.fill()}x.fillStyle='#78716C';x.fillRect(6,22,12,8);x.fillStyle='#1C1917';x.fillRect(8,24,8,2);x.fillStyle='#57534E';x.fillRect(11.5,10,1,12);x.fillStyle='#B91C1C';x.fillRect(12.5,10,6,4);if(trim){x.fillStyle=trim;x.fillRect(6,22,12,1)}}
+  else if(t==='bastion'){stone('#64748B','#94A3B8');x.fillStyle='#475569';x.fillRect(11.4,top-8,1.2,8);x.strokeStyle='#E2E8F0';x.lineWidth=1.4;x.beginPath();x.arc(12,top-6,6,Math.PI*1.1,Math.PI*1.9);x.stroke();x.fillStyle='#38BDF8';x.fillRect(11.4,top-13,1.4,1.4)}
+  else if(t==='vault'){x.fillStyle='#A16207';x.fillRect(4,top+6,16,32-top);x.fillStyle='#CA8A04';x.fillRect(4,top+6,16,2);x.fillStyle='#713F12';x.beginPath();x.arc(12,top+16,4,0,7);x.fill();x.strokeStyle='#FDE047';x.lineWidth=1;x.beginPath();x.arc(12,top+16,4,0,7);x.stroke();x.fillStyle='#FDE047';x.fillRect(11.5,top+13,1,6);x.fillRect(9,top+15.5,6,1);for(let k=0;k<1+Math.floor(L/2);k++){x.beginPath();x.arc(6+k*3,36,1.5,0,7);x.fill()}if(trim){x.fillStyle=trim;x.fillRect(4,top+6,16,1)}}
+  else if(t==='prism'){x.fillStyle='#475569';x.fillRect(10,top+6,4,32-top);x.fillRect(7,36,10,2);poly('#C4B5FD',[[12,top-8],[19,top+6],[5,top+6]]);poly('#8B5CF6',[[12,top-8],[19,top+6],[12,top+6]]);x.fillStyle='rgba(255,255,255,.7)';x.fillRect(10,top-2,1,6);if(trim){x.fillStyle=trim;x.fillRect(7,36,10,1)}}
+  else if(t==='mirror'){x.fillStyle='#78716C';x.fillRect(11,top+10,2,28-top);x.fillRect(7,36,10,2);x.fillStyle='#A8A29E';x.beginPath();x.ellipse(12,top+2,7,10,0,0,7);x.fill();x.fillStyle='#E0E7FF';x.beginPath();x.ellipse(12,top+2,5.5,8.5,0,0,7);x.fill();x.fillStyle='rgba(255,255,255,.9)';x.fillRect(9,top-3,1.2,6);if(trim){x.fillStyle=trim;x.fillRect(7,36,10,1)}}
+  else if(t==='runic'){poly('#44403C',[[7,38],[17,38],[16,top],[12,top-6],[8,top]]);x.fillStyle='#EF4444';for(let k=0;k<3;k++){x.fillRect(10+(k%2)*2,top+3+k*6,2.4,1.2);x.fillRect(11,top+4+k*6,1.2,2.4)}if(trim){x.fillStyle=trim;x.fillRect(7.5,36,9,1.2)}}
+  else if(t==='seismic'){x.fillStyle='#78350F';x.fillRect(5,top+4,2,34-top);x.fillRect(17,top+4,2,34-top);x.fillRect(4,top+2,16,2.4);x.fillStyle='#57534E';x.fillRect(7,top+12,10,8);x.fillStyle='#A16207';x.fillRect(11,top+4,2,8);x.fillStyle='#78716C';x.fillRect(3,35,18,3);if(trim){x.fillStyle=trim;x.fillRect(4,top+2,16,1)}}
+  else if(t==='tendril'){low('#3F6212');x.strokeStyle='#16A34A';x.lineWidth=2;for(const [a,c] of [[7,-1],[12,1],[17,-1]]){x.beginPath();x.moveTo(a,34);x.quadraticCurveTo(a+c*6,top+10,a-c*2,top-2-L);x.stroke()}x.fillStyle='#86EFAC';for(const [a,b] of [[5,top-2],[12,top-4-L],[19,top-2]]){x.beginPath();x.arc(a,b,1.6,0,7);x.fill()}}
+  else if(t==='hive'){low('#3F6212');x.fillStyle='#65A30D';x.beginPath();x.ellipse(12,top+14,8,12,0,Math.PI,0);x.fill();x.fillRect(4,top+14,16,22-top-2);x.fillStyle='#1A2E05';for(const [a,b] of [[9,top+10],[15,top+14],[11,top+19]]){x.beginPath();x.arc(a,b,1.5,0,7);x.fill()}x.fillStyle='#D9F99D';x.fillRect(18,top+4,2,1.4);x.fillRect(4,top+8,2,1.4)}
+  else if(t==='glow'){low('#365314');x.strokeStyle='#4D7C0F';x.lineWidth=2;x.beginPath();x.moveTo(12,34);x.quadraticCurveTo(9,top+10,12,top+2);x.stroke();x.fillStyle='rgba(253,224,71,.35)';x.beginPath();x.arc(12,top-2,7+L*.3,0,7);x.fill();gl(12,top-2,4.5+L*.2,'#FDE047');x.fillStyle='#4D7C0F';x.beginPath();x.ellipse(8,top+14,3.5,1.6,-.5,0,7);x.fill()}
+  else if(t==='rail'){stone('#475569','#64748B');x.save();x.translate(12,top-3);x.rotate(-.25);x.fillStyle='#1E293B';x.fillRect(-4,-2.5,17,5);x.fillStyle='#38BDF8';for(let k=0;k<4;k++)x.fillRect(-1+k*3.4,-3,1.4,6);x.fillStyle='#94A3B8';x.fillRect(12,-3,2,6);x.restore()}
+  else if(t==='void'){x.fillStyle='#1E1B4B';x.beginPath();x.moveTo(5,38);x.lineTo(5,top+4);x.quadraticCurveTo(12,top-10,19,top+4);x.lineTo(19,38);x.fill();x.fillStyle='#0B0A1A';x.beginPath();x.ellipse(12,top+10,5.5,8,0,0,7);x.fill();x.strokeStyle='#A78BFA';x.lineWidth=1;for(let k=0;k<3;k++){x.beginPath();x.ellipse(12,top+10,1.6+k*1.6,2.4+k*2.2,0,0,7);x.stroke()}if(trim){x.fillStyle=trim;x.fillRect(5,36,14,1.2)}}
+  else if(t==='chronos'){poly('#1E3A8A',[[7,38],[17,38],[15.5,top+4],[8.5,top+4]]);x.fillStyle='#BFDBFE';x.fillRect(8,top-6,8,1.4);x.fillRect(8,top+4,8,1.4);poly('#7DD3FC',[[9,top-4.6],[15,top-4.6],[12,top-.2]]);poly('#FDE68A',[[12,top-.2],[15,top+3.6],[9,top+3.6]]);if(trim){x.fillStyle=trim;x.fillRect(8,top-6,8,.8)}}
+  else if(t==='echo'){stone('#64748B','#94A3B8');x.strokeStyle='#38BDF8';x.lineWidth=1.4;x.beginPath();x.arc(12,top-6,5,0,7);x.stroke();x.fillStyle='#0C4A6E';x.beginPath();x.arc(12,top-6,3.6,0,7);x.fill();x.strokeStyle='#E0F2FE';x.lineWidth=.9;x.beginPath();x.moveTo(12,top-6);x.lineTo(12,top-8.6);x.moveTo(12,top-6);x.lineTo(10,top-5);x.stroke()}
+  else if(t==='reaper'){x.fillStyle='#3B0764';x.fillRect(5,top+4,14,34-top);x.fillStyle='#581C87';x.fillRect(4,top+2,16,3);x.fillStyle='#F5F5F4';x.beginPath();x.arc(12,top+12,4,0,7);x.fill();x.fillRect(10,top+15,4,3);x.fillStyle='#3B0764';x.fillRect(10,top+11,1.6,1.8);x.fillRect(12.6,top+11,1.6,1.8);x.fillStyle='#C084FC';x.fillRect(11.4,top-4,1.2,6);if(trim){x.fillStyle=trim;x.fillRect(4,top+2,16,1)}}
+  else if(t==='astral'){stone('#E7E5E4','#FAFAF9');x.fillStyle='rgba(240,171,252,.45)';x.beginPath();x.arc(12,top-8,7.5,0,7);x.fill();x.fillStyle='#F0ABFC';x.beginPath();for(let k=0;k<10;k++){const r=k%2?2.8:7,a=k*Math.PI/5-Math.PI/2;x.lineTo(12+Math.cos(a)*r,top-8+Math.sin(a)*r)}x.fill();x.fillStyle='#FFFFFF';x.beginPath();x.arc(12,top-8,1.8,0,7);x.fill()}
+  x.restore();if(M){x.fillStyle=M==='A'?'#38BDF8':'#F472B6';x.beginPath();x.arc(20,top+2,2.2,0,7);x.fill();x.fillStyle='#fff';x.fillRect(19.5,top+.8,1,2.4)}
+  for(let k=0;k<Math.min(7,L);k++){x.fillStyle=L>=7?'#FFD34D':'#F8FAFC';x.fillRect(4+k*2.4,39,1.6,1)}})}
 /* goblins: two walking frames each; hit (white) and frozen (blue) versions */
-function ggGobPx(k,f,v){const G=GGOB[k],s=k==='king'?2.8:k==='boss'?2.1:k==='brute'?1.35:k==='runner'?.85:1,W=Math.ceil(20*s),H=Math.ceil(24*s);const spr=ggPx(`g${k}${f}${v==='frz'?'f':''}`,W,H,x=>{x.scale(s,s);const c=v==='frz'?'#A5E8F7':G.c,dk=shade(c,.7);
-    x.fillStyle=dk;const a=f?1.5:-1.5;x.fillRect(7+a,17,2.4,5);x.fillRect(11-a,17,2.4,5);x.fillStyle=k==='brute'||k==='boss'?'#6B6F80':'#8A5A2B';x.fillRect(6,11,8,7);
+function ggGobPx(k,f,v){const G=GGOB[k],s={king:2.8,boss:2.1,troll:1.6,brute:1.35,mech:1.3,runner:.85,bat:.9,sneak:.95,swarm:.62}[k]||1,W=Math.ceil(20*s),H=Math.ceil(24*s);const spr=ggPx(`g${k}${f}${v==='frz'?'f':''}`,W,H,x=>{x.scale(s,s);const c=v==='frz'?'#A5E8F7':G.c,dk=shade(c,.7);
+    if(k==='bat'){x.fillStyle=v==='frz'?'#A5E8F7':'#6D28D9';const wy=f?3:7;x.beginPath();x.moveTo(6,11);x.lineTo(0,wy);x.lineTo(2,13);x.lineTo(5,13);x.fill();x.beginPath();x.moveTo(14,11);x.lineTo(20,wy);x.lineTo(18,13);x.lineTo(15,13);x.fill()}
+    x.fillStyle=k==='mech'?'#4B5563':dk;const a=f?1.5:-1.5;if(k!=='bat'){x.fillRect(7+a,17,2.4,5);x.fillRect(11-a,17,2.4,5)}x.fillStyle=k==='brute'||k==='boss'?'#6B6F80':k==='mech'?'#6B7280':k==='sneak'?'#52525B':'#8A5A2B';x.fillRect(6,11,8,7);
     x.fillStyle=c;x.beginPath();x.arc(10,9,5,0,7);x.fill();x.beginPath();x.moveTo(5.5,8);x.lineTo(1,5);x.lineTo(5.5,10);x.fill();x.beginPath();x.moveTo(14.5,8);x.lineTo(19,5);x.lineTo(14.5,10);x.fill();
-    x.fillStyle='#FDE047';x.fillRect(7.5,8,1.6,1.6);x.fillRect(11,8,1.6,1.6);x.fillStyle='#1B1B1B';x.fillRect(8,8.5,.8,.8);x.fillRect(11.5,8.5,.8,.8);x.fillStyle='#FFFFFF';x.fillRect(8.5,12,.9,1);x.fillRect(10.8,12,.9,1);
-    if(k==='grunt'){x.fillStyle='#7A5634';x.fillRect(15,4,1.2,14);x.fillStyle='#A3A6B8';x.beginPath();x.moveTo(15.6,1);x.lineTo(17,4.5);x.lineTo(14.2,4.5);x.fill()}
+    x.fillStyle=k==='mech'?'#EF4444':'#FDE047';x.fillRect(7.5,8,1.6,1.6);x.fillRect(11,8,1.6,1.6);x.fillStyle='#1B1B1B';x.fillRect(8,8.5,.8,.8);x.fillRect(11.5,8.5,.8,.8);x.fillStyle='#FFFFFF';x.fillRect(8.5,12,.9,1);x.fillRect(10.8,12,.9,1);
+    if(k==='grunt'||k==='shield'){x.fillStyle='#7A5634';x.fillRect(15,4,1.2,14);x.fillStyle='#A3A6B8';x.beginPath();x.moveTo(15.6,1);x.lineTo(17,4.5);x.lineTo(14.2,4.5);x.fill()}
+    if(k==='shield'){x.fillStyle='#92400E';x.beginPath();x.arc(4.5,14,3.6,0,7);x.fill();x.fillStyle='#FDE047';x.fillRect(4,13.5,1,1)}
     if(k==='runner'){x.fillStyle='#E4572E';x.fillRect(5,12,10,1.6);x.fillRect(4,13,2,4)}
+    if(k==='troll'){x.fillStyle='#F5F5F4';x.fillRect(7.6,12.2,1,1.6);x.fillRect(11.4,12.2,1,1.6);x.fillStyle='#78350F';x.save();x.translate(16,10);x.rotate(.3);x.fillRect(-1,-6,2.4,12);x.beginPath();x.arc(.2,-6,2.6,0,7);x.fill();x.restore()}
+    if(k==='sneak'){x.fillStyle='#3F3F46';x.beginPath();x.arc(10,8,5.6,Math.PI*1.05,Math.PI*1.95);x.lineTo(15,11);x.lineTo(5,11);x.fill();x.fillStyle=c;x.fillRect(7,8,6,3);x.fillStyle='#FDE047';x.fillRect(7.5,8.6,1.6,1);x.fillRect(11,8.6,1.6,1)}
+    if(k==='mech'){x.fillStyle='#9CA3AF';x.fillRect(5.5,4,9,4);x.fillStyle='#374151';x.fillRect(5.5,7,9,1);x.fillStyle='#FBBF24';x.beginPath();x.arc(10,14.5,1.8,0,7);x.fill();x.fillStyle='#4B5563';x.fillRect(9.4,13.9,1.2,1.2)}
     if(k==='king'){x.fillStyle='#B91C1C';x.beginPath();x.moveTo(5,10);x.lineTo(15,10);x.lineTo(17,21);x.lineTo(3,21);x.fill();x.fillStyle=c;x.beginPath();x.arc(10,9,5,0,7);x.fill();x.fillStyle='#FDE047';x.fillRect(7.5,8,1.6,1.6);x.fillRect(11,8,1.6,1.6)}
     if(k==='brute'||k==='boss'){x.fillStyle='#8C8FA3';x.beginPath();x.arc(10,7.5,5.3,Math.PI,0);x.fill();x.fillRect(4.7,7.3,10.6,1.2)}
     if(k==='king'){x.fillStyle='#FFD34D';x.fillRect(5,1,10,3);for(let q=0;q<4;q++)x.fillRect(5+q*3,-2,1.8,3.5);x.fillStyle='#EF4444';x.fillRect(9.2,1.6,1.6,1.6);x.fillStyle='#57534E';x.fillRect(16,4,2.4,16);x.fillStyle='#A8A29E';x.beginPath();x.arc(17.2,4,3.6,0,7);x.fill()}
     if(k==='boss'){x.fillStyle='#FFD34D';x.fillRect(6,0.5,8,2);for(let q=0;q<3;q++)x.fillRect(6+q*3.2,-1.5,1.6,2.5);x.fillStyle='#7A5634';x.fillRect(16,6,2,12);x.fillStyle='#57534E';x.beginPath();x.arc(17,5,3,0,7);x.fill()}},v==='hit');return spr}
 /* everything, each frame */
 function ggdraw(Z){const x=AG.cx;if(!x)return;const m=Z.m,L=GGC.low||(GGC.low=Object.assign(document.createElement('canvas'),{width:320,height:180})),c=L.getContext('2d'),t=Z.time,calm=calmOn();c.imageSmoothingEnabled=false;c.drawImage(ggBg(m),0,0);
-  const e=m.path[m.path.length-1],fl=GFLAG[ggFlag()],ex=Math.round(e[0]/2),ey=Math.round(e[1]/2);c.fillStyle='#3A2A22';c.fillRect(ex+12,ey-50,1,10);c.fillRect(ex+12,ey-40,1,2);c.fillStyle=fl==='rainbow'?`hsl(${(t*60)%360},85%,60%)`:fl;const wv=calm?0:Math.round(Math.sin(t*5));c.fillRect(ex+13,ey-50,6,2);c.fillRect(ex+13,ey-48+wv*0,7+wv,2);c.fillRect(ex+13,ey-46,5,1);
+  const P=d=>{const [a,b]=ggPosOf(m,d);return[Math.round(a/2),Math.round(b/2)]},dot=(a,b,col,w=1,h=1)=>{c.fillStyle=col;c.fillRect(Math.round(a),Math.round(b),w,h)};
+  const line=(ax,ay,bx,by,col,w=1,jit=0)=>{c.fillStyle=col;const n=Math.max(Math.abs(bx-ax),Math.abs(by-ay))|0;for(let q=0;q<=n;q++)c.fillRect(Math.round(ax+(bx-ax)*q/Math.max(1,n)+(jit?(Math.random()-.5)*jit:0)),Math.round(ay+(by-ay)*q/Math.max(1,n)+(jit?(Math.random()-.5)*jit:0)),w,w)};
+  const e=m.path[m.path.length-1],fl=GFLAG[ggFlag()],ex=Math.round(e[0]/2),ey=Math.round(e[1]/2);c.fillStyle='#3A2A22';c.fillRect(ex+12,ey-50,1,10);c.fillRect(ex+12,ey-40,1,2);c.fillStyle=fl==='rainbow'?`hsl(${(t*60)%360},85%,60%)`:fl;const wv=calm?0:Math.round(Math.sin(t*5));c.fillRect(ex+13,ey-50,6,2);c.fillRect(ex+13,ey-48,7+wv,2);c.fillRect(ex+13,ey-46,5,1);
+  /* things on the road */
+  for(const o of Z.road){const [a,b]=P(o.d),fl2=calm?0:(t*8|0)%2;
+    if(o.k==='pile'){c.fillStyle='#A8A29E';for(let k=0;k<3;k++){c.fillRect(a-4+k*3,b-1,1,2);c.fillRect(a-4+k*3,b-2,1,1)}c.fillStyle='#57534E';c.fillRect(a-5,b+1,10,1)}
+    else if(o.k==='mine'){c.fillStyle='#1F2937';c.fillRect(a-2,b-1,5,3);dot(a,b-2,fl2?'#EF4444':'#7F1D1D')}
+    else if(o.k==='saw'){const an=calm?0:t*12;c.fillStyle='#D6D3D1';for(let k=0;k<8;k++){const q=an+k*Math.PI/4;c.fillRect(Math.round(a+Math.cos(q)*4),Math.round(b-2+Math.sin(q)*2),1,1)}dot(a,b-2,'#57534E',2,1)}
+    else if(o.k==='wall'){c.fillStyle=o.ice?'rgba(186,230,253,.9)':'#78716C';c.fillRect(a-5,b-8,10,9);c.fillStyle=o.ice?'#E0F2FE':'#A8A29E';c.fillRect(a-5,b-8,10,1);const hp=o.hp/(o.hpMax||o.hp||1);if(o.hpMax){c.fillStyle='#1B1B1B';c.fillRect(a-5,b-11,10,1);c.fillStyle='#5FF3A0';c.fillRect(a-5,b-11,Math.round(10*hp),1)}}
+    else if(o.k==='bunker'){if(o.broken){c.fillStyle='#57534E';c.fillRect(a-6,b-2,12,3)}else{c.fillStyle='#A16207';for(let k=0;k<3;k++)c.fillRect(a-7+k*5,b-3,4,3);for(let k=0;k<2;k++)c.fillRect(a-4+k*5,b-6,4,3);c.fillStyle='#1B1B1B';c.fillRect(a-6,b-10,12,1);c.fillStyle='#5FF3A0';c.fillRect(a-6,b-10,Math.round(12*Math.max(0,o.hp/o.hpMax)),1)}}
+    else if(o.k==='fire'){if(!calm||fl2)for(let k=0;k<5;k++){const q=(k*37+(t*10|0))%7;dot(a-5+k*2.4,b-1-q%3,k%2?'#FB923C':'#FDE047')}}
+    else if(o.k==='gas'){c.fillStyle='rgba(163,230,53,.35)';c.fillRect(a-6,b-4,12,5)}
+    else if(o.k==='quick'){c.fillStyle='rgba(214,163,92,.55)';c.beginPath();c.ellipse(a,b,13,5,0,0,7);c.fill();c.fillStyle='rgba(120,53,15,.55)';for(let k=0;k<3;k++)c.fillRect(a-8+k*6,b-1+(k%2),4,1)}
+    else if(o.k==='crack'){c.fillStyle='#1C1917';c.fillRect(a-6,b,3,1);c.fillRect(a-3,b-1,3,1);c.fillRect(a,b,3,1);c.fillRect(a+3,b-1,3,1)}
+    else if(o.k==='hole'){const an=calm?0:t*5;c.fillStyle='#1E1B4B';c.beginPath();c.ellipse(a,b,10,5,0,0,7);c.fill();c.fillStyle='#A78BFA';for(let k=0;k<24;k++){const q=an+k*.5,r=2+k*.36;c.fillRect(Math.round(a+Math.cos(q)*r),Math.round(b+Math.sin(q)*r*.5),1,1)}}}
+  /* laser lines between towers */
+  Z.tw.forEach((T,i)=>{if(!T)return;const [px,py]=m.pads[i];for(const j of [...(T.links||[]),...(T.br||[])]){if(j<i&&GGT[Z.tw[j]?.t]?.k==='grid'&&T.t==='runic')continue;const [bx,by]=m.pads[j];if(!Z.tw[j])continue;line(px/2,py/2-6,bx/2,by/2-6,T.t==='astral'?'#F0ABFC':(calm||(t*6|0)%2)?'#EF4444':'#FCA5A5',1)}});
   /* stone pads */m.pads.forEach(([px,py],i)=>{if(Z.tw[i])return;const a=Math.round(px/2),b=Math.round(py/2),s=ggPx('pad'+(i===Z.sel?1:0),20,12,q=>{q.fillStyle='rgba(0,0,0,.3)';q.beginPath();q.ellipse(10,7,9,4.5,0,0,7);q.fill();q.fillStyle=i===Z.sel?'#F8E7A8':'#B9BDCB';q.beginPath();q.ellipse(10,5.5,8.5,4,0,0,7);q.fill();q.fillStyle='#8C90A0';q.fillRect(5,5,10,.8);q.fillRect(9.5,3,.8,5)});c.drawImage(s,a-10,b-6)});
-  /* towers and goblins, back to front */const items=[];Z.tw.forEach((T,i)=>{if(T)items.push([m.pads[i][1],0,T,i])});for(const g of Z.gobs)items.push([ggPosOf(m,g.d)[1],1,g]);items.sort((a,b)=>a[0]-b[0]);
-  for(const it of items){if(!it[1]){const T=it[2],[px,py]=m.pads[it[3]],s=ggTowerPx(T),a=Math.round(px/2),b=Math.round(py/2);c.drawImage(s,a-12,b-50);const L=T.lvl||1,top=b-34+38-(12+L*1.6);
-      if((T.t==='fire'||T.t==='phoenix')&&!calm){const f=(t*12|0)%3,y0=T.t==='fire'?top-8:b-22;c.fillStyle='#FF7A3D';c.fillRect(a-3,y0+f%2,6,4);c.fillStyle='#FDE047';c.fillRect(a-1,y0-2+f,2,4)}
-      if(T.t==='gale'){const q=t*(calm?0:4),cy=top-4;for(let k=0;k<4;k++){const an=q+k*Math.PI/2,ca=Math.cos(an),sa=Math.sin(an);for(let r=1;r<10;r++){c.fillStyle='#5B3413';c.fillRect(Math.round(a+ca*r),Math.round(cy+sa*r),1,1);if(r>3){c.fillStyle='#F5F5F4';c.fillRect(Math.round(a+ca*r-sa*1.6),Math.round(cy+sa*r+ca*1.6),1,1);c.fillRect(Math.round(a+ca*r-sa*2.6),Math.round(cy+sa*r+ca*2.6),1,1)}}}c.fillStyle='#3F2410';c.fillRect(a-1,cy-1,2,2)}
-      if((T.t==='arcane'||T.t==='star')&&!calm&&(t*4|0)%3===0){c.fillStyle='#FFFFFF';c.fillRect(a+3,top-9,1,1);c.fillRect(a-4,top-4,1,1)}
-      if((T.t==='bolt'||T.t==='titan')&&((t*8|0)%4===0)&&!calm){c.fillStyle='#FFF7AE';c.fillRect(a-1,top-15-L,3,3)}
-      if(it[3]===Z.sel){const r=ggStat(T,Z,it[3]).r/2;c.fillStyle='rgba(255,255,255,.75)';for(let k=0;k<48;k++){const q=k/48*Math.PI*2;c.fillRect(Math.round(a+Math.cos(q)*r),Math.round(b+Math.sin(q)*r),1,1)}}}
-    else{const g=it[2],[gx,gy]=ggPosOf(m,g.d),fr=calm?0:(Math.floor(g.walk*6)%2),v=g.hit>t?'hit':g.frz>t?'frz':'',s=ggGobPx(g.k,fr,v),a=Math.round(gx/2),b=Math.round(gy/2);c.fillStyle='rgba(0,0,0,.25)';c.fillRect(a-Math.round(s.width*.3),b+Math.round(s.height*.35),Math.round(s.width*.6),2);
-      c.drawImage(s,a-(s.width>>1),b-Math.round(s.height*.6));if(g.shieldU>t){c.fillStyle='rgba(159,227,255,.35)';c.beginPath();c.arc(a,b-Math.round(s.height*.2),Math.round(s.width*.62),0,7);c.fill();c.fillStyle='#9FE3FF';for(let q=0;q<36;q++){const an=q/36*Math.PI*2;c.fillRect(Math.round(a+Math.cos(an)*s.width*.62),Math.round(b-s.height*.2+Math.sin(an)*s.width*.62),1,1)}}if(g.burnU>t&&!calm){c.fillStyle=(t*10|0)%2?'#FF7A3D':'#FDE047';c.fillRect(a-1,b-Math.round(s.height*.6)-3,2,3)}
-      if(g.hp<g.max){const w=Math.max(8,Math.round(s.width*.8)),y0=b-Math.round(s.height*.6)-5;c.fillStyle='#1B1B1B';c.fillRect(a-(w>>1)-1,y0-1,w+2,3);c.fillStyle=g.k==='boss'?'#FF5A7A':'#5FF3A0';c.fillRect(a-(w>>1),y0,Math.round(w*Math.max(0,g.hp/g.max)),1)}}}
+  /* towers, goblins and helpers, back to front */const items=[];Z.tw.forEach((T,i)=>{if(T)items.push([m.pads[i][1],0,T,i])});for(const g of Z.gobs)items.push([ggPosOf(m,g.d)[1]+(g.fly?20:0),1,g]);for(const a of Z.allies)items.push([ggPosOf(m,a.d)[1],2,a]);items.sort((a,b)=>a[0]-b[0]);
+  for(const it of items){
+    if(it[1]===0){const T=it[2],[px,py]=m.pads[it[3]],s=ggTowerPx(T),a=Math.round(px/2),b=Math.round(py/2);c.drawImage(s,a-12,b-50);const Lv=T.lvl||1,top=b-34+38-(12+Lv*1.6);
+      if(T.t==='flame'&&!calm){const f=(t*12|0)%3;c.fillStyle='#FF7A3D';c.fillRect(a-3,top-8+f%2,6,4);c.fillStyle='#FDE047';c.fillRect(a-1,top-10+f,2,4)}
+      if(T.t==='blizzard'){const q=t*(calm?0:5),cy=top-4;for(let k=0;k<4;k++){const an=q+k*Math.PI/2,ca=Math.cos(an),sa=Math.sin(an);for(let r=1;r<9;r++){c.fillStyle=r>3?'#E0F2FE':'#60A5FA';c.fillRect(Math.round(a+ca*r),Math.round(cy+sa*r),1,1)}}}
+      if((T.t==='refract'||T.t==='astral'||T.t==='prism')&&!calm&&(t*4|0)%3===0){dot(a+3,top-9,'#FFFFFF');dot(a-4,top-4,'#FFFFFF')}
+      if((T.t==='tesla'||T.t==='rail')&&((t*8|0)%4===0)&&!calm)dot(a-1,top-15-Lv,'#FFF7AE',3,3);
+      if(T.t==='glow'&&!calm&&T.grow){c.fillStyle=`rgba(253,224,71,${.25+.15*Math.sin(t*6)})`;c.fillRect(a-5,top-7,10,10)}
+      if(T.t==='hive'||T.t==='venom'){const n=T.t==='hive'?Math.min(12,T.m==='A'?12:6):3;for(let k=0;k<n;k++){const q=(calm?0:t*3)+k*Math.PI*2/n;dot(a+Math.cos(q)*(7+k%3),top+6+Math.sin(q)*4,T.t==='hive'?'#D9F99D':'#FDE047')}}
+      if(T.t==='spore'&&!calm){c.fillStyle='rgba(192,132,252,.5)';for(let k=0;k<6;k++){const q=t*.8+k;c.fillRect(Math.round(a+Math.cos(q)*14),Math.round(b-4+Math.sin(q*1.3)*6),1,1)}}
+      if(T.t==='tendril'&&T.whipT>t){c.fillStyle='#4ADE80';for(let k=0;k<16;k++){const q=t*20+k*.4;c.fillRect(Math.round(a+Math.cos(q)*16),Math.round(b-6+Math.sin(q)*8),1,1)}}
+      if(T.t==='mirror'&&T.copyOf!=null){c.fillStyle='rgba(224,231,255,.6)';c.fillRect(a-1,top-2,2,6)}
+      if(T.chg>.5){c.fillStyle=`rgba(253,230,138,${Math.min(.8,T.chg/6)})`;c.fillRect(a-4,top-16,8,8)}
+      if(T.bub&&T.bub.u>t){const [bx,by]=[Math.round(T.bub.x/2),Math.round(T.bub.y/2)];c.fillStyle='rgba(125,211,252,.18)';c.beginPath();c.arc(bx,by,48,0,7);c.fill()}
+      if(it[3]===Z.sel){const st=ggStat(T,Z,it[3]),r=st.r>=999?0:st.r/2;if(r){c.fillStyle='rgba(255,255,255,.75)';for(let k=0;k<48;k++){const q=k/48*Math.PI*2;c.fillRect(Math.round(a+Math.cos(q)*r),Math.round(b+Math.sin(q)*r),1,1)}}}}
+    else if(it[1]===1){const g=it[2],[gx,gy]=ggPosOf(m,g.d),fr=calm?0:(Math.floor((g.walk+(g.fly?t*3:0))*6)%2),v=g.hit>t?'hit':g.frz>t?'frz':'',s=ggGobPx(g.k,fr,v),a=Math.round(gx/2),b=Math.round(gy/2)-(g.fly?9:0);
+      c.fillStyle='rgba(0,0,0,.25)';c.fillRect(a-Math.round(s.width*.3),Math.round(gy/2)+Math.round(s.height*.35),Math.round(s.width*.6),2);
+      const hidden=g.camo&&!(g.revU>t);if(hidden)c.globalAlpha=.32;c.drawImage(s,a-(s.width>>1),b-Math.round(s.height*.6));c.globalAlpha=1;
+      const hy=b-Math.round(s.height*.6);
+      if(g.sh>0){c.fillStyle='rgba(125,211,252,.28)';c.beginPath();c.arc(a,b-Math.round(s.height*.2),Math.round(s.width*.55),0,7);c.fill()}
+      if(g.shieldU>t){c.fillStyle='rgba(159,227,255,.35)';c.beginPath();c.arc(a,b-Math.round(s.height*.2),Math.round(s.width*.62),0,7);c.fill();c.fillStyle='#9FE3FF';for(let q=0;q<36;q++){const an=q/36*Math.PI*2;c.fillRect(Math.round(a+Math.cos(an)*s.width*.62),Math.round(b-s.height*.2+Math.sin(an)*s.width*.62),1,1)}}
+      if(g.burnU>t&&!calm)dot(a-1,hy-3,(t*10|0)%2?'#FF7A3D':'#FDE047',2,3);if(g.psn.length)dot(a+3,hy-2,'#A3E635',2,2);if(g.bleed&&g.bleedU>t)dot(a-4,hy-2,'#EF4444',1,2);if(g.slowU>t&&g.frostU>t)dot(a+5,hy,'#BFF0FF');if(g.stun>t||g.pin>t)dot(a-1,hy-4,'#FDE68A',3,1);
+      if(g.ally){dot(a-1,hy-5,'#F472B6',3,2)}
+      if(g.hp<g.max||g.sh<g.shMax){const w=Math.max(8,Math.round(s.width*.8)),y0=hy-5;c.fillStyle='#1B1B1B';c.fillRect(a-(w>>1)-1,y0-1,w+2,3);c.fillStyle=isBoss(g)?'#FF5A7A':g.ally?'#F472B6':'#5FF3A0';c.fillRect(a-(w>>1),y0,Math.round(w*Math.max(0,g.hp/g.max)),1);if(g.sh>0){c.fillStyle='#7DD3FC';c.fillRect(a-(w>>1),y0-1,Math.round(w*g.sh/g.shMax),1)}}}
+    else{const A=it[2],[a,b]=P(A.d);if(A.k==='skel'){c.fillStyle='#F5F5F4';c.fillRect(a-1,b-8,3,3);c.fillRect(a-2,b-5,5,1);c.fillRect(a,b-4,1,3);c.fillRect(a-1,b-1,1,2);c.fillRect(a+1,b-1,1,2);dot(a,b-7,'#7C3AED')}
+      else{c.fillStyle='#2563EB';c.fillRect(a-1,b-6,3,4);c.fillStyle='#FDE68A';c.fillRect(a-1,b-8,3,2);c.fillStyle='#94A3B8';c.fillRect(a+2,b-8,1,6);c.fillStyle='#1E3A8A';c.fillRect(a-1,b-2,1,2);c.fillRect(a+1,b-2,1,2)}}}
   if(Z.sel>=0&&!Z.tw[Z.sel]){const [px,py]=m.pads[Z.sel],a=Math.round(px/2),b=Math.round(py/2);c.fillStyle='#FFD34D';for(let k=0;k<32;k++){const q=k/32*Math.PI*2;c.fillRect(Math.round(a+Math.cos(q)*12),Math.round(b+Math.sin(q)*6.5),1,1)}}
+  /* beams that hold on a goblin */
+  Z.tw.forEach((T,i)=>{if(!T||!T.beamTo||!T.beamTo.length)return;const [px,py]=m.pads[i],heat=Math.min(1,((T.heat||1)-1)/4);for(const id of T.beamTo){const g=Z.gobs.find(q=>q.id===id);if(!g)continue;const [gx,gy]=ggPosOf(m,g.d);
+    const col=T.t==='plasma'||T.copyOf!=null&&Z.tw[T.copyOf]?.t==='plasma'?`rgb(${244},${114+Math.round(100*heat)},${182-Math.round(80*heat)})`:'#67E8F9';line(px/2,py/2-14,gx/2,gy/2-(g.fly?13:4),col,heat>.6?2:1)}});
   /* shots and effects */
-  for(const p of Z.proj){if(p.l<=0)continue;const f=p.t/p.dur,px=(p.x0+(p.x1-p.x0)*f)/2,py=(p.y0+(p.y1-p.y0)*f-(p.k==='rock'||p.k==='shell'?Math.sin(f*Math.PI)*50:0))/2;c.fillStyle=p.k==='ice'?'#BFF0FF':p.k==='fire'?'#FF9A3C':p.k==='magic'?'#E879F9':p.k==='arrow'?'#F5E6C8':p.k==='shell'?'#1F2937':'#8A6A4A';const s=p.k==='rock'||p.k==='shell'?3:p.k==='arrow'?1:2;c.fillRect(Math.round(px-s/2),Math.round(py-s/2),s,s);if(p.k==='fire'){c.fillStyle='#FFE27A';c.fillRect(Math.round(px),Math.round(py),1,1)}}
+  for(const p of Z.proj){if(p.l<=0)continue;const f=p.t/p.dur,px=(p.x0+(p.x1-p.x0)*f)/2,py=(p.y0+(p.y1-p.y0)*f-(p.lob?Math.sin(f*Math.PI)*50:0))/2;
+    const col={arrow:'#F5E6C8',dart:'#E7E5E4',spit:'#A3E635',bullet:'#FDE047',rocket:'#1F2937',needle:'#D9F99D',orb:'#F59E0B',spore:'#FDE047',drone:'#84CC16',shell:'#1F2937',magma:'#F97316'}[p.k]||'#E879F9',sz=p.lob?3:p.k==='rocket'||p.k==='orb'?2:1;
+    c.fillStyle=col;c.fillRect(Math.round(px-sz/2),Math.round(py-sz/2),sz,sz);if(p.k==='rocket'||p.k==='magma'){dot(px-(p.x1-p.x0)/Math.abs(p.x1-p.x0||1)*2,py,'#FB923C')}}
   for(const f of Z.fx){if(f.l<=0)continue;const a=f.l/f.d;c.globalAlpha=Math.min(1,a*1.5);
-    if(f.k==='bolt'||f.k==='cannon'||f.k==='beam'){c.fillStyle=f.c||(f.k==='bolt'?'#FFF27A':f.k==='beam'?'#F5D0FE':'#FFB347');const n=f.k==='bolt'?6:f.k==='beam'?16:12;let lx=f.x/2,ly=f.y/2;for(let k=1;k<=n;k++){const tt=k/n,nx=(f.x+(f.a-f.x)*tt)/2+(k<n&&f.k==='bolt'?(Math.random()-.5)*6:0),ny=(f.y+(f.b-f.y)*tt)/2+(k<n&&f.k==='bolt'?(Math.random()-.5)*6:0),st=Math.max(Math.abs(nx-lx),Math.abs(ny-ly));for(let q=0;q<=st;q++){const w=f.k==='beam'?3:f.k==='cannon'?2:1;c.fillRect(Math.round(lx+(nx-lx)*q/Math.max(1,st)),Math.round(ly+(ny-ly)*q/Math.max(1,st)),w,w)}lx=nx;ly=ny}}
+    if(f.k==='bolt'||f.k==='cannon'||f.k==='beam'||f.k==='vine'){c.fillStyle=f.c||(f.k==='bolt'?'#FFF27A':f.k==='beam'?'#F5D0FE':'#FFB347');const n=f.k==='bolt'?6:16;let lx=f.x/2,ly=f.y/2;for(let k=1;k<=n;k++){const tt=k/n,nx=(f.x+(f.a-f.x)*tt)/2+(k<n&&f.k==='bolt'?(Math.random()-.5)*6:0)+(f.k==='vine'?Math.sin(tt*9)*2:0),ny=(f.y+(f.b-f.y)*tt)/2+(k<n&&f.k==='bolt'?(Math.random()-.5)*6:0),st=Math.max(Math.abs(nx-lx),Math.abs(ny-ly));for(let q=0;q<=st;q++){const w=f.k==='beam'?3:f.k==='cannon'||f.k==='vine'?2:1;c.fillRect(Math.round(lx+(nx-lx)*q/Math.max(1,st)),Math.round(ly+(ny-ly)*q/Math.max(1,st)),w,w)}lx=nx;ly=ny}}
+    else if(f.k==='rail'){line(f.x/2,f.y/2,f.a/2,f.b/2,f.c||'#BAE6FD',3);line(f.x/2,f.y/2,f.a/2,f.b/2,'#FFFFFF',1)}
+    else if(f.k==='cone'){c.fillStyle=f.c||'#FB923C';for(let k=0;k<26;k++){const q=f.a+(Math.random()-.5)*1.3,r=Math.random()*f.b/2;c.fillRect(Math.round(f.x/2+Math.cos(q)*r),Math.round(f.y/2+Math.sin(q)*r),2,2)}}
     else if(f.k==='nova'||f.k==='ring'){const r=f.a*(1-a*.6)/2;c.fillStyle=f.c||'#BFF0FF';for(let k=0;k<40;k++){const q=k/40*Math.PI*2;c.fillRect(Math.round(f.x/2+Math.cos(q)*r),Math.round(f.y/2+Math.sin(q)*r),1,1)}}
-    else{const r=Math.max(1,f.a*(1.2-a*.6)/2);c.fillStyle=f.k==='crash'?'#A07A52':f.k==='boom'?'#FF7A3D':f.k==='spark'?'#FFFFFF':'#E8F6FF';for(let k=0;k<10;k++){const q=k/10*Math.PI*2+f.x;c.fillRect(Math.round(f.x/2+Math.cos(q)*r),Math.round(f.y/2+Math.sin(q)*r),2,2)}}c.globalAlpha=1}
+    else{const r=Math.max(1,f.a*(1.2-a*.6)/2);c.fillStyle=f.c||(f.k==='crash'?'#A07A52':f.k==='boom'?'#FF7A3D':f.k==='spark'?'#FFFFFF':'#E8F6FF');for(let k=0;k<10;k++){const q=k/10*Math.PI*2+f.x;c.fillRect(Math.round(f.x/2+Math.cos(q)*r),Math.round(f.y/2+Math.sin(q)*r),2,2)}}c.globalAlpha=1}
   if(m.snow&&!AG.low()&&!calm){c.fillStyle='rgba(255,255,255,.9)';for(let i=0;i<40;i++)c.fillRect(Math.round(((i*73+t*20)%GGW)/2),Math.round(((i*41+t*(30+i%5*6))%GGH)/2),1,1)}
   if(m.ember&&!AG.low()&&!calm){c.fillStyle='rgba(255,140,60,.9)';for(let i=0;i<24;i++)c.fillRect(Math.round(((i*97)%GGW)/2),Math.round((GGH-((i*53+t*(26+i%4*8))%GGH))/2),1,1)}
-  x.imageSmoothingEnabled=false;x.drawImage(L,0,0,GGW,GGH);
+  const sh=Z.shake>t&&!calm?[Math.round((Math.random()-.5)*6),Math.round((Math.random()-.5)*4)]:[0,0];x.imageSmoothingEnabled=false;if(sh[0]||sh[1]){x.fillStyle='#000';x.fillRect(0,0,GGW,GGH)}x.drawImage(L,sh[0],sh[1],GGW,GGH);
   /* words stay sharp: drawn after the pixels */
   x.textAlign='center';x.textBaseline='middle';x.font='800 13px "Bricolage Grotesque",sans-serif';x.fillStyle='rgba(0,0,0,.5)';x.fillText('🍪 '+Z.cookies,e[0]-1,e[1]-112);x.fillStyle='#fff';x.fillText('🍪 '+Z.cookies,e[0]-2,e[1]-113);
   if(Z.boss&&!Z.boss.dead){const B=Z.boss,w=300,fr=Math.max(0,B.hp/B.max);x.fillStyle='rgba(15,10,25,.7)';x.fillRect(170,8,w,20);x.fillStyle=B.k==='king'?'#DC2626':'#F97316';x.fillRect(172,10,(w-4)*fr,16);if(B.shieldU>Z.time){x.fillStyle='rgba(159,227,255,.55)';x.fillRect(172,10,w-4,16)}x.font='800 11px "Bricolage Grotesque",sans-serif';x.fillStyle='#fff';x.fillText(`${B.k==='king'?'🤴 THE GOBLIN KING':'👑 BOSS'}  ${Math.ceil(B.hp)} / ${B.max}`,320,18.5)}
@@ -328,22 +688,50 @@ function ggdraw(Z){const x=AG.cx;if(!x)return;const m=Z.m,L=GGC.low||(GGC.low=Ob
 const ggfx=(Z,k,x0,y0,a,b,d)=>{let f=Z.fx.find(q=>q.l<=0);if(!f){if(Z.fx.length>70)return null;f={};Z.fx.push(f)}Object.assign(f,{k,x:x0,y:y0,a,b,l:d,d,c:null});return f};
 const ggtext=(Z,x0,y0,s,c)=>{let t=Z.texts.find(q=>q.l<=0);if(!t){if(Z.texts.length>14)return;t={};Z.texts.push(t)}const hw=Math.min(300,[...s].length*4.2+10);Object.assign(t,{x:Math.max(hw,Math.min(GGW-hw,x0)),y:Math.max(Z.boss?46:16,y0),s,c,l:1.4})};
 
-/* ---------- The side panel: status, the wave button, building and upgrading ---------- */
-function gghud(Z){const h=$('gghud');if(!h)return;const s=`<span>🍪 ${Z.cookies}</span><span>💰 ${Z.gold}</span><span>🌊 ${Math.min(Z.w+1,Z.m.waves)}/${Z.m.waves}</span>`;if(h.innerHTML!==s)h.innerHTML=s;
+/* ---------- The side panel: status, the wave button, building, upgrading and Masteries ---------- */
+const ggRate=v=>v<1.5?`${(1/v).toFixed(1)}/s`:`every ${v.toFixed(1)}s`;
+function ggLine(s){const a=[];if(s.dmg)a.push(`⚔️ ${Math.round(s.dmg)}${s.k==='beam'?'/s':''}`);if(s.r>=999)a.push('📏 whole map');else if(s.r)a.push(`📏 ${Math.round(s.r)}`);if(s.rate)a.push(`⏱ ${ggRate(s.rate)}`);
+  if(s.gold)a.push(`💰 +${Math.round(s.gold)} a wave`);if(s.hp)a.push(`🧱 ${Math.round(s.hp)} health`);if(s.slow)a.push(`🐌 ${Math.round(s.slow*100)}% slower`);if(s.burn)a.push(`🔥 ${s.burn.toFixed(1)} burn`);
+  if(s.rangeB)a.push(`✨ +${Math.round(s.rangeB*100)}% range nearby`);if(s.amp)a.push(`🔆 beams +${Math.round(s.amp*100)}%`);if(s.copy)a.push(`🪞 copies ${Math.round(s.copy*100)}%`);if(s.crit)a.push(`🎯 ${Math.round(s.crit*100)}% crit`);return a.join(' · ')||esc(s.role)}
+const ggSetChips=Z=>{const on=Object.keys(Z.sets||{});return on.length?`<div class="ggsets">${on.map(f=>`<span title="${esc(GFAC[f][1])}">🔗 ${esc(GFAC[f][0])}: ${esc(GFAC[f][1])}</span>`).join('')}</div>`:''};
+function gghud(Z){const h=$('gghud');if(!h)return;const rp=Z.tw.some(T=>T&&T.t==='reaper'),s=`<span>🍪 ${Z.cookies}</span><span>💰 ${Z.gold}</span><span>🌊 ${Math.min(Z.w+1,Z.m.waves)}/${Z.m.waves}</span>${rp?`<span>👻 ${Z.souls}</span>`:''}`;if(h.innerHTML!==s)h.innerHTML=s;
   const cb=$('ggcannon');if(cb){const on=Z.boss&&Z.cannonCd<=0;cb.disabled=!on;cb.querySelector('small').textContent=Z.boss?(on?'Answer right to blast the boss':'Reloading…'):'Ready for the boss'}
-  document.querySelectorAll('.ggbuild').forEach(b=>b.disabled=Z.gold<+b.dataset.cost);document.querySelectorAll('.ggup').forEach(b=>b.disabled=Z.gold<+b.dataset.cost)}
+  document.querySelectorAll('.ggbuild').forEach(b=>b.disabled=Z.gold<+b.dataset.cost||b.dataset.no==='1');document.querySelectorAll('.ggup').forEach(b=>b.disabled=Z.gold<+b.dataset.cost||b.dataset.no==='1');
+  const ab=$('ggab');if(ab&&ab.dataset.soul)ab.disabled=Z.souls<1}
 function ggpanel(Z){const el=$('ggpanel');if(!el)return;const i=Z.sel,T=i>=0?Z.tw[i]:null;let h='';
   if(Z.ph==='build')h+=`<div class="ggbtns"><button class="abtn" style="justify-content:center" onclick="AG.cur&&ggWave(AG.cur.st)">⚔️ Start wave ${Z.w+1}</button>${Z.bonusOn?`<button onclick="AG.cur&&ggBonus(AG.cur.st)"><span class="ic" style="background:#FEF3C7">❓</span><span>Bonus question<small>Answer right for 20 gold</small></span></button>`:''}</div>`;
   else h+=`<p class="sol" style="margin:0">Goblins incoming! Keep building and upgrading.</p>`;
   if(Z.boss||Z.m.waves-1===Z.w)h+=`<div class="ggbtns"><button id="ggcannon" ${Z.boss&&Z.cannonCd<=0?'':'disabled'} onclick="AG.cur&&ggCannon(AG.cur.st)"><span class="ic" style="background:#FFE4D6">💥</span><span>Castle cannon<small>Ready for the boss</small></span></button></div>`;
-  if(i<0)h+=`<p class="sol" style="margin:10px 0 0">Tap a stone pad on the map to build a tower.</p>`;
-  else if(!T)h+=`<h4 style="margin-top:12px">Build here</h4><div class="ggbtns">${Z.load.map((k,j)=>{const D=GGT[k];return `<button class="ggbuild" data-cost="${D.cost}" ${Z.gold<D.cost?'disabled':''} onclick="AG.cur&&ggBuild(AG.cur.st,'${k}')"><span class="ic" style="background:${D.c}55">${D.i}</span><span>${D.n} · 💰 ${D.cost}<small>${j+1} · ${esc(D.role)}</small></span></button>`}).join('')}</div>`;
-  else{const D=GGT[T.t],cost=ggUpCost(T),st=ggStat(T,Z,i),nx=T.lvl<7?ggStat({t:T.t,lvl:T.lvl+1},Z,i):null;h+=`<h4 style="margin-top:12px">${D.i} ${D.n} · Level ${T.lvl}</h4><p class="sol" style="margin:0">${esc(D.role)}</p>
-      <p class="sol" style="margin:4px 0 0">${D.rate?`⚔️ ${Math.round(st.dmg)} damage · 📏 ${st.r} range · ⏱ ${(1/st.rate).toFixed(1)}/s`:D.gold?`💰 +${st.gold} gold after each wave`:`✨ +${Math.round(st.buff*100)}% ${D.sup==='rate'?'speed':'damage'} for towers within ${GGT[T.t].r+5*(T.lvl-1)}`}</p>`;
-    if(T.lvl<7)h+=`<div class="ggbtns"><button class="ggup" data-cost="${cost}" ${Z.gold<cost?'disabled':''} onclick="AG.cur&&ggUpgrade(AG.cur.st)"><span class="ic" style="background:#DBF4FF">⬆️</span><span>Level ${T.lvl+1} · 💰 ${cost}<small>${D.rate?`${Math.round(nx.dmg)} damage, ${nx.r} range.`:D.gold?`+${nx.gold} gold a wave.`:`+${Math.round(nx.buff*100)}% for nearby towers.`} Needs a right answer.</small></span></button></div>`;
+  if(i<0)h+=`<p class="sol" style="margin:10px 0 0">Tap a stone pad on the map to build a tower. Three towers from one faction switch on a set bonus.</p>${ggSetChips(Z)}`;
+  else if(!T)h+=`<h4 style="margin-top:12px">Build here</h4><div class="ggbtns">${Z.load.map((k,j)=>{const D=GGT[k],no=ggCanBuild(Z,k);return `<button class="ggbuild" data-cost="${D.cost}" data-no="${no?1:0}" ${Z.gold<D.cost||no?'disabled':''} onclick="AG.cur&&ggBuild(AG.cur.st,'${k}')"><span class="ic" style="background:${D.c}55">${D.i}</span><span>${esc(D.n)} · 💰 ${D.cost}<small>${j+1} · ${no?esc(no):esc(D.role)}</small></span></button>`}).join('')}</div>`;
+  else{const D=GGT[T.t],cost=ggUpCost(T),st=ggStat(T,Z,i),M=T.m?D[T.m]:null,star=ggStar(T.t);
+    h+=`<h4 style="margin-top:12px">${D.i} ${esc(D.n)} · Level ${T.lvl}</h4><p class="sol" style="margin:0"><b style="color:${GRAR[D.rar][1]}">${GRAR[D.rar][0]}</b> · ${'★'.repeat(star)} · ${esc(GFAC[D.fac][0])}${M?` · 🎓 ${esc(M.n)}`:''}</p>
+      <p class="sol" style="margin:4px 0 0">${esc(M?M.d:D.role)}</p><p class="sol" style="margin:4px 0 0">${ggLine(st)}</p>${D.lim?`<p class="sol" style="margin:4px 0 0">⚖️ ${esc(D.lim)}</p>`:''}`;
+    if(T.lvl===4){h+=`<h4 style="margin-top:10px">Level 5: pick a Mastery</h4><div class="ggbtns">${['A','B'].map(p=>{const P=D[p],lock=p==='B'&&star<2;return `<button class="ggup" data-cost="${cost}" data-no="${lock?1:0}" ${Z.gold<cost||lock?'disabled':''} onclick="AG.cur&&ggUpgrade(AG.cur.st,'${p}')"><span class="ic" style="background:${p==='A'?'#DBEAFE':'#FCE7F3'}">${lock?'🔒':p}</span><span>${esc(P.n)} · 💰 ${cost}<small>${esc(P.d)}.${lock?' Needs a second copy (★★) from a chest.':' Needs a right answer.'}</small></span></button>`}).join('')}</div>`}
+    else if(T.lvl<7){const nx=ggStat({...T,lvl:T.lvl+1},Z,i);h+=`<div class="ggbtns"><button class="ggup" data-cost="${cost}" ${Z.gold<cost?'disabled':''} onclick="AG.cur&&ggUpgrade(AG.cur.st)"><span class="ic" style="background:#DBF4FF">⬆️</span><span>Level ${T.lvl+1} · 💰 ${cost}<small>${ggLine(nx)}. Needs a right answer.</small></span></button></div>`}
     else h+=`<p class="sol" style="margin:6px 0 0">🌟 Level 7: fully upgraded!</p>`;
+    const ab=st.loaded&&T.dice?['🎲','Keep this roll',T.locked?'Kept! The dice stop rolling':'Lock the current dice bonus']:st.nuke?['💥','Spore blast',`Spend all the glow (${Math.round((T.grow||0)*100)}) for a big blast`]:st.doom?['👻','Reap the souls','Fire every soul at once as one huge blast']:null;
+    if(ab)h+=`<div class="ggbtns"><button id="ggab" ${st.doom?'data-soul="1"':''} ${(st.doom&&Z.souls<1)||(st.nuke&&!T.grow)||(st.loaded&&T.locked)?'disabled':''} onclick="AG.cur&&ggAbility(AG.cur.st,${i})"><span class="ic" style="background:#FEF9C3">${ab[0]}</span><span>${ab[1]}<small>${ab[2]}</small></span></button></div>`;
     h+=`<div class="ggbtns"><button onclick="AG.cur&&ggSell(AG.cur.st)"><span class="ic" style="background:#F1F5F9">💰</span><span>Sell<small>Get some gold back</small></span></button></div>`}
   el.innerHTML=h;gghud(Z)}
+
+/* ---------- The collection: towers by rarity, the 6-slot loadout and its budget, chests and the shard shop ---------- */
+function ggRevealCard(S){const L=GGLAST;if(!L)return '';const D=GGT[L.t],st=ggStar(L.t);
+  const note=L.note==='new'?(L.shop?'💠 Bought with shards!':'✨ New tower!')+(S.load.includes(L.t)?' Added to your loadout.':''):L.note==='copy'?`Another copy: ★${st}${st===2?' · Mastery B unlocked!':''} (+3% damage)`:`Already ★★★★★: 💠 +${L.shards} shards`;
+  return `<div class="ggreveal" style="--rc:${GRAR[L.rar][1]}"><img src="${ggIcon(L.t)}" alt=""><div><span class="sol" style="font-weight:800;color:${GRAR[L.rar][1]}">${L.lucky?'🍀 LUCKY ROLL · ':''}${GRAR[L.rar][0].toUpperCase()}</span><h3 style="margin:2px 0">${D.i} ${esc(D.n)}</h3><p style="margin:0">${esc(D.role)}</p>
+    <p style="margin:6px 0 0"><b>${note}</b></p></div><button class="abtn sec sm" style="margin-left:auto" onclick="GGLAST=null;rerealm()">OK</button></div>`}
+function ggTowersCard(S){const own=new Set(S.own),b=ggBudget(),pts=ggPts(S.load),sh=S.shards||0;
+  const slots=[0,1,2,3,4,5].map(j=>{const k=S.load[j];return k?`<button class="slot" style="--rc:${GRAR[GGT[k].rar][1]}" aria-label="Take ${esc(GGT[k].n)} out of the loadout" onclick="ggLoad('${k}')"><img src="${ggIcon(k)}" alt=""><small>${j+1}</small></button>`:`<span class="slot empty"><small>${j+1}</small></span>`}).join('');
+  return `<div class="gcard" style="margin-top:14px"><div class="split"><h3>🛡️ Your towers (${S.own.length} of ${Object.keys(GGT).length})</h3><span style="font:800 1rem 'Bricolage Grotesque',sans-serif">💠 ${sh} shards</span></div>
+    <div class="ggload"><div class="slots">${slots}</div><div><b>Loadout: ${S.load.length} of 6 · ${pts} of ${b.pts} points</b><p class="sol" style="margin:2px 0 0">Common 1 · Rare 2 · Epic 3 · Legendary 5 points. ${b.leg>1?'Two Legendaries allowed.':'One Legendary at a time (two from hero level 30).'}${b.pts<15?' Hero level 20 raises the budget to 15.':''}</p></div></div>
+    ${[0,1,2,3].map(r=>{const ks=Object.keys(GGT).filter(k=>GGT[k].rar===r),n=ks.filter(k=>own.has(k)).length;return `<h4 class="ggrh" style="--rc:${GRAR[r][1]}">${GRAR[r][0]} · ${n} of ${ks.length} · ${GPTS[r]} point${GPTS[r]>1?'s':''}</h4><div class="ggtw">${ks.map(k=>{const D=GGT[k],o=own.has(k),inL=S.load.includes(k),st=ggStar(k),p=GSHOP[r];
+      return `<div class="c ${o?'':'lock'} ${inL?'in':''}" style="--rc:${GRAR[r][1]}"><span class="rar">${esc(GFAC[D.fac][0])}</span><img src="${ggIcon(k)}" alt=""><b>${D.i} ${esc(D.n)}</b><small>${esc(D.role)}</small><small>🎓 ${esc(D.A.n)} / ${esc(D.B.n)}</small>${D.lim?`<small>⚖️ ${esc(D.lim)}</small>`:''}<small>💰 ${D.cost}${o?` · <span class="ggstar" aria-label="${st} of 5 stars">${'★'.repeat(st)}${'☆'.repeat(5-st)}</span>`:''}</small>
+        ${o?`<button class="chip ${inL?'on':''}" aria-pressed="${inL}" onclick="ggLoad('${k}')">${inL?'✓ In loadout':'Add to loadout'}</button>`:`<button class="chip" ${sh<p?'disabled':''} onclick="ggBuyShard('${k}')">💠 ${p} shards</button>`}</div>`}).join('')}</div>`}).join('')}</div>`}
+function ggChestCard(S){const c=S.coins||0,pe=Math.max(1,15-(S.pityE||0)),pl=Math.max(1,80-(S.pityL||0)),o=GGODDS.normal,l=GGODDS.lucky;
+  return `<div class="gcard" style="margin-top:14px"><div class="split"><h3>🎁 Tower chests</h3><span style="font:800 1.1rem 'Bricolage Grotesque',sans-serif">🪙 ${c} Gate coins</span></div>
+    <div class="ggshop"><button ${c<10?'disabled':''} onclick="ggRoll(false);rerealm()"><b>📦 Normal chest · 🪙 10</b><span class="sol">Common ${o[0]}% · Rare ${o[1]}% · Epic ${o[2]}% · Legendary ${o[3]}%</span><span class="sol">Epic or better guaranteed within ${pe} chest${pe===1?'':'s'} · Legendary within ${pl}</span></button>
+      <button class="lucky" ${c<50?'disabled':''} onclick="ggRoll(true);rerealm()"><b>🍀 Lucky roll · 🪙 50</b><span class="sol">Extra luck! No Commons: Rare ${l[1]}% · Epic ${l[2]}% · Legendary ${l[3]}%</span></button></div>
+    <p class="sol" style="margin:8px 0 0">Earn Gate coins by clearing waves (2 for a perfect wave), winning stages, beating the Goblin King, and with right answers in Goblin Gate (up to 20 a day). Coins can't be bought. A copy of a tower you own adds a star: each star is +3% damage, and ★★ unlocks Mastery B. Copies of a ★★★★★ tower turn into 💠 shards (Common ${GSHARD[0]}, Rare ${GSHARD[1]}, Epic ${GSHARD[2]}, Legendary ${GSHARD[3]}). Spend shards to pick the exact tower you want.</p></div>`}
 
 /* ---------- The menu ---------- */
 const ggThumb=m=>kimg('ggth'+m.id,320,180,(x)=>{x.imageSmoothingEnabled=false;x.drawImage(ggBg(m),0,0,320,180)});
@@ -474,19 +862,12 @@ GVIEW.gate=function(){const C=AG.cur&&AG.cur.id==='gate'?AG.cur:null;
     <p class="sol">Strategy bonus: ${r.bonus.perfect} perfect wave${r.bonus.perfect===1?'':'s'} · ${r.bonus.variety} kinds of tower · ${r.bonus.gold} gold left</p>${r.unlock?`<p><b>🔓 Stage ${r.unlockN} unlocked: ${esc(r.unlock)}!</b></p>`:''}</div>`;
   else if(r&&r.why==='lost')card=`<div class="gcard endcard" style="margin-bottom:16px"><div class="big" aria-hidden="true">🍪</div><h3>The goblins got the cookies!</h3><p>You held out for ${r.waves} wave${r.waves===1?'':'s'} (🪙 +${r.coins}). Level up your towers with right answers, and try new towers from a chest.</p></div>`;
   else if(r&&r.why==='time')card=`<div class="gcard" style="margin-bottom:16px"><h3>🌙 Play time is over for today</h3><p>${esc(earnNote())}</p></div>`;
-  const L=GGLAST,rv=L?`<div class="ggreveal" style="--rc:${GRAR[L.rar][1]}"><img src="${ggIcon(L.t)}" alt=""><div><span class="sol" style="font-weight:800;color:${GRAR[L.rar][1]}">${L.lucky?'🍀 LUCKY ROLL · ':''}${GRAR[L.rar][0].toUpperCase()}</span><h3 style="margin:2px 0">${GGT[L.t].i} ${esc(GGT[L.t].n)}</h3><p style="margin:0">${esc(GGT[L.t].role)}</p>
-    <p style="margin:6px 0 0"><b>${L.note==='new'?'✨ New tower!'+(S.load.includes(L.t)?' Added to your loadout.':''):L.note==='copy'?`Another copy: +5% power (★${S.cp[L.t]})`:'Already maxed: half your coins back'}</b></p></div><button class="abtn sec sm" style="margin-left:auto" onclick="GGLAST=null;rerealm()">OK</button></div>`:'';
-  const own=new Set(S.own),pityLeft=Math.max(1,10-(S.pity||0));
+  const rv=ggRevealCard(S);
   const cust=m.custom?`<div class="gcard" style="margin-bottom:14px;border:3px solid #22C55E"><div class="split"><h3 style="margin:0">🛠️ Ready to play: ${esc(m.n)}${m.cls?` <span class="sol">by ${esc(m.cls.by)}</span>`:''}</h3><button class="abtn sec sm" onclick="GGPLAY=null;rerealm()">← Back to the stages</button></div><p class="sol" style="margin:4px 0 0">${GGTHI[m.th]} ${esc(GGTHN[m.th])} · ${m.waves} waves · ${GGDIFF[m.d][0]} · ${m.king?'🤴 Goblin King':'👑 Goblin boss'} at the end. Press Start defending below.</p></div>`:'';
   return `<div class="gworld">${clouds()}${gameHead('Goblin Gate',m.custom?`Made map: ${esc(m.n)}`:`Stage ${mi+1}: ${m.n}`)}${outOfTime()?restCard():''}${card}${rv}${cust}${subjChips()}
   <div class="gcard"><h3>🗺️ Stages</h3><div class="ggmaps">${GGMAPS.map((g,i)=>{const o=ggOpen(i),st=S.st[g.id]||0;return `<button class="ggmap ${g.id===m.id&&!m.custom?'on':''}" ${o?'':'disabled'} aria-pressed="${g.id===m.id}" onclick="GGPLAY=null;ARS('gate').map='${g.id}';SYNC();rerealm()"><span class="ggstage" aria-hidden="true">${i+1}</span><img src="${ggThumb(g).toDataURL()}" alt=""><b>${o?'':'🔒 '}Stage ${i+1}: ${esc(g.n)}</b><span class="sol">${g.waves} waves${g.king?' · 🤴 Final boss':''} · ${o?stars3(st):'Win stage '+i}</span><span class="sol">🎯 ${esc(g.goal[1])}</span></button>`}).join('')}</div></div>
   ${ggMakerCard()}${ggClassCard()}
-  <div class="gcard" style="margin-top:14px"><div class="split"><h3>🛡️ Your towers (${S.own.length} of ${Object.keys(GGT).length})</h3><span class="sol">Loadout: ${S.load.length} of 5 · pick the towers you take into a stage</span></div>
-    <div class="ggtw">${Object.entries(GGT).map(([k,D])=>{const o=own.has(k),inL=S.load.includes(k);return `<div class="c ${o?'':'lock'} ${inL?'in':''}" style="--rc:${GRAR[D.rar][1]}"><span class="rar">${GRAR[D.rar][0]}</span><img src="${ggIcon(k)}" alt=""><b>${o?esc(D.n):'???'}</b><small>${o?esc(D.role):'Find it in a chest'}</small><small>💰 ${D.cost}${o&&S.cp[k]?` · ${'★'.repeat(S.cp[k])}`:''}</small>${o?`<button class="chip ${inL?'on':''}" aria-pressed="${inL}" onclick="ggLoad('${k}')">${inL?'✓ In loadout':'Add to loadout'}</button>`:''}</div>`}).join('')}</div></div>
-  <div class="gcard" style="margin-top:14px"><div class="split"><h3>🎁 Tower chests</h3><span style="font:800 1.1rem 'Bricolage Grotesque',sans-serif">🪙 ${S.coins||0} Gate coins</span></div>
-    <div class="ggshop"><button ${(S.coins||0)<10?'disabled':''} onclick="ggRoll(false);rerealm()"><b>📦 Normal chest · 🪙 10</b><span class="sol">Common ${GGODDS.normal[0]}% · Rare ${GGODDS.normal[1]}% · Epic ${GGODDS.normal[2]}% · Legendary ${GGODDS.normal[3]}%</span><span class="sol">Epic or better guaranteed within ${pityLeft} chest${pityLeft===1?'':'s'}</span></button>
-      <button class="lucky" ${(S.coins||0)<50?'disabled':''} onclick="ggRoll(true);rerealm()"><b>🍀 Lucky roll · 🪙 50</b><span class="sol">Extra luck! No Commons: Rare ${GGODDS.lucky[1]}% · Epic ${GGODDS.lucky[2]}% · Legendary ${GGODDS.lucky[3]}%</span></button></div>
-    <p class="sol" style="margin:8px 0 0">Earn Gate coins by clearing waves (2 for a perfect wave), winning stages, beating the Goblin King, and with right answers in Goblin Gate (up to 20 a day). Coins can't be bought. A copy of a tower you have makes it 5% stronger (up to 5 copies).</p></div>
+  ${ggTowersCard(S)}${ggChestCard(S)}
   <div class="gcard" style="margin-top:14px"><h3>🚩 Castle banner</h3><div class="ggflags">${Object.keys(GFLAG).map(f=>{const h=AG.has('gate.flag.'+f),it=AG.item('gate.flag.'+f);return `<button ${h?'':'disabled'} class="${f===flag?'on':''}" style="${GFLAG[f]==='rainbow'?'background:linear-gradient(135deg,#ff6b8a,#ffd34d,#5ff3a0,#5fb8ff)':'background:'+GFLAG[f]}" aria-pressed="${f===flag}" aria-label="${esc(it.n)}${h?'':': '+esc(it.how)}" title="${esc(it.n)}${h?'':': '+esc(it.how)}" onclick="ARS('gate').flag='${f}';SYNC();rerealm()"></button>`}).join('')}</div></div>
   <div style="margin-top:14px">${AG.intro('gate','AG.play(\'gate\')')}</div></div>`};
 </script>
