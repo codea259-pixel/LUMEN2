@@ -148,6 +148,13 @@ const errs = [], ok = s => console.log('✓', s);
     return out; }).catch(e => ({ error: e.message }));
   ok('student attacks on the game: ' + JSON.stringify(ga)); if (ga['own board row saved'] !== 'yes' || Object.entries(ga).some(([k, v]) => k !== 'own board row saved' && v !== 'blocked')) errs.push('game rule allowed an attack or the board row was not saved');
 
+  // 5c1. The Royal turtle is an exclusive Owner gift: a teacher can't put it in a gift, through the site or the rules
+  { const tp = await t.evaluate(async () => { const db = firebase.app().firestore(), cs = await db.collection('classes').where('teacherId', '==', FBM.uid()).get(), c = cs.docs[0], u = c.data().members[0], out = {};
+      try { await c.ref.collection('awards').add({ uid: u, gems: 1, reason: 'x', ts: 1, claimed: false, pet: 'p_turtle' }); out.rules = 'ALLOWED' } catch (e) { out.rules = 'blocked' }
+      try { await api('POST', `/api/classes/${ST.classes[0].id}/awards`, { to: 'all', gems: 1, reason: 'x', pet: 'p_turtle' }); out.site = 'ALLOWED' } catch (e) { out.site = 'blocked' }
+      try { await c.ref.collection('awards').add({ uid: u, gems: 1, reason: 'ok', ts: 1, claimed: false }); out.gems = 'ALLOWED' } catch (e) { out.gems = 'blocked' } return out });
+    ok('teacher gifting the Royal turtle: ' + JSON.stringify(tp)); if (tp.rules !== 'blocked' || tp.site !== 'blocked' || tp.gems !== 'ALLOWED') errs.push('only the Owner may give the turtle: ' + JSON.stringify(tp)); }
+
   // 5c2. Goblin Gate maps shared with the class: the teacher and a student share; likes and plays count; the rules block forged or changed maps
   { const cid = await t.evaluate(() => ST.classes[0].id), mk = () => { const e = a => a.map(i => i.toString(36).padStart(2, '0')).join(''); return { na: 2, nb: 3, th: 'frozen', w: 6, d: 1, b: false, road: e([...Array(15)].map((_, i) => 60 + i)), pads: e([45, 48, 51, 79]) } };
     const tm = await t.evaluate(async ([id, m]) => (await api('POST', `/api/classes/${id}/maps`, m)).id, [cid, mk()]);

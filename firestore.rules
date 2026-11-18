@@ -188,7 +188,9 @@ service cloud.firestore {
         allow read: if signedIn() && (cls().teacherId == request.auth.uid || isOwner() || resource.data.uid == request.auth.uid);
         allow create: if signedIn() && (cls().teacherId == request.auth.uid || isOwner())
           && request.resource.data.gems is int && request.resource.data.gems >= 1 && request.resource.data.gems <= 20
-          && request.resource.data.claimed == false && request.resource.data.uid in cls().members;
+          && request.resource.data.claimed == false && request.resource.data.uid in cls().members
+          // the Turtle is an exclusive pet: only the Owner can put one in a gift
+          && (!('pet' in request.resource.data) || (isOwner() && request.resource.data.pet == 'p_turtle'));
         allow update: if signedIn() && resource.data.uid == request.auth.uid && resource.data.claimed == false
           && changedOnly(['claimed']) && request.resource.data.claimed == true;
         allow delete: if signedIn() && (cls().teacherId == request.auth.uid || isOwner());

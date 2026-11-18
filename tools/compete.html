@@ -52,7 +52,7 @@ const _vcG=VIEWS.classes;VIEWS.classes=function(){const h=_vcG(),b=(ST.joined||[
 /* ---------- Bonus gems: picked up when the learner opens the site or My classes ---------- */
 async function claimAwards(){if(BOOT.local||BOOT.role!=='student')return;try{const r=await api('GET','/api/awards');if(!r.awards.length)return;
   const c=await api('POST','/api/awards/claim',{ids:r.awards.map(a=>a.id)}),got=r.awards.filter(a=>c.claimed.includes(a.id));if(!got.length)return;
-  got.forEach(a=>addGems(a.gems));celebrate(got.map(a=>`Your teacher gave you ${a.gems} 💎: ${a.reason}${a.cls?' ('+a.cls+')':''}`),true)}catch(e){}}
+  got.forEach(a=>{if(a.pet&&shopItem(a.pet)){if(!GM.own.includes(a.pet))GM.own=[...GM.own,a.pet];GM.eq.pet=a.pet;SYNC();renderMe()}else addGems(a.gems)});celebrate(got.map(a=>a.pet&&shopItem(a.pet)?`👑 The Owner gave you an exclusive pet: the ${shopItem(a.pet).n}! It's on your hero now.`:`Your teacher gave you ${a.gems} 💎: ${a.reason}${a.cls?' ('+a.cls+')':''}`),true)}catch(e){}}
 const _lcG=LOAD.classes;LOAD.classes=async()=>{await _lcG();claimAwards()};
 setTimeout(claimAwards,2500);
 

@@ -131,4 +131,28 @@ const _bdW=bdApply;bdApply=function(Z,c,r,tool){const b=bdS().bricks;_bdW(Z,c,r,
 /* the hub: the map first, and the arcade quests beside today's quests */
 const _hvW=hubView;hubView=function(){const h=_hvW();return h.replace('<div class="tiles">',`${wmView()}<h3 style="margin:0 0 10px;color:#fff">All games</h3><div class="tiles">`)
   .replace('<div class="gcard parch"><div class="split"><h3>⚔️ Today','<div style="display:grid;gap:18px;align-content:start"><div class="gcard parch"><div class="split"><h3>⚔️ Today').replace(/<\/div><\/div><\/div>$/,`</div>${aqCard()}</div></div></div>`)};
+
+/* ---------- Owner perks (Owner console): unlimited currency in every game, and the exclusive Royal turtle ----------
+   Unlimited currency keeps the Owner's balances full; anything bought stays. Switching it off brings back the balances from before. */
+const OWNRICH=()=>{if(BOOT.role!=='owner'||!GM.rich)return;const N=999999,S=BOOT.state;S.gems=N;
+  try{const g=ARS('gate');g.coins=N;g.shards=N}catch(e){}try{isS().coins=N}catch(e){}try{bdS().bricks=N}catch(e){}try{const P=PET();P.food=999;P.treat=999}catch(e){}
+  try{if(AG.cur&&AG.cur.id==='gate'&&AG.cur.st&&AG.cur.st.gold<N/2)AG.cur.st.gold=N}catch(e){}};
+function ownerRich(on){if(BOOT.role!=='owner')return;const S=BOOT.state;
+  if(on&&!GM.rich){GM.richBak={gems:GEMS(),gate:(ARS('gate').coins||0),shards:(ARS('gate').shards||0),isl:(()=>{try{return isS().coins}catch(e){return 0}})(),bricks:(()=>{try{return bdS().bricks}catch(e){return 0}})()};GM.rich=1;OWNRICH()}
+  else if(!on&&GM.rich){const B=GM.richBak||{};GM.rich=0;S.gems=B.gems||0;const g=ARS('gate');g.coins=B.gate||0;g.shards=B.shards||0;try{isS().coins=B.isl||0}catch(e){}try{bdS().bricks=B.bricks||0}catch(e){}delete GM.richBak}
+  SYNC();renderMe();r2()}
+if(BOOT.role==='owner'){if(GM.rich===undefined){GM.rich=0}if(!GM.own.includes('p_turtle'))GM.own=[...GM.own,'p_turtle'];OWNRICH();setInterval(OWNRICH,1500)}
+let OPCL=null;
+function giveTurtle(){const c=+$('otc').value,to=$('ots').value;if(!c)return msg('Pick a class first.');
+  busy(async()=>{const r=await api('POST',`/api/classes/${c}/awards`,{to,gems:1,reason:'An exclusive gift from the Owner',pet:'p_turtle'});msg(`🐢 Sent the Royal turtle to ${r.count} student${r.count===1?'':'s'}. They get it the next time they open Bose Academy.`)})}
+O.perks=function(){if(OPCL===null){OPCL=[];LOAD.teacher().then(()=>{OPCL=ST.classes||[];r2()}).catch(()=>{OPCL=[];r2()})}
+  const cs=OPCL||[],sel=+(ST.otc||0),c=cs.find(x=>x.id===sel)||cs[0],St=(c&&c.students)||[];
+  return `<div class="card"><h3>💎 Unlimited currency</h3><p class="sol">Your account only. Gems, Goblin Gate coins and shards, Island coins, Block Builder bricks, pet food and treats, and gold in a Goblin Gate stage stay full. Anything you buy is yours to keep. Switch it off to get your old balances back.</p>
+    <label class="ck2" style="display:flex;gap:10px;align-items:center;font-weight:700;margin-top:8px"><input type="checkbox" ${GM.rich?'checked':''} onchange="ownerRich(this.checked)"> Unlimited currency is ${GM.rich?'on':'off'}</label></div>
+  <div class="card" style="margin-top:16px"><div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap"><div style="width:110px;flex:none">${heroSvg(GM,{eq:{pet:'p_turtle'},label:'The Royal turtle'})}</div>
+    <div style="flex:1;min-width:240px"><h3>🐢 The Royal turtle</h3><p class="sol">An exclusive pet. It can't be bought: only you can give it. You already have it in your shop to wear.</p>
+    ${cs.length?`<div class="row"><select id="otc" aria-label="Class" onchange="ST.otc=+this.value;r2()">${cs.map(x=>`<option value="${x.id}" ${c&&x.id===c.id?'selected':''}>${esc(x.name)}</option>`).join('')}</select>
+      <select id="ots" aria-label="Give to"><option value="all">Whole class</option>${St.map(s=>`<option value="${s.uid}">${esc(s.name)}</option>`).join('')}</select><button class="lamp" onclick="giveTurtle()">🐢 Give the turtle</button></div>`
+      :`<p class="sol">${OPCL&&OPCL.length===0?'No classes yet. A student must be in a class to receive the turtle.':'Loading classes…'}</p>`}</div></div></div>`};
+const _ovP=VIEWS.owner;VIEWS.owner=function(){const h=_ovP(),k='</div><div style="margin-top:16px">';return h.replace(k,`<button class="chip ${ST.ot==='perks'?'on':''}" onclick="ST.ot='perks';r2()">👑 Owner perks</button>`+k)};
 </script>

@@ -205,7 +205,7 @@ const FBM=(()=>{
   route('POST','/api/classes/:id/awards',async(b,p)=>{need(isTeacher());const cd=await ownClass(p.id),c=cd.data(),g=gameOf(c),gems=Math.round(+b.gems||0),reason=str(b.reason||'Great work',1,60,'Reasons'),to=String(b.to??'all');
     if(gems<1||gems>20)throw new E(400,'Give 1 to 20 gems.');let ids=c.members||[];
     if(to.startsWith('t:')){const t=+to.slice(2);ids=ids.filter(u=>g.tm[u]===t)}else if(to!=='all'){const u=sid(to);ids=ids.filter(x=>x===u)}
-    if(!ids.length)throw new E(400,'Nobody to give gems to.');const ts=now();await Promise.all(ids.map(u=>cd.ref.collection('awards').add({uid:u,gems,reason,ts,claimed:false,cname:c.name})));return{ok:true,count:ids.length}});
+    if(!ids.length)throw new E(400,'Nobody to give gems to.');const ts=now();const pet=b.pet==null?null:String(b.pet);if(pet!==null&&(pet!=='p_turtle'||!isOwner()))throw new E(403,'Only the Owner can give the Turtle.');await Promise.all(ids.map(u=>cd.ref.collection('awards').add({uid:u,gems,reason,ts,claimed:false,cname:c.name,...(pet?{pet}:{})})));return{ok:true,count:ids.length}});
   /* Goblin Gate maps shared with a class (classes/{c}/maps/{m}). The rules check who writes and each field's shape; the road is checked here, and again by the game before it plays one. */
   const MTH=['valley','frozen','crystal','swamp','lava','sky','fortress'],MC=15,MR=9;
   const mInt=(v,lo,hi)=>{v=Math.trunc(+v);if(!Number.isFinite(v)||v<lo||v>hi)throw new E(400,'Invalid number.');return v};
@@ -227,7 +227,7 @@ const FBM=(()=>{
     await g.ref.update({likes:on?FV.arrayUnion(me.uid):FV.arrayRemove(me.uid)});return{ok:true,liked:on,likes:L.length+(on?1:-1)}});
   route('POST','/api/classes/:id/maps/:mid/play',async(b,p)=>{need();const {cd}=await mClass(p.id),g=await mOne(cd,p.mid);await g.ref.update({plays:FV.increment(1)});return{ok:true}});
   route('GET','/api/awards',async()=>{need();if(myCls===null)myCls=(await db.collection('classes').where('members','array-contains',me.uid).get()).docs.map(d=>d.id);
-    const out=[];for(const c of myCls){const r=await doc('classes',c).collection('awards').where('uid','==',me.uid).where('claimed','==',false).get();r.forEach(d=>{const v=d.data();out.push({id:num(c+'|'+d.id),gems:v.gems,reason:v.reason,ts:v.ts,cls:v.cname})})}
+    const out=[];for(const c of myCls){const r=await doc('classes',c).collection('awards').where('uid','==',me.uid).where('claimed','==',false).get();r.forEach(d=>{const v=d.data();out.push({id:num(c+'|'+d.id),gems:v.gems,reason:v.reason,ts:v.ts,pet:v.pet||null,cls:v.cname})})}
     return{awards:out.sort((a,b)=>a.ts-b.ts).slice(0,50)}});
   route('POST','/api/awards/claim',async b=>{need();const got=[];
     for(const id of (Array.isArray(b.ids)?b.ids:[]).slice(0,50)){const [c,a]=sid(id).split('|');if(!a)continue;try{await doc('classes',c).collection('awards').doc(a).update({claimed:true});got.push(id)}catch(e){}}

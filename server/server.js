@@ -45,6 +45,7 @@ try { db.exec("ALTER TABLE tests ADD COLUMN passages TEXT DEFAULT '[]'"); } catc
 try { db.exec('ALTER TABLE classes ADD COLUMN game TEXT'); } catch { /* already there */ }
 for (const t of ['users', 'classes']) { try { db.exec(`ALTER TABLE ${t} ADD COLUMN member_until INTEGER DEFAULT 0`); } catch { /* already there */ } }
 db.exec('CREATE TABLE IF NOT EXISTS awards(id INTEGER PRIMARY KEY, class_id INTEGER, user_id INTEGER, gems INTEGER, reason TEXT, ts INTEGER, claimed INTEGER DEFAULT 0)');
+try { db.exec('ALTER TABLE awards ADD COLUMN pet TEXT'); } catch { /* already there */ }
 db.exec("CREATE TABLE IF NOT EXISTS class_maps(id INTEGER PRIMARY KEY, class_id INTEGER, author_id INTEGER, data TEXT, likes TEXT DEFAULT '[]', plays INTEGER DEFAULT 0, ts INTEGER)");
 const Q = (sql, ...p) => db.prepare(sql).all(...p);
 const Q1 = (sql, ...p) => db.prepare(sql).get(...p);
@@ -361,7 +362,9 @@ route('POST', '/api/classes/:id/awards', c => { need(c, isTeacher(c.u)); const k
   let ids = Q('SELECT user_id FROM class_members WHERE class_id=?', k.id).map(m => m.user_id);
   if (to.startsWith('t:')) { const t = int(to.slice(2), 0, 5); ids = ids.filter(u => g.tm[u] === t); } else if (to !== 'all') { const u = int(to, 1, 1e12); ids = ids.filter(x => x === u); }
   if (!ids.length) throw new E(400, 'Nobody to give gems to.');
-  const now = Date.now(); ids.forEach(u => X('INSERT INTO awards(class_id,user_id,gems,reason,ts) VALUES(?,?,?,?,?)', k.id, u, gems, reason, now)); return { ok: true, count: ids.length }; });
+  /* the Turtle is an exclusive pet only the Owner can give */
+  const pet = c.body.pet == null ? null : String(c.body.pet); if (pet !== null && (pet !== 'p_turtle' || c.u.role !== 'owner')) throw new E(403, 'Only the Owner can give the Turtle.');
+  const now = Date.now(); ids.forEach(u => X('INSERT INTO awards(class_id,user_id,gems,reason,ts,pet) VALUES(?,?,?,?,?,?)', k.id, u, gems, reason, now, pet)); return { ok: true, count: ids.length }; });
 // Goblin Gate maps shared with a class: a 15 x 9 grid with a road from the left edge to the right edge, 3 to 8 stone pads beside it,
 // and a name made from two word lists (no free text). Classmates play and like them; the author or the teacher removes them.
 const GGTH = ['valley', 'frozen', 'crystal', 'swamp', 'lava', 'sky', 'fortress'], GMC = 15, GMR = 9;
@@ -387,7 +390,7 @@ route('DELETE', '/api/classes/:id/maps/:mid', c => { need(c); const { k, t } = m
 route('POST', '/api/classes/:id/maps/:mid/like', c => { need(c); const { k } = mapClass(c, c.params.id), r = oneMap(c, k, c.params.mid), L = JSON.parse(r.likes), i = L.indexOf(c.u.id);
   i < 0 ? L.push(c.u.id) : L.splice(i, 1); X('UPDATE class_maps SET likes=? WHERE id=?', JSON.stringify(L), r.id); return { ok: true, liked: i < 0, likes: L.length }; });
 route('POST', '/api/classes/:id/maps/:mid/play', c => { need(c); limit('mpp' + c.u.id, 60, 600e3); const { k } = mapClass(c, c.params.id), r = oneMap(c, k, c.params.mid); X('UPDATE class_maps SET plays=plays+1 WHERE id=?', r.id); return { ok: true }; });
-route('GET', '/api/awards', c => { need(c); return { awards: Q('SELECT a.id,a.gems,a.reason,a.ts,c.name cls FROM awards a JOIN classes c ON c.id=a.class_id WHERE a.user_id=? AND a.claimed=0 ORDER BY a.ts LIMIT 50', c.u.id) }; });
+route('GET', '/api/awards', c => { need(c); return { awards: Q('SELECT a.id,a.gems,a.reason,a.ts,a.pet,c.name cls FROM awards a JOIN classes c ON c.id=a.class_id WHERE a.user_id=? AND a.claimed=0 ORDER BY a.ts LIMIT 50', c.u.id) }; });
 route('POST', '/api/awards/claim', c => { need(c); const got = [];
   for (const id of (Array.isArray(c.body.ids) ? c.body.ids : []).slice(0, 50)) { const r = X('UPDATE awards SET claimed=1 WHERE id=? AND user_id=? AND claimed=0', int(id, 1, 1e12), c.u.id); if (r.changes) got.push(+id); }
   return { claimed: got }; });
