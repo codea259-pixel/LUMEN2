@@ -170,6 +170,44 @@ svg.orb{display:inline-block;vertical-align:middle;flex:none}
 .set label.sw{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid var(--line)}
 .set label.sw span small{display:block;color:var(--mute);font-size:.85rem}
 .set input[type=checkbox]{width:22px;height:22px;accent-color:var(--teal)}
+
+/* ===== The explorer look (matches the front page): dusk-indigo bar, warm paper, gold pills ===== */
+:root:not([data-contrast=high]){--bg:#FFF9EE;--ink:#1B1A3A;--mute:#5A5F7D;--line:#EFE4CF;--node:#EDE3D0;--lamp-soft:#FFEFC2;--teal:#5B4BD6;--night:#14123A;
+  --shadow:0 2px 4px rgba(27,26,58,.05),0 10px 28px rgba(27,26,58,.08);--shadow-up:0 4px 8px rgba(27,26,58,.08),0 18px 40px rgba(27,26,58,.14);--r:24px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]):not([data-contrast=high]){--bg:#0F0E2A;--panel:#1C1A44;--ink:#EEEDFB;--mute:#B4B3D8;--line:#2E2B63;--node:#34316E;--lamp-soft:#3A3319}}
+:root[data-theme="dark"]:not([data-contrast=high]){--bg:#0F0E2A;--panel:#1C1A44;--ink:#EEEDFB;--mute:#B4B3D8;--line:#2E2B63;--node:#34316E}
+:root:not([data-contrast=high]) header.top{background:linear-gradient(90deg,#14123A,#231E5E);border-bottom:0;box-shadow:0 6px 24px rgba(20,18,58,.25);backdrop-filter:none}
+:root:not([data-contrast=high]) header.top .brand{color:#fff}
+:root:not([data-contrast=high]) header.top .brand svg,:root:not([data-contrast=high]) header.top .brand img{filter:drop-shadow(0 0 8px rgba(255,211,77,.65))}
+:root:not([data-contrast=high]) #tabs .tb{color:#C9C8EE;border-radius:999px}
+:root:not([data-contrast=high]) #tabs .tb:hover{color:#fff;background:rgba(255,255,255,.1)}
+:root:not([data-contrast=high]) #tabs .tb.on{background:linear-gradient(180deg,#FFD34D,#F2A900);color:#2A1A00;box-shadow:0 3px 0 #A36F00}
+:root:not([data-contrast=high]) header.top .chipstat{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#fff}
+:root:not([data-contrast=high]) header.top .chipstat small{color:#C9C8EE}
+:root:not([data-contrast=high]) header.top .avatar{border-color:#FFD34D}
+:root:not([data-contrast=high]) .card{border:0;box-shadow:var(--shadow)}
+:root:not([data-contrast=high]) button{border-radius:999px}
+:root:not([data-contrast=high]) button.lamp{background:linear-gradient(180deg,#FFD34D,#F2A900);color:#2A1A00;box-shadow:0 4px 0 #A36F00}
+:root:not([data-contrast=high]) button.lamp:hover{box-shadow:0 6px 0 #A36F00,0 10px 24px rgba(242,169,0,.35)}
+:root:not([data-contrast=high]) button.alt{border-color:var(--line)}
+:root:not([data-contrast=high]) .chip{border-radius:999px}
+:root:not([data-contrast=high]) .hello{position:relative;overflow:hidden;isolation:isolate;padding:30px 30px;border-radius:28px;color:#fff;background:#14123A;box-shadow:var(--shadow-up);align-items:center}
+:root:not([data-contrast=high]) .hello:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(20,18,58,.96) 0%,rgba(20,18,58,.8) 45%,rgba(20,18,58,.3) 100%),url(hero-map.jpg) 60% 45%/cover}
+:root:not([data-contrast=high]) .hello h1{color:#fff;font-size:clamp(1.8rem,3.8vw,2.6rem)}
+:root:not([data-contrast=high]) .hello p,:root:not([data-contrast=high]) .hello .sol{color:#D7D9F5}
+:root:not([data-contrast=high]) .hello button.alt{color:#fff;border-color:rgba(255,255,255,.4)}
+@media(max-width:940px){:root:not([data-contrast=high]) #bnav{background:#14123A;border-top:0}:root:not([data-contrast=high]) #bnav button{color:#C9C8EE}:root:not([data-contrast=high]) #bnav button.on{color:#2A1A00;background:#FFD34D}}
+header.top{max-width:none}
+:root:not([data-contrast=high]) .hello .stat{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);box-shadow:none;color:#fff;backdrop-filter:blur(6px)}
+:root:not([data-contrast=high]) .hello .stat span{color:#D7D9F5}
+/* the sign-in page: a dusk banner over the island */
+:root:not([data-contrast=high]) body:has(.auth) header:not(.top){max-width:none;margin:0;padding:56px max(24px,calc(50vw - 560px)) 120px;color:#fff;position:relative;isolation:isolate;background:#14123A}
+:root:not([data-contrast=high]) body:has(.auth) header:not(.top):before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(20,18,58,.95),rgba(20,18,58,.6) 60%,rgba(20,18,58,.3)),linear-gradient(0deg,rgba(20,18,58,.6),transparent 40%),url(hero-map.jpg) 60% 45%/cover}
+:root:not([data-contrast=high]) body:has(.auth) header:not(.top) h1{color:#fff}
+:root:not([data-contrast=high]) body:has(.auth) header:not(.top) p{color:#D7D9F5;font-size:1.15rem}
+:root:not([data-contrast=high]) .auth{position:relative;margin-top:-90px}
+:root:not([data-contrast=high]) .auth>h2{color:#fff;margin-bottom:12px}
+:root:not([data-contrast=high]) .auth .card{box-shadow:var(--shadow-up)}
 </style>
 <script type="text/x-lumen">
 /* ===== Bose Academy design layer: navigation, welcome, mission, map, practice, rewards, settings ===== */
