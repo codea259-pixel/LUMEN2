@@ -4,107 +4,183 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Bose Academy: Master every skill. Understand every concept.</title>
+<meta name="description" content="Free Pre-K to Grade 12 learning: lessons, practice with a tutor in every problem, a knowledge map, teacher tools and learning games.">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#EEF3F8;--panel:#fff;--ink:#1B2A41;--mute:#546580;--line:#D5DEE9;--lamp:#F2A900;--soft:#FCEFC7;--teal:#0F8B8D;--node:#D5DEE9;
+:root{--bar:#0E7C86;--bar2:#0A6670;--sky1:#BFF3EA;--sky2:#E9FBD9;--ink:#1B2A41;--mute:#4E6078;--lamp:#F2A900;--teal:#0E7C86;--violet:#7C4DCC;--sea:#56B9E6;--hill:#7CCB5B;--hill2:#55A84A;--panel:#fff;--bg:#F6F8FB;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121B2B;--panel:#1B2740;--ink:#EAF0F8;--mute:#A3B5CF;--line:#2F3E5C;--soft:#3A3319;--node:#33425F;--teal:#3CC1C3}}
-:root[data-theme="dark"]{--bg:#121B2B;--panel:#1B2740;--ink:#EAF0F8;--mute:#A3B5CF;--line:#2F3E5C;--soft:#3A3319;--node:#33425F;--teal:#3CC1C3}
 *{box-sizing:border-box}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.6 "Atkinson Hyperlegible",system-ui,sans-serif}
-h1,h2,h3{font-family:"Bricolage Grotesque","Atkinson Hyperlegible",sans-serif;line-height:1.1;margin:0;letter-spacing:-.02em}
+h1,h2,h3{font-family:"Bricolage Grotesque","Atkinson Hyperlegible",sans-serif;line-height:1.12;margin:0;letter-spacing:-.01em}
 a{color:inherit}
-.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
-nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
-nav b{font:800 26px "Bricolage Grotesque",sans-serif}
-nav a.btn{padding:9px 16px;font-size:16px}
-.btn{display:inline-block;text-decoration:none;font-weight:700;padding:14px 24px;border-radius:14px;background:var(--lamp);color:#1B2A41}
-.btn.alt{background:transparent;border:2px solid var(--line);color:var(--ink)}
-.btn:focus-visible,.chain button:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
-.hero{padding:40px 0 56px}
-.hero h1{font-size:clamp(42px,8.5vw,96px);font-weight:800;max-width:14ch}
-.hero p{max-width:52ch;color:var(--mute);font-size:21px;margin:20px 0 28px}
-.row{display:flex;gap:12px;flex-wrap:wrap}
-.chain{display:flex;align-items:center;margin-top:48px;overflow-x:auto;padding:14px 4px}
-.chain button{flex:none;width:76px;height:76px;border-radius:50%;border:3px solid var(--panel);background:var(--node);color:var(--ink);font:700 14px "Atkinson Hyperlegible",sans-serif;cursor:pointer;transition:background .3s,box-shadow .3s}
-.chain button.on{background:var(--lamp);color:#1B2A41;box-shadow:0 0 34px 6px rgba(242,169,0,.55)}
-.chain i{flex:none;width:36px;height:4px;background:var(--line);transition:background .3s}
-.chain i.on{background:var(--lamp)}
-.hint{color:var(--mute);font-size:15px;margin:6px 0 0}
-section{padding:56px 0;border-top:1px solid var(--line)}
-section h2{font-size:clamp(30px,5vw,46px);max-width:20ch;margin-bottom:14px}
-.lead{color:var(--mute);max-width:60ch;margin:0 0 30px}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;counter-reset:s;padding:0;list-style:none;margin:0}
-.steps li{counter-increment:s;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px}
-.steps li:before{content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--soft);font-weight:700;margin-bottom:12px}
-.steps h3{font-size:22px;margin-bottom:6px}
-.steps p{margin:0;color:var(--mute);font-size:16px}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:40px}
-.two h3{font-size:26px;margin-bottom:8px}
-.two ul{margin:12px 0 0;padding-left:20px;color:var(--mute)}
-.two li{margin:6px 0}
-.vs{width:100%;border-collapse:collapse;font-size:16px;background:var(--panel);border-radius:16px;overflow:hidden}
-.vs th,.vs td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
-.vs th{font-family:"Bricolage Grotesque",sans-serif;font-size:18px}
-.vs td:first-child{font-weight:700}
-.tbl{overflow-x:auto}
-.free{background:var(--soft);border-radius:24px;padding:44px 32px}
-.free h2{max-width:22ch}
-.free ul{columns:2;padding-left:20px;margin:16px 0 28px}
-.free li{margin:6px 0;break-inside:avoid}
-footer{padding:36px 0 48px;color:var(--mute);font-size:15px;border-top:1px solid var(--line);line-height:1.7}
-footer nav{display:flex;gap:18px;flex-wrap:wrap;padding:0 0 8px}footer nav a{font-weight:700}
-.about{max-width:62ch;margin-top:8px}.about p{color:var(--mute)}
-@media(max-width:860px){.steps{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr;gap:28px}.free ul{columns:1}}
-@media(max-width:520px){.steps{grid-template-columns:1fr}body{font-size:17px}}
-@media(prefers-reduced-motion:reduce){.chain button,.chain i{transition:none}}
+:focus-visible{outline:3px solid var(--lamp);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+
+/* the top bar */
+.bar{background:var(--bar);color:#fff}
+.bar .top{display:flex;align-items:center;gap:18px;padding:14px 0}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;background:#fff;color:var(--bar);padding:6px 14px 6px 8px;border-radius:12px;font:800 22px "Bricolage Grotesque",sans-serif;box-shadow:0 3px 0 rgba(0,0,0,.15)}
+.logo svg{width:34px;height:34px}
+.grades{flex:1;display:flex;justify-content:center;gap:5px}
+.grades a{min-width:34px;text-align:center;text-decoration:none;font-weight:700;font-size:14px;padding:4px 8px;border-radius:99px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25)}
+.grades a:hover{background:#fff;color:var(--bar)}
+.acts{display:flex;gap:10px}
+.b{display:inline-block;text-decoration:none;font-weight:700;padding:10px 18px;border-radius:10px;white-space:nowrap}
+.b.in{background:#fff;color:var(--bar)}.b.go{background:var(--lamp);color:#1B2A41;box-shadow:0 3px 0 #B37D00}
+.bar nav[aria-label=Main]{display:flex;justify-content:center;gap:40px;padding:4px 0 14px;font:500 21px "Bricolage Grotesque",sans-serif}
+.bar nav a{text-decoration:none;opacity:.95}.bar nav a:hover{text-decoration:underline;text-underline-offset:6px}
+
+/* the hero scene */
+.hero{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--sky1),var(--sky2) 70%);min-height:600px}
+.hero .art{position:absolute;inset:0;width:100%;height:100%}
+.hero .in{position:relative;padding:34px 22px 130px;max-width:1180px;margin:0 auto;text-align:center}
+.hero h1{font-size:clamp(36px,5.4vw,64px);font-weight:700;color:var(--teal)}
+.hero h1 b{color:var(--violet);font-weight:800}
+.clouds{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:34px auto 30px;max-width:1080px}
+.cloud{position:relative;background:#fff;border-radius:60px 70px 56px 64px;padding:34px 26px 26px;box-shadow:0 10px 24px rgba(14,124,134,.14);border:2px solid #D4F2EE}
+.cloud:before,.cloud:after{content:"";position:absolute;background:#fff;border:2px solid #D4F2EE;border-bottom:none;border-right:none;border-radius:50%;z-index:0}
+.cloud:before{width:110px;height:110px;top:-46px;left:22%;transform:rotate(45deg);border-color:#D4F2EE transparent transparent #D4F2EE}
+.cloud:after{width:80px;height:80px;top:-30px;right:20%;transform:rotate(45deg);border-color:#D4F2EE transparent transparent #D4F2EE}
+.cloud>*{position:relative;z-index:1}
+.cloud h2{font-size:30px;font-weight:500;color:var(--teal)}
+.cloud.v h2{color:var(--violet)}.cloud.o h2{color:#C2410C}
+.cloud p{margin:10px 0 0;color:var(--mute);font-size:17px}
+.cloud p b{color:var(--ink)}
+.cloud .dot{color:#9AD7CF;margin:0 4px}
+.cta{display:inline-block;text-decoration:none;font-weight:700;font-size:22px;padding:13px 36px;border-radius:12px;background:var(--lamp);color:#1B2A41;box-shadow:0 4px 0 #B37D00}
+.cta:hover{transform:translateY(-1px)}
+.sub{margin:14px 0 0;color:var(--mute);font-size:16px}
+
+/* below the hero */
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin:-70px auto 0;position:relative;z-index:2}
+.card{display:flex;gap:22px;align-items:center;background:linear-gradient(120deg,#F3FBE6,#E3F7F3);border:2px solid #D1EFE6;border-radius:28px;padding:24px 28px;text-decoration:none;box-shadow:0 8px 20px rgba(27,42,65,.08)}
+.card.t{background:linear-gradient(120deg,#EFE9FF,#E4F2FF);border-color:#DCD3F7}
+.card svg{flex:none;width:110px;height:96px}
+.card h3{font-size:30px;font-weight:500;color:#2F7D32}.card.t h3{color:var(--violet)}
+.card p{margin:4px 0 0;color:var(--mute)}
+section{padding:70px 0 10px}
+section h2{font-size:clamp(30px,4vw,44px);font-weight:600;color:var(--teal);text-align:center}
+.lead{color:var(--mute);max-width:62ch;margin:12px auto 34px;text-align:center}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;list-style:none;padding:0;margin:0}
+.steps li{background:var(--panel);border-radius:22px;padding:24px 22px;box-shadow:0 6px 18px rgba(27,42,65,.07);border-top:6px solid var(--c)}
+.steps .ic{display:grid;place-items:center;width:58px;height:58px;border-radius:18px;background:color-mix(in srgb,var(--c) 18%,#fff);font-size:30px;margin-bottom:12px}
+.steps h3{font-size:24px;margin-bottom:6px}.steps p{margin:0;color:var(--mute);font-size:16px}
+.subjects{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+.subjects a{display:flex;align-items:center;gap:10px;text-decoration:none;background:var(--panel);border-radius:99px;padding:10px 20px 10px 12px;font-weight:700;box-shadow:0 4px 12px rgba(27,42,65,.07);border:2px solid transparent}
+.subjects a:hover{border-color:var(--c)}
+.subjects i{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--c);font-style:normal;font-size:20px}
+.games{display:grid;grid-template-columns:1.1fr 1fr;gap:34px;align-items:center;background:linear-gradient(135deg,#1E3A8A,#5B21B6);color:#fff;border-radius:34px;padding:40px;overflow:hidden}
+.games h2{color:#fff;text-align:left}.games p{color:#DDE3FF}
+.games ul{list-style:none;padding:0;margin:18px 0 26px;display:flex;flex-wrap:wrap;gap:8px}
+.games li{background:rgba(255,255,255,.14);padding:6px 12px;border-radius:99px;font-size:15px;font-weight:700}
+.games svg{width:100%;height:auto;border-radius:22px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.box{background:var(--panel);border-radius:26px;padding:28px;box-shadow:0 6px 18px rgba(27,42,65,.07)}
+.box h3{font-size:26px;margin-bottom:8px;color:var(--teal)}
+.box ul{margin:8px 0 0;padding-left:22px;color:var(--mute)}.box li{margin:6px 0}
+.vs{width:100%;border-collapse:collapse;font-size:16px;background:var(--panel);border-radius:20px;overflow:hidden;box-shadow:0 6px 18px rgba(27,42,65,.07)}
+.vs th,.vs td{padding:14px 18px;text-align:left;border-bottom:1px solid #E5EBF2;vertical-align:top}
+.vs th{font-family:"Bricolage Grotesque",sans-serif;font-size:18px;background:#F0FAF8}.vs th:last-child,.vs td:last-child{background:#FFF7E0}
+.vs td:first-child{font-weight:700}.tbl{overflow-x:auto}
+.free{text-align:center;background:linear-gradient(135deg,#FFF3C4,#FFE1B8);border-radius:34px;padding:48px 28px;margin-top:20px}
+.free h2{color:#9A3412}.free ul{list-style:none;padding:0;margin:18px 0 28px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.free li{background:#fff;padding:8px 16px;border-radius:99px;font-weight:700;font-size:16px}
+.about{max-width:66ch;margin:0 auto;text-align:center}.about p{color:var(--mute)}
+footer{margin-top:60px;background:var(--bar2);color:#D9F2EF;padding:34px 0 44px;font-size:15px;line-height:1.7}
+footer nav{display:flex;gap:20px;flex-wrap:wrap;padding-bottom:8px}footer nav a{font-weight:700;color:#fff}
+@media(max-width:1180px){.grades{display:none}}
+@media(max-width:980px){.clouds{gap:58px;margin-top:60px}.clouds{grid-template-columns:1fr;max-width:560px}.steps{grid-template-columns:1fr 1fr}.games{grid-template-columns:1fr}.bar nav[aria-label=Main]{gap:20px;font-size:18px;flex-wrap:wrap}}
+@media(max-width:760px){.hero .deco{display:none}.pair,.two{grid-template-columns:1fr}.pair{margin-top:-60px}.card{padding:18px}.card svg{width:80px}.hero{min-height:0}}
+@media(max-width:520px){.steps{grid-template-columns:1fr}body{font-size:17px}.acts .in{display:none}.logo{font-size:19px}.bar nav[aria-label=Main]{gap:14px;font-size:16px}.cloud h2{font-size:26px}.games{padding:26px}}
+@media(prefers-reduced-motion:no-preference){.float{animation:fl 6s ease-in-out infinite}.float2{animation:fl 7s ease-in-out infinite reverse}@keyframes fl{50%{transform:translateY(-12px)}}.drift{animation:dr 40s linear infinite}@keyframes dr{to{transform:translateX(120px)}}}
 </style>
 </head>
 <body>
-<div class="wrap">
-<nav aria-label="Main"><b>Bose Academy</b><a class="btn" href="app.html">Start learning</a></nav>
-
-<header class="hero">
-<h1>Master every skill. Understand every concept.</h1>
-<p>Bose Academy is a free learning platform for Pre-K through Grade 12 and beyond. Learn an idea from a short lesson, practice it until it sticks, and get a tutor who asks questions instead of handing over answers.</p>
-<div class="row"><a class="btn" href="app.html">Start learning</a><a class="btn alt" href="#how">See how it works</a></div>
-<div class="chain" id="chain" role="group" aria-label="Skill chain you can light up"></div>
-<p class="hint">Tap a skill to light it up. Each one builds on the last.</p>
+<header class="bar">
+<div class="wrap top">
+  <a class="logo" href="index.html" aria-label="Bose Academy home"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="11" fill="#F2A900"/><g stroke="#F2A900" stroke-width="3" stroke-linecap="round"><path d="M20 2v5M20 33v5M2 20h5M33 20h5M7 7l3.5 3.5M29.5 29.5L33 33M7 33l3.5-3.5M29.5 10.5L33 7"/></g><circle cx="16" cy="18" r="1.6" fill="#1B2A41"/><circle cx="24" cy="18" r="1.6" fill="#1B2A41"/><path d="M15.5 23q4.5 4 9 0" stroke="#1B2A41" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>Bose Academy</a>
+  <div class="grades" role="navigation" aria-label="Pick a grade"><a href="app.html">Pre-K</a><a href="app.html">K</a><a href="app.html">1</a><a href="app.html">2</a><a href="app.html">3</a><a href="app.html">4</a><a href="app.html">5</a><a href="app.html">6</a><a href="app.html">7</a><a href="app.html">8</a><a href="app.html">9–12</a></div>
+  <div class="acts"><a class="b in" href="app.html">Sign in</a><a class="b go" href="app.html#signup">Join free</a></div>
+</div>
+<div class="wrap"><nav aria-label="Main"><a href="#learn">Learning</a><a href="#games">Games</a><a href="#teachers">Teachers</a><a href="#families">Families</a></nav></div>
 </header>
+
+<main>
+<div class="hero">
+<svg class="art" viewBox="0 0 1440 600" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+  <g class="drift"><g fill="#fff" opacity=".85"><ellipse cx="120" cy="120" rx="70" ry="24"/><ellipse cx="160" cy="104" rx="44" ry="26"/><ellipse cx="1300" cy="90" rx="80" ry="26"/><ellipse cx="1260" cy="76" rx="46" ry="26"/></g></g>
+  <g transform="translate(190 150)"><circle r="46" fill="#FFD34D"/><circle r="34" fill="#FFE27A"/><g stroke="#F2A900" stroke-width="6" stroke-linecap="round"><path d="M0 -70v-14M0 70v14M-70 0h-14M70 0h14M-50 -50l-10 -10M50 50l10 10M-50 50l-10 10M50 -50l10 -10"/></g></g>
+  <g class="float" transform="translate(60 250)"><path d="M0 -70c-46 0 -60 40 -40 74l28 34h24l28 -34c20 -34 6 -74 -40 -74z" fill="#F97316"/><path d="M0 -70c-16 0 -22 40 -14 74l8 34h12l8 -34c8 -34 2 -74 -14 -74z" fill="#FDBA74"/><path d="M-12 38l6 22M12 38l-6 22" stroke="#7C4A20" stroke-width="2"/><rect x="-10" y="58" width="20" height="16" rx="3" fill="#8A5A2B"/></g>
+  <g transform="translate(1320 300)"><path d="M-30 30q20 40 30 120M0 40q-4 40 10 110M26 30q-10 50 -6 120" stroke="#475569" stroke-width="1.5" fill="none"/><ellipse cx="-30" cy="6" rx="22" ry="28" fill="#60A5FA"/><ellipse cx="2" cy="16" rx="22" ry="28" fill="#FACC15"/><ellipse cx="28" cy="2" rx="22" ry="28" fill="#4ADE80"/></g>
+  <path d="M0 470C200 400 380 430 560 470S960 540 1440 440V600H0Z" fill="#9FDCF5"/>
+  <path d="M0 520C180 470 330 480 520 520L520 600H0Z" fill="var(--hill)"/>
+  <path d="M900 600C980 470 1180 430 1440 470V600Z" fill="var(--hill)"/>
+  <path d="M0 560C150 520 300 530 460 570L460 600H0Z" fill="var(--hill2)"/>
+  <path d="M1040 600C1120 520 1260 500 1440 520V600Z" fill="var(--hill2)"/>
+  <path d="M260 560C300 520 360 500 420 500" stroke="#E8DCC0" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <g class="deco" transform="translate(760 500)"><path d="M-60 0h120l-14 18h-92Z" fill="#F97316"/><rect x="-30" y="-16" width="50" height="16" rx="3" fill="#fff"/><rect x="-22" y="-12" width="8" height="6" fill="#60A5FA"/><rect x="-6" y="-12" width="8" height="6" fill="#60A5FA"/><path d="M-80 24q20 -6 40 0t40 0t40 0t40 0" stroke="#fff" stroke-width="3" fill="none" opacity=".7"/></g>
+  <g transform="translate(160 470)"><rect x="-40" y="-120" width="44" height="120" fill="#60A5FA"/><rect x="10" y="-80" width="40" height="80" fill="#FB923C"/><rect x="56" y="-56" width="34" height="56" fill="#34D399"/></g>
+  <g class="deco" transform="translate(560 520)"><path d="M-20 -60h40l-6 10v40l26 46h-80l26 -46v-40z" fill="#fff" stroke="#94A3B8" stroke-width="2"/><path d="M-30 26l14 -24h32l14 24z" fill="#A78BFA"/><circle cx="-6" cy="12" r="4" fill="#7C3AED"/><circle cx="8" cy="18" r="3" fill="#7C3AED"/></g>
+  <g transform="translate(1240 520)"><path d="M0 0v-70M-24 -80h48M-30 -70h60" stroke="#fff" stroke-width="8"/><rect x="-30" y="-6" width="60" height="10" fill="#fff"/><circle cx="-22" cy="-82" r="7" fill="none" stroke="#fff" stroke-width="5"/><circle cx="22" cy="-82" r="7" fill="none" stroke="#fff" stroke-width="5"/></g>
+  <g transform="translate(1060 470)"><circle r="22" fill="#FDE047"/><rect x="-8" y="20" width="16" height="14" rx="3" fill="#94A3B8"/><path d="M0 34v40M0 54l-14 -10M0 60l14 -10" stroke="#14532D" stroke-width="3"/><g stroke="#1B2A41" stroke-width="2" stroke-linecap="round"><path d="M-36 -30l-8 -8M36 -30l8 -8M0 -40v-10"/></g></g>
+</svg>
+<div class="in">
+  <h1>Bose Academy <b>is</b> learning that clicks</h1>
+  <div class="clouds">
+    <div class="cloud"><h2>Every subject, Pre-K to 12</h2><p>Math <span class="dot">•</span> Reading &amp; writing <span class="dot">•</span> Science<br>Social studies <span class="dot">•</span> Computer science<br>Financial literacy <span class="dot">•</span> Spanish</p></div>
+    <div class="cloud v"><h2>Free for every learner</h2><p><b>1,073</b> lessons and <b>20,895</b> practice questions<br>No ads, ever. Student data is never sold.</p></div>
+    <div class="cloud o"><h2>Learning you can play</h2><p>A tutor in every problem <span class="dot">•</span> Knowledge map<br>10 learning games <span class="dot">•</span> Certificates</p></div>
+  </div>
+  <a class="cta" href="app.html#signup">Start learning free</a>
+  <p class="sub">No credit card. Works on phones, tablets and computers.</p>
+</div>
 </div>
 
 <div class="wrap">
-<section id="how">
+<div class="pair">
+  <a class="card t" href="#teachers" id="teachers-card"><svg viewBox="0 0 110 96" aria-hidden="true"><rect x="8" y="10" width="94" height="60" rx="8" fill="#334155"/><rect x="14" y="16" width="82" height="48" rx="4" fill="#1E293B"/><path d="M22 52l14 -14 12 10 18 -20 16 12" stroke="#5FF3A0" stroke-width="3" fill="none"/><circle cx="82" cy="40" r="4" fill="#FFD34D"/><rect x="30" y="74" width="50" height="8" rx="3" fill="#A78BFA"/><circle cx="20" cy="86" r="8" fill="#FDBA74"/><circle cx="90" cy="86" r="8" fill="#7DD3FC"/></svg><div><h3>Bose Academy for teachers</h3><p>Classes, assignments and progress for every student, free.</p></div></a>
+  <a class="card" href="#families"><svg viewBox="0 0 110 96" aria-hidden="true"><rect x="14" y="20" width="56" height="70" rx="6" fill="#22C55E"/><rect x="20" y="26" width="44" height="58" rx="3" fill="#fff"/><path d="M28 40h28M28 50h22M28 60h26" stroke="#94A3B8" stroke-width="3"/><circle cx="82" cy="34" r="16" fill="#FDE68A"/><path d="M76 34l5 5 9 -10" stroke="#B45309" stroke-width="3" fill="none"/><path d="M70 82l16 -30 16 30z" fill="#60A5FA"/></svg><div><h3>Bose Academy for families</h3><p>Practice at home, printable packets and a parent view.</p></div></a>
+</div>
+
+<section id="learn">
 <h2>One loop, from first idea to lasting skill</h2>
-<p class="lead">Other platforms give you either explanations or drills. Bose Academy puts both in a single mission.</p>
+<p class="lead">Other sites give you explanations or drills. Bose Academy puts both in one mission, and your progress only goes up.</p>
 <ol class="steps">
-<li><h3>Learn</h3><p>A short explanation of the idea, in plain language, before you practice.</p></li>
-<li><h3>Practice</h3><p>Unlimited problems adjust after every answer, and each one has a tutor beside it.</p></li>
-<li><h3>Check</h3><p>A spaced retention check, days later, confirms you still know it.</p></li>
-<li><h3>Advance</h3><p>Your knowledge map shows what you've mastered and what to learn next.</p></li>
+<li style="--c:#0E7C86"><div class="ic" aria-hidden="true">📖</div><h3>Learn</h3><p>A short explanation of the idea, in plain language, before you practice.</p></li>
+<li style="--c:#7C4DCC"><div class="ic" aria-hidden="true">✏️</div><h3>Practice</h3><p>Problems adjust after every answer, with a tutor that asks instead of tells.</p></li>
+<li style="--c:#F2A900"><div class="ic" aria-hidden="true">🔁</div><h3>Check</h3><p>A spaced check days later confirms you still know it.</p></li>
+<li style="--c:#16A34A"><div class="ic" aria-hidden="true">🗺️</div><h3>Advance</h3><p>Your knowledge map shows what you've mastered and what's next.</p></li>
 </ol>
 </section>
 
 <section>
-<h2>Progress that rewards sticking with it</h2>
-<p class="lead">Your progress bar only goes up. One wrong answer never erases what you've learned, and when something is tricky, Bose Academy steps back to the building blocks instead of drilling harder.</p>
-<div class="two">
-<div><h3>A tutor that asks, not tells</h3><p style="color:var(--mute)">When you're stuck, the tutor offers a nudge, then a clearer hint, then the first step. You do the thinking, so it stays with you.</p></div>
-<div><h3>A map of what you know</h3><p style="color:var(--mute)">See every skill, how they connect, and the shortest path to your goal, from fractions to calculus.</p></div>
+<h2>Pick a subject</h2>
+<p class="lead">Every grade from Pre-K through 12, with lessons and practice for each skill.</p>
+<div class="subjects">
+<a href="app.html" style="--c:#BFDBFE"><i aria-hidden="true">➗</i>Math</a><a href="app.html" style="--c:#FBCFE8"><i aria-hidden="true">📚</i>Reading &amp; writing</a><a href="app.html" style="--c:#BBF7D0"><i aria-hidden="true">🔬</i>Science</a><a href="app.html" style="--c:#FDE68A"><i aria-hidden="true">🌎</i>Social studies</a><a href="app.html" style="--c:#DDD6FE"><i aria-hidden="true">💻</i>Computer science</a><a href="app.html" style="--c:#FED7AA"><i aria-hidden="true">💰</i>Financial literacy</a><a href="app.html" style="--c:#FECACA"><i aria-hidden="true">🗣️</i>Spanish</a>
 </div>
 </section>
 
-<section>
-<h2>Made for the whole classroom and the kitchen table</h2>
-<div class="two" style="margin-top:24px">
-<div><h3>Teachers</h3><ul><li>Create classes and student logins in one step</li><li>Assign skills or units to the whole class or one student</li><li>See each student's progress on every assignment</li></ul></div>
-<div><h3>Parents and learners</h3><ul><li>Printable worksheets, lesson packets and certificates</li><li>Read-aloud lessons and a Lite mode for slow connections</li><li>Works on phones, tablets and computers</li></ul></div>
+<section id="games">
+<div class="games">
+<div><h2>Every right answer powers a game</h2><p>Learning earns play time in the Arcade, where every move is a question. Kids explore an island of games: build towers, race karts, raise pets and solve mysteries.</p>
+<ul><li>🛡️ Goblin Gate</li><li>🏁 Turbo Trivia Kart</li><li>🐾 Pet Pals</li><li>🏰 Spell Quest</li><li>🧱 Block Builder</li><li>🌊 Ocean Explorer</li><li>🏚️ Mystery Mansion</li><li>🏝️ Island Architect</li></ul>
+<a class="cta" href="app.html#signup">Play and learn</a></div>
+<svg viewBox="0 0 400 260" aria-hidden="true"><rect width="400" height="260" fill="#2E8BC0"/><path d="M40 140C40 70 120 40 210 46C300 52 370 90 360 160C352 220 280 236 200 232C110 228 40 210 40 140Z" fill="#E9D9A6"/><path d="M56 140C58 82 130 58 210 62C292 66 350 98 344 158C338 210 276 222 200 218C116 214 54 196 56 140Z" fill="#6DBE5A"/><path d="M120 110l30 -40 30 40zM160 106l34 -48 34 48z" fill="#9CA3AF"/><path d="M150 70l8 10h-16zM194 58l9 12h-18z" fill="#fff"/><g transform="translate(270 120)"><rect x="-22" y="-10" width="44" height="26" fill="#CBD5E1"/><rect x="-28" y="-24" width="12" height="40" fill="#94A3B8"/><rect x="16" y="-24" width="12" height="40" fill="#94A3B8"/><path d="M-30 -24l8 -14 8 14zM14 -24l8 -14 8 14z" fill="#7C3AED"/></g><ellipse cx="130" cy="180" rx="34" ry="14" fill="none" stroke="#475569" stroke-width="6"/><g transform="translate(220 170)"><rect x="-14" y="-10" width="28" height="18" fill="#FFF3DC"/><path d="M-18 -10l18 -14 18 14z" fill="#E4572E"/></g><circle cx="300" cy="190" r="6" fill="#FFD34D" stroke="#1E1B4B" stroke-width="2"/><circle cx="96" cy="120" r="6" fill="#FFD34D" stroke="#1E1B4B" stroke-width="2"/></svg>
+</div>
+</section>
+
+<section id="families">
+<h2>Made for the classroom and the kitchen table</h2>
+<div class="two" style="margin-top:28px">
+<div class="box" id="teachers"><h3>👩‍🏫 Teachers</h3><ul><li>Create classes and student logins in one step</li><li>Assign skills, units, tests and classwork</li><li>See each student's progress on every assignment</li><li>Classroom mode for the learning games</li></ul></div>
+<div class="box"><h3>👨‍👩‍👧 Parents and learners</h3><ul><li>Printable worksheets, lesson packets and certificates</li><li>Read-aloud lessons and a Lite mode for slow connections</li><li>A parent view of your child's progress</li><li>Healthy play-time limits that learning unlocks</li></ul></div>
 </div>
 </section>
 
 <section>
 <h2>How Bose Academy compares</h2>
+<p class="lead">Lessons and deep practice together, free.</p>
 <div class="tbl"><table class="vs"><thead><tr><th></th><th>Khan Academy</th><th>IXL</th><th>Bose Academy</th></tr></thead><tbody>
 <tr><td>Cost</td><td>Free</td><td>Subscription</td><td>Free</td></tr>
 <tr><td>Lessons</td><td>Yes</td><td>Limited</td><td>Yes, linked to each skill's practice</td></tr>
@@ -115,27 +191,22 @@ footer nav{display:flex;gap:18px;flex-wrap:wrap;padding:0 0 8px}footer nav a{fon
 
 <section>
 <div class="free">
-<h2>All the learning is free, for every learner. No ads, ever.</h2>
-<ul><li>All lessons and practice</li><li>Knowledge map and mastery tracking</li><li>Teacher dashboards and classes</li><li>Certificates anyone can verify</li></ul>
-<p style="color:var(--mute);margin:0 0 24px">Every lesson, practice question and teacher tool is free. Learning earns play time in the games, and an optional membership adds more. Student data is never sold.</p>
-<a class="btn" href="app.html">Start learning</a>
+<h2>All the learning is free. No ads, ever.</h2>
+<ul><li>✅ All lessons and practice</li><li>✅ Knowledge map and mastery</li><li>✅ Teacher dashboards and classes</li><li>✅ Certificates anyone can verify</li></ul>
+<p style="color:#7C4A20;margin:0 0 24px">Learning earns play time in the games, and an optional membership adds more. Student data is never sold.</p>
+<a class="cta" href="app.html#signup">Start learning free</a>
 </div>
 </section>
+
 <section id="about" class="about">
 <h2>About Bose Academy</h2>
 <p>Bose Academy is an independent learning project, built by a young student with help from family, so that every learner can practice for free. It is not affiliated with, endorsed by or connected to Bose Corporation.</p>
 </section>
-<footer><nav aria-label="Site"><a href="privacy.html">Privacy policy</a><a href="terms.html">Terms of service</a><a href="app.html?parent=me">For parents</a><a href="#about">About</a></nav>
-© <span id="yr">2026</span> Bose Academy · Master every skill. Understand every concept.<br>Lessons and practice questions are original. Bose Academy is not affiliated with Bose Corporation. Questions about privacy? <a href="privacy.html#contact">Contact us</a></footer>
-<script>document.getElementById('yr').textContent=new Date().getFullYear()</script>
 </div>
+</main>
 
-<script>
-const names=['Multiply','Equivalent fractions','Simplify','Add fractions','Equations'];
-const c=document.getElementById('chain');let on=0;
-function draw(){c.innerHTML=names.map((n,i)=>(i?`<i class="${i<=on?'on':''}"></i>`:'')+`<button class="${i<=on?'on':''}" data-i="${i}" aria-pressed="${i<=on}" aria-label="${n}">${n.split(' ')[0]}</button>`).join('')}
-c.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const i=+b.dataset.i;on=(on===i&&i>0)?i-1:i;draw();c.querySelector(`[data-i="${on}"]`).focus()});
-draw();
-</script>
+<footer><div class="wrap"><nav aria-label="Site"><a href="privacy.html">Privacy policy</a><a href="terms.html">Terms of service</a><a href="app.html?parent=me">For parents</a><a href="#about">About</a></nav>
+© <span id="yr">2026</span> Bose Academy · Master every skill. Understand every concept.<br>Lessons and practice questions are original. Bose Academy is not affiliated with Bose Corporation. Questions about privacy? <a href="privacy.html#contact" style="color:#fff">Contact us</a></div></footer>
+<script>document.getElementById('yr').textContent=new Date().getFullYear()</script>
 </body>
 </html>
