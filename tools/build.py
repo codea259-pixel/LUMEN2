@@ -86,6 +86,7 @@ open(os.path.join(root, 'app.html'), 'w', encoding='utf-8').write(h)
 open(os.path.join(root, 'index.html'), 'w', encoding='utf-8').write(open(os.path.join(root, 'public', 'index.html'), encoding='utf-8').read())
 open(os.path.join(root, '.nojekyll'), 'w').close()
 # Next Level's Cipher checks guesses against this word list (fetched only when the puzzle opens)
+open(os.path.join(root, 'arcade-map.jpg'), 'wb').write(open(os.path.join(root, 'public', 'arcade-map.jpg'), 'rb').read())
 open(os.path.join(root, 'words5.txt'), 'w', encoding='utf-8').write(open(os.path.join(root, 'public', 'words5.txt'), encoding='utf-8').read())
 # Privacy policy and terms: the contact details live in tools/legal/legal.json; blanks show as highlighted gaps
 import datetime, json, html as _html
