@@ -13,7 +13,7 @@ const errs = [];
   const menu = async (pg, label) => { await pg.click('#avatarBtn'); await pg.click(`#pmenu button:has-text("${label}")`); };
 
   // Landing page links to the app
-  let p = await mk(); await p.goto(B + '/'); await p.click('nav a.btn'); await p.waitForSelector('#af'); step('landing → sign-in page');
+  let p = await mk(); await p.goto(B + '/'); await p.click('a.sign'); await p.waitForSelector('#af'); step('landing → sign-in page');
 
   // Teacher signs up
   await p.click('#sw'); await p.selectOption('#ar', 'teacher');
