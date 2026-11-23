@@ -110,4 +110,15 @@ const _dmSt=drawMap;drawMap=function(){_dmSt();const el=$('map');if(!el)return;d
   el.querySelectorAll('.node').forEach(g=>{const l=g.getAttribute('aria-label')||'';if(!/Proficient|Mastered/i.test(l))g.classList.add('stormy')});
   const w=el.closest('.mapwrap')||el;w.insertAdjacentHTML('beforebegin',storyCard())};
 const _rSt=render;render=function(){_rSt();const lg=$('legend');if(lg&&!lg.querySelector('.storybtn')&&$('map'))lg.insertAdjacentHTML('beforeend',`<button class="chip storybtn ${ST.story?'on':''}" aria-pressed="${!!ST.story}" onclick="ST.story=!ST.story;sv();render()">⛈️ Story mode</button>`)};
+
+/* Owner console → Backup: one click saves the whole database to a file on this computer */
+function ownerBackup(){busy(async()=>{const r=await api('GET','/api/owner/backup'),txt=JSON.stringify(r,null,1),d=new Date().toISOString().slice(0,10);
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type:'application/json'}));a.download=`bose-academy-backup-${d}.json`;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},2000);
+  const n=r.data?Object.values(r.data).reduce((t,v)=>t+(Array.isArray(v)?v.length:v?1:0),0):0;ST.lastBackup=d;sv();msg(`Backup saved: ${n} records (${Math.round(txt.length/1024)} KB). Keep it somewhere safe.`);r2()})}
+O.backup=function(){const L=ST.lastBackup,days=L?Math.floor((Date.now()-new Date(L+'T12:00:00'))/864e5):null;
+  return `<div class="card"><h3>💾 Download a backup</h3><p class="sol">Saves everything in the database (accounts, progress, classes, assignments, tests, posts, certificates and settings) as one file on this computer. Sign-in passwords aren't included: they're kept separately by the sign-in system.</p>
+    <p><b>${L?`Last backup: ${esc(L)}${days>7?` · ${days} days ago, time for a new one`:days===0?' · today':` · ${days} day${days===1?'':'s'} ago`}`:'No backup downloaded from this account yet.'}</b></p>
+    <div class="row"><button class="lamp" onclick="ownerBackup()">💾 Download a backup</button></div>
+    <p class="sol" style="margin-top:12px">Do this once a week. Keep at least the last four files, in a private folder or a password-protected drive, because they contain students' information. Delete old files you no longer need.</p></div>`};
+const _ovB=VIEWS.owner;VIEWS.owner=function(){const h=_ovB(),k='</div><div style="margin-top:16px">';return h.replace(k,`<button class="chip ${ST.ot==='backup'?'on':''}" onclick="ST.ot='backup';r2()">💾 Backup</button>`+k)};
 </script>

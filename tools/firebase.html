@@ -301,6 +301,15 @@ const FBM=(()=>{
     const u=await db.collection('users').where('username','==',who.toLowerCase()).limit(1).get();if(!u.empty){await u.docs[0].ref.update({memberUntil:until});return{ok:true,kind:'account',name:u.docs[0].data().display}}
     const j=await doc('joinCodes',who.toUpperCase()).get();if(j.exists){const r=doc('classes',j.data().classId);await r.update({memberUntil:until});return{ok:true,kind:'class',name:(await r.get()).data().name}}
     throw new E(404,'No account has that username and no class has that code.')});
+  /* Owner backup: everything in the database as one JSON file (sign-in passwords live in Firebase Authentication, not here) */
+  route('GET','/api/owner/backup',async()=>{need(isOwner());const rows=q=>q.docs.map(d=>({id:d.id,...d.data()})),all=async c=>{try{return rows(await db.collection(c).get())}catch(e){return{error:'Could not read '+c}}},one=async p=>{try{const d=await db.doc(p).get();return d.exists?d.data():null}catch(e){return null}};
+    const out={site:await one('config/site'),stats:await one('stats/global')};
+    for(const c of ['users','private','consents','state','qvers','joinCodes','posts','replies','groups','certs'])out[c]=await all(c);
+    const cls=await db.collection('classes').get();out.classes=[];
+    for(const d of cls.docs){const c={id:d.id,...d.data()};for(const sub of ['assignments','board','maps','awards'])try{c[sub]=rows(await d.ref.collection(sub).get())}catch(e){c[sub]=[]}
+      try{const ts=await d.ref.collection('tests').get();c.tests=[];for(const t of ts.docs){c.tests.push({id:t.id,...t.data(),key:rows(await t.ref.collection('key').get()),subs:rows(await t.ref.collection('subs').get())})}}catch(e){c.tests=[]}
+      out.classes.push(c)}
+    return{app:'Bose Academy',kind:'firebase',exported:new Date().toISOString(),data:JSON.parse(JSON.stringify(out,(k,v)=>v&&typeof v.toDate==='function'?v.toDate().toISOString():v))}});
   route('GET','/api/owner/users',async()=>{need(isOwner());const q=await db.collection('users').limit(500).get();
     return{users:q.docs.map(d=>{const u=d.data();return{id:num(d.id),username:u.username,display:u.display,email:null,role:d.id===site.ownerUid?'owner':u.role,verified:!!u.verified,locked:!!u.locked,created:u.created}}).sort((a,b)=>(b.created||0)-(a.created||0))}});
   route('PATCH','/api/owner/users/:id',async(b,p)=>{need(isOwner());p.id=sid(p.id);if(p.id===site.ownerUid)throw new E(403,'The Owner account is protected and cannot be changed.');const up={};

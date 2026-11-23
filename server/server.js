@@ -350,6 +350,10 @@ route('POST', '/api/owner/members', c => { need(c, c.u.role === 'owner'); const 
   const k = Q1('SELECT id,name FROM classes WHERE code=?', who.toUpperCase());
   if (k) { X('UPDATE classes SET member_until=? WHERE id=?', until, k.id); return { ok: true, kind: 'class', name: k.name }; }
   throw new E(404, 'No account has that username and no class has that code.'); });
+// Owner backup: every table as JSON (password hashes and salts are left out; restored accounts reset their password)
+route('GET', '/api/owner/backup', c => { need(c, c.u.role === 'owner'); const data = {};
+  for (const t of ['users', 'state', 'certs', 'groups', 'posts', 'replies', 'classes', 'class_members', 'assignments', 'settings', 'tests', 'subs', 'qvers', 'awards', 'class_maps', 'usage']) data[t] = Q(`SELECT * FROM ${t}`);
+  data.users = data.users.map(({ hash, salt, ...u }) => u); return { app: 'Bose Academy', kind: 'server', exported: new Date().toISOString(), data }; });
 route('GET', '/api/owner/usage', c => { need(c, c.u.role === 'owner'); return { days: Q('SELECT day,n FROM usage ORDER BY day DESC LIMIT 14') }; });
 route('GET', '/api/owner/users', c => { need(c, c.u.role === 'owner'); return { users: Q('SELECT id,username,display,email,role,verified,locked,created FROM users ORDER BY id DESC LIMIT 500') }; });
 route('PATCH', '/api/owner/users/:id', c => { need(c, c.u.role === 'owner'); const t = Q1('SELECT * FROM users WHERE id=?', int(c.params.id, 1, 1e12)); if (!t) throw new E(404, 'Not found.');

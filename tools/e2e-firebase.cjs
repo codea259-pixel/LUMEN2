@@ -264,6 +264,11 @@ const errs = [], ok = s => console.log('✓', s);
   await o.click('tr:has-text("Jaylen") button:has-text("Lock")'); await o.waitForSelector('tr:has-text("Jaylen") >> text=Unlock', { timeout: 10000 });
   const j = await page(); await login(j, creds[1][1], creds[1][2]); await j.waitForFunction(() => document.getElementById('ae') && document.getElementById('ae').textContent, null, { timeout: 15000 }); ok('locked student: ' + await j.textContent('#ae'));
 
+  // 7b. Owner backup: the whole database in one file, read with the owner's own access
+  { const bk = await o.evaluate(async () => { const r = await FBM.api('GET', '/api/owner/backup'); const d = r.data; return { kind: r.kind, users: (d.users || []).length, classes: (d.classes || []).length, state: (d.state || []).length, posts: Array.isArray(d.posts) ? d.posts.length : -1, errors: Object.entries(d).filter(([k, v]) => v && v.error).map(([k]) => k), tests: (d.classes || []).some(c => Array.isArray(c.tests)), json: JSON.stringify(r).length } });
+    ok('owner backup: ' + JSON.stringify(bk)); if (bk.kind !== 'firebase' || bk.users < 3 || bk.classes < 1 || bk.state < 1 || bk.posts < 0 || bk.errors.length || !bk.tests) errs.push('owner backup incomplete: ' + JSON.stringify(bk));
+    const sb = await t.evaluate(() => FBM.api('GET', '/api/owner/backup').then(() => 'ALLOWED', () => 'blocked')); ok('teacher asking for the backup: ' + sb); if (sb !== 'blocked') errs.push('a teacher could download the backup'); }
+
   // 8. Verified teacher can moderate
   await t.reload(); await t.waitForSelector('#avatarBtn'); await t.click('#tabs >> text=Community'); await t.waitForSelector('text=How do I add fractions?', { timeout: 15000 }); await t.click('.card.post button:has-text("Pin")'); await t.waitForSelector('.card.post button:has-text("Unpin")', { timeout: 10000 }); ok('verified teacher pinned the post');
 
