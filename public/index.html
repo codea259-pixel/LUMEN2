@@ -90,6 +90,11 @@ section h2{font-size:clamp(34px,4.6vw,56px);font-weight:800;margin:8px 0 14px}
 .dfb{margin-top:14px;padding:14px 16px;border-radius:16px;background:#FFF4D6;border-left:6px solid var(--gold);min-height:24px}.dfb.ok{background:#DDF8EE;border-color:var(--mint)}.dfb.no{background:#FFE3DF;border-color:var(--coral)}
 .dstat{color:var(--mute);font-size:15px;margin-top:10px}
 @media(max-width:980px){.demo{grid-template-columns:1fr}}
+.schools{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;background:linear-gradient(135deg,#FFE9C2,#FFF4DC);border-radius:34px;padding:40px}
+.schools img{width:100%;height:auto;border-radius:20px;box-shadow:0 20px 44px rgba(20,18,58,.25)}
+.schools .row{margin-top:24px}.schools .btn.alt2{background:#fff;color:var(--ink);box-shadow:0 6px 0 #E4D9C2}
+.schools ul{margin:16px 0 0;padding-left:22px;color:var(--mute)}.schools li{margin:6px 0}
+@media(max-width:980px){.schools{grid-template-columns:1fr;padding:26px}}
 .about{max-width:66ch;margin:0 auto;text-align:center}.about p{color:var(--mute)}
 footer{margin-top:80px;background:var(--night);color:#B9BCE6;padding:34px 0 44px;font-size:15px;line-height:1.7}
 footer nav{display:flex;gap:20px;flex-wrap:wrap;padding-bottom:8px}footer nav a{font-weight:700;color:#fff}
@@ -105,7 +110,7 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap;padding-bottom:8px}footer nav a{
 <div class="wrap">
 <header class="top">
   <a class="logo" href="index.html" aria-label="Bose Academy home"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="11" fill="#FFD34D"/><g stroke="#FFD34D" stroke-width="3" stroke-linecap="round"><path d="M20 2v5M20 33v5M2 20h5M33 20h5M7 7l3.5 3.5M29.5 29.5L33 33M7 33l3.5-3.5M29.5 10.5L33 7"/></g><circle cx="16" cy="18" r="1.6" fill="#14123A"/><circle cx="24" cy="18" r="1.6" fill="#14123A"/><path d="M15.5 23q4.5 4 9 0" stroke="#14123A" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>Bose Academy</a>
-  <nav aria-label="Main"><a href="#how">How it works</a><a href="#subjects">Subjects</a><a href="#island">Games</a><a href="#teachers">Teachers &amp; parents</a></nav>
+  <nav aria-label="Main"><a href="#how">How it works</a><a href="#subjects">Subjects</a><a href="#island">Games</a><a href="#schools">For schools</a><a href="#teachers">Teachers &amp; parents</a></nav>
   <a class="sign" href="app.html">Sign in</a>
 </header>
 <div class="hgrid">
@@ -167,6 +172,17 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap;padding-bottom:8px}footer nav a{
   <div class="chips"><span>🛡️ Goblin Gate</span><span>🏁 Turbo Trivia Kart</span><span>🐾 Pet Pals</span><span>🏰 Spell Quest</span><span>🧱 Block Builder</span><span>🌊 Ocean Explorer</span><span>🏚️ Mystery Mansion</span><span>🏝️ Island Architect</span></div>
   <a class="btn" href="app.html#signup">Explore the island →</a></div>
   <img src="arcade-map.jpg" width="1638" height="920" alt="The Arcade island map: a castle, a cave, a fortress, a farm, a quarry, a race track, a sand arena, a manor, a harbor and an island hut, joined by roads" loading="lazy">
+</div>
+</section>
+
+<section id="schools">
+<div class="schools">
+  <div><div class="kicker">Academy for Schools</div><h2>Bring Bose Academy to your school</h2>
+  <p class="lead" style="margin-bottom:0">A 12-slide presentation for principals and teachers: how it works, what teachers get, the California standards, privacy and safety, and how to start tomorrow. Speaker notes are included.</p>
+  <ul><li>Free for every student and school, with no ads</li><li>Classes and student logins in one step</li><li>Follows COPPA and California’s SOPIPA</li></ul>
+  <div class="row"><a class="btn" href="bose-academy-for-schools.pptx" download>⬇ Download the PowerPoint</a><a class="btn alt2" href="pitch.html">One-page overview</a></div>
+  <p style="color:var(--mute);font-size:15px;margin-top:14px">PowerPoint, 12 slides, about 4.6 MB. Opens in PowerPoint, Keynote and Google Slides.</p></div>
+  <a href="bose-academy-for-schools.pptx" download aria-label="Download the Bose Academy for Schools PowerPoint"><img src="schools-deck.jpg" width="960" height="540" alt="First slide of the Bose Academy for Schools presentation" loading="lazy"></a>
 </div>
 </section>
 
