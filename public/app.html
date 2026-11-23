@@ -251,6 +251,7 @@ const r2=()=>showTab(tab);
 const cl=id=>ST.classes.find(c=>c.id==id);
 const cap=()=>Infinity;
 const gemTot=c=>c.students.reduce((a,s)=>a+s.gems,0);
+const chU=ch=>ch&&ch.kind==='stars'?'mastery stars':'gems',chTot=c=>c.ch&&c.ch.kind==='stars'?c.students.reduce((a,s)=>a+(s.stars||0),0):gemTot(c);
 function tView(){const cls=ST.classes.filter(c=>ST.gf==='all'||c.grade==ST.gf);
 return `<h2>Teacher dashboard</h2><div class="card"><h3>Create a class</h3><div class="row"><input id="cn" placeholder="Class name" aria-label="Class name"><select id="cg" aria-label="Grade">${GLIST.map(g=>`<option value="${g}" ${g==5?'selected':''}>${GLAB(g)}</option>`).join('')}</select><input id="cc" placeholder="Region or country" aria-label="Region or country"><button class="lamp" onclick="addClass()">Create class</button></div></div>
 <div class="row"><label>Filter classes by grade <select onchange="ST.gf=this.value;sv();r2()"><option value="all">All grades</option>${GLIST.map(g=>`<option value="${g}" ${ST.gf==g?'selected':''}>${GLAB(g)}</option>`).join('')}</select></label></div>
@@ -264,7 +265,7 @@ ${c.asg.map(a=>`<p class="sol">${esc(a.title)} to ${a.target==='all'?'whole clas
 <h4>Progress${ST.flags['Live Classroom']?` <button class="alt" onclick="live(${c.id})">${liveId===c.id?'Stop live view':'Start live view (simulated)'}</button>`:''}</h4>
 <p class="sol">${last?`Class average on latest assignment: ${avg}%. ${need.length?'Needs help: '+need.join(', ')+'.':'Everyone is on track.'}`:'Assign something to see progress.'}</p>
 <div class="tbl"><table class="vs"><tr><th>Student</th><th>Grades</th><th>Latest assignment</th><th>Gems</th><th>Questions</th></tr>${c.students.map((s,i)=>`<tr><td>${esc(s.name)}<div class="sol">${esc(s.email)}</div></td><td>${s.grades.map(g=>`<button class="chip on" onclick="rmG(${c.id},${i},${g})" aria-label="Remove ${GLAB(g)}">${GN(g)} ×</button>`).join('')}<select onchange="addG(${c.id},${i},this.value)" aria-label="Add grade"><option value="">+</option>${GLIST.map(g=>`<option value="${g}">${GN(g)}</option>`).join('')}</select></td><td><div class="bar sm"><i id="pb${c.id}_${i}" style="width:${last?(s.p[last.id]||0):0}%"></i></div></td><td id="gm${c.id}_${i}">${s.gems}</td><td>${s.q}</td></tr>`).join('')}</table></div>
-${ST.flags['Gem Challenges']?`<h4>Gem Challenge</h4>${c.ch?`<p>Goal: ${c.ch.goal} gems as a class. Reward: <b>${esc(c.ch.reward)}</b></p><div class="bar"><i id="ch${c.id}" style="width:${Math.min(100,(gemTot(c)-c.ch.base)/c.ch.goal*100)}%"></i></div><p class="sol"><span id="chn${c.id}">${Math.max(0,gemTot(c)-c.ch.base)}</span> of ${c.ch.goal} gems</p>`:`<div class="row"><input id="cg2${c.id}" type="number" min="10" placeholder="Gem goal" aria-label="Gem goal"><input id="cr${c.id}" placeholder="Reward (extra recess)" aria-label="Reward"><button onclick="setCh(${c.id})">Start challenge</button></div>`}`:''}
+${ST.flags['Gem Challenges']?`<h4>Class Quest</h4>${c.ch?`<p>Goal: ${c.ch.goal} ${chU(c.ch)} as a class. Reward: <b>${esc(c.ch.reward)}</b></p><div class="bar"><i id="ch${c.id}" style="width:${Math.min(100,(chTot(c)-c.ch.base)/c.ch.goal*100)}%"></i></div><p class="sol"><span id="chn${c.id}">${Math.max(0,chTot(c)-c.ch.base)}</span> of ${c.ch.goal} ${chU(c.ch)}. Everyone's progress counts together, with no individual ranking.</p>`:`<div class="row"><select id="ck${c.id}" aria-label="Count"><option value="stars">⭐ Mastery stars</option><option value="gems">💎 Gems</option></select><input id="cg2${c.id}" type="number" min="10" placeholder="Goal (200)" aria-label="Goal"><input id="cr${c.id}" placeholder="Reward (extra recess)" aria-label="Reward"><button onclick="setCh(${c.id})">Start the quest</button></div><p class="sol">Example: collect 200 mastery stars this week. Each skill gives up to 3 stars.</p>`}`:''}
 <h4>Parent report</h4><div class="row"><select id="rp${c.id}" aria-label="Student">${c.students.map((s,i)=>`<option value="${i}">${esc(s.name)}</option>`).join('')}</select><button onclick="report(${c.id})">Preview</button><button class="alt" onclick="try{navigator.clipboard.writeText($('rpt${c.id}').textContent);msg('Copied.')}catch(e){}">Copy</button><label><input type="checkbox" ${(ST.sched||{})[c.id]?'checked':''} onchange="ST.sched=ST.sched||{};ST.sched[${c.id}]=this.checked;sv()"> Send weekly to parents</label></div><pre class="rp" id="rpt${c.id}">Choose a student and select Preview.</pre></div>`}
 function addClass(){const n=$('cn').value.trim();if(!n)return msg('Enter a class name.');ST.classes.push({id:Date.now(),name:n,grade:+$('cg').value,code:Math.random().toString(36).slice(2,8).toUpperCase(),region:($('cc')||{value:''}).value.trim(),students:[],asg:[],ch:null});sv();r2()}
 function mkS(c,name,email){if(c.students.some(s=>s.email===email)||c.students.length>=cap())return 0;c.students.push({name,email,grades:[c.grade],p:{},gems:0,q:0});return 1}
@@ -275,7 +276,7 @@ function rmG(id,i,g){const s=cl(id).students[i];if(s.grades.length>1)s.grades=s.
 function assign(id){const c=cl(id),[ty,key]=$('as'+id).value.split(':'),t=$('at'+id).value;c.asg.push({id:Date.now(),title:ty=='u'?UNITS[key][0]:SK[key].n,skills:ty=='u'?UNITS[key][1]:[key],target:t==='all'?'all':+t});sv();r2();msg('Assigned.')}
 function live(id){if(liveT){clearInterval(liveT);liveT=null;const same=liveId===id;liveId=null;if(same)return r2()}liveId=id;liveT=setInterval(()=>tick(id),1500);r2()}
 function tick(id){const c=cl(id);if(!c||!c.asg.length||tab!=='teacher')return;const a=c.asg[c.asg.length-1];c.students.forEach((s,i)=>{if(a.target!=='all'&&a.target!==i)return;if(Math.random()<.6){s.p[a.id]=Math.min(100,(s.p[a.id]||0)+rnd(2,9));s.q++;s.gems+=rnd(0,3)}const b=$(`pb${id}_${i}`);if(b)b.style.width=(s.p[a.id]||0)+'%';const g=$(`gm${id}_${i}`);if(g)g.textContent=s.gems});if(c.ch){const e=$('ch'+id);if(e){e.style.width=Math.min(100,(gemTot(c)-c.ch.base)/c.ch.goal*100)+'%';$('chn'+id).textContent=Math.max(0,gemTot(c)-c.ch.base)}}sv()}
-function setCh(id){const c=cl(id);c.ch={goal:Math.max(10,+$('cg2'+id).value||100),reward:$('cr'+id).value.trim()||'Class celebration',base:gemTot(c)};sv();r2()}
+function setCh(id){const c=cl(id),kind=($('ck'+id)||{}).value==='gems'?'gems':'stars';c.ch={kind,goal:Math.max(10,+$('cg2'+id).value||200),reward:$('cr'+id).value.trim()||'Class celebration',base:0};c.ch.base=chTot(c);sv();r2()}
 function report(id){const c=cl(id),i=+$('rp'+id).value,s=c.students[i];if(!s)return;const a=c.asg.filter(x=>x.target==='all'||x.target===i),d=a.filter(x=>(s.p[x.id]||0)>=100).length;$('rpt'+id).textContent=`Weekly update for ${s.name}\n\nThis week ${s.name} answered ${s.q} practice questions and earned ${s.gems} gems.\n${a.length?`Assignments complete: ${d} of ${a.length}.\n`:''}Steady effort adds up. Ask ${s.name} to show you their knowledge map.\n\n${c.name}`}
 
 /* ---------- Owner console ---------- */
@@ -822,6 +823,7 @@ const FBM=(()=>{
   const str=(v,lo,hi,what='Text')=>{v=String(v??'').trim();if(v.length<lo||v.length>hi)throw new E(400,`${what} must be ${lo} to ${hi} characters.`);return v};
   const doc=(c,id)=>db.collection(c).doc(String(id));
   const lvl=s=>!s||!s.att?0:s.mastered?4:(s.p>=.85&&s.att>=6)?3:s.p>=.55?2:1;
+  const starsOf=st=>Object.values(st.S||{}).reduce((t,x)=>{const l=lvl(x);return t+(l>=4?3:l>=3?2:l>=2?1:0)},0);
   const isOwner=()=>!!me&&site.ownerUid===me.uid;
   const isMod=()=>isOwner()||(profile&&profile.role==='teacher'&&profile.verified);
   const isTeacher=()=>isOwner()||(profile&&['teacher','school_admin'].includes(profile.role));
@@ -952,9 +954,10 @@ const FBM=(()=>{
   const cleanArc=a=>a&&typeof a==='object'?{off:!!a.off,mins:Math.max(0,Math.min(120,Math.round(+a.mins||0))),games:Array.isArray(a.games)?a.games.slice(0,20).map(x=>String(x).toLowerCase().replace(/[^a-z]/g,'').slice(0,12)).filter(Boolean):null,sub:String(a.sub||'').replace(/[^a-z]/g,'').slice(0,12)}:null;
   const gameOf=c=>{const g=c.game||{};return{board:g.board!==false,teams:g.teams||[],tm:g.tm||{},prize:g.prize||'',arc:cleanArc(g.arc)}};
   let myCls=null,lastBoard='';
-  async function boardSync(b){if(!profile||profile.role!=='student')return;const h=heroOf(b),row={n:profile.display,xp:Math.min(1e7,Math.round(h.xp)),w:h.wk?h.wk.w:'',wx:Math.min(1e6,Math.round(h.wk?h.wk.xp:0)),hero:JSON.stringify(h.hero||{}).slice(0,390)},k=JSON.stringify(row);
+  async function boardSync(b){if(!profile||profile.role!=='student')return;const h=heroOf(b),row={n:profile.display,xp:Math.min(1e7,Math.round(h.xp)),w:h.wk?h.wk.w:'',wx:Math.min(1e6,Math.round(h.wk?h.wk.xp:0)),hero:JSON.stringify(h.hero||{}).slice(0,390),st:Math.min(1e5,starsOf(b))},k=JSON.stringify(row);
     if(myCls===null)myCls=(await db.collection('classes').where('members','array-contains',me.uid).get()).docs.map(d=>d.id);
-    if(k===lastBoard||!myCls.length)return;lastBoard=k;await Promise.all(myCls.map(c=>doc('classes',c).collection('board').doc(me.uid).set({...row,ts:now()})))}
+    if(k===lastBoard||!myCls.length)return;lastBoard=k;/* rules published before the Class Quest refuse the star count: save the row without it */
+    await Promise.all(myCls.map(c=>{const ref=doc('classes',c).collection('board').doc(me.uid);return ref.set({...row,ts:now()}).catch(()=>{const {st,...r}=row;return ref.set({...r,ts:now()})})}))}
   /* Classes */
   const pct=(st,skills)=>Math.round(100*skills.reduce((a,k)=>{const s=(st.S||{})[k];return a+(lvl(s)>=3?1:s&&s.att?Math.min(.99,s.p/.85):0)},0)/Math.max(1,skills.length));
   async function classOut(cd){const c=cd.data(),mem=c.members||[];
@@ -962,16 +965,17 @@ const FBM=(()=>{
     const A=asg.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>a.ts-b.ts);
     return{id:num(cd.id),name:c.name,grade:c.grade,region:c.region||'',code:c.code,ch:c.challenge||null,game:{...gm,tm:Object.fromEntries(Object.entries(gm.tm).map(([u,t])=>[num(u),t]))},
       asg:A.map(a=>({id:num(a.id),title:a.title,skills:a.skills,target:a.target?mem.indexOf(a.target):'all'})),
-      students:mem.map((u,i)=>{const p=users[i].exists?users[i].data():{},st=states[i];return{uid:num(u),name:p.display||'student',email:p.username||'',grades:(c.memberGrades||{})[u]||[c.grade],gems:gemsEarned(st),...heroOf(st),
+      students:mem.map((u,i)=>{const p=users[i].exists?users[i].data():{},st=states[i];return{uid:num(u),name:p.display||'student',email:p.username||'',grades:(c.memberGrades||{})[u]||[c.grade],gems:gemsEarned(st),stars:starsOf(st),...heroOf(st),
         q:Object.values(st.S||{}).reduce((a,s)=>a+(s.att||0),0),p:Object.fromEntries(A.map(a=>[num(a.id),pct(st,a.skills)]))}})}}
   const ownClass=async id=>{const d=await doc('classes',sid(id)).get();if(!d.exists||(d.data().teacherId!==me.uid&&!isOwner()))throw new E(404,'Class not found.');return d};
   route('GET','/api/classes',async()=>{need();
     if(isTeacher()){const q=isOwner()?db.collection('classes'):db.collection('classes').where('teacherId','==',me.uid);const cs=await q.get();return{classes:await Promise.all(cs.docs.sort((a,b)=>a.data().created-b.data().created).map(classOut))}}
     const cs=await db.collection('classes').where('members','array-contains',me.uid).get();
     myCls=cs.docs.map(d=>d.id);
+    const questOf=async d=>{const ch=d.data().challenge;if(!ch||ch.kind!=='stars')return null;let have=0;try{const r=await d.ref.collection('board').get();r.forEach(x=>{have+=+x.data().st||0})}catch(e){return null}return{kind:'stars',goal:ch.goal,reward:ch.reward,have:Math.max(0,have-(ch.base||0))}};
     const boardOf=async d=>{const g=gameOf(d.data());if(!g.board||(site.flags||{})['Class leaderboards']===false)return null;const r=await d.ref.collection('board').get();const mem=d.data().members||[];
       return r.docs.filter(x=>mem.includes(x.id)).map(x=>{const v=x.data();let h=null;try{h=JSON.parse(v.hero||'null')}catch(e){}return{n:v.n,me:x.id===me.uid,t:g.tm[x.id]??null,xp:+v.xp||0,wk:v.w?{w:v.w,xp:+v.wx||0}:null,hero:h&&h.hero?h:null}})};
-    return{joined:await Promise.all(cs.docs.map(async d=>{const a=await d.ref.collection('assignments').get(),g=gameOf(d.data());return{id:num(d.id),name:d.data().name,teacher:d.data().teacherName,game:{board:g.board,teams:g.teams,prize:g.prize,arc:g.arc},board:await boardOf(d),
+    return{joined:await Promise.all(cs.docs.map(async d=>{const a=await d.ref.collection('assignments').get(),g=gameOf(d.data());return{id:num(d.id),name:d.data().name,teacher:d.data().teacherName,game:{board:g.board,teams:g.teams,prize:g.prize,arc:g.arc},board:await boardOf(d),quest:await questOf(d),
       assigned:a.docs.map(x=>({id:x.id,...x.data()})).filter(x=>!x.target||x.target===me.uid).sort((x,y)=>y.ts-x.ts).map(x=>({id:num(x.id),title:x.title,skills:x.skills})),
       tests:await myTests(d)}}))}});
   route('POST','/api/classes',async b=>{need(isTeacher());const name=str(b.name,2,60,'Class names');let code;
@@ -999,7 +1003,7 @@ const FBM=(()=>{
     const target=b.target&&b.target!=='all'?sid(b.target):null;if(target&&!(cd.data().members||[]).includes(target))throw new E(400,'That student is not in this class.');
     await cd.ref.collection('assignments').add({title:str(b.title,2,120,'Titles'),skills,target,ts:now()});return{ok:true}});
   route('POST','/api/classes/:id/challenge',async(b,p)=>{need(isTeacher());const cd=await ownClass(p.id);const st=await Promise.all((cd.data().members||[]).map(stateOf));
-    await cd.ref.update({challenge:{goal:Math.max(10,+b.goal||100),reward:String(b.reward||'Class celebration').slice(0,80),base:st.reduce((a,s)=>a+gemsEarned(s),0)}});return{ok:true}});
+    const kind=b.kind==='stars'?'stars':'gems';await cd.ref.update({challenge:{kind,goal:Math.max(10,+b.goal||100),reward:String(b.reward||'Class celebration').slice(0,80),base:st.reduce((a,s)=>a+(kind==='stars'?starsOf(s):gemsEarned(s)),0)}});return{ok:true}});
   route('PATCH','/api/classes/:id/game',async(b,p)=>{need(isTeacher());const cd=await ownClass(p.id),g=gameOf(cd.data()),mem=cd.data().members||[];
     if(b.board!==undefined)g.board=!!b.board;if(Array.isArray(b.teams))g.teams=b.teams.slice(0,6).map(t=>str(t,1,24,'Team names'));
     if(b.tm)g.tm=Object.fromEntries(Object.entries(b.tm).map(([u,t])=>[sid(u),t]).filter(([u,t])=>mem.includes(u)&&t!==null).map(([u,t])=>[u,Math.max(0,Math.min(g.teams.length-1,Math.round(+t||0)))]));
@@ -1378,12 +1382,12 @@ addG=function(id,i,g){if(g==='')return;const s=cl(id).students[i];if(!s.grades.i
 rmG=function(id,i,g){const s=cl(id).students[i];if(s.grades.length>1)setGrades(id,i,s.grades.filter(x=>x!==g))};
 assign=function(id){const c=cl(id),[ty,key]=$('as'+id).value.split(':'),t=$('at'+id).value;
   busy(async()=>{await api('POST',`/api/classes/${id}/assign`,{title:ty=='u'?UNITS[key][0]:SK[key].n,skills:ty=='u'?UNITS[key][1]:[key],target:t==='all'?'all':c.students[+t].uid});msg('Assigned.');reload('teacher')})};
-setCh=function(id){busy(async()=>{await api('POST',`/api/classes/${id}/challenge`,{goal:Math.max(10,+$('cg2'+id).value||100),reward:$('cr'+id)&&$('cr'+id).value?$('cr'+id).value.trim():'Class celebration'});reload('teacher')})};
+setCh=function(id){busy(async()=>{await api('POST',`/api/classes/${id}/challenge`,{kind:($('ck'+id)||{}).value==='gems'?'gems':'stars',goal:Math.max(10,+$('cg2'+id).value||200),reward:$('cr'+id)&&$('cr'+id).value?$('cr'+id).value.trim():'Class celebration'});reload('teacher')})};
 /* Live view: re-reads real progress from the server every few seconds */
 live=function(id){if(liveT){clearInterval(liveT);liveT=null;const same=liveId===id;liveId=null;if(same)return showTab('teacher')}liveId=id;liveT=setInterval(()=>tick(id),BOOT.fb?20000:4000);showTab('teacher')};
 tick=async function(id){if(tab!=='teacher')return;try{await LOAD.teacher()}catch(e){return}const c=cl(id);if(!c||!c.asg.length)return;const a=c.asg[c.asg.length-1];
   c.students.forEach((s,i)=>{const b=$(`pb${id}_${i}`);if(b)b.style.width=(s.p[a.id]||0)+'%';const g=$(`gm${id}_${i}`);if(g)g.textContent=s.gems});
-  if(c.ch){const e=$('ch'+id);if(e){e.style.width=Math.min(100,(gemTot(c)-c.ch.base)/c.ch.goal*100)+'%';$('chn'+id).textContent=Math.max(0,gemTot(c)-c.ch.base)}}};
+  if(c.ch){const e=$('ch'+id);if(e){e.style.width=Math.min(100,(chTot(c)-c.ch.base)/c.ch.goal*100)+'%';$('chn'+id).textContent=Math.max(0,chTot(c)-c.ch.base)}}};
 VIEWS.teacher=tView;
 
 /* ---------- Community ---------- */
@@ -12221,6 +12225,12 @@ const _ccC=classCard;classCard=function(c){const h=_ccC(c),b=arcBlock(c)+arcMaps
 .bridgeview #map .gl{fill:#1B3A57}
 .stdtag{display:inline-block;font-size:.78rem;font-weight:700;padding:2px 10px;border-radius:99px;background:#E8F0FF;color:#1E3A8A;margin:6px 6px 0 0}
 .tokenbtn{margin-top:10px}
+.storyview #map .node.stormy circle.n{filter:grayscale(1) brightness(.85)}
+.storyview #map .node.stormy text{opacity:.6}
+.storycard{margin:0 0 12px;padding:16px 18px;border-radius:20px;background:linear-gradient(135deg,#1E1B5E,#3B2A8C);color:#fff}
+.storycard h3{margin:0 0 4px;color:#fff}.storycard p{margin:0;color:#D7D9F5}.storycard .regs{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.storycard .regs span{font-size:.8rem;font-weight:700;padding:3px 10px;border-radius:99px;background:rgba(255,255,255,.14)}.storycard .regs span.ok{background:#3DD9B4;color:#0B3B30}
+
 </style>
 <script type="text/x-lumen">
 /* ===== The implementation package (Part 2 and Week 2/4 items) =====
@@ -12228,6 +12238,20 @@ const _ccC=classCard;classCard=function(c){const h=_ccC(c),b=arcBlock(c)+arcMaps
    out once you have history. Mastery stars: 1 to 3 stars on each map skill (Familiar, Proficient, Mastered). Build-a-Bridge: a view
    of the knowledge map where skills are islands and a finished building block builds the bridge. Lumi Challenge: one free hint
    token and a Thinking Score. California standards tags on the math skills. ===== */
+const CASTD={kadd:'K.OA.A.2',ksub:'K.OA.A.2',kbond:'K.OA.A.4',kcount:'K.CC.A.2',
+  g1add:'1.OA.C.6',g1sub:'1.OA.C.6',g1tens:'1.NBT.B.2',g1skip:'2.NBT.A.2',g2add:'2.NBT.B.5',g2sub:'2.NBT.B.5',g2coins:'2.MD.C.8',g2place:'2.NBT.A.1',
+  mult:'3.OA.C.7',g3div:'3.OA.C.7',g3x10:'3.NBT.A.3',g3round:'3.NBT.A.1',g3area:'3.MD.C.7.b',g3perim:'3.MD.D.8',
+  equiv:'4.NF.A.1',simplify:'4.NF.A.1',addlike:'4.NF.B.3.a',g4add:'4.NBT.B.4',g4mult:'4.NBT.B.5',g4div:'4.NBT.B.6',g4comp:'4.MD.C.7',factors:'6.NS.B.4',g4lcm:'6.NS.B.4',
+  adduni:'5.NF.A.1',multfrac:'5.NF.B.4',g5fdiv:'5.NF.B.7.b',g5decadd:'5.NBT.B.7',g5decmul:'5.NBT.B.7',g5pow10:'5.NBT.A.2',g5ooo:'5.OA.A.1',g5vol:'5.MD.C.5.b',
+  g6ratio1:'6.RP.A.1',g6ratio2:'6.RP.A.3.a',g6ratio3:'6.RP.A.3.a',g6rate1:'6.RP.A.3.b',g6rate2:'6.RP.A.3.b',g6pctdec:'6.RP.A.3.c',g6pctfrac:'6.RP.A.3.c',g6pctwhole:'6.RP.A.3.c',percent:'6.RP.A.3.c',
+  g6fdiv:'6.NS.A.1',g6fwhole:'6.NS.A.1',g6decdiv:'6.NS.B.3',g6decsub:'6.NS.B.3',g6abs:'6.NS.C.7.c',g6dist:'6.NS.C.8',g6exp:'6.EE.A.1',g6eval:'6.EE.A.2.c',g6ooo:'6.EE.A.2.c',g6like:'6.EE.A.3',
+  g6ineq:'6.EE.B.5',onestepadd:'6.EE.B.7',onestepmul:'6.EE.B.7',g6tri:'6.G.A.1',g6para:'6.G.A.1',g6trap:'6.G.A.1',g6box:'6.G.A.4',g6cube:'6.G.A.4',g6mean:'6.SP.B.5.c',g6median:'6.SP.B.5.c',g6mode:'6.SP.B.5.c',g6range:'6.SP.B.5.c',
+  g6negadd:'7.NS.A.1',g7negmul:'7.NS.A.2',g7prop:'7.RP.A.2.b',g7pctchg:'7.RP.A.3',g7tip:'7.RP.A.3',g7dist:'7.EE.A.1',twostep:'7.EE.B.4.a',g7circ:'7.G.B.4',g7circa:'7.G.B.4',g7supp:'7.G.B.5',g7prob:'7.SP.C.7.a',
+  g7tri:'8.G.A.5',g8exp:'8.EE.A.1',g8sqrt:'8.EE.A.2',g8cbrt:'8.EE.A.2',g8sci:'8.EE.A.3',g8sys:'8.EE.C.8.b',g8lin:'8.F.A.1',slope:'8.F.B.4',g8pyth:'8.G.B.7',g8cyl:'8.G.C.9',g10dist:'8.G.B.8',
+  lineq:'HSA-REI.B.3',g9ineq:'HSA-REI.B.3',g9disc:'HSA-REI.B.4.b',g9foil:'HSA-APR.A.1',g9arith:'HSF-BF.A.2',g9geom:'HSF-BF.A.2',g9exp:'HSF-LE.A.2',quadeval:'HSF-IF.A.2',
+  g10mid:'HSG-GPE.B.6',g10sim:'HSG-SRT.B.5',g10sin:'HSG-SRT.C.6',g10arc:'HSG-C.B.5',g10sph:'HSG-GMD.A.3',
+  logs:'HSF-LE.A.4',g11expeq:'HSF-LE.A.4',g11logp:'HSF-BF.B.5',g11geoser:'HSA-SSE.B.4',g11rem:'HSA-APR.B.2',g11rad:'HSF-TF.A.1',g11comb:'HSS-CP.B.9',g11perm:'HSS-CP.B.9',
+  g12vert:'HSF-IF.C.8.a',g13ci:'HSA-SSE.B.3.c',g13ev:'HSS-MD.A.2'};
 const LAMPMAX=7;
 function lampLevel(){const days=[...new Set(ST.days||[])].sort();if(!days.length)return 0;const on=new Set(days),t=today();let lv=0;
   for(let d=new Date(days[0]+'T12:00:00');;d.setDate(d.getDate()+1)){const k=d.toISOString().slice(0,10);if(k>t)break;
@@ -12247,7 +12271,7 @@ const _rPk=render;render=function(){_rPk();const h=document.querySelector('#dash
 const starsOf=k=>{const lv=level(k);return lv>=4?3:lv>=3?2:lv>=2?1:0};
 const _nsPk=nodeSvg;nodeSvg=function(k,x,y,rec){let s=_nsPk(k,x,y,rec);const n=starsOf(k);
   if(n){const i=s.lastIndexOf('</g>');s=s.slice(0,i)+`<g class="stars" aria-hidden="true"><text x="${x}" y="${y-28}" text-anchor="middle">${'★'.repeat(n)}${'☆'.repeat(3-n)}</text></g>`+s.slice(i)}
-  return s.replace(/aria-label="([^"]*)"/,(m,a)=>`aria-label="${a}, ${n} of 3 stars"`)};
+  return s.replace(/aria-label="([^"]*)"/,(m,a)=>`aria-label="${a}, ${n} of 3 stars${CASTD[k]?', California standard '+CASTD[k]:''}"`)};
 
 /* Build-a-Bridge: islands and bridges over the same map */
 const _dmPk=drawMap;drawMap=function(){_dmPk();const el=$('map');if(!el)return;const wrap=el.closest('.card')||el.parentNode;
@@ -12268,7 +12292,7 @@ const _cdPk=challengeDone;challengeDone=function(){const Z=QZ,t=thinkScore(Z),h=
   return h.replace('</div>',`</div><div class="tutor good">${orb(34,'wow')}<div class="tx"><b>Thinking Score: ${t} / 100</b>It counts how well you thought, not how fast: each right answer counts fully, and one helped by the hint token counts half.${Z.token?'':' You solved it all without your hint token!'}</div></div>`)};
 
 /* California standards (Common Core State Standards for Mathematics, adopted by California) on the math skills */
-const CASTD={mult:'3.OA.C.7',factors:'6.NS.B.4',onestepadd:'6.EE.B.7',equiv:'4.NF.A.1',simplify:'4.NF.A.1',onestepmul:'6.EE.B.7',addlike:'4.NF.B.3.a',multfrac:'5.NF.B.4',twostep:'7.EE.B.4.a',adduni:'5.NF.A.1'};
+
 const stdTag=k=>CASTD[k]?`<span class="stdtag" title="California Common Core State Standards for Mathematics">CA CCSS ${CASTD[k]}</span>`:'';
 const _rStd=render;render=function(){_rStd();if(view!=='lesson'||!sel||!CASTD[sel])return;const P=$('panel');if(!P||P.querySelector('.stdtag'))return;const h=P.querySelector('h2,h3');if(h)h.insertAdjacentHTML('afterend',`<div>${stdTag(sel)}</div>`)};
 
@@ -12283,6 +12307,23 @@ const _ofPk=O.flags;O.flags=function(){if(OUSE===null){OUSE=[];if(!BOOT.fb&&!BOO
   const tot=OUSE.slice(0,7).reduce((a,d)=>a+d.n,0);
   return _ofPk()+`<h3 style="margin-top:18px">Lumi AI tutor use</h3><p class="sol">Each learner can send Lumi up to 30 messages a day. ${BOOT.fb?'On this site Lumi uses its built-in guiding questions, so no AI messages are sent.':OUSE.length?`Last 7 days: <b>${tot}</b> messages.`:'No AI messages yet.'}</p>
   ${OUSE.length?`<div class="tbl"><table class="vs"><tr><th>Day</th><th>Messages</th></tr>${OUSE.map(d=>`<tr><td>${esc(d.day)}</td><td>${d.n}</td></tr>`).join('')}</table></div>`:''}`};
+
+/* Co-op Class Quest: learners see their class's shared goal, never a ranking */
+const questCard=c=>{const q=c.quest;if(!q)return '';const u=q.kind==='stars'?'mastery stars':'gems',pc=Math.min(100,q.have/q.goal*100);
+  return `<div class="card" style="margin-top:14px"><div class="split"><h3>🤝 ${esc(c.name)}: Class Quest</h3><span class="sol">Together</span></div><p style="margin:4px 0 8px">Collect <b>${q.goal} ${u}</b> as a class. Reward: <b>${esc(q.reward)}</b></p>
+    <div class="bar"><i style="width:${pc}%"></i></div><p class="sol">${q.have} of ${q.goal} ${u}${q.have>=q.goal?' · Quest complete! 🎉':''}. ${q.kind==='stars'?'Every skill you move up a level adds stars for the whole class.':''}</p></div>`};
+const _vcQ=VIEWS.classes;VIEWS.classes=function(){const h=_vcQ(),b=(ST.joined||[]).map(questCard).join('');if(!b)return h;const k='Your teacher gives you the code.</p></div>';return h.includes(k)?h.replace(k,k+b):h+b};
+
+/* Story Mode: "A storm scrambled the Knowledge Map. Every skill you master repairs it." Each grade is a region of the map */
+const STORYB=['A storm swept over the Knowledge Map and scrambled every region. Lumi needs your help to repair it, one skill at a time.','The first sunlight breaks through! Every skill you bring to Proficient clears the clouds above it.','Whole regions are shining again. The building blocks you mastered hold the bridges together.','The map is almost whole. A few stubborn clouds remain at the edges.','The storm has passed. The Knowledge Map shines brighter than ever, thanks to you.'];
+function storyCard(){const ks=ORDER.filter(k=>SK[k].sub===ST.subj&&(ST.grades.includes('all')||inBand(k)));if(!ks.length)return '';
+  const ok=k=>level(k)>=3,f=ks.filter(ok).length/ks.length,gs=[...new Set(ks.map(k=>ST.gr[k]))].sort((a,b)=>a-b);
+  const beat=STORYB[f>=1?4:f>=.75?3:f>=.4?2:f>0?1:0];
+  return `<div class="storycard" id="storycard"><h3>⛈️ Restore the Knowledge Map · ${Math.round(f*100)}% repaired</h3><p>${beat}</p><div class="regs">${gs.map(g=>{const r=ks.filter(k=>ST.gr[k]==g),d=r.filter(ok).length;return `<span class="${d===r.length?'ok':''}">${GLAB(g)} region ${d}/${r.length}</span>`}).join('')}</div></div>`}
+const _dmSt=drawMap;drawMap=function(){_dmSt();const el=$('map');if(!el)return;document.body.classList.toggle('storyview',!!ST.story);const old=$('storycard');if(old)old.remove();if(!ST.story)return;
+  el.querySelectorAll('.node').forEach(g=>{const l=g.getAttribute('aria-label')||'';if(!/Proficient|Mastered/i.test(l))g.classList.add('stormy')});
+  const w=el.closest('.mapwrap')||el;w.insertAdjacentHTML('beforebegin',storyCard())};
+const _rSt=render;render=function(){_rSt();const lg=$('legend');if(lg&&!lg.querySelector('.storybtn')&&$('map'))lg.insertAdjacentHTML('beforeend',`<button class="chip storybtn ${ST.story?'on':''}" aria-pressed="${!!ST.story}" onclick="ST.story=!ST.story;sv();render()">⛈️ Story mode</button>`)};
 </script>
 
 </body>

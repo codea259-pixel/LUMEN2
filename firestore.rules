@@ -150,7 +150,8 @@ service cloud.firestore {
       match /board/{uid} {
         allow read: if signedIn() && (cls().teacherId == request.auth.uid || request.auth.uid in cls().members || isOwner());
         allow create, update: if signedIn() && request.auth.uid == uid && active() && request.auth.uid in cls().members
-          && request.resource.data.keys().hasOnly(['n', 'xp', 'w', 'wx', 'hero', 'ts'])
+          && request.resource.data.keys().hasOnly(['n', 'xp', 'w', 'wx', 'hero', 'ts', 'st'])
+          && (!('st' in request.resource.data) || (request.resource.data.st is int && request.resource.data.st >= 0 && request.resource.data.st <= 100000))
           && request.resource.data.n is string && request.resource.data.n.size() <= 20
           && request.resource.data.xp is int && request.resource.data.xp >= 0 && request.resource.data.xp <= 10000000
           && request.resource.data.wx is int && request.resource.data.wx >= 0 && request.resource.data.wx <= 1000000

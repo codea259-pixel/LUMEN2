@@ -193,12 +193,12 @@ addG=function(id,i,g){if(g==='')return;const s=cl(id).students[i];if(!s.grades.i
 rmG=function(id,i,g){const s=cl(id).students[i];if(s.grades.length>1)setGrades(id,i,s.grades.filter(x=>x!==g))};
 assign=function(id){const c=cl(id),[ty,key]=$('as'+id).value.split(':'),t=$('at'+id).value;
   busy(async()=>{await api('POST',`/api/classes/${id}/assign`,{title:ty=='u'?UNITS[key][0]:SK[key].n,skills:ty=='u'?UNITS[key][1]:[key],target:t==='all'?'all':c.students[+t].uid});msg('Assigned.');reload('teacher')})};
-setCh=function(id){busy(async()=>{await api('POST',`/api/classes/${id}/challenge`,{goal:Math.max(10,+$('cg2'+id).value||100),reward:$('cr'+id)&&$('cr'+id).value?$('cr'+id).value.trim():'Class celebration'});reload('teacher')})};
+setCh=function(id){busy(async()=>{await api('POST',`/api/classes/${id}/challenge`,{kind:($('ck'+id)||{}).value==='gems'?'gems':'stars',goal:Math.max(10,+$('cg2'+id).value||200),reward:$('cr'+id)&&$('cr'+id).value?$('cr'+id).value.trim():'Class celebration'});reload('teacher')})};
 /* Live view: re-reads real progress from the server every few seconds */
 live=function(id){if(liveT){clearInterval(liveT);liveT=null;const same=liveId===id;liveId=null;if(same)return showTab('teacher')}liveId=id;liveT=setInterval(()=>tick(id),BOOT.fb?20000:4000);showTab('teacher')};
 tick=async function(id){if(tab!=='teacher')return;try{await LOAD.teacher()}catch(e){return}const c=cl(id);if(!c||!c.asg.length)return;const a=c.asg[c.asg.length-1];
   c.students.forEach((s,i)=>{const b=$(`pb${id}_${i}`);if(b)b.style.width=(s.p[a.id]||0)+'%';const g=$(`gm${id}_${i}`);if(g)g.textContent=s.gems});
-  if(c.ch){const e=$('ch'+id);if(e){e.style.width=Math.min(100,(gemTot(c)-c.ch.base)/c.ch.goal*100)+'%';$('chn'+id).textContent=Math.max(0,gemTot(c)-c.ch.base)}}};
+  if(c.ch){const e=$('ch'+id);if(e){e.style.width=Math.min(100,(chTot(c)-c.ch.base)/c.ch.goal*100)+'%';$('chn'+id).textContent=Math.max(0,chTot(c)-c.ch.base)}}};
 VIEWS.teacher=tView;
 
 /* ---------- Community ---------- */

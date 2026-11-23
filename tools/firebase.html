@@ -20,6 +20,7 @@ const FBM=(()=>{
   const str=(v,lo,hi,what='Text')=>{v=String(v??'').trim();if(v.length<lo||v.length>hi)throw new E(400,`${what} must be ${lo} to ${hi} characters.`);return v};
   const doc=(c,id)=>db.collection(c).doc(String(id));
   const lvl=s=>!s||!s.att?0:s.mastered?4:(s.p>=.85&&s.att>=6)?3:s.p>=.55?2:1;
+  const starsOf=st=>Object.values(st.S||{}).reduce((t,x)=>{const l=lvl(x);return t+(l>=4?3:l>=3?2:l>=2?1:0)},0);
   const isOwner=()=>!!me&&site.ownerUid===me.uid;
   const isMod=()=>isOwner()||(profile&&profile.role==='teacher'&&profile.verified);
   const isTeacher=()=>isOwner()||(profile&&['teacher','school_admin'].includes(profile.role));
@@ -150,9 +151,10 @@ const FBM=(()=>{
   const cleanArc=a=>a&&typeof a==='object'?{off:!!a.off,mins:Math.max(0,Math.min(120,Math.round(+a.mins||0))),games:Array.isArray(a.games)?a.games.slice(0,20).map(x=>String(x).toLowerCase().replace(/[^a-z]/g,'').slice(0,12)).filter(Boolean):null,sub:String(a.sub||'').replace(/[^a-z]/g,'').slice(0,12)}:null;
   const gameOf=c=>{const g=c.game||{};return{board:g.board!==false,teams:g.teams||[],tm:g.tm||{},prize:g.prize||'',arc:cleanArc(g.arc)}};
   let myCls=null,lastBoard='';
-  async function boardSync(b){if(!profile||profile.role!=='student')return;const h=heroOf(b),row={n:profile.display,xp:Math.min(1e7,Math.round(h.xp)),w:h.wk?h.wk.w:'',wx:Math.min(1e6,Math.round(h.wk?h.wk.xp:0)),hero:JSON.stringify(h.hero||{}).slice(0,390)},k=JSON.stringify(row);
+  async function boardSync(b){if(!profile||profile.role!=='student')return;const h=heroOf(b),row={n:profile.display,xp:Math.min(1e7,Math.round(h.xp)),w:h.wk?h.wk.w:'',wx:Math.min(1e6,Math.round(h.wk?h.wk.xp:0)),hero:JSON.stringify(h.hero||{}).slice(0,390),st:Math.min(1e5,starsOf(b))},k=JSON.stringify(row);
     if(myCls===null)myCls=(await db.collection('classes').where('members','array-contains',me.uid).get()).docs.map(d=>d.id);
-    if(k===lastBoard||!myCls.length)return;lastBoard=k;await Promise.all(myCls.map(c=>doc('classes',c).collection('board').doc(me.uid).set({...row,ts:now()})))}
+    if(k===lastBoard||!myCls.length)return;lastBoard=k;/* rules published before the Class Quest refuse the star count: save the row without it */
+    await Promise.all(myCls.map(c=>{const ref=doc('classes',c).collection('board').doc(me.uid);return ref.set({...row,ts:now()}).catch(()=>{const {st,...r}=row;return ref.set({...r,ts:now()})})}))}
   /* Classes */
   const pct=(st,skills)=>Math.round(100*skills.reduce((a,k)=>{const s=(st.S||{})[k];return a+(lvl(s)>=3?1:s&&s.att?Math.min(.99,s.p/.85):0)},0)/Math.max(1,skills.length));
   async function classOut(cd){const c=cd.data(),mem=c.members||[];
@@ -160,16 +162,17 @@ const FBM=(()=>{
     const A=asg.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>a.ts-b.ts);
     return{id:num(cd.id),name:c.name,grade:c.grade,region:c.region||'',code:c.code,ch:c.challenge||null,game:{...gm,tm:Object.fromEntries(Object.entries(gm.tm).map(([u,t])=>[num(u),t]))},
       asg:A.map(a=>({id:num(a.id),title:a.title,skills:a.skills,target:a.target?mem.indexOf(a.target):'all'})),
-      students:mem.map((u,i)=>{const p=users[i].exists?users[i].data():{},st=states[i];return{uid:num(u),name:p.display||'student',email:p.username||'',grades:(c.memberGrades||{})[u]||[c.grade],gems:gemsEarned(st),...heroOf(st),
+      students:mem.map((u,i)=>{const p=users[i].exists?users[i].data():{},st=states[i];return{uid:num(u),name:p.display||'student',email:p.username||'',grades:(c.memberGrades||{})[u]||[c.grade],gems:gemsEarned(st),stars:starsOf(st),...heroOf(st),
         q:Object.values(st.S||{}).reduce((a,s)=>a+(s.att||0),0),p:Object.fromEntries(A.map(a=>[num(a.id),pct(st,a.skills)]))}})}}
   const ownClass=async id=>{const d=await doc('classes',sid(id)).get();if(!d.exists||(d.data().teacherId!==me.uid&&!isOwner()))throw new E(404,'Class not found.');return d};
   route('GET','/api/classes',async()=>{need();
     if(isTeacher()){const q=isOwner()?db.collection('classes'):db.collection('classes').where('teacherId','==',me.uid);const cs=await q.get();return{classes:await Promise.all(cs.docs.sort((a,b)=>a.data().created-b.data().created).map(classOut))}}
     const cs=await db.collection('classes').where('members','array-contains',me.uid).get();
     myCls=cs.docs.map(d=>d.id);
+    const questOf=async d=>{const ch=d.data().challenge;if(!ch||ch.kind!=='stars')return null;let have=0;try{const r=await d.ref.collection('board').get();r.forEach(x=>{have+=+x.data().st||0})}catch(e){return null}return{kind:'stars',goal:ch.goal,reward:ch.reward,have:Math.max(0,have-(ch.base||0))}};
     const boardOf=async d=>{const g=gameOf(d.data());if(!g.board||(site.flags||{})['Class leaderboards']===false)return null;const r=await d.ref.collection('board').get();const mem=d.data().members||[];
       return r.docs.filter(x=>mem.includes(x.id)).map(x=>{const v=x.data();let h=null;try{h=JSON.parse(v.hero||'null')}catch(e){}return{n:v.n,me:x.id===me.uid,t:g.tm[x.id]??null,xp:+v.xp||0,wk:v.w?{w:v.w,xp:+v.wx||0}:null,hero:h&&h.hero?h:null}})};
-    return{joined:await Promise.all(cs.docs.map(async d=>{const a=await d.ref.collection('assignments').get(),g=gameOf(d.data());return{id:num(d.id),name:d.data().name,teacher:d.data().teacherName,game:{board:g.board,teams:g.teams,prize:g.prize,arc:g.arc},board:await boardOf(d),
+    return{joined:await Promise.all(cs.docs.map(async d=>{const a=await d.ref.collection('assignments').get(),g=gameOf(d.data());return{id:num(d.id),name:d.data().name,teacher:d.data().teacherName,game:{board:g.board,teams:g.teams,prize:g.prize,arc:g.arc},board:await boardOf(d),quest:await questOf(d),
       assigned:a.docs.map(x=>({id:x.id,...x.data()})).filter(x=>!x.target||x.target===me.uid).sort((x,y)=>y.ts-x.ts).map(x=>({id:num(x.id),title:x.title,skills:x.skills})),
       tests:await myTests(d)}}))}});
   route('POST','/api/classes',async b=>{need(isTeacher());const name=str(b.name,2,60,'Class names');let code;
@@ -197,7 +200,7 @@ const FBM=(()=>{
     const target=b.target&&b.target!=='all'?sid(b.target):null;if(target&&!(cd.data().members||[]).includes(target))throw new E(400,'That student is not in this class.');
     await cd.ref.collection('assignments').add({title:str(b.title,2,120,'Titles'),skills,target,ts:now()});return{ok:true}});
   route('POST','/api/classes/:id/challenge',async(b,p)=>{need(isTeacher());const cd=await ownClass(p.id);const st=await Promise.all((cd.data().members||[]).map(stateOf));
-    await cd.ref.update({challenge:{goal:Math.max(10,+b.goal||100),reward:String(b.reward||'Class celebration').slice(0,80),base:st.reduce((a,s)=>a+gemsEarned(s),0)}});return{ok:true}});
+    const kind=b.kind==='stars'?'stars':'gems';await cd.ref.update({challenge:{kind,goal:Math.max(10,+b.goal||100),reward:String(b.reward||'Class celebration').slice(0,80),base:st.reduce((a,s)=>a+(kind==='stars'?starsOf(s):gemsEarned(s)),0)}});return{ok:true}});
   route('PATCH','/api/classes/:id/game',async(b,p)=>{need(isTeacher());const cd=await ownClass(p.id),g=gameOf(cd.data()),mem=cd.data().members||[];
     if(b.board!==undefined)g.board=!!b.board;if(Array.isArray(b.teams))g.teams=b.teams.slice(0,6).map(t=>str(t,1,24,'Team names'));
     if(b.tm)g.tm=Object.fromEntries(Object.entries(b.tm).map(([u,t])=>[sid(u),t]).filter(([u,t])=>mem.includes(u)&&t!==null).map(([u,t])=>[u,Math.max(0,Math.min(g.teams.length-1,Math.round(+t||0)))]));

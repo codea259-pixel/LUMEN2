@@ -11,6 +11,12 @@
 .bridgeview #map .gl{fill:#1B3A57}
 .stdtag{display:inline-block;font-size:.78rem;font-weight:700;padding:2px 10px;border-radius:99px;background:#E8F0FF;color:#1E3A8A;margin:6px 6px 0 0}
 .tokenbtn{margin-top:10px}
+.storyview #map .node.stormy circle.n{filter:grayscale(1) brightness(.85)}
+.storyview #map .node.stormy text{opacity:.6}
+.storycard{margin:0 0 12px;padding:16px 18px;border-radius:20px;background:linear-gradient(135deg,#1E1B5E,#3B2A8C);color:#fff}
+.storycard h3{margin:0 0 4px;color:#fff}.storycard p{margin:0;color:#D7D9F5}.storycard .regs{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.storycard .regs span{font-size:.8rem;font-weight:700;padding:3px 10px;border-radius:99px;background:rgba(255,255,255,.14)}.storycard .regs span.ok{background:#3DD9B4;color:#0B3B30}
+
 </style>
 <script type="text/x-lumen">
 /* ===== The implementation package (Part 2 and Week 2/4 items) =====
@@ -18,6 +24,20 @@
    out once you have history. Mastery stars: 1 to 3 stars on each map skill (Familiar, Proficient, Mastered). Build-a-Bridge: a view
    of the knowledge map where skills are islands and a finished building block builds the bridge. Lumi Challenge: one free hint
    token and a Thinking Score. California standards tags on the math skills. ===== */
+const CASTD={kadd:'K.OA.A.2',ksub:'K.OA.A.2',kbond:'K.OA.A.4',kcount:'K.CC.A.2',
+  g1add:'1.OA.C.6',g1sub:'1.OA.C.6',g1tens:'1.NBT.B.2',g1skip:'2.NBT.A.2',g2add:'2.NBT.B.5',g2sub:'2.NBT.B.5',g2coins:'2.MD.C.8',g2place:'2.NBT.A.1',
+  mult:'3.OA.C.7',g3div:'3.OA.C.7',g3x10:'3.NBT.A.3',g3round:'3.NBT.A.1',g3area:'3.MD.C.7.b',g3perim:'3.MD.D.8',
+  equiv:'4.NF.A.1',simplify:'4.NF.A.1',addlike:'4.NF.B.3.a',g4add:'4.NBT.B.4',g4mult:'4.NBT.B.5',g4div:'4.NBT.B.6',g4comp:'4.MD.C.7',factors:'6.NS.B.4',g4lcm:'6.NS.B.4',
+  adduni:'5.NF.A.1',multfrac:'5.NF.B.4',g5fdiv:'5.NF.B.7.b',g5decadd:'5.NBT.B.7',g5decmul:'5.NBT.B.7',g5pow10:'5.NBT.A.2',g5ooo:'5.OA.A.1',g5vol:'5.MD.C.5.b',
+  g6ratio1:'6.RP.A.1',g6ratio2:'6.RP.A.3.a',g6ratio3:'6.RP.A.3.a',g6rate1:'6.RP.A.3.b',g6rate2:'6.RP.A.3.b',g6pctdec:'6.RP.A.3.c',g6pctfrac:'6.RP.A.3.c',g6pctwhole:'6.RP.A.3.c',percent:'6.RP.A.3.c',
+  g6fdiv:'6.NS.A.1',g6fwhole:'6.NS.A.1',g6decdiv:'6.NS.B.3',g6decsub:'6.NS.B.3',g6abs:'6.NS.C.7.c',g6dist:'6.NS.C.8',g6exp:'6.EE.A.1',g6eval:'6.EE.A.2.c',g6ooo:'6.EE.A.2.c',g6like:'6.EE.A.3',
+  g6ineq:'6.EE.B.5',onestepadd:'6.EE.B.7',onestepmul:'6.EE.B.7',g6tri:'6.G.A.1',g6para:'6.G.A.1',g6trap:'6.G.A.1',g6box:'6.G.A.4',g6cube:'6.G.A.4',g6mean:'6.SP.B.5.c',g6median:'6.SP.B.5.c',g6mode:'6.SP.B.5.c',g6range:'6.SP.B.5.c',
+  g6negadd:'7.NS.A.1',g7negmul:'7.NS.A.2',g7prop:'7.RP.A.2.b',g7pctchg:'7.RP.A.3',g7tip:'7.RP.A.3',g7dist:'7.EE.A.1',twostep:'7.EE.B.4.a',g7circ:'7.G.B.4',g7circa:'7.G.B.4',g7supp:'7.G.B.5',g7prob:'7.SP.C.7.a',
+  g7tri:'8.G.A.5',g8exp:'8.EE.A.1',g8sqrt:'8.EE.A.2',g8cbrt:'8.EE.A.2',g8sci:'8.EE.A.3',g8sys:'8.EE.C.8.b',g8lin:'8.F.A.1',slope:'8.F.B.4',g8pyth:'8.G.B.7',g8cyl:'8.G.C.9',g10dist:'8.G.B.8',
+  lineq:'HSA-REI.B.3',g9ineq:'HSA-REI.B.3',g9disc:'HSA-REI.B.4.b',g9foil:'HSA-APR.A.1',g9arith:'HSF-BF.A.2',g9geom:'HSF-BF.A.2',g9exp:'HSF-LE.A.2',quadeval:'HSF-IF.A.2',
+  g10mid:'HSG-GPE.B.6',g10sim:'HSG-SRT.B.5',g10sin:'HSG-SRT.C.6',g10arc:'HSG-C.B.5',g10sph:'HSG-GMD.A.3',
+  logs:'HSF-LE.A.4',g11expeq:'HSF-LE.A.4',g11logp:'HSF-BF.B.5',g11geoser:'HSA-SSE.B.4',g11rem:'HSA-APR.B.2',g11rad:'HSF-TF.A.1',g11comb:'HSS-CP.B.9',g11perm:'HSS-CP.B.9',
+  g12vert:'HSF-IF.C.8.a',g13ci:'HSA-SSE.B.3.c',g13ev:'HSS-MD.A.2'};
 const LAMPMAX=7;
 function lampLevel(){const days=[...new Set(ST.days||[])].sort();if(!days.length)return 0;const on=new Set(days),t=today();let lv=0;
   for(let d=new Date(days[0]+'T12:00:00');;d.setDate(d.getDate()+1)){const k=d.toISOString().slice(0,10);if(k>t)break;
@@ -37,7 +57,7 @@ const _rPk=render;render=function(){_rPk();const h=document.querySelector('#dash
 const starsOf=k=>{const lv=level(k);return lv>=4?3:lv>=3?2:lv>=2?1:0};
 const _nsPk=nodeSvg;nodeSvg=function(k,x,y,rec){let s=_nsPk(k,x,y,rec);const n=starsOf(k);
   if(n){const i=s.lastIndexOf('</g>');s=s.slice(0,i)+`<g class="stars" aria-hidden="true"><text x="${x}" y="${y-28}" text-anchor="middle">${'★'.repeat(n)}${'☆'.repeat(3-n)}</text></g>`+s.slice(i)}
-  return s.replace(/aria-label="([^"]*)"/,(m,a)=>`aria-label="${a}, ${n} of 3 stars"`)};
+  return s.replace(/aria-label="([^"]*)"/,(m,a)=>`aria-label="${a}, ${n} of 3 stars${CASTD[k]?', California standard '+CASTD[k]:''}"`)};
 
 /* Build-a-Bridge: islands and bridges over the same map */
 const _dmPk=drawMap;drawMap=function(){_dmPk();const el=$('map');if(!el)return;const wrap=el.closest('.card')||el.parentNode;
@@ -58,7 +78,7 @@ const _cdPk=challengeDone;challengeDone=function(){const Z=QZ,t=thinkScore(Z),h=
   return h.replace('</div>',`</div><div class="tutor good">${orb(34,'wow')}<div class="tx"><b>Thinking Score: ${t} / 100</b>It counts how well you thought, not how fast: each right answer counts fully, and one helped by the hint token counts half.${Z.token?'':' You solved it all without your hint token!'}</div></div>`)};
 
 /* California standards (Common Core State Standards for Mathematics, adopted by California) on the math skills */
-const CASTD={mult:'3.OA.C.7',factors:'6.NS.B.4',onestepadd:'6.EE.B.7',equiv:'4.NF.A.1',simplify:'4.NF.A.1',onestepmul:'6.EE.B.7',addlike:'4.NF.B.3.a',multfrac:'5.NF.B.4',twostep:'7.EE.B.4.a',adduni:'5.NF.A.1'};
+
 const stdTag=k=>CASTD[k]?`<span class="stdtag" title="California Common Core State Standards for Mathematics">CA CCSS ${CASTD[k]}</span>`:'';
 const _rStd=render;render=function(){_rStd();if(view!=='lesson'||!sel||!CASTD[sel])return;const P=$('panel');if(!P||P.querySelector('.stdtag'))return;const h=P.querySelector('h2,h3');if(h)h.insertAdjacentHTML('afterend',`<div>${stdTag(sel)}</div>`)};
 
@@ -73,4 +93,21 @@ const _ofPk=O.flags;O.flags=function(){if(OUSE===null){OUSE=[];if(!BOOT.fb&&!BOO
   const tot=OUSE.slice(0,7).reduce((a,d)=>a+d.n,0);
   return _ofPk()+`<h3 style="margin-top:18px">Lumi AI tutor use</h3><p class="sol">Each learner can send Lumi up to 30 messages a day. ${BOOT.fb?'On this site Lumi uses its built-in guiding questions, so no AI messages are sent.':OUSE.length?`Last 7 days: <b>${tot}</b> messages.`:'No AI messages yet.'}</p>
   ${OUSE.length?`<div class="tbl"><table class="vs"><tr><th>Day</th><th>Messages</th></tr>${OUSE.map(d=>`<tr><td>${esc(d.day)}</td><td>${d.n}</td></tr>`).join('')}</table></div>`:''}`};
+
+/* Co-op Class Quest: learners see their class's shared goal, never a ranking */
+const questCard=c=>{const q=c.quest;if(!q)return '';const u=q.kind==='stars'?'mastery stars':'gems',pc=Math.min(100,q.have/q.goal*100);
+  return `<div class="card" style="margin-top:14px"><div class="split"><h3>🤝 ${esc(c.name)}: Class Quest</h3><span class="sol">Together</span></div><p style="margin:4px 0 8px">Collect <b>${q.goal} ${u}</b> as a class. Reward: <b>${esc(q.reward)}</b></p>
+    <div class="bar"><i style="width:${pc}%"></i></div><p class="sol">${q.have} of ${q.goal} ${u}${q.have>=q.goal?' · Quest complete! 🎉':''}. ${q.kind==='stars'?'Every skill you move up a level adds stars for the whole class.':''}</p></div>`};
+const _vcQ=VIEWS.classes;VIEWS.classes=function(){const h=_vcQ(),b=(ST.joined||[]).map(questCard).join('');if(!b)return h;const k='Your teacher gives you the code.</p></div>';return h.includes(k)?h.replace(k,k+b):h+b};
+
+/* Story Mode: "A storm scrambled the Knowledge Map. Every skill you master repairs it." Each grade is a region of the map */
+const STORYB=['A storm swept over the Knowledge Map and scrambled every region. Lumi needs your help to repair it, one skill at a time.','The first sunlight breaks through! Every skill you bring to Proficient clears the clouds above it.','Whole regions are shining again. The building blocks you mastered hold the bridges together.','The map is almost whole. A few stubborn clouds remain at the edges.','The storm has passed. The Knowledge Map shines brighter than ever, thanks to you.'];
+function storyCard(){const ks=ORDER.filter(k=>SK[k].sub===ST.subj&&(ST.grades.includes('all')||inBand(k)));if(!ks.length)return '';
+  const ok=k=>level(k)>=3,f=ks.filter(ok).length/ks.length,gs=[...new Set(ks.map(k=>ST.gr[k]))].sort((a,b)=>a-b);
+  const beat=STORYB[f>=1?4:f>=.75?3:f>=.4?2:f>0?1:0];
+  return `<div class="storycard" id="storycard"><h3>⛈️ Restore the Knowledge Map · ${Math.round(f*100)}% repaired</h3><p>${beat}</p><div class="regs">${gs.map(g=>{const r=ks.filter(k=>ST.gr[k]==g),d=r.filter(ok).length;return `<span class="${d===r.length?'ok':''}">${GLAB(g)} region ${d}/${r.length}</span>`}).join('')}</div></div>`}
+const _dmSt=drawMap;drawMap=function(){_dmSt();const el=$('map');if(!el)return;document.body.classList.toggle('storyview',!!ST.story);const old=$('storycard');if(old)old.remove();if(!ST.story)return;
+  el.querySelectorAll('.node').forEach(g=>{const l=g.getAttribute('aria-label')||'';if(!/Proficient|Mastered/i.test(l))g.classList.add('stormy')});
+  const w=el.closest('.mapwrap')||el;w.insertAdjacentHTML('beforebegin',storyCard())};
+const _rSt=render;render=function(){_rSt();const lg=$('legend');if(lg&&!lg.querySelector('.storybtn')&&$('map'))lg.insertAdjacentHTML('beforeend',`<button class="chip storybtn ${ST.story?'on':''}" aria-pressed="${!!ST.story}" onclick="ST.story=!ST.story;sv();render()">⛈️ Story mode</button>`)};
 </script>

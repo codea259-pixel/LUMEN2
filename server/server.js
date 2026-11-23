@@ -98,6 +98,9 @@ if (process.env.OWNER_USERNAME && process.env.OWNER_PASSWORD && ensureOwner(proc
 const isMod = u => !!u && (u.role === 'owner' || (u.role === 'teacher' && !!u.verified));
 const isTeacher = u => !!u && ['teacher', 'owner', 'school_admin'].includes(u.role);
 const lvl = s => !s || !s.att ? 0 : s.mastered ? 4 : (s.p >= .85 && s.att >= 6) ? 3 : s.p >= .55 ? 2 : 1;
+/* mastery stars: 1 for Familiar, 2 for Proficient, 3 for Mastered (the Class Quest counts them) */
+const starsOf = st => Object.values(st.S || {}).reduce((t, x) => { const l = lvl(x); return t + (l >= 4 ? 3 : l >= 3 ? 2 : l >= 2 ? 1 : 0); }, 0);
+const questOf = (ch, sts) => ch ? { kind: ch.kind === 'stars' ? 'stars' : 'gems', goal: ch.goal, reward: ch.reward, have: Math.max(0, sts.reduce((a, st) => a + (ch.kind === 'stars' ? starsOf(st) : gemsEarned(st)), 0) - (ch.base || 0)) } : null;
 const stateOf = id => { const r = Q1('SELECT json FROM state WHERE user_id=?', id); try { return r ? JSON.parse(r.json) : {}; } catch { return {}; } };
 const nameOf = id => (Q1('SELECT display FROM users WHERE id=?', id) || {}).display || 'former member';
 const int = (v, lo, hi) => { v = Math.trunc(+v); if (!Number.isFinite(v) || v < lo || v > hi) throw new E(400, 'Invalid number.'); return v; };
@@ -124,7 +127,7 @@ function classOut(c) {
   const gems = sts.map(gemsEarned), ch = c.challenge ? JSON.parse(c.challenge) : null;
   return { id: c.id, name: c.name, grade: c.grade, region: c.region, code: c.code, ch, game: gameOf(c),
     asg: asg.map(a => ({ id: a.id, title: a.title, skills: JSON.parse(a.skills), target: a.target == null ? 'all' : mem.findIndex(m => m.id === a.target) })),
-    students: mem.map((m, i) => ({ uid: m.id, name: m.display, email: m.username, grades: JSON.parse(m.grades), gems: gems[i], q: Object.values(sts[i].S || {}).reduce((a, s) => a + (s.att || 0), 0), ...heroOf(sts[i]),
+    students: mem.map((m, i) => ({ uid: m.id, name: m.display, email: m.username, grades: JSON.parse(m.grades), gems: gems[i], stars: starsOf(sts[i]), q: Object.values(sts[i].S || {}).reduce((a, s) => a + (s.att || 0), 0), ...heroOf(sts[i]),
       p: Object.fromEntries(asg.map(a => [a.id, pct(sts[i], JSON.parse(a.skills))])) })) };
 }
 const ownClass = (c, id) => { const k = Q1('SELECT * FROM classes WHERE id=?', int(id, 1, 1e12)); if (!k || (k.teacher_id !== c.u.id && c.u.role !== 'owner')) throw new E(404, 'Class not found.'); return k; };
@@ -215,7 +218,7 @@ route('GET', '/api/classes', c => { need(c);
   if (isTeacher(c.u)) return { classes: Q(c.u.role === 'owner' ? 'SELECT * FROM classes ORDER BY id' : 'SELECT * FROM classes WHERE teacher_id=? ORDER BY id', ...(c.u.role === 'owner' ? [] : [c.u.id])).map(classOut) };
   const mine = Q('SELECT c.*,m.user_id FROM class_members m JOIN classes c ON c.id=m.class_id WHERE m.user_id=?', c.u.id);
   const boardOf = k => { const g = gameOf(k); if (!g.board || S('flags')['Class leaderboards'] === false) return null; return Q('SELECT u.id,u.display FROM class_members m JOIN users u ON u.id=m.user_id WHERE m.class_id=?', k.id).map(u => ({ n: u.display, me: u.id === c.u.id, t: g.tm[u.id] ?? null, ...heroOf(stateOf(u.id)) })); };
-  return { joined: mine.map(k => ({ id: k.id, name: k.name, teacher: nameOf(k.teacher_id), game: (({ board, teams, prize, arc }) => ({ board, teams, prize, arc }))(gameOf(k)), board: boardOf(k), assigned: Q('SELECT * FROM assignments WHERE class_id=? AND (target IS NULL OR target=?) ORDER BY ts DESC', k.id, c.u.id).map(a => ({ id: a.id, title: a.title, skills: JSON.parse(a.skills) })),
+  return { joined: mine.map(k => ({ id: k.id, name: k.name, teacher: nameOf(k.teacher_id), game: (({ board, teams, prize, arc }) => ({ board, teams, prize, arc }))(gameOf(k)), board: boardOf(k), quest: questOf(k.challenge ? JSON.parse(k.challenge) : null, Q('SELECT user_id FROM class_members WHERE class_id=?', k.id).map(m => stateOf(m.user_id))), assigned: Q('SELECT * FROM assignments WHERE class_id=? AND (target IS NULL OR target=?) ORDER BY ts DESC', k.id, c.u.id).map(a => ({ id: a.id, title: a.title, skills: JSON.parse(a.skills) })),
     tests: Q('SELECT * FROM tests WHERE class_id=? AND (target IS NULL OR target=?) ORDER BY ts DESC', k.id, c.u.id).map(t => { const s = Q1('SELECT * FROM subs WHERE test_id=? AND user_id=?', t.id, c.u.id);
       return { id: t.id, kind: t.kind, title: t.title, minutes: t.minutes, skills: JSON.parse(t.skills), count: JSON.parse(t.items).length, released: !!t.released, ts: t.ts,
         sub: s ? { started: s.started, submitted: s.submitted, result: t.released && s.result ? JSON.parse(s.result) : null } : null }; }) })) }; });
@@ -229,8 +232,8 @@ route('PATCH', '/api/classes/:id/students/:uid', c => { need(c, isTeacher(c.u));
 route('POST', '/api/classes/:id/assign', c => { need(c, isTeacher(c.u)); const k = ownClass(c, c.params.id); const skills = (Array.isArray(c.body.skills) ? c.body.skills : []).map(String).slice(0, 40); if (!skills.length) throw new E(400, 'Nothing to assign.');
   let target = null; if (c.body.target != null && c.body.target !== 'all') { target = int(c.body.target, 1, 1e12); if (!Q1('SELECT 1 FROM class_members WHERE class_id=? AND user_id=?', k.id, target)) throw new E(400, 'That student is not in this class.'); }
   X('INSERT INTO assignments(class_id,title,skills,target,ts) VALUES(?,?,?,?,?)', k.id, str(c.body.title, 2, 120), JSON.stringify(skills), target, Date.now()); return { ok: true }; });
-route('POST', '/api/classes/:id/challenge', c => { need(c, isTeacher(c.u)); const k = ownClass(c, c.params.id); const base = Q('SELECT user_id FROM class_members WHERE class_id=?', k.id).reduce((a, m) => a + gemsEarned(stateOf(m.user_id)), 0);
-  X('UPDATE classes SET challenge=? WHERE id=?', JSON.stringify({ goal: int(c.body.goal, 10, 1e6), reward: str(c.body.reward || 'Class celebration', 1, 80), base }), k.id); return { ok: true }; });
+route('POST', '/api/classes/:id/challenge', c => { need(c, isTeacher(c.u)); const k = ownClass(c, c.params.id); const kind = c.body.kind === 'stars' ? 'stars' : 'gems', base = Q('SELECT user_id FROM class_members WHERE class_id=?', k.id).reduce((a, m) => { const st = stateOf(m.user_id); return a + (kind === 'stars' ? starsOf(st) : gemsEarned(st)); }, 0);
+  X('UPDATE classes SET challenge=? WHERE id=?', JSON.stringify({ kind, goal: int(c.body.goal, 10, 1e6), reward: str(c.body.reward || 'Class celebration', 1, 80), base }), k.id); return { ok: true }; });
 
 // assessments: classwork, quizzes and unit tests. The answer key stays with the teacher; students get the questions when they start.
 const KINDS = ['classwork', 'quiz', 'test', 'benchmark'];
