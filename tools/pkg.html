@@ -1,0 +1,76 @@
+<style>
+/* ===== The implementation package: Streak Lamp, mastery stars, Build-a-Bridge view, Lumi Challenge hint token, standards tags ===== */
+.lampbox{display:flex;align-items:center;gap:12px;padding:10px 16px 10px 10px;border-radius:20px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);color:inherit;flex:none}
+.lampbox svg{width:58px;height:70px;flex:none}
+.lampbox b{display:block;font:800 1.05rem "Bricolage Grotesque",sans-serif}.lampbox small{display:block;opacity:.85;font-size:.82rem;max-width:22ch;line-height:1.3}
+#map .stars text{font-size:13px;fill:#F2A900;font-weight:800;paint-order:stroke;stroke:#fff;stroke-width:3px}
+.bridgeview #map{background:linear-gradient(180deg,#BDE6F7,#93D2F0);border-radius:18px}
+.bridgeview #map .edge{stroke:#7CC4E8!important;stroke-width:3!important;stroke-dasharray:2 7;opacity:.9}
+.bridgeview #map .edge.on{stroke:#8A5A2B!important;stroke-width:9!important;stroke-dasharray:3 2;opacity:1}
+.bridgeview #map .edge.rail{stroke:#5B3A1E!important;stroke-width:13!important;stroke-dasharray:none;opacity:.9}
+.bridgeview #map .gl{fill:#1B3A57}
+.stdtag{display:inline-block;font-size:.78rem;font-weight:700;padding:2px 10px;border-radius:99px;background:#E8F0FF;color:#1E3A8A;margin:6px 6px 0 0}
+.tokenbtn{margin-top:10px}
+</style>
+<script type="text/x-lumen">
+/* ===== The implementation package (Part 2 and Week 2/4 items) =====
+   Streak Lamp: one problem done in a day lights the lamp a step brighter; a missed day dims it one step, and it never goes fully
+   out once you have history. Mastery stars: 1 to 3 stars on each map skill (Familiar, Proficient, Mastered). Build-a-Bridge: a view
+   of the knowledge map where skills are islands and a finished building block builds the bridge. Lumi Challenge: one free hint
+   token and a Thinking Score. California standards tags on the math skills. ===== */
+const LAMPMAX=7;
+function lampLevel(){const days=[...new Set(ST.days||[])].sort();if(!days.length)return 0;const on=new Set(days),t=today();let lv=0;
+  for(let d=new Date(days[0]+'T12:00:00');;d.setDate(d.getDate()+1)){const k=d.toISOString().slice(0,10);if(k>t)break;
+    if(on.has(k))lv=Math.min(LAMPMAX,lv+1);else if(k<t)lv=Math.max(1,lv-1)}return lv}
+function lampSvg(lv){const f=lv/LAMPMAX,glow=.15+.85*f,lit=lv>0;
+  return `<svg viewBox="0 0 58 70" role="img" aria-label="Streak Lamp, brightness ${lv} of ${LAMPMAX}"><defs><radialGradient id="lampg" cx="50%" cy="45%" r="55%"><stop offset="0" stop-color="#FFF6C8" stop-opacity="${glow}"/><stop offset="1" stop-color="#FFD34D" stop-opacity="0"/></radialGradient></defs>
+    ${lit?`<circle cx="29" cy="30" r="${16+12*f}" fill="url(#lampg)"/>`:''}<path d="M22 12h14l-2-6h-10z" fill="#B07B00"/><path d="M19 14h20l4 26h-28z" fill="${lit?`rgba(255,${200+Math.round(40*f)},${80+Math.round(60*f)},${.35+.6*f})`:'rgba(200,200,215,.35)'}" stroke="#B07B00" stroke-width="2"/>
+    ${lit?`<path d="M29 22c4 5 4 9 0 12c-4-3-4-7 0-12z" fill="#FF9F1C" opacity="${.5+.5*f}"/><path d="M29 26c2 3 2 5 0 7c-2-2-2-4 0-7z" fill="#FFF3B0"/>`:''}
+    <rect x="15" y="40" width="28" height="5" rx="2" fill="#B07B00"/><path d="M20 45h18l3 14h-24z" fill="#8A5A00"/><rect x="14" y="59" width="30" height="5" rx="2" fill="#6B4500"/></svg>`}
+function lampBox(){const lv=lampLevel(),s=streak(),did=(ST.days||[]).includes(today());
+  const msg=!lv?'Answer one problem today to light your lamp.':did?(lv>=LAMPMAX?'Shining as bright as it gets!':'Lit for today. Come back tomorrow to make it brighter.'):'Answer one problem today, or it dims a step.';
+  return `<div class="lampbox" title="Streak Lamp: each day you answer a problem it glows brighter; a missed day dims it one step."><span>${lampSvg(lv)}</span><div><b>Streak Lamp · ${s} day${s===1?'':'s'}</b><small>${msg}</small></div></div>`}
+const _rPk=render;render=function(){_rPk();const h=document.querySelector('#dash .hello');if(h&&!h.querySelector('.lampbox'))h.insertAdjacentHTML('beforeend',lampBox());
+  const lg=$('legend');if(lg&&!lg.querySelector('.bridgebtn')&&document.querySelector('#map')){lg.insertAdjacentHTML('beforeend',`<button class="chip bridgebtn ${ST.bridge?'on':''}" aria-pressed="${!!ST.bridge}" onclick="ST.bridge=!ST.bridge;sv();render()">🌉 Bridge view</button>`)}};
+
+/* mastery stars on each skill of the map */
+const starsOf=k=>{const lv=level(k);return lv>=4?3:lv>=3?2:lv>=2?1:0};
+const _nsPk=nodeSvg;nodeSvg=function(k,x,y,rec){let s=_nsPk(k,x,y,rec);const n=starsOf(k);
+  if(n){const i=s.lastIndexOf('</g>');s=s.slice(0,i)+`<g class="stars" aria-hidden="true"><text x="${x}" y="${y-28}" text-anchor="middle">${'★'.repeat(n)}${'☆'.repeat(3-n)}</text></g>`+s.slice(i)}
+  return s.replace(/aria-label="([^"]*)"/,(m,a)=>`aria-label="${a}, ${n} of 3 stars"`)};
+
+/* Build-a-Bridge: islands and bridges over the same map */
+const _dmPk=drawMap;drawMap=function(){_dmPk();const el=$('map');if(!el)return;const wrap=el.closest('.card')||el.parentNode;
+  document.body.classList.toggle('bridgeview',!!ST.bridge);if(!ST.bridge)return;const NS='http://www.w3.org/2000/svg';
+  el.querySelectorAll('.edge.on').forEach(p=>{const r=p.cloneNode();r.setAttribute('class','edge rail');p.parentNode.insertBefore(r,p)});
+  el.querySelectorAll('.node').forEach(g=>{const c=g.querySelector('circle.n');if(!c)return;const x=c.getAttribute('cx'),y=c.getAttribute('cy'),is=document.createElementNS(NS,'g');
+    is.innerHTML=`<ellipse cx="${x}" cy="${+y+6}" rx="40" ry="30" fill="#E9D59A"/><ellipse cx="${x}" cy="${+y+3}" rx="33" ry="24" fill="#7CCB6B"/>`;g.insertBefore(is,g.firstChild)});
+  if(!$('bridgenote'))wrap.insertAdjacentHTML('beforeend','<p class="sol" id="bridgenote">🌉 Each skill is an island. Finish a building block and its bridge gets built.</p>')};
+
+/* Lumi Challenge: one free hint token, and a Thinking Score (a right answer with the hint counts half) */
+function useToken(){const Z=QZ;if(!Z||Z.kind!=='challenge'||Z.token||Z.done)return;Z.token=1;Z.tokenAt=Z.n;render()}
+const _qhPk=quizHtml;quizHtml=function(){const Z=QZ;let h=_qhPk();if(!Z||Z.kind!=='challenge'||Z.finished)return h;
+  const hintNow=Z.token&&Z.tokenAt===Z.n&&!Z.done&&Z.q&&Z.q.h,btn=!Z.token&&!Z.done?`<button class="alt tokenbtn" onclick="useToken()">🪙 Use your free hint token</button>`:'';
+  const tip=hintNow?tutor(Z.q.h[0],'',"🪙 Lumi's hint token"):'';const k='<div class="row">';const i=h.lastIndexOf(k);return i<0?h+tip+btn:h.slice(0,i)+tip+(btn?`<div>${btn}</div>`:'')+h.slice(i)};
+const _acPk=answerChallenge;answerChallenge=function(ok){const Z=QZ,n=Z.n;_acPk(ok);const r=Z.log[Z.log.length-1];if(r)r.h=Z.token&&Z.tokenAt===n}
+const thinkScore=Z=>Math.round(100*Z.log.reduce((a,r)=>a+(r.ok?(r.h?.5:1):0),0)/Math.max(1,Z.total));
+const _cdPk=challengeDone;challengeDone=function(){const Z=QZ,t=thinkScore(Z),h=_cdPk();
+  return h.replace('</div>',`</div><div class="tutor good">${orb(34,'wow')}<div class="tx"><b>Thinking Score: ${t} / 100</b>It counts how well you thought, not how fast: each right answer counts fully, and one helped by the hint token counts half.${Z.token?'':' You solved it all without your hint token!'}</div></div>`)};
+
+/* California standards (Common Core State Standards for Mathematics, adopted by California) on the math skills */
+const CASTD={mult:'3.OA.C.7',factors:'6.NS.B.4',onestepadd:'6.EE.B.7',equiv:'4.NF.A.1',simplify:'4.NF.A.1',onestepmul:'6.EE.B.7',addlike:'4.NF.B.3.a',multfrac:'5.NF.B.4',twostep:'7.EE.B.4.a',adduni:'5.NF.A.1'};
+const stdTag=k=>CASTD[k]?`<span class="stdtag" title="California Common Core State Standards for Mathematics">CA CCSS ${CASTD[k]}</span>`:'';
+const _rStd=render;render=function(){_rStd();if(view!=='lesson'||!sel||!CASTD[sel])return;const P=$('panel');if(!P||P.querySelector('.stdtag'))return;const h=P.querySelector('h2,h3');if(h)h.insertAdjacentHTML('afterend',`<div>${stdTag(sel)}</div>`)};
+
+/* Basic analytics: skills mastered this week (each skill remembers the day it was mastered) */
+const masteredWeek=()=>{const w=new Date();w.setDate(w.getDate()-6);const from=w.toISOString().slice(0,10);return ORDER.filter(k=>S[k].mastered&&S[k].mAt&&S[k].mAt>=from).length};
+const _rMw=render;render=function(){let ch=0;ORDER.forEach(k=>{if(S[k]&&S[k].mastered&&!S[k].mAt){S[k].mAt=today();ch=1}});if(ch)sv();_rMw();
+  const st=document.querySelector('#dash .stats3');if(st&&!st.querySelector('.mweek'))st.insertAdjacentHTML('beforeend',`<div class="stat mweek"><b>🏅 ${masteredWeek()}</b><span>mastered this week</span></div>`)};
+
+/* Owner: daily Lumi AI tutor use (operations: daily usage monitoring) */
+let OUSE=null;
+const _ofPk=O.flags;O.flags=function(){if(OUSE===null){OUSE=[];if(!BOOT.fb&&!BOOT.local)api('GET','/api/owner/usage').then(r=>{OUSE=r.days||[];r2()}).catch(()=>{})}
+  const tot=OUSE.slice(0,7).reduce((a,d)=>a+d.n,0);
+  return _ofPk()+`<h3 style="margin-top:18px">Lumi AI tutor use</h3><p class="sol">Each learner can send Lumi up to 30 messages a day. ${BOOT.fb?'On this site Lumi uses its built-in guiding questions, so no AI messages are sent.':OUSE.length?`Last 7 days: <b>${tot}</b> messages.`:'No AI messages yet.'}</p>
+  ${OUSE.length?`<div class="tbl"><table class="vs"><tr><th>Day</th><th>Messages</th></tr>${OUSE.map(d=>`<tr><td>${esc(d.day)}</td><td>${d.n}</td></tr>`).join('')}</table></div>`:''}`};
+</script>

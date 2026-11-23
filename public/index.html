@@ -82,6 +82,14 @@ section h2{font-size:clamp(34px,4.6vw,56px);font-weight:800;margin:8px 0 14px}
 .end{margin:90px 0 0;background:var(--night);color:#fff;border-radius:36px;padding:56px 40px;text-align:center;position:relative;overflow:hidden}
 .end:before{content:"";position:absolute;inset:0;background:url(hero-map.jpg) center/cover;opacity:.22}
 .end>*{position:relative}.end h2{font-size:clamp(32px,4.4vw,52px)}.end p{color:#D7D9F5;max-width:56ch;margin:14px auto 26px}
+.demo{display:grid;grid-template-columns:1fr 1.1fr;gap:30px;align-items:center;background:var(--card);border-radius:32px;padding:34px;box-shadow:0 10px 30px rgba(20,18,58,.08)}
+.dq{font:800 clamp(28px,3.6vw,40px)/1.2 "Bricolage Grotesque",sans-serif;margin:6px 0 14px}
+.fr{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1;margin:0 .1em}.fr i{font-style:normal;padding:0 .15em}.fr i:first-child{border-bottom:3px solid currentColor}
+.dans{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.dans input{font:700 22px "Atkinson Hyperlegible",sans-serif;width:110px;padding:10px 14px;border-radius:14px;border:2px solid #E4D9C2;background:#FFFDF8}
+.dans button{font:700 17px "Atkinson Hyperlegible",sans-serif;border:0;border-radius:999px;padding:12px 20px;cursor:pointer;background:#2B2670;color:#fff}.dans button.alt{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px #E4D9C2}
+.dfb{margin-top:14px;padding:14px 16px;border-radius:16px;background:#FFF4D6;border-left:6px solid var(--gold);min-height:24px}.dfb.ok{background:#DDF8EE;border-color:var(--mint)}.dfb.no{background:#FFE3DF;border-color:var(--coral)}
+.dstat{color:var(--mute);font-size:15px;margin-top:10px}
+@media(max-width:980px){.demo{grid-template-columns:1fr}}
 .about{max-width:66ch;margin:0 auto;text-align:center}.about p{color:var(--mute)}
 footer{margin-top:80px;background:var(--night);color:#B9BCE6;padding:34px 0 44px;font-size:15px;line-height:1.7}
 footer nav{display:flex;gap:20px;flex-wrap:wrap;padding-bottom:8px}footer nav a{font-weight:700;color:#fff}
@@ -127,6 +135,17 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap;padding-bottom:8px}footer nav a{
 </ol>
 </div>
 
+
+<section id="try">
+<div class="demo">
+  <div><div class="kicker">Try it now · no sign-up</div><h2>Practice one real skill</h2>
+  <p class="lead" style="margin-bottom:10px">This is how every Bose Academy skill works: a short idea, a problem, and a tutor that nudges instead of telling. Skill: <b>Equivalent fractions</b> <span style="font-size:14px;color:var(--mute)">(CA CCSS 4.NF.A.1)</span>.</p>
+  <p style="color:var(--mute);margin:0">💡 Multiply the top and bottom by the same number and the fraction keeps its size.</p></div>
+  <div aria-live="polite"><div class="dq" id="dq"></div>
+    <div class="dans"><input id="da" inputmode="numeric" autocomplete="off" aria-label="Your answer"><button onclick="dCheck()">Check</button><button class="alt" onclick="dHint()">Ask the tutor</button><button class="alt" onclick="dNew(1)">New problem</button></div>
+    <div class="dfb" id="dfb">Type the missing number, then press Check.</div><div class="dstat" id="dstat"></div></div>
+</div>
+</section>
 <section id="subjects">
 <div class="kicker">Everything in one place</div>
 <h2>Built to make ideas click</h2>
@@ -179,12 +198,27 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap;padding-bottom:8px}footer nav a{
 
 <section id="about" class="about">
 <h2 style="font-size:36px">About Bose Academy</h2>
-<p>Bose Academy is an independent learning project, built by a young student with help from family, so that every learner can practice for free. It is not affiliated with, endorsed by or connected to Bose Corporation.</p>
+<p><b>Free adaptive learning with a tutor that teaches thinking, built by an 11-year-old.</b></p>
+<p>Bose Academy is an independent educational project created by a young student with family support and is not affiliated with Bose Corporation. It started with one idea: every learner deserves a patient tutor that asks good questions instead of handing over answers, and it should be free for everyone.</p>
+<p><a href="pitch.html">One-page overview for teachers and principals</a></p>
 </section>
 </main>
 
 <footer><div class="wrap"><nav aria-label="Site"><a href="privacy.html">Privacy policy</a><a href="terms.html">Terms of service</a><a href="app.html?parent=me">For parents</a><a href="#about">About</a></nav>
-© <span id="yr">2026</span> Bose Academy · Master every skill. Understand every concept.<br>Lessons and practice questions are original. Bose Academy is not affiliated with Bose Corporation. Questions about privacy? <a href="privacy.html#contact" style="color:#fff">Contact us</a></div></footer>
+Content © <span id="yr">2026</span> Bose Academy. Created for educational use. Practice problems and explanations are original. AI-assisted generation is used under human supervision. If you believe any material infringes your copyright, <a href="privacy.html#contact" style="color:#fff">contact us</a>.<br>Bose Academy is an independent educational project and is not affiliated with Bose Corporation.</div></footer>
 <script>document.getElementById('yr').textContent=new Date().getFullYear()</script>
+<script>
+/* the homepage demo: Equivalent fractions with Lumi's 3-step hint ladder, all in the browser, nothing saved */
+let D={},right=0,tries=0;const $d=id=>document.getElementById(id),fr=(a,b)=>`<span class="fr"><i>${a}</i><i>${b}</i></span>`;
+function dNew(f){const b=[2,3,4,5,6,8][Math.floor(Math.random()*6)],a=1+Math.floor(Math.random()*(b-1)),m=2+Math.floor(Math.random()*4);D={a,b,m,top:Math.random()<.5,h:0};
+  $d('dq').innerHTML=D.top?`${fr(a,b)} = ${fr('?',b*m)}`:`${fr(a,b)} = ${fr(a*m,'?')}`;$d('da').value='';$d('dfb').className='dfb';$d('dfb').textContent='Type the missing number, then press Check.';if(f)$d('da').focus({preventScroll:true})}
+function dHint(){const H=[`How many times bigger is ${D.top?D.b*D.m:D.a*D.m} than ${D.top?D.b:D.a}?`,`The ${D.top?'bottom':'top'} was multiplied by ${D.m}. Do the same to the ${D.top?'top':'bottom'}.`,`${D.top?D.a:D.b} × ${D.m} = ?`];
+  $d('dfb').className='dfb';$d('dfb').innerHTML=D.h<3?`<b>Lumi, hint ${D.h+1}:</b> ${H[D.h]}`:`<b>Worked steps:</b> ${D.top?D.a:D.b} × ${D.m} = ${(D.top?D.a:D.b)*D.m}.`;D.h++}
+function dCheck(){const v=+$d('da').value,ans=(D.top?D.a:D.b)*D.m;if(!$d('da').value.trim()){$d('dfb').textContent='Type a number first.';return}tries++;
+  if(v===ans){right++;$d('dfb').className='dfb ok';$d('dfb').innerHTML=`<b>Correct!</b> ${D.top?`${D.a} × ${D.m} = ${ans}`:`${D.b} × ${D.m} = ${ans}`}. Same size, more pieces.`;setTimeout(()=>dNew(1),1600)}
+  else{$d('dfb').className='dfb no';$d('dfb').innerHTML=`<b>Not yet.</b> Your progress doesn't drop for a miss. Try again, or ask the tutor for a nudge.`}
+  $d('dstat').textContent=`${right} right so far. Sign up free to save progress and unlock 1,000+ lessons.`}
+$d('da').addEventListener('keydown',e=>{if(e.key==='Enter')dCheck()});dNew();
+</script>
 </body>
 </html>

@@ -66,10 +66,10 @@ function qzCheck(raw){const Z=QZ;if(Z.done)return;if(raw===''||raw==null)return 
 function qzNext(){const Z=QZ;if(Z.n>=Z.total){Z.finished=true;finishQuiz();render();return}if(Z.kind==='diag')nextDiag();else nextChallenge();render()}
 function finishQuiz(){const Z=QZ;if(Z.rewarded)return;Z.rewarded=true;
   if(Z.kind==='diag'){Z.res=diagResult();ST.diag=ST.diag||{};ST.diag[Z.sub]={grade:Z.res.est,date:today()};addXP(30,'finding your level')}
-  else{const c=Z.log.filter(r=>r.ok).length;addXP(c*8+(c===Z.total?20:0),'the mastery challenge')}sv()}
+  else{const c=Z.log.filter(r=>r.ok).length;addXP(c*8+(c===Z.total?20:0),'the Lumi Challenge')}sv()}
 function quizHtml(){const Z=QZ;
   if(Z.finished)return Z.kind==='diag'?diagDone():challengeDone();
-  const q=Z.q,sk=SK[Z.k],title=Z.kind==='diag'?'🧭 Find my level':'🔁 Mastery Challenge';
+  const q=Z.q,sk=SK[Z.k],title=Z.kind==='diag'?'🧭 Find my level':'🔁 Lumi Challenge';
   const fb=Z.done?(Z.ok?tutor('Correct.','good','Nice work'):tutor(`The answer is <b>${esc(ansText(q))}</b>. ${q.choices?'':strip(q.s)}`,'warn',Z.kind==='diag'?'Not this time':'Worth a review')):'';
   const input=q.choices?`<div class="qz-opts" role="group" aria-label="Choose one answer">${q.choices.map((c,i)=>`<button class="${Z.done?(i===q.a[0]?'ok':+Z.pick===i?'no':''):''}" ${Z.done?'disabled':''} onclick="qzCheck(${i})">${'ABCD'[i]}. ${esc(c)}</button>`).join('')}</div>`
     :`<div class="row" style="margin-top:0"><input id="qza" type="text" autocomplete="off" aria-label="Your answer" placeholder="3/4 or 12" ${Z.done?'disabled value="'+esc(Z.pick)+'"':''} onkeydown="if(event.key==='Enter')qzCheck(this.value.trim())">${Z.done?'':'<button onclick="qzCheck($(\'qza\').value.trim())">Check</button>'}</div>`;
@@ -106,7 +106,7 @@ const _info=infoHtml;infoHtml=function(k){let h=_info(k);const probe=G[k](1),can
 /* ---------- dashboard cards and the quiz view ---------- */
 const _dash=dashHtml;dashHtml=function(){const sub=ST.subj,d=(ST.diag||{})[sub],pool=challengePool(sub),rev=pool.filter(k=>S[k].review).length;
   return _dash()+`<div class="tools2 rise"><div class="tool"><div class="ic">🧭</div><div><h3>Find my level</h3><p>${d?`Last check: about ${GLAB(d.grade)} (${d.date}). Take it again any time.`:`A quick adaptive check in ${esc(SUBN[sub])}, about 10 questions. It finds your starting point so you skip what you already know.`}</p><button class="alt" onclick="startDiag()">${d?'Check again':'Start the check'}</button></div></div>
-  <div class="tool"><div class="ic">🔁</div><div><h3>Mastery Challenge</h3><p>${pool.length<2?'Mixed review of skills you have practiced. Practice two skills to unlock it.':`6 mixed questions from ${pool.length} skills you've practiced${rev?`, including ${rev} marked for review`:''}. Keeps what you learned from fading.`}</p><button class="alt" ${pool.length<2?'disabled':''} onclick="startChallenge()">Start a challenge</button></div></div></div>`};
+  <div class="tool"><div class="ic">🔁</div><div><h3>Lumi Challenge</h3><p>${pool.length<2?'Mixed review of skills you have practiced. Practice two skills to unlock it.':`6 mixed questions from ${pool.length} skills you've practiced${rev?`, including ${rev} marked for review`:''}. Lumi gives you one free hint token, and you get a Thinking Score.`}</p><button class="alt" ${pool.length<2?'disabled':''} onclick="startChallenge()">Start a challenge</button></div></div></div>`};
 const _r4=render;render=function(){if(view==='quiz'&&QZ&&tab==='learn'){drawMap();$('dash').hidden=true;$('gradebar').hidden=true;$('panel').innerHTML=quizHtml();renderMe();
     const i=$('qza');if(i&&!QZ.done)i.focus();if(innerWidth<880)$('panel').scrollIntoView({block:'start'});return}
   if(view!=='lesson')WX=null;_r4();if(view==='lesson'&&WX){const i=$('panel').querySelector('.info');if(i)i.classList.remove('rise')}};

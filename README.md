@@ -139,3 +139,9 @@ Practice questions have an **Ask Lumi** button. With `ANTHROPIC_API_KEY` set on 
 - **Owner console → Parent permission**: remove unanswered parent emails, and at least once a year delete under-13 accounts that nobody has used for two years. The privacy policy promises both.
 - Have a lawyer review the policy and terms before relying on them for schools or payments.
 
+
+## Operations
+
+- **API key:** the Lumi AI tutor reads `ANTHROPIC_API_KEY` from the server's environment. It is never in the repository or in pages sent to browsers. `firebase-config.js` holds only the public Firebase web settings, which are safe to publish; the Firestore rules protect the data.
+- **Lumi limits:** each learner can send Lumi 30 messages a day (and 30 in any 10 minutes). The built-in hint ladder in every problem always works. The Owner console (Feature flags) shows Lumi messages per day for the last two weeks. The "AI tutor feedback" flag switches Lumi off entirely.
+- **Backups:** on the own server, copy `DATA_DIR/lumen.db` (with `lumen.db-wal`) every day; it is the whole database. On Firebase, export Firestore once a week: in the Google Cloud console open Firestore, then Import/Export, and export to a Cloud Storage bucket (this needs the Blaze plan), or run `gcloud firestore export gs://YOUR_BUCKET`. Keep at least the last four exports.

@@ -44,6 +44,7 @@ for (const col of ['under13 INTEGER DEFAULT 0', 'parent_email TEXT']) { try { db
 try { db.exec("ALTER TABLE tests ADD COLUMN passages TEXT DEFAULT '[]'"); } catch { /* already there */ }
 try { db.exec('ALTER TABLE classes ADD COLUMN game TEXT'); } catch { /* already there */ }
 for (const t of ['users', 'classes']) { try { db.exec(`ALTER TABLE ${t} ADD COLUMN member_until INTEGER DEFAULT 0`); } catch { /* already there */ } }
+db.exec('CREATE TABLE IF NOT EXISTS usage(day TEXT PRIMARY KEY, n INTEGER DEFAULT 0)');
 db.exec('CREATE TABLE IF NOT EXISTS awards(id INTEGER PRIMARY KEY, class_id INTEGER, user_id INTEGER, gems INTEGER, reason TEXT, ts INTEGER, claimed INTEGER DEFAULT 0)');
 try { db.exec('ALTER TABLE awards ADD COLUMN pet TEXT'); } catch { /* already there */ }
 db.exec("CREATE TABLE IF NOT EXISTS class_maps(id INTEGER PRIMARY KEY, class_id INTEGER, author_id INTEGER, data TEXT, likes TEXT DEFAULT '[]', plays INTEGER DEFAULT 0, ts INTEGER)");
@@ -298,6 +299,8 @@ Rules:
 - Only discuss this question and the skill behind it. If the student goes off topic, shares personal information, or seems upset or unsafe, kindly steer back and suggest talking to a teacher or trusted adult.`;
 route('POST', '/api/tutor', async c => {
   need(c); limit('tu' + c.u.id, 30, 600e3);
+  /* free use stays affordable: at most 30 Lumi messages a learner a day (the implementation package suggests 20 to 30) */
+  try { limit('tud' + c.u.id, 30, 864e5); } catch { throw new E(429, "You've asked Lumi 30 times today. Lumi's hints in each problem still work, and Lumi is back tomorrow."); }
   if (S('flags')['AI tutor feedback'] === false || !process.env.ANTHROPIC_API_KEY) throw new E(503, 'The AI tutor is not available.');
   const b = c.body, t = (v, n) => String(v ?? '').slice(0, n);
   const msgs = (Array.isArray(b.messages) ? b.messages : []).slice(-10).map(m => ({ role: m.role === 'user' ? 'user' : 'assistant', content: t(m.text, 500) })).filter(m => m.content);
@@ -309,6 +312,7 @@ route('POST', '/api/tutor', async c => {
     body: JSON.stringify({ model: TUTOR_MODEL, max_tokens: 200, system: TUTOR_SYSTEM + '\n\n' + ctx, messages: msgs }) }).catch(() => null);
   if (!r || !r.ok) { if (r) console.error('tutor', r.status, (await r.text()).slice(0, 300)); throw new E(503, 'The AI tutor is not available right now.'); }
   const j = await r.json(); const reply = (j.content || []).filter(x => x.type === 'text').map(x => x.text).join(' ').trim();
+  { const d = new Date().toISOString().slice(0, 10); X('INSERT INTO usage(day,n) VALUES(?,1) ON CONFLICT(day) DO UPDATE SET n=n+1', d); }
   if (!reply) throw new E(503, 'The AI tutor is not available right now.');
   return { reply: reply.slice(0, 600) };
 });
@@ -343,6 +347,7 @@ route('POST', '/api/owner/members', c => { need(c, c.u.role === 'owner'); const 
   const k = Q1('SELECT id,name FROM classes WHERE code=?', who.toUpperCase());
   if (k) { X('UPDATE classes SET member_until=? WHERE id=?', until, k.id); return { ok: true, kind: 'class', name: k.name }; }
   throw new E(404, 'No account has that username and no class has that code.'); });
+route('GET', '/api/owner/usage', c => { need(c, c.u.role === 'owner'); return { days: Q('SELECT day,n FROM usage ORDER BY day DESC LIMIT 14') }; });
 route('GET', '/api/owner/users', c => { need(c, c.u.role === 'owner'); return { users: Q('SELECT id,username,display,email,role,verified,locked,created FROM users ORDER BY id DESC LIMIT 500') }; });
 route('PATCH', '/api/owner/users/:id', c => { need(c, c.u.role === 'owner'); const t = Q1('SELECT * FROM users WHERE id=?', int(c.params.id, 1, 1e12)); if (!t) throw new E(404, 'Not found.');
   if (t.role === 'owner') throw new E(403, 'The Owner account is protected and cannot be changed.');
