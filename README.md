@@ -138,6 +138,7 @@ Practice questions have an **Ask Lumi** button. With `ANTHROPIC_API_KEY` set on 
 - **Community**: authors can delete their own posts and replies (California Business and Professions Code 22581).
 - **Owner console → Parent permission**: remove unanswered parent emails, and at least once a year delete under-13 accounts that nobody has used for two years. The privacy policy promises both.
 - Have a lawyer review the policy and terms before relying on them for schools or payments.
+- **Brand name (decided November 2026):** we keep "Bose Academy" long-term. The site stays free and says it is not affiliated with Bose Corporation, and it never uses the Bose logo or audio-related imagery.
 
 
 ## Operations
