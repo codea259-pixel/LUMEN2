@@ -11,6 +11,15 @@
 .bridgeview #map .gl{fill:#1B3A57}
 .stdtag{display:inline-block;font-size:.78rem;font-weight:700;padding:2px 10px;border-radius:99px;background:#E8F0FF;color:#1E3A8A;margin:6px 6px 0 0}
 .tokenbtn{margin-top:10px}
+.clh{font:700 1rem "Bricolage Grotesque",sans-serif;margin:14px 0 6px;color:var(--mute)}
+.clitem{background:var(--panel);border-radius:18px;padding:18px 20px;margin:12px 0;box-shadow:var(--shadow)}
+.clitem .qq{font-size:1.1rem;font-weight:700;margin:0 0 10px}.clitem .opts{display:grid;gap:8px}
+.clitem .opts button{text-align:left;background:var(--bg);color:var(--ink);border:2px solid var(--line);border-radius:14px;padding:10px 14px;font-weight:400}
+.clitem .opts button.ok{border-color:#16A34A;background:#DCFCE7}.clitem .opts button.no{border-color:#DC2626;background:#FEE2E2}
+.clitem .fb{margin-top:10px;font-weight:700}.clitem .fb.ok{color:#15803D}.clitem .fb.no{color:#B91C1C}
+.clitem details{margin:0 0 10px}.clitem details p{white-space:pre-wrap;margin:6px 0 0}
+.clnav{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+
 .storyview #map .node.stormy circle.n{filter:grayscale(1) brightness(.85)}
 .storyview #map .node.stormy text{opacity:.6}
 .storycard{margin:0 0 12px;padding:16px 18px;border-radius:20px;background:linear-gradient(135deg,#1E1B5E,#3B2A8C);color:#fff}
@@ -131,4 +140,39 @@ const _rJn=render;render=function(){_rJn();if(BOOT.local||ME.role!=='student')re
   if(view!=='home')return;const d=$('dash');if(!d||d.hidden||$('djoin'))return;
   if(ST.joined.length)return;const h=d.querySelector('.hello');if(!h)return;
   h.insertAdjacentHTML('afterend',`<div class="card rise" id="djoin" style="margin:0 0 16px;display:flex;gap:16px;align-items:center;flex-wrap:wrap"><div style="flex:1;min-width:240px"><h3 style="margin:0 0 4px">🏫 Join your class</h3><p class="sol" style="margin:0">Enter the class code your teacher gave you to see your assignments and your class.</p></div><div class="row" style="margin:0"><input id="djc" placeholder="Class code" aria-label="Class code" maxlength="8" style="text-transform:uppercase;width:150px" onkeydown="if(event.key==='Enter')joinFromDash()"><button class="lamp" onclick="joinFromDash()">Join</button></div></div>`)};
+
+/* ---------- The lesson library: every course lesson's classwork, searchable and practicable by any learner ----------
+   lessons.json holds only practice items (quizzes and unit tests stay teacher-only). Search shows them under the skills. */
+let LIB=null,LIBP=null,CL=null;
+const SUBL={math:'Math',ela:'Reading & writing',sci:'Science',soc:'Social studies'};
+function libLoad(){if(LIB)return Promise.resolve(LIB);if(!LIBP)LIBP=fetch('lessons.json').then(r=>r.json()).then(j=>{LIB=j.lessons.map(l=>({...l,ix:skNorm(l.n+' '+l.u+' '+(SUBL[l.s]||'')),tx:skNorm(l.it.map(it=>it.q).join(' '))}));return LIB}).catch(()=>{LIBP=null;return []});return LIBP}
+function libFind(q){if(!LIB)return [];const ws=skNorm(q).split(' ').filter(w=>w.length>1);if(!ws.length)return [];const g=myGrade(),out=[];
+  const stem=w=>w.length>4&&/ies$/.test(w)?w.slice(0,-3)+'y':w.length>3&&/(ches|shes|xes|ses)$/.test(w)?w.slice(0,-2):w.length>3&&/s$/.test(w)&&!/ss$/.test(w)?w.slice(0,-1):w;
+  for(const l of LIB){let sc=0;const n=skNorm(l.n);for(const w0 of ws){const w=stem(w0);if(n.includes(w))sc+=n.startsWith(w)||n.includes(' '+w)?8:5;else if(l.ix.includes(w))sc+=3;else if(w.length>3&&l.tx.includes(w))sc+=1;else{sc=-1;break}}if(sc>0)out.push([sc-Math.min(4,Math.abs(l.g-g))*.5,l])}
+  return out.sort((a,b)=>b[0]-a[0]).map(x=>x[1])}
+const LIBMAX=10;
+const _skS=skSearch;skSearch=function(v){_skS(v);const q=v.trim(),r=$('sksr'),n=$('sksn');if(!r||!q)return;
+  if(!LIB){libLoad().then(()=>{const i=$('sksq');if(i&&i.value.trim()===q)skSearch(q)});return}
+  const all=libFind(q);if(!all.length)return;const top=all.slice(0,LIBMAX);
+  if(n)n.textContent=(n.textContent.startsWith('No skills')?'':n.textContent+' ')+`${all.length} course lesson${all.length===1?'':'s'} found${all.length>LIBMAX?`, showing ${LIBMAX}`:''}.`;
+  r.insertAdjacentHTML('beforeend',`<p class="clh">📚 Course lessons</p><ul>${top.map(l=>`<li><button class="skr" onclick="clOpen('${l.id}')" onkeydown="skKey(event)"><b>${esc(l.n)}</b><span>${esc(SUBL[l.s]||'')} · ${GLAB(l.g)} · ${esc(l.u)} · Lesson ${l.i} of ${l.of}</span><span class="skl">${l.it.length} practice</span></button></li>`).join('')}</ul>`)};
+const clAns=s=>String(s).replace(/\{year\}/g,String(new Date().getFullYear()));
+function clNum(v){v=clAns(String(v)).replace(/[$,\s]+(?=\d)|,/g,'').replace(/[^0-9./\- ]/g,' ').trim();if(/^\d{4}-\d+$/.test(v)){const [a,b]=v.split('-');return +a-+b}
+  let m=v.match(/^(-?\d+)\s+(\d+)\/(\d+)$/);if(m)return +m[1]+(m[1].startsWith('-')?-1:1)*(+m[2]/+m[3]);m=v.match(/^(-?\d+(?:\.\d+)?)\/(\d+(?:\.\d+)?)$/);if(m)return +m[1]/+m[2];const x=parseFloat(v);return isNaN(x)?null:x}
+function clOpen(id){libLoad().then(L=>{const l=L.find(x=>x.id===id);if(!l)return msg('That lesson is not available.');const i=$('sksq');if(i){i.value='';_skS('')}
+  CL={l,st:l.it.map(it=>({done:0,ok:0,hint:0,pick:null,order:it.ch?it.ch.map((c,j)=>j).sort(()=>Math.random()-.5):null}))};showTab('lesson')})}
+function clPick(i,j){const S=CL.st[i];if(S.done)return;S.pick=j;S.done=1;S.ok=j===0;if(S.ok&&typeof addXP==='function')addXP(3,'course practice');r2()}
+function clCheck(i){const S=CL.st[i],it=CL.l.it[i],v=($('cla'+i)||{}).value||'';if(!v.trim())return msg('Type an answer first.');const a=clNum(it.a),b=clNum(v);S.pick=v;S.done=1;S.ok=a!=null&&b!=null&&Math.abs(a-b)<1e-6;if(S.ok&&typeof addXP==='function')addXP(3,'course practice');r2()}
+function clShow(i){const S=CL.st[i],v=($('cla'+i)||{}).value||'';if(v.trim().length<3)return msg('Write your answer first, then compare.');S.pick=v;S.done=1;S.ok=null;r2()}
+VIEWS.lesson=function(){if(!CL)return '<p class="sol">Search for a topic on the Learn page to open a course lesson.</p>';const l=CL.l,done=CL.st.filter(x=>x.done).length,ok=CL.st.filter(x=>x.ok).length;
+  const sib=(LIB||[]).filter(x=>x.s===l.s&&x.g===l.g&&x.u===l.u).sort((a,b)=>a.i-b.i);
+  return `<p class="sol" style="margin:0">${esc(SUBL[l.s]||'')} · ${GLAB(l.g)} · ${esc(l.u)}</p><h2 style="margin:4px 0 6px">${esc(l.n)}</h2><p class="sol">Lesson ${l.i} of ${l.of}${l.std.length?` · Standards: ${l.std.map(esc).join(', ')}`:''} · ${ok} of ${done} answered right</p>
+  ${l.it.map((it,i)=>{const S=CL.st[i];const q=esc(clAns(it.q));let body='';
+    if(it.t==='mc')body=`<div class="opts" role="group" aria-label="Choose one answer">${S.order.map(j=>`<button class="${S.done?(j===0?'ok':S.pick===j?'no':''):''}" ${S.done?'disabled':''} onclick="clPick(${i},${j})">${esc(clAns(it.ch[j]))}</button>`).join('')}</div>`;
+    else if(it.t==='num')body=S.done?`<p>Your answer: <b>${esc(S.pick)}</b></p>`:`<div class="row" style="margin:0"><input id="cla${i}" inputmode="decimal" aria-label="Your answer" onkeydown="if(event.key==='Enter')clCheck(${i})"><button onclick="clCheck(${i})">Check</button></div>`;
+    else body=S.done?`<p>Your answer: ${esc(S.pick)}</p><div class="tutor"><div class="tx"><b>A sample answer</b>${esc(clAns(it.ans||''))}</div></div><p class="sol">Compare: did you include the same key ideas?</p>`:`<textarea id="cla${i}" rows="3" style="width:100%" aria-label="Your answer"></textarea><div class="row"><button onclick="clShow(${i})">Compare with a sample answer</button></div>`;
+    const fb=!S.done||S.ok===null?'':S.ok?'<p class="fb ok">✓ Correct!</p>':`<p class="fb no">Not quite. The answer is ${esc(clAns(it.t==='mc'?it.ch[0]:it.a))}.</p>`;
+    return `<div class="clitem"><p class="sol" style="margin:0 0 4px">Question ${i+1} of ${l.it.length}</p>${it.p?`<details><summary>Read: ${esc(it.p.t||'the passage')}</summary><p>${esc(String(it.p.x||'').replace(/ \/\/ /g,'\n\n'))}</p></details>`:''}<p class="qq">${q}</p>${body}${fb}
+      ${it.h&&!S.done?(S.hint?`<div class="tutor"><div class="tx"><b>💡 Lumi's hint</b>${esc(clAns(it.h))}</div></div>`:`<button class="alt" style="margin-top:10px" onclick="CL.st[${i}].hint=1;r2()">💡 Hint</button>`):''}</div>`}).join('')}
+  <div class="clnav">${sib.filter(x=>x.i===l.i-1).map(x=>`<button class="alt" onclick="clOpen('${x.id}')">← Lesson ${x.i}: ${esc(x.n)}</button>`).join('')}${sib.filter(x=>x.i===l.i+1).map(x=>`<button class="lamp" onclick="clOpen('${x.id}')">Lesson ${x.i}: ${esc(x.n)} →</button>`).join('')}<button class="alt" onclick="showTab('learn')">Back to Learn</button></div>`};
 </script>

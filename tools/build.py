@@ -22,6 +22,26 @@ def layer(f):
     return t.replace('/*@SNAKE_ENGINE@*/', snake_engine()) if '/*@SNAKE_ENGINE@*/' in t else t
 import subprocess
 subprocess.run([sys.executable, os.path.join(D, 'build_assess.py')], check=True)  # server/assessments.json
+# The lesson library: every course lesson's practice (classwork) items, for any learner to search and practice.
+# Quizzes and unit tests stay in server/assessments.json, which only teachers can load.
+def _lessons():
+    import json as _j
+    R = os.path.dirname(D); B = _j.load(open(os.path.join(R, 'server', 'assessments.json'), encoding='utf-8'))
+    out = []
+    for key, c in B['cells'].items():
+        sub, g = key.split('|')
+        for u in c['units']:
+            ps = u.get('passages') or []
+            for i, l in enumerate(u['lessons']):
+                items = []
+                for it in l['practice']:
+                    x = {k: it[k] for k in ('t', 'q', 'ch', 'a', 'ans', 'h') if k in it}
+                    if 'p' in it and isinstance(it['p'], int) and it['p'] < len(ps): x['p'] = ps[it['p']]
+                    items.append(x)
+                out.append({'id': f"{u['id']}-L{i + 1}", 's': sub, 'g': int(g), 'u': u['name'], 'n': l['name'], 'std': l.get('std', []), 'i': i + 1, 'of': len(u['lessons']), 'it': items})
+    _j.dump({'v': 1, 'lessons': out}, open(os.path.join(R, 'public', 'lessons.json'), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
+    return len(out)
+print('lesson library:', _lessons(), 'lessons')
 h = open(src, encoding='utf-8').read()
 def rep(old, new, count=1):
     global h
@@ -86,7 +106,7 @@ open(os.path.join(root, 'app.html'), 'w', encoding='utf-8').write(h)
 open(os.path.join(root, 'index.html'), 'w', encoding='utf-8').write(open(os.path.join(root, 'public', 'index.html'), encoding='utf-8').read())
 open(os.path.join(root, '.nojekyll'), 'w').close()
 # Next Level's Cipher checks guesses against this word list (fetched only when the puzzle opens)
-for _img in ('arcade-map.jpg', 'hero-map.jpg', 'pitch.html', 'bose-academy-for-schools.pptx', 'bose-academy-for-schools.pdf', 'bose-academy-for-schools.odp', 'schools-deck.jpg', 'dpa.html', '.well-known/security.txt'):
+for _img in ('arcade-map.jpg', 'hero-map.jpg', 'pitch.html', 'bose-academy-for-schools.pptx', 'bose-academy-for-schools.pdf', 'bose-academy-for-schools.odp', 'schools-deck.jpg', 'dpa.html', '.well-known/security.txt', 'lessons.json'):
     os.makedirs(os.path.dirname(os.path.join(root, _img)) or root, exist_ok=True)
     open(os.path.join(root, _img), 'wb').write(open(os.path.join(root, 'public', _img), 'rb').read())
 open(os.path.join(root, 'words5.txt'), 'w', encoding='utf-8').write(open(os.path.join(root, 'public', 'words5.txt'), encoding='utf-8').read())

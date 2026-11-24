@@ -435,7 +435,7 @@ function certPage(id) {
 const MIME = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.pptx': 'application/vnd.openxmlformats-officedocument.presentationml.presentation', '.pdf': 'application/pdf', '.odp': 'application/vnd.oasis.opendocument.presentation', '.ico': 'image/x-icon', '.txt': 'text/plain' };
 const SEC = { 'X-Content-Type-Options': 'nosniff', 'X-Frame-Options': 'DENY', 'Referrer-Policy': 'same-origin', 'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
   'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'" };
-const send = (res, code, body, type = 'application/json', extra = {}) => { res.writeHead(code, { 'Content-Type': type, ...SEC, ...extra }); res.end(type === 'application/json' ? JSON.stringify(body) : body); };
+const send = (res, code, body, type = 'application/json', extra = {}) => { res.writeHead(code, { 'Content-Type': type, ...SEC, ...extra }); res.end(type === 'application/json' && !Buffer.isBuffer(body) ? JSON.stringify(body) : body); };
 
 http.createServer(async (req, res) => {
   const url = new URL(req.url, 'http://x'), p = decodeURIComponent(url.pathname);
