@@ -58,6 +58,6 @@ setTimeout(claimAwards,2500);
 
 /* Start: only level-ups from now on are celebrated; then redraw the header and the page with the game added */
 if(!GM.seen)GM.seen=LVL();
-if(BOOT.role==='student'&&!BOOT.local)api('GET','/api/classes').then(r=>{ST.joined=r.joined||[]}).catch(()=>{});
+if(BOOT.role==='student'&&!BOOT.local)api('GET','/api/classes').then(r=>{ST.joined=r.joined||[];if(typeof view!=='undefined'&&view==='home')render()}).catch(()=>{});
 nav();if(tab==='learn')render();else if(VIEWS[tab])showTab(tab);setTimeout(gameCheck,1500);
 </script>

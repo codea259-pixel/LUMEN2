@@ -13,7 +13,7 @@ const SH = process.env.SHOTS, errs = [], ok = s => console.log('✓', s), fail =
   const shot = async (pg, n) => { if (SH) await pg.screenshot({ path: `${SH}/${n}.png`, fullPage: true }) };
   const call = (pg, method, url, body) => pg.evaluate(([m, u, b]) => fetch(u, { method: m, credentials: 'same-origin', headers: b ? { 'Content-Type': 'application/json' } : {}, body: b ? JSON.stringify(b) : undefined }).then(async r => ({ s: r.status, j: await r.json().catch(() => null) })), [method, url, body]);
   const signup = async (role, un) => { const p = await mk(); await p.goto(B + '/app#signup'); await p.waitForSelector('#af'); await p.selectOption('#ar', role);
-    await p.fill('[name=username]', un); await p.fill('[name=display]', 'T ' + un.slice(-6)); if (role !== 'student') await p.fill('[name=email]', un + '@school.org'); else await p.check('[name=age][value="13plus"]'); await p.fill('[name=password]', 'teachpass1');
+    await p.fill('[name=username]', un); await p.fill('[name=display]', 'T ' + un.slice(-6)); if (role !== 'student') await p.fill('[name=email]', un + '@school.org'); else { await p.check('[name=age][value="13plus"]'); await p.fill('[name=schoolEmail]', un + '@student.school.org'); } await p.fill('[name=password]', 'teachpass1');
     await p.click('#af button'); await p.waitForSelector('#avatarBtn'); return p };
   const login = async (u, pw) => { const p = await mk(); await p.goto(B + '/app'); await p.fill('[name=username]', u); await p.fill('[name=password]', pw); await p.click('#af button'); await p.waitForSelector('#avatarBtn'); return p };
   const answerAll = async (pg) => { const n = await pg.$$eval('.items > li', l => l.length);

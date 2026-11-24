@@ -148,6 +148,7 @@ route('POST', '/api/signup', (c, res) => {
   const under13 = role === 'student' && !!b.under13; let parentEmail = null;
   if (under13) { parentEmail = str(b.parentEmail, 5, 100); if (!/^\S+@\S+\.\S+$/.test(parentEmail)) throw new E(400, "Enter the parent or guardian's email."); if (!b.parentOk) throw new E(400, 'A parent or guardian needs to tick the permission box.'); }
   let email = null; if (role === 'teacher' || role === 'parent') { email = str(b.email, 5, 100); if (!/^\S+@\S+\.\S+$/.test(email)) throw new E(400, 'Enter a valid email address.'); }
+  if (role === 'student') { email = str(b.schoolEmail, 5, 100).toLowerCase(); if (!/^\S+@\S+\.\S+$/.test(email)) throw new E(400, 'Enter your school email address.'); }
   if (Q1('SELECT 1 FROM users WHERE username=?', username) || Q1('SELECT 1 FROM users WHERE display=?', display)) throw new E(409, 'That username or display name is taken.');
   let u = createUser({ username, display, email, role, password });
   if (under13) { X('UPDATE users SET under13=1, parent_email=? WHERE id=?', parentEmail, u.id); u = Q1('SELECT * FROM users WHERE id=?', u.id); }

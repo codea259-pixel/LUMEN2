@@ -44,6 +44,31 @@ service cloud.firestore {
     // Learners under 13 who signed up themselves save to their account only after a parent says yes (teacher-made logins: the school's OK)
     function kidOK() { return me().get('under13', false) != true || me().get('managedBy', '') != '' || parentSaidYes(request.auth.uid); }
     function okText(f, lo, hi) { return request.resource.data[f] is string && request.resource.data[f].size() >= lo && request.resource.data[f].size() <= hi; }
+    // Rude words are refused here too, so getting around the page's own filter doesn't help
+    function polite(f) { return !request.resource.data[f].lower().matches('(?s).*\\b(fuck\\w*|shit\\w*|bitch\\w*|bastard|asshole|dick|dicks|piss|slut|whore|retard\\w*|nigg\\w*|fag\\w*|cunt|kys|kill yourself|stupid|idiot|dumb|moron|hate you|shut up)\\b.*'); }
+    // Posting speed: each post or reply also stamps limits/{uid}, which allows one stamp every 20 seconds
+    function stamped() { return getAfter(/databases/$(db)/documents/limits/$(request.auth.uid)).data.post == request.time; }
+
+    // A class leaderboard row can only grow as fast as real learning: the row carries the server's time, and XP, weekly XP
+    // and stars may rise by a little plus a few points a second since the last save (the first save is capped)
+    function boardFair() {
+      let d = request.resource.data;
+      let st = d.get('st', 0);
+      return d.ts == request.time && d.xp <= 1000000 && d.wx <= 20000 && st <= 5000
+        && (resource == null || !(resource.data.ts is timestamp)
+          ? (d.xp <= 300000 && st <= 1500)
+          : (d.xp - resource.data.xp <= 300 + (request.time.toMillis() - resource.data.ts.toMillis()) / 1000 * 4
+             && (d.w != resource.data.w || d.wx - resource.data.wx <= 300 + (request.time.toMillis() - resource.data.ts.toMillis()) / 1000 * 4)
+             && st - resource.data.get('st', 0) <= 9 + (request.time.toMillis() - resource.data.ts.toMillis()) / 10000));
+    }
+
+    // One stamp per person: when they last posted or replied
+    match /limits/{uid} {
+      allow read: if signedIn() && request.auth.uid == uid;
+      allow create, update: if signedIn() && request.auth.uid == uid && request.resource.data.keys().hasOnly(['post'])
+        && request.resource.data.post == request.time
+        && (resource == null || request.time > resource.data.post + duration.value(20, 's'));
+    }
 
     // Site settings: anyone can read; only the owner can change them (the owner also claims the site here once)
     match /config/site {
@@ -58,12 +83,12 @@ service cloud.firestore {
         && request.resource.data.role in ['student', 'parent', 'teacher']
         && request.resource.data.verified == false && request.resource.data.locked == false
         && request.resource.data.get('memberUntil', 0) == 0
-        && okText('display', 2, 20) && okText('username', 3, 20)
+        && okText('display', 2, 20) && polite('display') && okText('username', 3, 20) && polite('username')
         && (request.resource.data.get('managedBy', '') == ''
             || get(/databases/$(db)/documents/config/site).data.get('ownerUid', '') == request.resource.data.managedBy
             || get(/databases/$(db)/documents/users/$(request.resource.data.managedBy)).data.role in ['teacher', 'school_admin']);
       allow update: if isOwner()
-        || (request.auth.uid == uid && active() && changedOnly(['display']) && okText('display', 2, 20));
+        || (request.auth.uid == uid && active() && changedOnly(['display']) && okText('display', 2, 20) && polite('display'));
       allow delete: if signedIn() && (request.auth.uid == uid || isOwner() || isParentOf(uid));
     }
 
@@ -151,6 +176,7 @@ service cloud.firestore {
         allow read: if signedIn() && (cls().teacherId == request.auth.uid || request.auth.uid in cls().members || isOwner());
         allow create, update: if signedIn() && request.auth.uid == uid && active() && request.auth.uid in cls().members
           && request.resource.data.keys().hasOnly(['n', 'xp', 'w', 'wx', 'hero', 'ts', 'st'])
+          && polite('n') && boardFair()
           && (!('st' in request.resource.data) || (request.resource.data.st is int && request.resource.data.st >= 0 && request.resource.data.st <= 100000))
           && request.resource.data.n is string && request.resource.data.n.size() <= 20
           && request.resource.data.xp is int && request.resource.data.xp >= 0 && request.resource.data.xp <= 10000000
@@ -217,7 +243,8 @@ service cloud.firestore {
       allow create: if active() && me().get('under13', false) != true && request.resource.data.authorId == request.auth.uid
         && request.resource.data.hidden == false && request.resource.data.pinned == false && request.resource.data.locked == false
         && request.resource.data.votes.size() == 0 && request.resource.data.reports.size() == 0
-        && okText('title', 5, 120) && okText('body', 10, 2000);
+        && okText('title', 5, 120) && okText('body', 10, 2000) && polite('title') && polite('body')
+        && request.resource.data.authorName == me().display && stamped();
       allow update: if isMod() || (active() && (
         (changedOnly(['votes']) && toggledSelf('votes'))
         || (changedOnly(['reports']) && addedSelf('reports'))
@@ -227,7 +254,8 @@ service cloud.firestore {
     match /replies/{rid} {
       allow read: if active() && (resource.data.hidden == false || isMod() || resource.data.authorId == request.auth.uid);
       allow create: if active() && me().get('under13', false) != true && request.resource.data.authorId == request.auth.uid
-        && request.resource.data.hidden == false && request.resource.data.reports.size() == 0 && okText('body', 2, 2000)
+        && request.resource.data.hidden == false && request.resource.data.reports.size() == 0 && okText('body', 2, 2000) && polite('body')
+        && request.resource.data.authorName == me().display && stamped()
         && get(/databases/$(db)/documents/posts/$(request.resource.data.postId)).data.locked != true;
       allow update: if isMod() || (active() && (
         (changedOnly(['reports']) && addedSelf('reports'))
@@ -240,7 +268,7 @@ service cloud.firestore {
     // Study groups: anyone signed in can join or leave
     match /groups/{gid} {
       allow read: if active();
-      allow create: if active() && me().get('under13', false) != true && request.resource.data.members == [request.auth.uid] && okText('name', 3, 40);
+      allow create: if active() && me().get('under13', false) != true && request.resource.data.members == [request.auth.uid] && okText('name', 3, 40) && polite('name');
       allow update: if active() && changedOnly(['members', 'memberNames']) && toggledSelf('members');
     }
 
@@ -248,7 +276,7 @@ service cloud.firestore {
     match /certs/{id} {
       allow get: if true;
       allow list: if signedIn() && (resource.data.uid == request.auth.uid || isOwner() || isParentOf(resource.data.uid));
-      allow create: if active() && kidOK() && request.resource.data.uid == request.auth.uid && okText('name', 2, 40);
+      allow create: if active() && kidOK() && request.resource.data.uid == request.auth.uid && okText('name', 2, 40) && polite('name');
       allow delete: if signedIn() && (resource.data.uid == request.auth.uid || isOwner() || isParentOf(resource.data.uid));
     }
 

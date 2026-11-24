@@ -26,7 +26,7 @@ const errs = [], ok = s => console.log('✓', s);
   };
   const signup = async (p, role, user, display, email) => {
     await p.goto(B + 'app.html#signup'); await p.waitForSelector('#af'); await p.selectOption('#ar', role);
-    await p.fill('[name=username]', user); await p.fill('[name=display]', display); if (email) await p.fill('[name=email]', email); if (role === 'student') await p.check('[name=age][value="13plus"]');
+    await p.fill('[name=username]', user); await p.fill('[name=display]', display); if (email) await p.fill('[name=email]', email); if (role === 'student') { await p.check('[name=age][value="13plus"]'); await p.fill('[name=schoolEmail]', user + '@student.school.org'); }
     await p.fill('[name=password]', 'password123');
     await p.click('#af button'); await p.waitForSelector('#avatarBtn', { timeout: 20000 });
   };
@@ -208,12 +208,32 @@ const errs = [], ok = s => console.log('✓', s);
   await l.waitForSelector('text=How do I add fractions?', { timeout: 15000 }); ok('learner posted');
   await s.click('#tabs >> text=Community'); await s.waitForSelector('text=How do I add fractions?', { timeout: 15000 }); await s.click('.card.post button[aria-label=Upvote]'); await s.waitForSelector('.card.post button[aria-label=Upvote].on', { timeout: 10000 }); ok('student upvoted');
 
+  // 6a. Trolling is blocked by the rules themselves: rude names and posts, posting too fast, and leaderboard cheating
+  { const tr = await l.evaluate(async () => { const db = firebase.app().firestore(), uid = FBM.uid(), out = {}, T = () => firebase.firestore.FieldValue.serverTimestamp();
+      const tryIt = async (k, fn) => { try { await fn(); out[k] = 'ALLOWED' } catch (e) { out[k] = 'blocked' } };
+      await tryIt('rude display name', () => db.collection('users').doc(uid).update({ display: 'stupid head' }));
+      const me = (await db.collection('users').doc(uid).get()).data().display;
+      await tryIt('post under someone else\'s name', () => { const b = db.batch(); b.set(db.collection('limits').doc(uid), { post: T() }); b.set(db.collection('posts').doc(), { grp: null, type: 'd', subject: 'Math', grade: 4, title: 'Hello there', body: 'Hello everyone here', authorId: uid, authorName: 'Ms Alvarez', ts: 1, hidden: false, pinned: false, locked: false, votes: [], reports: [] }); return b.commit() });
+      await tryIt('rude post', () => { const b = db.batch(); b.set(db.collection('limits').doc(uid), { post: T() }); b.set(db.collection('posts').doc(), { grp: null, type: 'd', subject: 'Math', grade: 4, title: 'You are an idiot', body: 'Just saying hello here', authorId: uid, authorName: me, ts: 1, hidden: false, pinned: false, locked: false, votes: [], reports: [] }); return b.commit() });
+      await tryIt('post without the speed stamp', () => db.collection('posts').add({ grp: null, type: 'd', subject: 'Math', grade: 4, title: 'Spam spam spam', body: 'Spam spam spam spam', authorId: uid, authorName: me, ts: 1, hidden: false, pinned: false, locked: false, votes: [], reports: [] }));
+      await tryIt('a second post right away', () => { const b = db.batch(); b.set(db.collection('limits').doc(uid), { post: T() }); b.set(db.collection('posts').doc(), { grp: null, type: 'd', subject: 'Math', grade: 4, title: 'Spam spam spam', body: 'Spam spam spam spam', authorId: uid, authorName: me, ts: 1, hidden: false, pinned: false, locked: false, votes: [], reports: [] }); return b.commit() });
+      const cs = await db.collection('classes').where('members', 'array-contains', uid).get(), row = cs.docs[0].ref.collection('board').doc(uid);
+      await row.set({ n: me, xp: 50, w: '2026-W48', wx: 50, hero: '{}', ts: T(), st: 2 }); out['fair row saved'] = 'yes';
+      await tryIt('jump to a million XP', () => row.set({ n: me, xp: 999999, w: '2026-W48', wx: 50, hero: '{}', ts: T(), st: 2 }));
+      await tryIt('jump to 5000 stars', () => row.set({ n: me, xp: 60, w: '2026-W48', wx: 60, hero: '{}', ts: T(), st: 5000 }));
+      await tryIt('fake the time', () => row.set({ n: me, xp: 60, w: '2026-W48', wx: 60, hero: '{}', ts: 1, st: 2 }));
+      await tryIt('rude leaderboard name', () => row.set({ n: 'dumb', xp: 60, w: '2026-W48', wx: 60, hero: '{}', ts: T(), st: 2 }));
+      await tryIt('a fair small gain', () => row.set({ n: me, xp: 70, w: '2026-W48', wx: 70, hero: '{}', ts: T(), st: 3 }));
+      return out }).catch(e => ({ error: e.message }));
+    ok('trolling attempts: ' + JSON.stringify(tr)); const want = { 'a fair small gain': 'ALLOWED', 'fair row saved': 'yes' };
+    if (tr.error || Object.entries(tr).some(([k, v]) => v !== (want[k] || 'blocked'))) errs.push('a trolling attempt got through: ' + JSON.stringify(tr)); }
+
   // 6b. A learner under 13 signs up: we email the parent a link, and progress stays on the device until the parent says yes
   const OOB = 'http://localhost:9099/emulator/v1/projects/demo-bose/oobCodes';
   const linkFor = async email => { const r = await (await fetch(OOB)).json(), c = (r.oobCodes || []).filter(x => x.email === email && x.requestType === 'EMAIL_SIGNIN').pop(); if (!c) throw new Error('no email link for ' + email);
     const cont = new URL(c.oobLink).searchParams.get('continueUrl'); return cont + (cont.includes('?') ? '&' : '?') + 'mode=signIn&oobCode=' + c.oobCode + '&apiKey=demo-key' };
   const kidSignup = async (un, parent) => { const p = await page(); await p.goto(B + 'app.html#signup'); await p.waitForSelector('#af'); await p.selectOption('#ar', 'student');
-    await p.fill('[name=username]', un); await p.fill('[name=display]', un[0].toUpperCase() + un.slice(1)); await p.fill('[name=password]', 'password123'); await p.check('[name=age][value=under13]');
+    await p.fill('[name=username]', un); await p.fill('[name=display]', un[0].toUpperCase() + un.slice(1)); await p.fill('[name=password]', 'password123'); await p.fill('[name=schoolEmail]', un + '@student.school.org'); await p.check('[name=age][value=under13]');
     if (parent) { await p.fill('[name=parentEmail]', parent); await p.click('#af button'); await p.waitForSelector('#cban', { timeout: 20000 }) } return p };
   const db = (p, fn, arg) => p.evaluate(fn, arg);
   const k = await kidSignup('maya7'); await k.click('#af button');

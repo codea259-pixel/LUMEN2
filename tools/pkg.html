@@ -121,4 +121,14 @@ O.backup=function(){const L=ST.lastBackup,days=L?Math.floor((Date.now()-new Date
     <div class="row"><button class="lamp" onclick="ownerBackup()">💾 Download a backup</button></div>
     <p class="sol" style="margin-top:12px">Do this once a week. Keep at least the last four files, in a private folder or a password-protected drive, because they contain students' information. Delete old files you no longer need.</p></div>`};
 const _ovB=VIEWS.owner;VIEWS.owner=function(){const h=_ovB(),k='</div><div style="margin-top:16px">';return h.replace(k,`<button class="chip ${ST.ot==='backup'?'on':''}" onclick="ST.ot='backup';r2()">💾 Backup</button>`+k)};
+
+/* Students who aren't in a class yet see a "join your class" box on the Learn page */
+let JOINLOAD=0;
+const _lcJ=LOAD.classes;LOAD.classes=async(...a)=>{const r=await _lcJ(...a);if(ME.role==='student'&&view==='home'&&!$('djoin'))setTimeout(()=>{if(view==='home')render()},0);return r};
+function joinFromDash(){const v=($('djc')||{}).value||'';if(!v.trim())return msg('Type the class code from your teacher.');busy(async()=>{const r=await api('POST','/api/classes/join',{code:v.trim()});msg('You joined '+r.name+'!');try{await LOAD.classes()}catch(e){}render()})}
+const _rJn=render;render=function(){_rJn();if(BOOT.local||ME.role!=='student')return;
+  if(ST.joined===undefined){if(!JOINLOAD&&LOAD.classes){JOINLOAD=1;LOAD.classes().then(()=>render()).catch(()=>{JOINLOAD=0})}return}
+  if(view!=='home')return;const d=$('dash');if(!d||d.hidden||$('djoin'))return;
+  if(ST.joined.length)return;const h=d.querySelector('.hello');if(!h)return;
+  h.insertAdjacentHTML('afterend',`<div class="card rise" id="djoin" style="margin:0 0 16px;display:flex;gap:16px;align-items:center;flex-wrap:wrap"><div style="flex:1;min-width:240px"><h3 style="margin:0 0 4px">🏫 Join your class</h3><p class="sol" style="margin:0">Enter the class code your teacher gave you to see your assignments and your class.</p></div><div class="row" style="margin:0"><input id="djc" placeholder="Class code" aria-label="Class code" maxlength="8" style="text-transform:uppercase;width:150px" onkeydown="if(event.key==='Enter')joinFromDash()"><button class="lamp" onclick="joinFromDash()">Join</button></div></div>`)};
 </script>

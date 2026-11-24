@@ -55,10 +55,12 @@ ${AGE}</fieldset>
       try{await api('POST','/api/finish',f);location.reload()}catch(err){document.getElementById('ae').textContent=err.message;b.disabled=false}};
     v.querySelector('select').focus();return}
   v.innerHTML=`<div class="auth">${mode==='login'?`
+  <div class="card stucard"><h3 style="margin:0 0 6px">🎒 Students</h3><p class="sol" style="margin:0">Use the username and password your teacher gave you below${BOOT.fb?', or sign in with your school Google account':''}. No login from a teacher? <a href="#" id="stuNew">Create a student account with your school email</a>. Once you're in, enter your teacher's class code to join your class.</p>${BOOT.fb?'<button type="button" class="alt" id="gsi2" style="margin-top:12px">🏫 Sign in with your school account</button>':''}</div>
   <h2>Sign in</h2>${G}<form class="card" id="af"><label>Username<input name="username" autocomplete="username" required></label><label>Password<input name="password" type="password" autocomplete="current-password" required></label><p class="err" id="ae" role="alert"></p><button class="lamp" type="submit">Sign in</button></form>
   <p>New to Bose Academy? <a href="#" id="sw">Create a free account</a></p><p class="sol">Learners of every age are welcome. Under 13? Sign up with a parent or guardian, or use the login your teacher gives you.</p>`:`
   <h2>Create a free account</h2>${G}<form class="card" id="af">
-  <label>I am a<select name="role" id="ar"><option value="student">Learner</option><option value="parent">Parent or guardian</option><option value="teacher">Teacher</option></select></label>
+  <label>I am a<select name="role" id="ar"><option value="student">Student or learner (any age)</option><option value="parent">Parent or guardian</option><option value="teacher">Teacher</option></select></label>
+  <label id="sem">Your school email<input name="schoolEmail" type="email" autocomplete="email" required placeholder="name@yourschool.org"></label>
   <label>Username<input name="username" autocomplete="username" required minlength="3" maxlength="20" pattern="[A-Za-z0-9_]+" title="Letters, numbers and underscores"></label>
   <label>Display name (shown to others, not your full name)<input name="display" required minlength="2" maxlength="20"></label>
   <label id="em" hidden>Email<input name="email" type="email" autocomplete="email"></label>
@@ -68,9 +70,11 @@ ${AGE}</fieldset>
   <p class="err" id="ae" role="alert"></p><button class="lamp" type="submit">Create account</button></form>
   <p>Already have an account? <a href="#" id="sw">Sign in</a></p>
   <p class="sol">Bose Academy never sells student data and shows no ads. <a href="privacy.html" target="_blank">Privacy policy</a> · <a href="terms.html" target="_blank">Terms</a></p>`}</div>`;
+  const sn=document.getElementById('stuNew');if(sn)sn.onclick=ev=>{ev.preventDefault();authPage('signup')};
+  const gb2=document.getElementById('gsi2');if(gb2)gb2.onclick=()=>{const g=document.getElementById('gsi');if(g)g.click()};
   const gb=document.getElementById('gsi');if(gb)gb.onclick=async()=>{gb.disabled=true;try{await api('POST','/api/google',{});location.reload()}catch(err){document.getElementById('ae').textContent=/popup-closed|cancelled/.test(err.message)?'':err.message;gb.disabled=false}};
   document.getElementById('sw').onclick=ev=>{ev.preventDefault();authPage(mode==='login'?'signup':'login')};
-  const ar=document.getElementById('ar');if(ar)ar.onchange=()=>{const s=ar.value==='student';document.getElementById('em').hidden=s;document.querySelector('#em input').required=!s;document.getElementById('ag').hidden=!s;ageReq(s)};if(document.getElementById('pg')){const ageUI=()=>{const u=(document.querySelector('[name=age]:checked')||{}).value==='under13';document.getElementById('pg').hidden=!u;document.querySelector('[name=parentEmail]').required=u;const po=document.querySelector('[name=parentOk]');if(po)po.required=u};document.querySelectorAll('[name=age]').forEach(r=>r.onchange=ageUI);}
+  const ar=document.getElementById('ar');if(ar)ar.onchange=()=>{const s=ar.value==='student';document.getElementById('em').hidden=s;document.querySelector('#em input').required=!s;document.getElementById('sem').hidden=!s;document.querySelector('#sem input').required=s;document.getElementById('ag').hidden=!s;ageReq(s)};if(document.getElementById('pg')){const ageUI=()=>{const u=(document.querySelector('[name=age]:checked')||{}).value==='under13';document.getElementById('pg').hidden=!u;document.querySelector('[name=parentEmail]').required=u;const po=document.querySelector('[name=parentOk]');if(po)po.required=u};document.querySelectorAll('[name=age]').forEach(r=>r.onchange=ageUI);}
   document.getElementById('af').onsubmit=async ev=>{ev.preventDefault();const f=Object.fromEntries(new FormData(ev.target));if(mode==='signup'){f.under13=f.age==='under13';f.age13=!f.under13;f.parentOk=!!f.parentOk;}
     const b=ev.target.querySelector('button');b.disabled=true;
     try{await api('POST',mode==='login'?'/api/login':'/api/signup',f);location.reload()}catch(err){document.getElementById('ae').textContent=err.message;b.disabled=false}};

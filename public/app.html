@@ -840,7 +840,7 @@ const FBM=(()=>{
   /* Learners under 13 who sign up themselves need a parent's OK by email (COPPA). The sign-up sends the parent a
      sign-in link; only someone signed in with that verified email can answer, in consents/{uid} (see firestore.rules).
      Until then progress is kept on this device. Teacher-made logins count as the school's OK. Requests expire after 14 days. */
-  const WAIT=14*864e5,POLICY='2026-10-31',mask=e=>String(e||'').replace(/^(.)[^@]*(@.*)$/,'$1\u2022\u2022\u2022$2');
+  const WAIT=14*864e5,POLICY='2026-11-24',mask=e=>String(e||'').replace(/^(.)[^@]*(@.*)$/,'$1\u2022\u2022\u2022$2');
   let consent=null,pHint='';
   const consentOf=async()=>{pHint='';if(!profile||!profile.under13||profile.role!=='student')return null;if(profile.managedBy)return 'school';
     const [c,p]=await Promise.all([doc('consents',me.uid).get().catch(()=>null),doc('private',me.uid).get().catch(()=>null)]);
@@ -879,10 +879,11 @@ const FBM=(()=>{
     let parentEmail=null;const under13=role==='student'&&!!b.under13;
     if(under13){parentEmail=str(b.parentEmail,5,100,'Email').toLowerCase();if(!/^\S+@\S+\.\S+$/.test(parentEmail))throw new E(400,"Enter the parent or guardian's email.")}
     let email=null;if(role!=='student'){email=str(b.email,5,100,'Email');if(!/^\S+@\S+\.\S+$/.test(email))throw new E(400,'Enter a valid email address.')}
+    let schoolEmail=null;if(role==='student'){schoolEmail=str(b.schoolEmail,5,100,'School email').toLowerCase();if(!/^\S+@\S+\.\S+$/.test(schoolEmail))throw new E(400,'Enter your school email address.')}
     const cred=await auth.createUserWithEmailAndPassword(emailOf(username),password);const uid=cred.user.uid;
     await doc('users',uid).set({username,display,role,verified:false,locked:false,under13,created:now()});
     await doc('state',uid).set({json:'{}',updated:now(),readers:[]});
-    if(email||parentEmail)await doc('private',uid).set(parentEmail?{parentEmail}:{email});
+    if(email||parentEmail||schoolEmail)await doc('private',uid).set({...(parentEmail?{parentEmail}:{}),...(email?{email}:{}),...(schoolEmail?{schoolEmail}:{})});
     let sent=false;if(parentEmail)try{await askParent(parentEmail,uid);await doc('private',uid).update({requested:now()});sent=true}catch(e){console.warn(e)}
     return{ok:true,sent}});
   route('POST','/api/login',async b=>{const u=String(b.username||'').trim().toLowerCase();if(!/^[a-z0-9_]{3,20}$/.test(u))throw new E(401,'Wrong username or password.');
@@ -931,9 +932,9 @@ const FBM=(()=>{
   const noKids=()=>{if(profile&&profile.under13)throw new E(403,"Posting in the Community opens when you're 13.")};
   route('POST','/api/posts',async b=>{need();noKids();const t=str(b.title,5,120,'Titles'),body=str(b.body,10,2000,'Posts');let grp=null,subject=String(b.subject||'Math').slice(0,40),grade=+b.grade||5;
     if(b.group){const g=await doc('groups',sid(b.group)).get();if(!g.exists||!(g.data().members||[]).includes(me.uid))throw new E(403,'Join the group to post.');grp=g.id;subject=g.data().subject;grade=g.data().grade}
-    await db.collection('posts').add({grp,type:b.type==='q'?'q':'d',subject,grade,title:t,body,authorId:me.uid,authorName:profile.display,ts:now(),hidden:false,pinned:false,locked:false,votes:[],reports:[]});return{ok:true}});
+    await postWith('posts',{grp,type:b.type==='q'?'q':'d',subject,grade,title:t,body,authorId:me.uid,authorName:profile.display,ts:now(),hidden:false,pinned:false,locked:false,votes:[],reports:[]});return{ok:true}});
   route('POST','/api/posts/:id/reply',async(b,p)=>{need();noKids();const body=str(b.body,2,2000,'Replies');const d=await doc('posts',sid(p.id)).get();if(!d.exists)throw new E(404,'Post not found.');if(d.data().locked)throw new E(403,'This thread is locked.');
-    await db.collection('replies').add({postId:sid(p.id),authorId:me.uid,authorName:profile.display,body,ts:now(),hidden:false,reports:[]});return{ok:true}});
+    await postWith('replies',{postId:sid(p.id),authorId:me.uid,authorName:profile.display,body,ts:now(),hidden:false,reports:[]});return{ok:true}});
   route('POST','/api/posts/:id/vote',async(b,p)=>{need();const r=doc('posts',sid(p.id)),d=await r.get();if(!d.exists)throw new E(404,'Post not found.');
     await r.update({votes:(d.data().votes||[]).includes(me.uid)?FV.arrayRemove(me.uid):FV.arrayUnion(me.uid)});return{ok:true}});
   route('POST','/api/posts/:id/report',async(b,p)=>{need();const r=b.rid&&b.rid!=='p'?doc('replies',sid(b.rid)):doc('posts',sid(p.id)),d=await r.get();if(!d.exists)throw new E(404,'Not found.');
@@ -957,7 +958,7 @@ const FBM=(()=>{
   async function boardSync(b){if(!profile||profile.role!=='student')return;const h=heroOf(b),row={n:profile.display,xp:Math.min(1e7,Math.round(h.xp)),w:h.wk?h.wk.w:'',wx:Math.min(1e6,Math.round(h.wk?h.wk.xp:0)),hero:JSON.stringify(h.hero||{}).slice(0,390),st:Math.min(1e5,starsOf(b))},k=JSON.stringify(row);
     if(myCls===null)myCls=(await db.collection('classes').where('members','array-contains',me.uid).get()).docs.map(d=>d.id);
     if(k===lastBoard||!myCls.length)return;lastBoard=k;/* rules published before the Class Quest refuse the star count: save the row without it */
-    await Promise.all(myCls.map(c=>{const ref=doc('classes',c).collection('board').doc(me.uid);return ref.set({...row,ts:now()}).catch(()=>{const {st,...r}=row;return ref.set({...r,ts:now()})})}))}
+    await Promise.all(myCls.map(c=>{const ref=doc('classes',c).collection('board').doc(me.uid);const T=firebase.firestore.FieldValue.serverTimestamp();return ref.set({...row,ts:T}).catch(()=>{const {st,...r}=row;return ref.set({...r,ts:T})}).catch(()=>{})}))}
   /* Classes */
   const pct=(st,skills)=>Math.round(100*skills.reduce((a,k)=>{const s=(st.S||{})[k];return a+(lvl(s)>=3?1:s&&s.att?Math.min(.99,s.p/.85):0)},0)/Math.max(1,skills.length));
   async function classOut(cd){const c=cd.data(),mem=c.members||[];
@@ -1105,6 +1106,11 @@ const FBM=(()=>{
     const j=await doc('joinCodes',who.toUpperCase()).get();if(j.exists){const r=doc('classes',j.data().classId);await r.update({memberUntil:until});return{ok:true,kind:'class',name:(await r.get()).data().name}}
     throw new E(404,'No account has that username and no class has that code.')});
   /* Owner backup: everything in the database as one JSON file (sign-in passwords live in Firebase Authentication, not here) */
+  /* a post or reply also stamps limits/{uid} in the same write: the rules allow one every 20 seconds */
+  let lastPost=0;
+  async function postWith(col,data){const wait=20000-(Date.now()-lastPost);if(wait>0)throw new E(429,`Please wait ${Math.ceil(wait/1000)} seconds before posting again.`);
+    const b=db.batch(),ref=db.collection(col).doc();b.set(doc('limits',me.uid),{post:firebase.firestore.FieldValue.serverTimestamp()});b.set(ref,data);
+    try{await b.commit()}catch(e){try{await ref.set(data)}catch(e2){throw new E(429,'That wasn’t posted. Wait 20 seconds between posts, and keep it kind.')}}lastPost=Date.now();return ref}
   route('GET','/api/owner/backup',async()=>{need(isOwner());const rows=q=>q.docs.map(d=>({id:d.id,...d.data()})),all=async c=>{try{return rows(await db.collection(c).get())}catch(e){return{error:'Could not read '+c}}},one=async p=>{try{const d=await db.doc(p).get();return d.exists?d.data():null}catch(e){return null}};
     const out={site:await one('config/site'),stats:await one('stats/global')};
     for(const c of ['users','private','consents','state','qvers','joinCodes','posts','replies','groups','certs'])out[c]=await all(c);
@@ -1253,10 +1259,12 @@ ${AGE}</fieldset>
       try{await api('POST','/api/finish',f);location.reload()}catch(err){document.getElementById('ae').textContent=err.message;b.disabled=false}};
     v.querySelector('select').focus();return}
   v.innerHTML=`<div class="auth">${mode==='login'?`
+  <div class="card stucard"><h3 style="margin:0 0 6px">🎒 Students</h3><p class="sol" style="margin:0">Use the username and password your teacher gave you below${BOOT.fb?', or sign in with your school Google account':''}. No login from a teacher? <a href="#" id="stuNew">Create a student account with your school email</a>. Once you're in, enter your teacher's class code to join your class.</p>${BOOT.fb?'<button type="button" class="alt" id="gsi2" style="margin-top:12px">🏫 Sign in with your school account</button>':''}</div>
   <h2>Sign in</h2>${G}<form class="card" id="af"><label>Username<input name="username" autocomplete="username" required></label><label>Password<input name="password" type="password" autocomplete="current-password" required></label><p class="err" id="ae" role="alert"></p><button class="lamp" type="submit">Sign in</button></form>
   <p>New to Bose Academy? <a href="#" id="sw">Create a free account</a></p><p class="sol">Learners of every age are welcome. Under 13? Sign up with a parent or guardian, or use the login your teacher gives you.</p>`:`
   <h2>Create a free account</h2>${G}<form class="card" id="af">
-  <label>I am a<select name="role" id="ar"><option value="student">Learner</option><option value="parent">Parent or guardian</option><option value="teacher">Teacher</option></select></label>
+  <label>I am a<select name="role" id="ar"><option value="student">Student or learner (any age)</option><option value="parent">Parent or guardian</option><option value="teacher">Teacher</option></select></label>
+  <label id="sem">Your school email<input name="schoolEmail" type="email" autocomplete="email" required placeholder="name@yourschool.org"></label>
   <label>Username<input name="username" autocomplete="username" required minlength="3" maxlength="20" pattern="[A-Za-z0-9_]+" title="Letters, numbers and underscores"></label>
   <label>Display name (shown to others, not your full name)<input name="display" required minlength="2" maxlength="20"></label>
   <label id="em" hidden>Email<input name="email" type="email" autocomplete="email"></label>
@@ -1266,9 +1274,11 @@ ${AGE}</fieldset>
   <p class="err" id="ae" role="alert"></p><button class="lamp" type="submit">Create account</button></form>
   <p>Already have an account? <a href="#" id="sw">Sign in</a></p>
   <p class="sol">Bose Academy never sells student data and shows no ads. <a href="privacy.html" target="_blank">Privacy policy</a> · <a href="terms.html" target="_blank">Terms</a></p>`}</div>`;
+  const sn=document.getElementById('stuNew');if(sn)sn.onclick=ev=>{ev.preventDefault();authPage('signup')};
+  const gb2=document.getElementById('gsi2');if(gb2)gb2.onclick=()=>{const g=document.getElementById('gsi');if(g)g.click()};
   const gb=document.getElementById('gsi');if(gb)gb.onclick=async()=>{gb.disabled=true;try{await api('POST','/api/google',{});location.reload()}catch(err){document.getElementById('ae').textContent=/popup-closed|cancelled/.test(err.message)?'':err.message;gb.disabled=false}};
   document.getElementById('sw').onclick=ev=>{ev.preventDefault();authPage(mode==='login'?'signup':'login')};
-  const ar=document.getElementById('ar');if(ar)ar.onchange=()=>{const s=ar.value==='student';document.getElementById('em').hidden=s;document.querySelector('#em input').required=!s;document.getElementById('ag').hidden=!s;ageReq(s)};if(document.getElementById('pg')){const ageUI=()=>{const u=(document.querySelector('[name=age]:checked')||{}).value==='under13';document.getElementById('pg').hidden=!u;document.querySelector('[name=parentEmail]').required=u;const po=document.querySelector('[name=parentOk]');if(po)po.required=u};document.querySelectorAll('[name=age]').forEach(r=>r.onchange=ageUI);}
+  const ar=document.getElementById('ar');if(ar)ar.onchange=()=>{const s=ar.value==='student';document.getElementById('em').hidden=s;document.querySelector('#em input').required=!s;document.getElementById('sem').hidden=!s;document.querySelector('#sem input').required=s;document.getElementById('ag').hidden=!s;ageReq(s)};if(document.getElementById('pg')){const ageUI=()=>{const u=(document.querySelector('[name=age]:checked')||{}).value==='under13';document.getElementById('pg').hidden=!u;document.querySelector('[name=parentEmail]').required=u;const po=document.querySelector('[name=parentOk]');if(po)po.required=u};document.querySelectorAll('[name=age]').forEach(r=>r.onchange=ageUI);}
   document.getElementById('af').onsubmit=async ev=>{ev.preventDefault();const f=Object.fromEntries(new FormData(ev.target));if(mode==='signup'){f.under13=f.age==='under13';f.age13=!f.under13;f.parentOk=!!f.parentOk;}
     const b=ev.target.querySelector('button');b.disabled=true;
     try{await api('POST',mode==='login'?'/api/login':'/api/signup',f);location.reload()}catch(err){document.getElementById('ae').textContent=err.message;b.disabled=false}};
@@ -1657,6 +1667,8 @@ header.top{max-width:none}
 :root:not([data-contrast=high]) body:has(.auth) header:not(.top) p{color:#D7D9F5;font-size:1.15rem}
 :root:not([data-contrast=high]) .auth{position:relative;margin-top:-90px}
 :root:not([data-contrast=high]) .auth>h2{color:#fff;margin-bottom:12px}
+:root:not([data-contrast=high]) .auth .stucard+h2{color:var(--ink);margin-top:26px}
+.auth .stucard{margin-bottom:0}
 :root:not([data-contrast=high]) .auth .card{box-shadow:var(--shadow-up)}
 </style>
 <script type="text/x-lumen">
@@ -12106,7 +12118,7 @@ setTimeout(claimAwards,2500);
 
 /* Start: only level-ups from now on are celebrated; then redraw the header and the page with the game added */
 if(!GM.seen)GM.seen=LVL();
-if(BOOT.role==='student'&&!BOOT.local)api('GET','/api/classes').then(r=>{ST.joined=r.joined||[]}).catch(()=>{});
+if(BOOT.role==='student'&&!BOOT.local)api('GET','/api/classes').then(r=>{ST.joined=r.joined||[];if(typeof view!=='undefined'&&view==='home')render()}).catch(()=>{});
 nav();if(tab==='learn')render();else if(VIEWS[tab])showTab(tab);setTimeout(gameCheck,1500);
 </script>
 
@@ -12344,6 +12356,16 @@ O.backup=function(){const L=ST.lastBackup,days=L?Math.floor((Date.now()-new Date
     <div class="row"><button class="lamp" onclick="ownerBackup()">💾 Download a backup</button></div>
     <p class="sol" style="margin-top:12px">Do this once a week. Keep at least the last four files, in a private folder or a password-protected drive, because they contain students' information. Delete old files you no longer need.</p></div>`};
 const _ovB=VIEWS.owner;VIEWS.owner=function(){const h=_ovB(),k='</div><div style="margin-top:16px">';return h.replace(k,`<button class="chip ${ST.ot==='backup'?'on':''}" onclick="ST.ot='backup';r2()">💾 Backup</button>`+k)};
+
+/* Students who aren't in a class yet see a "join your class" box on the Learn page */
+let JOINLOAD=0;
+const _lcJ=LOAD.classes;LOAD.classes=async(...a)=>{const r=await _lcJ(...a);if(ME.role==='student'&&view==='home'&&!$('djoin'))setTimeout(()=>{if(view==='home')render()},0);return r};
+function joinFromDash(){const v=($('djc')||{}).value||'';if(!v.trim())return msg('Type the class code from your teacher.');busy(async()=>{const r=await api('POST','/api/classes/join',{code:v.trim()});msg('You joined '+r.name+'!');try{await LOAD.classes()}catch(e){}render()})}
+const _rJn=render;render=function(){_rJn();if(BOOT.local||ME.role!=='student')return;
+  if(ST.joined===undefined){if(!JOINLOAD&&LOAD.classes){JOINLOAD=1;LOAD.classes().then(()=>render()).catch(()=>{JOINLOAD=0})}return}
+  if(view!=='home')return;const d=$('dash');if(!d||d.hidden||$('djoin'))return;
+  if(ST.joined.length)return;const h=d.querySelector('.hello');if(!h)return;
+  h.insertAdjacentHTML('afterend',`<div class="card rise" id="djoin" style="margin:0 0 16px;display:flex;gap:16px;align-items:center;flex-wrap:wrap"><div style="flex:1;min-width:240px"><h3 style="margin:0 0 4px">🏫 Join your class</h3><p class="sol" style="margin:0">Enter the class code your teacher gave you to see your assignments and your class.</p></div><div class="row" style="margin:0"><input id="djc" placeholder="Class code" aria-label="Class code" maxlength="8" style="text-transform:uppercase;width:150px" onkeydown="if(event.key==='Enter')joinFromDash()"><button class="lamp" onclick="joinFromDash()">Join</button></div></div>`)};
 </script>
 
 </body>
