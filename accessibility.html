@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Accessibility · Bose Academy</title>
+<meta name="description" content="How Bose Academy works for learners with disabilities: what is supported today, known limitations, and how to report a problem.">
+<style>:root{--bg:#EEF3F8;--panel:#fff;--ink:#1B2A41;--mute:#546580;--line:#D5DEE9;--lamp:#F2A900;--soft:#FCEFC7;--teal:#0A6668}
+@media (prefers-color-scheme:dark){:root{--bg:#121B2B;--panel:#1B2740;--ink:#EAF0F8;--mute:#A3B5CF;--line:#2F3E5C;--soft:#3A3319;--teal:#3CC1C3}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 "Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:760px;margin:0 auto;padding:0 18px 40px}
+nav{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 0 8px}
+nav a{color:var(--ink);font-weight:700}nav .brand{font:800 22px "Bricolage Grotesque",system-ui,sans-serif;text-decoration:none}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.2;letter-spacing:-.01em}
+h1{font-size:clamp(30px,6vw,42px);margin:18px 0 4px}h2{font-size:22px;margin:34px 0 8px}h3{font-size:18px;margin:20px 0 6px}
+.meta{color:var(--mute);margin:0 0 18px}
+a{color:var(--teal)}
+ul,ol{padding-left:22px}li{margin:4px 0}
+.short{background:var(--soft);border-radius:16px;padding:6px 20px 10px;margin:8px 0 10px}.short h2{margin-top:14px}
+.card{background:var(--panel);border:2px solid var(--line);border-radius:14px;padding:12px 16px}
+table{width:100%;border-collapse:collapse;background:var(--panel);border-radius:12px;overflow:hidden;font-size:16px}
+th,td{text-align:left;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--line)}th{background:var(--soft)}
+mark.todo{background:#FFE08A;color:#1B2A41;padding:0 4px;border-radius:4px}
+footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);color:var(--mute);font-size:14px;text-align:center}
+footer a{color:inherit}
+@media print{nav,footer{display:none}body{background:#fff}}
+.glance{border:3px solid var(--line);border-radius:18px;padding:6px 20px 12px;margin:14px 0}.glance h2{margin-top:14px}
+.glance2{display:grid;grid-template-columns:1fr 1fr;gap:18px}.glance2 h3{margin:6px 0 4px}.glance2 ul{margin:0;padding-left:20px}
+@media(max-width:640px){.glance2{grid-template-columns:1fr}}
+table.ret{width:100%;border-collapse:collapse}table.ret th,table.ret td{text-align:left;vertical-align:top;padding:8px 10px;border-bottom:1px solid var(--line)}
+@media print{nav,.short{display:none}.glance{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><a class="brand" href="./">Bose Academy</a><a href="app.html">Open the app</a></nav>
+<h1>Accessibility statement</h1>
+<p class="meta">Last updated: November 24, 2026</p>
+
+<div class="short">
+<h2>The short version</h2>
+<ul>
+<li>We want every learner to be able to use Bose Academy, including learners who use a screen reader, a keyboard, larger text or less motion.</li>
+<li>Our goal is to meet the Web Content Accessibility Guidelines (WCAG) 2.2 at level AA. We are not there everywhere yet, and this page lists what we know.</li>
+<li>Found a barrier? Tell us (details at the end) and we will work to fix it.</li>
+</ul>
+</div>
+
+<h2 id="works">1. What works today</h2>
+<ul>
+<li><b>Keyboard.</b> Every lesson, practice question, menu and button can be used with a keyboard. Skills on the knowledge map can be reached with Tab and opened with Enter or Space, and a visible focus outline shows where you are.</li>
+<li><b>Screen readers.</b> Pages use headings, labels and landmarks. Each skill on the map is announced with its name, grade, progress, mastery stars and, for math, its California standard. Feedback after each answer is shown as text right beside the question.</li>
+<li><b>Read aloud.</b> Lessons can be read aloud by the browser.</li>
+<li><b>Easier reading.</b> In Settings you can switch to an easy-to-read font, larger text and a high-contrast look.</li>
+<li><b>Less motion.</b> In Settings you can turn off animations. Bose Academy also follows your device's "reduce motion" setting, and the Arcade has a Calm mode.</li>
+<li><b>Lite mode.</b> A lighter version for slow connections and older devices, with fewer images and no web fonts.</li>
+<li><b>Time.</b> Practice and lessons are never timed. Tests a teacher sets can have a time limit, which the teacher controls.</li>
+<li><b>Color.</b> Progress is shown with words and symbols as well as color, so it does not depend on color alone.</li>
+</ul>
+
+<h2 id="limits">2. Known limitations</h2>
+<ul>
+<li><b>Arcade games.</b> The games are drawn on a canvas. Their questions, menus and results work with a keyboard and a screen reader, but the moving game itself (for example steering a kart or placing towers by pointing) is mostly visual. Learning never depends on the games: every lesson and practice question works without them.</li>
+<li><b>Some games need quick reactions.</b> Calm mode and Pause help, and adaptive difficulty slows the game down after misses.</li>
+<li><b>No formal audit yet.</b> We test with automated accessibility checks (axe) and by hand with a keyboard. We have not yet had an independent WCAG audit or published a VPAT. Schools that need one can contact us.</li>
+</ul>
+
+<h2 id="how">3. How we check</h2>
+<p>We check the main pages (the home page, sign-in, the Learn page, the Arcade and our policies) with automated accessibility tests against WCAG 2.2 level A and AA rules, and we try new features with a keyboard. When we find a problem, we fix it or list it here.</p>
+
+<h2 id="contact">4. Report a barrier</h2>
+<p>If something on Bose Academy doesn't work for you, please tell us what you were trying to do and what happened. Email <a href="mailto:codea259@gmail.com">codea259@gmail.com</a> or call (209) 219-5894. We aim to reply within 10 school days.</p>
+
+<footer><a href="./">Home</a> · <a href="privacy.html">Privacy policy</a> · <a href="terms.html">Terms of service</a> · <a href="app.html">Open the app</a><br>© 2026 Bose Academy. Bose Academy is an independent educational project and is not affiliated with Bose Corporation.</footer>
+</div>
+</body>
+</html>

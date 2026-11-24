@@ -138,6 +138,9 @@ Practice questions have an **Ask Lumi** button. With `ANTHROPIC_API_KEY` set on 
 - **Community**: authors can delete their own posts and replies (California Business and Professions Code 22581).
 - **Owner console → Parent permission**: remove unanswered parent emails, and at least once a year delete under-13 accounts that nobody has used for two years. The privacy policy promises both.
 - Have a lawyer review the policy and terms before relying on them for schools or payments.
+- **Who decides (governance):** Gourab Basu, as the responsible adult, signs agreements, answers legal, privacy and school requests, and holds the owner account, the domain, GitHub and Firebase. Arin Bose builds and runs the product with him. If Bose Academy takes on school contracts or grows a lot, consider a simple California LLC with the adult as managing member.
+- **Pages for schools and families:** `privacy.html#parents` (one-screen parent summary), `accessibility.html` (accessibility statement; check with `node tools/a11y.cjs` after `npm i --no-save axe-core@4.10.2`), `dpa.html` (a Student Data Privacy Agreement template aligned with California Education Code 49073.1, SOPIPA and FERPA), `.well-known/security.txt` (where to report a security problem).
+- **Security settings to keep on:** two-factor sign-in on the GitHub and Google accounts that own the site; GitHub secret scanning and Dependabot alerts on the repository; in Firebase, password sign-in rules as they are, and App Check if abuse appears.
 - **Brand name (decided November 2026):** we keep "Bose Academy" long-term. The site stays free and says it is not affiliated with Bose Corporation, and it never uses the Bose logo or audio-related imagery.
 
 

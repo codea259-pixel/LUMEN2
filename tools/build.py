@@ -86,7 +86,8 @@ open(os.path.join(root, 'app.html'), 'w', encoding='utf-8').write(h)
 open(os.path.join(root, 'index.html'), 'w', encoding='utf-8').write(open(os.path.join(root, 'public', 'index.html'), encoding='utf-8').read())
 open(os.path.join(root, '.nojekyll'), 'w').close()
 # Next Level's Cipher checks guesses against this word list (fetched only when the puzzle opens)
-for _img in ('arcade-map.jpg', 'hero-map.jpg', 'pitch.html', 'bose-academy-for-schools.pptx', 'bose-academy-for-schools.pdf', 'bose-academy-for-schools.odp', 'schools-deck.jpg'):
+for _img in ('arcade-map.jpg', 'hero-map.jpg', 'pitch.html', 'bose-academy-for-schools.pptx', 'bose-academy-for-schools.pdf', 'bose-academy-for-schools.odp', 'schools-deck.jpg', 'dpa.html', '.well-known/security.txt'):
+    os.makedirs(os.path.dirname(os.path.join(root, _img)) or root, exist_ok=True)
     open(os.path.join(root, _img), 'wb').write(open(os.path.join(root, 'public', _img), 'rb').read())
 open(os.path.join(root, 'words5.txt'), 'w', encoding='utf-8').write(open(os.path.join(root, 'public', 'words5.txt'), encoding='utf-8').read())
 # Privacy policy and terms: the contact details live in tools/legal/legal.json; blanks show as highlighted gaps
@@ -95,7 +96,7 @@ L = json.load(open(os.path.join(D, 'legal', 'legal.json'), encoding='utf-8'))
 css = open(os.path.join(D, 'legal', 'legal.css'), encoding='utf-8').read()
 missing = [k for k in ('operator', 'email', 'address', 'phone') if not str(L.get(k, '')).strip()]
 val = lambda k, what: _html.escape(str(L[k]).strip()) if str(L.get(k, '')).strip() else f'<mark class="todo">[{what} to be added]</mark>'
-for name in ('privacy.html', 'terms.html'):
+for name in ('privacy.html', 'terms.html', 'accessibility.html'):
     t = open(os.path.join(D, 'legal', name), encoding='utf-8').read()
     for k, v in {'CSS': css, 'OPERATOR': val('operator', 'name'), 'EMAIL': val('email', 'email'), 'ADDRESS': val('address', 'mailing address'),
                  'PHONE': val('phone', 'phone number'), 'UPDATED': _html.escape(L.get('updated', '')), 'CREATOR': _html.escape(L.get('creator', '') or 'a young student with family support'), 'YEAR': str(datetime.date.today().year)}.items():
