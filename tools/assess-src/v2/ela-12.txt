@@ -1,0 +1,650 @@
+# Grade 12 ELA, format 2. Units, standards, skills and the original Unit review items are carried over verbatim
+# from the format-1 grade 12 section of ela.txt. Each unit adds four lessons; the Unit review lesson comes last.
+# Its quiz keeps the original quiz items (mc 1-4 and the ex item) and its unit test keeps the original test items
+# (mc 5-8, both sa items and the task) in their original order, followed by new items. All new passages and
+# questions are original; public-domain excerpts are marked with author and date.
+@subject ela
+@grade 12
+about: Twelfth grade English examines world and British literature and complex nonfiction, analyzing how authors' choices about form, rhetoric and perspective create meaning. Students write sophisticated arguments, rhetorical analyses and personal narratives for college and career.
+std: RL.11-12.3 | Analyze the impact of the author's choices regarding how to develop and relate elements of a story or drama.
+std: RL.11-12.5 | Analyze how an author's choices concerning how to structure specific parts of a text contribute to its overall structure, meaning and aesthetic impact.
+std: RI.11-12.5 | Analyze and evaluate the effectiveness of the structure an author uses in an exposition or argument.
+std: RI.11-12.7 | Integrate and evaluate multiple sources of information presented in different media or formats.
+std: W.11-12.3 | Write narratives to develop real or imagined experiences using effective technique and well-structured event sequences.
+std: SL.11-12.1 | Initiate and participate effectively in a range of collaborative discussions, building on others' ideas.
+
+unit: Poetry: form and meaning | RL.11-12.4, RL.11-12.5 | ela_12
+el: Read each poem aloud twice, clap out stressed syllables for meter, and use a form chart (number of lines, rhyme scheme, turn) with a modern paraphrase of older poems beside the original.
+
+lesson: Meter and scansion: Shakespeare's Sonnet 18 | RL.11-12.4, RL.11-12.5
+practice:
+mc1: A metrical foot with one unstressed syllable followed by one stressed syllable, as in "a-WAY," is an | iamb | trochee | anapest | spondee
+hint: Say "today" aloud. Which syllable is stressed?
+mc2: How many feet are in a line of pentameter? | five | four | six | three
+hint: "Penta" means five, as in pentagon.
+mc2: Marking the stressed and unstressed syllables in lines of poetry is called | scansion | enjambment | annotation | rhyme
+hint: You "scan" the line for its rhythm.
+mc2: A line that continues into the next line without a pause at the end is an example of | enjambment | a caesura | a refrain | an end-stopped line
+hint: The sentence "straddles" the line break.
+sa2: Explain why a poet might break a regular meter at an important moment. | A sudden change in rhythm draws attention to a word or idea, creating emphasis, surprise or a sense of disruption that matches the meaning.
+hint: What do you notice when a steady beat suddenly changes?
+quiz:
+passage: Sonnet 18 | William Shakespeare's sonnets were published in 1609. Sonnet 18 is one of the best known. // Shall I compare thee to a summer's day? / Thou art more lovely and more temperate: / Rough winds do shake the darling buds of May, / And summer's lease hath all too short a date; / Sometime too hot the eye of heaven shines, / And often is his gold complexion dimm'd; / And every fair from fair sometime declines, / By chance or nature's changing course untrimm'd; / But thy eternal summer shall not fade, / Nor lose possession of that fair thou ow'st; / Nor shall Death brag thou wander'st in his shade, / When in eternal lines to time thou grow'st: / So long as men can breathe or eyes can see, / So long lives this, and this gives life to thee. // - William Shakespeare (1609)
+mc2: What is the meter of most lines in "Sonnet 18"? | iambic pentameter | trochaic tetrameter | free verse | anapestic trimeter
+mc2: In "Sonnet 18," what does "summer's lease hath all too short a date" mean? | Summer does not last long. | Summer costs too much to rent. | Summer arrives too early. | Summer is the longest season.
+mc2: In "Sonnet 18," what is "the eye of heaven"? | the sun | the moon | a star | God's judgment
+mc2: In "Sonnet 18," where does the poem's argument turn, shifting from summer's flaws to the beloved's lasting beauty? | at line 9, beginning with "But" | at line 1 | at line 5 | in the last word of the poem
+mc3: In "Sonnet 18," what does the final couplet claim? | The poem itself will keep the beloved's beauty alive as long as people read it. | The beloved will never die physically. | Summer will last forever. | The speaker will stop writing poetry.
+mc2: In "Sonnet 18," which line is an example of personification? | "Nor shall Death brag thou wander'st in his shade" | "Thou art more lovely and more temperate" | "Shall I compare thee to a summer's day?" | "So long as men can breathe or eyes can see"
+sa3: Explain how the structure of "Sonnet 18" supports its argument. Refer to the turn and the couplet. | The first eight lines list summer's flaws (rough winds, short length, heat, fading). The turn at line 9, "But thy eternal summer shall not fade," contrasts the beloved with summer. The final couplet resolves the argument: the poem will give the beloved eternal life "so long as men can breathe."
+
+lesson: The Petrarchan sonnet and the volta: Christina Rossetti's "Remember" | RL.11-12.5, RL.11-12.4
+practice:
+mc1: A Petrarchan (Italian) sonnet is divided into | an octave of eight lines and a sestet of six lines | three quatrains and a couplet | five tercets and a quatrain | two stanzas of seven lines
+hint: Eight plus six equals fourteen.
+mc2: The typical rhyme scheme of a Petrarchan octave is | ABBAABBA | ABABCDCD | AABBCCDD | ABCABCAB
+hint: The outer lines of each group of four rhyme.
+mc2: In a Petrarchan sonnet, the volta usually comes | at the start of the sestet, line 9 | in the first line | in the last couplet only | in the title
+hint: It marks the shift between the two parts.
+mc2: Which word often signals a volta? | Yet | And | The | Of
+hint: Look for a word that shows contrast.
+sa2: Explain why the two-part structure of a Petrarchan sonnet suits poems that present a problem and a response. | The octave can present a problem, question or feeling, and the sestet can answer, resolve or reconsider it, so the form naturally mirrors a shift in thought.
+hint: What does each part of the sonnet do?
+quiz:
+passage: Remember | Christina Rossetti (1830-1894) was an English poet. This sonnet was published in 1862. // Remember me when I am gone away, / Gone far away into the silent land; / When you can no more hold me by the hand, / Nor I half turn to go yet turning stay. / Remember me when no more day by day / You tell me of our future that you plann'd: / Only remember me; you understand / It will be late to counsel then or pray. / Yet if you should forget me for a while / And afterwards remember, do not grieve: / For if the darkness and corruption leave / A vestige of the thoughts that once I had, / Better by far you should forget and smile / Than that you should remember and be sad. // - Christina Rossetti (1862)
+mc2: In "Remember," what does "the silent land" most likely represent? | death | a distant country | a library | a quiet garden
+mc2: In "Remember," what does the speaker ask in the octave (lines 1 to 8)? | that the beloved remember her after she dies | that the beloved forget her immediately | that the beloved plan a trip | that the beloved write her letters
+mc2: In "Remember," how does the speaker's request change in the sestet (lines 9 to 14)? | She says it is better for the beloved to forget and be happy than to remember and be sad. | She demands to be remembered forever. | She describes the beloved's future plans. | She asks the beloved to pray for her.
+mc3: In "Remember," what is the significance of the word "Yet" at line 9? | It marks the volta, where the speaker shifts from asking to be remembered to releasing the beloved from grief. | It introduces a new character. | It has no effect on meaning. | It ends the poem.
+mc2: In "Remember," what is the rhyme scheme of the octave? | ABBAABBA | ABABCDCD | AABBCCDD | ABCDABCD
+mc2: Which statement best describes the speaker's attitude in the final couplet of "Remember"? | selfless love that puts the beloved's happiness first | anger at being forgotten | fear of the future | indifference toward the beloved
+sa3: Analyze how the Petrarchan structure of "Remember" helps develop its meaning. | The octave repeats "Remember me," showing the speaker's desire to be held in memory. At the volta, "Yet," she reconsiders, and the sestet concludes that it is "Better by far you should forget and smile / Than that you should remember and be sad." The two-part form mirrors her movement from wanting to be remembered to wanting the beloved's happiness.
+
+lesson: The Shakespearean sonnet and the closing couplet: Sonnet 130 | RL.11-12.5, RL.11-12.6
+practice:
+mc1: A Shakespearean (English) sonnet is organized into | three quatrains and a couplet | an octave and a sestet | five tercets and a quatrain | one long stanza of twenty lines
+hint: 4 + 4 + 4 + 2 = 14.
+mc2: The rhyme scheme of a Shakespearean sonnet is | ABAB CDCD EFEF GG | ABBA ABBA CDE CDE | AAAA BBBB CCCC DD | ABCD ABCD EFG EFG
+hint: Each quatrain has its own alternating rhymes.
+mc2: A conventional comparison used so often that it becomes a cliche, such as eyes like stars, is | a stock or conventional comparison | an original metaphor | onomatopoeia | an allusion to myth
+hint: Love poets of Shakespeare's time used many of these.
+mc2: Writing that imitates a style in order to make fun of it is | parody | elegy | ode | epic
+hint: Think of a comedy sketch that copies a famous show.
+sa2: Explain how a closing couplet can change the meaning of the twelve lines before it. | The couplet can sum up, twist or reverse what came before, so lines that seemed critical or sad may be reinterpreted in light of the final statement.
+hint: Think of a joke's punchline.
+quiz:
+passage: Sonnet 130 | William Shakespeare's Sonnet 130 was published in 1609, at a time when many love poems praised women with exaggerated comparisons. // My mistress' eyes are nothing like the sun; / Coral is far more red than her lips' red; / If snow be white, why then her breasts are dun; / If hairs be wires, black wires grow on her head. / I have seen roses damask'd, red and white, / But no such roses see I in her cheeks; / And in some perfumes is there more delight / Than in the breath that from my mistress reeks. / I love to hear her speak, yet well I know / That music hath a far more pleasing sound; / I grant I never saw a goddess go; / My mistress, when she walks, treads on the ground: / And yet, by heaven, I think my love as rare / As any she belied with false compare. // - William Shakespeare (1609)
+mc2: In "Sonnet 130," what is the speaker doing in the first twelve lines? | rejecting exaggerated comparisons by describing his beloved realistically | praising his beloved as a goddess | describing a garden | complaining about music
+mc2: In "Sonnet 130," what does "I never saw a goddess go; / My mistress, when she walks, treads on the ground" mean? | She is a real human woman, not an idealized goddess. | She cannot walk. | She is taller than a goddess. | She walks very quickly.
+mc3: In "Sonnet 130," how does the final couplet change the meaning of the poem? | It reveals that the speaker's love is genuine and as rare as any love described with false comparisons. | It shows the speaker does not love her at all. | It adds another insult. | It describes a goddess.
+mc2: In "Sonnet 130," what does "false compare" refer to? | exaggerated, untrue comparisons other poets use | a mistake in math | a broken promise | a lie the mistress told
+mc2: "Sonnet 130" can be read as a parody of | the conventional love poetry of Shakespeare's time | Greek tragedy | Puritan sermons | newspaper articles
+mc2: What is the rhyme scheme of the final two lines of "Sonnet 130"? | a rhyming couplet (GG) | no rhyme | ABAB | ABBA
+sa3: Compare the view of love in "Sonnet 130" with the view in a typical idealized love poem. Use the text. | Idealized poems compare a beloved to the sun, roses or goddesses. Sonnet 130 rejects this: "My mistress' eyes are nothing like the sun." The couplet, "I think my love as rare / As any she belied with false compare," suggests that honest love for a real person is more meaningful than flattering exaggeration.
+
+lesson: Free verse and the catalog: Whitman's "When I Heard the Learn'd Astronomer" | RL.11-12.5, RL.11-12.4
+practice:
+mc1: Poetry that does not follow a regular meter or rhyme scheme is | free verse | a sonnet | a villanelle | blank verse
+hint: It is "free" from fixed patterns.
+mc2: Walt Whitman's long lists of people, places and things in Leaves of Grass are called | catalogs | refrains | couplets | stanzas only
+hint: Like a list of items in a store's book.
+mc2: Without rhyme or meter, free verse poets often create rhythm through | repetition, parallel structure and line length | strict syllable counts | a rhyming couplet at the end | fourteen lines
+hint: Think about anaphora and lists.
+mc2: Why might a poet use very long lines followed by a short one? | to create a sense of building pressure and then release or emphasis | to save paper | because free verse requires it | to make the poem rhyme
+hint: How does a sudden short line feel after long ones?
+sa2: Explain how free verse can still have structure even without rhyme or meter. | Free verse uses deliberate line breaks, repetition, stanza shape and patterns of sound or syntax to organize ideas and create rhythm.
+hint: Look beyond rhyme.
+quiz:
+passage: When I Heard the Learn'd Astronomer | Walt Whitman (1819-1892) published this poem in 1865. // When I heard the learn'd astronomer, / When the proofs, the figures, were ranged in columns before me, / When I was shown the charts and diagrams, to add, divide, and measure them, / When I sitting heard the astronomer where he lectured with much applause in the lecture-room, / How soon unaccountable I became tired and sick, / Till rising and gliding out I wander'd off by myself, / In the mystical moist night-air, and from time to time, / Look'd up in perfect silence at the stars. // - Walt Whitman (1865)
+mc2: In "When I Heard the Learn'd Astronomer," what device appears in the repeated "When" at the start of lines 1 to 4? | anaphora | onomatopoeia | an oxymoron | a couplet
+mc2: In "When I Heard the Learn'd Astronomer," what is the effect of the lines growing longer from line 1 to line 4? | They mirror the speaker's growing sense of being overwhelmed by facts. | They show the speaker is excited. | They make the poem rhyme. | They describe the size of the stars.
+mc2: In "When I Heard the Learn'd Astronomer," where does the poem turn? | at line 5, when the speaker becomes "tired and sick" | at line 1 | at the title | in the middle of line 3
+mc3: In "When I Heard the Learn'd Astronomer," what contrast does the poem develop? | analyzing nature through numbers versus experiencing it directly with wonder | city life versus country life | youth versus old age | war versus peace
+mc2: In "When I Heard the Learn'd Astronomer," what is the effect of "perfect silence" in the last line? | It contrasts with the noisy lecture and applause, emphasizing peaceful, personal wonder. | It shows the speaker has lost his hearing. | It describes an empty lecture hall. | It creates a frightening mood.
+mc2: Which phrase in "When I Heard the Learn'd Astronomer" uses sound to create a soft mood? | "the mystical moist night-air" | "the proofs, the figures" | "to add, divide, and measure them" | "with much applause"
+sa3: Analyze how Whitman uses the form of free verse in "When I Heard the Learn'd Astronomer" to convey meaning. | The first four lines, each beginning "When," grow longer and more crowded with "proofs," "figures" and "charts," imitating the speaker's overload. The shift at line 5 and the calm final line, "Look'd up in perfect silence at the stars," release that tension, showing that direct experience of nature brings a peace that data cannot.
+
+lesson: Compression and imagery in short lyric poems | RL.11-12.4, RL.11-12.5
+practice:
+mc1: A short poem expressing personal thoughts and feelings is a | lyric poem | epic | ballad | drama
+hint: It was once sung to the lyre.
+mc2: Why do short poems often depend heavily on imagery and connotation? | They have few words, so each word must carry layered meaning. | They are written for children only. | They avoid figurative language. | They must rhyme.
+hint: Think about economy of words.
+mc2: A pause within a line of poetry, often marked by punctuation, is a | caesura | volta | stanza | refrain
+hint: It is a break in the middle, not the end.
+mc2: A reference to a well-known story, such as the Garden of Eden, is | an allusion | a pun | an oxymoron | a couplet
+hint: It "alludes," or hints, to something outside the poem.
+sa2: Explain how an allusion can add meaning to a short poem. | An allusion brings in a whole story and its associations in a few words, so readers connect the poem's subject to larger ideas without the poet explaining them.
+hint: What does a reader already know about the story alluded to?
+quiz:
+passage: Nothing Gold Can Stay | Robert Frost (1874-1963) published this poem in 1923. // Nature's first green is gold, / Her hardest hue to hold. / Her early leaf's a flower; / But only so an hour. / Then leaf subsides to leaf. / So Eden sank to grief, / So dawn goes down to day. / Nothing gold can stay. // - Robert Frost (1923)
+mc2: In "Nothing Gold Can Stay," what does "Nature's first green is gold" describe? | the golden color of new buds and leaves in early spring | autumn leaves | a field of wheat | a sunset
+mc2: In "Nothing Gold Can Stay," what is the rhyme pattern? | rhyming couplets | no rhyme | ABAB quatrains | every line rhymes with "gold"
+mc2: In "Nothing Gold Can Stay," what does "So Eden sank to grief" allude to? | the biblical story of the loss of paradise | a sunken ship | a natural disaster | a city in California
+mc3: In "Nothing Gold Can Stay," how do the examples of the leaf, Eden and dawn work together? | They show the same pattern in nature, myth and time: beautiful beginnings never last. | They describe three different seasons. | They show that nature always improves. | They have no connection.
+mc2: In "Nothing Gold Can Stay," what does "gold" symbolize? | precious, perfect moments such as youth or innocence | money | a metal | the sun at noon
+mc2: In "Nothing Gold Can Stay," what is the tone of the poem? | wistful and melancholy | joyful and celebratory | angry and bitter | humorous
+sa3: Explain how Frost uses compression in "Nothing Gold Can Stay" to express a large idea in a few words. | In only eight short lines, Frost moves from a leaf's brief golden stage to the fall from Eden to dawn becoming day. Each image is one line or two, and the paradox "first green is gold" packs meaning tightly. The final line states the theme that perfect things cannot last.
+
+lesson: Unit review | RL.11-12.4, RL.11-12.5
+practice:
+mc1: The pattern of rhymes at the ends of lines in a poem is its | rhyme scheme | meter | stanza | refrain
+hint: It is often labeled with letters, such as ABAB.
+mc2: A line or group of lines repeated throughout a poem is a | refrain | volta | caesura | catalog
+hint: Think of a song's chorus.
+mc2: Which form usually ends with a rhyming couplet? | Shakespearean sonnet | haiku | free verse | Petrarchan sonnet
+hint: Think of Sonnet 18 and Sonnet 130.
+mc2: A group of lines forming a unit in a poem is a | stanza | paragraph | verse foot | scene
+hint: It is like a paragraph in prose.
+sa2: Explain why poets choose a particular form, such as a sonnet or free verse, for a poem. | Form shapes how readers experience a poem; a sonnet's tight structure can contain intense emotion or argument, while free verse can mirror natural speech or wandering thought.
+hint: How does structure affect meaning?
+quiz:
+mc1: A sonnet has how many lines? | 14 | 10 | 12 | 19
+mc1: A villanelle has how many lines? | 19 | 14 | 12 | 3
+mc2: Unrhymed iambic pentameter is called | blank verse | free verse | a couplet | a haiku
+mc2: A haiku traditionally has a syllable pattern of | 5-7-5 | 7-5-7 | 4-4-4 | 10-10-10
+ex2: Explain how meter can affect the reading of a poem. | Rhythm creates pace and emphasis, and breaks in it can highlight key words or moods.
+mc2: A 14-line poem with an octave and a sestet is a | Petrarchan sonnet | Shakespearean sonnet | villanelle | haiku
+mc2: A line of poetry with four metrical feet is in | tetrameter | pentameter | hexameter | trimeter
+mc3: A poet writes about a chaotic, frightening night in strict, perfectly regular meter. What effect might this contrast create? | tension between controlled form and uncontrolled feeling | no effect at all | a humorous tone only | a shorter poem
+
+test:
+mc2: The turn in a sonnet where the argument shifts is the | volta | refrain | stanza | meter
+mc2: Poetry without regular rhyme or meter is | free verse | a sonnet | a ballad | an epic
+mc2: An elegy is a poem that | mourns someone's death | tells a funny story | describes a battle | gives instructions
+mc3: Why might a poet choose the villanelle form, with its repeating lines, for a poem about grief? | The repetition mirrors obsessive, returning thoughts of loss | It is the shortest form | It has no rules | It must be funny
+sa2: Analyze how the form of a poem you studied (sonnet, villanelle, free verse) contributes to its meaning. | Names the form and connects structural features to meaning.
+sa2: Identify the volta in a sonnet and explain how the poem's argument shifts. | Locates the turn and explains the change in tone or argument.
+task3: Write an essay analyzing two poems of different forms (for example, a sonnet and a free verse poem) on a similar subject. Explain how each poet's choices of form, structure and language shape meaning and aesthetic impact. Cite at least three lines from each poem. | Sophisticated analysis of form and meaning in both poems, three or more lines each, insightful comparison. | Clear analysis of both with fewer citations. | Discusses poems with little attention to form. | Little correct work.
+passage: The Kitchen Light | The following is an original villanelle written for this test. A villanelle has 19 lines: five three-line stanzas and a final four-line stanza, with two lines that repeat as refrains. // My mother leaves the kitchen light on late, / as though the house were listening for a sound, / as though his step were coming through the gate. // She sets two cups, then lets the kettle wait, / and fills just one; his boots stay where they're found. / My mother leaves the kitchen light on late. // The neighbors say that time will set things straight, / that grief, like winter, slowly gives up ground, / as though his step were coming through the gate. // I watch her from the stairs. I hesitate. / What words could fill a room so tightly wound? / My mother leaves the kitchen light on late. // Some nights I sit with her. We do not wait / for anything. We let the clock go round, / as though his step were coming through the gate. // She lifts her head, then laughs, and fills my plate. / The quiet is a softer kind of sound. / My mother leaves the kitchen light on late, / as though his step were coming through the gate.
+mc1: How many lines does "The Kitchen Light" have, as a villanelle requires? | 19 | 14 | 12 | 21
+mc2: In "The Kitchen Light," what do the refrains suggest about the mother? | She is grieving and still half expects her husband to return. | She is waiting for a delivery. | She is afraid of the dark. | She forgot to turn off the light.
+mc2: In "The Kitchen Light," what does the detail "She sets two cups... and fills just one" reveal? | Habit makes her prepare for her husband, but she remembers he is gone. | She is making tea for a guest. | She dislikes tea. | She broke a cup.
+mc2: In "The Kitchen Light," what is the effect of the simile "grief, like winter, slowly gives up ground"? | It suggests grief fades slowly and naturally over time, as winter yields to spring. | It suggests grief disappears instantly. | It describes the weather in the poem. | It shows the neighbors are cruel.
+mc3: In "The Kitchen Light," how does the repetition of the villanelle form connect to the poem's meaning? | The returning lines mirror the way grief and habit return night after night. | The repetition shows the speaker forgot what she had written. | The repetition makes the poem cheerful. | The form has no connection to meaning.
+mc2: In "The Kitchen Light," how does the final stanza differ in mood from the earlier stanzas? | It becomes gentler and more hopeful, as the mother laughs and the quiet feels "softer." | It becomes angrier. | It becomes more frightening. | It stays exactly the same.
+mc2: In "The Kitchen Light," what does the phrase "a room so tightly wound" suggest? | The room is full of tension and unspoken emotion. | The room has a large clock. | The room is very small. | The room is decorated with yarn.
+mc2: In "The Kitchen Light," what is the rhyme scheme of the first stanza? | ABA | AAB | ABB | ABC
+wr3: Write an essay analyzing how the villanelle form, the refrains and the imagery in "The Kitchen Light" work together to convey grief and gradual healing. Include a precise thesis and cite at least four lines or phrases. | Key points: the two refrains ("My mother leaves the kitchen light on late" and "as though his step were coming through the gate") return like grief and habit; images of two cups, boots "where they're found," and the "tightly wound" room show loss; the simile of grief like winter suggests slow change; the final stanza's laugh, filled plate and "softer kind of sound" show healing while the refrains remain, suggesting grief changes but does not vanish.
+endpassage:
+mc1: A poem written to praise or celebrate a person, object or idea, often in an elevated style, is an | ode | elegy | epic | limerick
+mc2: Which line is in iambic pentameter? | The sun goes down behind the silent hill. | Down goes the sun. | Over the mountains and into the valley the sun goes. | Sun.
+mc2: In poetry, what is enjambment? | a sentence that runs over the end of one line into the next | a pause in the middle of a line | a repeated line | a rhyming couplet
+mc2: An English sonnet's final couplet often | sums up or twists the argument of the poem | introduces a new character | lists the poem's sources | repeats the first line exactly
+mc3: A free verse poem about a busy city uses long, crowded lines, while a poem about grief uses short, broken lines. What does this comparison show? | Line length and shape can mirror a poem's subject and emotion. | Free verse has no structure. | Both poems must rhyme. | Line length never matters.
+
+unit: World literature and perspective | RL.11-12.3, RL.11-12.6, RL.11-12.9 | ela_12_n2
+el: Provide a context card for each text (place, time, culture and key terms), a perspective chart (who tells, who is silent, whose power) and side-by-side translation comparisons for translated works.
+
+lesson: Greek tragedy, fate and the chorus: Oedipus Rex | RL.11-12.3, RL.11-12.9
+practice:
+mc1: In ancient Greek drama, a group of performers who comment on the action, often speaking or singing together, is the | chorus | protagonist | narrator | prologue
+hint: They often represent the community.
+mc2: A prophecy in a Greek tragedy usually functions to | create dramatic irony, since the audience knows what fate has in store | surprise the audience at the end | make the play a comedy | give stage directions
+hint: Greek audiences often already knew the myths.
+mc2: In Oedipus Rex, the blind prophet Tiresias understands the truth that the sighted Oedipus cannot see. This is an example of | irony that connects sight and blindness to knowledge | a flashback | comic relief | a stage direction
+hint: Who truly "sees"?
+mc2: Greek tragedies were performed | outdoors in large amphitheaters during religious festivals | in small indoor theaters with electric lights | only in private homes | on film
+hint: Think of ancient stone theaters built into hillsides.
+sa2: Explain how the idea of fate raises questions about a character's responsibility in a tragedy. | If events are fated, readers wonder whether the character truly chooses; yet tragedies often show that the character's own decisions, such as pride or rash action, help bring about the fated outcome, so responsibility and fate mix.
+hint: Can a character be blamed if the ending was predicted?
+quiz:
+passage: The Tragedy of Oedipus | Sophocles' Oedipus Rex, first performed in Athens in the fifth century BCE, is often considered the model of Greek tragedy. Its audiences already knew the myth on which it is based, so the power of the play lies not in surprise but in watching the hero discover what they already know. // Before the play begins, Oedipus has become king of Thebes by solving the riddle of the Sphinx, a monster that had terrorized the city. He married the widowed queen, Jocasta. Years earlier, a prophecy had warned that Oedipus would kill his father and marry his mother. Believing that the king and queen of Corinth were his parents, Oedipus fled Corinth to escape this fate. // As the play opens, a plague strikes Thebes. An oracle reveals that the plague will end only when the murderer of the former king, Laius, is found and punished. Oedipus, proud and determined, vows to find the killer. He questions the blind prophet Tiresias, who tells him that he himself is the murderer. Oedipus angrily accuses Tiresias of plotting against him. // Step by step, through the testimony of a messenger and an old shepherd, the truth emerges. Oedipus was the son of Laius and Jocasta; as a baby he had been left to die but was saved and raised in Corinth. On his journey from Corinth, he had killed a stranger in a quarrel on the road, and that stranger was Laius. Jocasta, realizing the truth, takes her own life. Oedipus blinds himself and goes into exile. // Throughout the play, the chorus of Theban elders responds to each discovery, voicing the community's fear and pity. At the end, the chorus warns that no one should be called happy until he has reached the end of his life free of pain. The man who once saw clearly enough to solve the Sphinx's riddle could not see the truth about himself.
+mc2: According to "The Tragedy of Oedipus," why did the play's power not depend on surprise? | Audiences already knew the myth, so they watched Oedipus discover what they knew. | The play had no plot. | The ending was changed in every performance. | Audiences did not care about the ending.
+mc2: In "The Tragedy of Oedipus," how does Oedipus's attempt to escape the prophecy contribute to his fate? | By fleeing Corinth, he travels toward Thebes, where he unknowingly fulfills the prophecy. | It saves him from the prophecy completely. | It makes him the king of Corinth. | It has no effect on the outcome.
+mc2: In "The Tragedy of Oedipus," what trait drives Oedipus's investigation and contributes to his downfall? | proud determination to uncover the truth | laziness | cowardice | indifference to his city
+mc3: According to "The Tragedy of Oedipus," what is the central irony of Oedipus blinding himself? | The man who could see the answer to the Sphinx's riddle was blind to the truth about himself, and only after learning it does he lose his sight. | He was always blind. | He blinds himself to escape Tiresias. | He blinds himself by accident.
+mc2: According to "The Tragedy of Oedipus," what role does the chorus play? | It voices the community's fear and pity and reflects on the meaning of events. | It plays the role of the villain. | It sells tickets. | It narrates the stage directions.
+mc2: In "The Tragedy of Oedipus," what does the chorus's final warning suggest? | Human happiness is fragile and cannot be judged until life ends. | Kings are always happy. | Oedipus will return as king. | Prophecies are always false.
+sa3: Using "The Tragedy of Oedipus," explain how Sophocles uses dramatic irony to create tension. Give two examples. | The audience knows Oedipus killed Laius while he vows to find and punish the killer, so his determination becomes painful to watch. When Tiresias tells the truth and Oedipus accuses him of plotting, the audience knows the blind prophet is right and the king is the one who cannot see.
+
+lesson: Literature in translation | RL.11-12.4, RL.11-12.9
+practice:
+mc1: A person who renders a text from one language into another is a | translator | narrator | editor only | critic
+hint: The word comes from "translate."
+mc2: Why can two translations of the same poem be very different? | Translators make choices about word meaning, sound, rhythm and tone that cannot all be kept at once. | One translator must be wrong. | Poems have only one meaning. | Translations are copied exactly.
+hint: Think of what is lost when rhyme or wordplay changes language.
+mc2: Which element is usually hardest to keep in translation? | wordplay and puns | the names of characters | the basic plot | the number of chapters
+hint: Jokes based on sound rarely survive in another language.
+mc2: A translator keeps a few words from the original language in a translation, such as a food or a title of respect. What is the most likely reason? | to preserve cultural meaning that has no exact English equivalent | because the translator forgot the English word | to confuse readers | to make the text longer
+hint: Some words carry meanings tied to a culture.
+sa2: Explain why readers of a translated work should be cautious about analyzing the exact wording. | The exact words belong partly to the translator, so close analysis of sound or word choice may reflect the translator's decisions rather than the original author's.
+hint: Whose words are you reading?
+quiz:
+passage: An Old Pond, Two Ways | Matsuo Basho (1644-1694) was a Japanese poet famous for haiku. One of his best-known poems, written in 1686, reads in Japanese (shown here in Roman letters): "furuike ya / kawazu tobikomu / mizu no oto." Word by word, it means roughly "old pond (a word that marks a pause) / frog jumps in / water's sound." Below are two original English translations written for this lesson. // Translation A: // An old pond - / a frog jumps in, / the sound of water. // Translation B: // Ancient, silent pond. / Into it, a small frog leaps: / Splash! Silence again.
+mc2: According to "An Old Pond, Two Ways," what does the Japanese word "ya" do in the first line? | It marks a pause, or cut, after "old pond." | It names the frog. | It means "splash." | It is the poet's name.
+mc2: In "An Old Pond, Two Ways," how is Translation A closer to the literal meaning? | It uses nearly the same words and order as the word-by-word version. | It adds many words not in the original. | It changes the frog to a bird. | It rhymes every line.
+mc2: In "An Old Pond, Two Ways," what does Translation B add that is not in the word-by-word meaning? | the words "silent," "small," "Splash" and "Silence again" | the frog | the pond | the sound of water
+mc3: In "An Old Pond, Two Ways," what is the effect of Translation B's choice to write "Splash! Silence again"? | It makes the sound vivid and states the return of silence, which the original leaves for the reader to imagine. | It removes the sound completely. | It keeps the original exactly. | It changes the season of the poem.
+mc2: In "An Old Pond, Two Ways," which translation follows the 5-7-5 syllable pattern in English? | Translation B | Translation A | both translations | neither translation
+mc2: Based on "An Old Pond, Two Ways," what is the best conclusion about translation? | Translators must choose between exactness and other qualities such as sound, form and vividness. | Only one translation can ever be correct. | Translations never change meaning. | Haiku cannot be translated at all.
+sa3: Using "An Old Pond, Two Ways," evaluate which translation better captures the original haiku, and explain why. | Translation A may better capture the original because it stays close to the literal words and leaves the silence implied, as Basho does. Translation B follows the 5-7-5 pattern but adds "silent," "small," "Splash" and "Silence again," explaining what the original only suggests. (A reasoned case for B is also acceptable.)
+
+lesson: Cultural context and character choices | RL.11-12.3, RL.11-12.6
+practice:
+mc1: The beliefs, customs and values of a society that shape a text are its | cultural context | rhyme scheme | point of view | plot
+hint: Think about the world surrounding the characters.
+mc2: In a novel set in a culture that highly values obedience to elders, a young woman refuses an arranged marriage. Why is this choice significant? | It shows great courage because it defies strong cultural expectations. | It is a minor detail. | It shows she agrees with tradition. | It has no effect on the plot.
+hint: How much is she risking?
+mc2: When reading literature from another culture, a careful reader should | learn about the context and avoid judging characters only by their own culture's standards | assume all cultures share the same customs | ignore the setting | skip unfamiliar words
+hint: Think about understanding before judging.
+mc2: A character keeps a family tradition even after moving to a new country. What might this choice reveal? | a desire to hold onto identity and connection to home | complete rejection of the past | a lack of interest in family | a wish to forget her language
+hint: Why do people keep traditions far from home?
+sa2: Explain how the same action might mean different things in two different cultural contexts. Give an example. | In one culture, making direct eye contact with an elder shows honesty, while in another it can seem disrespectful, so a reader needs context to interpret a character's behavior.
+hint: Think of greetings, gifts or gestures.
+quiz:
+passage: The Letter from Los Angeles | In the town of San Mateo Yucuita, in the mountains of Oaxaca, Mexico, the letter arrived on a Tuesday, carried up the dirt road by the man who drove the bread truck. Eighteen-year-old Ruben recognized his uncle's handwriting before he even touched the envelope. // His uncle had left for Los Angeles twelve years earlier. He sent money every month, and with it the family had added a second room to the house and a tin roof that rang like a drum when it rained. Now the letter said there was a job for Ruben in his uncle's restaurant, if he wanted it. Good pay. A room. A future. // Ruben read the letter aloud to his grandmother in Mixtec, because she understood Spanish but felt it with her ears and not her heart. She listened without speaking, her hands moving steadily as she shaped tortillas on the clay comal. // "Your grandfather planted those fields with his father," she said at last, nodding toward the terraces on the hillside, where the corn was waist-high and green. "And his father with his father. The land remembers the hands that work it." // "The land doesn't pay for medicine, Abuela." // She did not argue. In their town, young people did not argue with elders, and elders did not need to raise their voices to be heard. She simply turned the tortilla, and the smell of toasted corn filled the kitchen. // That night Ruben walked up to the highest terrace. Below him, the lights of the town flickered: the church, the school his uncle's money had helped repair, the small houses with their new roofs. Every light, he realized, had been paid for by someone who had left and someone who had stayed. // In the morning he wrote two letters. The first, to his uncle, said yes, but not until after the harvest. The second, much shorter, he left on the kitchen table, under the clay comal, where his grandmother would find it: I will come back to plant. Teach me the fields before I go.
+mc2: In "The Letter from Los Angeles," what is Ruben's central conflict? | whether to take a job abroad to help his family or stay connected to the land and traditions | whether to repair the tin roof | whether to learn Spanish | whether to argue with the bread truck driver
+mc2: In "The Letter from Los Angeles," why does Ruben read the letter to his grandmother in Mixtec? | because she understands Spanish but feels Mixtec "with her heart," showing respect for her | because the letter was written in Mixtec | because he cannot read Spanish | because he wants to keep the letter secret
+mc2: In "The Letter from Los Angeles," what does the grandmother mean by "The land remembers the hands that work it"? | The land carries the family's history and connection across generations. | The land has a memory like a computer. | The land should be sold. | Only she can farm the land.
+mc3: In "The Letter from Los Angeles," how does cultural context shape the way the grandmother responds to Ruben? | In their town elders do not need to argue, so she expresses her view quietly and trusts Ruben to decide. | She shouts at him because she is angry. | She ignores him because she does not care. | She agrees with him immediately.
+mc2: In "The Letter from Los Angeles," what realization does Ruben have on the highest terrace? | The town's well-being depends on both those who left and those who stayed. | The town has no lights. | His uncle never sent money. | He should never leave the town.
+mc2: In "The Letter from Los Angeles," what do Ruben's two letters show about his decision? | He chooses to go but honors his family's traditions and plans to return. | He refuses the job completely. | He leaves without telling anyone. | He decides never to return.
+sa3: In "The Letter from Los Angeles," analyze how the author uses cultural details to make Ruben's choice meaningful. Cite two details. | Details such as the Mixtec language, the generations of family terraces and the custom that young people do not argue with elders show what Ruben would leave behind. His uncle's money has built roofs and repaired the school, showing why leaving also matters. These details make his compromise, going after the harvest and asking to learn the fields, a choice that honors both obligations.
+
+lesson: Unreliable narrators | RL.11-12.6, RL.11-12.3
+practice:
+mc1: A narrator whose account cannot be fully trusted is | unreliable | omniscient | objective | reliable
+hint: Readers must question what the narrator says.
+mc2: Which clue suggests that a narrator may be unreliable? | The narrator's claims contradict what other characters say and do. | The narrator describes the weather. | The narrator uses the past tense. | The narrator has a name.
+hint: Look for gaps between what is told and what is shown.
+mc2: Why might an author choose an unreliable narrator? | to make readers actively question the story and discover the truth beneath the narrator's version | to make the story simpler | to avoid having a narrator | to make readers trust every word
+hint: Think about what readers must do.
+mc2: A narrator who is a young child describes adults' arguments without understanding them. This kind of unreliability comes from | the narrator's limited knowledge or naivety | deliberate lying | omniscience | the author's mistake
+hint: Not all unreliable narrators lie on purpose.
+sa2: Explain the difference between a narrator who is lying and one who is unreliable because of self-deception. | A lying narrator knowingly misleads the reader; a self-deceived narrator believes his or her own distorted version, so the truth leaks out through details the narrator does not recognize.
+hint: Does the narrator know the truth?
+quiz:
+passage: The Best Employee | I want to make it clear that I was the best employee the Westfield Hardware Store ever had. Everyone knew it, even if Mr. Ochoa was too busy to say so. // On my first day, I reorganized the entire paint aisle by color instead of by brand, which was obviously more logical. Mr. Ochoa spent the next morning putting it back. He said customers needed to find the brands they knew, but I could tell he was impressed. // I was always the first to offer advice. When Mrs. Kwan asked where the garden hoses were, I explained that a drip irrigation system would save her money, and I described it in detail for twenty minutes. She left without buying anything, which shows how much I had given her to think about. // My coworkers were jealous. When I corrected Denise's math at the register in front of a customer, she went into the back room for a long time. Later Mr. Ochoa asked me to "let Denise handle her own register." I understood that he was protecting her feelings. // By March, I noticed that I was being given more and more important tasks in the stockroom, far from the distractions of the sales floor. Mr. Ochoa said it was "where I could do the least - I mean, the most good." People often trip over their words when they are around someone talented. // When he called me into his office in April and said the store was "going in a different direction," I knew exactly what he meant. A store that small could never hold someone with my abilities. I shook his hand and told him I understood completely. I think he was too emotional to say goodbye properly.
+mc2: In "The Best Employee," why is the narrator unreliable? | The narrator interprets every sign of others' frustration as admiration or jealousy. | The narrator tells the story in the past tense. | The narrator works at a hardware store. | The narrator describes the paint aisle.
+mc2: In "The Best Employee," what does Mr. Ochoa putting the paint aisle back most likely show? | The narrator's change created problems, not improvements. | Mr. Ochoa was impressed. | Customers preferred the new order. | The paint was damaged.
+mc2: In "The Best Employee," what probably happened when Mrs. Kwan "left without buying anything"? | She was frustrated by the long, unwanted lecture. | She was thinking deeply about irrigation. | She found a better hose elsewhere in the store. | She came back the next day to thank the narrator.
+mc3: In "The Best Employee," what does Mr. Ochoa's slip, "where I could do the least - I mean, the most good," reveal? | He moved the narrator to the stockroom to limit the harm the narrator caused with customers. | He thinks the narrator is the best employee. | He is nervous around talented people. | He wants the narrator to manage the store.
+mc2: In "The Best Employee," what does "going in a different direction" actually mean? | The narrator is being fired. | The store is moving to a new building. | The narrator is being promoted. | The store is changing its paint colors.
+mc2: In "The Best Employee," how does the author create humor? | by contrasting the narrator's confident interpretations with the obvious reality readers can see | by having characters tell jokes | by using rhyme | by describing slapstick accidents
+sa3: In "The Best Employee," identify two details where the reader understands something the narrator does not, and explain what each reveals. | When Denise "went into the back room for a long time" after being corrected, readers see she was embarrassed, not jealous. When Mr. Ochoa says the store is "going in a different direction," readers understand the narrator is being fired, not outgrowing the store. Both show the narrator's self-deception.
+
+lesson: Magical realism and the extraordinary in the ordinary | RL.11-12.3, RL.11-12.5
+practice:
+mc1: A style of fiction in which magical events occur in a realistic setting and are treated as ordinary is | magical realism | science fiction | fantasy set in another world | Naturalism
+hint: The magic appears in everyday life.
+mc2: Magical realism is especially associated with writers from | Latin America, such as Gabriel Garcia Marquez | Puritan New England | ancient Greece | Victorian England only
+hint: Think of One Hundred Years of Solitude.
+mc2: How does magical realism differ from typical fantasy? | Characters accept magical events as normal parts of the real world rather than entering a separate magical world. | It has no magic. | It always takes place on other planets. | It is always written as poetry.
+hint: Where does the magic happen, and how do characters react?
+mc2: Why might an author use a magical event to represent a historical tragedy? | to express emotions or truths that realistic description alone cannot fully capture | to avoid the subject entirely | to make the story a comedy | because the author did not research history
+hint: Think about symbolism.
+sa2: Explain why the calm, matter-of-fact tone of magical realism is important to its effect. | Because the narrator treats the impossible as ordinary, readers accept it as part of the world and focus on what it means, blurring the line between reality and wonder.
+hint: How would the effect change if characters screamed in surprise?
+quiz:
+passage: The Rain in Delano | That summer in Delano, the rain fell only on my grandmother. // It began the week after my grandfather's funeral. The rest of the Central Valley baked at a hundred and six degrees, the grapevines curling in the heat, but wherever Lita went, a small gray cloud followed, about the size of a kitchen table, and rained gently on her head. // Nobody made a fuss. Mr. Hernandez at the market kept a towel by the register for her. The priest moved her to the end of the pew so the drips would not bother the Moraleses. My mother bought her a clear umbrella, which Lita refused to use. "It is not hurting anyone," she said, wringing out her braid. "Let it do what it needs to do." // The cloud was worst in the evenings, when she sat on the porch where she and my grandfather used to watch the sun go down over the vineyards. Then it rained so hard the porch boards turned dark and the geraniums in their coffee cans overflowed. I sat beside her anyway, half in the downpour, half out. // In August the field workers' children began bringing their thirsty plants to set beside her chair. The cloud seemed to like that. It drifted lower, spread a little wider, and rained on all of them together: tomatoes, basil, a lemon tree in a bucket, a chile plant that had not bloomed in two years. // By September the cloud had shrunk to the size of a dinner plate. One evening it rained for only a few minutes, then thinned into a mist that caught the last of the sunset and turned pink. // Lita held out her palm. A single drop landed in it. She closed her hand around it, the way you might hold a coin someone gave you to keep. // The next morning the sky over her head was as clear and hot as everyone else's. The chile plant had bloomed.
+mc2: In "The Rain in Delano," what does the rain cloud most likely represent? | the grandmother's grief after her husband's death | an unusual weather pattern explained by science | the narrator's fear of storms | a punishment from the priest
+mc2: Which detail in "The Rain in Delano" shows the magical realism convention of treating the impossible as ordinary? | Mr. Hernandez keeps a towel by the register for her. | The temperature is a hundred and six degrees. | The priest leads Mass. | The grapevines grow in the Central Valley.
+mc2: In "The Rain in Delano," why does Lita refuse the umbrella? | She believes the grief needs to run its course: "Let it do what it needs to do." | She does not like the color. | She wants to be cold. | She thinks the cloud will hurt the umbrella.
+mc3: In "The Rain in Delano," what is the significance of the neighbors' plants being watered by the cloud? | Her grief becomes something that nourishes the community, suggesting loss can bring connection and new growth. | It shows the cloud is dangerous. | It shows the neighbors are stealing water. | It has no meaning.
+mc2: In "The Rain in Delano," what does the shrinking cloud suggest? | Her grief is slowly easing over time. | The weather is becoming more dangerous. | The cloud is moving to the narrator. | Lita is becoming sick.
+mc2: In "The Rain in Delano," what does the blooming chile plant at the end symbolize? | renewal and life continuing after loss | the start of a drought | Lita's anger | the end of the harvest
+sa3: Explain how the author of "The Rain in Delano" uses magical realism to express an emotional truth about grief. Cite two details. | The cloud that rains only on Lita makes her grief visible and physical. It rains hardest on the porch where she watched sunsets with her husband, showing how memory intensifies loss. As it shrinks and turns into a pink mist, and the chile plant blooms, the story shows grief easing into renewal, a truth that feels more vivid through magic than literal description.
+
+lesson: Unit review | RL.11-12.3, RL.11-12.6, RL.11-12.9
+practice:
+mc1: Chinua Achebe's Things Fall Apart is set among the | Igbo people of Nigeria | ancient Greeks | Japanese samurai | Russian aristocracy
+hint: Achebe was a Nigerian writer.
+mc2: A narrator whose account is distorted by pride, ignorance or self-deception is | unreliable | omniscient | objective | reliable
+hint: Readers cannot fully trust this voice.
+mc2: In Greek tragedy, the group that comments on the action and represents the community is the | chorus | prologue | messenger | antagonist
+hint: They often speak together.
+mc2: A careful reader of a translated text should remember that | the translator's choices shape the words they are reading | translations never change meaning | the original author chose every English word | translations are always inaccurate
+hint: Whose words are on the page?
+sa2: Explain how knowing a work's cultural context can change a reader's interpretation of a character's choice. | Context shows what the choice risks or means within that society; a decision that seems small to an outsider might be a brave act of rebellion or a deep sign of respect in its own culture.
+hint: What does the choice cost the character in that world?
+quiz:
+mc1: Who wrote "Things Fall Apart"? | Chinua Achebe | Gabriel Garcia Marquez | Leo Tolstoy | Franz Kafka
+mc1: "One Hundred Years of Solitude" is associated with | magical realism | Romanticism | Transcendentalism | Naturalism
+mc2: Franz Kafka's "The Metamorphosis" begins with Gregor Samsa | waking up transformed into an insect | traveling to America | winning a lottery | joining an army
+mc2: Achebe's "Things Fall Apart" depicts | the effects of colonialism on an Igbo community | life in ancient Rome | a Russian family | a space voyage
+ex2: Explain the value of reading literature from many cultures. | It broadens perspective and shows how different people experience shared human issues.
+mc2: Gabriel Garcia Marquez is a famous writer from | Colombia | Japan | Nigeria | Russia
+mc2: In Oedipus Rex, the blind prophet who knows the truth is | Tiresias | Creon | Laius | Jocasta
+mc3: A novel tells the same event three times, once each from a grandmother, a mother and a daughter, and each version contradicts the others. What is the main effect? | Readers see that truth depends on perspective and must piece together their own understanding. | Readers learn there is only one correct version. | The novel has no conflict. | The novel becomes a play.
+
+test:
+mc2: Reading literature in translation, readers should be aware that | some wordplay and connotation may change | the plot is invented by the translator | translations are always inaccurate | meaning never changes
+mc2: Sophocles' "Oedipus Rex" is a classic example of | Greek tragedy | magical realism | a sonnet sequence | satire
+mc2: An unreliable narrator | cannot be fully trusted to tell events accurately | always tells the truth | is the author | has no role
+mc3: A novel shows a historical event through the eyes of a colonized people rather than the colonizers. What is the main effect? | It challenges dominant historical narratives | It repeats the usual account | It removes all conflict | It has no effect
+sa2: Analyze how cultural context shapes a character's choices in a world literature text you read. | Connects specific cultural values or events to a character's choices with evidence.
+sa2: Explain how an author's choice of narrator affects the reader's understanding of events. | Names the narrator type and analyzes what is revealed or hidden.
+task3: Write an analytical essay on a work of world literature studied in class, analyzing how the author's choices about perspective, structure and character development convey a critique of power or tradition. Integrate at least four quotations and discuss the cultural or historical context. | Insightful analysis with clear context, four or more integrated quotations, sophisticated thesis and structure. | Clear analysis with three quotations and some context. | Mostly summary with limited analysis. | Little correct work.
+passage: The Mask in Room 14 | The mask hangs in Room 14 of a museum in a large European city, behind glass, under a small white card. The card says: Ceremonial mask, West Africa, 19th century. Artist unknown. Acquired 1898. // Every afternoon at three, a guard named Pieter walks past it on his rounds. He has walked past it for twenty-two years. He likes the mask. He likes the way the carved eyes seem half closed, as if the face were listening to music only it could hear. To Pieter, it is one of the quiet treasures of the museum, safe from weather and war, admired by thousands. // On a Tuesday in November, a young woman stands in front of the glass for a long time. She is a graduate student, Adaeze, visiting from Lagos. She has a photograph on her phone, very old and faded, of a man holding a mask with the same half-closed eyes. The man is her great-great-grandfather. In her family's telling, he carved masks for the festival that welcomed the new yam harvest, and this one was taken from his village by soldiers during a military expedition and never returned. // "Artist unknown," Adaeze reads aloud. "He had a name." // Pieter, passing on his rounds, hears her. He stops. He has always thought of the card as simply true. Now he reads it again, and the word "acquired" looks different to him, smooth and polite, like a coat thrown over something broken. // "Do you know who made it?" he asks. // She tells him. She tells him the name, the village, the festival and the dances in which the mask once moved, worn by a dancer whose feet beat the red earth while drums answered. "It was never meant to be still," she says. "Behind glass, it can't do what it was made for." // That evening, Pieter writes a letter to the museum's director. He is not sure what he wants to say. He knows only that he has looked at the mask for twenty-two years and never once wondered whose hands had shaped it, or whose festival had gone silent when it was taken. // The next afternoon at three, he walks past Room 14. The mask's eyes are still half closed. But now, Pieter thinks, they do not look like a face listening to music. They look like a face waiting.
+mc2: In "The Mask in Room 14," how does Pieter's view of the mask differ from Adaeze's at first? | Pieter sees a quiet, safe treasure, while Adaeze sees a stolen object with a living history and a named creator. | They have the same view. | Adaeze thinks the mask is a fake. | Pieter wants to sell the mask.
+mc2: In "The Mask in Room 14," what does the label "Artist unknown" reveal about the museum's perspective? | It erases the identity of the creator and the culture the mask came from. | It shows the museum researched the artist carefully. | It proves the mask was made recently. | It shows the artist wanted to stay anonymous.
+mc2: In "The Mask in Room 14," what is the effect of the simile describing "acquired" as "smooth and polite, like a coat thrown over something broken"? | It suggests the word hides the violence of how the mask was taken. | It shows the word is accurate and complete. | It describes Pieter's coat. | It praises the museum's language.
+mc3: How does the author's choice to tell "The Mask in Room 14" mainly through Pieter's perspective affect its meaning? | Readers watch a person from the museum's side begin to question an account he once accepted, which challenges the dominant narrative. | It shows that only Pieter's opinion matters. | It hides Adaeze's perspective completely. | It makes the story a comedy.
+mc2: In "The Mask in Room 14," what does Adaeze mean by "It was never meant to be still"? | The mask was created to be worn in dances, so displaying it behind glass removes its purpose. | The mask should be hung lower. | The mask is broken. | The mask is too heavy to move.
+mc2: In "The Mask in Room 14," how does the description of the mask's eyes change from the beginning to the end? | At first they seem to be listening to music; at the end they seem to be waiting. | They change from open to closed. | They change color. | They do not change at all.
+mc2: In "The Mask in Room 14," what does Pieter's letter to the director suggest? | He has begun to recognize an injustice he never noticed and feels he must respond. | He wants a promotion. | He wants the mask moved to a different room. | He is quitting his job.
+mc2: Which theme is most developed in "The Mask in Room 14"? | Who tells a history, and how, shapes what people see and what is forgotten. | Museums should never display art. | Guards should not talk to visitors. | Old photographs are unreliable.
+wr3: Write an analytical essay explaining how the author of "The Mask in Room 14" uses perspective, contrasting characters and symbolism to critique the way power shapes history. Include a precise thesis and at least four pieces of evidence from the passage, and discuss the historical context the story suggests. | Key points: the museum label ("Artist unknown," "Acquired 1898") represents the dominant, colonial account; Adaeze's family history restores a name, village and purpose; Pieter's perspective shifts as he sees "acquired" as "a coat thrown over something broken"; the mask behind glass symbolizes a culture silenced and removed from its purpose; the final change from "listening" to "waiting" suggests a demand for justice; context: objects taken during colonial military expeditions and current debates about returning them.
+endpassage:
+mc1: Franz Kafka's "The Metamorphosis" is known for treating a bizarre transformation | in a calm, realistic tone | as a comedy routine | as a scientific report | as a love poem
+mc2: Which statement best describes literature in translation? | Readers encounter the original work through a translator's interpretive choices. | The translator invents a new plot. | The original language does not matter. | Every translation is identical.
+mc2: A story narrated by a character who claims to be completely fair while insulting everyone around him likely has | an unreliable narrator | an omniscient narrator | an objective narrator | no narrator
+mc2: In Greek tragedy, a moment when the hero recognizes the truth about his situation is | anagnorisis | catharsis | hamartia | a chorus
+mc3: Why might a writer from a formerly colonized country retell a famous European story from the point of view of a colonized character? | to give voice to a perspective the original ignored and challenge its assumptions | to copy the original exactly | to praise the colonizers | to avoid any conflict
+
+unit: Rhetorical analysis of complex nonfiction | RI.11-12.5, RI.11-12.6, RI.11-12.7 | ela_12_n1
+el: Use a SOAPSTone organizer (speaker, occasion, audience, purpose, subject, tone) for every text, a bank of tone words grouped by attitude, and sentence frames for analysis: "By using ___, the author ___ in order to ___."
+
+lesson: The rhetorical situation | RI.11-12.6, RI.11-12.5
+practice:
+mc1: In the SOAPSTone method of analysis, the "O" stands for | occasion, the time, place and event that prompts the text | opinion | organization | outcome
+hint: What event or moment caused the text to be written?
+mc2: A speaker addresses a graduating class at a community college. Who is the primary audience? | the graduates and their families | the speaker's coworkers only | children in kindergarten | a group of scientists
+hint: Who is present and being spoken to?
+mc2: A speech given the day after a natural disaster would most likely have a purpose of | comforting the public and calling for unity or action | selling a product | telling a funny story | teaching grammar
+hint: What would people need to hear right then?
+mc2: Why does the same message often need to change when the audience changes? | Different audiences have different values, knowledge and concerns. | All audiences are identical. | Audiences do not affect writing. | Writers should never change their message.
+hint: Would you explain a rule the same way to a child and to a judge?
+sa2: Explain how the occasion of a speech can shape the speaker's tone. | The occasion sets expectations; a memorial calls for a solemn, respectful tone, while a celebration allows warmth and humor, so the speaker's tone must fit the moment to persuade.
+hint: Compare a funeral and a graduation.
+quiz:
+passage: To the Class That Stayed | The following is an original commencement speech given at a community college graduation in the Central Valley. // Good evening, graduates, families and the people who drove you here when your car broke down. // I want to begin with a confession. I did not finish college the first time I tried. At nineteen I dropped out of a university two hundred miles from home because I was working two jobs and failing chemistry, and I was too proud to ask for help. It took me eleven years to come back, and I came back here, to this campus, to these same folding chairs. // So I know something about many of you. I know some of you took classes at night after picking grapes all day. I know some of you studied in your cars in the parking lot because it was the only quiet place you had. I know some of you are the first in your family to wear this cap, and that somewhere in this audience is a grandmother who has been crying since the processional began. // People sometimes talk about community colleges as a second choice. Tonight I want to argue the opposite. You did not take the easy road. You took the road that was there, and you walked it while carrying everything else: jobs, children, parents, bills, doubt. That is not second best. That is what strength looks like. // Here is what I ask of you. Remember the person who held the door. The instructor who stayed late. The classmate who shared notes. The cousin who watched your kids. None of us arrives anywhere alone. As you go on to universities, to jobs, to whatever comes next, be the person who holds the door for someone else. // Congratulations, graduates. You stayed. And because you stayed, you will lift others with you.
+mc2: In "To the Class That Stayed," who is the primary audience? | community college graduates and their families | university professors | high school freshmen | government officials
+mc2: In "To the Class That Stayed," why does the speaker begin with a confession about dropping out? | to build credibility and connection by sharing an experience similar to the audience's struggles | to discourage the graduates | to brag about her success | to criticize universities
+mc2: In "To the Class That Stayed," what is the effect of the repeated phrase "I know some of you"? | It shows the speaker understands the audience's specific experiences and makes them feel seen. | It shows she knows everyone's name. | It creates suspense about a secret. | It lists statistics.
+mc3: In "To the Class That Stayed," how does the speaker address the view that community college is "a second choice"? | She reframes it, arguing that succeeding while carrying many responsibilities shows strength, not weakness. | She agrees that it is second best. | She ignores the idea. | She says universities should close.
+mc2: In "To the Class That Stayed," what is the main purpose of the request to "be the person who holds the door for someone else"? | to call the graduates to help others as they were helped | to give directions to the exit | to describe the campus buildings | to joke about a broken door
+mc2: Which word best describes the tone of "To the Class That Stayed"? | warm and inspiring | sarcastic and bitter | detached and technical | anxious and fearful
+sa3: Analyze how the speaker in "To the Class That Stayed" adapts her message to her specific audience and occasion. Cite two details. | She opens with humor about families who "drove you here when your car broke down," and she names experiences such as studying "in your cars in the parking lot" and picking grapes, which fit a Central Valley community college. On a graduation occasion, she celebrates their persistence and closes with a call to "hold the door," matching the hopeful moment.
+
+lesson: Analyzing argument structure | RI.11-12.5
+practice:
+mc1: An argument that begins with specific examples and builds to a general conclusion uses | inductive structure | deductive structure | chronological structure | circular structure
+hint: Specific to general.
+mc2: An argument that states its claim first and then supports it with reasons uses | a deductive or claim-first structure | an inductive structure | no structure | a narrative structure only
+hint: General claim first, then proof.
+mc2: A Rogerian argument is designed to | find common ground with an opposing audience before presenting the writer's position | attack the opposing side forcefully | avoid any claim | list only statistics
+hint: It aims to reduce conflict.
+mc2: For a highly skeptical or hostile audience, which structure is often most effective? | delaying the main claim until common ground and evidence are established | stating the claim aggressively in the first sentence | skipping evidence | ending without a conclusion
+hint: How do you win over people who already disagree?
+sa2: Explain why the placement of a counterargument within an essay can affect its persuasiveness. | Addressing a counterargument early can disarm skeptical readers, while addressing it near the end lets the writer build their case first; the best placement depends on how strongly the audience holds the opposing view.
+hint: Think about when readers' doubts appear.
+quiz:
+passage: Room for Neighbors | Almost everyone in our town agrees on one thing: the place we live is worth protecting. The people who oppose new apartment buildings downtown love the quiet streets, the old oak trees and the feeling of knowing their neighbors. So do I. I grew up on Sycamore Avenue, and I want my children to grow up somewhere with the same small-town warmth. // Those who worry about new housing raise fair questions. Will more people mean more traffic? Will tall buildings block the view of the hills? Will rising rents push longtime families out anyway? These concerns come from care for the town, not selfishness, and they deserve real answers. // But consider who is already being pushed out. Our teachers commute an hour from cheaper cities. Our grown children move away because they cannot find an apartment they can afford. Our restaurants close early because they cannot hire enough staff who live nearby. The small-town warmth we treasure depends on people being able to live here, and right now many of the people who make this town work cannot. // A middle path is possible. The town could allow three- and four-story apartment buildings near the downtown bus line, where residents could walk to shops instead of driving. It could require new buildings to preserve existing oak trees and limit height on streets with views of the hills. It could set aside a share of new units for teachers, nurses and service workers. // We do not have to choose between growth and character. If we plan carefully, new neighbors can help keep alive the very community that all of us, on both sides of this debate, want to protect.
+mc2: What structure does "Room for Neighbors" mainly use? | a Rogerian structure that begins with shared values and opposing concerns before proposing a compromise | a deductive structure that attacks opponents in the first sentence | a chronological history of the town | a list of statistics with no claim
+mc2: In "Room for Neighbors," why does the writer begin by agreeing that the town "is worth protecting"? | to establish common ground with readers who oppose new housing | to argue against new housing | to describe the weather | to introduce a personal enemy
+mc2: In "Room for Neighbors," how does the writer treat the opponents' concerns? | as fair questions that come from care for the town | as selfish complaints | as lies | as irrelevant
+mc3: In "Room for Neighbors," why does the writer delay the specific proposal until the fourth paragraph? | to build trust and show the problem before asking a skeptical audience to accept a change | because the writer forgot the proposal | to hide the claim from readers | to make the essay shorter
+mc2: In "Room for Neighbors," which detail best supports the claim that the town's character depends on housing? | Teachers commute an hour and restaurants close early because staff cannot live nearby. | The writer grew up on Sycamore Avenue. | Oak trees line the streets. | Hills are visible from downtown.
+mc2: In "Room for Neighbors," what is the function of the final paragraph? | to reject the false choice between growth and character and unite both sides | to introduce a new problem | to criticize opponents | to list building codes
+sa3: Evaluate how effective the structure of "Room for Neighbors" would be for readers who oppose new housing. Cite the passage. | It is likely effective: the writer opens with shared values ("worth protecting"), treats concerns as coming "from care for the town," shows how current residents are already pushed out, and offers compromises such as preserving oak trees and limiting height. This builds trust before asking readers to accept change.
+
+lesson: Syntax as rhetoric | RI.11-12.6, L.11-12.3
+practice:
+mc1: The arrangement of words and phrases into sentences is | syntax | diction | tone | imagery
+hint: It is about sentence structure, not word choice.
+mc2: A sentence that delays its main clause until the end, building suspense, is | a periodic sentence | a loose sentence | a fragment | a question
+hint: The main point arrives at the "period."
+mc2: Leaving out conjunctions between items, as in "I came, I saw, I conquered," is | asyndeton | polysyndeton | chiasmus | hyperbole
+hint: No "and" between the parts.
+mc2: Repeating a conjunction many times, as in "We ran and we jumped and we laughed and we fell," is | polysyndeton | asyndeton | antithesis | understatement
+hint: "Poly" means many.
+sa2: Explain how a very short sentence placed after several long ones can affect readers. | The sudden contrast stops the reader and gives the short sentence strong emphasis, highlighting a key idea or a dramatic turn.
+hint: Think about rhythm and surprise.
+quiz:
+mc2: "Despite the storm, despite the cold, despite every reason to stay home, they came." What type of sentence is this? | periodic, building to the main clause at the end | loose, with the main clause first | a fragment | a compound question
+mc2: Reversing the order of words in two parallel phrases, as in "Work to live; do not live to work," is | chiasmus | asyndeton | a rhetorical question | an anecdote
+mc2: Which sentence uses asyndeton to create speed? | She studied, she drafted, she revised, she won. | She studied and drafted and revised and won. | She studied for a long time before she won. | Did she win?
+mc2: What is the most likely effect of polysyndeton in "The flood took the houses and the barns and the fields and the dreams"? | It slows the reading and emphasizes the overwhelming extent of the loss. | It speeds the sentence up. | It creates humor. | It hides the meaning.
+mc3: A speechwriter wants an audience to feel a rising sense of urgency. Which syntactic choice would best achieve this? | a series of parallel clauses that grow longer and build to a climax | a single long, flat sentence with no pattern | random sentence fragments | a footnote
+mc1: A sentence that states its main clause first and then adds details is | a loose or cumulative sentence | a periodic sentence | a fragment | a rhetorical question
+sa2: Write a sentence about a championship game that uses a periodic structure, and explain the effect. | "After three overtimes, two injuries and a crowd that never sat down, the Panthers finally won." Delaying the main clause builds suspense so the victory feels earned.
+
+lesson: Tone and diction in complex nonfiction | RI.11-12.6, RI.11-12.4
+practice:
+mc1: A writer's word choice is called | diction | syntax | structure | meter
+hint: Think of the word "dictionary."
+mc2: Which tone word best describes writing that mourns something lost? | elegiac | jubilant | flippant | clinical
+hint: An elegy is a poem of mourning.
+mc2: An essay shifts from a nostalgic tone to a critical tone midway through. What does this shift most likely signal? | a turn from remembering the past to criticizing what caused its loss | a printing error | a change of author | the end of the essay
+hint: Tone shifts often mark turns in thought.
+mc2: Which word choice creates a more clinical, detached tone? | The patient expired at 3:15 a.m. | Our beloved grandfather slipped away in the night. | Grandpa left us forever. | He was gone, just like that.
+hint: Which sounds like an official report?
+sa2: Explain how a writer can be both affectionate and critical toward the same subject. Give an example. | A writer might describe a hometown's traditions with warmth while criticizing its resistance to change, using fond details alongside pointed judgments to show complex feelings.
+hint: Think about mixed feelings toward a place or person you love.
+quiz:
+passage: The Last Bookstore on Main Street | For forty-one years, Garza's Books sat between the barbershop and the bakery on Main Street, a narrow room that smelled of dust, coffee and the cedar shelves Mr. Garza built himself. It closed last Saturday. // I bought my first library of my own there: a stack of battered paperbacks for a quarter each, carried home in a paper bag that tore before I reached the corner. Mr. Garza knew what every regular was reading and what they should read next. He once pressed a book of poems into my hands and said, "You are not ready for this. Read it anyway." He was right on both counts. // It would be easy to blame the closing on the internet, or on readers, or on the slow, inevitable march of progress. That story is comfortable, because no one in particular is responsible. But it is not the whole story. // The building's owner raised the rent three times in five years. The city approved a parking plan that removed the spaces in front of the store. The council members who now post photographs of "our charming downtown" voted for both. Charm, it turns out, is something everyone admires and no one wants to pay for. // I do not write this to be bitter. Mr. Garza himself is not bitter; at the closing sale he gave away his last box of poetry to a teenager who could not afford it. But I write it because the next small store, and the one after that, will close the same way unless we stop pretending that these losses simply happen. They are decided. And what is decided can be decided differently.
+mc2: What is the tone of the first two paragraphs of "The Last Bookstore on Main Street"? | nostalgic and affectionate | angry and accusatory | detached and scientific | humorous and silly
+mc2: In "The Last Bookstore on Main Street," how does the tone shift in the fourth paragraph? | It becomes pointed and critical as the writer names specific decisions that caused the closing. | It becomes joyful. | It becomes more nostalgic. | It stays exactly the same.
+mc2: In "The Last Bookstore on Main Street," what is the effect of placing "our charming downtown" in quotation marks? | It suggests irony, implying the council members' praise is hollow. | It shows the writer agrees completely with the council. | It quotes a famous poem. | It marks the title of a book.
+mc3: In "The Last Bookstore on Main Street," what is the purpose of the claim that the "comfortable" story is "not the whole story"? | to challenge the idea that closings are inevitable and reveal human responsibility | to agree that progress is unstoppable | to blame readers for the closing | to praise the internet
+mc2: In "The Last Bookstore on Main Street," what does the sentence "Charm, it turns out, is something everyone admires and no one wants to pay for" use? | an ironic, epigram-like contrast | a statistic | a rhetorical question | onomatopoeia
+mc2: In "The Last Bookstore on Main Street," why does the writer mention that Mr. Garza gave away his last box of poetry? | to show his generosity and contrast it with the decisions that harmed his store | to explain the store's finances | to criticize Mr. Garza | to describe the teenager's reading habits
+sa3: Analyze how the writer of "The Last Bookstore on Main Street" uses diction and short sentences in the final paragraph to achieve the purpose of the essay. | After longer sentences, the short statements "They are decided" and "And what is decided can be decided differently" use plain, firm diction and repetition of "decided" to stress that closings result from choices. This turns the essay from mourning into a call for readers to make different decisions.
+
+lesson: Integrating information from multiple media | RI.11-12.7
+practice:
+mc1: A visual that shows how parts make up a whole, such as a budget divided into categories, is best displayed as a | pie chart | line graph | timeline | map
+hint: Think of slices of a whole.
+mc2: Which question is most important when evaluating a chart in an argument? | Do the chart's labels, scale and source accurately support the claim? | Is the chart colorful? | Is the chart large? | Does the chart have a title in bold?
+hint: Look at what the chart actually shows and where the data came from.
+mc2: A documentary uses dramatic music while showing data about crime. What should a viewer consider? | The music may shape emotional reactions beyond what the data alone shows. | The music proves the data is correct. | The music has no effect. | Documentaries never use music.
+hint: How does music influence feelings?
+mc2: Why might a writer pair a personal story with a statistical graph? | The story creates emotional connection while the graph shows the issue's scale. | To confuse readers. | Because graphs are decoration. | To avoid using evidence.
+hint: Think pathos plus logos.
+sa2: Explain how a photograph can support or mislead in a news article. | A photograph can show real conditions vividly, but cropping, angle or selection can exaggerate or hide information, so readers should consider what is outside the frame.
+hint: Think about what a camera can leave out.
+quiz:
+passage: Reading Hours and the Graph | The following passage describes an article and its accompanying graph. The data are hypothetical and were created for this lesson. // An article titled "Students Are Reading Again" claims that a school's new free-choice reading program has dramatically increased reading. The article includes a bar graph labeled "Average Weekly Reading Hours." The bar for the fall, before the program, reaches 4.0 hours. The bar for the spring, after the program, reaches 4.6 hours. However, the graph's vertical axis begins at 3.8 hours instead of 0, so the spring bar appears about four times as tall as the fall bar. A small note below the graph says the data come from a voluntary online survey; 60 students answered in the fall and 25 answered in the spring, out of a school of 900 students. // The article also includes a short video interview with two students who say they love the program. One says, "I read three books last month, and I never used to read at all." The video plays upbeat music and shows students laughing in the library.
+num2: In "Reading Hours and the Graph," by how many hours did average weekly reading increase from fall to spring? | 0.6
+num2: In "Reading Hours and the Graph," by what percent did average weekly reading increase from 4.0 hours to 4.6 hours? | 15
+mc2: In "Reading Hours and the Graph," why does the spring bar look about four times as tall as the fall bar? | The vertical axis starts at 3.8 hours, exaggerating a small difference. | Reading increased by four times. | The graph uses a pie chart. | The fall data are missing.
+mc3: In "Reading Hours and the Graph," what is the most serious problem with the survey data? | Only a small, self-selected group of students responded, and fewer responded in spring, so the results may not represent the school. | The survey was too large. | The survey asked about math. | The survey included every student.
+mc2: In "Reading Hours and the Graph," how does the video interview function in the article? | It adds emotional appeal and personal examples but does not prove a schoolwide trend. | It provides scientific proof of the claim. | It contradicts the article. | It shows the survey methods.
+mc2: In "Reading Hours and the Graph," which revision of the headline best matches the evidence? | Survey Responses Suggest a Small Rise in Reading After New Program | Students Are Reading Like Never Before | Reading Has Quadrupled at Our School | Every Student Now Loves Reading
+sa3: Evaluate how the graph and video in "Reading Hours and the Graph" work together to support the article's claim, and explain what a careful reader should conclude. | The graph's axis starts at 3.8, making a 0.6-hour (15 percent) rise look dramatic, and the video uses happy music and two enthusiastic students. Both create a strong impression, but the data come from a small, voluntary survey, so a careful reader should conclude that the program may have helped slightly but the article overstates its success.
+
+lesson: Evaluating effectiveness for different audiences | RI.11-12.6, RI.11-12.5
+practice:
+mc1: To evaluate a text's rhetorical effectiveness means to judge | how well its choices achieve its purpose with its intended audience | whether you personally agree | how long it is | whether it uses big words
+hint: Effective for whom, and for what purpose?
+mc2: A public health message about heat safety is written for older adults. Which choice would be most effective? | large print, clear steps and advice from a trusted doctor | slang and memes | long technical paragraphs about climate models | jokes about the weather
+hint: Think about the audience's needs.
+mc2: The same argument for a new park is presented to the city council and to a group of children. What should change? | the vocabulary, evidence and tone | the basic facts about the park | nothing at all | the park's location
+hint: Facts stay true; presentation adapts.
+mc2: An argument is strong for its intended audience but unconvincing to you. What does this suggest? | Effectiveness depends on the audience the text was written for. | The argument has no purpose. | You should not analyze it. | All arguments are equally effective.
+hint: Were you the intended audience?
+sa2: Explain why a rhetorical analysis should focus on the author's choices rather than on whether the reader agrees with the argument. | Rhetorical analysis examines how a text works on its audience; a reader can recognize a well-crafted argument even when disagreeing with it, so personal agreement is a different question.
+hint: Separate "Do I agree?" from "How does it work?"
+quiz:
+mc2: A scientist writes the same findings for a journal and for a newspaper. Which change best fits the newspaper version? | defining technical terms and leading with why the findings matter to readers | adding more technical vocabulary | removing all conclusions | writing in a code only experts know
+mc2: A fundraising letter opens with a story about one child rather than with statistics about thousands. Why might this be effective? | Readers often respond more strongly to one person's story than to large numbers. | Statistics are always false. | Stories are shorter. | It avoids having a purpose.
+mc2: A speech uses many references to local landmarks and history. Which audience is it most likely designed for? | local residents | international scientists | foreign tourists who have never visited | young children in another state
+mc2: Which choice would most likely weaken an argument addressed to experts? | oversimplifying the evidence and ignoring well-known research | citing recent studies | using precise terminology | acknowledging limitations
+mc3: A student evaluates a 1940s wartime speech using only modern standards of debate. What is the main problem with this approach? | It ignores the original audience, occasion and context that shaped the speaker's choices. | Modern standards are always wrong. | Old speeches cannot be analyzed. | It focuses too much on context.
+mc2: Which question best guides an evaluation of a text's effectiveness? | Given its audience, purpose and context, how well do the author's choices work? | Is the text long? | Do I like the author? | Does the text use a lot of adjectives?
+sa2: Choose a message (for example, encouraging recycling) and explain how you would adapt it for two different audiences. | For elementary students: a simple, colorful poster with a friendly character and three easy steps. For city council: a short report with cost savings, landfill data and a specific policy proposal.
+
+lesson: Unit review | RI.11-12.5, RI.11-12.6, RI.11-12.7
+practice:
+mc1: The speaker, audience, purpose and context of a text together make up the | rhetorical situation | plot | rhyme scheme | conclusion
+hint: Think of SOAPSTone.
+mc2: Which tone word describes writing that mocks with bitterness? | sardonic | reverent | earnest | nostalgic
+hint: It is close to sarcastic.
+mc2: Which sentence uses a periodic structure? | Though tired, hungry and far from home, she kept walking. | She kept walking, though tired, hungry and far from home. | She walked. | Walking was hard.
+hint: Where does the main clause appear?
+mc2: An argument that begins by acknowledging the audience's concerns and seeking common ground is | Rogerian | inductive only | circular | a narrative
+hint: It is named after a psychologist who valued understanding.
+sa2: Explain how timing (kairos) can affect the persuasiveness of a speech. | A speech delivered at the right moment, such as just after an event that makes an issue urgent, catches the audience when they are most ready to listen and act.
+hint: Why does the moment matter?
+quiz:
+mc1: Rhetorical analysis examines | how an author persuades an audience | only the plot | grammar errors | the author's biography only
+mc1: The rhetorical situation includes | speaker, audience, purpose and context | only the title | only the evidence | only the conclusion
+mc2: Which structure would be most effective for an argument that starts by winning over a skeptical audience? | concessions first, then the main claim | the claim stated aggressively first | only statistics | no structure
+mc2: An author uses a short, one-sentence paragraph after long ones. What is the likely effect? | emphasis on a key idea | confusion | a summary | a list
+ex2: Explain how audience shapes an author's rhetorical choices. | Authors choose evidence, tone and diction that will persuade their specific readers.
+mc2: An author's choice of formal, technical words for an audience of engineers is an example of adapting | diction | meter | rhyme | plot
+mc2: An essay begins with three specific stories and then states a general conclusion. What structure is this? | inductive | deductive | Rogerian | circular
+mc3: A graph in an article shows a rise in test scores but has no labeled axes or source. How should a reader treat it? | with skepticism, because the data cannot be interpreted or verified | as strong proof | as more reliable than text | as irrelevant to every argument
+
+test:
+mc2: Kairos refers to | the timeliness of an argument | its logic | its emotion | its length
+mc2: Which media source requires the most careful evaluation for bias? | a sponsored video produced by a company about its own product | a peer-reviewed article | a government data table | an encyclopedia
+mc2: Diction that is formal and technical suggests the audience is | experts or professionals | young children | friends | anyone
+mc3: A speech about climate policy combines a personal story, scientific data and a call to action. How does this structure work? | It engages emotion, establishes evidence and motivates action in sequence | It is disorganized | It only appeals to emotion | It avoids evidence
+sa2: Analyze how the structure of an argument you studied contributes to its effectiveness. | Describes the structure and evaluates its effect on the audience.
+sa2: Evaluate how a source presented in another medium (graph, video, image) supports or complicates a written argument. | Explains the relationship between the media and the argument.
+task3: Choose a contemporary speech or essay provided by your teacher. Write a rhetorical analysis that explains the rhetorical situation, analyzes at least three choices (structure, appeals, diction, syntax) and evaluates their effectiveness for the intended audience. Integrate evidence from at least one related source in another medium. | Thorough rhetorical situation, sophisticated analysis of three or more choices, evaluation, effective use of another medium. | Clear analysis of three choices with some evaluation. | Identifies choices with little analysis. | Little correct work.
+passage: In Defense of Boredom | Last week, waiting in line at the pharmacy, I counted. Of the fourteen people in line, thirteen were looking at their phones. The fourteenth was a toddler, and he was trying very hard to get his mother's phone. // I was one of the thirteen. I am not writing as a judge. I am writing as someone who has noticed that I can no longer stand in line, ride a bus or wait for water to boil without reaching for a screen. And I have begun to suspect that in eliminating boredom, we have lost something worth keeping. // Consider what boredom used to be for. Before phones, a long car ride meant staring out the window, inventing games, watching clouds turn into animals. Waiting rooms meant daydreaming. These empty minutes were not wasted; they were where the mind wandered, and a wandering mind is often where ideas begin. Some researchers who study creativity have suggested that letting the mind drift can help people make unexpected connections. Many writers, scientists and artists describe their best ideas arriving not at their desks but in the shower, on a walk or while staring at nothing. // Now, nothing is the one thing we never stare at. Every pause is filled. The feed refreshes. The video autoplays. Each small moment of stillness is captured, and something, I suspect, is lost in the capture. // I understand the objection. Phones connect us to people we love. They answer our questions instantly. A teenager in a small town can learn calculus, astronomy or a new language from a screen in her pocket. These are real gifts, and I would not give them back. // But a gift can also be a habit, and a habit can become a cage. I am not asking anyone to throw their phone into the sea. I am asking for something smaller and harder: five minutes. Five minutes in line, or on the bus, with nothing in your hands. Let the mind go where it wants. It may get restless. It may complain. // Let it. Somewhere on the other side of that restlessness is the version of you that used to notice clouds.
+mc2: What is the central claim of "In Defense of Boredom"? | People should allow themselves moments of boredom because unstructured time helps the mind wander and create. | Phones should be banned. | Boredom is always harmful. | Pharmacies need shorter lines.
+mc2: In "In Defense of Boredom," why does the writer admit, "I was one of the thirteen"? | to avoid sounding superior and to build a connection with readers who share the habit | to brag about using a phone | to show the writer does not own a phone | to criticize the toddler
+mc2: How does "In Defense of Boredom" begin? | with a specific, observed anecdote that leads to a broader reflection | with a definition from a dictionary | with a list of statistics | with the conclusion
+mc3: In "In Defense of Boredom," how does the writer's treatment of the objection strengthen the argument? | The writer concedes phones' real benefits, then narrows the request to five minutes, making the claim reasonable and harder to dismiss. | The writer ignores the objection. | The writer says phones have no benefits. | The writer abandons the claim.
+mc2: In "In Defense of Boredom," what is the effect of the short sentences "The feed refreshes. The video autoplays."? | Their quick, repetitive rhythm imitates the constant stream of content that fills every pause. | They slow down the essay for a calm reflection. | They introduce a counterargument. | They provide statistics.
+mc2: In "In Defense of Boredom," what is the effect of the metaphor "a habit can become a cage"? | It suggests that something useful can trap us if we cannot stop. | It describes a real cage. | It praises habits. | It explains how phones are built.
+mc2: In "In Defense of Boredom," how strong is the evidence that wandering minds produce ideas? | moderate at best, since it relies on general references to researchers and anecdotes rather than specific studies | very strong, because it cites detailed data | nonexistent, because the writer gives no examples at all | irrelevant to the claim
+mc2: Which word best describes the tone of the conclusion of "In Defense of Boredom"? | gently encouraging | furious | mocking | indifferent
+wr3: Write a rhetorical analysis of "In Defense of Boredom." Explain the rhetorical situation, analyze at least three choices (such as the opening anecdote, the self-inclusion, syntax, the concession or the closing image) and evaluate their effectiveness for a general audience of phone users. Note any limits in the evidence. | Key points: speaker is a self-aware phone user writing to a general audience; purpose is to persuade readers to embrace brief boredom; the pharmacy count and "I was one of the thirteen" build ethos and connection; short sentences mimic the feed; the concession about phones' gifts and the modest "five minutes" request reduce resistance; the closing image of noticing clouds creates a hopeful emotional appeal; the evidence about creativity is general rather than specific.
+endpassage:
+mc1: The time, place and event that prompts a piece of writing is its | occasion | thesis | diction | conclusion
+mc2: Which phrase uses chiasmus? | "Eat to live, do not live to eat." | "We came, we saw, we won." | "And then and then and then." | "Bright and early."
+mc2: Which tone word best describes a respectful, admiring attitude? | reverent | sardonic | flippant | condescending
+mc2: An article includes a map showing that heat-related hospital visits are highest in neighborhoods with the fewest trees. What does the map add to the argument? | visual evidence of a pattern linking tree cover and heat illness | proof that trees cure illness | an emotional story | a counterargument
+mc3: A speech about water conservation is delivered during the third year of a severe drought. How does this context affect the speech's persuasiveness? | The timing makes the audience more receptive because the problem is urgent and visible. | It makes the speech less persuasive. | Context never affects persuasion. | It turns the speech into a comedy.
+
+unit: Narrative and college writing | W.11-12.3, W.11-12.4, W.11-12.5
+el: Offer a narrative planning map (moment, conflict, turning point, reflection) and model mentor sentences; allow students to draft key memories in their home language before writing in English.
+
+lesson: Narrative techniques: scene, dialogue and reflection | W.11-12.3
+practice:
+mc1: In a narrative, a moment shown in real time with action, dialogue and detail is a | scene | summary | thesis | citation
+hint: It is like a scene in a film.
+mc2: Which sentence uses dialogue to reveal character? | "You can borrow it," Grandpa said, "but bring it back with a story." | Grandpa lent me his camera. | Grandpa was generous. | The camera was old.
+hint: Which sentence lets the character's voice show who he is?
+mc2: Which sentence reflects on an experience rather than just reporting it? | Only later did I understand that losing that election taught me how to listen. | I lost the election in October. | The election was held in the gym. | My opponent won by six votes.
+hint: Reflection explains meaning.
+mc2: Which detail appeals to the sense of smell? | The hallway still smelled of chalk and floor wax. | The hallway was long. | The hallway was empty. | The hallway had lockers.
+hint: Which detail could you smell?
+sa2: Explain why strong personal narratives balance scenes with reflection. | Scenes make the experience vivid and let readers live it, while reflection explains what it meant and how the writer changed; without both, a narrative is either flat or lacks meaning.
+hint: What does each give the reader?
+quiz:
+passage: The Translator | When I was nine, I became my family's official translator. Nobody voted. It just happened, the way the oldest child in an immigrant family inherits a job no one applies for. // The first time I remember clearly was at the bank. The clerk, a woman with silver earrings, slid a form across the counter and said something about "overdraft protection." My father looked at me. I looked at the form. I did not know what an overdraft was, or what it needed protection from. // "She says it's for safety," I told him in Tagalog, because that seemed like a safe guess. // My father nodded and signed. // For years after that, I translated everything: parent-teacher conferences where I had to explain my own report card, doctor's appointments where I learned the word "cholesterol" before I learned long division, phone calls with the landlord about a leak that dripped into a pot on our kitchen floor all winter. I was good at it. I was also, I realize now, furious about it. Other kids went to the bank and waited in the car. // In eleventh grade, my father enrolled in an evening English class at the community college. He came home with flash cards held together by a rubber band and practiced at the kitchen table after his shift. One night he held up a card and read it slowly: "O-ver-draft." He looked up at me. "This," he said, in careful English, "is what you sign for me. At the bank. When you are nine." // I did not know what to say. He laughed, a little. "It was okay," he said. "You did good. Now I do it." // I had spent years believing I carried my family. That night I understood that they had also been carrying me, trusting a nine-year-old with words neither of us understood, and quietly working until I could set the job down.
+mc2: How does "The Translator" begin? | with a reflective statement that introduces the central experience | with dialogue from the bank clerk | with a description of the community college | with the father's English class
+mc2: In "The Translator," what does the scene at the bank reveal about the narrator's role? | The narrator was given adult responsibilities before understanding them. | The narrator worked at the bank. | The narrator's father spoke perfect English. | The narrator enjoyed math.
+mc2: In "The Translator," how does the paragraph beginning "For years after that" differ from the bank scene? | It summarizes many experiences quickly rather than slowing down for one moment. | It is told from the father's point of view. | It is written as a poem. | It contains the essay's climax.
+mc3: In "The Translator," why is the father's flash card reading "O-ver-draft" the turning point? | It reveals that he remembered the bank moment and has been working to take the burden back, changing the narrator's understanding. | It shows he failed his class. | It introduces a new conflict with the bank. | It shows he is angry with the narrator.
+mc2: In "The Translator," what does the detail "I was good at it. I was also, I realize now, furious about it" show? | the narrator's complex feelings, seen through adult reflection | that the narrator was never upset | that the narrator disliked the family | that the narrator lost the job
+mc2: In "The Translator," what insight does the final paragraph express? | The family had been supporting and trusting the narrator as much as the narrator supported them. | The narrator should never have translated. | Banks should provide translators. | The narrator plans to become a teacher.
+sa3: Analyze how the writer of "The Translator" uses a specific scene and a later reflection to show growth. Cite two details. | The bank scene, where the narrator guesses that overdraft protection is "for safety," shows a child overwhelmed by adult responsibility. Years later, the father's flash card and his words "You did good. Now I do it" lead the narrator to reflect that "they had also been carrying me," showing growth from resentment to understanding.
+
+lesson: Structuring a narrative: openings, turning points and endings | W.11-12.3, W.11-12.5
+practice:
+mc1: The moment in a narrative when the writer's understanding or situation changes is the | turning point | exposition | works cited | thesis
+hint: Something shifts here.
+mc2: A narrative opens in the middle of a key moment and then flashes back to explain it. What structure is this? | in medias res with a flashback | strict chronological order | a list | an argument
+hint: "In the middle of things."
+mc2: Which opening most effectively creates curiosity? | The day I accidentally set my chemistry teacher's notes on fire was also the day I decided to become a scientist. | I want to tell you about my life. | My name is Jordan and I am seventeen. | This essay is about science.
+hint: Which opening raises a question the reader wants answered?
+mc2: Which ending best avoids a cliche? | I still keep the burnt corner of those notes in my desk drawer, a reminder that mistakes can light the way. | And that is the end of my story. | In conclusion, I learned a lot. | Everything happens for a reason.
+hint: Which ending uses a specific image instead of a stock phrase?
+sa2: Explain why a narrative might end with an image rather than a direct statement of the lesson. | An image lets readers feel the meaning themselves and stays in memory, while a stated lesson can seem preachy or obvious.
+hint: Think about "show, don't tell."
+quiz:
+mc2: A college essay describes ten different activities briefly. What is the main structural problem? | It lacks focus on one meaningful experience with a clear arc. | It is too focused. | It has too much reflection. | It uses too much dialogue.
+mc2: Which structure would best fit a narrative about how a grandparent's recipe connects three generations? | braided sections that move between past and present, linked by the recipe | a numbered list of ingredients only | a persuasive essay with counterclaims | a lab report
+mc2: Where does reflection most often appear in a strong personal narrative? | throughout, especially after the turning point and in the ending | only in the title | never | only in the first sentence
+mc2: Which sentence signals a time shift clearly? | Three years earlier, in a different city, I had made the same promise. | I made a promise. | Promises are important. | The promise was kept.
+mc3: A writer's narrative builds suspense about a tryout but ends with "Then I went home." How should the writer revise the ending? | Show the outcome and reflect on what the experience meant. | Delete the tryout. | Add more description of the drive home. | End the story earlier, before the tryout.
+mc2: In a 650-word narrative, why should the writer focus on a short span of time? | It allows enough detail and reflection to make one moment vivid and meaningful. | Short spans are required by law. | It avoids having a turning point. | It makes the narrative shorter than 100 words.
+sa2: Write an opening sentence for a personal narrative about a time you changed your mind about someone. | I spent all of sophomore year avoiding Marcus Lee, right up until the night he pulled my bike out of a storm drain.
+
+lesson: Voice, precise language and sentence variety | W.11-12.3, L.11-12.3
+practice:
+mc1: The distinctive personality and style that comes through in a writer's words is | voice | meter | citation | thesis
+hint: It sounds like a particular person.
+mc2: Which sentence uses the most precise, vivid verb? | The dog bolted across the yard. | The dog went across the yard. | The dog moved across the yard. | The dog did a run across the yard.
+hint: Which verb shows exactly how the dog moved?
+mc2: Which revision varies sentence structure? | Rain hammered the roof. Inside, by candlelight, we waited. | It rained. We waited. It was dark. We were inside. | It rained and we waited and it was dark and we were inside. | Rain rain rain.
+hint: Look for different sentence lengths and openings.
+mc2: Which phrase relies on a cliche and should be revised? | my heart was beating a mile a minute | my pulse thudded in my ears | my hands left damp prints on the desk | I counted the ceiling tiles to stay calm
+hint: Which phrase have you heard many times before?
+sa2: Revise this sentence to add precise detail and voice: "The room was messy." | My brother's room looked like a laundry basket had exploded, with one sock dangling from the ceiling fan like a flag of surrender.
+hint: Use specific details and a comparison.
+quiz:
+mc2: Which sentence shows rather than tells that the narrator was proud? | I folded the certificate carefully and carried it home in both hands, as if it might break. | I was very proud. | Pride is a feeling. | Everyone was proud of me.
+mc2: Which sentence uses the active voice for a stronger narrative? | I dropped the trophy. | The trophy was dropped by me. | The trophy got dropped. | Dropping of the trophy occurred.
+mc2: Which word choice best fits a reflective, thoughtful voice? | Looking back, I see that the move gave me more than it took. | The move was, like, whatever. | Moving was super bad. | The move was the move.
+mc2: Which revision removes unnecessary words? | I realized I was wrong. | I came to the realization that I was in fact wrong. | I realized that I was, in my opinion, wrong. | It was realized by me that I was wrong.
+mc3: A writer uses the same sentence pattern, subject then verb, in every sentence of a paragraph. What is the most likely effect, and how should it be fixed? | The paragraph sounds monotonous; vary openings, lengths and structures. | It sounds exciting; add more of the same. | It is perfect; change nothing. | It is confusing; remove all verbs.
+mc2: Which sentence uses a fragment intentionally for emphasis in a narrative? | I opened the envelope. Rejected. | I opened the envelope and read it. | The envelope was opened. | I opened the envelope, which was white.
+sa2: Explain how a writer's voice can make a college essay memorable. | A genuine voice shows the writer's personality, humor and way of thinking, so admissions readers feel they have met a real person rather than read a generic list of accomplishments.
+
+lesson: Revising and adapting writing for purpose and audience | W.11-12.4, W.11-12.5
+practice:
+mc1: Writing that is suited to its task, purpose and audience is | appropriate | random | informal always | lengthy
+hint: Think about fitting the situation.
+mc2: Which email greeting is most appropriate for a teacher you are asking for a recommendation? | Dear Ms. Alvarez, | Hey! | Yo Ms. A | Sup,
+hint: Formal situations call for formal greetings.
+mc2: Which subject line is most effective for an email requesting a job interview? | Application for Summer Lifeguard Position - Maya Chen | hi | Please read!!! | Question
+hint: Which subject line tells the reader exactly what the email is about?
+mc2: When revising a draft, which question should a writer ask first? | Does each part support my main purpose? | Are all my commas perfect? | Is my font interesting? | Is the essay long enough?
+hint: Big ideas before small details.
+sa2: Explain the difference between global revision and local editing. | Global revision changes big elements such as focus, organization and development; local editing corrects sentence-level issues such as grammar, punctuation and word choice.
+hint: Think of the whole essay versus individual sentences.
+quiz:
+mc2: A student writes a cover letter that begins, "I really need this job because I want money." Which revision is most effective? | I am excited to apply for the camp counselor position because I enjoy working with children and have two years of tutoring experience. | I need money so please hire me. | Hire me. | I am applying for a job somewhere.
+mc2: Which sentence is most appropriate for a scholarship essay? | Volunteering at the food bank taught me how much a single meal can change someone's day. | Volunteering was cool I guess. | I did some stuff at a food bank. | Food banks are a thing.
+mc2: A peer reviewer says your narrative's middle section drags. What is the best revision strategy? | cut or summarize less important details so the key moments stand out | add more background to every paragraph | change the font | remove the ending
+mc2: Which closing is most appropriate for a professional email? | Thank you for your time and consideration. Sincerely, Maya Chen | Later! | k bye | Whatever works
+mc3: A student adapts a personal narrative written for English class into a college application essay with a 650-word limit. What is the best approach? | Keep the most meaningful moment, sharpen the reflection about growth and cut details that do not reveal character. | Add more events to show everything she has done. | Remove all reflection. | Copy the original without changes.
+mc2: Reading a draft aloud during revision mainly helps a writer | hear awkward sentences, repetition and errors | make the essay longer | avoid feedback | skip editing
+sa2: Rewrite this sentence for a formal email to a principal: "Can u let us use the gym Friday for a club thing?" | Would it be possible for the Robotics Club to use the gym this Friday afternoon for a practice session?
+
+lesson: Unit review | W.11-12.3, W.11-12.4, W.11-12.5
+practice:
+mc1: In a narrative, the writer's thoughts about what an experience meant are called | reflection | exposition | citation | dialogue
+hint: The writer "looks back" on the event.
+mc2: Which sentence shows rather than tells? | My voice cracked on the first note, and I gripped the microphone stand. | I was nervous. | It was scary. | I had feelings.
+hint: Which sentence creates a picture?
+mc2: Which detail would best slow the pace at a key moment? | a close, sensory description of the seconds before the results were announced | a sentence skipping ahead a year | a list of every class the writer took | a summary of the whole summer
+hint: Detail stretches time.
+mc2: Which revision is the most concise? | I decided to apologize. | I made the decision that I would go ahead and apologize. | I decided that I would be making an apology. | An apology was decided on by me.
+hint: Remove extra words.
+sa2: Explain why a specific, small moment often makes a stronger personal essay than a broad summary of an achievement. | A specific moment lets readers see the writer's character in action and feel the experience, while a broad summary sounds like a resume and reveals little about who the writer is.
+hint: Which shows more about who you are?
+quiz:
+mc1: A personal essay for college applications should | reveal the writer's character through a specific experience | list every achievement | copy a sample essay | avoid any reflection
+mc2: Which opening is most engaging for a personal narrative? | The smell of burnt toast still reminds me of the morning everything changed. | I was born in 2008. | This essay is about me. | My name is Sam.
+mc2: Reflection in a narrative means | explaining what the experience meant and how you changed | describing the weather | listing events | summarizing the plot
+mc2: Which technique shows rather than tells? | My hands trembled as I unfolded the letter. | I was nervous. | It was a bad day. | I felt things.
+ex2: Explain the difference between summarizing an experience and narrating it. | Summarizing reports what happened; narrating recreates it with scenes, details and reflection.
+mc2: Which opening line best creates curiosity in a personal narrative? | I never meant to adopt a goat. | I am going to tell you about my summer. | This is my essay. | Summer is a season.
+mc2: Which sentence best reflects on growth? | I used to think strength meant never asking for help; now I know it often means asking first. | I asked for help. | Help is good. | My friend helped me.
+mc3: A narrative about a family move includes a detailed scene at the airport, but no reflection on how the move changed the writer. What is missing? | the meaning of the experience, which reflection would provide | more dialogue at the airport | a works cited page | a counterclaim
+
+test:
+mc2: A well-structured event sequence builds toward | a meaningful outcome or realization | random events | a list of facts | a new topic
+mc2: Which revision best tightens a sentence? | "I decided to quit." for "I came to the decision that I would quit." | adding adjectives | repeating the subject | making it longer
+mc2: Pacing in a narrative is controlled by | how much detail is given to each moment | the font size | the title | the margins
+mc3: Which ending best concludes a narrative about learning from failure? | Losing that race taught me that my worth isn't measured in finish times. | Then I went home. | The race was in May. | The end.
+sa2: Write a narrative paragraph that uses sensory details and dialogue to slow down a key moment. | A paragraph with dialogue and sensory details focused on one moment.
+sa2: Write a reflective conclusion for a narrative about a challenge you overcame. | A conclusion that explains significance and growth.
+task3: Write a personal narrative (about 650 words) suitable for a college application about an experience that changed your perspective. Use a compelling opening, well-paced scenes with dialogue and sensory detail, a clear turning point and thoughtful reflection. | Compelling, well-structured narrative with vivid technique and insightful reflection, polished language. | Clear narrative with good detail and reflection, minor issues. | Narrative with limited development or reflection. | Little writing.
+passage: Second Chair | For three years, I played second chair violin in the school orchestra, directly behind a girl named Seo-yeon who played first. I spent those years looking at the back of her head. // I knew that head well. I knew the way she tilted it when the conductor gave a tempo, the way her ponytail swung during fast passages, the way she went still before a solo, as if the whole room had become glass. I also knew, with the certainty of a fifteen-year-old, that I was better than she was. I practiced more. I listened to more recordings. The only reason she sat in front of me, I told myself, was that she had auditioned first. // In the spring of my junior year, our conductor announced that the first chair would be decided by blind audition. We would play behind a screen. He would not know who was who. // I practiced until my fingertips ached. On the day of the audition, I played the piece perfectly. Every note was in tune. Every rhythm was exact. I walked out from behind the screen feeling like I had already won. // Then Seo-yeon played. // I had heard her play hundreds of times, but always from behind, always blended into the section. Alone, behind the screen, she played the same notes I had played, but something in them breathed. She slowed down where the music seemed to ask a question. She let one long note fade until it was almost nothing, and the whole room leaned toward it. // She kept first chair. I did not argue. // That night I listened to my own recording. It was correct. It was also, I realized, empty. I had been playing to prove something. She had been playing to say something. // The next week, I asked Seo-yeon if she would practice with me. She looked surprised, then smiled. "Only if you teach me how you get your shifts so clean," she said. // We practiced together every Thursday until graduation. I still sat behind her. But by then I had stopped looking at the back of her head and started listening to the music.
+mc2: How does the writer of "Second Chair" open the narrative? | with a specific situation and image, sitting behind Seo-yeon and looking at the back of her head | with a dictionary definition of music | with the ending of the story | with a list of awards
+mc2: In "Second Chair," what does the narrator believe at the beginning? | that she is a better violinist than Seo-yeon | that she should quit orchestra | that Seo-yeon is her best friend | that the conductor is unfair to everyone
+mc2: In "Second Chair," why does the writer use the one-line paragraph "Then Seo-yeon played."? | to create a pause that signals a turning point | to summarize the audition | to introduce a new character | to describe the conductor
+mc2: In "Second Chair," which detail best shows rather than tells the quality of Seo-yeon's playing? | "She let one long note fade until it was almost nothing, and the whole room leaned toward it." | "She kept first chair." | "I knew that head well." | "We practiced together every Thursday."
+mc3: In "Second Chair," what is the significance of the contrast "I had been playing to prove something. She had been playing to say something."? | It expresses the narrator's central realization that music, and effort, should communicate rather than compete. | It shows the narrator still thinks she is better. | It explains the audition rules. | It describes their practice schedule.
+mc2: In "Second Chair," how does Seo-yeon's reply, "Only if you teach me how you get your shifts so clean," affect the narrative? | It shows mutual respect and turns rivalry into a partnership. | It shows Seo-yeon is rude. | It ends their friendship. | It reveals Seo-yeon cheated.
+mc2: In "Second Chair," how does the ending connect to the opening? | It returns to the image of the back of Seo-yeon's head to show how the narrator has changed. | It introduces a new setting with no connection. | It repeats the first paragraph word for word. | It describes a different orchestra.
+mc2: Which phrase from "Second Chair" shows the narrator's adult reflection on her younger self? | "with the certainty of a fifteen-year-old" | "We would play behind a screen." | "Every rhythm was exact." | "She looked surprised, then smiled."
+wr3: Write an analysis of "Second Chair" as a model college essay. Explain how the writer uses structure (opening image, turning point and circular ending), narrative techniques (pacing, sensory detail, dialogue) and reflection to reveal character and growth. Cite at least four details. | Key points: the opening image of the back of Seo-yeon's head establishes rivalry; "with the certainty of a fifteen-year-old" signals reflection; the blind audition and one-line paragraph "Then Seo-yeon played" create a turning point; sensory detail ("the whole room leaned toward it") shows the difference; the realization "to prove something... to say something" states growth; Seo-yeon's dialogue turns rivalry into partnership; the circular ending shows change from looking to listening.
+endpassage:
+mc1: A narrative that recreates an experience through scenes, detail and reflection is different from a summary because it | shows the experience so readers live it | only lists events | avoids detail | has no point of view
+mc2: Which sentence best uses sensory detail? | The gym smelled of rubber and popcorn, and the bleachers shook with stomping feet. | The gym was full. | The game was exciting. | We went to the game.
+mc2: Which revision best tightens "Due to the fact that I was late, I missed the bus"? | Because I was late, I missed the bus. | Due to the fact of my lateness, the bus was missed. | I was late and due to that fact I missed the bus. | The bus was missed by me due to lateness.
+mc2: In a college essay, why is it important to show growth or reflection? | Readers want to understand how the experience shaped the writer's character and thinking. | Reflection makes the essay longer. | Admissions readers dislike stories. | Growth is not important.
+mc3: A student's college essay describes winning a state championship in vivid detail but never explains what she learned or how she changed. What is the best advice? | Add reflection that connects the experience to her values or growth. | Add more details about the score. | Remove the championship. | Write about a different sport.
+

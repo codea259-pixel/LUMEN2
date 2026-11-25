@@ -1,0 +1,647 @@
+# Grade 10 ELA, format 2. Units, standards, skills and the original Unit review items are carried over verbatim
+# from the format-1 grade 10 section of ela.txt. Each unit adds four lessons; the Unit review lesson comes last.
+# Its quiz keeps the original quiz items (mc 1-4 and the ex item) and its unit test keeps the original test items
+# (mc 5-8, both sa items and the task) in their original order, followed by new items. All new passages and
+# questions are original; public-domain excerpts are marked with author and date.
+@subject ela
+@grade 10
+about: Tenth grade English deepens analysis of how authors draw on and transform source material, how drama and poetry create meaning through form, how arguments use or misuse reasoning, and how to write sustained analytical and argumentative essays.
+std: RL.9-10.4 | Determine the meaning of words and phrases, including figurative and connotative meanings, and analyze the cumulative impact of word choices on tone.
+std: RL.9-10.7 | Analyze the representation of a subject or key scene in two different artistic mediums.
+std: RL.9-10.9 | Analyze how an author draws on and transforms source material in a specific work.
+std: RI.9-10.8 | Delineate and evaluate the argument, assessing whether reasoning is valid and identifying false statements and fallacious reasoning.
+std: W.9-10.2 | Write informative and explanatory texts to examine and convey complex ideas clearly and accurately.
+std: SL.9-10.4 | Present information, findings and evidence clearly, concisely and logically.
+
+unit: Literary devices and word choice | RL.9-10.4, L.9-10.5 | ela_10
+el: Build a connotation scale for key words (for example, thrifty, frugal, cheap, stingy) and read each poem aloud twice, once for meaning and once for sound, before answering.
+
+lesson: Denotation, connotation and tone | RL.9-10.4, L.9-10.5
+practice:
+mc1: The dictionary meaning of a word is its | denotation | connotation | tone | imagery
+hint: Think "d" for dictionary.
+mc2: Which word has the most positive connotation? | confident | arrogant | conceited | cocky
+hint: All four describe someone sure of himself. Which one is a compliment?
+mc2: A narrator describes a house as "a cramped little box." What tone does this create? | negative and dismissive | warm and loving | neutral and factual | excited and joyful
+hint: How does "cramped" feel compared with "cozy"?
+mc2: Which pair of words shows how connotation can change tone? | youthful and childish | big and large | quick and fast | begin and start
+hint: Which pair has one word that sounds like praise and one that sounds like criticism?
+sa2: Explain how replacing "walked" with "trudged" in "She walked home after the game" changes the meaning and tone. | "Trudged" suggests slow, heavy steps, so the sentence now implies she is tired or disappointed, perhaps because her team lost; the tone becomes gloomy.
+hint: Picture how someone who trudges moves and feels.
+quiz:
+passage: Moving Day | The apartment on Fulton Street was smaller than our old one, everyone agreed, though everyone used different words. // My father called it "efficient." He walked from the kitchen to the living room in four steps and announced that we would save hours of our lives that we used to waste walking around. My little brother called it "a closet with a stove." My mother did not call it anything. She stood at the window and looked down at the street, where a man was selling elotes from a cart and two girls were drawing a hopscotch board in pink chalk. // I called it nothing out loud, but in my head I called it temporary. I unpacked only one box. I left my posters rolled up in a tube. I did not learn the names of the neighbors, and when the woman across the hall said good morning, I nodded and looked at my shoes. // In October the rains came, and the old radiator under my window began to knock and hiss like an old man clearing his throat. I hated it at first. Then, on the coldest night of the month, I found myself sitting beside it with my homework, my back against its warm ribs, listening to the street below: a bus sighing at the corner, someone laughing, music drifting up from the restaurant downstairs. // The next morning, the woman across the hall said good morning. I said it back. Her name, it turned out, was Mrs. Ferreira, and she made the best rice pudding on the block. // That afternoon I unrolled my posters and hung them up. The walls were close together, it was true. But close, I was beginning to think, was not the same as small.
+mc2: In "Moving Day," what do the different words the family uses for the apartment reveal? | Each family member has a different attitude toward the new home. | The family cannot agree on the apartment's address. | The apartment is very large. | The family plans to move again soon.
+mc2: In "Moving Day," what is the connotation of the father's word "efficient"? | positive, suggesting the small size is a practical advantage | negative, suggesting the apartment is dirty | neutral, simply describing the address | angry, suggesting he wants to leave
+mc2: In "Moving Day," what tone is created by the brother's phrase "a closet with a stove"? | humorous and mocking | respectful and formal | frightened and anxious | peaceful and calm
+mc3: In "Moving Day," how does the narrator's description of the radiator change over the story? | At first it is an annoying noise, but later its "warm ribs" become a comfort, showing the narrator's changing attitude. | It stays a symbol of everything the narrator hates. | It breaks and is replaced. | It is never mentioned again after October.
+mc2: In "Moving Day," the narrator privately calls the apartment "temporary." Which action best shows this attitude? | The narrator unpacks only one box and leaves the posters rolled up. | The narrator sits by the radiator. | The narrator says good morning to Mrs. Ferreira. | The narrator watches the elote cart.
+mc2: In "Moving Day," what does the final sentence, "close... was not the same as small," suggest? | The narrator now sees the apartment's closeness as a source of connection rather than a limitation. | The narrator still hates the apartment. | The narrator wants a bigger apartment. | The narrator measured the walls.
+sa3: In "Moving Day," analyze how the author uses word choice to show the narrator's change in attitude. Cite two words or phrases. | Early on, the narrator thinks of the apartment as "temporary" and refuses to unpack. Later, the radiator's "warm ribs" and the street sounds, like a bus "sighing," are described gently, and the narrator decides "close" is not the same as "small," showing a shift from resistance to belonging.
+
+lesson: Figurative language in poetry | L.9-10.5, RL.9-10.4
+practice:
+mc1: A comparison of two unlike things without using "like" or "as" is a | metaphor | simile | hyperbole | pun
+hint: "Life is a journey" is an example.
+mc2: In "The classroom was a zoo," what is being suggested about the classroom? | It was loud and chaotic. | It had animals in it. | It was very quiet. | It was outdoors.
+hint: Think of the qualities a zoo is known for.
+mc2: Which line contains personification? | The moon kept watch over the sleeping town. | The moon was full and bright. | The moon was as round as a coin. | The moon is about a quarter the width of Earth.
+hint: Which line gives the moon a human action?
+mc2: A poem compares grief to an ocean throughout all of its stanzas. This is | an extended metaphor | a single simile | onomatopoeia | an allusion
+hint: The comparison continues through the whole poem.
+sa2: Write a metaphor that describes courage, and explain what your comparison suggests. | Courage is a match struck in a dark room. The comparison suggests that courage is small but powerful and helps others see a way forward.
+hint: Choose something concrete that shares a quality with courage.
+quiz:
+passage: "Hope" is the thing with feathers | This poem by Emily Dickinson was published in 1891, after her death. Dickinson often used dashes, which appear here as hyphens. // "Hope" is the thing with feathers - / That perches in the soul - / And sings the tune without the words - / And never stops - at all - // And sweetest - in the Gale - is heard - / And sore must be the storm - / That could abash the little Bird / That kept so many warm - // I've heard it in the chillest land - / And on the strangest Sea - / Yet - never - in Extremity, / It asked a crumb - of Me. // - Emily Dickinson (published 1891)
+mc1: In "'Hope' is the thing with feathers," hope is compared to | a bird | a storm | a sea | a song with words
+mc2: What kind of figurative language does Dickinson use throughout "'Hope' is the thing with feathers"? | an extended metaphor | a single hyperbole | onomatopoeia only | an allusion to a myth
+mc2: In "'Hope' is the thing with feathers," what does the line "And never stops - at all -" suggest about hope? | Hope is constant and enduring. | Hope is easily silenced. | Hope only appears in good times. | Hope is noisy and annoying.
+mc2: In "'Hope' is the thing with feathers," what does the "Gale," or storm, most likely represent? | hard times or suffering | a pleasant day | the poet's garden | a real weather report
+mc3: In "'Hope' is the thing with feathers," what is the meaning of the final two lines, "Yet - never - in Extremity, / It asked a crumb - of Me"? | Hope gives comfort without asking anything in return, even in the worst times. | Hope is always hungry. | The speaker refuses to feed birds. | Hope disappears in extreme conditions.
+mc2: In "'Hope' is the thing with feathers," the phrase "the chillest land" and "the strangest Sea" suggest that hope | can be found in the harshest and most unfamiliar places | lives only near the ocean | dislikes cold weather | is a world traveler
+sa3: In "'Hope' is the thing with feathers," explain how the bird metaphor helps readers understand the poet's view of hope. Cite two details. | The bird "perches in the soul" and "sings the tune without the words," suggesting hope lives inside us and comforts without explanation. It is heard "sweetest - in the Gale," meaning hope matters most in hard times, and it never "asked a crumb," showing it gives freely.
+
+lesson: Symbolism and imagery | RL.9-10.4, RL.9-10.2
+practice:
+mc1: Language that appeals to the five senses is | imagery | irony | dialogue | a flashback
+hint: Think of the word "image."
+mc2: Which sentence uses the strongest imagery? | The bread came out of the oven golden and crackling, filling the kitchen with a warm, yeasty smell. | The bread was baked. | We had bread. | The bread was good.
+hint: Which sentence lets you see, hear and smell the bread?
+mc2: In a story, a character keeps her late mother's watch, which has stopped at 3:15. What might the stopped watch symbolize? | her grief and the feeling that time stopped when her mother died | her love of jewelry | her habit of being late | the time school ends
+hint: What could a frozen moment represent emotionally?
+mc2: How can a reader tell that an object in a story might be a symbol? | It is repeated, emphasized or connected to important moments and emotions. | It is mentioned once in passing. | It is the largest object in the story. | It appears in the title of a different book.
+hint: Authors draw attention to symbols.
+sa2: Explain the difference between an object that is simply a detail and an object that works as a symbol. | A detail adds realism; a symbol carries a larger meaning, such as an idea or emotion, and usually appears at important moments in the story.
+hint: Does the object stand for something beyond itself?
+quiz:
+passage: The Jacaranda | When Grandpa Tomas planted the jacaranda in our front yard, it was a stick with three leaves, and I was a baby in a car seat on the porch. My mother says he told her, "When this tree blooms, the girl will be old enough to climb it." // For years the tree did nothing interesting. It grew. It dropped leaves. Grandpa watered it every evening with a dented green watering can, talking to it in Spanish as if it were a slow but promising student. // The spring I turned eight, it bloomed. Overnight the branches filled with purple flowers, so bright they seemed to hum. Grandpa lifted me onto the lowest branch, and I sat there feeling like I owned the sky. The flowers fell on the sidewalk and made a purple carpet, and the neighbors complained about the mess, and Grandpa just laughed. // He died the winter I turned fifteen. That spring, I watched the tree from my bedroom window, waiting. It seemed impossible that it would bloom without him. Part of me hoped it would not. It did not seem right for something to be beautiful that year. // In April it bloomed anyway, the same impossible purple. I was angry at it for a whole week. // Then one evening I found the dented green watering can in the garage. I filled it at the hose and carried it out to the tree. I did not know what to say, so I said what he used to say, in Spanish, the way you talk to a slow but promising student. // The flowers fell around me as I watered. They landed in my hair and on my shoulders and on the warm sidewalk, and for the first time since winter, I let them.
+mc2: In "The Jacaranda," what does the tree most likely symbolize? | the narrator's bond with her grandfather and the way life and love continue | the neighbors' complaints | the narrator's dislike of gardening | the change of seasons only
+mc2: In "The Jacaranda," which phrase is an example of imagery that appeals to sight? | "the branches filled with purple flowers, so bright they seemed to hum" | "He died the winter I turned fifteen." | "My mother says he told her" | "I did not know what to say"
+mc2: In "The Jacaranda," why is the narrator angry when the tree blooms the spring after her grandfather dies? | It feels wrong to her that something can be beautiful when she is grieving. | The flowers make a mess on the sidewalk. | She is allergic to the flowers. | She wanted a different kind of tree.
+mc2: In "The Jacaranda," what does the dented green watering can represent when the narrator uses it? | her decision to carry on her grandfather's care and love | her plan to sell the tree | a new hobby unrelated to her grandfather | her anger at her grandfather
+mc3: In "The Jacaranda," what does the final phrase, "for the first time since winter, I let them," suggest? | She is beginning to accept her loss and allow beauty and comfort back into her life. | She is too tired to brush the flowers away. | She has decided to cut down the tree. | She no longer cares about her grandfather.
+mc2: In "The Jacaranda," how does the repeated phrase "a slow but promising student" connect the beginning and end? | It shows the narrator now speaking to the tree in her grandfather's words, continuing his tradition. | It shows the narrator struggling in school. | It describes the narrator's teacher. | It proves the tree is unhealthy.
+sa3: In "The Jacaranda," explain how the author uses the tree as a symbol to develop a theme about grief. Cite two details. | The tree was planted by Grandpa for the narrator and blooms when she is eight, linking it to their bond. When it blooms "anyway" after his death, she is angry, but watering it with his can and speaking his words shows that love continues, suggesting that grief can turn into carrying on what we loved.
+
+lesson: Sound devices and the cumulative impact of word choice | RL.9-10.4, L.9-10.5
+practice:
+mc1: The repetition of vowel sounds in nearby words, as in "the light of the fire is a sight," is | assonance | alliteration | onomatopoeia | consonance
+hint: Listen for the repeated "i" sound.
+mc2: Which line contains onomatopoeia? | The bacon sizzled and popped in the pan. | The bacon was ready. | The bacon was as thin as paper. | Breakfast is my favorite meal.
+hint: Which words imitate a sound?
+mc2: Harsh consonant sounds such as k, t and g in a line of poetry often create | a tense or violent feeling | a soft, peaceful feeling | a rhyme scheme | a flashback
+hint: Read "cracked, kicked and clattered" aloud. How does it feel?
+mc2: What does "cumulative impact" of word choice mean? | the combined effect of many word choices working together across a text | the meaning of a single word | the number of words in a poem | the dictionary definition of a word
+hint: "Cumulative" means building up over time.
+sa2: Write a sentence about rain that uses alliteration and explain the effect of the repeated sound. | "Soft, steady showers slid down the slanted roof." The repeated "s" sound imitates the gentle hiss of rain and creates a calm mood.
+hint: Choose a sound that matches the feeling you want.
+quiz:
+passage: The Eagle | This short poem by Alfred, Lord Tennyson was published in 1851. // He clasps the crag with crooked hands; / Close to the sun in lonely lands, / Ring'd with the azure world, he stands. // The wrinkled sea beneath him crawls; / He watches from his mountain walls, / And like a thunderbolt he falls. // - Alfred, Lord Tennyson (1851)
+mc1: Which sound device appears in "He clasps the crag with crooked hands"? | alliteration | onomatopoeia | free verse | an oxymoron
+mc2: In "The Eagle," what figurative language is used in "crooked hands"? | personification, giving the eagle's claws a human quality | a simile comparing the eagle to a thunderbolt | hyperbole about the eagle's size | an allusion to a myth
+mc2: In "The Eagle," the simile "like a thunderbolt he falls" suggests that the eagle's dive is | sudden, swift and powerful | slow and gentle | clumsy and accidental | quiet and peaceful
+mc2: In "The Eagle," why does the sea seem "wrinkled" and seem to "crawl"? | The eagle is so high that the waves look small and slow from above. | The sea is drying up. | The sea is very old. | The eagle is swimming.
+mc3: In "The Eagle," what is the cumulative effect of the words "lonely," "close to the sun," "ring'd with the azure world" and "mountain walls"? | They make the eagle seem isolated, majestic and almost like a king above the world. | They make the eagle seem weak and frightened. | They describe a crowded city. | They show the eagle is lost.
+mc2: What is the rhyme pattern in each stanza of "The Eagle"? | all three lines in a stanza rhyme with each other | no lines rhyme | only the first and third lines rhyme | every line rhymes with the title
+sa3: In "The Eagle," analyze how Tennyson's sound devices and word choices create a contrast between the first and second stanzas. | The first stanza's hard "c" alliteration in "clasps the crag with crooked hands" and the still word "stands" create a sense of strength and stillness. The second stanza moves from watching to the sudden "like a thunderbolt he falls," so the poem shifts from calm power to explosive action.
+
+lesson: Unit review | RL.9-10.4, L.9-10.5
+practice:
+mc1: A word that imitates the sound it names, such as "buzz," is an example of | onomatopoeia | alliteration | metaphor | irony
+hint: Say the word aloud. Does it sound like what it means?
+mc2: Which word choice creates the most peaceful mood? | The lake lay still beneath a hush of fog. | The lake churned under a slashing wind. | The lake was a lake. | The lake roared at the shore.
+hint: Which words suggest quiet and calm?
+mc2: "I could eat a horse" is an example of | hyperbole | personification | simile | understatement
+hint: Is the speaker being literal?
+mc2: A writer repeats the image of a locked gate in a story about a family that cannot talk about its problems. The gate most likely symbolizes | the family's emotional barriers | home security | a new house | the setting of the story
+hint: What idea does the gate share with the family's problem?
+sa2: Explain how connotation can affect the way readers feel about a character. Use an example. | Calling a character "thrifty" makes her seem wise with money, while calling her "stingy" makes her seem selfish, so the word shapes readers' judgment.
+hint: Compare two words with the same basic meaning.
+quiz:
+mc1: "Jumbo shrimp" is an example of | oxymoron | simile | hyperbole | allusion
+mc1: The repetition of initial consonant sounds is | alliteration | assonance | onomatopoeia | rhyme
+mc2: A symbol is | an object or image that represents a larger idea | a direct comparison | an exaggeration | a type of rhyme
+mc2: Which word choice creates the most ominous tone? | The shadows crept closer. | The shadows were present. | Shade was near. | It was a little dark.
+ex2: Explain how connotation differs from denotation and why it matters for tone. | Denotation is the dictionary meaning; connotation is the feelings attached, which shape tone.
+mc2: Which phrase uses an oxymoron? | bittersweet ending | bright red apple | very tired dog | long, long road
+mc2: Which line uses assonance? | The rain in Spain falls mainly on the plain. | Peter picked a peck of peppers. | Boom went the drum. | The dog ran fast.
+mc3: A story describes a character's office first as "bright and orderly," then "cluttered," and finally "dark and silent" as her business fails. What is the cumulative effect of these descriptions? | They mirror her decline and build a mood of loss. | They show she enjoys decorating. | They show the business is succeeding. | They have no connection to the plot.
+
+test:
+mc2: Understatement in "It's just a scratch" about a deep wound creates | irony or humor | rhyme | a setting | suspense only
+mc2: An extended metaphor is | a comparison developed over several lines or a whole work | a single word | a list | a fact
+mc2: Which sentence uses synecdoche? | All hands on deck. | The sun smiled. | She is as fast as light. | Boom!
+mc3: A poem repeatedly describes a closed door in darker terms as it goes on. What is the cumulative effect? | It builds a sense of isolation or loss | It shows the poet likes doors | It has no effect | It is a list of colors
+sa2: Analyze how two word choices in a passage you studied contribute to its tone. | Quotes two words, explains connotations and their effect on tone.
+sa2: Explain what a symbol represents in a work you read and how it develops meaning. | Names the symbol, what it represents and how its meaning develops.
+task3: Analyze a poem provided by your teacher. Write an essay explaining how the poet's figurative language, word choices and use of a central symbol work together to create tone and convey meaning. Cite at least four lines. | Insightful analysis of how devices work together, precise discussion of tone and meaning, four or more cited lines. | Clear analysis of devices with three citations. | Identifies devices with little analysis. | Little correct work.
+passage: The Red Bicycle | The bicycle hung on two hooks in the garage, red paint faded to the color of old brick, its tires soft as overripe fruit. It had belonged to my mother when she was my age. She had ridden it, she said, from one end of Stockton to the other, delivering newspapers at dawn before the heat came up off the pavement. // I was thirteen and had never learned to ride. Every summer my mother offered to teach me, and every summer I found a reason not to. I was afraid of falling, but I was more afraid of my mother watching me fall. She was good at everything she tried. I was not. // The summer my mother lost her job at the cannery, she stopped offering. She sat at the kitchen table in the mornings with the newspaper spread open to the job listings, circling ads with a red pen until the page looked bruised. The house grew quiet in a way I did not like. // One evening, without telling anyone, I took the bicycle down from its hooks. I pumped the tires until they were tight as drums. I wiped the dust from the seat. Then I walked it to the empty church parking lot at the end of our street and climbed on. // I fell. I fell eleven times. My knees were scraped raw and my palms stung, and the setting sun turned the asphalt the same faded red as the bike. On the twelfth try, the wheels caught, and for three wobbling, glorious seconds, I was moving. // When I came home, my mother was standing on the porch. She had seen everything. I waited for her to say something about my form, my balance, the way I steered. // Instead, she came down the steps, took my scraped hands in hers and looked at them for a long time. // "Tomorrow," she said, "I'll come with you." // The next morning, she circled two more job listings. Then she put down the red pen and walked with me to the parking lot.
+mc2: In "The Red Bicycle," what does the bicycle most likely symbolize? | the connection between mother and daughter and the courage to keep going after falling | the family's wealth | the narrator's dislike of exercise | the city of Stockton
+mc2: In "The Red Bicycle," the simile "tires soft as overripe fruit" suggests that the bicycle | has been neglected for a long time | is brand new | is made of fruit | belongs to the neighbors
+mc2: In "The Red Bicycle," what does the description of the job listings page that "looked bruised" convey? | the mother's frustration and the painful effort of her search | that the newspaper was old | that the mother likes the color red | that the narrator damaged the paper
+mc2: In "The Red Bicycle," why has the narrator avoided learning to ride? | She is afraid of failing in front of her mother, who is good at everything. | She does not like the color red. | She has no place to ride. | Her mother refused to teach her.
+mc3: In "The Red Bicycle," how does the narrator's decision to learn to ride connect to her mother's situation? | The narrator models persistence through failure while her mother struggles to find work, and her effort seems to lift her mother's spirits. | The narrator wants to sell the bike to help pay bills. | The narrator is trying to get a newspaper route. | It has no connection to her mother's situation.
+mc2: In "The Red Bicycle," which phrase contains imagery that connects the setting to the bicycle? | "the setting sun turned the asphalt the same faded red as the bike" | "I was thirteen and had never learned to ride." | "She had seen everything." | "Tomorrow, I'll come with you."
+mc2: In "The Red Bicycle," what is the tone of the phrase "three wobbling, glorious seconds"? | joyful and triumphant despite the imperfection | bitter and angry | bored and indifferent | fearful and anxious
+mc2: In "The Red Bicycle," what does the mother putting down "the red pen" in the final paragraph suggest? | She is taking a break from her worries to support her daughter. | She has given up looking for work forever. | She is angry at the narrator. | She ran out of ink.
+wr3: Write an essay analyzing how the author of "The Red Bicycle" uses symbolism, imagery and word choice to develop a theme about persistence and family. Include a precise thesis and cite at least three details from the passage. | Key points: the faded bike, once the mother's, symbolizes inherited strength and connection; imagery such as "tires soft as overripe fruit" and the "bruised" listings page shows neglect and struggle; the narrator falls "eleven times" before "three wobbling, glorious seconds"; the mother takes her "scraped hands" and joins her; theme: persistence through failure, shared within a family, gives people strength in hard times.
+endpassage:
+mc1: The attitude a writer takes toward a subject is the | tone | mood | plot | setting
+mc2: Which sentence uses a simile? | His voice was as rough as sandpaper. | His voice was sandpaper. | His voice was loud. | He has a strong voice.
+mc2: Which word would make "The old house stood at the end of the road" feel most threatening? | loomed | rested | sat | waited
+mc2: Which sentence contains an understatement? | After the hurricane flattened the town, the mayor said, "We've had a bit of wind." | The hurricane flattened the town. | The hurricane was the worst in history. | The town was rebuilt after the hurricane.
+mc3: A poet describes winter with words such as "brittle," "hollow," "gray" and "bare." What is the most likely cumulative effect? | a bleak, lifeless mood | a cheerful, festive mood | a hot, energetic mood | a humorous mood
+
+unit: Drama and transformation of sources | RL.9-10.3, RL.9-10.7, RL.9-10.9 | ela_10_n1
+el: Act out short scenes before analyzing them, provide a glossary of dramatic terms (aside, soliloquy, stage directions, tragic flaw) and offer a modern paraphrase beside each Shakespeare excerpt.
+
+lesson: Elements of drama: script, stage directions and dialogue | RL.9-10.3, RL.9-10.5
+practice:
+mc1: In a play script, the italicized notes that describe setting, movement and tone of voice are | stage directions | dialogue | an aside | a soliloquy
+hint: They tell actors and directors what to do.
+mc2: Why are stage directions especially important for readers of a play? | They help readers picture actions and emotions that dialogue alone may not show. | They contain the theme stated directly. | They list the cast's real names. | They replace all of the dialogue.
+hint: Think about what you would miss if you only had the spoken words.
+mc2: A stage direction reads: "(She smiles, but grips the chair until her knuckles turn white.)" What does this reveal? | She is hiding tension or fear behind a calm face. | She is relaxed and happy. | She is about to sit down. | She is cold.
+hint: Compare her face with her hands.
+mc2: The main divisions of a full-length play are called | acts | chapters | stanzas | verses
+hint: Shakespeare's plays have five of them.
+sa2: Explain how dialogue alone can reveal a conflict between two characters in a play. | What characters say, refuse to say or argue about shows their opposing goals and feelings, so the audience can see the conflict without a narrator.
+hint: In a play there is usually no narrator to explain feelings.
+quiz:
+passage: The Audition | A one-scene play. // (A high school auditorium after rehearsal. Most of the lights are off. MAYA, 16, sits on the edge of the stage with a script in her lap. Her older brother, ELI, 19, enters from the back carrying car keys.) // ELI: Mom said you'd need a ride. You coming? // MAYA: (Without looking up.) In a minute. // ELI: (Walking down the aisle.) The cast list goes up tomorrow, right? // MAYA: Tomorrow at eight. // ELI: So? How'd it go? // MAYA: (Too brightly.) Great. Totally fine. (She closes the script and holds it against her chest.) // ELI: (Stopping.) You did the thing with your voice. // MAYA: What thing? // ELI: The thing you do when you're lying. It goes up, like a teakettle. (He sits next to her on the stage.) // MAYA: (After a pause.) I forgot my lines. In the middle of the monologue. I just stood there. Ms. Hart said "take your time" in that voice teachers use when they feel sorry for you. // ELI: Did you finish? // MAYA: (Quietly.) Yeah. I started over and finished. // ELI: (He takes the keys out of his pocket and turns them in his hand.) You know I quit the soccer team my junior year because I missed a penalty kick? One kick. I never told anyone that was why. // MAYA: (Turning to look at him for the first time.) You said you quit because of your grades. // ELI: (Shrugging.) It was easier to say. (He stands and offers her his hand.) You started over and finished. That's more than I did. // (MAYA looks at his hand, then takes it. He pulls her up. She leaves the script on the stage, then stops, goes back and picks it up.) // MAYA: Eight o'clock tomorrow. You're driving me. // ELI: (Smiling.) Wouldn't miss it. // (Lights fade.)
+mc2: In "The Audition," what does the stage direction "(Too brightly.)" suggest about Maya's line "Great. Totally fine"? | She is pretending to be happy to hide that the audition went badly. | She is truly thrilled with her audition. | She is angry at Eli. | She is reading from the script.
+mc2: In "The Audition," how does Eli know that Maya is not telling the truth? | Her voice rises "like a teakettle," which she does when she lies. | Ms. Hart told him. | He watched the audition. | He read the cast list.
+mc2: In "The Audition," what is the purpose of Eli's story about the soccer team? | to show Maya that he also struggled with failure and to encourage her | to change the subject to sports | to brag about his talent | to explain why he is late
+mc3: In "The Audition," what is the significance of Maya leaving the script on the stage and then going back for it? | It shows her deciding not to give up, even after her disappointment. | It shows she has forgotten everything. | It shows she plans to quit acting. | It shows the script belongs to Eli.
+mc2: In "The Audition," what does the stage direction "(Turning to look at him for the first time.)" emphasize? | Eli's confession surprises Maya and finally gets her full attention. | Maya is angry and wants him to leave. | Maya cannot see in the dark. | Maya is reading the script again.
+mc2: In "The Audition," which line best reveals how Eli's view of Maya's audition differs from her own? | "You started over and finished. That's more than I did." | "Mom said you'd need a ride." | "The cast list goes up tomorrow, right?" | "Wouldn't miss it."
+sa3: In "The Audition," analyze how the playwright uses both dialogue and stage directions to reveal Maya's feelings. Cite one example of each. | Dialogue: Maya's flat "Great. Totally fine" and her confession "I forgot my lines" show her embarrassment. Stage directions: "(Too brightly.)" and "(She closes the script and holds it against her chest.)" show she is protecting herself and hiding her disappointment.
+
+lesson: Shakespeare's language: the prologue to Romeo and Juliet | RL.9-10.4, RL.9-10.5
+practice:
+mc1: Lines of poetry written in unrhymed iambic pentameter, often used by Shakespeare, are called | blank verse | free verse | prose | haiku
+hint: The lines have a regular rhythm but do not rhyme.
+mc2: In Shakespeare's English, "wherefore" means | why | where | when | who
+hint: Juliet asks "wherefore art thou Romeo" to ask about his name, not his location.
+mc2: In Shakespeare's plays, "thou" and "thee" are forms of | you | they | we | he
+hint: They are older forms of a pronoun we still use.
+mc2: Why might Shakespeare tell the audience the ending of a play at the very beginning? | to shift attention from what happens to how and why it happens | to make the play shorter | because he forgot to write an ending | to confuse the audience
+hint: If you know the ending, what do you watch for instead?
+sa2: Paraphrase this line from Romeo and Juliet: "But soft! What light through yonder window breaks?" | Wait, quiet! What is that light shining through the window over there?
+hint: "Soft" here means "wait" or "quiet," and "yonder" means "over there."
+quiz:
+passage: The Prologue to Romeo and Juliet | William Shakespeare's tragedy Romeo and Juliet was first performed in the 1590s. The play opens with this prologue, spoken by the Chorus, which is written as a sonnet. // Two households, both alike in dignity, / In fair Verona, where we lay our scene, / From ancient grudge break to new mutiny, / Where civil blood makes civil hands unclean. / From forth the fatal loins of these two foes / A pair of star-cross'd lovers take their life; / Whose misadventured piteous overthrows / Do with their death bury their parents' strife. / The fearful passage of their death-mark'd love, / And the continuance of their parents' rage, / Which, but their children's end, nought could remove, / Is now the two hours' traffic of our stage; / The which if you with patient ears attend, / What here shall miss, our toil shall strive to mend. // - William Shakespeare (1590s)
+mc1: According to "The Prologue to Romeo and Juliet," where does the play take place? | Verona | Venice | London | Rome
+mc2: In "The Prologue to Romeo and Juliet," what does "Two households, both alike in dignity" mean? | Two families of equal social rank | Two houses that look the same | Two families who are friends | Two servants with good manners
+mc2: In "The Prologue to Romeo and Juliet," what does "star-cross'd lovers" suggest? | The lovers are doomed by fate. | The lovers study astronomy. | The lovers are lucky. | The lovers meet at night.
+mc2: According to "The Prologue to Romeo and Juliet," what finally ends the parents' feud? | the deaths of their children | a marriage between the families | a ruling by the prince | a peace treaty
+mc3: In "The Prologue to Romeo and Juliet," what is the effect of the paradox in "Where civil blood makes civil hands unclean"? | It shows that citizens are committing violence against fellow citizens, making the feud seem shameful. | It shows the city is very clean. | It describes a medical procedure. | It shows the characters are polite.
+mc2: In "The Prologue to Romeo and Juliet," what does "the two hours' traffic of our stage" refer to? | the length and action of the play itself | the busy streets of Verona | a parade | the audience leaving the theater
+sa3: Explain how "The Prologue to Romeo and Juliet" creates dramatic irony for the rest of the play. Cite one line. | By revealing that the "star-cross'd lovers" will die and that their "death" will "bury their parents' strife," the prologue tells the audience the ending. Throughout the play, the audience knows the lovers are doomed while the characters hope for a happy future, which creates dramatic irony and tension.
+
+lesson: Tragedy and the tragic hero | RL.9-10.3, RL.9-10.5
+practice:
+mc1: In classical tragedy, the error or flaw that leads to the hero's downfall is called | hamartia | catharsis | a soliloquy | comic relief
+hint: Aristotle used this Greek word for a mistake or flaw.
+mc2: The release of pity and fear that audiences feel at the end of a tragedy is | catharsis | hamartia | exposition | an aside
+hint: It is a kind of emotional cleansing.
+mc2: Which character best fits the traditional idea of a tragic hero? | a respected general whose jealousy leads him to destroy the people he loves | a villain with no good qualities | a minor servant who appears once | a narrator who watches from a distance
+hint: Tragic heroes are usually admirable people with a serious flaw.
+mc2: A reversal of fortune, when things suddenly turn against the hero, is | peripeteia | catharsis | a prologue | a foil
+hint: Aristotle used this term for the turning point when fortune flips.
+sa2: Explain why audiences often feel pity for a tragic hero even though the hero causes his or her own downfall. | The hero is admirable and human, so the audience recognizes their own weaknesses in the flaw and feels the suffering is greater than the hero deserves.
+hint: Think about what makes the hero relatable.
+quiz:
+passage: What Makes a Tragedy? | More than two thousand years ago, the Greek philosopher Aristotle wrote a work called the Poetics, in which he tried to explain why tragic plays had such a powerful effect on audiences. His ideas still shape how many readers think about tragedy today. // According to Aristotle, a tragedy shows a serious action that arouses pity and fear in the audience. The main character, often called the tragic hero, is usually a person of high standing, such as a king or a great warrior. The hero is not perfectly good or completely evil. Instead, he or she is admirable but makes a serious error, which Aristotle called hamartia. Sometimes this is translated as "tragic flaw," such as pride or jealousy; other scholars describe it as a mistake in judgment. // As the play continues, the hero experiences a reversal of fortune, or peripeteia, in which success turns to disaster. Often this comes with a moment of recognition, or anagnorisis, when the hero finally understands the truth about the situation or about himself. This recognition usually comes too late to prevent the catastrophe. // Why would anyone want to watch such suffering? Aristotle believed that tragedy produces catharsis, a release or cleansing of the pity and fear the audience has felt. By watching a hero fall, audiences may come to understand their own weaknesses and the limits of human power. // Later writers adapted these ideas. William Shakespeare's tragic heroes, such as Macbeth, whose ambition leads him to murder, and Othello, who is destroyed by jealousy, follow the pattern of an admirable person brought down partly by his own choices. Modern writers have argued that ordinary people, not only kings, can be tragic heroes too. What remains constant is the sense that the hero's fall matters, and that it teaches us something about being human.
+mc2: What is the central idea of "What Makes a Tragedy?" | Aristotle's ideas about the tragic hero, reversal, recognition and catharsis still shape how readers understand tragedy. | Greek plays were very long. | Shakespeare wrote only comedies. | Tragedy is not worth watching.
+mc1: According to "What Makes a Tragedy?", what did Aristotle call the moment when the hero finally understands the truth? | anagnorisis | catharsis | hamartia | peripeteia
+mc2: According to "What Makes a Tragedy?", why is a tragic hero neither perfectly good nor completely evil? | so the audience can admire the hero while seeing that the downfall comes partly from an error | so the play will be a comedy | so the hero can be the villain | because Aristotle did not like heroes
+mc2: In "What Makes a Tragedy?", why does the author mention that hamartia may be translated as either a "tragic flaw" or "a mistake in judgment"? | to show that scholars interpret the term in different ways | to prove that Aristotle was wrong | to define catharsis | to introduce Shakespeare
+mc3: According to "What Makes a Tragedy?", how did modern writers change the idea of the tragic hero? | They argued that ordinary people, not only kings, can be tragic heroes. | They said tragic heroes must be perfect. | They removed the hero's downfall. | They rejected all of Aristotle's ideas about pity and fear.
+mc2: In "What Makes a Tragedy?", what is the purpose of the question "Why would anyone want to watch such suffering?" | to introduce Aristotle's explanation of catharsis | to suggest that tragedy should be banned | to change the topic to comedy | to describe a specific play
+sa3: Using "What Makes a Tragedy?", explain how the pattern of hamartia, reversal and recognition fits one of Shakespeare's heroes named in the text. | Macbeth is an admirable warrior whose hamartia is ambition. It leads him to murder, and his fortune reverses as his crimes bring disaster. He recognizes too late what he has lost, which fits the pattern the article describes.
+
+lesson: How authors transform source material | RL.9-10.9
+practice:
+mc1: When an author retells an older story in a new way, the older story is called the | source | sequel | summary | epilogue
+hint: It is where the new story comes from.
+mc2: A modern novel sets the story of Cinderella in a Los Angeles high school. Which element has the author most clearly transformed? | the setting | the basic rags-to-riches pattern | the idea of a hidden identity | the happy ending
+hint: Which element changes when you move from a kingdom to a high school?
+mc2: Why might an author retell a myth from the point of view of a minor character? | to reveal a perspective the original story ignored | to make the story shorter | to avoid having any conflict | to copy the original exactly
+hint: Whose voice was missing from the original?
+mc2: Which is the best question to ask when comparing a work with its source? | What did the author keep, what did the author change and why? | How many pages does each have? | Which cover is more colorful? | Which author was older?
+hint: Focus on choices and their effects.
+sa2: Name a story, film or show that retells an older story, and explain one change and its effect. | A film may retell a fairy tale with a brave princess who rescues herself instead of waiting to be rescued; the change gives the old tale a modern message about independence.
+hint: Think of movies that are based on fairy tales, myths or classic novels.
+quiz:
+passage: From Babylon to Verona | Long before Shakespeare wrote Romeo and Juliet, the Roman poet Ovid told a similar story in his long poem the Metamorphoses, completed around the year 8 CE. // In Ovid's version, two young people named Pyramus and Thisbe live in neighboring houses in the ancient city of Babylon. They fall in love, but their parents forbid them to marry. The lovers discover a small crack in the wall between their houses, and through it they whisper to each other every day. At last they agree to sneak out at night and meet outside the city, under a mulberry tree covered in white berries near a tomb. // Thisbe arrives first. She sees a lioness, its jaws bloody from a recent kill, coming to drink at a nearby spring. Terrified, Thisbe runs to hide in a cave and drops her veil. The lioness tears the veil with its bloody mouth and leaves. When Pyramus arrives, he sees the lion's tracks and the bloodstained veil. Believing that Thisbe has been killed, he stabs himself with his sword beneath the tree. His blood stains the white mulberries a dark red. Thisbe returns, finds Pyramus dying and, in grief, takes her own life with the same sword. In memory of the lovers, the mulberries remain dark from then on. // Shakespeare clearly knew this story. In fact, in his comedy A Midsummer Night's Dream, a group of amateur actors performs a clumsy, hilarious version of "Pyramus and Thisbe." But in Romeo and Juliet, he transformed the same tragic pattern. He moved the story to Verona, added feuding families with servants who brawl in the streets, expanded the lovers' friends and advisers, and stretched the misunderstanding into a chain of bad timing involving a secret marriage, a sleeping potion and a message that never arrives. Shakespeare's more direct source was an English poem by Arthur Brooke, published in 1562, but the heart of the story, young love destroyed by family conflict and a fatal mistake, is as old as Ovid.
+mc2: In "From Babylon to Verona," what is the main purpose of the article? | to explain how Shakespeare drew on and transformed an ancient story for Romeo and Juliet | to argue that Ovid was a better writer than Shakespeare | to give a biography of Arthur Brooke | to describe the city of Babylon
+mc1: According to "From Babylon to Verona," how do Pyramus and Thisbe communicate? | by whispering through a crack in the wall | by sending letters with a servant | by meeting at a ball | by talking at church
+mc2: According to "From Babylon to Verona," what misunderstanding leads to Pyramus's death? | He sees Thisbe's bloodstained veil and believes she has been killed. | He thinks Thisbe married someone else. | He believes his parents have forgiven him. | He mistakes Thisbe for a lioness.
+mc2: According to "From Babylon to Verona," which element of Romeo and Juliet is NOT found in Ovid's story? | feuding families and a sleeping potion | parents who forbid the lovers to marry | the death of both lovers | a fatal misunderstanding
+mc3: Based on "From Babylon to Verona," what is the most likely effect of Shakespeare's decision to add a public feud between families? | It turns a private love story into a tragedy about how hatred in a community destroys the young. | It makes the story a comedy. | It removes the misunderstanding from the plot. | It makes the lovers less important.
+mc2: According to "From Babylon to Verona," how does Shakespeare use the same story in A Midsummer Night's Dream? | as a comic play performed badly by amateur actors | as a serious tragedy | as a poem read by the Chorus | as a dream sequence about lions
+sa3: Using "From Babylon to Verona," explain one thing Shakespeare kept from Ovid's story and one thing he changed, and the effect of each. | He kept young lovers whose parents oppose them and a fatal misunderstanding, which preserves the tragic core of love destroyed by mistakes. He added feuding families and street brawls, which makes the tragedy about community hatred, not just strict parents.
+
+lesson: One scene, two mediums: stage and film | RL.9-10.7
+practice:
+mc1: In film, a shot that shows a character's face filling the screen is a | close-up | wide shot | voice-over | stage direction
+hint: The camera is very near the subject.
+mc2: What can a film do that a live stage production usually cannot? | use close-ups and editing to control exactly what the audience sees | let actors speak dialogue | use costumes | tell a story with characters
+hint: Think about the camera.
+mc2: What can a live stage production offer that film usually cannot? | the energy of actors and audience sharing the same space in real time | special effects created by computers | close-ups of actors' eyes | scenes filmed in real locations
+hint: Think about being in the room with the actors.
+mc2: A film version of a play shows a character's memories in a flashback that the play only describes in dialogue. What is the effect? | The audience sees the past directly, which can make it more vivid. | The audience learns nothing new. | The character disappears from the film. | The film becomes a comedy.
+hint: Compare hearing about an event with watching it.
+sa2: Explain how music in a film adaptation can change the audience's feelings about a scene. | Music can signal danger, romance or sadness, so the same lines can feel suspenseful or tender depending on the score.
+hint: Imagine a scary scene with cheerful music.
+quiz:
+mc2: A stage production of a tragedy sets the play in a modern city with business suits instead of armor. What is the director most likely trying to do? | show that the play's themes still apply today | make the play shorter | change the plot completely | hide the characters
+mc2: In a film adaptation, the camera slowly zooms in on a dagger lying on a table. What effect does this create? | It draws attention to the dagger and builds suspense about how it will be used. | It shows the room's decoration. | It signals the end of the film. | It replaces dialogue with humor.
+mc2: Which choice is available to a reader of a play script but NOT to a film audience? | imagining the characters' voices and appearances in any way the reader chooses | seeing the actors' facial expressions | hearing the soundtrack | watching the lighting change
+mc2: A director cuts a long speech from a film adaptation to keep the pace quick. What might be the drawback? | The audience may lose insight into a character's thoughts or motives. | The film will be longer. | The plot will become clearer. | The costumes will change.
+mc3: Two productions stage the same scene. In one, a character delivers her lines shouting; in the other, she whispers them. How do these choices affect interpretation? | The shouting version suggests rage, while the whispering version suggests hurt or dangerous restraint. | They mean exactly the same thing. | The words of the scene change. | The audience cannot tell the difference.
+mc1: The person who decides how a play will be staged, including how actors move and speak, is the | director | playwright only | audience | critic
+sa3: Choose a scene from a play or novel you know that has been filmed. Explain one choice the film makes that is different from the written version and evaluate whether it is effective. | Answers name a specific change, such as adding music, cutting lines or using a close-up, explain its effect on the audience's understanding and give a reasoned judgment.
+
+lesson: Unit review | RL.9-10.3, RL.9-10.7, RL.9-10.9
+practice:
+mc1: A character's remark to the audience, unheard by other characters on stage, is called | an aside | a soliloquy | a prologue | a stage direction
+hint: It is said "to the side."
+mc2: A tragic hero's pride causes him to ignore warnings. This pride is an example of | hamartia | catharsis | comic relief | a soliloquy
+hint: It is the flaw that causes the downfall.
+mc2: Which is an example of transforming source material? | A musical retells a Shakespeare tragedy with rival street gangs in New York. | A teacher reads a Shakespeare play aloud. | A student copies the play by hand. | A library buys a new edition of the play.
+hint: Look for a new setting or form that changes the original.
+mc2: In a play, which element most directly reveals characters' feelings when there is no narrator? | dialogue and stage directions | chapter titles | footnotes | the table of contents
+hint: How do audiences learn what characters feel?
+sa2: Explain the difference between a soliloquy and an aside. | A soliloquy is a long speech a character gives alone on stage to reveal thoughts; an aside is a brief remark to the audience that other characters on stage do not hear.
+hint: Think about length and whether other characters are present.
+quiz:
+mc1: A long speech by one character alone on stage revealing thoughts is a | soliloquy | dialogue | aside | chorus
+mc1: A remark to the audience that other characters do not hear is | an aside | a monologue to others | stage directions | a prologue
+mc2: In Shakespeare's "Romeo and Juliet," the opening prologue tells the audience the lovers will die. This creates | dramatic irony | a twist ending | comic relief | a flashback
+mc2: A tragic hero usually | has a flaw that leads to downfall | never makes mistakes | is a villain | is minor
+ex2: Explain the function of a soliloquy in drama. | It reveals a character's private thoughts and motives directly to the audience.
+mc2: In a play, a character says, "I will be home soon," while the audience knows she is walking into a trap. This creates | dramatic irony | comic relief | a flashback | an aside
+mc2: Which element would a film adaptation most likely add that a play script does not include? | a musical soundtrack and camera angles | dialogue | characters | a conflict
+mc3: A novel retells "Romeo and Juliet" but lets the lovers survive and reconcile their families. How does this change affect the work's meaning? | It shifts the message from tragedy to hope that hatred can be overcome. | It keeps the original meaning exactly. | It removes the feud entirely. | It makes the story a history book.
+
+test:
+mc2: A modern novel retells an ancient myth in a contemporary city. What is the author doing? | transforming source material | copying a text | writing nonfiction | writing a summary
+mc2: A film version of a play cuts a key soliloquy. What could be lost? | insight into a character's inner thoughts | the setting | the cast list | the title
+mc2: Comic relief in a tragedy serves to | ease tension briefly | end the play | introduce the hero | explain the theme directly
+mc3: A director stages a famous scene with silence instead of music. How might this change the audience's experience? | It may heighten tension and focus attention on the actors | It has no effect | It makes it a comedy | It shortens the play
+sa2: Compare how a key scene is portrayed in a play and in a film adaptation, explaining one difference and its effect. | Names a difference in medium (lighting, cuts, acting) and its effect.
+sa2: Explain how an author draws on and changes a source (a myth, Bible story or earlier play) in a work you studied. | Names the source, what is kept and what is changed, and the effect.
+task3: Choose a play studied in class and one film or stage adaptation. Write an essay analyzing how the adaptation represents a key scene differently, how those choices change the audience's understanding of a character or theme, and whether the change is effective. | Insightful comparison of mediums, clear analysis of effects on character or theme, well-supported judgment. | Clear comparison with some analysis of effects. | Mostly summary of both versions. | Little correct work.
+passage: The Lantern | A short play. // (A small apartment kitchen in Oakland. Evening. A paper lantern hangs over the table, unlit. GRANDMOTHER LIN, 78, sits peeling oranges. Her grandson KEVIN, 17, enters with a backpack and earbuds, looking at his phone.) // GRANDMOTHER LIN: You are late. The soup is cold. // KEVIN: (Pulling out one earbud.) Sorry, Nai Nai. Group project. (He sits, still scrolling.) // GRANDMOTHER LIN: (She sets an orange slice in front of him. He does not notice.) Tomorrow is the festival. You will help me light the lantern. // KEVIN: (Not looking up.) Tomorrow I have practice. And it's kind of... I mean, nobody else at school does that stuff. // (A long silence. GRANDMOTHER LIN stops peeling.) // GRANDMOTHER LIN: (Quietly.) Nobody else. // KEVIN: (Finally looking up, realizing.) That's not what I meant. // GRANDMOTHER LIN: (She rises slowly and reaches for the lantern, but it is too high. She lowers her arm.) Your grandfather made this lantern the year we came here. We had two suitcases and this lantern. He said, "As long as we light it, wherever we are is home." // (KEVIN puts down his phone.) // KEVIN: You never told me that. // GRANDMOTHER LIN: You never asked. (Beat.) Young people think old stories are heavy. Like suitcases. (She smiles a little.) Sometimes they are. // (KEVIN stands. He is tall enough to reach the lantern easily. He takes it down and holds it, turning it in the light.) // KEVIN: (Pointing.) There's writing on it. // GRANDMOTHER LIN: His handwriting. Your name is there. He wrote it the day you were born. // (KEVIN stares at the lantern. He takes out his phone, types something, then puts it face down on the table.) // KEVIN: I told Coach I'll be late tomorrow. (Beat.) You'll have to show me how to light it. I don't want to burn it down. // GRANDMOTHER LIN: (Laughing.) Your grandfather burned the first one. That is why he made this one. // (She sits. KEVIN sits beside her. He picks up the orange slice and eats it. Lights fade, leaving only a soft glow where the lantern rests on the table.)
+mc2: In "The Lantern," what does the stage direction "(She sets an orange slice in front of him. He does not notice.)" reveal? | Kevin is distracted and not paying attention to his grandmother's care. | Kevin dislikes oranges. | Grandmother Lin is angry at Kevin. | The kitchen is too dark to see.
+mc2: In "The Lantern," why does Grandmother Lin repeat "Nobody else" quietly? | She is hurt that Kevin seems embarrassed by their traditions. | She agrees that no one at school celebrates. | She did not hear what Kevin said. | She is asking a question about his friends.
+mc2: In "The Lantern," what does the lantern symbolize for the family? | home, memory and the family's connection across generations | a broken promise | the danger of fire | Kevin's school project
+mc2: In "The Lantern," what is the significance of Grandmother Lin being unable to reach the lantern while Kevin reaches it easily? | It suggests that the younger generation must now help carry on the family's traditions. | It shows the lantern is in the wrong place. | It shows Kevin is showing off. | It shows the grandmother does not want the lantern.
+mc3: In "The Lantern," what is the meaning of Grandmother Lin's comparison of old stories to suitcases? | Family history can feel like a burden, but it also carries what is most valuable. | Old stories should be thrown away. | Suitcases are hard to carry on trips. | The family plans to move again.
+mc2: In "The Lantern," which action best shows that Kevin has changed? | He tells his coach he will be late and asks his grandmother to show him how to light the lantern. | He pulls out one earbud. | He says he has a group project. | He looks at his phone while sitting down.
+mc2: In "The Lantern," what is the effect of the final stage direction, which leaves "only a soft glow where the lantern rests on the table"? | It creates a hopeful, warm mood and suggests the tradition will continue. | It shows the lantern has caught fire. | It creates a frightening mood. | It signals that Kevin has left.
+mc2: If "The Lantern" were filmed, which camera choice would best emphasize Kevin's discovery of his name on the lantern? | a close-up of the handwriting and Kevin's face | a wide shot of the whole apartment building | a fast-paced chase scene | a shot of the street outside
+wr3: Write an essay analyzing how the playwright of "The Lantern" uses dialogue, stage directions and a central symbol to show Kevin's change and develop a theme. Include a clear thesis and at least three pieces of evidence from the passage. | Key points: early stage directions show Kevin distracted (earbuds, scrolling, not noticing the orange); his line "nobody else... does that stuff" hurts his grandmother, shown by her silence and quiet repetition; the lantern's history ("wherever we are is home") and his name in his grandfather's handwriting change him; he reaches the lantern, puts his phone face down and asks to learn; theme: family traditions connect generations and are worth carrying forward.
+endpassage:
+mc1: A humorous scene in a tragedy that briefly relieves tension is | comic relief | catharsis | a prologue | an epilogue
+mc2: In Shakespeare's plays, "Wherefore art thou Romeo?" means | Why are you Romeo? | Where are you, Romeo? | When will you come, Romeo? | Who is Romeo?
+mc2: What does it mean when a play's audience feels catharsis? | They experience an emotional release after watching the hero's suffering. | They laugh at a joke. | They are confused by the plot. | They leave before the ending.
+mc2: A graphic novel adaptation of a classic play replaces some dialogue with images of characters' expressions. What is the main effect? | Readers interpret emotions visually instead of through words. | The plot is completely changed. | The characters' names change. | The story becomes a poem.
+mc3: A modern film retells an ancient myth but makes the villain sympathetic by showing his painful childhood. What is the likely effect of this transformation? | It complicates the audience's judgment and invites empathy for the villain. | It makes the villain more purely evil. | It removes all conflict from the story. | It has no effect on the audience.
+
+unit: Evaluating arguments and fallacies | RI.9-10.6, RI.9-10.8 | ela_10_n2
+el: Give a fallacy card set (name, plain-language meaning, short example) and an argument map frame: "The claim is ___. One reason is ___. The evidence is ___. This is (strong/weak) because ___."
+
+lesson: Delineating an argument: claim, reasons and evidence | RI.9-10.8, RI.9-10.6
+practice:
+mc1: To delineate an argument means to | identify and trace its claim, reasons and evidence | agree with it | rewrite it as a story | count its paragraphs
+hint: Think of drawing the outline of the argument.
+mc2: In the sentence "Cities should plant more trees because shade lowers summer temperatures on sidewalks," which part is the reason? | because shade lowers summer temperatures on sidewalks | Cities should plant more trees | Cities | summer
+hint: The reason answers "why?"
+mc2: Which detail is evidence rather than a claim? | A county survey counted 4,000 fewer street trees than ten years ago. | Our county must protect its trees. | Trees make neighborhoods better. | Everyone should care about trees.
+hint: Evidence is a specific fact, statistic or example that can be checked.
+mc2: An argument's claim is usually found | in the introduction and restated in the conclusion | only in the footnotes | in the middle of an example | in the title of a source
+hint: Where does a writer first tell readers what to believe?
+sa2: Explain why it is important to identify an argument's reasons before deciding whether you agree with it. | Identifying the reasons shows exactly what the writer is asking readers to accept, so you can test each reason and its evidence instead of reacting only to the claim.
+hint: Can you judge an argument fairly if you have not seen its parts?
+quiz:
+passage: Let Libraries Go Fine-Free | For more than a century, public libraries have charged small fines for overdue books. The idea seemed simple: a few cents a day would encourage people to return materials on time. But the evidence now suggests that fines do more harm than good, and our city library should eliminate them. // First, fines keep the people who most need libraries away from them. A child whose family cannot pay a ten-dollar fine may lose borrowing privileges entirely, and some families stop visiting rather than face an embarrassing conversation at the desk. A library that is free in theory but closed to some families in practice is not living up to its purpose. // Second, fines do not appear to be necessary for getting books back. Many library systems across the country have gone fine-free in recent years, and several have reported that most materials still come back, and that some long-lost items returned after fines were removed. Libraries still bill borrowers for items that are never returned, so the incentive to return books does not disappear. // Third, fines cost more to collect than many people realize. Staff time spent handling small payments, arguing about late fees and processing accounts is time not spent helping patrons find books, run homework programs or teach computer skills. // Some residents worry that removing fines will make people careless. That concern is understandable. But libraries can send friendly reminders by text and email, and they can still pause borrowing for anyone with many long-overdue items. These tools encourage responsibility without punishing families for being poor. // A library's mission is to open doors to reading and learning. Late fines close some of those doors. It is time to let them go.
+mc2: What is the central claim of "Let Libraries Go Fine-Free"? | The city library should eliminate overdue fines. | Libraries should charge higher fines. | Libraries should close earlier. | Library staff should be paid more.
+mc2: In "Let Libraries Go Fine-Free," which statement is one of the author's reasons? | Fines keep the people who most need libraries away from them. | Libraries have existed for more than a century. | Some residents worry people will become careless. | Libraries send reminders by text.
+mc2: In "Let Libraries Go Fine-Free," what evidence supports the reason that fines are not necessary to get books back? | Many fine-free library systems report that most materials still come back. | A child's family cannot pay a ten-dollar fine. | Staff time is spent handling payments. | Libraries teach computer skills.
+mc3: In "Let Libraries Go Fine-Free," which part of the argument relies most on general reports rather than specific, checkable data? | the second reason about fine-free systems getting books back | the claim in the first paragraph | the conclusion's mission statement | the description of how fines began
+mc2: In "Let Libraries Go Fine-Free," how does the author respond to the concern that people will become careless? | by agreeing it is understandable and offering reminders and borrowing limits as alternatives | by ignoring it | by calling residents careless | by agreeing that fines should stay
+mc2: In "Let Libraries Go Fine-Free," what is the effect of the metaphor of fines that "close some of those doors"? | It presents fines as barriers to the library's mission of access. | It describes the library's building hours. | It suggests the library needs new doors. | It shows that fines are popular.
+sa3: Delineate the argument in "Let Libraries Go Fine-Free": state the claim and list the three reasons with one piece of supporting evidence or explanation for each. | Claim: the library should eliminate fines. Reason 1: fines keep needy families away (a family that cannot pay may lose privileges or stop visiting). Reason 2: fines are not needed to get books back (fine-free systems report most items return, and borrowers are still billed for lost items). Reason 3: fines cost staff time (time handling payments is not spent helping patrons).
+
+lesson: Relevant and sufficient evidence | RI.9-10.8
+practice:
+mc1: Evidence that does not actually relate to the claim is | irrelevant | sufficient | credible | precise
+hint: "Relevant" means connected to the point.
+mc2: Which evidence is relevant to the claim "Bike lanes make streets safer"? | City data showed fewer injury crashes on streets after protected bike lanes were added. | Bikes come in many colors. | Cycling is popular in some countries. | Bike helmets can be expensive.
+hint: Which detail connects bike lanes to safety?
+mc2: A writer claims a diet works and offers only three testimonials from happy customers. Why is the evidence insufficient? | A few personal stories cannot show that the diet works for most people. | Testimonials are always false. | Three is too many examples. | Customers cannot be trusted to eat.
+hint: How many cases would you need to draw a general conclusion?
+mc2: Which source would provide the most credible evidence about earthquake risk in California? | the U.S. Geological Survey | a movie about earthquakes | a social media post | an advertisement for emergency kits
+hint: Which source is run by scientists who study the topic?
+sa2: Explain how a writer can make evidence more sufficient. | Use more than one kind of evidence from several credible sources, such as data, expert findings and examples, so that the claim does not rest on a single case.
+hint: Think about variety and quantity.
+quiz:
+passage: The Case for Uniforms | Our school should require uniforms, and the reasons are clear. // To begin with, uniforms would save families money. My neighbor says she spent less on clothes after her daughter's school adopted uniforms. Uniforms also come in many sizes, and they are available at several stores downtown. // Uniforms would also improve behavior. Last year, a school in another state required uniforms, and the same year its attendance went up. That proves uniforms make students more responsible. In addition, uniforms were first worn at English schools hundreds of years ago, which shows they have a long and respected history. // Finally, uniforms would help students focus on learning instead of fashion. When everyone dresses alike, there is less pressure to wear expensive brands and less teasing about clothing. Several teachers at our school told the student newspaper that clothing-related arguments distract students during passing periods. // Some students say uniforms limit self-expression. But students can still express themselves through their ideas, their art and their activities. // Uniforms are the right choice for our school. The board should adopt them next year.
+mc2: In "The Case for Uniforms," which detail is irrelevant to the claim that uniforms would save families money? | Uniforms come in many sizes and are sold at several stores downtown. | The neighbor says she spent less on clothes. | Uniforms reduce pressure to buy expensive brands. | The board should adopt uniforms next year.
+mc2: In "The Case for Uniforms," why is the neighbor's statement weak evidence? | It is a single personal account, not data from many families. | It is too scientific. | It comes from an expert economist. | It contradicts the claim.
+mc3: In "The Case for Uniforms," what is the main flaw in the reasoning about the school in another state? | One school's rise in attendance in the same year does not prove that uniforms caused it. | Attendance cannot be measured. | The school was too far away to count. | The writer should not mention attendance at all.
+mc2: In "The Case for Uniforms," why is the history of uniforms at English schools irrelevant? | A long history does not show that uniforms would improve behavior today. | English schools never had uniforms. | History is never useful in arguments. | It proves the claim completely.
+mc2: In "The Case for Uniforms," which evidence is the most relevant support for the reason that uniforms help students focus? | Teachers told the student newspaper that clothing arguments distract students during passing periods. | Uniforms come in many sizes. | Uniforms began hundreds of years ago. | A neighbor saved money on clothes.
+mc2: In "The Case for Uniforms," what is the weakness of the response to the counterclaim? | It asserts that students can express themselves in other ways without offering evidence. | It gives too many statistics. | It agrees with the counterclaim completely. | It is longer than the rest of the essay.
+sa3: Evaluate the evidence in "The Case for Uniforms." Identify one piece of evidence that is irrelevant or insufficient, explain why, and suggest stronger evidence. | The claim that uniforms "prove" responsibility because one school's attendance rose is insufficient; one school and one year cannot show cause. Stronger evidence would be a study comparing many schools before and after adopting uniforms.
+
+lesson: Fallacies of relevance | RI.9-10.8, RI.9-10.6
+practice:
+mc1: A fallacy is | an error in reasoning that makes an argument weaker | a type of evidence | a strong conclusion | a rhetorical question
+hint: Fallacies can sound convincing but do not hold up.
+mc2: "You can't trust her argument about school funding; she failed algebra in ninth grade." This is | ad hominem | bandwagon | circular reasoning | hasty generalization
+hint: Is the speaker answering the argument or attacking the person?
+mc2: An ad shows a famous basketball player praising a brand of laptop. Which fallacy might this involve? | appeal to false authority | slippery slope | straw man | circular reasoning
+hint: Is a basketball player an expert on computers?
+mc2: A speaker is asked about rising rents and responds by talking about how beautiful the city's parks are. This is | a red herring | a false dilemma | a hasty generalization | an ad hominem
+hint: Did the speaker answer the question or change the subject?
+sa2: Explain why an appeal to emotion is not always a fallacy. | Emotion can be a fair part of persuasion when it is connected to real evidence; it becomes a fallacy when it replaces evidence or manipulates feelings to hide a weak argument.
+hint: Think about whether the emotion is supported by facts.
+quiz:
+mc2: "Thousands of people have already signed the petition, so it must be a good idea." This reasoning is | bandwagon | red herring | false cause | straw man
+mc2: "If you really cared about animals, you would support my plan to build a new zoo." This argument mainly relies on | an emotional appeal in place of evidence | a statistic | expert testimony | a counterclaim
+mc2: A senator argues against a bill by saying its sponsor once got a parking ticket. What fallacy is this? | ad hominem | bandwagon | slippery slope | false dilemma
+mc2: A sunscreen ad features an actor who plays a doctor on television. Why is this a weak appeal to authority? | The actor is not a real medical expert. | Actors cannot use sunscreen. | The ad is too short. | Real doctors never recommend sunscreen.
+mc3: During a debate about school lunch quality, a student says, "Well, the other side wears sweatpants to school, so why listen to them?" Which response best exposes the fallacy? | Point out that clothing has nothing to do with lunch quality and ask for evidence about the lunches. | Agree and change the topic to clothing. | Insult the student back. | Leave the debate.
+mc2: A cereal commercial shows smiling families and upbeat music but gives no information about nutrition. What persuasive technique is it using? | an appeal to emotion | logos | expert testimony | a statistic
+sa2: Write an example of a red herring in an argument about phone use in class, and explain why it is a fallacy. | "Why worry about phones in class when the cafeteria food is so bad?" It shifts attention to an unrelated issue instead of addressing whether phones distract students.
+
+lesson: Fallacies of faulty logic | RI.9-10.8
+practice:
+mc1: Drawing a broad conclusion from too few examples is | hasty generalization | red herring | bandwagon | appeal to authority
+hint: "Hasty" means too quick.
+mc2: "This is the best phone because it is better than all the others." This is | circular reasoning | false dilemma | ad hominem | appeal to pity
+hint: Does the reason simply repeat the claim?
+mc2: "Ever since the new principal arrived, it has rained more. She must be bad luck." What error does this show? | assuming that because one event followed another, it caused it | attacking the person's argument | appealing to popularity | offering only two choices
+hint: Did the principal's arrival really cause the rain?
+mc2: "Either we cancel the field trip or students will get hurt." What makes this a false dilemma? | It ignores other options, such as adding chaperones. | It uses statistics. | It attacks a person. | It is a rhetorical question.
+hint: Are there really only two choices?
+sa2: Explain the difference between correlation and causation using an example. | Correlation means two things happen together; causation means one causes the other. Ice cream sales and sunburns both rise in summer, but ice cream does not cause sunburns; hot, sunny weather drives both.
+hint: Think of two things that rise together because of a third cause.
+quiz:
+mc2: "I met two rude people from that city, so everyone from there is rude." This is | hasty generalization | circular reasoning | red herring | appeal to authority
+mc2: "We should trust the newspaper because the newspaper says it is trustworthy." This is | circular reasoning | bandwagon | slippery slope | ad hominem
+mc2: "If we let students choose one elective, next they will want to choose all their classes, and soon there will be no requirements at all." This reasoning is | slippery slope | straw man | appeal to pity | red herring
+mc2: Students who eat breakfast tend to have higher grades. Which conclusion is most reasonable? | Breakfast may be linked to grades, but other factors could explain both, so more evidence is needed. | Breakfast definitely causes higher grades. | Grades cause students to eat breakfast. | There is no connection at all.
+mc3: A city council member says, "My opponent wants to reduce police overtime, so she obviously wants criminals to run free." What fallacy is this, and why? | straw man, because it distorts the opponent's actual position | bandwagon, because it appeals to popularity | circular reasoning, because it repeats the claim | appeal to authority, because it cites an expert
+mc2: Which argument avoids a logical fallacy? | Three studies of different schools found that tutoring improved reading scores, so tutoring may help our students too. | My cousin was tutored and got an A, so tutoring always works. | Tutoring is effective because it works. | Either we hire tutors or every student fails.
+sa2: Rewrite this argument to remove the false dilemma: "We either ban cars downtown or accept dirty air forever." | We could reduce downtown air pollution by expanding bus service, adding bike lanes and limiting car traffic during peak hours.
+
+lesson: Loaded language, bias and persuasive media | RI.9-10.6, RI.9-10.7
+practice:
+mc1: A tendency to favor one side, often without being fair to others, is | bias | evidence | logos | syntax
+hint: It can show up in what a writer includes or leaves out.
+mc2: A headline reads "Greedy Developers Bulldoze Beloved Park." Which words are loaded? | greedy and beloved | developers and park | bulldoze only | none of them
+hint: Which words carry strong feelings rather than neutral facts?
+mc2: Which headline is most neutral? | City Approves Housing Project on Former Park Site | Heartless City Destroys Children's Park | Brave City Finally Builds Needed Homes | Park Lovers Lose Again
+hint: Which headline reports facts without praising or blaming?
+mc2: An article about a new medicine quotes only the company that makes it. What should a careful reader notice? | The article may be one-sided because it lacks independent sources. | The article is completely reliable. | Companies never speak to reporters. | The medicine must be dangerous.
+hint: Whose voices are missing?
+sa2: Explain how leaving out information can make a text biased even if every sentence in it is true. | By including only facts that support one side and omitting facts that complicate it, a writer can mislead readers without stating anything false.
+hint: Think about what a reader never learns.
+quiz:
+passage: Power Up! | The following is a transcript of a radio advertisement for an energy drink. // (Fast drum music.) NARRATOR: Tired of feeling tired? Sluggish in first period? Losing steam on the field? You're not alone. That's why champions everywhere are reaching for VOLT, the energy drink that turns ordinary into unstoppable. // (Sound of a can opening.) NARRATOR: Just ask Jordan Reyes, a professional skateboarder with three national titles. // JORDAN: I don't step on my board without a VOLT. It's like rocket fuel. // NARRATOR: VOLT is packed with B vitamins and our exclusive Thunder Blend. Nine out of ten people we surveyed said they felt more energetic after drinking VOLT! // (Crowd cheering.) NARRATOR: Don't get left behind while everyone else levels up. Grab a VOLT today, because winners don't wait. // (Quickly, in a lower voice.) NARRATOR: VOLT contains caffeine. Not recommended for children, pregnant women or people sensitive to caffeine. Survey of 30 VOLT customers.
+mc2: In "Power Up!," what technique does the line "champions everywhere are reaching for VOLT" use? | bandwagon, suggesting everyone successful uses the product | a logical statistic | a neutral description | a counterclaim
+mc2: In "Power Up!," why is Jordan Reyes's endorsement a weak form of evidence? | He is a skateboarder, not a nutrition expert, and he is likely paid to promote the drink. | He has never won a title. | He criticizes the drink. | He gives a detailed scientific explanation.
+mc3: In "Power Up!," what does the quickly spoken final line reveal about the survey claim "Nine out of ten people we surveyed"? | The survey included only 30 existing customers, so the sample is small and biased. | The survey was conducted by scientists with thousands of people. | The survey proves the drink is healthy. | The survey included only children.
+mc2: In "Power Up!," which phrase is loaded language meant to stir emotions rather than inform? | "turns ordinary into unstoppable" | "VOLT contains caffeine." | "Survey of 30 VOLT customers." | "Not recommended for children"
+mc2: In "Power Up!," why is the caffeine warning spoken quickly and in a lower voice? | to meet a requirement while drawing as little attention as possible to the drawback | to make it more memorable | because it is the main message | to show the narrator is tired
+mc2: In "Power Up!," what is the purpose of the sound effects, such as a can opening and a cheering crowd? | to create excitement and connect the drink with success | to give factual information | to explain the ingredients | to present the opposing view
+sa3: Evaluate the persuasive techniques in "Power Up!" Identify two techniques and explain why a careful listener should be skeptical of each. | The bandwagon line "champions everywhere" and "everyone else levels up" pressures listeners without evidence. The survey statistic sounds impressive, but the hidden note shows only 30 customers were asked, a small and biased sample. A listener should also notice the quick caffeine warning.
+
+lesson: Evaluating statistics and data in arguments | RI.9-10.8, RI.9-10.7
+practice:
+mc1: The group of people actually studied in a survey is the | sample | thesis | claim | audience
+hint: It is a smaller part chosen to represent a larger group.
+num2: A survey asked 200 students about lunch, and 150 said they wanted more choices. What percent of the students surveyed wanted more choices? | 75
+hint: Divide 150 by 200 and multiply by 100.
+mc2: A website says "Our product is used by 2 out of 3 dentists" but surveyed only 6 dentists it chose. What is the problem? | The sample is too small and not randomly chosen. | The math is wrong. | Dentists cannot be surveyed. | The claim uses a fraction.
+hint: Think about how many dentists and how they were picked.
+mc2: A graph's vertical axis starts at 95 instead of 0, making a small rise look huge. What is this an example of? | a misleading graph | a reliable visual | a counterclaim | a primary source
+hint: Look at where the scale begins.
+sa2: Explain why a statistic without a source should make readers cautious. | Without a source, readers cannot check how the number was gathered, who collected it or whether it is accurate, so it may be biased or invented.
+hint: How would you verify the number?
+quiz:
+num2: Crimes in a town fell from 80 one year to 60 the next. By what percent did crimes decrease? | 25
+num2: An article says 40 percent of 250 surveyed residents support a new stadium. How many surveyed residents support it? | 100
+mc2: A study finds that people who own more books tend to have higher incomes. Which statement is most accurate? | The two are correlated, but owning books does not necessarily cause higher income. | Buying books will make you rich. | Higher income has no connection to books. | The study proves causation.
+mc2: An advertisement claims "Sales doubled!" but sales went from 2 units to 4 units. Why could this claim mislead readers? | Doubling sounds impressive, but the actual numbers are very small. | Doubling is impossible. | The math is wrong. | Sales cannot be counted.
+mc3: Two surveys on a school schedule change disagree. Survey A asked 40 students in the robotics club; Survey B asked 400 randomly selected students from every grade. Which is more reliable, and why? | Survey B, because its sample is larger and more representative of the school. | Survey A, because club members care more. | Survey A, because smaller surveys are always better. | Neither, because surveys are never useful.
+mc2: Which question is most useful when evaluating a statistic in an argument? | Who collected the data, how, and from how many people? | Is the number large? | Is the number written in words? | Does the number make me feel good?
+sa2: A writer claims that a new traffic light made an intersection safer because crashes fell from 12 to 9 in one year. Explain one reason this evidence might be insufficient. | Crashes can rise and fall from year to year by chance, so one year of data is not enough; other changes, such as lower speed limits or less traffic, could also explain the drop.
+
+lesson: Unit review | RI.9-10.6, RI.9-10.8
+practice:
+mc1: Reasoning in which the conclusion logically follows from true premises is | valid reasoning | a fallacy | loaded language | a red herring
+hint: Each step connects logically to the next.
+mc2: "Experts agree" is stated with no experts named. What should a reader do? | ask which experts and look for the source | accept it immediately | assume all experts disagree | ignore the whole argument
+hint: Can you check an unnamed source?
+mc2: Which statement is a false statement that a careful reader should question? | Humans use only 10 percent of their brains. | The heart pumps blood. | Water boils at 100 degrees Celsius at sea level. | Earth orbits the Sun.
+hint: Which claim is a well-known myth?
+mc2: An argument that offers lots of evidence, but all of it is about a different issue, has evidence that is | irrelevant | sufficient | credible | precise
+hint: Does the evidence connect to the claim?
+sa2: Explain how a writer's purpose might lead to bias in an argument. | A writer who wants to persuade or sell something may choose only favorable facts and loaded words, leaving out evidence that complicates the claim.
+hint: What might a writer leave out if they want you to agree?
+quiz:
+mc1: An attack on the person instead of the argument is | ad hominem | straw man | bandwagon | red herring
+mc1: "Everyone is buying this phone, so you should too" is | bandwagon | slippery slope | false cause | appeal to authority
+mc2: "If we allow one late assignment, soon no one will turn anything in on time" is | slippery slope | ad hominem | straw man | hasty generalization
+mc2: Misrepresenting an opponent's argument to make it easier to attack is | straw man | red herring | bandwagon | false dilemma
+ex2: Explain why recognizing fallacies matters for citizens and consumers. | It helps people avoid being misled by weak arguments in ads, news and politics.
+mc2: "Nobody has proven that this ancient city never existed, so it must have existed." This reasoning is flawed because | lack of proof against a claim does not prove the claim | it uses too many statistics | it attacks a person | it appeals to popularity
+mc2: Which headline uses loaded language? | Reckless Council Wastes Millions on Useless Bridge | Council Approves $3 Million Bridge Project | Bridge Construction to Begin in May | Residents Comment on Bridge Plan
+mc3: A writer argues against a curfew by citing a study, interviewing police and parents on both sides and acknowledging the curfew's possible benefits. How should a reader evaluate this argument? | It is likely more credible because it uses varied evidence and treats opposing views fairly. | It is weak because it mentions the other side. | It is biased because it uses a study. | It cannot be evaluated.
+
+test:
+mc2: "You're either with us or against us" is | false dilemma | appeal to pity | circular reasoning | ad hominem
+mc2: "I wore my lucky socks and we won, so the socks caused the win" is | false cause | straw man | bandwagon | red herring
+mc2: Valid reasoning means | the conclusion logically follows from the evidence | the argument is popular | the speaker is famous | it uses emotion
+mc3: A politician answers a question about taxes by talking about her opponent's personal life. What fallacy is this? | red herring or ad hominem | logos | valid reasoning | appeal to evidence
+sa2: Identify a fallacy in an advertisement or speech and explain why it is faulty reasoning. | Names the fallacy, quotes it and explains the flaw.
+sa2: Rewrite a fallacious argument so that it uses valid reasoning and evidence. | A revised argument with relevant evidence and logical connection.
+task3: Read an opinion article provided by your teacher. Write an evaluation that delineates the argument, identifies at least two instances of fallacious or weak reasoning, evaluates the evidence, and explains how the argument could be strengthened. | Accurate delineation, two or more fallacies correctly identified and explained, strong evaluation and revision suggestions. | Delineation with one or two fallacies explained. | Identifies fallacies with little explanation. | Little correct work.
+passage: Silence the Leaf Blowers | Every Saturday morning in our neighborhood, the peace is shattered by the scream of gas-powered leaf blowers. It is time for our city to ban them. // The first reason is noise. Gas leaf blowers can be loud enough to disturb people far beyond the yard being cleaned, and their high-pitched whine carries through closed windows. Anyone who has tried to sleep in after a night shift, study for a test or calm a crying baby knows how disruptive they can be. // The second reason is pollution. Small gas engines like those in many leaf blowers are inefficient and release pollutants into the air. California has already passed a law phasing out the sale of most new small gas-powered engines, including leaf blowers, which shows that state leaders take the problem seriously. // Opponents claim that a ban would hurt gardeners. But this is just what you would expect from people who make money by blasting noise at their neighbors. Besides, if we allow gas leaf blowers to stay, next people will demand to use gas lawnmowers at midnight, and soon our neighborhoods will have no rules at all. // Electric leaf blowers are quieter and produce no exhaust where they are used. Rakes and brooms work too, as they did for generations. Everyone I have talked to at the farmers market agrees that a ban is overdue. // Either we ban gas leaf blowers now, or we accept noisy, polluted neighborhoods forever. The choice is obvious. The city council should vote for the ban at its next meeting.
+mc2: What is the central claim of "Silence the Leaf Blowers"? | The city should ban gas-powered leaf blowers. | Gardeners should be paid more. | Electric leaf blowers are too expensive. | Farmers markets should open on Saturdays.
+mc2: In "Silence the Leaf Blowers," which reason is supported with a specific, checkable fact? | the pollution reason, which mentions California's law phasing out sales of new small gas engines | the noise reason, which describes crying babies | the claim that everyone at the farmers market agrees | the claim about midnight lawnmowers
+mc2: In "Silence the Leaf Blowers," what fallacy appears in the statement that opponents are "people who make money by blasting noise at their neighbors"? | ad hominem | bandwagon | circular reasoning | appeal to authority
+mc2: In "Silence the Leaf Blowers," what fallacy is used in the claim that allowing leaf blowers will lead to "gas lawnmowers at midnight" and "no rules at all"? | slippery slope | red herring | hasty generalization | straw man
+mc3: In "Silence the Leaf Blowers," why is "Everyone I have talked to at the farmers market agrees" weak evidence? | It is a small, informal sample that may not represent the city, and it relies on popularity. | It is a peer-reviewed study. | It comes from gardeners. | It contradicts the author's claim.
+mc2: In "Silence the Leaf Blowers," the final paragraph's "Either we ban gas leaf blowers now, or we accept noisy, polluted neighborhoods forever" is an example of | a false dilemma | valid reasoning | an anecdote | a statistic
+mc2: In "Silence the Leaf Blowers," how could the author better address the counterclaim about gardeners? | Acknowledge the cost to gardeners and propose help, such as a rebate for buying electric equipment. | Insult gardeners more strongly. | Remove all mention of gardeners. | Claim gardeners do not exist.
+mc2: In "Silence the Leaf Blowers," which words are the most loaded? | "shattered" and "scream" | "city" and "ban" | "electric" and "quieter" | "council" and "meeting"
+wr3: Write an evaluation of the argument in "Silence the Leaf Blowers." Delineate the claim and reasons, identify at least two fallacies or weak pieces of evidence, explain why each weakens the argument, and suggest how the author could strengthen it. | Key points: claim is to ban gas leaf blowers; reasons are noise and pollution; the state law is the strongest evidence; fallacies include ad hominem against gardeners, slippery slope about lawnmowers, bandwagon or hasty generalization at the farmers market and a false dilemma in the conclusion; improvements include noise measurements, air-quality data, a fair response to gardeners such as rebates and a less absolute conclusion.
+endpassage:
+mc1: An argument that attacks a distorted version of the opponent's view commits the | straw man fallacy | bandwagon fallacy | red herring fallacy | appeal to pity
+mc2: "Our team lost because I forgot my lucky hat" is an example of | false cause | ad hominem | circular reasoning | appeal to authority
+num2: A poll of 500 voters found that 60 percent supported a new library. How many of the voters polled supported it? | 300
+mc2: Which source would be most reliable for data about unemployment in the United States? | the U.S. Bureau of Labor Statistics | a political campaign flyer | an anonymous blog | a television drama
+mc3: An editorial claims that a new law will help small businesses, but the author owns a business that would benefit directly and does not mention it. What is the best evaluation? | The undisclosed interest suggests possible bias, so readers should check the claims against other sources. | The editorial is completely trustworthy. | Business owners can never write editorials. | The law must be harmful.
+
+unit: Explanatory writing and presentation | W.9-10.2, W.9-10.7, SL.9-10.4
+el: Provide a research log template (question, source, credibility notes, key facts, citation) and a bank of domain-specific words for each topic; let students rehearse presentations with a partner first.
+
+lesson: Research questions and credible sources | W.9-10.7, W.9-10.8
+practice:
+mc1: A research question should be | focused enough to research and open enough to need investigation | answerable with yes or no | about every topic at once | a personal opinion
+hint: Too broad is overwhelming; too narrow has no room to explore.
+mc2: Which research question is best for a short explanatory report? | How does the California drought affect farmers in the Central Valley? | What is water? | Is water good? | What is everything about the history of farming?
+hint: Look for a question that is specific and complex.
+mc2: Which website domain is usually run by a U.S. government agency? | .gov | .com | .net | .biz
+hint: Think of "government."
+mc2: Which source is most current for a report on smartphone use by teens? | a survey published last year by a research center | an encyclopedia from 1995 | a novel about teenagers | a cartoon about phones
+hint: For technology topics, the date matters a lot.
+sa2: Explain two questions you should ask to decide whether a website is a credible source. | Who wrote or published it and what is their expertise? Is the information current and supported by evidence or citations that can be checked?
+hint: Think about the author and the evidence.
+quiz:
+mc1: Narrowing a research topic means | making it more focused and manageable | making it broader | changing to a new topic | skipping research
+mc2: Which research question is too broad? | What is the history of science? | How do solar panels convert sunlight into electricity? | How did the 1906 earthquake change building codes in San Francisco? | Why are honeybee populations declining in some regions?
+mc2: Which source would be most credible for a report on how vaccines train the immune system? | a page from the Centers for Disease Control and Prevention | a comment on a video | an ad for vitamins | a friend's text message
+mc2: A student finds a useful article but cannot tell who wrote it or when it was published. What should she do? | look for a more credible source or verify the facts elsewhere | use it without checking | copy it word for word | assume it is from an expert
+mc3: A student researching electric cars finds an article from a car company praising its own vehicles and a report from a university transportation center. How should the student use them? | Rely mainly on the university report and treat the company article as possibly biased. | Use only the company article because it is more exciting. | Ignore both sources. | Treat them as equally objective.
+mc2: Using several sources to check the same fact is called | corroborating information | plagiarizing | summarizing | paraphrasing
+sa2: Turn the broad topic "pollution" into a focused research question and explain why it is better. | "How does traffic pollution affect asthma rates among children living near freeways in Los Angeles?" It names a specific type of pollution, place and group, so it can be researched in depth.
+
+lesson: Organizing explanatory writing with text structures | W.9-10.2
+practice:
+mc1: A text structure that explains why something happens and what results is | cause and effect | chronological order | compare and contrast | description
+hint: Look for signal words such as because and as a result.
+mc2: Which structure would best explain how a caterpillar becomes a butterfly? | chronological or sequential order | compare and contrast | problem and solution | argument and counterargument
+hint: The process happens in stages over time.
+mc2: Which signal words suggest a compare-and-contrast structure? | similarly, however, on the other hand | first, next, finally | because, therefore, as a result | the problem is, one solution is
+hint: Which words show likeness and difference?
+mc2: Why do explanatory writers often use headings? | to help readers find and follow sections of complex information | to make the essay longer | to replace the thesis | to hide the main ideas
+hint: Think of how a textbook is organized.
+sa2: Choose a topic and explain which text structure would best fit it and why. | To explain why the Dust Bowl happened, cause and effect fits best because the essay must show how drought and farming practices led to dust storms and their results.
+hint: Match the structure to what the reader needs to understand.
+quiz:
+passage: How Tides Work | Anyone who spends a day at a California beach will notice that the ocean does not stay in one place. Hours after the water covered the sand, it has pulled back, exposing tide pools full of anemones and crabs. These regular rises and falls of sea level are called tides, and they are caused mainly by gravity. // The Moon's gravity pulls on Earth, and it pulls most strongly on the side of Earth closest to the Moon. Because water can move freely, the ocean on that side bulges slightly toward the Moon. At the same time, a second bulge forms on the opposite side of Earth. As Earth rotates, a given coastline passes through both bulges, which is why most places experience two high tides and two low tides about every 24 hours and 50 minutes. That is also why the tides arrive roughly 50 minutes later each day. // The Sun affects tides too, though its effect is less than half as strong as the Moon's because the Sun is so much farther away. When the Sun, Moon and Earth line up, during a new moon or full moon, their pulls combine. The result is a spring tide, with especially high high tides and especially low low tides. (Spring tides have nothing to do with the season; the name comes from the idea of the water "springing" up.) When the Sun and Moon are at right angles to each other, during the first and third quarter moons, their pulls partly cancel out, producing a neap tide with a smaller difference between high and low water. // Tides matter to more than beachgoers. Fishing crews time their trips by them, ships use high tides to enter shallow harbors, and many coastal plants and animals depend on the rhythm of being covered and uncovered by the sea.
+mc2: What is the central idea of "How Tides Work"? | Tides are regular changes in sea level caused mainly by the gravity of the Moon and, to a lesser degree, the Sun. | Tide pools are full of crabs. | Spring tides happen only in spring. | Beaches in California are popular.
+mc2: Which text structure does "How Tides Work" mainly use to explain tides? | cause and effect | problem and solution | chronological biography | compare and contrast of two beaches
+mc1: According to "How Tides Work," when do spring tides occur? | during a new moon or full moon, when the Sun, Moon and Earth line up | only in the spring season | during quarter moons | only at night
+mc2: According to "How Tides Work," why does the Sun have a weaker effect on tides than the Moon? | The Sun is much farther from Earth. | The Sun is smaller than the Moon. | The Sun has no gravity. | The Sun only affects tides in summer.
+mc3: In "How Tides Work," why does the author include the sentence in parentheses about the name "spring tide"? | to prevent readers from misunderstanding the term as being related to the season | to introduce a new main idea | to tell a story about spring | to argue that the name should be changed
+mc2: In "How Tides Work," what is the purpose of the final paragraph? | to explain why tides are important to people and living things | to give the definition of a tide | to compare tides on Earth and Mars | to summarize the history of tide research
+sa3: In "How Tides Work," explain the difference between a spring tide and a neap tide, using details about the positions of the Sun and Moon. | Spring tides happen at new and full moons, when the Sun, Moon and Earth line up and their pulls combine, causing very high and very low tides. Neap tides happen at quarter moons, when the Sun and Moon are at right angles, so their pulls partly cancel and the tidal range is smaller.
+
+lesson: Paraphrasing, quoting and avoiding plagiarism | W.9-10.8, W.9-10.2
+practice:
+mc1: Restating a source's idea in your own words and sentence structure, with a citation, is | paraphrasing | plagiarizing | quoting | brainstorming
+hint: You keep the meaning but change the words.
+mc2: Which is plagiarism? | copying a sentence from a website into your essay without quotation marks or credit | quoting a sentence with quotation marks and a citation | paraphrasing an idea with a citation | listing a source in your works cited
+hint: Which choice uses someone else's words without credit?
+mc2: When is a direct quotation the best choice? | when the exact words are especially powerful, precise or from an important figure | when you cannot be bothered to paraphrase | for every sentence of evidence | only in the conclusion
+hint: Quotations work best when the wording itself matters.
+mc2: Original: "Bees pollinate about one-third of the crops humans eat." Which paraphrase is acceptable? | According to the source, about a third of the food crops people eat depend on pollination by bees. | Bees pollinate about one-third of the crops humans eat. | Bees pollinate one-third crops humans eat about. | Bees are insects.
+hint: Change the wording and structure but keep the meaning and credit the source.
+sa2: Explain why changing only a few words in a source's sentence is still plagiarism. | The structure and most of the language still belong to the original author, so presenting it as your own writing without quotation marks takes credit for someone else's work.
+hint: Whose sentence is it really?
+quiz:
+mc1: Information that is widely known and found in many sources, such as the fact that the United States has fifty states, is | common knowledge | plagiarism | a direct quotation | a paraphrase
+mc2: Which sentence correctly integrates a short quotation? | The report warns that the fire season is becoming "longer and more intense." | The report warns "Longer and more intense." the fire season. | "The report warns." longer and more intense. | Longer and more intense the report.
+mc2: Why must a writer cite paraphrased ideas, not only direct quotations? | The ideas still come from the source, so the original author deserves credit. | Paraphrases are always wrong. | Citations make essays longer. | Teachers never check quotations.
+mc2: A student uses an AI tool to write paragraphs and turns them in as her own writing without permission or credit. What is the main problem? | She is presenting writing she did not create as her own. | She worked too hard. | She used too many sources. | Her paragraphs are too short.
+mc3: A student summarizes three articles in a row, one paragraph each, with no connections. How could she better synthesize the information? | Organize by idea, combining what the sources say about each point and explaining how they relate. | Copy more sentences from each source. | Remove all citations. | Use only one source.
+mc2: Which signal phrase best introduces a paraphrase from an expert? | Marine biologist Dr. Ana Lopez explains that | Some random person said | I read somewhere that | Here is a quote:
+sa2: Paraphrase this sentence and add a signal phrase: "Wildfire smoke can travel hundreds of miles and harm the lungs of people far from the flames." | According to the health department, smoke from wildfires can drift hundreds of miles and damage the lungs of people who live far from the fire.
+
+lesson: Precise language and domain-specific vocabulary | W.9-10.2, L.9-10.6
+practice:
+mc1: Words specific to a particular subject, such as "photosynthesis" in biology, are | domain-specific vocabulary | slang | figurative language | transitions
+hint: They belong to a field of study.
+mc2: Which sentence uses the most precise language? | The engine converts the chemical energy of gasoline into mechanical energy. | The engine does stuff with gas. | The engine makes the car go somehow. | Engines are pretty cool things.
+hint: Which sentence names exactly what happens?
+mc2: When an explanatory essay uses a technical term readers may not know, the writer should | define it briefly in context | leave it unexplained | replace every technical word with slang | put it in all capital letters
+hint: Think about your audience's background.
+mc2: Which word is the most precise replacement for "big" in "The earthquake caused big damage"? | extensive | very | huge-ish | a lot
+hint: Which word sounds formal and exact?
+sa2: Revise this sentence to be more precise and formal: "Plants use sunlight to make food and stuff." | Plants use energy from sunlight to convert carbon dioxide and water into glucose and oxygen through photosynthesis.
+hint: Replace vague words with exact scientific terms.
+quiz:
+mc2: Which sentence defines a technical term in context? | Erosion, the gradual wearing away of rock and soil by water, wind or ice, shaped the canyon over millions of years. | Erosion shaped the canyon. | Erosion is important. | The canyon has a lot of erosion stuff.
+mc2: Which verb is most precise in "The doctor ___ the patient's heartbeat"? | monitored | did | got | had
+mc2: Which sentence maintains an objective tone for an explanatory essay? | Hurricanes form over warm ocean water when air rises and cools. | Hurricanes are the scariest thing ever. | I think hurricanes are terrible. | Hurricanes are, like, super dangerous.
+mc2: Which domain-specific word belongs in an essay about the U.S. government? | legislature | ventricle | sediment | stanza
+mc3: An essay for middle school students uses many advanced medical terms without definitions. What is the best revision advice? | Keep key terms but define them clearly for the audience. | Add even more terms. | Remove all explanations. | Switch to slang.
+mc2: Which sentence uses a transition to show sequence in a process? | Next, the water vapor cools and condenses into clouds. | However, the water vapor cools. | For example, clouds. | In contrast, clouds form.
+sa2: Explain why precise vocabulary is especially important in explanatory writing. | Explanatory writing aims to make complex ideas clear and accurate, so exact terms prevent confusion and show the writer understands the topic.
+
+lesson: Presenting findings to an audience | SL.9-10.4, SL.9-10.5, SL.9-10.6
+practice:
+mc1: Adjusting language and style to fit the audience and situation is called adapting to the | task and audience | font | title | bibliography
+hint: You would not speak to a judge the way you talk to a friend.
+mc2: Which presentation opening is most effective? | Imagine a city where the air is clean enough to see the mountains every day. That city could be ours. | Um, so, my topic is air. | This is my presentation. | I didn't have much time, sorry.
+hint: Which opening grabs attention and introduces the topic?
+mc2: Which slide design best supports a presentation? | a clear title, a few key words and one relevant image or chart | every word of the speech in small font | many unrelated animated images | no text or images at all
+hint: Slides should support the speaker, not replace the speaker.
+mc2: Which speaking habit most helps an audience follow complex information? | previewing main points and using clear transitions between them | speaking as fast as possible | reading slides word for word with your back to the audience | skipping the conclusion
+hint: Think about how listeners keep track of ideas.
+sa2: Explain how eye contact and voice can affect the audience's trust in a presenter. | Steady eye contact and a clear, confident voice make the speaker seem prepared and credible, so the audience is more likely to listen and believe the information.
+hint: How do you feel about a speaker who never looks up?
+quiz:
+mc1: In a presentation, the part that summarizes key points and leaves a final impression is the | conclusion | hook | slide transition | introduction
+mc2: A student presenting to fifth graders about the water cycle should | use simple terms, define new words and show a clear diagram | use advanced chemistry terms without explanation | read a research paper aloud | skip visuals completely
+mc2: Which chart would best show how a city's population changed over 50 years? | a line graph | a pie chart of one year | a single photograph | a list of street names
+mc2: During a question-and-answer session, a presenter does not know an answer. What is the best response? | Admit it honestly and offer to find out. | Make up an answer. | Ignore the question. | End the presentation immediately.
+mc3: A presenter's slides contain a statistic with no source. Why might this weaken the presentation? | The audience cannot verify the information, which may reduce the presenter's credibility. | Statistics are never useful. | Sources make slides too crowded. | The audience will not notice anything.
+mc2: Which practice habit best prepares a speaker for a presentation? | rehearsing aloud while timing the talk | memorizing only the first sentence | writing the slides the morning of the talk | practicing silently in your head once
+sa2: Plan the structure of a three-minute presentation explaining how recycling works. List the parts in order. | Hook (a surprising fact about waste); preview of three steps; collection and sorting; processing; making new products; conclusion with one action the audience can take.
+
+lesson: Unit review | W.9-10.2, W.9-10.7, SL.9-10.4
+practice:
+mc1: An explanatory text's main purpose is to | inform readers by explaining a topic clearly | persuade readers to act | tell a fictional story | entertain with jokes
+hint: Think of a textbook or how-to article.
+mc2: Which detail would fit best in an explanatory essay about volcanoes? | Magma rises through cracks in Earth's crust and erupts as lava. | Volcanoes are awesome and scary. | I visited a volcano once and loved it. | Everyone should study volcanoes.
+hint: Look for a factual, objective detail.
+mc2: Which transition shows cause and effect in an explanation? | As a result | For example | In contrast | Meanwhile
+hint: Which phrase signals a consequence?
+mc2: Which is the most credible source for an essay on California's water supply? | the California Department of Water Resources | an online forum | a soda advertisement | a fictional movie
+hint: Choose an expert, accountable source.
+sa2: Explain why an explanatory essay should keep an objective tone. | Its goal is to inform, so a neutral tone helps readers trust the information instead of feeling pushed toward an opinion.
+hint: Compare informing with persuading.
+quiz:
+mc1: An explanatory essay's purpose is to | inform and explain a complex idea | persuade | entertain only | describe a personal memory
+mc2: Which thesis best fits an explanatory essay? | Climate change affects coastal cities through rising seas, stronger storms and saltwater intrusion. | Climate change is terrible. | I am worried. | Cities are near water.
+mc2: Which helps organize complex information? | headings, transitions and logical order | random facts | repeated sentences | slang
+mc2: Which evidence best supports an explanation of vaccines? | data from a public health agency | a rumor | a meme | an ad
+ex2: Explain how transitions help readers follow complex ideas. | They show relationships such as cause, contrast and sequence between ideas.
+mc2: Which sentence would make the best thesis for an explanatory essay on earthquakes? | Earthquakes occur when stress builds along faults and is suddenly released as seismic waves. | Earthquakes are scary. | I will tell you about earthquakes. | Do you like earthquakes?
+mc2: In a presentation, a speaker shows a pie chart for data about change over time. What is the problem? | A line graph would show change over time more clearly. | Pie charts are illegal in presentations. | There is no problem. | The chart should be removed and replaced with music.
+mc3: A student's research finds that two credible sources give different numbers for the same statistic. What should the student do in an explanatory essay? | Report the range or explain the difference and cite both sources. | Pick the number that sounds better without saying so. | Invent a third number. | Leave the topic out entirely.
+
+test:
+mc2: In a presentation, visuals should | support and clarify key points | contain every word of the speech | be decorative only | be avoided always
+mc2: Which domain-specific word fits an essay on the heart? | ventricle | thingy | part | stuff
+mc2: Which conclusion fits an explanatory essay? | It synthesizes the main points and explains their significance. | It introduces a new topic. | It lists sources only. | It says "the end."
+mc3: Your research found two credible sources that disagree. In an explanatory essay, you should | explain both findings and why they might differ | choose one secretly | ignore both | make up a third
+sa2: Write an introduction for an explanatory essay on a complex process, with a thesis that previews the organization. | Engaging introduction with a clear organizing thesis.
+sa2: Plan a 3-minute presentation: list three key points and one visual for each. | Three logical key points with relevant visuals.
+task3: Research a scientific or historical process (for example, how a bill becomes law or how vaccines work) and write an explanatory essay using at least three credible sources. Include a clear thesis, logical organization with headings or transitions, precise vocabulary, integrated and cited evidence, and a conclusion on the significance. | Clear thesis, well-organized, accurate and well-cited evidence from 3 or more sources, precise language, insightful conclusion. | Clear and accurate with two or three sources. | Some organization with limited evidence. | Little correct work.
+passage: How a Bill Becomes a Law | Every federal law in the United States, from rules about clean water to the date of a national holiday, began as an idea that had to pass through a long and demanding process. The Constitution gives Congress, which is made up of the House of Representatives and the Senate, the power to make federal laws. Understanding the path a bill takes helps explain why many proposals never become law. // The process begins when a member of Congress introduces a bill. A bill can start in either the House or the Senate, though the Constitution requires bills for raising revenue to begin in the House. The bill is then sent to a committee, a smaller group of members who specialize in a topic such as agriculture or education. Committees may hold hearings, invite experts to testify and revise the bill. Most bills never make it out of committee. // If the committee approves the bill, it goes to the full chamber, where members debate it and vote. A bill that passes one chamber then moves to the other, where it goes through the same steps. Both chambers must pass exactly the same version. If their versions differ, members work out a compromise, sometimes in a conference committee, and both chambers vote again. // Finally, the bill goes to the President. If the President signs it, it becomes law. If the President vetoes, or rejects, the bill, Congress can still make it law by overriding the veto with a two-thirds vote in both the House and the Senate. If the President takes no action for ten days, not counting Sundays, while Congress is in session, the bill becomes law without a signature. But if Congress adjourns during those ten days and the President has not signed it, the bill dies; this is called a pocket veto. // This slow, careful process is not an accident. The framers of the Constitution designed it so that laws would need broad agreement and so that each branch could check the power of the others.
+mc2: What is the central idea of "How a Bill Becomes a Law"? | A bill must pass through committees, both chambers of Congress and the President, a process designed to require broad agreement. | The President writes all federal laws. | Committees are the most powerful part of government. | Most bills become laws quickly.
+mc2: Which text structure does "How a Bill Becomes a Law" mainly use? | sequential order describing the steps of a process | compare and contrast of two countries | problem and solution about pollution | a personal narrative
+mc1: According to "How a Bill Becomes a Law," what happens to most bills? | They never make it out of committee. | They are signed by the President. | They are vetoed. | They become law without a signature.
+mc2: According to "How a Bill Becomes a Law," what can Congress do if the President vetoes a bill? | override the veto with a two-thirds vote in both the House and the Senate | ask the Supreme Court to sign it | pass it with a simple majority in the House only | nothing at all
+mc2: As used in "How a Bill Becomes a Law," what does "veto" mean? | reject | approve | introduce | debate
+mc2: According to "How a Bill Becomes a Law," why might the two chambers need a conference committee? | to resolve differences between the House and Senate versions of a bill | to choose the President | to write the Constitution | to hold elections
+mc3: According to "How a Bill Becomes a Law," what is the difference between a bill becoming law without a signature and a pocket veto? | If Congress stays in session for the ten days, the unsigned bill becomes law; if Congress adjourns during that time, the unsigned bill dies. | There is no difference. | A pocket veto requires a two-thirds vote. | A pocket veto happens only in the Senate.
+mc2: In "How a Bill Becomes a Law," what is the purpose of the final paragraph? | to explain why the framers designed a slow process with checks between branches | to describe a specific law about clean water | to argue that Congress should be abolished | to list the members of a committee
+wr3: Write an explanatory essay that uses "How a Bill Becomes a Law" to explain the steps a bill takes and why the process is designed to be difficult. Include a clear thesis, logical organization with transitions, precise vocabulary (such as committee, chamber, veto and override) and at least three details from the passage. | Key points: thesis that the multi-step process requires broad agreement and checks between branches; steps in order (introduction, committee, floor vote, other chamber, identical versions or conference, President signs or vetoes, override by two-thirds of both chambers, ten-day rule and pocket veto); explains the framers' purpose; precise terms used accurately; sequence transitions.
+endpassage:
+mc1: In an explanatory essay, a quotation from an expert should be followed by | an explanation of how it supports the point | a new unrelated topic | an exclamation point | nothing at all
+mc2: Which sentence uses domain-specific vocabulary correctly? | The Senate voted to ratify the treaty. | The Senate did a thing with the treaty. | The Senate thought the treaty was cool. | The Senate and the treaty were there.
+mc2: Which presentation visual would best help an audience understand the steps of a process? | a labeled flowchart | a photograph of the speaker | a page of dense text | a random cartoon
+mc2: Which is the best paraphrase of "Most bills introduced in Congress do not become law"? | Only a small share of the bills that members of Congress propose end up becoming laws. | Most bills introduced in Congress do not become law. | Congress does not introduce bills. | Bills always become laws.
+mc3: A student explaining how vaccines work cites a doctor's blog, a government health agency and a medical journal. Which choice shows the best use of these sources? | Use the agency and journal as main sources and confirm any blog claims against them. | Use only the blog because it is easiest to read. | Use none because sources disagree sometimes. | Copy the journal's sentences without quotation marks.
+

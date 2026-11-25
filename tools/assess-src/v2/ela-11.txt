@@ -1,0 +1,690 @@
+# Grade 11 ELA, format 2. Units, standards, skills and the original Unit review items are carried over verbatim
+# from the format-1 grade 11 section of ela.txt. Each unit adds four lessons; the Unit review lesson comes last.
+# Its quiz keeps the original quiz items (mc 1-4 and the ex item) and its unit test keeps the original test items
+# (mc 5-8, both sa items and the task) in their original order, followed by new items. All new passages and
+# questions are original; public-domain excerpts are marked with author and date.
+@subject ela
+@grade 11
+about: Eleventh grade focuses on American literature and nonfiction: analyzing how authors' choices shape meaning, how foundational American texts use rhetoric, and how two or more themes interact. Students write analytical essays and research-based arguments.
+std: RL.11-12.2 | Determine two or more themes and analyze their development and interaction.
+std: RL.11-12.9 | Demonstrate knowledge of eighteenth-, nineteenth- and early twentieth-century foundational works of American literature.
+std: RI.11-12.6 | Determine an author's point of view or purpose in a text in which the rhetoric is particularly effective.
+std: RI.11-12.9 | Analyze seventeenth-, eighteenth- and nineteenth-century foundational U.S. documents of historical and literary significance.
+std: W.11-12.1 | Write arguments to support claims in an analysis of substantive topics, using valid reasoning and sufficient evidence.
+std: W.11-12.7 | Conduct short and sustained research projects to answer a question or solve a problem.
+
+unit: American literature: movements and authors | RL.11-12.9, RL.11-12.2 | ela_11, ela_11_n1
+el: Keep a timeline of American literary movements with two or three key words for each (Puritan: faith, plain style; Transcendentalism: nature, self-reliance; Realism: ordinary life) and pre-teach archaic words in older texts with a side-by-side glossary.
+
+lesson: Puritan and colonial voices: Anne Bradstreet | RL.11-12.9, RL.11-12.4
+practice:
+mc1: The Puritans who settled New England in the 1600s wrote mainly | sermons, diaries, histories and religious poetry | science fiction novels | screenplays | comic books
+hint: Their writing served their faith and community.
+mc2: The "plain style" favored by many Puritan writers is | simple, direct language without much decoration | full of slang | highly ornate and flowery | written only in Latin
+hint: Puritans valued clarity over showiness.
+mc2: Why might a Puritan writer describe a house fire as a test from God? | Puritans often interpreted everyday events as signs of God's will. | Puritans did not believe in God. | Puritans wrote only fiction. | Puritans thought fires were lucky.
+hint: Think about how faith shaped their view of daily life.
+mc2: Anne Bradstreet is important in American literature because she was | one of the first poets writing in the English colonies of North America to be published | the author of the Declaration of Independence | a novelist of the 1920s | a leader of the Harlem Renaissance
+hint: Her book was published in London in 1650.
+sa2: Explain how knowing the historical context of the Puritans can help a reader understand their writing. | Knowing that Puritans saw life through religious faith, valued community and faced hardship in a new land explains why their writing focuses on God's will, humility and spiritual lessons.
+hint: Consider their beliefs and their circumstances.
+quiz:
+passage: To My Dear and Loving Husband | Anne Bradstreet (about 1612-1672) came to Massachusetts in 1630 with her husband, Simon, and other Puritan settlers. This poem was published in 1678, after her death. // If ever two were one, then surely we. / If ever man were loved by wife, then thee; / If ever wife was happy in a man, / Compare with me, ye women, if you can. / I prize thy love more than whole mines of gold, / Or all the riches that the East doth hold. / My love is such that rivers cannot quench, / Nor ought but love from thee give recompense. / Thy love is such I can no way repay; / The heavens reward thee manifold, I pray. / Then while we live, in love let's so persevere / That when we live no more, we may live ever. // - Anne Bradstreet (published 1678)
+mc2: What is the main idea of "To My Dear and Loving Husband"? | The speaker's love for her husband is so great that it is priceless and may continue beyond death. | The speaker wants more gold. | The speaker is unhappy in her marriage. | The speaker describes a journey to the East.
+mc2: In "To My Dear and Loving Husband," what device appears in the repeated "If ever" at the start of lines 1 to 3? | anaphora | onomatopoeia | an oxymoron | free verse
+mc2: In "To My Dear and Loving Husband," what does the line "My love is such that rivers cannot quench" suggest? | Her love is so strong that nothing can put it out. | She is afraid of rivers. | She is very thirsty. | Her love is weak and fading.
+mc2: In "To My Dear and Loving Husband," why does the speaker compare her husband's love to "whole mines of gold"? | to show that his love is worth more than any material wealth | to show that her husband is a miner | to complain about money | to describe the setting
+mc3: In "To My Dear and Loving Husband," how do the final two lines reflect Puritan beliefs? | They express hope for eternal life after death, connecting earthly love to faith in heaven. | They reject religion. | They focus only on earthly riches. | They describe a political event.
+mc2: In "To My Dear and Loving Husband," how does the language of the poem compare with the Puritan plain style? | It is direct and clear but uses rhyme, comparisons and paradox to express emotion. | It uses modern slang throughout. | It has no comparisons or rhyme at all. | It is written in Latin.
+sa3: In "To My Dear and Loving Husband," analyze how the paradox in the final line, "That when we live no more, we may live ever," develops the poem's meaning. | The line seems contradictory, but it suggests that after their earthly lives end, the couple may live forever in heaven. It connects their human love to Puritan faith in eternal life and makes their love seem lasting beyond death.
+
+lesson: Transcendentalism: Emerson and Thoreau | RL.11-12.9, RL.11-12.2
+practice:
+mc1: Transcendentalists believed that people could find truth through | intuition and a direct connection with nature | only books written by experts | obedience to tradition | wealth and possessions
+hint: They trusted the inner self.
+mc2: Henry David Thoreau lived in a small cabin near which body of water, an experience he described in his book Walden? | Walden Pond | Lake Tahoe | the Hudson River | the Mississippi River
+hint: The book is named after it.
+mc2: Which statement best reflects the Transcendentalist idea of nonconformity? | Follow your own conscience even when society disagrees. | Always do what is popular. | Never spend time alone. | Let others make your decisions.
+hint: Think about Emerson's "Self-Reliance."
+mc2: Thoreau's essay "Civil Disobedience" argues that individuals should | refuse to support unjust laws, even if they face punishment | obey every law without question | avoid politics completely | overthrow the government by force
+hint: Thoreau spent a night in jail for refusing to pay a tax he opposed.
+sa2: Explain how a modern person might apply a Transcendentalist idea to everyday life. | A person might spend time in nature without a phone to think clearly, or make a choice based on personal values instead of following the crowd, reflecting self-reliance and the importance of nature.
+hint: Think about nature, simplicity or self-reliance.
+quiz:
+passage: Two Voices of Self-Reliance | In the 1840s and 1850s, Ralph Waldo Emerson and Henry David Thoreau, neighbors in Concord, Massachusetts, became the best-known voices of Transcendentalism. Both urged Americans to trust their own minds, look to nature for truth and resist the pressure to conform. // In his essay "Self-Reliance" (1841), Emerson wrote: "Trust thyself: every heart vibrates to that iron string." Later in the same essay he declared: "Whoso would be a man, must be a nonconformist." // From 1845 to 1847, Thoreau lived in a small cabin he built near Walden Pond, on land owned by Emerson. In Walden (1854), he explained his reasons: "I went to the woods because I wished to live deliberately, to front only the essential facts of life, and see if I could not learn what it had to teach, and not, when I came to die, discover that I had not lived." He also warned against the clutter of modern life: "Our life is frittered away by detail. An honest man has hardly need to count more than his ten fingers, or in extreme cases he may add his ten toes, and lump the rest. Simplicity, simplicity, simplicity!" // Emerson spoke mostly in bold general principles; Thoreau tested those principles in a personal experiment. Together, their writing helped shape a lasting American belief in individual conscience and the value of the natural world.
+mc2: What is the main purpose of "Two Voices of Self-Reliance"? | to introduce how Emerson and Thoreau expressed Transcendentalist ideas | to argue that Emerson and Thoreau disliked each other | to explain how to build a cabin | to describe the history of Concord's farms
+mc2: In "Two Voices of Self-Reliance," what does Emerson's metaphor "every heart vibrates to that iron string" suggest? | Everyone has a strong inner sense of truth that responds to self-trust. | Hearts are made of metal. | People should learn musical instruments. | Self-trust is weak and easily broken.
+mc2: In "Two Voices of Self-Reliance," what does Thoreau mean by wanting "to live deliberately"? | to live with careful purpose and attention to what truly matters | to live as quickly as possible | to live without any plans | to live only in cities
+mc2: In "Two Voices of Self-Reliance," what is the effect of Thoreau's repetition in "Simplicity, simplicity, simplicity!"? | It emphasizes his main message with humor and urgency. | It shows he has nothing else to say. | It describes a song. | It shows confusion.
+mc3: According to "Two Voices of Self-Reliance," how did Emerson's and Thoreau's approaches differ? | Emerson stated broad principles, while Thoreau tested them through personal experience. | Emerson lived in the woods, while Thoreau stayed in the city. | Thoreau rejected nature, while Emerson praised it. | They had identical methods and topics.
+mc2: In "Two Voices of Self-Reliance," which quotation best expresses the Transcendentalist value of nonconformity? | "Whoso would be a man, must be a nonconformist." | "From 1845 to 1847, Thoreau lived in a small cabin." | "neighbors in Concord, Massachusetts" | "on land owned by Emerson"
+sa3: Using "Two Voices of Self-Reliance," explain how Thoreau's experiment at Walden Pond puts one of Emerson's ideas into practice. | Emerson urges people to "Trust thyself" and resist conformity. Thoreau acts on this by leaving ordinary society to "live deliberately" and focus on "the essential facts of life," testing for himself what life could teach instead of following others' expectations.
+
+lesson: Dark Romanticism and the American Gothic | RL.11-12.9, RL.11-12.5
+practice:
+mc1: Writers such as Edgar Allan Poe and Nathaniel Hawthorne are often grouped as | Dark Romantics | Transcendentalists | Realists | Modernists
+hint: They explored evil, guilt and the darker side of human nature.
+mc2: Which feature is most typical of Gothic fiction? | gloomy settings, mystery and a sense of dread | cheerful family picnics | detailed instructions for farming | lists of statistics
+hint: Think of haunted houses and dark secrets.
+mc2: Unlike the Transcendentalists, Dark Romantic writers tended to emphasize | sin, guilt and the human capacity for evil | the goodness of all people | the purity of nature | the joy of self-reliance
+hint: Think of the "dark" in their name.
+mc2: In Poe's "The Tell-Tale Heart," the narrator insists he is not mad while describing a murder. What does this create? | an unreliable narrator whose claims readers doubt | a reliable, objective narrator | a comic tone | a happy ending
+hint: Does his behavior match his claims of sanity?
+sa2: Explain why a writer might use a gloomy, isolated setting in a story about guilt. | A dark, isolated setting mirrors the character's inner turmoil and loneliness, building dread and suggesting that guilt has cut the character off from others.
+hint: Think about how setting can reflect a character's mind.
+quiz:
+mc1: Edgar Allan Poe wrote the poem in which a bird repeats the word "Nevermore." Its title is | "The Raven" | "The Eagle" | "Ozymandias" | "Daffodils"
+mc2: In Hawthorne's The Scarlet Letter, Hester Prynne must wear a scarlet "A." What does the letter publicly represent at first? | her sin of adultery in the eyes of the Puritan community | her bravery in battle | her family name | an award for her sewing
+mc2: Which sentence best describes how Dark Romantics responded to Transcendentalist optimism? | They doubted that human nature was simply good and explored guilt, pride and evil. | They agreed completely and wrote only about nature's goodness. | They stopped writing fiction. | They focused on economics and statistics.
+mc2: A story uses a decaying mansion, strange noises and a family secret. Which literary tradition does it most likely draw on? | the Gothic | Realism | the Harlem Renaissance | Puritan plain style
+mc3: Over the course of The Scarlet Letter, many townspeople begin to read Hester's "A" as meaning "Able." What does this change suggest? | Symbols can change meaning as a community's view of a person changes. | Symbols always keep one fixed meaning. | Hester changes her name. | The town forgets Hester entirely.
+mc2: Why is a first-person narrator especially effective in a psychological horror story? | Readers experience the narrator's distorted thoughts directly and must judge what is real. | It allows the author to explain everything objectively. | It removes suspense. | It makes the story a comedy.
+sa2: Compare the view of human nature in Transcendentalism with that in Dark Romanticism. | Transcendentalists saw people as basically good and able to find truth within; Dark Romantics emphasized that people are capable of sin, pride and evil, and that guilt can haunt them.
+
+lesson: Realism and Naturalism | RL.11-12.9, RL.11-12.2
+practice:
+mc1: American Realist writers of the late 1800s aimed to | portray ordinary people and everyday life truthfully | idealize heroes and fantasy worlds | write only religious poetry | avoid describing society
+hint: "Realism" suggests showing life as it really is.
+mc2: Naturalism differs from Realism mainly because Naturalist writers emphasized that | forces such as heredity, environment and nature shape people's lives beyond their control | people always control their fate completely | stories should have magical elements | only wealthy people matter
+hint: Think about nature as a powerful, indifferent force.
+mc2: Mark Twain's use of regional dialects in his fiction is an example of | local color writing that captures how people in a particular place really spoke | Puritan plain style | Gothic horror | free verse poetry
+hint: Realists paid attention to real speech.
+mc2: In Stephen Crane's story "The Open Boat," men in a small boat struggle against the sea, which does not care whether they live. This reflects the Naturalist view of nature as | indifferent | kind and protective | evil and vengeful | magical
+hint: The sea is neither friend nor enemy.
+sa2: Explain how the rise of factories and cities after the Civil War might have influenced Realist and Naturalist writers. | Rapid industrialization exposed poverty, hard labor and social problems, so writers turned to showing ordinary people's struggles and the forces that shaped their lives instead of romantic ideals.
+hint: Think about what writers saw happening around them.
+quiz:
+passage: The Universe Replies | In the late 1800s, many American writers rejected the idealism of earlier Romantic writers. Realists such as Mark Twain and William Dean Howells described ordinary life as truthfully as they could. Naturalists such as Stephen Crane, Jack London and Frank Norris went further, suggesting that humans are shaped by forces they cannot control, such as heredity, economic conditions and the power of nature. Stephen Crane expressed this view in a short poem published in 1899: // A man said to the universe: / "Sir, I exist!" / "However," replied the universe, / "The fact has not created in me / A sense of obligation." // - Stephen Crane (1899) // In just five lines, Crane captures a central Naturalist idea. The man speaks boldly, as if his existence should matter to the cosmos. The universe answers politely, even formally, with "Sir" echoed in its calm "However," but its message is cold: it owes the man nothing. Unlike the Transcendentalists, who saw nature as a source of spiritual truth and connection, Crane presents a universe that is vast, impersonal and indifferent to human hopes.
+mc2: What is the central idea of the poem in "The Universe Replies"? | The universe is indifferent to human existence and owes people nothing. | The universe loves and protects every person. | People should talk to the universe more often. | The man in the poem is famous.
+mc2: In "The Universe Replies," what is ironic about the universe's polite tone? | Its courteous language delivers a cold, dismissive message. | It is rude and angry. | It agrees with the man completely. | It speaks in rhyme.
+mc2: According to "The Universe Replies," how did Naturalists differ from Realists? | Naturalists emphasized forces such as heredity, economics and nature that humans cannot control. | Naturalists wrote only about nature walks. | Naturalists idealized heroes. | Naturalists rejected describing ordinary life.
+mc3: In "The Universe Replies," how does Crane's view of nature contrast with the Transcendentalists' view? | Crane sees nature as impersonal and indifferent, while Transcendentalists saw it as a source of spiritual truth. | Both saw nature as cruel and evil. | Crane worshipped nature, while Transcendentalists feared it. | Neither wrote about nature.
+mc2: In "The Universe Replies," what does the man's exclamation "Sir, I exist!" suggest about him? | He believes his existence should be important to the universe. | He is unsure whether he exists. | He is angry at another person. | He is giving a scientific lecture.
+mc2: In "The Universe Replies," why does the author describe the universe as answering "politely, even formally"? | to highlight the contrast between its manners and its indifferent message | to show the universe respects the man deeply | to suggest the poem is humorous only | to describe Crane's personality
+sa3: Using "The Universe Replies," explain how Crane's poem reflects Naturalism. Cite the poem. | The universe replies that the man's existence "has not created in me / A sense of obligation," showing that nature is indifferent to human beings. This matches the Naturalist belief that humans are small and shaped by forces beyond their control, not watched over by a caring universe.
+
+lesson: Interacting themes in Paul Laurence Dunbar's "We Wear the Mask" | RL.11-12.2, RL.11-12.9
+practice:
+mc1: When a text develops two themes that affect and deepen each other, the themes | interact | contradict the plot | replace the characters | have no connection
+hint: Think about how one idea can complicate another.
+mc2: A novel explores both the desire for wealth and the loss of personal integrity. How might these themes interact? | Pursuing wealth leads a character to compromise integrity, so each theme sharpens the other. | They are completely unrelated. | Wealth always increases integrity. | Integrity has nothing to do with choices.
+hint: Look for cause-and-effect between the ideas.
+mc2: The Harlem Renaissance of the 1920s was | a flowering of African American art, music and literature centered in New York City | a Puritan religious movement | a group of 1840s nature writers | a style of medieval painting
+hint: Langston Hughes and Zora Neale Hurston were part of it.
+mc2: A mask in literature often symbolizes | the difference between outward appearance and inner reality | a holiday celebration | a medical procedure | a happy ending
+hint: What does a mask hide?
+sa2: Explain why historical context matters when interpreting a poem about hiding one's feelings. | The poet's experiences and society shape what the speaker must hide and why; for example, prejudice may force people to conceal pain for safety, which deepens the poem's meaning.
+hint: Ask what pressures the speaker might face.
+quiz:
+passage: We Wear the Mask | Paul Laurence Dunbar (1872-1906), the son of formerly enslaved parents, became one of the first African American poets to gain a national audience. This poem was first published in 1895. // We wear the mask that grins and lies, / It hides our cheeks and shades our eyes, - / This debt we pay to human guile; / With torn and bleeding hearts we smile, / And mouth with myriad subtleties. // Why should the world be over-wise, / In counting all our tears and sighs? / Nay, let them only see us, while / We wear the mask. // We smile, but, O great Christ, our cries / To thee from tortured souls arise. / We sing, but oh the clay is vile / Beneath our feet, and long the mile; / But let the world dream otherwise, / We wear the mask! // - Paul Laurence Dunbar (1895)
+mc2: In "We Wear the Mask," what does the mask represent? | the false cheerfulness people show to hide their suffering | a costume for a play | a disguise worn by a criminal | protection from cold weather
+mc2: In "We Wear the Mask," what is the effect of the contrast in "With torn and bleeding hearts we smile"? | It shows the painful gap between inner suffering and outward appearance. | It shows the speakers are truly happy. | It describes a physical injury only. | It creates a humorous tone.
+mc2: In "We Wear the Mask," why might the speakers choose to let the world "only see us, while / We wear the mask"? | to protect themselves from a world that would not understand or might punish their pain | because they enjoy acting | because they have no feelings | because the world asked to see their tears
+mc3: Considering its historical context, which pair of themes interacts most strongly in "We Wear the Mask"? | the suffering caused by oppression and the necessity of hiding that suffering to survive | the joy of music and the beauty of nature | wealth and travel | childhood and school
+mc2: In "We Wear the Mask," what is the effect of the shortened line "We wear the mask" at the end of the second stanza? | It interrupts the rhythm and emphasizes the central image. | It shows the poet ran out of ideas. | It introduces a new speaker. | It changes the subject to music.
+mc2: In "We Wear the Mask," the speakers use the pronoun "we" rather than "I." What does this suggest? | The experience of masking pain is shared by a whole community. | Only one person wears the mask. | The poem is about a sports team. | The speaker is talking to himself.
+sa3: Analyze how two themes interact in "We Wear the Mask." Cite at least two lines. | The poem links suffering ("torn and bleeding hearts," "tortured souls") with the need to hide it ("We wear the mask that grins and lies"). Because the world will not acknowledge the pain, the speakers must conceal it, and the act of concealment itself becomes another source of suffering, so the two themes deepen each other.
+
+lesson: Unit review | RL.11-12.9, RL.11-12.2
+practice:
+mc1: Which movement is most associated with Henry David Thoreau? | Transcendentalism | Naturalism | the Harlem Renaissance | Puritanism
+hint: Think of Walden.
+mc2: Which detail would most likely appear in a Realist story? | a factory worker's long shift described in plain, accurate detail | a dragon guarding a castle | a talking universe | a prophecy from a ghost
+hint: Realists described everyday life.
+mc2: Which statement best describes a theme of Puritan writing? | Life's events reflect God's will, and people should live humbly and faithfully. | Nature is indifferent to people. | Individuals should ignore all authority. | Wealth is the purpose of life.
+hint: Think of the Puritans' religious beliefs.
+mc2: Paul Laurence Dunbar's "We Wear the Mask" explores | the hidden suffering behind a cheerful public face | the beauty of daffodils | life on a whaling ship | the rules of chess
+hint: What does a mask hide?
+sa2: Choose two American literary movements and explain one key difference between them. | Transcendentalists saw nature as a source of spiritual truth, while Naturalists saw nature as an indifferent force that shapes people's lives beyond their control.
+hint: Compare their views of nature, people or society.
+quiz:
+mc1: Who wrote "The Scarlet Letter"? | Nathaniel Hawthorne | Mark Twain | Herman Melville | Edgar Allan Poe
+mc1: Which movement emphasized nature, intuition and self-reliance? | Transcendentalism | Realism | Modernism | Puritanism
+mc2: Who wrote the essay "Self-Reliance"? | Ralph Waldo Emerson | Henry David Thoreau | Walt Whitman | Emily Dickinson
+mc2: "The Great Gatsby" explores which theme? | the hollowness of the American Dream in the 1920s | life on a whaling ship | Puritan guilt | frontier survival
+ex2: Explain how historical context can deepen understanding of an American literary work. | Knowing the time period's events and values explains characters' choices and the author's message.
+mc2: Which writer is associated with Dark Romanticism? | Edgar Allan Poe | Ralph Waldo Emerson | Anne Bradstreet | Langston Hughes
+mc2: Which phrase best describes the Puritan plain style? | clear, simple and direct | ornate and decorative | full of slang | written in dialect only
+mc3: A novel set in the 1930s Dust Bowl shows a family destroyed by drought and debt despite their hard work. Which literary approach does this most reflect? | Naturalism, because outside forces overpower individual effort | Transcendentalism, because nature brings spiritual truth | Puritanism, because events are signs of grace | Romanticism, because the family is idealized
+
+test:
+mc2: Which author is known for "Adventures of Huckleberry Finn"? | Mark Twain | F. Scott Fitzgerald | John Steinbeck | Toni Morrison
+mc2: Langston Hughes is associated with | the Harlem Renaissance | Transcendentalism | Puritanism | the Beat Generation
+mc2: "The Grapes of Wrath" by John Steinbeck is set during | the Great Depression and Dust Bowl | the Civil War | colonial times | the 1990s
+mc3: Realist writers of the late 1800s differ from Romantic writers mainly because they | depict ordinary life truthfully rather than idealize it | write only poetry | ignore society | write only about nature
+sa2: Explain a key belief of Transcendentalism and how it appears in a text you read. | Names the belief (self-reliance, nature) and connects to a specific passage.
+sa2: Analyze how two themes interact in an American novel you studied. | Names two themes and explains how they develop and complicate each other.
+task3: Write a literary analysis essay on a foundational American work studied in class, analyzing how two themes develop and interact over the text and how the work reflects its literary movement. Use at least four integrated quotations. | Insightful analysis of interacting themes and movement, four or more well-integrated quotations, sophisticated thesis. | Clear analysis of both themes with three quotations. | Discusses themes separately with little analysis. | Little correct work.
+passage: Because I could not stop for Death | Emily Dickinson (1830-1886) wrote nearly 1,800 poems, but only a few were published during her lifetime. This poem was written in the early 1860s and first published in 1890, after her death. Her dashes appear here as hyphens. // Because I could not stop for Death - / He kindly stopped for me - / The Carriage held but just Ourselves - / And Immortality. // We slowly drove - He knew no haste / And I had put away / My labor and my leisure too, / For His Civility - // We passed the School, where Children strove / At Recess - in the Ring - / We passed the Fields of Gazing Grain - / We passed the Setting Sun - // Or rather - He passed Us - / The Dews drew quivering and chill - / For only Gossamer, my Gown - / My Tippet - only Tulle - // We paused before a House that seemed / A Swelling of the Ground - / The Roof was scarcely visible - / The Cornice - in the Ground - // Since then - 'tis Centuries - and yet / Feels shorter than the Day / I first surmised the Horses' Heads / Were toward Eternity - // - Emily Dickinson (published 1890)
+mc2: In "Because I could not stop for Death," how is Death personified? | as a kind, polite gentleman driving a carriage | as a frightening monster | as a storm at sea | as a child playing at recess
+mc2: In "Because I could not stop for Death," what is the significance of the first line? | The speaker was too busy with life to stop for death, so death came for her. | The speaker was waiting eagerly for death. | The speaker refused to ride in the carriage. | The speaker was running a race.
+mc2: In "Because I could not stop for Death," what do the school, the fields of grain and the setting sun most likely represent? | the stages of life: childhood, maturity and old age or death | three places the speaker wants to visit | the speaker's daily chores | the seasons of a single year
+mc2: In "Because I could not stop for Death," what does the "House that seemed / A Swelling of the Ground" most likely represent? | a grave | a farmhouse | a church | a school
+mc3: In "Because I could not stop for Death," how does the line "Or rather - He passed Us -" change the poem's mood? | It shifts the perspective so the speaker realizes she is no longer part of the moving world, introducing a chill. | It makes the mood more cheerful. | It shows the speaker winning a race against the sun. | It has no effect on the mood.
+mc2: In "Because I could not stop for Death," what is the effect of describing the speaker's gown as "only Gossamer" and her tippet as "only Tulle"? | It shows she is dressed too lightly for the chill, suggesting she was unprepared for death. | It shows she is wealthy. | It describes a wedding celebration only. | It shows the weather is hot.
+mc2: In "Because I could not stop for Death," what does the final stanza suggest about time after death? | Centuries feel shorter than a single day, suggesting that time loses its normal meaning in eternity. | The speaker is counting the days until she returns. | Time moves very slowly after death. | The speaker regrets the carriage ride.
+mc2: In "Because I could not stop for Death," which two themes interact most clearly? | death and immortality | wealth and poverty | war and peace | science and religion
+wr3: Write an essay analyzing how Dickinson uses personification, imagery and structure in "Because I could not stop for Death" to develop the interacting themes of death and eternity. Include a precise thesis and at least four references to the poem. | Key points: Death is a polite carriage driver ("kindly stopped," "Civility"), making death calm rather than terrifying; the journey past the school, grain and setting sun traces life's stages; "He passed Us" and the chill of "Gossamer" and "Tulle" mark the shift into death; the grave as "A Swelling of the Ground"; the final stanza's "Centuries" feeling shorter than a day shows eternity; together the themes present death as a passage into immortality.
+endpassage:
+mc1: Langston Hughes is best known as a poet of the | Harlem Renaissance | Puritan era | Transcendentalist movement | colonial period
+mc2: Which statement best describes Realism? | It portrays everyday life and ordinary people accurately. | It focuses on supernatural events. | It idealizes heroes and ignores problems. | It uses only religious subjects.
+mc2: Thoreau's idea that people should refuse to obey unjust laws appears in his essay | "Civil Disobedience" | "Self-Reliance" | "The Raven" | "The Tell-Tale Heart"
+mc2: Which detail would most clearly identify a story as Gothic? | a crumbling mansion with a terrible family secret | a sunny walk through a meadow | a factory worker's daily routine | a debate about taxes
+mc3: Emerson urges people to "Trust thyself," while Crane's universe says it owes humans no "sense of obligation." What contrast do these ideas reveal? | Transcendentalism trusts human beings' inner power and connection to the universe, while Naturalism sees humans as small in an indifferent universe. | Both movements see the universe as caring. | Both writers reject the idea of self-trust. | There is no difference between them.
+
+unit: Foundational U.S. documents and rhetoric | RI.11-12.6, RI.11-12.8, RI.11-12.9
+el: Pair each founding document excerpt with a modern paraphrase and a vocabulary list (unalienable, consent, grievance, tyranny, ratify); use a claim-evidence chart to map each document's argument.
+
+lesson: The Declaration of Independence: purpose and structure | RI.11-12.9, RI.11-12.5
+practice:
+mc1: The Declaration of Independence was approved by the Continental Congress in | 1776 | 1787 | 1620 | 1865
+hint: Americans celebrate it on the Fourth of July.
+mc2: What is the main purpose of the Declaration of Independence? | to explain and justify the colonies' decision to separate from Great Britain | to create the structure of the U.S. government | to end slavery | to declare war on France
+hint: The title gives a clue: what is being declared?
+mc2: The Declaration's long list of complaints against King George III is called the | grievances | amendments | Preamble | Bill of Rights
+hint: A grievance is a complaint about unfair treatment.
+mc2: The Declaration's ideas about natural rights were influenced by the English philosopher | John Locke | William Shakespeare | Isaac Newton | Charles Dickens
+hint: He wrote about life, liberty and property.
+sa2: Explain what "consent of the governed" means and why it was a revolutionary idea in 1776. | It means governments get their power from the people they govern. It was revolutionary because most governments then claimed power from kings or heredity, not from the people.
+hint: Who gives a government its authority?
+quiz:
+passage: The Opening of the Declaration | The Declaration of Independence was adopted by the Second Continental Congress on July 4, 1776. Thomas Jefferson wrote the first draft, which the Congress revised. These are its opening sentences. // "When in the Course of human events, it becomes necessary for one people to dissolve the political bands which have connected them with another, and to assume among the powers of the earth, the separate and equal station to which the Laws of Nature and of Nature's God entitle them, a decent respect to the opinions of mankind requires that they should declare the causes which impel them to the separation. // We hold these truths to be self-evident, that all men are created equal, that they are endowed by their Creator with certain unalienable Rights, that among these are Life, Liberty and the pursuit of Happiness. That to secure these rights, Governments are instituted among Men, deriving their just powers from the consent of the governed, That whenever any Form of Government becomes destructive of these ends, it is the Right of the People to alter or to abolish it, and to institute new Government, laying its foundation on such principles and organizing its powers in such form, as to them shall seem most likely to effect their Safety and Happiness." // - Declaration of Independence (1776)
+mc2: In "The Opening of the Declaration," what does the first sentence say the colonists must do? | declare the causes that lead them to separate | ask the king for forgiveness | write a new constitution immediately | declare war on all nations
+mc2: In "The Opening of the Declaration," what does "unalienable Rights" mean? | rights that cannot be taken away | rights given by the king | rights that apply only to citizens of England | rights that must be purchased
+mc2: In "The Opening of the Declaration," according to the second paragraph, why are governments created? | to secure people's rights | to collect taxes for the king | to build armies | to choose a state religion
+mc3: In "The Opening of the Declaration," what logical conclusion follows from the ideas in the second paragraph? | If a government destroys people's rights, the people may change or abolish it. | Governments can never be changed. | Kings receive their power directly from God. | People must always obey their rulers.
+mc2: In "The Opening of the Declaration," why does Jefferson call these truths "self-evident"? | to present them as obvious principles that need no proof, strengthening the argument | to admit they are uncertain | to show they come from a science experiment | to suggest only experts understand them
+mc2: In "The Opening of the Declaration," the phrase "the Laws of Nature and of Nature's God" is used to | claim a higher authority than the British king for the colonists' independence | describe the weather in the colonies | refer to British laws | explain farming practices
+sa3: Explain how "The Opening of the Declaration" sets up a logical argument for independence. Cite two phrases. | It states that people have rights to "Life, Liberty and the pursuit of Happiness" and that governments get "their just powers from the consent of the governed." It then argues that when a government becomes "destructive of these ends," the people may "alter or to abolish it," which prepares for the grievances proving that Britain has done so.
+
+lesson: The logic of the grievances | RI.11-12.8, RI.11-12.9
+practice:
+mc1: Reasoning that moves from a general principle to a specific conclusion is | deductive reasoning | inductive reasoning | circular reasoning | a red herring
+hint: General to specific.
+mc2: The Declaration's argument can be summarized: (1) People may overthrow a government that destroys their rights. (2) The British king has destroyed the colonists' rights. (3) Therefore the colonists may overthrow his rule. What role do the grievances play? | They support statement 2 with specific evidence. | They state the general principle in statement 1. | They are the conclusion. | They are unrelated to the argument.
+hint: Which statement needs facts to prove it?
+mc2: The grievance "For imposing Taxes on us without our Consent" connects to which principle stated earlier in the Declaration? | Governments derive their just powers from the consent of the governed. | All people must pay taxes. | Kings have a divine right to rule. | Colonies should trade only with Britain.
+hint: Look for the word "consent."
+mc2: Why do many grievances begin with "He has," referring to the king? | to place responsibility directly on King George III | because Parliament wrote them | to avoid blaming anyone | because the king wrote the Declaration
+hint: Who is the argument aimed at?
+sa2: Explain why the writers included many grievances rather than just one or two. | A long list of specific abuses provides sufficient evidence that the king's actions form a pattern of tyranny, not a single mistake, which makes separation seem justified.
+hint: Think about sufficient evidence.
+quiz:
+mc2: The Declaration states, "He has refused his Assent to Laws, the most wholesome and necessary for the public good." What is the colonists' complaint? | The king blocked useful laws the colonies needed. | The king passed too many laws. | The king was too generous. | The king gave the colonies too much freedom.
+mc2: The grievance "He has kept among us, in times of peace, Standing Armies without the Consent of our legislatures" objects to | soldiers stationed in the colonies during peacetime without local approval | the colonies having no army | wars with France | the colonies building forts
+mc2: Reasoning that moves from many specific examples to a general conclusion is | inductive reasoning | deductive reasoning | an ad hominem | a false dilemma
+mc2: The grievance "For cutting off our Trade with all parts of the world" appeals mainly to the colonists' concern about | economic harm | religious freedom | voting age | education
+mc3: A critic in 1776 might argue that some grievances blamed the king for laws actually passed by Parliament. How would this affect an evaluation of the Declaration's reasoning? | It suggests the Declaration simplified responsibility to build a stronger case against one person. | It proves every grievance is false. | It has no effect on the argument. | It shows the king wrote the Declaration.
+mc2: Which phrase from the Declaration's introduction prepares readers for the list of grievances? | "let Facts be submitted to a candid world" | "Life, Liberty and the pursuit of Happiness" | "all men are created equal" | "the separate and equal station"
+sa2: Choose one grievance from the Declaration (for example, taxation without consent) and explain how it supports the claim that the king had become a tyrant. | Taxing the colonists without their consent violated the principle that just powers come from the consent of the governed, so it shows the king ruling without regard for the people's rights, which is the definition of tyranny the Declaration uses.
+
+lesson: The Constitution's Preamble and Federalist No. 51 | RI.11-12.9, RI.11-12.6
+practice:
+mc1: The introduction to the U.S. Constitution that states its purposes is the | Preamble | Bill of Rights | Declaration of Independence | Federalist Papers
+hint: It begins "We the People."
+mc2: Which pair correctly matches a branch of the U.S. government with its main job? | legislative: makes laws | judicial: enforces laws | executive: interprets laws | legislative: commands the army
+hint: Congress is the legislative branch.
+mc2: The system in which each branch of government can limit the others is called | checks and balances | federalism only | popular sovereignty | the electoral college
+hint: Each branch "checks" the others.
+mc2: The Federalist Papers were published under the pen name | Publius | Common Sense | Poor Richard | The Spectator
+hint: The authors used a Roman name.
+sa2: Explain why the framers of the Constitution divided power among three branches. | They feared that concentrated power would lead to tyranny, so they separated powers and gave each branch ways to check the others.
+hint: Think about what the colonists had just rebelled against.
+quiz:
+passage: A More Perfect Union | The U.S. Constitution was written in 1787 and ratified in 1788. It opens with the Preamble: // "We the People of the United States, in Order to form a more perfect Union, establish Justice, insure domestic Tranquility, provide for the common defence, promote the general Welfare, and secure the Blessings of Liberty to ourselves and our Posterity, do ordain and establish this Constitution for the United States of America." // To persuade New York voters to support ratification, Alexander Hamilton, James Madison and John Jay wrote a series of 85 essays, now called the Federalist Papers, under the shared pen name "Publius." Federalist No. 51 (1788), usually credited to Madison, explains why the Constitution separates power and builds in checks: // "If men were angels, no government would be necessary. If angels were to govern men, neither external nor internal controls on government would be necessary. In framing a government which is to be administered by men over men, the great difficulty lies in this: you must first enable the government to control the governed; and in the next place oblige it to control itself."
+mc2: In "A More Perfect Union," whose authority does the Preamble claim establishes the Constitution? | the people of the United States | the King of England | the state governors | the Supreme Court
+mc2: In "A More Perfect Union," which phrase in the Preamble refers to protecting the nation from outside attack? | "provide for the common defence" | "establish Justice" | "promote the general Welfare" | "form a more perfect Union"
+mc2: In "A More Perfect Union," what does "our Posterity" mean? | future generations | the founders' ancestors | foreign nations | the military
+mc3: In "A More Perfect Union," what is Madison's reasoning in "If men were angels, no government would be necessary"? | Because humans are imperfect, government is needed, and because rulers are also human, government itself must be limited. | Humans are perfect, so government is unnecessary. | Only angels should serve in government. | Government should have unlimited power.
+mc2: In "A More Perfect Union," according to Madison, what is "the great difficulty" in framing a government? | making it strong enough to control the people while also forcing it to control itself | finding enough people to serve | paying for the army | choosing a capital city
+mc2: In "A More Perfect Union," why did the authors of the Federalist Papers write them? | to persuade voters to support ratification of the Constitution | to declare independence from Britain | to criticize the Constitution | to write the Bill of Rights
+sa3: Using "A More Perfect Union," explain how Madison's argument in Federalist No. 51 supports the Constitution's system of checks and balances. | Madison argues that because people are not angels, government must be able to "control the governed" but also be obliged "to control itself." Separating power among branches that can check each other is a way to make government control itself and prevent tyranny.
+
+lesson: Lincoln's Gettysburg Address | RI.11-12.6, RI.11-12.9
+practice:
+mc1: Lincoln delivered the Gettysburg Address in November 1863 at | the dedication of a cemetery for Union soldiers | his first inauguration | a meeting of Congress | the end of the Civil War
+hint: The battle had taken place that July.
+mc2: "Four score and seven years ago" refers to how many years? | 87 | 47 | 107 | 74
+hint: A score is twenty.
+mc2: Why did Lincoln refer back to 1776 rather than to the Constitution of 1787? | to connect the war to the Declaration's principle that all men are created equal | because he forgot the Constitution | because the Constitution had been repealed | to celebrate the British
+hint: Which founding document says "all men are created equal"?
+mc2: The Gettysburg Address is famous for being | very short, about 270 words | the longest speech in American history | written in French | delivered on the Fourth of July
+hint: The main speaker that day talked for about two hours; Lincoln did not.
+sa2: Explain why a short speech can sometimes be more powerful than a long one. | A short speech focuses on a few essential ideas, uses every word carefully and is easier to remember and repeat, so its message has more impact.
+hint: Think about what audiences remember.
+quiz:
+passage: The Gettysburg Address | President Abraham Lincoln delivered this speech on November 19, 1863, at the dedication of the Soldiers' National Cemetery in Gettysburg, Pennsylvania, where a major Civil War battle had been fought that July. This is the text of a copy Lincoln wrote out himself. // Four score and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal. // Now we are engaged in a great civil war, testing whether that nation, or any nation so conceived and so dedicated, can long endure. We are met on a great battle-field of that war. We have come to dedicate a portion of that field, as a final resting place for those who here gave their lives that that nation might live. It is altogether fitting and proper that we should do this. // But, in a larger sense, we can not dedicate - we can not consecrate - we can not hallow - this ground. The brave men, living and dead, who struggled here, have consecrated it, far above our poor power to add or detract. The world will little note, nor long remember what we say here, but it can never forget what they did here. It is for us the living, rather, to be dedicated here to the unfinished work which they who fought here have thus far so nobly advanced. It is rather for us to be here dedicated to the great task remaining before us - that from these honored dead we take increased devotion to that cause for which they gave the last full measure of devotion - that we here highly resolve that these dead shall not have died in vain - that this nation, under God, shall have a new birth of freedom - and that government of the people, by the people, for the people, shall not perish from the earth. // - Abraham Lincoln (1863)
+mc2: In "The Gettysburg Address," what does Lincoln say the Civil War is testing? | whether a nation dedicated to liberty and equality can long endure | whether the Union army is stronger than the Confederacy | whether the cemetery is large enough | whether Pennsylvania will remain a state
+mc2: In "The Gettysburg Address," what device is used in "we can not dedicate - we can not consecrate - we can not hallow - this ground"? | parallel repetition that builds emphasis | a statistic | an anecdote | understatement only
+mc3: In "The Gettysburg Address," what is ironic about the line "The world will little note, nor long remember what we say here"? | The speech itself became one of the most remembered in American history. | The audience could not hear Lincoln. | The speech was never written down. | Lincoln did not believe the soldiers mattered.
+mc2: In "The Gettysburg Address," what does Lincoln mean by "the unfinished work"? | the cause of preserving the Union and its ideals of liberty and equality | building the cemetery | writing a new constitution | planting fields at Gettysburg
+mc2: In "The Gettysburg Address," how does the structure of the speech move through time? | from the nation's founding in the past, to the war in the present, to the nation's future | from the future to the past | only in the present | from Lincoln's childhood to his presidency
+mc2: In "The Gettysburg Address," what is the effect of the phrase "of the people, by the people, for the people"? | It uses a memorable group of three to define democratic government. | It lists three different governments. | It names three soldiers. | It describes the cemetery's design.
+sa3: Explain how Lincoln in "The Gettysburg Address" turns a cemetery dedication into a call to action. Cite two phrases. | Lincoln says the living "can not dedicate" the ground because the soldiers already "consecrated it," shifting the duty to the audience. He calls them to be "dedicated here to the unfinished work" so that "these dead shall not have died in vain" and the nation will have "a new birth of freedom."
+
+lesson: Reinterpreting the Declaration: the Declaration of Sentiments | RI.11-12.9, RI.11-12.6
+practice:
+mc1: The Seneca Falls Convention of 1848 was an early meeting focused on | women's rights | ending the War of 1812 | building railroads | writing the Constitution
+hint: It took place in Seneca Falls, New York.
+mc2: Why would reform writers in the 1800s model their documents on the Declaration of Independence? | to claim the authority of the nation's founding ideals for their cause | because they could not write their own words | to make fun of the Declaration | because the law required it
+hint: Think about why borrowing familiar words might persuade.
+mc2: The right to vote is also called the | elective franchise or suffrage | grievance | veto | amendment process
+hint: Suffragists fought for this right.
+mc2: Elizabeth Cady Stanton is best known as | a leader of the women's rights movement and main author of the Declaration of Sentiments | the first President of the United States | the author of the Federalist Papers | a Civil War general
+hint: She helped organize the convention at Seneca Falls.
+sa2: Explain how adding just two words to a famous sentence can change its meaning and persuasive power. | Adding "and women" to "all men are created equal" makes the principle explicitly include women, using the Declaration's own authority to demand equal rights and exposing the gap between the ideal and reality.
+hint: Think about who is included or excluded.
+quiz:
+passage: The Declaration of Sentiments | In July 1848, about 300 people gathered in Seneca Falls, New York, for a convention on women's rights. Elizabeth Cady Stanton was the main author of the document the convention adopted, the Declaration of Sentiments. It was signed by 68 women and 32 men. It deliberately follows the form of the Declaration of Independence. // "We hold these truths to be self-evident: that all men and women are created equal; that they are endowed by their Creator with certain inalienable rights; that among these are life, liberty, and the pursuit of happiness... // The history of mankind is a history of repeated injuries and usurpations on the part of man toward woman, having in direct object the establishment of an absolute tyranny over her. To prove this, let facts be submitted to a candid world. // He has never permitted her to exercise her inalienable right to the elective franchise." // - Declaration of Sentiments (1848)
+mc2: In "The Declaration of Sentiments," what change does the document make to the Declaration of Independence's most famous sentence? | It adds "and women" to "all men are created equal." | It removes the word "equal." | It replaces "Creator" with "government." | It changes "happiness" to "property."
+mc2: In "The Declaration of Sentiments," who takes the place of King George III as the target of the grievances? | men, or "man toward woman" | Parliament | the President | the Supreme Court
+mc2: In "The Declaration of Sentiments," what does "the elective franchise" refer to? | the right to vote | the right to own a business | the right to attend college | the right to travel
+mc3: Why is the choice to imitate the Declaration of Independence rhetorically effective in "The Declaration of Sentiments"? | It shows that denying women's rights contradicts the nation's own founding principles. | It proves the authors had no original ideas. | It makes the document a comedy. | It shows the authors supported the king.
+mc2: In "The Declaration of Sentiments," the phrase "let facts be submitted to a candid world" signals that | a list of specific grievances will follow as evidence | the document is ending | the authors are telling a story | the authors reject evidence
+mc2: In "The Declaration of Sentiments," the word "usurpations" most nearly means | wrongful seizures of power or rights | gifts | celebrations | elections
+sa3: Compare how "The Declaration of Sentiments" and the Declaration of Independence use the idea of tyranny. Cite the passage. | The Declaration of Independence accused the king of seeking "absolute Tyranny" over the colonies. The Declaration of Sentiments uses nearly the same words, accusing man of seeking "an absolute tyranny over her," which recasts women's lack of rights, such as being denied "the elective franchise," as the same kind of injustice the founders rebelled against.
+
+lesson: Lincoln's Second Inaugural Address: style and purpose | RI.11-12.6, RI.11-12.5
+practice:
+mc1: An inaugural address is a speech given | when a leader begins a term in office | at a funeral | at a graduation | at the end of a war
+hint: "Inaugurate" means to begin.
+mc2: Lincoln gave his Second Inaugural Address in March 1865. What was happening at that time? | The Civil War was nearing its end. | The Revolutionary War was beginning. | The Constitution was being written. | World War I had just ended.
+hint: The war ended in April 1865.
+mc2: Which sentence uses alliteration? | Fondly do we hope, fervently do we pray. | The war continued. | The meeting was long. | He gave a speech.
+hint: Listen for repeated beginning sounds.
+mc2: A speech that seeks to heal divisions rather than celebrate victory is most likely to use a tone that is | humble and reconciling | boastful and triumphant | sarcastic | neutral and technical
+hint: Think about the goal of bringing people together.
+sa2: Explain why a leader near the end of a long war might choose not to blame the other side harshly. | Harsh blame could deepen anger and make reunion harder, while a humble, forgiving tone encourages former enemies to rebuild the nation together.
+hint: What would the country need after the fighting ended?
+quiz:
+passage: With Malice Toward None | Abraham Lincoln delivered his Second Inaugural Address on March 4, 1865, about a month before the main Confederate army surrendered. Rather than celebrating, he reflected on the war's meaning. These excerpts come from the second half of the speech. // "Both read the same Bible and pray to the same God, and each invokes His aid against the other... // Fondly do we hope, fervently do we pray, that this mighty scourge of war may speedily pass away... // With malice toward none, with charity for all, with firmness in the right as God gives us to see the right, let us strive on to finish the work we are in, to bind up the nation's wounds, to care for him who shall have borne the battle and for his widow and his orphan, to do all which may achieve and cherish a just and lasting peace among ourselves and with all nations." // - Abraham Lincoln (1865)
+mc2: In "With Malice Toward None," what is the main purpose of the final excerpt? | to call for healing and a just peace after the war | to celebrate the destruction of the South | to announce a new war | to describe a battle in detail
+mc2: In "With Malice Toward None," what does "Both read the same Bible and pray to the same God" emphasize? | what the North and South have in common despite fighting each other | that the South had different religious beliefs | that the war was about religion only | that Lincoln was a minister
+mc2: In "With Malice Toward None," the metaphor "bind up the nation's wounds" compares the nation to | an injured body that needs healing | a building that needs repair | a ship in a storm | a field ready for harvest
+mc3: In "With Malice Toward None," how does the structure of the final sentence support Lincoln's purpose? | Its long series of parallel phrases builds from attitudes ("malice toward none") to actions (caring for soldiers and families) to a lasting peace. | It is a short fragment that ends abruptly. | It lists statistics about the war. | It uses a question-and-answer format.
+mc2: In "With Malice Toward None," what is the effect of "Fondly do we hope, fervently do we pray"? | Its parallel structure and alliteration create a solemn, prayerful rhythm. | It sounds casual and humorous. | It gives a factual report. | It criticizes the audience.
+mc2: In "With Malice Toward None," whom does Lincoln say the nation should care for? | soldiers who fought and the widows and orphans of those who died | only the President's family | foreign nations only | only members of Congress
+sa3: Compare the tone of "With Malice Toward None" with what a victory speech might sound like. Use two phrases from the passage. | Instead of boasting, Lincoln speaks humbly: "With malice toward none, with charity for all" rejects revenge, and "to bind up the nation's wounds" focuses on healing. A victory speech might celebrate defeating the enemy, but Lincoln emphasizes shared faith and a "just and lasting peace."
+
+lesson: Unit review | RI.11-12.6, RI.11-12.8, RI.11-12.9
+practice:
+mc1: The opening words "We the People" begin the | Preamble to the Constitution | Declaration of Independence | Gettysburg Address | Emancipation Proclamation
+hint: It introduces the plan for the national government.
+mc2: Which phrase from the Declaration states the source of a government's just power? | "consent of the governed" | "a decent respect to the opinions of mankind" | "the pursuit of Happiness" | "the course of human events"
+hint: Who gives the government its power?
+mc2: Lincoln's Gettysburg Address connects the Civil War to | the Declaration's principle that all men are created equal | the Louisiana Purchase | the War of 1812 | the founding of the colonies
+hint: Look at the first sentence of the speech.
+mc2: The Declaration of Sentiments (1848) adapted the Declaration of Independence to argue for | women's rights | the end of the Civil War | independence from Spain | a new state capital
+hint: It was adopted at Seneca Falls.
+sa2: Explain how a later writer can use a foundational document to advance a new purpose. | A later writer can quote or imitate the document's respected words to show that a group is being denied the rights the document promises, turning national ideals into an argument for change.
+hint: Think about borrowing authority.
+quiz:
+mc1: The Declaration of Independence was primarily written by | Thomas Jefferson | George Washington | Abraham Lincoln | Benjamin Franklin
+mc1: "We hold these truths to be self-evident, that all men are created equal" opens a | statement of principles | list of grievances | conclusion | treaty
+mc2: Lincoln's Gettysburg Address redefines the Civil War as a struggle for | a "new birth of freedom" | territorial expansion | economic gain | revenge
+mc2: The Federalist Papers were written mainly to | persuade states to ratify the Constitution | declare independence | end slavery | start a war
+ex2: Explain why King's "Letter from Birmingham Jail" is considered an effective argument. | He uses logic, moral appeals and his credibility to rebut critics point by point.
+mc2: In the Declaration of Independence, the list of grievances is directed mainly at | King George III | the Continental Congress | France | the colonial governors who supported independence
+mc2: Federalist No. 51 argues that because people are not angels, government must | be able to control the governed and be obliged to control itself | have unlimited power | be abolished | be run only by kings
+mc3: The Declaration of Sentiments uses almost the same structure and words as the Declaration of Independence. What is the main rhetorical effect? | It holds the nation to its own stated principles and exposes the contradiction of denying women's rights. | It shows the authors copied by mistake. | It weakens their argument. | It proves the original Declaration was about women.
+
+test:
+mc2: Frederick Douglass's speech "What to the Slave Is the Fourth of July?" uses | irony to expose the hypocrisy of celebrating liberty amid slavery | praise of slavery | a neutral tone | only statistics
+mc2: In "Letter from Birmingham Jail," Martin Luther King Jr. responds to critics who called his actions | unwise and untimely | too slow | violent | illegal only in the North
+mc2: The list of grievances in the Declaration of Independence functions as | evidence supporting the claim that separation is justified | the conclusion | a poem | an introduction
+mc3: Why is the Declaration's appeal to "the opinions of mankind" rhetorically significant? | It frames the argument for a worldwide audience to build legitimacy | It ignores other nations | It is an emotional story | It is a scientific claim
+sa2: Analyze how a foundational U.S. document uses a rhetorical strategy to advance its purpose. | Names the document, quotes the strategy and explains its effect.
+sa2: Compare how two foundational documents or speeches address the idea of equality. | Explains how each treats equality and how they relate.
+task3: Read the Declaration of Independence and one later speech that references it (for example, Douglass or King). Write a rhetorical analysis explaining how the later speaker draws on and reinterprets the Declaration's ideas to advance a new purpose. Cite at least four passages. | Insightful analysis of how ideas are reinterpreted, effective rhetoric discussion, four or more integrated citations. | Clear analysis with three citations. | Mostly summary of both texts. | Little correct work.
+passage: What to the Slave Is the Fourth of July? | On July 5, 1852, the abolitionist Frederick Douglass, who had escaped from slavery in 1838, spoke to an audience in Rochester, New York, that had invited him to give an Independence Day address. These excerpts come from that speech. // "Fellow-citizens, pardon me, allow me to ask, why am I called upon to speak here to-day? What have I, or those I represent, to do with your national independence? Are the great principles of political freedom and of natural justice, embodied in that Declaration of Independence, extended to us?... // What, to the American slave, is your 4th of July? I answer: a day that reveals to him, more than all other days in the year, the gross injustice and cruelty to which he is the constant victim. To him, your celebration is a sham; your boasted liberty, an unholy license; your national greatness, swelling vanity; your sounds of rejoicing are empty and heartless; your denunciations of tyrants, brass fronted impudence; your shouts of liberty and equality, hollow mockery; your prayers and hymns, your sermons and thanksgivings, with all your religious parade, and solemnity, are, to him, mere bombast, fraud, deception, impiety, and hypocrisy..." // - Frederick Douglass (1852)
+mc2: In "What to the Slave Is the Fourth of July?," what is Douglass's main purpose? | to expose the hypocrisy of celebrating liberty while millions remain enslaved | to praise the Fourth of July celebrations | to describe fireworks in Rochester | to argue that the Declaration should be repealed
+mc2: In "What to the Slave Is the Fourth of July?," what is the effect of Douglass repeatedly using "your" in phrases such as "your national independence" and "your boasted liberty"? | It separates enslaved people from the celebration and emphasizes that the nation's freedom is not shared. | It shows that Douglass owns the holiday. | It flatters the audience. | It makes the speech more neutral.
+mc2: In "What to the Slave Is the Fourth of July?," what device appears in the series of opening questions? | rhetorical questions | statistics | an anecdote | understatement
+mc2: In "What to the Slave Is the Fourth of July?," which phrase is an example of antithesis that contrasts an ideal with reality? | "your boasted liberty, an unholy license" | "Fellow-citizens, pardon me" | "to speak here to-day" | "in that Declaration of Independence"
+mc3: How does Douglass in "What to the Slave Is the Fourth of July?" draw on the Declaration of Independence to advance his argument? | He uses its "great principles of political freedom and of natural justice" to show that the nation fails to live up to its own founding ideals. | He argues the Declaration was never written. | He claims the Declaration supports slavery. | He ignores the Declaration completely.
+mc2: In "What to the Slave Is the Fourth of July?," the word "sham" most nearly means | something fake or pretended | a joyful celebration | a sincere promise | a historical event
+mc2: In "What to the Slave Is the Fourth of July?," what is the effect of the long sentence listing "sham," "vanity," "hollow mockery" and "hypocrisy"? | The accumulating charges build intensity and overwhelm the audience with the scale of the injustice. | It confuses the audience on purpose. | It slows the speech to a calm pause. | It summarizes the holiday's history neutrally.
+mc2: According to the introduction to "What to the Slave Is the Fourth of July?," why was the timing of the speech rhetorically significant? | Douglass spoke at an Independence Day event, so his criticism directly confronted the celebration. | The speech was given in December. | The speech was delivered in England. | Douglass spoke before the Declaration was written.
+wr3: Write a rhetorical analysis explaining how Frederick Douglass, in "What to the Slave Is the Fourth of July?," draws on and reinterprets the ideals of the Declaration of Independence to advance his purpose. Analyze at least three rhetorical choices (such as rhetorical questions, the repeated "your," antithesis or accumulation) and evaluate their effect on his audience. | Key points: purpose is to expose the contradiction of slavery in a nation founded on liberty; he invokes the Declaration's "great principles" to measure the nation against its ideals; rhetorical questions confront the audience; "your" separates enslaved people from the celebration; antithesis ("boasted liberty, an unholy license") and accumulating charges build moral force; the Independence Day setting heightens the impact.
+endpassage:
+mc1: The first ten amendments to the U.S. Constitution are known as the | Bill of Rights | Federalist Papers | Articles of Confederation | Declaration of Sentiments
+mc2: Which phrase from the Gettysburg Address defines democracy? | "government of the people, by the people, for the people" | "Four score and seven years ago" | "a final resting place" | "far above our poor power"
+mc2: The Federalist Papers were written to persuade readers to | ratify the Constitution | declare independence | free enslaved people | join the British army
+mc2: In Lincoln's Second Inaugural Address, the phrase "With malice toward none, with charity for all" expresses a desire for | reconciliation rather than revenge | punishment of the South | a new war | independence from Britain
+mc3: Douglass (1852), the Declaration of Sentiments (1848) and Lincoln at Gettysburg (1863) all refer to the Declaration of Independence. What does this pattern suggest? | Later Americans used the Declaration's ideals as a standard to demand that the nation extend liberty and equality. | The Declaration was rarely read after 1776. | These writers all opposed the Declaration's ideas. | The Declaration was rewritten in each of these years.
+
+unit: British and world literary contexts | RL.11-12.4, RL.11-12.6 | ela_11_n2
+el: Provide modern paraphrases beside older British texts, a glossary of archaic words (thou, doth, o'er, 'tis) and a chart for satire: what the author says, what the author means, and what is being criticized.
+
+lesson: Macbeth's "Tomorrow" soliloquy | RL.11-12.4, RL.11-12.3
+practice:
+mc1: A speech in which a character alone on stage reveals private thoughts is a | soliloquy | sonnet | prologue | chorus
+hint: "Solo" means alone.
+mc2: In Macbeth, the witches predict that Macbeth will become king. How does this prophecy affect him? | It awakens his ambition and leads him toward murder. | It makes him give up his title. | It makes him leave Scotland. | It has no effect on him.
+hint: Think about what Macbeth does to make the prophecy come true.
+mc2: Lady Macbeth's sleepwalking scene, in which she tries to wash imaginary blood from her hands, mainly shows | her overwhelming guilt | her love of cleanliness | her innocence | her plan to become queen
+hint: What would make someone see blood that is not there?
+mc2: A character's tragic flaw in Macbeth is best described as | unchecked ambition | too much kindness | fear of the dark | laziness
+hint: What drives Macbeth to kill King Duncan?
+sa2: Explain how a soliloquy can create a connection between a villain and the audience. | Hearing the villain's private thoughts and doubts lets the audience understand his motives and conflicts, so they may feel a disturbing sympathy even while judging his actions.
+hint: What does the audience learn that other characters never hear?
+quiz:
+passage: Tomorrow, and Tomorrow, and Tomorrow | In Act 5, Scene 5 of William Shakespeare's Macbeth, first performed in the early 1600s, Macbeth learns that his wife, Lady Macbeth, has died. His enemies are closing in on his castle. He responds with this soliloquy. // To-morrow, and to-morrow, and to-morrow, / Creeps in this petty pace from day to day, / To the last syllable of recorded time; / And all our yesterdays have lighted fools / The way to dusty death. Out, out, brief candle! / Life's but a walking shadow, a poor player, / That struts and frets his hour upon the stage, / And then is heard no more. It is a tale / Told by an idiot, full of sound and fury, / Signifying nothing. // - William Shakespeare, Macbeth (early 1600s)
+mc2: In "Tomorrow, and Tomorrow, and Tomorrow," what is Macbeth's view of life? | Life is brief, empty and meaningless. | Life is joyful and full of purpose. | Life is long and exciting. | Life is a reward for good deeds.
+mc2: In "Tomorrow, and Tomorrow, and Tomorrow," what is the effect of repeating "to-morrow" three times? | It creates a slow, weary rhythm that suggests time dragging on without meaning. | It shows Macbeth is excited about the future. | It counts the days until his coronation. | It makes the speech humorous.
+mc2: In "Tomorrow, and Tomorrow, and Tomorrow," what does "Out, out, brief candle!" most likely represent? | the shortness of human life | a real candle Macbeth blows out | the start of a celebration | Macbeth's fear of fire
+mc2: In "Tomorrow, and Tomorrow, and Tomorrow," Macbeth compares life to "a poor player / That struts and frets his hour upon the stage." What does this metaphor suggest? | People make a brief, noisy show on life's stage and then are forgotten. | Life is a carefully planned performance. | Actors are poor people. | Macbeth wants to become an actor.
+mc3: In "Tomorrow, and Tomorrow, and Tomorrow," how does the context of Lady Macbeth's death deepen the meaning of the soliloquy? | The ambition that drove them to murder has led only to loss, so Macbeth now sees all of life as meaningless. | It shows Macbeth is glad she has died. | It makes the speech a celebration of his victory. | It has no connection to the speech.
+mc2: In "Tomorrow, and Tomorrow, and Tomorrow," what is the effect of the short final line, "Signifying nothing"? | It ends the speech abruptly, emphasizing emptiness. | It introduces a new plan. | It shows Macbeth has found hope. | It is a question for the audience.
+sa3: Analyze how Shakespeare uses two images in "Tomorrow, and Tomorrow, and Tomorrow" to reveal Macbeth's state of mind. | The "brief candle" shows life is short and easily snuffed out, and the "walking shadow" and "poor player" suggest life is unreal and insignificant. Together they reveal Macbeth's despair after losing his wife and realizing his ambition has brought him nothing.
+
+lesson: British Romantic poetry: Wordsworth and nature | RL.11-12.4, RL.11-12.5
+practice:
+mc1: British Romantic poets of the late 1700s and early 1800s often celebrated | nature, emotion and imagination | factories and machines | strict logic over feeling | city life only
+hint: Think of the opposite of cold reason.
+mc2: William Wordsworth described poetry as "the spontaneous overflow of powerful feelings." What does this suggest about Romantic poetry? | It values sincere emotion over formal rules. | It must follow strict rules. | It avoids feelings. | It is written only about history.
+hint: Notice the words "spontaneous" and "feelings."
+mc2: How did the Industrial Revolution influence many Romantic writers? | Many turned to nature as a refuge from crowded, polluted cities. | They wrote only about machines. | They stopped writing poetry. | They celebrated factory work above all else.
+hint: What might people long for when cities fill with smoke?
+mc2: Which English poet is also known as a Romantic? | John Keats | Geoffrey Chaucer | George Orwell | Jane Austen
+hint: He wrote odes in the early 1800s.
+sa2: Explain how a memory of a natural scene might bring comfort later in life, as many Romantic poets suggested. | Recalling a beautiful scene can bring back the joy felt in that moment, giving peace during times of stress or loneliness.
+hint: Think of a place you remember that makes you feel calm.
+quiz:
+passage: I Wandered Lonely as a Cloud | William Wordsworth's poem was first published in 1807. Here are its first and last stanzas. // I wandered lonely as a cloud / That floats on high o'er vales and hills, / When all at once I saw a crowd, / A host, of golden daffodils; / Beside the lake, beneath the trees, / Fluttering and dancing in the breeze. // ... // For oft, when on my couch I lie / In vacant or in pensive mood, / They flash upon that inward eye / Which is the bliss of solitude; / And then my heart with pleasure fills, / And dances with the daffodils. // - William Wordsworth (1807)
+mc2: In "I Wandered Lonely as a Cloud," what simile does the speaker use to describe himself at the start? | He is lonely as a cloud. | He is as golden as daffodils. | He is like a lake. | He is as tall as a tree.
+mc2: In "I Wandered Lonely as a Cloud," what figurative language describes the daffodils "Fluttering and dancing in the breeze"? | personification | hyperbole | an allusion | an oxymoron
+mc2: In "I Wandered Lonely as a Cloud," what does "that inward eye" refer to? | the speaker's memory or imagination | a medical condition | a window in his house | the eye of a storm
+mc3: In "I Wandered Lonely as a Cloud," how does the speaker's feeling change from the first stanza to the last? | He moves from loneliness to joy when he remembers the daffodils. | He moves from joy to deep sadness. | He stays lonely throughout. | He grows angry at nature.
+mc2: In "I Wandered Lonely as a Cloud," how does the speaker describe solitude in the last stanza? | as "the bliss of solitude," a source of happiness when filled with memory | as a terrible punishment | as boring and empty | as frightening
+mc2: Which Romantic idea does "I Wandered Lonely as a Cloud" most clearly express? | Nature has a lasting power to restore the human spirit. | Cities are the best places to live. | Emotions should be hidden. | Science explains everything.
+sa3: Explain how Wordsworth in "I Wandered Lonely as a Cloud" connects the beginning and the end through the image of dancing. | In the first stanza the daffodils are "dancing in the breeze"; in the last, the speaker's heart "dances with the daffodils." The repeated image shows that the memory of nature lets him share in its joy long after he has left the scene.
+
+lesson: Satire and irony | RL.11-12.6, RL.11-12.4
+practice:
+mc1: Satire uses humor, irony or exaggeration to | criticize people, institutions or society | explain science | tell a love story | describe a landscape
+hint: Satire has a target.
+mc2: Jonathan Swift's "A Modest Proposal" (1729) suggests that poor Irish families sell their children as food. What is Swift really criticizing? | the cruel treatment of the Irish poor by wealthy landlords and the British government | Irish cooking | large families | children's behavior
+hint: Satire says something shocking to expose a real problem.
+mc2: Exaggerating a quality far beyond reality to make a point is | hyperbole | understatement | allusion | onomatopoeia
+hint: Think of extreme overstatement.
+mc2: A satirical news article reports that a city solved traffic jams by banning cars from roads. What makes this satire? | It exaggerates a solution to mock poor planning. | It reports accurate traffic data. | It is a sincere proposal. | It is written as a poem.
+hint: Would anyone seriously propose this?
+sa2: Explain why readers must recognize the gap between what a satirist says and what the satirist means. | Satire often states the opposite of the writer's view or exaggerates it absurdly; readers who take it literally miss the real criticism and may even think the writer supports the target.
+hint: Think about verbal irony.
+quiz:
+passage: A Modest Proposal for Ending Student Distraction | The following is an original satirical essay written in the style of Jonathan Swift. // It is a melancholy sight to walk through the halls of our high school and see young people staring at screens instead of each other. Teachers despair. Parents sigh. Experts write reports that no one reads, because everyone is busy reading their phones. I have therefore given this problem my most serious attention, and I humbly offer a solution so simple that I am astonished no one has proposed it before. // We must remove the windows. // Consider: a student who looks at a phone is distracted, but a student who looks out a window is equally lost, gazing at clouds, birds and other things that will never appear on a standardized test. Once the windows are bricked over, we can replace them with large screens playing educational videos at all times. Students will have nothing to look at but learning. // Some timid critics will point out that the screens will themselves be distracting. To them I say: only if the content is interesting, and I have personally reviewed the proposed videos to make sure that it is not. // Further savings follow. Without windows, the school will need no curtains, no window cleaners and no sunlight, which, as everyone knows, only encourages students to think about going outside. The money saved can be used to buy more screens. // I have no personal interest in this proposal. I do not own a brick company, and my cousin's screen-installation business is merely a coincidence. I desire only the public good. Let other people suggest their tired ideas: teaching students to manage their attention, building schedules with breaks outdoors, or designing lessons worth paying attention to. I have considered all of these and find them far too reasonable to succeed.
+mc2: What is the real target of the satire in "A Modest Proposal for Ending Student Distraction"? | foolish, profit-driven solutions that ignore the real causes of student distraction | students who enjoy looking out windows | birds and clouds | standardized tests only
+mc2: In "A Modest Proposal for Ending Student Distraction," what is ironic about replacing windows with screens to reduce screen distraction? | The solution adds more screens, the very thing causing the problem. | Screens are cheaper than windows. | Students prefer windows. | The writer dislikes videos.
+mc2: In "A Modest Proposal for Ending Student Distraction," what does the narrator reveal by saying he made sure the videos are not interesting? | The proposal cares more about control than about real learning. | The videos will be exciting. | He has never seen the videos. | Students chose the videos.
+mc3: In "A Modest Proposal for Ending Student Distraction," why does the narrator mention his cousin's screen-installation business? | to reveal, through verbal irony, a hidden financial motive behind the proposal | to prove he has no interest in the plan | to advertise a real business | to change the subject to family
+mc2: In "A Modest Proposal for Ending Student Distraction," which ideas does the author actually support? | teaching attention skills, outdoor breaks and engaging lessons | bricking over windows | showing dull videos all day | removing sunlight from schools
+mc2: In "A Modest Proposal for Ending Student Distraction," what is the tone of the narrator's voice? | falsely serious and reasonable, which makes the absurd plan funnier | openly angry and insulting | sad and nostalgic | confused and uncertain
+sa3: Explain how the final sentence of "A Modest Proposal for Ending Student Distraction" reveals the author's true purpose. | The narrator dismisses sensible ideas as "far too reasonable to succeed," which is verbal irony. It shows that the author actually supports those reasonable solutions and is mocking proposals that are flashy, wasteful or self-serving.
+
+lesson: Narrative point of view and irony in the novel | RL.11-12.6, RL.11-12.3
+practice:
+mc1: A third-person narrator who moves into a character's thoughts while keeping the narrator's own voice uses | free indirect discourse | dramatic monologue | second person | stage directions
+hint: The narrator's sentences blend with the character's thinking.
+mc2: Jane Austen's Pride and Prejudice (1813) begins: "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife." What makes this sentence ironic? | It presents the gossip of local families as a universal truth, gently mocking their obsession with marriage and money. | It is a scientific fact. | It is spoken by a villain. | It describes a war.
+hint: Is this truth really "universally" acknowledged, or only by certain people?
+mc2: A narrator says a character "had never been so happy in her life" just after she has been insulted at a party. What kind of irony is this? | verbal irony from the narrator | dramatic irony from the character | situational irony with no narrator | no irony
+hint: Does the narrator mean exactly what is said?
+mc2: How does a novel told from several characters' points of view affect readers? | Readers see events from multiple perspectives and may notice what each character misunderstands. | Readers learn less about the plot. | Readers see only one side. | The novel has no narrator.
+hint: More perspectives, more information.
+sa2: Explain how a narrator's ironic tone can shape readers' judgment of characters without stating it directly. | By describing characters' words or beliefs with subtle exaggeration or contrast, the narrator invites readers to see their foolishness or vanity and judge them, without ever saying "this character is foolish."
+hint: Think about tone and implication.
+quiz:
+mc2: Pride and Prejudice continues: "However little known the feelings or views of such a man may be on his first entering a neighbourhood, this truth is so well fixed in the minds of the surrounding families, that he is considered as the rightful property of some one or other of their daughters." What is Austen satirizing? | the families' assumption that a wealthy newcomer belongs to their daughters regardless of his feelings | the wealthy man's cruelty | the daughters' education | the neighborhood's architecture
+mc2: What is the main effect of a first-person narrator in a novel? | Readers experience events through one person's limited and possibly biased view. | Readers know every character's thoughts. | The story has no point of view. | The author speaks directly as an objective historian.
+mc2: A narrator who describes events but never reveals any character's thoughts uses | an objective point of view | an omniscient point of view | free indirect discourse | stream of consciousness
+mc2: Charlotte Bronte's Jane Eyre (1847) is narrated by Jane looking back on her life. What advantage does this give the novel? | The older Jane can reflect on and interpret her younger self's experiences. | It removes all suspense. | It makes Jane an unreliable narrator by definition. | It reveals every character's thoughts equally.
+mc3: In a novel, the narrator praises a character's "generosity" while describing how he gives away only things he no longer wants. How should readers interpret this? | The narrator is being ironic, revealing the character's selfishness. | The character is truly generous. | The narrator has made a mistake. | The character is poor.
+mc2: Why might an author choose a child narrator to tell a story about a serious adult conflict? | The child's innocent, limited understanding can highlight the injustice adults take for granted. | Children always understand more than adults. | It makes the story less serious. | It removes conflict.
+sa2: Explain how point of view controls what readers know and how they feel in a novel. | The narrator determines whose thoughts readers hear and what information is hidden; a limited or biased narrator can create mystery, sympathy or irony, shaping how readers feel about characters.
+
+lesson: Dystopian fiction and the warning tale | RL.11-12.2, RL.11-12.6
+practice:
+mc1: A dystopia is | an imagined society in which life is oppressive or frightening | a perfect society | a true history | a kind of poem
+hint: It is the opposite of a utopia.
+mc2: Which feature is common in dystopian fiction? | a government or system that controls citizens through surveillance and propaganda | a peaceful society with no conflict | a love story with no setting | talking animals in a forest
+hint: Think about control.
+mc2: George Orwell's 1984 introduced the phrase "Big Brother is watching you." What does it represent? | constant government surveillance | a caring older sibling | a reality show | a weather forecast
+hint: Who is watching, and why?
+mc2: Why do authors often set dystopian stories in the future? | to warn readers about where current trends could lead | because the past is boring | to avoid all conflict | because the future is always perfect
+hint: Think of the story as a warning.
+sa2: Explain how dystopian fiction can comment on the real world without directly describing it. | By exaggerating real trends, such as surveillance or censorship, into an extreme imagined society, dystopian fiction makes readers notice and question those trends in their own world.
+hint: Think about exaggeration as a lens.
+quiz:
+mc1: A story about an imagined ideal, perfect society is called a | utopia | dystopia | tragedy | sonnet
+mc2: In Aldous Huxley's Brave New World (1932), citizens are kept content with pleasure and a drug called soma. What danger does the novel warn against? | a society that controls people through comfort and distraction rather than force | a society destroyed by floods | a society that values books too much | a society without technology
+mc2: In a dystopian novel, the government rewrites history books every year. What is the purpose of this detail? | to show how controlling information allows the government to control thought | to show that historians are lazy | to explain the school calendar | to describe a printing press
+mc2: Which detail would most likely appear in a dystopian story? | Citizens must report any neighbor who reads banned books. | Neighbors share vegetables from their gardens. | A family takes a vacation to the beach. | A student wins a spelling bee.
+mc3: Why do dystopian protagonists often begin by accepting their society and only later questioning it? | Their gradual awakening lets readers recognize how easily people accept control. | Authors want the characters to seem unintelligent. | It makes the novel shorter. | Protagonists always agree with the government.
+mc2: Language in dystopian novels is often manipulated by the state. What does this suggest? | Controlling language can limit what people are able to think and say. | Language is unimportant. | Everyone speaks freely. | The state encourages new ideas.
+sa2: Choose a feature of modern life (such as social media or surveillance cameras) and explain how a dystopian writer might exaggerate it to create a warning. | A writer might imagine a society where every citizen's social media score decides their job and housing, exaggerating online approval into total control and warning readers about valuing others' approval too much.
+
+lesson: Unit review | RL.11-12.4, RL.11-12.6
+practice:
+mc1: In "A Modest Proposal," Jonathan Swift uses | satire to criticize the treatment of the Irish poor | romance to celebrate love | science fiction to imagine space travel | a sonnet to praise nature
+hint: His shocking suggestion is not meant literally.
+mc2: Macbeth's "Tomorrow, and tomorrow, and tomorrow" speech expresses | despair about the meaninglessness of life | joy at becoming king | love for Lady Macbeth | excitement about the future
+hint: Remember the image of the "brief candle."
+mc2: British Romantic poets such as Wordsworth often emphasized | nature, emotion and memory | factories and machines | strict logical argument | political speeches
+hint: Think of the daffodils.
+mc2: A narrator who sees into all characters' minds is | omniscient | first-person | objective | limited
+hint: "Omni" means all.
+sa2: Explain the difference between satire and a simple insult. | Satire uses irony and exaggeration to criticize something in order to expose a real problem and encourage change; an insult simply attacks without a larger purpose.
+hint: Think about purpose.
+quiz:
+mc1: Who wrote "Pride and Prejudice"? | Jane Austen | Charlotte Bronte | Mary Shelley | Virginia Woolf
+mc1: "Frankenstein" was written by | Mary Shelley | Bram Stoker | Charles Dickens | Emily Bronte
+mc2: Which play includes the line "To be, or not to be"? | Hamlet | Macbeth | Othello | King Lear
+mc2: Satire is writing that | uses humor or irony to criticize society | praises everything | tells a love story only | lists facts
+ex2: Explain why distinguishing what is directly stated from what is really meant is important when reading satire. | Satire says one thing to mean another; missing that means missing the author's message.
+mc2: Which phrase is an example of verbal irony? | "What lovely weather," said during a hurricane | "The storm was strong," said during a hurricane | "Let's go inside," said during a hurricane | "Is it raining?" said during a hurricane
+mc2: A novel set in a future society where emotions are illegal is best described as | dystopian fiction | a pastoral poem | a biography | Romantic poetry
+mc3: A first-person narrator describes her rival as "dreadfully vain" while spending a full page describing her own beautiful dress. What does this suggest? | The narrator may share the fault she criticizes, which creates irony. | The narrator is completely objective. | The rival is the narrator. | The dress is unimportant.
+
+test:
+mc2: George Orwell's "1984" warns against | totalitarian control and surveillance | space travel | rural life | romance
+mc2: In "Macbeth," what drives Macbeth's downfall? | ambition | generosity | humility | laziness
+mc2: Jonathan Swift's "A Modest Proposal" is an example of | satire | romance | epic poetry | autobiography
+mc3: A reader misses the irony in a satire and takes it literally. What is lost? | the author's real criticism | the plot | the setting | nothing
+sa2: Explain how an author uses irony or satire to critique society in a text you read. | Identifies the irony, explains what is really being criticized.
+sa2: Analyze how a writer's choice of point of view affects meaning in a British novel you studied. | Names the point of view and explains its effect on what readers understand.
+task3: Write a comparative essay on a British work and an American work studied this year that address a similar theme (such as ambition, class or freedom). Analyze how each author's context and choices shape the theme, using at least three quotations from each. | Insightful comparison grounded in context and craft, three or more quotations from each, sophisticated thesis. | Clear comparison with fewer quotations. | Discusses each work separately. | Little correct work.
+passage: Ozymandias | Percy Bysshe Shelley, a British Romantic poet, published this sonnet in 1818. Its title is the Greek name for Ramesses II, a powerful pharaoh of ancient Egypt. // I met a traveller from an antique land, / Who said - "Two vast and trunkless legs of stone / Stand in the desert. . . . Near them, on the sand, / Half sunk a shattered visage lies, whose frown, / And wrinkled lip, and sneer of cold command, / Tell that its sculptor well those passions read / Which yet survive, stamped on these lifeless things, / The hand that mocked them, and the heart that fed; / And on the pedestal, these words appear: / My name is Ozymandias, King of Kings; / Look on my Works, ye Mighty, and despair! / Nothing beside remains. Round the decay / Of that colossal Wreck, boundless and bare / The lone and level sands stretch far away." // - Percy Bysshe Shelley (1818)
+mc2: In "Ozymandias," who describes the statue? | a traveller whom the speaker met | Ozymandias himself | the sculptor | an Egyptian priest
+mc2: In "Ozymandias," what does the "sneer of cold command" on the statue's face reveal about the ruler? | He was proud, arrogant and harsh. | He was kind and humble. | He was afraid of his people. | He was a talented sculptor.
+mc2: In "Ozymandias," what is ironic about the inscription "Look on my Works, ye Mighty, and despair!"? | Nothing of his works remains except a broken statue in the empty desert. | His works are still standing and admired. | The inscription was written by the traveller. | The statue is perfectly preserved.
+mc2: In "Ozymandias," what does "the hand that mocked them" refer to? | the sculptor's hand, which imitated and perhaps mocked the king's passions | the king's hand, which built the statue | the traveller's hand | the hand of time destroying the statue
+mc3: How does the layered point of view in "Ozymandias" (speaker, traveller, sculptor and king) affect the poem's meaning? | Each layer puts more distance between the reader and the king, emphasizing how far his power has faded. | It makes the king seem closer and more powerful. | It confuses the poem's meaning so that it has none. | It shows that the speaker is the king.
+mc2: In "Ozymandias," what is the effect of the alliteration in "boundless and bare" and "lone and level sands"? | It emphasizes the vast, empty desert that has swallowed the king's achievements. | It creates a cheerful, musical mood. | It describes a busy city. | It shows the statue is new.
+mc2: What theme does "Ozymandias" most clearly express? | Human power and pride are temporary, and time destroys even the greatest empires. | Statues should be built in deserts. | Kings are always remembered forever. | Travel is dangerous.
+mc2: In "Ozymandias," the word "visage" most nearly means | face | statue base | crown | desert
+wr3: Write an essay analyzing how Shelley uses point of view, irony and imagery in "Ozymandias" to develop a theme about power and time. Include a precise thesis and at least four references to the poem. | Key points: the story reaches readers secondhand through the traveller, distancing the king; the "sneer of cold command" shows pride; the sculptor's "hand that mocked them" adds another perspective; the inscription's boast is ironic because "Nothing beside remains"; the closing imagery of "boundless and bare" and "lone and level sands" shows time erasing power; theme: tyranny and pride do not last.
+endpassage:
+mc1: Mary Shelley's Frankenstein (1818) is often called one of the first works of | science fiction | Puritan poetry | Realism | the Harlem Renaissance
+mc2: Which line from Macbeth expresses the idea that life is meaningless? | "It is a tale / Told by an idiot, full of sound and fury, / Signifying nothing." | "Fair is foul, and foul is fair." | "Is this a dagger which I see before me" | "Out, damned spot!"
+mc2: Which statement best describes free indirect discourse? | A third-person narrator blends a character's thoughts and voice into the narration. | A character speaks directly to the audience. | The story is told in second person. | The narrator never reveals any thoughts.
+mc2: In "I Wandered Lonely as a Cloud," the daffodils "flash upon that inward eye." What does this suggest about memory? | Memory can bring past joy back to life. | Memory is unreliable. | The speaker has poor eyesight. | Daffodils are dangerous.
+mc3: Swift's "A Modest Proposal" and a modern satirical news site both state absurd ideas with a straight face. Why is this technique effective? | The serious tone makes the absurdity obvious and exposes the real problem being criticized. | It convinces readers to adopt the absurd idea. | It avoids criticizing anything. | It shows the authors are confused.
+
+unit: Research-based argument | W.11-12.1, W.11-12.7, W.11-12.8
+el: Use a source evaluation checklist (author, purpose, date, evidence, bias) and a synthesis chart with columns for each source; provide sentence frames for integrating sources ("While Source A argues ___, Source B adds ___").
+
+lesson: Research questions and search strategies | W.11-12.7
+practice:
+mc1: Words entered into a database or search engine to find sources are | keywords | citations | thesis statements | footnotes
+hint: They are the "key" to finding information.
+mc2: Which research question best invites an argument based on evidence? | To what extent should California expand high-speed rail to reduce highway traffic? | What is a train? | When was the first train built? | Do people ride trains?
+hint: Look for a question with room for different defensible answers.
+mc2: A student searching "climate" gets millions of results. What is the best next step? | Narrow the search with specific terms, such as "climate change effects on California almond farming." | Read every result. | Give up on the topic. | Choose the first result.
+hint: More specific keywords produce more useful results.
+mc2: Which database is most likely to contain peer-reviewed research articles? | an academic journal database available through a library | a shopping website | a social media app | a video game forum
+hint: Where do scholars publish their research?
+sa2: Explain why a research question should be revised as research progresses. | Early research may show that a question is too broad, already settled or missing an important angle, so revising it keeps the project focused and answerable with evidence.
+hint: What happens when you learn more about a topic?
+quiz:
+mc1: Research that collects new information directly, such as through interviews or surveys, is | primary research | secondary research | plagiarism | summarizing
+mc2: Which research question is too narrow for a sustained research project? | What color are the buses in Sacramento? | How has public transit funding affected ridership in California cities? | Should cities make public transit free? | How do bus lanes affect commute times?
+mc2: A student combines keywords with "AND," such as "homework AND achievement AND high school." What does this do? | It narrows the search to sources containing all of the terms. | It widens the search to any source with one of the terms. | It removes the terms from the search. | It translates the terms.
+mc2: Which source would be the best starting point for background on an unfamiliar topic? | a reputable encyclopedia or overview article | a single tweet | an anonymous comment | a novel
+mc3: A student's research question is "Is social media bad?" Which revision best improves it? | How does time spent on image-based social media relate to body image among teenagers? | Is social media really, really bad? | Why is social media the worst? | What is social media?
+mc2: Why should a researcher keep a log of sources and search terms? | to track where information came from and avoid losing or misattributing sources | to make the essay longer | to avoid citing sources | to copy sources more easily
+sa2: Write a focused research question about school lunches and list three keywords you would use to search for sources. | How do school breakfast programs affect attendance in low-income California high schools? Keywords: school breakfast, attendance, low-income students.
+
+lesson: Evaluating sources for credibility and bias | W.11-12.8
+practice:
+mc1: A source written by experts and reviewed by other experts before publication is | peer-reviewed | self-published | anonymous | sponsored
+hint: "Peers" are other experts in the field.
+mc2: A study on the health benefits of a juice was paid for by the company that sells the juice. What should a researcher consider? | possible bias from the funding source | that the study must be perfect | that juice is always healthy | nothing; funding never matters
+hint: Who benefits from the results?
+mc2: Which source is most current for research on artificial intelligence in schools? | a report published this year by an education research group | a textbook from 2005 | a 1990s magazine | an encyclopedia from 1980
+hint: Fast-changing topics need recent sources.
+mc2: A website about the history of a war presents only one country's view and uses words such as "heroic" and "savage." What does this suggest? | The site may be biased and should be balanced with other sources. | The site is completely objective. | The site is a primary source. | The site is peer-reviewed.
+hint: Notice the loaded words and missing perspectives.
+sa2: Explain how a biased source can still be useful in research. | A biased source can show how a group thinks or what arguments it makes; it is useful if the researcher recognizes the bias, uses it as evidence of a perspective and checks its facts against other sources.
+hint: Think about using a source for what it reveals.
+quiz:
+mc2: Which source is the most credible for an argument about the effects of air pollution on children's lungs? | a peer-reviewed study in a medical journal | a blog by an air purifier company | an anonymous forum post | a cartoon
+mc2: Checking whether other credible sources report the same facts is called | lateral reading or corroboration | plagiarism | paraphrasing | summarizing
+mc2: An article lacks an author, date or sources for its statistics. What is the best evaluation? | It is not reliable enough to use without verifying its claims elsewhere. | It is reliable because it is online. | It is a peer-reviewed study. | It should be quoted in every paragraph.
+mc2: Which question best evaluates a source's purpose? | Was it created to inform, persuade, entertain or sell? | How many pages long is it? | What color is the website? | Does it have pictures?
+mc3: Two credible studies reach different conclusions about the effects of video games on attention. How should a researcher handle this? | Present both, examine differences in their methods and samples, and qualify the claim accordingly. | Use only the study that supports the desired claim. | Ignore both studies. | Average their conclusions without explanation.
+mc2: A source quotes an expert out of context to make it seem the expert supports a view she actually rejects. This is a problem of | misrepresentation | currency | formatting | length
+sa2: Choose two possible sources for a research paper on minimum wage (for example, a government labor statistics report and a business group's website) and evaluate the credibility of each. | A government labor statistics report is likely credible because it uses large datasets and has no direct financial stake; a business group's website may be useful for its perspective but could be biased because its members are affected by wage laws.
+
+lesson: Synthesizing multiple sources | W.11-12.8, W.11-12.1
+practice:
+mc1: Synthesis in research writing means | combining information from several sources to support your own analysis | summarizing one source in detail | copying quotations in a list | avoiding sources entirely
+hint: Think of putting pieces together to make something new.
+mc2: Which sentence shows synthesis? | While a city transit study found that bus lanes cut commute times, a business survey warned that lost parking hurt some shops, suggesting cities must balance both effects. | A city transit study found that bus lanes cut commute times. | Buses are large. | I like buses.
+hint: Look for a sentence that connects two sources and draws a conclusion.
+mc2: Organizing a research essay by idea rather than by source helps the writer | compare sources directly and build an argument | avoid using evidence | list sources one at a time | make the essay longer
+hint: Which approach lets sources "talk" to each other?
+mc2: Which phrase best signals that one source extends another? | Building on this finding, | In contrast, | Unrelated to this, | Despite this,
+hint: Which phrase adds to an idea?
+sa2: Explain the difference between summarizing sources and synthesizing them. | Summarizing restates each source separately; synthesizing connects sources, showing how they agree, differ or build on each other to support the writer's own claim.
+hint: Think of a list versus a conversation.
+quiz:
+passage: Three Sources on Bus Lanes | A student is researching whether her city should convert some car lanes on a busy downtown street into bus-only lanes. She found these three sources. Each is a summary of a hypothetical source created for this lesson. // Source A, a report by the city transportation department: After a one-year trial of bus-only lanes on two downtown streets, average bus travel times during rush hour fell by about 20 percent. Bus ridership on those routes increased, and the number of buses running late dropped. Car travel times on the same streets rose slightly. // Source B, a survey by a downtown business association: Of 150 business owners on streets with new bus lanes, about half said fewer customers parked nearby. Some restaurants reported lower sales during the trial, though the survey did not compare sales with streets that had no bus lanes. Owners suggested adding loading zones and more nearby parking. // Source C, an interview with a public health researcher at a state university: Faster, more reliable buses can encourage people to drive less, which may reduce air pollution and traffic crashes over time. The researcher cautioned that benefits are largest when bus lanes are part of a connected network and are enforced, rather than scattered across a few blocks.
+mc2: In "Three Sources on Bus Lanes," which source provides the strongest data on bus travel times? | Source A, the transportation department report | Source B, the business association survey | Source C, the public health interview | none of the sources
+mc2: In "Three Sources on Bus Lanes," what is a limitation of Source B? | It does not compare sales with streets that had no bus lanes, so it cannot show that bus lanes caused the drop. | It includes too much data. | It was written by health experts. | It supports bus lanes completely.
+mc2: In "Three Sources on Bus Lanes," how does Source C relate to Source A? | It explains possible long-term benefits of the faster buses that Source A measured, while adding a condition for success. | It contradicts every finding in Source A. | It has no connection to Source A. | It repeats Source A word for word.
+mc3: Based on "Three Sources on Bus Lanes," which claim best synthesizes all three sources? | The city should expand bus lanes into a connected, enforced network while adding loading zones to reduce harm to businesses. | The city should ban all buses downtown. | Bus lanes have no effects of any kind. | The city should remove all parking immediately with no other changes.
+mc2: In "Three Sources on Bus Lanes," which source would most likely have a bias against bus lanes? | Source B, because its members may lose parking and customers | Source A, because it measured travel times | Source C, because it is a university researcher | none of them could have any bias
+mc2: In "Three Sources on Bus Lanes," which detail from Source A should a fair writer acknowledge as a drawback? | Car travel times on the same streets rose slightly. | Bus ridership increased. | Late buses decreased. | Bus travel times fell.
+sa3: Using "Three Sources on Bus Lanes," write two or three sentences that synthesize at least two sources to support a claim about bus lanes. | According to the city's trial, bus lanes cut rush-hour bus times by about 20 percent (Source A), and a public health researcher notes that faster buses can lead people to drive less, reducing pollution over time (Source C). However, business owners reported parking concerns (Source B), so the city should pair new lanes with loading zones.
+
+lesson: Building a nuanced claim and line of reasoning | W.11-12.1
+practice:
+mc1: A claim that acknowledges limits, conditions or exceptions is | qualified or nuanced | absolute | irrelevant | circular
+hint: Words such as "often," "in most cases" and "when" qualify a claim.
+mc2: Which claim is most nuanced? | Cell phone limits in class can improve focus, especially when teachers also plan engaging lessons. | Phones destroy all learning. | Phones are always good. | Phones exist.
+hint: Which claim includes a condition?
+mc2: Which word helps qualify a claim? | often | always | never | completely
+hint: Which word allows for exceptions?
+mc2: A line of reasoning in an argument is | the logical sequence of reasons that leads readers to accept the claim | a list of unrelated facts | the title of the essay | the bibliography
+hint: Think of steps that build on each other.
+sa2: Revise this absolute claim to make it nuanced: "Online classes are worse than in-person classes." | Online classes can be less effective than in-person classes for students who need hands-on support, but they offer flexibility that benefits students with jobs or long commutes.
+hint: Add conditions or acknowledge where the claim does not hold.
+quiz:
+mc2: Which claim would be easiest to defend with research evidence? | In many cities, adding protected bike lanes has been followed by fewer serious cyclist injuries. | Bike lanes solve every traffic problem. | No one should ever drive a car. | Bikes are better than everything.
+mc2: Which sequence shows a logical line of reasoning for the claim "Our school should offer more mental health counseling"? | Many students report stress; untreated stress harms learning; counselors help students manage stress; therefore more counselors would support learning. | Counselors have offices; schools have students; stress exists. | Mental health is a topic; the end. | Counselors are nice; schools are big.
+mc2: Which revision avoids overgeneralizing? | Several studies suggest that later start times are associated with better attendance. | Later start times always fix attendance. | Every student loves sleeping in. | Start times are the only cause of absences.
+mc2: A writer uses the words "may," "suggests" and "in some cases." What does this show? | The writer is carefully matching the claim's strength to the evidence. | The writer has no evidence. | The writer is lying. | The writer is confused.
+mc3: A writer's research shows strong evidence that a policy reduced costs but weak evidence about its effect on quality. Which claim is most responsible? | The policy appears to reduce costs, but more evidence is needed to judge its effect on quality. | The policy is perfect in every way. | The policy improved quality greatly. | The policy failed completely.
+mc2: Which element most strengthens the line of reasoning between evidence and claim? | commentary that explains why each piece of evidence matters | more exclamation points | longer quotations with no explanation | repeating the claim
+sa2: Explain why a nuanced claim can be more persuasive to a skeptical audience than an extreme one. | A nuanced claim shows the writer has weighed the evidence honestly, so skeptical readers find it harder to dismiss and are more likely to trust the argument.
+
+lesson: Citing sources in MLA style | W.11-12.8
+practice:
+mc1: In MLA style, the list of sources at the end of a paper is titled | Works Cited | Bibliography of Everything | References Used Maybe | Sources I Read
+hint: It lists the works you cited.
+mc2: Which is a correct MLA in-text citation for a quotation from page 87 of a book by Maria Gonzalez? | (Gonzalez 87) | (Gonzalez, page 87) | (87 Gonzalez) | [Maria Gonzalez, p. 87]
+hint: MLA uses the author's last name and the page number, with no comma.
+mc2: How are entries in an MLA Works Cited list ordered? | alphabetically by the first word of each entry, usually the author's last name | by the date you found them | by length | in the order they appear in the essay
+hint: Think of a dictionary.
+mc2: In an MLA Works Cited list, the second and later lines of each entry are | indented (a hanging indent) | centered | in bold | numbered
+hint: The first line starts at the margin.
+sa2: Explain why researchers cite sources even when they paraphrase rather than quote. | Paraphrased ideas still belong to the original authors, so citing them gives credit, lets readers find the source and avoids plagiarism.
+hint: Whose idea is it?
+quiz:
+mc2: If a source has no author, what usually begins its MLA Works Cited entry? | the title of the work | the date | the website's color | the page number
+mc2: Which MLA in-text citation is correct when the author's name already appears in the sentence? | Chen argues that libraries build community (42). | Chen argues that libraries build community (Chen 42). | Chen argues that libraries build community (page 42, Chen). | Chen argues that libraries build community [42 Chen].
+mc2: Which MLA Works Cited entry for a book is formatted correctly? | Lopez, Ana. Rivers of the West. Sierra Press, 2019. | Ana Lopez, Rivers of the West, 2019 Sierra Press. | Rivers of the West by Ana Lopez (Sierra Press). | Lopez Ana, 2019, Rivers of the West.
+mc2: In MLA style, a website or journal that holds an article is called the | container | thesis | annotation | abstract
+mc3: A student quotes a source in her essay but forgets to list it on the Works Cited page. What is the problem? | Readers cannot locate the full source, and the citation is incomplete. | There is no problem. | The quotation becomes her own words. | The essay becomes a primary source.
+mc2: Why do academic citation styles, such as MLA and APA, exist? | to give readers consistent information to find and check sources | to make papers harder to read | to replace evidence | to avoid giving credit
+sa2: Write an MLA in-text citation for a paraphrase of an idea from page 15 of an article by Jordan Kim, and explain what a reader can do with it. | (Kim 15). A reader can find Kim's entry in the Works Cited list and go to page 15 to check the original idea.
+
+lesson: Counterarguments, concessions and rebuttals in research writing | W.11-12.1
+practice:
+mc1: Admitting that an opposing point has some merit is a | concession | citation | hook | thesis
+hint: To concede means to grant something.
+mc2: Which sentence makes a concession and then rebuts? | Although bus lanes can slow car traffic slightly, the gains in bus reliability move far more people through the street. | Bus lanes are perfect. | People who dislike bus lanes are selfish. | Cars exist.
+hint: Look for a sentence that grants a point and then answers it.
+mc2: Where is the most persuasive place to address a strong counterargument? | where readers are most likely to raise it, often after presenting the main reasons | nowhere, so readers forget it | only in the title | in the works cited
+hint: Answer doubts before readers dismiss your claim.
+mc2: Which rebuttal uses evidence rather than opinion? | A state study found the program cost less per student than the alternative. | That objection is silly. | Everyone agrees with me. | Opponents do not understand.
+hint: Look for a checkable source.
+sa2: Explain why addressing the strongest version of a counterargument is more effective than addressing a weak one. | Answering the strongest objection shows confidence and fairness; defeating only a weak version leaves the real doubts untouched and may seem dishonest.
+hint: What would a well-informed skeptic say?
+quiz:
+mc2: Which phrase best introduces a counterargument fairly? | Critics raise a reasonable concern: | Some foolish people think | Obviously wrong opponents say | Nobody believes that
+mc2: A writer acknowledges a counterargument and then shows it is based on outdated data. What kind of rebuttal is this? | challenging the evidence | an ad hominem attack | a concession with no response | a red herring
+mc2: Which response to a counterargument also refines the writer's claim? | Granting that costs are high, the writer narrows the proposal to a pilot program in two schools. | The writer ignores the costs. | The writer insults critics. | The writer repeats the original claim more loudly.
+mc2: Why might a writer grant that a counterargument is partly correct? | to build credibility and show the claim has been carefully considered | to abandon the argument | to make the essay shorter | to confuse readers
+mc3: A research essay argues for a four-day school week but never mentions the challenge it creates for parents who work five days. How does this omission affect the argument? | It leaves a major objection unanswered, which weakens credibility with readers who think of it. | It strengthens the argument by hiding problems. | It has no effect. | It proves the claim.
+mc2: Which transition best signals a rebuttal after a counterargument? | Nevertheless, | Similarly, | For example, | In addition,
+sa2: Write a counterargument and rebuttal for the claim "California high schools should require a semester of personal finance." | Some argue the schedule is already full. However, research on financial literacy suggests that basic money skills help young adults avoid debt, and a single semester can replace an elective, so the benefits justify the change.
+
+lesson: Unit review | W.11-12.1, W.11-12.7, W.11-12.8
+practice:
+mc1: A source created at the time of an event by someone who witnessed it is a | primary source | secondary source | tertiary source | fictional source
+hint: It comes "first," directly from the event.
+mc2: Which sentence integrates a source smoothly? | As historian Lena Park notes, the railroad "changed the pace of life in the West" (112). | "Changed the pace of life in the West." Park. | Here is a quote from a book. | The railroad changed things, I read that somewhere.
+hint: Look for a signal phrase, a blended quotation and a citation.
+mc2: Which claim about remote work is most nuanced? | Remote work can increase productivity for some tasks but may weaken collaboration. | Remote work is perfect. | Remote work ruins everything. | Remote work exists.
+hint: Which claim recognizes complexity?
+mc2: In MLA style, where does the full information about a cited source appear? | the Works Cited list | the title | the first sentence | the conclusion only
+hint: In-text citations point readers there.
+sa2: Explain why a researcher should evaluate a source before using it as evidence. | Unreliable or biased sources can contain errors or slanted information; evaluating sources ensures the argument rests on credible evidence that readers can trust.
+hint: What happens if your evidence turns out to be false?
+quiz:
+mc1: A strong research question is | focused, complex and answerable with evidence | answerable with yes or no | very broad | a fact
+mc2: Which source is most appropriate for an argument about minimum wage effects? | a peer-reviewed economics study | a celebrity tweet | an unsourced blog | a meme
+mc2: Synthesizing sources means | combining ideas from multiple sources to build your own point | copying one source | listing sources | ignoring sources
+mc2: Which shows correct MLA in-text citation? | (Smith 42) | (Smith, page forty-two, 2020, book) | [Smith] | Smith said it
+ex2: Explain why a nuanced claim is often more persuasive than an extreme one. | It reflects the evidence honestly, so readers find it more credible and harder to refute.
+mc2: Which source is most appropriate as evidence in a research argument about the effects of sleep on memory? | a peer-reviewed study in a psychology journal | a mattress advertisement | a social media poll | a fictional film
+mc2: Which phrase introduces a concession? | Admittedly, | Therefore, | For instance, | As a result,
+mc3: A student finds four sources that agree and one credible source that disagrees. What is the most responsible way to handle the disagreeing source? | Acknowledge it, explain why its findings may differ and qualify the claim if needed. | Leave it out so the essay looks stronger. | Rewrite its findings to match the others. | Quote it without comment.
+
+test:
+mc2: Which best addresses a counterclaim in a sophisticated argument? | acknowledging its strengths and explaining why your claim still holds | ignoring it | mocking it | repeating your thesis
+mc2: Which is plagiarism? | using someone's ideas without credit, even if paraphrased | quoting with citation | paraphrasing with citation | summarizing with citation
+mc2: A nuanced claim | recognizes complexity and limits | is extreme | avoids evidence | is a fact
+mc3: Your research shows mixed evidence on whether homework improves achievement. Which claim is most defensible? | Homework benefits high school students when it is purposeful and limited, but its effects in elementary grades are small. | Homework is always good. | Homework is always bad. | No one knows anything about homework.
+sa2: Write a nuanced thesis for a research argument about the effects of social media on teen mental health. | A specific claim that acknowledges complexity and limits.
+sa2: Synthesize two sources that partly disagree into one paragraph supporting your claim. | Integrates both sources with citations and explains how they relate to the claim.
+task3: Conduct a short research project on a debated issue (for example, the benefits and costs of a four-day school week). Write an argument of 4 to 6 paragraphs that presents a nuanced claim, synthesizes at least four credible sources with correct citations, addresses counterclaims, and ends with a conclusion on the implications. Include a works cited list. | Nuanced claim, synthesis of 4 or more credible sources, correct citations, strong counterclaim handling, works cited. | Clear claim with three sources and citations. | Claim with limited or uncited evidence. | Little correct work.
+passage: Draft Research Argument on Computer Science Requirements | The following is part of a student's draft. The sources are hypothetical and were created for this test. // Should every California high school student be required to take a semester of computer science before graduating? Computer skills are increasingly important in many careers, from medicine to agriculture. However, a requirement also raises concerns about teacher shortages and crowded schedules. California should require a semester of computer science, but only after the state helps schools train enough teachers to offer it well. // Supporters point to opportunity. According to a state workforce report, jobs that use programming or data analysis are growing faster than the average for all jobs (California Workforce Board 4). A university researcher adds that students who take even one computer science course are more likely to consider technology majors, especially students from groups underrepresented in the field (Morales 22). Together, these sources suggest that a requirement could open doors for students who might never choose the class on their own. // Critics raise a reasonable concern: many schools do not have qualified teachers. A survey of 200 principals found that a majority could not currently staff a required course (School Leaders Association 9). This concern is serious. Forcing schools to offer a course without trained teachers could lead to poor instruction that discourages students rather than inspiring them. // For this reason, the requirement should be phased in. The state could fund teacher training for three years before the requirement takes effect, giving schools time to prepare. Everyone knows that computers are the future, so this is obviously the right choice. // Works Cited // California Workforce Board. Jobs for a Changing Economy. 2023. // Morales, Elena. "First Steps into Computing." Journal of Education Research, vol. 12, no. 3, 2022, pp. 15-30.
+mc2: What is the claim of "Draft Research Argument on Computer Science Requirements"? | California should require a semester of computer science, but only after helping schools train enough teachers. | Computer science should never be required. | Every student should major in technology. | Principals should teach computer science themselves.
+mc2: In "Draft Research Argument on Computer Science Requirements," why is the claim considered nuanced? | It supports the requirement while adding a condition about teacher training. | It refuses to take any position. | It uses absolute words such as always and never. | It ignores all counterarguments.
+mc2: In "Draft Research Argument on Computer Science Requirements," how does the second paragraph synthesize sources? | It combines a workforce report and a researcher's findings to argue the course could open opportunities. | It lists two sources without connecting them. | It quotes one source three times. | It contradicts both sources.
+mc2: In "Draft Research Argument on Computer Science Requirements," how does the writer handle the counterargument about teacher shortages? | The writer concedes it is serious and uses it to refine the proposal into a phased plan. | The writer ignores it. | The writer insults the principals. | The writer abandons the claim.
+mc3: In "Draft Research Argument on Computer Science Requirements," which sentence weakens the argument and should be revised? | "Everyone knows that computers are the future, so this is obviously the right choice." | "Critics raise a reasonable concern: many schools do not have qualified teachers." | "This concern is serious." | "The state could fund teacher training for three years before the requirement takes effect."
+mc2: In "Draft Research Argument on Computer Science Requirements," what citation problem appears in the Works Cited list? | The School Leaders Association survey is cited in the text but missing from the list. | Morales is listed twice. | The entries are not about computer science. | The list includes too many sources.
+mc2: In "Draft Research Argument on Computer Science Requirements," what does the in-text citation "(Morales 22)" tell readers? | The idea comes from page 22 of a work by Morales listed in the Works Cited. | Morales was 22 years old. | The essay has 22 sources. | The quotation is from chapter 22.
+mc2: In "Draft Research Argument on Computer Science Requirements," which word best describes the phrase "Critics raise a reasonable concern"? | fair | sarcastic | insulting | dismissive
+wr3: Write an evaluation and revision of "Draft Research Argument on Computer Science Requirements." Explain how well the writer builds a nuanced claim, synthesizes sources and addresses the counterargument. Identify at least two weaknesses (such as the bandwagon conclusion or the missing Works Cited entry), and rewrite the final paragraph so that it ends with a stronger, evidence-based conclusion. | Key points: the qualified claim and phased plan show nuance; the second paragraph synthesizes two sources; the counterargument is conceded fairly and used to refine the claim; weaknesses include the bandwagon or overgeneralized sentence "Everyone knows...", the missing School Leaders Association entry, and limited detail about funding; the revised conclusion restates the qualified claim, connects the training plan to the evidence and explains the stakes.
+endpassage:
+mc1: The process of combining ideas from multiple sources into a new understanding is | synthesis | plagiarism | citation | annotation
+mc2: Which is the correct MLA in-text citation for page 30 of a work by Ahmed? | (Ahmed 30) | (Ahmed, p. 30) | (30, Ahmed) | Ahmed: 30
+mc2: Which source would be most credible for research on the causes of wildfires in California? | a report from the state forestry and fire protection agency | a viral video with no source | a novel set during a fire | an online comment
+mc2: Which statement is a qualified claim? | Homework can support learning in high school when it is purposeful and limited. | Homework is always useless. | All homework should be banned forever. | Homework exists in schools.
+mc3: A researcher finds that a source with useful statistics was published by a group that lobbies for the policy she supports. What should she do? | Note the possible bias, verify the statistics with independent sources and disclose the source's perspective. | Use it without question because it agrees with her. | Hide the group's name. | Change the statistics to be safe.
+
