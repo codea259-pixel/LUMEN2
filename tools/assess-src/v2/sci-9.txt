@@ -1,0 +1,672 @@
+@subject sci
+@grade 9
+# Converted from the grade 9 section of tools/assess-src/sci.txt. Every original unit line, standard, skill list, item
+# and unit test item is carried over verbatim. The original "Unit review" lesson is kept as the last lesson of each unit:
+# its quiz keeps the original quiz items (mc 1-4 and the explanation item) and the unit test keeps the original test
+# items (mc 5-8, both short answers and the task). New lessons come first. Lessons per unit follow difficulty:
+# cells 6 (middle), matter and energy 7 (hard), heredity and genetics 7 (hard), evolution and ecosystems 6 (middle).
+about: Biology investigates how cells and DNA direct life, how organisms obtain and use matter and energy, how traits are inherited and vary, how evolution explains the unity and diversity of life, and how ecosystems are maintained.
+std: HS-LS1-1 | Construct an explanation based on evidence for how the structure of DNA determines the structure of proteins.
+std: HS-LS1-5 | Use a model to illustrate how photosynthesis transforms light energy into stored chemical energy.
+std: HS-LS3-1 | Ask questions to clarify relationships about the role of DNA and chromosomes in coding the instructions for traits passed from parents to offspring.
+std: HS-LS4-2 | Construct an explanation based on evidence that evolution results from genetic variation, competition, reproduction and natural selection.
+std: HS-LS2-6 | Evaluate claims, evidence and reasoning that ecosystems maintain relatively consistent numbers of organisms in stable conditions, but changing conditions may result in a new ecosystem.
+
+unit: Cells and cell processes | HS-LS1-1, HS-LS1-2, HS-LS1-3, HS-LS1-4 | sci_9_n1
+el: Keep a labeled cell diagram on every desk and post a word wall with membrane, osmosis, diffusion, transcription, translation and feedback; offer the frame "The ___ moves from ___ to ___ because ___."
+
+lesson: Cell membranes and transport | HS-LS1-2, HS-LS1-3
+practice:
+mc1: The cell membrane is made mainly of a double layer of | phospholipids | starch molecules | cellulose fibers | nucleic acids
+hint: Think of molecules with a water-loving head and two water-fearing tails.
+mc2: Oxygen moves from the blood, where its concentration is high, into a muscle cell, where it is low, without the cell using energy. This is | diffusion | active transport | endocytosis | translation
+hint: Does the oxygen move down or against its concentration gradient?
+mc2: A cell pumps sodium ions out even though there is already more sodium outside than inside. Which process does this require? | active transport using ATP | simple diffusion | osmosis | facilitated diffusion with no energy
+hint: Moving against a gradient is like pushing a ball uphill.
+num2: A student places a 10.0 g potato slice in distilled water for one hour. Its mass becomes 11.2 g. By what percent did its mass increase? | 12
+hint: Find the change in mass, divide by the starting mass, then multiply by 100.
+sa2: Red blood cells placed in distilled water swell and may burst, but plant cells in distilled water become firm and do not burst. Explain the difference. | Water enters both kinds of cells by osmosis because the inside has more solute. The plant cell has a rigid cell wall that pushes back and keeps it from bursting; the red blood cell has only a membrane, so it can swell until it bursts.
+hint: Which structure does a plant cell have that an animal cell lacks?
+quiz:
+mc1: Which molecules pass through the lipid bilayer most easily without help from proteins? | small nonpolar molecules such as oxygen | large proteins | charged ions such as sodium | starch
+mc2: Glucose enters many cells through a protein channel, moving from high to low concentration with no ATP used. This is | facilitated diffusion | active transport | exocytosis | phagocytosis
+mc2: A white blood cell surrounds and engulfs a bacterium. This process is | endocytosis | osmosis | diffusion | exocytosis
+mc3: Potato cores of equal mass were placed in sugar solutions for one hour. Percent mass change: 0% sugar +14%, 10% sugar +5%, 20% sugar -3%, 30% sugar -9%. Which sugar concentration range most likely matches the solute concentration inside the potato cells? | between 10% and 20% | between 0% and 10% | between 20% and 30% | above 30%
+num2: Dialysis tubing filled with sugar solution has a mass of 25.0 g. After sitting in a beaker of water for 30 minutes its mass is 27.5 g. By how many grams did its mass increase? | 2.5
+mc2: Cells that line the small intestine have many tiny folds called microvilli. How do these folds help the cells? | They increase surface area for absorbing nutrients | They store DNA | They make the cell rigid | They produce ATP from sunlight
+sa2: A gardener adds far too much fertilizer, so the water in the soil becomes very concentrated, and the plants wilt. Explain the wilting using osmosis. | The soil water now has a higher solute concentration than the root cells, so water moves out of the root cells by osmosis instead of in. The plant loses water and pressure in its cells, so it wilts.
+
+lesson: From DNA to protein: transcription and translation | HS-LS1-1
+practice:
+mc1: During transcription, a cell makes | an mRNA copy of a gene | a copy of the whole cell | a protein from amino acids | a new chromosome
+hint: "Transcribe" means to copy writing into another form.
+mc2: A DNA template strand reads TAC GGA. What mRNA sequence is made from it? | AUG CCU | ATG CCT | UAC GGA | TAC CCT
+hint: Pair A with U, T with A, G with C and C with G.
+num1: A codon is made of 3 bases. How many bases are in an mRNA that codes for 120 amino acids, not counting the stop codon? | 360
+hint: Each amino acid needs one codon.
+mc2: During translation, tRNA molecules bring which of these to the ribosome? | amino acids | glucose | DNA nucleotides | lipids
+hint: Proteins are chains of these building blocks.
+sa2: A mutation changes one base in a gene, and the protein made from it no longer folds correctly. Explain how a change in DNA can change a protein's shape. | The changed base changes a codon in the mRNA, which can place a different amino acid in the chain. A different amino acid can change how the chain folds, so the protein's shape and function change.
+hint: Follow the change from DNA to mRNA to amino acid to folding.
+quiz:
+mc1: Which base is found in RNA but not in DNA? | uracil | thymine | adenine | guanine
+mc2: An mRNA codon reads GCA. Which tRNA anticodon pairs with it? | CGU | GCA | CGT | GCU
+mc2: A mutation turns a codon for an amino acid into a stop codon near the start of a gene. What is the most likely result? | a short protein that probably does not work | a longer protein | no change to the protein | a protein with two copies of every amino acid
+num2: A gene's coding region has 900 bases, including a 3-base stop codon at the end. How many amino acids are in the protein it codes for? | 299
+mc3: Sickle cell disease is caused by one base change that replaces one amino acid in hemoglobin, which changes the protein's shape. What does this evidence best support? | The sequence of DNA bases determines the sequence and shape of proteins | Proteins are made in the nucleus | All mutations are harmful | Hemoglobin is made of DNA
+mc2: Which molecule carries the genetic message from the nucleus to a ribosome? | messenger RNA (mRNA) | transfer RNA only | ATP | a phospholipid
+cer3: Scientists compared one gene in two populations of a bird species. Population A's gene codes for a working enzyme. In Population B, one base near the start of the gene is deleted, and the birds lack the working enzyme. Make a claim about why Population B lacks the enzyme, cite evidence and explain your reasoning. | Claim: the deletion changed the protein so the enzyme does not work. Evidence: the only difference in the gene is one deleted base, and Population B lacks a working enzyme. Reasoning: deleting one base shifts the reading frame, so every codon after it changes; the amino acid sequence changes or stops early, so the protein folds wrongly and cannot work.
+
+lesson: Homeostasis and feedback loops in the human body | HS-LS1-3
+practice:
+mc1: In a negative feedback loop, the body's response | reverses the change that started it | makes the change larger | has no effect | happens only once in a lifetime
+hint: Think of how a thermostat turns a heater off when a room gets warm.
+mc2: After a meal, blood glucose rises and the pancreas releases insulin. What does insulin do? | helps cells take in glucose, lowering blood glucose | raises blood glucose | makes the stomach digest faster | stops the heart
+hint: The response should move the level back toward normal.
+num2: A student's resting heart rate is 68 beats per minute. After 2 minutes of jumping jacks it is 119 beats per minute. By how many beats per minute did it increase? | 51
+mc2: During childbirth, contractions trigger the release of a hormone that causes even stronger contractions until the baby is born. This is an example of | positive feedback | negative feedback | osmosis | active transport
+hint: Does the response weaken or strengthen the original change?
+sa2: On a very hot day, a runner stops sweating even though she is still hot, and her temperature keeps rising. Explain why this is dangerous using the idea of feedback. | Sweating is part of a negative feedback loop that cools the body. If it fails, nothing reverses the rise, so temperature keeps climbing and can damage proteins and organs (heat stroke).
+hint: What normally brings body temperature back down?
+quiz:
+mc1: The parts of a feedback loop that detect a change are called | receptors (sensors) | effectors | gametes | ribosomes
+mc2: When blood glucose falls between meals, the pancreas releases glucagon. Glucagon causes the liver to | release glucose into the blood | store more glucose | make insulin | stop working
+mc2: A person drinks a large amount of water. Their kidneys respond by | producing more dilute urine | producing less urine | stopping blood flow | releasing glucose
+mc3: A volunteer sat in a cold room, and her body temperature was recorded every 5 minutes: 37.0, 36.8, 36.7, 36.8 and 37.0 degrees C. She began shivering after 10 minutes. Which conclusion is best supported? | Shivering helped return body temperature toward normal | Shivering lowered body temperature | The cold room had no effect on her | Body temperature never changes
+num2: Normal fasting blood glucose is about 90 mg/dL. Two hours after a meal, a person's level is 135 mg/dL. How many mg/dL above 90 is that? | 45
+mc2: In type 1 diabetes, the pancreas makes little or no insulin. Without treatment, what happens to blood glucose after a meal? | it stays high | it drops quickly | it stays normal | it falls to zero
+sa2: Explain why keeping a stable internal temperature matters for the enzymes in your cells. | Enzymes have shapes that work best near a certain temperature. Too much heat can change their shape so they stop working, and cold slows reactions, so a stable temperature keeps cell chemistry running.
+
+lesson: Mitosis, differentiation and levels of organization | HS-LS1-2, HS-LS1-4
+practice:
+mc1: Which list goes from simplest to most complex? | cell, tissue, organ, organ system | tissue, cell, organ, organ system | organ, tissue, cell, organ system | cell, organ, tissue, organ system
+hint: Cells group into tissues first.
+mc2: During which phase of mitosis do sister chromatids separate and move to opposite ends of the cell? | anaphase | prophase | metaphase | telophase
+hint: Think "A" for apart.
+num2: On an onion root tip slide, a student counts 200 cells. 140 are in interphase. What percent of the cells are in interphase? | 70
+hint: Divide the interphase cells by the total, then multiply by 100.
+mc2: A cell in a human embryo becomes a muscle cell instead of a skin cell. This process is called | differentiation | mutation | meiosis | fertilization
+hint: The cell becomes specialized for one job.
+sa2: Explain how the circulatory and respiratory systems work together when you exercise. | The respiratory system brings in more oxygen and removes carbon dioxide faster; the circulatory system pumps blood faster to carry oxygen to muscles and carbon dioxide back to the lungs.
+hint: Think of what muscles need more of and what they give off.
+quiz:
+mc1: A group of similar cells working together to do one job is a | tissue | organ system | organism | organelle
+mc2: A human body cell has 46 chromosomes. After mitosis, each daughter cell has | 46 chromosomes | 23 chromosomes | 92 chromosomes | 12 chromosomes
+mc2: Cancer is best described as | cells dividing without normal controls | cells that cannot divide | cells with no DNA | a type of osmosis
+num2: Bacteria in a culture divide every 20 minutes. Starting with 1 cell, how many cells are there after 2 hours? | 64
+mc3: In an onion root tip, a student counted 160 cells in interphase, 20 in prophase, 10 in metaphase, 6 in anaphase and 4 in telophase. Which conclusion is best supported? | Cells spend most of their time in interphase | Anaphase is the longest stage | Telophase lasts longer than prophase | Most of the cells were not alive
+mc2: Stem cells are valuable in medicine because they | can develop into many types of specialized cells | have no DNA | never divide | are already fully specialized
+sa2: Every cell in your body has the same DNA. Explain how a liver cell and a nerve cell can look and act so differently. | During development, different genes are turned on in different cells. A liver cell expresses genes for liver proteins and a nerve cell expresses genes for nerve proteins, so they build different structures and do different jobs.
+
+lesson: Enzymes: protein shape, specificity and reaction rate | HS-LS1-1, HS-LS1-3
+practice:
+mc1: Most enzymes belong to which group of biomolecules? | proteins | lipids | nucleic acids | carbohydrates
+hint: Enzymes are folded chains of amino acids.
+mc2: Lactase breaks down lactose, the sugar in milk, but it does not break down starch. Why? | Lactase's active site fits the shape of lactose but not starch | Starch is not a molecule | Lactase is used up by milk | Lactase works only in plants
+hint: Think of a key that fits only one lock.
+num2: An enzyme reaction produced 24 mL of oxygen in 4 minutes. What was the average rate in mL per minute? | 6
+hint: Divide the volume of gas by the time.
+mc2: Adding more substrate makes an enzyme reaction faster at first, but eventually the rate stops increasing. Why? | All of the enzyme's active sites are already busy | The enzyme turns into substrate | The substrate is destroyed | The temperature drops
+hint: Each enzyme molecule can work on only one substrate molecule at a time.
+sa2: Fresh pineapple contains an enzyme that breaks down proteins, so fresh pineapple keeps gelatin (a protein) from setting. Canned pineapple, which is heated during canning, does not stop gelatin from setting. Explain why. | Gelatin is a protein, and the fresh pineapple enzyme breaks it apart so it cannot set. Heating during canning changes the enzyme's shape (denatures it), so its active site no longer fits the gelatin proteins and it stops working.
+hint: What does strong heat do to the shape of a protein?
+quiz:
+mc1: The molecule that an enzyme acts on is called its | substrate | product | active site | cofactor
+mc2: After an enzyme speeds up a reaction, the enzyme | is unchanged and can be used again | is used up | becomes part of the product | turns into a substrate
+num2: Catalase broke down hydrogen peroxide and released 45 mL of oxygen in 3 minutes at 37 degrees C, but only 15 mL in 3 minutes at 10 degrees C. How many times faster was the reaction at 37 degrees C? | 3
+mc3: An enzyme's reaction rate was measured at substrate concentrations of 1, 2, 4, 8 and 16 units. The rates were 10, 18, 28, 34 and 35 micromoles per minute. Which conclusion is best supported? | The rate levels off because the enzyme becomes saturated with substrate | The rate doubles every time the substrate doubles | More substrate slows the enzyme down | The enzyme was destroyed at 16 units
+mc2: Pepsin is a stomach enzyme that works best near pH 2. What would most likely happen if pepsin were placed in a solution at pH 8? | It would work much more slowly or stop working | It would work faster | It would turn into an acid | It would turn into DNA
+mc2: Which description best matches how enzyme activity changes as temperature rises from cold to very hot? | It rises to a peak and then falls sharply | It rises steadily without limit | It stays the same at every temperature | It falls steadily from the start
+cer3: A student added liver extract, which contains the enzyme catalase, to hydrogen peroxide. Fresh extract made a column of foam 40 mm tall. Extract that had been boiled and cooled made 0 mm of foam. Fresh extract added to water with no hydrogen peroxide made 0 mm of foam. Make a claim about why the boiled extract made no foam, cite evidence and explain your reasoning. | Claim: boiling destroyed the catalase's ability to work. Evidence: fresh extract made 40 mm of foam, boiled extract made 0 mm, and the water control shows the foam comes from breaking down hydrogen peroxide. Reasoning: catalase is a protein whose shape forms its active site; boiling changed its shape, so hydrogen peroxide could no longer fit and no oxygen foam was made.
+
+lesson: Unit review | HS-LS1-1, HS-LS1-2, HS-LS1-3, HS-LS1-4
+practice:
+mc2: Which organelle releases energy from food molecules by cellular respiration in both plant and animal cells? | mitochondrion | ribosome | Golgi apparatus | lysosome
+hint: This organelle is often called the powerhouse of the cell.
+mc2: Which sequence shows the usual flow of genetic information in a cell? | DNA to RNA to protein | protein to RNA to DNA | RNA to DNA to protein | DNA to protein to RNA
+hint: Information is copied first, then translated.
+num2: A cube-shaped cell is 2 micrometers on each side. Its surface area is 24 square micrometers and its volume is 8 cubic micrometers. What is its surface-area-to-volume ratio? | 3
+hint: Divide surface area by volume.
+mc3: A student tests an enzyme at 20, 30, 40, 50 and 60 degrees C. The reaction rate is highest at 40 and almost zero at 60. Which explanation is best? | High temperature changed the enzyme's shape so it no longer works | The enzyme was used up at 40 degrees | Enzymes work faster at every higher temperature | The substrate turned into DNA
+hint: What happens to a protein's shape when it gets too hot?
+sa2: Explain why the cell membrane is described as selectively permeable, and give one example of a substance it lets through easily. | It lets some substances cross and blocks or controls others. Small nonpolar molecules such as oxygen and carbon dioxide pass easily, while large or charged particles need protein channels or pumps.
+hint: Selective means it chooses.
+quiz:
+mc1: Proteins are made at the | ribosomes | nucleus only | cell wall | vacuole
+mc1: The process by which a cell divides into two identical cells is | mitosis | meiosis | photosynthesis | fertilization
+mc2: Which structure controls what enters and leaves the cell? | cell membrane | ribosome | nucleolus | chloroplast
+mc2: Homeostasis means | maintaining stable internal conditions | growing larger | dividing quickly | making proteins only
+mc2: Plant cells have which structure that animal cells lack? | a cell wall | a cell membrane | ribosomes | mitochondria
+mc2: What is the main job of the nucleus in a eukaryotic cell? | holds the DNA and controls cell activities | makes glucose from sunlight | digests worn-out cell parts | pumps water out of the cell
+ex2: Explain why cells divide instead of growing indefinitely. | Large cells have too little surface area for their volume to exchange materials efficiently.
+
+test:
+mc2: Enzymes speed up reactions by | lowering activation energy | raising temperature | adding mass | removing water
+mc2: Water moving across a membrane from low to high solute concentration is | osmosis | active transport | phagocytosis | translation
+mc2: Prokaryotic cells differ from eukaryotic cells because they | lack a nucleus | have chloroplasts | are always larger | have no DNA
+mc3: A cell placed in very salty water shrinks. Why? | Water leaves the cell by osmosis | Salt enters and pops it | The cell divides | Proteins are made
+mc1: Which idea states that all living things are made of cells and that cells come only from existing cells? | cell theory | evolution by natural selection | plate tectonics | conservation of energy
+mc2: A mutation changes a codon, but the new codon codes for the same amino acid. What happens to the protein? | it stays the same | it becomes shorter | it stops being made | it gains a new function
+num2: An mRNA molecule is 450 bases long, and every base is part of a codon. How many codons does it contain? | 150
+mc2: Kidney cells use a lot of ATP to move ions against their concentration gradients. Which organelle would you expect to find in large numbers in these cells? | mitochondria | chloroplasts | cell walls | central vacuoles
+mc2: Which kind of transport moves large particles out of a cell in vesicles that fuse with the cell membrane? | exocytosis | endocytosis | diffusion | osmosis
+mc2: The pancreas releasing insulin after a meal so that blood glucose returns to normal is an example of | a negative feedback response | a positive feedback response | cell division | translation
+num2: In a lab, 40 cells out of 250 in a root tip were dividing. What percent of the cells were dividing? | 16
+mc3: Catalase activity was measured as bubbles per minute at different pH values: pH 3, 2; pH 5, 10; pH 7, 25; pH 9, 12; pH 11, 3. Which conclusion is best supported? | The enzyme works best near pH 7 | The enzyme works best at pH 11 | pH has no effect on the enzyme | The enzyme keeps speeding up as pH rises
+mc2: The heart, blood vessels and blood working together form | an organ system | a tissue | an organelle | a single cell
+mc1: The region of an enzyme where its substrate fits and binds is the | active site | nucleus | ribosome | cell wall
+mc2: Which two body systems work together most directly to bring oxygen to body cells? | respiratory and circulatory | digestive and skeletal | nervous and integumentary | excretory and skeletal
+num2: A cell is 0.02 mm wide. Under a microscope that magnifies 400 times, how many millimeters wide does it appear? | 8
+mc3: A drug blocks bacterial ribosomes but not human ribosomes. What would most likely happen to bacteria exposed to the drug? | They could not make proteins and would stop growing | They would make more DNA | They would grow faster | They would turn into human cells
+mc2: During interphase, a cell | grows and copies its DNA | splits into two cells | lines up its chromosomes in the middle | forms gametes
+sa2: Explain how the structure of DNA determines the structure of a protein. | The sequence of DNA bases is transcribed to mRNA and translated into a specific sequence of amino acids, which folds into a protein.
+sa2: Describe how a feedback mechanism maintains body temperature. | When hot, the body sweats and dilates vessels; when cold, it shivers and constricts vessels, returning temperature to normal.
+cer3: A student placed potato pieces of equal mass in 0%, 5% and 15% salt solutions for one hour. The mass changes were +8%, +1% and -12%. Make a claim about how salt concentration affects water movement in potato cells, use evidence from the data and explain your reasoning. | Claim: a higher salt concentration outside the cells causes potato cells to lose water. Evidence: the piece in 0% salt gained 8% mass, the piece in 5% gained only 1%, and the piece in 15% lost 12%. Reasoning: water moves by osmosis toward the higher solute concentration; in 15% salt the solution outside had more solute than the cells, so water left the cells and mass decreased.
+task3: Design and conduct an investigation on how temperature affects enzyme activity (for example, catalase and hydrogen peroxide). State a hypothesis, control variables, collect and graph data, and explain results using enzyme structure. | Strong design with controls, accurate graph and explanation linking structure to function. | Good design and data with a partial explanation. | Investigation with weak controls or analysis. | Little correct work.
+
+unit: Matter and energy in organisms | HS-LS1-5, HS-LS1-6, HS-LS1-7, HS-LS2-3
+el: Draw the photosynthesis and respiration equations side by side with arrows and color-code carbon, oxygen and energy; offer the frame "Matter goes from ___ to ___, and energy changes from ___ to ___."
+
+lesson: Photosynthesis: light reactions and the Calvin cycle | HS-LS1-5
+practice:
+mc1: The green pigment that absorbs light in chloroplasts is | chlorophyll | hemoglobin | keratin | melanin
+hint: This pigment gives leaves their color.
+mc2: In the light-dependent reactions, water molecules are split. What gas is released as a result? | oxygen | carbon dioxide | nitrogen | methane
+hint: This gas is what animals breathe in.
+mc2: The Calvin cycle uses ATP and NADPH from the light reactions to | build sugar from carbon dioxide | split water | absorb sunlight | release oxygen
+hint: Which stage takes carbon from the air?
+num2: An aquatic plant under a lamp gave off 6 oxygen bubbles per minute at 40 cm, 14 per minute at 20 cm and 25 per minute at 10 cm. How many more bubbles per minute did it give off at 10 cm than at 40 cm? | 19
+hint: Subtract the smaller rate from the larger one.
+sa2: Leaves look green, yet plants grow poorly under pure green light. Explain why, using what chlorophyll does with light. | Chlorophyll absorbs mostly red and blue light and reflects green light, which is why leaves look green. Under only green light, little light is absorbed, so little energy is available for photosynthesis.
+hint: The color you see is the color that bounces off.
+quiz:
+mc1: Where in the chloroplast do the light-dependent reactions take place? | in the thylakoid membranes | in the cell wall | in the nucleus | in the mitochondria
+mc2: A plant is given carbon dioxide made with a traceable form of carbon. Where will that carbon show up first? | in sugars made by the Calvin cycle | in the oxygen gas released | in the water the plant absorbs | in the chlorophyll only
+mc2: Which factor would most likely increase the rate of photosynthesis in a plant that has plenty of water and light? | raising the carbon dioxide level | lowering the carbon dioxide level | covering the leaves | removing the chlorophyll
+num2: A tomato plant's dry mass rose from 120 g to 186 g over a month of growth. By how many grams did its dry mass increase? | 66
+mc3: Elodea sprigs were placed in water with baking soda (a carbon dioxide source) or plain boiled water (very little carbon dioxide). Bubbles per minute were 18 with baking soda and 2 in boiled water. Which conclusion is supported? | Carbon dioxide is needed for the plant to photosynthesize at a high rate | Light is not needed for photosynthesis | Boiled water speeds photosynthesis | The bubbles are carbon dioxide leaving the plant
+mc2: In photosynthesis, light energy is first captured and then stored in the bonds of | glucose | water | oxygen gas | carbon dioxide
+sa2: A student says that most of a tree's mass comes from the soil. Use the inputs of photosynthesis to explain what is wrong with this idea. | Most of a tree's dry mass is carbon compounds such as cellulose. The carbon comes from carbon dioxide in the air, which is built into sugar during photosynthesis, along with hydrogen and oxygen from water; only a small amount of mass comes from soil minerals.
+
+lesson: Cellular respiration and ATP | HS-LS1-7
+practice:
+mc1: The first stage of cellular respiration, which splits glucose in the cytoplasm, is | glycolysis | the Calvin cycle | transcription | photosynthesis
+hint: "Glyco" refers to sugar and "lysis" means splitting.
+mc2: Why do cells need oxygen for aerobic respiration? | Oxygen accepts electrons at the end of the electron transport chain | Oxygen is the main food molecule | Oxygen is turned into glucose | Oxygen stores DNA
+hint: Think about the very last step of the process.
+num2: One textbook model says aerobic respiration makes 32 ATP per glucose molecule, while fermentation makes 2. Using these numbers, how many times as much ATP does aerobic respiration make? | 16
+hint: Divide the larger amount by the smaller.
+mc2: Yeast in bread dough without oxygen produces carbon dioxide and | ethanol | lactic acid | glucose | chlorophyll
+hint: This is called alcoholic fermentation.
+sa2: Explain how breathing faster during exercise is connected to what happens in your muscle cells. | Muscle cells carry out more cellular respiration to make ATP, so they use more oxygen and produce more carbon dioxide. Breathing faster brings in more oxygen and removes the extra carbon dioxide.
+hint: Which gas do muscles use more of, and which do they make more of?
+quiz:
+mc1: Energy released from glucose is stored in a form cells can use directly as | ATP | DNA | starch | cellulose
+mc2: Seeds were sealed in jars with a carbon dioxide sensor. Germinating seeds raised carbon dioxide from 400 ppm to 1,250 ppm in an hour, while boiled seeds stayed at 400 ppm. Which conclusion is supported? | Living seeds carry out cellular respiration | Boiled seeds photosynthesize | Seeds absorb carbon dioxide | Carbon dioxide is made only by animals
+num2: Germinating peas raised the carbon dioxide level in a sealed jar from 400 ppm to 1,000 ppm in 30 minutes. What was the average increase in ppm per minute? | 20
+mc2: A sprinter's muscles produce lactic acid during a 100 m race. What does this show about her muscle cells at that time? | They needed ATP faster than their oxygen supply allowed aerobic respiration to make it | They had stopped using glucose | They were photosynthesizing | They were making DNA
+mc3: Plants carry out both photosynthesis and cellular respiration. Which statement is accurate? | Plant cells respire all the time, and photosynthesize only in light | Plants photosynthesize but never respire | Plants respire only at night | Plants make glucose only in their roots
+mc2: Which molecules are the reactants of aerobic cellular respiration? | glucose and oxygen | carbon dioxide and water | ATP and DNA | sunlight and chlorophyll
+cer3: Two sealed jars each held 10 crickets. Jar A was kept at 10 degrees C and Jar B at 25 degrees C. After one hour, carbon dioxide rose by 300 ppm in Jar A and 900 ppm in Jar B. Make a claim about how temperature affected the crickets' cellular respiration, cite evidence and explain your reasoning. | Claim: the warmer crickets carried out more cellular respiration. Evidence: carbon dioxide rose 900 ppm at 25 degrees C but only 300 ppm at 10 degrees C. Reasoning: carbon dioxide is a product of cellular respiration, so more carbon dioxide means more respiration; crickets cannot control their body temperature, so in warmer air their enzymes work faster and they use more energy.
+
+lesson: Building biomolecules: carbohydrates, lipids, proteins and nucleic acids | HS-LS1-6
+practice:
+mc1: The building blocks of proteins are | amino acids | simple sugars | fatty acids only | nucleotides
+hint: There are about 20 kinds of these, and their order matters.
+mc2: Which element is found in proteins but not in carbohydrates or most lipids? | nitrogen | carbon | hydrogen | oxygen
+hint: Look at the amino group of an amino acid.
+mc2: A plant stores extra glucose by linking many glucose molecules together into | starch | DNA | protein | wax only
+hint: Potatoes and rice have a lot of it.
+num2: A glucose molecule is C6H12O6. How many atoms in total are in one glucose molecule? | 24
+hint: Add the carbon, hydrogen and oxygen atoms.
+sa2: Explain how the sugar a plant makes in photosynthesis can end up as part of the protein in a cow's muscle. | The plant uses sugar carbon to build other molecules, including amino acids (adding nitrogen from the soil). The cow eats the plant and digests its molecules, then uses the amino acids and other carbon compounds to build its own muscle proteins.
+hint: Follow the carbon atoms from plant to cow.
+quiz:
+mc1: DNA and RNA belong to which group of biomolecules? | nucleic acids | carbohydrates | lipids | proteins
+mc2: Which biomolecule stores the most energy per gram and forms cell membranes? | lipids | carbohydrates | nucleic acids | vitamins
+mc2: When you digest a protein in food, your body breaks it into | amino acids that can be rebuilt into new proteins | glucose only | DNA | fatty acids only
+mc2: Food labels list 9 Calories per gram of fat and 4 Calories per gram of carbohydrate. A snack has 10 g of fat. How many Calories come from its fat? | 90 | 40 | 19 | 13
+num2: A food has 12 g of carbohydrate at 4 Calories per gram. How many Calories come from its carbohydrate? | 48
+mc3: A student adds iodine to four foods. Iodine turns blue-black in the bread and the potato but stays brown on the egg white and the butter. Which conclusion is supported? | Bread and potato contain starch | Egg white contains the most starch | Butter is made of starch | None of the foods contain starch
+sa2: Cellulose and starch are both made of glucose, but humans can digest starch and not cellulose. Explain what this shows about the link between a molecule's structure and how it can be used. | The glucose units in cellulose are linked differently than in starch. Human enzymes fit the bonds in starch but not those in cellulose, so the way the units are joined, not just what they are made of, decides whether the body can break the molecule down.
+
+lesson: Energy flow and the carbon cycle in ecosystems | HS-LS2-3, HS-LS2-4
+practice:
+mc1: Organisms that make their own food from sunlight are called | producers | consumers | decomposers | scavengers
+hint: They start nearly every food chain.
+mc2: In a food chain, only about 10% of the energy at one level passes to the next level. Where does most of the rest go? | It is released as heat by cellular respiration and other life processes | It is destroyed | It is stored in the soil forever | It is turned into sunlight
+hint: Energy is never destroyed, but it can change form.
+num2: Grass in a field captures 20,000 kJ of energy. Using the 10% rule, how many kJ reach the grasshoppers that eat the grass? | 2000
+hint: Multiply by 0.10.
+mc2: Fungi and bacteria that break down dead leaves return which gas to the air? | carbon dioxide | oxygen | nitrogen only | helium
+hint: They carry out cellular respiration as they feed.
+sa2: Explain why food chains rarely have more than four or five levels. | Only about 10% of the energy passes from one level to the next, so after a few levels too little energy is left to support another population of consumers.
+hint: Use the 10% rule.
+quiz:
+mc1: Which process removes carbon dioxide from the atmosphere? | photosynthesis | cellular respiration | burning wood | decomposition
+mc2: In an ecosystem, matter cycles but energy | flows through and is eventually lost as heat | cycles back to the Sun | stays inside producers | increases at each level
+num2: Phytoplankton in a lake capture 50,000 kJ of energy. Using the 10% rule, how many kJ reach the small fish that eat the zooplankton that eat the phytoplankton? | 500
+mc2: Bog soils have little oxygen, and dead plants build up as peat over thousands of years. Why does peat build up? | Decomposers carry out little aerobic respiration without oxygen, so decay is slow | Plants stop photosynthesizing in bogs | Oxygen turns plants into peat | Peat is made by animals
+mc3: The amount of carbon dioxide in the air near a forest is lower in summer afternoons than at night. What is the best explanation? | In daylight, photosynthesis removes more carbon dioxide than respiration releases | Trees respire only in the day | Photosynthesis happens only at night | Animals stop breathing at night
+mc2: Which group of organisms would have the least total energy in an ecosystem? | top predators such as hawks | grasses | grasshoppers | mice
+sa2: Describe the path of one carbon atom from carbon dioxide in the air, into a rabbit and back into the air. | A plant takes in carbon dioxide and builds the carbon into sugar by photosynthesis. The rabbit eats the plant and uses the sugar in cellular respiration, which releases the carbon as carbon dioxide when the rabbit breathes out.
+
+lesson: Factors that limit photosynthesis: light, carbon dioxide and temperature | HS-LS1-5
+practice:
+mc1: In an experiment testing how light intensity affects photosynthesis, the light intensity is the | independent variable | dependent variable | control group | constant
+hint: It is the factor the student changes on purpose.
+mc2: A student counts oxygen bubbles from a water plant while moving a lamp closer to it. Which conditions should she keep the same in every trial? | the water temperature and the amount of carbon dioxide in the water | the distance from the lamp | the number of bubbles counted | the brightness reaching the plant
+hint: Everything except the factor being tested should stay the same.
+num2: In three trials, leaf disks floated after 4 minutes, 6 minutes and 8 minutes. What is the mean time in minutes? | 6
+hint: Add the times and divide by the number of trials.
+mc2: As light intensity increases, a plant's photosynthesis rate rises and then levels off. Along the level part of the graph, adding more light does not help. What is most likely limiting the rate there? | another factor, such as carbon dioxide or temperature | the light | the color of the pot | the size of the lamp
+hint: If light is no longer the problem, what else does photosynthesis need?
+sa2: Explain why some greenhouse growers add extra carbon dioxide to the air inside their greenhouses. | In a greenhouse with plenty of light, water and warmth, carbon dioxide is often the factor that limits photosynthesis. Adding carbon dioxide lets the plants make more sugar, so they grow faster.
+hint: Which raw material of photosynthesis comes from the air?
+quiz:
+mc1: A factor that keeps a process from going faster even when other conditions improve is called a | limiting factor | product | pigment | catalyst
+num2: A plant released 12 mL of oxygen per hour at 15 degrees C and 30 mL per hour at 30 degrees C. By how many mL per hour did its oxygen output increase? | 18
+mc3: A water plant's photosynthesis rate was measured at five temperatures: 10 degrees C, 5 bubbles per minute; 20 degrees C, 14; 30 degrees C, 22; 40 degrees C, 9; 50 degrees C, 1. Which explanation for the drop above 30 degrees C is best? | High temperatures change the shape of the enzymes used in photosynthesis | Plants need cold temperatures to make sugar | The light became dimmer at higher temperatures | Carbon dioxide turns into oxygen when it is hot
+mc2: A student will compare photosynthesis under red, blue and green light. Which plan makes the test fair? | Use the same plant species, light brightness, water and temperature for every color | Give the plants under each color a different amount of water | Use a different plant species for each color | Test each color with a different lamp brightness
+num2: A plant made 4 mg of sugar per hour in dim light and 10 mg of sugar per hour in bright light. How many more milligrams of sugar would it make in 6 hours of bright light than in 6 hours of dim light? | 36
+mc2: On a very hot, dry afternoon, many plants photosynthesize more slowly even in bright sunlight. What is the best explanation? | They close their stomata to save water, which lets in less carbon dioxide | Sunlight carries no energy in the afternoon | Their chlorophyll turns into glucose | They switch to photosynthesizing only at night
+cer3: A student put the same kind of water plant in four beakers with the same light and temperature, adding a different amount of baking soda (a carbon dioxide source) to each. Results: 0 g, 3 bubbles per minute; 1 g, 12; 2 g, 20; 3 g, 21. Make a claim about how carbon dioxide affects the rate of photosynthesis, cite evidence and explain your reasoning. | Claim: more carbon dioxide increases the rate of photosynthesis until another factor limits it. Evidence: the rate rose from 3 to 12 to 20 bubbles per minute as baking soda increased from 0 to 2 g, but only rose to 21 at 3 g. Reasoning: carbon dioxide is a reactant that the Calvin cycle builds into sugar, so more of it speeds photosynthesis; at high levels light or temperature becomes the limiting factor, so the rate levels off.
+
+lesson: Tracing atoms: conservation of matter in photosynthesis and respiration | HS-LS1-7, HS-LS1-5
+practice:
+num1: How many oxygen atoms are in 6 molecules of carbon dioxide (CO2)? | 12
+hint: Each CO2 molecule has 2 oxygen atoms.
+num2: In the photosynthesis equation 6CO2 + 6H2O makes C6H12O6 + 6O2, how many oxygen atoms are on the reactant side? | 18
+hint: Count the oxygen atoms in 6 CO2 and in 6 H2O, then add.
+mc2: During cellular respiration, the bonds in glucose and oxygen are broken, and new bonds form in | carbon dioxide and water | glucose and oxygen | DNA and proteins | chlorophyll and starch
+hint: Think about the products of cellular respiration.
+mc2: A sealed flask holds yeast and sugar water, and its total mass is 250.0 g. A balloon on the flask inflates as the yeast ferment for a day, and nothing escapes. What is the total mass after a day? | still 250.0 g | less than 250.0 g because gas was made | more than 250.0 g because the yeast grew | exactly half of 250.0 g
+hint: In a closed system, can atoms enter or leave?
+sa2: When a person loses body fat, where does most of the mass of that fat go? Use cellular respiration to explain. | Fat molecules are broken down in cellular respiration. Their carbon, hydrogen and oxygen atoms are rearranged into carbon dioxide and water. Most of the mass leaves the body as carbon dioxide breathed out, and the rest leaves as water.
+hint: What are the products of cellular respiration, and how do they leave the body?
+quiz:
+mc1: The law of conservation of mass says that in a chemical reaction | atoms are rearranged but not created or destroyed | atoms are destroyed to release energy | new atoms are made from energy | the total mass always increases
+num2: How many hydrogen atoms are in 6 molecules of water (H2O)? | 12
+num2: In the cellular respiration equation C6H12O6 + 6O2 makes 6CO2 + 6H2O, how many oxygen atoms are on the product side? | 18
+mc2: During cellular respiration, where do the oxygen atoms from the oxygen gas (O2) a cell takes in end up? | in water | in glucose | in ATP | in the cell's DNA
+mc3: Scientists gave plants water made with a traceable form of oxygen. The traceable oxygen showed up in the oxygen gas the plants released, not in the sugar they made. What does this evidence show? | The oxygen gas released in photosynthesis comes from water | The oxygen gas released in photosynthesis comes from carbon dioxide | Water is not used in photosynthesis | Sugar contains no oxygen atoms
+num2: In a lab model, 10.0 g of glucose reacts completely with 10.7 g of oxygen in cellular respiration. The products are carbon dioxide and water. If 14.7 g of carbon dioxide is made, how many grams of water are made? | 6
+mc2: Which statement about matter and energy in cellular respiration is correct? | Atoms are rearranged and conserved, while chemical energy is transferred to ATP and released as heat | Glucose is turned into energy, so its atoms disappear | Energy is created from oxygen | Matter is destroyed and leaves as heat
+sa2: Describe how a student could use colored beads (one color each for carbon, hydrogen and oxygen atoms) to show that photosynthesis follows the law of conservation of matter. | Build 6 CO2 and 6 H2O molecules, using 6 carbon, 12 hydrogen and 18 oxygen beads. Then take them apart and rebuild the same beads into one glucose (C6H12O6) and 6 O2 molecules. No beads are added or left over, which shows atoms are rearranged, not created or destroyed.
+
+lesson: Unit review | HS-LS1-5, HS-LS1-6, HS-LS1-7, HS-LS2-3
+practice:
+mc2: Which pair of processes are almost reverse reactions of each other? | photosynthesis and cellular respiration | mitosis and meiosis | transcription and translation | osmosis and diffusion
+hint: Compare the reactants of one with the products of the other.
+mc2: Which organisms carry out cellular respiration? | plants, animals, fungi and most other organisms | only animals | only plants | only bacteria
+hint: All of these need ATP.
+num2: A leaf disk experiment: in bright light, 10 disks floated in 6 minutes; in dim light, they floated in 15 minutes. How many minutes longer did they take in dim light? | 9
+hint: Floating disks show oxygen building up from photosynthesis.
+mc3: A sealed glass container holds a plant and a snail in light. Carbon dioxide stays about steady for a week. What best explains this? | The plant's photosynthesis uses about as much carbon dioxide as both organisms release by respiration | Neither organism uses carbon dioxide | The snail photosynthesizes | Carbon dioxide cannot change in a sealed container
+hint: One organism adds carbon dioxide and one can remove it.
+sa2: Explain why a plant left in the dark for many days loses mass. | In the dark the plant cannot photosynthesize, but it keeps carrying out cellular respiration, breaking down stored sugars and releasing carbon as carbon dioxide, so its mass decreases.
+hint: Which process keeps going in the dark?
+quiz:
+mc1: Photosynthesis takes place in the | chloroplast | mitochondrion | nucleus | ribosome
+mc1: The main energy-carrying molecule in cells is | ATP | DNA | glucose only | water
+mc2: Cellular respiration takes place mostly in the | mitochondria | chloroplasts | nucleus | cell wall
+mc2: Which is a product of aerobic cellular respiration? | carbon dioxide | oxygen | glucose | sunlight
+mc2: Which gas is a product of photosynthesis? | oxygen | carbon dioxide | nitrogen | methane
+mc2: Which organisms get energy by breaking down dead organisms and wastes? | decomposers | producers | herbivores | carnivores
+ex2: Explain why organisms need both energy and matter from food. | Food provides energy (in bonds) and atoms to build new molecules for growth and repair.
+
+test:
+mc2: Fermentation occurs when | oxygen is not available | there is too much light | cells are dividing | DNA is copied
+mc2: Photosynthesis converts light energy into | chemical energy stored in glucose | heat only | sound | electricity
+mc2: Carbon atoms in glucose made by a plant come from | carbon dioxide in the air | the soil | sunlight | water
+mc3: A muscle working hard without enough oxygen produces | lactic acid through fermentation | more chlorophyll | DNA | starch
+mc1: Starch, glucose and cellulose are all | carbohydrates | proteins | nucleic acids | lipids
+mc2: The oxygen released by plants during photosynthesis comes from | water | carbon dioxide | glucose | chlorophyll
+num2: In a meadow, plants capture 80,000 kJ of energy. Using the 10% rule, how many kJ reach the snakes that eat the mice that eat the plants? | 800
+mc2: Which stage of photosynthesis does not need light directly? | the Calvin cycle | splitting water | absorbing light with chlorophyll | releasing oxygen
+mc2: Which statement about the carbon cycle is true? | Burning fossil fuels releases carbon that was stored underground for millions of years | Carbon is created by plants | Carbon leaves Earth when animals breathe | Decomposers remove carbon from the air
+num2: A student's breath has about 4% carbon dioxide, and room air has about 0.04%. How many times greater is the carbon dioxide percentage in breath? | 100
+mc3: Spinach leaf disks were placed in a bicarbonate solution under lights of different colors. Disks floated fastest under red and blue light and slowest under green light. What does this evidence support? | Chlorophyll absorbs red and blue light more than green light | Green light gives the most energy for photosynthesis | Color has no effect on photosynthesis | The disks floated because of respiration only
+mc2: When an animal builds fat from extra food, the carbon atoms in the fat come from | the food molecules it ate | the oxygen it breathed | sunlight absorbed by the animal | water it drank only
+mc2: Which molecule do cells directly use to power active transport and muscle contraction? | ATP | glucose | DNA | oxygen
+mc2: In an energy pyramid, the base level is always made up of | producers | top predators | decomposers | herbivores
+num2: A model of aerobic respiration says each glucose molecule yields 32 ATP. Using this model, how many ATP molecules can a cell make from 50 glucose molecules? | 1600
+mc3: Yeast was mixed with sugar water at three temperatures. A balloon on each flask grew to 2 cm at 10 degrees C, 9 cm at 35 degrees C and 1 cm at 70 degrees C. Which conclusion is supported? | Yeast fermentation is fastest at a moderate temperature and drops at very high temperature | Yeast ferments fastest at 70 degrees C | Temperature has no effect on yeast | The balloons filled with oxygen
+mc2: Which nutrient group provides the main building materials for enzymes and muscle? | proteins | carbohydrates | lipids | nucleic acids
+mc1: Which gas do animals need to release energy from food efficiently? | oxygen | nitrogen | carbon dioxide | hydrogen
+sa2: Write the balanced equation for photosynthesis and explain the energy change. | 6CO2 + 6H2O + light makes C6H12O6 + 6O2; light energy is stored as chemical energy in glucose.
+sa2: Explain how photosynthesis and cellular respiration cycle carbon and oxygen. | Photosynthesis uses CO2 and releases O2; respiration uses O2 and releases CO2.
+cer3: Bromothymol blue turns yellow when carbon dioxide is added and blue when carbon dioxide is removed. A student set up three sealed tubes of yellow-green indicator: Tube 1 with a water plant in light turned blue, Tube 2 with a water plant in darkness turned yellow, and Tube 3 with no plant in light stayed yellow-green. Make a claim about what the plant does with carbon dioxide in light and in darkness, cite evidence and explain your reasoning. | Claim: in light the plant removes more carbon dioxide than it releases, and in darkness it only releases carbon dioxide. Evidence: the tube with a plant in light turned blue, the tube with a plant in darkness turned yellow, and the tube without a plant did not change. Reasoning: in light photosynthesis uses carbon dioxide faster than respiration adds it; in the dark only respiration happens, adding carbon dioxide; the control shows light alone does not change the indicator.
+task3: Develop a model showing the flow of energy and cycling of carbon through photosynthesis and cellular respiration in a plant and an animal. Use the model to predict what happens to atmospheric CO2 if deforestation increases. | Accurate, detailed model and well-reasoned prediction with evidence. | Mostly accurate model and prediction. | Partial model. | Little correct work.
+
+unit: Heredity and genetics | HS-LS3-1, HS-LS3-2, HS-LS3-3 | sci_9
+el: Practice Punnett squares with color-coded allele cards before written work; post the frames "The parents' genotypes are ___, so the chance of ___ is ___." and "This trait is ___ because ___."
+
+lesson: DNA, genes and chromosomes | HS-LS3-1
+practice:
+mc1: A segment of DNA that codes for a protein or trait is called a | gene | chromosome pair | ribosome | cell membrane
+hint: Chromosomes carry many of these.
+mc2: In DNA, adenine always pairs with | thymine | guanine | cytosine | uracil
+hint: Remember the base-pair rules for DNA.
+num2: A DNA sample is 30% adenine. What percent of the sample is guanine? | 20
+hint: A equals T, so find the share left for G and C together, then split it.
+mc2: Different versions of the same gene, such as for purple or white flowers in pea plants, are called | alleles | genotypes | chromosomes | gametes
+hint: You inherit one version from each parent.
+sa2: Explain how a child inherits half of its chromosomes from each parent. | Each parent makes gametes by meiosis that contain one chromosome from each pair (23 in humans). When an egg and sperm join, the child's cells have 23 pairs, one chromosome of each pair from each parent.
+hint: Think about how many chromosomes are in an egg and in a sperm.
+quiz:
+mc1: The shape of a DNA molecule is a | double helix | single straight line | sphere | flat sheet
+mc2: Humans have 23 pairs of chromosomes. How many chromosomes are in a typical human body cell? | 46 | 23 | 92 | 22
+num2: A DNA strand reads ATGCCGTA. How many guanine bases will the complementary strand have? | 2
+mc2: Which statement about genes and chromosomes is correct? | A chromosome is a long DNA molecule that carries many genes | A gene contains many chromosomes | Genes are found only in the cell membrane | Chromosomes are made of fat
+mc3: A scientist removes the nucleus from a frog egg of one color variety and puts in a nucleus from a frog of another color variety. The tadpole that develops has the traits of the nucleus donor. What does this support? | The nucleus contains the instructions for traits | The cytoplasm controls all traits | Traits come from the jelly around the egg | Traits are not inherited
+mc2: Which pair of sex chromosomes does a typical human female have? | XX | XY | YY | X only
+sa2: A student asks, "Why do I look like a mix of my parents and not exactly like either one?" Answer the question using alleles and chromosomes. | For each gene you have two alleles, one on a chromosome from each parent. Your combination of alleles is different from either parent's, and dominant and recessive alleles interact, so your traits are a mix of theirs.
+
+lesson: Meiosis, mutation and sources of genetic variation | HS-LS3-2
+practice:
+mc1: Gametes are | sex cells such as eggs and sperm | body cells such as skin cells | cells with twice the normal number of chromosomes | found only in plants
+hint: These cells join at fertilization.
+mc2: Meiosis includes how many cell divisions? | two | one | three | four
+hint: One cell becomes four cells by the end.
+num2: Fruit fly body cells have 8 chromosomes. How many chromosomes are in a fruit fly egg cell? | 4
+hint: Meiosis halves the number.
+mc2: A mutation in a skin cell caused by sunburn | is not passed to offspring | is always passed to offspring | changes every cell in the body | creates a new species
+hint: Only mutations in cells that make gametes can be inherited.
+sa2: Explain why meiosis, not mitosis, is needed to make gametes. | If gametes had the full number of chromosomes, the number would double in every generation at fertilization. Meiosis halves the number, so the zygote has the normal number.
+hint: Think about what happens to the chromosome number at fertilization.
+quiz:
+mc1: A change in the sequence of DNA is a | mutation | phenotype | gamete | Punnett square
+mc2: Independent assortment means that | chromosome pairs line up and separate randomly during meiosis | all chromosomes go to one cell | genes never move | mutations happen in a set order
+num2: A species has 3 pairs of chromosomes. By independent assortment alone, how many different gamete combinations are possible (2 raised to the number of pairs)? | 8
+mc2: When chromosomes fail to separate during meiosis, a gamete can end up with an extra chromosome. This is called | nondisjunction | crossing over | translation | osmosis
+mc3: Two brothers have the same parents but look quite different. Which explanation is best? | Each brother came from a different egg and sperm with different combinations of alleles | They must have different parents | One brother has no DNA | Brothers always share identical DNA
+mc2: Which source of variation can create a completely new allele? | mutation | independent assortment | random fertilization | crossing over
+sa2: Explain why some mutations have no effect on an organism, some are harmful and a few are helpful. | Some mutations do not change the amino acid or happen where they do not affect a protein. Others change a protein so it works poorly, which can be harmful. Rarely, a change makes a protein work better in a certain environment, which can help survival.
+
+lesson: Mendelian inheritance and Punnett squares | HS-LS3-3
+practice:
+mc1: An organism with two identical alleles for a gene, such as TT or tt, is | homozygous | heterozygous | recessive only | a mutant
+hint: "Homo" means same.
+mc2: In pea plants, purple flowers (P) are dominant to white flowers (p). What color is a Pp plant? | purple | white | pink | half purple and half white
+hint: A dominant allele shows whenever it is present.
+num2: Two Tt pea plants are crossed (T = tall, dominant). Out of 400 offspring, about how many would you expect to be short? | 100
+hint: Make a Punnett square. What fraction is tt?
+mc2: A test cross is done by crossing an organism that shows the dominant trait with | a homozygous recessive organism | a homozygous dominant organism | a heterozygous organism | a different species
+hint: The recessive parent's offspring reveal any hidden allele.
+sa2: A black guinea pig (black is dominant) is crossed with a white guinea pig (white is recessive). All 8 offspring are black. What is the most likely genotype of the black parent? Explain. | BB. If the black parent were Bb, about half the offspring would be expected to be white (bb). All 8 being black suggests it has no recessive allele to pass on.
+hint: What would happen if the black parent carried a hidden white allele?
+quiz:
+mc1: The physical appearance of a trait is called the | phenotype | genotype | allele | gene pool
+mc2: Gregor Mendel did his famous inheritance experiments with | pea plants | fruit flies | bacteria | mice
+mc2: In a cross Aa x Aa, what fraction of offspring is expected to be heterozygous? | 1/2 | 1/4 | 3/4 | all of them
+num2: Mendel crossed two heterozygous purple pea plants and counted 705 purple and 224 white offspring. How many offspring did he count in all? | 929
+mc3: In a cross of two pea plants, 52 offspring had round seeds and 48 had wrinkled seeds (round is dominant). What were the parents' most likely genotypes? | Rr x rr | Rr x Rr | RR x rr | RR x RR
+mc2: In a cross Tt x TT, what percent of offspring are expected to be tall (T is dominant)? | 100% | 75% | 50% | 25%
+sa2: Two purple-flowered pea plants (purple is dominant) produce some offspring with white flowers. Explain how this is possible and give the parents' genotypes. | Both parents are heterozygous (Pp). Each can pass on the recessive p allele, and an offspring that gets p from both parents is pp and has white flowers; the chance is 1/4 for each offspring.
+
+lesson: Beyond Mendel: codominance, multiple alleles, sex-linked traits and pedigrees | HS-LS3-1, HS-LS3-3
+practice:
+mc1: In a pedigree chart, a circle stands for a | female | male | carrier only | marriage
+hint: Squares and circles show sex.
+mc2: Human ABO blood type has three alleles: A, B and O. A person with type AB blood shows | codominance | incomplete dominance | a sex-linked trait | a mutation
+hint: Both A and B are fully expressed.
+num2: A carrier mother (one normal allele and one hemophilia allele on her X chromosomes) and an unaffected father have children. What percent of their sons are expected to have hemophilia? | 50
+hint: Sons get their X chromosome from their mother.
+mc2: A roan cow has both red hairs and white hairs mixed together. This is an example of | codominance | incomplete dominance | polygenic inheritance | a recessive trait
+hint: Are both colors showing separately, or are they blended?
+sa2: Two parents with type A blood (genotype AO) have children. List the possible blood types of the children and the chance of each. | AA and AO give type A, and OO gives type O. Each child has a 3/4 chance of type A and a 1/4 chance of type O.
+hint: Make a Punnett square with A and O from each parent.
+quiz:
+mc1: A person who has one copy of a recessive disease allele but no symptoms is a | carrier | mutant phenotype | homozygous recessive individual | dominant individual
+mc2: A man with color blindness (X-linked recessive) and a woman with two normal alleles have a daughter. What is the daughter's genotype for this gene? | a carrier with one normal allele and one color-blindness allele | color blind with two color-blindness alleles | normal with no color-blindness allele | it cannot be predicted at all
+mc2: A mother with type O blood and a father with type AB blood have a child. Which blood type is possible for the child? | A | O | AB | none of these
+num2: Snapdragons show incomplete dominance: red (RR), pink (RW) and white (WW). Two pink plants produce 120 seeds. About how many are expected to grow into pink plants? | 60
+mc3: A pedigree shows a trait that skips a generation: two unaffected parents have an affected child. Which inheritance pattern is most likely? | recessive | dominant | codominant | Y-linked
+mc2: Rabbit coat color has four different alleles in the rabbit population. How many alleles for coat color can one rabbit carry? | two | one | four | eight
+sa3: A pedigree shows a disorder that appears only in males. None of the affected males have affected parents, but several of them have affected uncles on their mother's side. What inheritance pattern does this suggest? Explain. | X-linked recessive. The mothers are carriers who pass an X chromosome with the allele to some sons. Males have only one X, so one copy causes the disorder. The mothers' brothers were affected because they received the same allele from a carrier grandmother.
+
+lesson: Dihybrid crosses and probability in genetics | HS-LS3-3
+practice:
+mc1: Mendel's law of independent assortment says that alleles of genes on different chromosomes are | sorted into gametes independently of each other | always inherited together | blended together in offspring | passed on only by the mother
+hint: Think about how chromosome pairs line up during meiosis.
+num2: A pea plant has genotype RrYy, and the two genes are on different chromosomes. How many different kinds of gametes can it make? | 4
+hint: Each gamete gets one allele of each gene. List the combinations.
+mc2: Which gametes can a plant with genotype AaBb make if the genes are on different chromosomes? | AB, Ab, aB and ab | Aa and Bb | AA, BB, aa and bb | AB and ab only
+hint: A gamete has one allele for gene A and one allele for gene B.
+num2: Each child of a couple has a 1/2 chance of being a girl. What is the probability that their first two children are both girls? Give a fraction. | 1/4
+hint: For independent events, multiply the probabilities.
+mc2: In a cross RrYy x RrYy, round (R) and yellow (Y) are dominant, and the genes are on different chromosomes. What fraction of offspring is expected to be both round and yellow? | 9/16 | 3/16 | 1/16 | 3/4
+hint: Find the chance of round and the chance of yellow, then multiply.
+sa2: Two parents both have genotype AaBb for two genes on different chromosomes. Explain how to use the product rule to find the probability that a child is aabb. | The chance of aa from Aa x Aa is 1/4, and the chance of bb from Bb x Bb is 1/4. Because the genes sort independently, multiply: 1/4 x 1/4 = 1/16.
+hint: Treat each gene as its own one-gene cross first.
+quiz:
+mc1: A 9:3:3:1 ratio of phenotypes is expected among the offspring of | two parents heterozygous for two genes on different chromosomes | two homozygous recessive parents | a one-gene cross Aa x aa | a test cross AaBb x aabb
+num2: In a cross AaBb x AaBb, the genes are on different chromosomes. Out of 160 offspring, about how many are expected to show both recessive traits (aabb)? | 10
+num2: Each child of two carrier parents has a 1/4 chance of having a recessive disorder. What is the probability that their first two children both have the disorder? Give a fraction. | 1/16
+mc2: In a test cross AaBb x aabb, the genes are on different chromosomes. What fraction of offspring is expected to be aabb? | 1/4 | 1/16 | 1/2 | 9/16
+mc3: Mendel crossed pea plants heterozygous for seed shape and seed color and counted 315 round yellow, 108 round green, 101 wrinkled yellow and 32 wrinkled green seeds. Which conclusion is best supported? | The results are close to a 9:3:3:1 ratio, so the two genes were inherited independently | The two genes were always inherited together | Wrinkled is dominant to round | The traits blended in the offspring
+num1: How many boxes does a Punnett square for the cross AaBb x AaBb have? | 16
+mc2: Two genes are located close together on the same chromosome. Compared with genes on different chromosomes, they are | more likely to be inherited together | always inherited separately | never passed to offspring | found only in males
+sa2: A student flips a fair coin 4 times and gets heads every time. She says the next flip will surely be tails. Explain why she is wrong, and connect the idea to the children of two carrier parents. | Each flip is independent, so the chance of tails is still 1/2. In the same way, each child of two carrier parents has a 1/4 chance of having the recessive disorder, no matter how many brothers or sisters were or were not affected.
+
+lesson: Gene expression, mutagens and the environment | HS-LS3-1, HS-LS3-2
+practice:
+mc1: An environmental agent that can cause changes in DNA, such as ultraviolet light, is called a | mutagen | enzyme | allele | gamete
+hint: The word contains "muta-", as in mutation.
+mc2: In Himalayan rabbits, the gene for dark fur pigment works only in cooler parts of the body, so the ears, nose and feet are dark. If an ice pack is kept on a shaved patch of back as the fur regrows, what is the likely result? | The fur on that patch grows in dark | The fur on that patch grows in white | The rabbit's DNA changes | All of the rabbit's offspring will be dark
+hint: The enzyme for dark pigment works only where the skin is cool.
+mc2: Sunscreen lowers the risk of skin cancer mainly because it | reduces the ultraviolet light that can damage DNA in skin cells | changes the genes a person inherited | stops all cell division in the skin | adds new alleles to skin cells
+hint: What does ultraviolet light do to DNA?
+num2: A grower split 200 seedlings with the same genotype into two groups of 100. In light, 92 seedlings grew green leaves. In darkness, none did, and the seedlings were pale yellow. What percent of all 200 seedlings grew green leaves? | 46
+hint: Divide the green seedlings by the total number, then multiply by 100.
+sa2: Identical twins have the same DNA. By age 60, the twin who smoked for many years has much more lung damage than the twin who did not. Use the ideas of genes and environment to explain the difference. | The twins started with the same genes, but chemicals in tobacco smoke are mutagens that damaged DNA and tissue in the smoker's lungs. The environment, not inherited DNA, caused the difference in their lungs.
+hint: Which twin's cells were exposed to something that can damage DNA?
+quiz:
+mc1: Which of these is a DNA change caused mainly by the environment rather than inherited from a parent? | a change in skin cell DNA caused by years of sun exposure | a blood type allele received from a parent | a recessive allele received from a carrier mother | the X chromosome received from a mother
+mc2: In many turtle species, eggs kept at warmer temperatures hatch mostly as females and eggs kept at cooler temperatures hatch mostly as males. What does this show? | Temperature during development can affect which traits appear | Turtle sex is set only by X and Y chromosomes | Warm sand changes the DNA in the eggs | Male and female turtles are different species
+num2: A farmer planted one variety of corn in two fields. Plants in fertile soil grew to an average of 210 cm, and plants in poor soil grew to an average of 150 cm. How many centimeters taller were the plants in fertile soil, on average? | 60
+mc1: Errors made when DNA is copied before a cell divides are one source of | mutations | photosynthesis | homeostasis | osmosis
+mc3: Bacteria were exposed to ultraviolet light for 0, 10, 20 and 30 seconds. The numbers of mutant colonies per plate were 2, 15, 31 and 46. Which conclusion is supported? | Longer ultraviolet exposure led to more mutations | Ultraviolet light prevents mutations | Exposure time had no effect on mutations | Mutations happen only without light
+mc2: Phenylketonuria (PKU) is an inherited disorder in which the body cannot break down an amino acid called phenylalanine. Babies with PKU who are fed a low-phenylalanine diet usually develop normally. What does this show? | The environment, such as diet, can change how a genotype affects the phenotype | Diet changes the genes for PKU | PKU is not inherited | Everyone must avoid all amino acids
+num2: A gene is 1,500 base pairs long. A mutagen causes 3 base pair changes in the gene. What percent of the gene's base pairs were changed? | 0.2
+sa2: Explain how two organisms with the same genotype can have different phenotypes. Give one example. | A phenotype depends on both genes and the environment. For example, Himalayan rabbits with the same genes grow dark fur where the skin is cool and white fur where it is warm, and plants with the same genes grow taller in fertile soil than in poor soil.
+
+lesson: Unit review | HS-LS3-1, HS-LS3-2, HS-LS3-3
+practice:
+mc2: The genotype Tt is described as | heterozygous | homozygous dominant | homozygous recessive | a phenotype
+hint: The two alleles are different.
+mc2: Which cell process produces four genetically different cells? | meiosis | mitosis | binary fission | translation
+hint: This process makes gametes.
+num2: In a cross Rr x Rr, what percent of offspring are expected to show the dominant phenotype? | 75
+hint: Count the RR and Rr boxes in the Punnett square.
+mc3: Height in humans is influenced by many genes and also by nutrition. Which observation best supports the role of nutrition? | Average adult height in some countries rose over several decades as diets improved | Tall parents tend to have tall children | Height varies along a smooth range of values | Brothers and sisters often differ in height
+hint: Look for a change that happened too fast for the genes of a population to change much.
+sa2: Explain the difference between a dominant allele and a recessive allele. | A dominant allele shows its trait when at least one copy is present. A recessive allele shows its trait only when two copies are present and no dominant allele is there.
+hint: How many copies does each need in order to show?
+quiz:
+mc1: An organism's genetic makeup is its | genotype | phenotype | habitat | niche
+mc1: Meiosis produces | gametes with half the chromosome number | identical body cells | proteins | twins
+mc2: Crossing over during meiosis | increases genetic variation | copies DNA exactly | stops mutation | creates identical gametes
+mc2: In a cross Bb x bb, what percent of offspring show the recessive trait? | 50% | 25% | 75% | 0%
+mc2: In humans, which parent's gamete determines whether a child is genetically male or female? | the father's sperm, which carries either an X or a Y chromosome | the mother's egg, which carries either an X or a Y chromosome | both gametes equally | neither gamete, because sex is decided after birth
+mc1: A Punnett square is used to | predict the possible genotypes of offspring | count the chromosomes in a cell | measure the size of genes | find where proteins are made
+ex2: Explain the difference between genotype and phenotype. | Genotype is the genes; phenotype is the observable trait.
+
+test:
+mc2: A trait controlled by many genes, like height, is | polygenic | codominant | sex-linked only | recessive only
+mc2: Red and white flowers produce pink offspring. This shows | incomplete dominance | complete dominance | codominance | mutation
+mc2: Sex-linked traits like color blindness are more common in males because | males have one X chromosome | males have two X chromosomes | they are on the Y | they are not inherited
+mc3: Identical twins raised apart have different heights. What explains this best? | environmental factors affecting gene expression | different DNA | mutations in every cell | no inheritance
+mc1: The passing of traits from parents to offspring is called | heredity | mutation | natural selection | homeostasis
+num2: In a cross Gg x gg, out of 60 offspring about how many are expected to be gg? | 30
+mc2: A woman with type A blood (genotype AA) and a man with type B blood (genotype BB) have a child. What blood type will the child have? | AB | A | B | O
+mc2: How many chromosomes are in a human sperm cell? | 23 | 46 | 22 | 92
+mc2: Which of these mutations could be passed on to a person's children? | a mutation in a cell that makes eggs | a mutation in a lung cell | a mutation in a skin cell caused by sunlight | a mutation in a muscle cell
+mc3: A plant with yellow seeds is crossed with a plant with green seeds. All offspring have yellow seeds. When two of these offspring are crossed, about 3/4 of the next generation is yellow and 1/4 is green. Which conclusion is supported? | Yellow is dominant, and the first offspring were heterozygous | Green is dominant | The traits blend | The seeds changed color because of the soil
+num2: A DNA sample is 22% cytosine. What percent of the sample is thymine? | 28
+mc2: In fruit flies, white eyes is an X-linked recessive trait. A white-eyed female is crossed with a red-eyed male. What eye color will their sons have? | white | red | half red and half white | pink
+mc2: A cross between two parents that are heterozygous for one gene produces offspring with three phenotypes in a 1:2:1 ratio. This suggests | incomplete dominance or codominance | complete dominance | a Y-linked trait | that the trait is not inherited
+mc1: The two matching chromosomes of a pair, one from each parent, are called | homologous chromosomes | sister cells | gametes | alleles only
+num2: Two heterozygous parents (Aa) have 4 children. Each child has a 1/4 chance of being aa. How many aa children would be expected on average? | 1
+mc2: Genetic testing finds that a healthy couple are both carriers for cystic fibrosis, a recessive disorder. What is the chance that their first child will have cystic fibrosis? | 25% | 50% | 0% | 100%
+mc2: DNA fingerprinting can identify a person because | each person except an identical twin has a unique DNA sequence | everyone has the same DNA | a person's DNA changes every day | DNA is found only in blood
+mc2: Which event happens during meiosis I but not during mitosis? | homologous chromosomes pair up and then separate | the DNA is copied | the cell membrane pinches in | the chromosomes become visible
+sa2: Use a Punnett square to predict the offspring of two heterozygous parents for a dominant trait. | 1 AA : 2 Aa : 1 aa; 3/4 dominant, 1/4 recessive.
+sa2: Explain how meiosis and fertilization create genetic variation. | Independent assortment, crossing over and random fertilization produce new combinations.
+cer3: A breeder crossed the same two short-haired cats several times. Of 24 kittens, 18 had short hair and 6 had long hair. Make a claim about which trait is dominant and what the parents' genotypes are, cite evidence and explain your reasoning. | Claim: short hair is dominant, and both parents are heterozygous (Ss). Evidence: two short-haired parents produced long-haired kittens, and 18:6 is a 3:1 ratio. Reasoning: long hair could appear only if both parents carried a hidden recessive allele; a cross Ss x Ss gives 3/4 short and 1/4 long, which matches 18 and 6.
+task3: A family pedigree shows a recessive disorder across three generations. Analyze the pedigree to determine the inheritance pattern, give the likely genotypes of key individuals, and calculate the probability that a couple in the third generation has an affected child. | Correct pattern, accurate genotypes and probability with clear reasoning. | Correct pattern with minor genotype errors. | Pattern identified without genotypes. | Little correct work.
+
+unit: Evolution and ecosystems | HS-LS2-2, HS-LS2-6, HS-LS4-1, HS-LS4-2, HS-LS4-4 | sci_9_n2
+el: Post a word wall with variation, adaptation, selection, carrying capacity, succession and biodiversity next to simple pictures; offer the frames "Individuals with ___ survived and reproduced more because ___." and "The population changed from ___ to ___ because ___."
+
+lesson: Evidence for common ancestry: fossils, anatomy, embryos and DNA | HS-LS4-1
+practice:
+mc1: The preserved remains or traces of organisms from the past are called | fossils | homologous structures | alleles | adaptations
+hint: They are often found in sedimentary rock.
+mc2: In undisturbed rock layers, the fossils in the lowest layers are usually | the oldest | the youngest | the same age as those in the top layers | not real fossils
+hint: Layers are deposited one on top of another.
+num2: The protein cytochrome c differs by 0 amino acids between humans and chimpanzees, by 1 between humans and rhesus monkeys, and by 12 between humans and horses. How many more differences from the human protein does the horse protein have than the rhesus monkey protein? | 11
+hint: Subtract the two numbers.
+mc2: The wing of a bird and the wing of a butterfly do the same job but have very different structures. They are | analogous structures | homologous structures | vestigial structures | fossils
+hint: Did they come from the same structure in a recent common ancestor?
+sa2: Explain how a fossil such as Tiktaalik, which has both fish features and features of four-legged animals, supports the idea of common ancestry. | Tiktaalik shows a mix of fish traits (scales, fins, gills) and traits of four-limbed animals (a neck and sturdy fin bones like limb bones). It fits between fish and early land vertebrates in form, supporting the idea that land vertebrates descended from fish ancestors.
+hint: What would you expect to find if one group descended from another?
+quiz:
+mc1: A structure that has lost most or all of its original function, such as the hip bones in whales, is called | vestigial | analogous | dominant | codominant
+mc2: Comparing DNA sequences shows that humans share more DNA with chimpanzees than with mice. What does this suggest? | Humans and chimpanzees share a more recent common ancestor | Mice are older than humans | Chimpanzees evolved from humans | DNA is not inherited
+mc2: Early embryos of fish, chickens and humans all have similar pouches in the throat region. This is evidence of | common ancestry | identical adult forms | a recent mutation | analogous structures
+num2: A branching tree diagram shows that species A and B split from a common ancestor 6 million years ago, and species A and C split from a common ancestor 25 million years ago. How many million years earlier was the A-C split than the A-B split? | 19
+mc3: Fossil horses from older rock layers are small with several toes on each foot, and fossil horses from younger layers are larger with a single toe. Which conclusion is best supported? | Horse species changed over time | All horse species lived at the same time | Each horse grew more toes as it aged | Rock layers caused horses to grow
+mc2: Which evidence for evolution can be gathered from living species alone, without fossils? | comparisons of DNA sequences | the order of rock layers | dating of fossil bones | footprints preserved in mudstone
+sa2: The forelimbs of a human, a cat, a whale and a bat have the same set of bones arranged in similar ways, even though they are used for different jobs. Explain what this suggests and why. | These are homologous structures. They suggest the species inherited the limb pattern from a common ancestor, and over time the same bones were modified for grasping, walking, swimming and flying.
+
+lesson: Natural selection and adaptation | HS-LS4-2, HS-LS4-4
+practice:
+mc1: A trait that helps an organism survive and reproduce in its environment is a(n) | adaptation | mutation that is always harmful | acquired habit | vestigial structure
+hint: Think of a cactus's thick, waxy stem in a desert.
+mc2: Before industrial pollution in England, most peppered moths were light colored. After soot darkened tree trunks, dark moths became common. Why? | Birds ate more of the easily seen light moths, so dark moths survived and reproduced more | Moths changed color by choice | Soot dyed the moths | Each light moth turned into a dark moth
+hint: Which moths would predators spot more easily?
+num2: In a beetle population of 500, 100 beetles are green. After several generations, 350 of 500 beetles are green. By how many percentage points did the green share increase? | 50
+hint: Find each percent first: 100 out of 500 and 350 out of 500.
+mc2: Giraffes did not get long necks by stretching. Which explanation fits natural selection? | Giraffes born with longer necks reached more food, survived and passed on the trait | Stretching made necks longer, and the change was inherited | Giraffes chose to grow longer necks | Necks grew longer because of the climate alone
+hint: Traits acquired during an animal's life are not passed to offspring.
+sa2: A population of snails has shells that range from brown to yellow. The snails live on brown leaf litter, where birds hunt them by sight. Predict how shell color in the population will change over many generations and explain why. | Birds will spot yellow snails more easily on brown leaves, so brown snails will survive and reproduce more. Because shell color is inherited, brown shells will become more common over generations.
+hint: Which snails would the birds see most easily?
+quiz:
+mc1: Natural selection acts directly on an organism's | phenotype | future offspring only | learned skills | wishes
+mc2: During a drought on an island, small, soft seeds became scarce, and mostly large, hard seeds were left for finches to eat. The next generation of finches had a larger average beak depth. What best explains this? | Finches with deeper beaks could crack the hard seeds, so they survived and reproduced more | The finches' beaks grew from cracking seeds | All of the finches died | Beaks changed to match the weather automatically
+num2: Before a drought, a finch population's average beak depth was 9.2 mm. The next generation's average was 9.7 mm. By how many millimeters did the average change? | 0.5
+mc2: A population with very little genetic variation is at greater risk when a new disease arrives because | few or no individuals may have traits that resist the disease | it evolves faster | it has more alleles | diseases avoid it
+mc3: In an experiment, guppies from a stream with many predators were moved to a stream with few predators. Over many generations, the males became more brightly colored. Which explanation is best supported? | With fewer predators, bright males that attracted more mates survived and reproduced more | The water in the new stream dyed the guppies | Predators make guppies brighter | The guppies chose to change color
+mc2: Which change in a population is an example of evolution? | the frequency of an allele changes over generations | one rabbit grows thicker fur in winter | a dog learns a new trick | a tree loses its leaves in the fall
+cer3: On an island, lizards were measured before and after a hurricane. Before the storm, the average toe-pad area was 46 square mm. Survivors averaged 50 square mm, and their offspring averaged 49 square mm. Larger toe pads help lizards cling to branches in strong wind. Make a claim about how the hurricane affected the population, cite evidence and explain your reasoning. | Claim: the hurricane acted as natural selection that favored larger toe pads. Evidence: survivors had larger toe pads (50 vs 46 square mm), and their offspring also had larger toe pads (49 square mm). Reasoning: lizards with larger pads clung better and survived; because toe-pad size is inherited, survivors passed the trait to their offspring, which shifted the population's average.
+
+lesson: Population growth and carrying capacity | HS-LS2-1, HS-LS2-2
+practice:
+mc1: A factor such as food supply, water or space that keeps a population from growing forever is a | limiting factor | mutation | producer | trait
+hint: It puts a limit on growth.
+mc2: A graph of a deer population shows rapid growth that levels off into an S-shape. The flat part of the curve shows | the carrying capacity | extinction | exponential growth | a mutation
+hint: Where does the population stop growing?
+num2: A population of 2,000 rabbits has 600 births and 450 deaths in a year, with no animals moving in or out. What is the population at the end of the year? | 2150
+hint: Add the births and subtract the deaths.
+mc2: Which is a density-dependent limiting factor? | disease spreading faster in a crowded population | a wildfire | a hurricane | a sudden freeze
+hint: Its effect grows when individuals are packed close together.
+sa2: Bacteria in a flask double every hour at first, then stop increasing after about a day. Explain the change in growth. | At first there is plenty of food and space, so growth is exponential. As the bacteria use up nutrients and wastes build up, resources limit growth, and the population levels off at the flask's carrying capacity.
+hint: What runs out in a closed flask?
+quiz:
+mc1: Growth in which a population doubles in equal time periods is called | exponential growth | logistic leveling | carrying capacity | succession
+mc2: Lynx eat snowshoe hares. When the hare population crashes, what usually happens to the lynx population soon after? | it decreases | it increases | it stays exactly the same | it turns into hares
+num2: A pond can support 800 frogs. Its population is 650. How many more frogs can it support before it reaches carrying capacity? | 150
+mc2: Twenty goats were released on an island with no predators. The population grew to 1,200, then crashed to 300 after the plants were overgrazed. What best explains the crash? | The population exceeded the carrying capacity and damaged its food supply | Goats cannot live on islands | Predators arrived | The goats' DNA changed
+mc3: A scientist counted ducks in a wetland each year: year 1, 120; year 2, 180; year 3, 260; year 4, 300; year 5, 305; year 6, 298. What is the best estimate of the wetland's carrying capacity for ducks? | about 300 | about 120 | about 180 | over 1,000
+num2: A field biologist marks 40 mice and releases them. Later she catches 50 mice, and 10 of them are marked. Estimate the total population using 40 x 50 / 10. | 200
+sa2: Explain how a drought could lower the carrying capacity of a grassland for zebras. | A drought reduces water and the growth of grass, so there is less food and water for zebras. With fewer resources, the grassland can support fewer zebras, so the carrying capacity falls.
+
+lesson: Ecosystem stability, disturbance and succession | HS-LS2-6, HS-LS2-7
+practice:
+mc1: The gradual change in the species living in an area over time is called | ecological succession | natural selection | migration | mutation
+hint: Think of bare ground slowly becoming a forest.
+mc2: Lichens growing on bare rock after a lava flow cools are an example of | pioneer species in primary succession | a climax community | secondary succession | an invasive species
+hint: There is no soil yet.
+num2: A survey counted 4 plant species in a burned area in year 1, 11 in year 5 and 23 in year 15. How many more species were there in year 15 than in year 1? | 19
+hint: Subtract the year 1 count from the year 15 count.
+mc2: Sea otters eat sea urchins, and sea urchins eat kelp. If the otters are removed, what will most likely happen to the kelp forest? | Urchins will increase, and the kelp will decline | The kelp will grow faster | The urchins will die out | Nothing will change
+hint: Follow the chain from otters to urchins to kelp.
+sa2: Explain why an ecosystem with many species usually recovers from a disturbance better than one with few species. | With many species, several may fill the same role, so if one is lost others can take its place. The food web has more connections, so the system can keep working and recover faster.
+hint: Think about backup species.
+quiz:
+mc1: A species that has a very large effect on its ecosystem compared with its numbers is a | keystone species | pioneer species | producer only | invasive species
+mc2: Secondary succession is usually faster than primary succession because | soil is already present | there are no seeds | there is no sunlight | it starts on bare rock
+mc2: Quagga mussels were accidentally brought into Lake Mead and spread quickly. Which factor best explains their rapid spread? | They had few natural predators or competitors in their new home | They are native to the lake | They cannot reproduce | They need a rare food found nowhere else
+num2: Before an invasive plant arrived, a meadow had 30 native plant species. Ten years later it had 18. By what percent did the number of native species decrease? | 40
+mc3: After wolves were reintroduced to Yellowstone National Park in 1995, elk spent less time feeding near streams, and willows along some streams grew taller. Which conclusion is best supported? | A top predator can affect plants by changing the behavior and numbers of herbivores | Wolves eat willows | Elk help willows grow | Predators never affect plants
+mc2: Which human action helps an ecosystem recover from a disturbance? | planting native species and removing invasive ones | adding more invasive species | draining wetlands | overfishing
+cer3: A pond was studied for 5 years while fertilizer runoff from nearby farms increased each summer. Algae cover rose from 10% to 70% of the surface, dissolved oxygen fell from 8 mg/L to 3 mg/L, and the number of fish species fell from 9 to 4. Make a claim about how the runoff is changing the pond, cite evidence and explain your reasoning. | Claim: fertilizer runoff is changing the pond into a new, less diverse ecosystem. Evidence: algae cover rose from 10% to 70%, oxygen fell from 8 to 3 mg/L, and fish species dropped from 9 to 4. Reasoning: fertilizer nutrients make algae grow fast; when the algae die, decomposers use up oxygen, and fish that need more oxygen die out, so the community changes.
+
+lesson: Human impacts and protecting biodiversity | HS-LS2-7, HS-LS4-6
+practice:
+mc1: Breaking a large forest into small, separated patches by building roads and farms is called | habitat fragmentation | succession | speciation | coevolution
+hint: Think about what happens to one large area when it is split into pieces.
+mc2: A wildlife bridge is built over a busy highway that cuts through mountain lion habitat. What is its main purpose? | to let animals move safely between habitat patches so populations can mix | to keep animals in one patch | to give drivers a shortcut | to stop plants from spreading
+hint: What happens to a population that is cut off from others of its kind?
+num2: A fishery caught 500 tons of fish a year. To let the fish population recover, managers cut the yearly catch by 30%. What is the new yearly catch in tons? | 350
+hint: Find 30% of 500, then subtract it.
+mc2: Why does a small, isolated population tend to lose genetic variation over time? | Fewer individuals carry fewer alleles, and some alleles can be lost by chance | Mutations stop in small populations | Small populations reproduce faster | Isolation quickly creates new alleles
+hint: Think about how many different alleles a few individuals can carry.
+sa2: By 1987, only 27 California condors were left, and all of them were captured for a breeding program. Explain one benefit and one risk of rebuilding a species from so few individuals. | Benefit: breeding in protected conditions can increase the number of birds and protect them from threats in the wild. Risk: the birds carry little genetic variation, so the population may be more likely to suffer from inherited disorders or a new disease.
+hint: Think about population size and about genetic variation.
+quiz:
+mc1: A species brought by humans to a new area, where it spreads and harms native species, is called a(n) | invasive species | keystone species | pioneer species | climax species
+mc2: Which action would best reduce harm from overfishing? | setting catch limits based on surveys of the fish population | catching more young fish | removing all predators of the fish | fishing mainly while the fish are spawning
+num2: A protected area covered 1,200 hectares. A new road and housing removed 15% of it. How many hectares are left? | 1020
+mc3: Bird surveys counted the number of species in forest patches of different sizes: 5 hectares, 8 species; 50 hectares, 21 species; 500 hectares, 37 species. Which conclusion is supported? | Larger habitat patches support more bird species | Smaller patches hold more bird species | Patch size has no effect on the number of species | Birds avoid large forests
+mc2: Bees and other pollinators decline sharply in a region. Which result is most likely? | lower seed and fruit production in many wild plants and crops | more fruit on every plant | faster growth of all plants | no change in plant reproduction
+num1: A wetland restoration project counted 6 bird species before the work began and 21 bird species five years later. How many more species were counted after restoration? | 15
+mc2: Which solution helps protect biodiversity while still meeting people's needs for land? | building wildlife corridors that connect protected areas | clearing all forests for farms | draining wetlands to build houses | releasing pet animals into the wild
+sa3: A town wants to build a shopping center on a meadow that is home to a rare plant. Propose a solution that meets the town's needs and reduces harm to biodiversity, and describe one trade-off of your solution. | Build the center on a part of town that is already developed, or on only part of the meadow while protecting the area where the rare plant grows and connecting it to other open land. Trade-off: the new site may cost more or be less convenient, or a smaller protected area may support fewer plants.
+
+lesson: Unit review | HS-LS2-2, HS-LS2-6, HS-LS4-1, HS-LS4-2, HS-LS4-4
+practice:
+mc2: Which adaptation helps a desert fox lose body heat? | very large ears with many blood vessels | thick, heavy fur | a short tail | white fur in winter
+hint: Large, thin body parts give off heat.
+mc2: Which ecosystem would most likely recover fastest from a disturbance? | a forest with many species of trees, insects and birds | a farm field with one crop | a lawn with one kind of grass | a pond with one fish species
+hint: Think about biodiversity.
+num2: A population of 1,000 moths is 30% dark. After pollution darkens the trees, it is 80% dark. If the population stays at 1,000, how many more dark moths are there? | 500
+hint: Find 30% of 1,000 and 80% of 1,000.
+mc3: Cave fish that have lived in total darkness for many generations have small eyes or none, while their relatives in surface streams have normal eyes. Which explanation fits natural selection best? | Eyes cost energy to build and were useless in darkness, so fish with smaller eyes had an advantage and the trait spread | Each fish lost its eyes from not using them and passed the change on | Darkness destroys eyes directly | The fish chose not to have eyes
+hint: Traits change in populations over generations, not in individuals by use or disuse.
+sa2: Explain the difference between primary and secondary succession and give an example of each. | Primary succession starts where there is no soil, such as on new lava rock; secondary succession happens where soil remains after a disturbance, such as in a forest after a wildfire.
+hint: What is left after the disturbance?
+quiz:
+mc1: Charles Darwin is known for the theory of | evolution by natural selection | relativity | plate tectonics | cell theory
+mc1: Similar bone structures in different species are called | homologous structures | analogous structures | vestigial only | fossils
+mc2: Which is evidence for common ancestry? | similar DNA sequences across species | different colors | animals living in the same place | random size differences
+mc2: Natural selection requires | variation, inheritance and differential survival | a goal | individuals choosing to change | no competition
+mc2: A population of birds produces more young than the area can support. What will most likely happen? | Some birds will not survive because of competition for resources | All of the birds will survive | The area will grow larger | The birds will stop needing food
+mc1: A group of organisms of the same species living in one area is a | population | community | ecosystem | biome
+ex2: Explain why individuals do not evolve but populations do. | Individuals keep their genes; evolution is a change in the frequency of traits in a population over generations.
+
+test:
+mc2: Carrying capacity is | the largest population an environment can support | the number of predators | the amount of rain | the area of a forest
+mc2: Biodiversity helps ecosystems by | increasing stability and resilience | making them smaller | reducing food | removing predators
+mc2: After a wildfire, the first plants to grow back begin | secondary succession | primary succession | extinction | evolution
+mc3: A population of insects is sprayed with pesticide for many years. What is the most likely result? | The population becomes mostly resistant | All insects die forever | Insects become plants | The pesticide becomes stronger by itself
+mc1: Organisms that can breed and produce fertile offspring belong to the same | species | ecosystem | phylum only | biome
+mc2: Darwin observed that finches on different Galapagos islands had different beak shapes. What best explains this? | Each island population adapted to the food available there | The finches chose their beak shapes | All of the finches were the same | Beak shape is not inherited
+num2: A lake's fish population was 4,000 in one year and 2,800 five years later. By how many fish did it decrease? | 1200
+mc2: Whales have tiny hip bones that do not attach to legs. This is best explained by | whales descending from land mammals that had legs | whales needing hips to swim | hip bones forming from water pressure | a recent mutation
+mc3: Data on a predator and its prey show that when prey numbers peak, predator numbers peak about a year later, and then both fall. What explains the delay? | Predators need time to reproduce after food becomes plentiful | Predators cause the prey to multiply | Prey eat the predators | The two populations are unrelated
+mc2: Rabbits brought to Australia multiplied into the hundreds of millions. Which factors most helped their population grow so large? | few natural predators and plenty of food | a cold climate | many diseases | no available space
+num2: In a survey, 15 of 60 trees in a forest were infected by a beetle. What percent of the trees were infected? | 25
+mc2: Which describes coevolution? | two species change in response to each other over time, such as flowers and their pollinators | one species stays the same forever | an individual changes during its life | two species merge into one
+mc2: A new species can form when populations | are separated and evolve differently until they can no longer interbreed | eat different foods for one year | live in the same place | interbreed often
+mc1: The variety of species, genes and ecosystems in an area is called | biodiversity | carrying capacity | succession | population density
+num2: An island holds 300 lizards at carrying capacity. A storm kills 40% of them. How many lizards remain? | 180
+mc3: Two populations of squirrels live on opposite rims of the Grand Canyon and have different fur colors. What most likely caused the differences? | The canyon separated the populations, and each changed over time | They live together and share mates | The canyon rock gave them their colors directly | They are identical populations
+mc2: A wetland is drained for farmland. Which result is most likely? | loss of habitat and a decline in wetland species | more wetland birds | cleaner water downstream | more biodiversity in the wetland
+mc2: Which is an example of an abiotic factor that can limit a population? | temperature | predators | disease | competition
+sa2: Explain how antibiotic resistance evolves in a bacterial population. | Variation exists; resistant bacteria survive antibiotics and reproduce, so resistance becomes common.
+sa2: Describe how an invasive species can disrupt an ecosystem. | It competes with natives, lacks predators and can reduce biodiversity.
+cer3: In a field survey of rock pocket mice in a desert, fur colors were counted on two kinds of ground. On light sand, 85% of the mice were light and 15% were dark. On dark lava rock, 10% were light and 90% were dark. Owls hunt these mice by sight. Make a claim explaining the pattern, cite evidence and explain your reasoning using natural selection. | Claim: natural selection by predators has made fur color match the ground in each area. Evidence: 85% of mice on light sand are light, and 90% of mice on dark rock are dark. Reasoning: owls hunting by sight catch mice that stand out more often; mice that blend in survive and reproduce, passing on their fur color alleles, so the matching color became common in each habitat.
+task3: Evaluate the claim that a local ecosystem will recover from a major disturbance (for example, drought, fire or an invasive species). Use data on populations and biodiversity, explain feedback and succession, and propose a human solution that reduces harm to biodiversity. | Strong evaluation using data, accurate ideas about feedback and succession, well-justified solution. | Evaluation with some data and a reasonable solution. | Limited evaluation. | Little correct work.
