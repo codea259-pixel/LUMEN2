@@ -124,6 +124,29 @@ num3: A bakery made 3,600 rolls. It sold 2,145 rolls in the morning and 876 roll
 mc3: Ben solved a problem and got 12,560, but his estimate was about 9,000. What should he do? | Check his work, because the answer is far from the estimate | Keep the answer, because estimates are never close | Change his estimate to 12,560 | Round his answer to 9,000
 sa2: Rosa solved this problem: "A theater sold 4,580 tickets on Friday and 3,920 tickets on Saturday. How many more tickets were sold on Friday?" She added and got 8,500. Explain her mistake and find the answer. | "How many more" asks for the difference between the two days, so she should subtract: 4,580 - 3,920 = 660 more tickets.
 
+lesson: Estimating to check multi-digit sums and differences | 4.NBT.A.3, 4.NBT.B.4, 4.OA.A.3
+practice:
+mc1: Round each number to the nearest thousand to estimate 6,812 + 2,394. | 9,000 | 8,000 | 10,000 | 9,206
+hint: 6,812 rounds to 7,000 and 2,394 rounds to 2,000.
+num2: Round each number to the nearest hundred to estimate 4,562 - 1,839. | 2,800
+hint: 4,562 rounds to 4,600 and 1,839 rounds to 1,800.
+mc2: Ana found 7,304 - 2,958 = 5,654. Is her answer reasonable? | no, the estimate is about 4,000 | yes, the estimate is about 5,000 | yes, it is exact | you cannot tell
+hint: Round to the nearest thousand: 7,000 - 3,000.
+num2: A stadium sold 38,415 tickets on Saturday and 41,270 on Sunday. Round each to the nearest thousand to estimate the total. | 79,000
+hint: 38,415 rounds to 38,000 and 41,270 rounds to 41,000.
+mc2: Round each number to the nearest hundred to estimate 5,489 + 3,512. | 9,000 | 8,000 | 9,100 | 10,000
+hint: 5,489 rounds to 5,500 and 3,512 rounds to 3,500.
+sa2: Explain how to use estimation to check 23,608 + 14,795 = 38,403. | Round to the nearest thousand: 24,000 + 15,000 = 39,000. 38,403 is close to 39,000, so the answer is reasonable.
+quiz:
+num1: Round each number to the nearest thousand to estimate 3,780 + 5,196. | 9,000
+num2: Round each number to the nearest hundred to estimate 8,247 - 3,618. | 4,600
+mc2: Leo found 52,610 + 27,345 = 69,955. Is his answer reasonable? | no, the estimate is about 80,000 | yes, the estimate is about 70,000 | yes, it is exact | you cannot tell
+num2: A library had 12,486 books and gave away 3,712. Round each to the nearest thousand to estimate how many are left. | 8,000
+mc2: Which is the best estimate for 609,412 - 298,750? | 300,000 | 400,000 | 200,000 | 900,000
+num2: Round each number to the nearest ten thousand to estimate 46,300 + 33,900. | 80,000
+mc3: A school needs 10,000 cans. Class totals are 2,860, 3,140 and 3,390. Ming rounds to the nearest thousand and says they reached the goal. Is she right? | no, the exact total is 9,390 | yes, the estimate is 10,000 so they reached it | no, the total is 8,000 | yes, the exact total is 10,390
+sa2: Kai says 6,005 - 2,998 = 4,007. Use estimation to show this is not reasonable, then find the correct answer. | Estimate 6,000 - 3,000 = 3,000, so 4,007 is too big. Correct answer: 6,005 - 2,998 = 3,007.
+
 test:
 mc1: What is the value of the 8 in 386,214? | 80,000 | 8,000 | 800,000 | 800
 num1: Round 72,649 to the nearest thousand. | 73000
@@ -238,6 +261,29 @@ num2: A roll of tape is 15 meters long. Ms. Ito uses 8 pieces that are each 75 c
 num3: Three packages have masses of 1 kg 800 g, 2 kg 450 g and 950 g. What is their total mass in grams? | 5200
 mc3: One batch of soup uses 750 mL of broth. Which is the smallest carton that has enough broth for 4 batches? | a 3 L carton | a 2 L carton | a 2 L 500 mL carton | a 750 mL carton
 sa2: A board is 2 m long and a 35 cm piece is cut off. Jin says 1 m 65 cm is left. Lily says 165 cm is left. Who is right? Explain. | Both are right. 2 m = 200 cm and 200 - 35 = 165 cm, which is the same length as 1 m 65 cm.
+
+lesson: Comparing metric measurements in different units | 4.MD.A.1, 4.NBT.A.2
+practice:
+mc1: Which is longer, 3 kilometers or 2,900 meters? | 3 kilometers | 2,900 meters | they are equal | you cannot tell
+hint: 1 kilometer is 1,000 meters.
+mc2: Which symbol makes 4 kg __ 4,000 g true? | = | > | < | +
+hint: 1 kilogram is 1,000 grams.
+num2: A bottle holds 2 liters. A jug holds 1,750 milliliters. How many more milliliters does the bottle hold? | 250
+hint: Change 2 liters to milliliters first.
+mc2: Order from least to greatest: 1 m 5 cm, 150 cm, 1,000 mm | 1,000 mm, 1 m 5 cm, 150 cm | 150 cm, 1 m 5 cm, 1,000 mm | 1 m 5 cm, 1,000 mm, 150 cm | 1,000 mm, 150 cm, 1 m 5 cm
+hint: Change each one to centimeters: 105 cm, 150 cm and 100 cm.
+num2: A bag of flour is 5 kg. A bag of rice is 4,600 g. How many grams heavier is the flour? | 400
+hint: 5 kg is 5,000 g.
+sa2: Lena says 800 grams is heavier than 1 kilogram because 800 is greater than 1. Explain her mistake. | 1 kilogram is 1,000 grams, so 1 kilogram is heavier than 800 grams. You must compare in the same unit.
+quiz:
+mc1: Which is heavier, 2 kg 300 g or 2,030 g? | 2 kg 300 g | 2,030 g | they are equal | you cannot tell
+mc2: Which symbol makes 6 L __ 5,900 mL true? | > | < | = | -
+num2: A trail is 4 km long. Maya has walked 2,650 m. How many more meters does she need to walk? | 1,350
+mc2: Order from greatest to least: 2 km, 1,999 m, 2,100 m | 2,100 m, 2 km, 1,999 m | 2 km, 2,100 m, 1,999 m | 1,999 m, 2 km, 2,100 m | 2,100 m, 1,999 m, 2 km
+num2: How many centimeters longer is 3 m than 245 cm? | 55
+mc2: Which amount is equal to 7,050 mL? | 7 L 50 mL | 7 L 500 mL | 70 L 50 mL | 705 L
+mc3: Raj has a 1 kg bag and Tia has three bags of 350 g each. Who has more, and by how much? | Tia, by 50 g | Raj, by 50 g | Tia, by 350 g | they are equal
+sa2: A jug holds 3 L 400 mL. A pot holds 3,040 mL. Which holds more? Explain by changing to the same unit. | 3 L 400 mL = 3,400 mL. 3,400 mL is more than 3,040 mL, so the jug holds 360 mL more.
 
 test:
 num1: How many centimeters are in 9 meters? | 900
@@ -378,6 +424,52 @@ num3: Maria saves $15 each week for 26 weeks. Then she spends $199 on a tablet. 
 mc3: Which product is greatest? | 40 x 33 | 42 x 31 | 41 x 32 | 43 x 30
 sa2: Lin multiplied 26 x 13 like this: 20 x 10 = 200 and 6 x 3 = 18, so 26 x 13 = 218. Explain her mistake and find the product. | She only multiplied tens by tens and ones by ones. She also needs 20 x 3 = 60 and 6 x 10 = 60. 200 + 60 + 60 + 18 = 338.
 
+lesson: Division with area models and the distributive property | 4.NBT.B.6, 4.OA.A.3
+practice:
+mc2: Which shows 84 / 4 split with an area model? | 80 / 4 + 4 / 4 | 80 / 4 + 4 | 84 / 2 + 4 | 8 / 4 + 4 / 4
+hint: Split 84 into tens and ones that 4 divides easily.
+num1: Use 60 / 3 + 9 / 3 to find 69 / 3. | 23
+hint: 60 / 3 = 20 and 9 / 3 = 3.
+num2: An area model has an area of 156 square units and a width of 6 units. It is split into 120 and 36. What is the length? | 26
+hint: 120 / 6 = 20 and 36 / 6 = 6.
+mc2: To find 372 / 6 with an area model, which split makes both parts divisible by 6? | 360 + 12 | 370 + 2 | 350 + 22 | 340 + 32
+hint: Look for a multiple of 6 close to 372.
+num2: A rectangle has an area of 248 square meters and a width of 8 meters. How long is it? | 31
+hint: Split 248 into 240 and 8.
+sa2: Draw an area model to solve 196 / 7. Explain each part. | Width 7. Split 196 into 140 and 56. 140 / 7 = 20 and 56 / 7 = 8. The length is 20 + 8 = 28.
+quiz:
+num1: Use 90 / 3 + 6 / 3 to find 96 / 3. | 32
+num2: A garden has an area of 432 square feet and is 6 feet wide. How long is it? | 72
+mc2: Which expression equals 525 / 5? | 500 / 5 + 25 / 5 | 500 / 5 + 25 | 525 / 10 + 5 | 50 / 5 + 25 / 5
+num2: An area model for 712 / 8 splits 712 into 640 and 72. What is the quotient? | 89
+mc2: Which split works for 168 / 4? | 160 and 8 | 150 and 18 | 110 and 58 | 166 and 2
+num2: 504 / 9 = ? | 56
+mc3: Ty split 92 / 4 into 90 / 4 + 2 / 4. Why is this split hard? | 90 and 2 are not multiples of 4 | 92 cannot be split | he should multiply | it is the best split
+sa2: Explain how an area model shows that 138 / 6 = 23. | The rectangle has width 6 and area 138. Split 138 into 120 and 18. 120 / 6 = 20 and 18 / 6 = 3, so the length is 23.
+
+lesson: Multi-step word problems with all four operations | 4.OA.A.3, 4.NBT.B.5, 4.NBT.B.6
+practice:
+num2: A school buys 6 boxes of 144 pencils. It gives out 500 pencils. How many pencils are left? | 364
+hint: Multiply first, then subtract.
+num2: A farmer packs 378 eggs into cartons of 12. How many full cartons does he make, and how many eggs are left over? Give the number of full cartons. | 31
+hint: 12 x 30 = 360. How many eggs are left after that?
+mc2: Tickets cost $14 each. A group of 23 people pays with $350. Which equation finds the change, c? | 350 - 23 x 14 = c | 350 + 23 x 14 = c | 23 x 14 - 350 = c | 350 / 14 = c
+hint: Find the total cost first.
+num2: Maria earns $45 a week for 8 weeks. She spends $129. How many dollars does she have left? | 231
+hint: 45 x 8 = 360.
+num2: 7 vans carry 9 students each. 4 more students ride in a car. How many students go on the trip? | 67
+hint: Multiply, then add.
+sa2: Write an equation with a letter for the unknown and solve: A shelf holds 36 books. A library has 950 books. How many shelves are needed for all the books? | 950 / 36 = 26 R 14, so s = 27 shelves, because 26 shelves hold only 936 books and 14 books need one more shelf.
+quiz:
+num2: A theater has 24 rows of 18 seats. 375 seats are filled. How many seats are empty? | 57
+num2: A baker makes 6 trays of 48 cookies. She puts them in bags of 8. How many bags does she fill? | 36
+mc2: Jon has $200. He buys 3 jackets for $46 each. Which expression shows the money left? | 200 - 3 x 46 | 200 - 3 + 46 | 3 x 46 - 200 | 200 / 3 x 46
+num2: A tank holds 1,200 liters. It drains 75 liters each hour for 9 hours. How many liters are left? | 525
+num2: Each of 5 classes collects 128 cans. The cans are packed in boxes of 20. How many boxes are needed for all the cans? | 32
+mc2: A bus holds 52 students. How many buses are needed for 310 students? | 6 | 5 | 7 | 258
+mc3: Lia says 4 packs of 125 stickers minus 180 is 320. Is she right? | yes, 500 - 180 = 320 | no, it is 680 | no, it is 125 | no, it is 180
+sa2: A class sells 16 boxes of oranges for $12 each and 9 boxes of apples for $15 each. How much money do they collect? Show your steps. | 16 x 12 = 192 and 9 x 15 = 135. 192 + 135 = $327.
+
 test:
 num1: 6 x 700 = ? | 4200
 num1: 3 x 2,416 = ? | 7248
@@ -496,6 +588,52 @@ mc2: Which capital letter has exactly one line of symmetry? | A | H | O | X
 mc3: Which statement is true? | A square is a rhombus with four right angles | Every rhombus has four right angles | Every trapezoid has four lines of symmetry | Every triangle has a right angle
 num2: How many lines of symmetry does a regular hexagon have? | 6
 sa2: Mae says a triangle cannot be both right and isosceles. Explain whether she is right. | She is not right. A triangle can have one 90-degree angle and two equal sides, like the triangle you get by cutting a square along a diagonal. It is a right isosceles triangle.
+
+lesson: Classifying triangles by angles and sides | 4.G.A.2, 4.G.A.1
+practice:
+mc1: A triangle has one 90-degree angle. What kind of triangle is it? | right triangle | acute triangle | obtuse triangle | straight triangle
+hint: A 90-degree angle is a right angle.
+mc2: A triangle has angles of 40, 60 and 80 degrees. What kind of triangle is it? | acute | right | obtuse | straight
+hint: Are all three angles less than 90 degrees?
+mc2: A triangle has angles of 30, 40 and 110 degrees. What kind of triangle is it? | obtuse | acute | right | equal
+hint: Is one angle greater than 90 degrees?
+num1: A triangle has angles of 90, 50 and 40 degrees. How many of its angles are acute? | 2
+hint: An acute angle is less than 90 degrees.
+mc2: Can a triangle have two right angles? | no, the other two sides would be parallel and never meet | yes | only if it is big | only if it is acute
+hint: Draw a side with a right angle at each end. Do the other two sides ever meet?
+sa2: Draw an acute triangle and an obtuse triangle. Explain how they are different. | All angles of the acute triangle are less than 90 degrees. The obtuse triangle has one angle greater than 90 degrees.
+quiz:
+mc1: A triangle with all three angles less than 90 degrees is | acute | right | obtuse | a quadrilateral
+mc2: A triangle has angles of 90, 45 and 45 degrees. Which name fits? | right triangle | obtuse triangle | acute triangle | no triangle
+num1: A triangle has angles of 30, 60 and 90 degrees. How many of its angles are acute? | 2
+mc2: Which set of angles makes an obtuse triangle? | 20, 35, 125 | 60, 60, 60 | 30, 60, 90 | 50, 60, 70
+num2: A triangle has angles of 110, 40 and 30 degrees. How many of its angles are obtuse? | 1
+mc2: How many right angles can a triangle have? | at most 1 | exactly 2 | 3 | 4
+mc3: Ella says a triangle with a 95-degree angle is a right triangle because 95 is close to 90. What is right? | it is obtuse because 95 is greater than 90 | it is right | it is acute | it is not a triangle
+sa2: A triangle has two sides that are perpendicular. What kind of triangle is it, and why? | It is a right triangle, because perpendicular sides meet at a 90-degree angle.
+
+lesson: Multi-step unknown angle problems | 4.MD.C.7, 4.MD.C.5
+practice:
+num2: Three angles meet at a point on a straight line. Two are 45 and 70 degrees. How many degrees is the third angle? | 65
+hint: Angles on a straight line add to 180 degrees.
+num2: A right angle is split into three angles. Two are 25 and 30 degrees. How many degrees is the third? | 35
+hint: A right angle is 90 degrees.
+mc2: Four angles go all the way around a point. Three are 90, 100 and 80 degrees. Which equation finds the fourth angle, x? | 90 + 100 + 80 + x = 360 | 90 + 100 + 80 + x = 180 | 90 + 100 + 80 = x | x - 270 = 360
+hint: A full turn is 360 degrees.
+num2: Four angles go all the way around a point. Three are 90, 100 and 80 degrees. How many degrees is the fourth? | 90
+hint: 360 - 270.
+num2: A straight angle is split into two angles. One is 3 times as large as 40 degrees. How many degrees is the other angle? | 60
+hint: 3 x 40 = 120. The two angles add to 180.
+sa2: Two angles together make a right angle. One angle is 2 times the other. Find both angles and explain. | The angles are 30 and 60 degrees, because 30 + 60 = 90 and 60 is 2 times 30.
+quiz:
+num2: Angles on a straight line are 38 degrees, 72 degrees and x. What is x? | 70
+num2: A right angle is split into 3 equal angles. How many degrees is each angle? | 30
+mc2: Five equal angles go all the way around a point. How many degrees is each one? | 72 | 36 | 60 | 90
+num2: Three angles around a point are 120, 150 and x degrees. What is x? | 90
+mc2: Two angles make a straight angle. One is 105 degrees. Which kind of angle is the other? | acute | obtuse | right | straight
+num2: An angle of 140 degrees is split into two angles. One is 85 degrees. How many degrees is the other? | 55
+mc3: A straight angle is split into two equal angles. Ben says each one is 45 degrees. What is right? | each is 90 degrees, because 180 / 2 = 90 | each is 45 degrees | each is 180 degrees | each is 360 degrees
+sa2: Three angles make a straight angle. Two of them are 50 degrees each. Write an equation and find the third angle. | 50 + 50 + x = 180, so x = 80 degrees.
 
 test:
 mc1: What is the measure of a right angle? | 90 degrees | 180 degrees | 45 degrees | 360 degrees
@@ -635,6 +773,52 @@ num3: A line plot shows daily rainfall: 3 days with 1/8 inch, 2 days with 3/8 in
 mc2: Which product is greater than 3? | 5 x 2/3 | 4 x 2/3 | 3 x 2/3 | 2 x 2/3
 sa2: Nico says 3 x 2/5 = 6/15. Explain his mistake. | He multiplied the denominator too. 3 x 2/5 means 3 groups of 2 fifths, which is 6 fifths, or 6/5. The pieces are still fifths.
 
+lesson: Fraction word problems with like denominators | 4.NF.B.3, 4.MD.A.2
+practice:
+num2: Ana ran 3/8 mile in the morning and 4/8 mile after school. What is the numerator of the fraction of a mile she ran in all, in eighths? | 7
+hint: Add the numerators. The denominator stays 8.
+mc2: A ribbon is 9/10 meter long. Tom cuts off 4/10 meter. How long is the ribbon now? | 5/10 meter | 13/10 meter | 5/0 meter | 4/10 meter
+hint: Subtract the numerators.
+mc2: A pizza is cut into 6 equal slices. Kim eats 2/6 and Lu eats 3/6. What fraction is left? | 1/6 | 5/6 | 5/12 | 2/6
+hint: First add what they ate. The whole is 6/6.
+num2: A recipe uses 2 1/4 cups of flour and 1 3/4 cups of sugar. How many cups is that in all? | 4
+hint: Add the wholes, then add the fourths.
+mc2: Jay walked 1 2/5 miles. Mai walked 3/5 mile less. How far did Mai walk? | 4/5 mile | 2 miles | 1 4/5 miles | 3/5 mile
+hint: Rename 1 2/5 as 7/5.
+sa2: A jug has 2 1/3 liters of juice. The class drinks 1 2/3 liters. How much is left? Show your work. | Rename 2 1/3 as 7/3 and 1 2/3 as 5/3. 7/3 - 5/3 = 2/3 liter.
+quiz:
+num2: A plant grew 5/12 inch one week and 6/12 inch the next. What is the numerator of the total growth in twelfths? | 11
+mc2: A board is 11/8 feet long. Ray cuts off 3/8 foot. How long is it now? | 1 foot | 8/16 foot | 14/8 feet | 3/8 foot
+num2: Sara painted 1 3/6 walls on Monday and 2 4/6 walls on Tuesday. How many walls did she paint? Write the answer as a mixed number. | 4 1/6
+mc2: A tank is 7/10 full. 3/10 of the tank is used. How full is it now? | 4/10 | 10/10 | 4/20 | 3/10
+num2: A trail is 3 miles long. Leo has walked 1 1/4 miles. How many miles are left? Write the answer as a mixed number. | 1 3/4
+mc2: Which is the total of 2/5 + 2/5 + 2/5? | 6/5 | 6/15 | 2/15 | 4/5
+mc3: Jo says 3/4 + 2/4 = 5/8. What is right? | 5/4, because the size of the parts stays fourths | 5/8 | 6/8 | 1/4
+sa2: Write a word problem for 2 3/8 - 1 5/8 and solve it. | Example: A rope is 2 3/8 meters long and 1 5/8 meters is cut off. 19/8 - 13/8 = 6/8 meter is left.
+
+lesson: Multiplying a fraction by a whole number in word problems | 4.NF.B.4, 4.MD.A.2
+practice:
+num2: Each student needs 2/3 cup of clay. How many cups do 6 students need? | 4
+hint: 6 x 2/3 = 12/3.
+mc2: A runner runs 3/4 mile each day for 5 days. How far does she run? | 15/4 miles | 8/4 miles | 15/20 miles | 3/20 miles
+hint: Multiply the numerator by 5.
+num2: A recipe uses 3/8 cup of oil. Ben makes 4 batches. How many eighths of a cup does he use? | 12
+hint: 4 x 3 = 12 eighths.
+mc2: Which is equal to 7 x 1/5? | 7/5 | 1/35 | 7/35 | 8/5
+hint: 7 groups of 1 fifth.
+num2: A snail crawls 5/6 meter each hour. How many meters does it crawl in 6 hours? | 5
+hint: 6 x 5/6 = 30/6.
+sa2: Each of 3 friends eats 3/4 of a sandwich. Is that more or less than 2 whole sandwiches? Explain. | 3 x 3/4 = 9/4 = 2 1/4 sandwiches, which is more than 2.
+quiz:
+num2: Each bag holds 2/5 kilogram of nuts. How many kilograms do 10 bags hold? | 4
+mc2: A painter uses 5/8 gallon of paint for each door. How much paint for 3 doors? | 15/8 gallons | 8/8 gallon | 15/24 gallon | 5/24 gallon
+num2: Lia practices piano 3/4 hour a day for 8 days. How many hours does she practice? | 6
+mc2: Which expression shows 4 groups of 2/3? | 4 x 2/3 | 4 + 2/3 | 2/3 / 4 | 4 x 3/2
+num2: A ribbon piece is 7/10 meter. How many tenths of a meter are 5 pieces? | 35
+mc2: Tim says 3 x 2/7 = 6/21. What is right? | 6/7 | 6/21 | 5/7 | 2/21
+mc3: Ava needs 2 cups of milk. Her cup holds 1/3 cup. She fills it 5 times. Does she have enough? | no, she has 5/3 cups, which is less than 2 | yes, 5/3 is more than 2 | yes, exactly 2 | no, she has 1/15 cup
+sa2: A line plot shows 6 worms that are each 3/8 inch long. Write and solve a multiplication equation for their total length if laid end to end. | 6 x 3/8 = 18/8 = 2 2/8 (or 2 1/4) inches.
+
 test:
 mc1: Which fraction is equivalent to 2/5? | 4/10 | 2/10 | 5/2 | 4/5
 num1: 3/8 + 4/8 = ? | 7/8
@@ -749,6 +933,52 @@ mc2: Which coins have a total value of exactly 1 dollar? | 4 quarters | 10 nicke
 num3: Ana walks 4/10 km to school, 25/100 km to the library and 2/10 km home. How many kilometers does she walk in all? Write the answer as a decimal. | 0.85
 mc3: Which sum equals 1? | 7/10 + 30/100 | 7/10 + 3/100 | 70/100 + 3/10 + 1/10 | 5/10 + 5/100
 sa2: Jae says $1.5 is the same as 1 dollar and 5 cents. Explain his mistake. | $1.5 means 1 dollar and 5 tenths of a dollar. 5 tenths of a dollar is 50 cents, so $1.5 = $1.50, not $1.05.
+
+lesson: Decimals on the number line and in money | 4.NF.C.6, 4.MD.A.2
+practice:
+mc1: A number line from 0 to 1 has 10 equal parts. What decimal is at the 7th mark? | 0.7 | 0.07 | 7.0 | 0.17
+hint: Each mark is one tenth.
+mc2: Which decimal is halfway between 2.3 and 2.5? | 2.4 | 2.35 | 2.45 | 2.8
+hint: Count by tenths from 2.3.
+num2: How many cents is $0.35? | 35
+hint: One cent is one hundredth of a dollar.
+mc2: Which decimal names 4 dollars and 8 cents? | $4.08 | $4.80 | $4.008 | $48
+hint: 8 cents is 8 hundredths of a dollar.
+num2: A number line from 1 to 2 is marked in hundredths. Point P is 36 marks past 1. What decimal is P? | 1.36
+hint: Each mark is 0.01.
+sa2: Explain why 0.5 and 0.50 are at the same point on a number line. | 0.5 is 5 tenths and 0.50 is 50 hundredths. 5 tenths equal 50 hundredths, so they are the same point.
+quiz:
+mc1: A number line from 0 to 1 has 10 equal parts. What decimal is at the 3rd mark? | 0.3 | 0.03 | 3.0 | 0.13
+num2: How many cents is $0.09? | 9
+mc2: Which decimal is between 5.6 and 5.7? | 5.65 | 5.56 | 5.75 | 6.5
+mc2: Which amount is the same as 3 quarters? | $0.75 | $0.34 | $7.50 | $0.075
+num2: What decimal is 0.1 more than 3.95? | 4.05
+mc2: Which point is closest to 1 on a number line? | 0.98 | 0.9 | 1.2 | 0.8
+mc3: Ana says $2.5 is 2 dollars and 5 cents. What is right? | 2 dollars and 50 cents | 2 dollars and 5 cents | 25 dollars | 25 cents
+sa2: Place 0.25, 0.7 and 0.09 on a number line from 0 to 1 and order them from least to greatest. | 0.09 is just before 0.1, 0.25 is a quarter of the way, 0.7 is at 7 tenths. Order: 0.09, 0.25, 0.7.
+
+lesson: Decimal measurement word problems | 4.MD.A.2, 4.NF.C.5
+practice:
+num2: A plant was 0.4 meter tall. It grew 0.35 meter. How tall is it now in meters? | 0.75
+hint: Change 0.4 to 0.40, then add hundredths.
+num2: Kai has $3.60. He buys a snack for $1.25. How much money does he have left in dollars? | 2.35
+hint: Subtract dollars and cents, or count up from $1.25.
+mc2: A ribbon is 0.8 meter long. Which length is longer? | 0.85 meter | 0.80 meter | 0.08 meter | 0.79 meter
+hint: Compare tenths, then hundredths.
+num2: Ming ran 1.5 km on Monday and 2.25 km on Tuesday. How many kilometers did she run? | 3.75
+hint: Write 1.5 as 1.50.
+mc2: A book costs $4.75 and a pen costs $0.80. What is the total? | $5.55 | $4.83 | $5.45 | $12.75
+hint: Add the cents: 75 + 80 = 155 cents.
+sa2: Explain how to add 0.6 liter and 0.27 liter using fractions. | 0.6 = 6/10 = 60/100 and 0.27 = 27/100. 60/100 + 27/100 = 87/100 = 0.87 liter.
+quiz:
+num2: A bottle holds 0.5 liter. Another holds 0.45 liter. How many liters do they hold together? | 0.95
+num2: Rosa had $5.00. She spent $2.65. How many dollars does she have left? | 2.35
+mc2: Which is greater, 0.6 kilometer or 0.58 kilometer? | 0.6 kilometer | 0.58 kilometer | they are equal | you cannot tell
+num2: A snail crawled 0.3 meter, then 0.42 meter. How far did it crawl in meters? | 0.72
+mc2: Lunch costs $3.40 and milk costs $0.65. What is the total? | $4.05 | $3.05 | $3.47 | $10.40
+num2: A pencil is 0.15 meter long. A pen is 0.2 meter long. How many meters longer is the pen? | 0.05
+mc3: Jo says 0.4 + 0.25 = 0.29. What is right? | 0.65, because 4 tenths is 40 hundredths | 0.29 | 0.65 is wrong, it is 0.6 | 2.9
+sa2: Tia buys 3 notebooks for $1.25 each. She pays with $5.00. How much change does she get? Show your work. | 3 x 1.25 = $3.75 (1.25 + 1.25 + 1.25). $5.00 - $3.75 = $1.25.
 
 test:
 mc1: Which decimal equals 6/10? | 0.6 | 0.06 | 6.0 | 0.16
@@ -866,6 +1096,52 @@ num2: A bag of apples weighs 1 1/4 pounds. How many ounces does it weigh? | 20
 num3: Each of 6 students drinks 1/2 quart of water. How many cups of water do they drink altogether? | 12
 mc3: Which of these lengths is the longest? | 2/3 yard | 1 3/4 feet | 20 inches | 1/2 yard
 sa2: Lu says 1/2 hour is 50 minutes because half of 100 is 50. Explain her mistake. | An hour has 60 minutes, not 100. Half of 60 is 30, so 1/2 hour is 30 minutes.
+
+lesson: Elapsed time and time conversions in word problems | 4.MD.A.2, 4.MD.A.1
+practice:
+num2: A movie is 2 hours 15 minutes long. How many minutes is that? | 135
+hint: 1 hour is 60 minutes.
+num2: A train ride starts at 9:45 a.m. and ends at 1:20 p.m. How many minutes long is the ride? | 215
+hint: 9:45 to 12:45 is 3 hours. 12:45 to 1:20 is 35 minutes.
+mc2: Which is longer, 3 hours or 175 minutes? | 3 hours | 175 minutes | they are equal | you cannot tell
+hint: 3 hours is 180 minutes.
+num2: Practice is 45 minutes a day for 6 days. How many hours is that in all? Write the answer as a mixed number. | 4 1/2
+hint: 45 x 6 = 270 minutes. How many 60s are in 270?
+num2: A race took 3 minutes 25 seconds. How many seconds is that? | 205
+hint: 1 minute is 60 seconds.
+sa2: A baker starts at 5:40 a.m. and works 7 hours 35 minutes. When does she finish? Explain. | 5:40 + 7 hours = 12:40 p.m. 12:40 + 35 minutes = 1:15 p.m.
+quiz:
+num2: How many minutes are in 4 hours 10 minutes? | 250
+num2: A flight leaves at 10:50 a.m. and lands at 2:15 p.m. How many minutes long is the flight? | 205
+mc2: Which is the same as 150 seconds? | 2 minutes 30 seconds | 1 minute 50 seconds | 2 minutes 50 seconds | 15 minutes
+num2: A puppy sleeps 14 hours a day. How many hours does it sleep in a week? | 98
+mc2: A show starts at 7:35 p.m. and lasts 1 hour 40 minutes. When does it end? | 9:15 p.m. | 8:75 p.m. | 9:05 p.m. | 8:15 p.m.
+num2: Mia reads 25 minutes each day for 12 days. How many hours does she read? | 5
+mc3: Ben says 2 1/2 hours is 250 minutes. What is right? | 150 minutes | 250 minutes | 210 minutes | 120 minutes
+sa2: A camp day is 6 hours 45 minutes long. Lunch and breaks take 1 hour 20 minutes. How much time is left for activities? Show your work. | 6 h 45 min - 1 h 20 min = 5 h 25 min (or 405 - 80 = 325 minutes).
+
+lesson: Area and perimeter formulas in real-world problems | 4.MD.A.3, 4.OA.A.3
+practice:
+num2: A rectangular room is 14 feet long and 12 feet wide. What is its area in square feet? | 168
+hint: Area = length x width.
+num2: A garden is 23 meters long and 9 meters wide. How many meters of fence go around it? | 64
+hint: Perimeter = 2 x length + 2 x width.
+num2: A rug has an area of 96 square feet and a length of 12 feet. What is its width in feet? | 8
+hint: 12 x w = 96.
+mc2: A rectangle has a perimeter of 50 cm and a length of 15 cm. What is its width? | 10 cm | 35 cm | 20 cm | 25 cm
+hint: Two lengths are 30 cm. Split what is left between two widths.
+num2: Carpet costs $6 per square foot. A room is 10 feet by 13 feet. How many dollars does carpet cost? | 780
+hint: Find the area first.
+sa2: A farmer has 36 meters of fence for a rectangular pen. Find two possible sizes and their areas. Which gives more space? | Examples: 10 m by 8 m has area 80 square meters; 12 m by 6 m has area 72. The 10 by 8 pen gives more space (a 9 by 9 square gives the most, 81).
+quiz:
+num2: A soccer field is 105 meters long and 68 meters wide. What is its perimeter in meters? | 346
+num2: A patio is 16 feet by 15 feet. What is its area in square feet? | 240
+num2: A poster has an area of 360 square inches and a width of 18 inches. How tall is it in inches? | 20
+mc2: A square has a perimeter of 64 m. What is its area? | 256 square meters | 64 square meters | 16 square meters | 128 square meters
+num2: Tile costs $4 per square foot. A floor is 12 feet by 9 feet. How many dollars does tile cost? | 432
+mc2: Two rectangles have the same perimeter of 24 m: 10 by 2 and 6 by 6. Which has the greater area? | 6 by 6 | 10 by 2 | they are equal | you cannot tell
+mc3: A room is 15 feet by 11 feet. Kai says the baseboard needed is 165 feet. What mistake did he make? | he found the area instead of the perimeter, which is 52 feet | he added wrong | he found the perimeter twice | no mistake
+sa2: A rectangular pool is 25 meters long and has an area of 300 square meters. Find its width and perimeter. Show your work. | 25 x w = 300, so w = 12 m. Perimeter = 2 x 25 + 2 x 12 = 50 + 24 = 74 m.
 
 test:
 num1: How many inches are in 3 feet? | 36
