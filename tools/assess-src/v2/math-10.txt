@@ -1,0 +1,689 @@
+@subject math
+@grade 10
+# Converted from the grade 10 section of tools/assess-src/math.txt. Every original unit line, standard, item and unit test
+# item is carried over verbatim. The original "Unit review" lesson is kept as the last lesson of each unit: its quiz keeps
+# the original quiz items (mc 1-4 and the explanation item) and the unit test keeps the original test items (mc 5-8,
+# both short answers and the task). New lessons come first.
+about: Geometry develops formal reasoning about congruence and similarity through transformations, proves theorems about lines, triangles and circles, connects algebra and geometry on the coordinate plane, introduces right triangle trigonometry, and applies area and volume.
+std: G-CO.B.7 | Use the definition of congruence in terms of rigid motions to show two triangles are congruent.
+std: G-CO.C.10 | Prove theorems about triangles.
+std: G-SRT.B.5 | Use congruence and similarity criteria for triangles to solve problems and prove relationships.
+std: G-SRT.C.8 | Use trigonometric ratios and the Pythagorean theorem to solve right triangles in applied problems.
+std: G-GPE.B.4 | Use coordinates to prove simple geometric theorems algebraically.
+std: G-C.B.5 | Derive the formula for the length of an arc and the area of a sector.
+std: G-GMD.A.3 | Use volume formulas for cylinders, pyramids, cones and spheres to solve problems.
+
+unit: Congruence, proof and polygons | G-CO.A.5, G-CO.B.7, G-CO.C.9, G-CO.C.10 | g10poly
+el: Keep a labeled diagram wall (transversal, alternate interior, corresponding, same-side interior, included angle) and give proof sentence frames: "___ because ___ (reason)." Let students draw and mark diagrams before writing.
+
+lesson: Rigid motions: translations, reflections and rotations | G-CO.A.5, G-CO.A.2
+practice:
+mc1: The point (3, 5) is translated 4 units left and 2 units down. Where does it land? | (-1, 3) | (7, 3) | (-1, 7) | (1, 1)
+hint: Left changes x; down changes y.
+mc2: Reflect the point (4, -1) across the x-axis. | (4, 1) | (-4, -1) | (-4, 1) | (-1, 4)
+hint: A reflection across the x-axis keeps x the same.
+mc2: Rotate the point (2, 5) 90 degrees counterclockwise about the origin. | (-5, 2) | (5, -2) | (-2, -5) | (5, 2)
+hint: A 90-degree counterclockwise rotation sends (x, y) to (-y, x).
+mc2: Reflect the point (6, 1) across the line y = x. | (1, 6) | (-6, 1) | (6, -1) | (-1, -6)
+hint: A reflection across y = x swaps the coordinates.
+num2: A segment from (0, 0) to (6, 8) is rotated 90 degrees about the origin. How long is the image segment? | 10
+hint: Rigid motions preserve length. Find the length of the original segment.
+sa2: Explain which properties of a figure stay the same under every rigid motion. | Lengths, angle measures, parallel lines and area stay the same. Only the position and orientation can change, so the image is congruent to the original.
+quiz:
+mc1: Which transformation is NOT a rigid motion? | A dilation by a factor of 2 | A translation | A reflection | A rotation
+mc2: The rule (x, y) -> (x + 3, y - 7) describes which transformation? | A translation 3 right and 7 down | A translation 3 left and 7 up | A reflection | A rotation of 37 degrees
+mc2: Reflect the point (-2, 7) across the y-axis. | (2, 7) | (-2, -7) | (2, -7) | (7, -2)
+mc2: Rotate the point (3, -4) 90 degrees clockwise about the origin. | (-4, -3) | (4, 3) | (-3, 4) | (4, -3)
+num2: A square is rotated about its center so that it lands on itself. What is the smallest positive rotation angle in degrees that does this? | 90
+num2: How many lines of symmetry does a regular pentagon have? | 5
+mc3: Triangle ABC is reflected across the x-axis and then across the y-axis. Which single transformation gives the same result? | A rotation of 180 degrees about the origin | A translation | A reflection across y = x | A rotation of 90 degrees about the origin
+sa2: A translation maps A(1, 2) to A'(4, -3). Explain how to find the image of B(-2, 5) under the same translation, and give it. | The translation adds 3 to x and subtracts 5 from y, because 4 - 1 = 3 and -3 - 2 = -5. So B' = (-2 + 3, 5 - 5) = (1, 0).
+
+lesson: Congruence through rigid motions | G-CO.B.6, G-CO.B.7
+practice:
+mc1: Two figures are congruent when | a sequence of rigid motions maps one onto the other | they have the same area | they have the same shape but any size | they are in the same position
+hint: Think about which transformations keep both size and shape.
+mc2: Triangle ABC is congruent to triangle DEF. Which statement must be true? | angle B = angle E | AB = EF | angle A = angle F | BC = DE
+hint: Match the letters in order: A with D, B with E, C with F.
+mc2: Triangle PQR maps onto triangle XYZ by a rotation, and PQ = 7 cm. Which statement must be true? | XY = 7 cm | YZ = 7 cm | XZ = 7 cm | XY = 14 cm
+hint: Corresponding parts of congruent figures are equal.
+num2: Triangle JKL is congruent to triangle MNO. Angle J = 48 degrees and angle K = 71 degrees. What is angle O in degrees? | 61
+hint: Find angle L first. It corresponds to angle O.
+mc2: Which pair of figures is NOT necessarily congruent? | Two rectangles with the same area | Two circles with the same radius | Two segments with the same length | Two squares with the same side length
+hint: Look for a pair where one measurement matches but the shape could still differ.
+sa2: Explain how to show that the triangle with vertices A(0, 0), B(2, 0), C(0, 3) is congruent to the triangle with vertices A'(5, 1), B'(7, 1), C'(5, 4). | A translation 5 right and 1 up maps A to A', B to B' and C to C'. Translations preserve lengths and angles, so the triangles are congruent.
+quiz:
+mc1: Which sequence of transformations does NOT always produce a congruent image? | A rotation followed by a dilation by 3 | A reflection followed by a translation | Two rotations | A translation followed by a rotation
+mc2: Quadrilateral ABCD is congruent to quadrilateral WXYZ. Which side corresponds to CD? | YZ | XY | WZ | WX
+num2: Triangle RST is congruent to triangle UVW. RS = 3x + 2 and UV = 17. What is x? | 5
+num2: Triangle ABC is congruent to triangle DEF. Angle C = (2y + 10) degrees and angle F = 64 degrees. What is y? | 27
+mc2: What does CPCTC stand for? | Corresponding parts of congruent triangles are congruent | Congruent polygons can turn clockwise | Corresponding points can transform correctly | Complementary parts of congruent triangles are complementary
+mc2: A triangle is reflected across a line. Which statement is true about its image? | It is congruent, with its orientation reversed | It is larger | It has different angle measures | It is the same triangle in the same place
+mc3: Triangle A(1, 1), B(4, 1), C(1, 3) maps to A'(-1, -1), B'(-4, -1), C'(-1, -3). Which single rigid motion does this? | A rotation of 180 degrees about the origin | A reflection across the x-axis | A reflection across the y-axis | A translation 2 left and 2 down
+sa2: Explain why two triangles whose corresponding sides and angles are all equal are congruent under the rigid motion definition. | Translate one triangle so a pair of matching vertices meet, rotate so a matching side lines up, and reflect if needed. Because all the sides and angles match, the third vertices land on each other, so a sequence of rigid motions maps one triangle onto the other.
+
+lesson: Angles formed by parallel lines and a transversal | G-CO.C.9
+practice:
+mc1: Two parallel lines are cut by a transversal. Corresponding angles are | congruent | supplementary | complementary | always 90 degrees
+hint: Corresponding angles are in the same position at each intersection.
+num2: Two parallel lines are cut by a transversal. One same-side interior angle is 65 degrees. What is the other same-side interior angle in degrees? | 115
+hint: Same-side interior angles are supplementary.
+num2: Two parallel lines are cut by a transversal. Two alternate exterior angles measure (3x + 10) and (5x - 30) degrees. What is x? | 20
+hint: Alternate exterior angles are congruent, so set them equal.
+mc2: Two lines are cut by a transversal, and a pair of corresponding angles measure 82 and 84 degrees. What can you conclude? | The lines are not parallel | The lines are parallel | The lines are perpendicular | The transversal is perpendicular to both lines
+hint: The converse of the corresponding angles theorem needs the angles to be equal.
+num2: Two parallel lines are cut by a transversal. Two same-side interior angles measure 4x and (2x + 30) degrees. What is x? | 25
+hint: Same-side interior angles add to 180 degrees.
+sa2: Lines m and n are parallel and cut by a transversal. Angle 1 and angle 2 are alternate interior angles, and angle 3 is vertical to angle 1 and corresponds to angle 2. Prove that angle 1 = angle 2. | Angle 3 and angle 2 are corresponding angles of parallel lines, so angle 3 = angle 2. Angle 3 and angle 1 are vertical angles, so angle 3 = angle 1. By substitution, angle 1 = angle 2.
+quiz:
+num1: Two parallel lines are cut by a transversal. One angle is 125 degrees. What is the measure of its corresponding angle in degrees? | 125
+num2: Two parallel lines are cut by a transversal. Two alternate interior angles measure (7x - 4) and (5x + 12) degrees. What is x? | 8
+mc2: Lines m and n are cut by a transversal, and two same-side interior angles measure 100 and 80 degrees. Which is true? | m and n are parallel | m and n are perpendicular | m and n meet at a 100-degree angle | Nothing can be concluded
+mc2: Two parallel lines are cut by a transversal that is perpendicular to one of them. What angle does it make with the other line? | 90 degrees | 45 degrees | 180 degrees | It depends on the distance between the lines
+num2: Two parallel lines are cut by a transversal, and one of the eight angles is 38 degrees. What is the measure in degrees of each angle that is not congruent to it? | 142
+mc2: When two parallel lines are cut by a transversal, which pair of angles is always supplementary? | same-side interior angles | alternate interior angles | corresponding angles | vertical angles
+mc3: Line p is parallel to line q, and line q is parallel to line r. A transversal makes a 72-degree angle with line p. What angle does it make with line r in the corresponding position? | 72 degrees | 108 degrees | 18 degrees | 144 degrees
+sa2: A carpenter wants two shelves to be parallel. A brace crosses both shelves, and she measures the alternate interior angles as 58 degrees and 58 degrees. Explain what she can conclude and why. | The shelves are parallel. By the converse of the alternate interior angles theorem, if a transversal makes congruent alternate interior angles, the two lines are parallel.
+
+lesson: Triangle congruence criteria: SSS, SAS, ASA, AAS and HL | G-CO.B.8, G-CO.B.7
+practice:
+mc1: Two triangles have all three pairs of sides congruent. Which criterion proves them congruent? | SSS | SAS | ASA | HL
+hint: Count what is given: sides only.
+mc2: AB = DE, angle B = angle E and BC = EF. Which criterion proves triangle ABC congruent to triangle DEF? | SAS | SSS | ASA | AAS
+hint: Is the angle between the two sides?
+mc2: Angle A = angle D, angle B = angle E and BC = EF. Which criterion proves triangle ABC congruent to triangle DEF? | AAS | ASA | SAS | SSA
+hint: Is the given side between the two given angles?
+mc2: Two right triangles have congruent hypotenuses and one pair of congruent legs. Which criterion proves them congruent? | HL | SSA | AAA | SAS
+hint: This criterion works only for right triangles.
+mc2: Which information is NOT enough to prove two triangles congruent? | Three pairs of congruent angles | Two pairs of sides and the included angle | Three pairs of sides | Two pairs of angles and the included side
+hint: Two triangles can have the same angles but different sizes.
+sa2: Explain why ASA proves two triangles congruent, using rigid motions. | Use rigid motions to place the matching included sides on top of each other. The angles at both ends of that side match, so the other two sides leave along the same rays and meet at the same point. The third vertices coincide, so the triangles are congruent.
+quiz:
+mc1: Which is a valid triangle congruence criterion? | ASA | SSA | AAA | AA
+mc2: In triangles PQR and STU, PQ = ST, QR = TU and PR = SU. Which statement is proved? | Triangle PQR is congruent to triangle STU by SSS | The triangles are similar but not congruent | Triangle PQR is congruent to triangle UTS by SAS | Nothing can be proved
+mc2: Segments AC and BD bisect each other at point E. Which criterion proves triangle AEB congruent to triangle CED? | SAS | SSS | ASA | HL
+mc2: M is the midpoint of segment XY, and segment ZM is perpendicular to XY. Which criterion proves triangle XMZ congruent to triangle YMZ? | SAS | AAA | SSA | HL
+num2: Triangle ABC is congruent to triangle DEF by SSS. AB = 2x - 1 and DE = x + 6. What is the length of AB? | 13
+num2: Two triangles are congruent by ASA. One triangle has angles of 35 and 80 degrees. What is the third angle of the other triangle in degrees? | 65
+mc3: Kite ABCD has AB = AD and CB = CD, and diagonal AC is drawn. Which criterion proves triangle ABC congruent to triangle ADC? | SSS | SAS | ASA | HL
+sa3: Sofia says two triangles are congruent whenever two pairs of sides and one pair of angles are congruent. Explain when she is right and when she is not. | She is right when the angle is between the two sides (SAS). If the angle is not between them (SSA), two different triangles can fit the information, so congruence is not guaranteed. The exception is right triangles with a congruent hypotenuse and leg (HL).
+
+lesson: Proving theorems about triangles: isosceles triangles and midsegments | G-CO.C.10
+practice:
+mc1: In an isosceles triangle, the angles opposite the congruent sides are | congruent | supplementary | right angles | complementary
+hint: This is the base angles theorem.
+num2: An isosceles triangle has a vertex angle of 100 degrees. What is each base angle in degrees? | 40
+hint: Subtract the vertex angle from 180 and split the rest equally.
+num2: A midsegment of a triangle joins the midpoints of two sides. The third side is 18 cm long. How long is the midsegment in cm? | 9
+hint: The midsegment is parallel to the third side and half as long.
+mc2: In triangle ABC, angle A = angle C = 55 degrees. Which sides are congruent? | AB and CB | AB and AC | AC and BC | all three sides
+hint: Equal angles are opposite equal sides. Which side is opposite each angle?
+num2: The base angles of an isosceles triangle each measure (2x + 6) degrees and the vertex angle measures 4x degrees. What is x? | 21
+hint: The three angles add to 180 degrees.
+sa2: Prove that the base angles of isosceles triangle ABC with AB = AC are congruent. | Draw the bisector of angle A, meeting BC at D. AB = AC, angle BAD = angle CAD and AD = AD, so triangle ABD is congruent to triangle ACD by SAS. By CPCTC, angle B = angle C.
+quiz:
+num1: How many degrees is each angle of an equilateral triangle? | 60
+num2: A midsegment of a triangle is (2x + 1) units long, and the side parallel to it is 26 units long. What is x? | 6
+mc2: In isosceles triangle PQR with PQ = PR, angle Q = 68 degrees. What is angle P? | 44 degrees | 68 degrees | 112 degrees | 56 degrees
+mc2: Which statement is the triangle sum theorem? | The interior angles of a triangle add to 180 degrees | The exterior angles of a triangle add to 180 degrees | The longest side is opposite the largest angle | Any two sides add to more than the third side
+num2: A triangle has sides of 8, 10 and 14 cm. What is the perimeter in cm of the triangle formed by its three midsegments? | 16
+mc2: The three medians of a triangle meet at a point called the | centroid | circumcenter | incenter | orthocenter
+mc3: In triangle ABC, angle A = 50 degrees and angle B = 70 degrees. Which side is the longest? | AC | AB | BC | They are all equal
+sa3: Explain how to prove the triangle sum theorem for triangle ABC by drawing a line through B parallel to AC. | The line through B and the three angles at B along it form a straight angle of 180 degrees. The two outer angles are alternate interior angles with angles A and C, so they are congruent to them. So angle A + angle B + angle C = 180 degrees.
+
+lesson: Angle sums of polygons and properties of parallelograms | G-CO.C.10, G-CO.C.11
+practice:
+num2: What is the sum of the interior angles of an octagon in degrees? | 1080
+hint: Use (n - 2) x 180.
+num2: What is the sum of the exterior angles of any convex polygon, one at each vertex, in degrees? | 360
+hint: Picture walking all the way around the polygon and turning at each corner.
+num2: In parallelogram ABCD, angle A = 65 degrees. What is angle B in degrees? | 115
+hint: Consecutive angles of a parallelogram are supplementary.
+mc2: The diagonals of every parallelogram | bisect each other | are congruent | are perpendicular | bisect each angle
+hint: Which property is true for every parallelogram, not only rectangles or rhombuses?
+num2: In parallelogram PQRS, PQ = 3x + 4 and RS = 5x - 8. What is x? | 6
+hint: Opposite sides of a parallelogram are congruent.
+sa2: Explain why the interior angles of any quadrilateral add to 360 degrees. | A diagonal splits the quadrilateral into two triangles. Each triangle's angles add to 180 degrees, and together they make up the quadrilateral's angles, so the sum is 2 x 180 = 360 degrees.
+quiz:
+num1: What is the sum of the interior angles of a decagon (10 sides) in degrees? | 1440
+num2: Each interior angle of a regular polygon is 140 degrees. How many sides does it have? | 9
+mc2: Which quadrilateral must have congruent diagonals? | rectangle | rhombus | any parallelogram | kite
+mc2: Which quadrilateral must have perpendicular diagonals? | rhombus | rectangle | any parallelogram | trapezoid
+num2: The diagonals of parallelogram ABCD meet at E. AE = 2y + 3 and CE = 15. What is y? | 6
+num2: Four angles of a pentagon measure 100, 110, 120 and 95 degrees. What is the fifth angle in degrees? | 115
+mc3: Which condition is enough to prove that a quadrilateral is a parallelogram? | Both pairs of opposite sides are congruent | One pair of opposite sides is congruent | The diagonals are congruent | One pair of consecutive angles is supplementary
+sa2: Maya says any quadrilateral with congruent diagonals must be a rectangle. Give a counterexample and explain. | An isosceles trapezoid has congruent diagonals but is not a parallelogram, so it is not a rectangle. Congruent diagonals are not enough; the diagonals must also bisect each other.
+
+lesson: Unit review | G-CO.A.5, G-CO.B.7, G-CO.C.9, G-CO.C.10
+practice:
+mc2: Rotate the point (-1, 4) 180 degrees about the origin. | (1, -4) | (-1, -4) | (4, -1) | (-4, 1)
+hint: A 180-degree rotation changes the sign of both coordinates.
+num2: Two parallel lines are cut by a transversal. Two corresponding angles measure (6x - 5) and (4x + 25) degrees. What is x? | 15
+hint: Corresponding angles of parallel lines are congruent.
+mc2: AB = DE, angle A = angle D and angle B = angle E. Which criterion proves triangle ABC congruent to triangle DEF? | ASA | SAS | AAS | SSS
+hint: Is the side between the two angles?
+num2: What is the sum of the interior angles of a heptagon (7 sides) in degrees? | 900
+hint: How many triangles can you split it into by drawing diagonals from one vertex?
+num2: An isosceles triangle has base angles of 72 degrees. What is its vertex angle in degrees? | 36
+hint: All three angles add to 180 degrees.
+quiz:
+mc1: The interior angles of a pentagon add up to | 540 degrees | 360 degrees | 720 degrees | 900 degrees
+mc1: Each interior angle of a regular hexagon measures | 120 degrees | 108 degrees | 135 degrees | 60 degrees
+mc2: Two parallel lines are cut by a transversal. One angle is 70 degrees. Its alternate interior angle is | 70 degrees | 110 degrees | 20 degrees | 140 degrees
+mc2: Which is NOT a valid way to prove triangles congruent? | AAA | SSS | SAS | ASA
+num2: In parallelogram WXYZ, angle W = 3x degrees and angle X = (2x + 30) degrees. What is x? | 30
+mc2: Which rigid motion maps every point (x, y) to (y, x)? | A reflection across the line y = x | A reflection across the x-axis | A rotation of 90 degrees about the origin | A translation
+sa2: Explain why SSA is not enough to prove two triangles congruent. | Two different triangles can have the same two sides and a non-included angle, so the triangle is not fixed.
+
+test:
+mc2: In isosceles triangle ABC with AB = AC, angle A = 40 degrees. What is angle B? | 70 degrees | 40 degrees | 140 degrees | 100 degrees
+mc2: A rotation of 180 degrees about the origin sends (2, -3) to | (-2, 3) | (3, 2) | (-2, -3) | (2, 3)
+mc2: An exterior angle of a triangle is 120 degrees. The two remote interior angles add to | 120 degrees | 60 degrees | 240 degrees | 180 degrees
+mc3: How many sides does a regular polygon have if each exterior angle is 24 degrees? | 15 | 12 | 24 | 18
+num2: Two parallel lines are cut by a transversal. Two same-side interior angles measure 5x and (3x + 20) degrees. What is x? | 20
+num2: Each interior angle of a regular polygon is 150 degrees. How many sides does it have? | 12
+num2: The angles of a triangle measure x, 2x and 3x degrees. What is the largest angle in degrees? | 90
+num2: A banner is shaped like an isosceles triangle with a vertex angle of 30 degrees. What is each base angle in degrees? | 75
+num2: A stop sign is shaped like a regular octagon. What is the measure of each interior angle in degrees? | 135
+num2: Two angles of a triangle measure 47 and 68 degrees. What is the measure in degrees of the exterior angle at the third vertex? | 115
+mc1: Reflect the point (5, 2) across the x-axis. | (5, -2) | (-5, 2) | (-5, -2) | (2, 5)
+mc2: Rotate the point (1, 6) 90 degrees counterclockwise about the origin. | (-6, 1) | (6, -1) | (-1, -6) | (6, 1)
+mc2: Triangle KLM is congruent to triangle XYZ. Which angle corresponds to angle M? | angle Z | angle X | angle Y | angle K
+mc2: When two parallel lines are cut by a transversal, which pair of angles is always congruent? | alternate exterior angles | same-side interior angles | a linear pair | same-side exterior angles
+mc2: Right triangles ABC and DEF have right angles at C and F, AB = DE and AC = DF. Which criterion proves them congruent? | HL | SAS | SSS | AAA
+mc2: A midsegment of a triangle is 11 cm long. How long is the side parallel to it? | 22 cm | 11 cm | 5.5 cm | 33 cm
+mc2: In parallelogram ABCD, which statement must be true? | Angle A = angle C | Angle A = angle B | AC = BD | AB = BC
+mc3: A quadrilateral's diagonals bisect each other and are perpendicular. What is the most specific name you can be sure of? | rhombus | square | rectangle | trapezoid
+sa2: Prove that vertical angles are congruent. | Angles 1 and 2 form a linear pair, so 1 + 2 = 180. Angles 2 and 3 form a linear pair, so 2 + 3 = 180. So 1 + 2 = 2 + 3, and angle 1 = angle 3.
+sa2: Explain which rigid motions map triangle ABC with A(1,1), B(3,1), C(1,4) onto A'(-1,1), B'(-3,1), C'(-1,4). | A reflection across the y-axis; it preserves lengths and angles, so the triangles are congruent.
+sa2: Lines a and b are cut by a transversal, and a pair of alternate interior angles measure 47 degrees and 133 degrees. Explain whether a and b are parallel. | They are not parallel. Alternate interior angles must be congruent for the lines to be parallel, and 47 and 133 degrees are not equal (they are supplementary).
+task3: Given parallelogram ABCD with diagonal AC, prove that triangle ABC is congruent to triangle CDA. Write a two-column or paragraph proof naming each reason, then use it to explain why opposite sides of a parallelogram are congruent. | Complete proof by ASA (alternate interior angles and shared side AC) with all reasons, and correct use of CPCTC for opposite sides. | Correct proof with one missing reason. | Correct congruence criterion with gaps in the reasoning. | Little correct reasoning.
+
+unit: Similarity and right triangle trigonometry | G-SRT.A.2, G-SRT.B.5, G-SRT.C.6, G-SRT.C.8 | g10sim, g10sin
+el: Post SOH-CAH-TOA with a labeled right triangle (opposite, adjacent, hypotenuse) and the words scale factor, proportional and corresponding. Let students sketch and label every word problem before solving.
+
+lesson: Dilations and scale factor | G-SRT.A.1, G-SRT.A.2
+practice:
+mc1: Dilate the point (4, -6) by a scale factor of 1/2 centered at the origin. | (2, -3) | (8, -12) | (4.5, -5.5) | (2, -6)
+hint: Multiply each coordinate by the scale factor.
+num2: A segment 7 cm long is dilated by a scale factor of 3. How long is the image in cm? | 21
+hint: A dilation multiplies every length by the scale factor.
+mc2: A dilation has a scale factor of 0.4. The image is | a reduction | an enlargement | congruent to the original | a reflection
+hint: Compare 0.4 with 1.
+num2: A triangle with a 40-degree angle is dilated by a scale factor of 5. What is the measure in degrees of the matching angle in the image? | 40
+hint: Dilations change lengths, not angles.
+mc2: A line that does not pass through the center of a dilation is dilated. What is its image? | a line parallel to the original | a line perpendicular to the original | the same line | a curve
+hint: Dilations keep the direction of lines.
+sa2: Rectangle ABCD is dilated about the origin, and A(2, 3) maps to A'(6, 9). Find the scale factor and the image of C(5, -1), and explain. | The scale factor is 3, because 6/2 = 9/3 = 3. Multiply C's coordinates by 3: C' = (15, -3).
+quiz:
+mc1: Dilate the point (-3, 5) by a scale factor of 2 centered at the origin. | (-6, 10) | (-1, 7) | (-6, 5) | (6, -10)
+num2: A photo 4 inches by 6 inches is enlarged so that the 6-inch side becomes 15 inches. How long does the 4-inch side become, in inches? | 10
+num2: A triangle has a perimeter of 24 cm. It is dilated by a scale factor of 1.5. What is the perimeter of the image in cm? | 36
+mc2: A dilation centered at the origin maps (8, 12) to (2, 3). What is the scale factor? | 1/4 | 4 | 6 | -4
+num3: A square with side 3 cm is dilated by a scale factor of 4. The image's area is how many times the original area? | 16
+mc2: Which property is NOT preserved by a dilation with scale factor 2? | length | angle measure | parallel lines | shape
+mc3: The point (2, 3) is dilated by a scale factor of 3 centered at (1, 1). Where does it land? | (4, 7) | (6, 9) | (3, 5) | (5, 7)
+sa2: A map uses a scale of 1 cm to 25 km. Two towns are 7.2 cm apart on the map. Explain how to find the real distance and give it. | Multiply the map distance by 25 km per cm: 7.2 x 25 = 180 km.
+
+lesson: Proving triangles similar: AA, SAS and SSS similarity | G-SRT.A.3, G-SRT.B.5
+practice:
+mc1: Two triangles each have angles of 50 degrees and 60 degrees. Which statement is true? | They are similar by AA | They are congruent by ASA | They are not similar | Nothing can be concluded
+hint: Find the third angle of each triangle.
+mc2: Triangle ABC has sides 3, 4 and 5, and triangle DEF has sides 9, 12 and 15. Which statement is true? | They are similar by SSS similarity | They are congruent by SSS | They are not similar | They are similar by AA only
+hint: Compare the ratios of matching sides.
+mc2: In triangles PQR and XYZ, angle P = angle X, PQ = 4, PR = 6, XY = 10 and XZ = 15. Which statement is true? | They are similar by SAS similarity | They are congruent by SAS | They are not similar | They are similar by SSS similarity
+hint: Check whether 4/10 equals 6/15, and where the angle is.
+num2: Triangle ABC is similar to triangle DEF with AB = 6, DE = 9 and BC = 8. What is EF? | 12
+hint: Find the scale factor from AB to DE.
+mc2: Which two triangles must be similar? | Two isosceles right triangles | Two isosceles triangles | Two right triangles | Two obtuse triangles
+hint: Which pair has all of its angles fixed?
+sa2: Segment DE is parallel to side BC of triangle ABC, with D on AB and E on AC. Explain why triangle ADE is similar to triangle ABC. | Angle A is shared. Angle ADE and angle ABC are corresponding angles because DE is parallel to BC, so they are congruent. Two pairs of congruent angles make the triangles similar by AA.
+quiz:
+mc1: Which is NOT a similarity criterion for triangles? | SSA similarity | AA | SAS similarity | SSS similarity
+mc2: One triangle has sides 5, 7 and 10. Another has sides 10, 14 and 21. Which statement is true? | They are not similar because the side ratios are not all equal | They are similar by SSS similarity | They are similar by AA | They are congruent
+num2: Triangle JKL is similar to triangle MNO, with a scale factor of 2/3 from JKL to MNO. JK = 15. What is MN? | 10
+num2: Triangle RST is similar to triangle UVW. RS = 8, ST = 10 and UV = 12. What is VW? | 15
+mc2: One triangle has angles of 40, 65 and 75 degrees. Another has angles of 75, 40 and 65 degrees. Which must be true? | They are similar | They are congruent | They are not similar | They are right triangles
+num2: The perimeters of two similar triangles are 30 cm and 45 cm. The shortest side of the smaller triangle is 6 cm. What is the shortest side of the larger triangle in cm? | 9
+mc3: In right triangle ABC with right angle C, altitude CD is drawn to hypotenuse AB. Which smaller triangles are similar to triangle ABC? | both triangle ACD and triangle CBD | only triangle ACD | only triangle CBD | neither smaller triangle
+sa3: Ken says any two rectangles are similar because all their angles are 90 degrees. Explain his mistake with an example. | Similar polygons need equal angles and proportional sides. A 2 by 4 rectangle and a 3 by 3 square both have 90-degree angles, but 2/3 is not equal to 4/3, so they are not similar.
+
+lesson: Proportions in triangles: side splitter and indirect measurement | G-SRT.B.4, G-SRT.B.5
+practice:
+num2: In triangle ABC, DE is parallel to BC, with D on AB and E on AC. AD = 4, DB = 6 and AE = 6. What is EC? | 9
+hint: A line parallel to one side divides the other two sides proportionally: AD/DB = AE/EC.
+num2: A 1.5-meter post casts a 2-meter shadow at the same time that a flagpole casts a 12-meter shadow. How tall is the flagpole in meters? | 9
+hint: Set up height over shadow for both objects.
+mc2: In triangle PQR, ST is parallel to QR, with S on PQ and T on PR. PS = 5, PQ = 15 and QR = 21. What is ST? | 7 | 14 | 10.5 | 63
+hint: Triangle PST is similar to triangle PQR. Find the scale factor PS/PQ.
+num2: A mirror lies on the ground 3 m from Ben, whose eyes are 1.6 m above the ground. He sees the top of a tree in the mirror, and the tree is 15 m from the mirror. How tall is the tree in meters? | 8
+hint: The two triangles are similar because the angles at the mirror are equal.
+mc2: A line divides two sides of a triangle proportionally. What must be true about the line? | It is parallel to the third side | It is perpendicular to the third side | It bisects the third side | It passes through the opposite vertex
+hint: This is the converse of the triangle proportionality theorem.
+sa2: In triangle ABC, the bisector of angle A meets BC at D. AB = 6, AC = 9 and BC = 10. Explain how to find BD and give it. | An angle bisector divides the opposite side in the ratio of the other two sides: BD/DC = 6/9 = 2/3. So BD is 2/5 of 10, which is 4.
+quiz:
+num2: In triangle XYZ, MN is parallel to YZ, with M on XY and N on XZ. XM = 3, MY = 9 and XN = 4. What is NZ? | 12
+num2: A 6-foot-tall person casts a 9-foot shadow at the same time that a building casts a 60-foot shadow. How tall is the building in feet? | 40
+mc2: In triangle ABC, DE is parallel to BC, with D on AB and E on AC. AD = 2, AB = 8 and DE = 3. What is BC? | 12 | 6 | 4 | 24
+num2: Two similar triangles have corresponding sides of 4 cm and 10 cm. The smaller triangle's area is 12 square cm. What is the larger triangle's area in square cm? | 75
+mc2: D and E are on sides AB and AC of triangle ABC, with AD = 3, DB = 5, AE = 4.5 and EC = 7.5. Is DE parallel to BC? | Yes, because 3/5 = 4.5/7.5 | No, because 3/5 is not equal to 4.5/7.5 | Yes, because 3 + 5 = 8 | It cannot be decided
+num3: Three parallel streets cross two avenues. On the first avenue, the blocks between the streets are 120 m and 180 m long. On the second avenue, the first block is 150 m long. How long in meters is the second block on the second avenue? | 225
+mc3: A 2-meter stick casts a 1.5-meter shadow at the same time that a tower casts a 45-meter shadow. How tall is the tower? | 60 m | 33.75 m | 67.5 m | 90 m
+sa2: Explain why measuring heights with shadows works. | The sun's rays are parallel, so they meet the ground at the same angle for both objects. Each object and its shadow form a right triangle, so the triangles are similar by AA and their heights and shadows are proportional.
+
+lesson: The Pythagorean theorem and special right triangles | G-SRT.B.4, G-SRT.C.8
+practice:
+num1: A right triangle has legs of 9 and 12. How long is the hypotenuse? | 15
+hint: Use a^2 + b^2 = c^2.
+num2: A 13-foot ladder leans against a wall with its base 5 feet from the wall. How high up the wall does it reach in feet? | 12
+hint: The ladder is the hypotenuse.
+mc2: In a 30-60-90 triangle, the shorter leg is 4. How long is the hypotenuse? | 8 | 4 times the square root of 3 | 4 times the square root of 2 | 6
+hint: The hypotenuse is twice the shorter leg.
+mc2: In a 30-60-90 triangle, the shorter leg is 6. How long is the longer leg? | 6 times the square root of 3 | 12 | 3 | 6 times the square root of 2
+hint: The longer leg is the shorter leg times the square root of 3.
+mc2: A triangle has sides 7, 24 and 25. What kind of triangle is it? | right | acute | obtuse | not a triangle
+hint: Check whether 7^2 + 24^2 equals 25^2.
+sa2: A square has a diagonal of 10 cm. Explain how to find its side length. | The diagonal splits the square into two 45-45-90 triangles with the diagonal as the hypotenuse. Each side is 10 divided by the square root of 2, which is 5 times the square root of 2, about 7.07 cm.
+quiz:
+num1: A right triangle has legs of 8 and 15. How long is the hypotenuse? | 17
+num2: A rectangular screen is 48 inches wide and 36 inches tall. How long is its diagonal in inches? | 60
+mc2: In a 45-45-90 triangle, the hypotenuse is 8. How long is each leg? | 4 times the square root of 2 | 4 | 8 times the square root of 2 | 2 times the square root of 2
+mc2: An equilateral triangle has sides of 10 cm. What is its height? | 5 times the square root of 3 cm | 5 cm | 10 times the square root of 3 cm | 5 times the square root of 2 cm
+mc2: A triangle has sides 6, 8 and 11. What kind of triangle is it? | obtuse | right | acute | equilateral
+num2: A hiker walks 6 km north and then 8 km east. How far is she from her starting point in a straight line, in km? | 10
+num3: A box is 3 ft long, 4 ft wide and 12 ft tall. How long in feet is the longest straight rod that fits inside, from one corner to the opposite corner? | 13
+sa3: Explain how the converse of the Pythagorean theorem can check whether the corner of a garden bed is square, using a 3-4-5 example. | Mark 3 ft along one side and 4 ft along the other side from the corner. If the distance between the marks is 5 ft, then 3^2 + 4^2 = 5^2, so by the converse of the Pythagorean theorem the corner is a right angle.
+
+lesson: Trigonometric ratios: sine, cosine and tangent | G-SRT.C.6, G-SRT.C.7
+practice:
+mc1: In right triangle ABC with right angle C, which ratio is cos(A)? | AC / AB | BC / AB | BC / AC | AB / AC
+hint: Cosine is adjacent over hypotenuse. Which leg touches angle A?
+mc2: A right triangle has legs 5 and 12 and hypotenuse 13. Angle A is opposite the side of length 5. What is tan(A)? | 5/12 | 12/5 | 5/13 | 12/13
+hint: Tangent is opposite over adjacent.
+mc2: In a right triangle, sin(A) = 3/5. B is the other acute angle. What is cos(B)? | 3/5 | 4/5 | 5/3 | 3/4
+hint: The side opposite A is adjacent to B.
+num2: sin(32 degrees) = cos(x degrees), where x is between 0 and 90. What is x? | 58
+hint: The sine and cosine of complementary angles are equal.
+mc2: In right triangle PQR with right angle R, PR = 8, QR = 15 and PQ = 17. What is sin(P)? | 15/17 | 8/17 | 15/8 | 8/15
+hint: Which side is opposite angle P?
+sa2: Explain why the tangent of an acute angle can be greater than 1, but the sine cannot. | Sine is opposite over hypotenuse, and the hypotenuse is the longest side, so the sine is less than 1. Tangent is opposite over adjacent, and the opposite leg can be longer than the adjacent leg, so the tangent can be greater than 1.
+quiz:
+mc1: In a right triangle, which ratio is tan(A)? | opposite / adjacent | adjacent / opposite | opposite / hypotenuse | adjacent / hypotenuse
+mc2: A right triangle has sides 7, 24 and 25. Angle B is opposite the side of length 24. What is cos(B)? | 7/25 | 24/25 | 7/24 | 24/7
+num2: cos(20 degrees) = sin(y degrees), where y is between 0 and 90. What is y? | 70
+mc2: Angle A is acute and cos(A) = 0.6. What is sin(A)? | 0.8 | 0.4 | 0.6 | 1.6
+num2: A right triangle has a hypotenuse of 10 and sin(A) = 0.6. How long is the side opposite angle A? | 6
+mc2: A right triangle has sides 9, 12 and 15. Angle A is opposite the side of length 9. What is tan(A)? | 3/4 | 4/3 | 3/5 | 4/5
+mc3: Angle A is acute and tan(A) = 1. Which statement is true? | sin(A) = cos(A) | sin(A) = 1 | cos(A) = 0 | sin(A) = 2cos(A)
+sa2: Explain why sin(40 degrees) = cos(50 degrees). | In a right triangle the two acute angles are complementary. The side opposite the 40-degree angle is adjacent to the 50-degree angle, so opposite over hypotenuse for 40 degrees equals adjacent over hypotenuse for 50 degrees.
+
+lesson: Solving right triangles: angles of elevation and depression | G-SRT.C.8
+practice:
+mc2: A right triangle has a hypotenuse of 12 and an acute angle of 35 degrees. To the nearest tenth, how long is the side opposite the 35-degree angle? | 6.9 | 9.8 | 8.4 | 20.9
+hint: Opposite and hypotenuse are linked by sine.
+mc2: A kite string 20 m long makes a 50-degree angle with the level ground. To the nearest tenth of a meter, how far horizontally is the kite from the person holding the string? | 12.9 m | 15.3 m | 23.8 m | 16.8 m
+hint: The horizontal distance is adjacent to the 50-degree angle.
+mc2: A right triangle has legs of 5 and 12. To the nearest tenth of a degree, what is the angle opposite the leg of length 5? | 22.6 degrees | 67.4 degrees | 24.6 degrees | 65.4 degrees
+hint: Use the inverse tangent of opposite over adjacent.
+mc2: From the top of a lighthouse, the angle of depression to a boat is 12 degrees. What is the angle of elevation from the boat to the top of the lighthouse? | 12 degrees | 78 degrees | 168 degrees | 24 degrees
+hint: The horizontal line at the top is parallel to the water, so the angles are alternate interior angles.
+mc2: A tree casts an 8 m shadow when the sun's angle of elevation is 62 degrees. To the nearest tenth of a meter, how tall is the tree? | 15.0 m | 4.3 m | 7.1 m | 9.1 m
+hint: The height is opposite the angle and the shadow is adjacent to it.
+sa2: A ladder 10 m long reaches 7 m up a wall. Explain how to find the angle the ladder makes with the ground, and give it to the nearest degree. | sin(angle) = 7/10, so the angle is the inverse sine of 0.7, about 44 degrees.
+quiz:
+mc2: A plane climbs at a constant angle of 25 degrees above level ground. After it travels 100 m horizontally, how high is it, to the nearest tenth of a meter? | 46.6 m | 42.3 m | 90.6 m | 214.5 m
+mc2: A right triangle has a 40-degree angle, and the leg opposite that angle is 15 cm. To the nearest tenth, how long is the hypotenuse? | 23.3 cm | 9.6 cm | 19.6 cm | 17.9 cm
+mc2: In a right triangle, the leg adjacent to angle A is 6 and the hypotenuse is 9. To the nearest degree, what is angle A? | 48 degrees | 42 degrees | 34 degrees | 56 degrees
+mc2: From the top of a cliff 60 m high, the angle of depression to a boat is 20 degrees. To the nearest meter, how far is the boat from the base of the cliff? | 165 m | 22 m | 64 m | 175 m
+num2: In a right triangle, the hypotenuse is 14 and one acute angle is 60 degrees. How long is the leg adjacent to the 60-degree angle? | 7
+mc2: A builder wants a ramp that makes an angle of at most 5 degrees with the ground. Which ramp meets this goal? | rises 1 ft over 15 ft horizontally | rises 1 ft over 8 ft horizontally | rises 2 ft over 10 ft horizontally | rises 3 ft over 12 ft horizontally
+num3: Lena stands 40 m from a tree on level ground. Her eyes are 1.5 m above the ground, and the angle of elevation from her eyes to the top of the tree is 45 degrees. How tall is the tree in meters? | 41.5
+sa3: Two students measure the angle of elevation to the top of the same flagpole, one from 10 m away and one from 20 m away. Explain which angle is larger and why. | The angle from 10 m is larger. The height is the same, so tan(angle) = height / distance is greater when the distance is smaller, and a greater tangent means a greater acute angle.
+
+lesson: Unit review | G-SRT.A.2, G-SRT.B.5, G-SRT.C.6, G-SRT.C.8
+practice:
+mc2: Dilate the point (6, -9) by a scale factor of 2/3 centered at the origin. | (4, -6) | (9, -13.5) | (6.67, -9.67) | (4, -9)
+hint: Multiply each coordinate by 2/3.
+num2: Triangle ABC is similar to triangle DEF. AB = 5, DE = 15 and AC = 7. What is DF? | 21
+hint: The scale factor from ABC to DEF is 15/5.
+num2: A right triangle has a hypotenuse of 26 and a leg of 10. How long is the other leg? | 24
+hint: Subtract the square of the leg from the square of the hypotenuse.
+mc2: In right triangle XYZ with right angle Z, XZ = 20, YZ = 21 and XY = 29. What is cos(X)? | 20/29 | 21/29 | 20/21 | 21/20
+hint: Cosine of X is the leg next to X over the hypotenuse.
+mc2: In a 30-60-90 triangle, the hypotenuse is 18. How long is the shorter leg? | 9 | 9 times the square root of 3 | 18 times the square root of 3 | 6
+hint: The shorter leg is half the hypotenuse.
+quiz:
+mc1: Triangles are similar with scale factor 3. A side of 4 in the small one matches what in the large one? | 12 | 7 | 4/3 | 1
+mc1: In a right triangle, sin(A) equals | opposite / hypotenuse | adjacent / hypotenuse | opposite / adjacent | hypotenuse / opposite
+mc2: A 6-foot person casts a 4-foot shadow. A tree casts a 20-foot shadow. How tall is the tree? | 30 feet | 13.3 feet | 26 feet | 24 feet
+mc2: In a right triangle the hypotenuse is 10 and angle A is 30 degrees. The side opposite A is | 5 | 8.66 | 10 | 20
+num2: A model car is built at a scale of 1 to 24. The real car is 432 cm long. How long is the model in cm? | 18
+mc2: Which pair of triangles must be similar? | Two triangles that each have angles of 35 and 90 degrees | Two triangles that each have a 35-degree angle | Two triangles with one pair of proportional sides | Two triangles with equal perimeters
+sa2: Explain why sin(30 degrees) has the same value in every right triangle with a 30-degree angle. | All such triangles are similar, so the ratio of opposite to hypotenuse stays the same.
+
+test:
+mc2: tan(45 degrees) = | 1 | 0 | 0.5 | 1.41
+mc2: Which is enough to show two triangles are similar? | Two pairs of congruent angles | One pair of congruent angles | One pair of proportional sides | Equal perimeters
+mc2: In a 45-45-90 triangle with legs 5, the hypotenuse is | 5 times the square root of 2 | 10 | 5 | 25
+mc3: A ramp rises 3 feet over a horizontal distance of 20 feet. About what angle does it make with the ground? | 8.5 degrees | 81.5 degrees | 3 degrees | 15 degrees
+num2: A triangle with sides 4, 6 and 7 is dilated by a scale factor of 2.5. How long is the longest side of the image? | 17.5
+num2: A 5-foot-tall girl casts a 3-foot shadow at the same time that a telephone pole casts a 21-foot shadow. How tall is the pole in feet? | 35
+num2: In triangle ABC, DE is parallel to BC, with D on AB and E on AC. AD = 5, DB = 10 and AE = 7. How long is AC? | 21
+num2: A 25-foot ladder leans against a wall with its base 7 feet from the wall. How high up the wall does it reach in feet? | 24
+num2: A right triangle has a hypotenuse of 20 and a 30-degree angle. How long is the leg opposite the 30-degree angle? | 10
+mc1: A dilation has a scale factor of 3. Which statement is true about the image? | It is larger and similar to the original | It is smaller and similar to the original | It is congruent to the original | Its angles are 3 times as large
+mc2: Triangle PQR has sides 6, 8 and 9, and triangle STU has sides 12, 16 and 18. Which statement is true? | They are similar by SSS similarity | They are congruent | They are not similar | They are similar only by AA
+mc2: In right triangle ABC with right angle C, AC = 9, BC = 40 and AB = 41. What is sin(A)? | 40/41 | 9/41 | 9/40 | 40/9
+mc2: A is an acute angle with sin(A) = 0.28. What is cos(90 degrees - A)? | 0.28 | 0.72 | 0.96 | 3.57
+mc2: Two similar rectangles have a scale factor of 3. How do their areas compare? | The larger area is 9 times the smaller area | The larger area is 3 times the smaller area | The larger area is 6 times the smaller area | The areas are equal
+mc2: A guy wire 40 m long runs from the top of a tower to the ground and makes a 58-degree angle with the ground. To the nearest tenth of a meter, how tall is the tower? | 33.9 m | 21.2 m | 64.0 m | 25.0 m
+mc2: A right triangle has a leg of 4 and a hypotenuse of 7. To the nearest tenth of a degree, what is the angle opposite the leg of length 4? | 34.8 degrees | 55.2 degrees | 29.7 degrees | 60.3 degrees
+mc3: A straight road rises at a constant angle of 6 degrees. After a car has moved 200 m horizontally, how much higher is it, to the nearest meter? | 21 m | 12 m | 199 m | 1903 m
+mc3: Triangle ABC is similar to triangle DEF with a scale factor of 4 from ABC to DEF. Which statement is true? | The angles are equal and the perimeter of DEF is 4 times the perimeter of ABC | The angles of DEF are 4 times as large | The perimeters are equal | The angles are equal and the perimeter of DEF is 16 times the perimeter of ABC
+sa2: Explain why all equilateral triangles are similar. | Every angle is 60 degrees, so any two have congruent angles (AA).
+sa2: A ladder makes a 70-degree angle with the ground and reaches 15 feet up a wall. How long is the ladder? Show the ratio. | sin 70 = 15 / L, so L = 15 / 0.94 = about 16 feet.
+sa2: Explain how to find the height of a tree using a mirror on the ground, and why the method works. | Place the mirror on the ground and step back until you see the treetop in it. Measure your eye height, your distance to the mirror and the mirror's distance to the tree. The angles at the mirror are equal and both triangles have right angles, so they are similar by AA, and tree height / tree distance = eye height / your distance.
+task3: You stand 50 meters from a building and measure the angle to the top as 38 degrees. Your eyes are 1.6 m above the ground. Find the building's height, draw and label a diagram, and explain how an error of 2 degrees in your angle would change the answer. | About 40.7 m (50 tan 38 + 1.6), clear diagram, compares with 36 and 40 degrees (about 37.9 m and 43.6 m) and explains the sensitivity. | Correct height and diagram, weak error analysis. | Correct setup with a trig or eye-height error. | Little correct work.
+
+unit: Coordinate geometry | G-GPE.B.4, G-GPE.B.5, G-GPE.B.6, G-GPE.B.7 | g10dist, g10mid
+el: Give students graph paper for every item and a formula card (distance, midpoint, slope, circle equation) with one worked example each. Pre-teach parallel, perpendicular, midpoint and partition.
+
+lesson: Distance and midpoint formulas | G-GPE.B.7, G-GPE.B.4
+practice:
+num1: What is the distance between (2, 3) and (2, 11)? | 8
+hint: The points are on the same vertical line.
+num2: What is the distance between (-1, 2) and (5, 10)? | 10
+hint: Find the horizontal and vertical changes, then use the Pythagorean theorem.
+mc2: What is the midpoint of (-4, 7) and (6, -1)? | (1, 3) | (5, -4) | (2, 6) | (1, 4)
+hint: Average the x-coordinates and average the y-coordinates.
+mc2: What is the distance between (0, 0) and (3, 3)? | 3 times the square root of 2 | 6 | 3 | 9
+hint: Both the horizontal and the vertical change are 3.
+num2: The midpoint of segment PQ is (2, -1) and P is (-3, 4). What is the x-coordinate of Q? | 7
+hint: The midpoint's x-coordinate is the average of the endpoints' x-coordinates.
+sa2: Explain how the distance formula comes from the Pythagorean theorem. | The horizontal and vertical changes between two points are the legs of a right triangle, and the segment between the points is the hypotenuse. So d^2 = (x2 - x1)^2 + (y2 - y1)^2, and d is the square root of that.
+quiz:
+num1: What is the distance between (-6, 4) and (3, 4)? | 9
+num2: What is the distance between (1, -2) and (13, 3)? | 13
+mc2: What is the midpoint of (3, -5) and (-7, 9)? | (-2, 2) | (5, -7) | (-4, 4) | (-2, 7)
+num2: A map grid uses kilometers. A school is at (2, 1) and a library is at (8, 9). How far apart are they in a straight line, in km? | 10
+mc2: The endpoints of a diameter of a circle are (-2, 3) and (6, 3). What is the center of the circle? | (2, 3) | (4, 0) | (2, 0) | (4, 3)
+num2: The midpoint of AB is (5, 5) and A is (1, 8). What is the y-coordinate of B? | 2
+mc3: Which point is the same distance from the origin as (5, 12)? | (13, 0) | (12, 12) | (5, 5) | (17, 0)
+sa2: A student says the distance from (1, 2) to (4, 6) is 3 + 4 = 7. Explain the mistake and find the distance. | Adding the changes gives the length of a path along the grid lines, not a straight line. The straight-line distance is the square root of 3^2 + 4^2 = 25, which is 5.
+
+lesson: Slopes of parallel and perpendicular lines | G-GPE.B.5
+practice:
+mc1: What is the slope of the line through (1, 2) and (4, 11)? | 3 | 1/3 | 9 | -3
+hint: Slope is the change in y over the change in x.
+mc2: What is the slope of a line perpendicular to y = -4x + 3? | 1/4 | -1/4 | 4 | -4
+hint: Perpendicular slopes are negative reciprocals.
+mc2: Which line is parallel to 2x + y = 7? | y = -2x + 1 | y = 2x + 7 | y = 1/2 x - 3 | y = -1/2 x
+hint: Rewrite 2x + y = 7 in slope-intercept form.
+mc2: Which equation is the line through (0, -2) that is parallel to y = 5x + 1? | y = 5x - 2 | y = -5x - 2 | y = 1/5 x - 2 | y = 5x + 2
+hint: Parallel lines have the same slope, and (0, -2) gives the y-intercept.
+num2: The line through (2, k) and (6, 9) is parallel to y = 2x - 5. What is k? | 1
+hint: Set the slope between the two points equal to 2.
+sa2: Explain why a horizontal line and a vertical line are perpendicular even though you cannot multiply their slopes to get -1. | A horizontal line has slope 0 and a vertical line has an undefined slope, so the product rule cannot be used. They still meet at a right angle because one runs in the x-direction and the other in the y-direction.
+quiz:
+mc1: What is the slope of the line through (-2, 5) and (3, -5)? | -2 | 2 | -1/2 | 0
+mc2: Which line is perpendicular to y = 3/5 x - 2? | y = -5/3 x + 4 | y = 3/5 x + 4 | y = 5/3 x | y = -3/5 x
+mc2: Two lines have slopes -2/7 and 7/2. How are they related? | They are perpendicular | They are parallel | They are the same line | They are neither parallel nor perpendicular
+mc2: Which equation is the line through (3, 1) that is parallel to y = -2x + 8? | y = -2x + 7 | y = -2x + 1 | y = 1/2 x - 1/2 | y = -2x - 5
+num2: The line through (1, 4) and (5, m) is perpendicular to a line with slope 2. What is m? | 2
+num2: Line p passes through (0, 3) and is perpendicular to y = x. What is the y-coordinate of the point on line p where x = 4? | -1
+mc3: A quadrilateral has vertices A(0, 0), B(3, 1), C(4, 4) and D(1, 3). Which statement about its diagonals AC and BD is true? | They are perpendicular | They are parallel | They have the same slope | Neither slope is defined
+sa2: Explain how to write the equation of the line through (4, -1) that is perpendicular to y = 2x + 3, and write it. | The perpendicular slope is -1/2. In point-slope form, y + 1 = -1/2 (x - 4), which simplifies to y = -1/2 x + 1.
+
+lesson: Partitioning segments and finding perimeter and area | G-GPE.B.6, G-GPE.B.7
+practice:
+mc2: Point P is 1/3 of the way from A(0, 0) to B(9, 6). Where is P? | (3, 2) | (6, 4) | (4.5, 3) | (1, 2)
+hint: Move 1/3 of the change in x and 1/3 of the change in y from A.
+mc2: Point P divides the segment from A(2, 1) to B(10, 5) in the ratio 1 : 3. Where is P? | (4, 2) | (6, 3) | (8, 4) | (4.67, 2.33)
+hint: A ratio of 1 : 3 means P is 1/4 of the way from A to B.
+num2: What is the area of the rectangle with vertices (1, 1), (7, 1), (7, 5) and (1, 5)? | 24
+hint: Find the length and width by counting units.
+num2: What is the area of the triangle with vertices (0, 0), (8, 0) and (3, 6)? | 24
+hint: Use the side on the x-axis as the base. The height is the distance from the third vertex to that base.
+num2: What is the perimeter of the triangle with vertices (0, 0), (6, 0) and (6, 8)? | 24
+hint: Two sides lie along grid lines. Use the distance formula for the third.
+sa2: Explain how to find the point 2/5 of the way from A(-5, 2) to B(10, 12), and give the point. | The change from A to B is 15 in x and 10 in y. Take 2/5 of each, 6 and 4, and add them to A: (-5 + 6, 2 + 4) = (1, 6).
+quiz:
+mc2: Point Q is 3/4 of the way from A(0, 4) to B(8, 0). Where is Q? | (6, 1) | (2, 3) | (4, 2) | (6, 3)
+num2: What is the area of the triangle with vertices (2, 1), (2, 9) and (7, 4)? | 20
+num2: What is the perimeter of the rectangle with vertices (-3, 2), (5, 2), (5, -4) and (-3, -4)? | 28
+mc2: Point P divides the segment from A(-4, -2) to B(6, 8) in the ratio 2 : 3. Where is P? | (0, 2) | (2, 4) | (1, 3) | (-2, 0)
+num2: What is the area of the parallelogram with vertices (0, 0), (5, 0), (7, 4) and (2, 4)? | 20
+num3: A park map is drawn on a grid where each unit is 10 meters. A triangular garden has corners at (0, 0), (6, 0) and (0, 8). How many meters of fence go all the way around it? | 240
+mc3: A rectangle has vertices (0, 0), (4, 0), (4, 3) and (0, 3). A student says its diagonal is 7 units long. What is the correct length? | 5 units | 7 units | 25 units | 12 units
+sa2: Explain how to find the area of the triangle with vertices (1, 1), (5, 2) and (2, 6) by drawing a rectangle around it, and give the area. | Draw the rectangle from (1, 1) to (5, 6), with area 4 x 5 = 20. Subtract the three right triangles outside the triangle: (4 x 1)/2 = 2, (3 x 4)/2 = 6 and (1 x 5)/2 = 2.5. The area is 20 - 10.5 = 9.5 square units.
+
+lesson: Coordinate proofs and equations of circles | G-GPE.B.4, G-GPE.A.1
+practice:
+mc1: What are the center and radius of (x - 3)^2 + (y + 5)^2 = 16? | center (3, -5), radius 4 | center (-3, 5), radius 4 | center (3, -5), radius 16 | center (3, 5), radius 4
+hint: Compare with (x - h)^2 + (y - k)^2 = r^2.
+mc2: Which equation is the circle with center (0, 0) that passes through (6, 8)? | x^2 + y^2 = 100 | x^2 + y^2 = 10 | x^2 + y^2 = 14 | x^2 + y^2 = 48
+hint: The radius is the distance from the center to the point.
+mc2: To prove that a quadrilateral on a grid is a parallelogram, which is enough? | Both pairs of opposite sides have equal slopes | One pair of sides has equal length | The diagonals have equal length | All angles are acute
+hint: Parallel sides have equal slopes.
+mc2: Does the point (3, 4) lie on the circle x^2 + y^2 = 25? | Yes, because 9 + 16 = 25 | No, because 3 + 4 is not 25 | No, because 3 x 4 is not 25 | Yes, because 3 + 4 = 7
+hint: Substitute the point into the equation.
+num2: A circle has center (1, 2) and passes through (4, 6). What is its radius? | 5
+hint: Use the distance formula between the center and the point.
+sa2: Explain how to use coordinates to show that the diagonals of the rectangle with vertices (0, 0), (6, 0), (6, 4) and (0, 4) bisect each other. | Find the midpoint of each diagonal. The diagonal from (0, 0) to (6, 4) has midpoint (3, 2). The diagonal from (6, 0) to (0, 4) also has midpoint (3, 2). Since the midpoints are the same point, the diagonals bisect each other.
+quiz:
+mc1: What is the radius of (x + 1)^2 + (y - 7)^2 = 49? | 7 | 49 | 1 | 24.5
+mc2: Which equation is the circle with center (-2, 4) and radius 5? | (x + 2)^2 + (y - 4)^2 = 25 | (x - 2)^2 + (y + 4)^2 = 25 | (x + 2)^2 + (y - 4)^2 = 5 | (x - 2)^2 + (y - 4)^2 = 25
+mc2: Complete the square to find the center of the circle x^2 + y^2 - 6x + 4y - 3 = 0. | (3, -2) | (-3, 2) | (6, -4) | (3, 2)
+num2: What is the radius of the circle x^2 + y^2 - 6x + 4y - 3 = 0? | 4
+mc2: A triangle has vertices (0, 0), (4, 0) and (2, 2 times the square root of 3). What type of triangle is it? | equilateral | right isosceles | scalene | obtuse
+num2: All four sides of the quadrilateral with vertices (0, 0), (5, 0), (8, 4) and (3, 4) have the same length. What is that length? | 5
+mc3: What is the most specific name for the quadrilateral with vertices (1, 0), (4, 4), (9, 4) and (6, 0)? | a rhombus that is not a square | a square | a rectangle that is not a square | a trapezoid
+sa3: Prove with coordinates that the triangle with vertices A(0, 0), B(4, 2) and C(2, 6) is a right triangle. | The slope of AB is 2/4 = 1/2 and the slope of BC is (6 - 2)/(2 - 4) = -2. Their product is -1, so AB is perpendicular to BC and angle B is a right angle. (Also AB^2 + BC^2 = 20 + 20 = 40 = AC^2.)
+
+lesson: Unit review | G-GPE.B.4, G-GPE.B.5, G-GPE.B.6, G-GPE.B.7
+practice:
+num2: What is the distance between (-3, -1) and (3, 7)? | 10
+hint: The horizontal change is 6 and the vertical change is 8.
+mc2: What is the slope of a line perpendicular to the line through (0, 0) and (2, 5)? | -2/5 | 5/2 | 2/5 | -5/2
+hint: Find the slope of the given line first.
+mc2: Point P is 1/4 of the way from A(-8, 0) to B(4, 12). Where is P? | (-5, 3) | (-2, 6) | (1, 9) | (-6, 3)
+hint: Add 1/4 of the change in each coordinate to A.
+mc2: What is the center of the circle (x + 6)^2 + y^2 = 9? | (-6, 0) | (6, 0) | (0, -6) | (-6, 3)
+hint: y^2 is the same as (y - 0)^2.
+num2: What is the area of the triangle with vertices (-2, 0), (4, 0) and (1, 5)? | 15
+hint: The base lies on the x-axis.
+quiz:
+mc1: Distance between (1, 1) and (4, 5)? | 5 | 7 | 25 | 3
+mc1: Midpoint of (2, 6) and (8, -2)? | (5, 2) | (6, 8) | (10, 4) | (3, 4)
+mc2: Slope of a line perpendicular to y = 2/3 x + 1? | -3/2 | 2/3 | 3/2 | -2/3
+mc2: Which line is parallel to y = 4x - 2? | y = 4x + 7 | y = -4x - 2 | y = 1/4 x | y = -1/4 x + 2
+num2: A city map uses a grid in miles. A park is at (-2, 3) and a museum is at (10, 8). How many miles apart are they in a straight line? | 13
+mc2: Which equation is the circle with center (1, -3) and radius 6? | (x - 1)^2 + (y + 3)^2 = 36 | (x + 1)^2 + (y - 3)^2 = 36 | (x - 1)^2 + (y + 3)^2 = 6 | (x - 1)^2 + (y - 3)^2 = 36
+sa2: Explain how slopes show that two lines are perpendicular. | Their slopes multiply to -1 (they are negative reciprocals).
+
+test:
+mc2: Perimeter of the triangle with vertices (0, 0), (3, 0), (0, 4)? | 12 | 7 | 6 | 10
+mc2: The equation of a circle with center (2, -1) and radius 3 is | (x - 2)^2 + (y + 1)^2 = 9 | (x + 2)^2 + (y - 1)^2 = 9 | (x - 2)^2 + (y + 1)^2 = 3 | x^2 + y^2 = 9
+mc2: M(4, 3) is the midpoint of AB and A is (1, 1). What is B? | (7, 5) | (2.5, 2) | (5, 4) | (3, 2)
+mc3: Quadrilateral with vertices (0,0), (4,0), (5,3), (1,3) is a | parallelogram | rectangle | square | trapezoid with one pair of parallel sides only
+num2: What is the distance between (4, -3) and (-4, 3)? | 10
+num2: A hiker's map uses a grid in kilometers. She walks in a straight line from (0, 0) to (9, 12). How far does she walk, in km? | 15
+num2: The midpoint of CD is (-1, 6) and C is (3, 2). What is the y-coordinate of D? | 10
+num2: What is the area of the rectangle with vertices (-2, -1), (6, -1), (6, 4) and (-2, 4)? | 40
+num3: A drone flies in a straight line from (2, 1) to (14, 6) on a grid where each unit is 50 meters. How many meters does it fly? | 650
+mc1: What is the slope of the line through (0, 4) and (2, 0)? | -2 | 2 | -1/2 | 1/2
+mc2: What is the midpoint of (-5, -8) and (1, 2)? | (-2, -3) | (-3, -5) | (-6, -10) | (3, 5)
+mc2: Which line is perpendicular to 3x - y = 4? | y = -1/3 x + 2 | y = 3x + 2 | y = -3x | y = 1/3 x - 4
+mc2: Which equation is the line through (-2, 3) that is parallel to y = 1/2 x? | y = 1/2 x + 4 | y = 1/2 x + 3 | y = -2x - 1 | y = 1/2 x - 4
+mc2: Point P is 2/3 of the way from A(1, -2) to B(10, 4). Where is P? | (7, 2) | (4, 0) | (6.67, 2.67) | (5.5, 1)
+mc2: What is the radius of the circle x^2 + y^2 + 8y = 9? | 5 | 3 | 9 | 25
+mc2: Which point lies on the circle (x - 2)^2 + (y - 1)^2 = 25? | (5, 5) | (5, 1) | (7, 6) | (2, 5)
+mc2: A triangle has vertices (0, 0), (6, 0) and (3, 5). Which type of triangle is it? | isosceles | equilateral | right | scalene
+mc3: Which set of vertices forms a right triangle? | (0, 0), (3, 0), (0, 5) | (0, 0), (3, 1), (5, 4) | (1, 1), (4, 2), (6, 6) | (0, 0), (2, 3), (4, 0)
+sa2: Show that (0, 0), (4, 0) and (2, 3) form an isosceles triangle. | Sides from (2, 3) to each base vertex are both the square root of 13, so two sides are equal.
+sa2: Write the equation of the line through (2, 5) perpendicular to y = -1/2 x + 3. | Slope 2: y - 5 = 2(x - 2), or y = 2x + 1.
+sa2: Explain how to decide, using slopes only, whether the quadrilateral with vertices (0, 0), (4, 1), (5, 5) and (1, 4) is a parallelogram, and decide. | Compare the slopes of opposite sides. (0, 0) to (4, 1) and (1, 4) to (5, 5) both have slope 1/4. (4, 1) to (5, 5) and (0, 0) to (1, 4) both have slope 4. Both pairs of opposite sides are parallel, so it is a parallelogram.
+task3: Prove using coordinates that the quadrilateral with vertices A(1, 2), B(5, 4), C(7, 0) and D(3, -2) is a rectangle, and find its area. Show slopes and lengths. | Slopes 1/2 and -2 show opposite sides parallel and adjacent sides perpendicular; every side is the square root of 20, so the area is 20 (it is also a square); all work shown. | Correct classification with one missing justification. | Some correct slopes or lengths. | Little correct work.
+
+unit: Circles, area and volume | G-C.A.2, G-C.B.5, G-GMD.A.3, G-MG.A.1 | g10arc, g10sph
+el: Post a labeled circle (center, radius, diameter, chord, tangent, arc, sector, central and inscribed angle) and a formula card for each solid with a sketch. Allow a calculator and accept answers in terms of pi.
+
+lesson: Central angles, inscribed angles and arcs | G-C.A.2
+practice:
+num1: A central angle intercepts an arc of 110 degrees. What is the central angle in degrees? | 110
+hint: A central angle has the same measure as its arc.
+num2: An inscribed angle measures 35 degrees. What is the measure of its intercepted arc in degrees? | 70
+hint: An inscribed angle is half of its intercepted arc.
+mc2: An inscribed angle intercepts a semicircle. What is its measure? | 90 degrees | 180 degrees | 45 degrees | 360 degrees
+hint: A semicircle is an arc of 180 degrees.
+num2: A circle is divided into three arcs of x, 2x and 3x degrees. What is the largest arc in degrees? | 180
+hint: The arcs of a whole circle add to 360 degrees.
+mc2: Two inscribed angles intercept the same arc. Which is true? | They are congruent | They are supplementary | One is twice the other | They are complementary
+hint: Each angle is half of the same arc.
+sa2: Quadrilateral ABCD is inscribed in a circle, and angle A = 75 degrees. Explain how to find angle C. | Opposite angles of an inscribed quadrilateral are supplementary, because together they intercept the whole circle (360 degrees) and each angle is half of its arc. So angle C = 180 - 75 = 105 degrees.
+quiz:
+num1: A central angle measures 48 degrees. What is the measure of its intercepted arc in degrees? | 48
+num2: An inscribed angle intercepts an arc of 124 degrees. What is the angle's measure in degrees? | 62
+mc2: Quadrilateral PQRS is inscribed in a circle, and angle Q = 98 degrees. What is angle S? | 82 degrees | 98 degrees | 49 degrees | 196 degrees
+num2: A round pizza is cut into 8 equal slices from the center. What is the central angle of each slice in degrees? | 45
+mc2: Triangle ABC is inscribed in a circle, and side AB is a diameter. What is angle C? | 90 degrees | 60 degrees | 45 degrees | 180 degrees
+num2: An inscribed angle measures (3x + 5) degrees and its intercepted arc measures 100 degrees. What is x? | 15
+mc3: A central angle and an inscribed angle intercept the same 140-degree arc. How many degrees larger is the central angle? | 70 degrees | 140 degrees | 0 degrees | 210 degrees
+sa2: Explain why an angle inscribed in a semicircle is always a right angle. | The angle intercepts the semicircle, an arc of 180 degrees. An inscribed angle is half of its intercepted arc, so it measures 90 degrees.
+
+lesson: Tangents, chords and inscribed polygons | G-C.A.2, G-C.A.3
+practice:
+num2: A tangent from point P touches a circle of radius 5 at point T, and PT = 12. What is the distance from P to the center? | 13
+hint: The radius to the point of tangency is perpendicular to the tangent.
+num2: Two tangent segments from the same outside point to a circle measure 3x - 2 and x + 10. What is x? | 6
+hint: Tangent segments from the same point are congruent.
+mc2: A chord is 6 cm from the center of a circle of radius 10 cm. How long is the chord? | 16 cm | 8 cm | 12 cm | 20 cm
+hint: The perpendicular from the center bisects the chord and forms a right triangle with a radius.
+mc2: Two chords of the same circle are the same distance from the center. Which is true? | They are congruent | They are parallel | They are perpendicular | They are diameters
+hint: Think about the right triangle each chord makes with a radius.
+mc2: The center of the circle that passes through all three vertices of a triangle is where which lines meet? | the perpendicular bisectors of the sides | the angle bisectors | the medians | the altitudes
+hint: The center must be the same distance from all three vertices.
+sa2: A wheel touches flat ground at one point. Explain how the radius to that point and the ground are related, and why. | The ground is tangent to the wheel, so the radius to the point of contact is perpendicular to the ground. If it were not, the ground line would cut into the circle and meet it at a second point.
+quiz:
+num2: A tangent from point A touches a circle at point B. The radius is 8 and AB = 15. What is the distance from A to the center? | 17
+mc2: A chord 24 cm long is in a circle of radius 13 cm. How far is the chord from the center? | 5 cm | 12 cm | 11 cm | 7 cm
+num2: Two tangent segments are drawn from point Q to a circle. One of them is 9 cm long. How long is the other, in cm? | 9
+mc2: The center of the circle inscribed in a triangle (touching all three sides) is where which lines meet? | the angle bisectors | the perpendicular bisectors | the medians | the altitudes
+mc2: A line is tangent to a circle with center O at point T, and P is another point on the tangent line. What is the measure of angle OTP? | 90 degrees | 45 degrees | 180 degrees | It depends on where P is
+num3: A circular pond has a radius of 10 m. A straight footbridge across it is a chord 16 m long. How far in meters is the middle of the bridge from the center of the pond? | 6
+mc3: A regular hexagon is inscribed in a circle of radius 7 cm. What is the hexagon's perimeter? | 42 cm | 21 cm | 49 cm | 84 cm
+sa3: Explain why a regular hexagon inscribed in a circle has sides equal to the radius. | Segments from the center to the six vertices make six central angles of 360/6 = 60 degrees. Each of the six triangles has two sides equal to the radius, so its base angles are equal, and each is (180 - 60)/2 = 60 degrees. The triangles are equilateral, so each side of the hexagon equals the radius.
+
+lesson: Arc length, sector area and radians | G-C.B.5
+practice:
+mc2: What is the arc length of a 60-degree arc in a circle of radius 9 (in terms of pi)? | 3 pi | 6 pi | 9 pi | 27/2 pi
+hint: The arc is 60/360 of the circumference.
+mc2: What is the area of a sector with radius 10 and central angle 72 degrees (in terms of pi)? | 20 pi | 4 pi | 10 pi | 100 pi
+hint: Multiply the circle's area by the fraction 72/360.
+mc2: How many radians is 120 degrees? | 2pi/3 | pi/3 | 3pi/2 | 4pi/3
+hint: Multiply the number of degrees by pi/180.
+num2: A central angle of 2 radians intercepts an arc in a circle of radius 6 cm. How long is the arc in cm? | 12
+hint: When the angle is in radians, arc length = radius x angle.
+num2: A sector of a circle with radius 4 has an area of 4 pi. What is its central angle in degrees? | 90
+hint: What fraction of the whole circle's area is 4 pi?
+sa2: A sprinkler waters a sector with a radius of 15 feet and an angle of 120 degrees. Explain how to find the watered area and give it in terms of pi. | The sector is 120/360 = 1/3 of the circle. The whole circle's area is 225 pi, so the watered area is 75 pi square feet.
+quiz:
+mc2: What is the arc length of a 45-degree arc in a circle of radius 16 (in terms of pi)? | 4 pi | 8 pi | 2 pi | 16 pi
+mc2: What is the area of a sector with radius 9 and central angle 40 degrees (in terms of pi)? | 9 pi | 2 pi | 81 pi | 18 pi
+mc2: How many degrees is 5pi/6 radians? | 150 degrees | 300 degrees | 120 degrees | 108 degrees
+num2: An arc in a circle of radius 5 m is 15 m long. What is its central angle in radians? | 3
+mc2: The minute hand of a clock is 6 inches long. How far does its tip travel in 20 minutes? | 4 pi inches | 2 pi inches | 12 pi inches | 6 pi inches
+num3: A sector has a radius of 12 and an arc length of 4 pi. What is its central angle in degrees? | 60
+mc3: The radius of a sector is doubled and its central angle stays the same. What happens to its area? | It is multiplied by 4 | It is multiplied by 2 | It stays the same | It is halved
+sa2: Explain why the radian measure of an angle does not depend on the size of the circle. | All circles are similar, so as the circle grows, the arc length and the radius grow by the same factor. Their ratio, arc length / radius, which is the radian measure, stays the same for a given angle.
+
+lesson: Volume of prisms, cylinders, pyramids and cones | G-GMD.A.3, G-GMD.A.1
+practice:
+num1: What is the volume of a rectangular prism 4 cm by 5 cm by 7 cm, in cubic cm? | 140
+hint: Multiply the length, width and height.
+mc2: What is the volume of a cylinder with radius 3 and height 10 (in terms of pi)? | 90 pi | 30 pi | 60 pi | 900 pi
+hint: V = pi r^2 h.
+mc2: What is the volume of a cone with radius 6 and height 5 (in terms of pi)? | 60 pi | 180 pi | 30 pi | 10 pi
+hint: A cone holds 1/3 as much as a cylinder with the same base and height.
+num2: A pyramid has a rectangular base 9 m by 4 m and a height of 10 m. What is its volume in cubic meters? | 120
+hint: V = 1/3 x base area x height.
+num2: A triangular prism has a triangular base with a base of 6 cm and a height of 4 cm, and the prism is 9 cm long. What is its volume in cubic cm? | 108
+hint: Find the area of the triangle first.
+sa2: Use Cavalieri's principle to explain why a straight stack of 20 identical coins and a slanted stack of the same 20 coins have the same volume. | Both stacks have the same height, and at every height the cross-section is the same coin-sized circle. By Cavalieri's principle, solids with equal heights and equal cross-sectional areas at every level have equal volumes.
+quiz:
+num1: What is the volume of a cube with edges of 7 inches, in cubic inches? | 343
+mc2: What is the volume of a cylinder with diameter 8 and height 5 (in terms of pi)? | 80 pi | 320 pi | 40 pi | 160 pi
+mc2: What is the volume of a cone with radius 3 and height 4 (in terms of pi)? | 12 pi | 36 pi | 4 pi | 48 pi
+num2: A square pyramid has a base side of 12 ft and a height of 8 ft. What is its volume in cubic feet? | 384
+num2: A cylinder has a volume of 150 pi cubic cm and a radius of 5 cm. What is its height in cm? | 6
+num3: A water trough is a prism whose cross-section is a trapezoid with parallel sides of 30 cm and 50 cm and a height of 20 cm. The trough is 200 cm long. How many liters does it hold when full? (1 liter = 1,000 cubic cm) | 160
+mc3: A cylinder's radius is tripled and its height stays the same. By what number is its volume multiplied? | 9 | 3 | 6 | 27
+sa2: A cone and a cylinder both have radius 4 and height 9. Give both volumes in terms of pi and explain how they are related. | The cylinder's volume is pi(16)(9) = 144 pi. The cone has the same base and height, so its volume is one third of that: 1/3 pi(16)(9) = 48 pi.
+
+lesson: Spheres, composite solids and density | G-GMD.A.3, G-MG.A.2
+practice:
+mc2: What is the volume of a sphere with radius 6 (in terms of pi)? | 288 pi | 144 pi | 216 pi | 48 pi
+hint: V = 4/3 pi r^3.
+mc2: What is the volume of a hemisphere with radius 3 (in terms of pi)? | 18 pi | 36 pi | 9 pi | 27 pi
+hint: A hemisphere is half of a sphere.
+num2: A block of wood has a volume of 500 cubic cm and a mass of 350 grams. What is its density in grams per cubic cm? | 0.7
+hint: Density = mass / volume.
+num2: A town has 12,000 people living in an area of 8 square miles. What is its population density in people per square mile? | 1500
+hint: Divide the number of people by the area.
+mc2: A grain silo is a cylinder with radius 3 m and height 10 m topped by a hemisphere of radius 3 m. What is its total volume (in terms of pi)? | 108 pi | 126 pi | 90 pi | 99 pi
+hint: Add the volume of the cylinder and the volume of the half-sphere.
+sa2: A metal cube 2 cm on each side has a mass of 21.6 grams. Explain how to find its density and give it. | The volume is 2^3 = 8 cubic cm. Density = mass / volume = 21.6 / 8 = 2.7 grams per cubic cm.
+quiz:
+mc2: What is the volume of a sphere with radius 9 (in terms of pi)? | 972 pi | 324 pi | 729 pi | 2916 pi
+num2: A stone has a mass of 750 grams and a volume of 300 cubic cm. What is its density in grams per cubic cm? | 2.5
+mc2: A capsule is a cylinder with radius 2 and length 6 with a hemisphere of radius 2 on each end. What is its total volume (in terms of pi)? | 104/3 pi | 24 pi | 56/3 pi | 40 pi
+num2: A rectangular field 200 m by 150 m has 600 plants spread evenly over it. How many plants are there per 100 square meters? | 2
+num2: A spherical balloon holds 500/3 pi cubic inches of air. What is its radius in inches? | 5
+num3: A cone-shaped paper cup has a radius of 3 cm and a height of 10 cm. Using 3.14 for pi, how many cubic cm of water does it hold when full? | 94.2
+mc3: Gold has a density of about 19.3 grams per cubic cm. A gold bar has a mass of 965 grams. What is its volume? | 50 cubic cm | 18,624.5 cubic cm | 5 cubic cm | 0.02 cubic cm
+sa3: A snow globe is a sphere of radius 5 cm sitting on a cylinder base with radius 5 cm and height 3 cm. Explain how to find the total volume and give it in terms of pi. | Sphere: 4/3 pi (125) = 500/3 pi. Cylinder: pi (25)(3) = 75 pi = 225/3 pi. Total: 725/3 pi cubic cm, about 759 cubic cm.
+
+lesson: Unit review | G-C.A.2, G-C.B.5, G-GMD.A.3, G-MG.A.1
+practice:
+num2: An inscribed angle intercepts an arc of 96 degrees. What is the angle's measure in degrees? | 48
+hint: An inscribed angle is half of its arc.
+mc2: What is the arc length of a 30-degree arc in a circle of radius 18 (in terms of pi)? | 3 pi | 6 pi | 9 pi | 18 pi
+hint: Find 30/360 of the circumference.
+mc2: What is the volume of a cylinder with radius 2 and height 9 (in terms of pi)? | 36 pi | 18 pi | 12 pi | 324 pi
+hint: Square the radius before you multiply.
+num2: A tangent segment from a point to a circle is 20 units long, and the radius is 15 units. What is the distance from the point to the center? | 25
+hint: The tangent and the radius meet at a right angle.
+mc2: What is the volume of a sphere with radius 1 (in terms of pi)? | 4/3 pi | 4 pi | pi | 2 pi
+hint: Use V = 4/3 pi r^3.
+quiz:
+mc1: Arc length of a 90-degree arc on a circle of radius 8 (in terms of pi)? | 4 pi | 8 pi | 16 pi | 2 pi
+mc1: An inscribed angle intercepts an 80-degree arc. The angle measures | 40 degrees | 80 degrees | 160 degrees | 20 degrees
+mc2: Area of a sector with radius 6 and central angle 60 degrees (in terms of pi)? | 6 pi | 12 pi | 36 pi | 2 pi
+mc2: Volume of a sphere of radius 3 (in terms of pi)? | 36 pi | 27 pi | 12 pi | 108 pi
+num2: A pyramid has a square base with sides of 3 m and a height of 7 m. What is its volume in cubic meters? | 21
+mc2: How many radians is 270 degrees? | 3pi/2 | 3pi/4 | 2pi/3 | 5pi/4
+sa2: Explain how the area of a sector relates to the area of the whole circle. | It is the fraction (central angle / 360) of the whole circle's area.
+
+test:
+mc2: A tangent line and a radius meet at the point of tangency at | 90 degrees | 45 degrees | 180 degrees | 60 degrees
+mc2: Volume of a square pyramid with base side 6 and height 10? | 120 | 360 | 60 | 180
+mc2: A cone and a cylinder have the same base and height. The cone's volume is | 1/3 of the cylinder's | the same | 1/2 of the cylinder's | 3 times the cylinder's
+mc3: Doubling the radius of a sphere multiplies its volume by | 8 | 2 | 4 | 6
+num2: An inscribed angle measures 52 degrees. What is the measure of its intercepted arc in degrees? | 104
+num2: A regular octagon is inscribed in a circle. What is the central angle in degrees between two neighboring vertices? | 45
+num2: A cylindrical water bottle has a radius of 3 cm and a height of 20 cm. Using 3.14 for pi, how many cubic cm does it hold? | 565.2
+num2: A bag of sand has a volume of 0.02 cubic meters and a mass of 32 kg. What is the density of the sand in kg per cubic meter? | 1600
+num2: A chord 10 cm long is in a circle of radius 13 cm. How far is the chord from the center, in cm? | 12
+mc1: An angle whose vertex is at the center of a circle is called | a central angle | an inscribed angle | a tangent angle | a chord angle
+mc2: Quadrilateral WXYZ is inscribed in a circle, and angle X = 112 degrees. What is angle Z? | 68 degrees | 112 degrees | 56 degrees | 248 degrees
+mc2: What is the area of a sector with radius 12 and central angle 150 degrees (in terms of pi)? | 60 pi | 10 pi | 144 pi | 30 pi
+mc2: What is the length of an arc with central angle 2pi/3 radians in a circle of radius 6? | 4 pi | 2 pi | 12 pi | 6 pi
+mc2: What is the volume of a cone with radius 5 and height 12 (in terms of pi)? | 100 pi | 300 pi | 60 pi | 20 pi
+mc2: What is the volume of a hemisphere with radius 6 (in terms of pi)? | 144 pi | 288 pi | 72 pi | 216 pi
+mc2: Two tangent segments from point P touch a circle at A and B. PA = 4x + 1 and PB = 2x + 9. How long is PA? | 17 | 4 | 9 | 13
+mc3: A cylinder and a sphere both have radius 3. The cylinder's height is 5. Which statement is true? | The cylinder has the larger volume | The sphere has the larger volume | They have equal volumes | They cannot be compared
+mc3: City A has 2.4 million people living on 600 square km. City B has 900,000 people living on 150 square km. Which statement is true? | City B is more densely populated | City A is more densely populated | They have the same population density | Their densities cannot be compared
+sa2: Find the arc length of a 150-degree arc in a circle of radius 12, showing the fraction of the circle. | 150/360 x 24 pi = 10 pi, about 31.4.
+sa2: A cylindrical tank has diameter 4 m and height 5 m. How many liters does it hold? (1 cubic meter = 1,000 liters, use 3.14.) | 3.14 x 4 x 5 = 62.8 cubic m = 62,800 liters.
+sa2: A pencil is shaped like a cylinder with radius 0.4 cm and length 15 cm, with a cone-shaped tip of the same radius and height 1.5 cm. Explain how to find its volume and give it in terms of pi. | Cylinder: pi(0.16)(15) = 2.4 pi. Cone: 1/3 pi(0.16)(1.5) = 0.08 pi. Total: 2.48 pi cubic cm, about 7.8 cubic cm.
+task3: A company sells ice cream in a cone (radius 3 cm, height 12 cm) topped with a half-sphere scoop of the same radius. Find the total volume of ice cream if the cone is filled. Then design a cup (cylinder) with the same volume and a radius of 4 cm, and find its height. Show formulas and explain (use 3.14). | Cone 113.04 + hemisphere 56.52 = 169.56 cubic cm, cup height about 3.38 cm, clear formulas and work. | Correct total with a cup error. | Correct formulas with calculation errors. | Little correct work.

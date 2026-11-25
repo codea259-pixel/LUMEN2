@@ -1,0 +1,734 @@
+@subject math
+@grade 12
+# Converted from the grade 12 section of tools/assess-src/math.txt. Every original unit line, standard, item and unit test
+# item is carried over verbatim. The original "Unit review" lesson is kept as the last lesson of each unit: its quiz keeps
+# the original quiz items (mc 1-4 and the explanation item) and the unit test keeps the original test items (mc 5-8,
+# both short answers and the task). New lessons come first.
+about: Precalculus and Calculus build on functions to study limits, rates of change and accumulation. Students analyze polynomial, exponential and trigonometric functions, find derivatives and integrals, and apply them to motion, optimization and area.
+std: F-BF.A.1 | Write a function that describes a relationship between two quantities, including composition.
+std: F-IF.C.7 | Graph functions and show key features, including asymptotes and end behavior.
+std: CALC.LIM | Understand limits and continuity, and evaluate limits algebraically and graphically.
+std: CALC.DER | Interpret the derivative as a rate of change and compute derivatives using the power, product and chain rules.
+std: CALC.APP | Apply derivatives to optimization, motion and related rates.
+std: CALC.INT | Interpret the definite integral as accumulated change and evaluate it using antiderivatives.
+
+unit: Limits and continuity | CALC.LIM, F-IF.C.7 | g12lim, g12inf
+el: Read limit notation aloud ("the limit of f of x as x approaches 3") and post a graph showing a hole, a jump and a vertical asymptote with each labeled. Let students use tables of values before algebra.
+
+lesson: Limits from graphs and tables, and one-sided limits | CALC.LIM
+practice:
+mc1: A table shows f(1.9) = 4.8, f(1.99) = 4.98, f(2.01) = 5.02 and f(2.1) = 5.2. What does the limit of f(x) as x approaches 2 appear to be? | 5 | 4.98 | 2 | It does not exist
+hint: Look at what the outputs approach from both sides.
+mc2: The left-hand limit of f at x = 3 is 7 and the right-hand limit is 7, but f(3) = 2. What is the limit of f(x) as x approaches 3? | 7 | 2 | 4.5 | It does not exist
+hint: A limit depends on values near 3, not the value at 3.
+mc2: f(x) = 1 for x < 0 and f(x) = -1 for x > 0. What is the limit of f(x) as x approaches 0? | It does not exist | 0 | 1 | -1
+hint: Compare the two one-sided limits.
+num2: f(x) = x^2 + 1 for x < 2 and f(x) = 3x - 1 for x >= 2. What is the limit of f(x) as x approaches 2 from the left? | 5
+hint: Use the piece for x < 2.
+num2: g(x) = abs(x - 4)/(x - 4). What is the limit of g(x) as x approaches 4 from the right? | 1
+hint: For x > 4, abs(x - 4) = x - 4.
+sa2: Explain why a table of values can suggest a limit but cannot prove it. | A table shows only a few inputs near the point. The function could behave differently between or closer than those inputs, so a table suggests the limit, but a graph or algebra argument is needed to be sure.
+quiz:
+mc1: A table shows g(0.9) = 2.9, g(0.99) = 2.99, g(1.01) = 3.01 and g(1.1) = 3.1. What does the limit of g(x) as x approaches 1 appear to be? | 3 | 1 | 2.99 | It does not exist
+num2: f(x) = 2x + 1 for x < 3 and f(x) = x^2 - 2 for x >= 3. What is the limit of f(x) as x approaches 3 from the right? | 7
+mc2: f(x) = 2x + 1 for x < 3 and f(x) = x^2 - 2 for x >= 3. Does the limit of f(x) as x approaches 3 exist? | Yes, it equals 7 | No, the one-sided limits are different | Yes, it equals 9 | No, because f(3) is undefined
+num2: h(x) = abs(x)/x. What is the limit of h(x) as x approaches 0 from the left? | -1
+mc2: A graph has an open circle at (1, 4) and a closed dot at (1, 6), and the curve approaches height 4 from both sides of x = 1. Which is true? | The limit as x approaches 1 is 4 and f(1) = 6 | The limit is 6 and f(1) = 4 | The limit does not exist | The limit is 5
+num2: The limit of f(x) as x approaches 2 is 9 and the limit of g(x) as x approaches 2 is -3. What is the limit of f(x)/g(x) as x approaches 2? | -3
+mc3: The limit of f(x) as x approaches a exists. Which statement must be true? | The left-hand and right-hand limits at a are equal | f(a) is defined | f is continuous at a | f(a) equals the limit
+sa2: Describe a situation where the limit of f(x) as x approaches a exists but f(a) is not defined, and give an example. | A graph with a hole. f(x) = (x^2 - 1)/(x - 1) is undefined at x = 1, but for x near 1 it equals x + 1, so the limit as x approaches 1 is 2.
+
+lesson: Evaluating limits algebraically | CALC.LIM
+practice:
+num1: What is the limit of (x^2 - 3x + 2) as x approaches 4? | 6
+hint: Polynomials are continuous, so substitute.
+num2: What is the limit of (x^2 - 16)/(x - 4) as x approaches 4? | 8
+hint: Factor the numerator and cancel.
+num2: What is the limit of (x^2 + 5x + 6)/(x + 2) as x approaches -2? | 1
+hint: Substituting gives 0/0, so factor first.
+mc2: What is the limit of (the square root of x - 3)/(x - 9) as x approaches 9? | 1/6 | 0 | 1/3 | 6
+hint: Multiply the numerator and the denominator by (the square root of x + 3).
+num2: What is the limit of ((5 + h)^2 - 25)/h as h approaches 0? | 10
+hint: Expand and simplify before letting h approach 0.
+sa2: Explain why substituting x = 1 into (x^3 - 1)/(x - 1) does not give the limit directly, and find the limit. | Substituting gives 0/0, which tells us nothing yet. Factor: x^3 - 1 = (x - 1)(x^2 + x + 1). Cancel (x - 1) and substitute: 1 + 1 + 1 = 3.
+quiz:
+num1: What is the limit of (5x - 7) as x approaches 3? | 8
+num2: What is the limit of (x^2 - 25)/(x + 5) as x approaches -5? | -10
+num2: What is the limit of (2x^2 - 8)/(x - 2) as x approaches 2? | 8
+mc2: What is the limit of (the square root of (x + 4) - 2)/x as x approaches 0? | 1/4 | 0 | 1/2 | It does not exist
+mc2: What is the limit of (1/x - 1/3)/(x - 3) as x approaches 3? | -1/9 | 1/9 | 0 | -1/3
+num2: What is the limit of (x^2 - 7x + 10)/(x^2 - 4) as x approaches 2? | -3/4
+mc3: What is the limit of sin(x)/x as x approaches 0, where x is in radians? | 1 | 0 | It does not exist | infinity
+sa3: Lena says the limit of (x^2 - 4)/(x - 2) as x approaches 2 does not exist because the expression is undefined at 2. Explain her mistake. | Being undefined at x = 2 does not mean the limit fails to exist. For x not equal to 2, the expression equals x + 2, so as x approaches 2 the values approach 4. The limit is 4.
+
+lesson: Limits at infinity and horizontal asymptotes | CALC.LIM, F-IF.C.7
+practice:
+mc1: What is the limit of 5/x^2 as x approaches infinity? | 0 | 5 | infinity | 1
+hint: The denominator grows without bound.
+mc2: What is the limit of (4x + 1)/(2x - 3) as x approaches infinity? | 2 | 4 | 0 | -1/3
+hint: Divide the numerator and denominator by x.
+mc2: What is the limit of (x + 7)/(x^2 + 1) as x approaches infinity? | 0 | 1 | 7 | infinity
+hint: The denominator has the higher degree.
+mc2: What is the limit of (x^3 - 2)/(5x^2 + x) as x approaches infinity? | infinity | 1/5 | 0 | -2
+hint: Compare the degrees of the numerator and denominator.
+num2: f(x) = (6x^2 - x)/(3x^2 + 2) has the horizontal asymptote y = c. What is c? | 2
+hint: When the degrees are equal, divide the leading coefficients.
+sa2: Explain how to find the limit of (7x^2 + 3x)/(2x^2 - 5) as x approaches infinity. | Divide every term by x^2: (7 + 3/x)/(2 - 5/x^2). As x approaches infinity, 3/x and 5/x^2 approach 0, so the limit is 7/2.
+quiz:
+mc1: What is the limit of (2x - 9)/(x + 4) as x approaches infinity? | 2 | -9/4 | 0 | 1
+mc2: What is the limit of (3 - x^2)/(2x^2 + x) as x approaches infinity? | -1/2 | 3/2 | 0 | 1/2
+num2: What is the limit of (8x^3 + 1)/(4x^3 - x) as x approaches infinity? | 2
+mc2: What is the limit of e^(-x) as x approaches infinity? | 0 | 1 | infinity | -1
+num2: A medicine's concentration is C(t) = 50t/(t + 2) milligrams per liter after t hours. What value does C(t) approach as t grows without bound? | 50
+mc2: Which function has the horizontal asymptote y = 0? | f(x) = (x + 1)/(x^2 - 4) | f(x) = (x^2 + 1)/(x^2 - 4) | f(x) = x^3/(x - 4) | f(x) = 2 + 1/x
+mc3: A population is modeled by P(t) = 1000/(1 + 9e^(-0.5t)). What happens to P(t) in the long run? | It approaches 1000 | It approaches 100 | It grows without bound | It approaches 0
+sa2: Explain why (x^2 + 1)/(x - 1) has no horizontal asymptote. | The numerator has a higher degree than the denominator, so as x grows the numerator grows much faster and the ratio increases without bound. It never levels off at a fixed value.
+
+lesson: Infinite limits and vertical asymptotes | CALC.LIM, F-IF.C.7
+practice:
+mc1: What is the limit of 1/x^2 as x approaches 0? | infinity | 0 | 1 | negative infinity
+hint: 1/x^2 is positive and gets larger as x gets close to 0.
+mc2: What is the limit of 1/(x - 3) as x approaches 3 from the right? | infinity | negative infinity | 0 | 1/3
+hint: For x slightly greater than 3, x - 3 is a small positive number.
+mc2: What is the limit of 1/(x - 3) as x approaches 3 from the left? | negative infinity | infinity | 0 | -1/3
+hint: For x slightly less than 3, x - 3 is a small negative number.
+num2: f(x) = (x + 4)/(x^2 - 9) has two vertical asymptotes. What is the negative one? Give the x-value. | -3
+hint: Set the denominator equal to 0 and check that the numerator is not 0 there.
+mc2: Which function has a vertical asymptote, not a hole, at x = 1? | f(x) = x/(x - 1) | f(x) = (x - 1)/(x - 1) | f(x) = (x^2 - 1)/(x - 1) | f(x) = x - 1
+hint: A hole happens when the factor cancels.
+sa2: Explain how to tell whether a zero of the denominator of a rational function gives a vertical asymptote or a hole. | Factor and cancel common factors. If the factor that makes the denominator 0 cancels completely, there is a hole. If that factor is still in the denominator after canceling, there is a vertical asymptote.
+quiz:
+mc1: What is the vertical asymptote of f(x) = 3/(x + 5)? | x = -5 | x = 5 | y = 3 | y = 0
+mc2: What is the limit of -2/(x - 1)^2 as x approaches 1? | negative infinity | infinity | 0 | -2
+num2: f(x) = (x - 2)/(x^2 - 4) has one vertical asymptote, at x = a. What is a? | -2
+mc2: f(x) = (x - 2)/(x^2 - 4). What is the limit of f(x) as x approaches 2? | 1/4 | 0 | infinity | It does not exist
+num2: What is the limit of (x + 1)/(x^2 + 3) as x approaches 1? | 1/2
+mc2: What is the limit of ln x as x approaches 0 from the right? | negative infinity | 0 | infinity | 1
+mc3: What is the limit of tan x as x approaches pi/2 from the left? | infinity | negative infinity | 0 | 1
+sa3: Explain why the limit of 1/x as x approaches 0 does not exist, even though each one-sided limit is infinite. | From the right, 1/x goes to positive infinity; from the left, it goes to negative infinity. The one-sided behaviors disagree, so there is no single limit.
+
+lesson: Continuity and types of discontinuity | CALC.LIM
+practice:
+mc1: What type of discontinuity does f(x) = (x^2 - 4)/(x - 2) have at x = 2? | removable (a hole) | jump | infinite | none
+hint: Does the factor (x - 2) cancel?
+mc2: f(x) = x + 1 for x < 2 and f(x) = x + 3 for x >= 2. What type of discontinuity does f have at x = 2? | jump | removable | infinite | none
+hint: Compare the one-sided limits.
+num2: f(x) = (x^2 - 1)/(x + 1) for x not equal to -1. What value should f(-1) have to make f continuous at -1? | -2
+hint: Find the limit as x approaches -1.
+num2: f(x) = kx + 1 for x < 3 and f(x) = x^2 - 2 for x >= 3. What value of k makes f continuous? | 2
+hint: Make the two pieces equal at x = 3.
+mc2: On which interval is f(x) = 1/(x - 4) continuous? | x > 4 | x >= 4 | all real numbers | x > 0
+hint: Find where the function is undefined.
+sa2: Use the Intermediate Value Theorem to explain why f(x) = x^3 - x - 1 has a zero between x = 1 and x = 2. | f is a polynomial, so it is continuous. f(1) = -1 < 0 and f(2) = 5 > 0. A continuous function that goes from a negative value to a positive value must pass through 0, so there is a zero between 1 and 2.
+quiz:
+mc1: Which function is continuous for all real numbers? | f(x) = x^3 - 2x | f(x) = 1/x | f(x) = tan x | f(x) = ln x
+mc2: What type of discontinuity does f(x) = 1/(x + 2) have at x = -2? | infinite | removable | jump | none
+num2: f(x) = ax - 3 for x < 2 and f(x) = 5 for x >= 2. What value of a makes f continuous? | 4
+mc2: f(x) = (x^2 - x - 6)/(x - 3). How can its discontinuity at x = 3 be removed? | Define f(3) = 5 | Define f(3) = 0 | Define f(3) = -2 | It cannot be removed
+num2: How many discontinuities does f(x) = (x + 1)/(x^2 - 5x + 6) have? | 2
+mc2: A garage charges $5 for any part of the first hour and $3 for each additional hour or part of an hour. What kind of graph does the parking cost have? | a step graph with jump discontinuities | a continuous line | a parabola | a graph with one hole
+mc3: f is continuous on [0, 4], f(0) = 6 and f(4) = -2. Which statement must be true? | f(c) = 0 for some c between 0 and 4 | f(2) = 2 | f is decreasing | f has a maximum at x = 4
+sa2: Explain the difference between a removable discontinuity and a jump discontinuity. | At a removable discontinuity the limit exists but f(a) is missing or different, so redefining one point fixes it. At a jump discontinuity the one-sided limits are different numbers, so no single value can fix it.
+
+lesson: Unit review | CALC.LIM, F-IF.C.7
+practice:
+num2: What is the limit of (x^2 - 49)/(x - 7) as x approaches 7? | 14
+hint: Factor the numerator.
+mc2: What is the limit of (5x^2 - 3)/(x^2 + 2x) as x approaches infinity? | 5 | 0 | -3/2 | infinity
+hint: Compare the leading terms.
+mc2: What type of discontinuity does f(x) = 1/(x - 6) have at x = 6? | infinite | removable | jump | none
+hint: Does the function approach a finite value near 6?
+num2: f(x) = x^2 for x < 1 and f(x) = 2x + c for x >= 1. What value of c makes f continuous? | -1
+hint: Make both pieces equal at x = 1.
+mc2: What is the limit of 4/(x + 1)^2 as x approaches -1? | infinity | negative infinity | 4 | 0
+hint: Near x = -1 the denominator is a small positive number.
+quiz:
+mc1: The limit of (2x + 3) as x approaches 4 is | 11 | 7 | 4 | 8
+mc2: The limit of (x^2 - 9)/(x - 3) as x approaches 3 is | 6 | 0 | 3 | undefined
+mc2: The limit of 1/x as x approaches infinity is | 0 | 1 | infinity | -1
+mc2: The limit of (3x^2 + 1)/(x^2 - 5) as x approaches infinity is | 3 | 1 | 0 | -1/5
+num2: What is the limit of (x^3 - 8)/(x - 2) as x approaches 2? | 12
+mc2: g(x) = abs(x - 1)/(x - 1). What is the limit of g(x) as x approaches 1? | It does not exist | 1 | -1 | 0
+sa2: Explain the difference between f(a) and the limit of f(x) as x approaches a. | f(a) is the value at a; the limit is the value f(x) gets close to near a, which can differ or exist when f(a) does not.
+
+test:
+mc2: f(x) = (x + 1)/(x - 2) has a vertical asymptote at | x = 2 | x = -1 | y = 1 | x = 1
+mc2: Which function is continuous at x = 0? | f(x) = x^2 + 1 | f(x) = 1/x | f(x) = abs(x)/x | f(x) = 1/x^2
+mc2: Sum of the infinite series 1 + 1/3 + 1/9 + ...? | 3/2 | 3 | 4/3 | infinite
+mc3: A function has f(2) = 5, the left-hand limit at 2 is 5 and the right-hand limit at 2 is 7. Which is true? | f is not continuous at 2 | f is continuous at 2 | The limit at 2 is 5 | The limit at 2 is 6
+num1: What is the limit of (x^2 + 2x) as x approaches 3? | 15
+num2: What is the limit of (x^2 - 1)/(x - 1) as x approaches 1? | 2
+num2: What is the limit of (3x^2 - 12)/(x + 2) as x approaches -2? | -12
+num2: What is the limit of (9x^2 + 4)/(3x^2 - x) as x approaches infinity? | 3
+num2: f(x) = 3x + k for x < 2 and f(x) = x^2 + 4 for x >= 2. What value of k makes f continuous? | 2
+num2: The salt concentration in a tank is C(t) = 30t/(200 + t) grams per liter after t minutes. What value does C(t) approach in the long run? | 30
+mc2: What is the limit of (the square root of x - 2)/(x - 4) as x approaches 4? | 1/4 | 0 | 1/2 | 4
+mc2: What is the limit of 1/(x + 2) as x approaches -2 from the right? | infinity | negative infinity | 0 | 1/2
+mc2: What is the limit of (2x + 5)/(x^2 - 3) as x approaches infinity? | 0 | 2 | -5/3 | infinity
+mc2: f(x) = (x^2 - 5x)/(x - 5). What does the graph have at x = 5? | a removable discontinuity | a vertical asymptote | a jump discontinuity | no discontinuity
+mc2: f(x) = 2 for x < 0 and f(x) = 5 for x >= 0. What is the limit of f(x) as x approaches 0? | It does not exist | 2 | 5 | 3.5
+mc2: Which function has a vertical asymptote at x = 3? | f(x) = (x + 1)/(x - 3) | f(x) = (x - 3)/(x + 1) | f(x) = (x^2 - 9)/(x - 3) | f(x) = 3/x
+mc3: f is continuous on [1, 5], f(1) = -4 and f(5) = 10. Which value must f take somewhere between x = 1 and x = 5? | 0 | 12 | -5 | 11
+mc3: A table shows f(2.9) = 8.7, f(2.99) = 8.97, f(3.01) = 9.03 and f(3.1) = 9.3, but f(3) = 0. Which statement is supported? | The limit appears to be 9, so f is not continuous at 3 | The limit is 0 | The limit does not exist | f is continuous at 3
+sa2: Evaluate the limit of (x^2 + x - 6)/(x - 2) as x approaches 2 and explain your method. | Factor: (x + 3)(x - 2)/(x - 2) = x + 3, so the limit is 5.
+sa2: Explain the three conditions for f to be continuous at x = a. | f(a) is defined, the limit as x approaches a exists, and the limit equals f(a).
+sa2: Explain how to find the limit of (the square root of (x + 9) - 3)/x as x approaches 0, and find it. | Multiply the numerator and denominator by (the square root of (x + 9) + 3). The numerator becomes (x + 9) - 9 = x. Cancel x to get 1/(the square root of (x + 9) + 3), which approaches 1/6.
+task3: A piecewise function is f(x) = x^2 + k for x < 1 and f(x) = 3x + 2 for x >= 1. Find k so f is continuous, sketch the graph, and use limits to justify continuity at x = 1. Then explain what happens to the graph if k is 1 more. | k = 4, correct sketch, both one-sided limits equal 5, and a jump discontinuity explained for k = 5. | Correct k and sketch with incomplete limit justification. | Correct setup with an error in k. | Little correct work.
+
+unit: Derivatives | CALC.DER | deriv, g12d2, g12chain
+el: Keep a derivative rules card (power, product, quotient, chain, e^x, ln x, sin x, cos x) with one worked example each, and read f'(x) aloud as "f prime of x, the slope at x."
+
+lesson: Average and instantaneous rate of change | CALC.DER
+practice:
+num2: f(x) = x^2 + 3. What is the average rate of change of f from x = 1 to x = 4? | 5
+hint: Find (f(4) - f(1)) / (4 - 1).
+num2: A car is 30 miles from home at 1:00 pm and 150 miles from home at 3:00 pm. What is its average speed in miles per hour? | 60
+hint: Divide the change in distance by the change in time.
+mc2: The instantaneous rate of change of f at x = a is | the slope of the tangent line at x = a | the slope of the secant line from 0 to a | the value f(a) | the average of f(0) and f(a)
+hint: Think of a secant line whose second point slides toward the first.
+mc2: s(t) = 4t^2 is a position in meters after t seconds. Which expression is the average velocity from t = 2 to t = 2 + h? | (4(2 + h)^2 - 16)/h | 4(2 + h)^2 - 16 | (4(2 + h)^2 + 16)/h | 4h^2/h
+hint: Average velocity is change in position over change in time.
+num2: s(t) = 4t^2 is a position in meters after t seconds. The average velocity from t = 2 to t = 2 + h simplifies to 16 + 4h. What is the instantaneous velocity at t = 2, in m/s? | 16
+hint: Let h approach 0.
+sa2: Explain the difference between average velocity and instantaneous velocity. | Average velocity is the change in position divided by the time over an interval. Instantaneous velocity is the velocity at one moment: the limit of average velocities over shorter and shorter intervals, which is the derivative of position.
+quiz:
+num1: f(x) = 3x - 2. What is the average rate of change of f from x = 0 to x = 5? | 3
+num2: g(x) = x^3. What is the average rate of change of g from x = 1 to x = 3? | 13
+mc2: A tank holds 500 liters at t = 0 and 380 liters at t = 6 minutes. What is the average rate of change of the volume? | -20 liters per minute | 20 liters per minute | -120 liters per minute | 63.3 liters per minute
+num2: A ball's height is h(t) = 20t - 5t^2 meters after t seconds. What is its average velocity from t = 0 to t = 2, in m/s? | 10
+mc2: On a graph of distance against time, what does a steeper tangent line show? | a greater speed at that moment | a greater distance traveled | that the object is stopped | that the object is turning around
+num2: f(x) = x^2. The slope of the secant line from x = 3 to x = 3 + h is 6 + h. What is the slope of the tangent line at x = 3? | 6
+mc3: A runner's distance is 0 m at 0 s, 35 m at 5 s and 80 m at 10 s. Using the interval centered at t = 5, what is the best estimate of her speed at t = 5 s? | 8 m/s | 7 m/s | 9 m/s | 35 m/s
+sa2: Explain why the slope of a secant line gets closer to the slope of the tangent line as the two points get closer together. | As the second point slides toward the first, the secant line turns toward the line that just touches the curve at the first point. Its slope, the average rate of change, approaches the instantaneous rate of change.
+
+lesson: The definition of the derivative and differentiability | CALC.DER, CALC.LIM
+practice:
+mc1: Which expression is the definition of f'(x)? | the limit as h approaches 0 of (f(x + h) - f(x))/h | (f(x + h) - f(x))/h with h = 1 | the limit as h approaches 0 of f(x + h) | f(x)/x
+hint: It is the limit of a difference quotient.
+num2: Use the definition of the derivative to find f'(2) for f(x) = 3x^2. | 12
+hint: (3(2 + h)^2 - 12)/h simplifies to 12 + 3h.
+mc2: Use the definition of the derivative to find f'(x) for f(x) = 5x - 1. | 5 | 5x | -1 | 0
+hint: Everything cancels except 5h in the numerator.
+mc2: Where is f(x) = abs(x) not differentiable? | x = 0 | x = 1 | everywhere | nowhere
+hint: Look for a sharp corner.
+num2: Use the definition of the derivative for f(x) = x^2 + 4x, then evaluate f'(1). | 6
+hint: The difference quotient simplifies to 2x + h + 4.
+sa2: Explain how a function can be continuous at a point but not differentiable there, with an example. | A graph can have no break but still have a sharp corner, cusp or vertical tangent. abs(x) is continuous at 0, but its slope is -1 on the left and 1 on the right, so there is no single tangent slope and no derivative at 0.
+quiz:
+num1: f(x) = 7x + 2. What is f'(x)? | 7
+mc2: Which limit equals f'(3) for f(x) = x^2? | the limit as h approaches 0 of ((3 + h)^2 - 9)/h | the limit as h approaches 0 of ((3 + h)^2 - 3)/h | ((3 + h)^2 - 9)/h with h = 0 | the limit as h approaches 3 of (h^2 - 9)/h
+num2: Use the definition of the derivative to find f'(1) for f(x) = 2x^2 - x. | 3
+mc2: Using the definition of the derivative, what is f'(x) for f(x) = 1/x? | -1/x^2 | 1/x^2 | -1/x | ln x
+mc2: f is differentiable at x = a. Which statement must be true? | f is continuous at a | f(a) = 0 | f'(a) = 0 | f has a corner at a
+num2: The limit as h approaches 0 of ((4 + h)^3 - 64)/h is the derivative of x^3 at which value of x? | 4
+mc3: At which x is f(x) = abs(x - 2) + 1 not differentiable? | 2 | 1 | -2 | 0
+sa3: Explain why f(x) = x^(1/3) is not differentiable at x = 0. | Its graph has a vertical tangent at x = 0. The difference quotient h^(1/3)/h = 1/h^(2/3) grows without bound as h approaches 0, so the limit does not exist and there is no derivative there.
+
+lesson: The power rule and derivatives of polynomials | CALC.DER
+practice:
+mc1: What is the derivative of x^8? | 8x^7 | 8x^8 | 7x^8 | x^7
+hint: Bring the exponent down and subtract 1 from it.
+mc2: What is the derivative of 4x^3 - 6x^2 + 2x - 9? | 12x^2 - 12x + 2 | 12x^2 - 6x + 2 | 4x^2 - 6x + 2 | 12x^3 - 12x^2 + 2x
+hint: Differentiate each term. The derivative of a constant is 0.
+mc2: What is the derivative of the square root of x, written x^(1/2)? | 1/(2 times the square root of x) | 2 times the square root of x | (1/2)x^(3/2) | (the square root of x)/2
+hint: Use the power rule with n = 1/2.
+num2: f(x) = 3/x, which is 3x^(-1). What is f'(1)? | -3
+hint: The power rule works for negative exponents too.
+num2: What is the slope of the tangent line to y = x^4 - 2x at x = 1? | 2
+hint: Find dy/dx and substitute 1.
+sa2: Find the equation of the tangent line to y = x^3 - 2x at x = 2. | y(2) = 8 - 4 = 4. y' = 3x^2 - 2, so the slope at x = 2 is 12 - 2 = 10. The tangent line is y - 4 = 10(x - 2), or y = 10x - 16.
+quiz:
+num1: f(x) = x^6. What is f'(1)? | 6
+mc2: What is the derivative of 5x^4 + 3x - 8? | 20x^3 + 3 | 20x^3 + 3x | 5x^3 + 3 | 20x^4 + 3
+mc2: What is the derivative of 2/x^2? | -4/x^3 | 4/x^3 | -2/x^3 | -4/x
+num2: f(x) = x^3 - 12x. At what positive value of x is f'(x) = 0? | 2
+mc2: What is the second derivative of x^5? | 20x^3 | 5x^4 | 20x^4 | 60x^2
+num2: A particle's position is s(t) = t^3 - 4t^2 + 5t meters after t seconds. What is its velocity at t = 3, in m/s? | 8
+mc3: At which point does y = x^2 - 6x + 10 have a horizontal tangent line? | (3, 1) | (6, 10) | (0, 10) | (-3, 37)
+sa2: Explain why the derivative of a constant function is 0. | A constant function's graph is a horizontal line, which has slope 0 everywhere. Its output never changes, so its rate of change is 0.
+
+lesson: The product and quotient rules | CALC.DER
+practice:
+mc2: Use the product rule to find the derivative of x^3(x + 1). | 4x^3 + 3x^2 | 3x^2 | 3x^3 + 1 | 4x^3 + 1
+hint: (fg)' = f'g + fg'.
+mc2: Use the quotient rule to find the derivative of x/(x + 1). | 1/(x + 1)^2 | -1/(x + 1)^2 | 1 | x/(x + 1)^2
+hint: (f/g)' = (f'g - fg')/g^2.
+num2: f(x) = (2x + 1)(x - 3). What is f'(2)? | 3
+hint: Use the product rule, or multiply out first.
+mc2: What is the derivative of x e^x? | e^x + x e^x | e^x | x e^x | e^x + x
+hint: Use the product rule with f = x and g = e^x.
+num2: g(x) = (x^2 + 1)/x. What is g'(1)? | 0
+hint: You can divide first: (x^2 + 1)/x = x + 1/x.
+sa2: Explain why the derivative of a product is not the product of the derivatives, using f(x) = x and g(x) = x. | fg = x^2, whose derivative is 2x. But f' times g' = 1 x 1 = 1, which is not 2x. The product rule, f'g + fg' = x + x = 2x, gives the correct answer.
+quiz:
+mc2: What is the derivative of (x^2 + 3)(2x - 1)? | 6x^2 - 2x + 6 | 4x | 2x(2x - 1) | 6x^2 + 6
+mc2: What is the derivative of (x - 1)/(x + 2)? | 3/(x + 2)^2 | -3/(x + 2)^2 | 1/(x + 2)^2 | 1
+num2: f(x) = x^2 e^x. What is f'(0)? | 0
+mc2: What is the derivative of tan x, written as sin x / cos x? | 1/cos^2 x | -1/cos^2 x | 1/sin^2 x | cos x / sin x
+num2: h(x) = f(x)g(x), where f(2) = 3, f'(2) = 4, g(2) = -1 and g'(2) = 5. What is h'(2)? | 11
+num2: q(x) = f(x)/g(x), where f(1) = 6, f'(1) = 2, g(1) = 3 and g'(1) = 1. What is q'(1)? | 0
+mc3: The revenue from selling x items at price p(x) is R(x) = x p(x). p(10) = 50 and p'(10) = -2. What is R'(10)? | 30 | 50 | -20 | 48
+sa2: Find the derivative of y = 1/(x^2 + 1) and explain which rule you used. | Using the quotient rule with f = 1 and g = x^2 + 1: y' = (0 x (x^2 + 1) - 1 x 2x)/(x^2 + 1)^2 = -2x/(x^2 + 1)^2.
+
+lesson: The chain rule | CALC.DER
+practice:
+mc2: What is the derivative of (3x - 2)^4? | 12(3x - 2)^3 | 4(3x - 2)^3 | 12(3x - 2)^4 | 3(3x - 2)^3
+hint: Differentiate the outside, keep the inside, then multiply by the derivative of the inside.
+mc2: What is the derivative of (x^2 + 1)^5? | 10x(x^2 + 1)^4 | 5(x^2 + 1)^4 | 5(2x)^4 | 10x(x^2 + 1)^5
+hint: The inside function is x^2 + 1.
+mc2: What is the derivative of the square root of (4x + 1)? | 2/(the square root of (4x + 1)) | 1/(2 times the square root of (4x + 1)) | 4 times the square root of (4x + 1) | 1/(the square root of (4x + 1))
+hint: Write it as (4x + 1)^(1/2).
+num2: f(x) = (2x - 3)^3. What is f'(2)? | 6
+hint: Use the chain rule, then substitute 2.
+num2: y = (x^2 - 3)^2. What is dy/dx at x = 2? | 8
+hint: The outer function is u^2 and the inner function is x^2 - 3.
+sa2: Explain the chain rule using the example y = (5x + 2)^3. | y is a function of u = 5x + 2, and u is a function of x. dy/dx = dy/du x du/dx = 3u^2 x 5 = 15(5x + 2)^2. The two rates of change multiply.
+quiz:
+mc1: In y = (7x + 1)^9, what is the inside function? | 7x + 1 | u^9 | 7 | 9
+mc2: What is the derivative of (1 - x)^6? | -6(1 - x)^5 | 6(1 - x)^5 | -6(1 - x)^6 | 6x(1 - x)^5
+num2: f(x) = the square root of (x^2 + 9). What is f'(4)? | 4/5
+mc2: What is the derivative of 1/(2x + 3)? | -2/(2x + 3)^2 | -1/(2x + 3)^2 | 2/(2x + 3)^2 | 1/2
+num2: h(x) = f(g(x)), where g(1) = 4, g'(1) = 3 and f'(4) = 5. What is h'(1)? | 15
+mc2: A circle's radius is r(t) = 2t + 1 cm after t seconds, and its area is A = pi r^2. How fast is the area changing at t = 1? | 12 pi square cm per second | 6 pi square cm per second | 9 pi square cm per second | 4 pi square cm per second
+mc3: y = (x^2 + 1)^3. What is the slope of the tangent line at x = 1? | 24 | 12 | 8 | 6
+sa3: Sam says the derivative of (x^3 + 2)^4 is 4(x^3 + 2)^3. Explain his mistake and give the correct derivative. | He forgot to multiply by the derivative of the inside function, 3x^2. The correct derivative is 4(x^3 + 2)^3 x 3x^2 = 12x^2(x^3 + 2)^3.
+
+lesson: Derivatives of exponential, logarithmic and trigonometric functions | CALC.DER
+practice:
+mc1: What is the derivative of cos x? | -sin x | sin x | -cos x | tan x
+hint: Think about the slope of the cosine graph at x = pi/2.
+mc2: What is the derivative of ln x? | 1/x | ln x | x | e^x
+hint: ln x is the inverse of e^x.
+mc2: What is the derivative of e^(x^2)? | 2x e^(x^2) | e^(x^2) | x^2 e^(x^2 - 1) | 2x e^x
+hint: Use the chain rule with the inside function x^2.
+num2: f(x) = sin(3x). What is f'(0)? | 3
+hint: The derivative of sin(u) is cos(u) times u'.
+num2: f(x) = ln(x^2 + 1). What is f'(1)? | 1
+hint: The derivative of ln(u) is u'/u.
+sa2: Explain, using the graph, what it means that the derivative of e^x is e^x. | At every point on y = e^x, the slope of the tangent line equals the height of the graph. The function is its own rate of change, which is what makes e special.
+quiz:
+mc1: What is the derivative of e^x? | e^x | x e^(x - 1) | e | ln x
+mc2: What is the derivative of 5 sin x - 2 cos x? | 5 cos x + 2 sin x | 5 cos x - 2 sin x | -5 cos x + 2 sin x | 5 sin x + 2 cos x
+num2: f(x) = 4e^(2x). What is f'(0)? | 8
+mc2: What is the derivative of ln(3x)? | 1/x | 3/x | 1/(3x) | ln 3
+num2: f(x) = cos(2x). What is f'(pi/4)? | -2
+num2: A population is P(t) = 500e^(0.04t) after t years. What is P'(0), the growth rate at t = 0 in individuals per year? | 20
+mc3: What is the derivative of e^x sin x? | e^x(sin x + cos x) | e^x cos x | e^x sin x | e^x(sin x - cos x)
+sa2: Explain how to find the derivative of y = 10^x by writing it as e^(x ln 10). | 10^x = e^(x ln 10). By the chain rule, the derivative is e^(x ln 10) x ln 10, which is 10^x ln 10.
+
+lesson: Unit review | CALC.DER
+practice:
+mc2: What is the derivative of 3x^4 - x^2 + 7? | 12x^3 - 2x | 12x^3 - 2x + 7 | 3x^3 - 2x | 12x^4 - 2x
+hint: Use the power rule on each term.
+num2: f(x) = x^2(x + 1). What is f'(1)? | 5
+hint: Multiply out first, or use the product rule.
+mc2: What is the derivative of (4x + 3)^2? | 8(4x + 3) | 2(4x + 3) | 8x | 16x + 3
+hint: Use the chain rule.
+num2: f(x) = 2 cos x. What is f'(0)? | 0
+hint: The derivative of cos x is -sin x.
+num2: What is the average rate of change of f(x) = x^2 from x = 2 to x = 6? | 8
+hint: Compute (f(6) - f(2)) / (6 - 2).
+quiz:
+mc1: Derivative of x^5? | 5x^4 | x^4 | 5x^5 | 4x^5
+mc1: Derivative of 7x^2 - 3x + 4? | 14x - 3 | 7x - 3 | 14x + 4 | 14x^2 - 3
+mc2: Derivative of (2x + 1)^3? | 6(2x + 1)^2 | 3(2x + 1)^2 | 6(2x + 1)^3 | 2(2x + 1)^2
+mc2: Slope of y = x^3 at x = 2? | 12 | 8 | 6 | 3
+num2: f(x) = x^4. What is f'(2)? | 32
+mc2: What is the derivative of ln(x^3), for x > 0? | 3/x | 1/x^3 | 3x^2 | 3 ln x
+sa2: Explain what the derivative tells you about a function's graph. | It gives the slope of the tangent line at each point: positive where the graph rises, negative where it falls.
+
+test:
+mc2: Derivative of sin(x)? | cos(x) | -cos(x) | -sin(x) | tan(x)
+mc2: Derivative of e^(3x)? | 3e^(3x) | e^(3x) | 3x e^(3x - 1) | e^3
+mc2: Derivative of x^2 sin(x)? | 2x sin(x) + x^2 cos(x) | 2x cos(x) | 2x sin(x) | x^2 cos(x)
+mc3: Position is s(t) = t^3 - 6t^2 + 9t. When is the velocity 0? | t = 1 and t = 3 | t = 0 and t = 3 | t = 2 | t = 0 only
+num2: f(x) = x^3 - 5x^2 + 2. What is f'(2)? | -8
+num2: f(x) = (x + 2)(x - 4). What is f'(3)? | 4
+num2: f(x) = (5x - 4)^3. What is f'(1)? | 15
+num2: A rock's height is h(t) = 50 - 4.9t^2 meters after t seconds. What is its velocity at t = 2, in m/s? | -19.6
+num2: f(x) = 6 ln x. What is f'(3)? | 2
+num2: A company's cost is C(x) = 0.01x^2 + 5x + 200 dollars to make x items. What is the marginal cost C'(100), in dollars per item? | 7
+mc1: What is the derivative of x^(-2)? | -2x^(-3) | -2x^(-1) | 2x^(-3) | -x^(-3)
+mc2: What is the derivative of x/(x^2 + 1)? | (1 - x^2)/(x^2 + 1)^2 | (x^2 - 1)/(x^2 + 1)^2 | 1/(2x) | (1 + x^2)/(x^2 + 1)^2
+mc2: What is the derivative of the square root of (x^3 + 1)? | 3x^2/(2 times the square root of (x^3 + 1)) | 1/(2 times the square root of (x^3 + 1)) | 3x^2 times the square root of (x^3 + 1) | 3x^2/(the square root of (x^3 + 1))
+mc2: What is the derivative of cos(x^2)? | -2x sin(x^2) | -sin(x^2) | 2x sin(x^2) | -sin(2x)
+mc2: Where is f(x) = abs(x + 3) not differentiable? | x = -3 | x = 3 | x = 0 | nowhere
+mc2: Which limit is the definition of the derivative of f at x = a? | the limit as h approaches 0 of (f(a + h) - f(a))/h | the limit as h approaches 0 of f(a + h) | (f(a + 1) - f(a))/1 | the limit as h approaches a of f(h)/h
+mc3: The tangent line to y = x^2 + bx at x = 1 has a slope of 5. What is b? | 3 | 5 | 4 | 7
+mc3: f(2) = 4 and f'(2) = 3. Using the tangent line at x = 2, what is the best estimate of f(2.1)? | 4.3 | 4.03 | 7 | 3.1
+sa2: Find the equation of the tangent line to y = x^2 + 1 at x = 2. | Slope 4, point (2, 5): y = 4x - 3.
+sa2: Use the definition of the derivative to find f'(x) for f(x) = x^2. | (x + h)^2 - x^2 over h = 2x + h, which approaches 2x.
+sa2: Find the equation of the tangent line to y = e^x at x = 0, and explain. | At x = 0, y = e^0 = 1. The derivative of e^x is e^x, so the slope is e^0 = 1. The tangent line is y - 1 = 1(x - 0), or y = x + 1.
+task3: A ball is thrown upward with height h(t) = -4.9t^2 + 19.6t + 2 meters. Find the velocity function, the time and height of the peak, the velocity when it hits the ground, and explain what the sign of the velocity means at each stage. | v = -9.8t + 19.6, peak at t = 2 s and 21.6 m, lands near t = 4.1 s with v about -20.6 m/s, clear sign interpretation. | Correct velocity and peak, landing velocity error. | Correct derivative only. | Little correct work.
+
+unit: Applications of derivatives | CALC.APP | g12vert
+el: For every word problem, have students draw and label a picture, name the variables and write the quantity to optimize or the equation that links the rates before differentiating. Post a sign chart example for f' and f''.
+
+lesson: Increasing, decreasing and the first derivative test | CALC.APP
+practice:
+mc1: f'(x) < 0 on an interval. What does that tell you about f there? | f is decreasing | f is increasing | f is concave down | f is constant
+hint: The derivative gives the slope.
+num2: f(x) = x^2 - 8x + 1. At what x is there a critical point? | 4
+hint: Solve f'(x) = 0.
+mc2: On which intervals is f(x) = x^3 - 3x^2 increasing? | x < 0 or x > 2 | 0 < x < 2 | x > 0 | x < 2
+hint: f'(x) = 3x^2 - 6x = 3x(x - 2). Where is it positive?
+mc2: f'(x) changes from positive to negative at x = 5. What does f have at x = 5? | a relative maximum | a relative minimum | an inflection point | nothing special
+hint: The function rises and then falls.
+num2: f(x) = 2x^3 - 6x + 1 has a relative minimum at a positive x. What is that x? | 1
+hint: f'(x) = 6x^2 - 6. Check where the sign changes from negative to positive.
+sa2: Use the first derivative test to classify the critical point of f(x) = x^4. | f'(x) = 4x^3 = 0 at x = 0. f' is negative for x < 0 and positive for x > 0, so f decreases then increases, and x = 0 is a relative minimum.
+quiz:
+mc1: What is a critical point of f? | an x in the domain where f'(x) = 0 or f'(x) does not exist | any x where f(x) = 0 | the y-intercept | any x where f''(x) = 0
+num2: f(x) = -x^2 + 10x. At what x does f have a relative maximum? | 5
+mc2: On which interval is f(x) = x^2 - 4x decreasing? | x < 2 | x > 2 | x < 0 | all real x
+mc2: f(x) = x^3 has a critical point at x = 0. What kind of point is it? | neither a maximum nor a minimum | a relative maximum | a relative minimum | a vertical asymptote
+num2: f(x) = x^3 - 12x + 5. What is the value of f at its relative maximum? | 21
+mc2: The graph of f' is above the x-axis for x < 1 and below it for x > 1. What does f have at x = 1? | a relative maximum | a relative minimum | a zero | an inflection point
+mc3: A company's profit is P(x) = -2x^2 + 120x - 1000 dollars when it makes x items. How many items give the greatest profit? | 30 | 60 | 120 | 15
+sa2: Explain why f'(c) = 0 does not guarantee a relative maximum or minimum at c. | A relative extremum needs f' to change sign at c. For f(x) = x^3, f'(0) = 0, but f' is positive on both sides of 0, so the function keeps increasing and has no maximum or minimum there.
+
+lesson: Concavity, inflection points and the second derivative | CALC.APP
+practice:
+mc1: f''(x) > 0 on an interval. What is true about the graph of f there? | It is concave up | It is concave down | It is decreasing | It is a straight line
+hint: A positive second derivative means the slope is increasing.
+num2: f(x) = x^3 - 6x^2 + 4. At what x is there an inflection point? | 2
+hint: Solve f''(x) = 0 and check that the concavity changes.
+mc2: On which interval is f(x) = x^3 - 3x concave down? | x < 0 | x > 0 | all real x | x > 1
+hint: f''(x) = 6x.
+mc2: f'(3) = 0 and f''(3) = -4. What does f have at x = 3? | a relative maximum | a relative minimum | an inflection point | The test gives no conclusion
+hint: The graph is concave down at a horizontal tangent.
+num2: f(x) = 2x^4 - x. What is f''(1)? | 24
+hint: Differentiate twice.
+sa2: Explain what an inflection point is and how to find one. | An inflection point is where the graph changes concavity, from concave up to concave down or the reverse. Find where f''(x) = 0 or is undefined, then check that f'' changes sign there.
+quiz:
+num1: f(x) = 5x^2 + 3x. What is f''(x)? | 10
+mc2: Where does f(x) = x^4 have an inflection point? | nowhere | x = 0 | x = 1 | x = -1
+num2: f(x) = x^3 + 3x^2 - 9x. At what x is its inflection point? | -1
+mc2: f'(2) = 0 and f''(2) = 5. What does f have at x = 2? | a relative minimum | a relative maximum | an inflection point | The test gives no conclusion
+mc2: A company's sales are increasing, but more and more slowly. Which describes the graph of sales over time? | increasing and concave down | increasing and concave up | decreasing and concave down | decreasing and concave up
+mc2: f'(0) = 0 and f''(0) = 0. What does the second derivative test tell you about x = 0? | Nothing; the test is inconclusive | f has a maximum | f has a minimum | f has an inflection point
+mc3: The graph of f' is increasing on the interval (0, 4). What must be true about f on (0, 4)? | f is concave up | f is increasing | f is concave down | f is decreasing
+sa2: Use the second derivative to describe the shape of f(x) = -x^2 + 4x near its critical point. | f'(x) = -2x + 4 = 0 at x = 2. f''(x) = -2 < 0, so the graph is concave down everywhere and x = 2 is a relative maximum, with f(2) = 4.
+
+lesson: Absolute extrema on closed intervals | CALC.APP
+practice:
+num2: What is the absolute maximum of f(x) = 3x + 2 on [0, 4]? | 14
+hint: A line has its greatest and least values at the endpoints.
+num2: What is the absolute minimum of f(x) = x^2 - 4x + 7 on [0, 5]? | 3
+hint: Check the critical point and both endpoints.
+mc2: What is the absolute maximum of f(x) = x^3 - 3x on [0, 3]? | 18 | 2 | -2 | 0
+hint: Compare f at x = 0, at the critical point x = 1 and at x = 3.
+mc2: What does the Extreme Value Theorem say? | A continuous function on a closed interval has an absolute maximum and an absolute minimum there | Every function has a maximum | Every differentiable function has a critical point | A function on an open interval has a maximum
+hint: It needs two conditions: continuity and a closed interval.
+num2: What is the absolute minimum of f(x) = x^3 - 12x on [0, 3]? | -16
+hint: f'(x) = 3x^2 - 12. Only one critical point is in the interval.
+sa2: Describe the closed interval method for finding absolute extrema. | Find the critical points inside the interval. Evaluate f at those points and at both endpoints. The largest value is the absolute maximum and the smallest value is the absolute minimum.
+quiz:
+num1: What is the absolute minimum of f(x) = 10 - 2x on [1, 4]? | 2
+num2: What is the absolute maximum of f(x) = -x^2 + 6x on [0, 4]? | 9
+num2: What is the absolute maximum value of f(x) = x^3 - 6x^2 + 9x on [0, 4]? | 4
+mc2: Where does f(x) = x^2 on [-1, 3] reach its absolute maximum? | x = 3 | x = 0 | x = -1 | x = 1
+mc2: Why does f(x) = 1/x have no absolute maximum on the interval 0 < x <= 1? | Its values grow without bound as x approaches 0 | It is not continuous at 1 | It is always negative | It has a critical point at 1/2
+mc2: What is the absolute minimum of f(x) = x + 4/x on [1, 4]? | 4 | 5 | 2 | 0
+mc3: A store's daily profit is P(x) = -5x^2 + 100x - 300 dollars when it charges x dollars, and the price must be between $4 and $8. What price gives the greatest profit? | $8 | $10 | $4 | $6
+sa3: Explain why the absolute maximum of f(x) = x^2 on [-3, 2] is at x = -3, even though the only critical point is x = 0. | The critical point x = 0 gives the minimum, f(0) = 0. The endpoints give f(-3) = 9 and f(2) = 4. The largest value is 9 at x = -3, so the maximum occurs at an endpoint.
+
+lesson: Optimization problems | CALC.APP
+practice:
+num2: Two positive numbers add to 30. What is the largest possible value of their product? | 225
+hint: Write the product as x(30 - x) and find where its derivative is 0.
+num2: A rectangle has an area of 64 square meters. What is its smallest possible perimeter in meters? | 32
+hint: Write P = 2x + 128/x and set P' = 0.
+mc2: A farmer fences a rectangular field beside a river with 600 m of fence and uses no fence along the river. Which dimensions give the greatest area? | 150 m by 300 m, with the 300 m side along the river | 200 m by 200 m | 100 m by 400 m | 150 m by 150 m
+hint: If x is each side perpendicular to the river, the side along the river is 600 - 2x.
+mc2: In an optimization problem, what should you do right after drawing and labeling a picture? | Write the quantity to optimize as a function of one variable | Take the second derivative | Set the function equal to 0 | Guess an answer and check it
+hint: You need a single function of one variable to differentiate.
+num2: An open box is made from a 12 cm by 12 cm square of cardboard by cutting a square of side x from each corner. Its volume is V = x(12 - 2x)^2. What x gives the greatest volume? | 2
+hint: V' = (12 - 2x)(12 - 6x). Which zero is between 0 and 6?
+sa2: Find two positive numbers whose product is 100 and whose sum is as small as possible, and explain. | Let the numbers be x and 100/x. S = x + 100/x and S' = 1 - 100/x^2 = 0 at x = 10. S'' = 200/x^3 > 0, so this is a minimum. Both numbers are 10.
+quiz:
+num2: Two numbers differ by 10. What is the smallest possible value of their product? | -25
+num2: A rectangle has a perimeter of 40 cm. What is the largest possible area in square cm? | 100
+mc2: A rectangular window has a perimeter of 24 ft. Which dimensions give it the largest area? | 6 ft by 6 ft | 4 ft by 8 ft | 3 ft by 9 ft | 2 ft by 10 ft
+num3: A company's revenue is R(x) = 200x - 2x^2 dollars and its cost is C(x) = 40x + 400 dollars for x units. How many units give the greatest profit? | 40
+mc2: A rectangle sits under the curve y = 12 - x^2 with its base on the x-axis, centered on the y-axis. Its area is A = 2x(12 - x^2). What x gives the greatest area? | 2 | 12 | the square root of 12 | 4
+num2: An open-top cylinder must hold 27 pi cubic cm. Its surface area is S = pi r^2 + 54 pi / r. What radius in cm makes S as small as possible? | 3
+mc3: How can you confirm that a critical point in an optimization problem gives a maximum? | Show f'' < 0 there, or show f' changes from positive to negative | Show f(x) = 0 there | Show f'' > 0 there | Check that x is positive
+sa3: A rectangular pen beside a barn uses 80 m of fence for its three other sides. Explain how to find the largest possible area, and give it. | Let x be each side perpendicular to the barn, so the side parallel to the barn is 80 - 2x. A = x(80 - 2x) = 80x - 2x^2 and A' = 80 - 4x = 0 at x = 20. A'' = -4 < 0, so it is a maximum. The pen is 20 m by 40 m, with an area of 800 square meters.
+
+lesson: Motion: position, velocity and acceleration | CALC.APP
+practice:
+mc1: s(t) is an object's position. What is s'(t)? | its velocity | its acceleration | the total distance traveled | its speed squared
+hint: Velocity is the rate of change of position.
+num2: s(t) = t^2 - 6t + 4 meters after t seconds. At what time in seconds is the object at rest? | 3
+hint: Set the velocity s'(t) equal to 0.
+num2: s(t) = 2t^3 - 9t^2 + 12t meters after t seconds. What is the acceleration at t = 2, in m/s^2? | 6
+hint: Acceleration is the derivative of velocity.
+mc2: An object's velocity is v(t) = t^2 - 4 m/s. For t >= 0, when is it moving in the negative direction? | 0 <= t < 2 | t > 2 | t > 4 | never
+hint: Find where v(t) < 0.
+mc2: At t = 3, an object's velocity is -5 m/s and its acceleration is 2 m/s^2. What is happening at that moment? | It is slowing down | It is speeding up | It is at rest | It is moving in the positive direction
+hint: Compare the signs of the velocity and the acceleration.
+sa2: A ball's height is h(t) = -16t^2 + 64t feet after t seconds. Explain how to find when it reaches its highest point and how high it gets. | The velocity is h'(t) = -32t + 64, which is 0 at t = 2. The velocity changes from positive to negative there, so the ball peaks at t = 2 s, at a height of h(2) = -64 + 128 = 64 feet.
+quiz:
+mc1: v(t) is an object's velocity. What is v'(t)? | its acceleration | its position | its speed | its distance traveled
+num2: s(t) = 5t^2 + 2t meters after t seconds. What is the velocity at t = 3, in m/s? | 32
+num2: s(t) = t^3 - 3t^2 meters after t seconds. What is the acceleration at t = 1, in m/s^2? | 0
+mc2: s(t) = t^2 - 8t + 15. At what time does the object change direction? | t = 4 | t = 3 and t = 5 | t = 8 | t = 0
+num2: A car's velocity is v(t) = 20 - 4t m/s while braking. After how many seconds does it stop? | 5
+num2: s(t) = t^2 - 4t + 3 meters gives a particle's position for 0 <= t <= 3 seconds. What total distance does it travel, in meters? | 5
+mc3: s(t) = -4.9t^2 + 9.8t + 1 meters after t seconds. What is the velocity when the object comes back down to a height of 1 m? | -9.8 m/s | 0 m/s | 9.8 m/s | -4.9 m/s
+sa2: Explain the difference between velocity and speed. | Velocity has a sign that shows direction, and speed is the absolute value of velocity. An object moving in the negative direction at 5 m/s has a velocity of -5 m/s and a speed of 5 m/s.
+
+lesson: Related rates | CALC.APP
+practice:
+mc2: The side of a square grows at 3 cm/s. How fast is its area growing when the side is 10 cm? | 60 square cm per second | 30 square cm per second | 100 square cm per second | 9 square cm per second
+hint: A = s^2, so dA/dt = 2s ds/dt.
+num2: A cube's edge grows at 1 cm/s. How fast is its volume growing when the edge is 4 cm, in cubic cm per second? | 48
+hint: V = s^3, so dV/dt = 3s^2 ds/dt.
+mc2: A 10-ft ladder slides down a wall, and its base moves away from the wall at 2 ft/s. How fast is the top sliding down when the base is 6 ft from the wall? | 1.5 ft/s | 2 ft/s | 0.67 ft/s | 3 ft/s
+hint: Use x^2 + y^2 = 100, differentiate with respect to t, and find y when x = 6.
+mc2: In a related rates problem, when should you substitute the values given for one moment? | after differentiating | before differentiating | instead of differentiating | only at the start
+hint: Quantities that change must stay variables until after you differentiate.
+num2: Two cars leave the same point at the same time. One drives north at 30 mph and the other drives east at 40 mph. How fast is the distance between them growing, in mph? | 50
+hint: The distance is the hypotenuse of a right triangle with legs 30t and 40t.
+sa2: Oil spreads in a circle whose radius grows at 0.5 m/s. Explain how to find how fast the area is growing when the radius is 4 m, and give the rate in terms of pi. | A = pi r^2, so dA/dt = 2 pi r dr/dt = 2 pi (4)(0.5) = 4 pi square meters per second.
+quiz:
+num2: The side of a square shrinks at 2 inches per second. How fast is its perimeter changing, in inches per second? | -8
+mc2: A circle's radius grows at 3 cm/s. How fast is its area growing when r = 5 cm? | 30 pi square cm per second | 15 pi square cm per second | 25 pi square cm per second | 10 pi square cm per second
+num2: A rectangle's length grows at 2 cm/s while its width stays 5 cm. How fast is its area growing, in square cm per second? | 10
+mc2: A 13-ft ladder slides down a wall, and its base moves away at 1 ft/s. How fast is the top moving down when the base is 5 ft from the wall? | 5/12 ft/s | 12/5 ft/s | 1 ft/s | 5/13 ft/s
+num2: A spherical balloon's volume grows at 100 pi cubic cm per second. How fast is its radius growing when the radius is 5 cm, in cm per second? (V = 4/3 pi r^3) | 1
+mc2: A 6-ft person walks away from a 15-ft lamppost at 3 ft/s. By similar triangles, the shadow length s and the distance x from the post satisfy 15s = 6(x + s). How fast is the shadow growing? | 2 ft/s | 3 ft/s | 5 ft/s | 1.2 ft/s
+mc3: Water drains from a cylindrical tank of radius 2 m at 4 cubic meters per minute. How fast is the water level falling? | 1/pi meters per minute | 4 meters per minute | pi meters per minute | 1/4 meters per minute
+sa3: Explain the steps for solving a related rates problem, using a ladder sliding down a wall as the example. | Draw and label the ladder, wall and ground, with x for the base distance and y for the height. Write the equation that links them, x^2 + y^2 = L^2. Differentiate both sides with respect to time: 2x dx/dt + 2y dy/dt = 0. Then substitute the known values and solve for the unknown rate.
+
+lesson: Unit review | CALC.APP
+practice:
+num2: f(x) = x^2 - 10x + 3. At what x does f have its minimum? | 5
+hint: Set f'(x) = 0.
+mc2: f(x) = x^3 - 3x^2. Where is its inflection point? | x = 1 | x = 0 | x = 2 | x = 3
+hint: Solve f''(x) = 0.
+num2: s(t) = t^2 - 10t meters after t seconds. What is the velocity at t = 2, in m/s? | -6
+hint: Differentiate the position function.
+num2: What is the absolute maximum of f(x) = 4x - x^2 on [0, 3]? | 4
+hint: Check the critical point and the endpoints.
+mc2: A circle's radius grows at 1 cm/s. How fast is its area growing when r = 10 cm? | 20 pi square cm per second | 10 pi square cm per second | 100 pi square cm per second | 2 pi square cm per second
+hint: dA/dt = 2 pi r dr/dt.
+quiz:
+mc1: f'(x) > 0 on an interval means f is | increasing | decreasing | constant | concave down
+mc2: f(x) = x^2 - 6x + 5 has a minimum at x = | 3 | -3 | 5 | 6
+mc2: Critical points of f(x) = x^3 - 3x are at x = | 1 and -1 | 0 | 3 | 0 and 3
+mc2: If f''(x) < 0, the graph is | concave down | concave up | increasing | a line
+num2: Two positive numbers add to 16. What is the largest possible value of their product? | 64
+mc2: An object has velocity v(t) = 2t - 6 m/s and acceleration a(t) = 2 m/s^2. What is happening at t = 1? | It is slowing down | It is speeding up | It is at rest | It is moving in the positive direction
+sa2: Explain why the maximum of a function on a closed interval can happen at an endpoint. | The function may keep rising until the edge of the interval, where there is no turning point.
+
+test:
+mc2: A farmer has 100 m of fence for a rectangle. What dimensions give the most area? | 25 m by 25 m | 10 m by 40 m | 20 m by 30 m | 50 m by 50 m
+mc2: A balloon's radius grows at 2 cm/s. How fast does the volume grow when r = 5? (V = 4/3 pi r^3) | 200 pi cubic cm/s | 100 pi cubic cm/s | 50 pi cubic cm/s | 500/3 pi cubic cm/s
+mc2: Velocity is v(t) = 3t^2 - 12. When is the object speeding up? | When v and acceleration have the same sign | When v > 0 only | When t < 2 only | Never
+mc3: A box with a square base and open top has volume 32. Which base side minimizes the material used? | 4 | 2 | 8 | 3
+num2: f(x) = x^3 - 27x. At what positive x does f have a relative minimum? | 3
+num2: f(x) = 2x^3 - 12x^2 + 5. At what x is its inflection point? | 2
+num2: What is the absolute minimum of f(x) = x^2 - 6x + 11 on [0, 5]? | 2
+num2: A rectangle has an area of 100 square feet. What is its smallest possible perimeter in feet? | 40
+num2: s(t) = t^3 - 9t^2 + 24t meters after t seconds. At what time, in seconds, is the object first at rest? | 2
+num2: The edge of a cube grows at 0.5 cm/s. How fast is its volume growing when the edge is 6 cm, in cubic cm per second? | 54
+mc1: f'(c) = 0 and f''(c) > 0. What does f have at x = c? | a relative minimum | a relative maximum | an inflection point | no extremum
+mc2: On which intervals is f(x) = 2x^3 - 6x increasing? | x < -1 or x > 1 | -1 < x < 1 | x > 0 | all real x
+mc2: On which interval is f(x) = x^3 - 9x concave up? | x > 0 | x < 0 | all real x | -3 < x < 3
+mc2: The graph of f' crosses the x-axis from negative to positive at x = -2. What does f have at x = -2? | a relative minimum | a relative maximum | an inflection point | a vertical asymptote
+mc2: s(t) = 4t - t^2 meters after t seconds. When does the object change direction? | t = 2 | t = 4 | t = 0 | never
+mc2: A 17-ft ladder slides down a wall, and its base moves away at 2 ft/s. How fast is the top sliding down when the base is 8 ft from the wall? | 16/15 ft/s | 15/16 ft/s | 2 ft/s | 8/17 ft/s
+mc3: A rectangular garden uses a wall as one side and 120 m of fence for the other three sides. What is its largest possible area? | 1800 square meters | 3600 square meters | 900 square meters | 1200 square meters
+mc3: A company's profit is P(x) = -0.5x^2 + 40x - 300 dollars for x items, but it can make at most 30 items. How many items should it make to earn the most? | 30 | 40 | 20 | 80
+sa2: Find the absolute maximum of f(x) = -x^2 + 4x + 1 on [0, 5]. | f'(x) = -2x + 4 = 0 at x = 2, f(2) = 5; endpoints f(0) = 1, f(5) = -4. Maximum 5.
+sa2: Use the second derivative test to classify the critical points of f(x) = x^3 - 3x^2. | f' = 3x^2 - 6x = 0 at x = 0, 2. f'' = 6x - 6: f''(0) < 0 max, f''(2) > 0 min.
+sa2: Explain what the signs of f' and f'' are for a graph that is decreasing and concave up, and give an example. | Decreasing means f' < 0 and concave up means f'' > 0. The graph falls, but less and less steeply, like y = 1/x for x > 0 or the left half of y = x^2.
+task3: A can (cylinder) must hold 500 cubic cm. Write the surface area in terms of the radius, use derivatives to find the radius and height that use the least metal, and explain why your answer is a minimum. Compare with a real can and suggest a reason for any difference. | SA = 2 pi r^2 + 1000/r, r about 4.3 cm, h about 8.6 cm (h = 2r), justified as a minimum, thoughtful comparison. | Correct optimization with weak justification or comparison. | Correct SA function with a derivative error. | Little correct work.
+
+unit: Integrals and accumulation | CALC.INT | g12int, integral
+el: Connect each integral to a picture of area and to units (rate x time = amount). Keep an antiderivative chart beside the derivative chart, and read the integral sign aloud as "the integral from a to b of."
+
+lesson: Riemann sums and approximating area | CALC.INT
+practice:
+num2: Use a right Riemann sum with 4 rectangles of width 1 to estimate the area under f(x) = x^2 from x = 0 to x = 4. | 30
+hint: Use the heights f(1), f(2), f(3) and f(4).
+num2: Use a left Riemann sum with 4 rectangles of width 1 to estimate the area under f(x) = x^2 from x = 0 to x = 4. | 14
+hint: Use the heights f(0), f(1), f(2) and f(3).
+mc2: f is increasing. How does a left Riemann sum compare with the exact area under f? | It is an underestimate | It is an overestimate | It is exact | It cannot be compared
+hint: Sketch the rectangles. Where are their tops compared with the curve?
+num2: A car's speed is 10, 14, 18 and 20 m/s at t = 0, 2, 4 and 6 seconds. Using a left Riemann sum with intervals of 2 seconds, estimate the distance traveled from t = 0 to t = 6, in meters. | 84
+hint: Each rectangle has a width of 2 seconds and uses the speed at its left end.
+mc2: f(0) = 3 and f(2) = 7. What is the estimate of the area under f from 0 to 2 using one trapezoid? | 10 | 20 | 14 | 5
+hint: The area of a trapezoid is the width times the average of the two heights.
+sa2: Explain why Riemann sums get closer to the exact area as the number of rectangles increases. | Thinner rectangles follow the curve more closely, so the gaps and overlaps between the rectangles and the curve shrink. In the limit, the sum equals the exact area, the definite integral.
+quiz:
+num2: Use a right Riemann sum with 3 rectangles of width 1 to estimate the area under f(x) = 2x + 1 from x = 0 to x = 3. | 15
+num2: Use a midpoint Riemann sum with 2 rectangles of width 2 to estimate the area under f(x) = x^2 from x = 0 to x = 4. | 20
+mc2: f is decreasing. How does a right Riemann sum compare with the exact area under f? | It is an underestimate | It is an overestimate | It is exact | It cannot be compared
+mc2: Water flows into a tank at 3, 5, 6 and 8 liters per minute at t = 0, 1, 2 and 3 minutes. Using trapezoids, about how much water enters from t = 0 to t = 3? | 16.5 liters | 14 liters | 22 liters | 19 liters
+num2: Use a left Riemann sum with 5 rectangles of width 1 to estimate the area under f(x) = 10 - x from x = 0 to x = 5. | 40
+mc2: What is the limit of Riemann sums as the number of rectangles goes to infinity? | the definite integral | the derivative | the average rate of change | the tangent line
+mc3: The exact area under f(x) = x from 0 to 4 is 8, and a left sum with 4 equal rectangles gives 6. What does a right sum with 4 equal rectangles give? | 10 | 8 | 6 | 12
+sa2: Explain why a Riemann sum for a velocity graph, in meters per second over seconds, has units of meters. | Each rectangle's area is its height times its width: (meters per second) x (seconds) = meters. So the sum estimates a distance in meters.
+
+lesson: Antiderivatives and indefinite integrals | CALC.INT
+practice:
+mc1: What is an antiderivative of 4x^3? | x^4 | 12x^2 | 4x^4 | x^3
+hint: Increase the exponent by 1 and divide by the new exponent.
+mc2: What is the integral of (6x - 5) dx? | 3x^2 - 5x + C | 6 + C | 3x^2 + C | 6x^2 - 5x + C
+hint: Integrate each term and add C.
+mc2: What is the integral of x^(-2) dx? | -x^(-1) + C | x^(-1) + C | -2x^(-3) + C | -x^(-3)/3 + C
+hint: Use the reverse power rule with n = -2.
+mc2: What is the integral of cos x dx? | sin x + C | -sin x + C | cos x + C | -cos x + C
+hint: Which function has derivative cos x?
+num2: F'(x) = 2x and F(0) = 5. What is F(3)? | 14
+hint: F(x) = x^2 + C. Use F(0) = 5 to find C.
+sa2: Explain why we add + C to an indefinite integral. | Many functions have the same derivative, because the derivative of any constant is 0. For example, x^2, x^2 + 3 and x^2 - 7 all have derivative 2x, so the antiderivative of 2x is x^2 + C.
+quiz:
+mc1: What is the integral of 10x dx? | 5x^2 + C | 10x^2 + C | 10 + C | 20x^2 + C
+mc2: What is the integral of (x^2 + 2x) dx? | x^3/3 + x^2 + C | 2x + 2 + C | x^3 + x^2 + C | x^3/3 + 2x^2 + C
+mc2: What is the integral of e^x dx? | e^x + C | x e^x + C | e^(x + 1)/(x + 1) + C | ln x + C
+mc2: What is the integral of 1/x dx, for x > 0? | ln x + C | -1/x^2 + C | x + C | e^x + C
+num2: f'(x) = 3x^2 - 4 and f(1) = 2. What is f(2)? | 5
+num2: A ball's velocity is v(t) = -9.8t + 15 m/s, and its height at t = 0 is 2 m. What is its height at t = 1, in meters? | 12.1
+mc3: What is the integral of sin x dx? | -cos x + C | cos x + C | -sin x + C | sin x + C
+sa2: Explain how to check whether x^3/3 - 2x + C is the correct antiderivative of x^2 - 2. | Differentiate it. The derivative of x^3/3 - 2x + C is x^2 - 2, which matches the integrand, so it is correct.
+
+lesson: Definite integrals and their properties | CALC.INT
+practice:
+num2: What is the integral of 4 dx from 1 to 6? | 20
+hint: The region is a rectangle.
+num2: Using geometry, what is the integral of x dx from 0 to 6? | 18
+hint: The region is a triangle with base 6 and height 6.
+mc2: The integral of f from 0 to 3 is 7 and the integral of f from 3 to 5 is 2. What is the integral of f from 0 to 5? | 9 | 5 | 14 | -5
+hint: Integrals over intervals that meet end to end add.
+num2: The integral of f from 2 to 6 is 10. What is the integral of f from 6 to 2? | -10
+hint: Switching the limits changes the sign.
+mc2: The integral of f from 1 to 4 is 5. What is the integral of 3f(x) from 1 to 4? | 15 | 5 | 8 | 5/3
+hint: A constant factor can be moved outside the integral.
+sa2: Using geometry, explain how to find the integral of the square root of (9 - x^2) dx from -3 to 3. | The graph of y = the square root of (9 - x^2) is the top half of a circle of radius 3. The integral is the area of that half circle: (1/2) pi (3)^2 = 9pi/2.
+quiz:
+num1: For any function f, what is the integral of f(x) dx from 3 to 3? | 0
+num2: Using geometry, what is the integral of (x + 2) dx from 0 to 4? | 16
+mc2: The integral of f from 0 to 2 is 3 and the integral of g from 0 to 2 is -1. What is the integral of (f + 2g) from 0 to 2? | 1 | 5 | 2 | -2
+num2: The integral of f from 0 to 10 is 12 and the integral of f from 0 to 4 is 5. What is the integral of f from 4 to 10? | 7
+mc2: A function is negative on the whole interval [2, 5]. What can you say about its integral from 2 to 5? | It is negative | It is positive | It is 0 | It is undefined
+num2: Using geometry, what is the integral of abs(x) dx from -2 to 2? | 4
+mc3: The average value of f on [a, b] is 1/(b - a) times the integral of f from a to b. The integral of f from 0 to 4 is 20. What is the average value of f on [0, 4]? | 5 | 20 | 80 | 4
+sa2: Explain why the integral of x^3 dx from -2 to 2 equals 0. | x^3 is an odd function, so its graph is symmetric about the origin. The signed area below the x-axis on [-2, 0] exactly cancels the area above it on [0, 2], so the integral is 0.
+
+lesson: The Fundamental Theorem of Calculus | CALC.INT
+practice:
+num2: Evaluate the integral of 3x^2 dx from 0 to 2. | 8
+hint: Find an antiderivative F and compute F(2) - F(0).
+num2: Evaluate the integral of (4x - 1) dx from 1 to 3. | 14
+hint: An antiderivative is 2x^2 - x.
+mc2: Evaluate the integral of e^x dx from 0 to 1. | e - 1 | e | 1 | e + 1
+hint: Use F(x) = e^x.
+mc2: G(x) is the integral of t^2 dt from 0 to x. What is G'(x)? | x^2 | x^3/3 | 2x | t^2
+hint: The derivative of an accumulation function is the integrand evaluated at x.
+num2: Evaluate the integral of (1/x) dx from 1 to e. | 1
+hint: An antiderivative of 1/x is ln x.
+sa2: Water flows into a tank at r(t) liters per minute. Use the Fundamental Theorem to explain what the integral of r(t) from 0 to 10 means. | It is the total change in the amount of water, in liters, from t = 0 to t = 10 minutes. By the Fundamental Theorem, integrating a rate of change gives the net change in the quantity.
+quiz:
+num1: Evaluate the integral of 2 dx from 0 to 7. | 14
+num2: Evaluate the integral of x^3 dx from 0 to 2. | 4
+num2: Evaluate the integral of (6x^2 - 2x) dx from 0 to 1. | 1
+mc2: Evaluate the integral of sin x dx from 0 to pi. | 2 | 0 | 1 | -2
+mc2: G(x) is the integral of cos t dt from 0 to x. What is G'(pi)? | -1 | 0 | 1 | pi
+num2: A town grows at a rate of r(t) = 3t^2 people per day. How many people are added from t = 1 to t = 3 days? | 26
+mc3: F is an antiderivative of f, F(2) = 5 and F(6) = 17. What is the integral of f from 2 to 6? | 12 | 22 | 17 | 3
+sa3: Maria says the integral of x dx from -1 to 1 is 1, because the region is two triangles of area 1/2. Explain her mistake. | A definite integral gives signed area. The triangle on [-1, 0] is below the x-axis and counts as -1/2, and the triangle on [0, 1] counts as +1/2, so the integral is 0. The total unsigned area is 1.
+
+lesson: Integration by substitution | CALC.INT
+practice:
+mc2: What is the integral of 2x(x^2 + 1)^3 dx? | (x^2 + 1)^4/4 + C | (x^2 + 1)^4 + C | 2x(x^2 + 1)^4/4 + C | (x^2 + 1)^3 + C
+hint: Let u = x^2 + 1, so du = 2x dx.
+mc2: What is the integral of cos(5x) dx? | sin(5x)/5 + C | 5 sin(5x) + C | sin(5x) + C | -sin(5x)/5 + C
+hint: Let u = 5x, so dx = du/5.
+mc2: What is the integral of e^(3x) dx? | e^(3x)/3 + C | 3e^(3x) + C | e^(3x) + C | e^(3x + 1)/(3x + 1) + C
+hint: Let u = 3x.
+num2: Evaluate the integral of 2x(x^2 + 1) dx from 0 to 1. | 3/2
+hint: With u = x^2 + 1, the limits become u = 1 and u = 2.
+mc2: Which substitution works best for the integral of x/(x^2 + 4) dx? | u = x^2 + 4 | u = x | u = 1/x | u = x^2 + 4x
+hint: Look for an inside function whose derivative also appears, up to a constant.
+sa2: Use substitution to find the integral of x^2(x^3 - 1)^4 dx, and explain each step. | Let u = x^3 - 1, so du = 3x^2 dx and x^2 dx = du/3. The integral becomes (1/3) times the integral of u^4 du = u^5/15 + C = (x^3 - 1)^5/15 + C.
+quiz:
+mc2: What is the integral of 3x^2(x^3 + 2)^5 dx? | (x^3 + 2)^6/6 + C | (x^3 + 2)^6 + C | 3x^2(x^3 + 2)^6/6 + C | (x^3 + 2)^5/5 + C
+mc2: What is the integral of sin(2x) dx? | -cos(2x)/2 + C | cos(2x)/2 + C | -2cos(2x) + C | -cos(2x) + C
+mc2: What is the integral of 1/(x + 3) dx, for x > -3? | ln(x + 3) + C | 1/(x + 3)^2 + C | ln x + 3 + C | -1/(x + 3)^2 + C
+num2: Evaluate the integral of (2x + 1)^2 dx from 0 to 1. | 13/3
+num2: Evaluate the integral of x(x^2 - 1)^3 dx from 1 to 2. | 81/8
+mc2: What is the integral of cos x e^(sin x) dx? | e^(sin x) + C | e^(cos x) + C | sin x e^(sin x) + C | -e^(sin x) + C
+mc3: With u = x^2 + 1, which integral is equal to the integral of x(x^2 + 1)^2 dx from 0 to 2? | (1/2) times the integral of u^2 du from 1 to 5 | the integral of u^2 du from 0 to 2 | 2 times the integral of u^2 du from 1 to 5 | (1/2) times the integral of u^2 du from 0 to 2
+sa2: Explain how to tell when substitution is a good method for an integral. | Look for an inside function whose derivative also appears as a factor, up to a constant, such as x^2 + 1 together with 2x, or sin x together with cos x. Letting u be the inside function turns the integral into a simpler one in u.
+
+lesson: Area between curves and accumulation in context | CALC.INT
+practice:
+num2: What is the area of the region between y = 4 (on top) and y = x^2 from x = -2 to x = 2? | 32/3
+hint: Integrate (top - bottom) = 4 - x^2.
+mc2: Which integral gives the area between y = x + 2 (on top) and y = x^2 from x = -1 to x = 2? | the integral of (x + 2 - x^2) dx from -1 to 2 | the integral of (x^2 - x - 2) dx from -1 to 2 | the integral of (x + 2 + x^2) dx from -1 to 2 | the integral of (x + 2) dx from -1 to 2
+hint: Subtract the bottom curve from the top curve.
+num2: What is the area between y = x + 2 and y = x^2 from x = -1 to x = 2? | 9/2
+hint: An antiderivative of x + 2 - x^2 is x^2/2 + 2x - x^3/3.
+mc2: A population of 1,000 grows at r(t) = 200 + 30t people per year. Which expression gives the population after 5 years? | 1000 + the integral of (200 + 30t) dt from 0 to 5 | the integral of (200 + 30t) dt from 0 to 5 | 1000 + 200 + 30(5) | 1000(200 + 30t)
+hint: Final amount = starting amount + accumulated change.
+num2: A population starts at 1,000 people and grows at r(t) = 200 + 30t people per year. How many people are there after 5 years? | 2375
+hint: Integrate the rate from 0 to 5 and add the starting amount.
+sa2: Explain why the integral of a velocity function can differ from the total distance traveled. | The integral of velocity gives displacement, which subtracts movement in the negative direction. Total distance adds up the absolute value of velocity, so whenever the object moves backward the two answers differ.
+quiz:
+num2: What is the area between y = 2x and y = x^2 from x = 0 to x = 2? | 4/3
+mc2: A tank drains at r(t) = 10 - 2t liters per minute for 0 <= t <= 5. How much water drains out in those 5 minutes? | 25 liters | 50 liters | 10 liters | 0 liters
+num2: A particle's velocity is v(t) = t - 2 m/s for 0 <= t <= 4 seconds. What is its displacement in meters? | 0
+num2: A particle's velocity is v(t) = t - 2 m/s for 0 <= t <= 4 seconds. What total distance does it travel, in meters? | 4
+mc2: Which integral gives the area between y = sin x and the x-axis from x = 0 to x = pi? | the integral of sin x dx from 0 to pi | the integral of cos x dx from 0 to pi | the integral of -sin x dx from 0 to pi | the integral of sin x dx from 0 to 2pi
+num3: There are 10 cm of snow on the ground when snow starts falling at a rate of s(t) = 2t cm per hour. How deep is the snow after 3 hours, in cm? | 19
+mc3: The curves y = x^2 and y = x^3 meet at x = 0 and x = 1. On [0, 1], which curve is on top, and what is the area between them? | x^2 is on top, and the area is 1/12 | x^3 is on top, and the area is 1/12 | x^2 is on top, and the area is 7/12 | x^3 is on top, and the area is 1/6
+sa2: A factory makes items at r(t) = 50 - t items per hour during an 8-hour shift. Explain how to find how many items it makes in the shift, and find it. | Integrate the rate over the shift: the integral of (50 - t) dt from 0 to 8 = 50(8) - 64/2 = 400 - 32 = 368 items.
+
+lesson: Unit review | CALC.INT
+practice:
+num2: Evaluate the integral of (2x + 3) dx from 0 to 2. | 10
+hint: An antiderivative is x^2 + 3x.
+mc2: What is the integral of 5x^4 dx? | x^5 + C | 20x^3 + C | 5x^5 + C | x^5/5 + C
+hint: Use the reverse power rule.
+num2: Use a right Riemann sum with 2 rectangles of width 1 to estimate the integral of x^2 from 0 to 2. | 5
+hint: The heights are f(1) and f(2).
+mc2: The integral of f from 0 to 4 is 9. What is the integral of f from 4 to 0? | -9 | 9 | 0 | 1/9
+hint: Reversing the limits changes the sign.
+num2: What is the integral of 3 dx from 2 to 10? | 24
+hint: The region is a rectangle.
+quiz:
+mc1: An antiderivative of 6x^2 is | 2x^3 | 12x | 6x^3 | 3x^2
+mc2: The integral of 2x from 0 to 3 is | 9 | 6 | 3 | 18
+mc2: The integral of (3x^2 + 1) from 1 to 2 is | 8 | 7 | 9 | 13
+mc2: The integral of cos(x) from 0 to pi/2 is | 1 | 0 | -1 | pi/2
+num2: Evaluate the integral of 4x^3 dx from 1 to 2. | 15
+mc2: Which integral gives the area between y = 6 and y = x^2 + 2 from x = -2 to x = 2? | the integral of (4 - x^2) dx from -2 to 2 | the integral of (x^2 - 4) dx from -2 to 2 | the integral of (x^2 + 8) dx from -2 to 2 | the integral of 6 dx from -2 to 2
+sa2: Explain why a definite integral can be negative. | It adds signed area; where the function is below the x-axis the area counts as negative.
+
+test:
+mc2: If v(t) is velocity, the integral of v from 0 to 5 gives | change in position | acceleration | the speed at t = 5 | the average velocity
+mc2: The area between y = x and y = x^2 from 0 to 1 is | 1/6 | 1/2 | 1/3 | 1
+mc2: A left Riemann sum with 4 rectangles for f(x) = x on [0, 4] gives | 6 | 8 | 10 | 16
+mc3: Water flows into a tank at r(t) = 4t liters per minute. How much enters in the first 5 minutes? | 50 liters | 20 liters | 100 liters | 25 liters
+num2: Evaluate the integral of (x^2 + 2x) dx from 0 to 3. | 18
+num2: Evaluate the integral of (1/x) dx from 1 to e^2. | 2
+num2: f'(x) = 6x + 2 and f(0) = 4. What is f(2)? | 20
+num2: Use a left Riemann sum with 3 rectangles of width 2 to estimate the integral of x^2 from 0 to 6. | 40
+num2: A pipe fills a pool at r(t) = 6t^2 liters per minute. How many liters enter from t = 0 to t = 2 minutes? | 16
+num2: Evaluate the integral of 2x(x^2 + 3)^2 dx from 0 to 1. | 37/3
+mc1: What is the integral of 8x^3 dx? | 2x^4 + C | 24x^2 + C | 8x^4 + C | 2x^3 + C
+mc2: What is the integral of (3 - 4x) dx? | 3x - 2x^2 + C | -4 + C | 3x - 4x^2 + C | 3 - 2x^2 + C
+mc2: What is the integral of e^(2x) dx? | e^(2x)/2 + C | 2e^(2x) + C | e^(2x) + C | e^(2x + 1) + C
+mc2: G(x) is the integral of (t^3 + 1) dt from 0 to x. What is G'(2)? | 9 | 5 | 4 | 6
+mc2: The integral of f from 1 to 3 is 4 and the integral of f from 3 to 7 is -6. What is the integral of f from 1 to 7? | -2 | 10 | -10 | 2
+mc2: Using geometry, what is the integral of (3 - x) dx from 0 to 3? | 4.5 | 9 | 3 | 6
+mc3: A particle's velocity is v(t) = 2t - 4 m/s for 0 <= t <= 3 seconds. What total distance does it travel? | 5 m | -3 m | 3 m | 1 m
+mc3: What is the area between y = x and y = x^3 from x = 0 to x = 1? | 1/4 | 1/2 | 3/4 | 0
+sa2: Explain the Fundamental Theorem of Calculus in your own words. | The definite integral of a rate from a to b equals the change in an antiderivative, F(b) - F(a): accumulating the rate gives total change.
+sa2: Find the area under y = x^2 from 0 to 3. | x^3/3 from 0 to 3 = 9.
+sa2: Explain why a trapezoid estimate is often more accurate than a left or right Riemann sum. | A trapezoid uses the straight line between the two endpoint heights, so it is the average of the left and right sums. Its slanted top usually fits the curve better than a flat rectangle top, leaving smaller gaps.
+task3: A car's velocity is v(t) = 3t^2 - 12t + 9 m/s for 0 <= t <= 4. Find when the car changes direction, the displacement over 4 seconds, and the total distance traveled. Explain why the two answers differ. | Changes direction at t = 1 and t = 3, displacement 4 m, total distance 12 m, clear explanation of signed versus total area. | Displacement and turning times correct, distance error. | Correct antiderivative with errors. | Little correct work.

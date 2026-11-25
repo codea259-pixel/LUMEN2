@@ -1,0 +1,664 @@
+@subject math
+@grade 9
+# Converted from the grade 9 section of tools/assess-src/math.txt. Every original unit line, standard, item and unit test
+# item is carried over verbatim. The original "Unit review" lesson is kept as the last lesson of each unit: its quiz keeps
+# the original quiz items (mc 1-4 and the explanation item) and the unit test keeps the original test items (mc 5-8,
+# both short answers and the task). New lessons come first.
+about: Algebra I extends linear reasoning to functions, systems and inequalities, introduces exponential models, and develops polynomial operations and quadratic functions, with attention to modeling real data.
+std: A-SSE.A.2 | Use the structure of an expression to identify ways to rewrite it.
+std: A-REI.B.3 | Solve linear equations and inequalities in one variable, including literal equations.
+std: A-REI.B.4 | Solve quadratic equations in one variable by inspection, square roots, factoring, completing the square and the quadratic formula.
+std: F-IF.B.4 | Interpret key features of graphs and tables of functions in terms of the quantities.
+std: F-LE.A.1 | Distinguish between situations that can be modeled with linear functions and with exponential functions.
+std: S-ID.C.7 | Interpret the slope and intercept of a linear model in the context of the data.
+
+unit: Linear equations, inequalities and absolute value | A-CED.A.1, A-REI.B.3, A-REI.D.12 | lineq, g9abs, g9ineq
+el: Model each solving step on a balance picture, and post key words with their symbols: at least (>=), at most (<=), more than (>), less than (<), within (absolute value).
+
+lesson: Multi-step equations and literal equations | A-REI.B.3, A-CED.A.1, A-CED.A.4
+practice:
+num1: Solve 4(x - 3) = 2x + 10. | 11
+hint: Distribute the 4 first, then collect the x terms on one side.
+num2: Solve x/3 + 5 = 2x - 5. | 6
+hint: Multiply every term by 3 to clear the fraction.
+mc2: Solve the formula v = u + at for t. | t = (v - u)/a | t = v - u - a | t = (v + u)/a | t = a(v - u)
+hint: Undo the addition of u first, then undo the multiplication by a.
+num2: A taxi charges a $3.50 pickup fee plus $2.25 per mile. Maya's fare was $21.50. How many miles did she ride? | 8
+hint: Write an equation: the fee plus the cost per mile times m equals the fare.
+mc2: How many solutions does 2(x + 4) = 2x + 5 have? | No solution | One solution | Two solutions | Infinitely many solutions
+hint: Simplify both sides. What happens to the x terms?
+sa2: Solve C = 5/9 (F - 32) for F and use it to convert 25 degrees Celsius to Fahrenheit. | Multiply both sides by 9/5: 9C/5 = F - 32, so F = 9C/5 + 32. For C = 25, F = 45 + 32 = 77 degrees.
+quiz:
+num1: Solve 7x - 9 = 4x + 12. | 7
+num2: Solve 0.5(6x + 8) = 2(x + 5). | 6
+mc2: Solve the formula P = 2(l + w) for l. | l = P/2 - w | l = P - 2w | l = 2P - w | l = (P - w)/2
+mc2: Solve -3(2 - x) = 3x - 6. | All real numbers | No solution | x = 0 | x = 2
+num2: Gym A costs $40 to join plus $25 per month. Gym B costs $10 to join plus $31 per month. After how many months is the total cost the same? | 5
+mc3: The perimeter of a triangle is 52 cm. Its sides are x, 2x + 4 and 3x - 6 centimeters. How long is the longest side? | 22 cm | 21 cm | 9 cm | 18 cm
+num2: Solve (2x + 1)/5 = (x - 1)/2. | 7
+sa3: Jordan solved 5 - 2(x + 3) = 9 by first writing 3(x + 3) = 9, and he got x = 0. Explain his mistake and solve the equation correctly. | He subtracted 5 - 2 first, but the -2 must be distributed before subtracting. Correct: 5 - 2x - 6 = 9, so -2x - 1 = 9, -2x = 10 and x = -5. Check: 5 - 2(-2) = 9.
+
+lesson: Inequalities in one variable and compound inequalities | A-REI.B.3, A-CED.A.1
+practice:
+mc1: Solve 3x + 4 < 19. | x < 5 | x > 5 | x < 23/3 | x < 15
+hint: Subtract 4, then divide by 3. Does the sign need to flip?
+mc2: Solve -2x + 7 >= 15. | x <= -4 | x >= -4 | x <= 4 | x >= 11
+hint: Dividing both sides by a negative number reverses the inequality sign.
+mc2: Solve -3 < 2x + 1 <= 9. | -2 < x <= 4 | -1 < x <= 5 | -2 <= x < 4 | x <= 4
+hint: Do the same step to all three parts of the compound inequality.
+num2: Ana has $60. She wants to buy a $15 shirt and some packs of socks that cost $6 each. What is the greatest number of sock packs she can buy? | 7
+hint: Write an inequality, solve it, and remember that packs come in whole numbers.
+mc2: Which compound inequality describes all numbers less than -1 or greater than 3? | x < -1 or x > 3 | -1 < x < 3 | x > -1 or x < 3 | x < -1 and x > 3
+sa2: Explain why the inequality sign flips when you multiply both sides by -1. Use 2 < 5 as an example. | Multiplying by -1 gives -2 and -5. On a number line -2 is to the right of -5, so -2 > -5. Multiplying by a negative reflects numbers across 0, which reverses their order.
+quiz:
+mc1: Solve x/4 - 2 > 1. | x > 12 | x > 4 | x < 12 | x > -4
+mc2: Solve 5 - 3x <= 2x - 10. | x >= 3 | x <= 3 | x >= -3 | x <= -3
+mc2: Solve 4 <= 3x - 2 < 13. | 2 <= x < 5 | 2 < x <= 5 | 6 <= x < 15 | 2/3 <= x < 11/3
+num2: A delivery van can carry at most 1,500 pounds. The driver weighs 180 pounds and each box weighs 40 pounds. What is the greatest number of boxes the van can carry along with the driver? | 33
+num2: To earn a B, Kai needs a mean of at least 80 on five tests. His first four scores are 72, 85, 78 and 81. What is the lowest score he can get on the fifth test? | 84
+mc2: Which value is NOT a solution of 2x - 5 > 3 or x < -2? | 0 | -3 | 5 | 10
+mc3: A number line shows an open circle at -1, a closed circle at 4, and shading between them. Which inequality does it show? | -1 < x <= 4 | -1 <= x < 4 | x < -1 or x >= 4 | -1 < x < 4
+sa2: Explain the difference between the solutions of "x > 2 and x < 5" and "x > 2 or x < 5". | "And" means both must be true, so the solution is 2 < x < 5. "Or" means at least one must be true, and every real number is greater than 2 or less than 5, so the "or" solution is all real numbers.
+
+lesson: Absolute value equations and inequalities | A-REI.B.3, A-CED.A.1
+practice:
+mc1: Solve abs(x + 2) = 5. | x = 3 or x = -7 | x = 3 | x = -3 or x = 7 | x = 7 or x = -7
+hint: The expression inside can equal 5 or -5.
+mc2: Solve 2 abs(x - 1) + 3 = 11. | x = 5 or x = -3 | x = 5 | x = 4 or x = -4 | x = 3 or x = -5
+hint: Isolate the absolute value before you split it into two equations.
+mc2: Solve abs(x - 3) <= 4. | -1 <= x <= 7 | x <= 7 | x <= -1 or x >= 7 | 1 <= x <= 7
+hint: A distance of at most 4 from 3 means x is between two numbers.
+mc2: Solve abs(2x) > 6. | x < -3 or x > 3 | -3 < x < 3 | x > 3 | x > 6 or x < -6
+hint: Greater than means the values are far from 0 in both directions.
+num2: A machine fills cereal boxes with 500 grams. A box passes inspection if abs(w - 500) <= 8, where w is its weight in grams. What is the heaviest weight in grams that passes? | 508
+hint: Write the inequality as two inequalities and solve for w.
+sa2: Explain why abs(x - 5) = 0 has exactly one solution. | Only 0 has an absolute value of 0, so x - 5 = 0 and x = 5. There is no second, negative case because -0 = 0.
+quiz:
+mc1: Solve abs(x - 6) = 2. | x = 8 or x = 4 | x = 8 | x = -8 or x = -4 | x = 4
+mc2: Solve abs(3x + 3) = 12. | x = 3 or x = -5 | x = 3 | x = 5 or x = -3 | x = -3 or x = -5
+mc2: Solve abs(x + 4) < 3. | -7 < x < -1 | 1 < x < 7 | x < -1 | x < -7 or x > -1
+mc2: Solve abs(x) + 7 = 4. | No solution | x = 3 or x = -3 | x = -3 | x = 11 or x = -11
+num2: The ideal temperature in a greenhouse is 24 degrees C. A temperature t is acceptable when abs(t - 24) <= 3. What is the lowest acceptable temperature in degrees C? | 21
+num2: Solve abs(4x - 2) = 10. What is the sum of the two solutions? | 1
+mc3: Which absolute value inequality has the solution 2 <= x <= 10? | abs(x - 6) <= 4 | abs(x - 4) <= 6 | abs(x - 6) >= 4 | abs(x + 6) <= 4
+sa3: Priya says abs(x - 2) > -3 has no solution because an absolute value cannot be less than a negative number. Explain her mistake and give the solution. | An absolute value is always 0 or more, so it is always greater than -3. Every real number is a solution, not none.
+
+lesson: Graphing linear inequalities in two variables | A-REI.D.12, A-CED.A.3
+practice:
+mc1: Which point is a solution of y <= x + 2? | (1, 2) | (0, 3) | (-2, 1) | (1, 4)
+hint: Substitute the x and y values and check whether the inequality is true.
+mc2: When you graph y > 3x - 1, the boundary line is | dashed, with shading above | solid, with shading above | dashed, with shading below | solid, with shading below
+hint: Is the line itself included? Which side has larger y values?
+mc2: A graph shows a solid line through (0, 4) and (2, 0), and the side containing the origin is shaded. Which inequality is graphed? | 2x + y <= 4 | 2x + y >= 4 | 2x + y < 4 | x + 2y <= 4
+hint: Find the equation of the line first, then test the point (0, 0).
+num2: Tickets cost $5 for students and $8 for adults. A club needs to raise at least $400. If 40 students attend, what is the fewest adults needed? | 25
+hint: Write 5s + 8a >= 400 and substitute 40 for s.
+mc2: Which point is in the solution of the system y > x and y < -x + 4? | (0, 2) | (3, 2) | (0, -1) | (2, 3)
+hint: A point in the solution must make both inequalities true.
+sa2: Explain how to decide which side of the boundary line to shade for 3x - 2y < 6. | Test a point not on the line, such as (0, 0): 0 < 6 is true, so shade the side that contains the origin. The line is dashed because the sign is strict.
+quiz:
+mc1: Which point is NOT a solution of y >= 2x - 3? | (3, 1) | (0, 0) | (1, -1) | (-1, 4)
+mc2: Which inequality has a dashed boundary line? | y < -x + 5 | y <= -x + 5 | y >= 2x | x + y >= 1
+mc2: Which describes the graph of x + y <= 6? | The line x + y = 6 and everything below it | Only the line x + y = 6 | Everything above the line x + y = 6 | Everything below the line, but not the line
+num2: A baker has 12 hours. Each cake takes 1.5 hours and each pie takes 0.75 hours. If she makes 4 cakes, what is the greatest number of pies she can make? | 8
+mc2: Which point satisfies both x + y < 5 and y > 1? | (1, 2) | (4, 2) | (2, 0) | (3, 3)
+num2: Notebooks cost $3 and pens cost $2. Lee can spend at most $30. If he buys 6 notebooks, what is the greatest number of pens he can buy? | 6
+mc3: A system of inequalities is x >= 0, y >= 0 and x + y <= 4. What shape is its solution region? | A triangle | A square | A strip with no end | A single point
+sa2: A student graphs y < 2x + 1 with a solid boundary line. Explain the mistake and what the solid line wrongly claims. | The sign is strict (<), so the line should be dashed. A solid line claims that points on y = 2x + 1, such as (0, 1), are solutions, but 1 < 1 is false.
+
+lesson: Unit review | A-CED.A.1, A-REI.B.3, A-REI.D.12
+practice:
+num2: Solve 6x - 2(x + 5) = 14. | 6
+hint: Distribute the -2 carefully, then combine like terms.
+mc2: Solve the formula I = Prt for r. | r = I/(Pt) | r = IPt | r = I - Pt | r = Pt/I
+hint: r is multiplied by P and t. What undoes multiplication?
+mc2: Solve abs(x - 1) >= 3. | x <= -2 or x >= 4 | -2 <= x <= 4 | x >= 4 | x <= 2 or x >= 4
+hint: Are the solutions close to 1 or far from 1?
+num2: A plumber charges $65 for a visit plus $45 per hour. The bill was $245. How many hours did the plumber work? | 4
+hint: Subtract the visit fee first.
+mc2: Which point is in the solution region of 2x + 3y > 12? | (3, 3) | (0, 0) | (3, 2) | (6, 0)
+hint: Substitute each point. The sign is strictly greater than.
+quiz:
+mc1: Solve 5x - 3 = 2x + 12. | 5 | 3 | 9 | 15/7
+mc1: Solve abs(x - 4) = 6, where abs means absolute value. | x = 10 or x = -2 | x = 10 | x = 2 or x = -10 | x = -2
+mc2: Solve for h: A = 1/2 bh. | h = 2A / b | h = A / 2b | h = 2Ab | h = b / 2A
+mc2: Solve -4x + 1 >= 13. | x <= -3 | x >= -3 | x <= 3 | x >= 3
+num2: A hall rents for $150 plus $12 per guest. The budget is at most $750. What is the greatest number of guests? | 50
+mc2: Solve 2x - 7 = 5x + 8. | x = -5 | x = 5 | x = 1/3 | x = -1/3
+sa2: Explain why abs(x) = -5 has no solution. | Absolute value is a distance, which is never negative.
+
+test:
+mc2: Solve abs(2x + 1) < 7, where abs means absolute value. | -4 < x < 3 | x < 3 | x < -4 or x > 3 | -3 < x < 4
+mc2: Which point is in the solution of y > 2x - 1? | (0, 0) | (2, 2) | (3, 4) | (1, 1)
+mc2: Solve 3(2x - 1) = 6x - 3. | All real numbers | No solution | x = 0 | x = 1
+mc3: A phone plan costs $35 plus $0.10 per minute over 500 minutes. Which inequality finds the minutes m over 500 that keep the bill at most $50? | 35 + 0.10m <= 50 | 35m + 0.10 <= 50 | 0.10(m + 35) <= 50 | 35 + 0.10m >= 50
+num2: Solve 3(x + 4) - 5 = 2x + 9. | 2
+num2: An online store charges $7 shipping plus $18 per shirt. Ravi spent $97. How many shirts did he buy? | 5
+num2: A phone has 64 GB of storage and 22 GB are already used. Each movie uses 3.5 GB. What is the greatest number of movies that will fit? | 12
+num2: The sum of three consecutive integers is 96. What is the largest of the three? | 33
+mc1: Solve x - 8 > -3. | x > 5 | x > -11 | x < 5 | x > 11
+mc2: Solve the formula y = mx + b for m. | m = (y - b)/x | m = y - b - x | m = (y + b)/x | m = x(y - b)
+mc2: Solve -5 <= 3 - 2x < 7. | -2 < x <= 4 | -4 < x <= 2 | -2 <= x < 4 | x <= 4
+mc2: Solve abs(x + 1) = 4. | x = 3 or x = -5 | x = 3 | x = 5 or x = -3 | x = -3 or x = -5
+mc2: Solve abs(5 - x) <= 2. | 3 <= x <= 7 | -7 <= x <= -3 | x <= 3 or x >= 7 | x <= 7
+mc2: Which inequality is graphed with a solid boundary line and shading below it? | y <= 3x + 2 | y < 3x + 2 | y >= 3x + 2 | y > 3x + 2
+mc2: Which point is in the solution region of y < -2x + 5? | (1, 2) | (2, 3) | (0, 5) | (3, 0)
+mc3: The equation 4(x - 2) = ax + c is true for every value of x. What are a and c? | a = 4 and c = -8 | a = 4 and c = -2 | a = -4 and c = 8 | a = 4 and c = 8
+num3: A school has a $500 budget. It already spent $140 on batteries and wants to buy calculators that cost $12 each. What is the greatest number of calculators it can buy? | 30
+mc3: A thermostat is set to 70 degrees F and keeps the temperature t within 2.5 degrees of that setting. Which inequality describes t? | abs(t - 70) <= 2.5 | abs(t + 70) <= 2.5 | abs(t - 2.5) <= 70 | abs(t - 70) >= 2.5
+sa2: Solve abs(3x - 6) = 9 and check both solutions. | 3x - 6 = 9 gives x = 5; 3x - 6 = -9 gives x = -1. Check: abs(9) = 9 and abs(-9) = 9.
+sa2: Solve P = 2l + 2w for w and explain each step. | Subtract 2l: P - 2l = 2w. Divide by 2: w = (P - 2l)/2.
+sa2: Explain how you can tell whether a linear equation has one solution, no solution or infinitely many solutions after you simplify both sides. | If the x terms cancel and a false statement such as 3 = 5 is left, there is no solution. If a true statement such as 4 = 4 is left, every real number is a solution. If the x terms do not cancel, there is exactly one solution.
+task3: A school plans a dance. The DJ costs $400 and each ticket costs $8 to produce. Tickets sell for $15. Write and solve an inequality for the number of tickets needed to raise at least $1,000 profit, graph it, and explain whether 250 tickets is enough. | 15t - 8t - 400 >= 1000, t >= 200, correct graph, 250 is enough with $1,350 profit. | Correct inequality and solution with a minor graph or explanation error. | Correct setup, solution error. | Little correct work.
+
+unit: Functions, sequences and exponential models | F-IF.A.2, F-IF.A.3, F-LE.A.1, F-LE.A.2 | g9arith, g9geom, g9exp
+el: Use a three-column table (input, rule, output) and post the frame "f of 3 equals ___ means when the input is 3, the output is ___." Pre-teach term, common difference, common ratio, growth and decay.
+
+lesson: Function notation, domain and range | F-IF.A.1, F-IF.A.2
+practice:
+num1: g(x) = x^2 - 4x. What is g(-2)? | 12
+hint: Replace every x with (-2), using parentheses.
+mc1: Which relation is a function? | {(1, 4), (2, 5), (3, 4)} | {(1, 4), (1, 5), (2, 6)} | {(2, 3), (2, 4), (2, 5)} | {(0, 1), (3, 2), (0, 2)}
+hint: In a function, each input has exactly one output.
+num2: h(x) = 5x + 3 and h(a) = 38. What is a? | 7
+hint: Set 5a + 3 equal to 38 and solve.
+mc2: A parking garage charges C(h) = 4h + 2 dollars for h hours, and cars may stay up to 6 hours. What is a reasonable domain? | 0 <= h <= 6 | all real numbers | 2 <= h <= 26 | h >= 6
+hint: The domain is the set of inputs that make sense in the situation.
+mc2: The graph of a function f passes through the point (3, -1). Which statement is true? | f(3) = -1 | f(-1) = 3 | f(3) = 3 | f(0) = -1
+hint: In a point (x, y) on the graph, x is the input and y is the output.
+sa2: P(t) is the number of rabbits on an island t months after a study began. Explain what P(10) = 250 means. | After 10 months there are 250 rabbits on the island. The input 10 is the time in months and the output 250 is the number of rabbits.
+quiz:
+num1: f(x) = 10 - 3x. What is f(-4)? | 22
+mc2: What is the range of f(x) = x^2 + 1 when x can be any real number? | y >= 1 | y >= 0 | all real numbers | y <= 1
+mc2: Which input-output table does NOT show a function? | inputs 2, 2, 3 with outputs 5, 6, 7 | inputs 1, 2, 3 with outputs 4, 4, 4 | inputs 0, 1, 2 with outputs 1, 2, 3 | inputs 5, 6, 7 with outputs 0, 1, 0
+num2: An electrician charges C(h) = 45h + 60 dollars for h hours of work. What is C(3.5)? | 217.5
+num2: f(x) = 2x - 9. For what value of x does f(x) = 0? | 4.5
+mc2: A tank holds 300 liters and drains 15 liters per minute, so V(t) = 300 - 15t. What is the domain from the start until the tank is empty? | 0 <= t <= 20 | 0 <= t <= 300 | t >= 0 | 0 <= V <= 300
+mc3: f(x) = 3x + 1 and g(x) = x^2. What is f(2) + g(-3)? | 16 | 4 | 10 | -2
+sa2: Explain why a vertical line can test whether a graph shows a function. | If a vertical line hits the graph twice, one input x has two outputs, so it is not a function. If every vertical line hits the graph at most once, each input has only one output.
+
+lesson: Key features of graphs and average rate of change | F-IF.B.4, F-IF.B.6
+practice:
+num2: f(x) = x^2. What is the average rate of change of f from x = 1 to x = 4? | 5
+hint: Find f(4) - f(1), then divide by 4 - 1.
+mc1: Where does the line y = 2x - 6 cross the x-axis? | (3, 0) | (0, -6) | (-3, 0) | (6, 0)
+hint: Every point on the x-axis has y = 0.
+num2: A hiker is 2 km from camp at 9:00 am and 11 km from camp at 12:00 noon. What is her average rate of change in km per hour? | 3
+hint: Divide the change in distance by the change in time.
+mc2: A graph of a car's speed rises from 0 to 60 km/h, stays at 60 km/h for 10 minutes, then falls to 0. What does the flat part of the graph mean? | The car moves at a constant speed | The car is stopped | The car is speeding up | The car is turning around
+hint: A flat section means the output is not changing.
+mc2: A plant was 4 cm tall on day 0, 9 cm on day 5 and 19 cm on day 10. Over which interval did it grow faster on average? | day 5 to day 10 | day 0 to day 5 | both intervals are the same | it cannot be told
+hint: Compute the average rate of change for each interval.
+sa2: A graph shows the temperature over one day: it rises from 6 am to 3 pm and falls after that. Describe the key features a reader should notice. | The temperature increases from 6 am to 3 pm, reaches its maximum at 3 pm, and then decreases. The maximum is the highest temperature of the day.
+quiz:
+num2: g(x) = 3x^2 - 1. What is the average rate of change of g from x = 0 to x = 2? | 6
+mc2: d(t) is a cyclist's distance from home t minutes after she leaves. On which kind of interval is she riding toward home? | where d(t) is decreasing | where d(t) is increasing | where d(t) is constant | where d(t) is negative
+num2: A company had 240 employees in 2015 and 330 employees in 2021. What was the average change in employees per year? | 15
+mc2: What is the x-intercept of y = -4x + 12? | (3, 0) | (0, 12) | (-3, 0) | (12, 0)
+mc2: A ball's height h(t) increases for 2 seconds and then decreases until the ball lands at 5 seconds. When is the ball at its highest? | at t = 2 | at t = 0 | at t = 5 | at t = 3.5
+num2: f(x) = 2^x. What is the average rate of change of f from x = 1 to x = 3? | 3
+mc3: A water tank holds 500 liters at t = 0, 350 liters at t = 10 and 200 liters at t = 20 minutes. Which statement is supported? | It drains at a constant 15 liters per minute | It drains faster as time goes on | It fills at 15 liters per minute | It drains at 150 liters per minute
+sa2: Explain why a linear function has the same average rate of change over every interval, but f(x) = x^2 does not. | A line has a constant slope, so the change in y over the change in x is the same everywhere. For x^2 the outputs change by different amounts (1, 3, 5, ...) for equal steps in x, so the rate changes.
+
+lesson: Arithmetic sequences as linear functions | F-IF.A.3, F-LE.A.2, F-BF.A.2
+practice:
+num1: What is the common difference of 12, 9, 6, 3, ...? | -3
+hint: Subtract any term from the term after it.
+num2: An arithmetic sequence starts 2, 9, 16, 23, ... What is the 15th term? | 100
+hint: Use a_n = a_1 + (n - 1)d.
+mc2: Which explicit formula gives 10, 14, 18, 22, ...? | a_n = 4n + 6 | a_n = 10n + 4 | a_n = 4n + 10 | a_n = 6n + 4
+hint: Check your formula by substituting n = 1 and n = 2.
+num2: A theater has 18 seats in the first row and 2 more seats in each row after that. How many seats are in row 20? | 56
+hint: The first row has 18. How many times is 2 added to reach row 20?
+mc2: Which recursive rule describes 5, 2, -1, -4, ...? | a_1 = 5, a_n = a_(n-1) - 3 | a_1 = 5, a_n = a_(n-1) + 3 | a_1 = 5, a_n = -3a_(n-1) | a_1 = -3, a_n = a_(n-1) + 5
+hint: What do you do to each term to get the next one?
+sa2: Explain how an arithmetic sequence is like a linear function. | Each term adds the same common difference, like a constant slope. Plotting the points (n, a_n) gives points on a line whose slope is the common difference.
+quiz:
+num1: What is the next term of 40, 33, 26, 19, ...? | 12
+num2: An arithmetic sequence has a_1 = -6 and d = 5. What is a_30? | 139
+num2: Which term number of 3, 7, 11, 15, ... is equal to 99? | 25
+mc2: An arithmetic sequence has a_3 = 14 and a_7 = 30. What is the common difference? | 4 | 16 | 8 | 2
+mc2: Which sequence is arithmetic? | 1.5, 3, 4.5, 6, ... | 1, 2, 4, 8, ... | 1, 4, 9, 16, ... | 2, 3, 5, 8, ...
+num2: A savings jar has $25 in week 1, and $15 is added every week after that. How much is in the jar in week 12? | 190
+mc3: A sequence has a_n = 7 - 2n. Which statement is true? | The terms decrease by 2 | The first term is 7 | The terms increase by 7 | The first term is -2
+sa2: Marcus says the 10th term of 4, 10, 16, ... is 4 + 10(6) = 64. Explain his mistake and give the correct term. | The first term already counts as one term, so 6 is added only 9 times: a_10 = 4 + 9(6) = 58.
+
+lesson: Geometric sequences and exponential growth | F-IF.A.3, F-LE.A.2
+practice:
+num1: What is the common ratio of 2, 10, 50, 250, ...? | 5
+hint: Divide any term by the term before it.
+num2: What is the 6th term of the geometric sequence 4, 12, 36, ...? | 972
+hint: Use a_n = a_1 x r^(n - 1).
+mc2: Which formula gives 5, 10, 20, 40, ...? | a_n = 5(2)^(n - 1) | a_n = 2(5)^(n - 1) | a_n = 5n | a_n = 5(2)^n
+hint: Check n = 1. The first term must be 5.
+num2: A geometric sequence starts 80, 40, 20, ... What is the 5th term? | 5
+hint: The ratio is less than 1, so each term is a fraction of the one before.
+mc2: A video has 200 views on day 1, and its views triple each day. Which function gives the views on day n? | V(n) = 200(3)^(n - 1) | V(n) = 200 + 3n | V(n) = 3(200)^(n - 1) | V(n) = 200(3n)
+hint: On day 1 the formula must give 200.
+sa2: Explain how you can tell from a list of terms whether a sequence is geometric. | Divide each term by the one before it. If every ratio is the same number, the sequence is geometric.
+quiz:
+num1: What is the next term of 1, -2, 4, -8, ...? | 16
+num2: A geometric sequence has a_1 = 2 and r = 3. What is a_5? | 162
+mc2: What is the common ratio of 64, 16, 4, 1, ...? | 1/4 | 4 | -48 | 1/2
+num2: The number of people who know a rumor doubles every hour. At hour 0, 3 people know it. How many people know it at hour 5? | 96
+mc2: Which sequence is geometric? | 6, 18, 54, 162, ... | 6, 12, 18, 24, ... | 6, 7, 9, 12, ... | 6, 36, 66, 96, ...
+num2: A geometric sequence with all positive terms has a_2 = 12 and a_4 = 108. What is a_1? | 4
+mc3: A ball is dropped from 81 feet. Each bounce reaches 2/3 of the height of the bounce before (the first bounce reaches 54 feet). How high is the 4th bounce? | 16 feet | 24 feet | 54 feet | 36 feet
+sa2: Explain why a geometric sequence with r = 1.5 and a positive first term grows faster and faster. | Each term is 1.5 times the one before, so the amount added each step is half of the current term. Since the terms keep getting bigger, the amount added keeps getting bigger too.
+
+lesson: Comparing linear and exponential models | F-LE.A.1, F-LE.A.3, F-LE.A.5
+practice:
+mc1: A table shows x = 0, 1, 2, 3 and y = 7, 11, 15, 19. What kind of model fits? | Linear | Exponential | Quadratic | Neither
+hint: Look at the differences between consecutive y values.
+mc2: A table shows x = 0, 1, 2, 3 and y = 400, 200, 100, 50. Which function fits? | y = 400(0.5)^x | y = 400 - 200x | y = 400(2)^x | y = 0.5(400)^x
+hint: Compare the ratios of consecutive y values.
+num2: f(x) = 1500(0.9)^x is the value in dollars of a laptop after x years. What is f(2)? | 1215
+hint: Multiply 1500 by 0.9 two times.
+mc2: In y = 50(1.08)^t, where y is an account balance in dollars after t years, what does 50 mean? | the starting balance | the growth rate | the balance after 1 year | the amount added each year
+hint: What is y when t = 0?
+num2: Town A starts with 1,000 people and gains 100 people per year. Town B starts with 1,000 people and grows 10% per year. How many more people does Town B have than Town A after 2 years? | 10
+hint: Find each town's population after year 1 and then after year 2.
+sa2: One savings plan adds $50 each month. Another earns 2% interest per month. Explain which is linear and which is exponential. | Adding $50 each month is a constant difference, so it is linear. Earning 2% multiplies the balance by 1.02 each month, a constant ratio, so it is exponential.
+quiz:
+mc1: Which function shows exponential decay? | y = 30(0.75)^x | y = 30(1.25)^x | y = 30 - 0.75x | y = 0.75x + 30
+mc2: A table shows x = 1, 2, 3, 4 and y = 3, 12, 48, 192. Which kind of change is shown? | Exponential, multiply by 4 | Linear, add 9 | Linear, add 4 | Exponential, multiply by 9
+num2: A population of 2,000 fish decreases by 25% each year. How many fish are there after 2 years? | 1125
+mc2: Which function is greatest for very large values of x? | y = 1.1^x | y = 1000x | y = 50x + 900 | y = 10x
+num2: A linear function has f(0) = 8 and f(3) = 20. What is f(5)? | 28
+mc2: Which situation is best modeled by a linear function? | A taxi charges $2.50 per mile | A virus doubles every 3 days | A car loses 12% of its value each year | An account earns 4% interest each year
+num3: An exponential function has g(0) = 5 and g(1) = 15. What is g(3)? | 135
+sa3: Nia says y = 3x^2 is exponential because it has an exponent. Explain why she is wrong. | In an exponential function the variable is in the exponent, as in 3^x. In 3x^2 the exponent is fixed and the variable is the base, so the function is quadratic, not exponential.
+
+lesson: Unit review | F-IF.A.2, F-IF.A.3, F-LE.A.1, F-LE.A.2
+practice:
+num1: f(x) = -2x + 11. What is f(3)? | 5
+hint: Substitute 3 for x and follow the order of operations.
+num2: What is the 12th term of 9, 13, 17, 21, ...? | 53
+hint: Add the common difference 11 times to the first term.
+mc2: What is the 5th term of 2, -6, 18, -54, ...? | 162 | -162 | 486 | 72
+hint: Find the ratio, including its sign.
+mc2: A painting is worth $5,000 and its value rises 3% each year. Which models its value after t years? | V = 5000(1.03)^t | V = 5000(0.03)^t | V = 5000 + 3t | V = 5000(0.97)^t
+hint: Growth of 3% means multiplying by 1 + 0.03.
+mc2: A table shows x = 0, 1, 2, 3 and y = 5, 10, 20, 40. Which kind of model fits? | Exponential | Linear | Constant | Absolute value
+hint: Do the y values change by a common difference or by a common ratio?
+quiz:
+mc1: f(x) = 3x - 7. What is f(4)? | 5 | -5 | 19 | 12
+mc1: Next term of 5, 9, 13, 17, ...? | 21 | 22 | 20 | 34
+mc2: Next term of 3, 6, 12, 24, ...? | 48 | 30 | 36 | 27
+mc2: An arithmetic sequence has a1 = 4 and d = 6. What is a10? | 58 | 64 | 60 | 54
+num2: A town of 4,000 people grows 5% per year. What is its population after 2 years? | 4410
+mc2: g(x) = x^2 - 3. What is g(-4)? | 13 | -19 | 5 | -11
+sa2: Explain the difference between linear and exponential growth using a table. | Linear adds the same amount each step; exponential multiplies by the same factor each step.
+
+test:
+mc2: Which situation is exponential? | A population doubles every year | A car travels 60 miles each hour | A plant grows 2 cm each week | A pool loses 10 gallons each hour
+mc2: f(x) = 200(1.05)^x models savings. What is the growth rate? | 5% per period | 105% per period | 1.05% per period | 200 per period
+mc2: A car worth $20,000 loses 15% of its value each year. Which models its value after t years? | V = 20000(0.85)^t | V = 20000(0.15)^t | V = 20000 - 0.15t | V = 20000(1.15)^t
+mc3: Which grows larger in the long run: f(x) = 100x or g(x) = 2^x? | g(x) | f(x) | They are always equal | Neither grows
+num1: f(x) = 6x - 4. What is f(-2)? | -16
+num2: f(x) = 4x + 10 and f(k) = 50. What is k? | 10
+num2: A gym has 120 members in January and gains 15 members each month. How many members does it have in December of the same year? | 285
+num2: A sunflower seedling is 5 cm tall, and its height doubles every week for 4 weeks. How tall is it after 4 weeks, in centimeters? | 80
+num2: An arithmetic sequence has a_1 = 50 and d = -4. What is a_16? | -10
+num3: A geometric sequence has a_1 = 7 and r = 2. Which term number is equal to 448? | 7
+mc1: Which relation is NOT a function? | {(4, 1), (4, -1), (9, 3)} | {(1, 1), (2, 1), (3, 1)} | {(-1, 2), (0, 2), (1, 5)} | {(2, 4), (3, 9), (4, 16)}
+mc2: Which recursive rule describes 2, 6, 18, 54, ...? | a_1 = 2, a_n = 3a_(n-1) | a_1 = 2, a_n = a_(n-1) + 4 | a_1 = 3, a_n = 2a_(n-1) | a_1 = 2, a_n = a_(n-1) + 3
+mc2: A machine's value is V(t) = 12000(0.82)^t dollars after t years. By what percent does its value decrease each year? | 18% | 82% | 0.82% | 12%
+mc2: A table shows x = 0, 1, 2, 3 and y = 2, 6, 18, 54. Which function fits? | y = 2(3)^x | y = 2 + 4x | y = 3(2)^x | y = 2x^3
+mc2: Which situation shows exponential decay? | A medicine leaves the body at 20% of the remaining amount per hour | A candle burns down 2 cm each hour | A tank fills 5 liters each minute | A runner slows by 1 km/h each lap
+mc2: For which input does f(x) = 3x - 2 give an output of 13? | 5 | 37 | 11/3 | 15
+mc3: f(x) = 20x + 100 and g(x) = 2^x. What is the smallest whole number x for which g(x) > f(x)? | 9 | 7 | 8 | 10
+mc2: What is the range of f(x) = -x^2 + 4 when x can be any real number? | y <= 4 | y >= 4 | all real numbers | y <= 0
+sa2: Write an explicit formula for 7, 4, 1, -2, ... and find the 20th term. | an = 7 - 3(n - 1); a20 = -50.
+sa2: Bacteria triple every hour, starting at 50. Write a function and find the amount after 4 hours. | B = 50(3)^t; B(4) = 4,050.
+sa2: Explain why the function f(n) = 2n + 3 with domain n = 1, 2, 3, ... is a sequence, and name its type. | Its inputs are the counting numbers, so its outputs 5, 7, 9, ... form an ordered list of terms. It is an arithmetic sequence with first term 5 and common difference 2.
+task3: Two job offers: Job A pays $1,000 the first month and $100 more each month. Job B pays $100 the first month and doubles each month. Write a rule for each, make a table for 8 months, find when Job B pays more per month, and recommend a job for 6 months and for 1 year. | A = 1000 + 100(n - 1), B = 100(2)^(n - 1), B passes A in month 5 (1,600 vs 1,400), correct recommendations with reasoning. | Correct rules and table with one error in the conclusions. | One rule correct. | Little correct work.
+
+unit: Polynomials and factoring | A-APR.A.1, A-SSE.A.2 | g9foil
+el: Use algebra tiles or an area model (box) for multiplying and factoring, and keep a chart of the patterns a^2 - b^2 = (a + b)(a - b) and a^2 + 2ab + b^2 = (a + b)^2 with a worked example of each.
+
+lesson: Adding, subtracting and multiplying polynomials | A-APR.A.1
+practice:
+mc1: (4x^2 - 3x + 2) - (x^2 + 5x - 6) = ? | 3x^2 - 8x + 8 | 3x^2 + 2x - 4 | 3x^2 - 8x - 4 | 5x^2 + 2x - 4
+hint: Subtracting a polynomial means changing the sign of every term inside its parentheses.
+mc2: 3x(2x^2 - 5x + 1) = ? | 6x^3 - 15x^2 + 3x | 6x^2 - 15x + 3 | 6x^3 - 5x + 1 | 5x^3 - 2x^2 + 3x
+hint: Multiply 3x by each term.
+mc2: (x - 7)(x + 2) = ? | x^2 - 5x - 14 | x^2 + 5x - 14 | x^2 - 14 | x^2 - 9x - 14
+hint: Multiply each term in the first factor by each term in the second.
+num2: A rectangle has length 2x + 3 and width x + 1. What is its area when x = 4? | 55
+hint: You can multiply first or substitute first. Both ways give the same number.
+mc2: What is the degree of 5x^3 - 2x^4 + x - 9? | 4 | 3 | 5 | 1
+hint: The degree is the greatest exponent, wherever that term appears.
+sa2: Explain why the sum of two polynomials is always a polynomial. | Adding combines like terms by adding their coefficients. The exponents stay whole numbers and the coefficients stay real numbers, so the result is still a polynomial (polynomials are closed under addition).
+quiz:
+mc1: (2x^2 + 7) + (5x^2 - 3x - 10) = ? | 7x^2 - 3x - 3 | 7x^2 - 3x + 17 | 7x^4 - 3x - 3 | 7x^2 + 3x - 3
+mc2: (3x + 4)(2x - 5) = ? | 6x^2 - 7x - 20 | 6x^2 + 7x - 20 | 6x^2 - 20 | 5x^2 - 7x - 20
+mc2: (x + 2)(x^2 - x + 3) = ? | x^3 + x^2 + x + 6 | x^3 + x^2 + 6 | x^3 - x^2 + x + 6 | x^3 + 2x^2 + 3x + 6
+num2: When (x + 6)(x - 4) is written as x^2 + bx + c, what is c? | -24
+num2: When (2x - 3)(4x + 1) is multiplied out, what is the coefficient of x? | -10
+mc2: A square has side length x + 5. Which expression gives its area? | x^2 + 10x + 25 | x^2 + 25 | x^2 + 5x + 25 | 2x + 10
+mc3: A triangle has sides 2x + 1, 3x - 4 and x^2. Which polynomial gives its perimeter? | x^2 + 5x - 3 | 6x^2 - 3 | x^2 + 5x + 5 | 5x^3 - 3
+sa2: Leah says (x + 4)^2 = x^2 + 16. Explain her mistake and give the correct product. | (x + 4)^2 means (x + 4)(x + 4). She left out the middle terms 4x + 4x. The correct product is x^2 + 8x + 16.
+
+lesson: Factoring out the GCF and trinomials with leading coefficient 1 | A-SSE.A.2
+practice:
+mc1: What is the greatest common factor of 12x^3 and 18x^2? | 6x^2 | 6x^3 | 3x^2 | 36x^3
+hint: Find the GCF of the numbers and the lowest power of x.
+mc2: Factor 5x^2 + 20x. | 5x(x + 4) | 5(x^2 + 20x) | x(5x + 4) | 5x(x + 20)
+hint: Divide each term by the GCF.
+mc2: Factor x^2 + 10x + 21. | (x + 3)(x + 7) | (x + 1)(x + 21) | (x + 10)(x + 1) | (x - 3)(x - 7)
+hint: Find two numbers that multiply to 21 and add to 10.
+mc2: Factor x^2 - 9x + 20. | (x - 4)(x - 5) | (x + 4)(x + 5) | (x - 2)(x - 10) | (x - 4)(x + 5)
+hint: The product is positive and the sum is negative. What signs must both numbers have?
+num2: x^2 + bx + 24 = (x + 4)(x + 6). What is b? | 10
+hint: The two constants in the factors add to b.
+sa2: Factor x^2 + 2x - 35 and explain how you chose the signs. | (x + 7)(x - 5). The product -35 is negative, so the two numbers have opposite signs. The sum +2 is positive, so the number with the larger size, 7, is positive.
+quiz:
+mc1: Factor 4x^2 - 8x. | 4x(x - 2) | 4x(x - 8) | x(4x - 2) | 4(x - 2)
+mc2: Factor x^2 + 3x - 28. | (x + 7)(x - 4) | (x - 7)(x + 4) | (x + 14)(x - 2) | (x + 7)(x + 4)
+mc2: Factor x^2 - 11x + 18. | (x - 2)(x - 9) | (x - 3)(x - 6) | (x + 2)(x + 9) | (x - 1)(x - 18)
+mc2: Factor 2x^2 + 14x + 24 completely. | 2(x + 3)(x + 4) | (2x + 6)(x + 4) | 2(x + 2)(x + 6) | (x + 3)(x + 4)
+num2: x^2 - 2x + c factors as (x - 6)(x + 4). What is c? | -24
+mc2: Which trinomial cannot be factored using integers? | x^2 + 4x + 6 | x^2 + 5x + 6 | x^2 + 7x + 6 | x^2 - 5x + 6
+num3: The area of a rectangle is x^2 + 12x + 32 square meters and its length is x + 8 meters. What is its width in meters when x = 5? | 9
+sa2: Explain how you would check that x^2 - 16x + 60 = (x - 6)(x - 10). | Multiply the factors: x^2 - 10x - 6x + 60 = x^2 - 16x + 60. It matches the original, so the factoring is correct.
+
+lesson: Factoring trinomials with a leading coefficient other than 1 | A-SSE.A.2
+practice:
+mc2: Factor 2x^2 + 7x + 3. | (2x + 1)(x + 3) | (2x + 3)(x + 1) | (x + 1)(x + 3) | (2x - 1)(x - 3)
+hint: Find two numbers that multiply to 2 x 3 = 6 and add to 7, then split the middle term.
+mc2: Factor 3x^2 - 10x + 8. | (3x - 4)(x - 2) | (3x - 2)(x - 4) | (3x + 4)(x + 2) | (3x - 8)(x - 1)
+hint: Look for two numbers that multiply to 24 and add to -10.
+mc2: Factor by grouping: x^3 + 3x^2 + 2x + 6. | (x^2 + 2)(x + 3) | (x^2 + 3)(x + 2) | x(x + 3)(x + 2) | (x + 3)^2(x + 2)
+hint: Factor x^2 from the first two terms and 2 from the last two.
+mc2: Factor 6x^2 + x - 2. | (3x + 2)(2x - 1) | (3x - 2)(2x + 1) | (6x - 1)(x + 2) | (6x + 2)(x - 1)
+hint: Split x into two terms whose coefficients multiply to 6 x (-2) = -12.
+num2: 4x^2 + bx + 3 = (2x + 1)(2x + 3). What is b? | 8
+hint: Multiply the outer terms and the inner terms, then add.
+sa2: Factor 10x^2 - 15x and 10x^2 - 13x - 3, and explain how the methods differ. | 10x^2 - 15x = 5x(2x - 3) by taking out the GCF. 10x^2 - 13x - 3 = (5x + 1)(2x - 3), found with two numbers that multiply to -30 and add to -13 (-15 and 2), then grouping.
+quiz:
+mc2: Factor 5x^2 + 11x + 2. | (5x + 1)(x + 2) | (5x + 2)(x + 1) | (5x + 11)(x + 2) | (x + 1)(x + 2)
+mc2: Factor 2x^2 - 5x - 3. | (2x + 1)(x - 3) | (2x - 1)(x + 3) | (2x - 3)(x + 1) | (2x + 3)(x - 1)
+mc2: Factor 4x^2 - 4x - 15. | (2x - 5)(2x + 3) | (2x + 5)(2x - 3) | (4x - 5)(x + 3) | (4x + 3)(x - 5)
+mc2: Factor by grouping: 2x^3 - 8x^2 + 3x - 12. | (2x^2 + 3)(x - 4) | (2x^2 - 3)(x + 4) | (2x + 3)(x^2 - 4) | (2x^2 + 4)(x - 3)
+num2: 3x^2 + 14x + c = (3x + 2)(x + 4). What is c? | 8
+mc3: The area of a rectangle is 6x^2 + 17x + 12 square units and its width is 2x + 3 units. What is its length? | 3x + 4 | 3x + 6 | 4x + 3 | 3x + 9
+num3: 6x^2 - 7x - 5 factors as (3x + b)(2x + d), where b and d are integers. What is b + d? | -4
+sa2: Omar factors 3x^2 + 12x + 9 as (3x + 3)(x + 3) and says he is done. Explain what is missing. | His factors multiply correctly, but 3x + 3 still has a common factor of 3. Factored completely, the answer is 3(x + 1)(x + 3).
+
+lesson: Special products: difference of squares and perfect square trinomials | A-SSE.A.2, A-APR.A.1
+practice:
+mc1: Factor x^2 - 64. | (x + 8)(x - 8) | (x - 8)^2 | (x + 8)^2 | (x - 32)(x + 2)
+hint: x^2 - 64 is a difference of two perfect squares.
+mc2: Factor x^2 + 14x + 49. | (x + 7)^2 | (x + 7)(x - 7) | (x + 49)(x + 1) | (x + 14)(x + 1)
+hint: Is the first term a square? The last term? Is the middle term twice their product?
+mc2: Factor 9x^2 - 4. | (3x + 2)(3x - 2) | (9x + 2)(x - 2) | (3x - 2)^2 | (3x + 4)(3x - 1)
+hint: Write each term as a square: (3x)^2 and 2^2.
+num2: Use (a + b)(a - b) = a^2 - b^2 to find 51 x 49 without a calculator. | 2499
+hint: 51 = 50 + 1 and 49 = 50 - 1.
+mc2: Which trinomial is a perfect square? | 4x^2 - 12x + 9 | 4x^2 - 6x + 9 | 4x^2 + 9x + 9 | 4x^2 - 12x - 9
+hint: A perfect square trinomial is (a + b)^2 or (a - b)^2. Check the middle term and the sign of the last term.
+sa2: Explain why x^2 + 25 cannot be factored using real numbers, while x^2 - 25 can. | x^2 - 25 = (x + 5)(x - 5) because the middle terms cancel. For x^2 + 25, no two real numbers multiply to +25 and add to 0, so it does not factor over the real numbers.
+quiz:
+mc1: Factor x^2 - 121. | (x + 11)(x - 11) | (x - 11)^2 | (x + 11)^2 | (x - 121)(x + 1)
+mc2: Factor 16x^2 - 40x + 25. | (4x - 5)^2 | (4x + 5)^2 | (4x - 5)(4x + 5) | (16x - 5)(x - 5)
+mc2: (3x + 5)^2 = ? | 9x^2 + 30x + 25 | 9x^2 + 25 | 9x^2 + 15x + 25 | 3x^2 + 30x + 25
+mc2: Factor 2x^2 - 50 completely. | 2(x + 5)(x - 5) | (2x + 10)(x - 5) | 2(x - 5)^2 | (x + 5)(x - 5)
+num2: Find 103^2 by writing it as (100 + 3)^2. | 10609
+num2: x^2 + kx + 36 is a perfect square trinomial and k is positive. What is k? | 12
+mc3: A square picture has side length x inches. A frame around it makes a larger square with side x + 4 inches. Which expression gives the area of the frame alone? | 8x + 16 | 16 | x^2 + 16 | 4x + 16
+sa3: Factor x^4 - 81 completely and explain each step. | x^4 - 81 = (x^2 + 9)(x^2 - 9) as a difference of squares. Then x^2 - 9 = (x + 3)(x - 3), so x^4 - 81 = (x^2 + 9)(x + 3)(x - 3). x^2 + 9 does not factor over the real numbers.
+
+lesson: Factoring completely and choosing a strategy | A-SSE.A.2
+practice:
+mc2: Factor 3x^2 - 75 completely. | 3(x + 5)(x - 5) | 3(x - 5)^2 | (3x + 15)(x - 5) | 3(x^2 - 25)
+hint: Take out the greatest common factor first, then look for a pattern.
+mc2: Factor 2x^3 + 10x^2 + 12x completely. | 2x(x + 2)(x + 3) | 2x(x + 1)(x + 6) | x(2x + 4)(x + 3) | 2(x^2 + 2)(x + 3)
+hint: Every term has a factor of 2x.
+mc2: Which first step is best for factoring 5x^2 - 20x + 20? | Take out the GCF 5 | Use the difference of squares | Group four terms | Use the quadratic formula
+hint: Look for a number that divides every coefficient.
+num2: 4x^2 - 36 = a(x + 3)(x - 3). What is a? | 4
+hint: Factor out the GCF first.
+mc2: Factor x^3 - 49x completely. | x(x + 7)(x - 7) | x(x - 7)^2 | (x^2 + 7)(x - 7) | x(x^2 - 49)
+hint: Take out x, then check what kind of binomial is left.
+sa2: Describe the order of steps you use to factor a polynomial completely. | First take out any GCF. Then count the terms: with two terms, check for a difference of squares; with three terms, check for a perfect square or factor the trinomial; with four terms, try grouping. Finally check that no factor can be factored again.
+quiz:
+mc2: Factor 6x^2 - 24 completely. | 6(x + 2)(x - 2) | 6(x - 2)^2 | (6x + 12)(x - 2) | 3(2x^2 - 8)
+mc2: Factor 3x^3 - 18x^2 + 27x completely. | 3x(x - 3)^2 | 3x(x + 3)^2 | 3x(x - 3)(x + 3) | 3(x - 3)^2
+mc2: Factor 4x^2 + 8x - 32 completely. | 4(x + 4)(x - 2) | 4(x - 4)(x + 2) | (4x + 16)(x - 2) | 4(x + 8)(x - 1)
+mc2: Which polynomial is prime (cannot be factored over the integers)? | x^2 + x + 1 | x^2 - 1 | x^2 + 2x + 1 | x^3 + x
+num2: 5x^3 - 45x = 5x(x + b)(x - b), where b is positive. What is b? | 3
+num2: 2x^2 + 16x + 32 = 2(x + k)^2. What is k? | 4
+mc3: A box has volume x^3 + 7x^2 + 12x cubic inches, where x is its height in inches. Which expressions give its other two dimensions? | x + 3 and x + 4 | x + 2 and x + 6 | x + 1 and x + 12 | 3x and 4x
+sa3: Tara says 8x^2 - 18 = 2(4x^2 - 9) is factored completely. Explain whether she is right, and finish the factoring if needed. | She is not done. 4x^2 - 9 is a difference of squares, (2x + 3)(2x - 3). So 8x^2 - 18 = 2(2x + 3)(2x - 3).
+
+lesson: Unit review | A-APR.A.1, A-SSE.A.2
+practice:
+mc2: (5x^2 - x + 4) - (2x^2 - 6x + 1) = ? | 3x^2 + 5x + 3 | 3x^2 - 7x + 3 | 3x^2 + 5x + 5 | 7x^2 - 7x + 5
+hint: Distribute the negative sign to all three terms.
+mc2: Factor x^2 + 2x - 24. | (x + 6)(x - 4) | (x - 6)(x + 4) | (x + 8)(x - 3) | (x + 12)(x - 2)
+hint: Which factor pair of -24 adds to 2?
+mc2: Factor 3x^2 + 8x + 4. | (3x + 2)(x + 2) | (3x + 4)(x + 1) | (3x + 1)(x + 4) | (3x + 2)(x - 2)
+hint: Find two numbers that multiply to 12 and add to 8.
+num2: Find 62 x 58 using a difference of squares. | 3596
+hint: Both numbers are 2 away from 60.
+mc2: Factor 25x^2 - 1. | (5x + 1)(5x - 1) | (5x - 1)^2 | (25x + 1)(x - 1) | (5x + 1)^2
+hint: Both terms are perfect squares.
+quiz:
+mc1: (x + 3)(x + 5) = ? | x^2 + 8x + 15 | x^2 + 15 | x^2 + 8x + 8 | 2x + 8
+mc1: (3x^2 + 2x) + (x^2 - 5x) = ? | 4x^2 - 3x | 4x^2 + 7x | 3x^2 - 3x | 4x^4 - 3x^2
+mc2: Factor x^2 + 7x + 12. | (x + 3)(x + 4) | (x + 2)(x + 6) | (x + 12)(x + 1) | (x - 3)(x - 4)
+mc2: Factor x^2 - 25. | (x + 5)(x - 5) | (x - 5)(x - 5) | (x + 25)(x - 1) | x(x - 25)
+num2: When (x - 3)(x + 8) is written as x^2 + bx + c, what is b? | 5
+mc2: Factor x^2 - 12x + 36. | (x - 6)^2 | (x + 6)^2 | (x - 6)(x + 6) | (x - 4)(x - 9)
+sa2: Explain how you can check a factoring answer. | Multiply the factors back together; you should get the original expression.
+
+test:
+mc2: (2x - 1)^2 = ? | 4x^2 - 4x + 1 | 4x^2 + 1 | 4x^2 - 1 | 2x^2 - 4x + 1
+mc2: Factor 3x^2 - 12x. | 3x(x - 4) | 3(x^2 - 12x) | x(3x - 4) | 3x(x - 12)
+mc2: Factor x^2 - x - 6. | (x - 3)(x + 2) | (x + 3)(x - 2) | (x - 6)(x + 1) | (x - 3)(x - 2)
+mc3: The area of a rectangle is x^2 + 9x + 20. Its width is x + 4. What is its length? | x + 5 | x + 16 | x + 4 | x - 5
+mc1: (6x^2 + 2x - 1) + (x^2 - 2x + 8) = ? | 7x^2 + 7 | 7x^2 + 4x + 7 | 7x^2 - 9 | 6x^2 + 7
+mc2: (x + 9)(x - 9) = ? | x^2 - 81 | x^2 + 81 | x^2 - 18x - 81 | x^2 - 18
+mc2: Factor x^2 + 13x + 40. | (x + 5)(x + 8) | (x + 4)(x + 10) | (x + 2)(x + 20) | (x + 13)(x + 1)
+mc2: Factor x^2 - 3x - 40. | (x - 8)(x + 5) | (x + 8)(x - 5) | (x - 10)(x + 4) | (x - 8)(x - 5)
+mc2: Factor 2x^2 + 9x + 10. | (2x + 5)(x + 2) | (2x + 2)(x + 5) | (2x + 1)(x + 10) | (x + 2)(x + 5)
+mc2: Factor 49x^2 - 36. | (7x + 6)(7x - 6) | (7x - 6)^2 | (49x + 6)(x - 6) | (7x + 36)(7x - 1)
+mc2: Factor 4x^3 + 12x^2 + x + 3 by grouping. | (4x^2 + 1)(x + 3) | (4x^2 + 3)(x + 1) | (4x + 1)(x^2 + 3) | (4x^2 - 1)(x + 3)
+mc3: Which expression is equivalent to (x + 2)(x - 2)(x^2 + 4)? | x^4 - 16 | x^4 + 16 | x^4 - 8x^2 + 16 | x^4 - 4
+num2: When (4x - 1)(x + 5) is written as ax^2 + bx + c, what is b? | 19
+num2: A rectangular patio is (x + 7) feet long and (x - 2) feet wide. What is its area in square feet when x = 10? | 136
+num2: Find 98^2 by writing it as (100 - 2)^2. | 9604
+num3: A square garden has side s meters. A path 1 meter wide goes all around it, so the outer square has side s + 2 meters. The path covers 48 square meters. What is s? | 11
+mc2: What is the greatest common factor of 8x^4y and 20x^2y^3? | 4x^2y | 4x^4y^3 | 2x^2y | 40x^4y^3
+mc2: Which polynomial has degree 3 and leading coefficient -2? | -2x^3 + 5x^2 - 1 | 3x^2 - 2x | -2x^4 + x^3 | 5x - 2x^3 + x^4
+sa2: Multiply (x - 4)(2x + 3) and show each product. | 2x^2 + 3x - 8x - 12 = 2x^2 - 5x - 12.
+sa2: Factor completely: 2x^2 - 18. | 2(x^2 - 9) = 2(x + 3)(x - 3).
+sa2: Factor 3x^3 - 27x completely and name each factoring method you used. | Take out the GCF 3x: 3x(x^2 - 9). Then use the difference of squares: 3x(x + 3)(x - 3).
+task3: A garden is a square with side x feet. It is extended 3 feet in one direction and 5 feet in the other. Write the new area as a product and as a polynomial, find the area when x = 10, and explain how much area the extension added in terms of x. | (x + 3)(x + 5) = x^2 + 8x + 15, 195 sq ft, added 8x + 15 = 95 sq ft, clear explanation. | Correct polynomial and value, added area missing or incorrect. | Correct product with expansion errors. | Little correct work.
+
+unit: Quadratic functions and equations | A-REI.B.4, F-IF.C.7, F-IF.B.4 | g9disc
+el: Show each quadratic as an equation, a table and a graph side by side, and keep a labeled parabola on the wall naming the vertex, axis of symmetry, zeros (x-intercepts) and y-intercept.
+
+lesson: Graphs of quadratic functions: vertex, axis and intercepts | F-IF.C.7, F-IF.B.4
+practice:
+num2: What is the x-coordinate of the vertex of y = x^2 - 8x + 3? | 4
+hint: Use x = -b / (2a).
+mc2: What is the axis of symmetry of y = 2(x + 1)^2 - 5? | x = -1 | x = 1 | x = -5 | y = -5
+hint: In vertex form y = a(x - h)^2 + k, the axis of symmetry is x = h.
+num1: What is the y-intercept of y = 3x^2 - 2x + 7? | 7
+hint: The y-intercept is the value of y when x = 0.
+mc2: Which function has a maximum value? | y = -x^2 + 6x | y = x^2 - 6x | y = 2x^2 + 1 | y = (x - 3)^2
+hint: The sign of a tells whether the parabola opens up or down.
+num2: What is the minimum value of y = (x - 2)^2 + 9? | 9
+hint: A square is never negative. When is it smallest?
+sa2: A parabola has x-intercepts at -3 and 5. Explain how to find its axis of symmetry. | The axis of symmetry is halfway between the x-intercepts: (-3 + 5)/2 = 1, so the axis is x = 1.
+quiz:
+mc1: What is the vertex of y = (x + 4)^2 - 1? | (-4, -1) | (4, -1) | (-4, 1) | (4, 1)
+num2: What is the y-coordinate of the vertex of y = x^2 + 6x + 5? | -4
+mc2: Which statement about y = -3x^2 is true? | It opens down and its vertex is (0, 0) | It opens up and its vertex is (0, 0) | It opens down and its vertex is (0, -3) | It is wider than y = x^2
+mc2: What are the x-intercepts of y = (x - 1)(x + 7)? | 1 and -7 | -1 and 7 | 1 and 7 | -7 only
+num2: A ball's height in meters is h(t) = -5t^2 + 20t + 1, where t is in seconds. What is its maximum height in meters? | 21
+mc2: Over which interval is y = (x - 3)^2 increasing? | x > 3 | x < 3 | x > 0 | all real x
+mc3: A parabola has vertex (2, -8) and passes through the origin. What is its other x-intercept? | (4, 0) | (-4, 0) | (2, 0) | (8, 0)
+sa2: A company's profit is P(x) = -2x^2 + 40x - 50 dollars when it sells x items. Explain what the vertex tells the company, and find it. | The vertex gives the number of items that makes the most profit and what that profit is. x = -40/(2(-2)) = 10 and P(10) = -200 + 400 - 50 = 150, so selling 10 items gives the maximum profit of $150.
+
+lesson: Transformations of the parabola y = x^2 | F-BF.B.3, F-IF.C.7
+practice:
+mc1: How does the graph of y = x^2 + 5 compare with the graph of y = x^2? | It moves up 5 | It moves down 5 | It moves left 5 | It moves right 5
+hint: A number added outside the square changes every output.
+mc2: How does the graph of y = (x - 4)^2 compare with the graph of y = x^2? | It moves right 4 | It moves left 4 | It moves up 4 | It moves down 4
+hint: Find the x value that makes the inside of the square equal to 0.
+mc2: Which equation is the graph of y = x^2 shifted left 2 and down 3? | y = (x + 2)^2 - 3 | y = (x - 2)^2 - 3 | y = (x + 2)^2 + 3 | y = (x - 3)^2 + 2
+hint: Shifting left 2 puts the vertex at x = -2.
+mc2: How does the graph of y = 3x^2 compare with the graph of y = x^2? | It is narrower | It is wider | It opens down | It moves up 3
+hint: Compare the outputs of both functions at x = 1.
+num2: The graph of y = x^2 is reflected across the x-axis and then moved up 7. What is the y-coordinate of the new vertex? | 7
+hint: Reflecting across the x-axis does not move the vertex (0, 0). Then shift it.
+sa2: Describe every transformation that takes y = x^2 to y = -1/2 (x + 1)^2 + 4. | Reflect across the x-axis, compress vertically by a factor of 1/2 (so it is wider), shift left 1 and shift up 4. The new vertex is (-1, 4).
+quiz:
+mc1: How does the graph of y = x^2 - 6 compare with the graph of y = x^2? | It moves down 6 | It moves up 6 | It moves left 6 | It moves right 6
+mc2: Which equation has vertex (5, -2) and the same shape as y = x^2? | y = (x - 5)^2 - 2 | y = (x + 5)^2 - 2 | y = (x - 5)^2 + 2 | y = (x + 2)^2 - 5
+mc2: Which function has a wider graph than y = x^2? | y = 0.25x^2 | y = 4x^2 | y = -4x^2 | y = x^2 + 0.25
+num2: g(x) = (x + 3)^2 + 1. What is the x-coordinate of its vertex? | -3
+num2: The graph of y = x^2 is moved right 2 and up 1 to make the graph of g. What is g(5)? | 10
+mc2: f(x) = x^2 has its vertex at (0, 0). Where is the vertex of y = f(x - 1) + 8? | (1, 8) | (-1, 8) | (1, -8) | (8, 1)
+mc3: g(x) = a(x - h)^2 + k opens down, has its vertex in quadrant I and is narrower than y = x^2. Which could be g? | g(x) = -2(x - 3)^2 + 1 | g(x) = 2(x - 3)^2 + 1 | g(x) = -0.5(x - 3)^2 + 1 | g(x) = -2(x + 3)^2 + 1
+sa2: Diego says the graph of y = (x + 6)^2 is the graph of y = x^2 moved right 6 because of the plus sign. Explain his mistake. | The vertex is where x + 6 = 0, which is x = -6. So the graph moves left 6, not right.
+
+lesson: Solving quadratic equations by factoring and square roots | A-REI.B.4
+practice:
+mc1: Solve x^2 - 36 = 0. | x = 6 or x = -6 | x = 6 | x = 18 | x = 36 or x = -36
+hint: Add 36 to both sides, then take the square root of both sides.
+mc2: Solve x^2 + 5x - 14 = 0. | x = 2 or x = -7 | x = -2 or x = 7 | x = 2 or x = 7 | x = 14 or x = -1
+hint: Factor first, then set each factor equal to zero.
+mc2: Solve (x + 3)^2 = 25. | x = 2 or x = -8 | x = 2 | x = 22 | x = -2 or x = 8
+hint: Take the square root of both sides. Remember plus or minus.
+num2: Solve 2x^2 = 72. What is the positive solution? | 6
+hint: Divide both sides by 2 first.
+mc2: Solve x^2 = 7x. | x = 0 or x = 7 | x = 7 | x = 0 | x = -7 or x = 0
+hint: Move all terms to one side and factor. Do not divide by x.
+sa2: Explain the zero product property and use it to solve x(x - 9) = 0. | If a product is 0, at least one factor is 0. So x = 0 or x - 9 = 0, which gives x = 0 or x = 9.
+quiz:
+mc1: Solve x^2 = 100. | x = 10 or x = -10 | x = 10 | x = 50 | x = 100 or x = -100
+mc2: Solve x^2 - 10x + 21 = 0. | x = 3 or x = 7 | x = -3 or x = -7 | x = 1 or x = 21 | x = 3 or x = -7
+mc2: Solve 3x^2 - 12 = 0. | x = 2 or x = -2 | x = 4 or x = -4 | x = 2 | x = 3 or x = -3
+mc2: Solve 2x^2 + 7x + 3 = 0. | x = -1/2 or x = -3 | x = 1/2 or x = 3 | x = -2 or x = -3 | x = -1 or x = -3
+num2: A square rug has an area of 81 square feet. What is the length of one side in feet? | 9
+num2: The product of two consecutive positive integers is 132. What is the smaller integer? | 11
+num3: A rectangle's length is 4 meters more than its width, and its area is 60 square meters. What is its width in meters? | 6
+sa3: Lin solves x^2 - 4x = 5 by writing x(x - 4) = 5, so x = 5 or x - 4 = 5. Explain her error and solve correctly. | The zero product property only works when the product equals 0. Rewrite the equation as x^2 - 4x - 5 = 0, so (x - 5)(x + 1) = 0 and x = 5 or x = -1.
+
+lesson: Completing the square and vertex form | A-REI.B.4, F-IF.C.8
+practice:
+num1: What number completes the square for x^2 + 10x + ___? | 25
+hint: Take half of 10 and square it.
+mc2: Write y = x^2 - 6x + 11 in vertex form. | y = (x - 3)^2 + 2 | y = (x + 3)^2 + 2 | y = (x - 3)^2 + 11 | y = (x - 6)^2 + 11
+hint: Half of -6 is -3. Add and subtract 9.
+mc2: Solve x^2 + 4x = 12 by completing the square. | x = 2 or x = -6 | x = -2 or x = 6 | x = 4 or x = -4 | x = 2 or x = 6
+hint: Add 4 to both sides to make (x + 2)^2.
+num2: x^2 - 14x + c is a perfect square trinomial. What is c? | 49
+hint: Square half of the coefficient of x.
+mc2: Solve x^2 - 2x - 4 = 0 by completing the square. | x = 1 plus or minus the square root of 5 | x = 2 plus or minus the square root of 4 | x = -1 plus or minus the square root of 5 | x = 1 plus or minus the square root of 3
+hint: Move the constant to the other side, then add 1 to both sides.
+sa2: Rewrite y = x^2 + 8x + 10 in vertex form and state the vertex. | y = (x^2 + 8x + 16) + 10 - 16 = (x + 4)^2 - 6. The vertex is (-4, -6).
+quiz:
+num1: What number completes the square for x^2 - 18x + ___? | 81
+mc2: Write y = x^2 + 2x - 8 in vertex form. | y = (x + 1)^2 - 9 | y = (x - 1)^2 - 9 | y = (x + 1)^2 - 8 | y = (x + 2)^2 - 8
+mc2: Solve x^2 - 8x + 7 = 0 by completing the square. | x = 1 or x = 7 | x = -1 or x = -7 | x = 4 or x = -4 | x = 8 or x = 1
+mc2: Write y = 2x^2 - 12x + 5 in vertex form. | y = 2(x - 3)^2 - 13 | y = 2(x - 3)^2 + 5 | y = 2(x - 6)^2 - 31 | y = (2x - 3)^2 - 4
+num2: y = x^2 - 10x + 30 is written in the form y = (x - h)^2 + k. What is k? | 5
+num2: Solve (x - 5)^2 = 49. What is the larger solution? | 12
+mc3: For which value of c does x^2 + 6x + c = 0 have exactly one solution? | 9 | 3 | 36 | 6
+sa2: Explain why completing the square for x^2 + bx always adds (b/2)^2. | (x + b/2)^2 = x^2 + bx + (b/2)^2. The middle term bx is twice x times b/2, so the square needs (b/2)^2 as its constant term.
+
+lesson: The quadratic formula, the discriminant and projectile models | A-REI.B.4, F-IF.B.4
+practice:
+mc2: Use the quadratic formula to solve x^2 + 3x - 10 = 0. | x = 2 or x = -5 | x = -2 or x = 5 | x = 10 or x = -1 | x = 3 or x = -10
+hint: a = 1, b = 3 and c = -10. Find b^2 - 4ac first.
+num2: What is the discriminant of 3x^2 - 5x + 2? | 1
+hint: Use b^2 - 4ac. Be careful with the signs.
+mc2: How many real solutions does 2x^2 + x + 5 = 0 have? | None | One | Two | Three
+hint: Find the discriminant and compare it with 0.
+mc2: Solve x^2 - 4x + 1 = 0. | x = 2 plus or minus the square root of 3 | x = 4 plus or minus the square root of 3 | x = -2 plus or minus the square root of 3 | x = 2 plus or minus the square root of 12
+hint: Simplify the square root of 12, then divide every term by 2.
+num2: A ball is thrown so that its height in feet after t seconds is h(t) = -16t^2 + 32t + 48. After how many seconds does it hit the ground? | 3
+hint: Set h(t) = 0 and divide every term by -16 first.
+sa2: Explain what the discriminant tells you about the graph of y = ax^2 + bx + c. | If b^2 - 4ac > 0, the parabola crosses the x-axis twice. If it equals 0, the parabola touches the x-axis once, at its vertex. If it is negative, the parabola does not reach the x-axis.
+quiz:
+mc2: Use the quadratic formula to solve 2x^2 - 7x + 3 = 0. | x = 3 or x = 1/2 | x = -3 or x = -1/2 | x = 3 or x = 2 | x = 7 or x = 3
+num2: What is the discriminant of x^2 - 6x + 9? | 0
+mc2: How many x-intercepts does the graph of y = x^2 - 3x - 7 have? | 2 | 1 | 0 | 3
+mc2: Solve x^2 + 2x - 1 = 0. | x = -1 plus or minus the square root of 2 | x = 1 plus or minus the square root of 2 | x = -2 plus or minus the square root of 2 | x = -1 plus or minus the square root of 8
+num2: A rock is dropped from a 144-foot cliff. Its height in feet after t seconds is h(t) = -16t^2 + 144. After how many seconds does it hit the ground? | 3
+num3: A rectangular poster has an area of 240 square inches, and its length is 8 inches more than its width. What is its width in inches? | 12
+mc3: For which values of k does x^2 + kx + 16 = 0 have exactly one real solution? | k = 8 or k = -8 | k = 4 only | k = 16 | k = 8 only
+sa3: A diver's height above the water is h(t) = -4.9t^2 + 4.9t + 10 meters, t seconds after she jumps. Explain what h(0), the vertex and the positive zero mean in this situation. | h(0) = 10 is the height of the platform when she jumps. The vertex gives her highest point and when it happens (t = 0.5 s, about 11.2 m). The positive zero is the time when she reaches the water.
+
+lesson: Systems of linear and quadratic equations | A-REI.C.7, A-REI.D.11
+practice:
+mc2: Solve the system y = x^2 and y = 4. | (2, 4) and (-2, 4) | (2, 4) only | (4, 16) and (-4, 16) | (16, 4)
+hint: Substitute 4 for y in the first equation.
+mc2: Solve the system y = x^2 and y = x + 2. | (2, 4) and (-1, 1) | (-2, 4) and (1, 1) | (2, 4) only | (1, 3) and (-1, 1)
+hint: Set x^2 equal to x + 2 and solve the quadratic.
+num2: How many points of intersection do the graphs of y = x^2 + 1 and y = 0 have? | 0
+hint: Can x^2 + 1 ever equal 0?
+mc2: A line and a parabola are graphed on the same axes. How many points of intersection are possible? | 0, 1 or 2 | exactly 2 | 1 or 2 only | any number
+hint: Picture a line that misses, touches or cuts through a parabola.
+num2: The graphs of y = x^2 - 3x and y = x meet at the origin and at one other point. What is the x-coordinate of the other point? | 4
+hint: Set the expressions equal, move everything to one side and factor.
+sa2: Explain how to solve the system y = x^2 - 2 and y = 2x + 1, and give the solutions. | Set x^2 - 2 = 2x + 1, so x^2 - 2x - 3 = 0 and (x - 3)(x + 1) = 0, giving x = 3 or x = -1. Then y = 7 or y = -1, so the solutions are (3, 7) and (-1, -1).
+quiz:
+mc2: Solve the system y = x^2 and y = 9. | (3, 9) and (-3, 9) | (3, 9) only | (9, 81) | (81, 9) and (-81, 9)
+mc2: Solve the system y = x^2 - 1 and y = 3. | (2, 3) and (-2, 3) | (4, 3) and (-4, 3) | (2, 3) only | (3, 8)
+mc2: Solve the system y = x^2 and y = -2x + 3. | (1, 1) and (-3, 9) | (-1, 1) and (3, 9) | (1, 1) only | (3, -3) and (1, 1)
+num2: How many solutions does the system y = x^2 and y = 2x - 1 have? | 1
+num2: The graphs of y = x^2 + 2x and y = 3x + 6 meet at two points. What is the larger x-coordinate? | 3
+mc3: A ball's height is h = -5t^2 + 20t meters after t seconds. A drone hovers at 15 meters. At what times is the ball at the drone's height? | t = 1 and t = 3 seconds | t = 2 seconds only | t = 1.5 and t = 4 seconds | t = 3 and t = 5 seconds
+num3: The parabola y = x^2 + k touches the line y = 6 at exactly one point. What is k? | 6
+sa2: Explain how a graph shows the solutions of a system of one linear and one quadratic equation. | The solutions are the points where the line and the parabola cross or touch. Two crossing points mean two solutions, one touching point means one solution, and no meeting point means no real solution.
+
+lesson: Unit review | A-REI.B.4, F-IF.C.7, F-IF.B.4
+practice:
+mc2: What is the vertex of y = x^2 + 4x + 1? | (-2, -3) | (2, 13) | (-2, 1) | (-4, 1)
+hint: Find x = -b / (2a), then substitute it to find y.
+mc2: Solve x^2 - x - 20 = 0. | x = 5 or x = -4 | x = -5 or x = 4 | x = 10 or x = -2 | x = 20 or x = -1
+hint: Which two numbers multiply to -20 and add to -1?
+num2: What is the discriminant of x^2 + 6x + 10? | -4
+hint: Compute b^2 - 4ac.
+mc2: Solve (x - 1)^2 = 16. | x = 5 or x = -3 | x = 5 | x = 17 or x = -15 | x = -5 or x = 3
+hint: Undo the square with plus or minus a square root.
+num2: A ball's height in feet is h(t) = -16t^2 + 48t, where t is in seconds. After how many seconds does it reach its highest point? | 1.5
+hint: The highest point is the vertex, at t = -b / (2a).
+quiz:
+mc1: Solve x^2 = 49. | x = 7 or x = -7 | x = 7 | x = 24.5 | x = -7
+mc2: Solve (x - 2)(x + 5) = 0. | x = 2 or x = -5 | x = -2 or x = 5 | x = 2 or x = 5 | x = -10
+mc2: What is the vertex of y = (x - 3)^2 + 4? | (3, 4) | (-3, 4) | (3, -4) | (4, 3)
+mc2: The discriminant of x^2 + 4x + 5 is | -4 | 36 | 4 | 26
+num2: A square tile has an area of 144 square centimeters. What is its side length in centimeters? | 12
+mc2: Which quadratic function has zeros at x = 4 and x = -1? | y = (x - 4)(x + 1) | y = (x + 4)(x - 1) | y = (x - 4)(x - 1) | y = x^2 - 4
+sa2: Explain what the zeros of a quadratic function tell you about its graph. | They are the x-intercepts, where the parabola crosses the x-axis.
+
+test:
+mc2: How many real solutions does a quadratic have if its discriminant is 0? | One | Two | None | Infinitely many
+mc2: Solve x^2 - 6x + 8 = 0. | x = 2 or x = 4 | x = -2 or x = -4 | x = 1 or x = 8 | x = 6 or x = 8
+mc2: Which way does y = -2x^2 + 3 open? | Down | Up | Left | Right
+mc3: A ball's height is h = -16t^2 + 64t. When does it hit the ground? | t = 4 seconds | t = 2 seconds | t = 16 seconds | t = 64 seconds
+mc1: What is the y-intercept of y = x^2 - 5x - 6? | (0, -6) | (0, 6) | (6, 0) | (-1, 0)
+num2: What is the x-coordinate of the vertex of y = -2x^2 + 12x - 7? | 3
+mc2: Solve x^2 + 9x + 18 = 0. | x = -3 or x = -6 | x = 3 or x = 6 | x = -2 or x = -9 | x = 3 or x = -6
+mc2: Solve 4x^2 = 25. | x = 5/2 or x = -5/2 | x = 25/4 | x = 5/2 | x = 5 or x = -5
+mc2: Write y = x^2 - 4x + 9 in vertex form. | y = (x - 2)^2 + 5 | y = (x + 2)^2 + 5 | y = (x - 2)^2 + 9 | y = (x - 4)^2 - 7
+mc2: Solve x^2 - 6x + 2 = 0. | x = 3 plus or minus the square root of 7 | x = -3 plus or minus the square root of 7 | x = 3 plus or minus the square root of 11 | x = 6 plus or minus the square root of 7
+mc2: The discriminant of a quadratic equation is 49. Which describes its solutions? | Two real solutions | One real solution | No real solutions | Infinitely many solutions
+num2: A garden is 3 meters longer than it is wide and has an area of 108 square meters. What is its width in meters? | 9
+num2: A stone is thrown upward, and its height in meters after t seconds is h(t) = -5t^2 + 30t. What is its maximum height in meters? | 45
+num2: The product of two consecutive even positive integers is 168. What is the larger integer? | 14
+mc2: A parabola has x-intercepts at 2 and 10. What is its axis of symmetry? | x = 6 | x = 8 | x = 4 | x = 12
+mc3: A company's revenue is R(p) = -10p^2 + 400p dollars when it charges p dollars per item. What price gives the most revenue? | $20 | $40 | $10 | $400
+mc2: Which equation has no real solutions? | x^2 + 9 = 0 | x^2 - 9 = 0 | x^2 = 0 | (x - 9)^2 = 1
+num3: A rectangular pen uses a barn wall as one side and 40 meters of fence for the other three sides. Its area is A(x) = x(40 - 2x) square meters, where x is the width in meters. What width gives the largest area? | 10
+sa2: Solve x^2 + 2x - 15 = 0 by factoring and check one solution. | (x + 5)(x - 3) = 0, so x = -5 or x = 3. Check 3: 9 + 6 - 15 = 0.
+sa2: Use the quadratic formula to solve 2x^2 - 3x - 2 = 0. | x = (3 plus or minus the square root of 25) / 4, so x = 2 or x = -1/2.
+sa2: Explain how to choose a method (square roots, factoring, completing the square or the quadratic formula) to solve 3x^2 - 48 = 0, and then solve it. | There is no x term, so isolate x^2 and use square roots: 3x^2 = 48, x^2 = 16, so x = 4 or x = -4.
+task3: A rocket is launched with height h(t) = -16t^2 + 96t + 6 feet. Find its maximum height and when it occurs, when it hits the ground (to the nearest tenth), and explain what the 6 and the 96 mean in the situation. | Max 150 feet at t = 3 s, lands at about 6.1 s, correct interpretation (launch height 6 ft, initial upward speed 96 ft/s). | Max and timing correct, landing time or interpretation has an error. | One feature correct. | Little correct work.

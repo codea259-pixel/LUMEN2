@@ -1,0 +1,734 @@
+@subject math
+@grade 11
+# Converted from the grade 11 section of tools/assess-src/math.txt. Every original unit line, standard, item and unit test
+# item is carried over verbatim. The original "Unit review" lesson is kept as the last lesson of each unit: its quiz keeps
+# the original quiz items (mc 1-4 and the explanation item) and the unit test keeps the original test items (mc 5-8,
+# both short answers and the task). New lessons come first.
+about: Algebra II extends work to polynomial, rational, radical, exponential and logarithmic functions, introduces trigonometric functions on the unit circle, and develops series, probability and statistical inference.
+std: A-APR.B.2 | Know and apply the Remainder Theorem.
+std: A-REI.A.2 | Solve simple rational and radical equations in one variable.
+std: F-IF.C.8 | Write a function in different but equivalent forms to reveal properties.
+std: F-LE.A.4 | Express the solution to exponential models as a logarithm and evaluate it.
+std: F-TF.A.2 | Explain how the unit circle extends trigonometric functions to all real numbers.
+std: A-SSE.B.4 | Derive and use the formula for the sum of a finite geometric series.
+std: S-IC.B.4 | Use data from a sample survey to estimate a population mean or proportion.
+
+unit: Polynomial and rational functions | A-APR.B.2, A-APR.B.3, A-REI.A.2, F-IF.C.7 | g11rem
+el: Show long division and synthetic division side by side for the same problem, and post the words zero, factor, root, multiplicity, asymptote and extraneous with a small example of each.
+
+lesson: Polynomial long division and synthetic division | A-APR.D.6, A-APR.B.2
+practice:
+mc2: Divide (x^2 + 7x + 10) by (x + 2). | x + 5 | x + 7 | x + 8 | x - 5
+hint: Factor the numerator, or use long division.
+mc2: Use synthetic division to divide (x^3 - 4x^2 + x + 6) by (x - 2). What is the quotient? | x^2 - 2x - 3 | x^2 - 6x + 13 | x^2 - 2x + 3 | x^2 + 2x - 3
+hint: Write the coefficients 1, -4, 1, 6 and use 2 in the box.
+num2: What is the remainder when (x^2 + 5x + 9) is divided by (x + 2)? | 3
+hint: Divide, or see what is left after taking out (x + 2)(x + 3).
+mc2: Divide (2x^3 + 3x^2 - 5x + 6) by (x + 2). | 2x^2 - x - 3 with remainder 12 | 2x^2 + 7x + 9 with remainder 24 | 2x^2 - x - 3 with remainder 0 | 2x^2 - x + 3 with remainder 0
+hint: Use -2 in the synthetic division box, because x + 2 = x - (-2).
+mc2: To divide x^3 + 8 by x + 2 with synthetic division, which coefficients should you write? | 1, 0, 0, 8 | 1, 8 | 1, 0, 8 | 0, 0, 1, 8
+hint: Write a 0 for every missing power of x.
+sa2: Divide (x^3 - 27) by (x - 3) and explain how you handled the missing terms. | Write the coefficients 1, 0, 0, -27, with 0s for the x^2 and x terms. Synthetic division with 3 gives 1, 3, 9 and a remainder of 0, so the quotient is x^2 + 3x + 9.
+quiz:
+mc1: Divide (x^2 - x - 12) by (x - 4). | x + 3 | x - 3 | x + 4 | x - 16
+mc2: Use synthetic division to divide (x^3 + 2x^2 - 5x - 6) by (x + 1). What is the quotient? | x^2 + x - 6 | x^2 + 3x - 2 | x^2 + x + 6 | x^2 - x - 6
+num2: What is the remainder when (2x^2 - 3x + 4) is divided by (x - 3)? | 13
+mc2: (6x^3 + 4x^2) divided by 2x^2 equals | 3x + 2 | 3x^2 + 2x | 3x + 4x^2 | 4x + 2
+num2: (x^3 - 2x^2 - 5x + 6) divided by (x - 3) equals x^2 + bx + c. What is b? | 1
+mc2: The area of a rectangle is x^3 + 3x^2 - 4x square units and its width is x - 1 units. What is its length? | x^2 + 4x | x^2 + 2x - 4 | x^2 + 4 | x^2 - 4x
+mc3: When P(x) is divided by (x - 5), the quotient is x^2 + 1 and the remainder is 3. What is P(x)? | x^3 - 5x^2 + x - 2 | x^3 + 5x^2 + x + 8 | x^3 - 5x^2 + x + 3 | x^3 + x + 3
+sa2: Jamal used synthetic division with 4 in the box to divide by (x + 4) and got the wrong quotient. Explain his mistake. | Synthetic division uses the zero of the divisor. x + 4 = 0 when x = -4, so he should have used -4 in the box, not 4.
+
+lesson: The Remainder and Factor Theorems | A-APR.B.2
+practice:
+num2: Use the Remainder Theorem to find the remainder when x^3 + 2x^2 - 7 is divided by (x - 1). | -4
+hint: The remainder equals P(1).
+num2: What is the remainder when x^4 - 3x + 2 is divided by (x + 2)? | 24
+hint: The remainder equals P(-2).
+mc2: Which binomial is a factor of x^3 - 7x + 6? | x - 1 | x + 1 | x - 3 | x + 2
+hint: (x - a) is a factor exactly when P(a) = 0.
+num2: P(x) = x^3 + kx^2 + 4 has a remainder of 0 when divided by (x - 2). What is k? | -3
+hint: Set P(2) = 0 and solve for k.
+mc2: For a polynomial P, P(-3) = 0. Which statement must be true? | (x + 3) is a factor of P(x) | (x - 3) is a factor of P(x) | P(3) = 0 | P has no real zeros
+hint: The Factor Theorem links zeros and factors.
+sa2: Explain why the Remainder Theorem works, starting from P(x) = (x - a)Q(x) + r. | Substituting x = a gives P(a) = (a - a)Q(a) + r = 0 + r = r. So the remainder when P(x) is divided by (x - a) is P(a).
+quiz:
+num1: What is the remainder when x^2 + 4x - 1 is divided by (x - 2)? | 11
+num2: What is the remainder when 2x^3 - x + 5 is divided by (x + 1)? | 4
+mc2: Which number is a zero of P(x) = x^3 - 2x^2 - 5x + 6? | 3 | -3 | 2 | -1
+num2: (x + 1) is a factor of x^3 + 4x^2 + kx + 2. What is k? | 5
+mc2: x = 2 is a zero of x^3 - 3x^2 + 4. What is the complete factorization? | (x - 2)^2(x + 1) | (x - 2)(x + 1)^2 | (x - 2)(x^2 + 2) | (x + 2)^2(x - 1)
+mc2: When P(x) is divided by (x - 4), the remainder is 9. What is P(4)? | 9 | 0 | 4 | 36
+mc3: P(x) = x^3 + ax + b, with P(1) = 0 and P(-1) = 4. What are a and b? | a = -3 and b = 2 | a = 3 and b = -4 | a = -1 and b = 0 | a = 2 and b = -3
+sa3: P(x) = x^3 - 6x^2 + 3x + 10 and P(2) = 0. Factor P(x) completely and explain each step. | Since P(2) = 0, (x - 2) is a factor. Synthetic division by 2 gives the quotient x^2 - 4x - 5, which factors as (x - 5)(x + 1). So P(x) = (x - 2)(x - 5)(x + 1).
+
+lesson: Zeros, multiplicity and end behavior of polynomial graphs | A-APR.B.3, F-IF.C.7
+practice:
+mc1: What are the zeros of f(x) = (x - 2)(x + 5)(x - 1)? | 2, -5 and 1 | -2, 5 and -1 | 2, 5 and 1 | -10
+hint: Set each factor equal to 0.
+mc2: f(x) = (x - 3)^2(x + 1). What happens to the graph at x = 3? | It touches the x-axis and turns around | It crosses the x-axis | It has a vertical asymptote | It has no zero there
+hint: The factor (x - 3) appears twice, so the zero has even multiplicity.
+mc2: What is the end behavior of f(x) = x^3 - 4x? | Down on the left, up on the right | Up on both ends | Down on both ends | Up on the left, down on the right
+hint: Look at the leading term x^3 for large positive and negative x.
+num2: What is the greatest number of turning points a polynomial of degree 5 can have? | 4
+hint: A polynomial of degree n has at most n - 1 turning points.
+mc2: Which polynomial has zeros at 0, 4 and -2? | f(x) = x(x - 4)(x + 2) | f(x) = x(x + 4)(x - 2) | f(x) = (x - 4)(x + 2) | f(x) = x^2(x - 4)
+hint: A zero at a means (x - a) is a factor.
+sa2: Describe the graph of f(x) = -(x + 2)(x - 1)^2: give its end behavior, what happens at each zero, and its y-intercept. | The leading term is -x^3, so it is up on the left and down on the right. At x = -2 it crosses the x-axis (multiplicity 1). At x = 1 it touches and turns (multiplicity 2). The y-intercept is -(2)(1) = -2.
+quiz:
+mc1: What is the degree of f(x) = 2x(x - 1)^3? | 4 | 3 | 2 | 1
+mc2: What is the end behavior of f(x) = -3x^5 + 2x^2? | Up on the left, down on the right | Down on both ends | Up on both ends | Down on the left, up on the right
+num2: What is the y-intercept of f(x) = (x + 3)(x - 2)(x - 4)? | 24
+mc2: At which zero does the graph of f(x) = x^2(x - 5)^3 touch the x-axis without crossing it? | x = 0 | x = 5 | both x = 0 and x = 5 | neither zero
+num2: A polynomial with real coefficients has zeros 3 + i and 2. What is its least possible degree? | 3
+mc2: Which function is up on both ends and touches the x-axis without crossing at x = 2? | f(x) = (x - 2)^2(x + 1)^2 | f(x) = -(x - 2)^2 | f(x) = (x - 2)(x + 1) | f(x) = (x - 2)^3
+mc3: A box with a square base x by x has height 10 - x, so its volume is V(x) = x^2(10 - x). Which domain makes sense? | 0 < x < 10 | x > 0 | -10 < x < 10 | x > 10
+sa2: Explain how the multiplicity of a zero changes the shape of a polynomial graph at that zero. | With odd multiplicity the graph crosses the x-axis: with multiplicity 1 it crosses like a line, and with 3 it flattens as it crosses. With even multiplicity the graph touches the x-axis and turns back.
+
+lesson: Rational expressions: simplifying and operations | A-APR.D.6, A-APR.D.7
+practice:
+mc2: Simplify (x^2 - 9)/(x^2 + 5x + 6). | (x - 3)/(x + 2) | (x + 3)/(x + 2) | (x - 3)/(x + 3) | -9/(5x + 6)
+hint: Factor the numerator and the denominator, then cancel common factors.
+mc2: For which values of x is (x + 1)/(x^2 - 4) undefined? | x = 2 and x = -2 | x = -1 | x = 4 | x = 2 only
+hint: A rational expression is undefined where its denominator is 0.
+mc2: Multiply (2x/(x + 3)) x ((x + 3)/(4x^2)). | 1/(2x) | 2x | (x + 3)/(2x) | 1/2
+hint: Cancel common factors before multiplying.
+mc2: Add 3/x + 2/(x + 1). | (5x + 3)/(x(x + 1)) | 5/(2x + 1) | 5/(x(x + 1)) | (5x + 2)/(x(x + 1))
+hint: Use the common denominator x(x + 1).
+num2: Simplify (x^2 - 16)/(x - 4), then evaluate the result at x = 6. | 10
+hint: x^2 - 16 factors as (x + 4)(x - 4).
+sa2: Explain why (x + 5)/(x + 2) cannot be simplified to 5/2 by canceling the x's. | You can only cancel common factors, not terms that are added. x is a term in x + 5 and x + 2, not a factor of either. For example, at x = 1 the expression is 6/3 = 2, not 5/2.
+quiz:
+mc1: Simplify (4x^2)/(6x). | 2x/3 | 2/(3x) | 2x^2/3 | 3x/2
+mc2: Simplify (x^2 + 2x - 15)/(x^2 - 9). | (x + 5)/(x + 3) | (x - 5)/(x - 3) | (x + 5)/(x - 3) | (2x - 15)/(-9)
+mc2: Divide ((x^2 - 1)/x) by ((x + 1)/x^2). | x(x - 1) | (x - 1)/x | x^2 - 1 | (x + 1)/x
+mc2: Subtract 5/(x - 2) - 3/(x - 2). | 2/(x - 2) | 2/(2x - 4) | 8/(x - 2) | 2
+num2: Simplify (x^2 + 3x)/(x + 3), then evaluate it at x = 7. | 7
+num2: (x + 3)/(x^2 - 2x - 15) is undefined for two values of x. What is the positive one? | 5
+mc3: One pipe alone fills a tank in x hours and another alone fills it in x + 2 hours. Which expression gives the part of the tank they fill together in 1 hour? | (2x + 2)/(x(x + 2)) | 2/(2x + 2) | 1/(2x + 2) | (x + 2)/x
+sa2: Simplify (x^2 - 4)/(x^2 + 4x + 4) and state the value of x that is excluded. | (x - 2)(x + 2)/((x + 2)(x + 2)) = (x - 2)/(x + 2). x = -2 is excluded because the original denominator is 0 there.
+
+lesson: Rational functions and rational equations | A-REI.A.2, F-IF.C.7
+practice:
+mc1: What is the vertical asymptote of f(x) = 4/(x + 3)? | x = -3 | x = 3 | y = 4 | y = 0
+hint: Where is the denominator 0?
+mc2: What is the horizontal asymptote of f(x) = (2x + 1)/(x - 4)? | y = 2 | y = 0 | x = 4 | y = -1/4
+hint: When the degrees are equal, compare the leading coefficients.
+num2: Solve 6/x = 2/(x - 4). | 6
+hint: Cross-multiply, then solve the linear equation.
+mc2: f(x) = (x^2 - 1)/(x - 1). What happens at x = 1? | The graph has a hole | The graph has a vertical asymptote | f(1) = 0 | The graph has a horizontal asymptote
+hint: Factor the numerator. Does a factor cancel?
+num2: Solve 1/x + 1/(2x) = 1/4. | 6
+hint: Multiply every term by the common denominator 4x.
+sa2: Solve 2/(x - 3) = x/(x - 3) - 1 and explain your answer. | Multiply every term by (x - 3): 2 = x - (x - 3) = 3. Since 2 = 3 is false, the equation has no solution.
+quiz:
+mc1: What is the vertical asymptote of f(x) = (x + 1)/(2x - 8)? | x = 4 | x = -1 | x = 8 | y = 1/2
+mc2: What is the horizontal asymptote of f(x) = 5/(x^2 + 1)? | y = 0 | y = 5 | y = 1 | there is none
+num2: Solve 3/(x + 2) = 1/(x - 2). | 4
+num2: Solve x/(x + 1) = 3/4. | 3
+mc2: Solve x^2/(x - 3) = 9/(x - 3). | x = -3 | x = 3 or x = -3 | x = 3 | no solution
+num3: Ana can paint a room in 3 hours and Leo can paint the same room in 6 hours. How many hours does it take them working together? | 2
+mc3: Which function has a hole at x = 2 and a vertical asymptote at x = -2? | f(x) = (x - 2)/((x - 2)(x + 2)) | f(x) = (x + 2)/((x - 2)(x + 2)) | f(x) = 1/(x - 2) | f(x) = (x - 2)(x + 2)
+sa3: A cyclist rides 30 km with the wind and 20 km back against it in the same amount of time. Her speed with no wind is 25 km/h. Explain how to find the wind speed w, and find it. | Time = distance / speed, so 30/(25 + w) = 20/(25 - w). Cross-multiply: 30(25 - w) = 20(25 + w), so 750 - 30w = 500 + 20w, 250 = 50w and w = 5 km/h.
+
+lesson: Radical equations and extraneous solutions | A-REI.A.2
+practice:
+num1: Solve the square root of x = 7. | 49
+hint: Square both sides.
+num2: Solve the square root of (2x - 1) = 3. | 5
+hint: Square both sides, then solve the linear equation.
+num2: Solve the cube root of (x + 2) = 3. | 25
+hint: Cube both sides.
+mc2: Solve the square root of (x + 6) = x. | x = 3 | x = 3 or x = -2 | x = -2 | no solution
+hint: After squaring, check every answer in the original equation.
+mc2: Solve the square root of (x - 1) + 5 = 2. | no solution | x = 10 | x = 4 | x = -8
+hint: Isolate the square root first. Can a square root be negative?
+sa2: Explain why x = 9 is not a solution of the square root of x = -3, even though (-3)^2 = 9. | The square root symbol means the principal (non-negative) root, so the square root of 9 is 3, not -3. Squaring both sides created an extraneous solution.
+quiz:
+num1: Solve the square root of x = 12. | 144
+num2: Solve the square root of (3x + 4) = 5. | 7
+num2: Solve the square root of (x + 1) + 3 = 7. | 15
+mc2: Solve x = the square root of (5x - 4). | x = 1 or x = 4 | x = 4 only | x = 1 only | no solution
+mc2: Solve the square root of (2x + 3) = x. | x = 3 | x = 3 or x = -1 | x = -1 | no solution
+num3: In shallow water, a wave's speed in meters per second is about v = the square root of (9.8d), where d is the water depth in meters. At what depth in meters is the speed 7 m/s? | 5
+mc3: Solve the square root of (x + 7) = x + 1. | x = 2 | x = 2 or x = -3 | x = -3 | no solution
+sa3: Ravi solved the square root of (x + 2) = x - 4 and got x = 2 and x = 7. Explain which solution is extraneous and why. | Squaring gives x + 2 = x^2 - 8x + 16, so x^2 - 9x + 14 = 0 and x = 2 or x = 7. For x = 2 the left side is 2 but the right side is -2, so 2 is extraneous. For x = 7 both sides are 3, so x = 7 is the only solution.
+
+lesson: Unit review | A-APR.B.2, A-APR.B.3, A-REI.A.2, F-IF.C.7
+practice:
+num2: What is the remainder when x^3 - x^2 + 4 is divided by (x + 2)? | -8
+hint: Use the Remainder Theorem: find P(-2).
+mc2: Simplify (x^2 - 25)/(x^2 - 3x - 10). | (x + 5)/(x + 2) | (x - 5)/(x + 2) | (x + 5)/(x - 2) | 25/(3x + 10)
+hint: Factor both parts and cancel the common factor.
+mc2: What is the end behavior of f(x) = 2x^3 - x? | Down on the left, up on the right | Up on both ends | Down on both ends | Up on the left, down on the right
+hint: Only the leading term matters for end behavior.
+num2: Solve 4/(x - 1) = 2/(x - 3). | 5
+hint: Cross-multiply and solve.
+num2: Solve the square root of (4x + 1) = 7. | 12
+hint: Square both sides.
+quiz:
+mc1: Remainder when x^3 - 2x + 5 is divided by (x - 2)? | 9 | 5 | 1 | 13
+mc1: Zeros of f(x) = x(x - 3)(x + 4)? | 0, 3, -4 | 0, -3, 4 | 3, -4 | 1, 3, 4
+mc2: End behavior of f(x) = -2x^4 + x? | Down on both ends | Up on both ends | Up left, down right | Down left, up right
+mc2: Solve 3 / (x - 1) = 6. | x = 1.5 | x = 3 | x = 0.5 | x = 7
+num2: What is the remainder when x^3 + 3x^2 - 2 is divided by (x - 1)? | 2
+mc2: What is the horizontal asymptote of f(x) = (6x^2 - 1)/(2x^2 + 3)? | y = 3 | y = 0 | y = 6 | y = -1/3
+sa2: Explain why squaring both sides of a radical equation can create extraneous solutions. | Squaring loses sign information, so a solution of the squared equation may not satisfy the original.
+
+test:
+mc2: Vertical asymptote of y = (x + 2) / (x - 5)? | x = 5 | x = -2 | y = 1 | x = 1
+mc2: Solve the square root of (x + 3) = 5. | 22 | 2 | 28 | 8
+mc2: (x - 1) is a factor of x^3 + kx - 4. What is k? | 3 | -3 | 4 | 5
+mc3: A polynomial of degree 5 has real coefficients and zeros 2, 3i and -1. How many other zeros must it have? | 2, including -3i | 1 | 0 | 3
+num2: What is the remainder when 3x^3 - 5x + 1 is divided by (x - 2)? | 15
+num2: (x - 3) is a factor of x^3 - 2x^2 + kx + 6. What is k? | -5
+num2: Solve 5/x = 3/(x - 2). | 5
+num2: Jen can mow a lawn in 4 hours and Sam can mow the same lawn in 12 hours. How many hours does it take them working together? | 3
+num2: Solve the square root of (5x - 1) = 7. | 10
+num2: What is the y-intercept of f(x) = (x - 1)(x + 2)(x - 5)? | 10
+mc2: Divide (x^3 - 3x^2 - 4x + 12) by (x - 2). | x^2 - x - 6 | x^2 - 5x + 6 | x^2 + x - 6 | x^2 - x + 6
+mc2: Which polynomial's graph is up on the left and down on the right? | f(x) = -x^3 + 2x | f(x) = x^3 - 2x | f(x) = x^4 | f(x) = -x^4
+mc2: At which x does the graph of f(x) = (x + 4)^2(x - 1) touch the x-axis without crossing? | x = -4 | x = 1 | x = 4 | x = -1
+mc2: Simplify (x^2 - 7x + 12)/(x^2 - 16). | (x - 3)/(x + 4) | (x + 3)/(x + 4) | (x - 3)/(x - 4) | (-7x + 12)/(-16)
+mc2: Add 1/(x - 1) + 2/(x + 1). | (3x - 1)/(x^2 - 1) | 3/(2x) | 3/(x^2 - 1) | (3x + 1)/(x^2 - 1)
+mc2: What is the horizontal asymptote of f(x) = (3x - 2)/(x^2 + 4)? | y = 0 | y = 3 | y = -1/2 | there is none
+mc2: f(x) = (x^2 - 4)/(x + 2). What feature does its graph have at x = -2? | a hole | a vertical asymptote | a zero | a horizontal asymptote
+mc3: Solve the square root of (3x + 1) = x - 1. | x = 5 | x = 5 or x = 0 | x = 0 | no solution
+sa2: Use synthetic division to divide x^3 - 6x^2 + 11x - 6 by (x - 1) and factor completely. | Quotient x^2 - 5x + 6, so (x - 1)(x - 2)(x - 3).
+sa2: Solve x / (x - 2) = 3 / (x - 2) + 2 and check for extraneous solutions. | x = 3 + 2(x - 2) gives x = 1. Check: 1/(-1) = -1 and 3/(-1) + 2 = -1. x = 1 works.
+sa2: P(x) = x^3 - 4x^2 + x + 6 and x = -1 is a zero. Explain how to find all of its zeros, and find them. | By the Factor Theorem, (x + 1) is a factor. Synthetic division by -1 gives x^2 - 5x + 6 = (x - 2)(x - 3). The zeros are -1, 2 and 3.
+task3: A box with no lid is made from a 20 cm by 30 cm sheet by cutting squares of side x from each corner. Write the volume as a polynomial, state a sensible domain, find the volume for x = 4, and estimate (by table or graph) the x that gives the greatest volume. | V = x(20 - 2x)(30 - 2x), 0 < x < 10, V(4) = 1,056, maximum near x = 3.9 (volume about 1,056 cubic cm), clear work. | Correct polynomial and domain with an estimation error. | Correct polynomial only. | Little correct work.
+
+unit: Exponential and logarithmic functions | F-LE.A.4, F-BF.B.5, F-IF.C.8 | logs, g11expeq, g11logp
+el: Keep a two-column chart that pairs each exponential statement with its logarithm form (2^5 = 32 and log base 2 of 32 = 5), and read logs aloud as "the exponent you put on 2 to get 32." Allow a scientific calculator.
+
+lesson: Exponential growth, decay and compound interest | F-IF.C.8, F-LE.A.2
+practice:
+mc1: Which function models exponential decay? | f(t) = 80(0.92)^t | f(t) = 80(1.08)^t | f(t) = 80 + 0.92t | f(t) = 0.92t^80
+hint: Decay means the base is between 0 and 1.
+num2: $2,000 is invested at 5% interest compounded yearly. What is the balance in dollars after 2 years? | 2205
+hint: Multiply by 1.05 two times.
+mc2: A town's population is P(t) = 12000(1.03)^t, where t is in years. What is the yearly growth rate? | 3% | 103% | 0.03% | 1.03%
+hint: The base is 1 + r.
+num2: Money is invested at 8% yearly interest compounded quarterly. What is the interest rate per quarter, as a percent? | 2
+hint: Divide the yearly rate by the number of compounding periods in a year.
+mc2: Which expression gives the balance of $500 after t years at 6% yearly interest compounded monthly? | 500(1 + 0.06/12)^(12t) | 500(1.06)^(12t) | 500(1 + 0.06/12)^t | 500(1 + 0.06)^(t/12)
+hint: Use A = P(1 + r/n)^(nt).
+sa2: Show that 100(1.21)^t can be written as 100(1.1)^(2t), and explain what this shows about growth every half year if t is in years. | 1.21 = 1.1^2, so 100(1.21)^t = 100(1.1^2)^t = 100(1.1)^(2t). There are 2t half-years in t years, so the amount grows by 10% every half year.
+quiz:
+mc1: What is the decay rate in f(t) = 50(0.85)^t? | 15% | 85% | 0.85% | 50%
+num2: A car bought for $24,000 loses 20% of its value each year. What is it worth in dollars after 2 years? | 15360
+num2: $5,000 is invested at 4% interest compounded yearly. How much interest in dollars does it earn in the first 2 years? | 408
+mc2: A culture of 300 bacteria doubles every 4 hours. Which function gives the number of bacteria after t hours? | 300(2)^(t/4) | 300(2)^(4t) | 300(4)^(t/2) | 300(1.04)^t
+num2: A substance has a half-life of 10 years. What fraction of a sample remains after 30 years? | 1/8
+mc2: $1,000 is invested for one year. Which choice earns the most? | 6% compounded monthly | 6% compounded yearly | 6% compounded quarterly | 5.9% compounded monthly
+mc3: Which expression is equivalent to 200(0.81)^t? | 200(0.9)^(2t) | 200(0.9)^(t/2) | 200(0.81)^(2t) | 180(0.9)^t
+sa2: Explain how to tell from y = a(b)^t, with a > 0, whether a quantity grows or decays, and by what percent each period. | If b > 1 it grows by (b - 1) x 100% each period. If 0 < b < 1 it decays by (1 - b) x 100% each period. For example, b = 1.07 means 7% growth and b = 0.93 means 7% decay.
+
+lesson: The number e and continuous growth | F-IF.C.8, F-LE.A.4
+practice:
+mc1: What is the value of e to three decimal places? | 2.718 | 3.142 | 1.414 | 2.817
+hint: e is the number that (1 + 1/n)^n gets closer to as n grows.
+mc2: Which formula gives the balance for continuous compounding? | A = Pe^(rt) | A = P(1 + r)^t | A = P + rt | A = P(1 + r/n)^n
+hint: Continuous compounding uses the number e.
+mc2: $1,000 is invested at 5% compounded continuously. To the nearest cent, what is the balance after 10 years? | $1,648.72 | $1,628.89 | $1,500.00 | $2,718.28
+hint: Use A = 1000e^(0.05 x 10).
+num1: What is ln(e^5)? | 5
+hint: The natural log and e^x undo each other.
+num2: What is e^0? | 1
+hint: Any nonzero number to the 0 power is 1.
+sa2: Explain, in terms of compounding, why (1 + 1/n)^n gets closer to e as n gets larger. | (1 + 1/n)^n is the value of $1 after one year at 100% interest compounded n times. Compounding more often increases the value, but by smaller and smaller amounts, and the value levels off at e, about 2.718, which is continuous compounding.
+quiz:
+mc1: The natural logarithm, ln, is a logarithm with which base? | e | 10 | 2 | 1
+mc2: $500 is invested at 4% compounded continuously. To the nearest cent, what is the balance after 5 years? | $610.70 | $608.33 | $600.00 | $520.00
+num2: What is ln(1)? | 0
+mc2: A population grows according to P = 2000e^(0.03t). What is its continuous growth rate? | 3% | 30% | 0.03% | 2000%
+num2: Simplify e^(ln 8). | 8
+mc2: $100 is invested at 10% for one year. How does continuous compounding compare with yearly compounding? | Continuous gives about $110.52 and yearly gives $110.00 | Yearly gives $110.00 and continuous gives about $109.52 | They give the same amount | Continuous gives about $127.18 and yearly gives $110.00
+mc3: A sample decays according to A = 80e^(-0.2t). To the nearest tenth, how much remains when t = 5? | 29.4 | 0 | 40.0 | 72.0
+sa2: Explain how to rewrite y = 50e^(0.1t) in the form y = 50(b)^t, and what b means. | e^(0.1t) = (e^0.1)^t, and e^0.1 is about 1.105, so y is about 50(1.105)^t. The base b = 1.105 is the growth factor per unit of time, about 10.5% growth each period.
+
+lesson: Logarithms as inverses of exponential functions | F-BF.B.4, F-BF.B.5
+practice:
+mc1: Write 2^6 = 64 in logarithmic form. | log base 2 of 64 = 6 | log base 6 of 64 = 2 | log base 64 of 2 = 6 | log base 2 of 6 = 64
+hint: log base b of y = x means b^x = y.
+num1: What is log base 3 of 81? | 4
+hint: 3 to what power is 81?
+num2: What is log base 5 of 1/25? | -2
+hint: A negative exponent gives a reciprocal.
+mc2: What is the inverse of f(x) = 10^x? | log x | x^10 | 1/10^x | x/10
+hint: The inverse undoes raising 10 to a power.
+num2: Solve log base 4 of x = 3. | 64
+hint: Rewrite the equation in exponential form.
+sa2: Explain why log base 2 of (-8) is undefined in the real numbers. | log base 2 of (-8) asks what power of 2 gives -8. Every power of 2 is positive, so no real exponent works.
+quiz:
+num1: What is log base 7 of 49? | 2
+num2: What is log 0.001, using base 10? | -3
+mc2: Write log base 9 of 3 = 1/2 in exponential form. | 9^(1/2) = 3 | 3^(1/2) = 9 | 9^3 = 1/2 | (1/2)^9 = 3
+num2: Solve log base x of 125 = 3. | 5
+mc2: What is the inverse of g(x) = log base 3 of x? | 3^x | x^3 | log base x of 3 | x/3
+num2: What is log base 8 of 2? | 1/3
+mc3: Loudness in decibels is L = 10 log(I / I0), where I is a sound's intensity and I0 is a reference intensity. A sound has an intensity 1,000 times I0. What is its loudness? | 30 decibels | 1000 decibels | 3 decibels | 100 decibels
+sa3: Kim says log base 3 of 9 means 9^3. Explain her mistake and give the correct value. | log base 3 of 9 is the exponent you put on 3 to get 9. Since 3^2 = 9, log base 3 of 9 = 2. She confused the logarithm with a power.
+
+lesson: Properties of logarithms | F-LE.A.4, A-SSE.A.2
+practice:
+mc1: Which is equal to log base 2 of 8 + log base 2 of 4? | log base 2 of 32 | log base 2 of 12 | log base 4 of 32 | log base 2 of 2
+hint: Product property: log M + log N = log(MN).
+num2: What is log base 3 of 54 - log base 3 of 2? | 3
+hint: Quotient property: log M - log N = log(M/N).
+mc2: Which is equal to 3 log x? | log(x^3) | log(3x) | (log x)^3 | log(x + 3)
+hint: Use the power property.
+mc2: Write 2 log a + log b - log c as a single logarithm. | log(a^2 b / c) | log(2ab / c) | log(a^2 + b - c) | log(2a + b - c)
+hint: Use the power property first, then the product and quotient properties.
+num2: What is log base 6 of 4 + log base 6 of 9? | 2
+hint: Combine into one logarithm first.
+sa2: Use the change of base formula to find log base 2 of 10 to two decimal places, and explain. | log base 2 of 10 = log 10 / log 2 = 1 / 0.30103, which is about 3.32.
+quiz:
+num1: What is log 2 + log 50, using base 10? | 2
+mc2: Expand log base 5 of (25x^3). | 2 + 3 log base 5 of x | 25 + 3 log base 5 of x | 2 log base 5 of 3x | 3 + 2 log base 5 of x
+num2: What is log base 4 of 128 - log base 4 of 2? | 3
+mc2: Which statement is NOT a property of logarithms? | log(M + N) = log M + log N | log(MN) = log M + log N | log(M/N) = log M - log N | log(M^k) = k log M
+num2: log base b of 2 = 0.3 and log base b of 3 = 0.5. What is log base b of 12? | 1.1
+mc2: Which expression is equal to ln(e^3 x)? | 3 + ln x | 3 ln x | e^3 + ln x | 3x
+mc3: By the change of base formula, which expression equals log base 5 of 20? | ln 20 / ln 5 | ln 5 / ln 20 | ln 4 | ln(20 - 5)
+sa2: Explain why log(100x) = 2 + log x, using base 10. | By the product property, log(100x) = log 100 + log x. Since 10^2 = 100, log 100 = 2, so log(100x) = 2 + log x.
+
+lesson: Solving exponential and logarithmic equations | F-LE.A.4
+practice:
+mc2: Solve 2^x = 20 to the nearest hundredth. | 4.32 | 10.00 | 4.00 | 1.30
+hint: Take the log of both sides: x = log 20 / log 2.
+num2: Solve 4^(x - 1) = 32. | 3.5
+hint: Write both sides as powers of 2.
+mc2: Solve 3e^(2x) = 60 to the nearest hundredth. | 1.50 | 3.00 | 10.00 | 1.15
+hint: Divide both sides by 3 first, then take the natural log of both sides.
+mc2: Solve 7^x = 100 to the nearest hundredth. | 2.37 | 14.29 | 2.00 | 0.42
+hint: Use x = log 100 / log 7.
+num2: Solve log base 2 of (x + 3) = 5. | 29
+hint: Rewrite in exponential form: x + 3 = 2^5.
+sa2: Explain how to solve 1000(1.03)^t = 1500, and give t to the nearest tenth. | Divide by 1000: 1.03^t = 1.5. Take logs of both sides: t log 1.03 = log 1.5, so t = log 1.5 / log 1.03, about 13.7.
+quiz:
+mc2: Solve 5^x = 40 to the nearest hundredth. | 2.29 | 8.00 | 1.60 | 0.44
+num2: Solve 9^x = 27. | 1.5
+mc2: Solve e^x = 5 to the nearest hundredth. | 1.61 | 0.70 | 2.24 | 148.41
+num2: Solve log x + log(x - 3) = 1, using base 10. | 5
+mc2: $2,000 is invested at 5% compounded yearly. To the nearest tenth of a year, when does it reach $3,000? | 8.3 years | 10.0 years | 30.0 years | 7.5 years
+mc3: An account earns 7% compounded yearly. To the nearest tenth of a year, how long does it take to triple? | 16.2 years | 10.2 years | 42.9 years | 21.0 years
+sa3: Mia solved 2^x = 12 by writing x = 12/2 = 6. Explain her mistake and solve correctly to the nearest hundredth. | Dividing by 2 undoes multiplication, not an exponent; 2^6 is 64, not 12. Take logs: x = log 12 / log 2, about 3.58.
+
+lesson: Graphs of exponential and logarithmic functions | F-IF.C.7, F-LE.A.4
+practice:
+mc1: What is the horizontal asymptote of y = 3^x? | y = 0 | x = 0 | y = 3 | y = 1
+hint: What happens to 3^x when x is a large negative number?
+mc2: What is the domain of y = log x? | x > 0 | all real numbers | x >= 0 | x > 1
+hint: You can take the log only of a positive number.
+num1: The graph of y = 5^x crosses the y-axis at (0, b). What is b? | 1
+hint: Any nonzero number to the 0 power is 1.
+mc2: How is the graph of y = 2^(x - 3) + 1 related to the graph of y = 2^x? | shifted right 3 and up 1 | shifted left 3 and up 1 | shifted right 3 and down 1 | stretched by a factor of 3
+hint: x - 3 inside shifts horizontally; + 1 outside shifts vertically.
+num2: The graph of y = log base 2 of x crosses the x-axis at (a, 0). What is a? | 1
+hint: Set y = 0 and rewrite in exponential form.
+sa2: Explain how the graphs of y = 2^x and y = log base 2 of x are related. | They are inverse functions, so each graph is the reflection of the other across the line y = x. For example, the point (3, 8) on y = 2^x matches the point (8, 3) on y = log base 2 of x.
+quiz:
+mc1: What is the vertical asymptote of y = log base 3 of x? | x = 0 | y = 0 | x = 3 | x = 1
+mc2: What is the range of y = 4^x - 2? | y > -2 | y > 0 | all real numbers | y > 2
+num2: The graph of y = log base 2 of (x - 5) has a vertical asymptote at x = a. What is a? | 5
+mc2: Which function is decreasing? | y = (1/3)^x | y = 3^x | y = log x | y = e^x
+num2: A sample of 80 grams has a half-life of 3 days. After how many days do 10 grams remain? | 9
+mc2: On a logarithmic earthquake magnitude scale, each increase of 1 in magnitude means 10 times the ground motion. How many times greater is the ground motion of a magnitude 6 earthquake than a magnitude 4 earthquake? | 100 | 2 | 20 | 1000
+mc3: Which point is on both the graph of y = 2^x and the graph of y = x + 1? | (1, 2) | (2, 3) | (2, 4) | (3, 4)
+sa2: A town's population is P = 5000(1.02)^t, where t is in years. Describe the graph and explain what its vertical intercept means. | It is an increasing exponential curve that gets steeper over time and stays above the t-axis. Its intercept on the P-axis is 5,000, the population at t = 0.
+
+lesson: Unit review | F-LE.A.4, F-BF.B.5, F-IF.C.8
+practice:
+num1: What is log base 2 of 16? | 4
+hint: 2 to what power is 16?
+mc2: Write ln 6 + ln 2 - ln 3 as a single logarithm. | ln 4 | ln 5 | ln 36 | ln 9
+hint: Add logs for products and subtract logs for quotients.
+num2: Solve 2^(3x) = 64. | 2
+hint: Write 64 as a power of 2.
+mc2: $800 is invested at 3% compounded yearly. Which expression gives the balance after 10 years? | 800(1.03)^10 | 800(0.03)^10 | 800 + 0.03(10) | 800(1.3)^10
+hint: The growth factor is 1 + 0.03.
+mc2: Solve 10^x = 45 to the nearest hundredth. | 1.65 | 4.50 | 0.22 | 3.81
+hint: x = log 45.
+quiz:
+mc1: log base 2 of 32 = ? | 5 | 16 | 6 | 2.5
+mc1: Write 10^3 = 1000 in log form. | log 1000 = 3 | log 3 = 1000 | log 10 = 3 | log 1000 = 10
+mc2: Solve 3^x = 81. | 4 | 27 | 3 | 78
+mc2: log 5 + log 20 = ? | 2 | 25 | 100 | log 25
+num2: What is log 100,000, using base 10? | 5
+mc2: Which function models a starting amount of 300 that decays by 6% each year? | y = 300(0.94)^t | y = 300(1.06)^t | y = 300(0.06)^t | y = 300 - 6t
+sa2: Explain why log base b of 1 is 0 for any base b. | b^0 = 1, so the exponent needed to get 1 is 0.
+
+test:
+mc2: Solve 2^(x + 1) = 64. | 5 | 6 | 32 | 31
+mc2: $1,000 grows at 6% compounded yearly. Which gives the balance after t years? | 1000(1.06)^t | 1000(0.06)^t | 1000 + 0.06t | 1000(6)^t
+mc2: Solve e^x = 10 (to two decimals). | 2.30 | 1.00 | 22026.47 | 3.16
+mc3: How long until $500 doubles at 5% compounded yearly (to the nearest year)? | 14 years | 20 years | 10 years | 7 years
+num1: What is log base 6 of 36? | 2
+num2: What is log base 2 of 1/8? | -3
+num2: Solve log base 3 of (2x - 1) = 2. | 5
+num2: Solve 8^x = 4. | 2/3
+num2: A culture of 50 bacteria doubles every 2 hours. How many bacteria are there after 10 hours? | 1600
+num2: What is log base 7 of 2 + log base 7 of 24.5? | 2
+mc2: $1,200 is invested at 5% compounded continuously. To the nearest cent, what is the balance after 3 years? | $1,394.20 | $1,389.15 | $1,380.00 | $1,261.53
+mc2: Which expression is equivalent to log(x^4 / y)? | 4 log x - log y | log 4x - log y | 4 log x + log y | (log x)^4 / log y
+mc2: Solve 1.04^t = 2 to the nearest tenth. | 17.7 | 50.0 | 1.9 | 25.0
+mc2: What is the domain of f(x) = log(x + 4)? | x > -4 | x > 4 | x > 0 | all real numbers
+mc2: What is the inverse of f(x) = e^x? | ln x | log x | 1/e^x | x^e
+mc2: A radioactive substance has a half-life of 8 days. What fraction of a sample remains after 32 days? | 1/16 | 1/4 | 1/32 | 1/8
+mc3: A town of 8,000 people grows 2.5% per year. Which equation can be solved to find the year t when it reaches 12,000 people? | 8000(1.025)^t = 12000 | 8000(0.025)^t = 12000 | 8000 + 2.5t = 12000 | 12000(1.025)^t = 8000
+mc3: The pH of a solution is pH = -log[H+], where [H+] is the hydrogen ion concentration. Solution A has pH 3 and solution B has pH 5. How do their hydrogen ion concentrations compare? | A's is 100 times B's | B's is 100 times A's | A's is 2 times B's | They are equal
+sa2: Solve 5(2)^x = 80 and explain each step. | 2^x = 16, so x = 4.
+sa2: Expand log(x^2 y / z) using log properties. | 2 log x + log y - log z.
+sa2: Explain how to solve 3^(x + 2) = 50 using logarithms, and give x to the nearest hundredth. | Take logs of both sides: (x + 2) log 3 = log 50, so x + 2 = log 50 / log 3, about 3.56. Then x is about 1.56.
+task3: A medicine has a half-life of 6 hours. A patient takes 200 mg. Write a function for the amount after t hours, find the amount after 24 hours, and use logarithms to find when 10 mg remain. Explain what each part of your function means. | A = 200(1/2)^(t/6), 12.5 mg after 24 h, about 25.9 hours for 10 mg, clear interpretation. | Correct function and one answer with explanation. | Correct function only. | Little correct work.
+
+unit: Trigonometric functions | F-TF.A.1, F-TF.A.2, F-TF.B.5, F-TF.C.8 | g11rad
+el: Give every student a printed unit circle with degrees, radians and coordinates, and a labeled sine graph showing amplitude, period and midline. Read pi/6 aloud as "pi over six" and connect it to 30 degrees.
+
+lesson: Radian measure and arc length | F-TF.A.1
+practice:
+mc1: How many radians are in 60 degrees? | pi/3 | pi/6 | pi/4 | 3pi
+hint: Multiply by pi/180.
+num2: How many degrees are in 7pi/6 radians? | 210
+hint: Multiply by 180/pi.
+num2: A circle has a radius of 4 cm. How long is the arc cut off by a central angle of 2.5 radians, in cm? | 10
+hint: When the angle is in radians, arc length = radius x angle.
+mc2: How many radians are in one full turn? | 2pi | pi | 360 | pi/2
+hint: The circumference is 2 pi r, which is 2 pi radius lengths.
+num2: An arc 12 cm long is on a circle of radius 3 cm. What is its central angle in radians? | 4
+hint: Angle = arc length / radius.
+sa2: Explain why 1 radian is about 57.3 degrees. | A full circle is 2 pi radians and 360 degrees, so 1 radian = 360 / (2 pi) = 180/pi degrees, which is about 57.3 degrees.
+quiz:
+mc1: How many radians are in 45 degrees? | pi/4 | pi/2 | pi/8 | 4pi
+num2: How many degrees are in 5pi/3 radians? | 300
+mc2: How many radians are in 330 degrees? | 11pi/6 | 5pi/3 | 7pi/4 | 11pi/3
+num2: A bicycle wheel with a radius of 0.3 m turns through 10 radians. How far does a point on its rim travel, in meters? | 3
+mc2: Which angle is coterminal with pi/4? | 9pi/4 | 3pi/4 | -pi/4 | 5pi/4
+num3: A pendulum 2 m long swings through an angle of 0.6 radians. How long is the arc its tip travels, in meters? | 1.2
+mc3: Which angle, in radians, has its terminal side in quadrant III? | 4pi/3 | 2pi/3 | 5pi/3 | pi/3
+sa2: Explain how to find a positive angle and a negative angle that are coterminal with 2pi/3, and give them. | Add or subtract a full turn of 2pi. 2pi/3 + 2pi = 8pi/3 and 2pi/3 - 2pi = -4pi/3.
+
+lesson: The unit circle and special angles | F-TF.A.2, F-TF.A.3
+practice:
+mc1: Which point on the unit circle matches an angle of 0 radians? | (1, 0) | (0, 1) | (-1, 0) | (0, 0)
+hint: An angle of 0 starts and ends on the positive x-axis.
+mc2: What is sin(pi/6)? | 1/2 | the square root of 3 over 2 | the square root of 2 over 2 | 1
+hint: The point for pi/6 is (the square root of 3 over 2, 1/2).
+mc2: What is cos(pi/4)? | the square root of 2 over 2 | 1/2 | the square root of 3 over 2 | 1
+hint: At pi/4 the x- and y-coordinates are equal.
+num1: What is cos(pi)? | -1
+hint: The point for pi radians is on the negative x-axis.
+mc2: What is tan(pi/3)? | the square root of 3 | 1 | the square root of 3 over 3 | 1/2
+hint: tan = sin / cos.
+sa2: Explain why a point on the unit circle at angle t has coordinates (cos t, sin t). | Drop a perpendicular from the point to the x-axis to make a right triangle with hypotenuse 1. Then cos t = adjacent / 1 = x and sin t = opposite / 1 = y.
+quiz:
+mc1: Which point on the unit circle matches an angle of pi/2? | (0, 1) | (1, 0) | (0, -1) | (-1, 0)
+num1: What is sin(3pi/2)? | -1
+mc2: What is sin(pi/3)? | the square root of 3 over 2 | 1/2 | the square root of 2 over 2 | the square root of 3
+num2: What is tan(pi/4)? | 1
+mc2: For which angle is cos t = 0 and sin t = -1? | 3pi/2 | pi/2 | pi | 2pi
+num2: What is cos(2pi)? | 1
+mc3: For which angle between 0 and 2pi are sin t and cos t equal and both negative? | 5pi/4 | pi/4 | 3pi/4 | 7pi/4
+sa2: Explain why sin(t) is always between -1 and 1. | sin t is the y-coordinate of a point on the unit circle, which has radius 1. Every point on that circle is at most 1 unit above or below the x-axis.
+
+lesson: Reference angles and trigonometric values in all four quadrants | F-TF.A.2, F-TF.C.8
+practice:
+mc1: What is the reference angle for 150 degrees? | 30 degrees | 60 degrees | 150 degrees | 210 degrees
+hint: In quadrant II, subtract the angle from 180 degrees.
+mc2: What is cos(5pi/6)? | negative the square root of 3 over 2 | the square root of 3 over 2 | -1/2 | 1/2
+hint: Find the reference angle, then the sign of x in quadrant II.
+mc2: In which quadrant is sine negative and cosine positive? | IV | I | II | III
+hint: Sine is the y-coordinate and cosine is the x-coordinate.
+num2: What is sin(7pi/6)? | -1/2
+hint: The reference angle is pi/6 and the angle is in quadrant III.
+mc2: cos(t) = -3/5 and t is in quadrant III. What is sin(t)? | -4/5 | 4/5 | -3/5 | 3/4
+hint: Use sin^2 t + cos^2 t = 1, then choose the sign for quadrant III.
+sa2: Explain how to find tan(240 degrees) without a calculator. | 240 degrees is in quadrant III with a reference angle of 60 degrees. tan 60 degrees = the square root of 3, and tangent is positive in quadrant III because sine and cosine are both negative there. So tan 240 degrees = the square root of 3.
+quiz:
+mc1: What is the reference angle for 300 degrees? | 60 degrees | 30 degrees | 120 degrees | 300 degrees
+num2: What is cos(4pi/3)? | -1/2
+mc2: What is sin(-pi/4)? | negative the square root of 2 over 2 | the square root of 2 over 2 | -1/2 | -1
+mc2: tan(t) is negative and sin(t) is positive. In which quadrant is t? | II | I | III | IV
+mc2: sin(t) = 5/13 and t is in quadrant II. What is cos(t)? | -12/13 | 12/13 | -5/12 | -13/12
+num2: What is tan(3pi/4)? | -1
+mc3: Which two angles between 0 and 2pi have cos t = -1/2? | 2pi/3 and 4pi/3 | pi/3 and 5pi/3 | 2pi/3 and 5pi/3 | pi/6 and 7pi/6
+sa3: Jo says cos(210 degrees) = cos(30 degrees) because the angles have the same reference angle. Explain her error. | The reference angle gives the size of the value but not its sign. 210 degrees is in quadrant III, where cosine (the x-coordinate) is negative, so cos 210 degrees is negative the square root of 3 over 2, the opposite of cos 30 degrees.
+
+lesson: Graphs of sine and cosine: amplitude, period and midline | F-IF.C.7, F-TF.B.5
+practice:
+num1: What is the amplitude of y = 5 sin x? | 5
+hint: The amplitude is the absolute value of the number multiplying sin.
+mc2: What is the period of y = cos(4x)? | pi/2 | 4pi | 2pi | pi/4
+hint: The period is 2pi divided by the number multiplying x.
+mc2: What is the midline of y = 2 sin x - 3? | y = -3 | y = 2 | y = 3 | y = -1
+hint: The midline is halfway between the maximum and the minimum.
+num2: What is the maximum value of y = 4 cos x + 1? | 5
+hint: cos x is at most 1.
+mc2: What is the period of y = sin(x/2)? | 4pi | pi | pi/2 | 2pi
+hint: Divide 2pi by 1/2.
+sa2: Describe how the graph of y = -2 cos x differs from the graph of y = cos x. | It is stretched vertically by a factor of 2, so it ranges from -2 to 2, and it is reflected across the x-axis, so it starts at its minimum (0, -2) instead of its maximum.
+quiz:
+mc1: What is the amplitude of y = -6 sin(2x)? | 6 | -6 | 2 | 12
+mc2: What is the period of y = 3 sin(pi x)? | 2 | pi | 2pi | 3
+num2: What is the minimum value of y = 3 sin x + 7? | 4
+mc2: A sine graph has a maximum of 10 and a minimum of 2. What are its amplitude and midline? | amplitude 4, midline y = 6 | amplitude 8, midline y = 6 | amplitude 4, midline y = 4 | amplitude 6, midline y = 4
+num2: y = cos(bx) has a period of 6pi, where b is positive. What is b? | 1/3
+mc2: Which function has amplitude 2 and period pi? | y = 2 sin(2x) | y = 2 sin(x/2) | y = sin(2x) + 2 | y = pi sin(2x)
+mc3: A weight on a spring has height h = 4 cos(pi t) + 10 centimeters after t seconds. How many full up-and-down cycles does it make in 10 seconds? | 5 | 10 | 4 | 20
+sa2: Explain how to find the period of y = sin(bx), with b positive, from the value of b. | sin repeats every 2pi. bx goes from 0 to 2pi as x goes from 0 to 2pi/b, so the period is 2pi / b.
+
+lesson: Phase shifts and modeling periodic situations | F-TF.B.5, F-IF.B.4
+practice:
+mc2: How is the graph of y = sin(x - pi/4) related to the graph of y = sin x? | shifted right pi/4 | shifted left pi/4 | shifted up pi/4 | stretched by pi/4
+hint: Subtracting inside the function shifts the graph horizontally.
+mc2: Which function has amplitude 3, period 2pi and midline y = 1? | y = 3 sin x + 1 | y = sin(3x) + 1 | y = 3 sin x - 1 | y = sin x + 3
+hint: Match each number in the equation to its feature.
+num2: A Ferris wheel has a diameter of 40 m, and its lowest point is 2 m above the ground. How high in meters is the center of the wheel? | 22
+hint: The center is one radius above the lowest point.
+mc2: A city's temperature over a year is modeled with a period of 12 months. If t is in months, what is b in T = a cos(bt) + d? | pi/6 | 12 | 2pi | pi/12
+hint: The period is 2pi / b.
+num2: A model of daylight hours has a maximum of 14 hours and a minimum of 10 hours. What is its amplitude in hours? | 2
+hint: The amplitude is half the difference between the maximum and the minimum.
+sa2: A buoy rises and falls between heights of 1 m and 3 m, and it takes 4 seconds to go from one high point to the next. It is at its highest at t = 0. Write a cosine model and explain each number. | h = cos(pi t / 2) + 2. The amplitude is (3 - 1)/2 = 1, the midline is (3 + 1)/2 = 2, the period is 4 so b = 2pi/4 = pi/2, and cosine starts at its maximum at t = 0.
+quiz:
+mc1: What is the phase shift of y = cos(x + pi/3)? | pi/3 to the left | pi/3 to the right | pi/3 up | pi/3 down
+mc2: Which equation is the graph of y = sin x shifted right pi/2 and up 2? | y = sin(x - pi/2) + 2 | y = sin(x + pi/2) + 2 | y = sin(x - 2) + pi/2 | y = 2 sin(x - pi/2)
+num2: The water depth at a dock is d(t) = 1.5 cos(pi t / 6) + 4 meters, t hours after midnight. What is the greatest depth in meters? | 5.5
+num2: A tide model is d(t) = 2 sin(pi t / 6.2) + 5 meters, t hours after midnight. How many hours long is one full tide cycle? | 12.4
+mc2: A Ferris wheel takes 8 minutes to make one turn. Which value of b fits h = a cos(bt) + d, with t in minutes? | pi/4 | 8 | pi/8 | 4pi
+num3: The hours of daylight in a town are modeled by D(t) = 2.5 sin(pi t / 6) + 12, t months after mid-March. What is the greatest number of daylight hours in the model? | 14.5
+mc3: A seat's height is h(t) = -10 cos(pi t / 15) + 12 meters, t seconds after the ride starts. What is its height at t = 15? | 22 m | 2 m | 12 m | 10 m
+sa3: Explain why y = sin(x + pi/2) and y = cos x have the same graph. | Shifting the sine graph pi/2 to the left moves its maximum from x = pi/2 to x = 0, which is where cosine has its maximum. The shifted graph then matches the cosine graph everywhere, so sin(x + pi/2) = cos x.
+
+lesson: The Pythagorean identity and solving trigonometric equations | F-TF.C.8, F-TF.B.7
+practice:
+mc2: sin(t) = 0.6 and t is in quadrant I. What is cos(t)? | 0.8 | 0.4 | 0.6 | 0.36
+hint: Use sin^2 t + cos^2 t = 1.
+mc2: Which expression is equal to 1 - cos^2 t? | sin^2 t | cos^2 t | tan^2 t | 1
+hint: Rearrange the Pythagorean identity.
+mc2: Solve cos x = 1/2 for 0 <= x < 2pi. | pi/3 and 5pi/3 | pi/3 and 2pi/3 | pi/6 and 11pi/6 | 2pi/3 and 4pi/3
+hint: Cosine is positive in quadrants I and IV.
+num2: How many solutions does sin x = 0 have for 0 <= x < 2pi? | 2
+hint: Where on the unit circle is the y-coordinate 0?
+mc2: cos(t) = -0.28 and t is in quadrant II. What is sin(t)? | 0.96 | -0.96 | 0.72 | -0.72
+hint: Find sin^2 t first, then choose the sign for quadrant II.
+sa2: Solve 2 cos x + the square root of 3 = 0 for 0 <= x < 2pi, and explain. | cos x = negative the square root of 3 over 2. The reference angle is pi/6, and cosine is negative in quadrants II and III, so x = 5pi/6 and x = 7pi/6.
+quiz:
+mc1: What is sin^2(40 degrees) + cos^2(40 degrees)? | 1 | 0 | 80 | 2
+mc2: sin(t) = -12/13 and t is in quadrant IV. What is cos(t)? | 5/13 | -5/13 | 12/13 | -13/5
+mc2: Solve tan x = 1 for 0 <= x < 2pi. | pi/4 and 5pi/4 | pi/4 and 3pi/4 | pi/4 only | 3pi/4 and 7pi/4
+num2: How many real solutions does cos x = 2 have? | 0
+mc2: Solve sin x = -1 for 0 <= x < 2pi. | 3pi/2 | pi/2 | pi | 0
+num2: cos(t) = 0.8 and t is in quadrant IV. What is tan(t)? | -3/4
+mc3: Solve 2 sin^2 x = 1 for 0 <= x < 2pi. | pi/4, 3pi/4, 5pi/4 and 7pi/4 | pi/4 and 3pi/4 | pi/6 and 5pi/6 | pi/4 only
+sa3: cos(t) = -8/17 and t is in quadrant III. Explain how to find tan(t), and find it. | sin^2 t = 1 - 64/289 = 225/289, so sin t = -15/17 because sine is negative in quadrant III. tan t = sin t / cos t = (-15/17)/(-8/17) = 15/8.
+
+lesson: Unit review | F-TF.A.1, F-TF.A.2, F-TF.B.5, F-TF.C.8
+practice:
+mc2: How many radians are in 240 degrees? | 4pi/3 | 2pi/3 | 5pi/4 | 3pi/4
+hint: Multiply by pi/180 and simplify.
+num1: What is cos(0)? | 1
+hint: An angle of 0 ends at the point (1, 0).
+mc2: What is the period of y = 5 cos(3x)? | 2pi/3 | 3pi | 6pi | 5
+hint: Divide 2pi by the coefficient of x.
+num2: What is sin(5pi/6)? | 1/2
+hint: The reference angle is pi/6, and sine is positive in quadrant II.
+mc2: Which function has midline y = 4 and amplitude 2? | y = 2 cos x + 4 | y = 4 cos x + 2 | y = 2 cos(4x) | y = cos(2x) + 4
+hint: The number added is the midline and the number in front is the amplitude.
+quiz:
+mc1: 180 degrees in radians is | pi | 2 pi | pi/2 | 180 pi
+mc1: sin(90 degrees) = | 1 | 0 | -1 | 0.5
+mc2: cos(pi/3) = | 1/2 | the square root of 3 over 2 | 1 | 0
+mc2: 135 degrees in radians is | 3pi/4 | 2pi/3 | 5pi/6 | 3pi/2
+num2: How many degrees are in 3pi/2 radians? | 270
+mc2: What is the minimum value of y = 2 sin x + 5? | 3 | 5 | 7 | -2
+sa2: Explain what a radian measures. | The angle that cuts off an arc equal in length to the radius.
+
+test:
+mc2: Period of y = sin(2x)? | pi | 2 pi | 4 pi | pi/2
+mc2: Amplitude of y = 3 cos(x) + 1? | 3 | 1 | 4 | 2
+mc2: If sin(t) = 3/5 and t is in quadrant II, cos(t) = | -4/5 | 4/5 | -3/5 | 5/4
+mc3: A Ferris wheel's height is h = 20 - 18 cos(pi t / 5), with t in minutes. How long is one full turn? | 10 minutes | 5 minutes | 20 minutes | 18 minutes
+num2: How many degrees are in 11pi/6 radians? | 330
+num2: A circle has a radius of 9 cm. How long in cm is the arc cut off by a central angle of 2/3 radian? | 6
+num2: What is cos(5pi/3)? | 1/2
+num2: What is the maximum value of y = 3 cos(2x) - 1? | 2
+num2: A city's average daily temperature is modeled by T(t) = 15 cos(pi t / 6) + 60 degrees F, t months after mid-July. What is the lowest average temperature in the model, in degrees F? | 45
+mc1: How many radians are in 90 degrees? | pi/2 | pi | pi/4 | 90pi
+mc2: What is sin(4pi/3)? | negative the square root of 3 over 2 | the square root of 3 over 2 | -1/2 | 1/2
+mc2: What is the reference angle for 7pi/4? | pi/4 | 3pi/4 | pi/2 | 7pi/4
+mc2: In which quadrant are both sine and cosine negative? | III | II | IV | I
+mc2: What is the period of y = 4 sin(x/3)? | 6pi | 2pi/3 | 4 | 3pi
+mc2: Which equation is the graph of y = cos x shifted left pi/6? | y = cos(x + pi/6) | y = cos(x - pi/6) | y = cos x + pi/6 | y = cos x - pi/6
+mc2: cos(t) = 0.6 and t is in quadrant IV. What is sin(t)? | -0.8 | 0.8 | -0.4 | 0.4
+mc2: Solve cos x = 0 for 0 <= x < 2pi. | pi/2 and 3pi/2 | 0 and pi | pi only | pi/4 and 3pi/4
+mc3: A swing's distance from its resting point is d(t) = 2 cos(2pi t / 3) meters, t seconds after release. How many full back-and-forth swings does it make in 12 seconds? | 4 | 3 | 12 | 6
+sa2: Explain why sin^2(t) + cos^2(t) = 1 using the unit circle. | A point on the unit circle is (cos t, sin t) and its distance from the origin is 1, so by the Pythagorean theorem cos^2 + sin^2 = 1.
+sa2: Find all angles from 0 to 2 pi where sin(x) = 1/2. | pi/6 and 5pi/6.
+sa2: Explain how to write a sine function with amplitude 4, period 8 and midline y = -1, and write it. | The amplitude 4 is the coefficient, b = 2pi/8 = pi/4, and the midline -1 is added: y = 4 sin(pi x / 4) - 1.
+task3: The tide at a harbor is high (9 m) at noon and low (3 m) at 6:15 pm. Write a cosine model for the water depth t hours after noon, graph one full cycle, and find the first time after noon the depth is 7 m. Explain each parameter. | d = 3 cos(pi t / 6.25) + 6, correct graph, about 2.4 hours after noon (about 2:27 pm), clear explanation of amplitude, period and midline. | Correct model with an error in the 7 m time. | Correct amplitude and midline with a wrong period. | Little correct work.
+
+unit: Series, probability and statistics | A-SSE.B.4, S-CP.A.2, S-CP.B.9, S-ID.A.4, S-IC.B.4 | g11arser, g11geoser, g11comb, g11perm
+el: Use two-way tables and tree diagrams for every probability problem, and keep a chart of sigma notation, nPr, nCr, z-score and margin of error with one worked example each. Pre-teach sample, population, bias and random.
+
+lesson: Arithmetic and geometric series | A-SSE.B.4, F-BF.A.2
+practice:
+num2: What is the sum of the first 10 terms of 5 + 8 + 11 + 14 + ...? | 185
+hint: Use S = n(a_1 + a_n)/2. Find the 10th term first.
+num2: What is 1 + 2 + 3 + ... + 50? | 1275
+hint: Pair the first and last terms: 1 + 50, 2 + 49, and so on.
+mc2: What is the sum of the first 5 terms of the geometric series 2 + 6 + 18 + ...? | 242 | 162 | 80 | 486
+hint: Use S = a_1(1 - r^n)/(1 - r).
+mc2: Which infinite geometric series has a finite sum? | 10 + 5 + 2.5 + ... | 1 + 2 + 4 + ... | 3 + 3 + 3 + ... | 1 - 2 + 4 - 8 + ...
+hint: The common ratio must be between -1 and 1.
+num2: What is the sum of the infinite geometric series 9 + 3 + 1 + 1/3 + ...? | 27/2
+hint: Use S = a_1 / (1 - r).
+sa2: Write 4 + 7 + 10 + ... + 31 in sigma notation, explain how you found the number of terms, and find the sum. | The terms are 3k + 1 for k = 1, 2, 3, ... Setting 3k + 1 = 31 gives k = 10, so the series is the sum from k = 1 to 10 of (3k + 1). Its value is 10(4 + 31)/2 = 175.
+quiz:
+num1: What is 10 + 20 + 30 + ... + 100? | 550
+num2: What is the sum of the first 6 terms of 1 + 4 + 16 + ...? | 1365
+mc2: What is the sum of the infinite series 12 - 6 + 3 - 1.5 + ...? | 8 | 24 | 6 | 4
+num2: A theater has 20 seats in the first row and 2 more seats in each row after that. How many seats are in the first 15 rows? | 510
+mc2: Which formula gives the sum of the first n terms of a geometric series with first term a and ratio r, where r is not 1? | a(1 - r^n)/(1 - r) | n(a + r)/2 | a/(1 - r) | ar^(n - 1)
+num3: A ball is dropped from 10 m, and each bounce rises to half of the previous height. In this ideal model, what total vertical distance in meters does the ball travel, down and up, before it comes to rest? | 30
+mc3: Lupe saves $1 on day 1, $2 on day 2, $4 on day 3, and keeps doubling each day. How much has she saved in all after 10 days? | $1,023 | $512 | $1,024 | $2,047
+sa2: Explain why the infinite series 1 + 1.1 + 1.21 + ... has no finite sum. | The ratio is 1.1, which is greater than 1, so the terms keep growing instead of shrinking toward 0. Adding ever-larger terms makes the sum grow without bound.
+
+lesson: Permutations and combinations | S-CP.B.9
+practice:
+num1: In how many ways can 5 runners finish first through fifth? | 120
+hint: Multiply 5 x 4 x 3 x 2 x 1.
+num2: In how many ways can a president, vice president and secretary be chosen from 8 club members? | 336
+hint: Order matters: 8 x 7 x 6.
+num2: In how many ways can a team of 4 players be chosen from 9 players? | 126
+hint: Order does not matter. Use 9C4 = 9! / (4! x 5!).
+mc2: A lock code uses 3 digits from 0 to 9, and digits may repeat. How many codes are possible? | 1000 | 720 | 30 | 120
+hint: Each position has 10 choices.
+num2: How many different arrangements are there of the letters in the word LEVEL? | 30
+hint: Divide by the number of ways to arrange the repeated letters.
+sa2: Explain whether choosing 3 toppings for a pizza from 10 toppings is a permutation or a combination, and find the number of ways. | It is a combination because the order of the toppings does not matter. 10C3 = 120.
+quiz:
+num1: In how many ways can 6 different books be arranged on a shelf? | 720
+num2: What is 7P2? | 42
+num2: What is 12C2? | 66
+mc2: A menu has 4 appetizers, 6 main dishes and 3 desserts. How many meals with one of each are possible? | 72 | 13 | 24 | 36
+num2: A committee of 3 is chosen from 5 teachers and 6 students. How many committees have exactly 2 students and 1 teacher? | 75
+mc2: Which expression is equal to nCr? | nPr / r! | nPr x r! | n! / r! | r! / n!
+mc3: A 5-card hand is dealt from a standard 52-card deck. How many different hands are possible? | 2,598,960 | 311,875,200 | 260 | 380,204,032
+sa2: Explain why 5C2 equals 5C3. | Choosing the 2 items to include from 5 is the same as choosing the 3 items to leave out, so the counts are equal. Both are 10.
+
+lesson: Probability rules: unions, independence and conditional probability | S-CP.A.2, S-CP.A.3, S-CP.B.7
+practice:
+num2: P(A) = 0.3, P(B) = 0.5 and P(A and B) = 0.1. What is P(A or B)? | 0.7
+hint: Use P(A or B) = P(A) + P(B) - P(A and B).
+num2: A fair coin is flipped 3 times. What is the probability of getting 3 heads? | 1/8
+hint: The flips are independent, so multiply.
+mc2: In a class of 30 students, 18 play a sport, 12 are in band and 6 do both. What is the probability that a student is in band, given that the student plays a sport? | 1/3 | 1/2 | 1/5 | 2/3
+hint: Only look at the students who play a sport.
+mc2: P(A) = 0.6, P(B) = 0.5 and P(A and B) = 0.3. Are A and B independent? | Yes, because 0.6 x 0.5 = 0.3 | No, because 0.6 + 0.5 is more than 1 | No, because 0.3 is less than 0.5 | Yes, because 0.6 is greater than 0.5
+hint: Check whether P(A and B) = P(A) x P(B).
+num2: A bag has 4 red and 6 blue marbles. Two marbles are drawn without replacement. What is the probability that both are red? | 2/15
+hint: After one red marble is drawn, 3 of the 9 marbles left are red.
+sa2: In a survey of 40 people, 25 like tea, and 10 of those also like coffee. Of the 15 who do not like tea, 9 like coffee. Explain how to find P(coffee given tea) and P(tea given coffee). | P(coffee given tea) = 10/25 = 0.4. In all, 10 + 9 = 19 people like coffee, so P(tea given coffee) = 10/19, about 0.53. The two are different because they divide by different groups.
+quiz:
+num1: A fair number cube is rolled. What is the probability of rolling a number greater than 4? | 1/3
+num2: A and B are mutually exclusive, P(A) = 0.45 and P(B) = 0.35. What is P(A or B)? | 0.8
+num2: Two fair number cubes are rolled. What is the probability that both show 6? | 1/36
+mc2: P(A and B) = 0.12 and P(B) = 0.4. What is P(A given B)? | 0.3 | 0.048 | 0.52 | 0.28
+mc2: A card is drawn from a standard 52-card deck. What is the probability that it is a heart or a king? | 4/13 | 17/52 | 1/52 | 1/4
+num2: At a school, 70% of students ride the bus, and 40% of bus riders live more than 3 miles away. What is the probability that a randomly chosen student rides the bus and lives more than 3 miles away? | 0.28
+mc3: P(rain) = 0.3. If it rains, the probability that Omar is late is 0.5. If it does not rain, the probability is 0.1. What is the probability that Omar is late? | 0.22 | 0.6 | 0.15 | 0.4
+sa3: Explain the difference between mutually exclusive events and independent events, with an example of each. | Mutually exclusive events cannot happen at the same time, like rolling a 2 and rolling a 5 on one roll of a number cube. Independent events do not change each other's probability, like getting heads on a coin and rolling a 5 on a number cube.
+
+lesson: Normal distributions and z-scores | S-ID.A.4
+practice:
+num2: Test scores have a mean of 70 and a standard deviation of 8. What is the z-score of a score of 86? | 2
+hint: z = (value - mean) / standard deviation.
+mc2: In a normal distribution, about what percent of the data lies within 2 standard deviations of the mean? | 95% | 68% | 99.7% | 50%
+hint: Use the 68-95-99.7 rule.
+num2: Plant heights are normally distributed with a mean of 30 cm and a standard deviation of 4 cm. What height in cm has a z-score of -1.5? | 24
+hint: Value = mean + z x standard deviation.
+mc2: In a normal distribution, what percent of the data is above the mean? | 50% | 68% | 34% | 95%
+hint: A normal curve is symmetric about the mean.
+mc2: Battery lifetimes are normally distributed with a mean of 500 hours and a standard deviation of 50 hours. About what percent last between 450 and 550 hours? | 68% | 95% | 34% | 99.7%
+hint: How many standard deviations from the mean are 450 and 550?
+sa2: Ana scored 82 on a test with mean 74 and standard deviation 4. Ben scored 88 on a test with mean 80 and standard deviation 8. Explain who did better compared with their own class. | Ana's z-score is (82 - 74)/4 = 2 and Ben's is (88 - 80)/8 = 1. Ana did better compared with her class because her score is more standard deviations above the mean.
+quiz:
+num1: Data have a mean of 50 and a standard deviation of 5. What is the z-score of 40? | -2
+mc2: In a normal distribution, about what percent of the data lies within 3 standard deviations of the mean? | 99.7% | 95% | 68% | 100%
+mc2: Adult shoe lengths in a study are normally distributed with a mean of 26 cm and a standard deviation of 1.5 cm. About what percent are longer than 29 cm? | 2.5% | 5% | 16% | 0.15%
+num2: A data set has a mean of 60 and a standard deviation of 10. What value has a z-score of 1.2? | 72
+mc2: Which data set is most likely to be close to a normal distribution? | the heights of 1,000 adult women | the incomes of all workers in a state | the number of goals per game in a sport where most games end 0 to 0 | the number of siblings of students in a class
+num2: Apple weights are normally distributed with a mean of 150 g and a standard deviation of 20 g. About what percent of the apples weigh between 150 g and 190 g? | 47.5
+mc3: Scores are normally distributed with a mean of 100 and a standard deviation of 15. About what percent of scores are below 85? | 16% | 34% | 32% | 2.5%
+sa2: Explain why a z-score of 0 means a value is equal to the mean. | z = (value - mean) / standard deviation. If z = 0, the numerator is 0, so the value minus the mean is 0 and the value equals the mean.
+
+lesson: Sampling, experiments and margin of error | S-IC.A.1, S-IC.B.3, S-IC.B.4
+practice:
+mc1: A study randomly assigns patients to take a new medicine or a placebo. What kind of study is it? | an experiment | an observational study | a sample survey | a census
+hint: Did the researchers assign a treatment?
+mc2: A radio host asks listeners to call in with their opinion on a new law. Why might the results be biased? | Only people who choose to call in are counted | The sample is too random | Everyone in the city is counted | Phone calls are always accurate
+hint: Who decides whether to be part of the sample?
+num2: In a random sample of 200 students, 130 prefer later school start times. What percent of the sample prefers later start times? | 65
+hint: Divide 130 by 200 and write the result as a percent.
+mc2: A survey estimates 48% support with a margin of error of 3%. Which interval is the likely range for the whole population? | 45% to 51% | 48% to 51% | 45% to 48% | 42% to 54%
+hint: Subtract and add the margin of error.
+num2: A margin of error is often estimated as 1 divided by the square root of n, where n is the sample size. What is this estimate, as a percent, for n = 400? | 5
+hint: The square root of 400 is 20.
+sa2: Explain the difference between an observational study and an experiment, and why only an experiment can show cause and effect. | In an observational study researchers watch and record without changing anything. In an experiment they randomly assign treatments. Random assignment makes the groups alike except for the treatment, so a difference in results can be credited to the treatment.
+quiz:
+mc1: Which is a census? | asking every student in a school | asking every 10th student who enters the cafeteria | asking 50 students chosen at random | asking the students in one class
+mc2: Which method gives a simple random sample of voters? | drawing 100 names at random from a list of all voters | surveying the first 100 people at a mall | counting the people who answer an online poll | surveying everyone in one neighborhood
+num2: In a random sample of 500 adults, 185 said they exercise daily. What proportion of the sample is that, as a decimal? | 0.37
+mc2: Using the estimate 1 divided by the square root of n, how does increasing the sample size from 100 to 900 change the margin of error? | It becomes one third as large | It becomes 9 times as large | It stays the same | It becomes one ninth as large
+num2: Using the estimate 1 divided by the square root of n, how many people must be sampled for a margin of error of 2%? | 2500
+mc2: A sample of students has a mean of 6.8 hours of sleep with a margin of error of 0.4 hours. Which conclusion is reasonable? | The population mean is likely between 6.4 and 7.2 hours | Every student sleeps 6.8 hours | The population mean is exactly 6.8 hours | No student sleeps less than 6.4 hours
+mc3: 100 plants were randomly split into two groups of 50: one got a new fertilizer and one got none. The fertilized plants averaged 4 cm taller. When all 100 heights were randomly re-split many times, a difference of 4 cm or more happened only 1% of the time. What is the best conclusion? | The fertilizer likely caused the difference | The difference is just chance | The fertilizer made the plants shorter | The study cannot be trusted because it used random groups
+sa2: A school wants to know how students feel about the lunch menu. Describe a sampling plan that avoids bias. | Get a list of all students, number them, and use a random number generator to choose about 100 students. Survey all of them and follow up so most respond. Every student has the same chance of being chosen, so the sample should represent the school.
+
+lesson: Unit review | A-SSE.B.4, S-CP.A.2, S-CP.B.9, S-ID.A.4, S-IC.B.4
+practice:
+num2: What is the sum of the first 8 terms of 3 + 7 + 11 + 15 + ...? | 136
+hint: Find the 8th term, then use n(a_1 + a_n)/2.
+num2: In how many ways can 3 students be chosen from 6 for a project team? | 20
+hint: Order does not matter.
+mc2: A fair coin is flipped and a fair number cube is rolled. What is the probability of heads and a 6? | 1/12 | 1/8 | 2/3 | 1/6
+hint: The events are independent, so multiply.
+mc2: Scores are normally distributed with a mean of 80 and a standard deviation of 5. About what percent are between 70 and 90? | 95% | 68% | 99.7% | 50%
+hint: How many standard deviations from the mean are 70 and 90?
+mc2: Which sample is most likely to represent all adults in a city? | 300 adults chosen at random from city records | 300 people at a gym | 300 people who answer an online poll | 300 people who live on one street
+hint: Every adult should have the same chance of being picked.
+quiz:
+mc1: Sum of 2 + 4 + 6 + ... + 20? | 110 | 100 | 120 | 210
+mc1: How many ways can 4 students line up? | 24 | 16 | 4 | 10
+mc2: Sum of 3 + 6 + 12 + ... for 6 terms? | 189 | 96 | 192 | 93
+mc2: How many ways to choose 3 books from 7? | 35 | 210 | 21 | 343
+num2: P(A) = 0.5, P(B) = 0.4 and P(A and B) = 0.2. What is P(A or B)? | 0.7
+mc2: A data set has a mean of 40 and a standard deviation of 6. What is the z-score of 49? | 1.5 | 9 | -1.5 | 0.67
+sa2: Explain the difference between a permutation and a combination with an example. | Permutations count order (president and vice president from 10: 90). Combinations do not (a committee of 2 from 10: 45).
+
+test:
+mc2: P(A) = 0.4, P(B) = 0.5, A and B independent. P(A and B)? | 0.2 | 0.9 | 0.1 | 0.45
+mc2: In a normal distribution, about what percent of data is within 1 standard deviation of the mean? | 68% | 95% | 99.7% | 50%
+mc2: A survey of 400 voters finds 52% support a measure. The margin of error is about 5%. Which is a reasonable conclusion? | Support is likely between 47% and 57% | The measure will pass | Exactly 52% of all voters support it | The survey is wrong
+mc3: Why are random samples important in surveys? | They reduce bias so results represent the population | They make the sample larger | They guarantee the exact answer | They make surveys faster
+num2: What is the sum of the first 20 terms of 2 + 5 + 8 + 11 + ...? | 610
+num2: What is the sum of the first 7 terms of the geometric series 1 + 2 + 4 + ...? | 127
+num2: In how many ways can 1st, 2nd and 3rd prizes be given to 3 of 10 contestants? | 720
+num2: A pizza shop offers 8 toppings. How many different pizzas with exactly 2 different toppings can be made? | 28
+num2: A bag has 5 green and 3 yellow marbles. Two marbles are drawn without replacement. What is the probability that both are green? | 5/14
+num2: Test scores have a mean of 75 and a standard deviation of 10. What score has a z-score of 2.5? | 100
+mc2: What is the sum of the infinite geometric series 20 + 10 + 5 + ...? | 40 | 35 | 30 | There is no finite sum
+mc2: In a group of 50 people, 30 own a car, 20 own a bike and 10 own both. What is the probability that a person owns a bike, given that the person owns a car? | 1/3 | 1/2 | 2/5 | 1/5
+mc2: Which pair of events is independent? | getting heads on a coin and rolling a 3 on a number cube | drawing two aces from a deck without replacement | being late for school and missing the bus | rain today and carrying an umbrella today
+mc2: Heights in a group are normally distributed with a mean of 170 cm and a standard deviation of 8 cm. About what percent of the group is taller than 186 cm? | 2.5% | 5% | 16% | 34%
+mc2: A news website asks readers to vote in an online poll. What is the main problem with the results? | voluntary response bias | the sample is too random | it is a census | it is an experiment
+mc2: In an experiment, why are subjects randomly assigned to groups? | to make the groups alike so that differences can be credited to the treatment | to make the sample larger | to guarantee the treatment works | so the researchers can choose who gets the treatment
+mc3: A survey uses a random sample of 625 people. Using the estimate 1 divided by the square root of n, what is the margin of error? | 4% | 2.5% | 0.16% | 25%
+mc3: A tutoring company claims its program raises test scores. Which study design best tests the claim? | randomly assign students to tutoring or no tutoring and compare their scores | compare students who chose tutoring with students who did not | survey students about whether tutoring helped | test only the students who get tutoring
+sa2: Find the sum of the infinite geometric series 8 + 4 + 2 + 1 + ... and explain why it has a sum. | 16. The ratio is 1/2, which is between -1 and 1, so terms shrink toward 0: a / (1 - r) = 8 / (1/2).
+sa2: A test for a condition is 90% accurate. Explain why a positive result might still be unlikely to be a true positive if the condition is rare. | When few people have the condition, the false positives from the many healthy people can outnumber the true positives.
+sa2: Explain how to decide whether to use a permutation or a combination, and give an example of each with 2 people chosen from 4. | Use a permutation when order matters and a combination when it does not. Choosing a captain and a co-captain from 4 people: 4P2 = 12. Choosing 2 people for a committee from 4: 4C2 = 6.
+task3: A student designs a study to find the average hours of sleep of students at their school. Describe a sampling method that avoids bias, explain how to estimate the mean and a margin of error from the sample, and explain how a sample of 30 versus 300 would change the conclusion. | Random sampling plan, sample mean and margin of error (about 2 standard deviations over the square root of n), explains that a larger sample gives a smaller margin of error, with clear reasoning. | Good plan and estimate, sample size effect unclear. | Sampling plan has bias or the estimate is missing. | Little correct reasoning.
