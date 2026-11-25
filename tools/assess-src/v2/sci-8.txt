@@ -85,6 +85,72 @@ mc2: After testing, a team combines the foam from one design with the straw fram
 mc2: Why do helmets have a hard shell and a soft foam layer inside? | The shell spreads the force and the foam slows the stop | The foam makes the helmet heavier | The shell absorbs all energy | The foam increases the force
 sa3: Describe how you would evaluate two helmet designs for a skateboard company using criteria and constraints. | Set criteria such as reducing impact force by a target amount and fitting comfortably, and constraints such as cost and weight; drop each helmet with a sensor several times, compare the average forces, check cost and weight, and choose or combine the design that best meets the criteria within the constraints.
 
+lesson: Momentum: mass times velocity | MS-PS2-1
+practice:
+mc1: An object's momentum equals its | mass times its velocity | mass divided by its volume | force times distance | speed divided by time
+hint: Both how heavy and how fast matter.
+num2: A 2 kg ball rolls at 3 m/s. What is its momentum in kg x m/s? | 6
+hint: Multiply mass by velocity.
+mc2: A bicycle and a truck move at the same velocity. Which has more momentum? | the truck, because it has more mass | the bicycle | they are equal | neither has momentum
+hint: Velocity is the same, so compare masses.
+num2: A 50 kg skater has a momentum of 200 kg x m/s. What is her velocity in m/s? | 4
+hint: Divide momentum by mass.
+mc2: In a collision between two carts with no outside forces, the total momentum of the two carts | stays the same | always increases | always becomes zero | doubles
+hint: Momentum lost by one cart is gained by the other.
+sa2: Explain why it is harder to stop a loaded shopping cart than an empty one moving at the same speed. | The loaded cart has more mass, so it has more momentum. A larger force (or the same force for a longer time) is needed to change its momentum to zero.
+quiz:
+mc1: The unit for momentum is | kg x m/s | newtons | joules | m/s each second
+num2: A 1,200 kg car moves at 15 m/s. What is its momentum in kg x m/s? | 18000
+num2: A 0.15 kg baseball has a momentum of 6 kg x m/s. What is its speed in m/s? | 40
+mc2: A 1 kg cart moving at 4 m/s hits a still 1 kg cart. They stick together. What is their speed after the collision? | 2 m/s | 4 m/s | 1 m/s | 8 m/s
+mc2: Two skaters at rest push off each other. Skater A (40 kg) moves left at 3 m/s. What is Skater B's momentum? | 120 kg x m/s to the right | 120 kg x m/s to the left | 0 | 40 kg x m/s to the right
+mc3: A light car and a heavy truck have the same momentum. Which statement must be true? | The light car is moving faster than the truck. | They have the same speed. | The truck is moving faster. | Neither is moving.
+cer3: Students rolled Cart A (2 kg) at 3 m/s into still Cart B (1 kg). After the collision, Cart A moved at 1 m/s and Cart B moved at 4 m/s in the same direction. Make a claim about momentum in this collision. Use evidence and calculations, and explain your reasoning. | Claim: Total momentum was conserved. Evidence: Before: 2 kg x 3 m/s = 6 kg x m/s (Cart B had 0). After: Cart A 2 x 1 = 2 and Cart B 1 x 4 = 4, total 6 kg x m/s. Reasoning: The carts pushed on each other with equal and opposite forces, so the momentum Cart A lost (4) was exactly the momentum Cart B gained (4). With no outside forces, total momentum stays the same.
+
+lesson: Bouncing and sticking: comparing collisions | MS-PS2-1, MS-ETS1-2
+practice:
+mc1: In a collision where two objects stick together and move as one, the objects | share one final velocity | bounce apart | stop forever | gain mass
+hint: Think of two train cars coupling.
+mc2: A rubber ball and a clay ball of the same mass hit a wall at the same speed. The rubber ball bounces back; the clay ball sticks. Which pushes harder on the wall? | the rubber ball, because its velocity changes more | the clay ball | both push the same | neither pushes
+hint: Bouncing back means a bigger change in velocity.
+num2: A 3 kg cart moving at 2 m/s sticks to a still 1 kg cart. What is their combined speed in m/s? | 1.5
+hint: Momentum before = 6. Divide by the total mass of 4 kg.
+mc2: In car crash tests, a car that crumples instead of bouncing off the wall is safer for passengers. Why? | Crumpling stretches out the collision time, reducing the force on passengers. | Crumpling adds momentum. | Bouncing reduces force. | Crumpling makes the car lighter.
+hint: The same change in momentum over more time needs less force.
+mc2: Two identical carts move toward each other at the same speed and stick together. What happens? | They stop, because their momenta cancel. | They move faster together. | They both reverse direction. | One cart vanishes.
+hint: Momentum has direction.
+sa2: Describe how a bumper on a bumper car is designed to reduce the force on riders during a collision. | The soft rubber bumper squishes during the hit, increasing the time over which the cars change speed. Since the change in momentum is the same, a longer time means a smaller force on the riders.
+quiz:
+mc1: Which design feature increases the time of a collision to reduce force? | an airbag | a glass windshield | a steel wall | a hard plastic helmet with no padding
+num2: A 4 kg cart at 3 m/s sticks to a still 2 kg cart. What is their speed afterward in m/s? | 2
+num2: A 0.5 kg ball hits a wall at 6 m/s and bounces back at 6 m/s. Its momentum changed from +3 to -3 kg x m/s. What was the size of the change in momentum in kg x m/s? | 6
+mc2: Test data: an egg dropped onto a hard floor broke; onto a pillow it did not. Both fell from 1 m. Which explanation is best? | The pillow increased the stopping time, so the force on the egg was smaller. | The pillow removed the egg's momentum instantly. | The egg had less mass on the pillow. | The floor had more gravity.
+mc2: A 2,000 kg truck at 10 m/s hits a still 1,000 kg car and they lock together. What is their speed after the collision? | about 6.7 m/s | 10 m/s | 5 m/s | 20 m/s
+mc3: Engineers compare two phone cases in drop tests from 1.5 m. Case A: thin hard plastic, 7 of 10 phones cracked. Case B: thick rubber, 1 of 10 cracked. Which conclusion is best supported? | Case B reduces force by lengthening impact time, so it better meets the criterion of protecting the phone. | Case A is better because it is harder. | Neither case matters. | Case B adds momentum to the phone.
+sa2: Explain why a catcher pulls the glove back while catching a fast baseball. | Pulling back increases the time it takes to stop the ball. The ball's change in momentum is the same, so spreading it over more time reduces the force on the catcher's hand.
+
+lesson: Investigating friction: surfaces, weight and sliding | MS-PS2-2
+practice:
+mc1: Friction is a force that | acts against the motion of surfaces sliding past each other | always speeds objects up | only acts in space | pulls objects toward Earth's center
+hint: It is why a sliding book slows down.
+mc2: A block is pulled across sandpaper and then across smooth glass with a spring scale. Which surface needs more force at a steady speed? | sandpaper, because it has more friction | glass | both the same | neither needs force
+hint: Rougher surfaces grip more.
+num2: A spring scale read 6 N while pulling a block at steady speed on carpet. What was the force of friction in newtons? | 6
+hint: At a steady speed, the forces are balanced.
+mc2: Adding a second identical block on top of the first increases the friction force. Why? | The blocks press harder against the surface. | The blocks get rougher. | Gravity turns off. | The surface becomes smoother.
+hint: Think about how hard the surfaces are pushed together.
+mc2: Why do cars need more distance to stop on icy roads? | Ice gives less friction between tires and road. | Ice adds mass to the car. | Ice increases friction. | Cars move faster on ice.
+hint: Which force slows the car?
+sa2: Plan an investigation to test how surface type affects friction. | Pull the same block with a spring scale at a steady speed across wood, carpet, sandpaper and plastic. Keep the block's mass and pulling direction the same. Record the force for 3 trials on each surface and compare the averages.
+quiz:
+mc1: When an object slides at a steady speed, the pulling force and friction are | balanced | unbalanced | both zero | in the same direction
+mc2: Data: pulling force at steady speed for a 1 kg block - wood 3 N, carpet 5 N, ice 0.5 N, sandpaper 7 N. Which surface had the least friction? | ice | wood | carpet | sandpaper
+num2: A block with 1 mass needed 3 N to slide at steady speed; with 2 masses, 6 N; with 3 masses, 9 N. How many newtons would 4 masses need? | 12
+num2: A 20 N pull moves a box while friction is 14 N. What is the net force in newtons? | 6
+mc2: Why do sports shoes for basketball have rubber soles with patterns? | to increase friction so players can stop and turn without slipping | to reduce friction | to add weight | to make shoes shinier
+mc3: Engineers want a playground slide that is fast but safe. Which change would reduce friction without removing safety? | a smooth plastic surface with raised sides | a rough sandpaper surface | a steeper slide with no sides | water on the ladder rungs
+sa2: Explain why oil in a bicycle chain helps the bike move more easily, using forces. | Oil forms a slippery layer between the metal parts, reducing friction. With less friction opposing the motion, the same pedaling force gives a larger net force, so the bike speeds up or moves more easily.
+
 test:
 mc1: The SI unit of force is the | newton | meter | kilogram | joule
 mc1: An object's tendency to resist changes in its motion is | inertia | velocity | gravity | friction
@@ -182,6 +248,50 @@ mc2: Why would a very fast but small asteroid be dangerous? | Kinetic energy gro
 mc2: In a crater investigation, which variable should stay the same to test the effect of drop height? | the mass of the ball and the type of flour | the drop height | the crater width | the number of trials only
 sa2: Explain how a crater investigation in a tray of flour models an asteroid impact, and give one limitation of the model. | The falling ball has kinetic energy that is transferred to the flour, pushing it outward to form a crater, like an asteroid's energy digging a crater. Limitation: the speeds and energies are tiny compared with a real asteroid, and real impacts melt rock and cause fires.
 
+lesson: Braking distance and speed: graphing kinetic energy | MS-PS3-1
+practice:
+mc1: The distance a car travels after the brakes are applied until it stops is its | braking distance | reaction time | momentum | acceleration
+hint: It depends on how much kinetic energy the brakes must remove.
+mc2: Test data for one car: 10 m/s, braking distance 8 m; 20 m/s, 32 m; 30 m/s, 72 m. What happens to braking distance when speed doubles? | It becomes about four times as long. | It doubles. | It stays the same. | It is cut in half.
+hint: Compare 10 m/s with 20 m/s.
+num2: A car's braking distance is 8 m at 10 m/s, 32 m at 20 m/s and 72 m at 30 m/s. Following the pattern, what is it at 40 m/s in meters? | 128
+hint: Braking distance grows with the square of speed: 8 x 4 x 4.
+mc2: Why does braking distance grow faster than speed? | Kinetic energy depends on speed squared, and brakes must remove all of it. | Brakes get weaker at high speed. | Faster cars are heavier. | Roads get slippery at speed.
+hint: KE = 1/2 x m x v x v.
+mc2: A graph of braking distance (y-axis) against speed (x-axis) would be | a curve that bends upward | a straight line | a flat line | a line that slopes down
+hint: The distance quadruples when speed doubles.
+sa2: Explain why school zones set speed limits around 25 miles per hour instead of 40. | Kinetic energy grows with the square of speed, so a car at 40 has more than twice the kinetic energy of one at 25. Lower speed means shorter braking distance and less energy in a crash.
+quiz:
+mc1: Kinetic energy depends most strongly on | speed, because speed is squared | mass | color | the driver's age
+num2: A 1,000 kg car moves at 20 m/s. What is its kinetic energy in joules? | 200000
+num2: Brakes remove 200,000 J of kinetic energy using a 10,000 N friction force. Braking distance = energy / force. What is the braking distance in meters? | 20
+mc2: The same car is tested empty and fully loaded at the same speed. The loaded car has a longer braking distance. Why? | It has more mass, so more kinetic energy to remove. | It is slower. | It has less momentum. | Loaded cars have better brakes.
+mc3: On a dry road, a car's braking distance is 5 m at 10 m/s and 20 m at 20 m/s. On a wet road, it is 15 m at 10 m/s and 60 m at 20 m/s. Which conclusion is supported? | Wet roads triple braking distance, and distance still quadruples when speed doubles. | Wet roads do not change braking distance. | Speed does not matter on wet roads. | Braking distance doubles when speed doubles.
+num2: On a wet road, a car's braking distance is 15 m at 10 m/s. Braking distance grows with the square of speed. What is it at 30 m/s in meters? | 135
+sa2: Use the relationship between speed and kinetic energy to explain why highway crashes are so much more damaging than parking lot crashes. | Highway speeds are several times faster. Because kinetic energy depends on speed squared, a car at 30 m/s has 36 times the kinetic energy of the same car at 5 m/s, so far more energy is transferred into the cars and people in a crash.
+
+lesson: Useful and wasted energy: efficiency in devices | MS-PS3-1, MS-PS3-2
+practice:
+mc1: The percent of input energy that a device turns into useful output is its | efficiency | power | momentum | frequency
+hint: A perfect device would be 100 percent.
+mc2: An old incandescent bulb gets very hot. What does this show? | Much of its electrical energy becomes thermal energy instead of light. | It makes energy. | It is 100 percent efficient. | Heat turns into light.
+hint: Is heat the useful output for a light bulb?
+num2: A motor uses 200 J of electrical energy and does 150 J of useful work lifting a load. What is its efficiency as a percent? | 75
+hint: Divide useful output by input, then multiply by 100.
+mc2: Where does the "wasted" energy in a car engine go? | mostly into thermal energy of the engine and surroundings | it is destroyed | into more fuel | into the driver's muscles
+hint: Energy is conserved; it changes form.
+num2: An LED bulb gives the same light as an incandescent bulb but uses 9 W instead of 60 W. How many watts does it save? | 51
+hint: Subtract.
+sa2: Explain why no device can be 100 percent efficient, using the idea of conservation of energy. | Energy is never destroyed, but in every real device some input energy changes into forms that are not useful, mostly thermal energy from friction and electrical resistance. So the useful output is always less than the input.
+quiz:
+mc1: If a device is 40 percent efficient, what happens to the other 60 percent of the energy? | It changes into other forms, such as heat and sound. | It is destroyed. | It is stored forever in the device. | It returns to the power plant.
+num2: A kettle uses 100,000 J to heat water, and the water gains 80,000 J. What is the kettle's efficiency as a percent? | 80
+num2: A bicycle is 90 percent efficient. A rider puts in 500 J of energy. How many joules become useful motion? | 450
+mc2: A roller coaster car starts with 50,000 J of potential energy and has 42,000 J of kinetic energy at the bottom. What is the best explanation for the missing 8,000 J? | It was transferred to thermal energy and sound by friction and air resistance. | It was destroyed. | It became potential energy at the bottom. | The car gained mass.
+mc3: Two hair dryers produce the same airflow and warmth. Dryer A uses 1,800 J each second and Dryer B uses 1,500 J each second. Which is more efficient, and why? | Dryer B, because it gives the same useful output with less input energy | Dryer A, because it uses more energy | They are equal | Neither uses energy
+mc2: Why do engineers add lubricants and smooth bearings to machines? | to reduce friction so less energy becomes heat | to add friction | to make machines heavier | to make energy
+sa2: A student says, "The energy that a car wastes is gone forever." Correct this statement. | The energy is not gone; it was transferred to the environment, mostly as thermal energy in the air, road and engine. It is no longer useful for moving the car, but total energy is conserved.
+
 test:
 mc1: Energy of motion is | kinetic energy | potential energy | nuclear energy | elastic energy only
 mc1: Stored energy due to an object's height above Earth is | gravitational potential energy | kinetic energy | sound energy | thermal energy
@@ -277,6 +387,72 @@ mc2: A student's mass is 60 kg on Earth. What is her mass on Mars? | 60 kg | 22 
 mc3: Data: surface gravity in newtons per kg - Mercury 3.7, Earth 9.8, Jupiter 24.8. Jupiter's mass is about 318 times Earth's. Which conclusion is supported? | Planets with much more mass generally have stronger gravity | Smaller planets have stronger gravity | Gravity does not depend on mass | All planets have the same gravity
 mc2: Why do the planets orbit the Sun instead of Earth? | The Sun has by far the most mass in the solar system | Earth is in the center | The Sun is closest to every planet | Planets choose their orbits
 cer3: Data: surface gravity and mass of planets (compared with Earth). Mars: mass 0.11, gravity 0.38. Earth: mass 1, gravity 1. Neptune: mass 17, gravity 1.14. Jupiter: mass 318, gravity 2.53. Make a claim about how a planet's mass relates to its gravitational pull. Use the data as evidence and explain your reasoning. | Claim: planets with more mass generally have stronger gravity. Evidence: Mars, with 0.11 Earth masses, has 0.38 Earth gravity; Jupiter, with 318 Earth masses, has 2.53. Neptune has much more mass than Earth but only slightly stronger surface gravity. Reasoning: gravitational force depends on mass, so more massive planets pull harder; surface gravity also depends on distance from the center, and Neptune is very large, so its surface is far from its center, which weakens the pull felt there.
+
+lesson: Generators: making electric current with magnets | MS-PS2-3
+practice:
+mc1: Moving a magnet into and out of a coil of wire makes an electric current in the wire. This is | electromagnetic induction | static electricity | gravity | conduction of heat
+hint: The current is "induced" by the moving magnet.
+mc2: A student holds a magnet still inside a coil connected to a meter. What does the meter show? | no current, because the magnet is not moving | a large steady current | a current that keeps growing | current only if the coil is plastic
+hint: Induction needs change or motion.
+mc2: Which change would make a bigger current in a generator? | moving the magnet faster | moving the magnet slower | using fewer loops of wire | using a weaker magnet
+hint: Think about how quickly the magnetic field changes in the coil.
+num2: A coil with 100 loops made a peak current reading of 4 units. With 300 loops and the same motion, the reading was 12 units. How many times bigger was the reading? | 3
+hint: Divide 12 by 4.
+mc2: In a hydroelectric dam, falling water spins a turbine attached to a generator. What energy change happens in the generator? | kinetic energy to electrical energy | electrical energy to kinetic energy | chemical energy to light | sound to heat
+hint: The generator is spinning.
+sa2: Explain how a generator and a motor are similar and how they are different. | Both use magnets and coils of wire. A generator changes motion (kinetic energy) into electrical energy by moving coils and magnets past each other. A motor does the opposite, using electric current in coils to create magnetic forces that make motion.
+quiz:
+mc1: A generator changes | kinetic energy into electrical energy | electrical energy into kinetic energy | light into sound | heat into gravity
+mc2: Data: a magnet pushed into a coil at slow speed gave 2 units; medium speed, 5 units; fast, 9 units. Which conclusion is supported? | A faster-moving magnet induces a larger current. | Speed does not matter. | Slower magnets induce more current. | The coil makes its own current.
+num2: A hand-crank flashlight generator makes about 0.5 W for each turn per second. How many watts does it make at 6 turns per second? | 3
+mc2: A magnet is pushed into a coil and the meter needle swings right. When the magnet is pulled out, which way does the needle swing? | left | right | it stays still | up
+num2: A wind turbine generator produces 2,000 kW in strong wind and 450 kW in light wind. How many more kW does it produce in strong wind? | 1550
+mc3: An engineer wants a bike-wheel generator that makes more current at the same pedaling speed. Which design change would work best? | Use a stronger magnet and more loops of wire in the coil. | Use plastic wire. | Use fewer loops. | Remove the magnet.
+cer3: Students moved the same magnet through coils at the same speed. 50 loops: 3 units of current. 100 loops: 6 units. 200 loops: 12 units. Make a claim about how the number of loops affects induced current. Use evidence and explain your reasoning. | Claim: More loops of wire produce more induced current. Evidence: Doubling from 50 to 100 loops doubled the current from 3 to 6 units, and 200 loops gave 12 units. Reasoning: Each loop of wire experiences the changing magnetic field, so more loops means more current is induced. The magnet and speed stayed the same, so the number of loops caused the change.
+
+lesson: Electric motors and speakers: electromagnets at work | MS-PS2-3
+practice:
+mc1: An electric motor uses magnetic forces to change | electrical energy into motion | motion into electrical energy | light into heat | sound into electricity
+hint: A motor makes things spin.
+mc2: Inside a motor, a coil of wire carrying current sits between magnets. Why does the coil spin? | Magnetic forces push and pull on the coil's magnetic field. | Gravity pulls the coil. | Heat makes it spin. | The wire is lighter than air.
+hint: A current-carrying coil acts like a magnet.
+mc2: Which change would make a small motor spin faster? | increasing the current through the coil | using a weaker magnet | removing the battery | using fewer loops
+hint: More current makes a stronger electromagnet.
+num2: A motor spun at 900 rotations per minute with 1 battery and 1,750 with 2 batteries. How many more rotations per minute did it spin with 2 batteries? | 850
+hint: Subtract.
+mc2: A speaker has a coil attached to a paper cone near a magnet. A changing current makes the coil move back and forth. What does the cone make? | sound waves | light waves | magnetism only | heat only
+hint: A vibrating cone pushes on air.
+sa2: Explain why reversing the battery in a simple motor makes it spin the other way. | Reversing the battery reverses the direction of current in the coil, which flips the poles of the coil's magnetic field. The magnetic forces now push in the opposite direction, so the motor spins the other way.
+quiz:
+mc1: Devices such as fans, blenders and electric cars use | electric motors | generators only | solar cells only | thermometers
+mc2: Data: the same motor with 1 battery lifted a 50 g mass 30 cm in 4 seconds; with 2 batteries, in 2 seconds. Which conclusion is supported? | More current made the motor's magnetic forces stronger, so it worked faster. | Batteries reduce force. | The mass changed. | Current has no effect.
+num2: A motor lifted a 50 g mass 30 cm in 2 seconds. What was its average lifting speed in cm per second? | 15
+num2: An electric scooter motor uses 250 W. How many joules of electrical energy does it use in 60 seconds? (1 W = 1 J each second) | 15000
+mc2: Why does a speaker cone vibrate faster for high-pitched sounds? | The current changes direction more times each second. | The magnet gets heavier. | The cone gets larger. | The current stops.
+mc3: A student builds a motor with a coil and magnet, but it does not spin. Which is the most likely cause to check first? | a break in the circuit so no current flows through the coil | the magnet is too strong | the coil has too many loops | the table is flat
+sa2: Compare an electromagnet in a scrap-yard crane with the electromagnet in a motor. | Both use current in a coil to make a magnetic field that can be turned on and off. The crane's electromagnet holds metal with a steady attraction, while the motor's electromagnet keeps being pushed and pulled by permanent magnets, making the coil spin.
+
+lesson: Earth's magnetic field: compasses, auroras and protection | MS-PS2-5
+practice:
+mc1: A compass needle points north because | it lines up with Earth's magnetic field | it is pulled by the North Star | wind pushes it | gravity is stronger at the North Pole
+hint: The needle is a small magnet.
+mc2: Scientists think Earth's magnetic field is produced by | movement of molten iron in Earth's outer core | ice at the poles | the Moon's gravity | ocean currents
+hint: Moving electric charges in metal can make a magnetic field.
+mc2: A compass is placed near a bar magnet instead of on its own. What happens? | The needle turns toward the magnet's field. | Nothing changes. | The needle points to the Sun. | The needle melts.
+hint: A nearby magnet's field can be stronger than Earth's.
+num2: A compass was carried 3 m away from a magnet in steps of 1 m. The needle turned 60 degrees at 1 m, 20 degrees at 2 m and 5 degrees at 3 m. How many degrees less did it turn at 3 m than at 1 m? | 55
+hint: Subtract.
+mc2: Auroras (northern and southern lights) are usually seen near the poles. Why? | Earth's magnetic field guides charged particles from the Sun toward the poles. | The poles are closer to the Sun. | Snow makes light. | Clouds glow in the cold.
+hint: Field lines curve in near the poles.
+sa2: Explain how iron filings around a bar magnet give evidence that a magnetic field exists even though it cannot be seen. | The filings line up in curved patterns from pole to pole without being touched. Something must be pushing on them at a distance, which is evidence of a field that exerts forces around the magnet.
+quiz:
+mc1: The region around a magnet where magnetic forces act is its | magnetic field | electric charge | orbit | wavelength
+mc2: A compass needle's north end is attracted toward Earth's geographic North Pole. Since opposite poles attract, what kind of magnetic pole is near the geographic North Pole? | a magnetic south pole | a magnetic north pole | no pole | an electric charge
+num2: The force from a magnet measured 16 units at 2 cm and 2 units at 4 cm. How many times weaker was the force at 4 cm? | 8
+num2: Charged particles from the Sun travel about 400 km each second. How many hours would they take to travel 150 million km? Round to the nearest whole hour. | 104
+mc2: Why is Earth's magnetic field important for life on the surface? | It deflects many charged particles from the Sun that could harm living things. | It creates oxygen. | It controls the seasons. | It causes gravity.
+mc3: Data: a compass at the equator stays level; near the North Pole, its needle tilts steeply downward. What does this suggest? | Earth's magnetic field lines point into the ground near the poles. | Gravity is stronger at the poles. | The compass is broken. | The field is weaker at the poles.
+cer3: A student placed a compass at different distances from a strong magnet and recorded how far the needle turned away from north. 2 cm: 80 degrees. 5 cm: 45 degrees. 10 cm: 10 degrees. 20 cm: 0 degrees. Make a claim about how the magnet's field changes with distance. Use evidence and explain your reasoning. | Claim: The magnet's field gets weaker with distance. Evidence: The needle turned 80 degrees at 2 cm, 45 at 5 cm, 10 at 10 cm and 0 at 20 cm. Reasoning: The compass responds to the strongest field nearby. Close to the magnet, its field overpowered Earth's field; farther away it weakened until Earth's field controlled the needle again.
 
 test:
 mc1: Which force pulls objects toward the center of Earth? | gravity | magnetism | friction | electric force
@@ -375,6 +551,50 @@ mc2: Which statement about the four inner planets is correct? | They are small a
 mc2: A scale model uses a basketball (24 cm) for the Sun. Earth would be about 0.2 cm, smaller than a peppercorn. What does this show? | The Sun is far larger than Earth | Earth is larger than the Sun | They are similar in size | The model is wrong
 sa3: Use data to compare the inner and outer planets. Give two differences. | Inner planets (Mercury to Mars) are small, rocky and close to the Sun with few moons; outer planets (Jupiter to Neptune) are much larger, made mostly of gas or ice, far from the Sun, and have rings and many moons.
 
+lesson: Tides: the Moon's and Sun's gravity on the oceans | MS-ESS1-1, MS-ESS1-2
+practice:
+mc1: The regular rise and fall of ocean water levels along a coast is called the | tide | current | wave | delta
+hint: Most coasts have high and low ones twice a day.
+mc2: What mainly causes tides on Earth? | the Moon's gravity pulling on Earth and its oceans | wind | earthquakes | the Earth's magnetic field
+hint: Which nearby object pulls on Earth strongly?
+mc2: Most coasts have two high tides about every 24 hours and 50 minutes. Why two? | Ocean water bulges on the side facing the Moon and the opposite side. | The Moon orbits twice a day. | The Sun rises twice. | Wind changes twice a day.
+hint: There are two bulges, and Earth rotates through both.
+num2: On most coasts, one high tide follows another about every 12 hours and 25 minutes. How many minutes is that in all? | 745
+hint: Change 12 hours into minutes, then add 25.
+mc2: Spring tides, with the highest high tides and lowest low tides, happen when | the Sun, Earth and Moon line up at new and full moon | the Moon is at first quarter | it is spring | the Sun is hidden
+hint: Two pulls in a line add together.
+sa2: Explain why the Moon affects tides more than the Sun, even though the Sun has much more mass. | The Moon is much closer to Earth. Tides depend on the difference in gravity's pull across Earth, and that difference is larger for the close Moon than for the distant Sun.
+quiz:
+mc1: Tides with the smallest difference between high and low tide, which happen at the quarter moons, are | neap tides | spring tides | tsunamis | currents
+mc2: A tide table shows a high tide of 2.0 m and a low tide of -0.3 m on the day of a full moon, but 1.3 m and 0.4 m a week later. Which explains the difference? | The full moon had the Sun and Moon lined up (spring tide); a week later they were at right angles (neap tide). | The Moon was farther away at full moon. | Weather alone caused it. | The Sun stopped pulling.
+num2: High tide was 2.0 m and low tide was -0.3 m. What was the tidal range in meters? | 2.3
+num2: Tides occur about 50 minutes later each day. About how many minutes later will the high tide be after 6 days? | 300
+mc2: A tidal power plant uses the movement of water in and out of a bay. What makes this possible? | The Moon's gravity causes water levels to rise and fall reliably. | Wind always blows into the bay. | Rivers flow uphill. | The Sun heats the bay.
+mc3: If the Moon were farther from Earth, what would most likely happen to tides? | They would be smaller. | They would be larger. | They would stop changing in height but get more frequent. | Nothing would change.
+cer3: A student recorded the tidal range at a pier for one month. New moon: 2.4 m. First quarter: 1.1 m. Full moon: 2.3 m. Last quarter: 1.0 m. Make a claim about how the positions of the Sun and Moon affect tides. Use evidence and explain your reasoning. | Claim: Tides are largest when the Sun, Moon and Earth line up and smallest when the Sun and Moon pull at right angles. Evidence: The ranges were 2.4 m and 2.3 m at new and full moon, but only 1.1 m and 1.0 m at the quarter moons. Reasoning: At new and full moon, the Sun's and Moon's gravity pull along the same line and add together, making bigger bulges. At quarter moons, they pull at right angles and partly cancel.
+
+lesson: Asteroids, comets and meteors: small bodies of the solar system | MS-ESS1-2, MS-ESS1-3
+practice:
+mc1: Most asteroids in our solar system orbit the Sun in a belt between | Mars and Jupiter | Earth and Venus | Saturn and Uranus | the Sun and Mercury
+hint: It lies between the inner and outer planets.
+mc2: A comet is mostly made of | ice, dust and rock | hot gas like a star | pure iron | liquid water oceans
+hint: Comets are sometimes called "dirty snowballs."
+mc2: Why does a comet grow a glowing tail when it gets close to the Sun? | Sunlight heats its ice, releasing gas and dust that the Sun's energy pushes away. | It catches fire like wood. | It collides with planets. | It is pulled apart by Earth.
+hint: What happens to ice when it warms?
+num2: A comet orbits the Sun once every 70 years. It was last near Earth in 1990. In what year will it next be near Earth? | 2060
+hint: Add 70 to 1990.
+mc2: What keeps asteroids and comets in orbit around the Sun? | the Sun's gravity | Earth's magnetic field | solar wind | friction
+hint: The same force holds the planets in orbit.
+sa2: Explain the difference between a meteoroid, a meteor and a meteorite. | A meteoroid is a small rock or bit of dust in space. A meteor is the streak of light when it burns through Earth's atmosphere. A meteorite is a piece that survives and lands on the ground.
+quiz:
+mc1: A rock from space that survives its trip through the atmosphere and lands on Earth is a | meteorite | meteor | comet | moon
+mc2: A comet's tail always points away from the Sun, even when the comet is moving away from the Sun. What does this show? | The tail is pushed by energy and particles from the Sun, not by the comet's motion. | The comet moves backward. | Gravity pushes the tail. | The tail is made of rock.
+num2: An asteroid is 3.2 AU from the Sun and Earth is 1 AU. How many AU farther is the asteroid? | 2.2
+num2: A comet takes 6 years to orbit the Sun. How many complete orbits will it make in 45 years? | 7
+mc2: Most meteors burn up high in the atmosphere. What causes them to glow? | Friction and compression of air heat them as they enter at high speed. | They are already burning in space. | Sunlight reflects off them. | Earth's magnetic field lights them.
+mc3: Scientists track asteroids whose orbits cross Earth's orbit. Why? | To find any that might collide with Earth and plan ways to change their paths | To mine them for water today | Because they cause tides | Because they are stars
+sa2: Explain why comets are found mostly far from the Sun, beyond the planets, while asteroids are mostly closer. | Comets are made of ice that would melt and evaporate near the Sun, so ones that survived formed and stayed in the cold outer solar system. Asteroids are rock and metal, which can survive closer to the Sun, between Mars and Jupiter.
+
 test:
 mc1: The Moon's phases are caused by | the changing amount of its sunlit half we can see | Earth's shadow | clouds | the Moon changing size
 mc1: What keeps the Moon in orbit around Earth? | gravity | magnetism | wind | friction
@@ -472,6 +692,50 @@ mc3: A copy of an old cassette tape sounds worse each time it is copied, but a d
 mc2: Why can a radio station's digital signal be compressed to take up less space? | Patterns in the 1s and 0s can be stored more efficiently | Digital signals have no information | Compression adds noise | Radio waves are made of sound
 cer3: Students sent a 100-bit message as an analog wave and as a digital signal through a noisy wire. Analog: the receiver correctly read 62 percent of the message. Digital: 99 percent correct, and an error-check fixed the rest. They repeated the test 5 times with similar results. Make a claim about which signal type is more reliable. Use the data as evidence and explain your reasoning. | Claim: digital signals are more reliable than analog signals for sending information through noise. Evidence: the digital signal was read 99 percent correctly (with errors fixed), compared with 62 percent for analog, across 5 repeated trials. Reasoning: a digital signal only needs to be read as on or off, so small noise does not change the message, and errors can be checked and corrected; an analog signal's exact shape carries the information, so noise directly changes it.
 
+lesson: The electromagnetic spectrum: radio waves to gamma rays | MS-PS4-2, MS-PS4-3
+practice:
+mc1: Visible light, radio waves, microwaves and X-rays are all | electromagnetic waves | sound waves | water waves | earthquake waves
+hint: They can all travel through empty space.
+mc2: Which list orders electromagnetic waves from longest to shortest wavelength? | radio, microwave, infrared, visible, ultraviolet, X-ray, gamma | gamma, X-ray, visible, radio | visible, radio, gamma, X-ray | X-ray, radio, visible, infrared
+hint: Radio waves are the longest.
+mc2: Why do people wear sunscreen? | to block ultraviolet waves from the Sun that can damage skin | to block radio waves | to block sound | to block infrared from phones
+hint: Sunburn is caused by waves just beyond violet light.
+num2: All electromagnetic waves travel about 300,000 km each second in space. How many seconds would a radio signal take to reach the Moon, about 384,000 km away? Round to one decimal place. | 1.3
+hint: Divide the distance by the speed.
+mc2: Thermal cameras can "see" warm animals in the dark. Which waves do they detect? | infrared | ultraviolet | X-rays | gamma rays
+hint: Warm objects give off these waves.
+sa2: Give two examples of how people use electromagnetic waves to carry information. | Radio and TV broadcasts use radio waves; cell phones and Wi-Fi use microwaves and radio waves; fiber-optic cables use pulses of light or infrared.
+quiz:
+mc1: Electromagnetic waves with the highest frequency and energy are | gamma rays | radio waves | microwaves | infrared waves
+mc2: Medical X-rays can pass through skin but are mostly absorbed by bone. How does this make an image? | Bones block X-rays and show up light, while X-rays pass through softer tissue to the detector. | Bones give off light. | X-rays reflect off skin. | Skin absorbs all X-rays.
+num2: A Wi-Fi signal has a frequency of 2,400,000,000 Hz and travels at 300,000,000 m/s. What is its wavelength in meters? (wavelength = speed / frequency) | 0.125
+num2: Sunlight takes about 500 seconds to reach Earth. About how many minutes is that? Round to one decimal place. | 8.3
+mc2: Why can radio waves be used to talk with spacecraft far away? | They travel through empty space and can carry coded information. | They need air to travel. | They are a type of sound. | They only work underwater.
+mc3: A student says, "Microwave ovens and cell phones use the same kind of waves, so phones cook food." Which response is best? | Both use microwaves, but phones send far less energy, so they do not heat food noticeably. | Phones cook food slowly. | They use completely different waves. | Microwaves cannot carry energy.
+sa2: Explain why ultraviolet and X-rays can be harmful to living cells while radio waves are not. | Ultraviolet and X-rays have higher frequencies and carry much more energy per wave, enough to damage molecules in cells such as DNA. Radio waves have low frequency and low energy.
+
+lesson: Lenses: how refraction forms images in eyes and cameras | MS-PS4-2
+practice:
+mc1: A lens that is thicker in the middle and brings light rays together is a | convex lens | concave lens | flat mirror | prism only
+hint: "Converging" lenses bulge out.
+mc2: A magnifying glass makes a bug look bigger. How does it work? | Its convex lens bends light rays from the bug before they reach your eye. | It reflects light like a mirror. | It makes the bug grow. | It absorbs all light.
+hint: Light bends as it passes through curved glass.
+mc2: In the human eye, which part focuses light onto the retina? | the lens (with the cornea) | the eardrum | the pupil alone | the optic nerve
+hint: Like a camera, the eye has a lens.
+num2: A camera lens forms a sharp image when the sensor is 50 mm behind it. If the sensor is moved to 48 mm, by how many millimeters is it out of position? | 2
+hint: Subtract.
+mc2: A person who is nearsighted sees close objects clearly but distant objects blurry. Which lens corrects this? | a concave lens that spreads light rays slightly | a convex lens | a flat window | a mirror
+hint: The eye focuses distant light too early, in front of the retina.
+sa2: Explain why a straw in a glass of water looks bent at the water's surface. | Light from the straw changes speed and bends (refracts) as it passes from water into air, so it reaches our eyes from a different direction than it left the straw, making the straw look broken or bent.
+quiz:
+mc1: The bending of light as it passes from one material into another is | refraction | reflection | absorption | diffraction only
+mc2: A farsighted person sees distant objects well but close objects are blurry. Which lens helps? | a convex lens | a concave lens | a tinted flat lens | no lens can help
+num2: A magnifying glass makes a 4 mm ant look 20 mm long. How many times larger does it look? | 5
+num2: A student moved a lens to focus a lamp's image on a wall. Sharp focus happened at 18 cm, 20 cm and 19 cm in three trials. What was the average distance in cm? | 19
+mc2: Why does a camera need to move its lens to focus on near and far objects? | Light from objects at different distances needs different lens positions to come together on the sensor. | Lenses change color. | Far objects give off no light. | The sensor moves the light.
+mc3: Data: light traveling from air into water bends a little; from air into glass bends more; from air into diamond bends the most. Which conclusion is supported? | Light slows down by different amounts in different materials, causing different amounts of bending. | All materials bend light equally. | Diamond reflects all light. | Water does not bend light.
+sa2: Compare how a camera and a human eye form images. | Both use a lens to refract light and focus an image on a light-sensitive surface (sensor or retina). Both control the amount of light with an opening (aperture or pupil). The eye changes the lens shape to focus, while most cameras move the lens.
+
 test:
 mc1: Waves transfer | energy | matter | only water | only air
 mc1: The highest point on a transverse wave is the | crest | trough | wavelength | rest position
@@ -568,6 +832,50 @@ mc3: Data: number of days early embryos look nearly alike - chicken and duck, 6 
 mc2: Which type of evidence compares patterns in how organisms grow from a single cell? | embryological evidence | fossil evidence | rock layer evidence | weather evidence
 mc2: Why do scientists combine fossil, anatomy and embryo evidence? | Several independent lines of evidence give stronger support for how species are related | One type of evidence is always wrong | Combining makes results less clear | Embryos are the only evidence
 cer3: Scientists compared three species with a fourth species, Species W. Species X shares 18 of 20 embryo features with W and a similar forelimb bone pattern. Species Y shares 11 of 20 embryo features and a somewhat similar forelimb pattern. Species Z shares 4 of 20 embryo features and has no forelimbs. Make a claim about which species is most closely related to W. Use the data as evidence and explain your reasoning. | Claim: Species X is most closely related to Species W. Evidence: X shares 18 of 20 embryo features (90 percent) and a similar forelimb pattern, compared with 11 of 20 for Y and 4 of 20 for Z. Reasoning: species that share a more recent common ancestor inherited more of the same developmental patterns and body structures, so the greatest similarity in embryos and anatomy shows the closest relationship.
+
+lesson: Dating rocks: index fossils and radioactive half-life | MS-ESS1-4
+practice:
+mc1: A fossil of an organism that lived over a wide area for a short time, used to match rock layers by age, is | an index fossil | a trace fossil | a mold | a living fossil
+hint: It works like a time stamp.
+mc2: Placing rock layers in order from oldest to youngest without knowing exact ages is | relative dating | absolute dating | carbon making | erosion
+hint: "Relative" means compared with each other.
+mc2: A radioactive element's half-life is the time it takes for | half of its atoms to change into another element | all of its atoms to disappear | the rock to melt | twice as many atoms to form
+hint: "Half" is the key word.
+num2: A radioactive element has a half-life of 1 million years. A rock starts with 800 atoms of it. How many remain after 2 million years? | 200
+hint: Halve it twice.
+mc2: The same index fossil is found in a layer in Utah and a layer in Wales. What can scientists conclude? | The layers are about the same age. | The layers are in the same place. | The fossil was moved by people. | The layers formed at very different times.
+hint: Index fossils lived for a short time.
+sa2: Explain the difference between relative dating and absolute (numerical) dating. | Relative dating puts rock layers and fossils in order (older or younger) using principles like superposition. Absolute dating finds an age in years, usually by measuring how much of a radioactive element has decayed.
+quiz:
+mc1: In undisturbed rock layers, the principle that older layers are below younger layers is | superposition | half-life | spreading | erosion
+num2: An element has a half-life of 5,000 years. What fraction of the original atoms remains after 15,000 years? | 1/8
+num2: A sample has 25 percent of its original radioactive atoms left. The half-life is 4 million years. How old is it in millions of years? | 8
+mc2: Layers from bottom to top: A, B, C. An igneous dike cuts through A and B but not C. Which statement is correct? | The dike is younger than A and B but older than C. | The dike is older than A. | The dike is younger than C. | All formed at once.
+mc2: Which fossil would make the best index fossil? | a species that lived 2 million years, found worldwide | a species that lived 200 million years in one valley | a species alive today only | a species found in one cave
+mc3: A volcanic ash layer below a dinosaur fossil is dated at 70 million years and one above it at 68 million years. What can be said about the dinosaur's age? | It is between 68 and 70 million years old. | It is older than 70 million years. | It is younger than 68 million years. | Nothing can be said.
+sa2: Explain how scientists can use radioactive dating of volcanic ash layers to estimate the age of a fossil in a sedimentary layer between them. | Fossils are usually in sedimentary rock, which cannot be dated directly, but volcanic ash can be dated by its radioactive elements. A fossil between two dated ash layers must be younger than the layer below and older than the layer above.
+
+lesson: Branching trees of life: building cladograms from shared traits | MS-LS4-2
+practice:
+mc1: A branching diagram that shows how groups of organisms are related by shared traits is a | cladogram | food web | Punnett square | climate graph
+hint: It looks like a tree with branches.
+mc2: Frogs, lizards, cats and humans all have four limbs, but fish do not. On a cladogram, where would "four limbs" appear? | at the branch point after fish split off | before fish | only next to humans | nowhere
+hint: A trait is placed where the groups that have it branch off.
+mc2: Which two organisms share the most traits? | a cat and a dog | a cat and a fish | a dog and a worm | a frog and a mushroom
+hint: Count similar body structures.
+num2: A table shows 5 animals and 4 traits. If each animal is checked for each trait, how many yes-or-no boxes are in the table? | 20
+hint: Multiply.
+mc2: Organisms on branches that split more recently share | a more recent common ancestor | no ancestor | only differences | the same species name
+hint: Branches that split later are closer relatives.
+sa2: Explain why scientists use many shared traits, not just one, to build a cladogram. | One trait might evolve separately in different groups, such as wings in birds and insects. Many shared traits, especially similar internal structures, give stronger evidence of which groups share a common ancestor.
+quiz:
+mc1: On a cladogram, the point where two branches split represents | a common ancestor | an extinction | a food chain | a predator
+mc2: A trait table: shark - backbone; frog - backbone, four limbs; lizard - backbone, four limbs, amniotic egg; mouse - backbone, four limbs, amniotic egg, hair. Which animal is most closely related to the mouse? | lizard | frog | shark | they are equally related
+num2: In the same trait list (shark: backbone; frog: backbone and four limbs; lizard: backbone, four limbs and amniotic egg; mouse: backbone, four limbs, amniotic egg and hair), how many traits does the lizard share with the mouse? | 3
+mc2: Bats and birds both fly, but a bat's wing has bones like a human hand. Where does the bat belong on a cladogram? | with mammals, because of shared skeletal structures and hair | with birds, because both fly | with insects | alone
+mc3: A cladogram shows humans and chimpanzees branching apart more recently than humans and gorillas. What does it mean? | Humans and chimpanzees share a more recent common ancestor than humans and gorillas. | Humans came from chimpanzees living today. | Gorillas are not related to humans. | Chimpanzees are older than gorillas.
+mc2: Which trait would best separate birds from all other living animals on a cladogram? | feathers | a backbone | four limbs | eyes
+sa2: Describe how you would build a simple cladogram for a fish, a frog, a dog and a bird. | List traits such as backbone, four limbs, amniotic egg, feathers and hair. All four have a backbone; frog, bird and dog have four limbs (fish branches first); bird and dog have amniotic eggs (frog branches next); then bird (feathers) and dog (hair) split last.
 
 test:
 mc1: In undisturbed layers of sedimentary rock, the youngest layer is | at the top | at the bottom | in the middle | not present
@@ -682,6 +990,50 @@ mc2: A family wants to reduce its impact on Earth's resources. Which change help
 mc3: Data: in Region A, population is 10 million and each person uses 5 units of energy per year. In Region B, population is 40 million and each person uses 1 unit per year. Which statement is correct? | Region A uses 50 million units and Region B uses 40 million, so Region A uses more in total | Region B uses more in total because it has more people | They use the same total | Population does not matter
 mc2: A city's decision matrix compares water-saving plans by cost, water saved and community support. Why use such a matrix? | It compares each plan against the same criteria to find the best fit | It picks a plan randomly | It avoids looking at data | It makes all plans equal
 sa3: Design a plan for your school to reduce its use of one resource (water, energy or paper). Give one criterion, one constraint and a way to measure success. | Example: reduce paper by going digital for homework. Criterion: cut paper use by 30 percent in one semester. Constraint: every student must still have access, including those without internet at home. Measure: compare reams of paper ordered each month before and after.
+
+lesson: Saving small populations: the California condor and genetic variation | MS-LS4-4, MS-ESS3-4
+practice:
+mc1: Differences in genes among individuals in a population are called | genetic variation | extinction | adaptation only | habitat loss
+hint: No two individuals have exactly the same genes, except identical twins.
+mc2: By 1987, only 27 California condors were left, and all were brought into captivity for breeding. Why is a very small population at risk? | It has little genetic variation, so a disease or change could harm all of them. | Small populations always grow fast. | It has too much variation. | Condors cannot reproduce in captivity.
+hint: Fewer individuals means fewer different genes.
+mc2: Many condors were poisoned by eating animal carcasses containing lead bullet fragments. What human change helps condors? | using lead-free ammunition | building more roads | spraying pesticides | removing carcasses from all land
+hint: Remove the source of the poison.
+num2: The condor population grew from 27 in 1987 to about 540 decades later. How many times larger is about 540 than 27? | 20
+hint: Divide.
+mc2: Why do breeding programs choose mates that are less closely related? | to keep as much genetic variation as possible | to make all condors identical | to shrink the population | to change their species
+hint: Related animals share more of the same genes.
+sa2: Explain how genetic variation can help a population survive a new disease. | If individuals have different genes, some may have traits that resist the disease. They survive and reproduce, passing on those traits, so the population continues. With little variation, all individuals might be equally vulnerable.
+quiz:
+mc1: A species with so few individuals left that it is at risk of disappearing is | endangered | invasive | extinct | introduced
+mc2: Two populations of a plant face the same new fungus. Population A has high genetic variation and Population B has very little. Which outcome is most likely? | Some plants in Population A survive; Population B may be wiped out. | Both are wiped out. | Population B does better. | Neither is affected.
+num2: A captive breeding program released 12 condors one year and 18 the next. Of these, 24 survived the first year. What percent survived? | 80
+num2: A population of 200 animals has 10 that carry a gene for resisting a disease. What percent carry the gene? | 5
+mc2: Which human activity most directly reduced condor populations in the 1900s? | lead poisoning from bullet fragments in carcasses | planting trees | building zoos | studying birds
+mc3: Condors raise only one chick every one or two years. How does this affect recovery? | The population grows slowly, so protection must continue for many years. | It grows very fast. | It has no effect. | Condors become extinct quickly in captivity.
+cer3: Scientists tracked two groups of released condors. In areas where hunters used lead-free ammunition, 9 of 10 birds survived the year. In areas with lead ammunition, 6 of 10 survived and blood tests showed high lead in many birds. Make a claim about what is limiting condor survival. Use evidence and explain your reasoning. | Claim: Lead from ammunition is limiting condor survival. Evidence: In lead-free areas 90 percent survived, but in areas with lead ammunition only 60 percent survived, and many had high blood lead. Reasoning: Condors eat carcasses that may contain lead fragments. Lead poisons them, so removing lead from their food raises survival, which helps the small population recover.
+
+lesson: Changing climates as a selective pressure | MS-LS4-6, MS-LS4-4
+practice:
+mc1: A condition in the environment that affects which individuals survive and reproduce is a | selective pressure | mutation | gene | fossil
+hint: It "selects" which traits are passed on.
+mc2: As temperatures rise, some mountain animals such as pikas are found living higher up slopes than in the past. What is the best explanation? | They are moving to cooler areas that suit their traits. | They are trying to see farther. | The mountains got taller. | They are following tourists.
+hint: Pikas are sensitive to heat.
+mc2: Warmer springs make some plants flower earlier. Bees that come out at the old time find fewer flowers. Which bees will most likely leave more offspring? | bees whose genes make them emerge earlier | bees that emerge later | bees with longer wings only | all equally
+hint: Which bees match the new timing of their food?
+num2: A study found a flower blooming on average on day 140 of the year in 1950 and on day 128 in 2020. How many days earlier did it bloom? | 12
+hint: Subtract.
+mc2: Why can species with short generation times, such as insects, adapt to change faster than species like elephants? | More generations pass in the same time, so helpful traits spread faster. | Insects do not need to adapt. | Elephants have no genes. | Insects change on purpose.
+hint: Natural selection acts each generation.
+sa2: Explain why a rapidly changing climate can cause some species to decline even though natural selection is happening. | Natural selection only works on existing variation and takes many generations. If the change is faster than the population can adapt or move, more individuals die than are born, and the population declines.
+quiz:
+mc1: Natural selection changes the traits of a population over | many generations | a single day | one individual's lifetime | no time at all
+mc2: In a lizard population, a hotter climate means lizards with higher heat tolerance survive more often. After many generations, what would you expect? | The average heat tolerance in the population increases. | Every lizard gains heat tolerance during its life. | Heat tolerance decreases. | Nothing changes.
+num2: In a beetle population, 20 percent carried a gene for heat tolerance. Twenty generations later, after warming, 65 percent did. By how many percentage points did it rise? | 45
+num2: A fish population produces a new generation every 2 years. How many generations pass in 50 years? | 25
+mc2: A species of butterfly is found farther north than it was 50 years ago. Which data would best support that climate change caused this? | records showing the northern areas warmed to temperatures the butterflies tolerate | photos of the butterflies | the butterflies' color | the number of flowers in one garden
+mc3: Which species is most at risk from rapid warming? | a slow-reproducing species with little genetic variation that cannot move to new habitat | a fast-reproducing insect found on several continents | a widespread bird that migrates | a weed that grows in many climates
+cer3: Researchers measured the average date when a population of songbirds laid eggs: 1970, May 20; 1995, May 14; 2020, May 8. Caterpillars that the chicks eat now peak about May 10. Make a claim about what is happening in this population. Use evidence and explain your reasoning. | Claim: Warming springs are acting as a selective pressure, and the population is shifting to lay eggs earlier. Evidence: The average egg date moved from May 20 to May 8 over 50 years, close to the new caterpillar peak of May 10. Reasoning: Birds that lay earlier have chicks when food is plentiful, so more of their chicks survive and pass on their timing traits. (Some of the shift could also be birds responding directly to warmer weather.)
 
 test:
 mc1: Genes are made of | DNA | protein only | fat | sugar
