@@ -1,0 +1,748 @@
+@subject sci
+@grade 11
+# Converted from the grade 11 section of tools/assess-src/sci.txt. Every original unit line, standard, item and unit test
+# item is carried over verbatim. The original "Unit review" lesson is kept as the last lesson of each unit: its quiz keeps
+# the original quiz items (mc 1-4 and the explanation item) and the unit test keeps the original test items (mc 5-8,
+# both short answers and the task). New lessons come first.
+about: Physics studies motion and forces, momentum and energy, electricity and magnetism, and waves and electromagnetic radiation, using mathematical models to explain and predict physical phenomena.
+std: HS-PS2-1 | Analyze data to support the claim that Newton's second law describes the relationship among net force, mass and acceleration.
+std: HS-PS2-2 | Use mathematical representations to support the claim that the total momentum of a system is conserved when there is no net force.
+std: HS-PS3-1 | Create a computational model to calculate the change in energy of one component of a system when the change in energy of the others is known.
+std: HS-PS2-5 | Plan and conduct an investigation to provide evidence that an electric current can produce a magnetic field and that a changing magnetic field can produce an electric current.
+std: HS-PS4-1 | Use mathematical representations to support a claim regarding relationships among the frequency, wavelength and speed of waves.
+
+unit: Motion and forces | HS-PS2-1, HS-PS2-4 | sci_11
+el: Draw a labeled free-body diagram for every force problem, and post a chart of the key equations (a = change in velocity / time, F = m x a, weight = m x g) with their units. Pre-teach displacement, velocity, acceleration, net force, inertia and normal force with a picture of each.
+
+lesson: Position, velocity and acceleration graphs | HS-PS2-1
+practice:
+mc1: A runner goes 100 m east and then 40 m west. What is her displacement? | 60 m east | 140 m east | 140 m | 60 m west
+hint: Displacement is the change in position, so direction matters.
+num2: A car's velocity increases steadily from 5 m/s to 25 m/s in 4 s. What is its acceleration in m/s^2? | 5
+hint: Acceleration is the change in velocity divided by the time.
+mc2: A position-time graph for a cart is a straight line that rises 12 m in 3 s. What is the cart's velocity? | 4 m/s, constant | 36 m/s, constant | 4 m/s^2 | 12 m/s, increasing
+hint: The slope of a position-time graph is velocity.
+mc2: A velocity-time graph is a horizontal line at 8 m/s from 0 s to 5 s. What is the acceleration during this time? | 0 m/s^2 | 8 m/s^2 | 1.6 m/s^2 | 40 m/s^2
+hint: What is the slope of a flat line?
+num2: A velocity-time graph for a bike rises in a straight line from 0 m/s at 0 s to 6 m/s at 4 s. How far does the bike travel in those 4 s, in meters? | 12
+hint: Displacement is the area under a velocity-time graph.
+sa2: A motion sensor shows that a ball rolled up a ramp, slowed from 3 m/s to 0 m/s, and then rolled back down, speeding up. Describe the shape of its velocity-time graph if up the ramp is positive. | It is a straight line sloping downward: the velocity starts at 3 m/s, decreases through 0 at the top, and becomes negative as the ball rolls down. The constant downward slope shows a constant acceleration pointing down the ramp.
+hint: The velocity changes sign when the direction of motion changes.
+quiz:
+mc1: Which quantity includes both a size and a direction? | velocity | speed | distance | time
+num2: A train slows steadily from 30 m/s to 12 m/s in 6 s. What is the size of its acceleration in m/s^2? | 3
+mc2: On a position-time graph, a curve that gets steeper as time goes on shows an object that is | speeding up | moving at constant velocity | slowing down | at rest
+num2: A scooter starts from rest and accelerates at 2 m/s^2 for 5 s. What is its final speed in m/s? | 10
+mc2: A velocity-time graph for an elevator is a straight line from 0 m/s at 0 s up to 2 m/s at 2 s, then flat at 2 m/s until 6 s. How far does the elevator move in the 6 s? | 10 m | 12 m | 8 m | 6 m
+num3: A cyclist travels 300 m in the first 60 s and 500 m in the next 40 s. What is her average speed for the whole 100 s in m/s? | 8
+mc3: Data from a motion sensor for a falling ball: at 0.0 s, 0 m/s; at 0.1 s, 0.98 m/s; at 0.2 s, 1.96 m/s; at 0.3 s, 2.94 m/s. Which conclusion is supported? | The ball has a constant acceleration of about 9.8 m/s^2 | The ball moves at a constant velocity | The ball's acceleration is increasing | The ball is slowing down
+sa2: Explain the difference between distance and displacement, using a runner who runs one full lap of a 400 m track as an example. | Distance is the total length of the path, 400 m. Displacement is the change in position from start to finish; she ends where she started, so her displacement is 0 m.
+
+lesson: Free fall and projectile motion | HS-PS2-1
+practice:
+num2: A rock is dropped from rest off a bridge and hits the water 3 s later. Ignoring air resistance and using g = 9.8 m/s^2, what is its speed just before it hits, in m/s? | 29.4
+hint: For free fall from rest, v = g x t.
+num2: A ball is dropped from rest. Using g = 10 m/s^2 and ignoring air resistance, how far does it fall in 2 s, in meters? | 20
+hint: Use d = 1/2 x g x t^2.
+mc2: A ball is thrown straight up. At the very top of its path, which statement is true? | Its velocity is zero but its acceleration is still 9.8 m/s^2 downward | Its velocity and acceleration are both zero | Its acceleration is zero but its velocity is not | Its acceleration points upward
+hint: Gravity keeps pulling on the ball the whole time.
+mc2: A ball rolls off a table at 2 m/s and lands 0.5 s later. Ignoring air resistance, how far from the table's edge does it land? | 1 m | 0.25 m | 4 m | 2.5 m
+hint: Horizontal velocity stays constant, so horizontal distance = horizontal speed x time.
+mc2: Two identical balls leave a table at the same moment from the same height: one is dropped and one rolls off horizontally at 3 m/s. Ignoring air resistance, which lands first? | They land at the same time | The dropped ball | The rolling ball | It depends on the mass of the balls
+hint: Which part of the motion controls how long a ball is in the air?
+sa3: A hammer and a feather dropped together in air land at different times, but on the airless Moon they land together. Explain why. | In air, air resistance pushes up on the feather with a force that is large compared with its weight, so its acceleration is much less than the hammer's. On the Moon there is no air resistance, so gravity is the only force and both objects fall with the same acceleration.
+hint: Which force acts on the falling objects in air but not on the Moon?
+quiz:
+mc1: Ignoring air resistance, an object in free fall near Earth's surface has an acceleration of about | 9.8 m/s^2 downward | 9.8 m/s downward | 0 m/s^2 | 9.8 m/s^2 upward
+num2: A ball is thrown straight down from a bridge at 5 m/s. Using g = 9.8 m/s^2 and ignoring air resistance, what is its speed after 2 s, in m/s? | 24.6
+num2: A stone is dropped from rest down a well and hits the water 2 s later. Using g = 9.8 m/s^2 and ignoring air resistance, how far below the top is the water surface, in meters? | 19.6
+mc2: A ball is thrown straight up at 19.6 m/s. Using g = 9.8 m/s^2 and ignoring air resistance, how long does it take to reach the top? | 2 s | 1 s | 4 s | 19.6 s
+mc2: A package is released from a plane flying horizontally at a steady speed. Ignoring air resistance, where is the package compared with the plane as it falls? | directly below the plane | behind the plane | ahead of the plane | at the same height as the plane
+num3: A ball is kicked horizontally at 8 m/s off a cliff 19.6 m high. Using g = 9.8 m/s^2 and ignoring air resistance, how far from the base of the cliff does it land, in meters? | 16
+mc3: A projectile is launched on level ground at 45 degrees, and then again at 30 degrees with the same speed, ignoring air resistance. Which statement is correct? | The 45 degree launch travels farther | The 30 degree launch travels farther | Both travel the same distance | The 30 degree launch stays in the air longer
+sa2: A soccer ball is kicked at an angle and follows a curved path. Describe its velocity and acceleration at the highest point, ignoring air resistance. | At the highest point its vertical velocity is zero, but it still has its horizontal velocity, so it is still moving forward. Its acceleration is 9.8 m/s^2 straight down, the same as everywhere else along the path, because gravity is the only force acting on it.
+
+lesson: Newton's laws and free-body diagrams | HS-PS2-1
+practice:
+mc1: Newton's first law says an object keeps moving at constant velocity unless | a net force acts on it | it runs out of energy | its mass changes | it is moving fast
+hint: Think about inertia.
+num2: A 1,500 kg car has a net force of 4,500 N on it. What is its acceleration in m/s^2? | 3
+hint: Rearrange F = m x a to a = F / m.
+mc2: A book rests on a table. Which force is the Newton's third law partner of Earth's gravitational pull on the book? | the book's gravitational pull on Earth | the normal force of the table on the book | the push of the book on the table | friction on the book
+hint: Third law pairs act on two different objects and are the same type of force.
+num2: A 60 kg person stands still on a floor. Using g = 9.8 m/s^2, what is the normal force from the floor in newtons? | 588
+hint: The person is not accelerating, so the forces are balanced.
+mc2: A free-body diagram of a box shows 20 N right, 5 N left, 30 N up and 30 N down. What is the net force? | 15 N right | 25 N right | 15 N left | 0 N
+hint: Add the forces in each direction separately.
+sa2: Describe a free-body diagram for a lamp hanging at rest from a single cord, and explain why the forces must be balanced. | It has two arrows of equal length: the tension of the cord pulling up and the lamp's weight pulling down. The lamp is at rest, so its acceleration is zero, and by Newton's second law the net force must be zero.
+quiz:
+mc1: The tendency of an object to resist changes in its motion is called | inertia | weight | momentum | friction
+num2: A net force of 36 N gives a box an acceleration of 4 m/s^2. What is the mass of the box in kilograms? | 9
+mc2: A truck and a small car collide head-on. Compared with the force the truck exerts on the car, the force the car exerts on the truck is | equal in size and opposite in direction | smaller | larger | zero
+mc2: An astronaut has a mass of 70 kg on Earth. What is her mass on the Moon, where gravity is about 1/6 as strong? | 70 kg | about 12 kg | about 420 kg | 0 kg
+num2: Two forces act on a 5 kg cart: 18 N east and 8 N west. What is its acceleration in m/s^2? | 2
+mc3: A 1,000 kg elevator is pulled up by a cable with a tension of 11,800 N. Using g = 9.8 m/s^2, what is the elevator's acceleration? | 2 m/s^2 upward | 11.8 m/s^2 upward | 9.8 m/s^2 downward | 0 m/s^2
+mc2: A skydiver falls at a constant terminal velocity. Which statement is true? | Air resistance equals her weight, so the net force is zero | Her weight is greater than air resistance | Air resistance is zero | Her acceleration is 9.8 m/s^2
+cer3: Students pulled a 2 kg cart with different forces and measured its acceleration. 2 N: 1.0 m/s^2. 4 N: 2.0 m/s^2. 6 N: 3.1 m/s^2. 8 N: 3.9 m/s^2. Make a claim about how net force affects acceleration for this cart. Use the data as evidence and explain your reasoning. | Claim: acceleration is directly proportional to net force when the mass stays the same. Evidence: doubling the force from 2 N to 4 N doubled the acceleration from 1.0 to 2.0 m/s^2, and 8 N gave about 4 times the acceleration of 2 N (3.9 compared with 1.0); each force divided by its acceleration is about 2, the cart's mass. Reasoning: Newton's second law says a = F / m, so with the mass fixed at 2 kg, acceleration grows in proportion to force; the small differences come from measurement error and friction.
+
+lesson: Friction and net force problems | HS-PS2-1
+practice:
+mc1: Friction between two surfaces acts | opposite to the motion or attempted motion | in the direction of motion | always straight down | only on objects in space
+hint: Think about which way friction pushes on a sliding box.
+num2: A 10 kg box slides across a level floor. The coefficient of kinetic friction is 0.3. Using g = 9.8 m/s^2, what is the friction force in newtons? | 29.4
+hint: On a level floor, friction = coefficient x normal force, and the normal force equals the weight.
+num2: A 4 kg crate is pushed with 30 N across a floor with 10 N of friction. What is its acceleration in m/s^2? | 5
+hint: Find the net force first.
+mc2: A heavy box does not move when pushed with 50 N. What is the static friction force on it? | 50 N opposite the push | 0 N | more than 50 N | 50 N in the direction of the push
+hint: The box is not accelerating.
+mc2: Which change would most reduce the friction force on a box sliding across a level floor? | taking out some of the contents to reduce its weight | pushing it faster | turning it so a smaller face is on the floor | pushing harder
+hint: Friction depends on how hard the surfaces press together.
+sa2: A student pushes a sofa at a constant velocity across a carpet with a force of 120 N. Explain how much friction acts on the sofa and why. | Friction is 120 N, opposite the push. The sofa moves at constant velocity, so its acceleration is zero and the net force must be zero, which means friction balances the push.
+quiz:
+mc1: The force a surface exerts perpendicular to itself on an object resting on it is the | normal force | friction force | tension | weight
+num2: A 2 kg block on a level table is pulled with 12 N while kinetic friction is 4 N. What is its acceleration in m/s^2? | 4
+num2: A 50 kg sled is pulled across level snow at constant velocity. The coefficient of kinetic friction is 0.1. Using g = 9.8 m/s^2, what pulling force is needed, in newtons? | 49
+mc2: A hockey puck slides across ice and slowly comes to a stop. Which force caused it to slow down? | friction from the ice and air | the puck's inertia | the normal force | gravity pulling it backward
+mc2: Two identical blocks are pulled at constant speed, one across wood and one across rubber. The block on rubber needs a larger pulling force. What does this show? | Rubber has a larger coefficient of friction with the block | The block on rubber has more mass | Friction does not depend on the surfaces | Rubber has less friction
+num3: A 20 kg wagon is pulled with a 100 N force and accelerates at 3 m/s^2. What is the friction force on the wagon in newtons? | 40
+mc3: Data from a class: a wooden block with 1 brick on top needed 6 N to slide at constant speed, with 2 bricks 12 N, and with 3 bricks 18 N. Which conclusion is supported? | Friction is proportional to how hard the surfaces press together | Friction does not depend on weight | Friction decreases as weight increases | Friction depends only on speed
+sa2: Explain why a car's tires can grip the road better when they roll without slipping than when they skid. | When a tire rolls without slipping, the part touching the road is not sliding, so static friction acts, and the greatest static friction is usually larger than kinetic friction for the same surfaces. A skidding tire slides and has only kinetic friction, which is smaller, so it grips less.
+
+lesson: Circular motion and Newton's law of universal gravitation | HS-PS2-4, HS-PS2-1
+practice:
+mc1: An object moving in a circle at constant speed has an acceleration that points | toward the center of the circle | away from the center | in the direction of motion | nowhere, because it is zero
+hint: The direction of the velocity keeps changing.
+num2: A 0.5 kg ball on a string moves in a circle of radius 2 m at 4 m/s. What is its centripetal acceleration in m/s^2? | 8
+hint: Centripetal acceleration = v^2 / r.
+num2: A 1,200 kg car rounds a level curve of radius 50 m at 10 m/s. What centripetal force, in newtons, must friction supply? | 2400
+hint: F = m x v^2 / r.
+mc2: The gravitational force between two objects is F. If the mass of one object triples, the force becomes | 3F | F/3 | 9F | F/9
+hint: Gravitational force is proportional to the product of the masses.
+mc2: Why does the Moon stay in orbit around Earth instead of flying off in a straight line? | Earth's gravity pulls it toward Earth, providing the centripetal force | There is no gravity in space | The solar wind pushes it | The Moon has no inertia
+hint: Which force points from the Moon toward Earth?
+sa2: A string holding a ball whirled in a horizontal circle breaks. Describe the path of the ball just after the string breaks, viewed from above, and explain why. | It moves off in a straight line tangent to the circle at the point where the string broke. With no tension there is no force toward the center, so by Newton's first law the ball keeps moving in the direction it was going.
+quiz:
+mc1: In Newton's law of universal gravitation, F = G x m1 x m2 / r^2, r stands for | the distance between the centers of the two objects | the radius of the smaller object | the speed of the objects | the time of one orbit
+num2: A 2 kg rock is whirled on a rope in a horizontal circle of radius 0.5 m at 3 m/s. Ignoring gravity, what is the tension in the rope, in newtons? | 36
+mc2: A car takes a turn at the same speed on a curve with a larger radius. Compared with a sharper turn, the centripetal force needed is | smaller | larger | the same | zero
+num2: The gravitational force between two asteroids is 900 N. If the distance between their centers triples, what is the new force in newtons? | 100
+mc2: An astronaut floating inside the International Space Station is weightless because | she and the station are both falling around Earth together | there is no gravity at that height | the station blocks Earth's gravity | she has no mass in orbit
+num3: A planet has twice Earth's mass and twice Earth's radius. An object weighs 100 N on Earth's surface. What does it weigh on that planet's surface, in newtons? | 50
+mc3: A 1,000 kg car drives at 20 m/s around a level curve of radius 80 m. The greatest friction force its tires can supply is 4,900 N. What happens? | The car skids toward the outside of the curve because it needs 5,000 N | The car makes the turn easily | The car slides toward the center of the curve | The car speeds up
+sa2: Explain how the gravitational force between Earth and the Moon would change if the distance between them were cut in half, and why. | It would become 4 times as strong. Gravitational force is inversely proportional to the square of the distance, so halving the distance multiplies the force by 1 / (1/2)^2 = 4.
+
+lesson: Unit review | HS-PS2-1, HS-PS2-4
+practice:
+num2: A 3 kg cart is pulled with a net force of 15 N. What is its acceleration in m/s^2? | 5
+hint: a = F / m.
+mc2: A cyclist speeds up from 2 m/s to 8 m/s in 3 s. What is her acceleration? | 2 m/s^2 | 6 m/s^2 | 3.3 m/s^2 | 18 m/s^2
+hint: Divide the change in velocity by the time.
+num2: Using g = 9.8 m/s^2, what is the weight in newtons of a 12 kg backpack on Earth? | 117.6
+hint: Weight = m x g.
+mc2: A box sits at rest on a ramp. Which forces act on it? | gravity, the normal force and static friction | gravity only | the normal force only | gravity and a forward force
+hint: The box is at rest, so the forces must balance.
+mc3: The gravitational force between two masses is 40 N. If both masses are doubled and the distance stays the same, what is the force? | 160 N | 80 N | 40 N | 20 N
+hint: The force is proportional to the product of the masses.
+quiz:
+mc1: Acceleration is the rate of change of | velocity | position only | mass | force
+mc1: The SI unit of force is the | newton | joule | watt | kilogram
+mc2: A 1,000 kg car accelerates at 3 m/s^2. The net force is | 3,000 N | 333 N | 1,003 N | 300 N
+mc2: A ball is dropped from rest. After 2 s (g = 9.8 m/s^2) its speed is | 19.6 m/s | 9.8 m/s | 4.9 m/s | 39.2 m/s
+num2: A 0.4 kg ball accelerates at 15 m/s^2 when it is kicked. What net force acts on it, in newtons? | 6
+mc2: Which is an example of Newton's third law? | A swimmer pushes water backward and the water pushes the swimmer forward | A parked car stays parked | A ball rolling on grass slows down | A heavier cart needs more force to accelerate
+num2: A car starts from rest and reaches 24 m/s in 8 s at a steady rate. What is its acceleration in m/s^2? | 3
+sa2: Explain the difference between mass and weight. | Mass is the amount of matter; weight is the gravitational force on that mass.
+
+test:
+mc2: An object moving at constant velocity has | zero net force | a large net force | increasing acceleration | no mass
+mc2: Weight on Earth of a 50 kg person (g = 9.8 m/s^2) is about | 490 N | 50 N | 5 N | 4,900 N
+mc2: A car rounds a curve at constant speed. It is | accelerating, because its direction changes | not accelerating | slowing down | at rest
+mc3: The gravitational force between two masses is F. If the distance doubles, the force becomes | F/4 | F/2 | 2F | 4F
+mc1: The SI unit of acceleration is | m/s^2 | m/s | N | kg x m/s
+num2: A sprinter accelerates from rest to 10 m/s in 2.5 s. What is her average acceleration in m/s^2? | 4
+num2: A 75 kg skater is pushed with a net force of 150 N. What is his acceleration in m/s^2? | 2
+mc2: A velocity-time graph for a car is a straight line falling from 20 m/s at 0 s to 0 m/s at 4 s. How far does the car travel while stopping? | 40 m | 80 m | 5 m | 20 m
+num2: A wrench falls from rest off a scaffold and hits the ground 2.5 s later. Using g = 9.8 m/s^2 and ignoring air resistance, what is its speed just before it hits, in m/s? | 24.5
+mc2: A tennis ball is thrown straight up. Ignoring air resistance, which describes its acceleration on the way up and on the way down? | 9.8 m/s^2 downward the whole time | upward on the way up and downward on the way down | zero on the way up and 9.8 m/s^2 on the way down | it increases as the ball falls
+num3: A marble rolls off a table 1.225 m high at 1.5 m/s. Using g = 9.8 m/s^2 and ignoring air resistance, how far from the base of the table does it land, in meters? | 0.75
+mc2: A 5 kg box is pushed across a floor at constant velocity with a 20 N force. What is the friction force on the box? | 20 N opposite the push | 0 N | 49 N | 25 N
+num2: A 25 kg box rests on a level floor. The coefficient of kinetic friction is 0.4. Using g = 9.8 m/s^2, what is the kinetic friction force when the box slides, in newtons? | 98
+mc2: Which pair of forces is a Newton's third law pair? | A hammer pushes on a nail and the nail pushes back on the hammer | The weight of a book and the normal force of the table on it | Friction on a box and the push on the box | The weight of a lamp and the tension in its cord
+num2: A 0.2 kg ball on a string moves in a circle of radius 0.8 m at 4 m/s. What is the centripetal force in newtons? | 4
+mc2: A ball on a string is whirled in a horizontal circle. If its speed doubles and the radius stays the same, the tension needed | becomes 4 times as large | doubles | halves | stays the same
+mc3: A 60 kg student stands on a scale in an elevator that is accelerating upward at 2 m/s^2. Using g = 9.8 m/s^2, what does the scale read? | 708 N | 588 N | 468 N | 120 N
+num3: A planet has the same radius as Earth but 3 times its mass. A rover weighs 500 N on Earth. What does it weigh on that planet's surface, in newtons? | 1500
+sa2: A 2 kg cart is pulled with 10 N against 4 N of friction. Find its acceleration. | Net force 6 N; a = 6 / 2 = 3 m/s^2.
+sa2: A ball is thrown horizontally from a cliff. Explain why its horizontal and vertical motions are independent. | Gravity acts only vertically, so horizontal velocity stays constant while vertical speed increases.
+cer3: A team pulled carts of different masses with the same 12 N net force and measured their accelerations. 2 kg: 6.0 m/s^2. 3 kg: 4.1 m/s^2. 4 kg: 2.9 m/s^2. 6 kg: 2.0 m/s^2. Make a claim about how mass affects acceleration when the net force stays the same. Use the data as evidence and explain your reasoning. | Claim: with the same net force, acceleration is inversely proportional to mass. Evidence: tripling the mass from 2 kg to 6 kg cut the acceleration to one third, from 6.0 to 2.0 m/s^2, and mass times acceleration is close to 12 for every cart (2 x 6.0 = 12, 3 x 4.1 = 12.3, 4 x 2.9 = 11.6, 6 x 2.0 = 12). Reasoning: Newton's second law, F = m x a, means that for a fixed force of 12 N a larger mass must have a smaller acceleration; the small differences come from friction and measurement error.
+task3: Use a cart and ramp (or provided data) to investigate how net force affects acceleration for a constant mass. Graph acceleration versus force, find the slope, and explain how your results support Newton's second law. | Accurate data and graph, correct slope interpretation (1/m), strong support for the law. | Good graph with partial interpretation. | Data without analysis. | Little correct work.
+
+unit: Momentum and energy | HS-PS2-2, HS-PS2-3, HS-PS3-1, HS-PS3-2
+el: Keep a chart of p = m x v, impulse = F x t, KE = 1/2 x m x v^2, PE = m x g x h, W = F x d and P = W / t with units, and use a before-and-after table for every collision. Pre-teach momentum, impulse, conserved, system, kinetic, potential and efficiency.
+
+lesson: Momentum and impulse | HS-PS2-2, HS-PS2-3
+practice:
+num1: What is the momentum of a 0.15 kg baseball moving at 40 m/s, in kg x m/s? | 6
+hint: Momentum = mass x velocity.
+num2: A net force of 200 N acts on a cart for 0.5 s. What impulse does it give the cart, in N x s? | 100
+hint: Impulse = force x time.
+mc2: A 2 kg ball moving at 5 m/s is brought to a stop. What is the size of its change in momentum? | 10 kg x m/s | 2.5 kg x m/s | 7 kg x m/s | 25 kg x m/s
+hint: Change in momentum = m x (final velocity - starting velocity).
+mc2: A 1 kg ball hits a wall at 6 m/s and bounces straight back at 6 m/s. What is the size of its change in momentum? | 12 kg x m/s | 0 kg x m/s | 6 kg x m/s | 36 kg x m/s
+hint: The velocity changes from +6 m/s to -6 m/s.
+mc2: A bowling ball and a tennis ball roll at the same speed. Which has more momentum? | the bowling ball, because it has more mass | the tennis ball, because it is lighter | they have the same momentum | neither has momentum
+hint: Compare m x v for each ball.
+sa2: A soccer goalie pulls her hands back while catching a hard shot. Use impulse to explain why this hurts less. | The ball's change in momentum is the same either way. Pulling her hands back makes the stopping time longer, and since impulse = force x time equals that change in momentum, a longer time means a smaller force on her hands.
+hint: Which part of force x time can the goalie change?
+quiz:
+mc1: The SI unit of momentum is | kg x m/s | N/m | J | kg x m/s^2
+num2: A 1,200 kg car moves at 25 m/s. What is its momentum in kg x m/s? | 30000
+num2: A bat hits a 0.5 kg ball for 0.01 s, and the ball's velocity changes from 0 to 20 m/s. What is the average force on the ball, in newtons? | 1000
+mc2: Which has the greatest momentum? | a 1,000 kg car at 20 m/s | a 5,000 kg truck at 2 m/s | a 70 kg runner at 8 m/s | a 0.01 kg bullet at 400 m/s
+mc2: Two carts have the same momentum. Cart A has twice the mass of cart B. How do their speeds compare? | Cart B is twice as fast as cart A | Cart A is twice as fast as cart B | They have the same speed | Cart B is four times as fast as cart A
+num3: A 0.06 kg tennis ball reaches a racket at 30 m/s and leaves in the opposite direction at 40 m/s. What is the size of the impulse on the ball, in N x s? | 4.2
+mc3: A force-time graph for a kick is a triangle that rises from 0 N at 0 s to 400 N at 0.005 s and falls back to 0 N at 0.010 s. What impulse does the ball receive? | 2 N x s | 4 N x s | 400 N x s | 0.04 N x s
+sa2: A truck and a bicycle are both moving at 10 m/s. Explain which one is harder to stop in the same amount of time, using momentum. | The truck, because it has much more mass and so much more momentum (p = m x v). Stopping it takes a larger change in momentum, so for the same stopping time it needs a much larger force.
+
+lesson: Conservation of momentum in collisions and explosions | HS-PS2-2
+practice:
+num2: A 3 kg cart moving at 4 m/s hits a 2 kg cart at rest. After the collision the 3 kg cart moves at 1 m/s in the same direction. What is the 2 kg cart's speed, in m/s? | 4.5
+hint: Total momentum before = total momentum after.
+num2: A 4 kg cart moving at 3 m/s collides with and sticks to a 2 kg cart at rest. What is their speed together, in m/s? | 2
+hint: After they stick, the total mass moves with one velocity.
+mc2: A 50 kg skater at rest pushes off a 75 kg skater, also at rest. The 50 kg skater moves away at 3 m/s. What is the 75 kg skater's velocity? | 2 m/s in the opposite direction | 3 m/s in the opposite direction | 2 m/s in the same direction | 4.5 m/s in the opposite direction
+hint: The total momentum starts at zero, so it must still be zero.
+mc2: In which type of collision is kinetic energy conserved as well as momentum? | an elastic collision | a perfectly inelastic collision | an inelastic collision in which the objects dent | every collision
+hint: Think about whether any energy goes into sound, heat or bending.
+mc2: A rifle fires a bullet forward. Why does the rifle recoil backward? | The bullet gains forward momentum, so the rifle must gain equal backward momentum to keep the total at zero | The bullet pushes air back into the rifle | The rifle loses mass | Gravity pulls the rifle back
+hint: The system starts at rest.
+sa3: A 1,000 kg car traveling at 20 m/s rear-ends a 1,500 kg car at rest, and they lock together. Find their speed after the collision and explain whether kinetic energy was conserved. | Momentum before = 1,000 x 20 = 20,000 kg x m/s, so v = 20,000 / 2,500 = 8 m/s. KE before = 1/2 x 1,000 x 20^2 = 200,000 J; KE after = 1/2 x 2,500 x 8^2 = 80,000 J. Kinetic energy was not conserved: 120,000 J became thermal energy, sound and the bending of metal.
+hint: Use momentum to find the speed, then compare the kinetic energy before and after.
+quiz:
+mc1: The total momentum of a system stays constant when | no net external force acts on the system | the objects stick together | the objects move fast | kinetic energy is conserved
+num2: A 0.5 kg ball moving at 6 m/s hits a 1.5 kg ball at rest. The 0.5 kg ball stops. What is the speed of the 1.5 kg ball afterward, in m/s? | 2
+num2: A 60 kg astronaut floating at rest throws a 3 kg tool at 10 m/s. What is the astronaut's recoil speed, in m/s? | 0.5
+mc2: A 2 kg cart moving right at 4 m/s collides with a 2 kg cart moving left at 4 m/s, and they stick together. What happens? | They stop | They move right at 4 m/s | They move left at 2 m/s | They move right at 8 m/s
+num3: A 5,000 kg train car rolling at 4 m/s couples with a 3,000 kg car rolling in the same direction at 2 m/s. What is their speed together, in m/s? | 3.25
+mc3: Data from an air-track collision: before, cart A (0.4 kg) moved at 0.5 m/s and cart B (0.6 kg) was at rest; after, cart A moved at -0.1 m/s and cart B at 0.4 m/s. Which conclusion is supported? | Total momentum was conserved at 0.2 kg x m/s | Momentum increased during the collision | Momentum was lost to friction | Cart B gained more momentum than cart A lost
+mc2: A firework at rest explodes into two pieces. What is the total momentum of the pieces right after the explosion? | zero | equal to the energy released | larger than before the explosion | impossible to know without the masses
+cer3: Students rolled cart A (1 kg) at 2 m/s into cart B (1 kg) at rest in three trials. Trial 1 (carts stick): both moved at 1.0 m/s. Trial 2 (magnets repel): A stopped and B moved at 2.0 m/s. Trial 3 (springs): A moved at 0.4 m/s and B at 1.6 m/s. Make a claim about momentum in these collisions. Use calculations as evidence and explain your reasoning. | Claim: total momentum was conserved in all three collisions. Evidence: the momentum before was 1 x 2 = 2 kg x m/s each time. After: trial 1, 2 x 1.0 = 2; trial 2, 0 + 1 x 2.0 = 2; trial 3, 0.4 + 1.6 = 2 kg x m/s. Reasoning: the carts push on each other with equal and opposite forces for the same time, so the momentum one cart loses the other gains; with no net outside force, the total stays the same even when kinetic energy is not conserved, as in trial 1.
+
+lesson: Designing collision protection: helmets, airbags and crumple zones | HS-PS2-3
+practice:
+mc1: In car safety engineering, a crumple zone is | a part of the car designed to fold up in a crash | a seat belt | a steel frame that never bends | the car's brake system
+hint: Think about what the front of a car does in a crash.
+num2: A 70 kg passenger moving at 15 m/s is stopped by an airbag in 0.15 s. What is the average force on the passenger, in newtons? | 7000
+hint: Force = change in momentum / time.
+num2: A 70 kg passenger moving at 15 m/s is stopped by hitting a hard dashboard in 0.015 s. What is the average force on the passenger, in newtons? | 70000
+hint: Find the change in momentum first, then divide by the stopping time.
+mc2: A bike helmet has a foam liner that crushes in a crash. How does the liner protect the rider's head? | It increases the time the head takes to stop, which reduces the force | It increases the head's momentum | It makes the head stop faster | It adds mass so the head moves slower
+hint: The change in momentum is fixed. What can the design change?
+mc2: Engineers test two bumper designs. Both stop a 1,000 kg test cart moving at 2 m/s. Design A stops it in 0.1 s and design B in 0.4 s. How does the average force with design B compare with design A? | one fourth as large | four times as large | the same | half as large
+hint: For the same change in momentum, force and time are inversely related.
+sa2: List two criteria and one constraint an engineer might use when designing a helmet for skateboarders. | Criteria: it must reduce the force on the head in a fall by lengthening the stopping time, and it must be comfortable enough that people will wear it. Constraint: it must cost less than a target price, or weigh less than a set mass.
+hint: Criteria say what the design must do well; constraints are limits such as cost and size.
+quiz:
+mc1: Seat belts reduce injuries in a sudden stop mainly by | spreading the force over the body and stretching to increase the stopping time | stopping the passenger instantly | increasing the passenger's speed | making the car lighter
+num2: An egg with a mass of 0.06 kg hits a hard floor at 5 m/s and stops in 0.002 s. What is the average force on the egg, in newtons? | 150
+num2: A 1,200 kg car moving at 10 m/s hits a barrier, and its crumple zone stops it in 0.2 s. What is the average force on the car, in newtons? | 60000
+mc2: Which design change to a car would make the force on its passengers in a crash smaller? | a front end that crumples over a longer distance | a stiffer front end that does not bend | a heavier steering wheel | harder seats
+mc2: A gymnastics mat is made thicker. For a gymnast landing at the same speed, the thicker mat | increases the stopping time and decreases the force | decreases the stopping time and increases the force | makes the gymnast's change in momentum zero | has no effect on the force
+num3: A 0.4 kg soccer ball moving at 25 m/s is stopped by a goalie in 0.05 s. What is the average force on the goalie's hands, in newtons? | 200
+mc3: A team tested three phone cases by dropping a 0.2 kg phone so that it hit the ground at 5 m/s. Case A stopped it in 0.004 s, case B in 0.010 s and case C in 0.020 s. Which case gave the smallest average force, and what was that force? | Case C, 50 N | Case A, 250 N | Case C, 20 N | Case B, 100 N
+cer3: An engineering class dropped egg containers from a height of 3 m, so every egg hit the ground at the same speed. Bare egg: broke 5 of 5 times. Cardboard box: broke 3 of 5. Box with 2 cm of foam: broke 1 of 5. Box with 6 cm of foam: broke 0 of 5. Make a claim about which container works best. Use the data as evidence and explain your reasoning using impulse. | Claim: the box with 6 cm of foam works best. Evidence: none of its eggs broke in 5 trials, compared with 1 of 5 for 2 cm of foam, 3 of 5 for cardboard and 5 of 5 for the bare egg. Reasoning: every egg had the same change in momentum because it hit at the same speed. Impulse = force x time, so thicker foam, which squeezes over a longer time, makes the stopping force smaller, below the force needed to break the shell.
+
+lesson: Work, kinetic energy and the work-energy theorem | HS-PS3-1, HS-PS3-2
+practice:
+num1: A student pushes a box 5 m across a floor with a constant 40 N force in the direction of motion. How much work does she do, in joules? | 200
+hint: Work = force x distance moved in the direction of the force.
+num2: What is the kinetic energy of a 1,000 kg car moving at 10 m/s, in joules? | 50000
+hint: KE = 1/2 x m x v^2.
+mc2: A server carries a tray at a constant height while walking across a room at constant speed. How much work does her upward holding force do on the tray? | zero, because the force is perpendicular to the motion | a lot, because she carries it far | the tray's weight times the distance walked | a negative amount
+hint: Work needs a force along the direction of motion.
+mc2: If a car's speed doubles, its kinetic energy | becomes 4 times as large | doubles | stays the same | is cut in half
+hint: Speed is squared in the kinetic energy formula.
+num2: A 2 kg cart at rest is pushed with a net force of 10 N for 3 m. Using the work-energy theorem, what is its kinetic energy afterward, in joules? | 30
+hint: Net work = change in kinetic energy.
+sa2: A 4 kg ball's speed increases from 2 m/s to 6 m/s. Explain how to find the net work done on it, and find it. | Net work equals the change in kinetic energy. KE before = 1/2 x 4 x 2^2 = 8 J; KE after = 1/2 x 4 x 6^2 = 72 J. Net work = 72 - 8 = 64 J.
+quiz:
+mc1: One joule is equal to | one newton times one meter | one newton per meter | one kilogram times one meter | one watt per second
+num2: How much work, in joules, is done lifting a 20 N bag straight up 1.5 m at constant speed? | 30
+num2: A 0.1 kg arrow moves at 60 m/s. What is its kinetic energy, in joules? | 180
+mc2: A 3 kg ball and a 6 kg ball move at the same speed. How does the kinetic energy of the 6 kg ball compare with that of the 3 kg ball? | twice as large | four times as large | the same | half as large
+num3: A 1,500 kg car moving at 20 m/s brakes to a stop in 50 m. What is the average braking force, in newtons? | 6000
+mc3: A sled starts at rest. A rope does +800 J of work on it while friction does -500 J. What is the sled's kinetic energy afterward? | 300 J | 1,300 J | 800 J | -300 J
+mc2: With the same braking force, a car traveling at 30 m/s needs how many times the braking distance of the same car at 10 m/s? | 9 times | 3 times | 6 times | the same distance
+sa2: Explain why halving a car's speed reduces its kinetic energy more than halving its mass would. | Kinetic energy depends on mass to the first power but on speed squared. Halving the mass halves the kinetic energy, but halving the speed makes v^2 one fourth as large, so the kinetic energy drops to one fourth.
+
+lesson: Potential energy and conservation of mechanical energy | HS-PS3-1, HS-PS3-2
+practice:
+num2: Using g = 9.8 m/s^2 and the floor as zero, what is the gravitational potential energy of a 2 kg book on a shelf 1.5 m above the floor, in joules? | 29.4
+hint: PE = m x g x h.
+num2: A 0.5 kg ball is dropped from rest from a height of 5 m. Using g = 10 m/s^2 and ignoring air resistance, what is its kinetic energy just before it hits the ground, in joules? | 25
+hint: The potential energy it loses becomes kinetic energy.
+mc2: A skateboarder rolls back and forth in a smooth half-pipe with no friction. Where is her kinetic energy greatest? | at the lowest point | at the highest points | halfway up the sides | it is the same everywhere
+hint: Where is her potential energy smallest?
+mc2: A spring with a spring constant of 200 N/m is compressed 0.1 m. How much elastic potential energy does it store? | 1 J | 2 J | 20 J | 10 J
+hint: Elastic PE = 1/2 x k x x^2.
+num2: A cart starts from rest at the top of a frictionless track 5 m high. Using g = 10 m/s^2, what is its speed at the bottom, in m/s? | 10
+hint: Set m x g x h equal to 1/2 x m x v^2; the mass cancels.
+sa2: A 0.2 kg ball is thrown straight up at 10 m/s. Using g = 10 m/s^2 and ignoring air resistance, explain how to find its maximum height, and find it. | At the top all of its kinetic energy has become potential energy: 1/2 x 0.2 x 10^2 = 10 J, and 10 J = 0.2 x 10 x h, so h = 5 m.
+hint: What kind of energy does the ball have at the very top?
+quiz:
+mc1: Energy stored because of an object's height in a gravitational field is | gravitational potential energy | kinetic energy | thermal energy | elastic energy
+num2: Using g = 9.8 m/s^2, by how much does the gravitational potential energy of a 50 kg hiker increase when she climbs 100 m higher, in joules? | 49000
+num2: A 2 kg rock falls from rest from a 20 m cliff. Using g = 10 m/s^2 and ignoring air resistance, what is its kinetic energy halfway down, in joules? | 200
+mc2: A skateboarder rolls from rest down a ramp that is 3.2 m high. Using g = 10 m/s^2 and ignoring friction, what is her speed at the bottom? | 8 m/s | 32 m/s | 64 m/s | 5.7 m/s
+mc2: A roller coaster car goes over a series of hills, and friction acts on it. Which statement is true? | Total energy is conserved, but some mechanical energy becomes thermal energy | Total energy decreases | Mechanical energy stays constant | Energy is created at the bottom of each hill
+num3: A 0.25 kg toy car is launched by a spring with a spring constant of 400 N/m compressed 0.1 m. Ignoring friction, what is the car's launch speed, in m/s? | 4
+mc3: Students dropped a 0.1 kg ball from 2.0 m and measured its speed just before it hit the floor: 6.0 m/s. Using g = 9.8 m/s^2, which conclusion is supported? | About 0.16 J of mechanical energy was transformed by air resistance | Energy was created during the fall | No energy was transformed by air resistance | The ball gained 1.96 J of extra energy
+sa2: A student says a ball held 10 m above the ground has no energy because it is not moving. Explain the student's mistake. | The ball has no kinetic energy because it is not moving, but it has gravitational potential energy because of its height. If it is dropped, that potential energy changes into kinetic energy as it falls.
+
+lesson: Power, efficiency and energy transformations | HS-PS3-1, HS-PS3-3
+practice:
+num1: A motor does 600 J of work in 4 s. What is its power, in watts? | 150
+hint: Power = work / time.
+num2: A 50 kg student climbs stairs 4 m high in 5 s. Using g = 9.8 m/s^2, what is her average power output, in watts? | 392
+hint: Find the work done against gravity, m x g x h, then divide by the time.
+mc2: A light bulb uses 100 J of electrical energy each second and gives off 10 J of light each second. What is its efficiency? | 10% | 90% | 100% | 1,000%
+hint: Efficiency = useful energy out / energy in x 100%.
+mc2: In a car engine, most of the energy from the fuel that does not move the car is transformed into | thermal energy | nuclear energy | more chemical energy | mass
+hint: What makes an engine hot?
+num2: A 1,500 W hair dryer runs for 120 s. How much energy does it use, in joules? | 180000
+hint: Energy = power x time.
+sa2: Explain why no machine can be 100% efficient. | Some of the input energy is always transformed into forms that are not useful for the task, mostly thermal energy from friction, and sound. Energy is conserved, so the useful output must be less than the input.
+quiz:
+mc1: The watt is a unit of | power | energy | force | momentum
+num2: A crane lifts a 1,000 kg beam 12 m in 20 s. Using g = 9.8 m/s^2, what is its power output, in watts? | 5880
+num2: A motor uses 2,000 J of electrical energy to lift a load and gives the load 1,500 J of potential energy. What is its efficiency, in percent? | 75
+mc2: Two students lift identical boxes onto the same shelf. Jun takes 2 s and Maya takes 4 s. Which statement is true? | They do the same work, but Jun's power is twice Maya's | Jun does twice as much work as Maya | Maya's power is greater | They have the same power
+num3: An electric kettle has an efficiency of 80%. To give the water 160,000 J of thermal energy, how much electrical energy, in joules, must it use? | 200000
+mc3: Data for two motors that each lift a 10 N load 2 m: Motor A uses 40 J of electrical energy and Motor B uses 25 J. Which conclusion is supported? | Motor B is more efficient, 80% compared with 50% | Motor A is more efficient | Both motors are 100% efficient | Motor B does more work on the load
+mc1: A solar panel transforms which form of energy into electrical energy? | light (radiant) energy | chemical energy | nuclear energy | sound energy
+sa2: A wind turbine produces electricity from moving air. Describe the energy transformations and explain why the electrical energy produced is less than the kinetic energy of the wind that turns it. | The kinetic energy of the moving air turns the blades (mechanical energy), and a generator transforms that mechanical energy into electrical energy. Some energy is transformed into thermal energy by friction in the moving parts and some into sound, so the electrical output is less than the energy input.
+
+lesson: Unit review | HS-PS2-2, HS-PS2-3, HS-PS3-1, HS-PS3-2
+practice:
+num2: What is the momentum of a 3 kg ball rolling at 4 m/s, in kg x m/s? | 12
+hint: p = m x v.
+num2: A 0.5 kg ball moves at 4 m/s. What is its kinetic energy, in joules? | 4
+hint: KE = 1/2 x m x v^2.
+mc2: A 3 kg cart moving at 2 m/s hits and sticks to a 1 kg cart at rest. What is their speed together? | 1.5 m/s | 2 m/s | 6 m/s | 0.67 m/s
+hint: Use conservation of momentum.
+num2: A 400 N force pushes a crate 3 m in 6 s. What power is delivered, in watts? | 200
+hint: Find the work first, then divide by the time.
+mc2: A 1 kg ball falls from rest from a height of 5 m. Using g = 9.8 m/s^2 and ignoring air resistance, how much kinetic energy does it have just before it hits the ground? | 49 J | 5 J | 98 J | 9.8 J
+hint: The potential energy it loses becomes kinetic energy.
+quiz:
+mc1: Momentum equals | mass times velocity | mass times acceleration | force times distance | half of mass times velocity
+mc1: The SI unit of energy is the | joule | newton | watt | volt
+mc2: A 2 kg ball moves at 3 m/s. Its kinetic energy is | 9 J | 6 J | 18 J | 3 J
+mc2: A 5 kg box is lifted 2 m (g = 9.8 m/s^2). Its gain in potential energy is | 98 J | 10 J | 49 J | 196 J
+num2: A 2,000 kg truck moves at 12 m/s. What is its momentum, in kg x m/s? | 24000
+mc2: A 0.2 kg ball hits a wall at 10 m/s and bounces straight back at 10 m/s. The contact lasts 0.02 s. What is the average force on the ball? | 200 N | 100 N | 0 N | 4 N
+num2: A 60 W light bulb is on for 10 s. How much energy does it use, in joules? | 600
+sa2: Explain how energy is conserved when a pendulum swings. | Potential energy at the top converts to kinetic at the bottom and back, with total energy constant (minus friction).
+
+test:
+mc2: In a collision with no external force, total momentum | is conserved | doubles | becomes zero | is lost as heat
+mc2: Airbags reduce injury by | increasing the time of the collision, reducing force | increasing momentum | adding mass | stopping the car faster
+mc2: Power is | the rate of doing work | force times mass | energy times time | velocity squared
+mc3: A 1 kg cart at 4 m/s hits and sticks to a 1 kg cart at rest. Their speed afterward is | 2 m/s | 4 m/s | 1 m/s | 8 m/s
+mc1: Kinetic energy is the energy of | motion | position | chemical bonds | an object's mass at rest
+num2: A 0.4 kg ball moves at 15 m/s. What is its momentum, in kg x m/s? | 6
+num2: A net braking force of 5,000 N stops a 1,000 kg car in 4 s. What was the car's speed before braking, in m/s? | 20
+mc2: A 30 kg child and a 60 kg adult stand at rest on ice and push apart. The child moves at 2 m/s. How fast does the adult move? | 1 m/s in the opposite direction | 2 m/s in the opposite direction | 4 m/s in the opposite direction | 1 m/s in the same direction
+num3: A 0.02 kg ball of clay moving at 50 m/s hits and sticks to a 0.98 kg block at rest on a frictionless surface. What is the speed of the block and clay afterward, in m/s? | 1
+mc2: Why does a cushioned running shoe reduce the force on a runner's foot when it lands? | It increases the time over which the foot's momentum changes | It reduces the runner's mass | It increases the runner's momentum | It stops the foot instantly
+num2: A 0.15 kg ball moving at 20 m/s is caught and stopped in 0.1 s. What is the average force on the catcher's glove, in newtons? | 30
+num2: How much work, in joules, is done pushing a cart 8 m with a 25 N force in the direction of motion? | 200
+mc2: A 2 kg cart's speed triples. Its kinetic energy becomes | 9 times as large | 3 times as large | 6 times as large | the same
+num2: A 3 kg box sits on a shelf 2 m above the floor. Using g = 10 m/s^2, what is its gravitational potential energy compared with the floor, in joules? | 60
+num3: A sled starts from rest at the top of a frictionless hill 7.2 m high. Using g = 10 m/s^2, what is its speed at the bottom, in m/s? | 12
+mc2: A ball rolls down a ramp, then slows down on the carpet at the bottom until it stops. What happened to its kinetic energy? | It was transformed into thermal energy and sound by friction | It was destroyed | It became gravitational potential energy | It was turned into mass
+num2: A 900 W microwave oven runs for 60 s. How much electrical energy does it use, in joules? | 54000
+mc3: A motor uses 500 J of electrical energy to lift a 20 N weight 15 m. What is its efficiency? | 60% | 40% | 300% | 75%
+sa2: A roller coaster car starts from rest 20 m high. Ignoring friction, find its speed at the bottom (g = 9.8). | mgh = 1/2 mv^2, v = square root of (2 x 9.8 x 20), about 19.8 m/s.
+sa2: Explain how a crumple zone protects passengers using impulse. | It lengthens collision time, so for the same change in momentum, the force is smaller.
+cer3: Students released a 0.5 kg cart from rest at different heights on a ramp and measured its speed at the bottom. Height 0.2 m: 1.9 m/s. Height 0.4 m: 2.7 m/s. Height 0.8 m: 3.8 m/s. Make a claim about whether mechanical energy was conserved. Use calculations with g = 9.8 m/s^2 as evidence and explain your reasoning. | Claim: most of the cart's potential energy became kinetic energy, but a small part (about 8%) was transformed by friction, so mechanical energy was nearly but not perfectly conserved. Evidence: at 0.2 m, PE = 0.5 x 9.8 x 0.2 = 0.98 J and KE = 1/2 x 0.5 x 1.9^2 = about 0.90 J; at 0.4 m, 1.96 J compared with about 1.82 J; at 0.8 m, 3.92 J compared with about 3.61 J. Reasoning: total energy is conserved, so the missing 0.08 J to 0.31 J was not destroyed; friction and air resistance transformed it into thermal energy and sound, which is why KE at the bottom was always a little less than PE at the top.
+task3: Design a device that minimizes the force on an egg in a collision. Use the impulse-momentum relationship to explain your design, calculate the expected force for a given drop height and stopping time, test it and evaluate your results. | Effective design, correct calculations, data and thoughtful evaluation. | Design and calculations with minor errors. | Design with little analysis. | Little correct work.
+
+unit: Electricity and magnetism | HS-PS2-5, HS-PS3-3, HS-PS3-5 | sci_11_n1
+el: Use a water-pipe model next to each circuit diagram (pump as battery, water pressure as voltage, flow rate as current, narrow pipe as resistance), and post a chart of circuit symbols with V = I x R and P = I x V. Pre-teach charge, current, voltage, resistance, series, parallel, ground, magnetic field and induction.
+
+lesson: Electric charge, static electricity and lightning | HS-PS2-4, HS-PS3-5
+practice:
+mc1: A balloon rubbed on hair becomes negatively charged. What moved? | electrons, from the hair to the balloon | protons, from the hair to the balloon | electrons, from the balloon to the hair | protons, from the balloon to the hair
+hint: Only electrons move easily from one object to another.
+mc2: Two charged spheres repel each other. Which statement must be true? | They have the same type of charge | They have opposite charges | One is charged and one is neutral | Both are neutral
+hint: Like charges repel and opposite charges attract.
+num2: Two charges attract each other with a force of 12 N. If the distance between them doubles, what is the new force in newtons? | 3
+hint: Coulomb's law is an inverse-square law, like gravity.
+mc2: A charged comb picks up small bits of neutral paper. Why? | The comb's charge shifts charges in the paper, so the near side is attracted more strongly than the far side is repelled | The paper is already charged | Gravity pulls the paper toward the comb | The comb is magnetic
+hint: Think about how charges inside the paper can shift without leaving it.
+num2: Lightning flashes, and the thunder is heard 6 s later. Sound travels about 340 m/s in air. About how far away was the lightning, in meters? | 2040
+hint: The light arrives almost instantly, so the delay is the travel time of the sound.
+sa2: Explain how charge separation in a storm cloud can lead to a lightning strike. | Collisions between ice crystals and small pellets of soft hail in the cloud are thought to separate charge, often leaving the lower part of the cloud negative. That charge pushes electrons in the ground away, so the ground below becomes positive. When the charge difference grows large enough, the air breaks down and a giant spark, lightning, carries charge between the cloud and the ground.
+hint: Think about what happens when opposite charges build up on two sides of an insulator such as air.
+quiz:
+mc1: The SI unit of electric charge is the | coulomb | ampere | volt | ohm
+num2: Using Coulomb's law, F = k x q1 x q2 / r^2 with k = 9 x 10^9 N x m^2/C^2, what is the force in newtons between two charges of 1 x 10^-6 C each that are 0.3 m apart? | 0.1
+mc2: The force between two charges is F. If each charge is doubled and the distance stays the same, the force becomes | 4F | 2F | F | F/4
+mc2: During a thunderstorm, which is the safest place to be? | inside a closed building | under a tall tree | in an open field | in a swimming pool
+mc2: A car with a metal roof and body protects the people inside from lightning mainly because | the metal body carries the current around the passengers to the ground | the rubber tires insulate the car from the ground | lightning never strikes cars | the windows block the electricity
+num2: A lightning strike is 1,700 m away. Sound travels about 340 m/s in air. How many seconds after the flash is the thunder heard? | 5
+mc3: The leaves of an electroscope spread apart when a negatively charged rod is brought near its top without touching it. Why? | Electrons in the electroscope are pushed down into the leaves, giving both leaves the same negative charge so they repel | Protons move up toward the rod | Electrons jump from the rod to the leaves | The leaves become magnetized
+sa2: Explain why a lightning rod on a building is connected by a thick metal wire to the ground. | If lightning strikes, the rod and thick wire give the current a low-resistance path into the ground, so the charge flows through the metal instead of through the building's wood or walls, which could burn or be damaged.
+
+lesson: Current, voltage, resistance and Ohm's law | HS-PS3-3, HS-PS3-1
+practice:
+mc1: Electric current is the rate at which | charge flows past a point | energy is stored | voltage builds up | resistance changes
+hint: Current is measured in amperes, or coulombs per second.
+num2: A 9 V battery drives current through a 45 ohm resistor. What is the current in amperes? | 0.2
+hint: I = V / R.
+num2: A current of 0.5 A flows through a 20 ohm heater coil. What is the voltage across the coil, in volts? | 10
+hint: V = I x R.
+num2: How much charge, in coulombs, passes through a wire carrying 2 A for 30 s? | 60
+hint: Charge = current x time.
+mc2: A student doubles the voltage across a resistor that obeys Ohm's law. What happens to the current? | It doubles | It is cut in half | It stays the same | It becomes four times as large
+hint: With R fixed, V and I are proportional.
+mc2: Which copper wire has the greatest resistance, if all are at the same temperature? | a long, thin wire | a short, thick wire | a long, thick wire | a short, thin wire
+hint: Resistance increases with length and decreases as the wire gets thicker.
+quiz:
+mc1: The unit of electrical resistance is the | ohm | ampere | volt | coulomb
+num2: A toaster draws 8 A from a 120 V outlet. What is its resistance in ohms? | 15
+num2: A 6 V battery is connected to a 1.5 ohm bulb. What current flows, in amperes? | 4
+mc2: An ammeter measures current. How must it be connected? | in series with the part being measured | in parallel with the part being measured | across the battery only | anywhere, because it does not matter
+num2: A 12 V supply drives a current of 0.25 A through a circuit. How much charge flows through the circuit in 2 minutes, in coulombs? | 30
+mc3: Data from a lab: a resistor had 2.0 V across it with 0.10 A, 4.0 V with 0.20 A, and 6.0 V with 0.30 A. Which conclusion is supported? | It obeys Ohm's law with a resistance of 20 ohms | Its resistance increases with voltage | It has a resistance of 0.05 ohms | Its current does not depend on voltage
+mc2: A graph of current versus voltage for an incandescent light bulb curves, so the current rises less and less as the voltage increases. What does this show? | The filament's resistance increases as it gets hotter | The filament's resistance decreases as it gets hotter | The bulb obeys Ohm's law | The bulb has no resistance
+cer3: A student tested three wires made of the same metal with the same thickness, each connected to 3.0 V. Length 0.5 m: 1.2 A. Length 1.0 m: 0.6 A. Length 2.0 m: 0.3 A. Make a claim about how a wire's length affects its resistance. Use calculations as evidence and explain your reasoning. | Claim: a wire's resistance is proportional to its length. Evidence: R = V / I gives 3.0 / 1.2 = 2.5 ohms for 0.5 m, 3.0 / 0.6 = 5 ohms for 1.0 m and 3.0 / 0.3 = 10 ohms for 2.0 m, so doubling the length doubled the resistance. Reasoning: in a longer wire the moving electrons collide with more atoms along the way, so there is more opposition to the current, and the same voltage drives less current.
+
+lesson: Series and parallel circuits | HS-PS3-3, HS-PS3-1
+practice:
+num2: A 4 ohm and an 8 ohm resistor are connected in series. What is the total resistance in ohms? | 12
+hint: In series, resistances add.
+num2: A 3 ohm and a 6 ohm resistor are connected in parallel. What is the total resistance in ohms? | 2
+hint: Use 1/R = 1/R1 + 1/R2.
+num2: A 12 V battery is connected to a 2 ohm and a 4 ohm resistor in series. What is the current in amperes? | 2
+hint: Find the total resistance first.
+mc2: Three identical bulbs are connected in parallel to a battery with a steady voltage. One bulb is removed. What happens to the other two? | They stay lit at the same brightness | They go out | They get dimmer | They get brighter
+hint: Each branch connects directly across the battery.
+mc2: A 2 ohm and a 6 ohm resistor are connected in series to a battery. How does the voltage divide between them? | The 6 ohm resistor gets 3 times the voltage of the 2 ohm resistor | Both get the same voltage | The 2 ohm resistor gets more voltage | The 6 ohm resistor gets all of the voltage
+hint: The same current flows through both, and V = I x R.
+sa2: Explain why adding more resistors in parallel decreases the total resistance of a circuit. | Each new branch gives charge another path, so the total current from the battery increases for the same voltage. More current for the same voltage means less total resistance, because R = V / I.
+quiz:
+mc1: In a series circuit, the current is | the same through every part | largest through the biggest resistor | zero in the last part | split among the branches
+num2: Resistors of 5 ohms, 10 ohms and 15 ohms are connected in series to a 60 V supply. What is the current in amperes? | 2
+num2: Two 12 ohm resistors are connected in parallel to a 6 V battery. What is the total current from the battery, in amperes? | 1
+num2: A 10 ohm and a 20 ohm resistor are connected in series to a 9 V battery. What is the voltage across the 20 ohm resistor, in volts? | 6
+mc2: A 6 ohm and a 3 ohm resistor are connected in parallel across a 12 V battery. What is the current through the 3 ohm resistor? | 4 A | 2 A | 6 A | 1.33 A
+mc3: A 2 ohm resistor is connected in series with a parallel pair of 4 ohm resistors, and the whole circuit is connected to a 16 V battery. What is the current from the battery? | 4 A | 1.6 A | 2 A | 8 A
+sa2: A student adds a second identical bulb in series with the first bulb in a flashlight circuit. Explain what happens to the brightness of the bulbs and why. | Both bulbs are dimmer than the single bulb was. The total resistance doubles, so the current is cut in half for the same battery voltage, and each bulb gets only half the voltage, so each uses much less power.
+
+lesson: Electric power and energy in the home | HS-PS3-3, HS-PS3-1
+practice:
+num2: A lamp draws 0.5 A from a 120 V outlet. What is its power in watts? | 60
+hint: P = I x V.
+num2: A 1,000 W microwave oven runs for 0.5 hours. How many kilowatt-hours of energy does it use? | 0.5
+hint: Change watts to kilowatts, then multiply by hours.
+num2: Electricity costs $0.20 per kilowatt-hour. How much does it cost, in dollars, to run a 2,000 W heater for 3 hours? | 1.2
+hint: Find the kilowatt-hours first.
+mc2: An electric heater is rated 1,500 W at 120 V. What current does it draw? | 12.5 A | 0.08 A | 180,000 A | 1,620 A
+hint: I = P / V.
+mc2: A 10 W LED bulb and a 60 W incandescent bulb give off about the same amount of light. Which statement is true? | The LED transforms a larger fraction of its electrical energy into light | The incandescent bulb is more efficient | Both bulbs waste the same amount of energy | The LED uses more energy each hour
+hint: Compare how much energy each bulb uses to make the same light.
+sa2: Show that the power used by a resistor can be found with P = I^2 x R, starting from P = I x V and V = I x R. | Substitute V = I x R into P = I x V: P = I x (I x R) = I^2 x R.
+quiz:
+mc1: A kilowatt-hour is a unit of | energy | power | current | voltage
+num2: A 120 V television draws 1.5 A. What is its power in watts? | 180
+num2: A 5 ohm resistor carries a current of 3 A. What power does it use, in watts? | 45
+num2: A family runs a 4,000 W clothes dryer for 1.5 hours. Electricity costs $0.25 per kilowatt-hour. What does the drying cost, in dollars? | 1.5
+mc2: Which uses the most electrical energy? | a 1,200 W hair dryer used for 0.5 hours | a 60 W lamp used for 5 hours | a 100 W TV used for 3 hours | a 10 W charger used for 8 hours
+mc3: Power companies send electricity long distances at very high voltage. Why does this reduce the energy wasted in the wires? | For the same power, a high voltage means a low current, and the heating of the wires depends on the current squared | High voltage removes the resistance of the wires | Electricity travels faster at high voltage | High voltage increases the current, which heats the wires less
+mc2: A household used 300 kWh of electricity in April and 450 kWh in July. Electricity costs $0.20 per kWh. How much more did July's electricity cost than April's? | $30 | $90 | $150 | $60
+sa2: A student says a 100 W bulb always uses less energy than a 1,500 W hair dryer. Explain whether this is true. | It is not always true. Energy = power x time. A 100 W bulb left on for 10 hours uses 1,000 Wh (1 kWh), while a 1,500 W hair dryer used for 10 minutes uses 250 Wh. Power tells how fast energy is used; the total energy also depends on how long the device runs.
+
+lesson: Electrical safety: fuses, circuit breakers, grounding and GFCIs | HS-PS3-3, HS-ETS1-3
+practice:
+mc1: A fuse or circuit breaker protects a home circuit by | breaking the circuit when the current gets too large | raising the voltage | storing extra charge | making the wires thicker
+hint: What happens to wires when too much current flows through them?
+num2: A 120 V kitchen circuit has a 1,320 W toaster oven and an 840 W coffee maker running at the same time. What total current do they draw, in amperes? | 18
+hint: Add the powers, then use I = P / V.
+mc2: Why is it dangerous to plug many high-power appliances into one outlet with a power strip? | The total current in the circuit can get high enough to overheat the wires | The voltage at each appliance doubles | Appliances in parallel share one small current, so each runs slowly | The power strip blocks all current
+hint: Appliances plugged in together are in parallel, so their currents add.
+mc2: A ground-fault circuit interrupter (GFCI) outlet cuts off power when | the current going out on one wire does not match the current coming back on the other | the voltage is exactly 120 V | an appliance is switched off | the current is steady
+hint: If current leaks through a person to the ground, it does not come back through the wire.
+num2: Suppose a person's body has a resistance of 100,000 ohms when the skin is dry and 1,000 ohms when it is wet. If the person touches 120 V, how many times more current flows through the wet body than the dry body? | 100
+hint: I = V / R, and the voltage is the same in both cases.
+sa2: Explain why the third (round) prong on the plug of a metal-cased appliance makes it safer. | The third prong connects the metal case to the ground wire. If a loose live wire touches the case, current flows through the ground wire, which usually trips the breaker, instead of through a person who touches the case.
+hint: Follow the path the current would take if a live wire touched the metal case.
+quiz:
+mc1: A short circuit happens when | current takes a path with very little resistance, so the current becomes very large | a circuit has too much resistance | a switch is turned off | a fuse is replaced
+num2: A 15 A circuit breaker protects a 120 V circuit. What is the greatest total power, in watts, that can be used on the circuit before the breaker trips? | 1800
+mc2: A bird can sit on a single high-voltage power line without being hurt because | there is almost no voltage difference between its two feet, so very little current flows through it | the wire carries no current | birds cannot conduct electricity | high voltage only affects metal objects
+mc2: Which action is safest if a power line has fallen to the ground near you? | Stay far away and call for help | Move it with a dry wooden stick | Touch it quickly to see if it is live | Walk over it carefully
+num2: Suppose a person with wet hands has a body resistance of 1,500 ohms. If the person touches a 120 V live wire and a grounded pipe, what current, in amperes, would flow through the body? | 0.08
+mc2: GFCI outlets are used near sinks and bathtubs mainly because | water lowers the body's resistance, so a shock could cause a dangerous current | water raises the voltage of the outlet | water stops circuit breakers from working | GFCIs make appliances run faster
+mc3: A 120 V circuit with a 15 A breaker already powers a 600 W TV and 120 W of lights. Which appliance can be added without tripping the breaker? | a 900 W microwave | a 1,200 W space heater | a 1,500 W hair dryer | a 1,800 W kettle
+sa2: Explain why replacing a 15 A fuse with a 30 A fuse, without changing the wiring, is dangerous. | The wires were chosen to carry about 15 A safely. With a 30 A fuse, currents up to 30 A could flow before the fuse breaks the circuit, so the wires could overheat and start a fire.
+
+lesson: Magnetic fields and electromagnets | HS-PS2-5, HS-PS3-5
+practice:
+mc1: Outside a bar magnet, magnetic field lines point | from the north pole to the south pole | from the south pole to the north pole | in circles around the middle | straight out from both poles
+hint: The north end of a compass needle points along the field.
+mc2: A compass is placed next to a long straight wire. When current flows in the wire, the needle turns. What does this show? | An electric current produces a magnetic field | The wire is made of iron | Magnets produce electric current | The compass is electrically charged
+hint: What changed when the current was switched on?
+mc2: The magnetic field around a long straight wire carrying a current forms | circles around the wire | straight lines parallel to the wire | lines pointing straight away from the wire | no pattern
+hint: Use the right-hand rule: thumb along the current, fingers curl around the wire.
+mc2: Which change would make an electromagnet stronger? | adding more turns of wire to the coil | decreasing the current | replacing the iron core with a wooden core | removing half of the turns
+hint: Think about what the coil, the current and the core each add.
+mc2: Why is an electromagnet more useful than a permanent magnet on a scrapyard crane? | It can be switched off to drop the load | It never needs electricity | It works only on aluminum | It is always weaker
+hint: What does the crane operator need to do after lifting the scrap?
+sa2: A wire between the poles of a horseshoe magnet jumps sideways when a switch sends current through it. Explain why, and name a device that uses this effect. | The current in the wire makes its own magnetic field, which interacts with the magnet's field, so the magnet exerts a force on the wire. Electric motors use this force to make a coil spin.
+quiz:
+mc1: Like magnetic poles | repel | attract | have no effect on each other | cancel to make an electric charge
+mc2: What happens if a bar magnet is cut in half? | Each piece has its own north and south pole | One piece is all north and the other is all south | Both pieces lose all magnetism | Each piece becomes a single pole
+mc2: The north end of a compass needle points toward Earth's geographic north. Why? | There is a magnetic south pole near Earth's geographic north | There is a magnetic north pole near Earth's geographic north | The Sun pulls on the needle | Compass needles are electrically charged
+num2: Data: at the same current, an electromagnet with 10 turns lifted 4 paper clips, with 20 turns 8 clips, and with 30 turns 12 clips. Following this pattern, how many clips would 25 turns lift? | 10
+num2: The magnetic field near a long straight wire is proportional to the current and inversely proportional to the distance from the wire. At 2 cm from the wire the field is 40 microteslas. What is the field at 4 cm from the wire, in microteslas? | 20
+mc2: Doubling the current in a long straight wire does what to the magnetic field strength at a given distance from the wire? | doubles it | cuts it in half | makes it four times as large | does not change it
+mc3: An electric motor turns because | magnetic forces on a current-carrying coil in a magnetic field make the coil rotate | the battery pushes directly on the shaft | a changing magnetic field creates new charge | static charges repel the coil
+cer3: Students built an electromagnet with 40 turns of wire on an iron nail and changed the current. 0.5 A: 3 paper clips. 1.0 A: 6 clips. 1.5 A: 9 clips. 2.0 A: 11 clips. Make a claim about how current affects the strength of the electromagnet. Use the data as evidence and explain your reasoning. | Claim: more current makes the electromagnet stronger. Evidence: the number of clips rose from 3 at 0.5 A to 6 at 1.0 A and 9 at 1.5 A, about 3 more clips for each extra 0.5 A; at 2.0 A it lifted 11, a little less than the pattern predicts. Reasoning: an electric current produces a magnetic field, and more current makes a stronger field in the coil, which magnetizes the iron core more; the smaller gain at 2.0 A may happen because the core is getting close to its greatest magnetization or because counting clips is not very precise.
+
+lesson: Electromagnetic induction, generators and transformers | HS-PS2-5, HS-PS3-3
+practice:
+mc1: Producing a current by changing the magnetic field through a coil is called | electromagnetic induction | static electricity | conduction | resistance
+hint: The current is induced by a change in the field.
+mc2: A magnet sits still inside a coil that is connected to a meter. What does the meter show? | no current, because the magnetic field is not changing | a steady current | a current that keeps growing | a very large current
+hint: Induction needs a change.
+mc2: Which change would increase the voltage produced by a generator? | spinning the coil faster | spinning the coil slower | using fewer turns of wire | using a weaker magnet
+hint: The induced voltage depends on how fast the magnetic field through the coil changes.
+num2: An ideal transformer has 100 turns on its primary coil and 500 turns on its secondary coil. If the primary voltage is 24 V, what is the secondary voltage, in volts? | 120
+hint: Secondary voltage / primary voltage = secondary turns / primary turns.
+mc2: Why does a transformer not work with the steady direct current from a battery? | A steady current makes a steady magnetic field, which cannot induce a current in the second coil | Batteries have no voltage | Direct current flows too fast | Transformers need light to work
+hint: Think about what induction requires.
+sa2: A student drops a magnet through a coil connected to a meter. The needle swings one way as the magnet enters the coil and the other way as it leaves. Explain why. | As the magnet enters, the magnetic field through the coil increases; as it leaves, the field decreases. A changing field induces a current, and an increasing field and a decreasing field induce currents in opposite directions.
+hint: Is the field through the coil growing or shrinking at each moment?
+quiz:
+mc1: A generator transforms | mechanical energy into electrical energy | electrical energy into mechanical energy | chemical energy into electrical energy | light into electrical energy
+mc2: Which situation induces a current in a loop of wire? | moving a magnet toward the loop | holding a magnet still next to the loop | setting the loop on a wooden table | leaving the loop in a steady magnetic field
+num2: An ideal transformer steps 120 V down to 6 V. Its primary coil has 400 turns. How many turns does its secondary coil have? | 20
+mc2: Electric motors and generators have similar parts. How do they differ? | A motor uses current to make motion; a generator uses motion to make current | A motor needs magnets and a generator does not | They do exactly the same job | A generator stores energy and a motor creates it
+num2: An ideal transformer takes in 240 W at 120 V on its primary coil, and its secondary coil delivers 12 V. What current, in amperes, flows in the secondary coil? | 20
+mc1: At a hydroelectric dam, what turns the generators? | falling water turning turbines | sunlight on solar panels | burning coal | chemical reactions in batteries
+mc3: A student pushes a magnet into a coil slowly, then quickly. The meter reads 2 mV for the slow push and 10 mV for the quick push. Which conclusion is supported? | A faster change in the magnetic field induces a larger voltage | The magnet got stronger | Slower motion induces a larger voltage | The coil's resistance changed
+sa2: Explain how a transformer can change 120 V in one coil into 12 V in another coil, even though the two coils are not connected by a wire. | Alternating current in the primary coil makes a magnetic field that keeps changing, and an iron core guides this changing field through the secondary coil, where it induces an alternating voltage. Because the secondary coil has one tenth as many turns as the primary coil, the induced voltage is one tenth as large, 12 V.
+
+lesson: Unit review | HS-PS2-5, HS-PS3-3, HS-PS3-5
+practice:
+num2: A 24 V supply is connected to a 6 ohm resistor. What is the current in amperes? | 4
+hint: I = V / R.
+num2: A 10 ohm and a 15 ohm resistor are connected in series. What is their total resistance in ohms? | 25
+hint: In series, resistances add.
+mc2: Which device protects a circuit by melting when the current is too high? | a fuse | a resistor | a transformer | a generator
+hint: Think about which part is meant to fail first.
+num2: A 60 W bulb runs on 120 V. What current does it draw, in amperes? | 0.5
+hint: I = P / V.
+mc2: What happens to the strength of an electromagnet if the current through it is reduced? | It gets weaker | It gets stronger | It stays the same | It reverses its poles
+hint: The current is what creates the magnetic field.
+quiz:
+mc1: Ohm's law states | V = IR | F = ma | E = mc^2 | P = mv
+mc1: The unit of electric current is the | ampere | volt | ohm | watt
+mc2: A 12 V battery is connected to a 4 ohm resistor. The current is | 3 A | 48 A | 16 A | 0.33 A
+mc2: In a series circuit, if one bulb burns out | all bulbs go out | the others get brighter | nothing happens | only that bulb's neighbors go out
+num2: A 9 V battery pushes 0.3 A through a bulb. What is the bulb's resistance in ohms? | 30
+mc2: An ideal transformer has 50 turns on its primary coil and 200 turns on its secondary coil. With 30 V on the primary, the secondary voltage is | 120 V | 7.5 V | 30 V | 6,000 V
+num2: A 2,500 W oven runs for 2 hours. How many kilowatt-hours does it use? | 5
+sa2: Explain how electricity and magnetism are related. | Moving charges create magnetic fields, and changing magnetic fields create currents.
+
+test:
+mc2: A changing magnetic field near a coil of wire can produce | an electric current | sound only | light only | gravity
+mc2: An electric current in a wire produces | a magnetic field | a gravitational field only | radioactivity | nothing
+mc2: Power used by a device with 2 A at 120 V is | 240 W | 60 W | 122 W | 118 W
+mc3: Two resistors of 6 ohms are connected in parallel. The total resistance is | 3 ohms | 12 ohms | 6 ohms | 36 ohms
+mc1: Materials that let electric charge flow through them easily are called | conductors | insulators | magnets | batteries
+mc2: A plastic rod rubbed with wool becomes negatively charged. What charge does the wool have? | positive | negative | neutral | magnetic
+num2: Two charges repel each other with a force of 2 N. If the distance between them is cut in half, what is the new force in newtons? | 8
+num2: A lightning stroke moves 5 C of charge in 0.001 s. What is the average current in amperes? | 5000
+num2: A 1.5 V cell drives a current of 0.3 A through a small motor. What is the motor's resistance in ohms? | 5
+num2: Resistors of 20 ohms and 30 ohms are connected in series to a 10 V battery. What current flows, in amperes? | 0.2
+mc2: Three 9 ohm resistors are connected in parallel. What is their total resistance? | 3 ohms | 27 ohms | 9 ohms | 0.33 ohms
+mc3: A 4 ohm resistor and a 12 ohm resistor are connected in parallel across a 6 V battery. What is the total current from the battery? | 2 A | 0.375 A | 1.5 A | 0.5 A
+num2: A 1,800 W kettle runs for 5 minutes. How much energy does it use, in joules? | 540000
+mc2: Electricity costs $0.15 per kilowatt-hour. What does it cost to run a 500 W computer for 8 hours? | $0.60 | $6.00 | $60.00 | $0.06
+mc2: Which safety device cuts off power when it senses current leaking to the ground, for example through a person? | a ground-fault circuit interrupter (GFCI) | a transformer | a resistor | a light switch
+mc2: Which change makes an electromagnet weaker? | removing its iron core | adding more turns of wire | increasing the current | using a battery with a higher voltage
+num2: An ideal transformer has 2,000 turns on its primary coil and 100 turns on its secondary coil. If the primary voltage is 240 V, what is the secondary voltage, in volts? | 12
+mc2: A generator's coil spins in a magnetic field. The induced voltage would drop to zero if the coil | stopped turning | turned faster | had more turns | were placed near a stronger magnet
+sa2: Explain how a generator produces electricity. | Rotating a coil in a magnetic field (or a magnet in a coil) changes the magnetic field through the coil, inducing a current.
+sa2: Explain why household circuits are wired in parallel. | Each device gets full voltage and works independently if another is off.
+cer3: Students pushed the same magnet into coils with different numbers of turns, at the same speed each time, and recorded the induced voltage. 50 turns: 3 mV. 100 turns: 6 mV. 200 turns: 12 mV. Make a claim about how the number of turns affects the induced voltage. Use the data as evidence and explain your reasoning. | Claim: the induced voltage is proportional to the number of turns. Evidence: doubling the turns from 50 to 100 doubled the voltage from 3 to 6 mV, and doubling again to 200 turns doubled it again to 12 mV. Reasoning: each turn of the coil has the same changing magnetic field through it, so the same small voltage is induced in each turn; the turns are connected one after another, so their voltages add, and more turns give a larger total voltage.
+task3: Build an electromagnet and investigate how the number of coils and the current affect its strength (measured by paper clips lifted). Graph your data, explain the results and design an application that uses the electromagnet. | Controlled investigation, accurate graphs, clear explanation and a practical application. | Good data with partial explanation. | Limited data. | Little correct work.
+
+unit: Waves and electromagnetic radiation | HS-PS4-1, HS-PS4-2, HS-PS4-3, HS-PS4-4 | sci_11_n2
+el: Sketch a labeled wave (crest, trough, wavelength, amplitude) and a color-coded strip of the electromagnetic spectrum from radio waves to gamma rays, and practice v = f x wavelength with units. Pre-teach frequency, wavelength, amplitude, medium, interference, photon, bit and signal.
+
+lesson: Wave properties and the wave equation | HS-PS4-1
+practice:
+mc1: The distance from one crest of a wave to the next crest is the | wavelength | amplitude | frequency | period
+hint: Picture the pattern that repeats.
+num2: A wave has a frequency of 5 Hz and a wavelength of 2 m. What is its speed in m/s? | 10
+hint: v = f x wavelength.
+num2: A wave on a rope has a period of 0.25 s. What is its frequency in hertz? | 4
+hint: Frequency = 1 / period.
+mc2: In a longitudinal wave such as sound, the particles of the medium vibrate | parallel to the direction the wave travels | perpendicular to the direction the wave travels | only in circles | not at all
+hint: Think about a spring toy pushed and pulled along its length.
+mc2: If the frequency of a sound wave doubles while its speed stays the same, its wavelength | is cut in half | doubles | stays the same | becomes four times as long
+hint: v = f x wavelength, and v does not change.
+sa2: A student makes waves on a rope by shaking one end harder, but not faster. Explain which property of the wave changes and what this means for the energy it carries. | The amplitude increases, while the frequency and wavelength stay the same. A wave with a larger amplitude carries more energy.
+hint: Shaking harder moves the rope farther from its rest position.
+quiz:
+mc1: The number of waves passing a point each second is the | frequency | wavelength | amplitude | speed
+num2: Ocean waves pass a dock with a wavelength of 12 m and a frequency of 0.25 Hz. What is their speed in m/s? | 3
+num2: Sound travels at 340 m/s in air. What is the wavelength, in meters, of a 680 Hz tone? | 0.5
+mc2: A radio station broadcasts at 100 MHz (1 x 10^8 Hz). Radio waves travel at 3 x 10^8 m/s. What is the wavelength? | 3 m | 0.33 m | 300 m | 3 x 10^16 m
+num2: A buoy bobs up and down 30 times in 60 s as waves pass. What is the period of the waves, in seconds? | 2
+mc3: Students measured waves on a long spring at different frequencies: 2 Hz, wavelength 1.5 m; 3 Hz, 1.0 m; 6 Hz, 0.5 m. Which conclusion is supported? | The wave speed stayed constant at 3 m/s | The wave speed increased with frequency | The wavelength increased with frequency | The wave speed was 0.5 m/s
+mc2: Which wave can travel through empty space? | light | sound | an ocean wave | a wave on a rope
+sa2: Explain why astronauts on a spacewalk cannot hear each other directly but can talk by radio. | Sound is a mechanical wave that needs a medium such as air, and space is nearly a vacuum, so sound cannot travel between them. Radio waves are electromagnetic waves, which can travel through a vacuum.
+
+lesson: Wave behavior: reflection, refraction, diffraction and interference | HS-PS4-1
+practice:
+mc1: The bending of a wave as it passes at an angle from one medium into another, because its speed changes, is called | refraction | reflection | diffraction | interference
+hint: Think of a straw that looks bent in a glass of water.
+mc2: Two waves with amplitudes of 3 cm and 2 cm meet crest to crest. What is the amplitude where they overlap? | 5 cm | 1 cm | 6 cm | 0 cm
+hint: In constructive interference, the displacements add.
+num2: Light travels at 3 x 10^8 m/s in a vacuum and at 2 x 10^8 m/s in a certain glass. What is the index of refraction of the glass? | 1.5
+hint: Index of refraction = speed in a vacuum / speed in the material.
+mc2: You can hear a friend talking around the corner of a building even though you cannot see her. Which wave behavior mainly explains this? | diffraction | refraction | absorption | polarization
+hint: Waves spread out as they pass the edge of an obstacle, especially when the wavelength is similar in size to the opening.
+num2: A guitar string 0.65 m long vibrates in its fundamental mode, in which the wavelength is twice the string's length. Waves travel along the string at 260 m/s. What is the frequency, in hertz? | 200
+hint: Find the wavelength (2 x 0.65 m), then use f = v / wavelength.
+sa2: Explain why an echo is easy to hear in a large empty gym but hard to hear in a room full of curtains and soft furniture. | An echo is sound reflecting off hard surfaces. The gym's hard, flat walls reflect sound well, while curtains and soft furniture absorb much of the sound energy instead of reflecting it.
+quiz:
+mc1: The bouncing back of a wave when it hits a barrier is called | reflection | refraction | diffraction | resonance
+mc2: When light passes at an angle from air into water and slows down, it bends | toward the normal | away from the normal | not at all | back into the air every time
+mc2: Two speakers play the same steady tone. At some spots in the room the sound is very quiet. Why? | Waves from the two speakers arrive crest to trough and cancel | The air absorbs the sound at those spots | The waves refract in the air | The speakers switch off at those spots
+num2: A gemstone has an index of refraction of 2.5. Light travels at 3 x 10^8 m/s in a vacuum. What is the speed of light in the gemstone, in m/s? | 120000000
+num2: A wave in a ripple tank passes from deep water into shallow water. Its frequency stays 4 Hz, and its speed drops from 0.32 m/s to 0.20 m/s. What is its new wavelength, in meters? | 0.05
+mc2: Why does the pitch of an ambulance siren sound higher as the ambulance comes toward you? | The waves in front of the moving source are squeezed closer together, so their frequency is higher | The siren gets louder | The speed of sound increases | The driver changes the siren's setting
+mc3: Two waves on a rope, each with an amplitude of 4 cm, meet. At one instant the rope at the meeting point is flat. Which statement is true? | A crest met a trough of equal size, and the waves continue on unchanged afterward | The waves destroyed each other permanently | The waves stopped because they had different frequencies | The rope absorbed all of their energy
+sa2: Explain how an optical fiber can carry light around a gentle bend. | Light inside the glass core strikes the boundary with the outer layer at a large angle and is completely reflected back inside (total internal reflection). It keeps reflecting along the fiber, following the bend, with very little light escaping.
+
+lesson: The electromagnetic spectrum | HS-PS4-1, HS-PS4-4
+practice:
+mc1: Which list puts electromagnetic waves in order from longest to shortest wavelength? | radio, microwave, infrared, visible, ultraviolet, X-ray, gamma | gamma, X-ray, ultraviolet, visible, infrared, microwave, radio | visible, radio, X-ray, microwave, infrared, ultraviolet, gamma | radio, visible, microwave, infrared, X-ray, ultraviolet, gamma
+hint: Radio waves can be meters long; gamma rays are smaller than atoms.
+num2: Orange light has a wavelength of 6 x 10^-7 m and travels at 3 x 10^8 m/s. Its frequency is f x 10^14 Hz. What is f? | 5
+hint: Frequency = speed / wavelength.
+mc2: Which color of visible light has the highest frequency? | violet | red | yellow | green
+hint: Violet light has the shortest wavelength of the visible colors.
+mc2: In a vacuum, all electromagnetic waves have the same | speed | frequency | wavelength | energy per photon
+hint: What does the letter c stand for?
+mc2: Which type of electromagnetic wave do TV remote controls and thermal cameras use? | infrared | gamma rays | X-rays | ultraviolet
+hint: Warm objects give off this type of radiation.
+sa2: Give one use of microwaves and one use of X-rays, and explain why X-rays can make images of bones. | Microwaves are used to heat food (or to carry cell phone and radar signals). X-rays pass through soft tissue more easily than through dense bone, so bones block more of the X-rays and show up as light shapes on the image.
+hint: Think about which body parts let X-rays through.
+quiz:
+mc1: Electromagnetic waves are made of | changing electric and magnetic fields | vibrating air molecules | moving protons | sound energy
+num2: Light from the Sun takes about 500 s to reach Earth, traveling at 3 x 10^8 m/s. About how far away is the Sun, in billions of meters (units of 10^9 m)? | 150
+mc2: A microwave oven uses waves with a frequency of 2.4 x 10^9 Hz that travel at 3 x 10^8 m/s. What is their wavelength? | 0.125 m | 8 m | 7.2 x 10^17 m | 1.25 m
+num2: An X-ray has a wavelength of 1 x 10^-10 m and travels at 3 x 10^8 m/s. Its frequency is f x 10^18 Hz. What is f? | 3
+mc2: Which type of electromagnetic radiation can human eyes detect? | visible light, with wavelengths of roughly 400 to 700 nanometers | ultraviolet | infrared | radio waves
+mc3: Data: a remote control's signal was detected through a sheet of clear glass but not through a sheet of cardboard, while a radio signal was detected through both. Which conclusion is supported? | Different types of electromagnetic waves pass through different materials | All electromagnetic waves are blocked by cardboard | Radio waves cannot pass through glass | The remote control's signal is a sound wave
+mc2: Why do astronomers put X-ray telescopes in space instead of on the ground? | Earth's atmosphere absorbs most X-rays coming from space | X-rays travel faster in space | X-rays are too bright on the ground | The ground blocks radio waves
+sa2: Explain how visible light and radio waves are alike and how they are different. | Alike: both are electromagnetic waves that travel at the speed of light in a vacuum and need no medium. Different: radio waves have much longer wavelengths and lower frequencies than visible light, so each radio photon carries less energy.
+
+lesson: Photons, the particle model of light and radiation's effects on living tissue | HS-PS4-3, HS-PS4-4
+practice:
+mc1: A photon is | a packet of electromagnetic energy | a type of sound wave | a positive charge | a magnetic pole
+hint: Light can act like a stream of tiny bundles of energy.
+num2: The energy of a photon is E = h x f. If one photon has 3 times the frequency of another, how many times as much energy does it have? | 3
+hint: Photon energy is proportional to frequency.
+mc2: Which photon carries the most energy? | a gamma-ray photon | an ultraviolet photon | a visible light photon | a radio photon
+hint: A higher frequency means more energy per photon.
+num2: Using h = 6.6 x 10^-34 J x s, a photon with a frequency of 5 x 10^14 Hz has an energy of E x 10^-19 J. What is E? | 3.3
+hint: Multiply h by f, then adjust the power of 10.
+mc2: Which observation is evidence that light behaves as a wave? | Light passing through two narrow slits makes a pattern of bright and dark bands | Light knocks electrons out of a metal only above a certain frequency | Light travels in straight lines | Light carries energy
+hint: Which result depends on interference?
+sa2: Explain why sunscreen is used to protect skin from ultraviolet light but not from radio waves. | Ultraviolet photons have enough energy to damage molecules in skin cells, including DNA, which can cause sunburn and raise the risk of skin cancer. Radio photons have far less energy and cannot break these bonds, so they do not need to be blocked.
+quiz:
+mc1: Radiation with enough energy to remove electrons from atoms is called | ionizing radiation | infrared radiation | sound radiation | visible radiation
+num2: An ultraviolet photon has a frequency of 1.5 x 10^15 Hz and an infrared photon has a frequency of 3 x 10^14 Hz. How many times as much energy does the ultraviolet photon carry? | 5
+mc2: In the photoelectric effect, dim ultraviolet light knocks electrons out of a zinc plate, but very bright red light does not. What does this show? | Light energy comes in photons whose energy depends on frequency | Brighter light always has more energy per photon | Red light is not electromagnetic | Zinc reacts only to sound
+num2: Using h = 6.6 x 10^-34 J x s, a radio photon with a frequency of 1 x 10^8 Hz has an energy of E x 10^-26 J. What is E? | 6.6
+mc2: Why are lead shields used in rooms where X-rays are made? | Lead absorbs X-rays well, so it blocks ionizing radiation from reaching people outside the beam | Lead makes the X-rays brighter | Lead keeps the room warm | Lead turns X-rays into radio waves
+mc3: A student says a cell phone's radio waves must be as dangerous as gamma rays because both are called radiation. Which response is best supported by physics? | Radio photons have far less energy than gamma-ray photons and are not ionizing, so the two cannot be treated as the same hazard | Radio waves and gamma rays have the same photon energy | Radio waves are not electromagnetic | All radiation is equally dangerous
+mc2: A photon of green light has energy E. A photon with half its frequency has energy | E/2 | 2E | E/4 | E
+cer3: Students placed UV-sensitive beads, which change color in ultraviolet light, under different covers in sunlight for 1 minute. No cover: dark purple. Clear plastic wrap: dark purple. Plastic wrap coated with SPF 30 sunscreen: pale pink. Aluminum foil: no color change. Make a claim about which covers block ultraviolet light. Use the data as evidence and explain your reasoning. | Claim: the sunscreen and the aluminum foil block most ultraviolet light, but clear plastic wrap does not. Evidence: beads under plastic wrap turned as dark as uncovered beads, beads under sunscreen turned only pale pink, and beads under foil did not change. Reasoning: the beads change color only when UV photons reach them, so a darker color means more UV got through; the sunscreen absorbs much of the UV and the foil blocks it completely, which is why sunscreen helps protect skin cells from UV damage.
+
+lesson: Analog and digital signals in communication technology | HS-PS4-2, HS-PS4-5
+practice:
+mc1: A digital signal represents information as | a series of separate values, such as 1s and 0s | a smoothly changing wave only | sound waves in air | one constant voltage
+hint: Think about the binary code computers use.
+num2: How many different values can be represented with 8 bits? | 256
+hint: Each bit doubles the number of possibilities, so n bits give 2^n values.
+num2: A song is stored as a 4 megabyte file. How many megabits is that, if 1 byte = 8 bits? | 32
+hint: Multiply the number of bytes by 8.
+mc2: Why can a digital file be copied many times without losing quality? | Each copy only has to tell 1s from 0s, so small amounts of noise can be removed | Digital files contain no information | Digital signals never use electricity | Digital signals are louder
+hint: Noise blurs a signal. How much does that matter when there are only two levels?
+mc2: A cell phone sends information to a tower using | radio waves | sound waves in air | X-rays | gamma rays
+hint: The signal must travel through the air without wires.
+sa2: Explain one advantage and one disadvantage of storing photos digitally. | Advantage: digital files can be copied, sent and stored many times without losing quality, and they take up little space. Disadvantage: files can be lost if a device fails, can be deleted by mistake or stolen by hackers, or may become unreadable if the file format is no longer supported.
+quiz:
+mc1: The smallest unit of digital information, a single 0 or 1, is called a | bit | byte | hertz | pixel
+num2: A digital system uses 10 bits for each sample. How many different values can each sample have? | 1024
+num2: A 600 megabit file is downloaded at 50 megabits per second. How many seconds does the download take? | 12
+mc2: An analog signal is | a signal that varies continuously | a signal made only of 1s and 0s | a signal that cannot be sent by radio | always a digital signal
+mc2: To record sound digitally, a device measures the sound wave many thousands of times each second. This step is called | sampling | interference | refraction | diffraction
+num3: Music is recorded with 44,100 samples per second, and each sample uses 16 bits. How many bits are recorded for 1 second of one channel? | 705600
+mc3: An engineer compared two cables that each carried data 10 km. Copper cable: 100 megabits per second, with the signal boosted every 0.1 km. Optical fiber: 10,000 megabits per second, with the signal boosted every 50 km. Which conclusion is supported? | The fiber carries data faster and over longer distances between boosts | The copper cable carries data faster | Both cables perform the same | The fiber needs more boosts than the copper
+sa2: Explain how a smartphone camera turns light into digital information. | The camera's sensor is a grid of millions of tiny light detectors (pixels). Light hitting each pixel produces an electrical signal that depends on its brightness and color, and the phone measures each signal and stores it as a number written in binary (1s and 0s).
+
+lesson: Unit review | HS-PS4-1, HS-PS4-2, HS-PS4-3, HS-PS4-4
+practice:
+num2: A wave has a speed of 12 m/s and a frequency of 4 Hz. What is its wavelength, in meters? | 3
+hint: Wavelength = speed / frequency.
+mc2: Which electromagnetic wave has the highest frequency? | gamma rays | radio waves | visible light | infrared
+hint: Think about the order of the spectrum.
+mc2: A wave has a period of 0.5 s. What is its frequency? | 2 Hz | 0.5 Hz | 5 Hz | 20 Hz
+hint: Frequency = 1 / period.
+num2: How many different values can 4 bits represent? | 16
+hint: Use 2^n.
+mc2: Which type of electromagnetic radiation is ionizing? | X-rays | radio waves | microwaves | infrared
+hint: Ionizing radiation has high-energy photons.
+quiz:
+mc1: Wave speed equals | frequency times wavelength | frequency divided by wavelength | amplitude times frequency | wavelength divided by period squared
+mc1: Light travels fastest in | a vacuum | water | glass | diamond
+mc2: A sound wave with frequency 340 Hz in air (speed 340 m/s) has a wavelength of | 1 m | 340 m | 115,600 m | 0.5 m
+mc2: Which has a longer wavelength than visible light? | radio waves | X-rays | gamma rays | ultraviolet
+num2: A wave travels at 8 m/s with a wavelength of 0.4 m. What is its frequency, in hertz? | 20
+mc2: When light enters glass from air at an angle, it bends because | its speed changes | its frequency doubles | it becomes a sound wave | it loses all of its energy
+num2: A code uses 6 bits for each symbol. How many different symbols can it represent? | 64
+sa2: Explain how noise-canceling headphones use wave interference. | They produce sound waves opposite to incoming noise, causing destructive interference.
+
+test:
+mc2: Light behaves as | both a wave and a particle | only a particle | only a wave | neither
+mc2: High-energy radiation like UV can damage cells because it | carries enough energy to break chemical bonds | is very loud | is cold | has no energy
+mc2: Digital transmission is preferred over analog because | it resists noise and can be stored and copied reliably | it uses no energy | it is always faster than light | it needs no devices
+mc3: Two identical waves meet crest to trough. The result is | destructive interference | constructive interference | refraction | a louder sound
+mc1: The distance from a wave's rest position to a crest is its | amplitude | wavelength | frequency | period
+num2: A wave on a string has a frequency of 50 Hz and a wavelength of 0.8 m. What is its speed, in m/s? | 40
+num2: A sound wave travels at 340 m/s with a wavelength of 2 m. What is its frequency, in hertz? | 170
+num2: Waves reach a beach once every 8 s. What is their frequency, in hertz? | 0.125
+mc2: Sound travels faster in water than in air. When a sound wave passes from air into water, which property stays the same? | frequency | speed | wavelength | all of them
+mc2: The colors of a rainbow appear because | different wavelengths of light refract by different amounts in water drops | water drops create new colors | the Sun gives off only seven colors | light reflects off the clouds
+num2: Light travels at 3 x 10^8 m/s in a vacuum and at 2.25 x 10^8 m/s in water. What is water's index of refraction, to the nearest hundredth? | 1.33
+mc2: Two identical waves meet crest to crest. The amplitude where they overlap is | twice the amplitude of one wave | zero | half the amplitude of one wave | the same as the amplitude of one wave
+mc2: Which electromagnetic waves are used by radar and by microwave ovens? | microwaves | gamma rays | ultraviolet | visible light
+num2: A radio wave travels at 3 x 10^8 m/s and has a wavelength of 300 m. What is its frequency, in hertz? | 1000000
+mc2: Which photon has the least energy? | an infrared photon | a visible light photon | an ultraviolet photon | an X-ray photon
+mc2: Which evidence supports the particle model of light? | Light above a certain frequency knocks electrons out of a metal even when it is dim | Light makes interference patterns | Light spreads out after passing through a small opening | Light refracts in water
+num2: How many different values can be stored with 12 bits? | 4096
+mc3: A 2 megabyte photo is sent over a connection that carries 4 megabits per second. Ignoring other delays, how long does it take? | 4 s | 0.5 s | 8 s | 64 s
+sa2: Calculate the frequency of a wave with speed 300 m/s and wavelength 0.6 m. | f = 300 / 0.6 = 500 Hz.
+sa2: Explain why UV and X-rays are more dangerous than radio waves. | Higher frequency means more energy per photon, which can damage tissue and DNA.
+cer3: Students made waves in a ripple tank at a steady 5 Hz and measured the wave speed at three water depths. Depth 1 cm: 0.31 m/s. Depth 2 cm: 0.44 m/s. Depth 4 cm: 0.63 m/s. Make a claim about how water depth affects these waves. Use calculations as evidence and explain your reasoning. | Claim: in this shallow tank, waves travel faster and have longer wavelengths in deeper water. Evidence: the speed rose from 0.31 m/s at 1 cm to 0.44 m/s at 2 cm and 0.63 m/s at 4 cm; using wavelength = v / f, the wavelengths were 0.31 / 5 = 0.062 m, 0.44 / 5 = 0.088 m and 0.63 / 5 = 0.126 m. Reasoning: the frequency is set by the source, so it stays at 5 Hz; since v = f x wavelength, a faster speed with the same frequency must mean a longer wavelength. This change of speed with depth is also why waves bend (refract) when they move into shallower water.
+task3: Evaluate claims about the safety of cell phone radiation. Use the electromagnetic spectrum and the energy of photons to explain the science, analyze evidence from at least two credible sources, and write a reasoned conclusion. | Accurate physics, critical evaluation of credible sources, well-reasoned conclusion. | Accurate physics with limited source evaluation. | Partial explanation. | Little correct work.
