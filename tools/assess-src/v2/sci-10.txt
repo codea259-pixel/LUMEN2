@@ -1,0 +1,772 @@
+@subject sci
+@grade 10
+# Converted from the grade 10 section of tools/assess-src/sci.txt. Every original unit line, standard, item and unit test
+# item is carried over verbatim. The original "Unit review" lesson is kept as the last lesson of each unit: its quiz keeps
+# the original quiz items (mc 1-4 and the explanation item) and the unit test keeps the original test items (mc 5-8,
+# both short answers and the task). New lessons come first. Atomic masses in items are rounded school values.
+about: Chemistry studies the structure of atoms and the periodic table, chemical bonding and properties, chemical reactions and the conservation of mass, stoichiometry, reaction rates and equilibrium, and acids and bases.
+std: HS-PS1-1 | Use the periodic table as a model to predict the relative properties of elements based on patterns of electrons in the outermost energy level.
+std: HS-PS1-2 | Construct and revise an explanation for the outcome of a simple chemical reaction based on atoms, trends in the periodic table and patterns of chemical properties.
+std: HS-PS1-5 | Apply scientific principles and evidence to explain the effects of changing temperature or concentration on the rate of a reaction.
+std: HS-PS1-6 | Refine the design of a chemical system by specifying a change in conditions that would produce increased amounts of products at equilibrium.
+std: HS-PS1-7 | Use mathematical representations to support the claim that atoms, and therefore mass, are conserved during a chemical reaction.
+
+unit: Atomic structure and the periodic table | HS-PS1-1, HS-PS1-3, HS-PS1-8 | sci_8_n1
+el: Post a labeled atom model (nucleus, proton, neutron, electron, energy level) and a periodic table with groups and periods marked. Give frames: "This atom has ___ protons, so it is ___." and "Down a group, ___ increases because ___."
+
+lesson: Protons, neutrons and electrons: atomic number and mass number | HS-PS1-1
+practice:
+mc1: Which particle in an atom has a positive charge? | proton | neutron | electron | photon
+hint: Two kinds of particles are in the nucleus, and only one of them has a charge.
+mc1: The atomic number of an element tells the number of | protons in each atom | neutrons in each atom | protons plus neutrons | energy levels
+hint: Every atom of the same element shares this number.
+num2: An atom has 11 protons and 12 neutrons. What is its mass number? | 23
+hint: The mass number counts the particles in the nucleus.
+num2: A neutral atom of chlorine has atomic number 17 and mass number 35. How many neutrons does it have? | 18
+hint: Subtract the number of protons from the mass number.
+mc2: Where is almost all of an atom's mass located? | in the nucleus | in the electron cloud | spread evenly through the atom | in the empty space between electrons
+hint: Compare the mass of a proton or neutron with the mass of an electron.
+sa2: In the gold foil experiment, most alpha particles passed straight through a thin sheet of gold, but a few bounced back sharply. Explain what this evidence showed about the structure of the atom. | Most of the atom is empty space, so most particles passed straight through. A few bounced back because they hit a tiny, dense, positively charged nucleus that holds most of the atom's mass.
+hint: What would have to be present to turn a fast, positive particle around?
+quiz:
+mc1: A neutral atom has the same number of | protons and electrons | protons and neutrons | neutrons and electrons | protons and energy levels
+num2: Potassium-39 is the most common isotope of potassium, which has atomic number 19. How many neutrons are in its nucleus? | 20
+num2: A neutral atom has 26 protons and 30 neutrons. How many electrons does it have? | 26
+num2: A nucleus contains 16 protons and 16 neutrons. What is the mass number of this sulfur atom? | 32
+mc2: An atom has 8 protons, 9 neutrons and 8 electrons. Which element is it? | oxygen | fluorine | nitrogen | neon
+mc2: Which statement about the electron is correct? | It has a negative charge and much less mass than a proton | It has no charge and the same mass as a proton | It has a positive charge and is found in the nucleus | It has a negative charge and the same mass as a neutron
+mc3: Atom A has 6 protons and 6 neutrons. Atom B has 6 protons and 8 neutrons. Atom C has 7 protons and 7 neutrons. Which two atoms are the same element? | A and B | A and C | B and C | none of them
+sa2: A model shows a nucleus with 3 protons and 4 neutrons, with 3 electrons around it. Identify the element and its mass number, and explain how you know. | Lithium, with mass number 7. The 3 protons give atomic number 3, which is lithium, and the mass number is 3 protons + 4 neutrons = 7.
+
+lesson: Isotopes, ions and average atomic mass | HS-PS1-1
+practice:
+mc1: Carbon-12 and carbon-14 are | isotopes of carbon | different elements | ions of carbon | compounds of carbon
+hint: Both names say carbon. What does the number after the name tell you?
+num2: Carbon has atomic number 6. How many neutrons are in an atom of carbon-14? | 8
+hint: The number in the name is the mass number.
+mc2: A magnesium atom (12 protons) loses 2 electrons. What is the charge of the ion? | 2+ | 2- | 10+ | 0
+hint: Electrons are negative. Losing negative charge leaves the atom with extra positive charge.
+num2: A sulfide ion, S2-, comes from a sulfur atom with 16 protons. How many electrons does the ion have? | 18
+hint: A 2- charge means two extra electrons.
+num3: Chlorine has two common isotopes: 75% chlorine-35 (mass 35 u) and 25% chlorine-37 (mass 37 u). What is the average atomic mass of chlorine in u? | 35.5
+hint: Multiply each mass by its fraction, then add.
+sa2: Explain why the atomic mass of an element on the periodic table is usually not a whole number. | It is a weighted average of the masses of the element's naturally occurring isotopes, based on how common each isotope is, so it usually falls between whole numbers.
+hint: Most elements are found in nature as a mix of isotopes.
+quiz:
+mc1: Which symbol shows an ion that formed when an atom gained one electron? | I- | I+ | Ca2+ | Ne
+mc2: An ion with 20 protons and 18 electrons has a charge of | 2+ | 2- | 18+ | 20+
+num2: A fluoride ion, F-, has 9 protons and 10 neutrons. How many electrons does it have? | 10
+num2: An aluminum atom (13 protons) forms an ion with a 3+ charge. How many electrons does the ion have? | 10
+num3: Boron has two isotopes: 20% boron-10 (mass 10 u) and 80% boron-11 (mass 11 u). What is boron's average atomic mass in u? | 10.8
+mc2: Which pair has the same number of electrons? | Na+ and Ne | Na and Ne | Cl- and Ne | Mg and Na+
+mc3: A sample of an element is 90% isotope X (mass 20 u) and 10% isotope Y (mass 22 u). What is the element's average atomic mass? | 20.2 u | 21.0 u | 21.8 u | 22.0 u
+sa2: A student says carbon-14 is a different element from carbon-12 because it has a different mass. Explain the error. | The element is set by the number of protons. Both have 6 protons, so both are carbon; they differ only in the number of neutrons, which makes them isotopes.
+
+lesson: Electron shells, valence electrons and flame tests | HS-PS1-1
+practice:
+mc1: In the shell model, how many electrons fit in the first energy level? | 2 | 8 | 18 | 1
+hint: The first level is the smallest one, closest to the nucleus.
+mc2: What is the shell arrangement of a neutral magnesium atom (12 electrons)? | 2, 8, 2 | 2, 10 | 8, 4 | 2, 2, 8
+hint: Fill the first level, then the second, then the third.
+num2: A neutral phosphorus atom has 15 electrons arranged 2, 8, 5. How many valence electrons does it have? | 5
+hint: Look only at the outermost level.
+mc2: In a flame test, a solution containing sodium gives the flame a bright color. Which color is it? | yellow-orange | lilac | blue-green | crimson red
+hint: Think of the flame color you see when salty water boils over onto a gas stove.
+mc2: Why does a heated metal salt give off light of specific colors? | Excited electrons fall back to lower energy levels and release light of certain energies | The flame burns the metal into ash | Protons jump between nuclei | The salt reflects the flame's light
+hint: Heat gives electrons energy. What happens when they lose it?
+sa2: Describe a safe way to do flame tests on metal salt solutions in a school lab. | Wear goggles and tie back hair; hold a wooden splint soaked in the solution (or a clean wire loop dipped in it) at the edge of a Bunsen burner flame; use small amounts; keep paper and other flammable items away; drop used splints into a beaker of water; work only with the teacher's permission and supervision.
+hint: Think about eyes, hair, the flame and used materials.
+quiz:
+mc1: Which element has the shell arrangement 2, 8, 1? | sodium | lithium | neon | potassium
+num2: A neutral sulfur atom has 16 electrons. How many electrons are in its third energy level? | 6
+num2: Calcium has 20 electrons arranged 2, 8, 8, 2. How many valence electrons does calcium have? | 2
+mc2: Elements in Group 17 have how many valence electrons? | 7 | 17 | 1 | 8
+mc2: In flame tests, lithium, strontium and copper compounds each give a different flame color. What does this show? | Each element has its own pattern of electron energy levels | All metals release the same light | The flame color depends only on the size of the sample | The flame changes color randomly
+mc3: A student tests an unknown solution. Data: known sodium solution - yellow-orange flame; known potassium solution - lilac flame; known copper solution - blue-green flame; unknown solution - blue-green flame. Which conclusion is best supported? | The unknown most likely contains copper | The unknown most likely contains sodium | The unknown contains no metal | The unknown contains both sodium and potassium
+mc2: An electron in an atom moves from the third energy level down to the second. What happens? | The atom releases energy as light | The atom absorbs energy | The atom gains a proton | The atom becomes a different element
+cer3: A class heated wooden splints soaked in different salt solutions in a burner flame while wearing goggles. Sodium chloride and sodium nitrate both gave a yellow-orange flame. Potassium chloride and potassium nitrate both gave a lilac flame. Make a claim about which part of each salt causes the flame color. Use the data as evidence and explain your reasoning with electron energy levels. | Claim: the metal (sodium or potassium) causes the flame color, not the chloride or nitrate part. Evidence: both sodium salts gave yellow-orange even though one was a chloride and one a nitrate, and both potassium salts gave lilac. Changing the nonmetal part did not change the color, but changing the metal did. Reasoning: heat excites electrons in the metal atoms; when they fall back to lower energy levels they release light with energies set by that element's energy levels, so each metal gives its own color.
+
+lesson: Periodic table families and trends: radius, ionization energy and electronegativity | HS-PS1-1, HS-PS1-2
+practice:
+mc1: The horizontal rows of the periodic table are called | periods | groups | families | columns
+hint: Groups run up and down.
+mc2: Moving down Group 1 from lithium to potassium, the atoms | get larger because they have more energy levels | get smaller because they have more protons | stay the same size | lose their valence electron
+hint: Each new period adds an energy level.
+mc2: Which element has the highest electronegativity? | fluorine | cesium | iron | helium
+hint: Electronegativity rises toward the upper right of the table, not counting the noble gases.
+mc2: First ionization energy is the energy needed to | remove one electron from an atom | add a proton to an atom | split the nucleus | add a neutron to an atom
+hint: Ionization means forming an ion.
+mc3: Potassium reacts with water more vigorously than sodium. Which explanation fits? | Potassium's valence electron is farther from the nucleus, so it is lost more easily | Potassium has fewer protons than sodium | Potassium has more valence electrons than sodium | Potassium is a nonmetal
+hint: Compare how far each atom's outer electron is from the nucleus.
+sa2: Across Period 3 from sodium to chlorine, atoms get smaller even though they gain electrons. Explain why. | The number of protons increases across the period while electrons are added to the same energy level, so the stronger pull of the nucleus draws the electrons closer and the atom shrinks.
+hint: What changes in the nucleus from one element to the next?
+quiz:
+mc1: Elements in the same vertical column of the periodic table are in the same | group | period | row | isotope
+mc2: Which list orders the atoms from smallest to largest atomic radius? | F, O, N | N, O, F | O, F, N | F, N, O
+mc2: Which element has a lower first ionization energy than magnesium? | sodium | chlorine | argon | sulfur
+mc2: Which pair of elements would you expect to have the most similar chemical properties? | chlorine and bromine | chlorine and argon | sodium and magnesium | carbon and nitrogen
+mc2: Halogen reactivity decreases down the group. Which halogen is the most reactive? | fluorine | chlorine | bromine | iodine
+mc3: In a teacher demonstration behind a safety screen, Group 2 metals were placed in cold water. Magnesium - very slow bubbling; calcium - steady bubbling; strontium - fast bubbling. Which prediction for barium, below strontium, is best supported? | Barium will bubble even faster than strontium | Barium will not react | Barium will react more slowly than magnesium | Barium will react at the same rate as calcium
+num2: Silicon is in Group 14 and Period 3. How many energy levels hold electrons in a neutral silicon atom? | 3
+sa2: A student says that because chlorine has more electrons than sodium, a chlorine atom must be larger. Use periodic trends to explain why the student is wrong. | Both are in Period 3, so their electrons fill the same number of energy levels. Chlorine has 17 protons and sodium has 11, so chlorine's nucleus pulls its electrons in more tightly, making the chlorine atom smaller.
+
+lesson: Nuclear decay, half-life, fission and fusion | HS-PS1-8
+practice:
+mc1: An alpha particle is made of | 2 protons and 2 neutrons | 1 electron | 1 proton | high-energy light only
+hint: It is the same as the nucleus of a helium atom.
+mc2: Which kind of nuclear radiation can be stopped by a sheet of paper? | alpha | beta | gamma | all three
+hint: The heaviest particle with the most charge is the least penetrating.
+num2: A radioactive sample has a mass of 80 g and a half-life of 3 days. What mass in grams remains after 9 days? | 10
+hint: Count how many half-lives fit in 9 days.
+mc2: Uranium-238 (atomic number 92) gives off an alpha particle. What is the new nucleus? | thorium-234 (atomic number 90) | uranium-234 (atomic number 92) | plutonium-242 (atomic number 94) | protactinium-238 (atomic number 91)
+hint: An alpha particle carries away a mass of 4 and a charge of 2.
+mc2: Which process releases the energy that powers the sun? | fusion of hydrogen nuclei into helium | fission of uranium | burning of coal | beta decay of carbon
+hint: Stars join the lightest nuclei together.
+sa2: Compare nuclear fission and nuclear fusion. | Fission splits a large nucleus, such as uranium-235, into smaller nuclei and releases energy; it is used in nuclear power plants. Fusion joins small nuclei, such as hydrogen, into a larger one and releases energy; it powers stars. Both turn a small amount of mass into a large amount of energy.
+hint: One splits nuclei; one joins them.
+quiz:
+mc1: In beta decay, a neutron in the nucleus changes into a proton and the nucleus gives off | an electron | an alpha particle | a neutron | a whole atom
+mc2: Carbon-14 (atomic number 6) undergoes beta decay. What nucleus forms? | nitrogen-14 | boron-14 | carbon-13 | nitrogen-15
+num2: A hospital receives 120 mg of iodine-131. Use a half-life of 8 days. How many mg remain after 24 days? | 15
+num2: A sample of a radioactive isotope drops from 64 g to 8 g in 30 years. What is its half-life in years? | 10
+mc2: Which type of nuclear radiation is the most penetrating and needs thick lead or concrete to reduce it? | gamma | alpha | beta | visible light
+mc3: A dating lab finds that a piece of wood has 1/4 of the carbon-14 that a living tree has. Carbon-14 has a half-life of about 5,730 years. About how old is the wood? | 11,460 years | 5,730 years | 2,865 years | 22,920 years
+num2: Radon-222 (atomic number 86) gives off an alpha particle. What is the mass number of the new nucleus? | 218
+sa2: Explain one benefit and one risk of using nuclear fission to generate electricity. | Benefit: it produces large amounts of electricity without releasing carbon dioxide while it operates. Risk: it produces radioactive waste that stays dangerous for a very long time and must be stored safely, and an accident can release radiation.
+
+lesson: Unit review | HS-PS1-1, HS-PS1-3, HS-PS1-8
+practice:
+mc2: Which element has 4 valence electrons? | carbon | oxygen | neon | sodium
+hint: Find the group number. For Groups 13 to 18, subtract 10.
+num2: Argon has atomic number 18. How many neutrons are in a neutral atom of argon-40? | 22
+hint: Mass number minus atomic number.
+mc2: Which ion has 10 electrons? | O2- | S2- | Cl- | K+
+hint: Start with the atomic number, then add or subtract electrons for the charge.
+num2: A 200 g sample of a radioactive isotope has a half-life of 2 hours. How many grams remain after 8 hours? | 12.5
+hint: How many half-lives is 8 hours?
+sa2: Chlorine has atomic number 17. Compare an atom of chlorine-37 with a chloride ion (Cl-) made from chlorine-35 by giving the numbers of protons, neutrons and electrons in each. | Chlorine-37 atom: 17 protons, 20 neutrons, 17 electrons. Chloride ion from chlorine-35: 17 protons, 18 neutrons, 18 electrons. They have the same number of protons, so both are chlorine.
+hint: Start with the atomic number, then use the mass number and the charge.
+quiz:
+mc1: An atom with 6 protons is | carbon | oxygen | nitrogen | boron
+mc1: Isotopes of an element differ in their number of | neutrons | protons | electrons only | charges
+mc2: Valence electrons are | electrons in the outermost energy level | electrons in the nucleus | protons | all electrons
+mc2: Which element has the greatest atomic radius? | cesium | fluorine | oxygen | helium
+num2: A neutral atom has mass number 27 and 14 neutrons. How many electrons does it have? | 13
+mc2: Which type of nuclear radiation has no mass and no charge? | gamma | alpha | beta | proton
+ex2: Explain how the periodic table can be used to predict properties of an unfamiliar element. | Its position shows valence electrons and trends in size and reactivity.
+
+test:
+mc2: Which group is the most reactive metals? | alkali metals | noble gases | halogens | transition metals
+mc2: Electronegativity generally increases | across a period from left to right | down a group | randomly | toward metals
+mc2: Nuclear fission involves | splitting a large nucleus | joining small nuclei | electron transfer | dissolving
+mc3: Element X has 1 valence electron and reacts violently with water. Which group is it most likely in? | Group 1 | Group 17 | Group 18 | Group 14
+mc1: The center of an atom, which contains the protons and neutrons, is the | nucleus | electron cloud | valence shell | ion
+num2: Zinc has atomic number 30. How many neutrons are in the nucleus of zinc-65? | 35
+num2: An iron ion, Fe3+, has 26 protons. How many electrons does it have? | 23
+num3: Assume a sample of copper is 70% copper-63 (mass 63 u) and 30% copper-65 (mass 65 u). What is its average atomic mass in u? | 63.6
+num2: A radioactive tracer has a half-life of 6 hours. A sample starts at 48 mg. How many mg remain after 24 hours? | 3
+mc2: Which shell arrangement belongs to a neutral chlorine atom (17 electrons)? | 2, 8, 7 | 2, 8, 8 | 2, 7, 8 | 2, 8, 6, 1
+mc2: Which element is a halogen? | bromine | barium | boron | argon
+mc2: Which element in Period 2 has the largest atomic radius? | lithium | carbon | oxygen | neon
+mc2: Which statement about first ionization energy is correct? | It generally decreases down a group | It generally decreases across a period from left to right | It is the same for all elements in a period | It is highest for the alkali metals
+mc2: Thorium-234 (atomic number 90) changes into protactinium-234 (atomic number 91). Which particle is given off? | a beta particle | an alpha particle | a proton | a neutron
+mc2: Light given off by excited hydrogen atoms passes through a prism and shows only a few thin colored lines. What does this show? | Electrons in atoms can have only certain energies | Electrons can have any amount of energy | Hydrogen atoms have no electrons | Light is made of protons
+mc3: Element Q is in Period 3 and Group 2. Which statement about Q is correct? | It has 2 valence electrons and tends to form a 2+ ion | It has 3 valence electrons and tends to form a 3- ion | It has 2 valence electrons and tends to form a 2- ion | It is a noble gas
+mc3: Data: atomic radii of Group 1 metals - lithium 152 pm, sodium 186 pm, potassium 227 pm, rubidium 248 pm. Which conclusion is supported? | Atomic radius increases down the group | Atomic radius decreases down the group | Atomic radius does not change down the group | Rubidium has fewer energy levels than lithium
+num2: A neutral atom of element Z has electrons arranged 2, 8, 3. What is its atomic number? | 13
+mc2: Nuclear fusion in stars combines | light nuclei into heavier nuclei | heavy nuclei into lighter nuclei | electrons into protons | molecules into atoms
+sa2: Explain why elements in the same group have similar chemical properties. | They have the same number of valence electrons, which determine how they react.
+sa2: Write the electron configuration (or shell model) of sodium and explain why it forms a +1 ion. | 2, 8, 1; it loses its single outer electron to reach a stable configuration.
+cer3: A data table gives the first ionization energies (in kJ/mol) of the Period 3 elements: sodium 496, magnesium 738, aluminum 578, silicon 787, phosphorus 1012, sulfur 1000, chlorine 1251, argon 1521. Make a claim about the general trend in first ionization energy across the period. Use the data as evidence and explain your reasoning using the structure of the atom. | Claim: first ionization energy generally increases from left to right across Period 3. Evidence: it rises from 496 kJ/mol for sodium to 1521 kJ/mol for argon, about three times as much, with only small dips at aluminum and sulfur. Reasoning: across the period the number of protons increases while electrons are added to the same energy level, so the nucleus holds the outer electrons more tightly and more energy is needed to remove one.
+task3: Choose an element and use its position in the periodic table to predict its valence electrons, typical ion charge, reactivity and the formula of a compound it forms with oxygen. Then research actual data and evaluate your predictions. | All predictions accurate or thoughtfully revised with evidence. | Most predictions accurate with evaluation. | Some predictions accurate. | Little correct work.
+
+unit: Bonding and properties | HS-PS1-3, HS-PS2-6 | sci_10_n1
+el: Build molecules with ball-and-stick kits or paper cutouts before drawing Lewis structures. Post a chart of bond types (ionic, covalent, metallic) with one example and its properties each, and the frame: "___ has a high melting point because ___."
+
+lesson: Ionic bonding and formulas of ionic compounds | HS-PS1-1, HS-PS1-3
+practice:
+mc1: Ionic bonds usually form between | a metal and a nonmetal | two nonmetals | two noble gases | two metals
+hint: One atom gives electrons away and the other takes them.
+mc2: Calcium forms Ca2+ ions and oxygen forms O2- ions. What is the formula of calcium oxide? | CaO | CaO2 | Ca2O | Ca2O2
+hint: The total positive charge must equal the total negative charge.
+mc2: Aluminum forms Al3+ ions and oxygen forms O2- ions. What is the formula of aluminum oxide? | Al2O3 | AlO | Al3O2 | AlO3
+hint: Find the smallest numbers of each ion that make the charges add to zero.
+mc2: What is the name of the compound K2S? | potassium sulfide | potassium sulfate | potassium sulfur | dipotassium sulfate
+hint: In a compound of two elements, the nonmetal's name ends in -ide.
+num2: How many sodium ions (Na+) are needed to balance the charge of one phosphide ion (P3-) in sodium phosphide? | 3
+hint: The charges must add to zero.
+sa2: Explain, using electrons, how a sodium atom and a chlorine atom form sodium chloride. | Sodium has 1 valence electron and chlorine has 7. Sodium transfers its electron to chlorine, forming Na+ and Cl- ions, each with a full outer energy level. The oppositely charged ions attract, which holds them together in an ionic bond.
+quiz:
+mc1: In an ionic compound, the particles are held together by | attraction between oppositely charged ions | shared pairs of electrons | a sea of electrons only | gravity between atoms
+mc2: What is the formula of the compound formed by lithium (Li+) and nitride (N3-) ions? | Li3N | LiN3 | LiN | Li3N3
+mc2: Calcium forms Ca2+ ions and hydroxide ions are OH-. What is the formula of calcium hydroxide? | Ca(OH)2 | CaOH | CaOH2 | Ca2OH
+mc2: Which pair of elements is most likely to form an ionic compound? | potassium and bromine | carbon and oxygen | nitrogen and hydrogen | neon and argon
+mc2: What is the name of the compound with the formula MgO? | magnesium oxide | magnesium oxygen | manganese oxide | magnesium dioxide
+num2: In the compound Fe2O3, each oxide ion has a 2- charge. What positive charge does each iron ion carry? Give the number only. | 3
+mc3: A crystal of sodium chloride is struck with a hammer and shatters. Which explanation fits the ionic model? | Shifting the layers lines up ions with like charges, which repel and split the crystal | The covalent bonds between molecules break | The free electrons escape | The ions melt from the impact
+sa2: Explain why the formula of calcium fluoride is CaF2 and not CaF. | Calcium loses 2 electrons to form Ca2+, and each fluorine atom gains 1 electron to form F-. Two F- ions are needed to balance the 2+ charge, so the formula is CaF2.
+
+lesson: Covalent bonds and Lewis structures | HS-PS1-1, HS-PS1-3
+practice:
+mc1: A covalent bond usually forms between | two nonmetal atoms | a metal and a nonmetal | two metal atoms | a noble gas and a metal
+hint: Which kind of atoms both tend to gain electrons rather than lose them?
+num2: How many valence electrons are shown in the Lewis structure of a single nitrogen atom? | 5
+hint: Nitrogen is in Group 15.
+num2: Carbon has 4 valence electrons and oxygen has 6. How many total valence electrons must be shown in the Lewis structure of carbon dioxide, CO2? | 16
+hint: Add the valence electrons from every atom in the formula.
+mc2: How many covalent bonds does a carbon atom usually form? | 4 | 2 | 3 | 1
+hint: Carbon has 4 valence electrons and needs 8.
+mc2: The Lewis structure of N2 shows | a triple bond between the nitrogen atoms | a single bond | a double bond | an ionic bond
+hint: Each nitrogen needs three more electrons to fill its outer level.
+sa2: Describe the Lewis structure of methane, CH4, and explain why each atom is stable. | Carbon is in the center with four single bonds, one to each hydrogen, and no lone pairs. Carbon has 8 electrons around it (an octet), and each hydrogen has 2, which fills its first energy level.
+hint: Count the electrons around each atom when you finish.
+quiz:
+mc1: A pair of valence electrons that is not part of a bond is called a | lone pair | bonding pair | shared ion | nuclear pair
+num2: How many lone pairs are on the nitrogen atom in ammonia, NH3? | 1
+num2: Hydrogen has 1 valence electron and sulfur has 6. How many total valence electrons are in a molecule of hydrogen sulfide, H2S? | 8
+mc2: How many electrons are shared in a double bond? | 4 | 2 | 6 | 8
+mc2: In carbon dioxide, O=C=O, each oxygen is joined to the carbon by a | double bond | single bond | triple bond | ionic bond
+mc2: Which molecule contains a triple bond? | N2 | H2 | Cl2 | O2
+mc3: A student draws a Lewis structure for Cl2 with a double bond between the atoms and two lone pairs on each chlorine. What is wrong with it? | It shows only 12 valence electrons, but Cl2 has 14, so it should have a single bond and three lone pairs on each chlorine | Chlorine atoms cannot bond to each other | Each chlorine should have four lone pairs and no bond | Cl2 should have a triple bond
+sa2: Explain why hydrogen forms only one covalent bond while oxygen usually forms two. | Hydrogen has 1 valence electron and needs only 2 to fill its first energy level, so it shares one pair. Oxygen has 6 valence electrons and needs 2 more for an octet, so it forms two bonds.
+
+lesson: Molecular shape and polarity | HS-PS1-3, HS-PS2-6
+practice:
+mc1: Electron pairs around a central atom arrange themselves to be | as far apart as possible | as close together as possible | in a straight line always | on one side of the atom
+hint: Electron pairs are all negative.
+mc2: What is the shape of a methane (CH4) molecule? | tetrahedral | linear | bent | trigonal planar
+hint: Four bonding pairs and no lone pairs surround the carbon.
+mc2: Ammonia (NH3) has three bonds and one lone pair on the nitrogen. What is its shape? | trigonal pyramidal | trigonal planar | tetrahedral | linear
+hint: The lone pair pushes the three hydrogens down, but it is not counted in the shape's name.
+mc2: A covalent bond between two atoms with very different electronegativities is | polar | nonpolar | metallic | impossible
+hint: Unequal sharing creates partial charges.
+mc3: Carbon dioxide has two polar C=O bonds, but the molecule is nonpolar. Why? | The molecule is linear, so the two bond polarities cancel | Carbon and oxygen have the same electronegativity | The bonds are ionic | Carbon dioxide has lone pairs on the carbon
+hint: Think about the direction in which each bond pulls.
+sa2: Carbon tetrachloride (CCl4) and chloromethane (CH3Cl) are both tetrahedral, and both have polar C-Cl bonds. Explain why CCl4 is nonpolar but CH3Cl is polar. | In CCl4, four identical C-Cl bonds point symmetrically in four directions, so their pulls cancel. In CH3Cl, only one bond is strongly polar (C-H bonds are nearly nonpolar), so the pulls do not cancel and the molecule has a partly negative chlorine end.
+hint: Are all four bonds the same in each molecule?
+quiz:
+mc1: A molecule with an uneven distribution of charge, with a partly positive end and a partly negative end, is | polar | nonpolar | ionic | metallic
+mc2: Hydrogen sulfide (H2S) has two bonds and two lone pairs on the sulfur. What is its shape? | bent | linear | tetrahedral | trigonal planar
+mc2: Boron trifluoride (BF3) has three bonds and no lone pairs on the boron. What is its shape? | trigonal planar | trigonal pyramidal | tetrahedral | bent
+num2: What is the bond angle in degrees between the two bonds of a linear molecule such as CO2? | 180
+mc2: Which molecule is polar? | NH3 | CH4 | CO2 | Cl2
+mc2: Electronegativities: H 2.1, C 2.5, N 3.0, O 3.5, F 4.0. Which bond is the most polar? | H-F | C-H | N-H | O-H
+mc3: A student models a molecule with a central atom bonded to two other atoms and carrying two lone pairs. Which prediction is best supported? | The molecule is bent and likely polar | The molecule is linear and nonpolar | The molecule is tetrahedral and nonpolar | The molecule is trigonal planar and polar
+sa2: Explain how a molecule can contain polar bonds and still be nonpolar overall. Give an example. | If the molecule's shape is symmetric, the bond polarities point in opposite or evenly spaced directions and cancel. Example: BF3 is trigonal planar, so its three polar B-F bonds cancel.
+
+lesson: Intermolecular forces and physical properties | HS-PS1-3
+practice:
+mc1: Forces of attraction between separate molecules are called | intermolecular forces | covalent bonds | ionic bonds | nuclear forces
+hint: "Inter" means between.
+mc2: Which type of intermolecular force acts between all molecules, even nonpolar ones? | London dispersion forces | hydrogen bonds | dipole-dipole forces | ionic bonds
+hint: It comes from electrons shifting for an instant.
+mc2: Hydrogen bonding can occur between molecules when hydrogen is bonded to | nitrogen, oxygen or fluorine | carbon | any metal | another hydrogen only
+hint: These are the three most electronegative elements.
+mc2: When water boils, what is overcome? | attractions between water molecules | the covalent bonds inside each water molecule | the nucleus of each atom | ionic bonds between hydrogen and oxygen
+hint: Steam is still made of H2O molecules.
+mc3: Data: boiling points of the halogens - fluorine (F2) -188 °C, chlorine (Cl2) -34 °C, bromine (Br2) 59 °C, iodine (I2) 184 °C. Which explanation best fits the trend? | Larger molecules with more electrons have stronger dispersion forces | The molecules become more polar down the group | The covalent bond inside each molecule gets stronger | Hydrogen bonding increases down the group
+hint: All four are nonpolar. What changes as the molecules get bigger?
+sa2: Plan a safe classroom investigation to compare how quickly water and rubbing alcohol evaporate, and explain what the results would show about intermolecular forces. | Put the same small number of drops of each liquid on identical paper towels at room temperature, wear goggles, and keep flames away because rubbing alcohol is flammable. Time how long each takes to disappear and repeat the trials. The liquid that evaporates faster has weaker attractions between its molecules; alcohol usually evaporates faster, so water has stronger intermolecular forces from more hydrogen bonding.
+hint: What must be kept the same? Which liquid is flammable?
+quiz:
+mc1: For small molecules of similar size, which type of intermolecular force is the strongest? | hydrogen bonding | London dispersion forces | dipole-dipole forces between molecules without N-H, O-H or F-H bonds | magnetic attraction
+mc2: Which substance has hydrogen bonding between its molecules? | ammonia, NH3 | methane, CH4 | hydrogen gas, H2 | carbon dioxide, CO2
+mc2: Which property is usually greater for a liquid with stronger intermolecular forces? | boiling point | evaporation rate | vapor pressure | volatility
+mc2: Ethanol (C2H5OH, molar mass 46 g/mol) boils at 78 °C, while propane (C3H8, molar mass 44 g/mol) boils at -42 °C. What best explains the difference? | Ethanol molecules form hydrogen bonds with each other | Propane molecules are much heavier | Propane has hydrogen bonding | Ethanol is an ionic compound
+mc3: In a room with no flames, 10 mL of each liquid was left in identical open dishes for 20 minutes. Volume left: water 9.5 mL, ethanol 8.0 mL, acetone 6.0 mL. Which ranking from strongest to weakest intermolecular forces is best supported? | water, ethanol, acetone | acetone, ethanol, water | ethanol, water, acetone | all three are equal
+mc2: Which molecule has dipole-dipole attractions but no hydrogen bonding? | hydrogen chloride, HCl | water, H2O | methane, CH4 | nitrogen, N2
+cer3: A data table gives the boiling points of three substances with similar molar masses: methane (CH4, 16 g/mol, nonpolar) -162 °C; ammonia (NH3, 17 g/mol, polar) -33 °C; water (H2O, 18 g/mol, polar) 100 °C. Make a claim about what causes the large differences in boiling point. Use the data as evidence and explain your reasoning with intermolecular forces. | Claim: stronger intermolecular forces, especially hydrogen bonding, raise the boiling point. Evidence: the molar masses are almost the same (16, 17 and 18 g/mol), but the boiling points are -162, -33 and 100 °C. Reasoning: methane molecules attract only by weak dispersion forces. Ammonia and water form hydrogen bonds, and water forms more of them (two hydrogens and two lone pairs per molecule), so water's molecules attract most strongly and need the most energy to separate.
+
+lesson: Metallic bonding and comparing types of solids | HS-PS1-3, HS-PS2-6
+practice:
+mc1: In metallic bonding, metal atoms are held together by | positive ions in a sea of shared electrons | pairs of electrons shared between two atoms | oppositely charged ions | hydrogen bonds
+hint: Metal atoms lose their valence electrons easily.
+mc2: Why can copper be hammered into thin sheets without breaking? | The metal ions can slide past each other while the electron sea holds them together | Copper is a covalent network | Copper has no bonds | Copper ions repel each other strongly when they move
+hint: Compare what happens when layers shift in a metal and in a salt crystal.
+mc2: Diamond is extremely hard and has a very high melting point. What type of solid is it? | covalent network solid | ionic solid | metallic solid | molecular solid
+hint: Every carbon atom is bonded to four others in one continuous network.
+mc2: Table sugar melts at a fairly low temperature, dissolves in water and does not conduct electricity when dissolved. What type of solid is it? | molecular solid | ionic solid | metallic solid | covalent network solid
+hint: Which type of solid has no ions and no free electrons, and weak attractions between particles?
+mc2: Salt water conducts electricity but solid salt does not. Why? | In water the ions are free to move | Water adds electrons to the salt | Solid salt has no ions | Water is a metal
+hint: Charge must be able to move for current to flow.
+sa2: Describe a safe classroom test to help tell whether an unknown white solid is ionic or molecular. | Wearing goggles, dissolve a small amount in distilled water and test the solution with a low-voltage conductivity tester; if it conducts, the solid is likely ionic. You could also warm a tiny sample gently on a hot plate: molecular solids usually melt easily, while ionic solids do not. Never taste the solids, and dispose of them as the teacher directs.
+hint: Which properties differ most between ionic and molecular substances?
+quiz:
+mc1: Which type of solid conducts electricity while it is still a solid? | metallic | ionic | molecular | a covalent network such as quartz
+mc2: Steel is made mostly of iron mixed with a small amount of carbon. Why is steel harder than pure iron? | The different-sized atoms make it harder for layers of iron atoms to slide | Carbon makes the iron ionic | Carbon removes the electron sea | Steel has no metallic bonds
+mc2: Quartz (SiO2) has a melting point above 1,600 °C and does not conduct electricity. What type of solid is it? | covalent network | metallic | ionic | molecular
+mc3: Data from an investigation: Solid A - melting point 801 °C, conducts only when dissolved or melted. Solid B - melting point 1,085 °C, conducts as a solid. Solid C - melting point 80 °C, does not conduct. Which classification is correct? | A ionic, B metallic, C molecular | A metallic, B ionic, C molecular | A molecular, B metallic, C ionic | A ionic, B molecular, C metallic
+mc2: Aluminum is used for electrical wires and for thin foil. Which two properties from metallic bonding make this possible? | conductivity and malleability | brittleness and a high melting point | low density and brittleness | solubility in water and conductivity
+mc2: Why do ionic solids have high melting points? | Strong attractions between many oppositely charged ions must be overcome | Their molecules are very small | They contain free electrons | Their particles have no attractions
+cer3: Students wearing goggles tested small samples of three solids. Solid X did not melt on a hot plate, did not dissolve in water, conducted electricity as a solid and bent without breaking. Solid Y did not melt on a hot plate, did not conduct as a solid, dissolved in water, and its solution conducted electricity. Solid Z melted quickly on the hot plate, did not dissolve in water and did not conduct. Make a claim about the type of bonding in Solid Y. Use the data as evidence and explain your reasoning with a particle model. | Claim: Solid Y is ionic. Evidence: it did not melt on the hot plate, so it has a high melting point; it did not conduct as a solid but its water solution did. Reasoning: ionic solids are made of oppositely charged ions held by strong attractions, so they melt only at high temperatures. In the solid the ions are locked in place, but when the solid dissolves the ions separate and move freely, carrying charge. (X behaves like a metal and Z like a molecular solid.)
+
+lesson: Solutions, solubility and concentration | HS-PS1-3, HS-PS2-6
+practice:
+mc1: In salt water, the salt is the | solute | solvent | precipitate | catalyst
+hint: The solvent is the substance present in the larger amount.
+num2: A student dissolves 0.5 mol of sodium chloride in enough water to make 2 L of solution. What is the molarity in mol/L? | 0.25
+hint: Molarity = moles of solute / liters of solution.
+num2: How many moles of sugar are in 0.5 L of a 2 mol/L sugar solution? | 1
+hint: Multiply molarity by volume in liters.
+mc2: When sodium chloride dissolves in water, what happens to the ions? | Water molecules surround and separate the Na+ and Cl- ions | The ions turn into neutral atoms | The ions bond to form molecules of NaCl | The ions disappear
+hint: The partly negative oxygen end of a water molecule is attracted to which ion?
+mc2: Which change usually lets more of a solid such as potassium nitrate dissolve in water? | raising the water temperature | cooling the water | using less water | using one large crystal instead of small ones
+hint: Check a solubility table at different temperatures.
+sa2: Describe how to prepare 100 mL of a 1.0 mol/L sodium chloride solution safely in a school lab. Sodium chloride has a molar mass of 58.5 g/mol. | Wearing goggles, weigh 5.85 g of NaCl (0.100 L x 1.0 mol/L = 0.10 mol, and 0.10 mol x 58.5 g/mol = 5.85 g). Put it in a 100 mL volumetric flask, add some distilled water and swirl until it dissolves, then add water up to the 100 mL mark and mix. Label the container.
+hint: First find how many moles you need in 0.100 L.
+quiz:
+mc1: A solution that holds the most solute it can at a given temperature is | saturated | unsaturated | dilute | an alloy
+num2: Potassium chloride (0.3 mol) is dissolved in water to make 600 mL of solution. What is the molarity in mol/L? | 0.5
+num2: Glucose has a molar mass of 180 g/mol. How many grams of glucose are needed to make 0.5 L of a 0.2 mol/L glucose solution? | 18
+num2: A solubility table says 36 g of sodium chloride dissolves in 100 g of water at 20 °C. What is the greatest mass in grams of sodium chloride that dissolves in 250 g of water at 20 °C? | 90
+mc2: Which substance is most likely to dissolve in a nonpolar solvent such as hexane? | cooking oil | table salt | sugar | potassium nitrate
+mc3: Data: solubility of potassium nitrate in 100 g of water - 20 °C: 32 g; 40 °C: 64 g; 60 °C: 110 g. A student dissolves 64 g of potassium nitrate in 100 g of water at 40 °C and then cools it to 20 °C. What happens? | About 32 g of crystals form because the cooler water holds less | All the solid stays dissolved | The solution boils | About 64 g of crystals form
+mc2: A sports drink contains dissolved salts. Why does it conduct electricity while pure distilled water barely does? | Dissolved ions in the drink carry charge | The sugar in the drink is metallic | Distilled water contains more ions | Sports drinks have free electrons
+sa2: A student dilutes 50 mL of a 2.0 mol/L solution by adding water until the total volume is 200 mL. Find the new molarity and explain why the number of moles of solute did not change. | 0.5 mol/L. Moles = 2.0 mol/L x 0.050 L = 0.10 mol. Adding water only increases the volume: 0.10 mol / 0.200 L = 0.5 mol/L. Water adds no solute, so the moles stay the same.
+
+lesson: Unit review | HS-PS1-3, HS-PS2-6
+practice:
+mc2: Barium forms Ba2+ ions and bromine forms Br- ions. What is the formula of barium bromide? | BaBr2 | BaBr | Ba2Br | Ba2Br2
+hint: Two 1- charges balance one 2+ charge.
+mc2: Which substance has only London dispersion forces between its molecules? | nitrogen, N2 | water, H2O | ammonia, NH3 | hydrogen chloride, HCl
+hint: Look for a nonpolar molecule.
+num2: How many moles of sodium chloride are in 250 mL of a 2.0 mol/L solution? | 0.5
+hint: Change mL to L first.
+mc2: What is the shape of a molecule whose central atom is bonded to four atoms and has no lone pairs? | tetrahedral | trigonal pyramidal | square | bent
+hint: Spread four groups as far apart as possible in three dimensions.
+sa2: Graphite and diamond are both pure carbon. Explain why graphite feels slippery but diamond is very hard. | In diamond, each carbon is covalently bonded to four others in a rigid three-dimensional network. In graphite, carbon atoms are bonded in flat layers, and the attractions between layers are weak, so the layers slide past each other.
+hint: Compare how the carbon atoms are connected in each.
+quiz:
+mc1: An ionic bond forms when | electrons are transferred | electrons are shared | protons are shared | neutrons move
+mc1: A covalent bond involves | sharing electrons | transferring protons | magnets | gravity
+mc2: Which is an ionic compound? | NaCl | H2O | CO2 | CH4
+mc2: Water's high boiling point compared with similar molecules is due to | hydrogen bonding | ionic bonds | metallic bonds | low mass
+mc2: Which compound contains a polyatomic ion? | sodium nitrate, NaNO3 | sodium chloride, NaCl | calcium oxide, CaO | potassium iodide, KI
+num2: How many valence electrons does a neutral sulfur atom have? | 6
+ex2: Explain how bonding type affects a substance's properties. | Bond strength and type determine melting point, conductivity and solubility.
+
+test:
+mc2: Metals conduct electricity because they have | delocalized electrons | no electrons | ionic bonds | hydrogen bonds
+mc2: The formula for the compound of magnesium (Mg2+) and chlorine (Cl-) is | MgCl2 | MgCl | Mg2Cl | Mg2Cl2
+mc2: Which substance is most likely to dissolve in water? | table salt | oil | wax | sand
+mc3: A substance has a high melting point, is brittle and conducts electricity only when melted. It is most likely | ionic | metallic | a nonpolar covalent molecule | a noble gas
+mc1: The bond that holds the two atoms together in a molecule of chlorine, Cl2, is a | covalent bond | ionic bond | metallic bond | hydrogen bond
+mc2: Sodium forms Na+ ions and sulfate is SO4 with a 2- charge. What is the formula of sodium sulfate? | Na2SO4 | NaSO4 | Na(SO4)2 | Na2S
+mc2: What is the name of CaCl2? | calcium chloride | calcium chlorine | dicalcium chloride | calcium chlorate
+num2: How many total valence electrons are in a molecule of methane, CH4? | 8
+mc2: What is the shape of a carbon dioxide molecule? | linear | bent | tetrahedral | trigonal pyramidal
+mc2: Which bond is nonpolar? | Cl-Cl | H-Cl | O-H | N-H
+mc2: Which substance has the highest boiling point? | water, H2O | hydrogen sulfide, H2S | nitrogen, N2 | neon, Ne
+mc2: Brass is a mixture of copper and zinc atoms that still conducts electricity. What kind of bonding holds brass together? | metallic | ionic | covalent | hydrogen
+mc3: A chemist needs a liquid that will dissolve candle wax, which is nonpolar. Which solvent is the best choice? | a nonpolar solvent such as hexane | water | salt water | a solution of sugar in water
+num2: Two moles of sugar are dissolved in water to make 4 L of solution. What is the molarity in mol/L? | 0.5
+num2: How many bonding pairs of electrons are in a molecule of ammonia, NH3? | 3
+mc2: Which statement explains why ice floats on liquid water? | Hydrogen bonds hold the molecules in an open pattern, so ice is less dense than liquid water | Ice has more mass than the same volume of water | Ice has ionic bonds | Ice is a metallic solid
+mc2: Which pair of atoms forms a polar covalent bond? | hydrogen and oxygen | sodium and chlorine | two chlorine atoms | two hydrogen atoms
+mc2: Gold can be hammered into sheets thinner than paper. Which property is this? | malleability | brittleness | solubility | polarity
+mc3: A substance is a liquid at room temperature, does not mix with water and does not conduct electricity. What is it most likely to be? | a nonpolar molecular substance such as vegetable oil | an ionic compound such as table salt | a metal such as copper | a covalent network solid such as quartz
+sa2: Draw a Lewis structure for water and explain why the molecule is polar. | O with two bonds to H and two lone pairs; bent shape and unequal sharing make it polar.
+sa2: Explain why "like dissolves like" using polarity. | Polar solvents dissolve polar or ionic substances; nonpolar solvents dissolve nonpolar substances.
+cer3: Students used a melting-point apparatus that can reach 300 °C and a conductivity tester to study three white solids (goggles on, small samples). Solid 1 melted at 186 °C, and its water solution did not conduct. Solid 2 did not melt below 300 °C, and its water solution conducted. Solid 3 melted at 69 °C and did not dissolve in water. Make a claim about which solid has the strongest attractions between its particles. Use the data as evidence and explain your reasoning. | Claim: Solid 2 has the strongest attractions; it is most likely ionic. Evidence: it did not melt below 300 °C, while Solids 1 and 3 melted at 186 °C and 69 °C, and its solution conducted, which shows it is made of ions. Reasoning: melting requires overcoming the attractions between particles, so a higher melting point means stronger attractions. Ionic solids are held by strong attractions between many oppositely charged ions; Solids 1 and 3 behave like molecular solids, held by weaker intermolecular forces.
+task3: Investigate four unknown solids by testing melting behavior, solubility and conductivity. Classify each as ionic, covalent or metallic, justify each classification with data, and explain the properties using particle-level models. | Accurate classification with strong data and particle-level explanations. | Mostly accurate with partial explanations. | Some correct classifications. | Little correct work.
+
+unit: Chemical reactions and stoichiometry | HS-PS1-2, HS-PS1-7 | sci_10
+el: Post a mole map (grams <-> moles <-> particles, and moles of A <-> moles of B) and color-code each element when balancing. Give the frame: "___ moles of ___ react with ___ moles of ___." Allow calculators and a periodic table with rounded masses.
+
+lesson: Evidence of chemical change and conservation of mass | HS-PS1-7, HS-PS1-2
+practice:
+mc1: Which observation is evidence that a chemical reaction has happened? | A gas forms when two liquids are mixed | Ice melts into water | Sugar dissolves in tea | A glass breaks
+hint: Look for a change that makes a new substance.
+mc2: A student mixes baking soda and vinegar in an open cup on a balance. The mass goes down. Why? | Carbon dioxide gas escapes into the air | Mass was destroyed | All the vinegar evaporated instantly | Baking soda has no mass
+hint: Where did the bubbles go?
+num2: In a sealed flask, 10.0 g of reactants react completely. What is the total mass in grams of the products? | 10
+hint: Nothing can enter or leave a sealed flask.
+num2: When 24 g of magnesium burns in oxygen, 40 g of magnesium oxide forms. How many grams of oxygen reacted? | 16
+hint: The mass of the products equals the mass of the reactants.
+mc2: Which change is physical, not chemical? | boiling water | rusting iron | burning wood | baking a cake
+hint: Is a new substance made, or does the substance only change state?
+sa2: Describe how to change the open-cup baking soda and vinegar investigation so it shows conservation of mass, and how to do it safely. | Do the reaction in a closed system: put the vinegar in a plastic soda bottle, add a small scoop of baking soda, and screw the cap on at once. Measure the mass before and after. Use only small amounts so the pressure stays low, wear goggles, and never seal the gas in a glass container, which could break. The mass should stay the same.
+hint: How can you keep the gas from escaping, and what could go wrong if too much gas builds up?
+quiz:
+mc1: The law of conservation of mass says that in a chemical reaction | mass is neither created nor destroyed | mass always increases | mass always decreases | only gases have mass
+num2: A candle has a mass of 50 g. It burns for an hour and then has a mass of 46 g. The burned wax reacted with 14 g of oxygen from the air. What total mass in grams of carbon dioxide and water vapor was produced? | 18
+mc2: Which observation is NOT good evidence of a chemical reaction? | Water turns to steam when heated | A solid forms when two clear solutions are mixed | A solution changes color and gets warm | Bubbles form when a metal is placed in acid
+mc2: In a teacher demonstration, steel wool is heated and burns in air, and its mass increases. Which explanation fits conservation of mass? | The iron combined with oxygen from the air, so the product includes the oxygen's mass | Heat added mass to the steel wool | Mass was created by the fire | The balance was broken
+num2: Wearing goggles and gloves, a student pours 12.0 g of silver nitrate solution into 8.0 g of sodium chloride solution, and a white solid forms. No gas is given off. What is the total mass in grams of the mixture afterward? | 20
+mc3: Data from a class investigation (goggles worn): in an open cup, baking soda and vinegar had a mass of 85.6 g before mixing and 84.9 g after. In a capped plastic bottle with the same small amounts, the mass was 112.3 g before and 112.3 g after. Which conclusion is supported? | Mass is conserved when no gas can escape | Mass is destroyed in open containers | The bottle cap added mass | The reaction does not happen in a capped bottle
+sa2: A student says that when wood burns down to a small pile of ash, mass is destroyed. Explain why this is wrong. | The wood reacts with oxygen to make carbon dioxide and water vapor, which are gases that escape into the air. If all the gases were collected, the total mass of the products would equal the mass of the wood and oxygen that reacted.
+
+lesson: Balancing chemical equations | HS-PS1-7
+practice:
+mc1: In the equation 2H2O -> 2H2 + O2, the 2 in front of H2O is a | coefficient | subscript | product | charge
+hint: Subscripts are the small numbers written inside a formula.
+num2: How many oxygen atoms are shown in 3CO2? | 6
+hint: Multiply the coefficient by the subscript.
+num2: How many hydrogen atoms are shown in 4NH3? | 12
+hint: Multiply the coefficient by the subscript.
+mc2: Which coefficients balance the equation N2 + H2 -> NH3? | 1, 3, 2 | 1, 1, 2 | 2, 3, 2 | 1, 3, 1
+hint: Balance nitrogen first, then hydrogen.
+mc2: When balancing an equation, why can't you change the subscripts? | Changing a subscript changes the substance | Subscripts are always 1 | Coefficients cannot be changed | Changing subscripts adds mass
+hint: Compare H2O and H2O2.
+sa2: Balance the equation C3H8 + O2 -> CO2 + H2O and show that each type of atom is conserved. | C3H8 + 5O2 -> 3CO2 + 4H2O. Left: 3 C, 8 H, 10 O. Right: 3 C, 8 H, 6 + 4 = 10 O.
+hint: Balance C, then H, and O last.
+quiz:
+mc1: Which equation for burning magnesium is balanced? | 2Mg + O2 -> 2MgO | Mg + O2 -> MgO | Mg + O2 -> 2MgO | 2Mg + 2O2 -> 2MgO
+num2: What coefficient goes in front of O2 to balance 4Al + __O2 -> 2Al2O3? | 3
+num2: What coefficient goes in front of O2 to balance 2C4H10 + __O2 -> 8CO2 + 10H2O? | 13
+mc2: Which coefficients balance Na + H2O -> NaOH + H2? | 2, 2, 2, 1 | 1, 1, 1, 1 | 2, 1, 2, 1 | 1, 2, 1, 2
+mc2: How many oxygen atoms are on the products side of 2Fe2O3 + 3C -> 4Fe + 3CO2? | 6 | 3 | 2 | 9
+mc3: A student balances H2 + O2 -> H2O by writing H2 + O2 -> H2O2. What is wrong? | Changing the subscript made a different substance, hydrogen peroxide, instead of water | Nothing; the equation is balanced correctly | The student should have changed H2 to H4 | The student needed to remove the oxygen
+sa2: Balance Fe + Cl2 -> FeCl3 and explain how your equation shows that atoms are conserved. | 2Fe + 3Cl2 -> 2FeCl3. Both sides have 2 Fe atoms and 6 Cl atoms, so no atoms are created or destroyed.
+
+lesson: Types of reactions and predicting products | HS-PS1-2
+practice:
+mc1: A reaction in which one compound breaks down into two or more simpler substances is | decomposition | synthesis | combustion | double replacement
+hint: Think about which word means coming apart.
+mc2: Zn + 2HCl -> ZnCl2 + H2 is an example of | single replacement | double replacement | synthesis | decomposition
+hint: One element takes the place of another in a compound.
+mc2: AgNO3 + NaCl -> AgCl + NaNO3 is an example of | double replacement | single replacement | combustion | decomposition
+hint: Two compounds trade partners.
+mc2: Which reaction is a combustion reaction? | C2H5OH + 3O2 -> 2CO2 + 3H2O | 2H2O -> 2H2 + O2 | NaOH + HCl -> NaCl + H2O | Fe + CuSO4 -> FeSO4 + Cu
+hint: Look for a fuel reacting with oxygen.
+mc2: Copper is less reactive than zinc. What happens when a strip of copper is placed in zinc sulfate solution? | No reaction occurs | Zinc metal coats the copper | Copper sulfate and zinc form | Hydrogen gas bubbles off
+hint: A metal can replace only a metal that is less reactive than itself.
+sa2: Predict the products of the reaction between magnesium metal and hydrochloric acid, name the reaction type, and describe how to do it safely. | Mg + 2HCl -> MgCl2 + H2; single replacement. Use dilute acid and a small strip of magnesium, wear goggles, keep flames away because hydrogen gas is flammable, and dispose of the solution as the teacher directs.
+hint: Magnesium forms Mg2+ ions. What gas bubbles off?
+quiz:
+mc1: In a synthesis reaction | two or more substances combine to form one product | one compound breaks apart | a fuel reacts with oxygen | two compounds exchange ions
+mc2: 2H2O2 -> 2H2O + O2 is an example of | decomposition | synthesis | single replacement | double replacement
+mc2: Calcium forms Ca2+ ions and oxygen forms O2- ions. What is the product of the synthesis reaction between calcium and oxygen? | CaO | CaO2 | Ca2O | Ca2O2
+mc2: Part of the activity series, from most to least reactive, is magnesium, zinc, iron, copper, silver, gold. Which metal would replace copper in copper(II) sulfate solution? | iron | silver | gold | none of these
+mc2: Copper(II) sulfate solution and sodium hydroxide solution are mixed, and a blue solid forms. What is the solid called? | a precipitate | a catalyst | a solvent | a fuel
+mc3: Data from a class test (goggles worn): a small piece of each metal was placed in dilute hydrochloric acid. Magnesium - fast bubbling; zinc - steady bubbling; iron - slow bubbling; copper - no bubbles. Which ranking from most to least reactive is supported? | magnesium, zinc, iron, copper | copper, iron, zinc, magnesium | zinc, magnesium, iron, copper | iron, zinc, copper, magnesium
+num2: Balance __Al + __CuCl2 -> __AlCl3 + __Cu using the smallest whole numbers. What is the coefficient of Cu? | 3
+cer3: A student placed a clean iron nail in blue copper(II) sulfate solution for one day. Observations: the blue color faded to pale green, and a reddish-brown coating formed on the nail. Make a claim about what kind of reaction happened. Use the observations as evidence and explain your reasoning with the activity series. | Claim: a single replacement reaction happened in which iron replaced copper: Fe + CuSO4 -> FeSO4 + Cu. Evidence: a reddish-brown coating, which is copper metal, formed on the nail, and the blue color of the copper(II) ions faded to the pale green of iron(II) ions. Reasoning: iron is more reactive than copper, so iron atoms give up electrons to copper ions; the copper ions become copper metal and the iron goes into solution as ions.
+
+lesson: The mole and molar mass | HS-PS1-7
+practice:
+mc1: The molar mass of an element in grams per mole is numerically equal to its | average atomic mass | atomic number | number of neutrons | group number
+hint: Look at the number under the symbol on the periodic table.
+num2: Use C = 12 and O = 16. What is the molar mass of carbon dioxide, CO2, in g/mol? | 44
+hint: Add the mass of one carbon and two oxygens.
+num2: Water has a molar mass of 18 g/mol. How many moles are in 36 g of water? | 2
+hint: Divide mass by molar mass.
+num2: Use Na = 23 and Cl = 35.5. What is the mass in grams of 0.5 mol of sodium chloride? | 29.25
+hint: Find the molar mass first, then multiply by the moles.
+mc2: How many atoms are in 0.5 mol of iron? | 3.01 x 10^23 | 6.02 x 10^23 | 1.204 x 10^24 | 3.01 x 10^22
+hint: One mole is 6.02 x 10^23 particles.
+sa2: One mole of carbon has a mass of 12 g and one mole of magnesium has a mass of 24 g. Explain why the masses are different but the number of atoms is the same. | A mole is always 6.02 x 10^23 particles. Each magnesium atom has about twice the mass of a carbon atom, so the same number of magnesium atoms has twice the mass.
+hint: What does a mole count?
+quiz:
+mc1: The mole is a counting unit for | particles such as atoms or molecules | the volume of a gas only | the energy of a reaction | the charge on an ion
+num2: Use Ca = 40, C = 12 and O = 16. What is the molar mass of calcium carbonate, CaCO3, in g/mol? | 100
+num2: Carbon dioxide has a molar mass of 44 g/mol. How many moles are in 88 g of carbon dioxide? | 2
+num2: Use Mg = 24. What is the mass in grams of 3 moles of magnesium? | 72
+num2: Use H = 1, S = 32 and O = 16. What is the molar mass of sulfuric acid, H2SO4, in g/mol? | 98
+mc2: Which sample contains the most moles? | 4 g of hydrogen gas, H2 (2 g/mol) | 32 g of oxygen gas, O2 (32 g/mol) | 44 g of carbon dioxide, CO2 (44 g/mol) | 9 g of water, H2O (18 g/mol)
+mc3: Two samples each have a mass of 10 g: one is aluminum (27 g/mol) and one is iron (56 g/mol). Which statement is correct? | The aluminum sample has more atoms because each aluminum atom has less mass | Both samples have the same number of atoms | The iron sample has more atoms because iron atoms are heavier | Neither sample contains a whole mole, so they cannot be compared
+sa2: Use Na = 23 and Cl = 35.5. Show how to find the number of moles in 117 g of sodium chloride. | Molar mass of NaCl = 23 + 35.5 = 58.5 g/mol. Moles = 117 g / 58.5 g/mol = 2 mol.
+
+lesson: Percent composition and empirical formulas | HS-PS1-7
+practice:
+num2: Use C = 12 and H = 1. What is the percent by mass of carbon in methane, CH4? | 75
+hint: Divide the mass of carbon in one mole by the molar mass, then multiply by 100.
+num2: Use Mg = 24 and O = 16. What is the percent by mass of oxygen in magnesium oxide, MgO? | 40
+hint: Find the molar mass of MgO first.
+mc2: A compound has the molecular formula C6H12O6. What is its empirical formula? | CH2O | C6H12O6 | C2H4O2 | CHO
+hint: Divide all the subscripts by their greatest common factor.
+mc2: A compound contains 2 mol of carbon atoms for every 6 mol of hydrogen atoms. What is its empirical formula? | CH3 | C2H6 | C3H | CH6
+hint: Write the simplest whole-number ratio.
+sa2: A 100 g sample of a compound contains 40 g of calcium, 12 g of carbon and 48 g of oxygen. Use Ca = 40, C = 12 and O = 16 to find its empirical formula. Show your work. | Ca: 40 / 40 = 1 mol; C: 12 / 12 = 1 mol; O: 48 / 16 = 3 mol. The ratio is 1 : 1 : 3, so the empirical formula is CaCO3.
+hint: Change each mass to moles, then compare.
+quiz:
+mc1: An empirical formula shows | the simplest whole-number ratio of atoms in a compound | the actual number of atoms in a molecule | the mass of a compound | the shape of a molecule
+num2: Use S = 32 and O = 16. What is the percent by mass of sulfur in sulfur dioxide, SO2? | 50
+num2: Use C = 12 and O = 16. What is the percent by mass of carbon in carbon dioxide, CO2, rounded to the nearest whole percent? | 27
+num2: A 100 g sample of a hydrocarbon contains 75 g of carbon and 25 g of hydrogen. Use C = 12 and H = 1. How many hydrogen atoms are there for each carbon atom? | 4
+mc2: Use C = 12 and H = 1. A compound has the empirical formula CH2 and a molar mass of 42 g/mol. What is its molecular formula? | C3H6 | CH2 | C2H4 | C6H12
+mc2: Which pair of formulas has the same empirical formula? | C2H2 and C6H6 | CH4 and C2H6 | H2O and H2O2 | CO and CO2
+mc3: In a lab, 2.4 g of magnesium ribbon is heated in a crucible and 4.0 g of magnesium oxide forms. Use Mg = 24 and O = 16. Which empirical formula is supported? | MgO | MgO2 | Mg2O | Mg2O3
+sa2: A student wearing goggles heated magnesium in a crucible, lifting the lid slightly with tongs now and then to let air in. The product had less mass than expected. Give one possible reason, and explain how it would affect the calculated formula. | Some magnesium oxide smoke escaped when the lid was lifted, or some magnesium did not react. Less oxygen mass would be measured, so the calculated formula would show too little oxygen for each magnesium (a ratio of oxygen to magnesium smaller than 1 to 1).
+
+lesson: Mole ratios and mass-to-mass stoichiometry | HS-PS1-7
+practice:
+mc1: In the equation N2 + 3H2 -> 2NH3, what is the mole ratio of H2 to NH3? | 3 to 2 | 1 to 3 | 2 to 3 | 1 to 2
+hint: Use the coefficients.
+num2: In 2H2 + O2 -> 2H2O, how many moles of O2 are needed to react with 6 mol of H2? | 3
+hint: The ratio of O2 to H2 is 1 to 2.
+num2: In N2 + 3H2 -> 2NH3, how many moles of NH3 form from 2 mol of N2 with plenty of H2? | 4
+hint: Multiply by the mole ratio of NH3 to N2.
+num2: In 2Mg + O2 -> 2MgO, how many grams of MgO form from 48 g of Mg? Use Mg = 24 g/mol and MgO = 40 g/mol. | 80
+hint: Grams of Mg to moles of Mg, then moles of MgO, then grams of MgO.
+num3: In CaCO3 -> CaO + CO2, how many grams of CO2 form when 50 g of CaCO3 decomposes? Use CaCO3 = 100 g/mol and CO2 = 44 g/mol. | 22
+hint: Find the moles of CaCO3 first.
+sa2: Explain why you must use moles, not grams, to compare amounts of reactants and products in a balanced equation. | The coefficients show ratios of particles (moles), not masses. Different substances have different molar masses, so equal masses do not contain equal numbers of particles. Converting to moles lets you use the mole ratio.
+hint: What do the coefficients count?
+quiz:
+mc1: The coefficients in a balanced chemical equation show the ratio of | moles of each substance | grams of each substance | volumes of liquids | atoms in each molecule
+num2: In 2KClO3 -> 2KCl + 3O2, how many moles of O2 form from 4 mol of KClO3? | 6
+num2: In C3H8 + 5O2 -> 3CO2 + 4H2O, how many moles of water form when 2 mol of propane burns completely? | 8
+num2: In 2H2 + O2 -> 2H2O, what mass in grams of water forms from 8 g of H2 with plenty of O2? Use H2 = 2 g/mol and H2O = 18 g/mol. | 72
+num3: In 2Al + 3Cl2 -> 2AlCl3, how many grams of AlCl3 form from 54 g of aluminum with plenty of chlorine? Use Al = 27 g/mol and AlCl3 = 133.5 g/mol. | 267
+mc2: In 2C2H6 + 7O2 -> 4CO2 + 6H2O, how many moles of O2 react with 4 mol of C2H6? | 14 mol | 7 mol | 3.5 mol | 28 mol
+mc3: For 2H2 + O2 -> 2H2O, a student writes that 2 g of H2 reacts with 1 g of O2 because the coefficients are 2 and 1. Use H2 = 2 g/mol and O2 = 32 g/mol. What is the error? | The coefficients give a mole ratio: 2 g of H2 is 1 mol, which reacts with 0.5 mol of O2, or 16 g | The student is correct | The ratio should be 1 g of H2 to 2 g of O2 | The coefficients mean 2 g of H2 reacts with 2 g of O2
+sa2: In N2 + 3H2 -> 2NH3, find the mass of ammonia made from 6 g of hydrogen gas with plenty of nitrogen. Use H2 = 2 g/mol and NH3 = 17 g/mol. Show each step. | 6 g / 2 g/mol = 3 mol H2. 3 mol H2 x (2 mol NH3 / 3 mol H2) = 2 mol NH3. 2 mol x 17 g/mol = 34 g of NH3.
+
+lesson: Limiting reactants, theoretical yield and percent yield | HS-PS1-7
+practice:
+mc1: Theoretical yield is | the greatest amount of product that can form from the reactants | the amount actually collected in the lab | the amount of excess reactant left over | the mass of the catalyst
+hint: It is calculated, not measured.
+num2: A sandwich needs 2 slices of bread and 1 slice of cheese. With 10 slices of bread and 4 slices of cheese, how many sandwiches can you make? | 4
+hint: Find how many sandwiches each ingredient alone could make.
+num2: In 2H2 + O2 -> 2H2O, 3 mol of H2 is mixed with 2 mol of O2. How many moles of water can form? | 3
+hint: Find which reactant runs out first.
+num2: A reaction has a theoretical yield of 50 g, but a student collects 40 g. What is the percent yield? | 80
+hint: Percent yield = actual yield / theoretical yield x 100.
+mc2: In N2 + 3H2 -> 2NH3, 1 mol of N2 is mixed with 6 mol of H2. Which reactant is limiting? | N2 | H2 | neither; both run out together | NH3
+hint: How many moles of H2 does 1 mol of N2 need?
+sa2: Give two reasons why the actual yield of a classroom reaction is often less than the theoretical yield. | Some product is lost when it is transferred or filtered or stays stuck to the glassware; the reaction may not go to completion; side reactions may make other products; a reactant may be impure.
+hint: Think about each step from mixing to weighing.
+quiz:
+mc1: Percent yield compares | actual yield with theoretical yield | reactant mass with product mass | the limiting reactant with the excess reactant | the mass of a catalyst before and after
+num2: In 2Mg + O2 -> 2MgO, 3 mol of Mg reacts with 1 mol of O2. How many moles of MgO form? | 2
+num2: A student expects 25.0 g of product and collects 22.5 g. What is the percent yield? | 90
+num2: In CaCO3 -> CaO + CO2, heating 200 g of CaCO3 should give 112 g of CaO (CaCO3 = 100 g/mol, CaO = 56 g/mol). A student gets 84 g of CaO. What is the percent yield? | 75
+num3: In N2 + 3H2 -> 2NH3, 28 g of N2 (28 g/mol) is mixed with 9 g of H2 (2 g/mol). How many grams of NH3 (17 g/mol) can form? | 34
+mc2: In 2Al + 3Cl2 -> 2AlCl3, 4 mol of Al is mixed with 3 mol of Cl2. Which reactant is in excess? | Al | Cl2 | neither | AlCl3
+mc3: A student's percent yield is 115%. Which explanation is most likely? | The product was still wet when weighed, so water added extra mass | Some product spilled | The reaction did not finish | The student lost product while filtering
+cer3: Four flasks each held 50 mL of 0.5 mol/L hydrochloric acid. Wearing goggles and with no flames nearby, students added 0.1 g, 0.2 g, 0.3 g and 0.4 g of magnesium ribbon and collected the hydrogen gas in a gas syringe. Volumes: 0.1 g - 100 mL; 0.2 g - 200 mL; 0.3 g - 300 mL; 0.4 g - 300 mL, with some magnesium left over. Make a claim about the limiting reactant in the 0.4 g flask. Use the data as evidence and explain your reasoning. | Claim: hydrochloric acid was the limiting reactant in the 0.4 g flask. Evidence: the gas volume rose by 100 mL for each extra 0.1 g of magnesium up to 0.3 g, then stayed at 300 mL for 0.4 g, and magnesium was left over. Reasoning: the amount of product depends on the reactant that runs out first. Once all the acid was used up, the extra magnesium had nothing to react with, so no more hydrogen formed.
+
+lesson: Unit review | HS-PS1-2, HS-PS1-7
+practice:
+num2: Use N = 14 and H = 1. What is the molar mass of ammonia, NH3, in g/mol? | 17
+hint: One nitrogen plus three hydrogens.
+mc2: Which coefficients balance __H2 + __Cl2 -> __HCl? | 1, 1, 2 | 1, 1, 1 | 2, 1, 2 | 2, 2, 1
+hint: Count hydrogen and chlorine atoms on each side.
+num2: In 2H2O2 -> 2H2O + O2, how many moles of O2 form from 6 mol of H2O2? | 3
+hint: Use the mole ratio from the coefficients.
+mc2: Which type of reaction is CuCl2 + 2NaOH -> Cu(OH)2 + 2NaCl? | double replacement | single replacement | decomposition | combustion
+hint: Check whether ions switch partners.
+sa2: A student burns a 2.0 g piece of magnesium ribbon, wearing goggles, holding it with tongs and not looking straight at the bright flame. The white ash has a mass of 3.3 g. Explain why the mass increased. | Magnesium combined with oxygen from the air to form magnesium oxide. The product includes the mass of the oxygen, so it has more mass than the magnesium alone; mass was conserved.
+hint: What did the magnesium combine with?
+quiz:
+mc1: Which equation is balanced? | 2H2 + O2 -> 2H2O | H2 + O2 -> H2O | H2 + O2 -> 2H2O | 2H2 + 2O2 -> H2O
+mc1: One mole contains about | 6.02 x 10^23 particles | 100 particles | 1,000 particles | 3.14 particles
+mc2: The molar mass of water (H = 1, O = 16) is | 18 g/mol | 17 g/mol | 10 g/mol | 32 g/mol
+mc2: Which type of reaction is 2Na + Cl2 -> 2NaCl? | synthesis | decomposition | combustion | single replacement
+num2: Use S = 32. How many moles are in 64 g of sulfur? | 2
+mc2: In 2CO + O2 -> 2CO2, how many moles of CO2 form from 5 mol of CO with plenty of O2? | 5 mol | 2.5 mol | 10 mol | 2 mol
+ex2: Explain why chemical equations must be balanced. | Atoms are neither created nor destroyed, so each element must have the same number on both sides.
+
+test:
+mc2: Burning methane (CH4) in oxygen produces | carbon dioxide and water | only oxygen | salt and water | hydrogen only
+mc2: How many grams are in 2 moles of carbon (C = 12)? | 24 g | 12 g | 6 g | 2 g
+mc2: The reactant that runs out first is the | limiting reactant | excess reactant | catalyst | product
+mc3: In 2H2 + O2 -> 2H2O, how many moles of water form from 4 moles of H2 with plenty of O2? | 4 | 2 | 8 | 1
+mc1: The substances written on the left side of a chemical equation are the | reactants | products | catalysts | coefficients
+num2: Use Mg = 24, O = 16 and H = 1. What is the molar mass of magnesium hydroxide, Mg(OH)2, in g/mol? | 58
+num2: Use Ca = 40. How many moles are in 20 g of calcium? | 0.5
+num2: What coefficient goes in front of HCl to balance Zn + __HCl -> ZnCl2 + H2? | 2
+num2: In 2Al + 6HCl -> 2AlCl3 + 3H2, how many moles of H2 form from 4 mol of Al with plenty of acid? | 6
+num3: In 2H2 + O2 -> 2H2O, how many grams of O2 are needed to react completely with 10 g of H2? Use H2 = 2 g/mol and O2 = 32 g/mol. | 80
+num2: A factory's reactor should make 800 kg of ammonia from the reactants loaded into it, but it produces 600 kg. What is the percent yield? | 75
+num2: Use Ca = 40, C = 12 and O = 16. What is the percent by mass of calcium in calcium carbonate, CaCO3? | 40
+mc2: What is the empirical formula of hydrogen peroxide, H2O2? | HO | H2O2 | H2O | HO2
+mc2: Which reaction is a decomposition reaction? | 2NaCl -> 2Na + Cl2 | CaO + H2O -> Ca(OH)2 | Zn + CuSO4 -> ZnSO4 + Cu | KOH + HNO3 -> KNO3 + H2O
+mc2: Part of the activity series, from most to least reactive, is magnesium, zinc, iron, hydrogen, copper, silver, gold. Which metal will replace hydrogen from dilute hydrochloric acid? | zinc | copper | silver | gold
+mc2: Ammonia is made by the reaction N2 + 3H2 -> 2NH3. A reactor is loaded with 2 mol of N2 and 3 mol of H2. Which reactant runs out first? | H2 | N2 | NH3 | neither
+mc3: Wearing goggles and pointing the test tube away from people, a student heats 10.0 g of a blue hydrated salt and sees steam leave the tube. Afterward, 6.4 g of white solid remains. Which statement is correct? | Mass is conserved; about 3.6 g of water vapor escaped | Mass was destroyed when the salt was heated | The white solid gained 3.6 g | The salt did not change and no mass left the tube
+mc2: Which statement about a balanced chemical equation is true? | The number of each kind of atom is the same on both sides | The number of molecules is always the same on both sides | The coefficients must all be equal | The products always have more mass than the reactants
+num2: Use Na = 23, O = 16 and H = 1. How many grams are in 0.25 mol of sodium hydroxide, NaOH? | 10
+sa2: Balance the equation: Fe + O2 -> Fe2O3, and explain how it shows conservation of mass. | 4Fe + 3O2 -> 2Fe2O3; equal numbers of each atom on both sides.
+sa2: Calculate the mass of CO2 (44 g/mol) produced by burning 1 mole of methane. | 1 mol CO2 = 44 g.
+cer3: Wearing goggles and gloves, students set a beaker of 50.0 g of blue copper(II) sulfate solution and a beaker of 50.0 g of sodium hydroxide solution on a balance together. The total mass was 210.0 g. They poured one solution into the other and put both beakers back on the balance. A pale blue solid formed, no bubbles appeared, and the total mass was 210.0 g. Make a claim about whether a chemical reaction happened and whether mass was conserved. Use the data as evidence and explain your reasoning with atoms. | Claim: a chemical reaction happened, and mass was conserved. Evidence: a new pale blue solid (a precipitate) formed when the two solutions mixed, and the total mass was 210.0 g both before and after. Reasoning: in the reaction CuSO4 + 2NaOH -> Cu(OH)2 + Na2SO4, the atoms rearrange into new substances, but no atoms are created or destroyed, and no gas escaped, so the total mass stayed the same.
+task3: React a measured mass of baking soda with excess vinegar. Predict the mass of CO2 produced using stoichiometry, measure the actual mass lost, calculate percent yield and explain sources of error. | Correct prediction, careful measurement, accurate percent yield and thoughtful error analysis. | Correct calculations with limited error analysis. | Partial calculations. | Little correct work.
+
+unit: Rates, equilibrium, acids and bases | HS-PS1-5, HS-PS1-6 | sci_10_n2
+el: Act out collision theory with students moving in a marked area (more students = higher concentration; moving faster = higher temperature). Post a pH scale strip with everyday examples and the frame: "Adding ___ shifts the equilibrium toward ___ because ___."
+
+lesson: Collision theory and factors that affect reaction rate | HS-PS1-5
+practice:
+mc1: According to collision theory, particles must collide with enough energy and | the right orientation | the same mass | no motion | the same color
+hint: Not every collision causes a reaction.
+mc2: Why does food spoil more slowly in a refrigerator? | Lower temperature means fewer and less energetic collisions | Cold adds a catalyst | Cold increases concentration | Cold increases surface area
+hint: How does temperature affect the motion of particles?
+num2: A reaction produces 60 mL of gas in 30 seconds. What is the average rate in mL per second? | 2
+hint: Divide the amount of gas by the time.
+mc2: Which change would speed up the reaction of a marble chip with dilute hydrochloric acid? | using more concentrated acid | using a larger marble chip | cooling the acid | adding water to the acid
+hint: More acid particles in the same volume means what for collisions?
+mc3: Data (goggles worn): a student timed how long it took a 2 cm piece of magnesium ribbon to disappear in hydrochloric acid of four concentrations. 0.5 mol/L - 120 s; 1.0 mol/L - 60 s; 1.5 mol/L - 40 s; 2.0 mol/L - 30 s. Which conclusion is supported? | As concentration increases, the time decreases, so the rate increases | As concentration increases, the rate decreases | Concentration has no effect on the rate | The rate is fastest at 0.5 mol/L
+hint: A shorter time means a faster reaction.
+sa2: Describe a safe, fair test of how temperature affects how brightly and how long glow sticks glow. | Use identical glow sticks and activate them at the same time. Place one in cold water, one in room-temperature water and one in warm (not boiling) water. Compare the brightness in a dark room and time how long each glows; repeat with new sticks. Never cut or break open a glow stick.
+hint: What must be the same for every stick? What is the one thing you change?
+quiz:
+mc1: The speed at which reactants are used up or products form is the | reaction rate | equilibrium | activation energy | yield
+mc2: When the temperature of a reaction mixture is raised, what is the main reason the rate increases? | More collisions have at least the minimum energy needed to react | The particles become larger | The concentration of reactants decreases | The particles stop moving
+num2: In a reaction, 0.40 mol/L of a reactant is used up in 20 seconds. What is the average rate in mol/L per second? | 0.02
+mc2: Which change would slow down the reaction of zinc with dilute sulfuric acid? | using larger pieces of zinc | heating the acid | using powdered zinc | using more concentrated acid
+mc3: Data: equal masses of calcium carbonate were added to equal volumes of the same acid. Large chips: 50 mL of gas collected in 100 s. Small chips: 50 mL in 45 s. Powder: 50 mL in 15 s. Which explanation is supported? | Smaller pieces expose more surface, so more collisions happen each second | Smaller pieces have a higher temperature | The powder is a catalyst | Large chips contain more particles
+mc2: Two students do the same reaction. One stirs the mixture and the other does not. The stirred reaction finishes first. Which idea explains this best? | Stirring brings reactant particles together more often, increasing collisions | Stirring adds mass | Stirring cools the mixture | Stirring removes the reactants
+cer3: Students dropped equal 2 cm pieces of magnesium ribbon into 20 mL samples of the same dilute hydrochloric acid at different temperatures (goggles on, no flames nearby) and timed how long each ribbon took to disappear. 10 °C: 150 s. 20 °C: 80 s. 30 °C: 42 s. 40 °C: 21 s. Make a claim about how temperature affects reaction rate. Use the data as evidence and explain your reasoning with collision theory. | Claim: raising the temperature increases the reaction rate. Evidence: the time fell from 150 s at 10 °C to 80 s, 42 s and 21 s as the temperature rose; each 10 °C rise about halved the time. Reasoning: at higher temperatures the particles move faster, so they collide more often, and a larger fraction of collisions have enough energy to react, so the ribbon is used up sooner.
+
+lesson: Energy in reactions: activation energy, catalysts and energy diagrams | HS-PS1-4, HS-PS1-5
+practice:
+mc1: A reaction that releases thermal energy to its surroundings is | exothermic | endothermic | at equilibrium | neutral
+hint: "Exo" means out.
+mc2: A student dissolves ammonium chloride in water and the beaker feels cold. What kind of process is this? | endothermic, because it absorbs energy from the surroundings | exothermic, because it releases energy | neither, because no energy is involved | exothermic, because cold is released
+hint: Energy flows from your hand into the beaker.
+mc2: On an energy diagram, the activation energy is | the energy from the reactants up to the peak | the energy of the products | the difference between reactants and products | the energy released at the end
+hint: Think of the hill between reactants and products.
+num2: On an energy diagram, the reactants are at 50 kJ, the peak is at 120 kJ and the products are at 20 kJ. What is the activation energy in kJ? | 70
+hint: Measure from the reactants up to the peak.
+num2: An energy diagram shows reactants at 50 kJ, products at 20 kJ and a peak at 120 kJ. How many kJ of energy are released overall? | 30
+hint: Compare the reactants with the products.
+sa2: Explain how a catalyst speeds up a reaction, using the idea of an energy diagram. | A catalyst gives the reaction a different pathway with a lower activation energy, so the peak is lower. More collisions have enough energy to react, so the rate increases. The catalyst is not used up, and the energies of the reactants and products stay the same.
+hint: What happens to the height of the hill?
+quiz:
+mc1: A reaction that absorbs thermal energy from its surroundings is | endothermic | exothermic | combustion | a catalyst
+mc2: Which is an exothermic process? | burning natural gas | melting ice | photosynthesis | evaporating water
+num2: On an energy diagram, reactants are at 30 kJ, products at 90 kJ and the peak at 140 kJ. What is the activation energy in kJ? | 110
+num2: A cold pack absorbs energy from its surroundings when it is activated. On its energy diagram the reactants are at 25 kJ and the products are at 85 kJ. How many kJ does it absorb? | 60
+mc2: Hydrogen peroxide breaks down slowly into water and oxygen. In a lab with goggles on, when a small amount of manganese dioxide is added, it bubbles rapidly, and the manganese dioxide can be recovered afterward with the same mass. What does this show? | Manganese dioxide is a catalyst | Manganese dioxide is a reactant that is used up | Manganese dioxide is a product | The reaction became endothermic
+mc3: Data (goggles on): a student mixed 50 mL of dilute hydrochloric acid with 50 mL of dilute sodium hydroxide in a foam cup. The temperature rose from 21.0 °C to 27.5 °C. Which statement is correct? | The reaction is exothermic because the solution's temperature rose | The reaction is endothermic because the solution's temperature rose | No reaction happened because no gas formed | The reaction absorbed energy from the cup
+mc2: Enzymes in the body are | biological catalysts that speed up reactions | reactants used up in each reaction | products of digestion only | substances that raise body temperature
+sa2: Burning is exothermic. Explain why a match does not light until it is struck. | The reactants need activation energy to start reacting. Friction from striking the match supplies enough energy to start the reaction; once it begins, the energy it releases keeps the reaction going.
+
+lesson: Reversible reactions and dynamic equilibrium | HS-PS1-6
+practice:
+mc1: A reaction that can go both forward and backward is | reversible | irreversible | a combustion | a decomposition only
+hint: The word means it can be turned back.
+mc2: In a sealed bottle of soda, carbon dioxide gas and dissolved carbon dioxide are at equilibrium. What is happening at the particle level? | CO2 is dissolving and escaping at equal rates | No particles are moving | All the CO2 has dissolved | All the CO2 has escaped
+hint: Equilibrium is dynamic.
+mc2: Which graph description shows a reaction reaching equilibrium? | Concentrations change at first, then level off and stay constant | Concentrations keep changing forever | Product concentration drops to zero | Reactant concentration keeps increasing
+hint: At equilibrium, amounts stop changing even though reactions continue.
+mc2: In a chemical equation, two half arrows pointing in opposite directions mean | the reaction is reversible and can reach equilibrium | the reaction releases heat | a gas is produced | a precipitate forms
+hint: One arrow points to the products and one points back to the reactants.
+mc3: In a teacher demonstration, brown nitrogen dioxide (NO2) and colorless dinitrogen tetroxide (N2O4) reach equilibrium in a sealed glass tube. The color stops changing, but the tube is not colorless. Which statement is correct? | Both gases are present, and they convert into each other at equal rates | The reaction has stopped completely | Only NO2 is present | Only N2O4 is present
+hint: Constant color means constant amounts, not stopped reactions.
+sa2: Use an analogy, such as people walking between two rooms, to explain dynamic equilibrium. | If people move from room A to room B at the same rate as people move from room B to room A, the number in each room stays the same even though people keep moving. In dynamic equilibrium, the forward and reverse reactions keep happening at equal rates, so the concentrations stay constant.
+hint: What has to be equal for the numbers to stay the same?
+quiz:
+mc1: At dynamic equilibrium, the amounts of reactants and products | stay constant | are always equal to each other | keep increasing | drop to zero
+mc2: Equilibrium can be reached only in | a closed system where no substances enter or leave | an open beaker where gases escape | a reaction that has no reverse reaction | a solid that does not change
+num2: Water sits in a sealed jar at constant temperature. Each second, 500 molecules evaporate from the liquid. When the jar is at equilibrium, how many molecules condense back into the liquid each second? | 500
+mc2: In a sealed flask, the reaction A <-> B starts with only A. Which describes the forward rate over time? | It starts high and decreases until it equals the reverse rate | It starts at zero and increases forever | It stays constant from the start | It drops to zero
+mc3: Data: in a sealed flask, the concentration of a product was measured every minute. 0 min - 0.00 mol/L; 1 min - 0.20; 2 min - 0.32; 3 min - 0.38; 4 min - 0.40; 5 min - 0.40; 6 min - 0.40. When did the system reach equilibrium? | at about 4 minutes | at 1 minute | at 0 minutes | only at 6 minutes
+mc2: A saturated salt solution has extra undissolved salt at the bottom of the jar. Which statement is true? | Salt dissolves and crystallizes at equal rates | No salt dissolves anymore | All the salt will eventually dissolve | Salt only crystallizes
+sa2: A student says that at equilibrium the reaction is finished because nothing seems to change. Explain why this is incorrect. | At equilibrium the forward and reverse reactions continue at equal rates. Particles keep reacting in both directions, but because the rates are equal the amounts stay constant, so it only looks finished.
+
+lesson: Le Chatelier's principle and designing for more product | HS-PS1-6
+practice:
+mc1: For N2 + 3H2 <-> 2NH3 at equilibrium, adding more N2 shifts the equilibrium | toward more NH3 | toward more N2 and H2 | in no direction | toward less NH3
+hint: The system works to use up what was added.
+mc2: For N2(g) + 3H2(g) <-> 2NH3(g), which change in pressure shifts the equilibrium toward more ammonia? | increasing the pressure | decreasing the pressure | pressure has no effect | removing the pressure completely
+hint: Count gas molecules on each side: 4 on the left and 2 on the right.
+mc2: For the endothermic reaction CaCO3(s) <-> CaO(s) + CO2(g) in a closed container, which change produces more CO2? | raising the temperature | lowering the temperature | adding a catalyst | adding more CO2
+hint: Treat heat as a reactant in an endothermic reaction.
+mc2: Adding a catalyst to a reaction at equilibrium | makes it reach equilibrium faster but does not change the amounts at equilibrium | shifts it toward products | shifts it toward reactants | stops the reverse reaction
+hint: A catalyst speeds up both directions equally.
+mc3: In the sealed reaction CO(g) + 2H2(g) <-> CH3OH(g), an engineer removes CH3OH as it forms. What is the effect? | The equilibrium keeps shifting right, producing more CH3OH | The equilibrium shifts left | The reaction stops | Nothing changes
+hint: Removing a product makes room for more.
+sa2: A bottle of soda is opened and starts to fizz. Explain this using Le Chatelier's principle and the equilibrium CO2(g) <-> CO2(aq). | Opening the bottle lets CO2 gas escape, lowering the pressure of CO2 above the liquid. The equilibrium shifts toward the gas side to counteract the change, so dissolved CO2 comes out of solution as bubbles.
+hint: What happens to the gas above the liquid when the cap comes off?
+quiz:
+mc1: For a system at equilibrium, removing some of a product shifts the equilibrium | toward the products | toward the reactants | in no direction | toward the catalyst
+num2: For N2(g) + 3H2(g) <-> 2NH3(g), how many total moles of gas are on the reactant side? | 4
+mc2: The Haber process makes ammonia: N2 + 3H2 <-> 2NH3, and the forward reaction is exothermic. Which conditions favor the greatest amount of ammonia at equilibrium? | high pressure and low temperature | low pressure and high temperature | low pressure and low temperature | high pressure and high temperature
+mc2: For the reaction H2(g) + I2(g) <-> 2HI(g), what happens if the pressure is increased? | The equilibrium does not shift because both sides have 2 moles of gas | It shifts toward HI | It shifts toward H2 and I2 | The reaction stops
+mc3: In a teacher demonstration, this equilibrium is set up in a test tube: pink cobalt complex + chloride ions + heat <-> blue cobalt complex. The purple tube is placed in an ice bath. What color change is expected? | It turns more pink | It turns more blue | It stays exactly the same | It turns colorless
+mc2: For PCl5(g) <-> PCl3(g) + Cl2(g), what happens if more Cl2 is added? | The equilibrium shifts toward PCl5 | The equilibrium shifts toward PCl3 and Cl2 | The equilibrium does not shift | The reaction stops
+cer3: A teacher demonstration used sealed tubes of brown NO2 gas in equilibrium with colorless N2O4 gas: 2NO2 <-> N2O4. Observations: tube in ice water - pale brown; tube at room temperature - medium brown; tube in hot water - dark brown. Make a claim about whether the forward reaction (forming N2O4) is exothermic or endothermic. Use the observations as evidence and explain your reasoning with Le Chatelier's principle. | Claim: the forward reaction is exothermic. Evidence: heating made the gas darker brown (more NO2), and cooling made it paler (more N2O4). Reasoning: when heat is added, an equilibrium shifts in the direction that absorbs heat. Heating shifted it back toward NO2, so the reverse reaction absorbs heat and the forward reaction releases heat. Cooling removes heat, so the system shifts forward to release heat and makes more N2O4.
+
+lesson: Acids, bases and the pH scale | HS-PS1-2
+practice:
+mc1: An acid is a substance that produces which ion in water? | H+ (often written H3O+) | OH- | Na+ | Cl-
+hint: Think of the H at the start of many acid formulas, such as HCl.
+mc2: Which pH describes a basic solution? | 11 | 7 | 4 | 1
+hint: Neutral is 7.
+num2: A solution with pH 2 has how many times the hydrogen ion concentration of a solution with pH 4? | 100
+hint: Each step on the pH scale is a factor of 10.
+mc2: Red litmus paper is dipped into a solution and turns blue. The solution is | basic | acidic | neutral | a pure metal
+hint: Blue litmus turns red in acid; red litmus turns blue in the opposite case.
+mc2: A strong acid differs from a weak acid because a strong acid | breaks apart almost completely into ions in water | is always more concentrated | has a higher pH at the same concentration | cannot react with bases
+hint: Strength is about how much the acid ionizes, not how much is dissolved.
+sa2: Describe safe practices for testing the pH of household solutions such as vinegar, baking soda solution and soapy water in class. | Wear goggles; use small, labeled samples; never taste or mix unknown chemicals; use pH paper or a pH probe and rinse the probe between samples; wipe up spills and wash hands afterward. Do not test strong cleaners such as drain cleaner or bleach.
+hint: Think about eyes, labels, mixing and cleanup.
+quiz:
+mc1: A base produces which ion in water? | OH- (hydroxide) | H+ | Cl- | O2-
+num2: Solution A has pH 3 and solution B has pH 6. How many times greater is the hydrogen ion concentration of A than of B? | 1000
+mc2: Which household substance is most likely to have a pH below 7? | lemon juice | hand soap | baking soda solution | household ammonia
+mc2: A solution's pH rises from 4 to 5 after water is added. What happened to its hydrogen ion concentration? | It became 10 times smaller | It became 10 times greater | It doubled | It did not change
+mc2: Phenolphthalein indicator is colorless in acid and pink in base. A few drops added to a solution turn it pink. What does this show? | The solution is basic | The solution is acidic | The solution is neutral | The solution contains no ions
+mc3: Data from a class test with a pH probe (goggles on): lemon juice pH 2, vinegar pH 3, baking soda solution pH 8, household ammonia pH 11. Which conclusion is supported? | The ammonia solution has the lowest hydrogen ion concentration | Lemon juice is the most basic | Vinegar is more acidic than lemon juice | Baking soda solution is acidic
+sa2: Solutions of hydrochloric acid and acetic acid (the acid in vinegar) have the same concentration, but the hydrochloric acid has a lower pH. Explain why. | Hydrochloric acid is a strong acid that ionizes almost completely, releasing more H+ ions. Acetic acid is a weak acid that ionizes only slightly, so at the same concentration it produces fewer H+ ions and has a higher pH.
+
+lesson: Neutralization and titration | HS-PS1-2, HS-PS1-7
+practice:
+mc1: What are the products of the neutralization reaction between HCl and NaOH? | NaCl and H2O | NaOH and Cl2 | H2 and NaCl | NaO and HCl
+hint: The H+ from the acid and the OH- from the base form water.
+mc2: In a titration, the point where the acid and base have exactly reacted is the | equivalence point | boiling point | limiting point | saturation point
+hint: The amounts of acid and base are equivalent at this point.
+num2: How many moles of NaOH are in 25.0 mL of 0.10 mol/L NaOH? | 0.0025
+hint: Change mL to L, then multiply by the molarity.
+num3: 20.0 mL of 0.50 mol/L NaOH exactly neutralizes 25.0 mL of HCl. HCl and NaOH react in a 1 to 1 ratio. What is the molarity of the HCl in mol/L? | 0.4
+hint: Moles of acid = moles of base at the equivalence point.
+mc2: Which salt forms when potassium hydroxide neutralizes nitric acid (HNO3)? | KNO3 | KH | NO3OH | K2O
+hint: The metal from the base joins the nonmetal part of the acid.
+sa2: Describe how to carry out a simple acid-base titration safely in a school lab. | Wear goggles and use dilute solutions. Fill a buret with the base using a funnel, below eye level. Measure a known volume of acid into a flask and add a few drops of indicator. Add base slowly while swirling until the indicator color just changes and stays, then record the volume. Rinse spills with water and wash hands.
+hint: Think about measuring, the indicator and how fast to add the base.
+quiz:
+mc1: A neutralization reaction is a reaction between | an acid and a base | two metals | a metal and oxygen | two noble gases
+num2: HCl + NaOH -> NaCl + H2O. How many moles of HCl are needed to neutralize 0.3 mol of NaOH? | 0.3
+num2: In H2SO4 + 2NaOH -> Na2SO4 + 2H2O, how many moles of NaOH are needed to neutralize 0.5 mol of H2SO4? | 1
+num3: 30.0 mL of 0.20 mol/L HCl is exactly neutralized by 20.0 mL of NaOH solution. HCl and NaOH react in a 1 to 1 ratio. What is the molarity of the NaOH in mol/L? | 0.3
+mc2: During a titration of an acid with a base, phenolphthalein in the flask is colorless and then turns a pale pink that stays when swirled. What does the pale pink show? | The end point has been reached; the acid has just been neutralized | More acid needs to be added | The solution is strongly acidic | The indicator has been used up
+mc3: A farmer's soil test shows pH 5.0, but the crop grows best near pH 6.5. Which action is the best choice? | Add a base such as lime (calcium carbonate) to raise the pH | Add vinegar to lower the pH | Add an acid to lower the pH further | Do nothing, since pH 5.0 is basic
+cer3: Students tested three antacid tablets by dissolving each in water and titrating it with 0.10 mol/L hydrochloric acid, using an indicator to find the end point (goggles on). Volume of acid neutralized: Brand A 18.0 mL; Brand B 31.5 mL; Brand C 24.0 mL. Make a claim about which brand neutralizes the most acid. Use the data as evidence and explain your reasoning. | Claim: Brand B neutralizes the most acid. Evidence: Brand B neutralized 31.5 mL of acid, more than Brand C (24.0 mL) and Brand A (18.0 mL); that is 0.10 mol/L x 0.0315 L = 0.00315 mol of HCl. Reasoning: in neutralization the base in the tablet reacts with H+ from the acid to form water. The more acid a tablet can react with before the end point, the more base it contains.
+
+lesson: Unit review | HS-PS1-5, HS-PS1-6
+practice:
+num2: A reaction produced 75 mL of oxygen in 25 seconds. What was the average rate in mL per second? | 3
+hint: Rate = amount / time.
+mc2: For the exothermic reaction 2SO2(g) + O2(g) <-> 2SO3(g), which change shifts the equilibrium toward more SO3? | increasing the pressure | decreasing the pressure | raising the temperature | removing O2
+hint: Compare the moles of gas on each side.
+num2: Rain with pH 4 falls on a lake with pH 6. How many times greater is the hydrogen ion concentration of the rain than that of the lake water? | 100
+hint: Each pH unit is a factor of 10.
+mc2: On an energy diagram, which feature does a catalyst lower? | the activation energy | the energy of the products | the energy of the reactants | the overall energy released
+hint: Think about the height of the hill.
+sa2: Explain why a reaction slows down as it goes on, even when the temperature stays the same. | As reactants are used up, their concentration decreases, so particles collide less often and the rate falls.
+hint: What happens to the number of reactant particles over time?
+quiz:
+mc1: A solution with pH 3 is | acidic | basic | neutral | salty only
+mc1: Increasing temperature usually makes reactions go | faster | slower | stop | backward only
+mc2: A catalyst | speeds up a reaction without being used up | is a product | slows reactions only | changes the products
+mc2: Which pH is neutral? | 7 | 0 | 14 | 1
+num2: How many moles of HCl are in 50.0 mL of 0.20 mol/L hydrochloric acid? | 0.01
+mc2: Which describes an endothermic reaction? | It absorbs energy, and its products have more energy than its reactants | It releases energy and its surroundings get warm | Its products have less energy than its reactants | It needs no activation energy
+ex2: Explain Le Chatelier's principle with an example. | A system at equilibrium shifts to counteract a change, such as adding reactant shifting toward products.
+
+test:
+mc2: Mixing an acid and a base produces | salt and water | only gas | a stronger acid | nothing
+mc2: Crushing a solid into powder speeds a reaction because it | increases surface area | lowers temperature | removes a reactant | adds a catalyst always
+mc2: At chemical equilibrium | forward and reverse reaction rates are equal | all reactions stop | only products remain | only reactants remain
+mc3: For an exothermic reaction at equilibrium, lowering the temperature will | shift toward more products | shift toward more reactants | stop the reaction | have no effect
+mc1: Which pH value describes the most acidic solution? | 1 | 5 | 7 | 13
+num2: An effervescent antacid tablet dropped in water gives off 200 mL of carbon dioxide in its first 40 seconds. What is the average rate of gas production in mL per second? | 5
+num2: A reaction has an activation energy of 120 kJ. Adding a catalyst lowers the activation energy by 50 kJ. What is the activation energy with the catalyst in kJ? | 70
+num2: A technician adds acid to a tank of water, and its pH falls from 7 to 3. By what factor did its hydrogen ion concentration increase? | 10000
+num3: A student titrates a 15.0 mL sample of hydrochloric acid of unknown concentration. The indicator changes color after 10.0 mL of 0.30 mol/L sodium hydroxide is added. HCl and NaOH react in a 1 to 1 ratio. What is the concentration of the acid in mol/L? | 0.2
+mc2: Which change would decrease the rate of a reaction in solution? | diluting a reactant solution with water | adding a catalyst | heating the mixture | stirring the mixture
+mc2: For the endothermic reaction H2(g) + CO2(g) <-> H2O(g) + CO(g), raising the temperature shifts the equilibrium | toward H2O and CO | toward H2 and CO2 | in no direction | until all the reactants are used up
+mc2: For 2NO(g) + O2(g) <-> 2NO2(g), increasing the pressure shifts the equilibrium | toward NO2 | toward NO and O2 | in no direction | until all the NO2 breaks down
+mc2: Which statement describes a weak acid? | It ionizes only partly in water | It is always dilute | It has a pH above 7 | It cannot react with a base
+mc2: Which pair of substances reacts in a neutralization reaction? | HNO3 and KOH | NaCl and H2O | HCl and HNO3 | NaOH and KOH
+mc3: Data (goggles on): dilute hydrogen peroxide was allowed to decompose at 25 °C with and without yeast. Without yeast: 2 mL of oxygen in 5 minutes. With a small amount of yeast: 40 mL of oxygen in 5 minutes. Which conclusion is supported? | Yeast contains a catalyst that speeds up the decomposition | Yeast is a reactant that is used up to make the oxygen | Yeast lowers the temperature | Yeast stops the reaction
+mc2: Universal indicator turns red in a solution. Which pH is the solution most likely to have? | 2 | 7 | 10 | 13
+mc3: A sealed flask holds the reaction A(g) <-> B(g) at equilibrium. A student adds more A. Which describes the forward rate after that? | It increases at once, then decreases as the system reaches a new equilibrium | It drops to zero | It stays the same | It decreases at once
+num2: In 2HCl + Ca(OH)2 -> CaCl2 + 2H2O, how many moles of HCl neutralize 0.25 mol of Ca(OH)2? | 0.5
+mc2: A piece of wood burns slowly in air but very quickly in pure oxygen. Which factor explains the difference? | the concentration of oxygen | the surface area of the wood | a catalyst in the air | a lower temperature in pure oxygen
+sa2: Explain using collision theory why increasing concentration speeds up a reaction. | More particles in the same space collide more often, so successful collisions happen faster.
+sa2: Explain how an antacid relieves heartburn. | It is a base that neutralizes excess stomach acid.
+cer3: Wearing goggles, students used a pH probe while slowly adding 0.10 mol/L sodium hydroxide to 25.0 mL of 0.10 mol/L hydrochloric acid. Data (mL of base added - pH): 0 - 1.0; 10 - 1.4; 20 - 2.0; 24 - 2.7; 25 - 7.0; 26 - 11.3; 30 - 12.0. Make a claim about the volume of base needed to neutralize the acid. Use the data as evidence and explain your reasoning. | Claim: 25 mL of the base exactly neutralizes the acid. Evidence: the pH rose slowly from 1.0 to 2.7 over the first 24 mL, jumped to 7.0 at 25 mL and to 11.3 at 26 mL. Reasoning: at 25 mL the moles of NaOH (0.10 mol/L x 0.025 L = 0.0025 mol) equal the moles of HCl, so all the H+ has reacted with OH- to form water and the solution is neutral. Any extra base makes the solution basic, so the pH rises sharply.
+task3: Design an investigation to test how two factors (temperature, concentration or surface area) affect the rate of a reaction such as an antacid tablet dissolving in water. Collect data, graph it, explain using collision theory and recommend conditions for the fastest reaction. | Well-controlled design, accurate graphs, strong collision theory explanation and justified recommendation. | Good data with a partial explanation. | Limited data or analysis. | Little correct work.
