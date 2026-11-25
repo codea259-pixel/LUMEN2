@@ -1,0 +1,731 @@
+@subject sci
+@grade 12
+# Converted from the grade 12 section of tools/assess-src/sci.txt. Every original unit line, standard, item and unit test
+# item is carried over verbatim. The original "Unit review" lesson is kept as the last lesson of each unit: its quiz keeps
+# the original quiz items (mc 1-4 and the explanation item) and the unit test keeps the original test items (mc 5-8,
+# both short answers and the task). New lessons come first.
+# Difficulty within grade 12: The universe and stars (hard, 8 lessons), Earth's history and internal processes (middle,
+# 6 lessons), Earth's climate system (hard, 7 lessons), Human sustainability (easier, 5 lessons).
+about: Earth and Space Science and Environmental Science examine the universe and the solar system, Earth's history and internal processes, the climate system, and human sustainability, emphasizing data analysis, modeling and engineering solutions to global challenges.
+std: HS-ESS1-1 | Develop a model based on evidence to illustrate the life span of the Sun and the role of nuclear fusion in the Sun's core.
+std: HS-ESS1-2 | Construct an explanation of the Big Bang theory based on astronomical evidence of light spectra, motion of distant galaxies and composition of matter.
+std: HS-ESS2-4 | Use a model to describe how variations in the flow of energy into and out of Earth's systems result in changes in climate.
+std: HS-ESS3-4 | Evaluate or refine a technological solution that reduces impacts of human activities on natural systems.
+std: HS-ESS3-5 | Analyze geoscience data and the results from global climate models to make an evidence-based forecast of the current rate of global or regional climate change.
+
+unit: The universe and stars | HS-ESS1-1, HS-ESS1-2, HS-ESS1-3, HS-ESS1-4
+el: Post a labeled H-R diagram (temperature decreasing to the right, luminosity increasing upward) and a spectrum strip showing the same lines shifted toward red and toward blue. Give the frame: "The lines shift toward ___, so the object is moving ___ Earth."
+
+lesson: Light, spectra and what starlight reveals | HS-ESS1-2, HS-ESS1-3
+practice:
+mc1: When light from a hot, glowing object passes through a cooler gas, the spectrum shows | dark absorption lines at specific wavelengths | a single bright color only | no light at all | every color with no gaps
+hint: Think about what the cooler gas does to certain wavelengths of light.
+mc2: Each element absorbs and gives off light only at its own set of wavelengths. Why does this let astronomers find out what a distant star is made of? | The pattern of lines in the star's spectrum can be matched to line patterns of elements measured in labs | Stars send samples of their gas to Earth | Every star has exactly the same composition | A star's color alone names one element
+hint: Compare a star's lines with lines measured on Earth.
+mc2: A hydrogen line that appears at 656 nm in a lab appears at 654 nm in a star's spectrum. What does this shift show? | The star is moving toward Earth | The star is moving away from Earth | The star contains no hydrogen | The star is cooler than the lab gas
+hint: A shift to shorter wavelengths is a shift toward the blue end.
+num2: Wien's law says a star's peak wavelength in nanometers equals 2,900,000 divided by its surface temperature in kelvins. What is the peak wavelength, in nm, of a star with a surface temperature of 5,800 K? | 500
+hint: Divide 2,900,000 by the temperature.
+mc2: Star X looks blue-white and Star Y looks red. Which statement is best supported? | Star X has a hotter surface than Star Y | Star Y has a hotter surface than Star X | Star X is closer to Earth | Star Y is moving toward Earth
+hint: Hotter objects give off more of their light at shorter wavelengths.
+sa2: A student says absorption lines and the Doppler shift give astronomers the same information about a star. Explain what each one tells. | The positions of absorption lines show which elements are in the star's outer layers. A Doppler shift of the whole line pattern toward red or blue shows whether the star is moving away from or toward us, and a bigger shift means a faster speed.
+hint: One is about what the star is made of; the other is about motion.
+quiz:
+mc1: A spectrum that shows every color with no gaps is called | a continuous spectrum | an absorption spectrum | an emission spectrum | a redshifted spectrum
+mc2: A glowing tube of neon gas in a lab gives off light at only a few bright wavelengths. What kind of spectrum is this? | an emission spectrum | a continuous spectrum | an absorption spectrum | a blueshifted spectrum
+num2: Wien's law says peak wavelength in nanometers = 2,900,000 divided by surface temperature in kelvins. What is the surface temperature, in kelvins, of a star whose light peaks at 290 nm? | 10000
+mc2: A calcium line measured in a lab at 393 nm appears at 397 nm in a galaxy's spectrum. Which is the best conclusion? | The galaxy is moving away from Earth | The galaxy is moving toward Earth | The galaxy contains no calcium | The galaxy is hotter than the Sun
+num3: For light, speed = (change in wavelength / lab wavelength) x 300,000 km/s. A line with a lab wavelength of 500 nm is observed at 501 nm. How fast is the source moving away from Earth, in km/s? | 600
+mc2: The spectrum of a star shows the dark lines of hydrogen, helium and sodium. What is the best conclusion? | Those elements are present in the star's outer layers | The star contains only those three elements | The star is moving toward Earth | The star is actually a planet
+mc3: Two stars are the same size. Star A's light peaks at 400 nm and Star B's light peaks at 800 nm. Which star gives off more energy each second, and why? | Star A, because its shorter peak wavelength means a hotter surface | Star B, because longer wavelengths carry more energy | Star B, because red stars are always brighter | Neither, because stars of the same size give off the same energy
+cer3: An iron line has a lab wavelength of 527.0 nm. In three galaxies it appears at: Galaxy P, 528.1 nm; Galaxy Q, 530.2 nm; Galaxy R, 526.5 nm. Make a claim about how each galaxy is moving relative to Earth and which is moving fastest. Use the data as evidence and explain your reasoning. | Claim: P and Q are moving away from Earth, R is moving toward Earth, and Q is moving fastest. Evidence: P's line shifted 1.1 nm and Q's 3.2 nm to longer (redder) wavelengths, while R's shifted 0.5 nm to a shorter (bluer) wavelength. Reasoning: motion away stretches light waves (redshift) and motion toward squeezes them (blueshift); a larger shift means a faster speed, so Q, with the largest redshift, is moving away fastest.
+
+lesson: Nuclear fusion and the Sun's energy | HS-ESS1-1
+practice:
+mc1: In the Sun's core, the main fusion process joins | hydrogen nuclei to make helium | helium nuclei to make hydrogen | uranium nuclei into smaller pieces | carbon and oxygen in a flame
+hint: Fusion builds a heavier nucleus from lighter ones.
+mc2: Fusion needs extremely high temperature and pressure because | positively charged nuclei repel each other and must collide very fast to join | nuclei attract each other too strongly | electrons must be added to each nucleus | cold gas cannot give off light
+hint: Think about the electric charge on protons.
+num2: Four hydrogen nuclei have a total mass of 4.032 mass units. The helium nucleus they form has a mass of 4.003 mass units. How many mass units are converted to energy? | 0.029
+hint: Subtract the mass after from the mass before.
+mc2: Einstein's equation E = mc^2 helps explain the Sun's energy because | a small amount of mass becomes a very large amount of energy | energy is created from nothing | mass and energy are unrelated | the Sun gains mass as it shines
+hint: c^2, the speed of light squared, is a huge number.
+num2: Light travels about 300,000 km each second, and the Sun is about 150,000,000 km from Earth. How many seconds does sunlight take to reach Earth? | 500
+hint: time = distance / speed.
+sa2: Explain how energy made by fusion in the Sun's core eventually reaches Earth. | Fusion releases energy in the core. It moves outward slowly through the radiative zone as light is absorbed and given off again, then through the convection zone as hot gas rises, and it leaves the surface (the photosphere) as light that crosses space to Earth.
+hint: Name the layers the energy passes through.
+quiz:
+mc1: Nuclear fusion is the process in which | light nuclei join to form a heavier nucleus | a heavy nucleus splits into lighter nuclei | atoms share electrons | molecules break apart in a fire
+mc2: Why does fusion happen in the Sun's core but not in its outer layers? | Only the core is hot and dense enough for nuclei to collide and fuse | The outer layers contain no hydrogen | The core is cooler than the surface | Fusion needs sunlight shining in from outside
+mc2: The helium made in the Sun's core has slightly less mass than the hydrogen that formed it. What happened to the missing mass? | It was converted into energy | It was destroyed with no effect | It turned into extra electrons | It escaped as hydrogen gas
+num2: A star converts 2 kg of mass into energy. Using E = mc^2 with c = 300,000,000 m/s, the energy is some number times 10^16 joules. What is that number? | 18
+mc2: Gravity pulls the Sun's gas inward. What keeps the Sun from collapsing? | outward pressure from hot gas heated by fusion | the Sun's magnetic field alone | the pull of the planets | the solar wind pushing inward
+num2: Sunlight takes about 500 seconds to reach Earth. About how many minutes is that? Round to the nearest tenth. | 8.3
+mc3: Detectors on Earth catch neutrinos coming from the Sun's core. Neutrinos are made in fusion reactions and pass through matter almost without stopping. Why is this strong evidence for the fusion model? | It shows fusion is happening in the core now, because these particles travel straight out from it | It shows the Sun is made of iron | It shows the Sun burns coal | It proves the Sun is shrinking quickly
+sa3: People once wondered whether the Sun might shine by chemical burning. Explain why fusion is a better explanation, using the age of the solar system and the energy each kilogram of fuel can release. | Meteorites and rocks show the solar system is about 4.6 billion years old. Chemical burning releases far too little energy per kilogram to keep the Sun shining that long, but fusion turns some mass into energy and releases millions of times more energy per kilogram, enough to power the Sun for billions of years.
+
+lesson: The Sun's structure, activity and life span | HS-ESS1-1
+practice:
+mc1: The visible surface of the Sun, where most of its light leaves, is the | photosphere | core | radiative zone | outer core
+hint: "Photo" means light.
+mc2: Sunspots look dark because they are | cooler than the surface around them | holes that reach the core | shadows of planets | clouds of dust
+hint: Compare their temperature with the gas around them.
+num2: A student found sunspot maximums in the years 1958, 1969, 1980 and 1991. On average, how many years apart are the maximums? | 11
+hint: Find the total time, then divide by the number of gaps between maximums.
+mc2: A strong solar flare and a burst of charged gas from the Sun reach Earth. Which effect is most likely? | bright auroras and possible problems for satellites and power grids | an earthquake | a change in ocean tides | a total solar eclipse
+hint: Charged particles interact with Earth's magnetic field.
+mc2: The Sun is about 4.6 billion years old and is expected to fuse hydrogen in its core for about 10 billion years in all. What stage is it in now? | about halfway through its main-sequence life | near the end of its life as a red giant | a newly forming protostar | a white dwarf
+hint: Compare its age with its total hydrogen-fusing time.
+sa2: Describe what will happen to the Sun after its core runs out of hydrogen. | The core will contract and heat up while the outer layers swell, and the Sun will become a red giant. Later it will fuse helium, then shed its outer layers as a planetary nebula, leaving its hot core as a white dwarf that slowly cools.
+hint: Think of the stages that come after the main sequence.
+quiz:
+mc1: The Sun is classified as a | main-sequence star | red giant | white dwarf | neutron star
+mc2: Which layer of the Sun moves energy outward by rising and sinking currents of hot gas? | the convection zone | the radiative zone | the core | the corona
+mc2: A star stays stable when inward gravity balances outward pressure. When the Sun's core runs low on hydrogen and fusion there slows, what happens first? | The core contracts and heats up | The Sun explodes at once | The Sun stops shining forever | The core cools and freezes
+num2: The Sun is about 4.6 billion years old and will spend about 10 billion years on the main sequence. About how many more billion years will it stay a main-sequence star? | 5.4
+mc2: The number of sunspots rises and falls in a cycle of about 11 years. During a sunspot maximum, what else tends to increase? | the number of solar flares | the Sun's mass | the length of Earth's year | the distance from Earth to the Sun
+mc3: Why will the Sun never explode as a supernova or become a black hole? | It does not have enough mass | It is too hot | It is too close to Earth | It contains too much helium
+mc2: When the Sun becomes a red giant, its outer layers will swell to many times their present size. How will its surface temperature and color change? | It will become cooler and redder | It will become hotter and bluer | It will keep the same color | It will turn into a white dwarf at once
+sa2: Explain how the balance between gravity and pressure controls the Sun's life from the main sequence to its end as a white dwarf. | On the main sequence, outward pressure from fusion-heated gas balances gravity. When core hydrogen runs out, gravity squeezes the core and heats it until helium fuses, and the outer layers expand into a red giant. When fusion ends, gravity compresses the core into a white dwarf, held up by tightly packed electrons instead of fusion.
+
+lesson: The H-R diagram and the life cycles of stars | HS-ESS1-1, HS-ESS1-3
+practice:
+mc1: On a Hertzsprung-Russell (H-R) diagram, the horizontal axis shows | surface temperature, decreasing to the right | distance from Earth | the star's age | mass, increasing to the right
+hint: Hot blue stars are plotted on the left.
+mc2: Where are white dwarfs found on an H-R diagram? | lower left: hot but dim | upper right: cool but bright | upper left: hot and bright | lower right: cool and dim
+hint: White dwarfs are hot but very small.
+mc2: Red giants are in the upper right of an H-R diagram. Why are they so bright even though their surfaces are cool? | They are huge, so a very large surface gives off light | They are very close to Earth | They are the hottest stars | They are made of iron
+hint: Brightness depends on both temperature and size.
+mc2: Data: a star of 1 solar mass lasts about 10 billion years on the main sequence, while a star of 10 solar masses lasts about 20 million years. What pattern does this show? | More massive stars use up their fuel much faster | More massive stars live longer | Mass does not affect a star's life | Small stars use fuel faster
+hint: Compare the masses with the lifetimes.
+mc2: A star of 20 solar masses reaches the end of its life. What is the most likely result? | a supernova that leaves a neutron star or black hole | a planetary nebula that leaves a white dwarf | a red dwarf | a new planet
+hint: Very massive stars end violently.
+sa2: Explain how a star's mass determines whether it ends as a white dwarf, a neutron star or a black hole. | Low- and medium-mass stars like the Sun shed their outer layers and leave a white dwarf. Massive stars explode as supernovae; the collapsed core becomes a neutron star or, for the most massive cores, a black hole.
+hint: Sort stars into lower-mass and high-mass groups.
+quiz:
+mc1: The diagonal band from the upper left to the lower right of an H-R diagram is the | main sequence | giant branch | white dwarf region | asteroid belt
+mc2: Two main-sequence stars are plotted on an H-R diagram. Star P is at the upper left and Star Q is at the lower right. Which is true? | P is hotter, brighter and more massive than Q | Q is hotter and brighter than P | P is cooler than Q | Both have the same mass
+mc2: Stars form from | collapsing clouds of gas and dust called nebulae | exploding planets | the cores of comets | the light of other stars
+mc2: A neutron star is | the extremely dense collapsed core left after a supernova | a star made of liquid water | a young star that has not started fusion | the outer layer of a red giant
+num2: A rough rule says a main-sequence star's lifetime in millions of years is 10,000 divided by (its mass in solar masses) to the 2.5 power. For a star of 9 solar masses, 9 to the 2.5 power is 243. About how many million years will it last? Round to the nearest million. | 41
+mc2: After leaving the main sequence, a star's core begins to fuse helium into carbon. Which stage is it most likely in? | red giant | protostar | main sequence | white dwarf
+mc3: A star cluster contains stars that all formed at the same time. Its H-R diagram shows no hot blue main-sequence stars but many red giants. What is the best conclusion? | The cluster is old, so its most massive stars have already left the main sequence | The cluster is very young | The cluster never had massive stars | The cluster is moving toward Earth
+cer3: Data for three stars: Star 1 has a surface temperature of 3,500 K and a luminosity of 0.01 (Sun = 1). Star 2 has 5,800 K and a luminosity of 1. Star 3 has 4,000 K and a luminosity of 1,000. Make a claim about which star is a red giant. Use the data as evidence and explain your reasoning using the H-R diagram. | Claim: Star 3 is a red giant. Evidence: Star 3 is cool (4,000 K) but 1,000 times as luminous as the Sun, while Star 1 is cool and dim (0.01) and Star 2 matches the Sun. Reasoning: a cool star can only be that bright if it is very large, which places it in the upper right of the H-R diagram where giants are; Star 1 falls on the lower main sequence as a red dwarf, and Star 2 is a Sun-like main-sequence star.
+
+lesson: Stellar nucleosynthesis: where the elements come from | HS-ESS1-3
+practice:
+mc1: The Big Bang produced mostly | hydrogen and helium | carbon and oxygen | iron and nickel | gold and uranium
+hint: Think of the two lightest elements.
+mc2: In the core of a red giant, three helium nuclei fuse to form | carbon | iron | lithium | gold
+hint: Each helium nucleus has 2 protons.
+num2: Helium has 2 protons. How many protons are in the nucleus made when three helium nuclei fuse? | 6
+hint: Add the protons.
+mc2: Fusion in a massive star's core stops releasing energy once the core is made of | iron | helium | carbon | hydrogen
+hint: Fusing this element takes in energy instead of releasing it.
+mc2: Where was most of the oxygen in your body made? | inside stars that lived and died before the Sun formed | in Earth's core | by lightning on early Earth | in the first minutes after the Big Bang
+hint: Oxygen is much heavier than helium.
+sa2: Explain how elements made inside a star can end up in new stars, planets and living things. | When massive stars explode as supernovae, or Sun-like stars shed their outer layers, the elements they made spread into space. This enriched gas and dust mixes into clouds that later collapse to form new stars and planets, and the elements become part of rocks, water and living things.
+hint: How does material leave a star?
+quiz:
+mc1: Stellar nucleosynthesis means | the making of new elements inside stars | the formation of planets | the death of a galaxy | the burning of gas on Earth
+mc2: The oldest stars in our galaxy contain very little iron compared with the Sun. What is the best explanation? | They formed before many generations of stars had made and spread heavier elements | Iron sinks to their cores where it cannot be seen | Old stars destroy iron | The Sun makes all of its own iron
+mc2: The spectrum of a supernova remnant shows strong lines of oxygen, silicon and iron. What does this show? | The exploded star made these elements and spread them into space | The remnant formed from Earth's crust | The star contained only hydrogen | Supernovae destroy all heavy elements
+num2: If two oxygen nuclei, each with 8 protons, fuse completely into one nucleus, how many protons does that nucleus have? | 16
+mc2: A carbon nucleus (6 protons) fuses with a helium nucleus (2 protons). Which element forms? | oxygen | nitrogen | neon | silicon
+mc3: Why must the solar system have formed from material that included the remains of earlier stars? | The Sun and Earth contain elements heavier than helium that the Big Bang did not make in large amounts | The Sun is older than the universe | All elements formed in Earth's core | The Moon delivered the heavy elements
+mc2: A star's core has layers like an onion: hydrogen outside, then helium, carbon, oxygen, silicon and iron at the center. What kind of star is this? | a massive star near the end of its life | a Sun-like star on the main sequence | a white dwarf | a newly forming protostar
+sa2: Carl Sagan said we are "made of star-stuff." Use nucleosynthesis to explain what this means. | Apart from hydrogen and some helium, the atoms in our bodies, such as carbon, oxygen, calcium and iron, were made by fusion inside earlier stars or in their explosions. They spread through space when those stars died and later became part of the solar system, Earth and us.
+
+lesson: Evidence for the Big Bang | HS-ESS1-2
+practice:
+mc1: The Big Bang theory states that the universe | began hot and dense about 13.8 billion years ago and has been expanding ever since | has always existed without changing | began when the Sun exploded | is shrinking
+hint: Think about what expansion means if you run time backward.
+mc2: In the 1920s, Edwin Hubble found that more distant galaxies have larger redshifts. What does this show? | More distant galaxies are moving away faster, so the universe is expanding | Nearby galaxies are moving away fastest | Galaxies are not moving | Earth is at the center of the universe
+hint: A redshift means motion away.
+num2: Hubble's law: speed = 70 x distance, with speed in km/s and distance in megaparsecs. How fast is a galaxy 200 megaparsecs away moving away from us, in km/s? | 14000
+hint: Multiply the distance by 70.
+mc2: The cosmic microwave background is | faint radiation filling all of space, left from when the young universe cooled enough for light to travel freely | sunlight reflected off the Moon | radio signals from Earth | heat escaping from Earth's core
+hint: It comes from every direction in the sky.
+mc2: Measurements show the ordinary matter in the universe is about 3/4 hydrogen and 1/4 helium by mass. Why does this support the Big Bang theory? | Big Bang models predict about these amounts of hydrogen and helium made in the first few minutes | Stars have already turned nearly all hydrogen into helium | Helium cannot be made anywhere | Hydrogen forms only on planets
+hint: Compare a prediction with a measurement.
+sa2: Use a model of raisin bread rising in an oven to explain why observers in every galaxy see the other galaxies moving away. | As the dough rises, every raisin moves farther from every other raisin, and raisins that are farther apart separate faster. In the same way, space expands everywhere, so observers in any galaxy see the others moving away, with distant ones moving fastest. There is no center.
+hint: Pick any raisin and watch the others.
+quiz:
+mc1: About how old is the universe, based on measurements of its expansion and of the cosmic microwave background? | 13.8 billion years | 4.6 billion years | 10,000 years | 100 trillion years
+num2: Hubble's law: speed = 70 x distance, with speed in km/s and distance in megaparsecs. A galaxy is moving away at 35,000 km/s. How far away is it, in megaparsecs? | 500
+mc2: Galaxy A is 100 megaparsecs away and Galaxy B is 400 megaparsecs away. According to Hubble's law, how does B's speed compare with A's? | B moves away 4 times as fast | B moves away 1/4 as fast | They move away at the same speed | B moves toward us
+mc2: The cosmic microwave background has a temperature of about 2.7 K and is almost the same in every direction. Why is it evidence for the Big Bang? | It matches the predicted cooled-down glow of a hot, dense early universe | It shows the universe is heating up | It comes only from the Milky Way | It proves stars formed before galaxies
+mc2: Which observation would be hardest to explain if the universe had no beginning and never changed? | Very distant galaxies, seen as they were long ago, look younger and different from nearby galaxies | The Sun rises each day | Stars have different colors | The Moon has phases
+mc3: In 1965 two scientists noticed a faint microwave signal in their antenna that they first thought was noise. Why did scientists come to accept it as evidence for the Big Bang? | The signal came from every direction, matched the predicted temperature and spectrum, and remained after equipment problems were ruled out | Two people noticed it, so it had to be true | It was extremely loud | It disproved all earlier physics
+num1: A galaxy is 50 million light-years away. How many million years ago did the light we see from it today leave the galaxy? | 50
+cer3: Data: Galaxy A is 20 megaparsecs away and moving away at 1,400 km/s. Galaxy B is 60 megaparsecs away and moving away at 4,200 km/s. Galaxy C is 150 megaparsecs away and moving away at 10,500 km/s. Make a claim about the motion of galaxies and what it shows about the universe. Use the data as evidence and explain your reasoning. | Claim: galaxies are moving away from us at speeds proportional to their distance, which shows the universe is expanding. Evidence: for each galaxy, speed divided by distance is 70 km/s per megaparsec (1,400/20, 4,200/60 and 10,500/150); tripling the distance from A to B tripled the speed. Reasoning: if space itself is stretching, the distance between all galaxies grows, and farther galaxies have more stretching space between us, so they recede faster. Running the expansion backward points to a hot, dense beginning, the Big Bang.
+
+lesson: Kepler's laws, gravity and orbital motion | HS-ESS1-4
+practice:
+mc1: Kepler's first law says planets orbit the Sun in | ellipses with the Sun at one focus | perfect circles with the Sun at the center | straight lines | spirals toward the Sun
+hint: The shape is a slightly stretched circle.
+mc2: Kepler's second law says a line from the Sun to a planet sweeps out equal areas in equal times. What does this mean for the planet's speed? | It moves fastest when it is closest to the Sun | It moves fastest when it is farthest from the Sun | Its speed never changes | It stops at the far end of its orbit
+hint: To sweep the same area with a shorter line, the planet must cover more distance.
+num2: Kepler's third law: (period in years)^2 = (average distance in AU)^3. A planet orbits the Sun at an average distance of 4 AU. What is its period in years? | 8
+hint: 4^3 = 64. Which number squared is 64?
+num2: Newton's law of gravity says the force depends on 1 divided by the distance squared. If the distance between two objects triples, the force becomes what fraction of the original? | 1/9
+hint: Square the change in distance.
+mc2: A satellite orbits Earth. What keeps it moving in a curved path instead of flying off in a straight line? | Earth's gravity | its engines firing all the time | air pushing on it | the Moon's magnetism
+hint: An orbit is a constant fall around Earth.
+sa2: Explain why a satellite in a low orbit must travel faster than one in a higher orbit. | Gravity is stronger closer to Earth, so a low satellite must move faster to keep falling around Earth instead of into it. Farther out gravity is weaker, so a slower speed keeps a satellite in orbit; it also has a longer path, so its period is longer.
+hint: Compare the pull of gravity at each height.
+quiz:
+mc1: The point in a planet's orbit where it is closest to the Sun is called | perihelion | aphelion | the focus | the equinox
+num2: A comet's orbit has an average distance of 9 AU from the Sun. Using Kepler's third law, (period in years)^2 = (distance in AU)^3, what is its period in years? | 27
+num2: A distant object takes 125 years to orbit the Sun. Using Kepler's third law, (period in years)^2 = (distance in AU)^3, what is its average distance from the Sun in AU? | 25
+mc2: Earth is closest to the Sun in early January. When is Earth moving fastest in its orbit? | early January | early July | It moves at the same speed all year | late March
+mc2: If the Sun's mass were doubled while Earth stayed at the same distance, what would happen to the gravitational force between them? | It would double | It would be cut in half | It would become 4 times as large | It would stay the same
+mc3: The International Space Station orbits about 400 km above Earth and takes about 90 minutes per orbit. The Moon orbits about 384,000 km away and takes about 27 days. Which statement explains the difference? | Objects farther from Earth feel weaker gravity, move more slowly and travel longer paths, so they take longer to orbit | The Moon is heavier, so it must orbit more slowly | The space station's engines push it around faster | Distance has no effect on orbital period
+mc2: Kepler's laws were later explained by | Newton's law of universal gravitation | the Big Bang theory | plate tectonics | the theory of evolution
+sa3: An engineer wants a weather satellite to stay above the same spot on Earth's equator. Explain what its orbital period must be and why this requires a particular height. | Its period must match Earth's rotation, about one day, so it circles Earth at the same rate the ground turns. Because gravity and Kepler's third law link each orbital period to one distance, the satellite must be placed at that one height, far above low orbits.
+
+lesson: Unit review | HS-ESS1-1, HS-ESS1-2, HS-ESS1-3, HS-ESS1-4
+practice:
+mc2: Which list shows the stages of a Sun-like star's life in the correct order? | nebula, main-sequence star, red giant, planetary nebula and white dwarf | nebula, red giant, main-sequence star, white dwarf | main-sequence star, supernova, black hole | white dwarf, red giant, main-sequence star, nebula
+hint: Start with the cloud a star forms from.
+num2: Distance in parsecs = 1 divided by the parallax angle in arcseconds. A star's parallax angle is 0.25 arcseconds. How many parsecs away is it? | 4
+hint: Divide 1 by the angle.
+mc2: A star is twice as far away as an identical star. How bright does it appear compared with the closer star? | one fourth as bright | half as bright | twice as bright | equally bright
+hint: Light spreads over an area that grows with the distance squared.
+mc2: Which evidence supports the idea that the Sun is powered by fusion and not by chemical burning? | The Sun has shone for billions of years, as shown by the ages of meteorites and Earth rocks | The Sun looks yellow | The Sun has sunspots | The Sun rises in the east
+hint: Think about how long the Sun has been shining.
+mc2: Which list orders star types from hottest to coolest? | O, B, A, F, G, K, M | M, K, G, F, A, B, O | G, K, M, O, B, A, F | A, B, F, G, K, M, O
+hint: Blue O stars are the hottest.
+quiz:
+mc1: The Sun produces energy by | nuclear fusion | nuclear fission | burning gas | chemical reactions
+mc1: Evidence that the universe is expanding includes | redshift of distant galaxies | the Moon's phases | tides | earthquakes
+mc2: Cosmic microwave background radiation supports the | Big Bang theory | steady state of planets | tides | plate tectonics
+mc2: Elements heavier than iron are mostly made in | supernova explosions and neutron star mergers | the Sun's core today | Earth's core | comets
+num2: Kepler's third law says (period in years)^2 = (average distance in AU)^3. An object orbits the Sun at an average distance of 16 AU. What is its period in years? | 64
+mc2: What happens to the core of a very massive star in a supernova? | It collapses suddenly while the outer layers are blasted into space | It slowly cools into a white dwarf | It turns back into hydrogen | It becomes a planet
+sa2: Explain how stars produce heavier elements over their lifetimes. | Fusion in stars builds heavier elements, and supernovae create and spread the heaviest ones.
+
+test:
+mc2: A star like the Sun will end as a | white dwarf | black hole | neutron star | supernova
+mc2: Kepler's laws describe | planetary orbits | rock layers | weather | plate motion
+mc2: A light-year measures | distance | time | brightness | mass
+mc3: A galaxy's spectrum shows lines shifted toward red. What does this indicate? | It is moving away from us | It is moving toward us | It is very hot | It is made of iron
+mc1: Which force pulls a cloud of gas and dust together to form a new star? | gravity | magnetism alone | friction | the solar wind
+mc2: A main-sequence star's position on the main sequence is set mainly by its | mass | age | distance from Earth | number of planets
+num2: Hubble's law: speed = 70 x distance, with speed in km/s and distance in megaparsecs. A galaxy is 300 megaparsecs away. How fast is it moving away from us, in km/s? | 21000
+num2: Kepler's third law says (period in years)^2 = (average distance in AU)^3. A distant object takes 1,000 years to orbit the Sun. What is its average distance in AU? | 100
+num2: Wien's law says peak wavelength in nanometers = 2,900,000 divided by surface temperature in kelvins. A red star has a surface temperature of 3,625 K. What is its peak wavelength in nm? | 800
+mc2: A spectral line with a lab wavelength of 486 nm is observed at 480 nm in a star's light. What does this show? | The star is moving toward Earth | The star is moving away from Earth | The star has no hydrogen | The star is very cold
+mc2: Which object has the highest density? | a neutron star | a red giant | the Sun | a nebula
+mc2: Where on an H-R diagram would you find a hot, very luminous main-sequence star? | upper left | lower left | upper right | lower right
+mc2: The gravitational force between two objects is 100 units. If the distance between them doubles, what is the new force? | 25 units | 50 units | 200 units | 400 units
+mc2: The solar wind is | a stream of charged particles flowing outward from the Sun | moving air in Earth's upper atmosphere | the sunlight reaching Earth | gas falling into the Sun
+mc3: Astronomers find a white dwarf orbiting a normal star. What can they conclude about the white dwarf's past? | It was once a low- or medium-mass star that shed its outer layers | It formed in the supernova of a very massive star | It is a young star that has not started fusion | It used to be a planet
+mc3: A telescope image shows a galaxy 1 billion light-years away. Why does the image show the galaxy as it looked long ago? | Its light took about 1 billion years to reach us | The telescope is old | Galaxies stop changing after they form | Light travels instantly
+num2: Distance in parsecs = 1 divided by the parallax angle in arcseconds. A star is 10 parsecs away. What is its parallax angle in arcseconds? | 0.1
+mc2: A star's core is fusing hydrogen into helium. Which type of star is it? | a main-sequence star | a white dwarf | a neutron star | a black hole
+sa2: Explain how nuclear fusion in the Sun provides energy. | Hydrogen nuclei fuse into helium, converting a small amount of mass into a large amount of energy.
+sa2: Describe two pieces of evidence for the Big Bang theory. | Redshift of galaxies (expansion) and cosmic microwave background radiation (also the abundance of light elements).
+cer3: Data: Star A, in the disk of our galaxy, shows strong spectral lines of iron and calcium. Star B, in a region where the galaxy's oldest stars are found, shows very weak lines of iron and calcium but strong hydrogen and helium lines. Make a claim about which star formed earlier. Use the data as evidence and explain your reasoning using stellar nucleosynthesis. | Claim: Star B formed earlier than Star A. Evidence: Star B has very weak iron and calcium lines and lies where the oldest stars are; Star A has strong lines of these heavier elements. Reasoning: the Big Bang made almost only hydrogen and helium. Heavier elements such as calcium and iron were made later inside stars and spread by supernovae, so gas became richer in them over time. A star with few heavy elements formed from early, unenriched gas, while a star rich in them formed later from gas recycled by earlier generations of stars.
+task3: Develop a model of the life cycle of a Sun-like star and a massive star. Use evidence such as the Hertzsprung-Russell diagram and spectra to explain each stage, the role of fusion and the elements produced. | Accurate models of both, strong evidence and clear role of fusion and element formation. | Models with mostly correct stages and evidence. | One life cycle modeled. | Little correct work.
+
+unit: Earth's history and internal processes | HS-ESS1-5, HS-ESS1-6, HS-ESS2-1, HS-ESS2-3
+el: Give students a cutaway drawing of Earth's layers labeled with each layer's state (solid or liquid) and a plate-boundary chart with a California example of each type. Post the frame: "The S-waves ___, so this layer must be ___."
+
+lesson: Earth's layers and seismic evidence | HS-ESS2-3
+practice:
+mc1: Which kind of seismic wave can travel through solids, liquids and gases? | P-waves | S-waves | surface waves only | no seismic waves
+hint: P-waves push and pull like a stretched spring.
+mc2: Seismographs on the far side of Earth from an earthquake record P-waves but no direct S-waves. What does this show? | Part of Earth's core is liquid | The core is hollow | The whole mantle is liquid | S-waves are faster than P-waves
+hint: S-waves cannot pass through a liquid.
+mc2: Seismic waves suddenly speed up about 30 to 50 km below the continents. What boundary does this mark? | the boundary between the crust and the mantle | the boundary between the inner and outer core | the top of the atmosphere | the bottom of the ocean
+hint: Waves travel faster in denser rock.
+num2: In the crust, P-waves travel about 6 km/s and S-waves about 3.5 km/s. A station is 210 km from an earthquake. How many seconds after the P-wave does the S-wave arrive? | 25
+hint: Find each wave's travel time, then subtract.
+mc2: Earth's inner core is hotter than the outer core, yet the inner core is solid. Why? | The enormous pressure at the center keeps the iron solid | The inner core is made of ice | The inner core contains no iron | Heat makes metal freeze
+hint: Think about the weight of everything above the center.
+sa2: Explain how scientists know Earth's core is made mostly of iron and nickel, even though no one has drilled there. | Earth's average density is much higher than surface rock, so the interior must be very dense; seismic wave speeds match dense metal; iron-nickel meteorites, thought to be pieces of the cores of broken bodies, show what such cores are made of; and Earth's magnetic field requires a moving metal core.
+hint: Think of density, seismic waves, meteorites and magnetism.
+quiz:
+mc1: Which list orders Earth's layers from the surface to the center? | crust, mantle, outer core, inner core | mantle, crust, inner core, outer core | crust, outer core, mantle, inner core | inner core, outer core, mantle, crust
+mc2: The lithosphere is made of | the crust and the uppermost part of the mantle | the outer core only | the oceans and atmosphere | the inner and outer core
+mc2: In 1936, Inge Lehmann studied faint P-waves that arrived in a zone where seismologists expected none. What did she conclude? | Earth has a solid inner core inside the liquid outer core | Earth's mantle is completely liquid | The crust is thicker than the mantle | Earthquakes never happen deep inside Earth
+num3: In the upper mantle, P-waves travel about 8 km/s and S-waves about 4.5 km/s. A station records the S-wave 35 seconds after the P-wave. How many kilometers away was the earthquake? | 360
+mc2: Earth's average density is about 5.5 g/cm^3, but rocks of the crust average about 2.7 g/cm^3. What does this show? | Earth's interior must be made of much denser material than the crust | Earth is hollow | The crust is denser than the core | Earth's density is the same everywhere
+mc2: Oceanic crust is about 7 km thick and made of dense basalt. Continental crust averages about 35 km thick and is made of lighter, granite-like rock. Why do the ocean floors sit lower than the continents? | Oceanic crust is denser and thinner, so it floats lower on the mantle | Oceanic crust is lighter | The weight of seawater alone pushes it down | Continents are hollow
+mc3: A seismologist finds that S-waves slow down in a layer about 100 to 200 km below the surface but do not stop. What is the best interpretation? | The layer is solid but hot and weak, possibly with a little melt, so it can flow slowly | The layer is completely liquid | The layer is empty space | The layer is solid iron
+sa3: A student says the mantle must be liquid because it flows. Use seismic evidence to explain why scientists say the mantle is mostly solid. | S-waves travel through the whole mantle, and S-waves cannot pass through liquids, so the mantle must be solid. It flows only very slowly, over millions of years, because it is hot rock under great pressure that can deform like a very stiff solid.
+
+lesson: Mantle convection and the cycling of matter | HS-ESS2-3, HS-ESS2-1
+practice:
+mc1: Most of the heat inside Earth comes from | radioactive decay and heat left over from Earth's formation | sunlight soaking into the ground | friction from ocean tides | fossil fuels burning underground
+hint: Both sources started inside Earth.
+mc2: In a pot of soup heated from below, warm soup rises and cooler soup sinks. How is this a model of the mantle? | Hot rock deep in the mantle slowly rises while cooler, denser rock sinks | The mantle boils like soup | The crust heats the mantle from above | The mantle is a liquid like soup
+hint: Compare temperature and density.
+mc2: At a subduction zone, an old, cold oceanic plate sinks into the mantle. Which force does this create? | slab pull, which drags the rest of the plate along | a tidal pull from the Moon | magnetic attraction | wind on the ocean surface
+hint: The sinking edge of the plate is heavy.
+mc2: Seismic images show regions of cold rock reaching deep into the mantle below old subduction zones. What does this suggest? | Sinking plates carry crust deep into the mantle, cycling matter | The mantle never moves | Crust can never be recycled | The core is rising toward the surface
+hint: Cold, dense rock sinks.
+num2: A plume of hot mantle rock rises 2,000 km over 50 million years. What is its average speed in centimeters per year? (1 km = 100,000 cm) | 4
+hint: Change kilometers to centimeters first.
+sa2: Describe how matter cycles between Earth's surface and its interior through plate tectonics. | Mantle rock rises and partly melts at mid-ocean ridges, forming new crust. The plate moves away, cools and becomes denser, then sinks back into the mantle at a subduction zone. Some of it melts and rises in volcanoes, and the rest mixes into the mantle, where convection can bring it up again.
+hint: Follow a piece of crust from a ridge to a trench.
+quiz:
+mc1: Convection in the mantle happens because | hot rock is less dense and rises while cooler rock is denser and sinks | the mantle is made of water | the Moon stirs the mantle | earthquakes mix the mantle
+mc2: The Hawaiian Islands formed over a hot spot. The island of Hawaii has active volcanoes, and the islands get older toward the northwest. What does this show? | The Pacific Plate is moving northwest over a plume of hot mantle | The hot spot is moving northwest under a still plate | The islands are sinking into the core | Volcanoes form only at plate boundaries
+num2: Kauai is about 500 km from the hot spot under the island of Hawaii, and its oldest rocks are about 5 million years old. What was the Pacific Plate's average speed in centimeters per year? (1 km = 100,000 cm) | 10
+mc2: Why does Earth have active plate tectonics while the Moon does not? | Earth is larger and still has enough internal heat to drive mantle convection | The Moon has more radioactive elements | The Moon's oceans stop plate motion | Earth is closer to the Sun
+mc2: Which model best represents how the mantle moves? | a very thick, hot solid that flows slowly over millions of years, like warm wax | fast-flowing liquid water | gas rising quickly | a rigid block that never moves
+mc3: Scientists measure high heat flow from the seafloor at a mid-ocean ridge and low heat flow far from it. What explains this pattern? | Hot mantle rock rises beneath the ridge, and the plate cools as it moves away | The ridge is closer to the Sun | Seawater is warmer at the ridge for no reason | The ridge gets more sunlight
+mc2: Diamonds form more than 150 km below the surface and are carried up in rare volcanic eruptions. What does finding a diamond at the surface show? | Material from deep in the mantle can rise to the surface | Diamonds form in soil | The crust is deeper than the mantle | Volcanoes melt only surface rock
+cer3: Data near a mid-ocean ridge: heat flow is 250 units at the ridge, 120 units 500 km away and 60 units 1,500 km away. Seafloor depth increases from 2.5 km at the ridge to 4.5 km at 1,500 km away. Make a claim about what happens to oceanic plates as they move away from a ridge. Use the data as evidence and explain your reasoning. | Claim: oceanic plates cool and become denser as they move away from ridges. Evidence: heat flow drops from 250 to 60 units, and the seafloor deepens from 2.5 km to 4.5 km. Reasoning: hot rock rising under the ridge is less dense and stands high. As the plate moves away it loses heat, contracts and becomes denser, so it sits lower. Eventually it becomes dense enough to sink back into the mantle at a subduction zone, which is part of mantle convection.
+
+lesson: Plate boundaries and the features they build | HS-ESS2-1, HS-ESS1-5
+practice:
+mc1: At a divergent boundary, plates | move apart | collide | slide past each other | stay still
+hint: "Diverge" means to separate.
+mc2: The San Andreas Fault in California is a transform boundary. How do the plates move there? | They slide past each other horizontally | They move apart | One sinks under the other | They collide and build tall mountains
+hint: Picture two cars passing in opposite lanes.
+mc2: The Himalaya formed where | two continental plates collided | an ocean plate sank under a continent | two plates pulled apart | a hot spot melted the crust
+hint: India moved north into Asia.
+mc2: The Cascade volcanoes, including Mount Shasta and Lassen Peak in Northern California, form a line inland from the coast. What causes them? | an oceanic plate sinking under the North American Plate at the Cascadia subduction zone | a transform fault | a mid-ocean ridge | a hot spot under the Pacific Plate
+hint: Magma forms above a plate that is sinking into the mantle.
+num2: The plates along the San Andreas Fault slide past each other at about 3.5 cm per year. How many meters of offset build up in 1,000 years? | 35
+hint: Multiply, then change centimeters to meters.
+sa2: A map shows earthquakes along a line that slopes downward under a continent, shallow near an ocean trench and deeper farther inland. Explain what this pattern shows. | It shows an oceanic plate sinking under the continent at a subduction zone. Earthquakes happen in the cold, sinking slab, so they get deeper the farther inland the slab has gone.
+hint: Imagine a plate diving into the mantle.
+quiz:
+mc1: Which feature forms at a divergent boundary in the ocean? | a mid-ocean ridge | a deep-sea trench | a volcanic island arc | a folded mountain range
+mc2: Where are deep-sea trenches found? | where an oceanic plate sinks beneath another plate | at mid-ocean ridges | in the middle of plates | along transform faults on land
+mc2: The East African Rift is a long valley where the land is splitting apart, with volcanoes and earthquakes. If rifting continues for millions of years, what is most likely to happen? | A new ocean basin may form | Mountains like the Himalaya will form there | The continent will sink into the core | The earthquakes will stop for good
+mc2: Which type of boundary produces Earth's largest earthquakes? | subduction zones at convergent boundaries | divergent boundaries in the ocean | hot spots | the middle of plates
+num2: Iceland sits on the Mid-Atlantic Ridge, where plates move apart about 2 cm per year. How many meters wider will the gap between the plates become in 5,000 years? | 100
+mc2: The Andes Mountains run along the west coast of South America beside a deep trench and have many volcanoes. What process formed them? | an oceanic plate subducting under the South American continent | a transform boundary | a collision of two continents | seafloor spreading on land
+mc3: Along a plate boundary, all earthquakes are shallow, there are no volcanoes, and streams that cross it have been offset sideways. Which type of boundary is it? | transform | divergent oceanic | ocean-continent convergent | continent-continent convergent
+sa3: Explain why Southern California has many earthquakes but few active volcanoes, while Northern California near Mount Shasta has volcanoes. | Southern California lies along the San Andreas transform boundary, where plates slide past each other. No plate sinks, so little magma forms, but stress builds and is released as earthquakes. Near Mount Shasta an oceanic plate subducts under North America; water released from the sinking plate helps melt mantle rock, and the magma rises to form volcanoes.
+
+lesson: Seafloor spreading and the ages of crustal rocks | HS-ESS1-5
+practice:
+mc1: As basalt lava cools at a mid-ocean ridge, magnetic minerals in it | line up with Earth's magnetic field at that time | point toward the Sun | lose all magnetism | line up with the Moon
+hint: The rock records the field like a compass frozen in place.
+mc2: Ocean drilling shows that seafloor rock gets older with distance from a mid-ocean ridge. What does this support? | New crust forms at ridges and moves outward | The whole seafloor is the same age | The oldest rock is at the ridge | Continents are moving toward the ridges
+hint: Where is the youngest rock?
+num2: A rock sample 60 km from a ridge is 3 million years old. What is the average spreading rate on that side, in centimeters per year? (1 km = 100,000 cm) | 2
+hint: Change kilometers to centimeters, then divide by the number of years.
+mc2: Thick sediment covers old seafloor, but only thin sediment covers rock near a ridge. What does this show? | Seafloor near the ridge is young and has had less time to collect sediment | Sediment falls faster far from ridges | Ridges are made of sediment | The ocean is shallower far from ridges
+hint: Sediment builds up over time.
+mc2: Fossils of Mesosaurus, a small freshwater reptile, are found in rocks in both southern Africa and South America. How does plate tectonics explain this? | The two continents were joined when Mesosaurus lived and later moved apart | Mesosaurus swam across the Atlantic Ocean | Rivers carried the fossils across the ocean | Mesosaurus lived everywhere on Earth
+hint: Could a small freshwater animal cross an ocean?
+sa2: Explain why magnetic stripes on the seafloor are evidence that Earth's magnetic field has reversed many times. | The stripes alternate between rock magnetized in the normal direction and rock magnetized in the reversed direction, in matching patterns on both sides of the ridge. Because rock records the field as it cools, the alternating stripes show that the field flipped many times as new crust formed.
+hint: What would a frozen compass record if the field flipped?
+quiz:
+mc1: Seafloor spreading means | new oceanic crust forms at mid-ocean ridges and moves away from them | the ocean gets deeper as water is added | continents spread out over the ocean | sediment spreads across the seafloor
+mc2: Going outward from a ridge, the magnetic stripes on one side read normal, reversed, normal, reversed. What should the pattern be on the other side? | the same sequence, going outward from the ridge like a mirror image | the opposite sequence | no stripes at all | only normal stripes
+num2: A seafloor sample 450 km from a ridge is 15 million years old. What is the spreading rate on that side, in centimeters per year? (1 km = 100,000 cm) | 3
+num2: A ridge spreads at 5 cm per year on each side. How many kilometers from the ridge will rock that is 10 million years old be found? (1 km = 100,000 cm) | 500
+mc2: Alfred Wegener proposed continental drift in the early 1900s, but many scientists rejected it at first. What was the main reason? | He could not explain a mechanism strong enough to move continents | He had no fossil evidence | The shapes of the continents did not fit together | He claimed the continents never moved
+mc2: Which discovery, made after Wegener's time, gave plate tectonics a mechanism and convinced most geologists? | mapping of mid-ocean ridges and seafloor magnetic stripes that showed seafloor spreading | the fit of Africa and South America | fossils of warm-climate plants in Antarctica | glacier scratches in rocks in India
+mc3: Data: west of a ridge, rocks are 0, 2, 4 and 6 million years old at 0, 40, 80 and 120 km. East of the ridge, rocks of the same ages are at 0, 60, 120 and 180 km. Which conclusion is supported? | The plate on the east side is moving away from the ridge faster | The plate on the west side is moving faster | Both sides move at the same speed | The ridge is not spreading
+cer3: Data from rock samples taken going away from a mid-ocean ridge: 10 km away, 0.5 million years old, thin sediment; 100 km away, 5 million years old, medium sediment; 300 km away, 15 million years old, thick sediment. The magnetic stripes on both sides of the ridge match. Make a claim about how this seafloor formed. Use the data as evidence and explain your reasoning. | Claim: the seafloor formed at the ridge and spread outward. Evidence: rock age increases with distance (0.5, 5 and 15 million years at 10, 100 and 300 km), sediment gets thicker farther away, and the magnetic stripes are mirror images on both sides. Reasoning: if new crust forms at the ridge and moves away, the youngest rock and thinnest sediment should be at the ridge and older rock farther away, and both sides should record the same magnetic reversals because they formed together. The steady rate of 2 cm per year (for example, 300 km in 15 million years) also fits.
+
+lesson: Radiometric dating and Earth's early history | HS-ESS1-6
+practice:
+mc1: The half-life of a radioactive isotope is the time it takes for | half of the parent atoms in a sample to decay | all of the atoms to decay | the sample to double in size | the rock to melt
+hint: "Half" is in the name.
+num2: Carbon-14 has a half-life of about 5,730 years. What fraction of the original carbon-14 remains after 11,460 years? | 1/4
+hint: How many half-lives is 11,460 years?
+num2: A mineral started with 800 parent atoms of a radioactive isotope. How many parent atoms remain after 3 half-lives? | 100
+hint: Halve the number three times.
+mc2: Why is carbon-14 not used to date rocks that are millions of years old? | Its half-life is too short, so almost none would be left to measure | Rocks never contain any carbon | It decays too slowly | It works only on meteorites
+hint: Compare 5,730 years with millions of years.
+mc2: The Moon's surface is covered with ancient craters, but Earth has few old craters. What is the best explanation? | Plate tectonics, weathering and erosion have erased most of Earth's old craters | Asteroids never hit Earth | Earth's craters are all hidden under ice | The Moon is older than the solar system
+hint: Which body has an active surface?
+sa2: Explain why the oldest rocks found on Earth are younger than Earth itself. | Earth's earliest crust was melted, recycled into the mantle by plate tectonics, or worn away by erosion, so the first rocks are gone. Only a few tough mineral grains, such as zircons, survive from earlier times, and meteorites, which were never recycled, preserve the age of the solar system.
+hint: What processes destroy or recycle rock?
+quiz:
+mc1: Relative dating tells | which rock layers are older or younger than others | the exact age of a rock in years | the temperature of a rock | the mass of a fossil
+mc2: In undisturbed layers of sedimentary rock, which layer is the oldest? | the bottom layer | the top layer | the middle layer | All are the same age
+mc2: A layer of volcanic ash between two sedimentary layers is dated at 50 million years old. A fossil is found in the layer just above the ash. What can be concluded? | The fossil is younger than 50 million years | The fossil is older than 50 million years | The fossil is exactly 50 million years old | Nothing can be concluded
+num2: Potassium-40 decays to argon-40 with a half-life of about 1.3 billion years. A rock has 1/4 of its original potassium-40 left. How old is the rock in billions of years? | 2.6
+num2: A uranium isotope has a half-life of 700 million years. What fraction of the original amount remains after 2.8 billion years? | 1/16
+mc2: Rocks about 3.5 billion years old contain stromatolites, layered mounds built by microbes. What do they show about early Earth? | Life existed in shallow water very early in Earth's history | Earth had forests 3.5 billion years ago | Earth had no water then | Dinosaurs lived then
+mc3: Many thick banded iron formations, rock layers rich in iron oxide, formed in the oceans about 2.5 to 1.8 billion years ago. Iron oxide forms when dissolved iron reacts with oxygen. What is the best interpretation? | Oxygen made by early photosynthetic microbes was building up and reacting with iron dissolved in seawater | Earth's core rose to the surface | The Sun stopped shining | Volcanoes stopped erupting
+sa3: The leading hypothesis says the Moon formed when a Mars-sized body crashed into the young Earth. Moon rocks brought back by astronauts have oxygen isotopes almost identical to Earth's rocks and contain few volatile elements (elements that boil away easily). Explain how this evidence supports the hypothesis. | The matching isotopes show the Moon formed from material very similar to Earth's, as expected if an impact blasted material from the young Earth into orbit. The lack of volatile elements suggests the material was strongly heated, which a giant impact would do, so the volatiles boiled away.
+
+lesson: Unit review | HS-ESS1-5, HS-ESS1-6, HS-ESS2-1, HS-ESS2-3
+practice:
+mc2: Which type of plate boundary runs along much of California, from the Gulf of California to Cape Mendocino? | transform | divergent | continent-continent convergent | hot spot
+hint: Think of the San Andreas Fault.
+num2: An isotope has a half-life of 2 million years. A sample has 1/8 of its parent atoms left. How many million years old is it? | 6
+hint: Count how many times the amount was halved.
+mc2: A geologist finds a fault that cuts through three rock layers but not the layer above them. What does this show? | The fault formed after the three layers but before the top layer | The fault is older than all four layers | The top layer is the oldest | The fault formed after all four layers
+hint: Something that cuts through rock must be younger than that rock.
+mc2: A mountain range is pushed up about 5 mm per year while erosion wears it down about 1 mm per year. What will happen to its height over time? | It will keep getting taller, but more slowly than the uplift rate | It will get shorter | It will stay the same height | It will disappear within a year
+hint: Compare the two rates.
+sa2: Describe one process that changes Earth's surface quickly and one that changes it over millions of years. | A volcanic eruption, landslide or earthquake can change the surface in minutes or days. Plate motion that builds a mountain range or opens an ocean, or erosion that wears a range down, takes millions of years.
+hint: Compare sudden events with slow ones.
+quiz:
+mc1: Radiometric dating measures the age of rocks using | radioactive decay | rock color | layer thickness only | magnetism only
+mc1: Earth is about how old? | 4.6 billion years | 6,000 years | 10 million years | 100 billion years
+mc2: Convection in the mantle drives | plate motion | ocean tides | the seasons | the Moon's phases
+mc2: Seafloor spreading is evidenced by | symmetric magnetic stripes on either side of ridges | coral reefs | sand dunes | glaciers
+num2: A ridge spreads at 4 cm per year on each side. Two points start together at the ridge and move away on opposite sides. How many kilometers apart will they be after 1 million years? (1 km = 100,000 cm) | 80
+mc2: Which type of seismic wave arrives first at a seismograph station? | P-wave | S-wave | surface wave | All arrive together
+sa2: Explain how scientists know the age of Earth. | Radiometric dating of meteorites and the oldest Earth and Moon rocks.
+
+test:
+mc2: A radioactive isotope has a half-life of 1,000 years. After 3,000 years, what fraction remains? | 1/8 | 1/3 | 1/4 | 1/2
+mc2: The oldest continental rocks are older than the oldest seafloor because | seafloor is recycled at subduction zones | continents are heavier | oceans are newer than continents in every way | seafloor never forms
+mc2: Earth's magnetic field is generated by | the motion of the liquid outer core | the Sun | the crust | the atmosphere
+mc3: Zircon crystals from Australia date to about 4.4 billion years. What does this tell scientists? | Earth had a solid crust very early | Earth is younger than thought | Zircons come from Mars | Plate tectonics never happened
+mc1: The theory that Earth's lithosphere is broken into large moving pieces is called | plate tectonics | the Big Bang theory | the nebular theory | the theory of erosion
+mc2: S-waves cannot travel through | liquids | solid rock | the crust | the mantle
+mc2: Where two plates move apart on a continent, which feature forms? | a rift valley | a deep-sea trench | a folded mountain range | a volcanic island arc
+num2: P-waves travel at about 6 km/s through the crust. How many seconds does a P-wave take to reach a station 90 km from an earthquake? | 15
+num2: Seafloor 400 km from a ridge is 8 million years old. What is the spreading rate on that side, in centimeters per year? (1 km = 100,000 cm) | 5
+num2: A sample started with 1,000 atoms of a radioactive parent isotope. How many parent atoms remain after 2 half-lives? | 250
+mc2: Which evidence did Wegener use to support continental drift? | matching fossils and rock types on continents now separated by oceans | seafloor magnetic stripes | GPS measurements of plate motion | earthquake depths at trenches
+mc2: GPS stations show Los Angeles, on the Pacific Plate, slowly moving northwest relative to San Francisco, on the North American Plate. Which feature explains this motion? | the San Andreas transform fault | the Mid-Atlantic Ridge | a subduction zone under Los Angeles | a hot spot under San Francisco
+mc2: The Hawaiian Islands get older toward the northwest. If the Pacific Plate keeps moving the same way, where will the next new island most likely form? | southeast of the island of Hawaii | northwest of Kauai | off the coast of California | on the Mid-Atlantic Ridge
+mc2: Which isotope would be best for dating a wooden tool about 20,000 years old? | carbon-14, half-life about 5,730 years | uranium-238, half-life about 4.5 billion years | potassium-40, half-life about 1.3 billion years | rubidium-87, half-life about 49 billion years
+mc3: A map shows a chain of volcanoes 100 to 300 km inland from an ocean trench, and earthquakes get deeper going inland. What best explains where the volcanoes are? | Rock melts above the sinking plate once the plate reaches a certain depth | Volcanoes form where plates slide past each other | The trench is filled with lava | Earthquakes create volcanoes at random places
+mc2: Early in Earth's history, much of the planet was hot enough to be partly molten. Why did Earth's interior separate into layers? | Dense iron sank toward the center while lighter rock rose toward the surface | Lighter rock sank to the center | Erosion sorted the layers | The Moon pulled the iron out of the crust
+mc3: Seismic waves travel more slowly than expected in a region of the crust and upper mantle beneath Yellowstone. What is the best interpretation? | The rock there is hotter and may be partly melted | The rock there is colder and denser | There is a hollow cave there | The region contains no rock
+num2: A rock contains 25% of its original parent isotope. The isotope's half-life is 500 million years. How many million years old is the rock? | 1000
+sa2: Explain how seismic waves reveal Earth's interior structure. | S-waves do not pass through the liquid outer core, and changes in wave speed reveal layers.
+sa2: Describe how plate tectonics explains the distribution of mountains, earthquakes and volcanoes. | They occur along plate boundaries where plates collide, separate or slide.
+cer3: Data from radiometric dating: many meteorites, about 4.56 billion years; the oldest Moon rocks, about 4.5 billion years; the oldest mineral grains found on Earth (zircons), about 4.4 billion years; the oldest whole rocks found on Earth, about 4.0 billion years. Make a claim about when Earth formed and why its oldest rocks are younger than that. Use the data as evidence and explain your reasoning. | Claim: Earth formed about 4.6 billion years ago with the rest of the solar system, but its earliest rocks have been destroyed. Evidence: meteorites, leftover building blocks of the solar system, date to about 4.56 billion years, and the Moon's oldest rocks (4.5 billion) and Earth's zircons (4.4 billion) are nearly as old, while Earth's oldest whole rocks are only about 4.0 billion years old. Reasoning: Earth formed from the same material at the same time as meteorites. Its surface has been melted, recycled by plate tectonics and eroded, so only tough zircon grains survive from the earliest times, while the Moon's inactive surface and meteorites preserve older material.
+task3: Analyze data on seafloor ages, magnetic striping and earthquake depths at a subduction zone. Construct an explanation of plate interactions there and evaluate the hazards for nearby communities. | Accurate analysis, strong explanation and a thoughtful hazard evaluation. | Explanation with mostly correct data use. | Partial analysis. | Little correct work.
+
+unit: Earth's climate system | HS-ESS2-2, HS-ESS2-4, HS-ESS3-5 | sci_12_n2
+el: Draw an energy-flow diagram with arrows labeled "sunlight in," "reflected," "infrared out" and "trapped," and keep it posted. Give the feedback frame: "When ___ increases, ___ increases, which causes more ___ (positive feedback) or less ___ (negative feedback)."
+
+lesson: Earth's energy budget and the greenhouse effect | HS-ESS2-4
+practice:
+mc1: Most of the energy that reaches Earth from the Sun arrives as | visible light and other short-wave radiation | infrared radiation from the Moon | sound waves | heat carried by the solar wind
+hint: Think of what you see on a sunny day.
+mc2: Earth's albedo is about 0.30. What does this mean? | About 30% of incoming sunlight is reflected back to space | About 30% of sunlight is absorbed | Earth is 30 degrees warmer than it would be | About 30% of Earth is covered by ice
+hint: Albedo measures reflection.
+num2: On average, about 340 watts per square meter of sunlight reach the top of Earth's atmosphere, and about 30% of it is reflected. How many watts per square meter are absorbed? | 238
+hint: Find 70% of 340.
+mc2: Nitrogen and oxygen make up most of the atmosphere but are not greenhouse gases. Why? | Their molecules, each made of two identical atoms, absorb very little infrared radiation | They are too heavy to rise | They block all sunlight | They react with water vapor
+hint: Greenhouse gases are the ones that absorb infrared radiation.
+num1: Without any greenhouse effect, Earth's average surface temperature would be about -18 degrees C instead of about 15 degrees C. How many degrees C warmer does the natural greenhouse effect keep Earth? | 33
+hint: Find the difference between the two temperatures.
+sa2: Explain why adding greenhouse gases to the atmosphere makes Earth's surface warm until a new balance is reached. | Extra greenhouse gases absorb more of the infrared radiation Earth gives off, so less energy escapes to space than sunlight brings in. Earth gains energy and warms until it gives off enough infrared to balance the incoming energy again, at a higher temperature.
+hint: Compare energy in with energy out.
+quiz:
+mc1: Which of these is a greenhouse gas? | methane | nitrogen | oxygen | argon
+mc2: Earth's surface absorbs sunlight and gives off energy mainly as | infrared radiation | ultraviolet light | X-rays | visible light
+mc2: Which change would decrease the amount of sunlight Earth absorbs? | an increase in Earth's albedo, such as more bright clouds or snow | a decrease in cloud cover | melting of snow and ice | dark forest spreading over snowy land
+num2: On average, Earth absorbs about 240 watts per square meter of sunlight. If it gives off 239.3 watts per square meter of infrared radiation, how many watts per square meter is Earth gaining? | 0.7
+mc2: If Earth absorbs more energy than it gives off, what will happen? | Earth's average temperature will rise | Earth's average temperature will fall | Nothing will change | Earth will stop rotating
+mc3: Satellites measuring infrared light leaving Earth find less energy escaping at the wavelengths carbon dioxide absorbs than decades ago. What does this show? | Rising CO2 is trapping more outgoing infrared energy, direct evidence of a stronger greenhouse effect | The Sun is getting brighter | Earth is cooling | CO2 levels are falling
+num2: In a simple model, 400 units of infrared energy leave Earth's surface and the atmosphere absorbs 90% of it. How many units pass directly to space? | 40
+cer3: Data: a model of Earth with no greenhouse gases gives an average surface temperature of about -18 degrees C, while Earth's measured average is about 15 degrees C. Venus is farther from the Sun than Mercury and its clouds reflect most sunlight, yet Venus, with a very thick carbon dioxide atmosphere, is hotter than Mercury, which has almost no atmosphere. Make a claim about how greenhouse gases affect a planet's surface temperature. Use the data as evidence and explain your reasoning. | Claim: greenhouse gases make a planet's surface warmer, and more greenhouse gas causes more warming. Evidence: Earth is about 33 degrees C warmer than it would be without greenhouse gases, and Venus, with a thick CO2 atmosphere, is hotter than Mercury even though Venus is farther from the Sun and reflects most sunlight. Reasoning: sunlight warms the surface, which gives off infrared radiation. Greenhouse gases absorb that infrared and send some back down, so energy escapes to space more slowly and the surface must be warmer to balance the energy coming in.
+
+lesson: Feedbacks in the climate system | HS-ESS2-2
+practice:
+mc1: A positive feedback is a process that | strengthens the original change | weakens the original change | stops all change | has no effect on the change
+hint: Here "positive" means amplifying, not good.
+mc2: Warmer air can hold more water vapor, and water vapor is a greenhouse gas. What kind of feedback is this? | positive, because more water vapor causes more warming | negative, because water vapor cools Earth | not a feedback | negative, because rain removes all the heat
+hint: Follow the chain: warming, then more water vapor, then...
+mc2: Arctic permafrost holds frozen plant material. As it thaws, microbes break the material down and release carbon dioxide and methane. What is the effect on climate? | It is a positive feedback that adds more greenhouse gases | It is a negative feedback | It removes CO2 from the air | It has no effect
+hint: What do CO2 and methane do in the atmosphere?
+mc2: A warmer Earth gives off more infrared radiation to space. How does this act as a feedback? | It is a negative feedback that limits warming | It is a positive feedback that speeds warming | It makes Earth absorb more sunlight | It adds CO2 to the air
+hint: More energy leaving means...
+num2: Warmer air holds about 7% more water vapor for each 1 degree C of warming. Using simple multiplication, about what percent more water vapor can air hold after 3 degrees C of warming? | 21
+hint: Multiply the percent by the degrees.
+sa2: Describe a feedback loop that links warming, wildfires and carbon dioxide, and tell whether it is positive or negative. | Warming dries out forests and leads to more wildfires. Fires release CO2 and kill trees that would have absorbed CO2. More CO2 causes more warming, which leads to even more fires. This is a positive feedback.
+hint: Follow the loop back to where it started.
+quiz:
+mc1: A negative feedback | reduces the original change | increases the original change | always causes warming | always causes cooling
+num2: Arctic sea ice at the end of summer covered about 7.7 million km^2 in 1980 and about 3.9 million km^2 in 2020. By how many million km^2 did it shrink? | 3.8
+mc2: Clouds reflect sunlight back to space and also trap infrared radiation. Why do clouds make climate projections harder? | Depending on their type and height, clouds can either cool or warm Earth, so their overall feedback is uncertain | Clouds have no effect on climate | Clouds only warm Earth | Clouds only cool Earth
+mc2: As oceans warm, they can hold less dissolved carbon dioxide, so more of it stays in the air. What kind of feedback is this? | positive | negative | neutral | It is not a feedback
+mc2: In some places, plants grow faster when CO2 rises, taking more CO2 out of the air. What kind of feedback is this? | negative, because it removes some of the extra CO2 | positive, because it adds CO2 | positive, because plants warm the air | not a feedback
+mc3: A scientist says, "Feedbacks are why a small push can lead to a much larger temperature change." Which evidence best supports this? | Ice-core records show that small changes in Earth's orbit were followed by large temperature swings as CO2 and ice cover also changed | The Sun rises every day | Ocean tides follow the Moon | Earthquakes happen at plate boundaries
+cer3: Data from a mountain region: in the 1990s, snow covered 70% of the region in spring and the average April temperature was 4 degrees C. In the 2010s, snow covered 50% and the average April temperature was 6 degrees C. Measurements showed bare ground absorbs much more sunlight than snow. Make a claim about whether snow loss is a positive or negative feedback. Use the data as evidence and explain your reasoning. | Claim: snow loss is a positive feedback that adds to warming. Evidence: as spring snow cover fell from 70% to 50%, April temperatures rose from 4 to 6 degrees C, and bare ground absorbs more sunlight than snow. Reasoning: warming melts snow and exposes darker ground, which absorbs more sunlight, causing more warming and more melting, so the original change is strengthened. Other causes of warming also contribute, so the feedback adds to warming rather than explaining all of it.
+
+lesson: The carbon cycle and rising greenhouse gases | HS-ESS2-4, HS-ESS3-5
+practice:
+mc1: Which of these stores carbon for millions of years? | limestone rock and fossil fuels | the atmosphere | a single tree | a cloud
+hint: Think of carbon locked away in the geosphere.
+mc2: Burning fossil fuels moves carbon | from the geosphere into the atmosphere | from the atmosphere into rocks | from the ocean into Earth's core | from plants into coal
+hint: Where was the carbon stored before it was burned?
+mc2: The Keeling Curve rises every year but also zigzags, with CO2 falling during the Northern Hemisphere summer and rising in winter. What causes the zigzag? | Plants take in CO2 during the growing season and release it as leaves decay | People burn no fuel in summer | Ocean tides | Volcanoes erupt every summer
+hint: The Northern Hemisphere has most of Earth's land plants.
+num2: CO2 in the air was about 280 parts per million (ppm) before the Industrial Revolution and about 420 ppm in 2023. By what percent did it increase? | 50
+hint: Find the increase, then divide by the starting amount.
+mc2: Fossil fuels formed from plants that lived millions of years ago, so their carbon no longer contains any carbon-14. Since the 1800s, the share of carbon-14 in the air's CO2 has gone down. What does this show? | Much of the added CO2 comes from an old, carbon-14-free source such as fossil fuels | The added CO2 comes from living animals breathing | Plants are making extra carbon-14 | The ocean is releasing new carbon-14
+hint: Carbon in living things today still contains carbon-14.
+sa2: Explain how the ocean acts as a carbon sink and how its water shows the effects of human emissions. | The ocean absorbs a large share of the CO2 people release, which slows the rise in the air. As it absorbs CO2, seawater becomes more acidic, so scientists can measure falling pH and rising dissolved carbon as evidence of human emissions.
+hint: Think about where some of the CO2 goes and what it does to seawater.
+quiz:
+mc1: Photosynthesis moves carbon | from the atmosphere into living things | from living things into rocks only | from rocks into Earth's core | from the ocean into space
+mc2: Besides burning fossil fuels, which human activity adds carbon dioxide to the atmosphere? | cutting down and burning forests | planting new forests | building wind turbines | recycling paper
+num2: In 2023, people released about 37 billion tonnes of CO2 from fossil fuels. If the ocean absorbed about 1/4 of it, about how many billion tonnes did the ocean absorb? Round to the nearest whole number. | 9
+mc2: Methane traps much more heat per molecule than CO2 but stays in the atmosphere only about a decade, while extra CO2 can last for centuries or longer. Which is the best conclusion? | Cutting methane slows warming quickly, but cutting CO2 matters most for long-term warming | Methane does not matter for climate | CO2 leaves the air faster than methane | Both gases leave the air within a year
+num2: Carbon dioxide in the air rose from about 316 ppm in 1959 to about 420 ppm in 2023. What was the average rise in ppm per year? Round to the nearest tenth. | 1.6
+mc2: Ocean pH has dropped from about 8.2 to about 8.1 since the 1800s. Why is this a concern for corals and shellfish? | More acidic water makes it harder for them to build calcium carbonate shells and skeletons | It makes the water too salty | It makes the water freeze | It removes all oxygen from the water
+mc3: Measurements show that as CO2 in the air rises, the amount of oxygen in the air falls slightly, by about the amount expected from burning fuels. What does this evidence support? | The added CO2 comes mainly from burning, which uses up oxygen | The added CO2 comes mainly from gas bubbling out of the ocean | Oxygen is turning into CO2 by itself | Volcanoes are the main source
+sa3: A classmate says, "CO2 is only about 0.04% of the air, so it cannot change the climate." Use evidence to explain why this reasoning is flawed. | A small amount of a gas can have a large effect if it absorbs strongly. CO2 absorbs infrared radiation that nitrogen and oxygen do not, so it controls how easily heat escapes. Lab measurements, satellite measurements of outgoing infrared, and the warming that accompanied the rise in CO2 from about 280 to about 420 ppm all show that this small fraction has a big effect.
+
+lesson: Natural causes of climate change: orbits, the Sun and volcanoes | HS-ESS2-4
+practice:
+mc1: Milankovitch cycles are slow changes in | Earth's orbit and tilt that change how sunlight is spread over Earth | the Sun's position in the galaxy each day | ocean tides each month | the Moon's phases
+hint: Think of Earth's path around the Sun and its tilt.
+mc2: Earth's tilt varies between about 22.1 and 24.5 degrees over about 41,000 years. When the tilt is greater, what happens? | Summers become warmer and winters colder at high latitudes | Seasons disappear | Every place gets colder all year | Days become longer than 24 hours
+hint: Tilt is the cause of the seasons.
+mc2: The 1991 eruption of Mount Pinatubo sent sulfur gases high into the stratosphere, and global temperatures fell about 0.5 degrees C over the next year or so. Why? | Tiny sulfate droplets reflected sunlight back to space | Lava covered much of Earth | The eruption trapped infrared radiation | The volcano used up the oxygen in the air
+hint: What do tiny droplets high in the sky do to sunlight?
+num2: The Sun's energy output rises and falls by about 0.1% over each 11-year sunspot cycle. If Earth absorbs an average of 240 watts per square meter of sunlight, how many watts per square meter is 0.1% of that? | 0.24
+hint: 0.1% is 0.001.
+mc2: Over the last 800,000 years, ice ages and warm periods have alternated about every 100,000 years. What set off these changes? | Small changes in Earth's orbit, amplified by feedbacks such as changes in ice cover and CO2 | Humans burning fuels | Asteroid impacts every 100,000 years | Changes in the Moon's phases
+hint: Look for a cycle with a matching length.
+sa2: Explain why scientists conclude that changes in the Sun cannot explain the warming since the mid-1900s. | Satellites show the Sun's output has stayed about level or dipped slightly since the late 1970s while Earth kept warming. Also, the upper atmosphere (stratosphere) has cooled while the lower atmosphere warmed, which matches greenhouse warming; a brighter Sun would warm both layers.
+hint: Compare the Sun's measured output with temperatures, and look at different layers of the atmosphere.
+quiz:
+mc1: A large volcanic eruption usually causes global temperatures to | drop for a year or two | rise for centuries | stay exactly the same | rise for a few days only
+mc2: Earth's orbit changes from more circular to more stretched over a cycle of about 100,000 years. What does this change? | how much Earth's distance from the Sun varies during the year | the length of a day | the size of the Sun | the number of planets
+num1: The cycle in the shape of Earth's orbit lasts about 100,000 years. How many complete cycles fit in an 800,000-year ice-core record? | 8
+mc2: Studies with climate models find that natural factors alone, the Sun and volcanoes, would have caused little change or slight cooling since about 1950, but observed temperatures rose. What is the best conclusion? | Human activities, mainly greenhouse gas emissions, are the main cause of recent warming | Natural factors explain all of the recent warming | Thermometers must be wrong | Climate never changes naturally
+mc2: Why does a volcanic eruption's cooling last only a year or two, while warming from added CO2 lasts much longer? | Sulfate droplets fall out of the atmosphere within a few years, but extra CO2 stays for centuries | Volcanoes release no gases | CO2 leaves the air within weeks | Sulfate droplets warm the planet
+mc3: During the coldest part of the last ice age, about 20,000 years ago, CO2 was about 190 ppm and Earth was several degrees colder than before industry. Today CO2 is about 420 ppm and rising fast. Which statement best compares past and present climate change? | Past changes took thousands of years, while today's CO2 rise has happened in less than 200 years, mainly because of human activity | Today's change is slower than past changes | CO2 has never changed before | Past ice ages were caused by humans
+mc2: Earth is closest to the Sun in early January, during the Northern Hemisphere's winter. Why is January not the warmest month in the north? | Seasons are caused mainly by Earth's tilt, not by small changes in distance | Earth is farthest from the Sun in January | The Sun is dimmer in January | Clouds block all sunlight in January
+cer3: Data for 1980 to 2020: the Sun's average energy output stayed about level, rising and falling by about 0.1% with the 11-year sunspot cycle. Global average temperature rose about 0.7 degrees C. Atmospheric CO2 rose from about 339 ppm to about 414 ppm. Make a claim about the main cause of the warming from 1980 to 2020. Use the data as evidence and explain your reasoning. | Claim: the rise in greenhouse gases, mainly CO2 from human activity, was the main cause of the warming. Evidence: CO2 rose from about 339 to 414 ppm while temperature rose about 0.7 degrees C, but the Sun's output did not increase; it only went up and down slightly with the sunspot cycle. Reasoning: a cause must change when the effect changes. The Sun stayed level, so it cannot explain a steady rise, while CO2 absorbs outgoing infrared radiation, so adding it traps more energy and warms Earth.
+
+lesson: Reading the climate record: ice cores, proxies and thermometers | HS-ESS2-4, HS-ESS3-5
+practice:
+mc1: A climate proxy is | natural evidence, such as tree rings or ice layers, that records past climate | a thermometer reading taken today | a computer model of the future | a weather forecast
+hint: A proxy stands in for a direct measurement.
+num2: An ice core shows yearly layers about 2 cm thick in its top section. How many years are recorded in the top 30 meters? | 1500
+hint: Change meters to centimeters first.
+mc2: Wide tree rings usually form in years that are | warm and wet enough for good growth | very dry | very cold | exactly like every other year
+hint: A ring shows how much the tree grew that year.
+mc2: The global temperature record since 1880 comes from | thermometers on land, ships and buoys, combined and checked by several independent groups | one city's thermometer | tree rings only | satellites that have orbited since 1880
+hint: Think of where people have measured temperature for over a century.
+mc2: Ice-core data from the last 800,000 years show CO2 ranging between about 180 and 300 ppm. Today's level is about 420 ppm. What can be concluded? | Today's CO2 is higher than at any time in the 800,000-year ice-core record | CO2 is lower now than in the past | Today's level is normal for a warm period | Ice cores cannot measure CO2
+hint: Compare today's value with the range.
+sa2: Explain why scientists use several different proxies, not just one, to reconstruct past climate. | Each proxy has limits: it covers only certain places or times, or it can be affected by things other than temperature. When independent proxies such as ice cores, tree rings, corals and ocean sediments show the same pattern, scientists can be more confident the pattern is real.
+hint: What happens if two independent methods agree?
+quiz:
+mc1: Which source gives the longest continuous record of past air composition? | ice cores from Antarctica | tree rings | weather station records | ship logs
+mc2: In ice cores, layers with more heavy oxygen (oxygen-18) formed during warmer times. Section A has more oxygen-18 than Section B. What can be concluded? | Section A formed during a warmer period than Section B | Section B formed during a warmer period | Both formed at the same temperature | Oxygen-18 measures only CO2
+num2: A global temperature record shows a temperature difference from the long-term average of -0.2 degrees C in 1900 and +1.0 degrees C in 2020. How many degrees C did global temperature rise from 1900 to 2020? | 1.2
+mc2: A graph of global temperature from 1880 to 2020 shows ups and downs from year to year but an overall rise, with most of the warmest years after 2000. What is the best description? | a long-term warming trend with short-term natural ups and downs | no trend, only random change | a steady cooling trend | a trend that ended in 1940
+mc2: Corals grow yearly bands, and the chemistry of each band depends on the water temperature when it formed. What can coral bands tell scientists? | past ocean temperatures, year by year | the age of the Moon | future storm paths | the depth of the mantle
+num1: Ice cores show CO2 at about 280 ppm in the warm period before industry and about 190 ppm during the coldest part of the last ice age. What is the difference in ppm? | 90
+mc3: A student sees that 2008 was cooler than 1998 and concludes global warming stopped. Why is this conclusion weak? | Single years vary because of short-term events such as El Nino; the trend over decades still shows warming | 2008 was actually warmer than 1998 | Temperature records are never accurate | Climate is defined by a single year
+sa2: Explain how climate differs from weather, and why scientists use averages over 30 years or more to study climate. | Weather is the condition of the atmosphere from day to day; climate is the long-term average pattern for a region. Averaging over 30 years or more smooths out short-term ups and downs so real trends can be seen.
+
+lesson: Climate models and forecasting regional change | HS-ESS3-5, HS-ESS2-4
+practice:
+mc1: A climate model is | a computer program that uses physics equations to simulate Earth's climate system | a small plastic globe | a forecast of tomorrow's weather only | a list of past temperatures
+hint: Models are built from the laws of physics.
+mc2: Scientists test climate models by running them for past decades and comparing the results with measured temperatures. This is called | hindcasting | weather forecasting | radiometric dating | seafloor mapping
+hint: "Hind" means behind.
+mc2: Which part of a climate projection depends most on human decisions rather than on physics? | how much greenhouse gas will be emitted in the future | how CO2 absorbs infrared radiation | how ice reflects sunlight | how warm air holds more water vapor
+hint: Which of these can people change?
+num2: Global sea level rose about 20 cm from 1900 to 2020. What was the average rate in millimeters per year? Round to the nearest tenth. | 1.7
+hint: Change centimeters to millimeters first.
+mc2: What are the two main causes of global sea level rise? | seawater expanding as it warms, and melting glaciers and ice sheets on land | melting floating sea ice, and more rain | rivers carrying more sand, and boats | earthquakes and tides
+hint: Think of land ice and of heating seawater.
+sa2: Explain why melting Arctic sea ice raises sea level very little, while melting of the Greenland ice sheet raises it a lot. | Floating sea ice already displaces its own weight of water, so when it melts it adds almost no volume. Greenland's ice sits on land, so its meltwater flows into the ocean and adds new volume, raising sea level.
+hint: Is the ice floating or sitting on land?
+quiz:
+mc1: A model that accurately reproduces past climate gives scientists more confidence that | its projections of future climate are reliable | the future is certain | weather can be predicted years ahead | the model never needs improving
+mc2: Models project that by late this century Sierra Nevada spring snowpack could shrink by about half or more under high emissions, with smaller losses under low emissions. What water problem does this raise for California? | Less snowmelt in late spring and summer to fill reservoirs and supply farms and cities | More water in summer | Too much snow in summer | No change, since rain replaces snow exactly
+num2: A tide gauge in San Francisco shows sea level rising about 2 mm per year. At that rate, how many centimeters would sea level rise in 50 years? | 10
+mc2: Climate models project that a warmer climate brings more frequent heat waves. Which observation is consistent with this? | Record high temperatures have been set more often than record lows in recent decades | Winters no longer happen | Every summer is the hottest ever | No place gets cold weather anymore
+mc2: Which statement best reflects the scientific consensus on climate change? | Earth is warming, and human activities, mainly burning fossil fuels, are the main cause | Scientists are evenly split on whether Earth is warming | The warming is caused mostly by the Sun | Earth is cooling
+mc3: Models project both more intense droughts and more intense heavy rainstorms for California as the climate warms. How can both happen? | Warmer air dries out soils faster in dry periods and holds more water vapor that can fall in storms | Warmer air holds less water | Droughts and floods cannot both increase | Rain depends only on the Moon
+num2: A set of model runs projects about 2.5 degrees C of warming by 2100 under a medium-emissions scenario and about 4.5 degrees C under a high-emissions scenario. How many degrees C of warming would be avoided by following the medium scenario instead of the high one? | 2
+cer3: Data for a California county, comparing 1950-1979 averages with 1990-2019 averages: days per year above 38 degrees C rose from 5 to 12; April 1 snowpack in nearby mountains fell to 80% of its 1950-1979 average; acres burned by wildfire per year rose from 20,000 to 60,000. Make a claim about how the region's climate is changing and describe one impact on people. Use the data as evidence and explain your reasoning using the climate system. | Claim: the region is getting hotter and drier, which harms people's water supply and safety. Evidence: very hot days more than doubled (5 to 12), snowpack dropped 20%, and acres burned tripled (20,000 to 60,000). Reasoning: more heat trapped by greenhouse gases raises temperatures, so more precipitation falls as rain instead of snow and snow melts earlier, leaving less snowmelt for summer water. Hotter, drier conditions dry out plants, which makes fires larger; fire is also affected by how forests are managed, but the climate trend raises the risk. Impact: less summer water for farms and towns, and more smoke and fire danger for residents.
+
+lesson: Unit review | HS-ESS2-2, HS-ESS2-4, HS-ESS3-5
+practice:
+mc2: Which change would strengthen the greenhouse effect? | adding methane from leaking gas wells and livestock | adding more oxygen to the air | adding more nitrogen to the air | removing CO2 by planting forests
+hint: Which gases absorb infrared radiation?
+num2: CO2 in the air has risen from 280 ppm to 420 ppm. If it kept rising by 2.5 ppm per year, how many years would it take to reach 560 ppm, double the pre-industrial level? | 56
+hint: Find how much more is needed, then divide.
+mc2: Which data set would best test whether a region's climate is getting drier? | 50 years of rainfall and soil moisture records for the region | one week of weather forecasts | a single photo of a dry river | the rainfall on one day
+hint: Climate is about long-term averages.
+mc2: A graph shows global temperature and atmospheric CO2 both rising from 1880 to 2020, with temperature rising faster after 1970. Combined with knowledge of the greenhouse effect, which conclusion is best supported? | Rising CO2 is a major cause of the warming, because CO2 traps infrared radiation | Temperature and CO2 are unrelated | The warming must be caused by something else entirely | Temperature will soon fall back to 1880 levels
+hint: A pattern plus a known mechanism makes a stronger case.
+sa2: Explain how the ocean can cause sea level to rise even if no ice melts. | Water expands as it warms. As the ocean absorbs heat, the same mass of water takes up more volume, so sea level rises.
+hint: What happens to most liquids when they are heated?
+quiz:
+mc1: The greenhouse effect is caused by gases that | trap infrared radiation | block all sunlight | cool the planet only | create ozone holes
+mc1: Which gas has increased most due to burning fossil fuels? | carbon dioxide | nitrogen | argon | helium
+mc2: Melting Arctic sea ice can speed warming because | darker ocean absorbs more sunlight | ice is heavy | it raises the Sun's output | it stops wind
+mc2: The Keeling Curve shows | rising atmospheric CO2 since 1958 | ocean depth | sunspot numbers | earthquake frequency
+num2: About 340 watts per square meter of sunlight reach the top of Earth's atmosphere, and Earth absorbs about 240 watts per square meter. What percent of the sunlight is reflected? Round to the nearest whole number. | 29
+mc2: Which is an example of a climate proxy? | layers of pollen in lake mud | today's temperature | a satellite photo of a storm | yesterday's rain gauge reading
+sa2: Explain the difference between natural climate changes and current climate change. | Past changes came from orbital cycles and volcanoes over long times; current change is rapid and driven by human greenhouse emissions.
+
+test:
+mc2: Ice cores provide data on | past atmospheric composition and temperature | future weather | plate motion | solar flares only
+mc2: Ocean acidification is caused by | oceans absorbing CO2 | too much salt | oil spills only | warm rain
+mc2: Which is a negative feedback in the climate system? | increased cloud cover reflecting sunlight | melting permafrost releasing methane | less ice reflecting less light | warming increasing water vapor
+mc3: Climate models forecast more warming under high-emission scenarios. Why do forecasts have ranges? | uncertainty in future emissions and feedbacks | scientists disagree on all physics | the Sun stops | models are random
+mc1: How are the ozone hole and global warming related? | They are different problems: ozone loss lets in more ultraviolet light, while warming comes from greenhouse gases trapping infrared | They are the same problem | Both are caused only by volcanoes | Both are caused by changes in the Sun
+mc2: Which surface has the highest albedo? | fresh snow | dark forest | open ocean | asphalt
+num2: A planet receives 400 watts per square meter of sunlight and reflects 25% of it. How many watts per square meter does it absorb? | 300
+num2: Atmospheric CO2 rose from about 370 ppm in 2000 to about 420 ppm in 2023. What was the average rise in ppm per year? Round to the nearest tenth. | 2.2
+mc2: Which describes a positive feedback? | Warming thaws permafrost, releasing methane that causes more warming | Warming increases outgoing infrared radiation, which limits warming | More CO2 speeds plant growth, which removes CO2 | Rock weathering slowly removes CO2 from the air
+mc2: Why do fossil fuels contain no carbon-14? | They formed from organisms that died millions of years ago, long enough for all their carbon-14 to decay | They were made inside stars | Plants never contain carbon-14 | Carbon-14 is found only in rocks
+mc2: The Milankovitch cycle in the tilt of Earth's axis lasts about | 41,000 years | 11 years | 1 year | 4.6 billion years
+mc2: Which observation shows that the ocean has absorbed much of the extra heat from global warming? | Floating ocean sensors show the heat content of the upper ocean rising for decades | The ocean has stayed the same temperature | Tides are higher at full moon | Salt water freezes at a lower temperature
+num2: A glacier in the Sierra Nevada was 1.2 km long in 1900 and 0.4 km long in 2020. On average, how many meters per year did it shrink? Round to the nearest whole number. | 7
+mc3: A news story says one cold winter in the eastern United States proves global warming is not happening. Which response is most scientific? | One region's season is weather variability; global climate trends are measured over decades for the whole planet | A cold winter proves Earth is cooling | Weather and climate are the same thing | Thermometers do not work in winter
+mc2: Which change is projected for California as the climate warms? | more mountain precipitation falling as rain instead of snow | more snow at sea level | colder summers | no change in wildfire risk
+mc2: An increase in ocean acidity is measured as | a decrease in pH | an increase in pH | an increase in salt | a decrease in temperature
+mc3: In many regions, nights are warming faster than days. Why does this support greenhouse warming rather than a brighter Sun as the cause? | Greenhouse gases slow heat loss at all hours, including at night, while a brighter Sun would mainly warm the daytime | The Sun shines more at night | Nights are not warming | Clouds form only during the day
+num3: Ocean pH has fallen from about 8.2 to about 8.1. Each drop of 1 pH unit means 10 times as many hydrogen ions, and 10 to the 0.1 power is about 1.26. About what percent did the hydrogen ion concentration increase? | 26
+sa2: Explain how the greenhouse effect works using a model of energy flow. | Sunlight warms Earth; Earth emits infrared, which greenhouse gases absorb and re-emit, warming the lower atmosphere.
+sa2: Describe one positive feedback in the climate system. | Melting ice reduces albedo, so more sunlight is absorbed, causing more warming and melting.
+cer3: Data: Antarctic ice cores show that over the last 800,000 years, CO2 was about 180 to 190 ppm during ice ages and about 280 to 300 ppm during warm periods, and temperature rose and fell along with it. CO2 was about 285 ppm in 1850 and about 420 ppm in 2023, and global average temperature has risen about 1.1 degrees C since the late 1800s. Make a claim about the relationship between CO2 and global temperature and what today's CO2 level means for climate. Use the data as evidence and explain your reasoning. | Claim: higher CO2 goes with a warmer climate, and today's CO2, far above anything in the ice-core record, is driving warming. Evidence: in the ice cores, CO2 and temperature rose and fell together between about 180 and 300 ppm; since 1850 CO2 has climbed to about 420 ppm and temperature has risen about 1.1 degrees C. Reasoning: CO2 absorbs outgoing infrared radiation, so more CO2 traps more energy. In past cycles, orbital changes started the warming and CO2 released by the warming ocean amplified it as a feedback; today humans are adding CO2 directly by burning fossil fuels, so CO2 is leading the change, and more warming is expected as the climate system catches up.
+task3: Analyze global temperature and CO2 data from 1880 to today, and climate model projections. Create graphs, describe the relationship, forecast regional impacts for California (for example, drought, wildfire, sea level) and evaluate uncertainty. | Accurate graphs, clear relationship, evidence-based regional forecast and thoughtful uncertainty. | Graphs and forecast with partial uncertainty discussion. | Graphs with limited analysis. | Little correct work.
+
+unit: Human sustainability | HS-ESS3-1, HS-ESS3-2, HS-ESS3-3, HS-ESS3-4, HS-LS2-7 | sci_12
+el: Give a cost-benefit organizer with columns for economic, environmental and social impacts. Post frames for discussing more than one side: "Supporters argue ___ because ___. Opponents argue ___ because ___. The evidence shows ___."
+
+lesson: Natural resources, hazards and where people live | HS-ESS3-1
+practice:
+mc1: Early farming civilizations often grew up along rivers such as the Nile and the Tigris and Euphrates because | the rivers supplied water and fertile soil for crops | rivers kept away all natural hazards | the land there was high and rocky | those rivers never flooded
+hint: What do crops need to grow?
+mc2: What happened after gold was discovered in California in 1848? | Large numbers of people rushed to California, and towns and cities grew quickly | People left California | Farming ended in the state | California's first earthquake occurred
+hint: Think about why people move to a new place.
+mc2: Many large cities lie near earthquake faults, volcanoes or flood-prone coasts. Why do people still live there? | These places often offer resources such as fertile soil, harbors, water and jobs that people judge worth the risks | People do not know hazards exist | Hazards never cause damage | Laws require people to live there
+hint: Weigh the benefits of a place against its risks.
+mc2: During the 1930s Dust Bowl, a long drought struck the Great Plains after plowing had removed the native grasses. What happened? | Wind blew away huge amounts of topsoil, and many farm families left, many for California | Crops grew better than ever | The region flooded | Farmers moved to the Arctic
+hint: What holds soil in place?
+num2: A town gets 60% of its water from mountain snowmelt and 40% from groundwater, using 10,000 acre-feet per year in all. If the snowmelt supply falls by half and groundwater use stays the same, how many acre-feet will the town be short? | 3000
+hint: Find the snowmelt amount first.
+sa2: Give one example of how a change in climate has affected human populations, in the past or today. | Long droughts have caused crop failures and forced people to move, as in the Dust Bowl of the 1930s. Today rising seas and stronger storms are forcing some coastal communities to build defenses or relocate.
+hint: Think about droughts, floods or rising seas.
+quiz:
+mc1: A natural hazard is | a natural event, such as an earthquake, flood or wildfire, that can harm people and property | any kind of human-made pollution | a type of mineral resource | a farming method
+mc2: A population map shows most Californians live along the coast and in the Central Valley, with few people in the eastern deserts. Which factors best explain this pattern? | access to water, a mild climate, ports and farmland | the locations of volcanoes | the number of mountains | where meteorites have fallen
+mc2: Much of Southern California's water is carried hundreds of kilometers by aqueducts from Northern California, the Sierra Nevada and the Colorado River. What does this show? | Where people live can depend on resources brought from far away, which makes them sensitive to droughts in other places | Southern California has plenty of local rain | Aqueducts create new water | Water use does not depend on climate
+num2: A coastal city has 200,000 residents. A flood map shows that 15% of them live in an area expected to flood more often as sea level rises. How many residents live in that area? | 30000
+mc2: Wildfire risk in California has grown as more homes are built where towns meet forests and shrublands. What is the best way to describe this? | Human choices about where to build increase exposure to a natural hazard | Building homes stops wildfires | Wildfires happen only in cities | Building homes has no effect on risk
+mc3: Region A has fertile soil, a reliable river and frequent small floods. Region B has poor soil, no river and no floods. In the past, which region would most likely have had more people, and why? | Region A, because water and fertile soil supported farming despite the flood risk | Region B, because it has no floods | Region B, because poor soil is easier to farm | Neither, because resources do not affect where people live
+mc2: Which resource most limits how much farmland in California's Central Valley can be planted in dry years? | water for irrigation | sunlight | flat land | air
+sa3: Choose one natural hazard in California and explain one way communities reduce the risk from it. | Earthquakes: building codes require new buildings to withstand shaking, older buildings can be retrofitted, and an earthquake early-warning system can alert people seconds before strong shaking arrives. (Other answers: clearing brush around homes and controlled burns for wildfire; levees and limits on building in floodplains for floods.)
+
+lesson: Energy and mineral resources: weighing costs and benefits | HS-ESS3-2
+practice:
+mc1: A nonrenewable resource is one that | forms much more slowly than people use it | nature replaces quickly | can never run out | is always clean to use
+hint: Think of fossil fuels.
+mc2: Which energy source makes electricity with almost no carbon dioxide emissions while running but produces radioactive waste that must be stored safely for thousands of years? | nuclear power | coal | natural gas | wood
+hint: This source splits uranium atoms.
+mc2: Solar and wind power do not produce electricity all the time. Which solution addresses this problem? | battery storage and a power grid that connects many regions | building a single wind turbine | shutting off the grid at night | painting solar panels black
+hint: How can energy be saved for later?
+num2: A solar panel system costs $12,000 and saves $1,500 per year on electricity. How many years will it take for the savings to equal the cost? | 8
+hint: Divide the cost by the yearly savings.
+mc2: Lithium for electric car batteries is mined from salty underground water or from rock. What is one environmental cost of this mining? | It can use large amounts of water and disturb land and habitats | It produces no waste | It cools the climate directly | It plants new forests
+hint: Mining changes land and uses resources.
+sa2: A town is choosing between a natural gas power plant and a large solar farm with batteries. Name one benefit and one cost of each choice. | Natural gas: it can supply power at any time and may cost less to build, but it emits CO2 and its fuel price can rise. Solar with batteries: it has no fuel cost and no emissions while running, but it needs a lot of land, costs more up front, and the batteries require mined materials.
+hint: Think about cost, emissions, reliability and land.
+quiz:
+mc1: Geothermal power plants, like those at The Geysers in Northern California, make electricity from | heat inside Earth | burning coal | ocean tides | sunlight
+mc2: Mine A produces copper worth $50 million per year and causes $10 million per year in cleanup and health costs. Mine B produces $40 million and causes $20 million in costs. Which has the better ratio of benefits to costs? | Mine A, with a ratio of 5 to 1 | Mine B, with a ratio of 2 to 1 | Both are equal | Mine B, because it is smaller
+num2: A wind farm costs $90 million to build and earns $6 million a year more than it costs to run. How many years will it take to pay back the building cost? | 15
+mc2: Recycling aluminum cans uses much less energy than making new aluminum from ore. Which benefit is most direct? | less energy use and less mining | more landfill space used | more ore mined | more energy used
+mc2: Supporters of building more nuclear power plants say they provide steady, low-carbon electricity. Which concerns do opponents most often raise? | high building costs, the risk of accidents and long-term storage of radioactive waste | that nuclear plants give off large amounts of CO2 while running | that nuclear plants work only when it is windy | that nuclear plants burn coal
+mc3: A state must choose between expanding offshore oil drilling and investing in offshore wind farms. Which pair of arguments would supporters of each side most likely make? | Drilling: jobs, tax money and energy from an existing industry; wind: lower emissions and no risk of oil spills | Drilling: lower emissions; wind: more oil spills | Both: no environmental impact at all | Drilling: oil is renewable; wind: wind is a fossil fuel
+cer3: Data for three ways to supply the same amount of electricity: Coal costs $60, emits 100 tonnes of CO2 and uses 1 km^2 of land, available any time. Natural gas costs $45, emits 45 tonnes of CO2 and uses 1 km^2, available any time. Solar with batteries costs $55, emits 5 tonnes of CO2 (mostly from making the equipment) and uses 6 km^2, available any time with storage. Make a claim about which option is best for a community that wants low emissions at a reasonable cost. Use the data as evidence and explain your reasoning, including one tradeoff. | Claim: solar with batteries is the best choice for this community's goals. Evidence: it emits 5 tonnes of CO2, compared with 45 for gas and 100 for coal, and costs $55, less than coal and only $10 more than gas. Reasoning: the community wants low emissions at a reasonable cost, and solar cuts emissions by about 90% compared with gas for a small extra cost. Tradeoff: it needs 6 times as much land, which could affect habitats or farmland, so the site should be chosen carefully; a community that cared most about cost might choose gas instead.
+
+lesson: Population, resource use and biodiversity | HS-ESS3-3, HS-LS2-7
+practice:
+mc1: Carrying capacity is | the largest population an environment can support over time | the number of babies born each year | the area of a forest | the amount of rain in a year
+hint: Think about limits.
+mc2: A computer simulation shows a fish population stays stable when 20% of the fish are caught each year but crashes when 40% are caught. What should fishery managers do? | set catch limits at or below the level the population can replace | allow unlimited fishing | stop studying the fish | catch 40% each year
+hint: Compare the catch with how fast the fish reproduce.
+num2: A lake holds 50,000 fish, and the population can replace about 10% of its numbers each year. What is the largest number of fish that could be caught each year without the population shrinking? | 5000
+hint: Find 10% of the population.
+mc2: Habitat fragmentation happens when | roads, farms and towns break large habitats into small, separate pieces | a forest grows larger | animals migrate in spring | rivers flood
+hint: A fragment is a small piece.
+mc2: In the early 1990s, cod off Newfoundland, Canada, collapsed after decades of heavy fishing, and a fishing ban began in 1992. What lesson does this teach? | Harvesting faster than a population can reproduce can cause a collapse that lasts for decades | Fish populations always recover within a year | Fishing bans make fish disappear | Fishing has no effect on populations
+hint: Compare the catch with the population's ability to reproduce.
+sa2: Explain how a wildlife crossing can help a species whose habitat is split by a highway. | A crossing, such as a bridge or tunnel with natural plants, lets animals move safely between habitat pieces to find food, mates and new territory. This keeps populations connected, reduces animals killed on the road and helps keep genetic diversity.
+hint: What do animals need to move between places for?
+quiz:
+mc1: Which human activity is the leading cause of biodiversity loss worldwide? | habitat loss from clearing land for farms and development | planting gardens | building wildlife crossings | recycling
+num2: World population was about 2.5 billion in 1950 and about 8 billion in 2022. How many times larger was the population in 2022? Round to the nearest tenth. | 3.2
+num2: A city of 400,000 people uses an average of 300 liters of water per person per day. How many million liters does the city use per day? | 120
+mc2: Mountain lions in the Santa Monica Mountains near Los Angeles are hemmed in by freeways, and studies found the population has low genetic diversity. Which solution best addresses the cause? | building a wildlife crossing so lions can move to and from other habitat | feeding the lions | moving all the lions to a zoo | building more freeways
+mc2: A simulation of a forest shows that if 2% of the trees are cut each year and 1% regrow, the forest shrinks. Which change would make the forest's use sustainable? | cutting no more than the amount that regrows each year | cutting 4% each year | stopping all regrowth | cutting only the oldest trees at the same 2% rate
+mc3: A model shows that as a farming region grows, wetlands are drained and the number of bird species drops from 40 to 25, while crop output rises. Which statement best evaluates the tradeoff? | The region gains food but loses biodiversity and wetland services such as flood control, so planners should weigh both | Only crop output matters | Only bird numbers matter | Draining wetlands has no costs
+cer3: Data from a fishery simulation, showing the population after 20 years as a percent of the starting population: catching 10% per year, 95%; catching 20% per year, 70%; catching 30% per year, 20%. Make a claim about which catch rate is sustainable. Use the data as evidence and explain your reasoning. | Claim: of these choices, only the 10% catch rate is close to sustainable. Evidence: at 10% the population stays near its starting size (95%), while at 20% it falls to 70% and at 30% it nearly collapses to 20%. Reasoning: a population can support a harvest only as large as the number it adds through reproduction. Catching more than that each year removes fish faster than they are replaced, so the population declines, and the faster the catch, the faster the decline.
+
+lesson: Engineering and policy solutions to reduce human impacts | HS-ESS3-4, HS-LS2-7
+practice:
+mc1: In engineering, a constraint is | a limit on a solution, such as cost, time or materials | the goal the solution must reach | the finished product | a type of pollution
+hint: Criteria are goals; constraints are limits.
+mc2: Catalytic converters on cars reduce air pollution by | changing harmful exhaust gases into less harmful ones | making cars go faster | removing all CO2 | adding more fuel
+hint: They change gases chemically.
+mc2: Scrubbers in power plant smokestacks remove sulfur dioxide. Which problem do they help reduce? | acid rain | the ozone hole | sea level rise | earthquakes
+hint: Sulfur dioxide forms acid when it mixes with water in clouds.
+num2: A factory released 800 tonnes of sulfur dioxide per year. A new scrubber removes 95% of it. How many tonnes are still released per year? | 40
+hint: Find 5% of 800.
+mc2: In 1987, nations signed the Montreal Protocol to phase out CFCs, chemicals that damage the ozone layer. Measurements now show the ozone layer slowly recovering. What does this show? | A global agreement based on scientific evidence can reduce a human impact on Earth's systems | The ozone layer was never damaged | CFCs help the ozone layer | Agreements cannot change anything
+hint: Compare before and after the agreement.
+sa2: A coastal city plans to build a desalination plant to turn seawater into drinking water. Describe one benefit and one environmental tradeoff. | Benefit: a reliable water supply that does not depend on rain or snow, even in droughts. Tradeoff: it uses a lot of energy, and the very salty water it releases and its intake pipes can harm marine life.
+hint: Think about water supply, energy and the ocean.
+quiz:
+mc1: The criteria for an engineering solution are | the requirements it must meet to be successful | the limits on money and time | the materials it is made of | the people who build it
+mc2: A city wants to cut car emissions while still meeting people's need to get around. Which solution does both? | expanding reliable public transit and safe bike routes | banning all travel | building more parking lots | lowering the price of gasoline
+mc2: Supporters of a carbon tax say it lets businesses and consumers find the cheapest ways to cut emissions. Which concern do critics often raise? | It can raise energy prices, which may hit lower-income families hardest unless the money is returned to them | It would increase emissions | It would make fossil fuels cheaper | It would have no effect on prices
+num2: A cap-and-trade program sets an emissions cap of 1,000,000 tonnes this year and lowers the cap by 4% each year. What will the cap be next year, in tonnes? | 960000
+mc2: Which pair correctly states arguments from two sides of a debate over stricter vehicle emission rules? | Supporters: cleaner air and lower health costs; opponents: higher vehicle prices and costs for manufacturers | Supporters: higher vehicle prices; opponents: cleaner air | Supporters: more pollution; opponents: less pollution | Both sides: no effect on anyone
+mc3: A city tests three designs for cleaning stormwater before it reaches the ocean. Design A removes 90% of pollutants and costs $500,000. Design B removes 85% and costs $150,000. Design C removes 40% and costs $50,000. The budget is $200,000, and the city needs at least 80% removal. Which design should it choose? | Design B, because it meets both the removal requirement and the budget | Design A, because it removes the most | Design C, because it costs the least | None of the designs works
+num2: A school replaces 500 light bulbs that use 60 watts each with LED bulbs that use 9 watts each. How many watts are saved when all the bulbs are on? | 25500
+sa3: People disagree about how best to cut carbon emissions. Some favor government rules and taxes; others favor tax credits and support for new technology, leaving businesses and consumers free to choose. Describe one strength and one weakness of each approach. | Rules and taxes: a strength is that they can require or strongly push emission cuts; a weakness is that they can raise costs for businesses and households. Incentives and new technology: a strength is that they encourage innovation without forcing choices and are often popular; a weakness is that they can cost taxpayers money and may cut emissions more slowly or less certainly.
+
+lesson: Unit review | HS-ESS3-1, HS-ESS3-2, HS-ESS3-3, HS-ESS3-4, HS-LS2-7
+practice:
+mc2: Which is an example of sustainable resource use? | harvesting timber no faster than forests regrow | pumping an aquifer faster than rain refills it | catching fish faster than they reproduce | clearing all native plants to grow one crop
+hint: Sustainable means it can continue for a long time.
+num2: An aquifer gains 2 million cubic meters of water per year from rain and loses 5 million cubic meters per year to pumping. How many million cubic meters does it lose overall each year? | 3
+hint: Compare what goes in with what comes out.
+mc2: In parts of California's Central Valley, heavy pumping of groundwater has made the land surface sink. What is this called? | subsidence | erosion | deposition | weathering
+hint: The ground settles as water is removed from below.
+mc2: Which pair lists one benefit and one cost of building a large dam? | Benefit: water storage and hydroelectric power; cost: blocks migrating fish such as salmon | Benefit: blocks fish; cost: makes electricity | Benefit: causes more floods; cost: provides drinking water | Benefit: no change to rivers; cost: none
+hint: Think about both people and ecosystems.
+sa2: Explain why a solution such as a ban on single-use plastic bags may be supported by some people and opposed by others. | Supporters focus on less litter and less harm to wildlife. Opponents point to costs and inconvenience for shoppers and stores, or argue that replacement bags made of paper or thick plastic have their own environmental costs. People weigh the criteria differently.
+hint: Think about the different groups the ban affects.
+quiz:
+mc1: A renewable energy source is | solar | coal | oil | natural gas
+mc1: Biodiversity is | the variety of life in an area | the number of people | the amount of rain | soil type
+mc2: Which practice conserves soil on farms? | cover crops and no-till farming | removing all plants | overgrazing | burning fields every year
+mc2: An environmental cost-benefit analysis compares | economic, social and environmental impacts of a solution | only the price | only the benefits | only scientific data
+num2: Drip irrigation delivers about 90% of its water to plant roots, while flood irrigation delivers about 60%. If a field's plants need 54,000 liters of water, how many liters must be applied with flood irrigation? | 90000
+mc2: Which action most directly protects biodiversity in a region? | preserving large, connected areas of native habitat | building a shopping center on a wetland | bringing in a predator from another continent | paving riverbanks
+sa2: Explain why sustainable solutions must consider costs, safety and social impacts as well as science. | Solutions must be practical and fair to be adopted and to work long term.
+
+test:
+mc2: Natural resource availability has affected human history by | influencing where people settle | having no effect | always being equal | stopping migration
+mc2: Which reduces carbon emissions most directly? | switching power plants from coal to renewables | painting roofs blue | planting flowers indoors | using paper straws
+mc2: Overfishing can cause | collapse of fish populations | more fish | cleaner oceans | colder water
+mc3: A city wants to reduce water use during droughts. Which solution best balances cost and effectiveness? | incentives for drought-tolerant landscaping and efficient fixtures | banning all water use | building a new ocean | ignoring the problem
+mc1: Sustainability means | meeting present needs without harming the ability of future generations to meet their own needs | using resources as fast as possible | never using any natural resources | protecting only the economy
+mc1: Which is a nonrenewable mineral resource? | copper ore | sunlight | wind | river water
+mc2: How does composting food waste, instead of sending it to a landfill, help the environment? | It returns nutrients to the soil and reduces methane given off by landfills | It produces more trash | It adds methane to the air | It uses up more water
+num2: A city of 250,000 people produces 2 kg of trash per person per day. How many tonnes of trash does it produce per day? (1 tonne = 1,000 kg) | 500
+num2: A driver replaces a car that gets 25 miles per gallon with one that gets 50 miles per gallon. If the driver goes 10,000 miles per year, how many gallons of fuel are saved per year? | 200
+mc2: Invasive species threaten biodiversity because they | can outcompete or prey on native species that have no defenses against them | always help native species | cannot reproduce | live only in zoos
+mc2: Which energy source uses falling water and can change river ecosystems? | hydroelectric power | solar power | wind power | geothermal power
+mc2: Electric cars produce no tailpipe emissions. Why do their total emissions depend on where they are charged? | The electricity may come from fossil fuel power plants or from low-carbon sources | Batteries give off CO2 when charged | Charging stations release methane | Electric cars burn gasoline while charging
+mc3: A region's population doubled in 30 years while its water use per person dropped by 25%. What happened to the region's total water use? | It increased by 50% | It doubled | It stayed the same | It decreased by 25%
+num2: A forest of 10,000 hectares loses 200 hectares per year to logging and regrows 150 hectares per year. How many hectares smaller will it be after 20 years? | 1000
+mc2: A town debates a new mine that would bring 300 jobs but could pollute a river used for drinking water. Which approach best uses evidence to make the decision? | Compare data on economic benefits, health risks, cleanup costs and possible safeguards, and hear from affected residents | Decide based only on the number of jobs | Decide based only on the mining company's opinion | Refuse to look at any data
+mc2: Light-colored "cool roofs" reflect more sunlight than dark roofs. Which benefit do they provide in hot cities? | cooler buildings and less energy used for air conditioning | more rain | higher electricity use | warmer streets
+mc3: Wind turbines can kill some birds and bats. Which response best reduces this harm while keeping the benefit of clean energy? | placing turbines away from major migration routes and slowing the blades when bats are most active | removing all wind turbines | building turbines in the middle of bird nesting areas | ignoring the problem
+num2: A household uses 900 kilowatt-hours of electricity per month, and its solar panels supply 40% of it. How many kilowatt-hours per month still come from the power grid? | 540
+sa2: Evaluate one technological solution that reduces human impact on natural systems, naming a benefit and a tradeoff. | For example, electric vehicles reduce emissions but require mining for batteries.
+sa2: Explain how human population growth affects natural resources and biodiversity. | More people use more land, water and energy, which can reduce habitats and biodiversity.
+cer3: A city facing drought must cut water use by 20%. It compares results from two nearby cities. City 1 used mandatory limits with fines: water use dropped 25% in one year, but many residents called the rules unfair and many lawns and trees died. City 2 used rebates for efficient toilets and drought-tolerant plants plus higher prices for heavy water users: water use dropped 15% in one year, the program cost $5 million, and most residents approved. Make a claim about which approach, or combination, the city should use. Use the data as evidence and explain your reasoning, considering more than one point of view. | Claim: the city should combine the two approaches, using rebates and tiered pricing as the main tool with temporary limits added if needed. Evidence: limits alone cut use 25%, more than the 20% goal, but caused complaints and plant losses; rebates and pricing cut use 15% and were popular but fell short of the goal and cost $5 million. Reasoning: people who value fast, certain results favor limits, while people who value fairness and choice favor incentives. Since neither alone met all the criteria, combining them could reach the 20% target while keeping more public support; a city with an urgent shortage might reasonably choose limits first.
+task3: Choose a local environmental issue (water supply, wildfire, air quality, waste). Research data on its causes and impacts, evaluate two possible solutions using criteria for cost, effectiveness and environmental and social impact, and recommend one with evidence. | Strong data use, rigorous evaluation of both solutions against criteria, evidence-based recommendation. | Good evaluation with some data. | Limited evaluation. | Little correct work.
