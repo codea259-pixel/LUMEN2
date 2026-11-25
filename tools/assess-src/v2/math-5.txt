@@ -265,6 +265,29 @@ mc2: Which is the best estimate for 61.2 / 19? | 3 | 30 | 0.3 | 300
 num2: A 2.4-liter jug of juice fills 12 equal cups. How many milliliters are in each cup? | 200
 sa2: Rafi says 4.2 / 14 = 3. Explain his mistake. | 4.2 is 42 tenths, and 42 tenths / 14 = 3 tenths, or 0.3. Also, 4.2 shared into 14 equal parts must be less than 1.
 
+lesson: Estimating products and quotients to check reasonableness | 5.NBT.B.5, 5.NBT.B.6
+practice:
+mc1: Which is the best estimate of 48 x 21? | 50 x 20 = 1,000 | 40 x 20 = 800 | 50 x 30 = 1,500 | 48 + 21 = 69
+hint: Round each factor to a number that is easy to multiply.
+num2: Round each factor to the nearest ten to estimate 62 x 38. What is the estimate? | 2400
+hint: 62 rounds to 60. What does 38 round to?
+mc2: Which is the best estimate of 3,580 / 42? | 3,600 / 40 = 90 | 3,500 / 50 = 70 | 4,000 / 40 = 100 | 3,580 / 4 = 895
+hint: Use compatible numbers that divide easily.
+num2: A school buys 29 boxes of markers with 12 markers in each box. Estimate the number of markers by rounding 29 to the nearest ten. | 360
+hint: 29 is close to 30.
+mc2: Jamal found 412 x 19 = 3,828. Which estimate shows his answer is not reasonable? | 400 x 20 = 8,000, so 3,828 is far too small | 400 x 10 = 4,000, so 3,828 is about right | 412 + 19 = 431, so 3,828 is far too large | 500 x 20 = 10,000, so 3,828 is about right
+hint: Round 412 and 19, then multiply.
+sa2: Explain why 4,175 / 53 must be less than 100. | 53 x 100 = 5,300, which is more than 4,175. So fewer than 100 groups of 53 fit into 4,175, and the quotient is less than 100 (about 4,000 / 50 = 80).
+quiz:
+num2: Estimate 71 x 49 by rounding each factor to the nearest ten. | 3500
+mc2: Which is the best estimate of 2,730 / 89? | 30 | 3 | 300 | 3,000
+num2: A theater has 38 rows with 52 seats in each row. Round each number to the nearest ten to estimate the number of seats. | 2000
+num3: A farmer packs 1,620 eggs into cartons that hold 18 eggs each. First estimate with 1,600 / 20, then find the exact number of cartons. What is the exact number of cartons? | 90
+mc3: Pia divided 6,264 by 72 and got 807. Which statement is best? | Her answer is not reasonable, because 6,300 / 70 = 90 | Her answer is reasonable, because 6,264 / 72 is about 800 | Her answer is reasonable, because 807 has 3 digits | Her answer is not reasonable, because the quotient should be about 9
+num2: A bakery sells 245 loaves of bread each day. Round 245 to the nearest hundred and 31 to the nearest ten to estimate how many loaves it sells in 31 days. | 6000
+mc2: Which product is closest to 5,000? | 98 x 51 | 49 x 51 | 98 x 21 | 198 x 51
+sa2: Lucy estimated 67 x 23 as 60 x 20 = 1,200. Her exact answer was 1,541. Explain whether her exact answer is reasonable and how to get a closer estimate. | It is reasonable: 67 x 23 = 1,340 + 201 = 1,541. Rounding both factors down made her estimate too low. Rounding 67 up to 70 gives 70 x 20 = 1,400 or 70 x 23 = 1,610, which are closer to 1,541.
+
 test:
 num1: 2 x (15 + 9) - 8 = ? | 40
 num1: 437 x 26 = ? | 11362
@@ -379,6 +402,75 @@ mc2: Which is the best estimate for 5 1/9 - 2 5/6? | about 2 | about 3 | about 1
 num3: Lena hiked 2 3/10 miles in the morning and 1 1/2 miles in the afternoon. Her goal was 5 miles. How many more miles does she need to hike? | 1 2/10
 mc3: Which sum is closest to 4? | 1 7/8 + 2 1/10 | 1 1/2 + 1 1/2 | 2 4/5 + 2 3/4 | 3 1/2 + 1 5/6
 sa2: Omar says 4 1/3 - 1 2/3 = 3 1/3 because 2/3 - 1/3 = 1/3. Explain his mistake. | He subtracted the fractions in the wrong order. He should rename 4 1/3 as 3 4/3. Then 3 4/3 - 1 2/3 = 2 2/3.
+
+lesson: Multi-step fraction word problems with tape diagrams | 5.NF.A.2, 5.NF.A.1
+practice:
+num2: Kenji has 3/4 hour to finish homework. Math takes 1/3 hour. How many hours are left for reading? | 5/12
+hint: Draw a tape for 3/4 hour and mark the part used for math. Rename both fractions as twelfths.
+num2: A path is 2 1/2 miles long. Priya has walked 1 3/5 miles. How many more miles must she walk to finish? | 9/10
+hint: Rename with tenths. Do you need to rename 1 whole?
+mc2: A class raised money for a trip. 1/2 of the money came from a bake sale and 1/5 came from a car wash. The rest came from a book fair. What fraction came from the book fair? | 3/10 | 2/7 | 7/10 | 5/7
+hint: First find the part that came from the bake sale and car wash together.
+num3: Ana's dog eats 2/3 cup of food in the morning and 3/4 cup at night. A bag has 10 cups of food. How many cups are left after one day? | 8 7/12
+hint: Find the total for one day, then subtract it from 10.
+mc2: A jar has 7/8 cup of rice. After Ezra uses some, 1/3 cup is left. Which equation finds the amount r he used? | 7/8 - r = 1/3 | 1/3 - r = 7/8 | 7/8 + r = 1/3 | r = 7/8 + 1/3
+hint: Start with 7/8, take away the part used, and 1/3 is what is left.
+sa3: Write a two-step word problem that can be solved with 4 - 1 1/2 - 3/4. Then solve it. | Example: Leo has 4 feet of string. He cuts 1 1/2 feet for a kite and 3/4 foot for a bracelet. How much is left? 4 - 1 2/4 = 2 2/4, and 2 2/4 - 3/4 = 1 3/4 feet.
+quiz:
+num2: A rain gauge collected 3/10 inch of rain on Monday and 2/5 inch on Tuesday. How many inches of rain fell on the two days? | 7/10
+num2: A movie is 1 3/4 hours long. Carmen has watched 5/6 hour. How many hours of the movie are left? | 11/12
+num3: A baker has 5 pounds of flour. She uses 1 2/3 pounds for bread and 2 1/4 pounds for muffins. How many pounds of flour are left? | 1 1/12
+mc2: Jada ran 1/2 mile, walked 1/3 mile and then ran 1/4 mile. How far did she go in all? | 1 1/12 miles | 3/9 mile | 1 1/6 miles | 11/12 mile
+num3: A pitcher holds 2 liters. Sam pours in 3/4 liter of juice and 5/8 liter of water. How many more liters will fill the pitcher? | 5/8
+mc3: Which story is solved by adding 2/3 + 1/6 and then subtracting the sum from 1? | Zoe ate 2/3 of a pizza and Mark ate 1/6 of it. What part of the pizza is left? | Zoe had 2/3 of a pizza and gave away 1/6 of a pizza. How much does she have now? | Zoe ate 2/3 of a pizza and then 1/6 more. How much did she eat? | Zoe had 1 pizza and gave 1/6 of it away. How much is left?
+mc2: Tess says 3/4 pound + 1/8 pound = 4/12 pound, so her trail mix weighs 1/3 pound. Which check shows she is wrong? | 3/4 alone is more than 1/3, so adding more cannot give 1/3 | 4/12 is greater than 1 | 1/8 is greater than 3/4 | 1/3 is equal to 3/4
+sa2: Ivan had 2 1/4 yards of rope and used 5/6 yard. He says he has 2 7/12 yards left. Explain his mistake and find the correct amount. | He subtracted 1/4 from 5/6 instead of renaming a whole, and his answer is more than he started with. Rename 2 1/4 as 2 3/12 = 1 15/12. Then 1 15/12 - 10/12 = 1 5/12 yards.
+
+lesson: Solving for unknown amounts in fraction equations | 5.NF.A.2, 5.NF.A.1
+practice:
+num2: 1/4 + ? = 5/6. What is the missing fraction? | 7/12
+hint: Subtract 1/4 from 5/6 using twelfths.
+num2: ? - 2/5 = 1/3. What is the missing fraction? | 11/15
+hint: Add 2/5 and 1/3 to undo the subtraction.
+mc2: Kim had some milk. She drank 1/3 cup and has 1/2 cup left. Which equation finds how much milk m she started with? | m - 1/3 = 1/2 | m + 1/3 = 1/2 | 1/3 - m = 1/2 | m - 1/2 = 1/3
+hint: She started with m and took away 1/3.
+num3: A trail is 3/4 mile long. Rico walked 1/6 mile, rested, then walked 1/3 mile. How much farther must he walk to finish the trail? | 1/4
+hint: Write an equation with a missing part, and use twelfths.
+num2: 7/8 - ? = 1/2. What is the missing fraction? | 3/8
+hint: How far is it from 1/2 up to 7/8?
+sa2: Explain how you can use addition to find the missing number in ? - 3/10 = 1/2. | The missing number is the starting amount. Add back the part taken away: 1/2 + 3/10 = 5/10 + 3/10 = 8/10. Check: 8/10 - 3/10 = 5/10 = 1/2.
+quiz:
+num2: 2/3 + ? = 11/12. What is the missing fraction? | 3/12
+num2: ? - 1/6 = 3/4. What is the missing fraction? | 11/12
+num3: A water tank was partly full. After 2/5 of a full tank was used, the tank was 3/8 full. What fraction of the tank was full at the start? | 31/40
+mc2: Which equation has a missing number of 1/4? | 1/2 + ? = 3/4 | 1/3 + ? = 3/4 | 3/4 - ? = 1/4 | ? - 1/4 = 1/4
+num2: Lena needs 2 1/2 cups of flour. She has 1 3/4 cups. How many more cups does she need? | 3/4
+num3: Three bags weigh 5 pounds in all. One bag weighs 1 1/2 pounds and another weighs 2 2/3 pounds. How many pounds does the third bag weigh? | 5/6
+mc3: Which story matches the equation 3/4 - n = 1/6? | A jug had 3/4 liter of water; after some was poured out, 1/6 liter was left | A jug had 1/6 liter of water and 3/4 liter was added | A jug had 3/4 liter of water and 1/6 liter more was added | A jug had n liters of water; after 3/4 liter was poured out, 1/6 liter was left
+sa2: Dev solved 1/3 + ? = 5/6 and got 4/3, because 5 - 1 = 4 and he kept the 3. Explain his mistake and solve the equation. | He did not use a common denominator, and 4/3 is greater than 5/6, so it cannot be a missing part. Rename 1/3 as 2/6; 5/6 - 2/6 = 3/6 = 1/2. Check: 2/6 + 3/6 = 5/6.
+
+lesson: Fraction measurement problems with time, length and weight | 5.NF.A.2, 5.NF.A.1
+practice:
+num2: Ari practiced piano for 1/2 hour and guitar for 1/3 hour. How many minutes did he practice in all? | 50
+hint: How many minutes are in 1/2 hour? In 1/3 hour?
+num2: One board is 3/4 foot long and another is 2/3 foot long. How many inches longer is the first board? (1 foot = 12 inches) | 1
+hint: Change each length to inches.
+mc2: What is the total of 1/4 hour and 1/6 hour? | 5/12 hour | 2/10 hour | 1/10 hour | 2/12 hour
+hint: Use twelfths.
+num2: One package weighs 1 1/2 pounds and another weighs 3/4 pound. How many pounds do they weigh together? | 2 1/4
+hint: Rename 1/2 as fourths.
+num3: Mei's bus ride takes 3/4 hour and her walk from the bus takes 1/6 hour. She must arrive by 8:00 a.m. What is the latest she can leave, in minutes after 7:00 a.m.? | 5
+hint: Find the total travel time in minutes first.
+sa2: Explain why 2/3 of an hour and 40 minutes are the same amount of time. | One hour is 60 minutes. 1/3 of 60 is 20, so 2/3 of an hour is 2 x 20 = 40 minutes.
+quiz:
+num2: A show has 3/4 hour of music and 1/5 hour of talking. How many minutes long is the show? | 57
+num2: A ribbon is 5/6 yard long. Lee cuts off 1/4 yard. How many inches of ribbon are left? (1 yard = 36 inches) | 21
+mc2: Rosa ran for 2/3 hour on Saturday and 3/4 hour on Sunday. How long did she run in all? | 1 5/12 hours | 5/7 hour | 1 1/12 hours | 5/12 hour
+num3: A baker has 4 pounds of butter. She uses 1 1/4 pounds for cookies and 1 5/8 pounds for a cake. How many pounds of butter are left? | 1 1/8
+num2: A plumber has a pipe 2 1/3 feet long and cuts off 3/4 foot. How many feet long is the pipe now? | 1 7/12
+mc3: Which is longer: 3/4 foot and 1/2 foot laid end to end, or 1 1/3 feet? (1 foot = 12 inches) | 1 1/3 feet, by 1 inch | 3/4 foot and 1/2 foot, by 1 inch | They are the same length | 1 1/3 feet, by 3 inches
+num3: A class spends 1/4 hour on spelling, 1/3 hour on reading and 1/2 hour on math. How many minutes do they spend in all? | 65
+sa2: Juan says 1/2 hour + 1/4 hour = 2/6 hour, which is 20 minutes. Explain his mistake and give the correct time in minutes. | He added the numerators and the denominators. 1/2 hour = 2/4 hour, so the sum is 3/4 hour, which is 30 + 15 = 45 minutes.
 
 test:
 num1: 1/3 + 1/4 = ? | 7/12
@@ -520,6 +612,52 @@ mc3: Which expression matches "4 children share 1/3 of a pan of brownies equally
 num3: A 2-liter bottle of juice is poured into cups that each hold 0.25 liter. How many cups can be filled? | 8
 sa2: Ana says (1/2) / 3 = 1 1/2. Explain her mistake. | She multiplied 3 x 1/2 instead of dividing. Splitting 1/2 into 3 equal parts makes each part smaller, so (1/2) / 3 = 1/6.
 
+lesson: Multiplying mixed numbers in real-world problems | 5.NF.B.6, 5.NF.B.4
+practice:
+num2: 2 1/2 x 4 = ? | 10
+hint: Multiply 4 by 2 and 4 by 1/2, then add.
+num2: A recipe uses 1 1/3 cups of oats. How many cups of oats are needed for 3 batches? | 4
+hint: Multiply each part of the mixed number by 3.
+mc2: Which is equal to 1 1/2 x 2/3? | 1 | 2/6 | 1 2/3 | 3/5
+hint: Write 1 1/2 as 3/2.
+num2: A garden bed is 3 1/2 feet long and 2 feet wide. What is its area in square feet? | 7
+hint: Area = length x width.
+num3: Ana walks 1 3/4 miles each day. How many miles does she walk in 6 days? | 10 1/2
+hint: 6 x 1 = 6. What is 6 x 3/4?
+sa2: Explain why 3 x 1 1/4 is greater than 3 but 1/2 x 1 1/4 is less than 1 1/4. | 1 1/4 is greater than 1, so 3 groups of 1 1/4 is more than 3 groups of 1 (it is 3 3/4). 1/2 is less than 1, so half of 1 1/4 is less than 1 1/4 (it is 5/8).
+quiz:
+num2: 3 x 2 2/3 = ? | 8
+num2: 1 1/4 x 1 1/2 = ? | 1 7/8
+num3: A painter uses 2 1/4 gallons of paint for each room. She paints 4 rooms and then uses 1/2 gallon more for touch-ups. How many gallons does she use in all? | 9 1/2
+mc2: A rectangular rug is 2 1/2 yards long and 1 1/3 yards wide. What is its area? | 3 1/3 square yards | 2 1/6 square yards | 3 5/6 square yards | 2 1/3 square yards
+num3: A bag of rice weighs 3 1/2 pounds. Mr. Diaz uses 2/5 of the bag. How many pounds of rice does he use? | 1 2/5
+mc3: Which product is less than 2 1/2? | 3/4 x 2 1/2 | 1 1/4 x 2 1/2 | 2 x 2 1/2 | 1 x 2 1/2
+num2: A tree grows 1 1/2 feet each year. How many feet does it grow in 5 years? | 7 1/2
+sa2: Tom says 2 1/2 x 2 1/2 = 4 1/4 because 2 x 2 = 4 and 1/2 x 1/2 = 1/4. Explain his mistake and find the correct product. | He left out the partial products 2 x 1/2 and 1/2 x 2. The product is 4 + 1 + 1 + 1/4 = 6 1/4, which matches 5/2 x 5/2 = 25/4 = 6 1/4.
+
+lesson: Multi-step fraction and decimal problems with recipes, money and measurement | 5.NF.B.6, 5.NF.B.7, 5.NBT.B.7
+practice:
+num2: A recipe for 4 people uses 3/4 cup of rice. How many cups of rice are needed for 8 people? | 1 1/2
+hint: 8 people is how many times as many as 4 people?
+num2: Juice costs $0.85 per bottle. Ken buys 6 bottles and pays with a $10 bill. How much change does he get, in dollars? | 4.90
+hint: Find the cost first, then subtract it from 10.
+mc2: A 3-pound bag of nuts is split into small bags of 1/4 pound each. How many small bags are there? | 12 | 3/4 | 7 | 4
+hint: How many fourths are in 1 whole? In 3 wholes?
+num3: Maria buys 2 1/2 pounds of apples at $2 per pound and 1/2 pound of cheese at $6 per pound. How many dollars does she spend? | 8
+hint: Find each cost and add.
+num2: A ribbon 5 meters long is cut into pieces that are each 1/3 meter long. How many pieces are there? | 15
+hint: Each meter makes 3 pieces.
+sa2: Explain how to find the cost of 3/4 pound of turkey at $8 per pound. | Find 3/4 of 8. 1/4 of 8 is 2, so 3/4 of 8 is 3 x 2 = 6. The turkey costs $6.
+quiz:
+num2: A muffin recipe uses 2/3 cup of milk. How many cups of milk are needed for 6 batches? | 4
+num2: Pencils cost $0.35 each. How many dollars do 8 pencils cost? | 2.80
+num3: A 2-liter bottle of water is poured into cups that each hold 1/4 liter. Each of 6 students drinks one full cup. How many full cups of water are left in the bottle? | 2
+mc2: 1/3 pound of seeds is shared equally among 4 bird feeders. How much goes in each feeder? | 1/12 pound | 4/3 pounds | 1/7 pound | 3/4 pound
+num3: Sami earns $9.50 per hour. He works 3 hours on Saturday and 2 1/2 hours on Sunday. How many dollars does he earn in all? | 52.25
+mc3: A recipe makes 12 pancakes with 1 1/2 cups of flour. How much flour is needed for 4 pancakes? | 1/2 cup | 4 1/2 cups | 1/3 cup | 3/4 cup
+num2: Fabric costs $4 per yard. How many dollars do 2 3/4 yards cost? | 11
+sa2: Gwen says 4 / (1/2) = 2 because half of 4 is 2. Explain her mistake. | Dividing by 1/2 asks how many halves are in 4, not what half of 4 is. Each whole has 2 halves, so 4 / (1/2) = 8. Check: 8 x 1/2 = 4.
+
 test:
 num1: 3/5 x 20 = ? | 12
 num1: 2/3 x 4/7 = ? | 8/21
@@ -635,6 +773,52 @@ num2: A quadrilateral has angles of 90, 90, 90 and x degrees. The angles of a qu
 mc2: Which attribute does every rhombus have? | 4 equal sides | 4 right angles | diagonals of equal length | exactly one pair of parallel sides
 sa2: Max says a rectangle cannot be a parallelogram because parallelograms have slanted sides. Explain his mistake. | A parallelogram is any quadrilateral with 2 pairs of parallel sides. A rectangle has 2 pairs of parallel sides, so it is a parallelogram; its sides just meet at right angles.
 
+lesson: Volume word problems with unknown dimensions and filling containers | 5.MD.C.5, 5.MD.C.3
+practice:
+num2: A toy box has a volume of 96 cubic feet. It is 4 feet long and 3 feet wide. How tall is it in feet? | 8
+hint: Multiply the length by the width to find the area of the base. What times that gives 96?
+num2: A fish tank is 20 inches long, 10 inches wide and 12 inches tall. How many cubic inches of water does it hold when full? | 2400
+hint: Use V = l x w x h.
+mc2: Which box holds the most? | 6 ft by 5 ft by 4 ft | 10 ft by 3 ft by 3 ft | 8 ft by 4 ft by 3 ft | 7 ft by 7 ft by 2 ft
+hint: Find the volume of each box.
+num3: A sandbox is 6 feet long, 4 feet wide and 2 feet deep. It is half full of sand. How many more cubic feet of sand will fill it? | 24
+hint: Find the full volume first.
+num2: A box has a base with an area of 15 square centimeters and holds 75 cubic centimeters. How tall is the box in centimeters? | 5
+hint: Volume = area of the base x height.
+sa2: Two boxes each have a volume of 36 cubic units but different shapes. Give two different sets of dimensions they could have and explain how you know. | Example: 3 x 3 x 4 = 36 and 2 x 2 x 9 = 36. Any whole-number length, width and height whose product is 36 gives a volume of 36 cubic units.
+quiz:
+num2: A storage unit is 10 feet long, 5 feet wide and 8 feet tall. What is its volume in cubic feet? | 400
+num2: A planter box holds 54 cubic feet of soil when full. It is 9 feet long and 2 feet wide. How deep is it in feet? | 3
+num3: Cubes with 1-inch edges are packed into a box 5 inches long, 4 inches wide and 3 inches tall until it is full. Then 18 cubes are taken out. How many cubes are still in the box? | 42
+mc2: A pool is 25 meters long, 10 meters wide and 2 meters deep. Which expression gives its volume in cubic meters? | 25 x 10 x 2 | 25 + 10 + 2 | 2 x (25 + 10) | 25 x 10
+num3: A bin is 4 feet long, 3 feet wide and 5 feet tall. A second bin has the same length and width but is 2 feet taller. How many more cubic feet does the second bin hold? | 24
+mc3: A box is 2 cm by 3 cm by 4 cm. If every edge length is doubled, how does the volume change? | It becomes 8 times as large | It becomes 2 times as large | It becomes 6 times as large | It stays the same
+num3: A truck's storage space is 10 feet long, 10 feet wide and 10 feet tall. How many cube-shaped boxes with 2-foot edges fit inside it exactly? | 125
+sa2: Marco says a box 3 feet by 4 feet by 5 feet has a volume of 12 cubic feet because 3 + 4 + 5 = 12. Explain his mistake and find the correct volume. | Volume multiplies the length, width and height; adding them does not count the cubes that fill the box. The volume is 3 x 4 x 5 = 60 cubic feet.
+
+lesson: Classifying triangles by sides and angles | 5.G.B.3, 5.G.B.4
+practice:
+mc1: A triangle has three sides that are all different lengths. What is it called? | scalene | isosceles | equilateral | right
+hint: Count how many sides are the same length.
+mc2: A triangle has one angle that measures 90 degrees. Which name fits it? | right triangle | acute triangle | obtuse triangle | equilateral triangle
+hint: A 90-degree angle is a square corner.
+mc2: A triangle's angles measure 40, 60 and 80 degrees. How is it classified by its angles? | acute | right | obtuse | straight
+hint: Are all three angles less than 90 degrees?
+num2: An equilateral triangle has one side 7 cm long. What is its perimeter in centimeters? | 21
+hint: How many sides of an equilateral triangle are the same length?
+mc2: Which statement about triangles is always true? | Every equilateral triangle is also isosceles | Every isosceles triangle is also equilateral | Every right triangle is also obtuse | Every scalene triangle is also right
+hint: An isosceles triangle has at least two equal sides.
+sa2: Can a triangle be both right and obtuse? Explain. | No. A right triangle has a 90-degree angle and an obtuse triangle has an angle greater than 90 degrees. If one triangle had both, the two sides coming off the third side would spread apart and never meet, so a triangle can have only one angle of 90 degrees or more.
+quiz:
+mc1: A triangle has exactly two sides that are the same length. What is it called? | isosceles | scalene | equilateral | obtuse
+mc2: A triangle has angles of 30, 30 and 120 degrees, and two of its sides are each 5 cm long. Which name describes it? | obtuse isosceles triangle | acute isosceles triangle | right scalene triangle | obtuse scalene triangle
+num2: An isosceles triangle has two sides that are each 9 inches long and a third side 6 inches long. What is its perimeter in inches? | 24
+mc2: Which kind of triangle can be equilateral? | an acute triangle | a right triangle | an obtuse triangle | none of these
+num3: An isosceles triangle has a perimeter of 30 cm. Its two equal sides are each 11 cm long. How long is the third side, in centimeters? | 8
+mc3: Ty says every right triangle is scalene. Which triangle shows he is wrong? | a right triangle with two legs that are each 5 cm long | a right triangle with sides of 3, 4 and 5 cm | an obtuse triangle with two equal sides | an equilateral triangle
+num2: An equilateral triangle has a perimeter of 45 feet. How long is each side, in feet? | 15
+sa2: Explain how you would classify a triangle with sides of 6 cm, 6 cm and 6 cm by its sides and by its angles. | All three sides are equal, so it is equilateral (and also isosceles). All of its angles are the same size and each is less than 90 degrees, so it is an acute triangle.
+
 test:
 num1: A box is 6 cm by 4 cm by 5 cm. What is its volume in cubic centimeters? | 120
 num1: A cube has edges 5 inches long. What is its volume in cubic inches? | 125
@@ -749,6 +933,29 @@ num3: Maya's home is at (2, 7), Sam's home is at (9, 7) and the school is at (9,
 mc3: Pattern A (x-coordinates) is 0, 1, 2, 3 and pattern B (y-coordinates) is 0, 3, 6, 9. Which point would be graphed next? | (4, 12) | (4, 10) | (12, 4) | (5, 12)
 num2: A garden map has corners at (0, 0), (12, 0), (12, 5) and (0, 5), and each unit is 1 foot. How many feet of fence go all the way around the garden? | 34
 sa2: Ty says the point (3, 9) on a graph of (hours, dollars) means $3 for 9 hours. Explain his mistake. | The first coordinate is hours and the second is dollars, so (3, 9) means $9 after 3 hours. He switched the order.
+
+lesson: Line graphs of real-world data on the coordinate plane | 5.G.A.2, 5.G.A.1
+practice:
+num2: A line graph shows a puppy's weight. The points are (1, 4), (2, 6), (3, 9) and (4, 11), where x is the month and y is the weight in pounds. How many pounds did the puppy gain from month 1 to month 4? | 7
+hint: Subtract the y-coordinate at month 1 from the y-coordinate at month 4.
+mc2: A graph of the temperature in a garden has the points (6, 52), (8, 58), (10, 65) and (12, 70), where x is the hour of the morning and y is the temperature in degrees F. Between which two hours did the temperature rise the most? | 8 and 10 | 6 and 8 | 10 and 12 | It rose the same amount each time
+hint: Find the change in y between each pair of points.
+num2: Maya starts with $0 and saves $5 each week. Her savings are graphed with x as the week and y as the dollars saved. What is the y-coordinate of the point for week 6? | 30
+hint: Multiply the number of weeks by 5.
+mc2: A graph shows the points (0, 0), (1, 3), (2, 6) and (3, 9) for the number of laps (y) a swimmer finishes after x minutes. If the pattern continues, which point shows the laps after 5 minutes? | (5, 15) | (15, 5) | (5, 12) | (5, 8)
+hint: Each minute adds the same number of laps.
+num3: A plant's height in centimeters (y) is graphed against the week (x). The points are (0, 3), (1, 5), (2, 7) and (3, 9). If the pattern continues, in which week will the plant be 15 centimeters tall? | 6
+hint: How much does the plant grow each week?
+sa2: Explain what the point (4, 20) means on a graph where x is hours worked and y is dollars earned. | After working 4 hours, the person has earned 20 dollars. The x-coordinate tells the hours and the y-coordinate tells the money.
+quiz:
+num2: A graph shows the water in a tank. The points are (0, 50), (1, 45), (2, 40) and (3, 35), where x is minutes and y is liters. How many liters drain out each minute? | 5
+mc2: On a graph where x is hours and y is miles, which point shows that a hiker had walked 6 miles after 2 hours? | (2, 6) | (6, 2) | (2, 2) | (6, 6)
+num3: A cooler holds 40 liters of water and leaks 4 liters each hour. Points (x, y) show the hours and the liters left. What is the x-coordinate of the point where the cooler is empty? | 10
+num2: On a line graph of a city's daily high temperatures, Monday is the point (1, 64) and Friday is the point (5, 73). How many degrees warmer was Friday than Monday? | 9
+mc3: A bike rider's distance graph has the points (0, 0), (1, 8), (2, 16), (3, 16) and (4, 24), where x is hours and y is miles. What most likely happened between hour 2 and hour 3? | The rider stopped to rest | The rider rode the fastest | The rider rode back home | The rider rode 16 miles in that hour
+num3: Tickets cost $3 each. Points (x, y) show the number of tickets and the total cost. Rafi plots (4, 12), (5, 15) and (7, 20). What is the x-coordinate of the point he plotted wrong? | 7
+mc2: A graph shows the points (1, 2), (2, 4), (3, 6) and (4, 8). Which rule describes how y relates to x? | y is 2 times x | y is 2 more than x | y is x minus 2 | y is half of x
+sa2: Jin says the point (3, 12) on a graph of hours (x) and pages read (y) means he read 3 pages in 12 hours. Explain his mistake. | The x-coordinate comes first and stands for hours, so (3, 12) means he read 12 pages in 3 hours. He switched the meanings of the coordinates.
 
 test:
 mc1: Which ordered pair names the point 6 units right of the origin and 2 units up? | (6, 2) | (2, 6) | (6, 0) | (0, 2)

@@ -100,6 +100,75 @@ mc2: 45 out of 75 students chose pizza for a class party. What percent chose piz
 num3: A theater has 500 seats. On Friday 84% of the seats are filled, and on Saturday 92% are filled. How many more people attend on Saturday than on Friday? | 40
 sa2: Kofi says 150% of 40 must be less than 40 because a percent is always part of a whole. Explain his mistake and find the correct value. | A percent greater than 100% means more than the whole. 150% of 40 = 1.5 x 40 = 60.
 
+lesson: Converting measurement units with ratios | 6.RP.A.3
+practice:
+num1: There are 12 inches in 1 foot. How many inches are in 7 feet? | 84
+hint: Each foot adds 12 inches.
+num2: There are 3 feet in 1 yard. A garden hose is 75 feet long. How many yards long is it? | 25
+hint: How many groups of 3 feet are in 75 feet?
+mc2: There are 16 ounces in 1 pound. Which pair of measurements is equal? | 5 pounds and 80 ounces | 5 pounds and 21 ounces | 5 pounds and 50 ounces | 80 pounds and 5 ounces
+hint: Multiply both parts of the ratio 1 : 16 by the same number.
+num2: There are 1,000 meters in 1 kilometer. A race is 5 kilometers long. How many meters long is it? | 5000
+hint: Use the ratio 1 kilometer : 1,000 meters.
+num3: A soup recipe needs 3 quarts of broth. Broth is sold in cans that hold 1 cup, and 1 quart = 4 cups. How many cans are needed? | 12
+hint: Change quarts to cups first.
+sa2: Explain why you multiply to convert hours to minutes but divide to convert minutes to hours. | Each hour is 60 minutes, so a number of hours is worth 60 times as many minutes; multiply by 60. Minutes are the smaller unit, so to find how many groups of 60 minutes there are, divide by 60.
+quiz:
+num1: There are 60 minutes in 1 hour. How many minutes are in 4 hours? | 240
+num2: A bag of rice weighs 48 ounces. There are 16 ounces in 1 pound. How many pounds does it weigh? | 3
+num2: There are 100 centimeters in 1 meter. A shelf is 2.5 meters long. How many centimeters long is it? | 250
+mc2: There are 4 quarts in 1 gallon. Which is more: 18 quarts or 4 gallons? | 18 quarts, because 4 gallons is only 16 quarts | 4 gallons, because 4 gallons is 18 quarts | They are equal | 4 gallons, because a gallon is bigger than a quart
+num3: A runner jogs 2,640 yards. There are 1,760 yards in 1 mile. How many miles does she jog? | 1 1/2
+num3: A faucet drips 2 cups of water a day. There are 16 cups in 1 gallon. How many days will it take to drip 3 gallons? | 24
+mc3: Ben converts 9 feet to inches and gets 0.75. What did he do wrong? | He divided by 12 instead of multiplying by 12 | He multiplied by 12 instead of dividing by 12 | He used 3 feet in a yard instead of 12 inches in a foot | He added 12 instead of multiplying
+sa2: Ruth says 2 yards of ribbon is longer than 70 inches. Use a ratio of units to show whether she is right. (1 yard = 36 inches) | 1 : 36 = 2 : 72, so 2 yards = 72 inches. 72 inches is more than 70 inches, so she is right.
+
+lesson: Finding the whole from a part and a percent | 6.RP.A.3
+practice:
+num2: 12 is 25% of what number? | 48
+hint: 25% is 1/4. 12 is one fourth of the whole.
+num2: 9 students in a class walk to school. That is 30% of the class. How many students are in the class? | 30
+hint: If 30% is 9, what is 10%?
+mc2: A team won 18 games, which is 60% of the games it played. Which reasoning finds the number of games played? | 6 parts of 10% make 18, so each part is 3 and 10 parts are 30 | 18 + 60 = 78 | 60% of 18 is 10.8 | 18 x 10 = 180
+hint: Split 100% into 10 equal parts of 10%.
+num2: A jar has 40 red beads. The red beads are 80% of the beads in the jar. How many beads are in the jar? | 50
+hint: Find 10% first.
+num3: Leo has saved $45, which is 75% of the cost of a bike helmet. How many more dollars does he need to buy the helmet? | 15
+hint: First find the full cost of the helmet.
+sa2: Explain how a double number line helps you find the whole when 20% of it is 14. | Mark 0% across from 0 and 20% across from 14. 100% is 5 jumps of 20%, so the whole is 5 x 14 = 70. Each 20% jump on the percent line matches a jump of 14 on the number line.
+quiz:
+num2: 15 is 50% of what number? | 30
+num2: 7 is 10% of what number? | 70
+num3: A theater sold 120 tickets, which was 40% of all its tickets. How many tickets were not sold? | 180
+mc2: 21 students chose soccer, which is 35% of the students surveyed. How many students were surveyed? | 60 | 7.35 | 56 | 600
+num2: A plant is 18 cm tall, which is 90% of its full-grown height. What is its full-grown height, in cm? | 20
+mc3: Which is greater: the whole when 30% of it is 12, or the whole when 40% of it is 18? | the whole when 40% is 18, which is 45 | the whole when 30% is 12, which is 40 | They are equal | the whole when 30% is 12, which is 36
+num3: A water tank holds 36 liters when it is 60% full. How many more liters are needed to fill it completely? | 24
+sa2: Ahmed says that if 25% of a number is 8, the number is 2, because 25% of 8 is 2. Explain his mistake. | He found 25% of 8 instead of the whole. 8 is the part, which is 25% of the whole. Since 25% is 1/4, the whole is 4 x 8 = 32.
+
+lesson: Comparing ratios and rates with tables and graphs | 6.RP.A.3, 6.RP.A.2
+practice:
+mc2: Lemonade A uses 2 cups of mix for 6 cups of water. Lemonade B uses 3 cups of mix for 12 cups of water. Which tastes stronger? | A, because it has 1 cup of mix for every 3 cups of water | B, because it uses more mix | B, because it has 1 cup of mix for every 4 cups of water | They taste the same
+hint: Find the cups of water for 1 cup of mix in each.
+num2: Ali reads 45 pages in 3 hours. Bea reads 64 pages in 4 hours. How many more pages per hour does Bea read? | 1
+hint: Find each unit rate.
+mc2: A graph shows two lines through (0, 0). Line A passes through (2, 10). Line B passes through (3, 12). Which line shows the greater rate? | Line A, 5 per unit | Line B, 4 per unit | Line B, because 12 is more than 10 | They show the same rate
+hint: Divide y by x for each point.
+num2: Store A sells 4 notebooks for $6. Store B sells 6 notebooks for $8.40. How many cents cheaper is one notebook at Store B? | 10
+hint: Find the price of one notebook at each store.
+num3: Car A travels 150 miles in 3 hours. Car B travels 220 miles in 4 hours. If both keep the same speed, how many miles farther does Car B go in 6 hours? | 30
+hint: Find each speed, then multiply by 6.
+sa2: Explain how a ratio table can show whether two mixtures of blue and white paint are the same shade. | Extend each ratio in a table until both have the same amount of one color. If the other color also matches, the ratios are equivalent and the shades are the same; if not, the one with more blue for the same white is darker.
+quiz:
+mc2: Recipe X uses 3 cups of flour for 2 cups of sugar. Recipe Y uses 6 cups of flour for 5 cups of sugar. Which recipe is sweeter? | Y, because it has more sugar for each cup of flour | X, because it uses less flour | They are equally sweet | X, because 3 is more than 2
+num2: Pump A fills 36 gallons in 4 minutes. Pump B fills 50 gallons in 5 minutes. How many more gallons per minute does Pump B fill? | 1
+num2: Ella runs 3 miles in 27 minutes. At this rate, how many minutes does it take her to run 5 miles? | 45
+mc2: Which ratio is equivalent to 4 : 10? | 6 : 15 | 6 : 12 | 8 : 14 | 5 : 11
+num3: Mia earns $48 for 6 hours of work. Jon earns $70 for 10 hours of work. Each works 15 hours at the same rate. How many more dollars does Mia earn? | 15
+mc3: A table for Team A shows 1 game: 3 goals, 2 games: 6 goals, 4 games: 12 goals. Team B scores 2.5 goals per game. Which statement is true? | Team A scores 0.5 more goal per game than Team B | Team B scores 0.5 more goal per game than Team A | Both teams score 3 goals per game | Team A scores 12 goals per game
+num2: A 12-ounce bag of coffee costs $9. A 20-ounce bag costs $14. How many cents per ounce are saved by buying the larger bag? | 5
+sa2: Grace says 2 cups of juice for 3 cups of water tastes the same as 4 cups of juice for 5 cups of water, because in both the water is 1 more than the juice. Explain her mistake. | Equivalent ratios are made by multiplying, not adding. 2 : 3 doubled is 4 : 6, not 4 : 5. The 4 : 5 drink has more juice for each cup of water, so it tastes stronger.
+
 test:
 mc1: Which ratio compares 9 pencils to 4 erasers? | 9:4 | 4:9 | 9:13 | 13:4
 mc1: What is 40% of 50? | 20 | 40 | 10 | 25
@@ -215,6 +284,52 @@ mc2: Which number is a common factor of 28 and 70? | 14 | 4 | 10 | 28
 num3: A coach has 60 cones and 84 pinnies. She packs the greatest possible number of identical equipment bags, using all of them. How many pinnies go in each bag? | 7
 sa2: Luis says the LCM of 4 and 6 is 24 because 4 x 6 = 24. Explain his mistake. | 24 is a common multiple of 4 and 6, but it is not the least one. 12 is also a multiple of both, so the LCM is 12.
 
+lesson: Multi-step problems with fractions and decimals | 6.NS.A.1, 6.NS.B.3
+practice:
+num2: A 3/4-pound bag of trail mix is split into portions of 1/8 pound. How many portions are there? | 6
+hint: How many eighths are in 3/4?
+num2: Ella buys 2.5 pounds of apples at $1.80 per pound and pays with a $10 bill. How much change does she get, in dollars? | 5.50
+hint: Find the cost first, then subtract it from 10.
+mc2: A ribbon is 4 1/2 feet long. It is cut into pieces that are 3/4 foot long. Which expression gives the number of pieces? | 4 1/2 ÷ 3/4 | 3/4 ÷ 4 1/2 | 4 1/2 x 3/4 | 4 1/2 - 3/4
+hint: You are finding how many 3/4s fit into 4 1/2.
+num2: A car uses 1.25 gallons of gas each day. How many gallons does it use in 6 days? | 7.5
+hint: Multiply the decimal by the number of days.
+num3: A carpenter has a board 6 2/3 feet long. She cuts off a piece 1 1/3 feet long, then cuts the rest into pieces that are 2/3 foot long. How many 2/3-foot pieces does she get? | 8
+hint: Find the length left after the first cut, then divide.
+sa2: Explain how you can check that 2 ÷ 2/5 = 5. | Multiply the quotient by the divisor: 5 x 2/5 = 10/5 = 2. The product is the dividend, so the quotient is correct. You can also see that five pieces of 2/5 make 2 wholes.
+quiz:
+num2: How many 1/6-cup servings are in 2 1/2 cups of yogurt? | 15
+num2: A school buys 12 notebooks at $2.35 each. What is the total cost in dollars? | 28.20
+num3: A painter has 3 3/4 gallons of paint. Each room needs 5/8 gallon. How many rooms can she paint? | 6
+mc2: What is the value of 1.2 ÷ 0.04? | 30 | 3 | 0.3 | 300
+num3: One lap of a track is 0.8 kilometer. Kiri runs 4.5 laps on Monday and 3.5 laps on Tuesday. How many kilometers does she run in all? | 6.4
+mc3: A rectangle has an area of 5/6 square yard and a length of 2/3 yard. What is its width? | 1 1/4 yards | 5/9 yard | 1 1/2 yards | 4/5 yard
+num2: A 2.4-liter bottle of juice is poured equally into 8 cups. How many liters go in each cup? | 0.3
+sa2: Abby says 3 ÷ 1/4 = 3/4. Explain her mistake and find the correct quotient. | She multiplied by 1/4 instead of dividing. Dividing by 1/4 asks how many fourths are in 3; there are 4 fourths in each whole, so 3 ÷ 1/4 = 12.
+
+lesson: Greatest common factor and least common multiple in word problems | 6.NS.B.4
+practice:
+num1: What is the greatest common factor of 18 and 24? | 6
+hint: List the factors of each number.
+num1: What is the least common multiple of 6 and 8? | 24
+hint: List multiples of 8 until one is also a multiple of 6.
+num2: Ms. Kaur has 36 pencils and 48 erasers. She wants identical kits with nothing left over. What is the greatest number of kits she can make? | 12
+hint: Find the greatest number that divides both 36 and 48.
+mc2: Hot dogs come in packs of 10 and buns in packs of 8. What is the fewest hot dogs to buy so there is exactly one bun for each hot dog with none left over? | 40, the least common multiple of 10 and 8 | 80, the product of 10 and 8 | 2, the greatest common factor of 10 and 8 | 18, the sum of 10 and 8
+hint: Do you need a common factor or a common multiple?
+num3: One light blinks every 4 seconds and another blinks every 6 seconds. They blink together right now. In how many seconds will they next blink together? | 12
+hint: Find the least common multiple.
+sa2: Explain how to use the greatest common factor to write 24 + 36 as a product with the distributive property. | The GCF of 24 and 36 is 12, so 24 + 36 = 12(2 + 3) = 12 x 5 = 60.
+quiz:
+num1: What is the greatest common factor of 27 and 45? | 9
+num1: What is the least common multiple of 9 and 12? | 36
+num2: A florist has 30 roses and 42 tulips. She uses all the flowers to make identical bouquets. What is the greatest number of bouquets she can make? | 6
+num3: A florist uses all 30 of her roses and all 42 of her tulips to make the greatest possible number of identical bouquets. How many tulips are in each bouquet? | 7
+mc2: Which problem is solved with a least common multiple? | Buses leave every 15 minutes and trains every 20 minutes; when will both leave together again? | Split 24 apples and 36 oranges into identical bags | Find the largest square tile that exactly covers a 12 by 18 floor | Share 20 cookies equally among 4 friends
+num3: Ari visits the library every 6 days and Bo visits every 9 days. They were both there today. In how many days will they next both be there on the same day? | 18
+mc3: Two numbers have a greatest common factor of 4 and a least common multiple of 24. Which pair could they be? | 8 and 12 | 6 and 8 | 12 and 24 | 2 and 24
+sa2: Lucy says the least common multiple of 4 and 6 is 2 because 2 goes into both numbers. Explain her mistake. | 2 is a common factor of 4 and 6, not a common multiple. A common multiple is a number that both 4 and 6 divide into. The least common multiple is 12, since 12 = 4 x 3 = 6 x 2.
+
 test:
 mc1: What is 3/4 ÷ 1/4? | 3 | 3/16 | 1/3 | 4/3
 mc1: What is the GCF of 16 and 40? | 8 | 4 | 2 | 80
@@ -324,6 +439,29 @@ mc2: A point is reflected across the x-axis and then across the y-axis. It ends 
 num3: On a town map each unit is 1 block. The library is at (-4, 3), the school is at (-4, -5) and the park is at (6, -5). Walking along the grid from the library to the school and then to the park, how many blocks long is the walk? | 18
 mc2: A map has its origin at City Hall, with east and north positive. A museum is 3 blocks west and 2 blocks south of City Hall. What are its coordinates? | (-3, -2) | (3, 2) | (-2, -3) | (3, -2)
 sa2: Explain how the signs of the coordinates tell you which quadrant a point is in. | Quadrant I is (+, +), II is (-, +), III is (-, -) and IV is (+, -). The sign of x tells left or right of the y-axis and the sign of y tells above or below the x-axis.
+
+lesson: Rational numbers in real-world contexts: temperature, elevation and money | 6.NS.C.5, 6.NS.C.7
+practice:
+mc1: A diver is 30 feet below sea level. Which number represents her position? | -30 | 30 | 0 | -3
+hint: Below sea level is less than 0.
+mc2: The temperature in Town A is -4 degrees F and in Town B is -11 degrees F. Which statement is true? | Town A is warmer because -4 > -11 | Town B is warmer because 11 > 4 | Town B is warmer because -11 > -4 | The towns are equally warm
+hint: Numbers farther to the left on the number line are less.
+num2: A bank account balance is -$25. How many dollars must be deposited to bring the balance to $0? | 25
+hint: How far is -25 from 0?
+num2: A hawk flies 40 feet above sea level and a fish swims 15 feet below sea level, directly below the hawk. How many feet apart are they? | 55
+hint: Add the distance of each from sea level.
+mc2: Which list orders these elevations from lowest to highest: 12 m, -8 m, 0 m, -15 m? | -15, -8, 0, 12 | -8, -15, 0, 12 | 0, -8, 12, -15 | 12, 0, -8, -15
+hint: Picture each elevation on a vertical number line.
+sa2: Explain what abs(-20) = 20 means for a bank balance of -20 dollars. | A balance of -20 means the account is 20 dollars below zero, a debt. The absolute value, 20, tells the size of the debt: the person owes 20 dollars.
+quiz:
+num1: What is abs(-17)? | 17
+num2: The low temperature was -6 degrees C and the high was 5 degrees C. How many degrees did the temperature rise from the low to the high? | 11
+mc2: Which situation can be represented by -12? | a loss of 12 points | a gain of 12 points | 12 meters above sea level | a deposit of 12 dollars
+num2: One submarine is at -250 feet and another is at -180 feet. How many feet deeper is the first submarine? | 70
+mc2: Ana owes $14, Ben owes $9 and Cal has $3. Which list shows their balances from least to greatest? | -14, -9, 3 | -9, -14, 3 | 3, -9, -14 | -14, 3, -9
+num3: On a map grid, a store is at (-4, 6) and a library is at (-4, -3). Each unit is 1 block. How many blocks apart are they? | 9
+mc3: Which statement about the balances -$40 and -$25 is true? | -40 is less than -25, and abs(-40) shows the larger debt | -40 is greater than -25 because 40 > 25 | abs(-25) is greater than abs(-40) | The two debts are the same size
+sa2: Diego says -8 degrees F is warmer than -3 degrees F because 8 is greater than 3. Explain his mistake. | -8 is farther below 0 than -3, so -8 is less than -3 and is colder. On a number line -8 is to the left of -3. Comparing absolute values does not tell which temperature is warmer.
 
 test:
 mc1: Which number represents a temperature of 12 degrees below zero? | -12 | 12 | -1/12 | 0.12
@@ -458,6 +596,52 @@ mc2: A bus holds at most 52 people. Which number of people could NOT ride the bu
 num3: Concert tickets cost $12 each and Ms. Ortiz has $100. Write an inequality to find the greatest whole number of tickets she can buy. What is that number? | 8
 sa2: Write an inequality for "a camper must be at least 8 years old to join," and explain why 8 is included. | a >= 8. "At least" means 8 or older, so 8 is a solution, and the graph uses a closed circle at 8.
 
+lesson: Writing and solving equations from word problems | 6.EE.B.7, 6.EE.B.6
+practice:
+mc2: Jada has some stickers. After she gets 15 more, she has 52. Which equation fits? | s + 15 = 52 | s - 15 = 52 | 15s = 52 | s / 15 = 52
+hint: She starts with s stickers and adds 15.
+num2: Seven friends share the cost of a pizza equally, and each pays $3.50. The equation p / 7 = 3.50 gives the price p. What is the price of the pizza, in dollars? | 24.50
+hint: Multiply to undo dividing by 7.
+num2: A movie ticket costs $9. Lena spent $63 on tickets. How many tickets did she buy? | 7
+hint: Write and solve 9t = 63.
+mc2: The temperature rose 12 degrees to 71 degrees F. Which equation finds the starting temperature t? | t + 12 = 71 | 12t = 71 | t - 12 = 71 | 71 + 12 = t
+hint: The start plus the rise equals the end.
+num3: A rectangle has an area of 84 square feet and a width of 7 feet. What is its perimeter, in feet? | 38
+hint: First solve 7L = 84 to find the length.
+sa2: Write a word problem for the equation 4x = 28 and solve it. | Example: 4 friends each buy the same number of trading cards, 28 cards in all. How many does each buy? x = 28 / 4 = 7 cards.
+quiz:
+num2: Solve x + 2.75 = 10. | 7.25
+num2: A bag of 6 apples that each weigh the same weighs 3.6 pounds. Solve 6a = 3.6 to find the weight of one apple, in pounds. | 0.6
+num3: Omar has $120 left after spending $38 on shoes. Write and solve an equation to find how many dollars he had before buying the shoes. | 158
+mc2: A baker puts 144 rolls into bags of 12. Which equation finds the number of bags b? | 12b = 144 | b + 12 = 144 | b / 144 = 12 | 144b = 12
+num2: Solve (2/3)x = 10. | 15
+mc3: Ruth's age is 3 times Sam's age. Ruth is 36. Which shows an equation and Sam's age? | 3s = 36, so Sam is 12 | s + 3 = 36, so Sam is 33 | s / 3 = 36, so Sam is 108 | 3 + 36 = s, so Sam is 39
+num3: A water bottle holds 750 mL. Kim drinks some, and 285 mL are left. How many mL did she drink? | 465
+sa2: Tess solved x - 9 = 25 and got x = 16. Explain her mistake and solve the equation. | She subtracted 9 from 25 instead of adding. To undo subtracting 9, add 9 to both sides: x = 25 + 9 = 34. Check: 34 - 9 = 25.
+
+lesson: Dependent and independent variables in tables, graphs and equations | 6.EE.C.9
+practice:
+mc1: A plumber charges $50 per hour. Which quantity is the independent variable? | the number of hours worked | the total charge | the $50 rate | the plumber's name
+hint: Which quantity causes the other to change?
+num2: The equation c = 4p gives the cost c in dollars of p pounds of bananas. What is c when p = 6? | 24
+hint: Replace p with 6.
+mc2: A table shows x: 2, 3, 4, 5 and y: 18, 27, 36, 45. Which equation fits the table? | y = 9x | y = x + 16 | y = x + 9 | x = 9y
+hint: How does each y compare with its x?
+num2: A candle is 20 cm tall and burns 2 cm each hour. Its height after h hours is t = 20 - 2h. How tall is it after 6 hours, in cm? | 8
+hint: Find 2 x 6 first.
+num3: A taxi charges $3 plus $2 per mile, so the cost is c = 2m + 3. A ride costs $19. How many miles long was the ride? | 8
+hint: Try values of m, or work backward.
+sa2: A graph shows hours studied on the x-axis and test score on the y-axis. Explain which is the dependent variable and why. | The test score is the dependent variable because it depends on, or changes with, the number of hours studied. Hours studied is the independent variable.
+quiz:
+mc1: The number of tickets sold and the money collected at a play are related. Which is the dependent variable? | the money collected | the number of tickets sold | the price of one ticket | the day of the play
+num2: The equation d = 55t gives the miles d a car travels in t hours. How many miles does it travel in 4 hours? | 220
+mc2: Which table fits the equation y = x + 5? | x: 1, 2, 3 and y: 6, 7, 8 | x: 1, 2, 3 and y: 5, 10, 15 | x: 1, 2, 3 and y: 4, 3, 2 | x: 6, 7, 8 and y: 1, 2, 3
+num2: A pool has 300 gallons of water and is filled at 40 gallons per minute, so g = 300 + 40m. How many gallons are in the pool after 5 minutes? | 500
+num3: Batteries come in packs of 8, so b = 8p. What is the fewest number of packs needed to get at least 50 batteries? | 7
+mc3: Which point lies on the graph of y = 3x + 1? | (4, 13) | (13, 4) | (3, 9) | (2, 6)
+num2: A table shows weeks (w): 0, 1, 2, 3 and dollars saved (s): 10, 25, 40, 55. If the pattern continues, how many dollars are saved after week 6? | 100
+sa2: Eli says that in y = 6x, x depends on y. Explain why it is usually described the other way and give an example. | In y = 6x you choose x and calculate y, so y depends on x. For example, if x is the number of packs and each pack has 6 cards, the number of cards y depends on how many packs you buy.
+
 test:
 mc1: What is 2^5? | 32 | 10 | 25 | 16
 mc1: Which expression means "12 less than a number n"? | n - 12 | 12 - n | 12n | n + 12
@@ -570,6 +754,52 @@ mc3: Box A is 2 cm by 2 cm by 6 cm. Box B is a cube with 3-cm edges. Which state
 num3: A gift box is a cube with 10-inch edges. Wrapping paper comes in sheets of 300 square inches, and pieces can be cut and joined. What is the fewest number of sheets needed to cover the box? | 2
 sa2: Omar says the surface area of a 3 by 3 by 3 cube is 27 square units. Explain his mistake. | 27 is the volume, 3 x 3 x 3 cubic units. Surface area is the total area of the 6 square faces: 6 x 9 = 54 square units.
 
+lesson: Surface area and volume word problems: packaging and painting | 6.G.A.2, 6.G.A.4
+practice:
+num2: A gift box is 8 inches long, 5 inches wide and 3 inches tall. How many square inches of wrapping paper cover it exactly, with no overlap? | 158
+hint: Find the area of each pair of matching faces and add.
+num2: A cube-shaped toy box has edges of 1 1/2 feet. What is its volume in cubic feet? | 3 3/8
+hint: Multiply 3/2 x 3/2 x 3/2.
+mc2: Which measurement tells how much paint is needed to cover the outside of a closed box? | surface area | volume | perimeter | height
+hint: Paint covers the faces, which are flat areas.
+num2: A cereal box holds 240 cubic inches. Its base is 8 inches by 2 inches. How tall is it in inches? | 15
+hint: Volume equals the area of the base times the height.
+num3: A storage cube has edges of 4 feet. One quart of paint covers 40 square feet. How many quarts are needed to paint all 6 faces? | 2.4
+hint: Find the surface area first.
+sa2: Explain why surface area is measured in square units but volume is measured in cubic units. | Surface area counts the flat squares that cover the faces, so it uses two dimensions. Volume counts the cubes that fill the space inside, so it uses three dimensions.
+quiz:
+num2: A shipping box is 10 cm long, 6 cm wide and 4 cm tall. What is its surface area in square centimeters? | 248
+num2: A rectangular prism is 2 1/2 inches by 2 inches by 4 inches. What is its volume in cubic inches? | 20
+num3: A tank is 3 feet long, 2 feet wide and 2 1/2 feet tall. It is filled with water to a height of 2 feet. How many cubic feet of water are in the tank? | 12
+mc2: A box with no lid is 5 in long, 4 in wide and 2 in tall. Which expression gives the area of cardboard used, in square inches? | 20 + 2(10) + 2(8) | 2(20) + 2(10) + 2(8) | 5 x 4 x 2 | 20 + 10 + 8
+num3: Cubes with 1/2-inch edges are packed into a box 3 inches by 2 inches by 1 inch. How many cubes fill the box? | 48
+mc3: Box A is 6 by 4 by 2 units. Box B is 3 by 4 by 4 units. Which statement is true? | They have the same volume but different surface areas | They have the same volume and the same surface area | Box A has the greater volume | Box B has the greater volume
+num2: A room's floor is 12 ft by 10 ft and its walls are 8 ft tall. Ignoring doors and windows, how many square feet of wall are there to paint? | 352
+sa2: Leah finds the surface area of a 2 by 3 by 5 box as 2 x 3 x 5 = 30 square units. Explain her mistake and find the correct surface area. | She found the volume, not the surface area. Surface area adds the areas of the six faces: 2(6) + 2(10) + 2(15) = 12 + 20 + 30 = 62 square units.
+
+lesson: Volume with fractional edge lengths and unit cubes | 6.G.A.2
+practice:
+num2: How many cubes with 1/2-inch edges fill a box 2 inches long, 1 inch wide and 1 inch tall? | 16
+hint: How many 1/2-inch cubes fit along each edge?
+num2: A box is 1/2 foot by 3/4 foot by 2 feet. What is its volume in cubic feet? | 3/4
+hint: Multiply all three edge lengths.
+mc2: What is the volume of one cube with an edge of 1/3 yard? | 1/27 cubic yard | 1/9 cubic yard | 1 cubic yard | 1/3 cubic yard
+hint: Multiply 1/3 by itself three times.
+num2: A prism is 4 1/2 cm long, 2 cm wide and 3 cm tall. What is its volume in cubic cm? | 27
+hint: Multiply in an order that is easy, such as 4 1/2 x 2 first.
+num3: Cube-shaped candies with 1/4-inch edges are packed into a box 2 inches long, 1 inch wide and 1/2 inch tall. How many candies fill the box? | 64
+hint: Count how many candies fit along each edge.
+sa2: Explain why packing a box that is 3/2 by 1 by 1 units with cubes of edge 1/2 unit gives the same volume as V = l x w x h. | 3, 2 and 2 half-unit cubes fit along the edges, so 12 cubes fill the box. Each cube has a volume of 1/8, so 12 x 1/8 = 1 1/2 cubic units. Also 3/2 x 1 x 1 = 1 1/2. Both ways give the same volume.
+quiz:
+num2: A box is 2 1/2 feet long, 2 feet wide and 1 1/2 feet tall. What is its volume in cubic feet? | 7 1/2
+num2: How many cubes with 1/3-foot edges fill a cube with 1-foot edges? | 27
+num3: A fish tank is 1 1/2 feet long, 1 foot wide and 1 foot tall. It is filled to 3/4 of its height. How many cubic feet of water are in it? | 1 1/8
+mc2: A rectangular prism has a volume of 15 cubic inches, a length of 2 1/2 inches and a width of 2 inches. What is its height? | 3 inches | 10 1/2 inches | 37 1/2 inches | 5 inches
+num2: What is the volume of a cube with 1.5-meter edges, in cubic meters? | 3.375
+mc3: Box A is 1/2 by 1/2 by 8 units. Box B is 2 by 2 by 1/2 units. Which statement is true? | They have the same volume, 2 cubic units | Box A has the greater volume | Box B has the greater volume | Box A has a volume of 8 cubic units
+num3: A shipping crate is 3 feet by 2 1/2 feet by 2 feet. How many cubes with 1/2-foot edges fill it? | 240
+sa2: Nico says a cube with 1/2-inch edges has a volume of 3/2 cubic inches because 1/2 + 1/2 + 1/2 = 3/2. Explain his mistake. | Volume multiplies the edge lengths; it does not add them. The volume is 1/2 x 1/2 x 1/2 = 1/8 cubic inch.
+
 test:
 mc1: What is the area of a parallelogram with a base of 9 m and a height of 6 m? | 54 square meters | 27 square meters | 15 square meters | 30 square meters
 mc1: Which formula gives the volume of a rectangular prism? | V = l x w x h | V = 2l + 2w | V = 1/2 x b x h | V = 6s^2
@@ -681,6 +911,52 @@ mc2: Which data display makes it easiest to see the median and the IQR? | box pl
 num3: A data set is 4, 6, 6, 7, 9. A sixth value, 22, is added. By how much does the mean increase? | 2.6
 mc3: A set of 9 test scores has a mean of 80 and a median of 78. The highest score, 95, is changed to 100. Which statement is true? | The mean increases and the median stays the same | Both the mean and the median increase | The median increases and the mean stays the same | Neither measure changes
 sa2: Describe the distribution of these plant heights in centimeters: 12, 13, 13, 14, 14, 14, 15, 15, 16. Include the center, the spread and the shape. | The distribution is symmetric and centered at 14 cm (the mean and the median are both 14). The heights range from 12 to 16 cm, a range of 4 cm, with no outliers.
+
+lesson: Histograms and frequency tables | 6.SP.B.4, 6.SP.B.5
+practice:
+num1: A frequency table of test scores shows 60-69: 3 students, 70-79: 7 students, 80-89: 9 students and 90-99: 5 students. How many students are in the data set? | 24
+hint: Add the frequencies.
+mc2: A histogram shows the heights of plants in the intervals 0-4 cm, 5-9 cm, 10-14 cm and 15-19 cm. Which question can the histogram answer? | How many plants were from 10 to 14 cm tall? | What was the exact height of the tallest plant? | What is the mean height to the nearest tenth? | Which plant was planted first?
+hint: A histogram shows how many values fall in each interval, not each exact value.
+num2: A frequency table of minutes spent reading shows 0-14: 2 students, 15-29: 6 students, 30-44: 10 students and 45-59: 2 students. How many students read at least 30 minutes? | 12
+hint: Which intervals have values of 30 or more?
+mc2: The ages of 10 people at a park are 12, 15, 21, 23, 27, 28, 29, 34, 36 and 38. Using the intervals 10-19, 20-29 and 30-39, which interval has the greatest frequency? | 20-29 | 30-39 | 10-19 | They all have the same frequency
+hint: Tally each age into an interval.
+num3: A frequency table of hours of sleep shows 6-6.9: 4 students, 7-7.9: 8 students, 8-8.9: 6 students and 9-9.9: 2 students. What percent of the students slept at least 8 hours? | 40
+hint: Find the total number of students first.
+sa2: Explain why a histogram cannot be used to find the exact median of a data set. | A histogram only shows how many values fall in each interval. You can tell which interval holds the median, but not its exact value, because the individual numbers are not shown.
+quiz:
+num1: A frequency table shows how many pets students have: 0 pets: 5 students, 1 pet: 8 students, 2 pets: 4 students and 3 pets: 3 students. How many students were surveyed? | 20
+num2: A frequency table shows how many pets students have: 0 pets: 5 students, 1 pet: 8 students, 2 pets: 4 students and 3 pets: 3 students. How many pets do these students have in all? | 25
+mc2: A histogram of daily high temperatures has bars for 50-59 (2 days), 60-69 (5 days), 70-79 (12 days) and 80-89 (11 days). Which describes the shape of the data? | skewed left, with most days in the higher intervals | skewed right, with most days in the lower intervals | symmetric | about the same height for every bar
+num2: A frequency table of times to finish a puzzle shows 0-4 minutes: 3 students, 5-9 minutes: 9 students, 10-14 minutes: 6 students and 15-19 minutes: 2 students. How many students took less than 10 minutes? | 12
+num3: The lengths of 25 fish are grouped as 10-19 cm: 4 fish, 20-29 cm: 11 fish, 30-39 cm: 7 fish and 40-49 cm: 3 fish. Which interval contains the median length? Give the lower end of that interval in cm. | 20
+mc2: Which data set is best displayed in a histogram? | the heights of 80 students in centimeters | the favorite colors of 20 students | the names of the planets | the number of students in one class
+mc3: A histogram of quiz scores for 25 students has bars for 0-4 points (1 student), 5-9 points (3 students), 10-14 points (8 students) and 15-19 points (13 students). Which statement must be true? | More than half of the students scored at least 10 points | The mean score is exactly 15 | Exactly 8 students scored 12 points | The median score is in the 5-9 interval
+sa2: Kofi says that because the tallest bar of a histogram of test scores is 30-39, most students scored 39. Explain his mistake. | The tallest bar means more scores fall in the interval from 30 to 39 than in any other interval. It does not show exact scores; the students in that bar could have any score from 30 to 39.
+
+lesson: Comparing two groups with dot plots and box plots | 6.SP.B.4, 6.SP.B.5
+practice:
+num2: Class A's quiz scores are 6, 7, 7, 8, 9, 10 and 10. What is the median score? | 8
+hint: The median is the middle value when the data are in order.
+num2: A box plot of plant heights has a minimum of 4 cm, Q1 of 7 cm, a median of 9 cm, Q3 of 12 cm and a maximum of 15 cm. What is the interquartile range, in cm? | 5
+hint: Subtract Q1 from Q3.
+mc2: Box plot X has a median of 20 and an IQR of 4. Box plot Y has a median of 20 and an IQR of 12. Which statement is true? | The middle half of Y is more spread out | The middle half of X is more spread out | Y has a greater median | X has a greater median
+hint: The IQR measures the spread of the middle half of the data.
+num2: A dot plot of the number of siblings shows 0 (3 dots), 1 (5 dots), 2 (4 dots), 3 (2 dots) and 4 (1 dot). How many students have at least 2 siblings? | 7
+hint: Count the dots at 2, 3 and 4.
+num3: Team Red's heights in inches are 58, 60, 61, 63 and 63. Team Blue's heights are 55, 59, 62, 64 and 70. How many inches greater is Blue's range than Red's range? | 10
+hint: Range = maximum - minimum.
+sa2: Explain what you can learn by comparing the medians and the IQRs of two box plots. | The medians tell which group has a greater typical value. The IQRs tell which group's middle half is more spread out, so you can see which group is more consistent.
+quiz:
+num2: The ages of 8 people in a class are 11, 11, 12, 12, 12, 13, 14 and 15. What is the median age? | 12
+num2: A box plot has Q1 = 32 and Q3 = 47. What is the interquartile range? | 15
+mc2: Dot plot A has its dots bunched between 8 and 10. Dot plot B has dots spread from 2 to 16. Both have a median of 9. Which statement is true? | B has more variability than A | A has more variability than B | A has a greater center | B has a greater center
+num2: A box plot of test scores has a minimum of 55, Q1 of 70, a median of 78, Q3 of 86 and a maximum of 98. About what percent of the scores are from 70 to 86? | 50
+num3: Ten students' hours of sleep are 6, 7, 7, 8, 8, 8, 9, 9, 10 and 10. What is the mean number of hours? | 8.2
+mc3: Box plot P of commute times has a median of 25 minutes and an IQR of 10 minutes. Box plot Q has a median of 35 minutes and an IQR of 10 minutes. Which conclusion is best? | Q's commutes are typically about 10 minutes longer, with a similar spread | P's commutes are typically longer | Q's commutes are more spread out | Both groups have the same typical commute
+num2: A dot plot of goals per game shows 0 goals (2 dots), 1 goal (4 dots), 2 goals (3 dots) and 3 goals (1 dot). How many goals were scored in all? | 13
+sa2: Hector says box plot A shows more data values than box plot B because A's box is longer. Explain his mistake. | Each section of a box plot holds about one fourth of the data, whatever its length. A longer box shows that the middle half of the data is more spread out, not that there are more values.
 
 test:
 mc1: Which of these is a statistical question? | How many minutes do sixth graders at our school spend on homework? | How many minutes did Ana spend on homework yesterday? | How many minutes are in an hour? | What time does the library close?
