@@ -74,6 +74,75 @@ mc2: Yesterday is the recent past. Something from 100 years ago is | long ago | 
 num2: Mia's mom was born in 1990. Mia was born in 2017. How many years apart were they born? | 27
 sa2: Explain why a timeline is helpful for telling a family history. | It shows the events in order, so you can see what happened first and how long ago it was.
 
+lesson: Family Trees and Generations | 2.1, 2.1.1
+practice:
+mc1: A family tree is a chart that shows | how people in a family are related | where trees grow | the rules of a family | the weather
+hint: Think about grandparents, parents and children on one chart.
+mc2: A generation is a group of people born around the same time. Your parents and your aunts belong to | the same generation | your generation | your grandparents' generation | no generation
+hint: Your parents and their brothers and sisters were born around the same time.
+mc2: On a family tree, Grandma Lin is at the top, her son is in the middle, and Mei is at the bottom. Who is the oldest generation? | Grandma Lin | her son | Mei | they are all the same
+hint: Family trees usually put the oldest people at the top.
+num2: A family tree shows 4 grandparents, 2 parents and 2 children. How many generations does it show? | 3
+hint: Count the rows, not the people.
+mc2: Your great-grandmother is | your grandparent's mother | your mother's sister | your cousin | your sister's daughter
+hint: "Great" adds one more generation back.
+sa1: Name the people you would put on the first two rows of your family tree. | Me and my brother on the bottom row, then my mom and my dad on the next row.
+hint: Start with yourself, then go one generation back.
+quiz:
+mc1: Your mother's mother is your | grandmother | aunt | cousin | sister
+mc2: Your aunt's children are your | cousins | grandparents | parents | great-grandparents
+mc2: On a family tree, lines connect | parents to their children | friends to neighbors | towns to cities | pets to owners
+num2: Abuela was born in 1955. Her daughter was born in 1980. Her granddaughter was born in 2018. How many years after Abuela was her daughter born? | 25
+mc2: Families can look very different. A family tree can show | adopted children, stepparents and grandparents who raise children | only people with the same last name | only people who live together | only boys
+num1: Kwame's family tree has 3 rows: 4 grandparents, 2 parents and Kwame with his 2 sisters. How many people are on the tree? | 9
+sa2: Explain how a family tree helps you learn about your family history. | It shows who my ancestors are and how we are related, so I can learn where each generation lived and what they did.
+
+lesson: Primary and Secondary Sources | 2.1, 2.1.1
+practice:
+mc1: A secondary source is | made later by someone who was not there | made by a person at the time of the event | always a photo | always an object
+hint: "Second" means it comes after.
+mc2: Which is a secondary source about the Gold Rush? | a book written last year about miners | a miner's letter from 1850 | a gold pan used in 1849 | a photo taken in 1852
+hint: Which one was made long after the Gold Rush?
+mc2: Which is a primary source about your first day of school? | a photo your dad took that day | a story your friend makes up | a new cartoon about school | a library book about schools
+hint: Was the source made at the time of the event?
+mc2: An encyclopedia article about Abraham Lincoln is a | secondary source | primary source | artifact | diary
+hint: Did Lincoln write the article himself?
+mc2: In 1863, Abraham Lincoln said government should be "of the people, by the people, for the people." His speech is a | primary source | secondary source | made-up story | map
+hint: Lincoln gave this speech himself at the time.
+sa1: Name one primary source and one secondary source about your family. | A primary source is my grandpa's old passport. A secondary source is a report I write about him.
+hint: Who made each source, and when?
+quiz:
+mc1: A diary written by a girl in 1906 is a | primary source | secondary source | map | law
+mc2: A teacher writes a book today about life in 1906. The book is a | secondary source | primary source | artifact | letter from 1906
+mc2: Why do historians use both primary and secondary sources? | primary sources show what happened, and secondary sources help explain it | secondary sources are always wrong | primary sources are always boring | they only need one kind
+mc2: Which of these was NOT made by people who lived at the time? | a modern movie about pioneers | a pioneer's journal | a covered wagon wheel | a photo of pioneers from 1870
+mc2: Grandpa tells you what he saw when he moved to Stockton in 1975. His story is | a primary source | a secondary source | a made-up fable | a map
+num2: A letter was written in 1912. A book about the letter was written in 1990. How many years after the letter was the book written? | 78
+sa2: Explain the difference between a primary source and a secondary source. Give one example of each. | A primary source was made at the time by someone who was there, like a letter from 1900. A secondary source was made later, like a textbook about 1900.
+
+lesson: Artifacts and Photos as History Clues | 2.1, 2.1.2
+practice:
+mc1: Historians look closely at old photos and objects to | find clues about the past | make new toys | tell the future | change the past
+hint: Old things can tell us how people lived.
+mc2: An old photo shows a girl churning butter on a porch. What can you infer? | her family made their own butter | she was on vacation | she was at a store | she was playing a video game
+hint: What chore is she doing?
+mc2: Grandma's old iron is heavy and has no cord. What does this tell you? | it was heated on a stove, not plugged in | it ran on batteries | it was a toy | it was never used
+hint: How could an iron get hot without electricity?
+mc2: Which question helps you study an artifact? | Who made it, and what was it used for? | What is my favorite color? | What is for lunch? | How tall am I?
+hint: Ask about the object's past.
+num1: A museum shows 7 tools from long ago and 5 tools from today. How many tools are in the display? | 12
+hint: Add the old tools and the new tools.
+sa1: Pick an object in your home and tell what a person 100 years from now could learn from it. | A lunch box could show them what kids ate and carried to school.
+hint: Think about what the object shows about your life.
+quiz:
+mc1: An object made and used by people long ago is an | artifact | interview | election | invention test
+mc2: A photo from 1915 shows people riding streetcars in Los Angeles. What does it tell us? | how some people got around back then | that cars were never used | what they ate for lunch | that it rained every day
+mc2: A family has a ticket from a ship that arrived in San Francisco in 1921. What does the ticket show? | when and how a family member traveled to California | what grandma liked to eat | what the weather was like today | the family's favorite song
+mc2: Why should you ask more than one question about an old photo? | one photo can hold many clues about the past | photos never show anything | all photos look the same | it makes the photo newer
+mc2: A wooden toy from long ago has no batteries. What can you infer? | children played with simple toys that did not use electricity | children had no toys | toys were made of plastic | toys were bought online
+num2: A photo was taken in 1950. How many years ago was that from {year}? | {year}-1950
+cer2: An old photo shows children in a one-room schoolhouse with a wood stove and slates on the desks. Make a claim about school long ago, give evidence from the photo and explain your reasoning. | Claim: School long ago was simpler and had fewer tools. Evidence: The photo shows one room, a wood stove and slates. Reasoning: Today we have many rooms, heaters and paper or computers, so the photo shows school has changed.
+
 test:
 mc1: An old letter written by your great-grandmother is a | primary source | made-up story | map | rule
 mc1: What do we call a line that shows events in the order they happened? | a timeline | a map key | a compass rose | a graph of colors
@@ -165,6 +234,98 @@ mc2: The Sierra Nevada is a mountain range in | California and Nevada | Florida 
 mc2: The border between the United States and Canada is | a line between two countries | a river in Mexico | an ocean | a mountain in California
 sa2: Describe where California is on a map of North America. | California is in the western United States, next to the Pacific Ocean, with Mexico to the south.
 
+lesson: Giving Directions with Cardinal and Intermediate Directions | 2.2, 2.2.1
+practice:
+mc1: Northeast, northwest, southeast and southwest are called | intermediate directions | cardinal directions | map titles | grid squares
+hint: They are in between the four main directions.
+mc2: Which direction is halfway between north and west? | northwest | northeast | southwest | southeast
+hint: Put the two words together, starting with north.
+mc2: On a map of a park, the pond is north of the picnic area and the playground is east of the pond. To go from the pond to the playground, which way do you walk? | east | west | north | south
+hint: The playground is east of the pond.
+mc2: The sun rises in the | east | west | north | south
+hint: Think about the morning sky.
+num2: From her house, Leila walks 2 blocks north, then 3 blocks east, then 1 block north. How many blocks does she walk in all? | 6
+hint: Add every part of the walk.
+sa1: Give directions from the classroom door to the office using at least two direction words. | Walk south down the hall, then turn east at the drinking fountain. The office is on the left.
+hint: Use north, south, east or west.
+quiz:
+mc1: The four cardinal directions are | north, south, east and west | up, down, left and right | northeast and southwest | top and bottom
+mc2: Which direction is the opposite of northwest? | southeast | southwest | northeast | north
+mc2: A map shows the library northeast of the school. You are at the library. Which way do you go to get back to the school? | southwest | northeast | northwest | southeast
+mc2: The sun sets in the | west | east | north | south
+mc2: On a map, San Diego is south of Los Angeles. Driving from San Diego to Los Angeles, you go mostly | north | south | east | west
+num2: A bus goes 4 miles west, then 5 miles south. How many miles does it travel? | 9
+sa2: Explain why intermediate directions are useful on a map. | They tell directions more exactly, like northeast, when a place is not straight north or straight east.
+
+lesson: Measuring Distance with a Map Scale | 2.2, 2.2.2
+practice:
+mc1: A map scale compares | distance on the map to distance in real life | colors to symbols | north to south | old maps to new maps
+hint: A map is much smaller than the real place.
+num2: On a map, 1 inch stands for 2 miles. The school is 4 inches from the beach. How many miles is that? | 8
+hint: Each inch is 2 miles. Count by 2s four times.
+num2: On a map, 1 centimeter stands for 100 meters. The park is 3 centimeters from the store. How many meters is that? | 300
+hint: Multiply the centimeters by 100.
+mc2: On a map scale, 1 inch stands for 10 miles. Which places are farthest apart? | two towns 5 inches apart | two towns 2 inches apart | two towns 1 inch apart | two towns 3 inches apart
+hint: More inches on the map means more miles.
+mc2: Why can't a map be the same size as the real place? | the map would be much too big to use | maps must be round | paper cannot show roads | scales are not allowed
+hint: Think about a map of all of California.
+sa1: Explain how you would use a map scale to find how far it is from your school to a park. | I would measure the space between them on the map with a ruler and use the scale to change inches into miles.
+hint: Measure first, then use the scale.
+quiz:
+mc1: Which map element helps you find real distance? | scale | title | compass rose | key
+num2: On a trail map, 1 inch stands for 1 mile. The lake is 5 inches from the campground. How many miles is the lake from the campground? | 5
+num2: A map scale shows 1 inch = 20 miles. Two cities are 3 inches apart on the map. How many miles apart are they? | 60
+mc2: On a map, 1 inch stands for 5 miles. A beach is 2 inches away and a lake is 6 inches away. Which is closer? | the beach | the lake | both are the same | you cannot tell
+num2: On a map, 1 inch stands for 3 miles. Town A is 2 inches from Town B. Town B is 2 inches from Town C. How many miles is it from Town A to Town C through Town B? | 12
+mc2: Ana says two towns 4 inches apart on a map are 4 miles apart. The scale says 1 inch = 10 miles. What is her mistake? | she forgot to use the scale, so it is really 40 miles | she should have said 14 miles | inches and miles are the same | she is right
+sa2: A map scale shows 1 inch = 10 miles. Two towns are 7 inches apart. Explain how to find the real distance and give the answer. | Each inch stands for 10 miles, so 7 inches is 7 x 10 = 70 miles.
+
+lesson: Rivers, Lakes and Oceans of North America | 2.2, 2.2.2
+practice:
+mc1: The five Great Lakes are on the border of the United States and | Canada | Mexico | Cuba | Alaska
+hint: The Great Lakes are in the northern part of the United States.
+mc2: Which Great Lake is the largest? | Lake Superior | Lake Erie | Lake Ontario | Lake Huron
+hint: Its name comes from a French word meaning upper or higher.
+mc2: The Mississippi River flows south and empties into the | Gulf of Mexico | Pacific Ocean | Arctic Ocean | Great Salt Lake
+hint: Follow the river south to the big body of water below the United States.
+mc2: The Rio Grande forms part of the border between the United States and | Mexico | Canada | Guatemala | Cuba
+hint: Rio Grande is a Spanish name. Which country to the south speaks Spanish?
+mc2: The Colorado River carved a deep canyon in Arizona called the | Grand Canyon | Death Valley | Golden Gate | Yosemite Valley
+hint: It is one of the most famous canyons in the world.
+sa1: Name the five Great Lakes. | Superior, Michigan, Huron, Erie and Ontario.
+hint: One way to remember them is the word HOMES.
+quiz:
+mc1: A river is | a stream of moving water | a body of still salt water | a tall landform | an island
+mc2: Which Great Lake is the only one that is all inside the United States? | Lake Michigan | Lake Superior | Lake Erie | Lake Ontario
+mc2: The large body of water south of the United States, between Texas and Florida, is the | Gulf of Mexico | Hudson Bay | Arctic Ocean | Lake Huron
+mc2: Hudson Bay is a large body of water in | Canada | Mexico | California | Florida
+mc2: Ships use the St. Lawrence River to travel between the Great Lakes and the | Atlantic Ocean | Pacific Ocean | Gulf of California | Arctic Ocean
+num1: North America touches 3 oceans: the Pacific, the Atlantic and the Arctic. A student has labeled 2 of them on a map. How many are left to label? | 1
+sa2: Explain why rivers like the Mississippi have been important to people. | Rivers give water for drinking and farming, and boats use them to carry people and goods.
+
+lesson: Mountains, Plains and Deserts of North America | 2.2, 2.2.2
+practice:
+mc1: A mountain range is | a long chain of mountains | one small hill | a flat field | a big lake
+hint: Range means a row or a line of something.
+mc2: The Great Plains are | flat, wide grasslands in the middle of North America | tall mountains near the ocean | a group of islands | a large lake
+hint: Plains are flat land.
+mc2: Mount Whitney, the highest peak in the 48 states next to each other, is in which mountain range? | Sierra Nevada | Appalachian Mountains | Ozark Mountains | Great Plains
+hint: This mountain range is in eastern California.
+mc2: The Mojave Desert is in | southern California and nearby states | Canada | Florida | the Great Lakes
+hint: Think about hot, dry land near Las Vegas and Barstow.
+mc2: The highest mountain in all of North America is Denali. It is in | Alaska | California | Texas | Mexico City
+hint: It is in the biggest state, far to the north.
+sa1: Describe the land from west to east across the United States. | Mountains in the west like the Rockies, flat Great Plains in the middle and the Appalachian Mountains in the east.
+hint: Think: west, middle, east.
+quiz:
+mc1: Which landform is flat land? | plain | mountain | canyon | peak
+mc2: Which mountain range is between the Great Plains and the Pacific coast? | Rocky Mountains | Appalachian Mountains | Great Lakes | Gulf of Mexico
+mc2: The Appalachian Mountains are older and lower than the Rocky Mountains. Where are the Appalachians? | eastern United States | western United States | Alaska | Hawaii
+mc2: Many farmers on the Great Plains grow | wheat and corn | coconuts | bananas | coffee
+mc2: A desert gets very little | rain | sunshine | sand | wind
+num1: A map shows 3 mountain ranges in the western United States and 1 in the eastern United States. How many mountain ranges does the map show? | 4
+sa2: Pick a landform in North America and explain how it affects the way people live there. | On the Great Plains the land is flat and good for farming, so many people grow wheat and corn there.
+
 test:
 mc1: Which country is south of the United States? | Mexico | Canada | Brazil | Peru
 mc1: Which ocean touches California? | Pacific Ocean | Atlantic Ocean | Arctic Ocean | Indian Ocean
@@ -252,6 +413,75 @@ num1: A map key shows 4 squares of farmland and 7 squares of houses. How many sq
 mc2: Why might a farmer not want a highway built across her field? | she would lose land for growing food | highways make crops grow | she wants more traffic | fields need roads
 sa2: Explain one good thing and one problem that can happen when a city grows. | Good: more homes and jobs. Problem: farmland and open space can disappear.
 
+lesson: Tracing Family Journeys on a World Map | 2.2, 2.2.3
+practice:
+mc1: A route on a map is | the path someone takes from one place to another | the title of the map | a kind of symbol for a lake | the scale
+hint: Think about drawing a line from start to finish.
+mc2: Hana's grandparents flew from Seoul, South Korea, to Los Angeles. Which ocean did they fly over? | the Pacific Ocean | the Atlantic Ocean | the Indian Ocean | the Arctic Ocean
+hint: Korea is in Asia, west of California across the water.
+mc2: Liam's ancestors sailed from Ireland to New York long ago. Which ocean did they cross? | the Atlantic Ocean | the Pacific Ocean | the Arctic Ocean | the Indian Ocean
+hint: Ireland is in Europe, east of the United States.
+mc2: Ximena's family drove from Guadalajara, Mexico, to Fresno, California. Which direction did they mostly travel? | north | south | east | west
+hint: California is above Mexico on the map.
+num2: A family flew 6 hours from Manila to Tokyo and then 10 hours from Tokyo to San Francisco. How many hours did they fly? | 16
+hint: Add the hours of both flights.
+sa1: Name a place where someone in your family lived and tell what continent it is on. | My grandma lived in Lagos, Nigeria, on the continent of Africa.
+hint: Look at a world map with a family member.
+quiz:
+mc1: Which continent is India on? | Asia | Africa | Europe | South America
+mc2: A family moved from Lima, Peru, to San Jose, California. Peru is on which continent? | South America | North America | Asia | Europe
+mc2: Which tool is best to show the routes many families took to California? | a world map with lines from each starting place | a calendar | a recipe book | a clock
+mc2: A family moved from Ethiopia to Oakland. Ethiopia is on the continent of | Africa | Asia | Europe | Australia
+mc2: Long ago, it took many weeks to cross an ocean by ship. Today it takes hours by plane. What changed? | the ways people travel | the size of the ocean | the location of the continents | nothing
+num2: On a class map, 7 families came across the Pacific Ocean and 5 came across the Atlantic Ocean. How many more came across the Pacific? | 2
+sa2: Explain how a world map can help a class tell its family histories. | Students can mark where their families came from and draw the routes, so the class can see the many places our families started.
+
+lesson: Natural Resources Where We Live | 2.2, 2.2.4
+practice:
+mc1: A natural resource is | something from nature that people use | something made in a factory | a kind of law | a toy
+hint: Water, soil and trees come from nature.
+mc2: Which is a natural resource? | water | a plastic cup | a car | a computer
+hint: Which one was not made by people?
+mc2: Farmers in the Central Valley depend on which natural resources? | good soil and water | snow and ice | gold and silver | oil and gas only
+hint: What do plants need to grow?
+mc2: Lumber for houses comes from | trees | rocks | rivers | sand
+hint: Lumber is wood.
+mc2: Snow melting in the Sierra Nevada fills rivers. Why is this important to California? | it gives water to farms and cities | it makes the ocean saltier | it stops rain | it makes deserts bigger
+hint: Where does melted snow go?
+sa1: Name a natural resource and tell how your family uses it. | Water. We use it to drink, cook and wash.
+hint: Think about what you use every day.
+quiz:
+mc1: Soil, water, air and trees are all | natural resources | services | laws | factories
+mc2: Fishing boats in Monterey Bay use which natural resource? | fish from the ocean | trees from the forest | gold from rivers | wheat from fields
+mc2: Why should people use natural resources wisely? | some resources can run out or get dirty | resources never run out | using more is always better | they are not important
+mc2: Which is a way to save a natural resource? | turn off the faucet while brushing teeth | leave the sprinklers on all day | throw away paper you can recycle | burn extra trash
+mc2: Long ago, people came to California looking for gold. Gold is a | natural resource | service | factory good | holiday
+num2: A family used 50 gallons of water a day. They fixed a leak and now use 42 gallons a day. How many gallons a day do they save? | 8
+sa2: Explain how one natural resource helps people in California earn a living. | Good soil and water help farmers grow fruits and vegetables that they sell.
+
+lesson: Protecting Land: Parks and Conservation | 2.2, 2.2.4
+practice:
+mc1: Conservation means | protecting and wisely using nature | using up all the land | building on every field | throwing away resources
+hint: Conserve means to save or protect.
+mc2: John Muir wrote about the beauty of the Sierra Nevada and worked to protect it. In 1890, Yosemite became a | national park | shopping mall | city | farm
+hint: Today millions of people visit Yosemite to see nature.
+mc2: Why do people make parks and protected areas? | to keep land, plants and animals safe for the future | to build more freeways | to sell all the trees | to keep people out of nature forever
+hint: What would happen to a forest if everyone cut down trees?
+mc2: The tallest trees on Earth, coast redwoods, are protected in parks in | northern California | Florida | the Great Plains | Arizona
+hint: Redwoods grow along the foggy coast in the north of our state.
+num1: A class planted 12 trees in a park. They planted 8 more the next week. How many trees did they plant? | 20
+hint: Add the two weeks.
+sa1: Tell one way your class could help protect a park. | We could pick up trash and stay on the trails so plants are not trampled.
+hint: Think about trash, plants and animals.
+quiz:
+mc1: A national park is land that is | protected by the government for everyone | owned by one family | used only for factories | closed to all people
+mc2: John Muir is remembered for | working to protect wild places like Yosemite | inventing the airplane | building the railroad | leading a farm workers union
+mc2: A town wants to build homes on a wetland where many birds live. Which is a conservation choice? | protect the wetland and build somewhere else | fill the wetland right away | dump trash in it | drain the water to make a parking lot
+mc2: Why do parks have rules like "stay on the trail"? | to protect plants and animals | to make hikes longer | to keep the trail dirty | to stop people from walking
+mc2: Recycling cans helps conserve | metal and energy | air pollution | trash | gasoline only
+num2: In 1890, Yosemite became a national park. How many years ago was that from {year}? | {year}-1890
+sa2: Explain why protecting land is important for people in the future. | If we protect land now, children in the future can still enjoy clean water, forests and animals.
+
 test:
 mc1: Family members who lived long before you are your | ancestors | neighbors | classmates | teachers
 mc1: A city with many people and tall buildings is | urban | rural | a desert | a farm
@@ -338,6 +568,98 @@ mc2: Mexico has a president. Canada has a | prime minister | mayor only | govern
 mc2: A neighbor's tree drops leaves in another neighbor's yard. What is a fair way to solve it? | talk and agree to rake together | cut the tree down at night | throw the leaves back | call each other names
 num1: Five countries sign a treaty. Three more countries join. How many countries are in the treaty now? | 8
 sa2: Explain why nations make treaties and trade agreements. | Treaties help countries keep peace and trade so they can get what they need and get along.
+
+lesson: Three Jobs of Government: Make, Carry Out and Judge Laws | 2.3, 2.3.1
+practice:
+mc1: In the United States national government, Congress | makes laws | carries out laws | judges laws | prints newspapers
+hint: Congress writes and votes on bills.
+mc2: The President's main job is to | carry out the laws | write every law alone | decide every court case | lead one city
+hint: The President makes sure laws are put into action.
+mc2: The Supreme Court and other courts | decide what laws mean and if they are fair | make all laws | run the army | collect garbage
+hint: Judges work in courts.
+mc2: The government is split into three parts so that | no one part has too much power | everything takes one person | laws are never made | there are no leaders
+hint: Think about sharing power.
+num1: Our national government has 3 branches. California's state government also has 3 branches. How many branches is that in all? | 6
+hint: Add the national branches and the state branches.
+sa1: Name the three branches of the national government and tell one job of each. | Congress makes laws, the President carries out laws, and the courts decide what laws mean.
+hint: Think: make, carry out, judge.
+quiz:
+mc1: Which part of government decides if a law is fair? | the courts | Congress | the President | the mayor
+mc2: In California, who carries out state laws? | the governor | a judge | the President | a city council member
+mc2: The California State Legislature | makes laws for California | makes laws for the whole country | runs every school | decides court cases
+mc2: The Constitution begins, "We the People of the United States, in Order to form a more perfect Union..." (1787). Who does this say the government belongs to? | the people | the king | one leader | the courts only
+mc2: Why is it good that the President cannot make laws alone? | it keeps any one person from having too much power | the President does not like laws | it makes laws faster | it is not good
+num2: Congress has 100 senators and 435 representatives. How many members does Congress have? | 535
+sa2: Explain why the government has three branches instead of one. | Each branch has its own job and can check the others, so no one person or group gets too much power.
+
+lesson: Voting and Elections | 2.3, 2.3.1
+practice:
+mc1: An election is a time when | people vote to choose leaders or decide questions | people buy goods | people plant crops | people go on vacation
+hint: Elections happen on a special day in November.
+mc2: A ballot is | the paper or screen where a voter marks choices | a kind of ball game | a law | a building
+hint: Voters fill it out.
+mc2: Why is voting secret? | so people can choose freely without being pressured | so no one votes | so votes can be changed | so leaders can pick for you
+hint: Would you want someone telling you how to vote?
+mc2: In 1920, the 19th Amendment gave women in the United States the right to | vote | drive | go to school | own pets
+hint: Before 1920, women could not vote in national elections in most states.
+num2: In a class election, Paolo gets 9 votes, Mei gets 12 votes and Sami gets 5 votes. How many more votes does Mei get than Paolo? | 3
+hint: Subtract Paolo's votes from Mei's votes.
+sa1: Tell why it is important for grown-up citizens to vote. | Voting lets people choose leaders who will listen to them and make good laws.
+hint: Who chooses the leaders?
+quiz:
+mc1: A person who runs in an election to become a leader is a | candidate | judge | veto | ballot
+mc2: Which leader is chosen by voters all over the United States? | the President | the mayor of Fresno | your school principal | a city council member
+mc2: In a city election, who votes for the mayor? | citizens of that city who are 18 or older | children in the city | people in other countries | only the mayor
+num2: The 19th Amendment gave women the right to vote in 1920. How many years ago was that from {year}? | {year}-1920
+mc2: A candidate promises to build a new library. Why do candidates make promises? | to show voters what they will do if they win | to trick everyone | because it is a law | to stop the election
+num2: In an election for class president, 26 students vote. Lena gets 15 votes. Her opponent gets the rest. How many votes does her opponent get? | 11
+sa2: Explain how elections help make a government fair. | Everyone who can vote gets an equal say in choosing leaders, and leaders who do a poor job can be voted out.
+
+lesson: Taxes Pay for Public Services | 2.3, 2.3.1, 2.4
+practice:
+mc1: A tax is | money people pay to the government | a gift from a friend | a kind of law court | a store coupon
+hint: Governments need money to pay for things everyone uses.
+mc2: Which is a public service paid for by taxes? | public schools | a toy store | a movie theater ticket | a private swimming pool
+hint: Public means for everyone in the community.
+mc2: Which workers are often paid with tax money? | firefighters and public school teachers | toy store clerks | bakery owners | movie actors
+hint: Who works for the city or state?
+mc2: A city collects taxes to fix potholes. Who benefits? | everyone who uses the streets | only the mayor | no one | only people with bikes
+hint: Who drives, rides and walks on streets?
+num2: A town gets 900 dollars in taxes. It spends 500 dollars on the library and the rest on the park. How many dollars go to the park? | 400
+hint: Subtract the library money from the total.
+sa1: Name two public services in your community. | The public library and the fire department.
+hint: Think about places and workers that help everyone.
+quiz:
+mc1: Public parks and libraries are mostly paid for by | taxes | candy sales | movie tickets | lemonade stands
+mc2: Why do governments collect taxes? | to pay for things that help everyone, like roads and schools | to buy toys for leaders | to close schools | to stop people from working
+mc2: Which is NOT usually paid for with taxes? | a family's new TV | a city bus | a public school | a police car
+mc2: A state builds a highway with tax money. How does this help? | people and goods can travel more easily | it stops all trade | it makes farms smaller | it closes stores
+mc2: People in a town vote on whether to pay a small tax for a new library. What are they deciding? | if the community will pay for a public service | where the President lives | what to eat for lunch | who owns the library books
+num2: A school district spends 30 dollars per student on books. There are 4 students in a reading group. How many dollars are spent on their books? | 120
+sa2: Explain how paying taxes helps a whole community. | Taxes pay for schools, roads, parks and firefighters that everyone uses, so the whole community is safer and better.
+
+lesson: How Other Countries Govern | 2.3, 2.3.1, 2.3.2
+practice:
+mc1: The leader of Canada's government is the | prime minister | mayor | governor | President of the United States
+hint: Canada uses a different title than the United States.
+mc2: Mexico, like the United States, has a president and a group that makes laws called a | congress | city council only | school board | club
+hint: Mexico's lawmakers have the same name as ours.
+mc2: The United Kingdom has a king, but laws are made by | Parliament | the king alone | the President of the United States | Congress
+hint: The United Kingdom's lawmaking group meets in London.
+mc2: How are many countries' governments alike? | they make laws, carry out laws and settle disagreements | they all have kings | they all have the same leader | they have no laws
+hint: Think about the three jobs of government.
+num1: Mexico, Canada and the United States are the 3 largest countries in North America. A class studies their governments and 2 more countries. How many countries do they study? | 5
+hint: Add the 3 countries and 2 more.
+sa1: Tell one way the government of Canada or Mexico is like the government of the United States. | Mexico has a president and a congress, just like the United States.
+hint: Think about leaders and lawmakers.
+quiz:
+mc1: In Canada, laws for the whole country are made by | Parliament | the Supreme Court of the United States | the governor of California | a city council
+mc2: Japan has an emperor, but who leads the government? | a prime minister | the emperor alone | the President of Mexico | a governor
+mc2: In many countries, people vote to choose their leaders. This means | citizens have a say in their government | one person picks all leaders | no one can vote | there are no laws
+mc2: Why do countries have governments? | to make laws, keep people safe and provide services | to stop all trade | to make people sad | to end all rules
+mc2: The leaders of Mexico, Canada and the United States meet to talk about trade. This shows that countries | work together on shared problems | never talk | fight about everything | do not need each other
+num2: A country's lawmaking group has 338 members. Another has 128 members. How many more members does the first group have? | 210
+sa2: Compare the leader of the United States with the leader of Canada. | The United States is led by a President who is elected by voters. Canada's government is led by a prime minister, who leads the party with the most members in Parliament.
 
 test:
 mc1: Who leads a city? | mayor | governor | President | king
@@ -430,6 +752,75 @@ num2: Sofia earns 2 dollars each week for chores. She wants a book that costs 12
 mc2: Which is a smart choice when money is limited? | buy needs first, then wants | buy all wants first | spend it all on candy | never save
 sa2: Explain why people have to make choices about what to buy. | People have a limited amount of money, so they must choose what they need or want most.
 
+lesson: Specialization: Each Worker Does One Job | 2.4, 2.4.2
+practice:
+mc1: Specialization means | each worker focuses on one kind of job | every worker does every job | no one works | workers trade jobs every hour
+hint: Special means one particular thing.
+mc2: In a bike factory, one worker puts on wheels, another adds seats and another paints. Why work this way? | each worker gets fast and skilled at one step | it makes the bikes worse | so no one learns anything | so the bikes take longer
+hint: What happens when you practice the same thing many times?
+mc2: A dentist, a plumber and a baker each specialize. How do they get the other things they need? | they earn money and buy goods and services from others | they make everything themselves | they never need anything | they take things
+hint: Can a dentist bake all her own bread and fix her own pipes?
+mc2: Which is an example of specialization? | a farmer who grows only strawberries | a family that makes every single thing it uses | a child who tries a new sport each day | a store that sells nothing
+hint: Look for someone who focuses on one thing.
+num2: Working alone, Ken makes 3 sandwiches in 10 minutes. With specialization, a team of 3 makes 15 sandwiches in 10 minutes. How many more sandwiches does the team make than 3 people working alone like Ken? | 6
+hint: Three people like Ken would make 3 + 3 + 3 sandwiches.
+sa1: Tell what job you would like to specialize in and what you would need to buy from others. | I would be a baker. I would need to buy clothes, a car and doctor visits from other workers.
+hint: Think about all the things you could not make yourself.
+quiz:
+mc1: When workers specialize, they | depend on each other | stop trading | never need money | do every job
+mc2: A town has a baker, a tailor and a shoemaker. What would happen if the baker got sick for a month? | people would have less bread | there would be more shoes | everyone would bake perfectly | nothing would change
+mc2: In a car factory, why does each worker do one step on an assembly line? | to make more cars faster | to make fewer cars | so cars are made by hand alone | so workers never learn
+mc2: A family in a small town long ago made their own clothes, food and tools. Today most families buy these things. What changed? | more people specialize in one job | people stopped needing clothes | food became free | tools are not used
+mc2: Which pair of workers depend on each other? | a farmer who grows wheat and a baker who makes bread | a pilot and a whale | a dentist and a cloud | a teacher and a mountain
+num2: A class makes cards. Working alone, each of 4 students makes 2 cards an hour. When they specialize, they make 12 cards an hour. How many more cards per hour do they make by specializing? | 4
+sa2: Explain one good thing and one problem with specialization. | Good: workers get skilled and make more goods. Problem: if one worker stops, others who depend on that worker cannot get what they need.
+
+lesson: Earning, Spending and Saving: Making a Budget | 2.4, 2.4.3
+practice:
+mc1: Income is | money a person earns | money a person spends | a kind of tax | a store
+hint: You earn income by working.
+mc2: A budget is | a plan for how to spend and save money | a list of chores | a type of bank | a bill for a law
+hint: A budget helps you plan.
+num2: Aiyana earns 8 dollars. She saves 3 dollars and spends the rest. How many dollars does she spend? | 5
+hint: Take the saved money away from what she earned.
+mc2: Which is the best plan for money in a budget? | pay for needs first, then save, then spend on wants | spend on wants first | never save | spend more than you earn
+hint: Which things must come first?
+mc2: A bank pays you a little extra money for keeping your savings there. This extra money is called | interest | change | a tax | a fine
+hint: It makes your savings grow.
+sa1: Make a simple budget for 10 dollars. Tell how much you would save and spend. | I would save 4 dollars, spend 5 dollars on lunch and give 1 dollar to a food drive.
+hint: Make sure your amounts add up to 10 dollars.
+quiz:
+mc1: Money you keep to use later is called | savings | income | a want | a price
+num2: Joaquin earns 2 dollars a week for chores. How many dollars does he earn in 6 weeks? | 12
+num2: Ella's budget shows 20 dollars of income. She plans 12 dollars for needs and 5 for wants. How many dollars are left to save? | 3
+mc2: Spending more money than you earn can cause | you to run out of money | more savings | more income | lower prices
+mc2: Why do families make budgets? | to make sure they have enough for needs and can save | to spend all their money right away | to stop buying food | to avoid working
+mc2: A girl wants a 15 dollar game. She has 9 dollars and saves 2 dollars each week. How many weeks until she can buy it? | 3 weeks | 2 weeks | 6 weeks | 15 weeks
+sa2: Explain why it is smart to save some money every time you earn money. | Saving a little each time adds up, so you can buy bigger things later or pay for something unexpected.
+
+lesson: Trade Near and Far: Imports and Exports | 2.4, 2.4.1
+practice:
+mc1: An export is a good that is | sent to another country to sell | bought from another country | made at home and never sold | thrown away
+hint: Ex- means out.
+mc1: An import is a good that is | brought in from another country | sent out to another country | grown in your yard | made at school
+hint: Im- means in.
+mc2: California grows many almonds and sells them to countries around the world. These almonds are | exports | imports | services | taxes
+hint: Are the almonds going out of the country or coming in?
+mc2: Most bananas sold in California grocery stores are grown in Central and South America. For the United States, these bananas are | imports | exports | services | natural resources we grow
+hint: Are the bananas coming into the country or going out?
+mc2: Big ships carry goods in and out of the Port of Los Angeles and the Port of Oakland. Why are ports important? | they help countries trade goods | they grow crops | they make laws | they stop trade
+hint: What do ships carry?
+sa1: Look at a label on something you own. Tell where it was made and if it was an import. | My shoes say they were made in Vietnam, so they were imported.
+hint: Labels often say "Made in" a place.
+quiz:
+mc1: Countries trade because | no country can make everything its people want | trade is against the law | every country makes everything | people do not need goods
+mc2: Which is an export from California? | almonds and walnuts sold to Japan | bananas from Ecuador sold in Fresno | shoes from Vietnam sold in San Jose | coffee from Colombia sold in Sacramento
+mc2: Why might a store sell oranges from California and bananas from Ecuador? | each place grows what grows well in its climate | California cannot grow oranges | Ecuador makes all fruit | bananas grow everywhere
+mc2: A storm closes a port for a week. What will most likely happen? | some goods will be late getting to stores | more goods will arrive | prices will be free | farms will grow faster
+mc2: How do imports help consumers? | they can buy goods not made nearby | they can never buy anything | they have fewer choices | they must make everything
+num2: A ship carries 40 containers. It unloads 25 at the Port of Oakland. How many containers are still on the ship? | 15
+cer3: A store sells strawberries from California in spring and summer, and strawberries from Mexico in winter. Make a claim about why the store sells imported strawberries, give evidence and explain your reasoning. | Claim: The store imports strawberries in winter so customers can buy them all year. Evidence: It sells California strawberries in spring and summer but Mexican strawberries in winter. Reasoning: When fewer strawberries grow nearby, trading with another country lets consumers still buy them.
+
 test:
 mc1: A person who makes goods or gives services is a | producer | consumer | voter | tourist
 mc1: A person who buys and uses goods is a | consumer | producer | farmer | factory
@@ -518,6 +909,52 @@ mc2: Why do we learn about heroes from long ago and today? | they show us how to
 mc2: Which action shows a student can make a difference? | starting a food drive for families in need | taking extra snacks | ignoring a new student | breaking class rules
 num1: A class food drive collected 18 cans on Monday and 25 cans on Tuesday. How many cans did they collect? | 43
 sa2: Choose a character trait and explain how a hero from this unit showed it. | Courage. Ruby Bridges kept going to school even when people yelled at her.
+
+lesson: Heroes of Health and Nature | 2.5
+practice:
+mc1: Clara Barton was a nurse who cared for hurt soldiers during the Civil War. In 1881 she started the | American Red Cross | first public library | Pony Express | national anthem
+hint: This group still helps people after disasters today.
+mc2: Polio was a disease that made many children very sick. Jonas Salk created a | vaccine to prevent polio | new kind of bicycle | way to grow peanuts | map of the moon
+hint: A vaccine helps the body fight a disease before you get sick.
+mc2: Rachel Carson wrote a book in 1962 warning that some chemicals sprayed on crops were harming birds and other animals. She showed | courage to speak up for nature | laziness | unkindness | dishonesty
+hint: People did not all agree with her, but she spoke up anyway.
+mc2: What do Clara Barton and Jonas Salk have in common? | they helped people stay healthy or get well | they both went to space | they both played baseball | they both were Presidents
+hint: Think about nurses and vaccines.
+num2: Clara Barton started the American Red Cross in 1881. How many years ago was that from {year}? | {year}-1881
+hint: Subtract 1881 from this year.
+sa1: Name one of these heroes and tell how their work still helps people today. | Jonas Salk. His polio vaccine keeps children from getting polio.
+hint: Think about the Red Cross, vaccines or protecting animals.
+quiz:
+mc1: Who started the American Red Cross? | Clara Barton | Rachel Carson | Sally Ride | Rosa Parks
+mc2: Jonas Salk is remembered for | making a vaccine against polio | writing the national anthem | exploring the Arctic | inventing the telephone
+mc2: Rachel Carson's book helped people understand that | chemicals can harm animals and nature | the Earth is flat | birds do not need food | farms should use more poison
+mc2: The Red Cross helps people after floods, fires and earthquakes. Which trait does this work show? | caring for others | greed | laziness | unfairness
+mc2: Why do people still remember Clara Barton, Jonas Salk and Rachel Carson? | their work helped many people and living things | they were the richest people | they never worked hard | they lived only today
+num2: Rachel Carson's book came out in 1962. Clara Barton started the Red Cross in 1881. How many years apart were these events? | 81
+sa2: Choose one hero from this lesson and explain which character trait they showed. | Clara Barton showed courage because she went close to battles to care for hurt soldiers.
+
+lesson: California Heroes Who Built Fair Communities | 2.5
+practice:
+mc1: Biddy Mason was born enslaved. In 1856 a court in Los Angeles said she was free. Later she | bought land and helped people in need | became an astronaut | invented the telephone | was President
+hint: She used her money and land to help her community.
+mc2: Wong Kim Ark was born in San Francisco to Chinese parents. In 1898 the Supreme Court said he was a U.S. citizen because | he was born in the United States | he was rich | he spoke many languages | he lived in China
+hint: Where was he born?
+mc2: In the 1940s, a court case helped end school segregation in California for Mexican American children. The family who brought the case was the | Mendez family | Ride family | Keller family | Curie family
+hint: Sylvia Mendez's family went to court so she could attend her neighborhood school.
+mc2: What do Biddy Mason, Wong Kim Ark and the Mendez family have in common? | they stood up for fair treatment | they all went to space | they all built railroads | they all wrote songs
+hint: Think about fairness.
+num2: Biddy Mason won her freedom in 1856. Wong Kim Ark's case was decided in 1898. How many years apart were these events? | 42
+hint: Subtract 1856 from 1898.
+sa1: Tell why going to court can be a peaceful way to work for fairness. | People can ask judges to decide fairly instead of fighting.
+hint: Who decides what laws mean?
+quiz:
+mc1: Which hero won her freedom in a Los Angeles court in 1856? | Biddy Mason | Sylvia Mendez | Ruby Bridges | Rachel Carson
+mc2: The Wong Kim Ark case helped many people born in the United States because it said they | are citizens | must leave the country | cannot go to school | cannot vote ever
+mc2: Sylvia Mendez's family went to court because she was not allowed to attend | the school near her home | a baseball game | a library | a park
+mc2: Biddy Mason worked as a nurse and saved her money to buy land. What trait did she show? | hard work and determination | laziness | dishonesty | greed
+mc2: Why can one family's court case help many people? | the court's decision applies to others in the same situation | courts only help one family | cases never change anything | judges forget the case
+num2: After the Mendez case, California passed a law in 1947 ending segregated schools. Ruby Bridges started at her new school in 1960. How many years apart were these events? | 13
+sa2: Choose one California hero from this lesson and explain how they made a difference for others. | Biddy Mason won her freedom and then used her land and money to help poor families and start a church in Los Angeles.
 
 test:
 mc1: Who worked with Cesar Chavez to help farm workers? | Dolores Huerta | Sally Ride | Marie Curie | Jackie Robinson
