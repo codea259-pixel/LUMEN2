@@ -10,7 +10,7 @@ Read this, the rules at the top of `tools/build_assess.py`, and `tools/assess-sr
 
 ## Size of each grade
 - Units follow the district program's units or modules, in order (see your assignment).
-- Each unit has 3 to 5 lessons (2 to 6 allowed). Each lesson has:
+- Each unit has 5 to 8 lessons: easier units 5, middle units 6, harder units 7 or 8 (2 to 8 allowed by the builder). Each lesson has:
   - **practice** (classwork): 5 or 6 items, most with a `hint:` line. Hints guide thinking and never give the answer.
   - **quiz**: 7 or 8 items, at least 5 scored automatically (mc or num) and at least 1 written (sa, or cer or wr where it fits).
 - Each unit has a **unit test** of 22 to 25 items: about 17 to 19 automatic items, 2 or 3 short answers, and one 4-point item (task for math, wr for ELA, cer for science and social studies). Mix DOK 1, 2 and 3; at least a quarter should be DOK 2 or 3.

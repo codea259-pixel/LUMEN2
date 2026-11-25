@@ -223,7 +223,7 @@ def check_v2(where, sub, c):
     if len(c['units']) < 4: errors.append(f'{where}: needs at least 4 units')
     for u in c['units']:
         w = f'{where} {u["name"]}'
-        if not 2 <= len(u['lessons']) <= 6: errors.append(f'{w}: needs 2 to 6 lessons, has {len(u["lessons"])}')
+        if not 2 <= len(u['lessons']) <= 8: errors.append(f'{w}: needs 2 to 8 lessons, has {len(u["lessons"])}')
         seen = {}
         for li, l in enumerate(u['lessons']):
             p, q = l['practice'], l['quiz']
