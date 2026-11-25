@@ -42,6 +42,21 @@ def _lessons():
     _j.dump({'v': 1, 'lessons': out}, open(os.path.join(R, 'public', 'lessons.json'), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
     return len(out)
 print('lesson library:', _lessons(), 'lessons')
+
+# Keep the lesson and question counts on the home page and the one-page school overview in step with the content
+def _counts():
+    import json as _j, re as _re
+    R = os.path.dirname(D); B = _j.load(open(os.path.join(R, 'server', 'assessments.json'), encoding='utf-8'))
+    units = [u for c in B['cells'].values() for u in c['units']]
+    nl = sum(len(u['lessons']) for u in units)
+    nq = sum(len(u['test']) + sum(len(l['practice']) + len(l['quiz']) for l in u['lessons']) for u in units)
+    for name in ('index.html', 'pitch.html'):
+        p = os.path.join(R, 'public', name); t = open(p, encoding='utf-8').read()
+        t2 = _re.sub(r'<b>[\d,]+</b>((?:</?span>|\s)*)lessons', lambda m: f'<b>{nl:,}</b>' + m.group(1) + 'lessons', t)
+        t2 = _re.sub(r'<b>[\d,]+</b>((?:</?span>|\s)*)practice questions', lambda m: f'<b>{nq:,}</b>' + m.group(1) + 'practice questions', t2)
+        if t2 != t: open(p, 'w', encoding='utf-8').write(t2)
+    return nl, nq
+print('home page counts: %s lessons, %s questions' % _counts())
 h = open(src, encoding='utf-8').read()
 def rep(old, new, count=1):
     global h
