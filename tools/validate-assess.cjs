@@ -1,13 +1,16 @@
 /* Checks every assessment the site can build, in a real browser: for each unit, every lesson's classwork and quiz and
    the unit test, plus a benchmark for each grade and subject. Each is built, rendered in all three views, scored with
    perfect answers (must get full marks) and turned into a PDF (no text may run off the page).
-   Run after python3 tools/build.py:   node tools/validate-assess.cjs [folder to save the PDFs in]   */
+   Run after python3 tools/build.py:   node tools/validate-assess.cjs [folder to save the PDFs in]
+   If file:// loading hangs, start the test server and pass its address (it signs in as owner): BASE=http://localhost:3922 node tools/validate-assess.cjs   */
 const { chromium } = require(require('child_process').execSync('npm root -g').toString().trim() + '/playwright');
 const fs = require('fs'), path = require('path'), OUT = process.argv[2];
 (async () => {
   const b = await chromium.launch(), p = await b.newPage(), errs = [];
   p.on('pageerror', e => errs.push(e.message));
-  await p.goto('file://' + path.join(__dirname, '..', 'app.html'));
+  if (process.env.BASE) { // the app's scripts start only after sign-in, so sign in to the local test server first
+    await p.goto(process.env.BASE + '/app'); await p.fill('[name=username]', process.env.USER_NAME || 'owner'); await p.fill('[name=password]', process.env.USER_PASS || 'ownerpass1234'); await p.click('#af button');
+  } else await p.goto('file://' + path.join(__dirname, '..', 'app.html'));
   await p.waitForFunction(() => typeof AS !== 'undefined' && typeof PDFK !== 'undefined', null, { timeout: 30000 });
   const bank = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'server', 'assessments.json'), 'utf8'));
   const r = await p.evaluate(async ({ bank, save }) => {
