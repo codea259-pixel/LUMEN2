@@ -1,0 +1,685 @@
+# Grade 12 Social Studies (format 2): Principles of American Democracy and Economics.
+# Unit names, standards, skills and the original Unit review items (now the last lesson and part of the unit test)
+# are carried over verbatim from the format-1 grade section in soc.txt; four new lessons come first in each unit.
+@subject soc
+@grade 12
+@program California History-Social Science Framework
+about: Twelfth grade studies Principles of American Democracy and Economics: the foundations of the Constitution, rights and the Supreme Court, political participation and elections, and how markets, government and the global economy work.
+std: 12.1 | Students explain the fundamental principles and moral values of American democracy as expressed in the U.S. Constitution and other essential documents.
+std: 12.2 | Students evaluate and take and defend positions on the scope and limits of rights and obligations as democratic citizens.
+std: 12.5 | Students summarize landmark U.S. Supreme Court interpretations of the Constitution and its amendments.
+std: 12.6 | Students evaluate issues regarding campaigns for national, state and local elective offices.
+std: ECON 12.1 | Students understand common economic terms and concepts and economic reasoning.
+std: ECON 12.3 | Students analyze the influence of the federal government on the American economy.
+
+unit: Foundations of American government | 12.1, 12.4, 12.7 | soc_13
+el: Post a three-branch chart with arrows for checks and balances and a word bank (sovereignty, federalism, enumerated, implied, veto, judicial review, amendment). Read Federalist and Constitution excerpts aloud and give the frame "This principle limits power by ___."
+lesson: Roots of American democracy and the ratification debate | 12.1
+practice:
+mc2: The Magna Carta (1215) influenced American government because it | established that even a king must obey the law | created a democracy in England | ended monarchy | wrote the first constitution in America
+hint: Think of the idea of the rule of law.
+mc2: James Madison wrote in Federalist No. 51 (1788): "If men were angels, no government would be necessary." What did he conclude? | government is needed, but it must also be controlled | government is never needed | people are angels | the President should have unlimited power
+hint: The essay goes on to discuss controlling government itself.
+mc2: Madison also wrote in Federalist No. 51 that "ambition must be made to counteract ambition." Which principle does this describe? | checks and balances | popular sovereignty | federal supremacy | judicial review only
+hint: Each branch's ambition checks the others.
+mc2: The Anti-Federalists opposed the Constitution as first written mainly because | they feared a strong national government and wanted a bill of rights | they wanted a king | they wanted no states | they opposed the Revolution
+hint: Their concerns led to the first ten amendments.
+mc3: The Articles of Confederation could not tax or regulate trade between states. Why did this convince many leaders to write a new constitution? | the national government was too weak to pay debts or solve problems among the states | the states had too little power | the Articles created a king | the Articles had a strong President
+hint: What could the national government not do?
+sa2: Explain how the Federalist Papers tried to persuade New Yorkers to ratify the Constitution. | Hamilton, Madison and Jay wrote essays arguing that a stronger national government was needed and that separation of powers, checks and balances and federalism would protect liberty.
+hint: Who wrote them, and what did they argue?
+quiz:
+mc1: The Federalist Papers were written by | Alexander Hamilton, James Madison and John Jay | Thomas Jefferson and John Adams | George Washington alone | the Anti-Federalists
+mc2: In Federalist No. 10, Madison argued that a large republic would help control | factions, groups pursuing their own interests against others | foreign armies | the price of goods | the number of states
+mc2: The Great Compromise at the Constitutional Convention created | a Senate with equal representation and a House based on population | a single-house Congress | a king and a parliament | the Electoral College only
+mc2: The Constitution went into effect after it was ratified by | nine of the thirteen states | all thirteen states | five states | Congress alone
+mc2: The Three-Fifths Compromise | counted three-fifths of the enslaved population for representation and taxes | gave three-fifths of the states more power | ended slavery | gave enslaved people the vote
+mc3: The Iroquois Confederacy, English traditions and Enlightenment writers have all been named as influences on the framers. What does this suggest? | the Constitution drew on many sources of political ideas | the framers invented every idea themselves | only one source mattered | the framers ignored history
+sa2: Compare the Federalist and Anti-Federalist positions on the Constitution. | Federalists wanted a stronger national government to provide order and unity; Anti-Federalists feared it would threaten states and individual liberty and demanded a bill of rights.
+lesson: Principles of the Constitution and the amendment process | 12.1, 12.4
+practice:
+mc2: The Preamble begins "We the People of the United States, in Order to form a more perfect Union." Which principle do the first three words express? | popular sovereignty | federalism | judicial review | separation of powers
+hint: Who is creating the government?
+mc2: To propose an amendment, the usual method requires a vote of | two-thirds of both houses of Congress | a simple majority of the House only | the President alone | the Supreme Court
+hint: Article V sets a high bar.
+num2: An amendment must be ratified by three-fourths of the 50 states. What is the smallest whole number of states that meets this requirement? | 38
+hint: Three-fourths of 50 is 37.5. You need at least that many.
+mc2: The Supremacy Clause states that | the Constitution and federal laws are the supreme law of the land | state laws override federal laws | the President is above the law | treaties do not count as law
+hint: When federal and state laws conflict, which wins?
+mc3: The Constitution has been amended only 27 times since 1788. What does this show? | the amendment process is difficult, so changes need broad agreement | Americans never want change | Congress cannot propose amendments | amendments are easy to pass
+hint: Think about the voting thresholds.
+sa2: Explain the difference between the rule of law and rule by a person. | Under the rule of law, everyone, including leaders, must follow laws made through fair procedures; under rule by a person, a ruler's will is law and can change at any time.
+hint: Who is above the law in each case?
+quiz:
+mc1: The first ten amendments to the Constitution are called | the Bill of Rights | the Preamble | the Articles of Confederation | the Federalist Papers
+mc2: The idea that government power is divided among legislative, executive and judicial branches is | separation of powers | federalism | popular sovereignty | republicanism
+mc2: A republic is a government in which | citizens elect representatives to make laws | a king inherits power | everyone votes on every law | the military rules
+mc2: The Twenty-seventh Amendment, ratified in 1992 after being proposed in 1789, | delays congressional pay raises until after the next election | lowers the voting age | ends Prohibition | limits presidential terms
+mc2: The "elastic clause," or Necessary and Proper Clause, lets Congress | make laws needed to carry out its listed powers | ignore the Constitution | appoint judges alone | amend the Constitution without states
+mc3: Some Americans favor a "living Constitution" read in light of today's values; others favor reading it by its original meaning. What does this debate show? | people disagree about how to interpret the Constitution | the Constitution has no meaning | everyone reads it the same way | the Constitution cannot be interpreted
+sa2: Explain why the framers made the Constitution difficult but not impossible to amend. | They wanted it stable and protected from passing majorities, but able to change when there was broad agreement, as with ending slavery and expanding voting rights.
+lesson: Congress: structure, powers and lawmaking | 12.1, 12.4
+practice:
+mc2: Members of the House of Representatives serve terms of | 2 years | 4 years | 6 years | life
+hint: The whole House is elected every even-numbered year.
+mc2: U.S. senators serve terms of | 6 years | 2 years | 4 years | 8 years
+hint: About one-third of the Senate is elected every two years.
+mc2: The number of House seats each state has is adjusted every ten years based on | the census | the number of counties | each state's area | the Senate's vote
+hint: The Constitution requires counting the population.
+mc2: Bills for raising revenue (taxes) must begin in | the House of Representatives | the Senate | the Supreme Court | the President's cabinet
+hint: The framers wanted the chamber closest to the people to control taxes.
+mc3: In McCulloch v. Maryland (1819), the Supreme Court ruled that Congress could create a national bank even though the Constitution does not list that power. On what basis? | the Necessary and Proper Clause allows implied powers | the President ordered it | states asked for it | the Tenth Amendment requires it
+hint: Think about implied powers.
+sa2: Explain how the impeachment process divides power between the House and the Senate. | The House can impeach (charge) an official by majority vote; the Senate holds the trial and needs a two-thirds vote to convict and remove.
+hint: One chamber accuses, the other judges.
+quiz:
+mc1: Congress is the | legislative branch | executive branch | judicial branch | fourth branch
+mc2: A senator must be at least | 30 years old | 25 years old | 35 years old | 21 years old
+mc2: Under Senate rules, ending a filibuster on most bills requires a cloture vote of | 60 senators | 51 senators | 67 senators | 100 senators
+mc2: Which is an enumerated power of Congress? | declaring war | appointing Supreme Court justices | vetoing laws | commanding the armed forces
+mc2: Most of the detailed work on bills in Congress is done in | committees | the Supreme Court | the White House | state legislatures
+num2: After the 2020 census, California had 52 seats in the House of Representatives. With 2 senators, how many members of Congress represented California? | 54
+sa2: Explain why the framers created a bicameral (two-house) Congress. | The Great Compromise balanced large and small states: the House represents population, the Senate gives each state equal power, and two houses slow hasty lawmaking.
+lesson: The President and the executive branch | 12.1, 12.4
+practice:
+mc2: To be President, a person must be a natural-born citizen, at least 35 years old and a U.S. resident for at least | 14 years | 5 years | 20 years | 35 years
+hint: Article II lists these three requirements.
+mc2: The Twenty-second Amendment (1951) | limits a President to two elected terms | lowered the voting age | created the Electoral College | ended Prohibition
+hint: It came after Franklin Roosevelt won four elections.
+mc2: The President's cabinet is made up of | the heads of executive departments, such as State and Defense | members of Congress | Supreme Court justices | state governors
+hint: They advise the President and run major agencies.
+mc2: An executive order is | a directive from the President to federal agencies that has the force of law within limits | a law passed by Congress | a court ruling | a constitutional amendment
+hint: Executive orders cannot override the Constitution or federal law.
+mc3: The President can sign treaties, but they take effect only if approved by two-thirds of the Senate. Which principle does this show? | checks and balances | popular sovereignty | federalism | judicial review
+hint: One branch acts, another must agree.
+sa2: Describe two roles the President plays and give an example of each. | For example, commander in chief directs the military; chief executive enforces laws and runs agencies; chief diplomat meets foreign leaders and negotiates treaties.
+hint: Think of military, diplomatic and legislative roles.
+quiz:
+mc1: The President is head of the | executive branch | legislative branch | judicial branch | Senate
+mc2: If the President dies or leaves office, the next in line is | the Vice President | the Speaker of the House | the Chief Justice | the Secretary of State
+mc2: A pocket veto happens when | the President does not sign a bill within 10 days and Congress adjourns | the President signs a bill | Congress overrides a veto | the Supreme Court rejects a law
+mc2: The President appoints federal judges and cabinet members, but they must be confirmed by | the Senate | the House | the Supreme Court | the states
+mc2: The Twenty-fifth Amendment deals with | presidential succession and disability | voting age | income tax | Prohibition
+mc3: Presidents have used executive orders more often in recent decades when Congress is divided. Critics in both parties have objected when the other party's President did so. What does this suggest? | views on executive power often depend on who holds it | executive orders are never controversial | Congress controls all executive orders | only one party uses them
+sa2: Explain how Congress can check the President's power. | Congress can override vetoes with two-thirds votes, refuse to fund programs, reject appointments and treaties in the Senate, investigate the executive and impeach and remove a President.
+lesson: The federal courts and judicial review | 12.1, 12.5
+practice:
+mc2: In Marbury v. Madison (1803), the Supreme Court established | judicial review, the power to strike down laws that violate the Constitution | the right to an attorney | the separation of church and state | the Electoral College
+hint: Chief Justice John Marshall wrote the opinion.
+mc2: Federal judges serve "during good behavior," which in practice means | for life unless they resign, retire or are impeached and removed | for four years | until the next election | for ten years
+hint: The goal is to protect judges from political pressure.
+mc2: California is part of which federal court of appeals circuit? | the Ninth Circuit | the First Circuit | the Fifth Circuit | the Second Circuit
+hint: It covers most Western states.
+mc2: When the Supreme Court agrees to hear a case, it grants a writ of | certiorari | habeas corpus | mandamus | veto
+hint: It is Latin for "to be informed."
+mc3: The Supreme Court receives thousands of requests each year but decides fewer than 100 cases. What is the most likely reason? | it chooses mainly cases that raise important constitutional questions or where lower courts disagree | it hears only cases from California | it is not allowed to hear more | it decides by coin toss
+hint: Which cases matter most nationally?
+sa2: Explain why lifetime appointments are meant to keep judges independent, and one criticism of them. | Judges do not have to worry about reelection or losing their jobs for unpopular rulings; critics say lifetime terms can keep judges in power for decades and make appointments very political.
+hint: Think about pressure from voters and politicians.
+quiz:
+mc1: The judicial branch | interprets laws | makes laws | enforces laws | collects taxes
+mc2: The written explanation of the Court's decision by the majority is the | majority opinion | dissent | brief | indictment
+mc2: A justice who disagrees with the Court's decision may write a | dissenting opinion | veto | treaty | bill
+mc2: Original jurisdiction means a court | hears a case first, before any other court | only hears appeals | cannot hear cases | hears only state cases
+mc2: Most federal cases begin in | U.S. district courts | the Supreme Court | state legislatures | Congress
+mc3: Over time, some dissenting opinions later became the reasoning of the majority, as when Brown v. Board rejected the reasoning of Plessy v. Ferguson. Why do dissents matter? | they can influence future courts and public debate | they change the current ruling | they are kept secret | they are written by Congress
+sa2: Explain how judicial review serves as a check on the other branches. | Courts can declare laws passed by Congress or actions of the President unconstitutional, preventing either branch from exceeding the limits of the Constitution.
+lesson: Federalism and California's state and local government | 12.4, 12.7
+practice:
+mc2: The Tenth Amendment states: "The powers not delegated to the United States by the Constitution, nor prohibited by it to the States, are reserved to the States respectively, or to the people." What does this mean? | powers not given to the federal government belong to the states or the people | the federal government has unlimited power | states have no powers | only Congress can make laws
+hint: "Reserved" powers are kept back.
+mc2: Concurrent powers are powers shared by the federal and state governments, such as | collecting taxes | declaring war | printing money | making treaties
+hint: Both levels need money to operate.
+mc2: The California State Legislature has an Assembly of 80 members and a Senate of | 40 members | 100 members | 50 members | 120 members
+hint: The Senate is half the size of the Assembly.
+mc2: California is divided into how many counties? | 58 | 50 | 100 | 38
+hint: Los Angeles County is the most populous.
+mc3: The federal government gives money to states for highways only if they meet certain rules. What does this show about modern federalism? | the federal government can use funding to influence state policies | states have no role in roads | the federal government owns every road | states control federal funds
+hint: Think about grants with conditions.
+sa2: Give one example of a service provided by local government and explain why it is handled locally. | For example, cities run police, fire and parks, and school districts run schools, because local officials know community needs and residents can hold them accountable.
+hint: Think of services you use every day.
+quiz:
+mc1: Federalism is | the division of power between national and state governments | rule by one person | the power of courts to review laws | a two-party system
+mc2: Which power is reserved to the states? | running elections and public schools | coining money | declaring war | making treaties
+mc2: The head of California's executive branch is the | governor | President | mayor of Sacramento | Chief Justice
+mc2: California's current state constitution was adopted in | 1879 | 1776 | 1850 | 1949
+mc2: A special district in California, such as a water district, | provides one specific service for an area | replaces the state government | is a federal agency | runs national parks
+mc3: California sets stricter car emission standards than federal law, and other states have followed. What does this show about federalism? | states can act as "laboratories" for policies that others may adopt | states cannot make their own laws | federal law always forbids state rules | only California has a government
+sa2: Compare the powers of a city government and a county government in California. | Cities provide services such as police, zoning and parks within city limits; counties run courts, jails, public health, elections and social services for everyone and act as local government for unincorporated areas.
+
+lesson: Unit review | 12.1, 12.4, 12.7
+practice:
+mc2: Which pair correctly matches a principle with an example? | checks and balances - the Senate confirming judges | federalism - the President vetoing a bill | judicial review - Congress declaring war | popular sovereignty - judges serving for life
+hint: Check each pair carefully.
+mc2: Which document came first? | the Articles of Confederation | the Constitution | the Bill of Rights | the Twenty-second Amendment
+hint: Use the years 1781, 1788, 1791 and 1951.
+mc2: Which branch can declare a law unconstitutional? | the judicial branch | the legislative branch | the executive branch | state governors
+hint: Remember Marbury v. Madison.
+mc2: Which is a power of the President? | vetoing bills | declaring war | confirming judges | writing tax bills
+hint: The other powers belong to Congress.
+sa2: Explain how one Federalist idea can be seen in the government today. | For example, Madison's checks and balances appear in vetoes, veto overrides and Senate confirmation of judges.
+hint: Think about Federalist No. 51.
+quiz:
+mc1: Popular sovereignty means | power comes from the people | the king rules | the courts make laws | states have no power
+mc1: The number of members of the U.S. House of Representatives is | 435 | 100 | 50 | 538
+mc2: Each state has how many senators? | 2 | 1 | 3 | depends on population
+mc2: The Electoral College has how many electors? | 538 | 435 | 100 | 270
+ex2: Explain why the framers created a federal system. | To balance a strong national government with state power and protect liberty.
+mc2: Which case established judicial review? | Marbury v. Madison | McCulloch v. Maryland | Brown v. Board of Education | Plessy v. Ferguson
+mc2: How many members serve in the California State Assembly? | 80 | 40 | 120 | 100
+
+test:
+mc2: To win the presidency a candidate needs | 270 electoral votes | 538 electoral votes | a majority of states | the popular vote only
+mc2: A bill becomes law when | both houses pass it and the President signs it, or Congress overrides a veto | the President writes it | the Supreme Court approves it first | one house passes it
+mc2: Federalism allows California to | make its own laws in areas not delegated to the federal government | print its own currency | declare war | sign treaties with other nations
+mc3: Which shows the principle of limited government? | The Bill of Rights restricts what government can do to individuals | The President can rule by decree | Congress can ignore the Constitution | Courts can be abolished by the President
+sa2: Explain how the Constitution separates powers and provides checks and balances, with two examples. | Veto and override; Senate confirmation of judges; judicial review.
+sa2: Compare the structure of California's government with the federal government. | Both have three branches; California has a governor, a bicameral legislature, courts, and also direct democracy through initiatives and referendums.
+task3: Write an argument evaluating whether the Electoral College should be kept, reformed or replaced. Explain how it works, its historical purpose, its effects in recent elections, and support your position with evidence while addressing the strongest counterargument. | Accurate explanation, strong evidence and an effective counterargument. | Clear position with good evidence. | Position with limited evidence. | Little correct work.
+mc1: A bicameral legislature has | two houses | one house | three houses | no houses
+mc2: The Tenth Amendment reserves powers to | the states or the people | the federal government only | the President | the Supreme Court
+mc2: Which compromise created the House and Senate? | the Great Compromise | the Three-Fifths Compromise | the Missouri Compromise | the Compromise of 1850
+mc2: The President must be at least how old? | 35 | 30 | 25 | 40
+mc2: Which amendment limits the President to two elected terms? | the Twenty-second | the Twenty-fifth | the Twenty-sixth | the Nineteenth
+mc2: The power of Congress to make all laws "necessary and proper" is often called | the elastic clause | the supremacy clause | the commerce clause | the establishment clause
+mc2: Federal judges are appointed by the President and confirmed by | the Senate | the House | the voters | the Chief Justice
+mc2: Which is a concurrent power? | collecting taxes | coining money | issuing driver's licenses | making treaties
+mc3: Anti-Federalists warned in 1788 that a strong national government would threaten liberty. Which later development best answered their concern? | the addition of the Bill of Rights in 1791 | the creation of the Electoral College | the Louisiana Purchase | the Twenty-second Amendment
+mc3: In McCulloch v. Maryland (1819), the Court also ruled that Maryland could not tax the national bank. Which principle did this support? | federal supremacy over conflicting state laws | states' power to tax federal agencies | judicial restraint | popular sovereignty
+num2: The House has 435 voting members. A bill passes if a simple majority of all members votes yes. What is the smallest number of yes votes needed if all 435 vote? | 218
+mc2: Which branch of California's government includes the Assembly and Senate? | the legislative branch | the executive branch | the judicial branch | the county branch
+sa2: Explain how federalism allows both unity and diversity among the states. | The national government handles shared issues such as defense and currency, while states make many of their own laws on schools, elections and policing, so policies can differ to fit local needs.
+cer3: Since 1789 Presidents have vetoed about 2,600 bills, and Congress has overridden only about 110 of those vetoes. Make a claim about how effective the veto is as a check on Congress, give evidence and explain your reasoning. | Claim: the veto is a strong check on Congress. Evidence: only about 110 of roughly 2,600 vetoes have been overridden, about 4 percent. Reasoning: an override needs two-thirds of both houses, which is hard to reach, so a veto usually stops a bill and gives the President leverage to shape laws.
+
+unit: Rights and the Supreme Court | 12.2, 12.5 | soc_12_n1, soc_8
+el: Use a rights chart (amendment, right, example case, limit) and sentence frames for argument: "The Court ruled ___ because ___. I agree/disagree because ___." Preview legal terms: precedent, incorporation, due process, equal protection, warrant.
+lesson: The Bill of Rights and incorporation | 12.2, 12.5
+practice:
+mc2: The Bill of Rights was ratified in | 1791 | 1776 | 1787 | 1868
+hint: It was added a few years after the Constitution took effect.
+mc2: In Barron v. Baltimore (1833), the Supreme Court ruled that the Bill of Rights | at first limited only the federal government, not the states | applied fully to the states | did not apply to anyone | was unconstitutional
+hint: This changed later through the Fourteenth Amendment.
+mc2: Incorporation is the process by which the Supreme Court | has applied most Bill of Rights protections to the states through the Fourteenth Amendment | adds new amendments | creates corporations | removes rights
+hint: The Fourteenth Amendment says states cannot deny "due process of law."
+mc2: The Ninth Amendment says: "The enumeration in the Constitution, of certain rights, shall not be construed to deny or disparage others retained by the people." What does it mean? | people have rights beyond those listed in the Constitution | only listed rights exist | rights can be taken by Congress | states have no rights
+hint: "Enumeration" means a list.
+mc3: Before incorporation, a state could limit speech in ways the federal government could not. Why did incorporation matter for ordinary citizens? | it protected their basic rights from violation by state and local governments too | it only affected federal employees | it took away rights | it ended state governments
+hint: Who most often interacts with citizens day to day?
+sa2: Explain why the Anti-Federalists insisted on a bill of rights. | They feared a strong national government could abuse power, so they wanted written guarantees of rights such as speech, religion, a fair trial and protection from unreasonable searches.
+hint: What were they afraid the new government might do?
+quiz:
+mc1: Due process of law means | the government must follow fair procedures before taking life, liberty or property | courts must always side with the government | trials are optional | police may act without rules
+mc2: The Second Amendment protects | the right to keep and bear arms | freedom of speech | the right to a jury | protection from quartering soldiers
+mc2: The Third Amendment protects against | being forced to house soldiers in peacetime | unreasonable searches | self-incrimination | excessive bail
+mc2: Gitlow v. New York (1925) was an early case in which the Court said the states must respect | freedom of speech | the right to bear arms | the Third Amendment | the right to a jury in civil cases
+mc2: Which amendment includes the right to remain silent so as not to incriminate oneself? | the Fifth | the First | the Eighth | the Second
+mc3: The Seventh Amendment's right to a jury in civil cases has not been applied to the states. What does this show about incorporation? | it happened right by right, and not every right has been incorporated | every right was incorporated at once | no rights apply to states | the Seventh Amendment was repealed
+sa2: Explain how the Fourteenth Amendment changed the relationship between the Bill of Rights and the states. | Its due process clause has been used by the Supreme Court to apply most Bill of Rights protections to state and local governments, which the original Bill of Rights did not limit.
+lesson: Freedom of expression and the press | 12.2, 12.5
+practice:
+mc2: The First Amendment says Congress shall make no law "abridging the freedom of speech, or of the press." What does "abridging" mean? | reducing or limiting | expanding | defining | printing
+hint: An abridged book is a shortened version.
+mc2: In New York Times Co. v. United States (1971), the Court ruled the government could not stop newspapers from publishing the Pentagon Papers because | prior restraint of the press is allowed only in rare cases with a heavy burden of proof | newspapers can print anything with no limits | the papers were fake | the President approved it
+hint: Prior restraint means blocking publication in advance.
+mc2: In Texas v. Johnson (1989), the Court ruled that burning the American flag as a political protest is | protected symbolic speech | always illegal | treason | not speech at all
+hint: Actions can express ideas.
+mc2: In Hazelwood School District v. Kuhlmeier (1988), the Court ruled that school officials | may edit school-sponsored student newspapers for legitimate educational reasons | can never review student newspapers | must print every article | can punish speech at home
+hint: The paper was part of a class.
+mc3: In Brandenburg v. Ohio (1969), the Court ruled that speech advocating force is protected unless it is meant to incite "imminent lawless action" and likely to do so. How does this change the older "clear and present danger" test? | it protects more speech by requiring an immediate, likely threat | it protects less speech | it bans all political speech | it applies only to newspapers
+hint: Compare "imminent" with "danger."
+sa2: Explain why the press is sometimes called a "watchdog" in a democracy. | A free press investigates and reports on government and powerful groups, exposing wrongdoing and informing citizens so they can hold leaders accountable.
+hint: Think of the Pentagon Papers or Watergate.
+quiz:
+mc1: Symbolic speech is | expression through actions or symbols, such as wearing an armband | speech in a foreign language | speech that is written down | speech by government officials only
+mc2: In New York Times v. Sullivan (1964), the Court ruled that a public official suing for libel must prove | the statement was false and made with "actual malice" | only that the statement was rude | nothing at all | that the newspaper was large
+mc2: Libel is | publishing false statements that damage someone's reputation | any criticism of the government | true statements in a newspaper | a type of tax
+mc2: In Mahanoy Area School District v. B.L. (2021), the Court ruled for a student punished for a crude off-campus social media post, finding that schools | have less power to punish students' off-campus speech | can punish any speech anywhere | can ban social media | must approve all posts
+mc2: The First Amendment also protects the right to | peaceably assemble and petition the government | own property | a speedy trial | bear arms
+mc3: A city requires a permit for marches and limits them to certain hours, but approves permits for all groups no matter their views. Is this likely constitutional? | yes, reasonable time, place and manner rules that do not target viewpoints are generally allowed | no, all permits are illegal | yes, but only for groups the mayor likes | no, assembly is not protected
+sa2: Explain why the Supreme Court protects even speech that most people find offensive. | Allowing government to ban offensive ideas would let officials decide which views are acceptable; protecting unpopular speech keeps debate open and guards everyone's freedom.
+lesson: Freedom of religion | 12.2, 12.5
+practice:
+mc2: The First Amendment's Establishment Clause | prevents the government from establishing an official religion | requires everyone to attend church | lets Congress choose a national religion | bans all religion
+hint: "Establish" means to set up officially.
+mc2: The Free Exercise Clause protects | people's right to practice their religion | the government's right to pick a religion | businesses from taxes | the right to bear arms
+hint: "Exercise" here means to practice.
+mc2: Thomas Jefferson wrote in an 1802 letter to the Danbury Baptists that the First Amendment built "a wall of separation between Church & State." What did he mean? | government and religion should be kept separate | the government should run churches | churches should run the government | religion should be banned
+hint: What does a wall do?
+mc2: In Engel v. Vitale (1962), the Court ruled that | official, government-written prayer in public schools violates the Establishment Clause | students may never pray at school | schools must hold prayers | churches must pay taxes
+hint: The prayer was written by state officials.
+mc3: In West Virginia v. Barnette (1943), the Court ruled that public schools could not force students, including Jehovah's Witnesses, to salute the flag. Which principle did the Court protect? | government cannot compel people to express beliefs they do not hold | schools must ban the flag | students must salute the flag | religion is not protected
+hint: Can government force speech?
+sa2: Explain how the two religion clauses of the First Amendment can sometimes be in tension. | Helping a religious group practice its faith could look like government support for religion, while keeping government fully separate could limit some people's free exercise; courts must balance the two.
+hint: Think of a case where accommodating one faith could look like favoring it.
+quiz:
+mc1: The Establishment Clause and Free Exercise Clause are found in the | First Amendment | Fifth Amendment | Tenth Amendment | Fourteenth Amendment
+mc2: In Wisconsin v. Yoder (1972), the Court ruled that Amish families | could not be forced to send children to school past the eighth grade | must send children to public high school | could not practice their religion | must pay a religious tax
+mc2: Article VI of the Constitution says no religious test shall be required for | any public office | voting | owning land | joining the military
+mc2: Students in public schools today may | pray privately or in student-led groups if it does not disrupt school | be required to join a school-led prayer | never mention religion | be graded on religious belief
+mc2: The Free Exercise Clause would most likely protect | a student wearing religious head covering at school | a teacher leading students in a prayer to one god | a state naming an official church | a law requiring church attendance
+mc3: A public school wants to display one religion's holy text as the official school creed. Why would courts likely reject this? | it would endorse one religion, violating the Establishment Clause | it violates the Second Amendment | schools cannot display any books | it would be free speech
+sa2: Explain why religious freedom was important to many early Americans. | Many colonists had fled religious persecution in Europe, and the colonies had many faiths; protecting religious freedom kept the government from favoring one church and let people worship as they chose.
+lesson: Rights of the accused and due process | 12.2, 12.5
+practice:
+mc2: In Mapp v. Ohio (1961), the Court applied the exclusionary rule to the states, meaning | evidence gathered in an illegal search generally cannot be used in court | all evidence is allowed | police never need warrants | trials must be public
+hint: What happens to evidence found without a proper warrant?
+mc2: In New Jersey v. T.L.O. (1985), the Court ruled that school officials may search a student if they have | reasonable suspicion | no reason at all | a warrant from a judge | the student's written permission only
+hint: Schools need a lower standard than police.
+mc2: The Fifth Amendment's protection against double jeopardy means a person cannot be | tried twice for the same crime after being acquitted | tried at all | forced to testify in any case | held without bail
+hint: "Jeopardy" means risk of punishment.
+mc2: The Sixth Amendment guarantees | a speedy and public trial by an impartial jury | protection against unreasonable searches | the right to bear arms | freedom of religion
+hint: It is about how trials must be held.
+mc3: In Riley v. California (2014), the Court ruled that police generally need a warrant to search an arrested person's cell phone. Why? | phones hold vast amounts of private information, so searching them is like searching a home | phones are not property | police may never arrest people | phones are public records
+hint: Think about what a phone contains.
+sa2: Explain why the Constitution protects the rights of people accused of crimes. | To prevent the government from punishing innocent people, coerced confessions or unfair trials; these protections apply to everyone because anyone could be accused.
+hint: What could happen without these rights?
+quiz:
+mc1: A search warrant is | a judge's written permission for police to search a specific place | a type of arrest | a court verdict | a police badge
+mc2: The Eighth Amendment prohibits | cruel and unusual punishment and excessive bail | unreasonable searches | double jeopardy | quartering soldiers
+mc2: Probable cause means | reasonable grounds to believe a crime has been committed | absolute proof | a hunch | a confession
+mc2: The writ of habeas corpus, protected in Article I, | requires the government to explain to a judge why a person is being held | lets police hold anyone forever | is a type of tax | allows trials without juries
+mc2: "Innocent until proven guilty" means | the government must prove guilt beyond a reasonable doubt | the accused must prove innocence | judges decide guilt before trial | the jury assumes guilt
+mc3: A suspect is questioned for hours without being told of the right to remain silent and confesses. Under Miranda, what is the likely result? | the confession may be excluded from evidence at trial | the suspect is automatically guilty | the case must go to the Supreme Court | the police are promoted
+sa2: Explain how the exclusionary rule protects Fourth Amendment rights, and one argument against it. | It removes the reward for illegal searches by keeping such evidence out of court; critics argue it can let guilty people go free because of police mistakes.
+lesson: Equal protection and civil rights | 12.2, 12.5
+practice:
+mc2: The Equal Protection Clause of the Fourteenth Amendment requires states to | treat people equally under the law | give everyone the same income | make everyone vote | hire equal numbers of each group
+hint: "Equal protection of the laws" is the key phrase.
+mc2: In Loving v. Virginia (1967), the Supreme Court | struck down laws banning interracial marriage | upheld school segregation | ended the poll tax | allowed segregation in housing
+hint: Mildred and Richard Loving were a married couple.
+mc2: In Reed v. Reed (1971), the Court for the first time ruled that | a law treating men and women differently violated equal protection | women could not inherit property | women could not vote | men must serve on juries
+hint: An Idaho law preferred men to manage estates.
+mc2: Strict scrutiny is the test courts use for laws that classify people by race. It requires the government to show | a compelling interest and that the law is narrowly tailored | any reason at all | that the law is popular | that Congress approved it
+hint: It is the hardest test for a law to pass.
+mc3: In Students for Fair Admissions v. Harvard (2023), the Court ruled that colleges may not use race as a factor in admissions. Supporters said this ensures equal treatment; critics said it will reduce diversity. What does this show? | Americans disagree about what equal protection requires | everyone agreed with the ruling | the case was about voting | the ruling had no effect
+hint: Look for the answer that recognizes both views.
+sa2: Explain the difference between de jure and de facto segregation. | De jure segregation is required by law, such as Jim Crow laws; de facto segregation exists in practice because of housing patterns or other causes without a law requiring it.
+hint: "De jure" means "by law."
+quiz:
+mc1: Civil rights are | guarantees of equal treatment and protection from discrimination | rights only for government officials | taxes paid to the state | military duties
+mc2: Which case overturned Plessy v. Ferguson's "separate but equal" rule in public education? | Brown v. Board of Education | Loving v. Virginia | Reed v. Reed | Miranda v. Arizona
+mc2: In Regents of the University of California v. Bakke (1978), the Court ruled that | racial quotas were not allowed, but race could be one factor in admissions | all affirmative action was required | race could never be considered | quotas were required
+mc2: The Civil Rights Act of 1964 was passed using Congress's power to | regulate interstate commerce and enforce the Fourteenth Amendment | declare war | coin money | admit new states
+mc2: In Obergefell v. Hodges (2015), the Court relied on the Fourteenth Amendment to rule that | states must license and recognize marriages between same-sex couples | marriage is not a right | states may ban same-sex marriage | only Congress can define marriage
+mc3: A state law sets a lower speed limit for drivers over 80. Courts would likely review it with a less strict test than a law based on race. Why? | courts apply the strictest test to classifications like race that have a history of discrimination | age is never reviewed | courts ignore all age laws | race laws are always allowed
+sa2: Explain how the Supreme Court's interpretation of equal protection changed from Plessy v. Ferguson to Brown v. Board. | In Plessy (1896) the Court said separate facilities could be equal; in Brown (1954) it ruled that separate schools are inherently unequal and violate equal protection.
+lesson: Citizenship: rights, responsibilities and limits | 12.2
+practice:
+mc2: To become a naturalized U.S. citizen, an adult permanent resident usually must live in the U.S. for at least | 5 years, or 3 years if married to a citizen | 1 year | 20 years | 10 years for everyone
+hint: The rules are shorter for spouses of citizens.
+mc2: Applicants for naturalization must pass a test on | English and U.S. history and government | mathematics and science | world geography only | driving skills
+hint: The civics test covers the Constitution and history.
+mc2: Most men living in the U.S. ages 18 to 25 are required to | register with the Selective Service System | serve in the military | vote in every election | join a political party
+hint: Registration does not mean being drafted.
+mc2: Which is a legal duty of citizens, not just a responsibility? | serving on a jury when called | volunteering in the community | joining a political party | attending city council meetings
+hint: Which one can bring a penalty if ignored?
+mc3: In 2018 the Supreme Court said Korematsu v. United States (1944) "was gravely wrong the day it was decided." What does this show? | the Court can later reject past decisions that violated rights | Korematsu was never decided | the Court never changes its views | the 1944 decision was correct
+hint: What is the Court saying about its own earlier ruling?
+sa2: Explain the difference between a right and a responsibility of citizenship, with an example of each. | A right is a freedom protected by law, such as freedom of speech; a responsibility is something citizens should or must do, such as voting, paying taxes or serving on a jury.
+hint: One is something you have; the other is something you do.
+quiz:
+mc1: Naturalization is | the legal process by which an immigrant becomes a citizen | being born in the U.S. | moving to a new state | registering to vote
+mc2: Under the Fourteenth Amendment, a person born in the United States is | a citizen | a citizen only if parents are citizens | not a citizen until age 18 | a permanent resident
+mc2: Paying taxes is a duty of citizens because taxes | fund public services such as schools, roads and defense | are optional | go only to the President | are paid only by businesses
+mc2: Which right is generally held by citizens but not by noncitizen residents? | voting in federal elections | freedom of speech | due process | freedom of religion
+mc2: Being informed about public issues is considered a responsibility because | democracy depends on citizens making thoughtful decisions | it is required by law | it is a form of tax | the government assigns topics
+mc3: After a terror attack, a government proposes broad surveillance of phone records. Which question best helps a citizen weigh this policy? | How much does it improve safety, and how much does it intrude on privacy and liberty? | How many phones are sold each year? | Who invented the telephone? | What time is it?
+cer3: Suppose a county mails 650 jury summonses to fill juries that need 100 jurors, because many people are excused and some never respond. Make a claim about why jury service matters to the right to a fair trial and what happens when citizens avoid it, give evidence and explain your reasoning. | Claim: jury service is essential to fair trials, and avoiding it weakens them. Evidence: the Sixth Amendment promises an impartial jury, but in this example the county must summon 650 people to seat 100 because so many are excused or do not respond. Reasoning: if many groups avoid service, juries may not reflect the community, so defendants lose the fair, representative jury the Constitution promises.
+
+lesson: Unit review | 12.2, 12.5
+practice:
+mc2: Which pair correctly matches a case with its ruling? | Mapp v. Ohio - exclusionary rule applied to the states | Engel v. Vitale - flag burning protected | Texas v. Johnson - school prayer banned | Loving v. Virginia - right to an attorney
+hint: Check each pair carefully.
+mc2: Which amendment has been used to apply most of the Bill of Rights to the states? | the Fourteenth | the Tenth | the First | the Twenty-sixth
+hint: It includes due process and equal protection clauses.
+mc2: Which action is protected by the First Amendment? | peacefully protesting outside city hall | making a credible threat of violence | lying under oath | publishing false and malicious statements about a private person
+hint: Which one is not a recognized exception?
+mc2: Which is a responsibility of citizenship? | voting in elections | owning a car | buying a home | joining a club
+hint: Which one helps democracy work?
+sa2: Explain why the Supreme Court's role in protecting rights is important when a majority supports limiting them. | Rights protect minorities and unpopular people from majority rule; independent courts can strike down laws that violate the Constitution even if they are popular.
+hint: Think of Barnette or Brown.
+quiz:
+mc1: Miranda v. Arizona (1966) requires police to | inform suspects of their rights | search without warrants | ban protests | end trials
+mc1: How many justices sit on the U.S. Supreme Court? | 9 | 7 | 12 | 5
+mc2: Tinker v. Des Moines (1969) ruled that students | have free speech rights at school that do not disrupt learning | have no rights at school | can be expelled for any speech | must wear uniforms
+mc2: Gideon v. Wainwright (1963) guaranteed | the right to an attorney in criminal cases | the right to vote | freedom of religion | the right to bear arms
+ex2: Explain the difference between civil liberties and civil rights. | Liberties protect individuals from government action (speech); rights guarantee equal treatment (anti-discrimination).
+mc2: Which case limited official prayer in public schools? | Engel v. Vitale | Mapp v. Ohio | Gideon v. Wainwright | Tinker v. Des Moines
+mc2: The exclusionary rule protects rights found in the | Fourth Amendment | Second Amendment | Third Amendment | Tenth Amendment
+
+test:
+mc2: Plessy v. Ferguson (1896) | upheld "separate but equal" segregation | ended segregation | gave women the vote | created judicial review
+mc2: Freedom of speech does NOT protect | speech that directly incites imminent violence | criticism of the government | peaceful protest | political opinions
+mc2: The Fourth Amendment protects against | unreasonable searches and seizures | cruel and unusual punishment | quartering soldiers | double jeopardy
+mc3: Why does the Supreme Court sometimes overturn its own earlier decisions? | Its interpretation of the Constitution can change with new reasoning and circumstances | It must change every year | Congress orders it | It never does
+sa2: Explain a landmark Supreme Court case and its effect on rights. | For example, Brown v. Board ended legal school segregation; Obergefell recognized same-sex marriage.
+sa2: Take a position on the limits of a constitutional right (for example, free speech online) and defend it. | A clear position with constitutional reasoning and an example.
+task3: Conduct a moot court on a constitutional issue (for example, student speech on social media). Write a brief for one side using the Constitution, precedent cases and reasoning, and a short opinion explaining how the Court should rule. | Well-reasoned brief with accurate precedents and a persuasive opinion. | Clear brief with some precedents. | Limited reasoning. | Little correct work.
+mc1: The Bill of Rights includes | the first ten amendments | all twenty-seven amendments | the Preamble | the Articles of Confederation
+mc2: Incorporation applies Bill of Rights protections to the states through the | Fourteenth Amendment | Tenth Amendment | Second Amendment | Supremacy Clause
+mc2: In New York Times Co. v. United States (1971), the Court allowed newspapers to publish | the Pentagon Papers | the Watergate tapes | the Federalist Papers | classified nuclear designs
+mc2: Which case protected flag burning as symbolic speech? | Texas v. Johnson | Engel v. Vitale | Mapp v. Ohio | Reed v. Reed
+mc2: The Eighth Amendment bans | cruel and unusual punishment | quartering soldiers | establishment of religion | unreasonable searches
+mc2: In Wisconsin v. Yoder, the Court protected the religious practices of | Amish families | Jehovah's Witnesses | public school teachers | city officials
+mc2: Which case struck down bans on interracial marriage? | Loving v. Virginia | Plessy v. Ferguson | Bakke | Hazelwood
+mc2: School officials may search a student's belongings if they have | reasonable suspicion | no reason | a jury's approval | the principal's permission only
+mc3: A newspaper editor in 1971 said publishing the Pentagon Papers informed the public. Government officials said it threatened national security. How did the Supreme Court resolve this conflict? | it ruled that the government had not met the heavy burden needed to stop publication | it banned the papers forever | it sent the editor to prison | it refused to hear the case
+mc3: Which situation would most likely be protected by Tinker v. Des Moines? | students quietly wearing armbands to protest a war | a student threatening a classmate | students shouting during an exam | a student damaging school property
+mc1: Habeas corpus protects people from | being held without being brought before a judge | paying taxes | serving on juries | voting
+mc2: Which amendment protects the right to a speedy and public trial? | the Sixth | the Fourth | the Second | the Ninth
+sa2: Explain how a Supreme Court precedent can be both stable and changeable. | Courts usually follow precedent so the law is predictable, but the Court can overturn a precedent when it decides the earlier reasoning was wrong, as Brown did with Plessy.
+cer3: In 1961 Mapp v. Ohio applied the exclusionary rule to the states. Supporters say police training on warrants increased afterward; critics point to cases where evidence of crimes was thrown out. Make a claim about whether the exclusionary rule is a good way to protect Fourth Amendment rights, give evidence and explain your reasoning. | Claim (sample): the exclusionary rule is a necessary protection. Evidence: after Mapp, police departments trained officers to get warrants, showing the rule changes behavior, though some evidence has been excluded. Reasoning: without a penalty for illegal searches, the Fourth Amendment would be a promise without enforcement; the cost of occasionally losing evidence protects everyone's privacy. (A well-supported opposing claim also earns full credit.)
+
+unit: Political participation and elections | 12.6, 12.8, 12.9
+el: Use a ballot and voter guide as realia, a word bank (party, platform, primary, caucus, elector, proposition, poll, margin of error) and the frame "I would vote ___ on this measure because ___."
+lesson: Political parties and ideology | 12.6
+practice:
+mc2: A political party is | a group that tries to win elections and control government to carry out its ideas | a government agency | a court | a celebration
+hint: Parties nominate candidates.
+mc2: A party platform is | a statement of the party's positions on issues | a stage at a rally | a voting machine | a type of tax
+hint: Each position is sometimes called a "plank."
+mc2: In 1912 Theodore Roosevelt ran for President as the candidate of | the Progressive ("Bull Moose") Party and won more votes than the Republican candidate | the Democratic Party | the Whig Party | no party
+hint: He split the Republican vote.
+mc2: Since 2012, California's primary elections for most state and congressional offices have used | a "top-two" system in which the two leading candidates advance regardless of party | a closed primary for party members only | no primaries | caucuses
+hint: Two candidates from the same party can face each other in November.
+mc3: Third parties rarely win national elections, yet some of their ideas, such as women's suffrage and the direct election of senators, later became law. What does this show? | third parties can influence the major parties and public policy | third parties have no influence | major parties never adopt new ideas | third parties win most elections
+hint: How can ideas spread without winning?
+sa2: Explain why the United States has mainly a two-party system. | Winner-take-all elections in single-member districts make it hard for third parties to win seats, so voters and politicians gather into two large parties.
+hint: Think about how winners are chosen.
+quiz:
+mc1: The two major U.S. political parties today are the | Democratic and Republican parties | Federalist and Whig parties | Green and Libertarian parties | Progressive and Populist parties
+mc2: George Washington warned in his Farewell Address (1796) that "the spirit of party" serves "to distract the Public Councils and enfeeble the public administration." What was his concern? | parties could divide the nation and weaken government | parties would make government too strong | parties were needed for elections | there should be more parties
+mc2: An independent voter is one who | does not belong to a political party | must vote for every party | belongs to two parties | cannot vote in elections
+mc2: Which is a function of political parties? | recruiting and nominating candidates | interpreting the Constitution | collecting taxes | appointing judges
+mc2: On the political spectrum, people who generally favor less government involvement in the economy are often called | conservatives | liberals | anarchists | monarchists
+mc3: A voter supports environmental regulations but also lower taxes. What does this show about political ideology? | many people hold views that do not fit neatly into one party | everyone agrees with one party on everything | parties have no positions | the voter cannot vote
+sa2: Evaluate one advantage and one disadvantage of California's top-two primary. | Advantage: all voters can choose any candidate, which may favor moderates. Disadvantage: some voters may have no candidate from their party in the general election.
+lesson: Voting rights and the expanding electorate | 12.6, 12.9
+practice:
+mc2: The Fifteenth Amendment (1870) | banned denying the vote because of race | gave women the vote | lowered the voting age | banned poll taxes
+hint: It was passed during Reconstruction.
+mc2: The Twenty-third Amendment (1961) | gave residents of Washington, D.C., electoral votes for President | lowered the voting age | gave women the vote | ended poll taxes
+hint: D.C. is not a state.
+mc2: In California, 16- and 17-year-olds can | preregister to vote so they are registered automatically at 18 | vote in all elections | run for governor | serve on juries
+hint: Preregistration happens before the voting age.
+mc2: In Shelby County v. Holder (2013), the Supreme Court | struck down the formula used to decide which places needed federal approval to change voting rules | ended the Voting Rights Act completely | lowered the voting age | created new congressional districts
+hint: The case involved preclearance rules from 1965.
+mc3: The share of adults eligible to vote has grown over time through amendments and laws. Which list shows expansions in the correct order? | race (1870), women (1920), poll tax ban (1964), age 18 (1971) | women (1920), race (1870), age 18 (1971), poll tax ban (1964) | age 18 (1971), women (1920), race (1870), poll tax ban (1964) | poll tax ban (1964), race (1870), women (1920), age 18 (1971)
+hint: Put the years in order.
+sa2: Explain why the Fifteenth Amendment did not guarantee Black Americans the vote in practice until the 1960s. | Southern states used poll taxes, literacy tests, white primaries, intimidation and violence to block Black voters until the Twenty-fourth Amendment and the Voting Rights Act removed many of these barriers.
+hint: Think about tactics used to get around the amendment.
+quiz:
+mc1: Suffrage means | the right to vote | the right to bear arms | freedom of speech | the right to a trial
+mc2: The Nineteenth Amendment guaranteed the right to vote regardless of | sex | race | age | wealth
+mc2: The Voting Rights Act of 1965 | banned literacy tests and allowed federal oversight of voter registration | gave women the vote | created the Electoral College | lowered the voting age to 18
+mc2: A literacy test was a | reading test used to keep many Black citizens from registering to vote | spelling bee | job application | citizenship oath
+mc2: In 2020 California voters approved a measure that | restored the right to vote to people on parole | lowered the voting age to 16 | ended mail voting | ended the initiative process
+mc3: Supporters of strict voter ID laws say they prevent fraud; opponents say they make voting harder for some eligible citizens. Which evidence would best help evaluate this debate? | data on how often voter fraud occurs and how many eligible voters lack an ID | the color of ballots | the number of political parties | the age of the Constitution
+sa2: Explain how the Twenty-sixth Amendment connects to the Vietnam War. | Many argued that if 18-year-olds could be drafted to fight, they should be able to vote; the amendment lowered the voting age to 18 in 1971.
+lesson: Campaigns, elections and the Electoral College in practice | 12.6, 12.8
+practice:
+mc2: In most states the candidate who wins the popular vote receives all of that state's electoral votes. The two states that can split their electoral votes are | Maine and Nebraska | California and Texas | Ohio and Florida | Alaska and Hawaii
+hint: They award some electors by congressional district.
+mc2: A "swing state" is a state where | either major party has a real chance of winning | one party always wins | no one votes | there are no electors
+hint: Candidates spend a lot of time there.
+mc2: In which elections did the winner of the national popular vote lose the Electoral College? | 2000 and 2016 | 1960 and 1980 | 1932 and 1936 | 2008 and 2012
+hint: Both were very close elections.
+mc2: In Citizens United v. FEC (2010), the Supreme Court ruled that | the government may not limit independent political spending by corporations and unions | corporations cannot spend money on politics | only individuals can donate | campaign ads are illegal
+hint: The Court treated the spending as speech.
+mc3: Candidates in close presidential races spend most of their time in a few states. Which feature of the Electoral College causes this? | winner-take-all rules make a few competitive states decide the election | every state is equally competitive | electors are chosen randomly | the popular vote decides the election
+hint: Why visit a state that is certain to vote one way?
+sa2: Explain the purpose of national party conventions. | Delegates officially nominate the party's candidates for President and Vice President, adopt a platform and rally supporters for the general election.
+hint: What does each party decide there?
+quiz:
+mc1: A general election is | the election in which voters choose among the parties' nominees for office | a party's internal vote | a court decision | a poll
+mc2: In a caucus, party members | meet in person to discuss and choose candidates | vote by mail only | appoint the President | count electoral votes
+mc2: The Federal Election Commission | enforces federal campaign finance laws | counts votes in every state | appoints electors | runs the Senate
+num2: California had 54 electoral votes in the 2024 election. A candidate needs 270 to win. How many more electoral votes would a candidate who won only California need? | 216
+mc2: A super PAC can | raise and spend unlimited amounts independently of a candidate's campaign | give unlimited money directly to candidates | run elections | count votes
+mc3: A candidate's ad claims her opponent "voted to raise taxes 50 times." Which step best checks the claim? | look up the actual votes in congressional records or a nonpartisan fact-check | trust the ad because it is from a candidate | ask a friend | count the ad's views
+sa2: Explain one argument for and one argument against the winner-take-all system for electoral votes. | For: it produces clear winners and makes states important as units. Against: votes for the losing candidate in a state do not count toward the result, and candidates ignore safe states.
+lesson: Public opinion, media and civic action | 12.6, 12.8
+practice:
+mc2: A public opinion poll is most reliable when it | uses a large random sample of people | asks only the pollster's friends | uses an online poll anyone can answer many times | asks leading questions
+hint: Every person should have an equal chance of being chosen.
+mc2: A poll reports that 52 percent support a measure, with a margin of error of plus or minus 3 points. The true level of support is most likely between | 49 and 55 percent | 52 and 55 percent | 50 and 52 percent | 45 and 60 percent
+hint: Add and subtract 3 from 52.
+mc2: A leading question in a poll is one that | pushes people toward a particular answer | has no answer | is asked first | is about leadership
+hint: For example, "Don't you agree that...?"
+mc2: Lobbying means | trying to persuade lawmakers to support or oppose policies | voting in elections | running for office | counting ballots
+hint: The word comes from people waiting in lobbies to meet legislators.
+mc3: A social media post claims a new law bans all cars. The law actually sets emission standards for new cars starting in 2035. What does this show? | misleading posts can distort what a law does, so citizens should read reliable summaries | the post is accurate | laws are never reported correctly | social media is always reliable
+hint: Compare the claim with what the law says.
+sa2: Describe two ways a high school student can participate in civic life before turning 18. | For example, preregister to vote, contact representatives, testify at a school board meeting, volunteer for a campaign or join a peaceful protest.
+hint: Think beyond voting.
+quiz:
+mc1: Public opinion is | what the people think about issues and leaders | the opinion of one judge | a law | a court ruling
+mc2: Media bias means | reporting that favors one side or viewpoint | reporting with accurate facts from all sides | no news at all | government ownership of media
+mc2: An exit poll is | a survey of voters as they leave polling places | a poll taken a year before the election | a vote in Congress | a court decision
+mc2: Which is the best example of petitioning the government? | gathering signatures asking the city council to add a crosswalk | posting a meme | buying a ticket | watching TV news
+mc2: Interest groups often support candidates through | endorsements, donations and get-out-the-vote efforts | appointing judges | writing the Constitution | counting ballots
+mc3: Two news sites report the same event with different headlines: one calls a protest "peaceful," the other calls it "chaotic." What should a careful reader do? | compare multiple sources and look for factual details such as arrests or videos | choose the headline they like | ignore both | believe the first one read
+sa2: Explain how the size and randomness of a poll's sample affect how much you can trust it. | A larger random sample better represents the whole population and has a smaller margin of error; a small or self-selected sample may be biased and misleading.
+
+lesson: Unit review | 12.6, 12.8, 12.9
+practice:
+mc2: Which pair correctly matches an amendment with the voting right it protects? | Twenty-sixth - age 18 | Nineteenth - race | Fifteenth - women | Twenty-fourth - Washington, D.C.
+hint: Check each pair carefully.
+mc2: Which is an example of direct democracy in California? | voting on a ballot proposition | electing a state senator | the governor signing a bill | a court ruling
+hint: Voters decide the law themselves.
+mc2: Which is the most reliable source for a candidate's voting record? | official congressional or legislative records | an opponent's ad | an anonymous post | a campaign mailer
+hint: Look for the original record.
+mc2: Which statement about the Electoral College is accurate? | electors in most states are awarded winner-take-all | each state has the same number of electors | the House chooses electors | it was created in 1965
+hint: Remember the exceptions of Maine and Nebraska.
+sa2: Explain one way citizens can influence government between elections. | For example, contacting representatives, testifying at public meetings, joining interest groups, signing petitions or peacefully protesting.
+hint: Think of actions besides voting.
+quiz:
+mc1: In California, citizens can propose laws directly through | the initiative process | a royal decree | the Supreme Court | the military
+mc1: The minimum voting age in the United States is | 18 | 16 | 21 | 25
+mc2: A primary election | chooses a party's candidates for the general election | elects the President directly | is a court case | is held only in other countries
+mc2: Political action committees (PACs) | raise and spend money to support candidates or causes | write laws | count votes | appoint judges
+ex2: Explain why an informed electorate is essential in a democracy. | Voters must understand issues to choose leaders and policies that serve the public.
+mc2: Which amendment gave Washington, D.C., electoral votes? | the Twenty-third | the Twenty-second | the Twenty-sixth | the Fifteenth
+mc2: In California's top-two primary, who advances to the general election? | the two candidates with the most votes, regardless of party | one candidate from each party | only the winner | all candidates
+
+test:
+mc2: Which is the best way to evaluate a political advertisement? | check its claims against reliable sources | believe it because it is emotional | share it right away | ignore all ads
+mc2: Interest groups try to | influence public policy | run elections | appoint judges directly | collect taxes
+mc2: A recall election allows voters to | remove an elected official before the term ends | elect a king | change the Constitution directly | skip elections
+mc3: Why might voter turnout among young adults be lower than among older adults? | less experience with voting, frequent moves and less outreach | they are not allowed to vote | they vote twice | there is no reason
+sa2: Explain how a California ballot proposition becomes law. | Gather enough voter signatures to qualify, then a majority of voters approve it at an election.
+sa2: Evaluate the influence of money on elections, using evidence. | Discusses campaign spending, Citizens United and arguments about speech versus corruption.
+task3: Analyze a current California ballot measure or election campaign. Research both sides, evaluate their arguments and evidence, analyze campaign advertising for accuracy and bias, and write a voter guide that recommends a position with reasons. | Balanced, accurate analysis of both sides, sharp media evaluation and a well-reasoned recommendation. | Good analysis with a supported recommendation. | Limited analysis. | Little correct work.
+mc1: A party's nominee for President is formally chosen at | the national convention | the Supreme Court | the Electoral College meeting | a state legislature
+mc2: The Fifteenth Amendment banned denying the vote because of | race | sex | age | income
+mc2: Which two states can split their electoral votes? | Maine and Nebraska | California and Oregon | Texas and Florida | New York and Ohio
+mc2: A random sample in polling means | every person in the population has an equal chance of being chosen | only volunteers answer | the pollster picks friends | people answer many times
+mc2: Citizens United v. FEC (2010) concerned | independent political spending by corporations and unions | voting age | poll taxes | school prayer
+mc2: Lobbyists work to | influence lawmakers on behalf of a group | run elections | write court opinions | count ballots
+mc2: Theodore Roosevelt's 1912 third-party campaign was for the | Progressive Party | Green Party | Libertarian Party | Whig Party
+mc2: The Voting Rights Act of 1965 banned | literacy tests for voting | voting by mail | voting at 18 | political parties
+mc3: A state senator says strict ID laws protect elections; a voting rights group says they block eligible voters. Which question best tests both claims? | How many fraud cases did ID rules stop, and how many eligible voters were turned away? | Which group has more members? | How long has each group existed? | What color are the ID cards?
+mc3: In the 2016 election, one candidate won the national popular vote and the other won the Electoral College. What does this show? | the Electoral College can produce a different winner than the national popular vote | the popular vote decides the presidency | the Electoral College was abolished | there was no election
+mc1: An initiative allows citizens to | propose a law and put it on the ballot | appoint a judge | veto a law | declare war
+mc2: A poll finds 46 percent support with a margin of error of plus or minus 4 points. Which range most likely contains true support? | 42 to 50 percent | 46 to 50 percent | 40 to 46 percent | 44 to 48 percent
+sa2: Explain why voter turnout matters for representative government. | When many eligible citizens vote, elected officials better reflect the whole community; low turnout lets a smaller, less representative group decide.
+cer3: Census Bureau survey data for the 2020 general election show that about 74 percent of eligible U.S. citizens age 65 and older voted, compared with about 51 percent of eligible citizens ages 18 to 24. Make a claim about how age affects turnout and what effect that may have on policy, give evidence and explain your reasoning. | Claim: older Americans vote at much higher rates, so their concerns may receive more attention. Evidence: about 74 percent of eligible citizens 65 and older voted, compared with about 51 percent of those 18 to 24. Reasoning: officials respond to the people who elect them, so groups that vote more often have more influence on issues such as Social Security, housing or college costs.
+
+unit: Economics | ECON 12.1, ECON 12.2, ECON 12.3, ECON 12.6 | soc_10, soc_12_n2
+el: Use a supply-and-demand graph template, a calculator, and a word bank (scarcity, incentive, equilibrium, elasticity, tax, interest, inflation, comparative advantage). Model one calculation aloud before students try similar problems.
+lesson: Economic systems and economic reasoning | ECON 12.1
+practice:
+mc2: In a market economy, most decisions about what to produce are made by | individuals and businesses responding to prices | a central government plan | tradition | a king
+hint: Think of buyers and sellers.
+mc2: In a command economy, | the government decides what to produce, how and for whom | buyers and sellers set prices freely | people follow ancient traditions only | there is no government
+hint: "Command" means orders from above.
+mc2: Adam Smith wrote in "The Wealth of Nations" (1776): "It is not from the benevolence of the butcher, the brewer, or the baker, that we expect our dinner, but from their regard to their own interest." What did he mean? | people pursuing their own interest in markets end up serving others | businesses are generous | people should not trade | government should provide all food
+hint: Why does the baker bake bread for you?
+mc2: The four factors of production are land, labor, capital and | entrepreneurship | money | government | taxes
+hint: Someone has to combine the others and take risks.
+mc3: The United States has private businesses but also public schools, minimum wage laws and Social Security. Which term best describes its economy? | a mixed economy | a pure command economy | a traditional economy | a barter economy
+hint: It combines features of more than one system.
+sa2: Explain how incentives affect people's economic choices, with an example. | Incentives are rewards or penalties that change behavior; for example, a sale price encourages shoppers to buy, and a tax on soda may lead people to buy less.
+hint: Think of prices, rewards and penalties.
+quiz:
+mc1: An incentive is | something that motivates people to act, such as a reward or penalty | a type of tax | a factory | a law of nature
+mc2: Capital, as a factor of production, means | tools, machines and buildings used to make goods | money in a savings account only | natural resources | workers
+mc2: A production possibilities frontier shows | the combinations of two goods an economy can produce with its resources | the price of goods | a country's borders | tax rates
+mc2: Thinking "at the margin" means | considering the extra benefit and cost of one more unit | thinking only about totals | ignoring costs | buying everything
+mc2: A traditional economy is one in which | economic decisions follow customs passed down over generations | the government controls everything | prices decide everything | there is no work
+mc3: A student can work 4 more hours at $15 an hour or study for a test. She chooses to study. What is the opportunity cost of studying? | the $60 she could have earned | nothing | the cost of her textbook | $15
+sa2: Compare how a market economy and a command economy answer the question "What should be produced?" | In a market economy, consumers' demand and businesses' pursuit of profit decide; in a command economy, government planners decide based on their goals.
+lesson: Supply, demand and market prices | ECON 12.1, ECON 12.2
+practice:
+mc2: The law of supply states that as the price of a good rises, | producers are willing to supply more of it | producers supply less | supply stays the same | demand rises
+hint: Higher prices mean more profit for sellers.
+mc2: The equilibrium price is the price at which | quantity supplied equals quantity demanded | supply is zero | demand is zero | the government sets the price
+hint: It is where the two curves cross.
+mc2: A popular concert's tickets are priced below equilibrium. What is most likely? | a shortage, with more fans wanting tickets than are available | a surplus of tickets | no one buys tickets | the price must fall
+hint: Low prices increase quantity demanded.
+mc2: A rent control law that sets rent below the market price is an example of | a price ceiling | a price floor | a subsidy | a tariff
+hint: A ceiling is a maximum.
+mc3: A frost destroys much of Florida's orange crop. What will most likely happen to the price and quantity of orange juice sold? | the price rises and the quantity sold falls | the price falls and quantity rises | both rise | nothing changes
+hint: Supply shifts left.
+sa2: Explain the difference between a change in demand and a change in quantity demanded. | A change in quantity demanded is a movement along the demand curve caused by a price change; a change in demand shifts the whole curve because of factors like income, tastes or prices of related goods.
+hint: Is it caused by the good's own price or something else?
+quiz:
+mc1: Demand is | the amount of a good consumers are willing and able to buy at each price | the amount producers make | the price of a good | a government order
+mc2: The minimum wage is an example of | a price floor | a price ceiling | a tax | a tariff
+num2: At a price of $4, buyers want 600 sandwiches and sellers offer 450. How many sandwiches is the shortage? | 150
+mc2: Demand for a good is elastic when | a small price change causes a large change in quantity demanded | price changes have no effect | the good is a necessity like insulin | supply is fixed
+mc2: If the price of hot dogs falls, demand for hot dog buns will most likely | increase, because they are complements | decrease | stay the same | disappear
+mc3: Electric cars become more popular and battery factories expand. Which is the most likely effect on the market for lithium, used in batteries? | demand for lithium rises, raising its price | demand for lithium falls | lithium prices fall to zero | there is no effect
+sa2: Explain how a surplus pushes a market back toward equilibrium. | When quantity supplied is greater than quantity demanded, sellers have unsold goods, so they lower prices; lower prices increase quantity demanded and decrease quantity supplied until they match.
+lesson: Business, labor and personal finance | ECON 12.1, ECON 12.2
+practice:
+mc2: A corporation differs from a sole proprietorship because a corporation | gives owners limited liability for the business's debts | has only one owner | cannot sell stock | pays no taxes
+hint: Shareholders risk only what they invested.
+mc2: Buying a share of stock means | owning a small part of a company | lending money to a company | paying a tax | opening a bank account
+hint: Stockholders are part owners.
+mc2: A bond is | a loan to a company or government that pays interest | a share of ownership | a type of insurance | a tax
+hint: The buyer of a bond is a lender.
+num2: You deposit $1,000 in an account earning 5 percent interest compounded once a year. How many dollars will be in the account after 2 years? | 1102.50
+hint: After year 1 you have $1,050. Then earn 5 percent on that amount.
+mc3: Workers with more education and skills usually earn higher wages. Which economic idea explains this? | human capital, the knowledge and skills that make workers more productive | the law of supply | inflation | tariffs
+hint: Investing in yourself is an investment too.
+sa2: Explain why diversification can reduce risk when investing. | Spreading money among many companies or types of investments means a loss in one is balanced by others, so the whole portfolio is less likely to lose a lot.
+hint: Think about "not putting all your eggs in one basket."
+quiz:
+mc1: A partnership is a business | owned by two or more people who share profits and responsibilities | owned by the government | owned by thousands of stockholders | run by a union
+mc2: Collective bargaining is | negotiation between a union and an employer over wages and conditions | buying goods in bulk | a type of loan | a stock trade
+num2: A worker earns $20 an hour and works 30 hours a week. How many dollars does she earn in 4 weeks before taxes? | 2400
+mc2: A credit score is used by lenders to | judge how likely a borrower is to repay | set tax rates | count votes | measure GDP
+mc2: Paying only the minimum on a credit card balance usually | increases the total interest paid over time | reduces the interest owed | erases the debt | has no effect
+num2: A $200 jacket is on sale for 25 percent off. What is the sale price in dollars? | 150
+sa2: Explain one advantage and one disadvantage of using a credit card. | Advantage: convenience and building a credit history. Disadvantage: high interest on unpaid balances can lead to growing debt.
+lesson: Government's role: taxes, public goods and fiscal policy | ECON 12.3
+practice:
+mc2: A progressive tax is one in which | people with higher incomes pay a higher percentage | everyone pays the same amount | people with lower incomes pay a higher percentage | no one pays
+hint: The U.S. federal income tax works this way.
+mc2: A sales tax is often called regressive because | lower-income people spend a larger share of their income on it | it rises with income | only the rich pay it | it is refunded to everyone
+hint: Compare the tax to each person's income.
+mc2: A public good, such as national defense, is | available to everyone, and one person's use does not reduce another's | sold only to some people | made by private companies for profit only | a type of tax
+hint: Can you keep people from benefiting?
+mc2: Pollution from a factory that harms nearby residents is an example of | a negative externality | a public good | a price floor | a subsidy
+hint: A cost falls on people outside the transaction.
+mc3: The federal government spent about $6.75 trillion and collected about $4.92 trillion in revenue in fiscal year 2024. What does this show? | the government ran a budget deficit of about $1.8 trillion that year | the government had a surplus | revenue was greater than spending | there was no national debt
+hint: Compare spending with revenue.
+sa2: Explain the difference between the federal budget deficit and the national debt. | The deficit is how much spending exceeds revenue in one year; the national debt is the total amount the government owes from all past borrowing.
+hint: One is yearly; the other is a running total.
+quiz:
+mc1: Fiscal policy is set by | Congress and the President through taxes and spending | the Federal Reserve | the Supreme Court | state governors only
+mc2: The Sherman Antitrust Act of 1890 | outlawed monopolies and agreements that restrain trade | created the income tax | set the minimum wage | created the Federal Reserve
+num2: A worker earns $40,000 a year and pays a flat 10 percent tax. How many dollars does she pay in tax? | 4000
+mc2: The largest source of federal revenue is | individual income taxes | tariffs | sales taxes | national park fees
+mc2: Government may pay a subsidy to producers to | encourage more production of a good, such as solar panels | stop production | collect taxes | lower wages
+mc3: During a recession, Congress cuts taxes and increases spending on roads. What is the goal? | to raise demand and create jobs | to slow the economy | to raise interest rates | to shrink the money supply
+sa2: Explain why governments provide public goods instead of leaving them to private markets. | Because people can benefit without paying, private businesses cannot easily charge for goods like national defense or streetlights, so markets would supply too little of them.
+lesson: Money, banking and the Federal Reserve | ECON 12.3
+practice:
+mc2: Money serves as a medium of exchange, a unit of account and | a store of value | a type of tax | a factor of production | a public good
+hint: Money keeps its value so you can save it.
+mc2: The Federal Reserve System, created in 1913, includes a Board of Governors and | 12 regional Federal Reserve Banks | 50 state banks | one bank in each city | the Treasury Department only
+hint: San Francisco has one of them.
+mc2: To fight high inflation, the Federal Reserve usually | raises interest rates | lowers interest rates | prints more money | cuts taxes
+hint: Higher rates make borrowing more expensive.
+num2: The price index rose from 300 to 312 in one year. What was the inflation rate as a percent? | 4
+hint: Find the change, divide by the starting value and multiply by 100.
+mc3: The Fed lowers interest rates during a recession. Which is the most likely result? | more borrowing and spending by businesses and consumers | less borrowing | higher unemployment immediately | a budget surplus
+hint: Cheaper loans encourage what?
+sa2: Explain how inflation affects people who save money and people who borrow money. | Inflation lowers the buying power of savings, hurting savers if interest is low; borrowers can benefit because they repay loans with money worth less than when they borrowed.
+hint: Think about the value of a dollar over time.
+quiz:
+mc1: Monetary policy is set by | the Federal Reserve | Congress | the President | the Supreme Court
+mc2: The Consumer Price Index (CPI) measures | changes in the prices of a typical basket of goods and services | the number of workers | stock prices | the national debt
+num2: A country's labor force has 160 million people, and 6.4 million are unemployed. What is the unemployment rate as a percent? | 4
+mc2: The FDIC protects depositors by | insuring bank deposits up to a set limit | setting interest rates | printing money | collecting taxes
+mc2: Deflation is | a general fall in prices | a general rise in prices | a rise in employment | a type of tax
+mc3: Inflation in the U.S. rose to about 9 percent in mid-2022, and the Fed raised interest rates many times. What was the Fed trying to do? | slow spending and borrowing to bring inflation down | speed up inflation | lower unemployment benefits | reduce taxes
+sa2: Compare the tools of the Federal Reserve with the tools of fiscal policy. | The Fed changes interest rates and the money supply; Congress and the President change taxes and government spending.
+lesson: International trade and the global economy | ECON 12.6
+practice:
+mc2: David Ricardo explained in 1817 that England and Portugal could both gain by trading cloth and wine. This idea is called | comparative advantage | absolute monarchy | inflation | scarcity
+hint: Each country specializes in what it gives up the least to produce.
+num2: In one day, Country A can make 10 computers or 20 shirts. What is its opportunity cost of making 1 computer, in shirts? | 2
+hint: Making one computer means giving up how many shirts?
+mc2: A trade deficit happens when a country | imports more than it exports | exports more than it imports | stops trading | has no currency
+hint: Compare money going out with money coming in.
+mc2: The United States-Mexico-Canada Agreement (USMCA), which took effect in 2020, replaced | NAFTA | the World Trade Organization | the European Union | the Marshall Plan
+hint: NAFTA began in 1994.
+mc3: If the value of the U.S. dollar rises compared with the Mexican peso, what is the most likely effect? | U.S. imports from Mexico become cheaper for Americans | U.S. exports become cheaper for Mexicans | trade stops | nothing changes
+hint: A stronger dollar buys more pesos.
+sa2: Explain why countries specialize and trade instead of producing everything themselves. | By specializing in goods where they have a comparative advantage and trading, countries can produce more in total and consume more than they could alone.
+hint: Think about opportunity cost.
+quiz:
+mc1: Exports are | goods and services sold to other countries | goods bought from other countries | taxes on imports | domestic sales
+mc2: A quota in trade is | a limit on the amount of a good that can be imported | a tax on imports | a trade agreement | a currency
+num2: In one day, Country B can make 5 cars or 15 bicycles. What is its opportunity cost of making 1 car, in bicycles? | 3
+mc2: An exchange rate is | the price of one country's currency in terms of another's | an interest rate | a tax rate | a tariff
+mc2: Free trade agreements usually | lower tariffs and other barriers between member countries | raise tariffs | ban trade | create a single government
+mc3: A tariff on imported washing machines protects U.S. factory jobs but raises prices for buyers. Which conclusion is best? | trade policies create winners and losers that must be weighed | tariffs only help everyone | tariffs only hurt everyone | tariffs have no effect
+sa2: Explain one argument for free trade and one argument for protecting some domestic industries. | For: free trade lowers prices and lets countries specialize. For protection: it can save jobs in certain industries and protect goods important to national security.
+
+lesson: Unit review | ECON 12.1, ECON 12.2, ECON 12.3, ECON 12.6
+practice:
+mc2: Which pair correctly matches a policy with who controls it? | monetary policy - the Federal Reserve | fiscal policy - the Supreme Court | tariffs - city councils | interest rates - state governors
+hint: Check each pair carefully.
+num2: A shirt costs $25. Sales tax is 8 percent. What is the total price in dollars? | 27
+hint: Find 8 percent of 25, then add it.
+mc2: Which is an example of a negative externality? | noise from an airport that disturbs nearby homes | a free concert in a park | buying a book | a bakery selling bread
+hint: Who bears a cost they did not choose?
+mc2: Which statement about supply and demand is accurate? | if demand rises and supply stays the same, the price usually rises | if supply rises, price always rises | demand never changes | prices are set only by government
+hint: Picture the demand curve shifting right.
+sa2: Explain how scarcity forces individuals and governments to make choices. | Because resources are limited, choosing one use means giving up another, so people and governments must weigh opportunity costs.
+hint: Think about time, money and resources.
+quiz:
+mc1: Scarcity means | limited resources and unlimited wants | resources are unlimited | prices are always low | there is no choice
+mc1: Opportunity cost is | the value of the next best alternative given up | the price of an item | free goods | a tax
+mc2: When the price of a good rises, the quantity demanded usually | falls | rises | stays the same | doubles
+mc2: Inflation is | a general rise in prices | a fall in prices | a type of tax | unemployment
+ex2: Explain how opportunity cost applies to a personal decision, such as going to college. | The cost includes tuition and the income you give up by not working full time.
+mc2: Which type of tax takes a higher percentage from higher incomes? | a progressive tax | a regressive tax | a proportional tax | a sales tax
+mc2: The idea that countries gain by specializing in what they give up the least to produce is | comparative advantage | absolute advantage only | inflation | elasticity
+
+test:
+mc2: The Federal Reserve mainly influences the economy through | monetary policy, such as setting interest rates | writing tax laws | running businesses | printing ballots
+mc2: Gross Domestic Product (GDP) measures | the total value of goods and services produced in a country | the number of workers | the national debt only | exports only
+mc2: Fiscal policy involves | government spending and taxation | interest rates set by banks | stock prices | trade agreements only
+mc3: A new tariff raises the price of imported steel. What is the most likely effect? | Domestic steel makers benefit, while businesses that use steel and consumers pay more | Everyone pays less | Imports increase | No one is affected
+sa2: Explain how supply and demand set the price of a product, using an example. | When demand rises and supply is limited, the price rises until quantity supplied equals quantity demanded.
+sa2: Compare fiscal and monetary policy tools for fighting a recession. | Fiscal: increase spending or cut taxes; monetary: lower interest rates to encourage borrowing.
+task3: Create a personal budget for a first year after high school (living expenses, income, savings), then analyze how inflation and interest rates would affect it. Recommend financial choices and explain the economic reasoning. | Realistic budget, accurate analysis of inflation and interest rates and well-reasoned recommendations. | Good budget with some economic analysis. | Budget with limited analysis. | Little correct work.
+mc1: A market economy relies mainly on | prices and voluntary exchange | government planning | tradition | barter only
+mc2: A price ceiling set below equilibrium usually causes | a shortage | a surplus | higher prices | no change
+mc2: Limited liability is a feature of | corporations | sole proprietorships | all partnerships | government agencies
+mc2: Which is a regressive tax? | a sales tax on groceries | a federal income tax with rising rates | an estate tax on large fortunes | a tax only on top incomes
+mc2: The Federal Reserve was created in | 1913 | 1929 | 1890 | 1945
+mc2: The national debt is | the total amount the federal government owes | one year's spending gap | the money states owe | the value of all exports
+num2: An item cost $50 last year and costs $53 this year. What is the percent increase in its price? | 6
+num2: A labor force of 200 million has 10 million unemployed. What is the unemployment rate as a percent? | 5
+mc3: A city sets a minimum wage above the market wage for teen workers. Economists predict which tradeoff? | higher pay for those who keep jobs, but possibly fewer jobs offered | lower pay for everyone | more jobs and lower pay | no change at all
+mc3: Country X makes wheat at a lower opportunity cost than Country Y, and Country Y makes cloth at a lower opportunity cost. What should they do? | X specializes in wheat, Y in cloth, and they trade | both make everything | X makes only cloth | they stop trading
+mc1: A tariff is | a tax on imported goods | a limit on exports | a type of currency | a bank loan
+mc2: The USMCA is a trade agreement among | the United States, Mexico and Canada | the United States, China and Japan | the European Union | the United States and Britain
+sa2: Explain how the Federal Reserve could respond to a recession and why. | It could lower interest rates and increase the money supply to make borrowing cheaper, encouraging businesses and consumers to spend and invest, which supports jobs.
+cer3: A city's data show that when its gasoline price rose from $4.00 to $5.00 a gallon, the amount of gas sold fell from 10 million gallons to 9.5 million gallons a week. Make a claim about whether demand for gasoline is elastic or inelastic, give evidence and explain your reasoning. | Claim: demand for gasoline is inelastic in the short run. Evidence: a 25 percent price increase ($4 to $5) reduced the quantity sold only 5 percent (10 to 9.5 million gallons). Reasoning: people need gas to get to work and school and have few quick substitutes, so they keep buying even when the price rises sharply.

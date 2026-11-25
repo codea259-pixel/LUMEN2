@@ -1,0 +1,642 @@
+# Grade 9 Social Studies (format 2): World Geography and Ethnic Studies.
+# Unit names, standards, skills and the original Unit review items (now the last lesson and part of the unit test)
+# are carried over verbatim from the format-1 grade section in soc.txt; four new lessons come first in each unit.
+@subject soc
+@grade 9
+@program California History-Social Science Framework (World Geography and Ethnic Studies)
+about: Ninth grade social studies combines World Geography and Ethnic Studies (California does not set one required ninth-grade course): students use spatial thinking to study Earth's regions, population and migration, culture and globalization, and the histories, identities and movements of communities of color in the United States.
+std: HSS.CS.3 | Use a variety of maps and documents to interpret human movement, including major patterns of domestic and international migration and changing environmental preferences.
+std: HSS.CS.4 | Relate current events to the physical and human characteristics of places and regions.
+std: HSS.REP.4 | Assess the credibility of primary and secondary sources and draw sound conclusions from them.
+std: ESMC.1 | Analyze how race, ethnicity and identity are socially and historically constructed and how they shape experience.
+std: ESMC.2 | Examine histories of resistance, movements and contributions of African American, Chicana/o and Latina/o, Native American and Asian American and Pacific Islander communities.
+
+unit: Geography and Earth's regions | HSS.CS.1, HSS.CS.4 | soc_7
+el: Post a labeled world map and a word bank (latitude, longitude, projection, scale, plate, climate, biome, region). Let students point to and label maps before writing, and give the frame "This place is ___ because ___."
+lesson: Maps, projections and geographic tools | HSS.CS.1, HSS.CS.4
+practice:
+mc1: Lines of latitude measure distance | north or south of the equator | east or west of the prime meridian | above sea level | between two cities
+hint: Picture the equator. Which way do lines parallel to it measure?
+mc1: The prime meridian, at 0 degrees longitude, runs through | Greenwich, England | Paris, France | Quito, Ecuador | Cairo, Egypt
+hint: It was set at an observatory near London.
+num2: A map scale reads "1 inch = 50 miles." Two towns are 3 inches apart on the map. How many miles apart are they? | 150
+hint: Each inch on the map stands for the same number of miles.
+mc2: Which tool layers data such as roads, rivers and population on digital maps so they can be compared? | a geographic information system (GIS) | a compass rose | a map legend | a contour line
+hint: Think of a computer system built for maps and data.
+mc2: A thematic map differs from a general reference map because it | shows one topic, such as rainfall or population density | shows only country borders | never uses colors | always shows the whole world
+hint: "Thematic" comes from "theme."
+sa2: A student says the Mercator map proves Greenland is about the same size as Africa. Explain the student's mistake. | The Mercator projection stretches land far from the equator. Greenland is near the North Pole, so it looks huge, but Africa is actually about 14 times larger in area.
+hint: Where is Greenland, and what does Mercator do to land in that area?
+quiz:
+mc1: The equator is at what latitude? | 0 degrees | 90 degrees north | 180 degrees | 23.5 degrees south
+num2: A map scale shows 1 centimeter = 25 kilometers. Two cities are 8 centimeters apart on the map. How many kilometers apart are they? | 200
+mc2: On a topographic map, contour lines that are very close together show | a steep slope | flat land | a river | a city
+mc2: Which kind of projection keeps the relative sizes of land masses accurate but distorts their shapes? | an equal-area projection such as the Gall-Peters | the Mercator projection | a street map of one city | a globe photograph
+mc2: Los Angeles is at about 34 degrees north latitude and 118 degrees west longitude. Which describes its location? | north of the equator and west of the prime meridian | south of the equator and east of the prime meridian | north of the equator and east of the prime meridian | exactly on the equator
+mc2: Absolute location is | an exact position, such as latitude and longitude | a description of a place compared with another place | the population of a place | the climate of a place
+mc3: A city planner wants to find which neighborhoods are farthest from a hospital. Which is the best tool? | a GIS map layering hospitals, roads and homes | a world globe | a political map of the country | a climate graph
+sa2: Explain why sailors valued the Mercator projection even though it distorts size. | A straight line on a Mercator map is a line of constant compass direction, so sailors could plot a course with a ruler; it also keeps local shapes and angles correct.
+lesson: Landforms, plate tectonics and physical processes | HSS.CS.1, HSS.CS.4
+practice:
+mc1: Earth's outer shell is broken into large moving pieces called | tectonic plates | continents | biomes | meridians
+hint: These pieces move a few centimeters a year.
+mc2: The Himalayas formed mainly where | the Indian plate collided with the Eurasian plate | two ocean plates pulled apart | a hot spot formed in the Pacific | glaciers carved valleys
+hint: The highest mountains form where two continents push together.
+mc2: The San Andreas Fault in California is a boundary where | two plates slide past each other | two plates collide head on | one plate dives under another and makes volcanoes | two plates pull apart under the ocean
+hint: The Pacific plate and the North American plate move side by side.
+mc2: Weathering and erosion differ because | weathering breaks rock down, while erosion moves the pieces away | weathering moves rock, while erosion breaks it | both happen only in deserts | erosion happens only underwater
+hint: One process breaks; the other carries.
+mc2: A river drops sediment where it enters the sea and builds a fan-shaped landform called a | delta | canyon | plateau | mesa
+hint: The Nile and the Mississippi both end in one.
+sa2: Explain why so many earthquakes and volcanoes happen around the edges of the Pacific Ocean. | Many plates meet around the Pacific. Where ocean plates sink under other plates, the movement causes earthquakes and melting rock rises to form volcanoes.
+hint: What is happening to the plates at the edges of the Pacific?
+quiz:
+mc1: A large area of high, flat land is a | plateau | valley | delta | peninsula
+mc2: The Andes Mountains formed mainly because | the Nazca plate is sinking beneath the South American plate | the Indian plate hit Asia | glaciers piled up rock | a river deposited sediment
+mc2: Iceland has many volcanoes partly because it sits on | the Mid-Atlantic Ridge, where plates pull apart | a transform fault like the San Andreas | the center of a plate far from any boundary | a sinking ocean trench off Peru
+mc2: Many people farm near active volcanoes in places such as Indonesia because | volcanic ash weathers into fertile soil | volcanoes keep the air cool | lava never reaches farms | volcanoes prevent earthquakes
+mc2: Which is a peninsula? | Baja California | the Mojave Desert | the Central Valley | Lake Tahoe
+mc3: A map shows earthquakes in a narrow line down the middle of the Atlantic Ocean floor. Which is the best explanation? | plates are spreading apart along a mid-ocean ridge | the Atlantic is closing quickly | the ocean is too deep for earthquakes elsewhere | ships cause the earthquakes
+sa2: Describe one way a physical landform has shaped how people live in California. | For example, the flat, fertile Central Valley supports large-scale farming, and snow on the Sierra Nevada melts into rivers that supply water to farms and cities.
+lesson: Climate zones, climate controls and biomes | HSS.CS.1, HSS.CS.4
+practice:
+mc1: Weather is the condition of the air on a given day, while climate is | the usual pattern of weather over many years | the temperature at noon | a single storm | the rain in one week
+hint: Climate is about the long run.
+mc2: In general, places near the equator are warmer because they | receive more direct sunlight all year | are closer to the sun | have more mountains | have more oceans
+hint: Think about the angle of the sun's rays, not distance.
+mc2: The side of a mountain range facing away from moist ocean winds is often dry. This is called | a rain shadow | a monsoon | a tsunami | an oasis
+hint: Air drops its moisture as it rises over the mountains.
+mc2: The cold California Current offshore helps keep summers along much of the California coast | cool and mild | very hot and humid | snowy | stormy every day
+hint: Cold water cools the air above it.
+mc2: Which biome has permanently frozen subsoil and very short summers? | tundra | savanna | tropical rainforest | temperate deciduous forest
+hint: The frozen layer is called permafrost.
+sa2: Explain how elevation affects climate, using an example. | Air gets colder as elevation rises, so high places are cooler than low places at the same latitude; for example, Sierra Nevada peaks get snow while the Central Valley stays warm.
+hint: Compare a mountaintop with a valley nearby.
+quiz:
+mc1: A grassland with scattered trees and wet and dry seasons, common in East Africa, is a | savanna | tundra | taiga | rainforest
+mc2: A climate graph shows hot, dry summers and mild, rainy winters. Which climate type does it show? | Mediterranean | tropical rainforest | tundra | humid continental
+mc2: Monsoons in South Asia bring | a seasonal shift in winds that causes a very rainy summer | snow all year | a dry season every summer | frequent earthquakes
+mc2: Two cities are at the same latitude. City A is on the coast and City B is far inland. Which is most likely? | City B has hotter summers and colder winters | City A has hotter summers and colder winters | both have identical temperatures | City B gets more ocean fog
+num2: A city's rainfall was 90 millimeters in January, 60 in February and 30 in March. What was its average monthly rainfall for those three months, in millimeters? | 60
+mc3: Which evidence would best support the claim that warming is shifting some growing zones toward the poles? | records showing farmers can now grow certain crops farther north than decades ago | a single cold day last winter | a map of country borders | the population of one city
+cer3: Quito, Ecuador, lies almost on the equator at about 2,850 meters above sea level and averages about 14 degrees C all year. Guayaquil, Ecuador, is also near the equator but at sea level and averages about 26 degrees C. Make a claim about what causes the difference, give evidence and explain your reasoning. | Claim: elevation causes the difference. Evidence: both cities are near the equator, so they get similar sunlight, but Quito is about 2,850 meters higher and about 12 degrees cooler. Reasoning: air cools as elevation rises, so a high city is cooler than a low city at the same latitude.
+lesson: Regions, human characteristics and current events | HSS.CS.1, HSS.CS.4
+practice:
+mc2: A functional region is organized around a central point, such as | the area served by an airport hub | a country with legal borders | a climate zone | a mountain range
+hint: Functional regions are tied together by movement or service.
+mc2: A perceptual (vernacular) region is based on | people's shared ideas and feelings about a place | official laws | exact measurements | satellite data only
+hint: Its borders exist mostly in people's minds.
+mc1: The five themes of geography are location, place, region, movement and | human-environment interaction | government | population | history
+hint: This theme is about how people and nature affect each other.
+mc2: Which is a human characteristic of a place? | the main languages spoken there | its average rainfall | its mountains | its soil type
+hint: Human characteristics are made by people.
+mc3: A drought hits a farming region that grows much of a country's rice. Which effect is most likely? | rice prices rise across the country | rice prices fall everywhere | nothing changes in other regions | the region's mountains grow
+hint: Think about supply.
+sa2: Name a current event and explain how a physical characteristic of the place affects it. | For example, California wildfires are linked to dry summers, strong seasonal winds and dense dry vegetation.
+hint: Pick a flood, fire, drought, storm or trade story, then look at climate or landforms.
+quiz:
+mc1: A region is | an area defined by one or more shared characteristics | a single city | a line of latitude | a type of map projection
+mc2: The Sahel, a strip of land just south of the Sahara, is best described as | a semi-arid transition zone between desert and savanna | a tropical rainforest | a polar ice cap | a mountain range
+mc2: The area that receives home delivery from one city newspaper is an example of a | functional region | formal region | perceptual region | climate region
+mc2: Which example shows human-environment interaction? | building levees along a river to prevent floods | the moon's orbit | an animal migration with no human role | the shape of a continent
+mc2: Why does the Panama Canal matter to world trade? | it lets ships pass between the Atlantic and Pacific without sailing around South America | it connects the Mediterranean and Red Seas | it carries oil pipelines under the ocean | it links the Great Lakes to the Gulf of Mexico
+mc3: Water from the Colorado River is shared by several U.S. states and Mexico. During a long drought, which conflict is most likely? | disagreements over how much water each place may use | arguments over the river's name | disputes over ocean fishing licenses | quarrels over time zones
+sa2: Explain how one area can belong to more than one type of region at once. | For example, Southern California is a formal region of counties, part of functional regions such as the Los Angeles media market, and a perceptual region people call "SoCal."
+
+lesson: Unit review | HSS.CS.1, HSS.CS.4
+practice:
+mc2: Which pair correctly matches a landform with how it formed? | a delta - sediment dropped at a river mouth | a canyon - lava cooling in the sea | a plateau - waves piling up sand | a peninsula - a melting glacier
+hint: Which process actually builds land where a river meets the sea?
+mc2: Which line of longitude is on the opposite side of the globe from the prime meridian? | 180 degrees | 90 degrees | 0 degrees | 45 degrees
+hint: Halfway around a circle is how many degrees?
+mc2: Rice paddies cut into hillsides as terraces are an example of | people changing the environment to farm | erosion by glaciers | a functional region | a map projection
+hint: Who built the terraces?
+mc2: Which climate control helps explain why London has milder winters than many places at the same latitude in Canada? | the warm North Atlantic Current | its high elevation | a location on the equator | the Himalayas
+hint: Look at the ocean near Britain.
+sa2: Choose two of the five themes of geography and apply each one to your city. | For example, location: about 34 degrees N, 118 degrees W; movement: freeways and a port move people and goods in and out.
+hint: The themes are location, place, region, movement and human-environment interaction.
+quiz:
+mc1: A map projection | shows Earth's curved surface on a flat map, with some distortion | is a type of globe | shows only weather | has no distortion
+mc1: The study of where things are and why is | geography | astronomy | biology | economics
+mc2: The Mercator projection distorts | the size of land near the poles | the shape of the equator only | ocean colors | nothing
+mc2: Which is a formal region? | a country with defined borders | the area served by a radio station | the "Midwest" as people imagine it | a sports team's fan base
+ex2: Explain how physical geography can influence a region's economy. | Resources, climate and landforms shape farming, industry, trade and tourism.
+mc2: Which statement about a globe and a flat map is accurate? | a globe shows true shapes and sizes, but a flat map is easier to carry and use | a flat map is always more accurate than a globe | a globe has more distortion than any map | both have exactly the same distortion
+mc2: The Great Rift Valley in East Africa is forming where | plates are pulling apart | plates are colliding | a glacier is melting | a river delta is growing
+
+test:
+mc2: Which climate zone has hot temperatures and heavy rain year-round? | tropical rainforest | tundra | desert | Mediterranean
+mc2: The Ring of Fire is | a zone of volcanoes and earthquakes around the Pacific | a desert | a mountain range in Europe | an ocean current
+mc2: California's climate along the coast is called | Mediterranean | tropical | polar | continental
+mc3: Why do many of the world's largest cities sit on coasts or major rivers? | access to water, trade and transportation | they are cooler | land is cheaper | no reason
+sa2: Compare a physical and a human characteristic of a region you studied. | Names one natural feature (climate, landforms) and one human feature (language, economy).
+sa2: Explain why every map projection has distortion. | A sphere cannot be flattened without stretching or cutting, which distorts size, shape or distance.
+task3: Choose a world region. Create a profile with maps showing its physical features, climate, population density and economy, and write an analysis connecting a current event in the region to its geography. | Accurate maps and data with a strong geographic analysis of a current event. | Accurate profile with some analysis. | Partial profile. | Little correct work.
+mc1: The line of latitude at 0 degrees is the | equator | prime meridian | Tropic of Cancer | International Date Line
+mc1: A map legend (key) | explains what the symbols and colors mean | shows the direction north | gives only the title | measures elevation
+mc2: Mount Everest is part of which mountain range? | the Himalayas | the Andes | the Alps | the Rockies
+num2: A map scale shows 1 inch = 100 miles. Two cities are 4.5 inches apart on the map. How many miles apart are they? | 450
+mc2: A cold forest of evergreen trees stretching across northern Canada and Russia is called the | taiga (boreal forest) | savanna | tropical rainforest | chaparral
+mc2: Which is a perceptual region? | "the Deep South" as people imagine it | the state of Oregon | the delivery area of a pizza shop | the Pacific time zone
+mc2: Wildfire danger in much of California is highest in late summer and fall mainly because | months with little rain leave plants dry | winters are snowy | the ocean is warmest in spring | the state has no wind
+mc2: Which pair correctly gives one physical and one human characteristic of Egypt? | the Nile River and the Arabic language | the Arabic language and Islam | the Sahara and the Nile | the pyramids and the Arabic language
+mc3: A satellite image shows a thin green strip of farmland along a river in an otherwise brown desert. What is the best conclusion? | people farm along the river because it supplies water for irrigation | the desert gets heavy rain | the green strip is a mountain range | the river created the desert
+mc2: All lines of longitude meet at | the North and South Poles | the equator | the Tropic of Capricorn | the prime meridian only
+mc2: Which helps explain why Antarctica stays cold all year? | sunlight strikes it at a low angle and its ice reflects much of it | it is farther from the sun than other continents | it has many active volcanoes | ocean currents bring warm water to it
+mc3: A company wants to build a new seaport. Which location would geographers most likely recommend? | a deep, sheltered harbor near rail and highway links | a shallow mountain lake | a desert far from roads | a sea cliff with no flat land
+sa2: Explain how the Sierra Nevada affects California's climate and water supply. | Moist Pacific air rises over the mountains and drops rain and snow on the western slopes; the snowpack melts into rivers that supply farms and cities, while the eastern side lies in a dry rain shadow.
+cer3: Seattle, Washington, west of the Cascade Mountains, gets about 39 inches of precipitation a year. Yakima, Washington, east of the Cascades, gets about 8 inches. Winds usually blow from the Pacific Ocean toward the east. Make a claim explaining the difference, give evidence and explain your reasoning. | Claim: the Cascades create a rain shadow that makes Yakima dry. Evidence: Seattle, on the windward side, gets about 39 inches; Yakima, on the side away from the ocean winds, gets about 8. Reasoning: moist Pacific air rises and cools over the mountains and drops its moisture on the western side, so dry air sinks over the eastern side.
+
+unit: Population and migration | HSS.CS.3 | soc_9_n2
+el: Use a push-pull T-chart and a migration word bank (emigrate, immigrate, refugee, density, urban, rural, pyramid). Model reading a population pyramid aloud, and let students sketch arrows on a map before writing.
+lesson: Population distribution, density and growth | HSS.CS.3
+practice:
+num2: A country has 50 million people and an area of 250,000 square kilometers. What is its population density in people per square kilometer? | 200
+hint: Divide the number of people by the area.
+mc2: Most of the world's people live in | the Northern Hemisphere | the Southern Hemisphere | Antarctica | Pacific island nations
+hint: Look at where most of Earth's land is.
+mc2: Which areas tend to have low population density? | deserts, high mountains and polar regions | fertile river valleys | coastal plains | areas with mild climates
+hint: Where is it hardest to grow food and find water?
+mc2: The birth rate minus the death rate, not counting migration, is the | rate of natural increase | population density | life expectancy | migration rate
+hint: It shows growth from births and deaths alone.
+mc3: In the demographic transition model, death rates fall before birth rates fall. What happens to population during that stage? | it grows quickly | it shrinks quickly | it stays exactly the same | it disappears
+hint: Compare births and deaths during that stage.
+sa2: Explain why Egypt's population is concentrated in a small part of the country. | Most Egyptians live along the Nile River and in its delta because the rest of the country is desert; the river provides water and fertile farmland.
+hint: Picture a map of Egypt. Where is the water?
+quiz:
+mc1: Population distribution describes | where people live across an area | the total number of births | how fast people age | the number of languages
+num2: A county has 900,000 people living on 3,000 square miles. What is its population density in people per square mile? | 300
+num2: A country's birth rate is 30 per 1,000 people and its death rate is 10 per 1,000 people. What is its rate of natural increase per 1,000 people? | 20
+mc2: Which change usually lowers birth rates as a country develops? | more education and job opportunities for women | fewer schools | less access to health care | more farm work for children
+mc2: Japan's population has been shrinking in recent years. Which is a likely cause? | low birth rates and an aging population | a very high birth rate | a sudden rise in child immigration | rapid growth of farms
+mc3: Two countries have the same population. Country A has ten times the land area of Country B. Which is true? | Country B has the higher population density | Country A has the higher population density | they have the same density | density cannot be compared
+sa2: Explain one challenge a country with an aging population faces and one way it might respond. | Challenge: fewer workers paying taxes to support more retirees and health care. Response: encourage immigration, raise the retirement age or support families with children.
+lesson: Population, resources and the environment | HSS.CS.3, HSS.CS.4
+practice:
+mc2: Thomas Malthus wrote in 1798: "Population, when unchecked, increases in a geometrical ratio. Subsistence increases only in an arithmetical ratio." What did he predict? | population would outgrow the food supply unless something checked it | food would always grow faster than population | population would stop growing on its own | trade would end hunger
+hint: "Subsistence" means food and the basic needs of life.
+mc2: The Green Revolution of the mid-1900s raised food production in many countries through | high-yield seeds, fertilizers and irrigation | ending farming in Asia | banning tractors | moving farms into cities
+hint: Think of new farming science.
+mc2: Carrying capacity is | the largest population an environment can support over time | the weight a truck can carry | the number of cities in a region | the birth rate
+hint: It is about the limits of resources.
+mc3: World population grew from about 1 billion around 1800 to about 8 billion by the 2020s without the worldwide famine Malthus predicted. Which best explains this? | technology greatly increased food production | population did not really grow | the world stopped trading food | Malthus was writing about animals
+hint: What changed about how food is grown?
+num2: World population was about 1 billion around 1800 and about 8 billion in 2022. About how many times larger was it in 2022? | 8
+hint: Divide the later number by the earlier one.
+sa2: Explain how rapid population growth can strain water supplies in a dry region. | More people need more water for homes, farms and industry; if rain and rivers do not increase, groundwater and reservoirs are used up faster, leading to shortages and conflict over water.
+hint: Supply stays about the same; what happens to demand?
+quiz:
+mc1: Subsistence farming means | growing food mainly to feed one's own family | farming crops for export | farming only on rooftops | using only machines to farm
+mc2: Which is an example of a sustainable practice in a crowded, dry region? | recycling treated wastewater for irrigation | pumping all the groundwater | clearing forests every year | paving over wetlands
+mc2: Critics of Malthus pointed out that he underestimated | people's ability to invent new ways to grow more food | the size of the oceans | how many people were alive in 1798 | the number of cities in England
+mc2: An ecological footprint measures | how much land and resources a person or group uses | the size of a shoe | the number of animals in a park | the area of a country
+mc2: Pumping too much groundwater in parts of California's Central Valley has caused | the land surface to sink in some areas | the valley floor to rise | more rainfall | new volcanoes
+mc3: Country A has a fast-growing population and little farmland. Country B grows more grain than it needs. Which is most likely? | Country A imports food from countries like Country B | Country A exports grain | neither country trades food | Country B imports grain from Country A
+cer3: A dry region's population doubled from 2 million to 4 million between 1980 and 2020. Its water supply stayed about the same, and water use per person fell by one third. Make a claim about whether conservation alone kept total water use from rising, give evidence and explain your reasoning. | Claim: conservation slowed the rise but did not stop total water use from growing. Evidence: twice as many people each using two-thirds as much means total use is 2 x 2/3 = 4/3 of the 1980 amount, about one third higher. Reasoning: because the supply stayed the same while total use rose, the region still faces more pressure on water even with conservation.
+lesson: Push and pull factors in historical migrations | HSS.CS.3
+practice:
+mc2: The Irish famine of the 1840s pushed many Irish people to emigrate because | a potato disease destroyed the main food crop and caused mass hunger | gold was found in Ireland | Ireland banned farming | Irish cities grew too fast
+hint: What happened to the crop most families depended on?
+mc2: From 1892 to 1954 the main U.S. immigration station in New York Harbor was | Ellis Island | Angel Island | Alcatraz | Plymouth Rock
+hint: It is near the Statue of Liberty.
+mc2: Angel Island, in San Francisco Bay, was an immigration station where many immigrants from | China were detained and questioned, sometimes for weeks or months | Ireland were admitted without questions | Canada registered to vote | England were trained as soldiers
+hint: It operated while the Chinese Exclusion Act was law.
+mc2: Emma Lazarus wrote in "The New Colossus" (1883), a poem later placed at the Statue of Liberty: "Give me your tired, your poor, / Your huddled masses yearning to breathe free." Which idea does the poem express? | the United States as a refuge for people seeking freedom and a better life | the United States closing its doors | a warning about war | praise for a king
+hint: Who is the statue speaking to in these lines?
+mc3: Which was a pull factor for people who came to California in 1849? | news of gold discovered in the Sierra Nevada foothills | crop failures at home | persecution at home | a drought at home
+hint: A pull factor is about the destination.
+sa2: Distinguish between voluntary and forced migration, giving one historical example of each. | Voluntary migration is chosen, such as Europeans moving to U.S. cities for factory jobs around 1900. Forced migration is not chosen, such as the transatlantic slave trade or the Trail of Tears.
+hint: Who made the decision to move?
+quiz:
+mc1: From the point of view of the country they arrive in, a person who moves there to live is an | immigrant | emigrant | nomad | tourist
+mc2: The forced removal of the Cherokee and other Southeastern nations to Indian Territory in the 1830s is known as | the Trail of Tears | the Great Migration | the Dust Bowl migration | the Long March
+mc2: The transatlantic slave trade is an example of | forced migration | voluntary migration for jobs | internal migration | seasonal migration
+mc2: Chain migration happens when | earlier migrants help relatives and neighbors from home move to the same place | a government builds a railroad | people move in a straight line | migrants move only within one city
+mc2: An intervening obstacle in migration is | something that slows or stops a move, such as a border, cost or mountain range | a reason to leave home | a reason to choose a destination | the final destination
+mc3: The Immigration Act of 1924 set quotas based on national origin. Which effect did it have? | it sharply cut immigration from Southern and Eastern Europe and barred most immigration from Asia | it opened immigration to all countries equally | it ended the Chinese Exclusion Act | it increased immigration from Italy
+sa2: Emma Lazarus wrote in 1883, "Give me your tired, your poor." The Immigration Act of 1924 set strict quotas by national origin. Compare the two views of immigration these sources reflect. | Lazarus saw America as a welcoming refuge for poor and oppressed people. The 1924 law reflected fears about newcomers and a wish to limit immigration, especially from Southern and Eastern Europe and Asia.
+lesson: Urbanization and megacities | HSS.CS.3, HSS.CS.4
+practice:
+mc1: A city with more than 10 million people is often called a | megacity | suburb | village | township
+hint: "Mega" means very large.
+mc2: Suburbs are | residential communities on the edges of cities | the center of a city | farmland far from cities | islands in a river
+hint: Think of where many commuters live.
+mc2: Which helped cause rapid urbanization in Britain in the 1800s? | factory jobs in growing industrial cities | the end of all farming | a ban on railroads | a law forcing people out of cities
+hint: Why would rural people move to Manchester or Birmingham?
+mc2: Informal settlements, sometimes called shantytowns, often form when | cities grow faster than affordable housing and services can be built | cities shrink | governments build too many houses | farms grow too fast
+hint: Compare how fast people arrive with how fast homes are built.
+num2: A city grew from 4 million people to 6 million people. What was the percent increase? | 50
+hint: Find the change, divide by the starting number, then multiply by 100.
+sa2: Describe one benefit and one problem caused by rapid urbanization. | Benefit: more jobs, schools and hospitals close together. Problem: traffic, pollution, high housing costs or overcrowded informal settlements.
+hint: Think about both opportunities and pressures.
+quiz:
+mc1: Urban areas are | cities and the built-up areas around them | farmland | forests | deserts
+mc2: Urban sprawl is | the spread of low-density development outward from a city | a crowded downtown | a farm cooperative | a river delta
+mc2: Today, more than half of the world's people live in | urban areas | rural villages | deserts | the Southern Hemisphere
+num2: A city of 3 million people is expected to grow by 20 percent in ten years. How many million people will it have then? | 3.6
+mc2: Which pull factor draws many rural people to cities in developing countries? | more jobs, schools and hospitals | lower housing costs than villages | quieter living | more farmland
+mc3: A city builds a new rail line from downtown to outer neighborhoods. Which is the most likely result? | easier commutes and new homes and businesses near the stations | fewer people living near the line | residents moving to the countryside | the end of all traffic
+mc2: Tokyo, Delhi and Shanghai are examples of | megacities | rural villages | city-states | national capitals
+sa2: Explain how urbanization can affect the environment. | Paving and buildings create urban heat islands and runoff, cars and factories add air pollution and cities need large amounts of water and energy; dense cities can also use transit and land more efficiently.
+lesson: Migration to California and refugees today | HSS.CS.3, HSS.CS.4
+practice:
+mc2: During the Dust Bowl of the 1930s, many families from Oklahoma, Texas and Arkansas moved to | California's farm valleys | New England factories | Alaska | Canada
+hint: They hoped to find farm work in the West.
+mc2: During and after World War II, many African Americans moved to California cities because | defense plants and shipyards offered jobs | gold had just been discovered | farmland was free | the state paid for the move
+hint: What industries grew during the war?
+mc2: The Bracero Program (1942-1964) | brought Mexican workers to the U.S. on temporary farm labor contracts | gave land to settlers | banned Mexican immigration | created Angel Island
+hint: "Brazo" means arm in Spanish, suggesting work by hand.
+mc2: After the Vietnam War ended in 1975, many refugees from Vietnam, Laos and Cambodia | resettled in the United States, including large communities in California | moved to Antarctica | were barred from every country | returned to France
+hint: Think of Little Saigon in Orange County.
+mc3: A graph shows California's population rose from about 7 million in 1940 to about 16 million in 1960. Which best explains this growth? | wartime and postwar jobs drew migrants from other states | jobs disappeared | the Gold Rush began | immigration stopped
+hint: What happened in the 1940s and 1950s?
+sa2: Explain the difference between a refugee and an economic migrant. | A refugee is forced to flee their country because of war, violence or persecution; an economic migrant chooses to move mainly to find work or a better income.
+hint: Think about whether the person is in danger at home.
+quiz:
+mc1: An internally displaced person is someone who | is forced from home but stays within their own country | moves abroad for a job | is a tourist | returns home after a vacation
+mc2: Which source would best show the personal experience of a Dust Bowl migrant? | a letter or interview recorded with a migrant at the time | a modern weather report | a table of state populations | a map of state borders
+num2: California had about 7 million people in 1940 and about 16 million in 1960. By about how many million people did it grow? | 9
+mc2: Remittances are | money migrants send to family in their home country | taxes on imports | travel visas | border fences
+mc2: Which pair correctly matches a migration to California with a pull factor? | 1849 Gold Rush - news of gold | 1930s Dust Bowl - snowy winters | 1940s shipyard work - free land | 1975 refugee resettlement - the Gold Rush
+mc3: A city wants to help newly arrived refugees. Which plan best meets common needs? | language classes, job training and help finding housing | a single welcome party | requiring them to leave in a month | asking them to find everything alone
+sa2: Explain how migration has shaped California's culture, using two examples. | For example, Mexican and Central American migration shaped food, music and Spanish place names; Asian immigration created communities such as Chinatown, Little Saigon and Koreatown.
+
+lesson: Unit review | HSS.CS.3
+practice:
+mc2: A population pyramid with a narrow base and wide middle and top suggests | low birth rates and an aging population | a very high birth rate | a very young population | rapid growth
+hint: The base shows the youngest age groups.
+mc2: Which is an example of internal migration? | a family moving from a farm in Iowa to Chicago | a family moving from Mexico to Texas | a tourist visiting France | a student studying abroad for a semester
+hint: Internal means within one country.
+mc2: Which data would best show whether a country is urbanizing? | the percent of people living in cities over several decades | the number of mountains | the country's area | the length of its coastline
+hint: Urbanizing is a change over time.
+num2: A town grew from 20,000 to 25,000 people. What was the percent increase? | 25
+hint: Divide the change by the starting population.
+sa2: Explain how a push factor and a pull factor can work together in one migration. | For example, drought pushed farm families out of Oklahoma in the 1930s while hope of farm jobs pulled them to California.
+hint: One factor works at the starting point; the other at the destination.
+quiz:
+mc1: Moving from one country to another to live is | migration | rotation | inflation | erosion
+mc1: Population density is | the number of people per unit of area | the total population | the birth rate | the number of cities
+mc2: A push factor is | a reason people leave a place, such as war or poverty | a reason people move to a place | a trade route | a type of map
+mc2: A pull factor is | something that attracts people to a place, like jobs | a natural disaster | a famine | persecution
+ex2: Explain how migration affects both the places people leave and the places they go. | Origin may lose workers but gain remittances; destination gains labor and culture but may need more services.
+mc2: Which change would most likely slow a country's population growth? | rising emigration and falling birth rates | more births | more immigrants | longer life expectancy
+mc2: Life expectancy is | the average number of years a person is expected to live | the age at which people retire | the number of births per year | the time it takes to migrate
+
+test:
+mc2: Urbanization is | the growth of cities as people move from rural areas | the spread of farms | moving to the countryside | building highways only
+mc2: Which country has the largest population as of the 2020s? | India | the United States | Brazil | Russia
+mc2: A refugee is someone who | is forced to flee their country due to danger | moves for vacation | travels for business | is a tourist
+mc3: A country's population pyramid has a wide base and narrow top. What does it suggest? | a young, fast-growing population | an aging population | no children | a shrinking population
+sa2: Explain two push and two pull factors for a migration you studied. | For example, push: war, drought; pull: jobs, safety, family.
+sa2: Interpret what a population pyramid shows about a country's future needs. | A young population needs schools and jobs; an aging one needs health care and pensions.
+task3: Analyze migration data and personal accounts for one migration stream (for example, to California). Create maps and graphs and write an essay explaining push and pull factors, the experiences of migrants and the effects on both places. | Strong data and source analysis, clear factors and balanced effects. | Good analysis with some sources. | Limited analysis. | Little correct work.
+mc1: Emigration means | leaving one's home country to live elsewhere | arriving in a new country | moving within a city | visiting a country briefly
+mc2: Ellis Island and Angel Island were both | immigration stations where newcomers were inspected | military forts | gold mining towns | Native American reservations
+num2: A region has 1,500,000 people and an area of 6,000 square kilometers. What is its population density in people per square kilometer? | 250
+mc2: Which migration was forced? | the removal of Japanese Americans to camps during World War II | Europeans arriving at Ellis Island for jobs | Gold Rush miners heading to California | students moving to college
+mc2: Which helps explain why many people left the southern Great Plains in the 1930s? | drought and dust storms ruined farms | gold was found there | new factories opened | the climate became wetter
+mc2: The demographic transition model shows that as countries industrialize | death rates fall first and birth rates fall later | birth rates always rise | death rates rise | population never changes
+mc2: A country's rate of natural increase is negative. This means | deaths outnumber births | births outnumber deaths | immigration is high | the country is urbanizing
+mc3: A country offers high-paying technology jobs but has strict visa limits. Which statement is best? | a strong pull factor meets an intervening obstacle | the country has only push factors | there are no effects on migration | the visa limits are a pull factor
+mc2: Between about 1910 and 1970, millions of African Americans left the rural South for cities in the North and West in | the Great Migration | the Dust Bowl | the Trail of Tears | the Gold Rush
+mc2: Which is a likely effect when many young workers leave a rural town? | the town's population grows older and some businesses close | the town's schools become crowded | the town gains workers | housing prices rise sharply
+mc3: Emma Lazarus wrote in 1883 of America welcoming "huddled masses yearning to breathe free." Which group at the time would most likely have shared her view? | aid societies helping immigrants settle | supporters of the Chinese Exclusion Act of 1882 | groups that wanted to end all immigration | officials who wanted to close Ellis Island
+mc1: Rural areas are | countryside areas with low population density | large cities | suburbs | megacities
+sa2: Explain why many of the world's fastest-growing megacities are in developing countries. | Many rural people move to cities for jobs and services, and these countries often have high rates of natural increase, so city populations grow quickly.
+cer3: A country's census shows that 30 percent of its people lived in cities in 1980, 45 percent in 2000 and 60 percent in 2020. Over the same years the share of workers in farming fell from 50 percent to 20 percent. Make a claim about what is happening, give evidence and explain your reasoning. | Claim: the country is urbanizing as people leave farm work for city jobs. Evidence: the urban share doubled from 30 to 60 percent while farm jobs fell from 50 to 20 percent. Reasoning: fewer farm jobs push people out of rural areas, and city jobs pull them in, so the urban share rises.
+
+unit: Culture and globalization | HSS.CS.4, HSS.REP.4 | soc_9_n1
+el: Use picture cards for culture traits (food, clothing, music, buildings, holidays) and a source-check chart (Who made it? When? Why? Evidence? Do others agree?). Provide the frame "This spread from ___ to ___ through ___."
+lesson: Elements of culture: language and religion | HSS.CS.4
+practice:
+mc1: A language family is | a group of languages that developed from a common ancestor | a dictionary | one country's official language | a set of slang words
+hint: Think of a family tree for languages.
+mc2: Spanish, French, Italian and Portuguese all developed from | Latin | Greek | Arabic | German
+hint: These are the Romance languages, named after Rome.
+mc2: Which religion has the most followers worldwide? | Christianity | Buddhism | Sikhism | Judaism
+hint: It has more than two billion followers.
+mc2: A lingua franca is | a common language used between speakers of different native languages | a language no one speaks | a family of languages | a writing system
+hint: Traders and diplomats often need one.
+mc3: Many California place names, such as Los Angeles and Sacramento, are Spanish. This is evidence of | Spanish colonial history in the region | recent cultural isolation | a link between Spanish and Chinese | a law requiring Spanish names
+hint: Who named many places in California before 1848?
+sa2: Explain how religion can shape the cultural landscape of a place, with an example. | Religion can be seen in places of worship, holidays, food customs and architecture; for example, mission churches in California or temples and mosques in many cities.
+hint: What buildings, holidays or customs could you see?
+quiz:
+mc1: Material culture includes | objects people make, such as tools, buildings and clothing | beliefs and values only | languages only | weather patterns
+mc2: Hinduism and Buddhism both began in | South Asia | Europe | the Americas | Australia
+mc2: Judaism, Christianity and Islam are called Abrahamic religions because | they trace their origins to the figure of Abraham | they began in China | they share one holy book | they began in the same century
+mc2: A dialect is | a regional variety of a language | a separate language family | a type of alphabet | a language no longer spoken
+mc2: Which is an example of nonmaterial culture? | a belief about how to treat elders | a clay pot | a house | a pair of shoes
+mc3: A government allows only one language in schools in a country where many languages are spoken. Which is a likely long-term effect? | speakers of other languages may lose them over generations | every language becomes stronger | nothing changes | all students become bilingual
+sa2: Explain why language is considered a key part of a group's identity. | Language carries a group's stories, history, humor and ways of seeing the world, and sharing it connects people across generations.
+lesson: Cultural diffusion, trade routes and the Columbian Exchange | HSS.CS.4
+practice:
+mc2: The Silk Road connected | China with Central Asia, Southwest Asia and the Mediterranean | Europe with the Americas | Africa with Australia | Japan with Hawaii
+hint: Silk came from the east and traveled west.
+mc2: The Columbian Exchange, which began after 1492, moved | crops, animals, people and diseases between the Eastern and Western Hemispheres | only gold from Europe to Asia | ideas only within Europe | nothing important
+hint: Think of both directions across the Atlantic.
+mc2: Which crop came from the Americas to Europe, Africa and Asia in the Columbian Exchange? | the potato | wheat | rice | coffee
+hint: It was first grown in the Andes.
+mc2: Relocation diffusion differs from expansion diffusion because in relocation diffusion | people carry an idea with them when they move to a new place | an idea spreads only online | the idea requires a war | nothing moves
+hint: "Relocate" means to move.
+mc3: Smallpox and other diseases carried by Europeans killed huge numbers of Indigenous people in the Americas after 1492 mainly because | Indigenous peoples had no earlier exposure or immunity to these diseases | Europeans had no immune systems | the diseases began in the Americas | Indigenous peoples had no doctors
+hint: Think about immunity.
+sa2: Describe one positive and one negative effect of the Columbian Exchange. | Positive: new crops such as potatoes and maize fed growing populations around the world. Negative: diseases killed millions of Indigenous people, and the exchange was tied to the enslavement of Africans.
+hint: Think about food and about disease or forced labor.
+quiz:
+mc1: Trade along the Silk Road spread goods such as | silk, paper and spices | smartphones | potatoes from Peru | steam engines
+mc2: Which animal was brought to the Americas by Europeans and changed life for Plains peoples? | the horse | the llama | the turkey | the bison
+mc2: Hip-hop began in the Bronx in the 1970s and is now performed worldwide. This shows | cultural diffusion through media and migration | cultural isolation | forced migration | a closed border
+mc2: Hierarchical diffusion is when an idea spreads | from more connected people or places to less connected ones, such as from big cities to small towns | at random | only by force | only from villages to cities
+mc2: Tomatoes became central to Italian cooking after they | were brought from the Americas | were first grown in Rome | arrived from China on the Silk Road | were developed in a lab
+mc3: A teen in Brazil eats ramen, watches Korean dramas and listens to American pop music. What does this best show? | cultural diffusion in a connected world | cultural isolation | forced assimilation | a closed economy
+sa2: Explain how acculturation differs from assimilation. | In acculturation a person or group adopts some traits of another culture while keeping much of their own; in assimilation they largely take on the dominant culture and lose much of their original culture.
+lesson: Globalization, trade and supply chains | HSS.CS.4
+practice:
+mc1: A multinational corporation is | a company that operates in many countries | a government agency | a small family farm | a charity in one town
+hint: "Multi" means many.
+mc2: A supply chain is | the network of steps and places involved in making and delivering a product | a chain store | a shipping container | a trade ban
+hint: Follow a product from raw material to store shelf.
+mc2: Adam Smith wrote in "The Wealth of Nations" (1776): "It is the maxim of every prudent master of a family, never to attempt to make at home what it will cost him more to make than to buy." Which idea does this support? | trading for goods that others can make more cheaply | making everything yourself | banning imports | avoiding all purchases
+hint: What does a "prudent" (wise) family do if buying is cheaper than making?
+mc2: Standard shipping containers helped globalization because they | made moving goods across oceans cheaper and faster | slowed trade | carried only passengers | replaced all railroads
+hint: Think about loading and unloading time.
+mc3: A storm closes a major Asian port that ships electronic parts. Which is the most likely effect in California? | delays and higher prices for some electronics | cheaper electronics right away | no effect because supply chains are local | more electronics than ever
+hint: What happens when one link in a chain breaks?
+sa2: Explain why a company might make parts of one product in several different countries. | Different countries offer lower costs, special skills, raw materials or access to markets, so splitting production can lower costs or improve quality.
+hint: Think about costs, skills and resources.
+quiz:
+mc1: Free trade means | trade between countries with few tariffs or limits | trade only within one country | trade that is banned | trade only in services
+mc2: A tariff is | a tax on imported goods | a type of currency | a trade route | a factory
+mc2: Outsourcing happens when | a company moves some of its work to another company or country, often to lower costs | a company closes for good | workers form a union | a store opens a new branch
+mc2: The World Trade Organization mainly | sets rules for trade between member countries and helps settle trade disputes | prints money for its members | runs national elections | owns shipping companies
+mc2: Which is an example of interdependence? | two countries rely on each other, one for oil and the other for wheat | a country makes everything it uses | a town that never trades | a farm that grows only for itself
+mc3: A factory town in Ohio loses jobs when production moves overseas, while shoppers nationwide pay lower prices. What does this show about globalization? | its costs and benefits fall on different groups | it has only benefits | it has only costs | it affects no one
+cer3: The label and shipping records of one cotton T-shirt sold in Los Angeles show the cotton was grown in Texas, spun into thread in Vietnam, sewn in Bangladesh and shipped back to California. Make a claim about how globalization connects places, give evidence and explain your reasoning. | Claim: globalization links distant places into one supply chain. Evidence: one shirt involved work in Texas, Vietnam and Bangladesh before being sold in California. Reasoning: companies split production among countries with different resources and costs, so workers and consumers in many places depend on each other.
+lesson: Cultural landscapes, heritage and endangered languages | HSS.CS.4, HSS.REP.4
+practice:
+mc1: A cultural landscape is | an area shaped by the activities and beliefs of the people who live there | a painting of mountains | land with no people | a weather pattern
+hint: Look for what people built or changed.
+mc2: UNESCO World Heritage Sites are | places recognized for outstanding cultural or natural value to humanity | national parks owned by the United Nations | places closed to visitors | new shopping districts
+hint: The list honors places important to all people.
+mc2: An endangered language is one that | fewer and fewer children are learning, so it may stop being spoken | is spoken by millions | is taught in every school | has no grammar
+hint: What happens when children stop learning a language?
+mc2: Rice terraces, a mosque's minaret and a Chinatown gate are all examples of | features of a cultural landscape | physical landforms | climate zones | map projections
+hint: Who made each of these?
+mc3: A city plans to tear down a historic neighborhood to build a highway, and residents object. Which argument uses the idea of cultural heritage? | the neighborhood's buildings and businesses hold the community's history and identity | the highway will be faster | the land is flat | traffic will increase
+hint: Which argument is about history and identity?
+sa2: Describe a feature of your community's cultural landscape and what it reveals about the people who built it. | For example, a mission church shows Spanish colonial history and Catholic faith; a Japanese garden or a Sikh gurdwara shows the culture of communities that settled there.
+hint: Think of a building, sign, garden, mural or street name.
+quiz:
+mc1: Heritage means | traditions, places and objects passed down from earlier generations | a new invention | a tax | a trade agreement
+mc2: Language revitalization programs, such as Hawaiian-language immersion schools, aim to | increase the number of new speakers of a threatened language | ban the language | replace it with English | turn it into a written code only
+mc2: Which landscape feature would best show the influence of Spanish missions in California? | adobe churches with red tile roofs | glass skyscrapers | freeway interchanges | wind farms
+mc2: Sacred sites are | places that hold religious or spiritual meaning for a group | shopping centers | sports stadiums | parking lots
+mc2: Mass tourism at a famous heritage site can | bring money but also damage the site and crowd out local residents | only help the site | only harm the economy | have no effects
+mc3: A company wants to mine a mountain that a Native nation considers sacred. Which approach best respects multiple perspectives? | consult both groups, study the site's cultural and economic value and weigh the effects | let the company decide alone | ignore the Native nation's view | ignore the economic effects
+sa2: Explain why losing a language means losing more than words. | A language holds a community's stories, knowledge of local plants and places, songs, humor and ways of thinking; when it is lost, much of that knowledge and identity can be lost too.
+lesson: Evaluating sources about global issues | HSS.REP.4
+practice:
+mc1: A primary source is | a firsthand record created at the time of an event | a textbook written years later | an encyclopedia entry | a student's summary
+hint: Who created it, and when?
+mc2: Lateral reading means | checking what other reliable sources say about a website or author | reading a page from top to bottom | reading only the headlines | reading in a quiet room
+hint: You leave the page to check it.
+mc2: Which question best helps judge a source's bias? | Who created it, and what did they want readers to think? | How long is it? | What font does it use? | Is it in color?
+hint: Think about purpose.
+mc2: A report on a soda tax was paid for by a soda company. A careful reader should | check whether independent sources reach the same conclusions | trust it fully because it has charts | reject every fact in it automatically | share it immediately
+hint: Funding is a reason to check, not proof of error.
+mc3: Two sources disagree about how many people a flood affected. Which step is best? | compare both with a third independent source such as official records and note how each counted | pick the larger number | pick the one you like | average them without checking
+hint: How can you test which is closer to the truth?
+sa2: Explain the difference between a primary and a secondary source, with an example of each about globalization. | A primary source comes from the time, such as a factory worker's interview or a trade agreement; a secondary source analyzes later, such as a textbook chapter on world trade.
+hint: Ask who made it and when.
+quiz:
+mc1: A secondary source | interprets or analyzes events, often written later | is always a diary | is always made by a witness at the time | is always false
+mc2: Which is the most credible source for world population data? | the United Nations Population Division | a celebrity's social media post | an unsigned blog | a viral meme
+mc2: Peer review means | experts check research before it is published | friends like a post | a reporter interviews a classmate | readers vote on accuracy
+mc2: A photo of a crowded port spreads online with the caption "taken yesterday." Which step best checks it? | a reverse image search to see where and when it first appeared | counting the likes | reading the comments | trusting the caption
+mc2: Corroboration means | confirming information with other independent sources | repeating a claim louder | deleting a source | writing a summary
+mc3: A news site posts an article about a trade deal with no author, no date and no sources. What is the best conclusion? | its credibility is hard to judge, so readers should check it elsewhere | it must be true | it must be false | it is a primary source
+sa2: Explain why an author's purpose matters when you use a source about a global issue. | Purpose shapes what an author includes and leaves out; a source meant to sell or persuade may present only one side, so readers should compare it with other sources.
+
+lesson: Unit review | HSS.CS.4, HSS.REP.4
+practice:
+mc2: Which is the best example of globalization? | a smartphone designed in California and assembled in Asia | a farmer selling vegetables at a local market | a town parade | a family dinner
+hint: Look for connections across countries.
+mc2: Which source would give the best firsthand view of travel on the Silk Road? | a merchant's travel account written at the time | a modern movie | a video game | a fantasy novel
+hint: Firsthand means from someone who was there.
+mc2: Which statement about culture is accurate? | cultures change over time through contact and new ideas | cultures never change | only large countries have culture | culture is only about food
+hint: Think of how your community's culture has changed.
+mc2: English spread to many parts of the world mainly through | British colonization and later American media and business | the Silk Road | the Columbian Exchange | the Green Revolution
+hint: Think about empire and modern media.
+sa2: Explain how a local tradition might change when it meets global culture. | It may blend in new elements, such as new foods, music or technology, while keeping its core meaning; or it may fade if young people adopt global trends instead.
+hint: Think about blending and loss.
+quiz:
+mc1: Culture includes | language, beliefs, customs and arts | only food | only clothing | only religion
+mc1: Globalization is | the increasing connection of the world's economies and cultures | a type of map | isolation of countries | a climate pattern
+mc2: Cultural diffusion is | the spread of ideas and customs from one culture to another | the end of culture | a type of erosion | a government system
+mc2: Which spreads culture most quickly today? | the internet and media | walking | letters by horse | carrier pigeons
+ex2: Explain how to judge whether a source about a global issue is credible. | Check the author's expertise, evidence, date, purpose and whether other reliable sources agree.
+mc2: Which is a culture trait? | celebrating a harvest festival | the height of a mountain | yearly rainfall | the length of a river
+mc2: Ethnocentrism is | judging other cultures by the standards of one's own | studying many cultures fairly | speaking two languages | a type of trade
+
+test:
+mc2: Which is an example of cultural diffusion? | sushi restaurants around the world | a closed border | a language with no speakers | a desert
+mc2: A credible source about global trade would be | a report from an international economic organization | an anonymous social media post | a rumor | a cartoon
+mc2: One criticism of globalization is that it can | lead to job losses in some industries and weaken local cultures | stop all trade | make every country identical in all ways | end technology
+mc3: A fast-food chain adapts its menu to local tastes in different countries. This shows | globalization combined with local culture | complete cultural isolation | no trade | a government ban
+sa2: Give an example of cultural diffusion in your community and trace its origin. | Names a food, music or holiday and where it came from.
+sa2: Evaluate one benefit and one cost of globalization. | Benefit: cheaper goods and exchange of ideas; cost: job losses or loss of local traditions.
+task3: Investigate a global product (such as a smartphone or a cup of coffee). Map where its parts or ingredients come from, analyze the economic and cultural effects on two countries involved, and evaluate whether globalization benefits both, using credible sources. | Accurate supply-chain map, balanced analysis and well-sourced evaluation. | Map and analysis with some sources. | Partial map. | Little correct work.
+mc1: Customs are | traditional practices of a group | laws of physics | landforms | ocean currents
+mc2: Which crop moved from the Eastern Hemisphere to the Americas in the Columbian Exchange? | sugarcane | maize | potatoes | cacao
+mc2: Which is an example of relocation diffusion? | immigrants opening restaurants that serve food from home in a new country | a song spreading online worldwide | a fashion moving from big cities to suburbs | a law passed by a national government
+mc2: A good sign that a website is credible is that it | names its authors, cites evidence and is kept up to date | uses many exclamation points | has no date | asks you to share before reading
+mc2: Besides goods, the Silk Road helped spread | religions such as Buddhism from India into China | Christianity to the Americas | the potato to Europe | the printing press to the Americas
+mc2: Which is a negative effect sometimes linked to globalization? | factories leaving towns that depended on them | cheaper goods | more choices for shoppers | faster communication
+mc3: A country requires radio stations to play a set share of songs in the national language. What is the most likely goal? | to protect local culture from being overwhelmed by global media | to stop all trade | to ban foreign travel | to raise taxes
+mc2: Which pair correctly matches a language with its language family? | Hindi - Indo-European | Spanish - Sino-Tibetan | English - Afro-Asiatic | Mandarin - Indo-European
+mc3: A blog says a new trade deal will "destroy every job." A government report estimates some industries will lose jobs and others will gain them. What should a careful reader conclude? | the measured estimate is more credible, though it should also be checked | the blog is right because it is dramatic | both are equally reliable | trade has no effects
+mc1: A tradition is | a custom or belief passed down from generation to generation | a new law | a map | a tariff
+mc2: Which invention most sped up the spread of ideas in Europe after about 1450? | the printing press | the telegraph | the radio | the internet
+mc2: In what direction did the potato travel in the Columbian Exchange? | from the Americas to Europe | from Europe to the Americas | from China to Peru | from Africa to Asia only
+sa2: Explain how the internet has changed the speed of cultural diffusion. | Music, videos, foods and ideas can spread around the world in days instead of centuries, so trends move quickly between cultures.
+cer3: A city's records show that in 1990 it had 3 restaurants serving food from other countries and its schools reported 5 home languages. By 2020 it had 60 such restaurants and 40 home languages. Make a claim about how migration and globalization affected the city's culture, give evidence and explain your reasoning. | Claim: migration and globalization made the city's culture much more diverse. Evidence: restaurants rose from 3 to 60 and home languages from 5 to 40. Reasoning: people who move bring their foods and languages, and global connections spread them, so the city's cultural landscape changed.
+
+unit: Ethnic studies: identity, history and movements | ESMC.1, ESMC.2
+el: Provide a timeline strip (1830 to 1988) and a glossary (identity, ethnicity, exclusion, incarceration, sovereignty, boycott, redress). Read source excerpts aloud, preview names, and offer the frame "This source shows ___ experienced ___ and responded by ___."
+lesson: Identity, race and ethnicity | ESMC.1
+practice:
+mc1: Ethnicity usually refers to | a shared culture, such as language, ancestry, traditions or religion | a person's height | where someone works | a political party
+hint: Think about shared heritage.
+mc2: Social scientists describe race as "socially constructed." This means | racial categories were created and changed by societies over time rather than fixed by biology | race has no effect on people's lives | everyone agrees on racial categories | the categories never change
+hint: "Constructed" means built by people.
+mc2: The U.S. Census has changed its racial and ethnic categories many times. What does this suggest? | ideas about race and ethnicity change over time | the categories are fixed by science | the census never counts people | only one category is allowed
+hint: If the categories were fixed, would they need to change?
+mc2: Intersectionality describes how | different parts of identity, such as race, gender and class, combine to shape a person's experiences | identity has only one part | people belong to no groups | all people have the same experiences
+hint: "Intersect" means to cross or overlap.
+mc3: A family speaks Tagalog at home and English at school and celebrates both Filipino and American holidays. This best shows that | identity can include several cultures at once | identity is fixed at birth | the family has no culture | language has nothing to do with identity
+hint: Can a person belong to more than one culture?
+sa2: Describe two factors that shape a person's identity and explain how each one does. | For example, family passes down language and traditions, and community and history shape how people see themselves and how others treat them.
+hint: Think of family, language, religion, place and history.
+quiz:
+mc1: A stereotype is | an oversimplified, often unfair belief about a whole group | a fact proven by research | a family tradition | a type of map
+mc2: The Fourteenth Amendment (1868) states: "All persons born or naturalized in the United States, and subject to the jurisdiction thereof, are citizens of the United States." Which principle does this establish? | birthright citizenship | voting rights for women | freedom of religion | the right to bear arms
+mc2: Institutional discrimination is | unequal treatment built into the laws, policies or practices of institutions | one person's private opinion | a disagreement between friends | a fair hiring rule
+mc2: Redlining, beginning in the 1930s, was the practice of | marking certain neighborhoods, often with many residents of color, as too risky for home loans | painting street curbs red | drawing state borders | building highways
+mc2: Self-identification on a survey means | people choose the categories that describe themselves | an official assigns the categories | categories are based on birthplace only | no categories are used
+mc3: Redlined neighborhoods received fewer home loans for decades. Which long-term effect is most likely? | lower rates of home ownership and family wealth in those neighborhoods | higher home values in those neighborhoods | no lasting effect | more banks in those neighborhoods
+sa2: Explain why it matters that people can describe their own identities rather than having labels assigned to them. | Self-description respects people's own understanding of who they are; assigned labels can be inaccurate, hurtful or used to exclude.
+lesson: Asian American and Pacific Islander histories: exclusion and resistance | ESMC.1, ESMC.2
+practice:
+mc2: In the 1860s thousands of Chinese workers built much of | the western section of the first transcontinental railroad | the Erie Canal | the Panama Canal | the Brooklyn Bridge
+hint: The Central Pacific Railroad built east from California.
+mc2: In United States v. Wong Kim Ark (1898), the Supreme Court ruled that | a man born in the U.S. to Chinese immigrant parents was a U.S. citizen | Chinese immigrants could never live in the U.S. | the Chinese Exclusion Act was unconstitutional | only landowners could be citizens
+hint: Think of the Fourteenth Amendment's citizenship clause.
+mc2: Poems carved into the walls of the Angel Island Immigration Station by detained Chinese immigrants are valuable sources because they | record the immigrants' own feelings about detention | were official government reports | were written by inspectors | are fictional stories
+hint: Whose voices do they preserve?
+mc2: The Civil Liberties Act of 1988 | formally apologized and paid redress to surviving Japanese Americans who had been incarcerated | began the incarceration | ended Chinese exclusion | created Angel Island
+hint: "Redress" means making up for a wrong.
+mc3: Filipino farm workers led by Larry Itliong began the 1965 Delano grape strike, and Mexican American workers led by Cesar Chavez soon joined them. This shows that | different ethnic groups cooperated in the farm labor movement | Filipino workers opposed the strike | the strike had one leader only | the strike was in Texas
+hint: Who started the strike, and who joined?
+sa2: Explain how the Chinese Exclusion Act of 1882 reflected attitudes of its time and affected Chinese American communities. | It reflected racial prejudice and fears that Chinese workers took jobs and lowered wages. It kept most new Chinese immigrants out, separated families and left mostly male communities that shrank for decades.
+hint: Think about why it was passed and who it hurt.
+quiz:
+mc1: The Chinese Exclusion Act was finally repealed in | 1943 | 1882 | 1965 | 1898
+mc2: In Korematsu v. United States (1944), the Supreme Court | upheld the wartime exclusion of Japanese Americans | struck down the incarceration | ended school segregation | ended Chinese exclusion
+mc2: The 442nd Regimental Combat Team was | a mostly Japanese American Army unit that became one of the most decorated in U.S. history | a Navy fleet | a Confederate regiment | a peace organization
+mc2: The Immigration and Nationality Act of 1965 | ended national-origin quotas, leading to more immigration from Asia and Latin America | banned all immigration from Asia | created Angel Island | began the Bracero Program
+mc2: Student activists in the late 1960s promoted the term "Asian American" to | build a shared political identity among people of different Asian ancestries | replace every individual ethnic name | describe only Chinese Americans | follow a government order
+mc3: Many Japanese American families lost farms and businesses when they were incarcerated in 1942. Which source would best show the effect on one family? | an oral history with a family member who was incarcerated | a general encyclopedia article | a modern weather map | a list of state capitals
+sa2: The U.S. government said Japanese American incarceration was a military necessity. In 1983 a federal commission studied the decision. Compare the government's stated reason with the commission's findings. | The government claimed military necessity, but the commission found no evidence of disloyalty and concluded the incarceration was caused by race prejudice, war hysteria and a failure of political leadership.
+lesson: African American and Native American histories of resistance | ESMC.1, ESMC.2
+practice:
+mc2: Frederick Douglass said in an 1852 speech: "This Fourth of July is yours, not mine. You may rejoice, I must mourn." What was his main point? | the nation celebrated freedom while millions of people were still enslaved | he disliked holidays | he supported slavery | the holiday should be moved
+hint: What was true for millions of Black Americans in 1852?
+mc2: The Dawes Act of 1887 | divided many reservations into individual plots, and Native nations lost much of their land | gave Native nations more land | ended the reservation system with full sovereignty | moved the Cherokee to Georgia
+hint: The land not given to individuals was opened to settlers.
+mc2: Federal Indian boarding schools such as the Carlisle Indian Industrial School (founded 1879) tried to | replace Native languages and cultures with Euro-American ways | teach Native languages | train Native leaders for tribal governments | preserve tribal religions
+hint: Children were often punished for speaking their own languages.
+mc2: The Indian Citizenship Act of 1924 | granted U.S. citizenship to Native Americans born in the United States | removed Native nations to Oklahoma | ended all treaties | created the reservation system
+hint: The name of the act tells you.
+mc3: Nez Perce leader Chief Joseph is recorded as saying in 1877: "I am tired; my heart is sick and sad. From where the sun now stands I will fight no more forever." What does this source reveal? | the exhaustion and loss his people suffered in war with the U.S. Army | a victory celebration | an offer to trade land | support for the boarding schools
+hint: What feelings do his words express?
+sa2: Explain how Native nations have resisted efforts to erase their cultures, giving one example. | For example, through language revitalization programs, the 1969 occupation of Alcatraz, legal fights for treaty rights and building tribal colleges and governments.
+hint: Think of language, land, law and protest.
+quiz:
+mc1: Ida B. Wells is known for | investigative journalism exposing lynching in the 1890s | founding the United Farm Workers | leading the Alcatraz occupation | writing the Fourteenth Amendment
+mc2: The Black Panther Party was founded in 1966 in | Oakland, California | Chicago, Illinois | Atlanta, Georgia | New York City
+mc2: The NAACP, founded in 1909, fought segregation mainly through | lawsuits, lobbying and public campaigns | armed revolt | leaving the country | running its own army
+mc2: Tribal sovereignty means | Native nations have the right to govern themselves within the United States | tribes are part of state governments | tribes have no laws | only Congress makes tribal laws
+mc2: W.E.B. Du Bois wrote in "The Souls of Black Folk" (1903): "The problem of the Twentieth Century is the problem of the color-line." What did he mean? | racial division and discrimination would be the century's central challenge | the century's main problem would be drawing borders | painters would struggle with color | railroads would divide cities
+mc3: Native nations, African American churches and civil rights groups often used courts as well as protests. Why were courts important to these movements? | courts could rule that laws and policies violated the Constitution or treaties | courts made laws for Congress | courts could not hear such cases | courts always sided with the government
+cer3: The Dawes Act of 1887 divided reservation land into individual allotments and sold the "surplus" land to settlers. Historians estimate that land held by Native nations fell from about 138 million acres in 1887 to about 48 million acres by 1934. Make a claim about the Dawes Act's effect on Native nations, give evidence and explain your reasoning. | Claim: the Dawes Act caused Native nations to lose most of their land. Evidence: Native-held land fell from about 138 million to about 48 million acres, a loss of about 90 million acres. Reasoning: splitting land into allotments and selling the rest to settlers moved land out of Native control, weakening tribal economies and self-government.
+lesson: Chicana/o and Latina/o histories and movements | ESMC.1, ESMC.2
+practice:
+mc2: The Treaty of Guadalupe Hidalgo (1848) ended the U.S.-Mexican War and | transferred a large territory, including California, to the United States | gave Texas back to Mexico | made Mexico a U.S. state | ended the Gold Rush
+hint: Think about which land changed hands in 1848.
+mc2: In 1968, thousands of Mexican American students in East Los Angeles walked out of their high schools to protest | poor conditions and unequal education | a new football rule | the end of summer break | a bus fare increase
+hint: The walkouts are also called "blowouts."
+mc2: Dolores Huerta, co-founder of the farm workers union, is known for the slogan | "Si, se puede" | "Remember the Alamo" | "Fifty-four forty or fight" | "Liberty, equality, fraternity"
+hint: It means "Yes, it can be done."
+mc2: In Mendez v. Westminster, Mexican American families went to court because their children were | sent to separate schools from white children | not allowed to play sports | required to wear uniforms | given too much homework
+hint: The case was about segregation.
+mc3: Mendez v. Westminster (1947) came seven years before Brown v. Board of Education (1954). Why do historians see Mendez as important to Brown? | it was an earlier legal challenge to school segregation, and Thurgood Marshall helped write a brief supporting the families | it overturned Plessy v. Ferguson | it was decided by the Supreme Court | it ended segregation in every state
+hint: Think about lawyers and arguments that carried forward.
+sa2: Explain why the Delano grape boycott asked people across the country to stop buying grapes. | Strikers alone could be replaced, but a national boycott cut growers' sales and pressured them to sign contracts with better wages and conditions.
+hint: How could shoppers far away help farm workers?
+quiz:
+mc1: Many Mexican Americans adopted the term Chicano in the 1960s to express | pride in their Mexican and Indigenous heritage | support for a political party | a new religion | a job title
+mc2: Which did the Treaty of Guadalupe Hidalgo promise Mexicans who stayed in the ceded lands? | the option of U.S. citizenship and protection of their property | free land in Mexico | a seat in Congress | exemption from all taxes
+mc2: Many Mexican American landowners in California lost land after 1848 because of | costly legal challenges to their land titles under U.S. law | selling it all back to Mexico | gold found on every rancho | a law banning farming
+mc2: Puerto Ricans became U.S. citizens through | the Jones Act of 1917 | the Treaty of Guadalupe Hidalgo | the Immigration Act of 1924 | the Dawes Act
+mc2: The 1970 Chicano Moratorium in Los Angeles protested | the Vietnam War and the high number of Chicano casualties | a new freeway | school lunch prices | the Gold Rush
+mc3: The United Farm Workers used strikes, marches, fasts and a national boycott. Why was the boycott especially effective? | it put economic pressure on growers through shoppers far from the fields | it was against the law | it required no organizing | it involved only growers
+sa2: Compare the goals of the 1968 East Los Angeles walkouts with the goals of the Mendez v. Westminster case. | Both sought equal education for Mexican American students; Mendez challenged legal segregation in court, while the walkouts protested unequal conditions, few Latino teachers and lack of Mexican American history in schools.
+lesson: Native Hawaiian and Pacific Islander histories | ESMC.1, ESMC.2
+practice:
+mc2: In 1893 the Hawaiian Kingdom's government, led by Queen Liliuokalani, was overthrown by | a group of mostly American businessmen, with support from U.S. Marines | the British navy | a vote of the Hawaiian people | the Japanese army
+hint: Sugar planters and businessmen wanted closer ties with the United States.
+mc2: The United States annexed Hawaii in | 1898 | 1776 | 1959 | 1848
+hint: It was the same year as the Spanish-American War.
+mc2: Queen Liliuokalani gave up her authority in 1893 "under protest," saying she yielded to the force of the United States to avoid loss of life. What does her protest show? | she did not accept the overthrow as lawful | she welcomed annexation | she supported the businessmen | she wanted to move to the mainland
+hint: Why would someone write a formal protest?
+mc2: In 1976 the voyaging canoe Hokule'a sailed from Hawaii to Tahiti using traditional navigation by stars, waves and wind. Why was the voyage important? | it showed the skill of ancient Polynesian navigators and renewed pride in Hawaiian culture | it was the first trip by airplane | it proved Hawaii was settled from Europe | it opened a shipping route for sugar
+hint: Some people had doubted that Polynesians settled the Pacific on purpose.
+mc3: After the 1890s, Hawaiian-language schools declined when English became the required language of instruction. Which later effort was a response to this loss? | Hawaiian-language immersion schools starting in the 1980s | closing all schools in Hawaii | banning English | moving schools to the mainland
+hint: Look for an effort to bring the language back.
+sa2: Explain why many Native Hawaiians view the 1893 overthrow differently from the way U.S. officials described annexation at the time. | Many Native Hawaiians see it as the illegal takeover of an independent kingdom against the will of its people and queen; U.S. supporters at the time described annexation as natural growth that brought stability and trade.
+hint: Compare the view of the queen's supporters with the view of the annexation's supporters.
+quiz:
+mc1: Before 1893, Hawaii was | an independent kingdom recognized by other nations | a U.S. state | a British colony | part of Japan
+mc2: In 1993 the U.S. Congress passed a resolution that | apologized to Native Hawaiians for the U.S. role in the 1893 overthrow | made Hawaii a state | ended Hawaiian schools | annexed Guam
+mc2: Hawaii became the 50th U.S. state in | 1959 | 1898 | 1893 | 1945
+mc2: Guam, home of the Indigenous Chamorro people, became a U.S. territory in 1898 after | the Spanish-American War | World War I | the Civil War | the War of 1812
+mc2: The Hawaiian Renaissance of the 1970s was | a revival of Hawaiian language, music, hula and voyaging | a new sugar company | a military base | a type of tourism tax
+mc3: Sugar planters in Hawaii in the 1890s wanted annexation partly because it would let their sugar enter the U.S. without tariffs. What does this show about the causes of annexation? | economic interests helped drive it | it was caused only by a vote of Native Hawaiians | it had nothing to do with trade | it was forced on the planters
+sa2: Explain how the revival of the Hawaiian language connects to identity, using one example. | Teaching Hawaiian in immersion schools lets young people speak the language of their ancestors, connecting them to chants, place names and history and strengthening Native Hawaiian identity.
+lesson: Oral history and community research | ESMC.2, HSS.REP.4
+practice:
+mc1: An oral history is | a recorded interview about a person's memories and experiences | a textbook | a law | a census table
+hint: "Oral" means spoken.
+mc2: Before recording an oral history interview, a researcher should | explain the project and get the person's permission | publish the recording first | keep the purpose secret | record without asking
+hint: Think about respect and consent.
+mc2: Which is the best open-ended interview question? | "What do you remember about your first year in California?" | "Did you move in 1975?" | "Was it hard, yes or no?" | "Is your name Maria?"
+hint: Open-ended questions cannot be answered with one word.
+mc2: Because memory can change over time, historians | compare oral histories with documents and other accounts | never use oral histories | trust every memory completely | use only the newest interviews
+hint: How do historians check any source?
+mc3: A student's grandfather remembers a 1970 farm workers march as "huge." A newspaper from that day estimates the crowd at a few hundred. What should she do? | report both accounts and consider why they might differ | delete the interview | trust only her grandfather | trust only the newspaper
+hint: Different sources can see the same event differently.
+sa2: Write two interview questions you would ask an elder about your community's history, and explain why each is useful. | For example, "Why did your family come here?" reveals push and pull factors; "How has the neighborhood changed?" shows change over time.
+hint: Ask open-ended questions about reasons and change.
+quiz:
+mc1: A community archive collects | photos, letters, recordings and records about a local group's history | only federal laws | only weather data | only maps of other countries
+mc2: Why do ethnic studies researchers value community-based research? | community members help shape the questions and share their own knowledge | it avoids all sources | it uses only government records | it requires no permission
+mc2: Which would be a primary source for a history of a Vietnamese American neighborhood founded in the 1970s? | a 1978 photo of a family's first store | a 2020 encyclopedia article | a modern textbook summary | a recent movie review
+mc2: A transcript is | a written copy of what was said in an interview | a summary written by someone else | a photograph | a map
+mc2: Informed consent means | a person agrees to take part after understanding how the interview will be used | the person is not told about the project | the interviewer decides everything | the interview is secret
+mc3: An interviewee asks that part of her story not be shared publicly. What should a responsible researcher do? | honor the request and leave that part out of public work | publish it anyway | change her name and publish it | share it only online
+sa2: Explain one strength and one limitation of oral histories as historical sources. | Strength: they preserve voices and experiences missing from official records. Limitation: memories can fade or change, so they should be checked against other sources.
+
+lesson: Unit review | ESMC.1, ESMC.2
+practice:
+mc2: Which pair correctly matches a movement with one of its goals? | United Farm Workers - better pay and conditions for farm workers | the Alcatraz occupation - higher grape prices | the East Los Angeles walkouts - a new freeway | the NAACP - ending public schools
+hint: Think about who each group represented.
+mc2: Which event came first? | the Chinese Exclusion Act | Executive Order 9066 | Mendez v. Westminster | the Delano grape strike
+hint: Put the dates in order: 1882, 1942, 1947, 1965.
+mc2: Fred Korematsu's 1944 conviction for refusing the exclusion order was | overturned by a federal court in 1983 | never questioned | turned into a medal | upheld again in 1988
+hint: New evidence came to light decades later.
+mc2: Which best describes ethnic studies as a field? | it studies the histories, cultures and contributions of racial and ethnic groups, often from their own perspectives | it studies only one country's government | it studies only ancient history | it studies only rocks and minerals
+hint: Think about what this whole unit has covered.
+sa2: Choose two movements from this unit and explain one strategy they shared. | For example, the UFW and the civil rights movement both used nonviolent protest and boycotts to win public support and pressure decision makers.
+hint: Think of boycotts, marches, lawsuits or strikes.
+quiz:
+mc1: The Delano grape strike and boycott (1965-1970) was led by farm workers including | Cesar Chavez and Dolores Huerta | Martin Luther King Jr. and Malcolm X | Fred Korematsu | Sitting Bull
+mc1: Executive Order 9066 (1942) led to | the incarceration of Japanese Americans | the end of segregation | women's suffrage | the Gold Rush
+mc2: The Chinese Exclusion Act of 1882 | banned most Chinese immigration to the U.S. | welcomed Chinese immigrants | ended slavery | created Chinatowns
+mc2: Mendez v. Westminster (1947) in California | ended segregation of Mexican American students in Orange County schools | started the Gold Rush | ended the Civil War | created ethnic studies
+ex2: Explain why studying the histories of different ethnic communities matters for understanding U.S. history. | It gives a fuller, more accurate history and shows how many groups shaped the nation.
+mc2: The Third World Liberation Front was | a coalition of student groups that led strikes for ethnic studies at San Francisco State and UC Berkeley in 1968-1969 | a foreign army | a political party in Europe | a government agency
+mc2: Which is a primary source about the farm worker movement? | a 1966 flyer calling for a grape boycott | a 2015 textbook chapter | a modern documentary review | an encyclopedia summary
+
+test:
+mc2: The 1968 student strikes at San Francisco State led to | the first college of ethnic studies | the end of college | the Free Speech movement only | a new state capital
+mc2: The occupation of Alcatraz (1969-1971) by Native American activists drew attention to | treaty rights and self-determination | prison conditions only | the Gold Rush | farming
+mc2: Identity can be shaped by | family, culture, history and community | only birthplace | only appearance | nothing
+mc3: Why do historians use oral histories when studying communities of color? | They preserve voices and experiences often left out of official records | They are always more accurate than documents | They replace all other sources | They are easier to read
+sa2: Explain how one movement for civil rights in California created change. | For example, the UFW won better conditions for farm workers through strikes and boycotts.
+sa2: Describe how a historical policy (such as Chinese Exclusion or Japanese American incarceration) affected a community. | Explains the policy and its effects on families, property, rights and identity.
+task3: Research a community in your region using at least one oral history interview or recorded account and two documents. Create a presentation on the community's history, a challenge it faced, how it organized for change and its contributions today. | Well-researched, respectful presentation using all sources, clear analysis of challenge, action and contribution. | Good presentation with most sources. | Limited sources and analysis. | Little correct work.
+mc1: Cesar Chavez was a leader of | the United Farm Workers | the NAACP | the Black Panther Party | the Third World Liberation Front
+mc2: The Treaty of Guadalupe Hidalgo was signed in | 1848 | 1776 | 1898 | 1924
+mc2: The Fourteenth Amendment's citizenship clause was central to which Supreme Court case? | United States v. Wong Kim Ark (1898) | Miranda v. Arizona | Tinker v. Des Moines | Gideon v. Wainwright
+mc2: Which 1924 law granted citizenship to Native Americans born in the United States? | the Indian Citizenship Act | the Dawes Act | the Indian Removal Act | the Jones Act
+mc2: Which 1830 law led to the forced removal of Southeastern Native nations? | the Indian Removal Act | the Dawes Act | the Indian Citizenship Act | the Civil Liberties Act
+mc2: The Black Panther Party's community programs included | free breakfast programs for children | building interstate highways | running the U.S. Postal Service | managing national parks
+mc2: Which Supreme Court case ruled in 1954 that segregated public schools were unconstitutional nationwide? | Brown v. Board of Education | Mendez v. Westminster | Plessy v. Ferguson | Korematsu v. United States
+mc2: In 1983 a federal commission concluded that Japanese American incarceration was caused by | race prejudice, war hysteria and a failure of political leadership | proven spying by Japanese Americans | a request from Japanese Americans | a court order
+mc3: In 1882 supporters of Chinese exclusion argued that Chinese workers lowered wages, while Chinese Americans and their allies argued they were being singled out unfairly. Which conclusion best uses both perspectives? | economic fears and racial prejudice both shaped the law | the law had no supporters | Chinese workers asked for the law | the law was about trade with Europe
+mc3: A historian studying the 1968 East Los Angeles walkouts has a school board report and interviews with students who walked out. Why should she use both? | each shows a different perspective, and comparing them gives a fuller picture | the report is always wrong | the interviews are always wrong | one source is always enough
+mc1: The group that occupied Alcatraz Island from 1969 to 1971 called itself | Indians of All Tribes | the United Farm Workers | the Black Panther Party | the NAACP
+mc2: The Delano grape strike ended in 1970 when | growers signed union contracts with the farm workers | the workers gave up | the government banned grapes | the growers moved to Mexico
+sa2: Explain how one California community organized to challenge discrimination, and what changed as a result. | For example, Mexican American families in Orange County sued in Mendez v. Westminster, and in 1947 California ended school segregation laws; or farm workers struck and boycotted and won union contracts in 1970.
+cer3: Source A: Executive Order 9066 (1942) allowed the military to remove people from areas of the West Coast. Source B: About 120,000 Japanese Americans were removed, and about two-thirds of them were U.S. citizens. Source C: The Civil Liberties Act of 1988 apologized and paid $20,000 to each surviving person who had been incarcerated. Make a claim about whether the incarceration was just, give evidence from the sources and explain your reasoning. | Claim: the incarceration was unjust. Evidence: most of the 120,000 people removed were citizens, and in 1988 the government itself apologized and paid redress. Reasoning: citizens were imprisoned without charges or trials because of their ancestry, which violated their constitutional rights, as the government later admitted.
