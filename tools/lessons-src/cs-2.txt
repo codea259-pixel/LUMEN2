@@ -13,7 +13,7 @@ hint: This box sits between your home devices and the line from the internet com
 mc1: What is a packet? | A small piece of data sent across a network | A whole movie sent all at once | A kind of network cable | A list of website names
 hint: Big files are broken up before they travel. What is each piece called?
 mc1: What does LAN stand for? | Local area network | Large access node | Long antenna network | Linked application number
-hint: The L is about a nearby area, like one school building.
+hint: Think of the network inside one school building. Which words describe it?
 mc1: Which kind of network covers a large area, such as a whole country? | WAN | LAN | USB | CPU
 hint: Think about a network that links offices in different cities.
 
@@ -43,7 +43,7 @@ hint: First find how many packets the file needs, then count the resent one too.
 mc2: What is a protocol in networking? | A set of rules that devices follow to communicate | An extra long cable | A computer that stores games | The password for a router
 hint: Two people talking must agree on a language and on taking turns.
 mc2: Which protocol does a browser use to load web pages? | HTTP | USB | LAN | RAM
-hint: Look at the letters at the start of a web address.
+hint: Which choice is a set of rules for sending pages, rather than a plug, a kind of network or memory?
 
 lesson: Mixed practice: common mix-ups
 mc2: Lucas says, "Wi-Fi and the internet are the same thing." What is the best correction? | Wi-Fi is a wireless way to join a local network; the internet is the worldwide network of networks | Wi-Fi is just a faster speed of the internet | The internet only works with cables, and Wi-Fi only works without the internet | Wi-Fi is a website and the internet is a program
@@ -77,7 +77,7 @@ lesson: Python words
 mc1: What does print() do in Python? | Shows output on the screen | Asks the user to type something | Sends a page to a printer | Deletes a variable
 hint: Think about where you see the results of a program.
 mc1: What does input() do in Python? | Waits for the user to type something and gives it to the program | Shows a number on the screen | Adds two numbers | Ends the program
-hint: Its name tells you which way the data moves.
+hint: Think of a program that asks for your name. Which step lets you answer?
 mc1: What is a variable? | A name that stores a value | A mistake in the code | A kind of loop | A message that can never change
 hint: In x = 10, what job is x doing?
 mc1: Which keyword starts a function definition in Python? | def | fun | function | start
@@ -93,7 +93,7 @@ hint: What do quotation marks tell Python about a value?
 mc1: What does int("7") give in Python? | The whole number 7 | The text "7" | The decimal number 7.5 | An error every time
 hint: int() changes a value into one kind of number.
 mc2: What does str(15) give in Python? | The text "15" | The whole number 15 | The number 1.5 | The text "fifteen"
-hint: str is short for string.
+hint: int() turns a value into a whole number. What kind of value does str() make?
 mc2: Why is int() often used together with input()? | input() always gives text, so int() turns it into a number for math | input() gives a number, and int() turns it into text | int() makes the user type faster | input() cannot run without int()
 hint: What type does input() always give back?
 num2: What does this program print? x = 5; y = 3; print(x + y * 2) | 11
@@ -147,7 +147,7 @@ unit: Building web pages: HTML, CSS and JavaScript | 8 | cs_8
 
 lesson: Three languages of the web
 mc1: Which language gives a web page its structure, such as headings and paragraphs? | HTML | CSS | JavaScript | SQL
-hint: It marks up content with tags.
+hint: One of the other choices handles looks, one handles actions and one handles databases. Which is left?
 mc1: Which language controls colors, fonts and layout on a web page? | CSS | HTML | Python | SQL
 hint: Think about which language handles how a page looks rather than what it says.
 mc1: Which language makes a web page react when a user clicks a button? | JavaScript | HTML | CSS | HTTP
@@ -157,13 +157,13 @@ hint: Look for the < and > symbols.
 mc1: Which tag makes the largest, most important heading? | <h1> | <h6> | <p> | <head>
 hint: Headings are numbered, and the smallest number is the most important.
 mc1: Which protocol does a browser use to request web pages from a server? | HTTP | HTML | CSS | DNS
-hint: Its letters begin most web addresses.
+hint: HTML is the page itself. Which choice is the set of rules for asking a server for that page?
 
 lesson: Tags, elements and attributes
 mc1: In <a href="page.html">Next</a>, what is href? | An attribute | A tag name | A CSS property | A JavaScript event
 hint: It is extra information written inside the opening tag.
 mc1: What does the <a> tag make? | A link | A picture | A list | A table
-hint: You click this to go to another page.
+hint: The a tag usually has an href attribute that holds a web address. What is a web address on a page used for?
 mc1: Which tag shows an image? | <img> | <pic> | <photo> | <picture-file>
 hint: This tag has no closing tag and uses a src attribute to say which file to show.
 mc2: Which attribute of an <img> tag gives text that describes the picture for people who cannot see it? | alt | src | href | id
@@ -289,17 +289,17 @@ unit: Cybersecurity | 9 | cs_9
 
 lesson: Security words
 mc1: What is phishing? | Tricking people into giving away private information, often with a fake message | Scrambling data so it cannot be read | A program that filters network traffic | Making a backup copy of files
-hint: The name sounds like a sport where bait is used to catch something.
+hint: Three of these choices protect data. Which one is an attack on people?
 mc1: What is malware? | Software made to harm a device or steal data | Software that cleans the screen | A kind of keyboard | Any program that runs slowly
-hint: The prefix "mal" means bad.
+hint: Which choice describes something an attacker would want on your device?
 mc1: What is two-factor authentication? | Logging in with two different kinds of proof, such as a password and a code sent to your phone | Typing the same password twice | Using two different web browsers | Having two accounts on one site
 hint: Think of something you know plus something you have.
 mc1: What does encryption do? | Scrambles data so only someone with the right key can read it | Deletes old files | Speeds up the internet | Sends spam messages
 hint: Think of a secret code that needs a key to undo.
 mc1: What is ransomware? | Malware that locks files and demands payment to unlock them | A program that backs up files for free | A safe way to share passwords | A tool for building websites
-hint: A ransom is a payment demanded to release something.
+hint: Ransomware is a kind of malware. Which choice describes something harmful?
 mc1: What does a firewall do? | Filters network traffic and blocks connections that break its rules | Cools down the processor | Encrypts every file on the disk | Stops the screen from overheating
-hint: It stands between a computer or network and the traffic coming from outside.
+hint: The name has nothing to do with heat. Think about what a wall in a building keeps out.
 
 lesson: Spotting threats and strong passwords
 mc2: Which password is strongest? | violet-canoe-sizzle-orbit-42 | password123 | Maria2009 | qwerty
@@ -307,7 +307,7 @@ hint: Length and unpredictability matter most.
 mc2: Which message is most likely a phishing attempt? | "Your account closes today! Click this link and enter your password to keep it." | A teacher's reminder about a test on Friday | A receipt for something you just bought that asks for nothing | A newsletter you signed up for last month
 hint: Look for urgency together with a request for secrets.
 mc2: Which of these is a passphrase? | A long password made of several random words | A four-digit PIN | Your pet's name | The word "password" spelled backward
-hint: A phrase is a group of words.
+hint: Which choice is both long and hard to guess?
 mc2: Which is an example of the "something you have" factor in two-factor authentication? | A code shown in an app on your phone | Your password | Your username | The name of your first school
 hint: Which choice is a thing you hold rather than a thing you remember?
 mc2: Why is it risky to use the same password on many sites? | If one site leaks its passwords, attackers can try that password on your other accounts | It makes the password too long | Sites block any password used twice | It makes your computer slower
@@ -377,7 +377,7 @@ hint: A byte is the group of bits often used to store one character, such as the
 mc1: Which unit is largest? | Terabyte | Gigabyte | Megabyte | Kilobyte
 hint: Each prefix stands for a bigger number than the last. Which prefix stands for the biggest?
 mc2: Which list puts these units in order from smallest to largest? | KB, MB, GB, TB | MB, KB, GB, TB | KB, GB, MB, TB | TB, GB, MB, KB
-hint: Kilo means thousand, mega million, giga billion and tera trillion.
+hint: Start with KB, the smallest. Which unit holds 1,000 KB, and which holds 1,000 of those?
 num2: Using 1 GB = 1000 MB, how many MB are in 3 GB? | 3000
 hint: Each GB holds 1000 MB.
 num2: Using 1 GB = 1000 MB, how many 500 MB videos fit on a 4 GB drive? | 8
@@ -403,7 +403,7 @@ lesson: Mixed practice: common mix-ups
 mc2: A computer gets very slow when many browser tabs and apps are open, but its drive has lots of free space. Which upgrade would most likely help? | More RAM | A bigger monitor | A longer power cable | More USB ports
 hint: Which part holds the programs that are open right now?
 mc2: Which statement about CPU clock speed is true? | It is measured in gigahertz and tells how many cycles the CPU runs each second | It tells how much the CPU can store | A higher clock speed means more storage space | It is measured in gigabytes
-hint: Hertz means "per second".
+hint: Think about what a clock measures.
 mc2: Which part matters most for running detailed 3D games smoothly? | GPU | Power button | Keyboard | Webcam
 hint: Which part is built to draw images very quickly?
 mc2: Which statement about the CPU and RAM is correct? | The CPU gets instructions and data from RAM while it works | RAM carries out instructions and the CPU stores them | The CPU keeps all files after shutdown | RAM is part of the monitor
@@ -431,7 +431,7 @@ lesson: Search and recursion words
 mc1: What is an algorithm? | A clear, step-by-step set of instructions for solving a problem | A computer's power supply | A type of database | A fast internet connection
 hint: Think of a recipe.
 mc1: How does linear search work? | It checks items one at a time from the start until it finds the target or reaches the end | It splits the list in half at each step | It sorts the list first | It checks random spots
-hint: "Linear" means in a straight line.
+hint: Picture checking a row of lockers for a friend's name. Where do you start, and how do you move?
 mc1: What must be true of a list before binary search can be used on it? | It must be sorted | It must have an even number of items | It must contain only text | It must have fewer than 10 items
 hint: Binary search compares the target with the middle item to decide which half to throw away.
 mc1: What is recursion? | A function calling itself to solve a smaller version of the same problem | A loop that runs exactly once | A program crashing | Two variables sharing one name
@@ -439,7 +439,7 @@ hint: Think of two mirrors facing each other.
 mc1: What is a base case in a recursive function? | The simplest case, which returns an answer without calling the function again | The first line of every program | The largest input allowed | A case that always causes an error
 hint: It is the stopping point.
 mc1: What is pseudocode? | A plain-language outline of an algorithm that is not tied to one programming language | A secret code for passwords | Code that has bugs | A language that only computers can read
-hint: "Pseudo" means imitation.
+hint: Is pseudocode written for a computer to run, or for people to plan with?
 
 lesson: Counting steps in searches
 num2: Linear search looks for 9 in the list [4, 7, 1, 9, 3]. How many items does it check, counting the 9 itself? | 4
@@ -537,23 +537,23 @@ hint: Look at what Bird gets from its parent class.
 mc2: Which relationship is the best fit for inheritance? | A Car is a Vehicle | A Car has an Engine | A Driver drives a Car | A Garage stores a Car
 hint: Inheritance fits an "is a kind of" relationship.
 mc2: What does it mean to override a method? | A child class writes its own version of a method it inherited | A class is deleted | A method is called twice | A method is made private
-hint: Think of a child class replacing its parent's behavior.
+hint: Think about what happens when a child class has a method with the same name as one in its parent.
 num2: A class Shape has a method sides(self) that returns 0. Its child classes Triangle(Shape) and Square(Shape) each override sides, returning 3 and 4. What is Triangle().sides() + Square().sides() + Shape().sides()? | 7
 hint: Each object uses its own class's version of sides.
 
 lesson: Encapsulation and polymorphism
 mc2: What is encapsulation? | Keeping an object's data inside it and letting other code change it only through the object's methods | Building one class out of many | Using the same method name in many classes | Copying code into every file
-hint: Think of a capsule that keeps things inside.
+hint: Think about why a bank does not let customers change their own balance directly.
 mc2: What is polymorphism? | Different classes responding to the same method call in their own way | A class that has only one object | Storing data in a list | Making all attributes public
-hint: "Poly" means many and "morph" means form.
+hint: Think of a remote control whose play button works on a TV, a speaker and a game console, each in its own way.
 mc2: A class BankAccount keeps its balance in self._balance and has a method deposit(amount) that refuses negative amounts. Which idea does this show most clearly? | Encapsulation | Inheritance | Polymorphism | Recursion
-hint: The data is protected and changed only through a method.
+hint: Who is allowed to change the balance, and how?
 mc2: A program loops over shapes = [Circle(), Square(), Triangle()] and calls s.area() on each one, getting the right area for every kind of shape. Which idea does this show? | Polymorphism | Encapsulation | A base case | Linear search
-hint: The same call gives different behavior for different classes.
+hint: Look at what stays the same in the code and what changes from one shape to the next.
 mc2: A student says, "A class and an object are the same thing." What is the best correction? | A class is the blueprint; objects are the individual things built from it | Objects are blueprints for classes | A class can never have more than one object | Classes can only store numbers
 hint: How many houses can be built from one set of plans?
 num2: A class Temp has a constructor that sets self.c = c and a method to_f(self) that returns self.c * 9 / 5 + 32. What is Temp(100).to_f()? | 212
-hint: Multiply by 9, divide by 5, then add 32.
+hint: Put 100 in place of self.c and follow the order of operations.
 
 lesson: Designing with objects
 mc3: A school app needs Student and Teacher classes. Both have a name and an email, and each has some extra details of its own. Which design is best? | A Person class with name and email, and Student and Teacher classes that inherit from it | One class with every possible attribute for everyone | Copy the name and email code into both classes | Use only global variables
@@ -563,7 +563,7 @@ hint: Check the condition before each withdrawal.
 num3: A class Pet has a constructor that sets self.n = n and self.age = 0, and a method birthday(self) that runs self.age = self.age + 1. After p = Pet('Ola'); q = Pet('Sam'); p.birthday(); p.birthday(); q.birthday(), what is p.age + q.age? | 3
 hint: Each object keeps its own age.
 mc3: A game has Bat, Slime and Robot classes. Each kind of enemy moves differently, but the game loop simply calls e.move() on every enemy. Which idea makes this work? | Polymorphism through method overriding | Making every enemy the same class with no methods | Recursion | Binary search
-hint: One method name, different behavior for each class.
+hint: What do all the enemies share in the code, and what is different about each one?
 mc3: Why might a class keep an attribute such as _balance from being changed directly by outside code? | So the rules in its methods, such as no negative deposits, cannot be skipped | So the program runs faster | Because Python cannot store numbers in objects | So the class cannot have methods
 hint: What could go wrong if any code could set the balance to anything?
 sa3: Describe a real-world thing as a class: give the class a name, two attributes and one method. | For example: a class Bicycle with attributes color and gear, and a method change_gear(new_gear) that sets gear to the new value.
@@ -573,9 +573,9 @@ unit: Data structures and sorting | 11 | cs_11, cs_11_n1
 
 lesson: Common data structures
 mc1: Which data structure is last in, first out (LIFO)? | Stack | Queue | Dictionary | Tree
-hint: Think of a pile of plates.
+hint: Which structure adds and removes items at the same end?
 mc1: Which data structure is first in, first out (FIFO)? | Queue | Stack | Tree | Set
-hint: Think of a line at a ticket window.
+hint: Which structure adds items at one end and removes them from the other?
 mc1: What does a dictionary (hash map) store? | Key-value pairs, so a value can be found from its key | Only items in sorted order | Items in a line where the first in is the first out | Only numbers
 hint: Think of looking up a word to find its meaning.
 mc1: In a tree data structure, what is the root? | The top node, which has no parent | A node with no children | The last item added | Any node with two children
@@ -601,11 +601,11 @@ hint: Each level has twice as many nodes as the level above it.
 
 lesson: Sorting algorithms
 mc1: Which sort repeatedly swaps neighboring items that are out of order? | Bubble sort | Merge sort | Selection sort | Insertion sort
-hint: Large values rise to the end, like air rising in water.
+hint: Merge sort splits the list, and insertion sort builds a sorted part one item at a time. Of the other two, which only swaps items that sit side by side?
 mc1: Which sort finds the smallest remaining item on each pass and moves it to the next spot? | Selection sort | Bubble sort | Merge sort | Insertion sort
-hint: It chooses, or picks out, one item on each pass.
+hint: Bubble sort swaps neighbors and merge sort splits the list. Of the other two, which looks at every remaining item before moving one?
 mc1: Which sort splits a list in half, sorts each half, and then combines the halves? | Merge sort | Bubble sort | Insertion sort | Selection sort
-hint: The key step is joining two sorted lists into one.
+hint: Bubble, selection and insertion sort all work through one whole list. Which sort is different?
 mc2: Which sort takes each new item and slides it into its correct place among the items already sorted? | Insertion sort | Selection sort | Merge sort | Bubble sort
 hint: Think of sorting playing cards in your hand one card at a time.
 mc2: Bubble sort makes one left-to-right pass over [5, 1, 4, 2, 8], swapping neighbors whenever the left one is bigger. What is the list after that pass? | [1, 4, 2, 5, 8] | [1, 2, 4, 5, 8] | [1, 5, 4, 2, 8] | [5, 1, 4, 2, 8]
@@ -677,7 +677,7 @@ hint: Think about what happens when some groups are missing from the data.
 mc1: What is data privacy? | People's right to control how their personal information is collected and used | Making all data public | Deleting every file | A kind of password
 hint: Whose information is it?
 mc2: What is a deepfake? | A realistic but fake video, audio clip or image made with AI | A very deep neural network | A database stored underground | A kind of firewall
-hint: It is made with deep learning and shows something that never really happened.
+hint: Think about AI tools that can copy a real person's face and voice.
 mc2: A face recognition system was trained mostly on photos of people with lighter skin. What problem is most likely? | It makes more mistakes for people with darker skin | It works equally well for everyone | It only fails on cloudy days | It stops recognizing anyone at all
 hint: How well can a model learn about groups it rarely saw?
 mc2: A calculator app asks for the user's location, contacts and microphone. Which principle does this break? | Collect only the data that is really needed | Use strong encryption | Write clear code | Use a fast algorithm
@@ -727,7 +727,7 @@ hint: The part still being searched is halved at each step.
 mc1: What is the worst-case time complexity of bubble sort? | O(n^2) | O(n) | O(log n) | O(n log n)
 hint: Up to n passes, each comparing up to n pairs.
 mc1: What is the time complexity of merge sort? | O(n log n) | O(n^2) | O(n) | O(log n)
-hint: About log n levels of splitting, with about n work to merge at each level.
+hint: Think about how many levels of splitting there are, and how much merging work happens on each level.
 
 lesson: Counting steps exactly
 num2: for i in range(n): print(i). How many times does print run when n = 50? | 50
@@ -797,7 +797,7 @@ hint: Think of a road map that shows how long each road is.
 mc1: What is a directed graph? | A graph whose edges point one way, like one-way streets | A graph with exactly one vertex | A graph where every edge has weight 1 | A graph with no cycles
 hint: Think of following someone online who does not follow you back.
 mc1: Which algorithm explores a graph level by level, visiting all of a vertex's neighbors before going deeper? | Breadth-first search | Depth-first search | Dijkstra's algorithm | Bubble sort
-hint: It spreads out widely before going farther.
+hint: Depth-first search goes as deep as it can first. Which search does the opposite?
 mc1: Which algorithm finds shortest paths in a weighted graph with no negative edge weights? | Dijkstra's algorithm | Depth-first search | Binary search | Merge sort
 hint: It grows outward from the start, always finalizing the closest unvisited vertex next.
 

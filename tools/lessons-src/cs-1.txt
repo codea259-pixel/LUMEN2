@@ -83,7 +83,7 @@ hint: You say it at the very beginning of a race.
 mc1: Which word tells a robot to stay still? | stop | go | jump | turn
 hint: A red light tells cars to do this.
 mc1: The robot's light is on. Which word makes it dark again? | off | on | up | go
-hint: It is the opposite of on.
+hint: What do you do to a lamp when it is time to sleep?
 
 lesson: Steps in order
 mc1: You want to plant a seed. What do you do first? | dig a hole | water the plant | pick the flower | watch it grow
@@ -97,7 +97,7 @@ hint: Read the very first step.
 num1: The robot code says: forward, forward, forward. How many steps does the robot take? | 3
 hint: Count each word forward.
 num1: A robot steps forward 2 times, then 1 more time. How many steps forward in all? | 3
-hint: Put 2 and 1 together.
+hint: Count the first 2 steps, then keep counting.
 
 lesson: Parts of a robot
 mc2: Which robot part notices a wall in front of it? | sensor | battery | motor | wheel
@@ -139,7 +139,7 @@ hint: Find the word that sent the robot the wrong way.
 mc2: A robot must stop when it gets dark. Which part helps it know it is dark? | light sensor | motor | wheel | battery
 hint: Which part notices things around the robot?
 num2: The robot goes forward 2 steps, then 2 more steps to reach the cookie. How many steps is that? | 4
-hint: Add 2 and 2.
+hint: Count the first 2 steps, then count on the next ones.
 
 unit: How computers follow programs | 1 | cs_1, cs_1_n1
 
@@ -163,7 +163,7 @@ hint: Input devices send information into the computer.
 mc1: Which one is an output device? | printer | keyboard | mouse | microphone
 hint: Output devices show or give you something the computer made.
 mc1: When you move a mouse, information goes into the computer. So a mouse is | input | output | storage | memory
-hint: In means one word, out means another.
+hint: Is the information coming from you or from the computer?
 mc1: Which one is NOT an input device? | monitor | keyboard | mouse | microphone
 hint: Three of these send information in. Which one only shows information?
 mc1: A touch screen shows pictures and also feels your taps. What is it? | input and output | only input | only output | only storage
@@ -177,7 +177,7 @@ hint: Think of first, next, last.
 mc2: A program says: say hi, clap, wave. What happens second? | clap | say hi | wave | jump
 hint: Count the steps: first, second, third.
 mc2: One instruction, like move forward, is called a | command | bug | screen | file
-hint: It is one order the computer must follow.
+hint: Which choice names a single step in a program? The others are a mistake, a part you look at and saved work.
 num2: A program says: jump, jump, spin, jump. How many times does it jump? | 3
 hint: Count only the word jump.
 mc2: Toast program: put bread in, push lever, wait, take toast out. Which step comes right after push lever? | wait | put bread in | take toast out | eat the toast
@@ -185,9 +185,9 @@ hint: Find push lever, then look at the step after it.
 
 lesson: Bugs and debugging
 mc2: A program has a mistake, so it does the wrong thing. The mistake is called a | bug | loop | sequence | command
-hint: It has the same name as a tiny insect.
+hint: Three of these words name parts of a program that works. Which one names something that went wrong?
 mc2: Finding and fixing mistakes in a program is called | debugging | typing | printing | saving
-hint: You take the mistake out of the program.
+hint: What does a coder do after noticing that a program goes wrong?
 mc2: A program should draw a cat, but it draws a dog. What should you do? | look for the mistake | turn off the screen | add more dogs | give up
 hint: Good coders check each step to see what went wrong.
 mc2: A getting-dressed program says: put on shoes, put on socks. What is wrong? | socks should go first | shoes should go first | it needs a hat | nothing is wrong
@@ -221,11 +221,11 @@ hint: Think of a race track where you go around and around.
 mc1: A set of instructions that a computer follows is called a | program | bug | debug | repeat
 hint: You write it, and the computer runs it.
 mc1: Finding and fixing a mistake in code is called | debugging | looping | repeating | typing
-hint: You take the bug out.
+hint: Which word is about the coder's job after the code goes wrong?
 mc1: The order that steps go in is called the | sequence | bug | loop | debug
 hint: Think of first, next and last.
 mc1: A mistake that makes code do the wrong thing is a | bug | loop | algorithm | sequence
-hint: It shares its name with a small insect.
+hint: Which word names a problem, not a set of steps or a way to repeat?
 
 lesson: Spot the coding word
 mc1: The code says: clap 5 times. Which coding idea is this? | loop | bug | debugging | sequence
@@ -245,7 +245,7 @@ lesson: Working with loops
 num2: The code says: repeat 4 times: hop. How many hops happen? | 4
 hint: The loop runs the hop step once each time.
 num2: The code says: repeat 3 times: clap, clap. How many claps happen in all? | 6
-hint: Each time the loop runs, it claps twice. Count 2 three times.
+hint: How many claps happen each time the loop runs, and how many times does it run?
 mc2: Which code is a shorter way to write: step, step, step, step, step? | repeat 5 times: step | repeat 4 times: step | step once | repeat 5 times: turn
 hint: Count the steps, then check what is repeated.
 num2: The code says: hop, then repeat 2 times: spin. How many moves happen in all? | 3
@@ -253,7 +253,7 @@ hint: The hop is not inside the loop. Add 1 hop and the spins.
 mc2: A turtle draws a square by moving forward and turning right at each corner. Which code works? | repeat 4: forward, turn right | repeat 3: forward, turn right | repeat 4: forward | forward, turn right
 hint: How many sides and corners does a square have?
 num2: Score starts at 0. The code says: repeat 5 times: add 2 points. What is the score at the end? | 10
-hint: Add 2 again and again, five times.
+hint: How many points does each pass of the loop add, and how many passes are there?
 
 lesson: Coding mix-ups
 mc2: Is an algorithm only for computers? | no, a recipe is an algorithm too | yes, only computers use them | only robots use them | only phones use them
@@ -273,7 +273,7 @@ lesson: Coding in the real world
 mc2: Ana writes steps for making a sandwich. Step 3 is wrong, so she fixes it. Fixing step 3 is | debugging | looping | repeating | sorting
 hint: She found a mistake and made it right.
 num2: A turtle draws a triangle with: repeat 3 times: forward, turn. How many turns does it make? | 3
-hint: Each time through the loop, it turns once.
+hint: How many times does the loop run, and what happens each time?
 num2: A garden robot runs: repeat 4 times: plant 3 seeds. How many seeds are planted? | 12
 hint: It plants 3 seeds, four separate times.
 mc2: Code to water 5 plants says: water plant, water plant, water plant, water plant. What is the bug? | one water plant is missing | there is one too many | it needs a turn | there is no bug
@@ -353,15 +353,15 @@ unit: The internet and the web | 3 | cs_3
 
 lesson: Internet words
 mc1: Millions of computers around the world are linked so they can share information. What is this giant network called? | the internet | a browser | a printer | a file
-hint: It is the network of networks.
+hint: Think about what you connect to when you go online.
 mc1: What is the World Wide Web? | the web pages and websites you visit over the internet | the wires inside one computer | a kind of keyboard | a spider's home
 hint: It is something you look at in a browser.
 mc1: What is a program you use to open and view web pages? | browser | server | printer | password
-hint: It lets you look around, or browse, websites.
+hint: Think about the app you open on a tablet or computer before you visit any website.
 mc1: What is a powerful computer that stores websites and sends them when you ask? | server | browser | mouse | link
-hint: It serves pages to many people, like a waiter serves food.
+hint: Is it the program on your own device, or a computer somewhere else that holds the pages?
 mc1: Clickable words or pictures that take you to another page are called | links | servers | files | bugs
-hint: They connect one page to another, like a chain.
+hint: Which choice names something you click on a page? The others are computers, saved work and mistakes.
 mc1: The address of a web page, like www.example.com, is called a | URL | browser | server | password
 hint: It tells the browser exactly where to find a page, like a home address.
 
@@ -389,9 +389,9 @@ hint: Check whether a result is really about your question before you open it.
 mc2: In the URL https://www.example.com/animals, which part is the name of the website? | example.com | https | animals | www
 hint: The site name has a dot and an ending. The part after the slash is one page on the site.
 mc2: Many websites end in .gov. What kind of site is that? | a government site | a game site | a shopping site | a sports team site
-hint: The letters are short for a longer word about who runs it.
+hint: Think about who runs sites for things like passports, taxes and national parks.
 mc2: Which ending is used by many colleges and universities? | .edu | .gov | .com | .net
-hint: Think of a word that means learning.
+hint: Use what you know: .gov is for government and .com is mostly for businesses. Which ending fits schools?
 
 lesson: Internet mix-ups
 mc2: Is a browser the same as a search engine? | no, a browser opens pages and a search engine is a site that finds pages | yes, they are the same | a search engine is a computer part | a browser is a kind of server
@@ -405,7 +405,7 @@ hint: These words connect pages together.
 mc2: Which one is NOT needed to open a web page? | a printer | a browser | an internet connection | a device such as a computer or tablet
 hint: Three are needed. One is only for paper copies.
 mc2: Which kind of software helps find and block harmful programs on a computer? | antivirus software | a web browser | a search engine | a drawing program
-hint: Harmful programs are sometimes called viruses. Which software works against them?
+hint: Think about what each choice is for. Which one checks the programs on a computer for danger?
 
 lesson: Using the internet well
 mc2: Nadia wants to learn about volcanoes for a report. What should she do first? | search with clear words like volcano facts | type random letters | click pop-ups | ask a stranger in a chat
@@ -499,15 +499,15 @@ lesson: Words for decisions and loops
 mc1: In Python, which keyword starts a check such as whether it is raining? | if | for | print | def
 hint: In English you might say: ___ it rains, take an umbrella.
 mc1: A value that can only be True or False is called a | Boolean | string | loop | event
-hint: It is named after a mathematician who studied true and false logic.
+hint: Loops and events are not kinds of values. Which value type holds text, and which holds only True or False?
 mc1: In an if/else, when does the else part run? | when the condition is false | when the condition is true | every time | never
 hint: The if part and the else part never both run.
 mc1: Clicking a button that starts some code is an example of an | event | loop | variable | bug
-hint: It is something that happens and triggers the code.
+hint: Think about what the user does, and when the code starts to run.
 mc1: A loop that repeats a set number of times, like exactly 5 times, is a | for loop | while loop | if statement | event
 hint: One kind of loop keeps going as long as something is true. The other counts.
 mc1: In score = 0, what is score? | a variable | a loop | an event | a Boolean
-hint: It is a name that holds a value that can change.
+hint: What does the = sign do with the name score and the number 0?
 
 lesson: True or false?
 mc1: x = 3. Is the condition x > 2 True or False? | True | False | 3 | 2
@@ -569,7 +569,7 @@ unit: Data types and programming languages | 5 | cs_5, cs_5_n1
 
 lesson: Data type words
 mc1: What data type is "hello"? | string | integer | float | Boolean
-hint: Text inside quotes is like a chain of letters.
+hint: Is it a number, a True or False value, or text?
 mc1: What data type is 42? | integer | string | float | Boolean
 hint: It is a whole number with no decimal point.
 mc1: What data type is 3.14? | float | integer | string | Boolean
@@ -647,7 +647,7 @@ hint: A byte is the group of bits a computer often uses to store one letter, lik
 mc1: Why do computers use binary? | their circuits have two states, on and off | binary is easier for people to read | computers can only count to 2 | decimal numbers had not been invented
 hint: Think about a light switch.
 num1: How many different digits does binary use? | 2
-hint: The prefix bi- means the same as in bicycle.
+hint: Think back to what a single bit can be.
 mc1: Which one is a binary number? | 1011 | 1021 | 12 | 3.5
 hint: Binary numbers use only certain digits.
 num1: In binary, the place values from right to left are 1, 2, 4, 8. What is the next place value? | 16
@@ -657,7 +657,7 @@ lesson: Binary to decimal
 num1: What is binary 10 in decimal? | 2
 hint: From the right, the place values are 1 and 2. Which place holds the 1?
 num1: What is binary 111 in decimal? | 7
-hint: Add the place values 4, 2 and 1 wherever there is a 1.
+hint: Write the place values 4, 2 and 1 above the digits. Which places hold a 1?
 num1: What is binary 1001 in decimal? | 9
 hint: The place values are 8, 4, 2, 1. Add only where there is a 1.
 num1: What is binary 1010 in decimal? | 10
@@ -691,7 +691,7 @@ hint: Make every bit a 1, then add up their place values.
 num2: How many different values can 3 bits show? | 8
 hint: List them: 000, 001, 010 and so on. Or start at 1 and double it once for each bit.
 num2: What is binary 11111111, which is eight 1s, in decimal? | 255
-hint: Add 128, 64, 32, 16, 8, 4, 2 and 1.
+hint: Write the place value of each of the 8 bits, starting with 1 on the right and doubling each time.
 mc2: What is binary 0111 plus 1, written in binary? | 1000 | 0112 | 1111 | 0110
 hint: 0111 is 7 in decimal. What is 7 + 1, and how is it written in binary?
 
