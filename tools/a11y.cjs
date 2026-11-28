@@ -12,4 +12,7 @@ const B = process.env.LUMEN_URL || 'http://localhost:3922';
   await p.goto(B + '/app'); await p.waitForSelector('#af'); await run('sign-in');
   await p.fill('[name=username]', 'owner'); await p.fill('[name=password]', 'ownerpass1234'); await p.click('#af button'); await p.waitForSelector('#avatarBtn'); await p.waitForTimeout(1500); await run('Learn page');
   await p.click('#tabs >> text=Arcade'); await p.waitForTimeout(1500); await run('Arcade');
+  await p.evaluate(() => { showTab('learn'); skGo('soc_4') }); await p.waitForSelector('.sklessons', { timeout: 15000 }); await p.waitForTimeout(1500); await run('skill page with its lessons');
+  await p.evaluate(() => clOpen('cs-4-x1-L1')); await p.waitForSelector('.replink'); await run('lesson page with report links');
+  await p.evaluate(() => { ST.ot = 'reports'; OREP = null; showTab('owner') }); await p.waitForSelector('text=Reported mistakes'); await p.waitForTimeout(800); await run('owner console: reports');
   await b.close(); process.exit(bad ? 1 : 0) })();

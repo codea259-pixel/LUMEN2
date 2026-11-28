@@ -71,6 +71,13 @@ On GitHub Pages with Firebase, the answer bank is a public file (`server/assessm
 
 The top of the Learn page has a search box. Typing a word (like "fraction", "verb" or "planet") lists the best matching skills from every subject and grade, with each one's subject, grade, unit and mastery level. Choosing one (click, or Enter for the top match; arrow keys move through the list, Escape clears it) switches to that subject and opens the skill's lesson with its Practice button ready.
 
+Under the skills, the search lists **lessons** from the lesson library. Lessons linked to a matching skill come first, then lessons whose names or questions match. Each skill's page also lists its lessons in order (**"N lessons for this skill"**). The links come from:
+- each test-bank unit's skills list (the third field of a `unit:` line in `tools/assess-src/v2/`);
+- `tools/assess-src/links.json`, for units that teach a skill without adding its generated questions to the unit's classwork;
+- the Learn-only units in `tools/lessons-src/`. These are short practice lessons for computer science, financial literacy, Spanish and college-level topics that have no test-bank unit. The format is at the top of `tools/build_lessons.py`, and the writing rules are in `tools/lessons-src/WRITING.md`.
+
+**`python3 tools/coverage.py`** checks that every Learn skill has at least 5 linked lessons (the independent review's target) and lists any that don't. A few kid-language search words are mapped to the content's words (for example "rockhound" → rocks), in `SYN` in `tools/pkg.html`.
+
 ## Game: levels, quests, the gem shop and Lumi's Realm
 
 - **Levels and ranks:** learners earn XP only by learning (correct answers, missions, quests, and turning in classwork and lesson quizzes; unit tests and benchmarks give nothing). XP raises their hero's level and rank, from Apprentice to Legend.
@@ -102,6 +109,17 @@ The top of the Learn page has a search box. Typing a word (like "fraction", "ver
 
 XP, gems and play time are kept with each learner's own progress, so a determined student could change their own numbers; the game is for motivation, not grades. The Firestore rules let learners write only their own leaderboard row and claim only their own bonus gems, once. `tools/e2e-game.cjs` tests the game against a running server.
 
+## Agents for a small team
+
+Five agents help a very small team keep the content and the promises in good shape. Each owns one area:
+- **`atlas`** writes lessons;
+- **`sentinel`** checks accuracy and teaching, and works through reported mistakes;
+- **`compass`** keeps skills linked to lessons and search working;
+- **`guardian`** reviews privacy, child safety and compliance, and only reports;
+- **`content-auditor`** does deep sweeps of the older content.
+
+They are in `.claude/agents/`. For a goal that spans several of them, the **`conductor`** skill (`.claude/skills/conductor/`) splits it into work orders, runs them in order, integrates and reports. A person approves every change before it goes live. `docs/independent-review-2026-11.md` tracks the November 2026 independent review item by item.
+
 ## Finding mistakes in the content
 
 - **`node tools/audit.cjs`** checks everything learners see, mechanically, in a headless browser (run `python3 tools/build.py` first):
@@ -111,7 +129,9 @@ XP, gems and play time are kept with each learner's own progress, so a determine
   - test bank text.
 
   Options: `--spell` lists words not in an English word list (after `npm i --no-save an-array-of-english-words@2.0.0`), `--sample math 6` prints practice questions with answers to read, and `--json file` saves the findings.
+  If loading from a file hangs, start the test server and run `BASE=http://localhost:3922 node tools/audit.cjs`.
 - **`node tools/validate-assess.cjs`** builds, grades and prints every lesson, test and benchmark.
+- **Reported mistakes:** every lesson question and practice question has a "Report a problem with this question" link. The learner picks a reason from a list and can't type a message. Reports record the question and the reason, never who sent them. **Owner console → ⚑ Reports** lists them with the reference (`<lesson id>:<item>` or `skill:<id>`). Fix the source, then mark each report "Fixed" or "Not a mistake". The panel shows how many are open, the oldest, and the typical time to fix over the last 90 days. Closed reports are deleted after a year.
 - **The content-auditor agent** (`.claude/agents/content-auditor.md`) runs both and then reads the content like a careful teacher: it works every question out, checks answer keys, facts, wording, grade level and spelling, and fixes clear mistakes with the smallest edit. It lists anything uncertain for a person and never pushes to the live branch. In Claude Code, ask: "Use the content-auditor agent to check math grades 6 to 8."
 
 ## Ask Lumi (AI tutor)
@@ -137,6 +157,7 @@ Practice questions have an **Ask Lumi** button. With `ANTHROPIC_API_KEY` set on 
 - **Parents** use `app.html?parent=me` (they get a sign-in link by email) to see each child's progress, download their data, say yes, or delete the account.
 - **Community**: authors can delete their own posts and replies (California Business and Professions Code 22581).
 - **Owner console → Parent permission**: remove unanswered parent emails, and at least once a year delete under-13 accounts that nobody has used for two years. The privacy policy promises both.
+- **Consent record:** each parent-permission event is kept for 3 years as a record that parents were asked and their choices were followed. The events are: asked, granted, deleted by a parent, request expired, deleted after 2 years unused, and, on the own server, the permission box ticked at sign-up. A record holds only a one-way code for the account, the event, the date and the policy version. It is in Firestore `consentLog` or the server's `consent_log` table, only the owner can read it, and it is in the backup. Removing unanswered requests also deletes records older than 3 years.
 - Have a lawyer review the policy and terms before relying on them for schools or payments.
 - **Who decides (governance):** Gourab Basu, as the responsible adult, signs agreements, answers legal, privacy and school requests, and holds the owner account, the domain, GitHub and Firebase. Arin Bose builds and runs the product with him. If Bose Academy takes on school contracts or grows a lot, consider a simple California LLC with the adult as managing member.
 - **Pages for schools and families:** `privacy.html#parents` (one-screen parent summary), `accessibility.html` (accessibility statement; check with `node tools/a11y.cjs` after `npm i --no-save axe-core@4.10.2`), `dpa.html` (a Student Data Privacy Agreement template aligned with California Education Code 49073.1, SOPIPA and FERPA), `.well-known/security.txt` (where to report a security problem).

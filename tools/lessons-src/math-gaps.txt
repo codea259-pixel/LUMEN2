@@ -1,0 +1,145 @@
+@subject math
+
+unit: Vectors and matrices | 13 | g13dot, g13det
+
+lesson: Vector components and magnitude
+num1: What is the magnitude (length) of the vector (3, 4)? | 5
+hint: Square each component, add the squares, then take the square root.
+mc1: A vector starts at point A(1, 2) and ends at point B(4, 6). What are its components? | (3, 4) | (5, 8) | (-3, -4) | (4, 6)
+hint: Subtract the starting point from the ending point, component by component.
+num1: What is the magnitude of the vector (-5, 12)? | 13
+hint: A negative component still gives a positive square.
+mc1: What is (2, -1) + (3, 5)? | (5, 4) | (5, 6) | (6, -5) | (-1, -6)
+hint: Add the first components together and the second components together.
+num1: If v = (2, -3), what is the second component of 4v? | -12
+hint: Multiplying a vector by a number multiplies every component by that number.
+num2: What is the magnitude of the three-dimensional vector (2, 3, 6)? | 7
+hint: Use all three components: add their squares, then take the square root.
+
+lesson: The dot product
+num1: What is the dot product of (2, 3) and (4, 5)? | 23
+hint: Multiply the first components, multiply the second components, then add the two products.
+num1: What is the dot product of (1, -2, 3) and (4, 0, -1)? | 1
+hint: There are three products to add this time. Watch the signs.
+num1: What is the dot product of (-3, 5) and (2, -4)? | -26
+hint: Find each product separately: a negative times a positive is negative.
+mc1: What kind of result does the dot product of two vectors give? | a single number (a scalar) | a vector | a matrix | a number that is always positive
+hint: You multiply pairs of components and then add everything up.
+num2: What is the dot product of (3, 4) with itself? | 25
+hint: Compare your answer with the square of the magnitude of (3, 4).
+mc2: Which pair of vectors has a negative dot product? | (1, 2) and (-3, 1) | (1, 2) and (2, 1) | (1, 2) and (-2, 1) | (1, 2) and (3, -1)
+hint: Compute the dot product for each pair. One is zero and two are positive.
+
+lesson: Perpendicular vectors and angles
+mc2: Which pair of vectors is perpendicular? | (2, 3) and (-3, 2) | (2, 3) and (3, 2) | (2, 3) and (-2, -3) | (2, 3) and (4, 6)
+hint: Two nonzero vectors are perpendicular when their dot product is 0.
+num2: For what value of k are the vectors (k, 2) and (3, -6) perpendicular? | 4
+hint: Write the dot product in terms of k, set it equal to 0, and solve.
+num2: For what value of k are the vectors (1, k, 2) and (4, 2, -3) perpendicular? | 1
+hint: The dot product is 4 + 2k + (2)(-3). Set it equal to 0.
+mc2: The dot product of two nonzero vectors is negative. What does this tell you about the angle between them? | it is greater than 90 degrees | it is less than 90 degrees | it is exactly 90 degrees | it is exactly 0 degrees
+hint: The dot product equals the product of the magnitudes times the cosine of the angle. When is the cosine negative?
+num2: What is the angle, in degrees, between the vectors (2, 2) and (3, 0)? | 45
+hint: Find cos(angle) = (dot product) / (product of the magnitudes), then ask which angle has that cosine.
+num2: Vector u has magnitude 4, vector v has magnitude 5, and the angle between them is 60 degrees. What is the dot product of u and v? | 10
+hint: Multiply the two magnitudes by the cosine of the angle. What is cos 60 degrees?
+
+lesson: 2 by 2 matrices and determinants
+num1: What is the determinant of [[3, 1], [2, 5]]? | 13
+hint: For [[a, b], [c, d]], the determinant is ad - bc.
+num1: What is the determinant of [[4, -2], [3, 1]]? | 10
+hint: Find ad and bc first. Subtracting a negative number adds it.
+num1: What is the determinant of [[-2, 5], [3, -4]]? | -7
+hint: Multiply the main diagonal (top left times bottom right), then subtract the other diagonal's product.
+mc2: A student says the determinant of [[2, 7], [1, 3]] is 2 x 3 + 7 x 1 = 13. What is the correct determinant? | -1 | 13 | 1 | -13
+hint: The two diagonal products are subtracted, not added. Which product comes first?
+num2: For what value of k is the determinant of [[k, 4], [3, 6]] equal to 0? | 2
+hint: Write ad - bc using k, set it equal to 0, and solve.
+mc2: What is [[1, 2], [3, 4]] + [[5, 0], [-1, 2]]? | [[6, 2], [2, 6]] | [[5, 0], [-3, 8]] | [[6, 2], [4, 6]] | [[-4, 2], [4, 2]]
+hint: Add the entries in matching positions. Watch the sign of the -1.
+
+lesson: Using matrices and determinants
+mc2: What does a determinant of 0 tell you about a 2 by 2 matrix? | it has no inverse, because one row is a multiple of the other | it is the identity matrix | every entry in it is 0 | it has exactly one inverse
+hint: The inverse formula divides by the determinant. What happens when that is 0?
+mc3: The system 2x + 3y = 5 and 4x + 6y = 9 has coefficient matrix [[2, 3], [4, 6]], whose determinant is 0. What can you conclude? | the system does not have exactly one solution | the system has exactly one solution | the only solution is x = 0, y = 0 | the solution is x = 5, y = 9
+hint: A zero determinant means the two lines are parallel or the same line.
+num3: The area of the parallelogram formed by the vectors (3, 1) and (1, 2) equals abs(det [[3, 1], [1, 2]]). What is the area? | 5
+hint: Find ad - bc, then take its absolute value.
+num3: The matrix [[2, 1], [0, 3]] is multiplied by the column vector (4, 5). What is the first component of the result? | 13
+hint: Take the dot product of the first row of the matrix with the vector.
+num3: The matrix [[2, 0], [0, 3]] stretches every shape in the plane. A square with area 4 is transformed by this matrix. What is the area of the new shape? | 24
+hint: A 2 by 2 matrix multiplies every area by the absolute value of its determinant.
+mc3: What is the matrix product [[1, 2], [0, 1]] x [[3, 0], [1, 2]]? | [[5, 4], [1, 2]] | [[3, 0], [0, 2]] | [[3, 6], [1, 4]] | [[4, 2], [1, 3]]
+hint: Each entry is a row of the first matrix dotted with a column of the second. Matrix multiplication is not done entry by entry.
+
+unit: Discrete math and probability | 13 | g13mod, g13sum, g13ev
+
+lesson: Modular arithmetic and clock math
+num1: What is 47 mod 5? | 2
+hint: a mod n is the remainder after dividing a by n. How many 5s fit in 47?
+num1: What is 83 mod 6? | 5
+hint: Find the largest multiple of 6 that is not more than 83, then subtract.
+num1: It is 9 o'clock on a 12-hour clock. What hour will the clock show 30 hours from now? | 3
+hint: Add the hours, then find the remainder after dividing by 12.
+mc1: Today is Wednesday. What day of the week will it be 100 days from now? | Friday | Thursday | Saturday | Wednesday
+hint: The days repeat every 7. Find 100 mod 7, then count forward that many days.
+mc1: Which number is congruent to 3 mod 8? | 27 | 24 | 30 | 37
+hint: Find each number's remainder when divided by 8.
+num1: A class of 50 students forms teams of 6. How many students are left over? | 2
+hint: This is the same as finding 50 mod 6.
+
+lesson: Adding 1 + 2 + ... + n
+num1: What is 1 + 2 + 3 + ... + 10? | 55
+hint: Use n(n + 1)/2 with n = 10.
+num1: What is 1 + 2 + 3 + ... + 100? | 5050
+hint: Pair the first and last numbers: 1 + 100, 2 + 99, and so on. How many pairs are there?
+num2: What is 1 + 2 + 3 + ... + 25? | 325
+hint: Multiply 25 by the next whole number, then divide by 2.
+mc1: Which formula gives the sum 1 + 2 + 3 + ... + n? | n(n + 1)/2 | n^2/2 | n(n - 1)/2 | (n + 1)/2
+hint: Test each formula with n = 3. The sum 1 + 2 + 3 should come out right.
+num2: What is 11 + 12 + 13 + ... + 20? | 155
+hint: Find 1 + 2 + ... + 20, then subtract 1 + 2 + ... + 10.
+num2: The first n positive whole numbers add up to 78. What is n? | 12
+hint: Solve n(n + 1)/2 = 78, so n(n + 1) = 156. Which two consecutive numbers multiply to 156?
+
+lesson: Sequences and their sums
+num2: What is the 20th term of the arithmetic sequence 4, 7, 10, 13, ...? | 61
+hint: Start at the first term and add the common difference 19 times.
+num2: What is the 8th term of the geometric sequence 3, 6, 12, 24, ...? | 384
+hint: Each term doubles. The 8th term is the first term times 2 raised to the 7th power.
+num2: What is the sum of the first 10 even numbers, 2 + 4 + 6 + ... + 20? | 110
+hint: Factor out 2: the sum is 2 x (1 + 2 + ... + 10).
+num2: What is the sum of the first 15 odd numbers, 1 + 3 + 5 + ... + 29? | 225
+hint: Check small cases: 1 = 1, 1 + 3 = 4, 1 + 3 + 5 = 9. What pattern do you see?
+mc2: Which rule gives the nth term of the sequence 5, 9, 13, 17, ...? | 4n + 1 | 5n | 4n + 5 | n + 4
+hint: Test each rule with n = 1 and n = 2.
+num2: What is 3 + 6 + 9 + ... + 60? | 630
+hint: Factor out 3. Then the sum is 3 x (1 + 2 + ... + 20).
+
+lesson: Probability and mixed practice
+num1: A fair six-sided number cube is rolled once. What is the probability of rolling a number greater than 4? Give a fraction in lowest terms. | 1/3
+hint: Count the outcomes greater than 4 and divide by the total number of outcomes.
+num2: Two fair coins are tossed. What is the probability of getting exactly one head? Give a fraction in lowest terms. | 1/2
+hint: List all the equally likely outcomes: HH, HT, TH, TT.
+num2: Two fair six-sided number cubes are rolled. What is the probability that the sum is 7? Give a fraction in lowest terms. | 1/6
+hint: There are 36 equally likely pairs. List the pairs that add to 7.
+num2: A bag holds 3 red marbles and 5 blue marbles. Two marbles are drawn without putting the first one back. What is the probability that both are red? Give a fraction in lowest terms. | 3/28
+hint: Multiply the chance the first is red by the chance the second is red after one red marble is gone.
+mc2: A student says rolling a sum of 2 with two number cubes is just as likely as rolling a sum of 7, because each is one of the 11 possible sums. What is wrong with this reasoning? | the 11 sums are not equally likely: a sum of 7 can happen in 6 ways and a sum of 2 in only 1 way | nothing is wrong; both sums are equally likely | a sum of 2 is actually more likely than a sum of 7 | a sum of 2 is impossible with two number cubes
+hint: Count how many pairs of rolls give each sum.
+num2: What is the remainder when 2^10 is divided by 3? | 1
+hint: Look at powers of 2 mod 3: 2, 4, 8, 16, ... The remainders follow a short repeating pattern.
+
+lesson: Expected value of games
+num2: A game pays $10 with probability 0.3 and $0 otherwise. What are the expected winnings, in dollars? | 3
+hint: Multiply each payout by its probability, then add.
+num2: You pay $2 to play a game. You roll a fair number cube; if you roll a 6, you are paid $9, and otherwise you are paid nothing. What is your expected net gain per game, in dollars? | -0.5
+hint: Find the expected payout first, then subtract the cost to play.
+num2: A spinner pays $0 with probability 1/2, $4 with probability 1/4 and $12 with probability 1/4. What is the expected payout, in dollars? | 4
+hint: Add up each payout times its probability.
+num3: A raffle sells 500 tickets for $1 each. There is one $200 prize and two $50 prizes. What is the expected net gain, in dollars, for a person who buys one ticket? | -0.4
+hint: Add up all the prize money and divide by the number of tickets, then subtract the ticket price.
+mc3: A game is fair when the expected net gain is $0. Which game is fair? | pay $1, flip a fair coin, and be paid $2 for heads and nothing for tails | pay $1, flip a fair coin, and be paid $1.50 for heads and nothing for tails | pay $2, roll a fair number cube, and be paid $6 for a 6 and nothing otherwise | pay $1, roll a fair number cube, and be paid $5 for a 6 and nothing otherwise
+hint: For each game, find the expected payout and compare it with the cost to play.
+num3: An insurance company sells a one-year policy for $300. The chance that the company must pay a $10,000 claim on the policy is 0.02, and otherwise it pays nothing. What is the company's expected profit per policy, in dollars? | 100
+hint: Find the expected amount paid out in claims, then subtract it from the price of the policy.

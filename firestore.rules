@@ -289,5 +289,25 @@ service cloud.firestore {
         && request.resource.data.get('secs', 0) >= resource.data.get('secs', 0)
         && request.resource.data.get('learners', 0) >= resource.data.get('learners', 0);
     }
+    // Parent-permission events, kept as a record: a one-way account code, the event, its time and the policy version.
+    // No names or emails. Nobody can change a record; only the owner reads them or deletes ones older than 3 years.
+    match /consentLog/{id} {
+      allow create: if signedIn() && request.resource.data.keys().hasOnly(['k', 'event', 'at', 'policy'])
+        && request.resource.data.k is string && request.resource.data.k.matches('[0-9a-f]{16}')
+        && request.resource.data.at is int && request.resource.data.policy is string && request.resource.data.policy.size() <= 20
+        && (request.resource.data.event in ['asked', 'granted', 'deleted by parent']
+            || (isOwner() && request.resource.data.event in ['expired', 'deleted inactive']));
+      allow read, delete: if isOwner();
+    }
+
+    // Reported mistakes in questions: what was reported and why, never who. Anyone signed in can add one;
+    // only the owner can read them, mark them fixed or delete them.
+    match /reports/{rid} {
+      allow create: if active() && request.resource.data.keys().hasOnly(['ref', 'q', 'why', 'ts', 'status'])
+        && okText('ref', 2, 80) && request.resource.data.ref.matches('[A-Za-z0-9_.:-]+') && okText('q', 2, 400)
+        && request.resource.data.why in ['wrong answer', 'confusing', 'typo', 'other']
+        && request.resource.data.status == 'open' && request.resource.data.ts is int;
+      allow read, update, delete: if isOwner();
+    }
   }
 }

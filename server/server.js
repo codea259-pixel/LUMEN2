@@ -45,6 +45,8 @@ try { db.exec("ALTER TABLE tests ADD COLUMN passages TEXT DEFAULT '[]'"); } catc
 try { db.exec('ALTER TABLE classes ADD COLUMN game TEXT'); } catch { /* already there */ }
 for (const t of ['users', 'classes']) { try { db.exec(`ALTER TABLE ${t} ADD COLUMN member_until INTEGER DEFAULT 0`); } catch { /* already there */ } }
 db.exec('CREATE TABLE IF NOT EXISTS usage(day TEXT PRIMARY KEY, n INTEGER DEFAULT 0)');
+db.exec('CREATE TABLE IF NOT EXISTS consent_log(id INTEGER PRIMARY KEY, k TEXT, event TEXT, at INTEGER, policy TEXT)');
+db.exec("CREATE TABLE IF NOT EXISTS reports(id INTEGER PRIMARY KEY, ref TEXT, q TEXT, why TEXT, n INTEGER DEFAULT 1, ts INTEGER, status TEXT DEFAULT 'open', closed INTEGER)");
 db.exec('CREATE TABLE IF NOT EXISTS awards(id INTEGER PRIMARY KEY, class_id INTEGER, user_id INTEGER, gems INTEGER, reason TEXT, ts INTEGER, claimed INTEGER DEFAULT 0)');
 try { db.exec('ALTER TABLE awards ADD COLUMN pet TEXT'); } catch { /* already there */ }
 db.exec("CREATE TABLE IF NOT EXISTS class_maps(id INTEGER PRIMARY KEY, class_id INTEGER, author_id INTEGER, data TEXT, likes TEXT DEFAULT '[]', plays INTEGER DEFAULT 0, ts INTEGER)");
@@ -151,7 +153,10 @@ route('POST', '/api/signup', (c, res) => {
   if (role === 'student') { email = str(b.schoolEmail, 5, 100).toLowerCase(); if (!/^\S+@\S+\.\S+$/.test(email)) throw new E(400, 'Enter your school email address.'); }
   if (Q1('SELECT 1 FROM users WHERE username=?', username) || Q1('SELECT 1 FROM users WHERE display=?', display)) throw new E(409, 'That username or display name is taken.');
   let u = createUser({ username, display, email, role, password });
-  if (under13) { X('UPDATE users SET under13=1, parent_email=? WHERE id=?', parentEmail, u.id); u = Q1('SELECT * FROM users WHERE id=?', u.id); }
+  if (under13) { X('UPDATE users SET under13=1, parent_email=? WHERE id=?', parentEmail, u.id); u = Q1('SELECT * FROM users WHERE id=?', u.id);
+    // a record that a parent ticked the permission box: a one-way code for the account, no name or email (kept 3 years)
+    X('INSERT INTO consent_log(k,event,at,policy) VALUES(?,?,?,?)', crypto.createHash('sha256').update('bose-consent:' + u.id).digest('hex').slice(0, 16), 'parent ticked the box at sign-up', Date.now(), CONSENT_POLICY);
+    X('DELETE FROM consent_log WHERE at<?', Date.now() - 3 * 365 * 864e5); }
   res.cookie = mkTok(u.id); return userOut(u);
 });
 route('POST', '/api/login', (c, res) => {
@@ -353,8 +358,22 @@ route('POST', '/api/owner/members', c => { need(c, c.u.role === 'owner'); const 
   throw new E(404, 'No account has that username and no class has that code.'); });
 // Owner backup: every table as JSON (password hashes and salts are left out; restored accounts reset their password)
 route('GET', '/api/owner/backup', c => { need(c, c.u.role === 'owner'); const data = {};
-  for (const t of ['users', 'state', 'certs', 'groups', 'posts', 'replies', 'classes', 'class_members', 'assignments', 'settings', 'tests', 'subs', 'qvers', 'awards', 'class_maps', 'usage']) data[t] = Q(`SELECT * FROM ${t}`);
+  for (const t of ['users', 'state', 'certs', 'groups', 'posts', 'replies', 'classes', 'class_members', 'assignments', 'settings', 'tests', 'subs', 'qvers', 'awards', 'class_maps', 'usage', 'reports', 'consent_log']) data[t] = Q(`SELECT * FROM ${t}`);
   data.users = data.users.map(({ hash, salt, ...u }) => u); return { app: 'Bose Academy', kind: 'server', exported: new Date().toISOString(), data }; });
+// Reported mistakes in questions: what was reported and why, never who reported it. The owner marks each one fixed or
+// not a mistake; the owner console shows how long fixes take.
+const CONSENT_POLICY = '2026-11-24';
+const REPORT_WHY = ['wrong answer', 'confusing', 'typo', 'other'];
+route('POST', '/api/reports', c => { need(c); limit('rp' + c.u.id, 20, 864e5);
+  const ref = str(c.body.ref, 2, 80), q = str(c.body.q, 2, 400), why = String(c.body.why || '');
+  if (!/^[\w.:-]+$/.test(ref) || !REPORT_WHY.includes(why)) throw new E(400, 'Choose what is wrong.');
+  const open = Q1("SELECT id FROM reports WHERE ref=? AND q=? AND why=? AND status='open'", ref, q, why);
+  if (open) X('UPDATE reports SET n=n+1 WHERE id=?', open.id); else X('INSERT INTO reports(ref,q,why,ts) VALUES(?,?,?,?)', ref, q, why, Date.now());
+  return { ok: true }; });
+route('GET', '/api/owner/reports', c => { need(c, c.u.role === 'owner'); X("DELETE FROM reports WHERE status!='open' AND closed<?", Date.now() - 365 * 864e5); return { reports: Q('SELECT * FROM reports ORDER BY (status=\'open\') DESC, ts DESC LIMIT 500') }; });
+route('POST', '/api/owner/reports/:id', c => { need(c, c.u.role === 'owner'); const st = String(c.body.status || '');
+  if (!['open', 'fixed', 'dismissed'].includes(st)) throw new E(400, 'Unknown status.');
+  X('UPDATE reports SET status=?, closed=? WHERE id=?', st, st === 'open' ? null : Date.now(), int(c.params.id, 1, 1e12)); return { ok: true }; });
 route('GET', '/api/owner/usage', c => { need(c, c.u.role === 'owner'); return { days: Q('SELECT day,n FROM usage ORDER BY day DESC LIMIT 14') }; });
 route('GET', '/api/owner/users', c => { need(c, c.u.role === 'owner'); return { users: Q('SELECT id,username,display,email,role,verified,locked,created FROM users ORDER BY id DESC LIMIT 500') }; });
 route('PATCH', '/api/owner/users/:id', c => { need(c, c.u.role === 'owner'); const t = Q1('SELECT * FROM users WHERE id=?', int(c.params.id, 1, 1e12)); if (!t) throw new E(404, 'Not found.');

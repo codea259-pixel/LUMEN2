@@ -3,7 +3,8 @@
      node tools/audit.cjs --spell          also list words not in an English word list (needs: npm i --no-save an-array-of-english-words@2.0.0)
      node tools/audit.cjs --json out.json  also save the findings as JSON
      node tools/audit.cjs --sample math 6  print 3 practice questions with answers for every math skill in grade 6 (for reading)
-   Run python3 tools/build.py first. The test bank's structure, grading and PDFs are checked by tools/validate-assess.cjs;
+   Run python3 tools/build.py first. If file:// loading hangs, start the test server and pass its address (it signs in as
+   owner): BASE=http://localhost:3922 node tools/audit.cjs The test bank's structure, grading and PDFs are checked by tools/validate-assess.cjs;
    the review checklist for meaning (right keys, facts, wording) is tools/assess-src/REVIEW.md. The content-auditor agent
    (.claude/agents/content-auditor.md) runs both, then reads the content itself.
 
@@ -24,7 +25,9 @@ const ROOT = path.join(__dirname, '..'), arg = n => process.argv.includes('--' +
 (async () => {
   const b = await chromium.launch(), p = await b.newPage(), errs = [];
   p.on('pageerror', e => errs.push(e.message));
-  await p.goto('file://' + path.join(ROOT, 'app.html'));
+  if (process.env.BASE) { // the app's scripts start only after sign-in, so sign in to the local test server first
+    await p.goto(process.env.BASE + '/app'); await p.fill('[name=username]', process.env.USER_NAME || 'owner'); await p.fill('[name=password]', process.env.USER_PASS || 'ownerpass1234'); await p.click('#af button');
+  } else await p.goto('file://' + path.join(ROOT, 'app.html'));
   await p.waitForFunction(() => typeof G !== 'undefined' && typeof ORDER !== 'undefined' && typeof CIPHER !== 'undefined' && typeof XR !== 'undefined', null, { timeout: 30000 });
   const words5 = fs.readFileSync(path.join(ROOT, 'public', 'words5.txt'), 'utf8').split('\n').filter(l => l && l[0] !== '#');
   const bank = JSON.parse(fs.readFileSync(path.join(ROOT, 'server', 'assessments.json'), 'utf8'));
@@ -44,7 +47,7 @@ const ROOT = path.join(__dirname, '..'), arg = n => process.argv.includes('--' +
     const add = (area, where, msg) => { const key = area + where + msg; if (!seen.has(key)) { seen.add(key); out.push({ area, where, msg }) } };
     // Leftovers from code: undefined, NaN, [object ...], {placeholders}, ${...}. "undefined" is a real math answer
     // for slopes, limits and division by zero, so it only counts outside those topics.
-    const CODE = /NaN|\[object|\{[a-z]{1,8}\}|\$\{|undefined\w|\wundefined/, MATHUNDEF = /slope|limit|zero|vertical|asymptote|divid|division|tangent/i;
+    const CODE = /\bNaN\b|\[object|\{[a-z]{1,8}\}|\$\{|undefined\w|\wundefined/, MATHUNDEF = /slope|limit|zero|vertical|asymptote|divid|division|tangent|denominator|rational|log|continu|interval|inflection|concav|domain|function|values? of x|\)\/\(/i;
     const BROKENT = (s, ctx = '') => CODE.test(s) || (/\bundefined\b/.test(s) && !MATHUNDEF.test(ctx + ' ' + s));
     const BROKEN = { test: s => BROKENT(String(s)) };
     const plain = h => String(h ?? '').replace(/<li>/g, ' ').replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();

@@ -1,0 +1,710 @@
+@subject cs
+# Computer science, TK to grade 6: ten Learn-only units, five lessons each.
+
+unit: Computers and devices around us | TK | cs_pk, cs_pk_n1
+
+lesson: Parts of a computer
+mc1: Which part do you press to type letters? | keyboard | mouse | screen | speaker
+hint: It has many buttons, one for each letter.
+mc1: Which part do you look at to see pictures? | screen | keyboard | mouse | headphones
+hint: Use your eyes. Which part lights up?
+mc1: Which part do you hold in your hand and click? | mouse | screen | speaker | printer
+hint: It sits on the table next to the computer and fits under your hand.
+mc1: Which part makes sounds come out loud? | speaker | keyboard | mouse | screen
+hint: Think about your ears. Where does the sound come from?
+mc1: Which do you wear over your ears to listen? | headphones | mouse | keyboard | camera
+hint: They cover your ears so only you can hear.
+mc1: Which part can take a picture of you? | camera | speaker | keyboard | mouse
+hint: It has a tiny round glass part, like an eye.
+
+lesson: What does each part do?
+mc1: Which machine puts your picture onto paper? | printer | speaker | mouse | camera
+hint: It makes a paper copy you can hold.
+mc1: Which part hears you when you talk to the computer? | microphone | speaker | screen | printer
+hint: A singer holds one up to their mouth.
+mc1: Which part of a tablet do you tap with your finger? | screen | speaker | charger | camera
+hint: Where do the games and buttons show up?
+mc1: Which part moves the arrow on the screen? | mouse | speaker | printer | headphones
+hint: You slide it on the table and the arrow slides too.
+mc1: Which one gives a tablet more power? | charger | mouse | keyboard | camera
+hint: You plug it into the wall when the battery is low.
+
+lesson: Technology at home
+mc2: Which machine keeps food cold? | refrigerator | oven | toaster | washing machine
+hint: Milk and fruit stay cool inside it.
+mc2: Which machine washes dirty clothes? | washing machine | refrigerator | microwave | television
+hint: You add soap, and the clothes spin in water.
+mc2: Which machine heats food fast? | microwave | refrigerator | fan | lamp
+hint: A grown-up puts a bowl inside, presses start, and it beeps when done.
+mc2: Which one shows cartoons in the living room? | television | refrigerator | toaster | washing machine
+hint: It has a big screen that the family watches.
+mc2: Which machine cleans dirty dishes? | dishwasher | toaster | television | lamp
+hint: Plates and cups go inside it after dinner.
+mc2: Which machine sucks up dust from the floor? | vacuum | microwave | printer | toaster
+hint: It makes a loud whoosh and picks up crumbs.
+
+lesson: Is it technology?
+mc2: Which one is a kind of computer? | tablet | book | crayon | pillow
+hint: Which one has a screen and can play games?
+mc2: Which one needs power to work? | lamp | spoon | ball | book
+hint: Which one has to be plugged in to light up?
+mc2: Which one does NOT need power? | wooden block | phone | tablet | television
+hint: Which one works without a plug or a battery?
+mc2: Which one lets you talk to Grandpa far away? | phone | toaster | oven | fan
+hint: You hear his voice through it.
+mc2: How should you take care of a tablet? | keep it dry | drop it | put it in the bath | step on it
+hint: Water and falls can break a device.
+
+lesson: Using technology every day
+mc2: Lina drew a picture on the computer. She wants it on paper. What does she need? | printer | speaker | microwave | camera
+hint: Which machine makes a paper copy?
+mc2: Omar wants to hear a song but his baby sister is sleeping. What should he use? | headphones | speaker | printer | screen
+hint: Which one lets only him hear the music?
+mc2: Mei wants to type her name on the computer. Which part does she use? | keyboard | speaker | camera | headphones
+hint: Which part has a button for each letter?
+mc2: The tablet turned off because its battery is empty. What should you do? | charge it | shake it | wash it | hide it
+hint: The battery needs more power.
+mc2: A game on the tablet is too loud. What can you do? | turn it down | make it brighter | type faster | close your eyes
+hint: Which choice changes the sound?
+mc2: Ayo wants his cold soup warm. Which machine could a grown-up use? | microwave | refrigerator | washing machine | fan
+hint: Which one makes food hot?
+
+unit: Robots and step-by-step directions | K | cs_0, cs_0_n1
+
+lesson: Direction words
+mc1: A robot goes up. Which word means the other way? | down | left | right | forward
+hint: Think of going up the stairs and then coming back.
+mc1: Turn left. Now turn the other way. Which way is that? | right | up | down | forward
+hint: Your two hands point two different ways.
+mc1: The robot moves forward. Which way takes it back? | backward | up | left | right
+hint: Walk forward, then walk the other way without turning.
+mc1: Which word tells a robot to begin? | start | stop | wait | end
+hint: You say it at the very beginning of a race.
+mc1: Which word tells a robot to stay still? | stop | go | jump | turn
+hint: A red light tells cars to do this.
+mc1: The robot's light is on. Which word makes it dark again? | off | on | up | go
+hint: It is the opposite of on.
+
+lesson: Steps in order
+mc1: You want to plant a seed. What do you do first? | dig a hole | water the plant | pick the flower | watch it grow
+hint: Where does the seed go before anything else?
+mc1: You make a sandwich for lunch and then have lunch. What do you do last? | eat it | get the bread | add the cheese | put on the top
+hint: Which step can only happen after the sandwich is all done?
+mc1: Putting steps in the right order makes a | sequence | mess | picture | song
+hint: Think of first, next, last.
+mc1: The robot code says: forward, forward, turn. What does the robot do first? | go forward | turn | stop | jump
+hint: Read the very first step.
+num1: The robot code says: forward, forward, forward. How many steps does the robot take? | 3
+hint: Count each word forward.
+num1: A robot steps forward 2 times, then 1 more time. How many steps forward in all? | 3
+hint: Put 2 and 1 together.
+
+lesson: Parts of a robot
+mc2: Which robot part notices a wall in front of it? | sensor | battery | motor | wheel
+hint: It works like the robot's eyes or ears.
+mc2: Which robot part spins to make the wheels turn? | motor | sensor | light | button
+hint: It is the part that makes the robot move.
+mc2: Which part gives a robot its power? | battery | sensor | wheel | screen
+hint: Many toys need these to run.
+mc2: Which part is the robot's brain? | controller | wheel | battery | motor
+hint: It reads the steps and tells the other parts what to do.
+mc2: What tells a robot which steps to do? | program | battery | wheel | light
+hint: A person writes it, and the robot follows it.
+mc2: Which parts help a robot roll across the floor? | wheels | sensor | battery | program
+hint: Cars and bikes have them too.
+
+lesson: Robot mix-ups
+mc2: A robot faces a door. It must go to the door. Which way? | forward | backward | stop | down
+hint: The door is in front of the robot.
+mc2: A robot's battery is empty. What happens? | it stops | it goes faster | it gets bigger | it sings
+hint: Without power, can the motor work?
+mc2: A robot moves fine but keeps bumping into walls. Which part may be broken? | sensor | battery | wheels | horn
+hint: The robot can move, so its power and wheels work. Which part should notice the wall?
+num2: A robot goes forward 3 steps, then forward 2 more steps. How many steps forward in all? | 5
+hint: Count on from 3.
+num2: A robot is on step 5. It goes backward 2 steps. Which step is it on now? | 3
+hint: Backward means count down.
+mc2: Which one can follow a program and move by itself? | robot toy | wooden block | paper cup | crayon
+hint: Which one has a motor and a controller?
+
+lesson: Help the robot
+num2: A robot is on square 1. The ball is on square 4 in the same row. How many steps forward does the robot need? | 3
+hint: Count the jumps from square 1 to square 4, not the squares.
+mc2: A wall is right in front of the robot. What should it do so it does not bump? | turn | go forward | speed up | shut down
+hint: Going straight would hit the wall.
+mc2: Ava wants the robot to go forward 3 times. Her code says forward, forward, stop. What is missing? | one more forward | one more stop | a turn | a backward
+hint: Count the forward steps in her code.
+mc2: The robot turned left, but it should turn right. Which word in the code must you change? | left | forward | stop | right
+hint: Find the word that sent the robot the wrong way.
+mc2: A robot must stop when it gets dark. Which part helps it know it is dark? | light sensor | motor | wheel | battery
+hint: Which part notices things around the robot?
+num2: The robot goes forward 2 steps, then 2 more steps to reach the cookie. How many steps is that? | 4
+hint: Add 2 and 2.
+
+unit: How computers follow programs | 1 | cs_1, cs_1_n1
+
+lesson: Inside the computer
+mc1: Which part does the thinking and follows a program's steps? | CPU | monitor | keyboard | speaker
+hint: It works like your brain, reading each step and carrying it out.
+mc1: Where does a computer keep files so they are still there after it turns off? | hard drive | RAM | monitor | mouse
+hint: Think of long-term storage, like a closet that keeps things safe.
+mc1: Which part holds what the computer is working on right now, but forgets it when the power goes off? | RAM | hard drive | keyboard | printer
+hint: Think of short-term memory, like remembering a word for one minute.
+mc1: Which part shows words and pictures? | monitor | CPU | keyboard | mouse
+hint: You look at it.
+mc1: Which part lets you put words into the computer? | keyboard | monitor | speaker | printer
+hint: Which part has letters you press?
+mc1: A speaker sends sound out of the computer. What kind of part is it? | output | input | storage | brain
+hint: Is the sound going in or coming out?
+
+lesson: Input or output?
+mc1: Which one is an input device? | microphone | speaker | monitor | printer
+hint: Input devices send information into the computer.
+mc1: Which one is an output device? | printer | keyboard | mouse | microphone
+hint: Output devices show or give you something the computer made.
+mc1: When you move a mouse, information goes into the computer. So a mouse is | input | output | storage | memory
+hint: In means one word, out means another.
+mc1: Which one is NOT an input device? | monitor | keyboard | mouse | microphone
+hint: Three of these send information in. Which one only shows information?
+mc1: A touch screen shows pictures and also feels your taps. What is it? | input and output | only input | only output | only storage
+hint: Does it take information in, give information out, or do both?
+
+lesson: Programs and sequence
+mc2: What do we call a set of steps a computer follows? | program | bug | screen | mouse
+hint: A person writes it so the computer knows what to do.
+mc2: The order steps happen in is called the | sequence | bug | mouse | loop
+hint: Think of first, next, last.
+mc2: A program says: say hi, clap, wave. What happens second? | clap | say hi | wave | jump
+hint: Count the steps: first, second, third.
+mc2: One instruction, like move forward, is called a | command | bug | screen | file
+hint: It is one order the computer must follow.
+num2: A program says: jump, jump, spin, jump. How many times does it jump? | 3
+hint: Count only the word jump.
+mc2: Toast program: put bread in, push lever, wait, take toast out. Which step comes right after push lever? | wait | put bread in | take toast out | eat the toast
+hint: Find push lever, then look at the step after it.
+
+lesson: Bugs and debugging
+mc2: A program has a mistake, so it does the wrong thing. The mistake is called a | bug | loop | sequence | command
+hint: It has the same name as a tiny insect.
+mc2: Finding and fixing mistakes in a program is called | debugging | typing | printing | saving
+hint: You take the mistake out of the program.
+mc2: A program should draw a cat, but it draws a dog. What should you do? | look for the mistake | turn off the screen | add more dogs | give up
+hint: Good coders check each step to see what went wrong.
+mc2: A getting-dressed program says: put on shoes, put on socks. What is wrong? | socks should go first | shoes should go first | it needs a hat | nothing is wrong
+hint: Try it in your head. Can socks go on over shoes?
+mc2: A star is 2 steps ahead of a robot. Its program says: forward, forward, forward. What is wrong? | one forward too many | one forward too few | it needs a turn | nothing is wrong
+hint: How many steps does the robot need, and how many does the program give?
+num2: A program should clap 4 times, but it says clap, clap, clap. How many more claps must you add? | 1
+hint: How many claps are there now?
+
+lesson: Programs in real life
+mc2: Priya typed a story and turned the computer off without saving. Why is her story gone? | it was never saved | the keyboard forgot it | the speaker was off | the mouse was unplugged
+hint: Where must work go so it stays after the computer turns off?
+mc2: Kofi's screen works, but no letters show up when he types. Which part should he check first? | keyboard | speaker | printer | headphones
+hint: Which part sends letters into the computer?
+mc2: A lunch program says: wash hands, eat lunch, set the table. How can you fix it? | set the table before eating | eat lunch first | take out wash hands | add a nap
+hint: Act it out. Can you eat at a table that is not ready?
+mc2: A game should give a star when you win, but it gives a star when you lose. This is a | bug | loop | command | input
+hint: The game is doing the wrong thing.
+num2: A robot program says: forward 2, turn, forward 3. How many forward steps does the robot take in all? | 5
+hint: Add the forward steps. A turn is not a step forward.
+mc2: You draw a picture with the mouse and it shows on the monitor. What order did that happen in? | input, then CPU, then output | output, then input, then CPU | CPU, then output, then input | output only
+hint: What must happen first, your drawing going in or the picture coming out?
+
+unit: Coding words: algorithms, loops and bugs | 2 | cs_2
+
+lesson: Coding words
+mc1: Steps that tell how to solve a problem, like a recipe, are called an | algorithm | error | input | output
+hint: Think of a recipe: it lists the steps that get the job done every time.
+mc1: Doing the same steps again and again in code is called a | loop | bug | variable | sequence
+hint: Think of a race track where you go around and around.
+mc1: A set of instructions that a computer follows is called a | program | bug | debug | repeat
+hint: You write it, and the computer runs it.
+mc1: Finding and fixing a mistake in code is called | debugging | looping | repeating | typing
+hint: You take the bug out.
+mc1: The order that steps go in is called the | sequence | bug | loop | debug
+hint: Think of first, next and last.
+mc1: A mistake that makes code do the wrong thing is a | bug | loop | algorithm | sequence
+hint: It shares its name with a small insect.
+
+lesson: Spot the coding word
+mc1: The code says: clap 5 times. Which coding idea is this? | loop | bug | debugging | sequence
+hint: Is something happening once or over and over?
+mc1: Written steps for brushing your teeth, from start to finish, are an example of | an algorithm | a bug | a loop | debugging
+hint: Do the steps solve a problem from start to finish?
+mc1: Maya's code should draw a square, but it draws only 3 sides. This is an example of | a bug | a loop | an algorithm | a sequence
+hint: Did the code do what Maya wanted?
+mc1: Leo reads his code line by line to find what went wrong. What is he doing? | debugging | looping | repeating | saving
+hint: He is hunting for a mistake so he can fix it.
+mc1: Which is an example of a loop? | jump 10 times | jump once | sit down | say your name
+hint: Which one repeats?
+mc1: In a game, which word is a name that stores a number that changes? | score | repeat | loop | debug
+hint: Which one could hold a value like 10, then 11?
+
+lesson: Working with loops
+num2: The code says: repeat 4 times: hop. How many hops happen? | 4
+hint: The loop runs the hop step once each time.
+num2: The code says: repeat 3 times: clap, clap. How many claps happen in all? | 6
+hint: Each time the loop runs, it claps twice. Count 2 three times.
+mc2: Which code is a shorter way to write: step, step, step, step, step? | repeat 5 times: step | repeat 4 times: step | step once | repeat 5 times: turn
+hint: Count the steps, then check what is repeated.
+num2: The code says: hop, then repeat 2 times: spin. How many moves happen in all? | 3
+hint: The hop is not inside the loop. Add 1 hop and the spins.
+mc2: A turtle draws a square by moving forward and turning right at each corner. Which code works? | repeat 4: forward, turn right | repeat 3: forward, turn right | repeat 4: forward | forward, turn right
+hint: How many sides and corners does a square have?
+num2: Score starts at 0. The code says: repeat 5 times: add 2 points. What is the score at the end? | 10
+hint: Add 2 again and again, five times.
+
+lesson: Coding mix-ups
+mc2: Is an algorithm only for computers? | no, a recipe is an algorithm too | yes, only computers use them | only robots use them | only phones use them
+hint: Think about steps people follow every day.
+mc2: Sam says a bug is always a spelling mistake. Which is true? | a bug is any mistake that makes code work wrong | a bug is only a spelling mistake | a bug makes code faster | a bug fixes code
+hint: Can code have a mistake even when every word is spelled right?
+mc2: What is the difference between a bug and debugging? | a bug is a mistake, and debugging is fixing it | they mean the same thing | debugging is the mistake, and a bug is the fix | both are kinds of loops
+hint: One is a problem. The other is what you do about the problem.
+mc2: Code: forward, forward, forward, turn, forward, forward, forward, turn. Which part repeats? | forward 3 times, then turn | turn only | forward once | nothing repeats
+hint: Split the code into two equal halves and compare them.
+num2: Code should draw 6 stars, but it says: repeat 5 times: draw star. What number should replace 5? | 6
+hint: How many stars do you want?
+mc2: Code: repeat 3 times: say hi. Then: say bye. What is said last? | bye | hi | hi hi hi | nothing
+hint: The loop finishes before the next step starts.
+
+lesson: Coding in the real world
+mc2: Ana writes steps for making a sandwich. Step 3 is wrong, so she fixes it. Fixing step 3 is | debugging | looping | repeating | sorting
+hint: She found a mistake and made it right.
+num2: A turtle draws a triangle with: repeat 3 times: forward, turn. How many turns does it make? | 3
+hint: Each time through the loop, it turns once.
+num2: A garden robot runs: repeat 4 times: plant 3 seeds. How many seeds are planted? | 12
+hint: It plants 3 seeds, four separate times.
+mc2: Code to water 5 plants says: water plant, water plant, water plant, water plant. What is the bug? | one water plant is missing | there is one too many | it needs a turn | there is no bug
+hint: Count how many times water plant appears.
+mc2: A game plays the same song over and over until the game ends. Which coding word fits? | loop | bug | debug | sequence
+hint: The song keeps coming back.
+sa2: Write an algorithm with 3 steps for washing your hands. | 1. Wet your hands and add soap. 2. Rub your hands together for about 20 seconds. 3. Rinse and dry your hands.
+hint: Put your steps in order from first to last.
+
+unit: Staying safe online | 2 | cs_2_n1
+
+lesson: Private information
+mc1: Which is private information to keep to yourself online? | your home address | your favorite color | your favorite animal | a funny joke
+hint: Which one tells someone where to find you?
+mc1: Which is also private information? | your password | your favorite food | the weather | a book title
+hint: Which one keeps your account locked?
+mc1: Is it safe to post your full name and school for everyone online to see? | no, keep it private | yes, always | only in games | only at night
+hint: Strangers could use it to find out where you are.
+mc1: Which is fine to share in a class chat that your teacher runs? | your favorite book | your address | your phone number | your password
+hint: Which one does not tell anyone how to reach you or get into your account?
+mc1: Which person is a trusted adult you could tell about a problem online? | your teacher | a stranger in a game | a pop-up message | a username you do not know
+hint: Think of a grown-up you know in real life who keeps you safe.
+
+lesson: Strong passwords
+mc1: Which is the strongest password? | Blue7Kite!rain | 1234 | password | cat
+hint: Strong passwords are long and mix letters, numbers and symbols.
+mc1: Which password is the easiest to guess? | 12345 | Tq8!mango4 | R7fishLamp | 9sun*Tree2
+hint: Which one is a simple pattern anyone might try first?
+mc1: Why is your name a weak password? | it is easy for others to guess | it is too long | computers cannot read names | it is too hard to type
+hint: Who else knows your name?
+mc1: A friend asks for your game password to help you win. What should you do? | say no and keep it private | share it | post it in the chat | write it on their hand
+hint: A password is like the key to your house.
+mc1: Which is a good password habit? | keep it secret | tell your best friend | use your birthday | write it on your desk
+hint: Who should be able to open your account?
+
+lesson: Pop-ups and strange messages
+mc2: A pop-up says: You won a prize! Click here! What should you do? | ask a trusted adult first | click it fast | type your address | share it with friends
+hint: A prize you never entered to win may be a trick.
+mc2: A message asks for your password to fix your account. What should you do? | do not answer and tell an adult | type your password | send it twice | ask for a prize
+hint: Real helpers do not ask you for your password in a message.
+mc2: A game asks you to download something you do not know. What should you do first? | ask an adult | download it | click every button | turn up the sound
+hint: Stop before you click. Who can check it with you?
+mc2: You see something online that makes you upset or confused. What should you do? | tell a trusted adult | keep it a secret | send it to friends | keep watching
+hint: You do not have to handle it alone.
+mc2: A strange link appears in a game chat. What is the safest choice? | do not click it and tell an adult | click it to see | share it | reply with your name
+hint: Stop, do not click, and get help.
+
+lesson: Being kind online
+mc2: Someone writes something unkind to you online. What should you do? | do not reply, then block and tell an adult | write something mean back | keep it a secret | share it with everyone
+hint: Replying can make it worse. Who can help?
+mc2: What should you do before you post a photo? | think about who will see it | post it right away | add your address | add photos of friends without asking
+hint: Once something is posted, many people may see it.
+mc2: Is it okay to post a photo of a friend without asking? | no, ask first | yes, always | only if it is funny | only at school
+hint: How would you feel if someone posted your photo without asking?
+mc2: Which message is kind? | Great job on your drawing! | You are bad at this. | Nobody likes you. | Go away.
+hint: Which one would make someone smile?
+mc2: Your friend is being teased in a game chat. What could you do? | be kind to your friend and tell an adult | join in | laugh at it | copy the mean words
+hint: Think about how your friend feels.
+mc2: Should you use the same good manners online that you use face to face? | yes | no | only with adults | only on weekends
+hint: There is a real person reading your words.
+
+lesson: Making safe choices
+mc2: Jada gets a message from someone she does not know: What school do you go to? What should she do? | not answer and tell a trusted adult | tell them her school | send a photo | ask about their school
+hint: Is her school private information?
+mc2: A pop-up on Ravi's tablet says his device is broken and he must call a number. What should he do? | show a trusted adult | call the number | type his password | click OK
+hint: Pop-ups like this often want you to hurry. Slow down and get help.
+mc2: Elena is making a new password. Which is best? | a long mix of words, numbers and symbols | her pet's name | 1111 | the word password
+hint: Which one would be hardest for someone else to guess?
+mc2: Theo clicks a link by mistake and a strange page opens. What should he do? | tell a trusted adult | hide it | click more links | turn the sound up
+hint: Mistakes happen. Who can help him fix it?
+mc2: Someone Nia only knows from a game asks to meet in person. What should she do? | tell a trusted adult right away | go alone | keep it a secret | give her address
+hint: Online friends are still strangers in real life.
+sa2: Your cousin wants to post a picture of you online. What could you say, and why? | I could say, "Please ask me first before you post it," because many people can see pictures online and I get to choose what is shared about me.
+hint: Think about who could see the picture and who should decide.
+
+unit: The internet and the web | 3 | cs_3
+
+lesson: Internet words
+mc1: Millions of computers around the world are linked so they can share information. What is this giant network called? | the internet | a browser | a printer | a file
+hint: It is the network of networks.
+mc1: What is the World Wide Web? | the web pages and websites you visit over the internet | the wires inside one computer | a kind of keyboard | a spider's home
+hint: It is something you look at in a browser.
+mc1: What is a program you use to open and view web pages? | browser | server | printer | password
+hint: It lets you look around, or browse, websites.
+mc1: What is a powerful computer that stores websites and sends them when you ask? | server | browser | mouse | link
+hint: It serves pages to many people, like a waiter serves food.
+mc1: Clickable words or pictures that take you to another page are called | links | servers | files | bugs
+hint: They connect one page to another, like a chain.
+mc1: The address of a web page, like www.example.com, is called a | URL | browser | server | password
+hint: It tells the browser exactly where to find a page, like a home address.
+
+lesson: Internet or web?
+mc1: Which sentence is true? | the web is one part of the internet | the internet is one part of the web | they are exactly the same thing | the web is a kind of computer
+hint: The internet carries many things: web pages, video calls, messages and more.
+mc1: Is email the same thing as the World Wide Web? | no, it is a different way to use the internet | yes, email is the web | email is a browser | email is a server
+hint: Both travel over the internet, but are they the same service?
+mc1: What do you need to visit a website? | a browser and an internet connection | a printer | a microphone | only a keyboard
+hint: You need a way to view the page and a way to reach the server.
+mc1: Which one is an example of a URL? | www.example.org | Example Search | a blue underlined word | the back button
+hint: A web address has dots and an ending.
+mc1: You type a web address and press Enter. Where does the web page come from? | a server far away | your mouse | the screen itself | the keyboard
+hint: Which computer stores the website?
+mc1: What does Wi-Fi do? | connects a device to a network without wires | stores files forever | prints pictures | makes typing faster
+hint: Think about how a tablet gets online with no cable.
+
+lesson: How a page reaches you
+mc2: Put these steps in order: (1) the server sends the page, (2) you type a URL, (3) the browser shows the page. | 2, 1, 3 | 1, 2, 3 | 3, 2, 1 | 2, 3, 1
+hint: The server cannot send a page until it knows which one you want.
+mc2: Which search words would best help you find how tall giraffes grow? | giraffe height | animals | tall | zoo trip
+hint: Use the most important words about exactly what you want.
+mc2: A search gives you a list of results. What is a good way to choose one? | read the title and description to see if it matches | always click the first picture | pick the longest title | click every result
+hint: Check whether a result is really about your question before you open it.
+mc2: In the URL https://www.example.com/animals, which part is the name of the website? | example.com | https | animals | www
+hint: The site name has a dot and an ending. The part after the slash is one page on the site.
+mc2: Many websites end in .gov. What kind of site is that? | a government site | a game site | a shopping site | a sports team site
+hint: The letters are short for a longer word about who runs it.
+mc2: Which ending is used by many colleges and universities? | .edu | .gov | .com | .net
+hint: Think of a word that means learning.
+
+lesson: Internet mix-ups
+mc2: Is a browser the same as a search engine? | no, a browser opens pages and a search engine is a site that finds pages | yes, they are the same | a search engine is a computer part | a browser is a kind of server
+hint: You use one program to open the other.
+mc2: Rosa types a URL with one letter wrong. What will probably happen? | she gets a different page or an error | the right page opens anyway | the computer turns off | the server fixes it for her
+hint: A web address must match exactly, like a house number.
+mc2: Is everything on a website true? | no, check facts on more than one trusted site | yes, websites are always true | only if it has pictures | only if it is long
+hint: Anyone can make a web page.
+mc2: On many web pages, what happens when you click blue underlined words? | you go to another page | the page is deleted | the page prints | the computer turns off
+hint: These words connect pages together.
+mc2: Which one is NOT needed to open a web page? | a printer | a browser | an internet connection | a device such as a computer or tablet
+hint: Three are needed. One is only for paper copies.
+mc2: Which kind of software helps find and block harmful programs on a computer? | antivirus software | a web browser | a search engine | a drawing program
+hint: Harmful programs are sometimes called viruses. Which software works against them?
+
+lesson: Using the internet well
+mc2: Nadia wants to learn about volcanoes for a report. What should she do first? | search with clear words like volcano facts | type random letters | click pop-ups | ask a stranger in a chat
+hint: Good research starts with good search words.
+mc3: Jun finds two websites that disagree about how many moons Mars has. What should he do? | check another trusted source, like a library or science site | believe the first one | believe the longer one | stop learning about Mars
+hint: When sources disagree, find a source you can trust more.
+mc2: No websites will load on Ivan's tablet, but the screen and keys work. What is the most likely problem? | the internet connection is down | the keyboard is broken | the screen is too dim | the speaker is off
+hint: Websites come from servers far away. What carries them to the tablet?
+mc2: Which search would best find the opening times of the library in a town called Oakdale? | Oakdale library hours | library | books | hours
+hint: Include the place and exactly what you want to know.
+num2: A school home page has 4 links. Each of those 4 pages has 3 links of its own. How many links are on those 4 pages in all? | 12
+hint: Each of 4 pages has 3 links. Use multiplication.
+mc2: Kemal clicks a link on a news page and a video site opens. What did the link do? | sent his browser to a different web address | printed the page | turned on the speaker | deleted the news page
+hint: Look at the address bar after you click a link.
+
+unit: Charts and data | 3 | cs_3_n1
+
+lesson: Data and chart words
+mc1: Information you collect, like answers to a survey question, is called | data | a link | a bug | a loop
+hint: Scientists collect it, sort it and put it in charts.
+mc1: A chart where you make one small line for each vote is a | tally chart | pie chart | line graph | bar graph
+hint: Each line is a mark you count.
+mc1: In tally marks, what does a group of four lines with one line across them stand for? | 5 | 4 | 6 | 10
+hint: Count every line, including the one going across.
+mc1: Which graph is best for comparing how many students like each fruit? | bar graph | line graph | Venn diagram | scatter plot
+hint: You want to compare amounts side by side.
+mc1: Which graph is best for showing how a puppy's weight changed month by month? | line graph | pie chart | tally chart | Venn diagram
+hint: The data changes over time.
+mc1: Which chart shows parts of a whole, like slices of a pizza? | pie chart | line graph | bar graph | tally chart
+hint: It is shaped like a circle cut into pieces.
+
+lesson: Tally charts and picture graphs
+num1: A tally chart shows votes for apples: one group of 5 and 3 more lines. How many votes did apples get? | 8
+hint: Count the group as 5, then count on.
+num1: In a picture graph, each smiley face stands for 2 students. The dogs row has 4 faces. How many students chose dogs? | 8
+hint: Count by 2s, once for each face.
+num1: A tally chart shows cats 7, dogs 9 and fish 3. How many votes are there in all? | 19
+hint: Add all three numbers.
+num1: A picture graph key says each apple picture stands for 5 apples picked. Monday's row has 3 apple pictures. How many apples were picked on Monday? | 15
+hint: Count by 5s, once for each picture.
+mc1: A tally chart shows red 6, blue 4 and green 8. Which color got the most votes? | green | red | blue | they tied
+hint: Find the biggest number.
+num1: A tally chart shows red 6, blue 4 and green 8. How many more votes did green get than blue? | 4
+hint: Subtract the smaller number from the bigger one.
+
+lesson: Reading bar graphs
+num2: A bar graph shows books read: Ana 6, Ben 9, Chen 4. How many more books did Ben read than Chen? | 5
+hint: Subtract the shorter bar from the taller bar.
+mc2: A bar graph shows favorite sports: soccer 12, basketball 8, swimming 10. Which sport is least popular? | basketball | soccer | swimming | they are all the same
+hint: Least popular has the shortest bar.
+num2: A bar graph's scale counts by 2s. A bar stops exactly halfway between 6 and 8. What number does it show? | 7
+hint: Which number is in the middle of 6 and 8?
+num2: A bar graph shows rainy days: March 8, April 11, May 6. How many rainy days are there in all three months? | 25
+hint: Add the heights of all three bars.
+mc2: Why does a bar graph need a title and labels? | so readers know what the bars and numbers mean | to make it colorful | to make it longer | to hide the data
+hint: Without words, could you tell what the bars count?
+mc2: A bar graph shows cats 10, dogs 10 and birds 4. Which sentence is true? | cats and dogs tied | cats got the most | birds got the most | dogs got the most
+hint: Compare the two tallest bars.
+
+lesson: Chart mix-ups
+mc2: Which would best show the temperature at noon each day for a week? | line graph | pie chart | tally chart | Venn diagram
+hint: You want to see how something changes from day to day.
+num2: A pie chart is cut into 4 equal slices. What fraction of the whole is one slice? | 1/4
+hint: One slice out of how many equal slices?
+mc2: In a picture graph, each star stands for 2 votes. Kai counts 5 stars and says 5 votes. What is his mistake? | he forgot each star stands for 2 votes | he counted too many stars | each star stands for 10 votes | he made no mistake
+hint: Read the key before you count.
+mc2: A bar graph scale is marked 0, 5, 10, 15. A bar reaches the mark for 10. Lily says the bar shows 3 because it is the third mark. What number does the bar really show? | 10 | 3 | 2 | 15
+hint: Read the number at the top of the bar, not the count of marks.
+mc2: Which is best for showing information in rows and columns, like a class schedule? | table | pie chart | line graph | tally chart
+hint: Think of a grid of boxes.
+mc2: Which question can you answer by collecting data from your class? | What is our class's favorite fruit? | What is 2 + 2? | How do you spell cat? | What color is a stop sign?
+hint: Which question needs you to ask many people and count their answers?
+
+lesson: Charts in real life
+num2: A class of 24 students voted for lunch. 10 chose pizza, 8 chose tacos and the rest chose pasta. How many chose pasta? | 6
+hint: Add pizza and tacos, then subtract from the whole class.
+num2: A plant was 2 cm tall in week 1, 5 cm in week 2 and 9 cm in week 3. How many centimeters did it grow from week 1 to week 3? | 7
+hint: Subtract the first height from the last height.
+mc2: A plant was 2 cm tall in week 1, 5 cm in week 2 and 9 cm in week 3. Between which weeks did it grow the most? | week 2 to week 3 | week 1 to week 2 | it grew the same each week | it got shorter
+hint: Find how much it grew in each week, then compare.
+mc2: Mia wants to show what part of her day she spends sleeping, at school and playing. Which chart is best? | pie chart | line graph | tally chart | scatter plot
+hint: Her whole day is split into parts.
+num2: A picture graph key says each book picture stands for 4 books. Leo's row has 3 whole book pictures and one half picture. How many books did Leo read? | 14
+hint: Each whole picture is 4. What is half of 4?
+sa3: Your class voted: 9 for outdoor games, 6 for art and 3 for music. Name a chart you would use to show the votes and explain why. | A bar graph, because it makes the three amounts easy to compare. The outdoor games bar would be the tallest and the music bar the shortest.
+hint: Think about which chart is best for comparing amounts.
+
+unit: Decisions, events and loops in code | 4 | cs_4, cs_4_n1
+
+lesson: Words for decisions and loops
+mc1: In Python, which keyword starts a check such as whether it is raining? | if | for | print | def
+hint: In English you might say: ___ it rains, take an umbrella.
+mc1: A value that can only be True or False is called a | Boolean | string | loop | event
+hint: It is named after a mathematician who studied true and false logic.
+mc1: In an if/else, when does the else part run? | when the condition is false | when the condition is true | every time | never
+hint: The if part and the else part never both run.
+mc1: Clicking a button that starts some code is an example of an | event | loop | variable | bug
+hint: It is something that happens and triggers the code.
+mc1: A loop that repeats a set number of times, like exactly 5 times, is a | for loop | while loop | if statement | event
+hint: One kind of loop keeps going as long as something is true. The other counts.
+mc1: In score = 0, what is score? | a variable | a loop | an event | a Boolean
+hint: It is a name that holds a value that can change.
+
+lesson: True or false?
+mc1: x = 3. Is the condition x > 2 True or False? | True | False | 3 | 2
+hint: Put 3 in place of x and read the sentence.
+mc1: age = 9. Which condition is True? | age < 10 | age > 10 | age == 8 | age > 9
+hint: Test each one with 9. Is 9 greater than 9?
+mc1: In Python, what does == do? | checks if two values are equal | stores a value in a variable | checks if two values are different | checks if one value is greater
+hint: One equals sign stores a value. Two equals signs ask a question.
+mc1: Which is a Boolean value? | False | "hello" | 7 | 3.5
+hint: Booleans have only two possible values.
+mc1: n = 5. Which condition is False? | n < 5 | n == 5 | n >= 5 | n > 4
+hint: Check each one. Is 5 less than 5?
+mc1: Which sentence is a condition, something that can be true or false? | It is raining. | Take an umbrella. | Open the door. | Jump twice.
+hint: Three of these are commands. Which one can be checked?
+
+lesson: Tracing if and else
+mc2: A program sets x to 3. Then it checks: if x > 2, print 'big'; otherwise, print 'small'. What is printed? | big | small | 3 | nothing
+hint: Is 3 greater than 2? If yes, the if part runs.
+mc2: A program sets score to 4. Then it checks: if score >= 5, print 'win'; otherwise, print 'try again'. What is printed? | try again | win | 4 | win and try again
+hint: Is 4 greater than or equal to 5?
+mc2: A program sets n to 10. Then it checks: if n == 10, print 'ten'; otherwise, print 'not ten'. What is printed? | ten | not ten | 10 | nothing
+hint: Does n hold the value 10?
+mc2: A program sets t to 7. Then it checks: if t < 5, print 'cold'; else if t < 10, print 'cool'; otherwise, print 'warm'. What is printed? | cool | cold | warm | cold and cool
+hint: Check the conditions in order and stop at the first True one. Is 7 less than 5? Is 7 less than 10?
+mc2: A program sets raining to False. Then it checks: if raining is True, print 'umbrella'; otherwise, print 'sunglasses'. What is printed? | sunglasses | umbrella | False | nothing
+hint: The if part runs only when raining is True.
+num2: A program sets x to 2. Then it checks: if x > 5, add 10 to x; otherwise, add 1 to x. What is x at the end? | 3
+hint: First decide whether 2 is greater than 5, then do only that part.
+
+lesson: Events and loops
+num2: for i in range(4): print('hi'). How many times is hi printed? | 4
+hint: range(4) gives the numbers 0, 1, 2 and 3.
+num2: A program sets count to 0. Then a loop runs 5 times, and each time it adds 2 to count. What is count at the end? | 10
+hint: The loop adds 2 each time it runs. How many times does it run?
+mc2: In block code, the block 'when green flag clicked' is an example of | an event | a loop | a Boolean | a variable
+hint: The code waits until something happens.
+mc2: Which one is an event? | a key is pressed | x = 5 | repeat 3 times | print('hi')
+hint: Which one is something the user does that code can react to?
+num2: A program sets n to 1. Then, while n < 8, it doubles n. What is n at the end? | 8
+hint: Write each value: 1, then 2, then keep going. Stop when n < 8 is False.
+mc2: A program must keep asking for a password until it is right. Which loop fits best? | while loop | for loop that runs 3 times | if statement | event
+hint: You do not know ahead of time how many tries it will take.
+
+lesson: Code that makes choices
+mc2: A game sets lives to 3, then takes away 1 life. Then it checks: if lives == 0, print 'game over'; otherwise, print 'keep going'. What is printed? | keep going | game over | 2 | 3
+hint: Work out lives first. Is it 0?
+mc2: A program sets x to 5. Then it checks: if x > 5, print 'A'; otherwise, print 'B'. What is printed? | B | A | 5 | A and B
+hint: Is 5 greater than 5, or equal to it?
+num2: A program sets total to 0. Then a loop goes through i = 1, 2 and 3, adding i to total each time. What is total at the end? | 6
+hint: Start at 0, then add each value of i in turn.
+mc2: A heater program says: if temp < 20, turn the heater on; otherwise, turn it off. The temperature is 18. What happens? | the heater turns on | the heater turns off | nothing happens | both happen
+hint: Is 18 less than 20?
+mc2: In a game, when the player touches a coin, 1 is added to the score. What starts this code? | the event of touching the coin | a loop that runs 10 times | a Boolean set to False | the score variable
+hint: The code runs only when something happens in the game.
+sa2: A night light should turn on when the room is dark. Write the rule using if and else. | If the room is dark, turn the light on; else, keep the light off.
+hint: Start with the condition, then say what happens when it is true and when it is false.
+
+unit: Data types and programming languages | 5 | cs_5, cs_5_n1
+
+lesson: Data type words
+mc1: What data type is "hello"? | string | integer | float | Boolean
+hint: Text inside quotes is like a chain of letters.
+mc1: What data type is 42? | integer | string | float | Boolean
+hint: It is a whole number with no decimal point.
+mc1: What data type is 3.14? | float | integer | string | Boolean
+hint: It is a number with a decimal point.
+mc1: What data type is True, without quotes? | Boolean | string | integer | float
+hint: It is one of only two possible values.
+mc1: An ordered group of items, like [2, 4, 6], is a | list | string | float | Boolean
+hint: Square brackets hold several items in order.
+mc1: Which value is a float? | 7.5 | 7 | "7.5" | True
+hint: Look for a decimal number that is not inside quotes.
+
+lesson: Sort the values
+mc1: Which value is a string? | "25" | 25 | 25.0 | True
+hint: Quotes turn anything into text.
+mc1: Which value is an integer? | -8 | 8.0 | "8" | 8.5
+hint: Integers are whole numbers. They can be negative.
+mc1: What data type is "True", with quotes? | string | Boolean | integer | float
+hint: What do quotes always mean in code?
+mc1: Which data type fits a person's name? | string | integer | float | Boolean
+hint: A name is made of letters.
+mc1: Which data type best fits whether a light is on or off? | Boolean | string | float | list
+hint: There are only two choices.
+mc1: Which data type best fits a price like 4.99? | float | integer | Boolean | list
+hint: The price has a decimal point.
+
+lesson: Using data types
+num2: x = 7; y = 3; print(x + y). What number is printed? | 10
+hint: x and y hold integers, so + adds them.
+mc2: print('7' + '3'). What is printed? | 73 | 10 | 4 | an error
+hint: With strings, + joins text together instead of adding.
+num2: nums = [5, 10, 15]; print(len(nums)). What is printed? | 3
+hint: len tells how many items are in the list.
+num2: colors = ['red', 'blue', 'green']. Python counts list positions starting at 0. What is the position number of 'blue'? | 1
+hint: 'red' is at position 0.
+num2: print(7 / 2) in Python 3. What number is printed? | 3.5
+hint: In Python 3, one slash gives a decimal answer.
+mc2: name = 'Sam'; print('Hi ' + name). What is printed? | Hi Sam | Hi name | HiSam | an error
+hint: name is a variable, and 'Hi ' ends with a space.
+
+lesson: Programming languages
+mc2: Which language is mainly used to give a web page its structure, such as headings and paragraphs? | HTML | Python | Scratch | CSS
+hint: One web language styles a page. Another builds its structure.
+mc2: HTML is called a markup language. What does that mean? | it labels and arranges content but does not make decisions like if and else | it is made of drag-and-drop blocks | it is only for games | it is the same as Python
+hint: HTML tags mark parts of a page, like a heading or a picture.
+mc2: Which language is often used to make web pages interactive, like a button that shows a message? | JavaScript | HTML | CSS | Scratch
+hint: It runs in the browser and reacts to clicks.
+mc2: Which language uses colorful drag-and-drop blocks and was made for young learners? | Scratch | Python | HTML | JavaScript
+hint: You snap blocks together instead of typing code.
+mc2: Which language is popular for data science and known for code that is easy to read? | Python | HTML | Scratch | CSS
+hint: It is a text language, not blocks, and it is not mainly for building web pages.
+mc2: Are Java and JavaScript the same language? | no, they are different languages | yes, they are the same | JavaScript is a newer name for Java | Java is a kind of HTML
+hint: Similar names do not always mean similar things.
+
+lesson: Choosing types and languages
+mc2: Amara wants to store the scores of 5 players in one variable. Which type should she use? | list | Boolean | float | string
+hint: She needs to keep several values in order.
+mc2: Hiro writes age = "11" and then age + 1 gives an error. Why? | "11" is a string, not an integer | 11 is too big | + only works with Booleans | age cannot be used as a name
+hint: Look at the quotes around 11.
+mc3: A team builds a web page with a heading, a picture and a button that pops up a message when clicked. Which plan fits best? | HTML for the structure and JavaScript for the button | JavaScript for the structure and HTML for the button | only HTML | Scratch for everything
+hint: One language builds the page. Another makes it react.
+num2: x = 4; y = 2.5; print(x + y). What number is printed? | 6.5
+hint: Python can add an integer and a float.
+mc2: What data type is the result of 5 > 3? | Boolean | integer | string | float
+hint: A comparison answers a yes or no question.
+mc2: Which job is Python a good choice for? | studying a big table of weather data | marking the headings on a web page | snapping blocks together for a first animation | styling the colors of a web page
+hint: Think about which language is popular for working with data.
+
+unit: Binary numbers | 6 | cs_6
+
+lesson: Bits and why computers use binary
+mc1: What is a bit? | a single 0 or 1 | a group of 8 digits | one letter of text | a whole file
+hint: It is the smallest piece of data a computer stores.
+num1: How many bits are in one byte? | 8
+hint: A byte is the group of bits a computer often uses to store one letter, like A.
+mc1: Why do computers use binary? | their circuits have two states, on and off | binary is easier for people to read | computers can only count to 2 | decimal numbers had not been invented
+hint: Think about a light switch.
+num1: How many different digits does binary use? | 2
+hint: The prefix bi- means the same as in bicycle.
+mc1: Which one is a binary number? | 1011 | 1021 | 12 | 3.5
+hint: Binary numbers use only certain digits.
+num1: In binary, the place values from right to left are 1, 2, 4, 8. What is the next place value? | 16
+hint: Each place value is double the one before it.
+
+lesson: Binary to decimal
+num1: What is binary 10 in decimal? | 2
+hint: From the right, the place values are 1 and 2. Which place holds the 1?
+num1: What is binary 111 in decimal? | 7
+hint: Add the place values 4, 2 and 1 wherever there is a 1.
+num1: What is binary 1001 in decimal? | 9
+hint: The place values are 8, 4, 2, 1. Add only where there is a 1.
+num1: What is binary 1010 in decimal? | 10
+hint: Which place values have a 1 under them? Add just those.
+num1: What is binary 1100 in decimal? | 12
+hint: Write 8, 4, 2, 1 above the digits, then add the places with a 1.
+num1: What is binary 10000 in decimal? | 16
+hint: Count the places from the right: 1, 2, 4, 8, then the next one.
+
+lesson: Decimal to binary
+mc2: What is decimal 6 in binary? | 110 | 101 | 111 | 1100
+hint: Which two place values add up to 6?
+mc2: What is decimal 9 in binary? | 1001 | 1010 | 1100 | 111
+hint: Start with the biggest place value that fits, 8. What is left?
+mc2: What is decimal 4 in binary? | 100 | 10 | 1000 | 110
+hint: 4 is exactly one place value. Put a 1 there and 0s to its right.
+mc2: What is decimal 13 in binary? | 1101 | 1011 | 1110 | 1111
+hint: Start with the biggest place value that fits in 13, then see what is left over.
+num2: How many bits do you need to write decimal 20 in binary? | 5
+hint: Find the biggest place value that fits in 20, then count places down to the 1s place.
+mc2: What is decimal 31 in binary? | 11111 | 10001 | 11110 | 1111
+hint: 31 is one less than 32. What does that mean for every place below 32?
+
+lesson: Binary mix-ups
+num2: Ella reads binary 100 as one hundred. What is binary 100 really equal to in decimal? | 4
+hint: Binary place values are 1, 2, 4, not 1, 10, 100.
+num2: What is binary 10110 in decimal? | 22
+hint: The place values are 16, 8, 4, 2, 1. Add the ones that have a 1.
+num2: What is the largest decimal number you can write with 4 bits? | 15
+hint: Make every bit a 1, then add up their place values.
+num2: How many different values can 3 bits show? | 8
+hint: List them: 000, 001, 010 and so on. Or start at 1 and double it once for each bit.
+num2: What is binary 11111111, which is eight 1s, in decimal? | 255
+hint: Add 128, 64, 32, 16, 8, 4, 2 and 1.
+mc2: What is binary 0111 plus 1, written in binary? | 1000 | 0112 | 1111 | 0110
+hint: 0111 is 7 in decimal. What is 7 + 1, and how is it written in binary?
+
+lesson: Binary in the real world
+num2: A light panel has 5 lights for place values 16, 8, 4, 2 and 1. The lights for 16, 4 and 1 are on. What decimal number does it show? | 21
+hint: Add only the place values whose lights are on.
+num2: A computer stores each letter of a simple text message in 1 byte. How many bits does a 5-letter word use? | 40
+hint: Each byte is 8 bits.
+num2: How many different values can one byte show? | 256
+hint: Each extra bit doubles the number of values. Start at 1 and double it once for each of the 8 bits.
+mc2: A robot uses 2 bits to pick a direction: 00 north, 01 east, 10 south, 11 west. Which direction does 10 mean? | south | east | west | north
+hint: Match the code to the list.
+num2: 4 bits can show 16 different values. How many different values can 5 bits show? | 32
+hint: Adding one bit doubles the number of values.
+sa3: Explain why binary 1101 equals 13 in decimal. | From the right, the place values are 1, 2, 4 and 8. There are 1s in the 8, 4 and 1 places and a 0 in the 2 place, so 8 + 4 + 1 = 13.
+hint: Write the place value above each digit.

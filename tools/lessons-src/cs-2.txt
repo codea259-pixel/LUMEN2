@@ -1,0 +1,858 @@
+@subject cs
+# Learn-only lessons: computer science, grades 6 to 13 (second set).
+
+unit: Networks: how data travels | 6 | cs_6_n1
+
+lesson: Network words
+mc1: What is a computer network? | Two or more devices connected so they can share data | A single computer with a large hard drive | A program that draws pictures | A cable that carries electricity to one computer
+hint: Think about what lets your tablet send a page to a printer in another room.
+mc1: What is an IP address? | A number that identifies a device on a network | The name of a website that you type | The password for a Wi-Fi network | The speed of an internet connection
+hint: Mail needs a house number to reach the right home. What plays that role for data?
+mc1: Which device passes data between different networks, such as your home network and the internet? | Router | Monitor | Keyboard | Speaker
+hint: This box sits between your home devices and the line from the internet company.
+mc1: What is a packet? | A small piece of data sent across a network | A whole movie sent all at once | A kind of network cable | A list of website names
+hint: Big files are broken up before they travel. What is each piece called?
+mc1: What does LAN stand for? | Local area network | Large access node | Long antenna network | Linked application number
+hint: The L is about a nearby area, like one school building.
+mc1: Which kind of network covers a large area, such as a whole country? | WAN | LAN | USB | CPU
+hint: Think about a network that links offices in different cities.
+
+lesson: Sorting network examples
+mc1: The computers in one school library are connected to each other. What kind of network is this most likely? | LAN | WAN | A satellite network | The whole internet
+hint: How big is the area the network covers?
+mc1: Which of these joins a network without any cable? | A laptop using Wi-Fi | A desktop plugged in with an Ethernet cable | A printer joined to one computer by a USB cable | A TV joined to a game console by a video cable
+hint: Look for the choice that sends data through the air by radio waves.
+mc1: Which is the best example of a wide area network? | The internet | Two phones sharing a file across a table | The computers in one classroom | A keyboard and mouse joined to one computer
+hint: Which choice reaches across cities and countries?
+mc2: Which of these is written like an IP address? | 192.168.1.25 | www.example.com | hello@example.com | C:/Documents/home
+hint: An IP address works like a street address for a device, so data knows where to go.
+mc2: What does DNS do? | Turns a website name into an IP address | Makes a computer's processor run faster | Blocks every email | Charges a laptop's battery
+hint: Computers find each other by numbers, but people like to type names.
+num1: An IPv4 address such as 10.0.0.7 is made of how many numbers separated by dots? | 4
+hint: Count the parts between the dots.
+
+lesson: How a message travels
+mc2: Amara sends a photo to a friend. Why is the photo split into packets? | Small pieces can travel separately and be put back together at the end | Packets make the photo look brighter | The photo must be turned into a song first | Only one packet can be sent each day
+hint: Imagine moving one huge couch versus many small boxes through a busy hallway.
+mc2: Packets from one message can take different paths and arrive out of order. What helps the receiving computer put them back together? | Each packet carries a number showing its place in the message | Packets always arrive in alphabetical order | The receiving computer guesses the order | The router deletes any packet that arrives late
+hint: If you mailed the pages of a long letter in separate envelopes, what would you write on each one?
+num2: A file is 6,000 bytes. Each packet can carry 1,500 bytes of the file. How many packets are needed? | 4
+hint: Divide the file size by the amount one packet can carry.
+num2: A file is 5,000 bytes and each packet carries 1,000 bytes of it. One packet gets lost and is sent again. How many packets were sent in all? | 6
+hint: First find how many packets the file needs, then count the resent one too.
+mc2: What is a protocol in networking? | A set of rules that devices follow to communicate | An extra long cable | A computer that stores games | The password for a router
+hint: Two people talking must agree on a language and on taking turns.
+mc2: Which protocol does a browser use to load web pages? | HTTP | USB | LAN | RAM
+hint: Look at the letters at the start of a web address.
+
+lesson: Mixed practice: common mix-ups
+mc2: Lucas says, "Wi-Fi and the internet are the same thing." What is the best correction? | Wi-Fi is a wireless way to join a local network; the internet is the worldwide network of networks | Wi-Fi is just a faster speed of the internet | The internet only works with cables, and Wi-Fi only works without the internet | Wi-Fi is a website and the internet is a program
+hint: Your home Wi-Fi can still work even when the internet connection is down. What does that tell you?
+mc2: Which is usually true of a wired Ethernet connection compared with Wi-Fi? | It is often faster and steadier, but the device must stay near the cable | It works anywhere in the world without a cable | It cannot carry any data | It is always slower than Wi-Fi
+hint: Think about what walls and distance do to a radio signal, and what a cable gives up in return.
+mc2: Which statement about IP addresses is correct? | Two devices on the same network should not have the same IP address | Every device on Earth has the same IP address | An IP address is the same thing as a website name | IP addresses are made only of letters
+hint: What would happen if two houses on one street had the same address?
+mc2: Which statement about a router is correct? | It decides where to send each packet next | It stores every website in the world | It turns electricity into internet | It is only used by printers
+hint: Think of a traffic officer at a busy crossing.
+mc2: Typing a website's name does not load the page, but typing the site's IP address works. Which system is most likely having trouble? | DNS | The keyboard | The monitor | The power supply
+hint: Which system's job is to change names into numbers?
+num2: A home router gives each device its own address, using addresses that end in every whole number from 2 to 11. How many devices can get an address? | 10
+hint: Try a smaller case first: how many addresses end in 2, 3 or 4?
+
+lesson: Networks in the real world
+mc3: A small library wants 12 computers to share one printer and one internet connection. Which setup fits best? | Join the computers in a LAN with a router that connects to the internet | Give each computer its own printer and no network | Connect all the computers to one screen with video cables | Print files and carry the paper to each computer
+hint: Which choice lets devices in one building share things?
+mc3: Kenji's video call keeps freezing in a room far from the router. His desk is next to a network wall port. What is the best first fix to try? | Plug his computer into the port with an Ethernet cable | Turn off DNS on every computer | Get a bigger monitor | Delete the video app's packets by hand
+hint: What does a cable avoid that a radio signal must pass through?
+mc3: Why does the internet keep working when one router somewhere breaks? | Packets can be sent along other paths around the broken router | Every packet in the world goes through one single router | Broken routers repair themselves instantly | It does not; the whole internet stops until the router is fixed
+hint: If one road is closed, can traffic still reach the city?
+num3: A message is split into 8 packets. 3 packets travel along one path and the rest travel along a second path. How many packets take the second path? | 5
+hint: Take the packets on the first path away from the total.
+sa3: Explain in one or two sentences why data is sent in packets instead of as one big piece. | Small packets can share the network with other traffic and take different paths, and if one is lost only that small piece has to be sent again, not the whole file.
+hint: Think about what happens if something goes wrong partway through.
+
+unit: Functions and Python basics | 7 | cs_7, cs_7_n1
+
+lesson: Python words
+mc1: What does print() do in Python? | Shows output on the screen | Asks the user to type something | Sends a page to a printer | Deletes a variable
+hint: Think about where you see the results of a program.
+mc1: What does input() do in Python? | Waits for the user to type something and gives it to the program | Shows a number on the screen | Adds two numbers | Ends the program
+hint: Its name tells you which way the data moves.
+mc1: What is a variable? | A name that stores a value | A mistake in the code | A kind of loop | A message that can never change
+hint: In x = 10, what job is x doing?
+mc1: Which keyword starts a function definition in Python? | def | fun | function | start
+hint: Picture the first line of a function named greet: ___ greet():
+mc1: In def greet(name):, what do we call name? | A parameter | A comment | A loop | A return value
+hint: It is a placeholder that receives a value when the function is called.
+mc1: What does the return keyword do inside a function? | Sends a value back to the code that called the function | Prints a value on the screen | Repeats the function forever | Deletes the function
+hint: Think of a vending machine handing something back to you.
+
+lesson: Values, types and math
+mc1: What type of value is "42", written with quotes, in Python? | A string | An integer | A boolean | A float
+hint: What do quotation marks tell Python about a value?
+mc1: What does int("7") give in Python? | The whole number 7 | The text "7" | The decimal number 7.5 | An error every time
+hint: int() changes a value into one kind of number.
+mc2: What does str(15) give in Python? | The text "15" | The whole number 15 | The number 1.5 | The text "fifteen"
+hint: str is short for string.
+mc2: Why is int() often used together with input()? | input() always gives text, so int() turns it into a number for math | input() gives a number, and int() turns it into text | int() makes the user type faster | input() cannot run without int()
+hint: What type does input() always give back?
+num2: What does this program print? x = 5; y = 3; print(x + y * 2) | 11
+hint: Python does multiplication before addition.
+num2: What does this program print? print(17 // 5) | 3
+hint: // divides and throws away any remainder.
+
+lesson: Defining and calling functions
+num2: def double(n): return n * 2. What is double(4)? | 8
+hint: Replace n with 4 and do the math.
+num2: def add(a, b): return a + b. What is add(3, 9)? | 12
+hint: a gets the first value and b gets the second.
+num2: def area(w, h): return w * h. What is area(5, 3) + 1? | 16
+hint: First find what the function returns, then add 1.
+num2: def f(x): return x - 1. What is f(f(10))? | 8
+hint: Work from the inside out: find f(10) first, then use that answer.
+mc2: def greet(name): return "Hi " + name. What does print(greet("Ana")) show? | Hi Ana | Hi name | greet Ana | Ana Hi
+hint: The parameter holds whatever value is passed in.
+mc2: Which line correctly calls a function named square with the value 6? | square(6) | def square(6) | call square = 6 | square[6]
+hint: A call uses the function's name followed by round brackets holding the value.
+
+lesson: Mixed practice: common mistakes
+mc2: What does print("5" + "3") show? | 53 | 8 | 5 + 3 | An error
+hint: Both values are in quotes. What does + do to two strings?
+mc2: What happens when Python runs print("Age: " + 12)? | An error, because text and a number cannot be joined with + | It prints Age: 12 | It prints Age: | It prints 12
+hint: What type is "Age: " and what type is 12?
+num2: What does this print? x = 4; x = x + 3; print(x) | 7
+hint: The second statement uses the old value of x to make a new one.
+num2: What does this print? print(17 % 5) | 2
+hint: % gives the remainder after division.
+mc2: def show(n): print(n * 3). After r = show(2) runs, what is stored in r? | None | The number 6 | The text "6" | The number 2
+hint: Does the function have a return statement? What does Python give back when it does not?
+mc2: Which of these is a valid Python variable name? | total_score | 2score | total score | total-score
+hint: Which characters may a name contain, and may a name begin with a number?
+
+lesson: Programs for real tasks
+mc3: A program should ask for a price and then do math with it. Which line gets the price as a number? | price = int(input("Price? ")) | price = input(int("Price? ")) | price = print("Price? ") | int = input("Price? ")
+hint: Which function gets the text, and which one changes it? Which must happen first?
+num3: A shop uses def cost(items, each): return items * each + 2 to add a $2 delivery fee. What is cost(4, 5)? | 22
+hint: Multiply first, then add the fee.
+num3: def f(n): return n * n - n. What is f(5)? | 20
+hint: Square 5 first, then subtract 5.
+mc3: Priya writes def to_minutes(hours): return hours * 60. Which line finds the minutes in 3 hours and saves them? | m = to_minutes(3) | to_minutes = 3 | m = to_minutes | def m(3)
+hint: You need a call, and the value it returns must go into a variable.
+num3: What does this print? a = 10; b = a; a = 20; print(b) | 10
+hint: b gets the value a had at the moment b = a ran.
+sa3: Why is it useful to put code you repeat into a function? | You write the steps once and call them many times, so the program is shorter, easier to read, and can be fixed in one place.
+hint: Think about fixing a mistake that appears in five places.
+
+unit: Building web pages: HTML, CSS and JavaScript | 8 | cs_8
+
+lesson: Three languages of the web
+mc1: Which language gives a web page its structure, such as headings and paragraphs? | HTML | CSS | JavaScript | SQL
+hint: It marks up content with tags.
+mc1: Which language controls colors, fonts and layout on a web page? | CSS | HTML | Python | SQL
+hint: Think about which language handles how a page looks rather than what it says.
+mc1: Which language makes a web page react when a user clicks a button? | JavaScript | HTML | CSS | HTTP
+hint: Which of the choices is a full programming language that runs in the browser?
+mc1: What is an HTML tag? | A label in angle brackets, like <p>, that marks part of a page | A color code used in style rules | A file that stores passwords | A kind of web browser
+hint: Look for the < and > symbols.
+mc1: Which tag makes the largest, most important heading? | <h1> | <h6> | <p> | <head>
+hint: Headings are numbered, and the smallest number is the most important.
+mc1: Which protocol does a browser use to request web pages from a server? | HTTP | HTML | CSS | DNS
+hint: Its letters begin most web addresses.
+
+lesson: Tags, elements and attributes
+mc1: In <a href="page.html">Next</a>, what is href? | An attribute | A tag name | A CSS property | A JavaScript event
+hint: It is extra information written inside the opening tag.
+mc1: What does the <a> tag make? | A link | A picture | A list | A table
+hint: You click this to go to another page.
+mc1: Which tag shows an image? | <img> | <pic> | <photo> | <picture-file>
+hint: This tag has no closing tag and uses a src attribute to say which file to show.
+mc2: Which attribute of an <img> tag gives text that describes the picture for people who cannot see it? | alt | src | href | id
+hint: This text is shown or read aloud when the image cannot be seen.
+mc2: Which of these is a complete HTML element? | <p>Hello</p> | <p>Hello | Hello</p> | p Hello p
+hint: An element usually has an opening tag, its content and a closing tag.
+mc2: Which tag holds one item in a list? | <li> | <ul> | <list> | <item>
+hint: <ul> holds the whole list. What holds a single entry?
+
+lesson: Styling with CSS
+mc2: In the CSS rule p { color: blue; }, what is p? | The selector | The property | The value | The attribute
+hint: This part chooses which elements the rule applies to.
+mc2: In the CSS rule h1 { font-size: 32px; }, what is font-size? | The property | The selector | The value | The tag
+hint: It names which feature is being changed.
+mc2: Which CSS selector picks the element with id="title"? | #title | .title | title | *title
+hint: Class selectors start with a dot. What symbol do id selectors use?
+mc2: Which CSS selector picks every element with class="note"? | .note | #note | note | @note
+hint: Id selectors use #. Classes use a different symbol.
+mc2: What does this CSS do? .warn { background-color: yellow; } | Gives every element with class warn a yellow background | Turns the text of every warn tag yellow | Gives only the first element on the page a yellow background | Makes the whole page yellow
+hint: Look closely at the selector and at the property name.
+num2: A CSS rule gives a box width: 200px; and padding: 10px; on every side, with no border. In the standard box model, how wide is the box including its padding, in pixels? | 220
+hint: Padding adds space on the left side and on the right side.
+
+lesson: JavaScript and events
+mc2: What is an event in JavaScript? | Something that happens on the page, like a click or a key press | A style rule for colors | A heading tag | A web address
+hint: Think about the things a user does on a page.
+mc2: Which event fires when a user presses and releases the mouse button on a button? | click | load | submit | scroll
+hint: Name the action itself.
+mc2: What does this JavaScript do? document.getElementById("msg").textContent = "Done"; | Changes the text of the element with id msg to Done | Creates a new page called Done | Changes the color of msg to Done | Deletes the element with id msg
+hint: Read it in pieces: first find the element, then see which property is set.
+num2: What number appears in the console? let count = 0; count = count + 5; count = count * 2; console.log(count); | 10
+hint: Follow the value of count one statement at a time.
+mc2: Which job belongs to JavaScript rather than HTML or CSS? | Checking that a form box is not empty when the user clicks Send | Making a paragraph | Setting the font of all headings | Putting an image on the page
+hint: Which job needs the page to react and make a decision?
+mc2: Which statement is correct? | HTML is a markup language, while JavaScript is a programming language | CSS is a programming language that stores data | HTML and JavaScript are the same language | JavaScript can only make text bold
+hint: Which one has variables, decisions and loops?
+
+lesson: Building a real page
+mc3: Mei wants a button that shows a hidden message in blue text when clicked. Which plan matches each part to the right language? | HTML for the button, CSS for the blue text, JavaScript for showing the message on click | CSS for the button, HTML for the blue text, JavaScript for the click | JavaScript for the button, HTML for the click, CSS for the message | HTML for everything, since it can do all three jobs
+hint: Match structure, style and behavior to one language each.
+mc3: A site has 20 pages that should all use the same fonts and colors. What is the best way to do this? | Link every page to one shared CSS file | Copy the same style attribute onto every tag on every page | Write the colors in JavaScript on each page | Save every page as a picture
+hint: How could you change the look of every page by editing just one place?
+mc3: Why should every <img> tag on a school website have an alt attribute? | Screen readers read the alt text aloud, so people who cannot see the image still get its meaning | It makes images load from a different site | The page cannot show colors without it | It makes the image larger
+hint: Think about visitors who use tools that read pages aloud.
+num3: A page has the CSS rules p { font-size: 16px; } and .big { font-size: 24px; }. A paragraph is written <p class="big">. What font size, in pixels, does it show? | 24
+hint: When two rules disagree, the more specific selector wins. Is a class or a tag name more specific?
+sa3: Explain why web developers keep HTML, CSS and JavaScript as separate parts instead of mixing them together. | Each language has one job (structure, style, behavior), so keeping them apart makes pages easier to read, change and reuse; for example, one CSS file can restyle a whole site.
+hint: Think about changing the colors on every page of a big site.
+
+unit: Databases | 8 | cs_8_n1
+
+lesson: Database words
+mc1: What is a database? | An organized collection of data that can be searched and updated | A single picture file | A program that only draws charts | A cable that connects computers
+hint: Think of a school's records for every student, kept in order.
+mc1: In a database table, what is a record? | One row, holding all the data about one thing | One column, holding one kind of data | The name of the table | The password for the database
+hint: Think of one student's line in a class list.
+mc1: In a database table, what is a field? | One column, holding one kind of data for every record | One row about one item | The whole database | A search request
+hint: Headings such as "Name" or "Age" across the top of a table are examples.
+mc1: What is a primary key? | A field whose value is different for every record, used to identify it | The first word of every record | The password that opens a database | The largest number in a table
+hint: Why do two students with the same name still need different ID numbers?
+mc1: What is a query? | A question or request asked of a database | A row in a table | A broken record | A way to delete a whole database
+hint: In SQL, the word SELECT often starts one.
+num1: A table of books has 4 columns and 30 rows of data. How many records does it hold? | 30
+hint: Each record is one row.
+
+lesson: Fields, keys and types
+mc2: A table Students has the fields student_id, first_name, last_name and grade. Which field is the best primary key? | student_id | first_name | last_name | grade
+hint: Which field can never repeat for two different students?
+mc2: Which field would make a poor primary key for a table of people? | Birthday | A member number given to only one person | An ID the computer makes by counting up | A badge number that is never reused
+hint: Can two people share the value?
+mc2: Which data type fits a field that stores how many pages a book has? | Integer | Text | True or false | Date
+hint: Is the value a whole number, words, or a yes or no?
+mc2: A table Pets has columns id, name, kind, age and these rows: 1 Rex dog 5; 2 Mia cat 3; 3 Bo dog 2; 4 Lu fish 1. What is in the kind field of the record with id 3? | dog | Bo | 2 | cat
+hint: Find the row with id 3, then read across to the kind column.
+num2: A table Pets has columns id, name, kind, age and these rows: 1 Rex dog 5; 2 Mia cat 3; 3 Bo dog 2; 4 Lu fish 1. How many fields does the table have? | 4
+hint: Count the columns, not the rows.
+mc2: Why do databases often split data into separate tables, such as Customers and Orders, linked by an ID? | So each fact is stored once instead of being copied into many rows | So the database looks longer | Because a table may only have two columns | So that nobody can search the data
+hint: Imagine typing a customer's full address again on every order.
+
+lesson: SELECT and WHERE
+mc2: A table Pets has columns id, name, kind, age. What does SELECT name FROM Pets; return? | The name of every pet in the table | Only the first pet's name | Every column for every pet | The number of pets
+hint: SELECT lists columns, and with no WHERE part no rows are left out.
+num2: A table Pets has columns id, name, kind, age and these rows: 1 Rex dog 5; 2 Mia cat 3; 3 Bo dog 2; 4 Lu fish 1. How many rows does SELECT * FROM Pets WHERE kind = 'dog'; return? | 2
+hint: Check the kind of each row.
+mc2: A table Pets has columns id, name, kind, age and these rows: 1 Rex dog 5; 2 Mia cat 3; 3 Bo dog 2; 4 Lu fish 1. What does SELECT name FROM Pets WHERE age > 2; return? | Rex and Mia | Rex, Mia and Bo | Bo and Lu | Rex only
+hint: Test each age. Is 2 greater than 2?
+num2: A table Scores has columns player, points and these rows: Ana 40; Ben 75; Chen 60; Dev 75. How many rows does SELECT player FROM Scores WHERE points >= 60; return? | 3
+hint: Rows with exactly 60 points count too.
+mc2: Which part of an SQL query chooses which rows to keep? | WHERE | SELECT | FROM | The semicolon
+hint: SELECT picks the columns and FROM picks the table.
+mc2: Which query finds the names of all the cats in a table Pets that has a kind column? | SELECT name FROM Pets WHERE kind = 'cat'; | SELECT cat FROM Pets; | SELECT Pets FROM name WHERE cat; | WHERE kind = 'cat' SELECT name;
+hint: The order is SELECT columns, then FROM table, then WHERE condition.
+
+lesson: Sorting, filtering and common mistakes
+mc2: A table Scores has columns player, points and these rows: Ana 40; Ben 75; Chen 60; Dev 90. Which player is listed first by SELECT player FROM Scores ORDER BY points DESC; ? | Dev | Ana | Ben | Chen
+hint: DESC means largest first.
+mc2: A table Scores has columns player, points and these rows: Ana 40; Ben 75; Chen 60; Dev 90. Which player is listed first by SELECT player FROM Scores ORDER BY points; ? | Ana | Dev | Ben | Chen
+hint: When no direction is given, ORDER BY sorts from smallest to largest.
+mc2: A table Books has columns id, title, year, pages and these rows: 1 River 2015 200; 2 Stone 2008 350; 3 Cloud 2020 120; 4 Ember 2011 410. Which query returns only Stone and Ember? | SELECT title FROM Books WHERE pages > 300; | SELECT title FROM Books WHERE year > 2010; | SELECT title FROM Books WHERE pages < 300; | SELECT title FROM Books;
+hint: Check each query against every row and list the titles it would keep.
+num2: A table Books has columns id, title, year, pages and these rows: 1 River 2015 200; 2 Stone 2008 350; 3 Cloud 2020 120; 4 Ember 2011 410. How many rows does SELECT * FROM Books WHERE year > 2010 AND pages < 300; return? | 2
+hint: With AND, a row must pass both tests.
+num2: A table Books has columns id, title, year, pages and these rows: 1 River 2015 200; 2 Stone 2008 350; 3 Cloud 2020 120; 4 Ember 2011 410. How many rows does SELECT * FROM Books WHERE year > 2012 OR pages > 400; return? | 3
+hint: With OR, a row is kept if it passes at least one of the tests.
+mc2: A student writes SELECT name FROM Pets WHERE kind = dog; and gets an error. What is the most likely fix? | Put quotes around the text value, as in kind = 'dog' | Change SELECT to GET | Remove the word FROM | Move the WHERE part in front of SELECT
+hint: How does SQL tell a text value apart from a column name?
+
+lesson: Databases in real life
+mc3: A school library tracks books and which students borrowed them. Which design is best? | A Books table, a Students table, and a Loans table that stores a book_id and a student_id for each loan | One table where each student's row lists all their books in one long text field | A separate new table for every single book | One table with only a title column
+hint: Which design stores each fact once and links the tables by their keys?
+num3: A table Orders has columns order_id, customer, total and these rows: 101 Ravi 20; 102 Sofia 35; 103 Ravi 15; 104 Kofi 50; 105 Sofia 10. What is the sum of the totals returned by SELECT total FROM Orders WHERE customer = 'Ravi'; ? | 35
+hint: Find every row for Ravi, then add their totals.
+num3: A table Orders has columns order_id, customer, total and these rows: 101 Ravi 20; 102 Sofia 35; 103 Ravi 15; 104 Kofi 50; 105 Sofia 10. How many rows does SELECT * FROM Orders WHERE total >= 20 ORDER BY total; return? | 3
+hint: ORDER BY changes the order of the rows, not how many there are.
+mc3: A table Orders has columns order_id, customer, total and these rows: 101 Ravi 20; 102 Sofia 35; 103 Ravi 15; 104 Kofi 50; 105 Sofia 10. Which customer appears last in the result of SELECT customer FROM Orders ORDER BY total DESC; ? | Sofia | Kofi | Ravi | No one, because the query has an error
+hint: List the totals from largest to smallest and look at the bottom one.
+mc3: Two different customers are both named Ali Khan. Why should the Customers table use a customer_id as its primary key instead of the name? | Names can repeat, but each ID is unique, so the two records can still be told apart | IDs take up more space, which makes the data safer | Names cannot be stored in a database | A primary key must always be a word
+hint: What must be true of every primary key value?
+sa3: A website stores its users' names, emails and passwords in a database. Name one thing the site should do to protect that data. | For example: store passwords only in scrambled (hashed) form, let only the people who need it reach the database, and keep the software updated so attackers cannot get in.
+hint: Think about what could happen if someone stole a copy of the table.
+
+unit: Cybersecurity | 9 | cs_9
+
+lesson: Security words
+mc1: What is phishing? | Tricking people into giving away private information, often with a fake message | Scrambling data so it cannot be read | A program that filters network traffic | Making a backup copy of files
+hint: The name sounds like a sport where bait is used to catch something.
+mc1: What is malware? | Software made to harm a device or steal data | Software that cleans the screen | A kind of keyboard | Any program that runs slowly
+hint: The prefix "mal" means bad.
+mc1: What is two-factor authentication? | Logging in with two different kinds of proof, such as a password and a code sent to your phone | Typing the same password twice | Using two different web browsers | Having two accounts on one site
+hint: Think of something you know plus something you have.
+mc1: What does encryption do? | Scrambles data so only someone with the right key can read it | Deletes old files | Speeds up the internet | Sends spam messages
+hint: Think of a secret code that needs a key to undo.
+mc1: What is ransomware? | Malware that locks files and demands payment to unlock them | A program that backs up files for free | A safe way to share passwords | A tool for building websites
+hint: A ransom is a payment demanded to release something.
+mc1: What does a firewall do? | Filters network traffic and blocks connections that break its rules | Cools down the processor | Encrypts every file on the disk | Stops the screen from overheating
+hint: It stands between a computer or network and the traffic coming from outside.
+
+lesson: Spotting threats and strong passwords
+mc2: Which password is strongest? | violet-canoe-sizzle-orbit-42 | password123 | Maria2009 | qwerty
+hint: Length and unpredictability matter most.
+mc2: Which message is most likely a phishing attempt? | "Your account closes today! Click this link and enter your password to keep it." | A teacher's reminder about a test on Friday | A receipt for something you just bought that asks for nothing | A newsletter you signed up for last month
+hint: Look for urgency together with a request for secrets.
+mc2: Which of these is a passphrase? | A long password made of several random words | A four-digit PIN | Your pet's name | The word "password" spelled backward
+hint: A phrase is a group of words.
+mc2: Which is an example of the "something you have" factor in two-factor authentication? | A code shown in an app on your phone | Your password | Your username | The name of your first school
+hint: Which choice is a thing you hold rather than a thing you remember?
+mc2: Why is it risky to use the same password on many sites? | If one site leaks its passwords, attackers can try that password on your other accounts | It makes the password too long | Sites block any password used twice | It makes your computer slower
+hint: Think about what attackers do after one site's passwords are stolen.
+num2: A PIN has 4 digits, and each digit can be 0 to 9. How many different PINs are possible? | 10000
+hint: Each digit has 10 choices. Multiply the choices together.
+
+lesson: How protections work
+mc2: A website's address begins with https. What does the s tell you? | The connection between your browser and the site is encrypted | The site is guaranteed to be honest | The site has no ads | The site is stored on your own computer
+hint: The s stands for secure, but think about exactly what is protected.
+num2: A Caesar cipher shifts each letter 3 places forward in the alphabet, so A becomes D. The letter E is letter number 5. What letter number does E become? | 8
+hint: Add the shift to the letter's position.
+mc2: A Caesar cipher shifts each letter 1 place forward, so A becomes B. What does CAT become? | DBU | BZS | DAT | CBU
+hint: Move every letter one step later in the alphabet.
+mc2: Why do software updates matter for security? | They often fix security holes that attackers could use | They only change the colors of apps | They make passwords longer | They remove the need for passwords
+hint: What do software makers do after they discover a weakness in their code?
+num2: A password uses only lowercase letters, so each character has 26 choices. How many times more possible passwords does a 3-letter password have than a 2-letter one? | 26
+hint: Adding one character multiplies the number of possibilities by how much?
+mc2: Why do well-run sites store a hash of each password instead of the password itself? | A hash cannot easily be turned back into the password, so a stolen list is much less useful | A hash makes the password shorter to type | Hashes let staff read passwords more easily | A hash stops all phishing
+hint: Think about what an attacker gets if they steal the stored list.
+
+lesson: Mixed practice: myths and mistakes
+mc2: Diego gets a text that claims to be from his bank. It has a link asking him to confirm his PIN. What should he do? | Not click the link, and contact the bank using a phone number or website he already knows | Click the link but type only half of the PIN | Reply with his PIN, since it came to his own phone | Forward the text to friends so they can check it
+hint: How can he reach the real bank without trusting the message?
+mc2: Which statement is a myth? | Antivirus software means you can open any attachment safely | Updates often fix security problems | Strong passwords are long and hard to guess | Phishing messages often try to rush you
+hint: Which statement claims that one tool removes every risk?
+mc2: Which makes a password harder to crack: adding 6 random letters, or swapping the letter o for a zero in a common word? | Adding 6 random letters | Swapping o for a zero | Both help exactly the same amount | Neither changes anything
+hint: Password-cracking tools already try common swaps, like digits that look like letters.
+mc2: What is the main difference between a computer virus and a worm? | A worm can spread across networks by itself, while a virus spreads by attaching to files or programs that someone runs | A virus is harmless and a worm is harmful | A worm only affects phones | There is no difference; the words mean the same thing
+hint: Which one needs a person to run something before it spreads?
+mc2: Which habit is safest on free public Wi-Fi? | Avoid logging into important accounts, or only use encrypted connections | Turn off your password so login is faster | Share your files with everyone on the network | Join any network with a strong signal, even one with an odd name
+hint: Other people on an open network may be able to see traffic that is not protected.
+num2: A system locks an account after 5 wrong password tries in a row. Someone has already typed 3 wrong passwords. How many more wrong tries will lock the account? | 2
+hint: Subtract the tries already used from the limit.
+
+lesson: Security in the real world
+mc3: A school wants student records to stay safe even if a laptop is stolen. Which step helps most? | Encrypt the laptop's storage and require a strong login | Put a name sticker on the laptop | Use a brighter screen | Turn off software updates
+hint: What keeps the data unreadable even when a thief holds the laptop?
+mc3: Ransomware locks every file on a small business's computers. Which earlier step would let them recover without paying? | Keeping regular backups stored separately from the main computers | Using shorter passwords | Turning off the firewall | Opening every attachment to check it
+hint: How could they get their files back if the copies on the computers are locked?
+num3: A passphrase is made of 4 words, each picked at random from a list of 1,000 words. A second passphrase uses only 3 words from the same list. How many times more possible passphrases does the 4-word version have? | 1000
+hint: Each extra word multiplies the number of possibilities by the size of the list.
+mc3: Nadia gets an email that seems to come from her school principal, asking her to quickly buy gift cards and send the codes. What is the best response? | Check with the principal in person or by a phone number she already knows before doing anything | Buy the cards, since the principal's name is on it | Reply and ask for a bigger budget | Send the codes but ask for a receipt
+hint: Can the name in an email's From line be faked?
+sa3: Explain why two-factor authentication still protects an account even if the password is stolen. | An attacker who has only the password still needs the second factor, such as a code on the owner's phone, so they cannot log in.
+hint: What else would the attacker need besides the password?
+
+unit: Computer hardware | 9 | cs_9_n1
+
+lesson: Parts of a computer
+mc1: What is the motherboard? | The main circuit board that connects all the parts | The chip that draws images | Long-term storage for files | The screen
+hint: Every other part plugs into it.
+mc1: What does the CPU do? | Carries out the instructions of programs | Keeps files when the power is off | Supplies electricity | Shows pictures on the screen
+hint: It is often called the brain of the computer.
+mc1: What is RAM? | Fast, temporary memory that holds the programs and data in use right now | Storage that keeps files when the power is off | A cable for the internet | The case of the computer
+hint: It is cleared when the computer turns off.
+mc1: What is a GPU mainly designed for? | Processing images and graphics, using many small cores at once | Storing photos for years | Connecting to Wi-Fi | Supplying power
+hint: Think about games and video.
+mc1: What does the power supply unit do? | Converts electricity from the wall into the steady power the parts need | Stores the computer's settings | Speeds up the internet | Cools the screen
+hint: Think about what comes out of the wall outlet and what the chips need.
+mc1: Which part keeps your files saved when the computer is turned off? | A storage drive, such as an SSD or a hard drive | RAM | The CPU | The monitor
+hint: Which part is not cleared when the power goes off?
+
+lesson: Units of storage
+num1: How many bits are in one byte? | 8
+hint: A byte is the group of bits often used to store one character, such as the letter A.
+mc1: Which unit is largest? | Terabyte | Gigabyte | Megabyte | Kilobyte
+hint: Each prefix stands for a bigger number than the last. Which prefix stands for the biggest?
+mc2: Which list puts these units in order from smallest to largest? | KB, MB, GB, TB | MB, KB, GB, TB | KB, GB, MB, TB | TB, GB, MB, KB
+hint: Kilo means thousand, mega million, giga billion and tera trillion.
+num2: Using 1 GB = 1000 MB, how many MB are in 3 GB? | 3000
+hint: Each GB holds 1000 MB.
+num2: Using 1 GB = 1000 MB, how many 500 MB videos fit on a 4 GB drive? | 8
+hint: Change GB to MB first, then divide.
+num2: Using 1 TB = 1000 GB, how many GB are in 2.5 TB? | 2500
+hint: Multiply by 1000.
+
+lesson: Memory and storage compared
+mc2: What is the main difference between RAM and storage? | RAM is fast and temporary; storage is slower and keeps data when the power is off | RAM keeps data forever; storage is wiped at shutdown | They are two names for the same part | Storage is always faster than RAM
+hint: Which one is cleared when the power goes off?
+mc2: Why does an SSD usually load programs faster than an HDD? | An SSD uses flash memory chips with no moving parts, while an HDD must spin a disk and move a read head | An SSD is always bigger | An HDD holds no data | An SSD is connected to the internet
+hint: Which drive has parts that must physically move?
+mc2: Which is an advantage of an HDD over an SSD? | It usually costs less per gigabyte for large amounts of storage | It is faster | It has no moving parts | It is quieter and tougher when dropped
+hint: Think about the price of a very large drive.
+mc2: A computer has 8 GB of RAM and a 512 GB SSD. A student says, "It has 520 GB of memory." What is the mistake? | RAM and storage do different jobs and should not be added together as one amount | 8 and 512 make 600, not 520 | SSDs do not store data | RAM is measured in meters
+hint: Are RAM and the SSD used in the same way?
+num2: A computer has 16 GB of RAM. The operating system uses 4 GB and a game uses 9 GB. How many GB of RAM are left free? | 3
+hint: Subtract both amounts from the total.
+mc2: What is a CPU core? | A processing unit inside the CPU; more of them let the CPU work on more tasks at the same time | A cooling fan | A type of storage | A port for cables
+hint: A chip with 4 of these can work on 4 jobs at once.
+
+lesson: Mixed practice: common mix-ups
+mc2: A computer gets very slow when many browser tabs and apps are open, but its drive has lots of free space. Which upgrade would most likely help? | More RAM | A bigger monitor | A longer power cable | More USB ports
+hint: Which part holds the programs that are open right now?
+mc2: Which statement about CPU clock speed is true? | It is measured in gigahertz and tells how many cycles the CPU runs each second | It tells how much the CPU can store | A higher clock speed means more storage space | It is measured in gigabytes
+hint: Hertz means "per second".
+mc2: Which part matters most for running detailed 3D games smoothly? | GPU | Power button | Keyboard | Webcam
+hint: Which part is built to draw images very quickly?
+mc2: Which statement about the CPU and RAM is correct? | The CPU gets instructions and data from RAM while it works | RAM carries out instructions and the CPU stores them | The CPU keeps all files after shutdown | RAM is part of the monitor
+hint: Which one does the work, and which one holds the work in progress?
+num2: A camera saves photos of 5 MB each. Using 1 GB = 1000 MB, how many photos fit on a 2 GB memory card? | 400
+hint: Turn GB into MB, then divide by the size of one photo.
+num2: A file is 3,000 KB. Using 1 MB = 1000 KB, how many MB is that? | 3
+hint: Divide by 1000.
+
+lesson: Choosing hardware
+mc3: Aisha edits large, high-resolution videos. Which set of upgrades fits her needs best? | A strong GPU, plenty of RAM, and a large, fast SSD | A smaller SSD and less RAM to save power | Only a bigger monitor | More USB ports and a louder speaker
+hint: Video editing works with huge files and lots of graphics.
+num3: A 1 TB drive already holds 350 GB. Using 1 TB = 1000 GB, how many 25 GB games can still fit? | 26
+hint: Find the free space first, then divide.
+mc3: A school buys laptops for writing essays and browsing the web. Which choice is most sensible? | A modest CPU, enough RAM for several apps, and an SSD | The most powerful GPU available | A huge HDD with very little RAM | A gaming desktop with no battery
+hint: Match the parts to the tasks students will actually do.
+num3: A power supply is rated for 500 watts. The CPU needs 180 W, the GPU needs 220 W and everything else needs 50 W. How many watts are left over? | 50
+hint: Add up all the parts, then subtract from the rating.
+sa3: Explain why a computer needs both RAM and a storage drive. | Storage keeps files and programs safe when the power is off, while RAM is much faster and holds what is being used right now so the CPU can work quickly.
+hint: Think about speed, and about what happens when the power goes off.
+
+unit: Algorithms: searching and recursion | 10 | cs_10
+
+lesson: Search and recursion words
+mc1: What is an algorithm? | A clear, step-by-step set of instructions for solving a problem | A computer's power supply | A type of database | A fast internet connection
+hint: Think of a recipe.
+mc1: How does linear search work? | It checks items one at a time from the start until it finds the target or reaches the end | It splits the list in half at each step | It sorts the list first | It checks random spots
+hint: "Linear" means in a straight line.
+mc1: What must be true of a list before binary search can be used on it? | It must be sorted | It must have an even number of items | It must contain only text | It must have fewer than 10 items
+hint: Binary search compares the target with the middle item to decide which half to throw away.
+mc1: What is recursion? | A function calling itself to solve a smaller version of the same problem | A loop that runs exactly once | A program crashing | Two variables sharing one name
+hint: Think of two mirrors facing each other.
+mc1: What is a base case in a recursive function? | The simplest case, which returns an answer without calling the function again | The first line of every program | The largest input allowed | A case that always causes an error
+hint: It is the stopping point.
+mc1: What is pseudocode? | A plain-language outline of an algorithm that is not tied to one programming language | A secret code for passwords | Code that has bugs | A language that only computers can read
+hint: "Pseudo" means imitation.
+
+lesson: Counting steps in searches
+num2: Linear search looks for 9 in the list [4, 7, 1, 9, 3]. How many items does it check, counting the 9 itself? | 4
+hint: Count from the start until you reach the 9.
+num2: Linear search looks for 8 in the list [4, 7, 1, 9, 3]. How many items does it check before deciding that 8 is not there? | 5
+hint: When the target is missing, how much of the list must be checked?
+num2: In the worst case, how many items does linear search check in a list of 100 items? | 100
+hint: The worst case is when the target is last or missing.
+num2: Binary search on a sorted list throws away about half of the remaining items with each check. In the worst case, how many items must it check in a sorted list of 1,000 items? | 10
+hint: Each check cuts the search about in half. Which power of 2 is just above 1,000?
+mc2: Binary search looks for 23 in the sorted list [2, 5, 8, 12, 16, 23, 38, 56, 72, 91]. It uses indexes 0 to 9 and checks the middle index (low + high) // 2. Which item does it check first? | 16 | 23 | 12 | 2
+hint: Work out (0 + 9) // 2, then find the item at that index.
+num2: Binary search looks for 23 in the sorted list [2, 5, 8, 12, 16, 23, 38, 56, 72, 91], checking the middle index (low + high) // 2 each time. How many items does it check, counting the one where it finds 23? | 3
+hint: After each check, keep only the half that could still hold 23.
+
+lesson: Tracing recursion
+num2: def f(n): return 1 if n == 0 else n * f(n - 1). What is f(4)? | 24
+hint: f(4) = 4 * f(3), and so on down to f(0).
+num2: def s(n): return 0 if n == 0 else n + s(n - 1). What is s(5)? | 15
+hint: s(5) = 5 + s(4). Keep going until n is 0.
+num2: def p(n): return 1 if n == 0 else 2 * p(n - 1). What is p(5)? | 32
+hint: Each call doubles the result of the next smaller call.
+num2: def f(n): return 1 if n == 0 else n * f(n - 1). How many calls to f happen in total when you run f(3), counting the first call? | 4
+hint: List each call, starting with f(3), until you reach the base case.
+mc2: def f(n): return n + f(n - 1). What happens when f(3) runs? | It never reaches a stopping point and keeps calling itself until Python raises an error | It returns 6 | It returns 3 | It returns 0
+hint: Look for a base case.
+num2: def c(n): return 0 if n <= 0 else 1 + c(n - 2). What is c(7)? | 4
+hint: Write out c(7), c(5), c(3) and so on until n is 0 or less, then add up the 1s.
+
+lesson: Mixed practice
+mc2: On a large sorted list, which search needs fewer checks in the worst case? | Binary search | Linear search | They always need the same number of checks | Neither can search a sorted list
+hint: Which one throws away half of the list at each step?
+mc2: Why can't binary search be used on the list [9, 2, 7, 4, 1] as it is? | The list is not sorted, so the middle item does not tell which half holds the target | The list is too short | Binary search only works on text | The list has an odd number of items
+hint: In a sorted list, what does comparing with the middle item tell you?
+num2: A sorted list has 31 items. In the worst case, how many items does binary search check? | 5
+hint: Each check removes the middle item and half of the rest: 31 leaves 15, then 7, and so on.
+mc2: Which pseudocode correctly describes linear search for a target T in a list L? | FOR each item in L: IF item = T THEN RETURN found. After the loop ends, RETURN not found | IF the middle item = T THEN RETURN found, ELSE RETURN not found | FOR each item in L: IF item = T THEN RETURN found, ELSE RETURN not found | RETURN the first item of L
+hint: When should "not found" be returned: after checking one item, or after checking every item?
+mc2: def countdown(n): return 'Go' if n == 0 else countdown(n - 1). What is the base case? | When n == 0, return 'Go' | Calling countdown(n - 1) | When n is very large | There is no base case
+hint: Which condition stops the calls?
+num2: def f(n): return n if n < 10 else f(n // 10). What is f(4825)? | 4
+hint: Each call drops the last digit. Stop when n is less than 10.
+
+lesson: Applying searching and recursion
+mc3: A contact list of 5,000 names is kept in alphabetical order. Which search should an app use to find a name quickly? | Binary search | Linear search starting from the end | Checking random names until it finds a match | Sorting the list again before every search
+hint: The list is already in order. Which search takes advantage of that?
+num3: A sorted list holds 1,000,000 numbers. In the worst case, how many items does binary search check? | 20
+hint: 2 to the 10th power is about 1,000. Which power of 2 is just above 1,000,000?
+mc3: Folders on a computer can hold files and other folders. Why is recursion a natural way to count all the files inside a folder? | Each folder inside is a smaller version of the same problem, and a plain file or an empty folder is a base case | Recursion is the only way to open files | Folders are always sorted | Recursion uses no memory at all
+hint: What does a folder inside a folder have in common with the outer folder?
+num3: def g(n): return 0 if n == 0 else n % 10 + g(n // 10). What is g(372)? | 12
+hint: n % 10 is the last digit and n // 10 removes the last digit.
+num3: In a game, a player guesses a secret whole number from 1 to 100 and is told "higher" or "lower" after each wrong guess. Using the best strategy, what is the greatest number of guesses that could be needed? | 7
+hint: Each guess should cut the remaining range in half. How many halvings leave one number?
+sa3: Explain why every recursive function needs a base case. | Without a base case, the function keeps calling itself until the program runs out of memory and crashes; the base case gives an answer directly and stops the chain of calls.
+hint: What would ever make the calls stop?
+
+unit: Object-oriented programming | 10 | cs_10_n1
+
+lesson: Classes and objects
+mc1: What is a class? | A blueprint that describes what its objects will have and do | One specific object | A variable that holds a number | A kind of loop
+hint: Think of a cookie cutter.
+mc1: What is an object? | One specific instance made from a class | The blueprint itself | A comment in the code | A syntax error
+hint: If Car is the blueprint, what is your neighbor's red car?
+mc1: What is an attribute of an object? | A piece of data stored in the object, such as a dog's name | An action the object can do | A loop inside a class | The name of a file
+hint: Think about what an object "has".
+mc1: What is a method? | A function that belongs to a class and works with its objects | A variable outside every class | The blueprint for objects | An error message
+hint: Think about what an object can "do".
+mc1: In Python, which special method runs automatically when a new object is created? | __init__ | __main__ | __new_object__ | start
+hint: It sets up a new object's starting attributes, and its name has two underscores on each side.
+mc1: What does self refer to inside a method? | The object the method was called on | The file that holds the class | The whole program | The last object ever created
+hint: When d.speak() runs, which object is the method working with?
+
+lesson: Reading class code
+mc2: A class Dog has a constructor __init__(self, name) that runs self.name = name. After d = Dog('Rex'), what is d.name? | Rex | name | Dog | self
+hint: The value passed in is saved in the attribute.
+mc2: A class Cat has one method, speak(self), whose body is return 'Meow'. After c = Cat(), what does c.speak() return? | Meow | speak | Cat | None
+hint: Read the return statement of the method.
+num2: A class Box has a constructor __init__(self, w, h) that sets self.w = w and self.h = h, and a method area(self) that returns self.w * self.h. What is Box(3, 7).area()? | 21
+hint: The constructor saves w and h, and area multiplies them.
+num2: A class Counter has a constructor that sets self.n = 0 and a method add(self) that runs self.n = self.n + 1. After c = Counter(); c.add(); c.add(); c.add(), what is c.n? | 3
+hint: Each call to add changes the same object's n.
+num2: A class Dog exists. After a = Dog('Rex') and b = Dog('Bo') run, how many Dog objects have been created? | 2
+hint: Each call to Dog(...) builds a new object.
+mc2: Which line creates an object from a class named Student? | s = Student('Lena') | class s = Student | Student = s('Lena') | def Student(s)
+hint: Calling the class name like a function builds an object.
+
+lesson: Inheritance
+mc2: In class Dog(Animal):, what does (Animal) mean? | Dog inherits from Animal, so Dog gets Animal's attributes and methods | Animal inherits from Dog | Dog and Animal are not related | Dog is a method of Animal
+hint: The class named in the brackets is the parent.
+mc2: A class Animal has a method sound(self) that returns 'Some sound'. A class Cow(Animal) has its own method sound(self) that returns 'Moo'. What does Cow().sound() return? | Moo | Some sound | Moo Some sound | None
+hint: When the child class defines a method with the same name, which version runs?
+mc2: A class Animal has a method eat(self) that returns 'eating'. A class Bird(Animal) adds only a method fly(self) that returns 'flying'. What does Bird().eat() return? | eating | flying | An error, because Bird has no eat method | None
+hint: Look at what Bird gets from its parent class.
+mc2: Which relationship is the best fit for inheritance? | A Car is a Vehicle | A Car has an Engine | A Driver drives a Car | A Garage stores a Car
+hint: Inheritance fits an "is a kind of" relationship.
+mc2: What does it mean to override a method? | A child class writes its own version of a method it inherited | A class is deleted | A method is called twice | A method is made private
+hint: Think of a child class replacing its parent's behavior.
+num2: A class Shape has a method sides(self) that returns 0. Its child classes Triangle(Shape) and Square(Shape) each override sides, returning 3 and 4. What is Triangle().sides() + Square().sides() + Shape().sides()? | 7
+hint: Each object uses its own class's version of sides.
+
+lesson: Encapsulation and polymorphism
+mc2: What is encapsulation? | Keeping an object's data inside it and letting other code change it only through the object's methods | Building one class out of many | Using the same method name in many classes | Copying code into every file
+hint: Think of a capsule that keeps things inside.
+mc2: What is polymorphism? | Different classes responding to the same method call in their own way | A class that has only one object | Storing data in a list | Making all attributes public
+hint: "Poly" means many and "morph" means form.
+mc2: A class BankAccount keeps its balance in self._balance and has a method deposit(amount) that refuses negative amounts. Which idea does this show most clearly? | Encapsulation | Inheritance | Polymorphism | Recursion
+hint: The data is protected and changed only through a method.
+mc2: A program loops over shapes = [Circle(), Square(), Triangle()] and calls s.area() on each one, getting the right area for every kind of shape. Which idea does this show? | Polymorphism | Encapsulation | A base case | Linear search
+hint: The same call gives different behavior for different classes.
+mc2: A student says, "A class and an object are the same thing." What is the best correction? | A class is the blueprint; objects are the individual things built from it | Objects are blueprints for classes | A class can never have more than one object | Classes can only store numbers
+hint: How many houses can be built from one set of plans?
+num2: A class Temp has a constructor that sets self.c = c and a method to_f(self) that returns self.c * 9 / 5 + 32. What is Temp(100).to_f()? | 212
+hint: Multiply by 9, divide by 5, then add 32.
+
+lesson: Designing with objects
+mc3: A school app needs Student and Teacher classes. Both have a name and an email, and each has some extra details of its own. Which design is best? | A Person class with name and email, and Student and Teacher classes that inherit from it | One class with every possible attribute for everyone | Copy the name and email code into both classes | Use only global variables
+hint: How can the shared attributes be written only once?
+num3: A class Account has a constructor that sets self.b = b and a method withdraw(self, x) that runs self.b = self.b - x if x <= self.b else self.b. After a = Account(50); a.withdraw(20); a.withdraw(40), what is a.b? | 30
+hint: Check the condition before each withdrawal.
+num3: A class Pet has a constructor that sets self.n = n and self.age = 0, and a method birthday(self) that runs self.age = self.age + 1. After p = Pet('Ola'); q = Pet('Sam'); p.birthday(); p.birthday(); q.birthday(), what is p.age + q.age? | 3
+hint: Each object keeps its own age.
+mc3: A game has Bat, Slime and Robot classes. Each kind of enemy moves differently, but the game loop simply calls e.move() on every enemy. Which idea makes this work? | Polymorphism through method overriding | Making every enemy the same class with no methods | Recursion | Binary search
+hint: One method name, different behavior for each class.
+mc3: Why might a class keep an attribute such as _balance from being changed directly by outside code? | So the rules in its methods, such as no negative deposits, cannot be skipped | So the program runs faster | Because Python cannot store numbers in objects | So the class cannot have methods
+hint: What could go wrong if any code could set the balance to anything?
+sa3: Describe a real-world thing as a class: give the class a name, two attributes and one method. | For example: a class Bicycle with attributes color and gear, and a method change_gear(new_gear) that sets gear to the new value.
+hint: Attributes are what it has; methods are what it does.
+
+unit: Data structures and sorting | 11 | cs_11, cs_11_n1
+
+lesson: Common data structures
+mc1: Which data structure is last in, first out (LIFO)? | Stack | Queue | Dictionary | Tree
+hint: Think of a pile of plates.
+mc1: Which data structure is first in, first out (FIFO)? | Queue | Stack | Tree | Set
+hint: Think of a line at a ticket window.
+mc1: What does a dictionary (hash map) store? | Key-value pairs, so a value can be found from its key | Only items in sorted order | Items in a line where the first in is the first out | Only numbers
+hint: Think of looking up a word to find its meaning.
+mc1: In a tree data structure, what is the root? | The top node, which has no parent | A node with no children | The last item added | Any node with two children
+hint: Every other node can be reached by going down from it.
+mc1: In Python, what is the index of the first item in a list? | 0 | 1 | -1 | It has no index
+hint: Python starts counting positions earlier than most people do.
+mc1: In a tree, what is a leaf? | A node with no children | The top node | A node with exactly one child | The link between two nodes
+hint: It sits at the very end of a branch.
+
+lesson: Using stacks, queues and dictionaries
+num2: A stack starts empty. Push 5, push 8, pop, push 3, push 6, pop, pop. Which value is left on the stack? | 5
+hint: Each pop removes the value pushed most recently. Write the stack after every step.
+num2: A queue starts empty. Enqueue 3, enqueue 8, enqueue 1, dequeue, enqueue 6, dequeue. Which value is at the front of the queue now? | 1
+hint: Dequeue removes the value that has waited the longest.
+num2: ages = {'Ana': 12, 'Ben': 14, 'Cy': 11}. What is ages['Ben'] + ages['Cy']? | 25
+hint: Look up each key to get its value.
+num2: nums = [10, 20, 30, 40, 50]. What is nums[1] + nums[-1]? | 70
+hint: Index 1 is the second item, and index -1 means the last item.
+mc2: d = {'a': 1, 'b': 2}; d['a'] = 5. What is d now? | {'a': 5, 'b': 2} | {'a': [1, 5], 'b': 2} | {'a': 6, 'b': 2} | {'a': 1, 'b': 5}
+hint: Each key can appear only once, so setting an existing key replaces its value.
+num2: A binary tree has 3 levels, and every level is completely filled: a root, its 2 children, and all of their children. How many nodes does it have? | 7
+hint: Each level has twice as many nodes as the level above it.
+
+lesson: Sorting algorithms
+mc1: Which sort repeatedly swaps neighboring items that are out of order? | Bubble sort | Merge sort | Selection sort | Insertion sort
+hint: Large values rise to the end, like air rising in water.
+mc1: Which sort finds the smallest remaining item on each pass and moves it to the next spot? | Selection sort | Bubble sort | Merge sort | Insertion sort
+hint: It chooses, or picks out, one item on each pass.
+mc1: Which sort splits a list in half, sorts each half, and then combines the halves? | Merge sort | Bubble sort | Insertion sort | Selection sort
+hint: The key step is joining two sorted lists into one.
+mc2: Which sort takes each new item and slides it into its correct place among the items already sorted? | Insertion sort | Selection sort | Merge sort | Bubble sort
+hint: Think of sorting playing cards in your hand one card at a time.
+mc2: Bubble sort makes one left-to-right pass over [5, 1, 4, 2, 8], swapping neighbors whenever the left one is bigger. What is the list after that pass? | [1, 4, 2, 5, 8] | [1, 2, 4, 5, 8] | [1, 5, 4, 2, 8] | [5, 1, 4, 2, 8]
+hint: Compare each pair of neighbors from left to right, and swap when needed.
+mc2: Selection sort makes its first pass over [7, 3, 9, 1, 5], swapping the smallest item into the first spot. What is the list after that pass? | [1, 3, 9, 7, 5] | [1, 7, 3, 9, 5] | [3, 7, 9, 1, 5] | [1, 3, 5, 7, 9]
+hint: Find the smallest value, then swap it with the value in the first position.
+
+lesson: Tracing sorts and structures
+mc2: Insertion sort is working on [2, 6, 9, 4, 1] and has already sorted the first three items. What is the list after it inserts the 4? | [2, 4, 6, 9, 1] | [2, 6, 4, 9, 1] | [1, 2, 4, 6, 9] | [4, 2, 6, 9, 1]
+hint: Slide the 4 to the left past every bigger value.
+mc2: Merge sort combines the sorted lists [2, 5, 9] and [3, 4, 10]. What is the result? | [2, 3, 4, 5, 9, 10] | [2, 5, 9, 3, 4, 10] | [2, 3, 5, 4, 9, 10] | [3, 4, 10, 2, 5, 9]
+hint: Compare the front items of the two lists and take the smaller one each time.
+num2: Bubble sort makes one left-to-right pass over [4, 3, 2, 1]. How many swaps happen in that pass? | 3
+hint: Follow where the 4 moves as you compare each pair.
+num2: Merge sort keeps splitting a list of 8 items in half until every piece has 1 item. How many levels of splitting does that take? | 3
+hint: How many times can you halve 8 before you reach 1?
+mc2: A browser's Back button returns you to the page you visited most recently. Which data structure fits best? | Stack | Queue | Dictionary | Sorted list
+hint: The last page you went to is the first one you go back to.
+mc2: Which statement about sorting is correct? | Merge sort is usually much faster than bubble sort on large lists | Bubble sort is the fastest sort for every list | Selection sort never compares items | Merge sort only works on lists of 8 items
+hint: Think about how the number of steps grows as the list gets longer.
+
+lesson: Choosing the right tool
+mc3: A shared printer gets jobs from many students and should print them in the order they arrived. Which data structure should it use? | Queue | Stack | Tree | Dictionary
+hint: Whose job should be printed first?
+mc3: An app stores millions of usernames and must find a user's profile from the username very quickly. Which data structure fits best? | A dictionary (hash map) with usernames as keys | An unsorted list checked from the start | A stack | A queue
+hint: Which structure goes straight from a key to its value?
+mc3: Which data structure best represents the folders on a computer or a family tree? | Tree | Queue | Stack | A single list of numbers
+hint: Think of a hierarchy with one top item and branches below it.
+num3: A program checks brackets with a stack. It reads ( [ ] ( ) ) from left to right, pushing each opening bracket and popping when a closing bracket matches the top. What is the largest number of brackets on the stack at any one time? | 2
+hint: Write down the stack after every bracket.
+mc3: A list is almost sorted, with only one item out of place near the end. Which simple sort will usually finish fastest? | Insertion sort | Selection sort | Bubble sort that always makes every pass | Shuffling randomly until the list is sorted
+hint: Which sort does very little work for items that are already in place?
+sa3: Explain the difference between a stack and a queue, with one real-life example of each. | A stack removes the most recently added item first (LIFO), like a pile of plates; a queue removes the oldest item first (FIFO), like a line at a lunch counter.
+hint: Which item leaves first in each one?
+
+unit: Machine learning and the ethics of technology | 12 | cs_12, cs_12_n1
+
+lesson: Machine learning words
+mc1: What is machine learning? | Computers finding patterns in data so they can make predictions without every rule being written by hand | Computers that build themselves | Robots learning to walk, and nothing else | Typing code faster
+hint: Instead of being given rules, what does the computer learn from?
+mc1: What is supervised learning? | Learning from examples that come with the correct answers, called labels | Finding groups in data that has no labels | Learning only from rewards and penalties | A teacher watching the computer work
+hint: Think of studying with an answer key.
+mc1: What is unsupervised learning? | Finding patterns or groups in data that has no labels | Learning from labeled examples | Learning that needs no data at all | A program with no bugs
+hint: Here, no answer key is given.
+mc1: In a model that predicts house prices, what is a feature? | An input used to make the prediction, such as the number of bedrooms | The price the model predicts | The programmer's name | The model's final score
+hint: Features go in; the prediction comes out.
+mc1: What is a label in supervised learning? | The correct answer for a training example, such as "spam" or "not spam" | An input column | A sticker on the computer | The name of the algorithm
+hint: It is what the model is trying to predict.
+mc1: What is reinforcement learning? | Learning by trying actions and getting rewards or penalties | Learning only from labeled pictures | Sorting data alphabetically | Copying another model
+hint: Think of training a pet with treats.
+
+lesson: Training, testing and overfitting
+mc2: Why is data split into a training set and a test set? | The test set checks how well the model does on data it has never seen | The test set makes training faster | The training set is only for show | The test set is used to make up labels
+hint: A fair exam uses questions the student has not memorized.
+mc2: What is overfitting? | A model memorizing its training data, including the noise, and then doing poorly on new data | A model too simple to learn anything | Having too much test data | The computer running out of storage
+hint: Think of a student who memorizes answers instead of learning the idea.
+mc2: A model scores 99% on its training data but 60% on its test data. What is the most likely problem? | Overfitting | Underfitting | The test set is too easy | Nothing; the model is working well
+hint: Compare how it does on data it has seen with data it has not seen.
+num2: A data set has 1,000 labeled examples. 80% are used for training and the rest for testing. How many examples are in the test set? | 200
+hint: First find what percent is left for testing.
+num2: A model is tested on 50 emails and labels 45 of them correctly. What is its accuracy as a percent? | 90
+hint: Divide the number correct by the total, then multiply by 100.
+mc2: Which task is an example of unsupervised learning? | Grouping customers by shopping habits when no groups are given in advance | Predicting whether an email is spam using emails labeled spam or not spam | Predicting house prices from past sales with known prices | Recognizing handwritten digits using images labeled with the right digit
+hint: Which task has no correct answers given ahead of time?
+
+lesson: Bias, privacy and fairness
+mc1: What is algorithmic bias? | Unfair results from a system, often caused by skewed or incomplete training data | A computer preferring faster code | A bug that crashes a program | Choosing the shortest algorithm
+hint: Think about what happens when some groups are missing from the data.
+mc1: What is data privacy? | People's right to control how their personal information is collected and used | Making all data public | Deleting every file | A kind of password
+hint: Whose information is it?
+mc2: What is a deepfake? | A realistic but fake video, audio clip or image made with AI | A very deep neural network | A database stored underground | A kind of firewall
+hint: It is made with deep learning and shows something that never really happened.
+mc2: A face recognition system was trained mostly on photos of people with lighter skin. What problem is most likely? | It makes more mistakes for people with darker skin | It works equally well for everyone | It only fails on cloudy days | It stops recognizing anyone at all
+hint: How well can a model learn about groups it rarely saw?
+mc2: A calculator app asks for the user's location, contacts and microphone. Which principle does this break? | Collect only the data that is really needed | Use strong encryption | Write clear code | Use a fast algorithm
+hint: Does a calculator need any of that information?
+mc2: Which step helps make an AI tool for screening job applications fairer? | Test its results for different groups and fix any gaps before using it | Train it only on past hires from one group | Hide how it makes decisions from everyone | Use it with no human review
+hint: How would you find out whether it treats groups differently?
+
+lesson: Mixed practice: myths and mistakes
+mc2: Which statement is a myth? | A machine learning model is always objective because it is a computer | Models can repeat the bias in their training data | More varied data can improve a model | Test data should be kept separate from training data
+hint: Where does a model's knowledge come from?
+mc2: A team tests a model on the same data it was trained on and reports 100% accuracy. What is wrong? | The score does not show how the model will do on new data | Nothing; 100% proves the model is perfect | They should have used less data | Accuracy cannot be measured
+hint: Can a student who saw the exam answers prove they learned the subject?
+mc2: A spam filter is trained with emails marked spam or not spam. What are the labels? | The marks spam and not spam | The words in each email | The senders' addresses | The time each email was sent
+hint: Labels are the answers the model learns to predict.
+mc2: A model predicts whether a student will pass a test using hours studied and hours slept. What are the features? | Hours studied and hours slept | Pass or fail | The student's name | The model's accuracy
+hint: Features are the inputs.
+num2: A model checked 200 photos and was wrong on 30 of them. What percent did it get right? | 85
+hint: First find how many it got right.
+mc2: Which change most often helps reduce overfitting? | Training on more, and more varied, data | Making the model memorize every example | Removing the test set | Training on the test set
+hint: What makes memorizing harder and learning the general pattern easier?
+
+lesson: Responsible technology in the real world
+mc3: A city plans to use a model trained on past arrest records to decide which neighborhoods get extra police patrols. What is the biggest concern? | Past records may reflect past bias, so the model could keep sending patrols to the same places | The model will run too slowly | Arrest records are too large to store | Models cannot use location data at all
+hint: What happens if the past data was not fair?
+mc3: A hospital trains a model to spot a disease in medical scans. Which practice is most responsible? | Test it on patients from many groups, keep doctors in charge of decisions, and protect patient data | Let it decide alone, with no doctors, to save time | Post every patient's records publicly to get more data | Test it only on the scans it was trained on
+hint: Think about accuracy for everyone, human oversight and privacy.
+num3: A test set has 100 people: 80 in group A and 20 in group B. A model is right about 76 people in group A and 12 people in group B. What is its accuracy for group B as a percent? | 60
+hint: Use only group B's numbers.
+mc3: A model is 88% accurate overall, 95% accurate for group A (80 people) and 60% accurate for group B (20 people). What does this show? | A high overall score can hide much worse results for a smaller group | The model is fair because its overall score is high | Group B's results do not matter | The model is equally accurate for everyone
+hint: Look at each group separately, not just the total.
+mc3: A shocking video of a well-known leader spreads quickly from an unknown account. What is the most responsible first step? | Check trusted news sources or official channels before sharing, since it could be a deepfake | Share it right away so friends know | Believe it, because videos cannot be faked | Post an angry reply
+hint: Could the video have been made with AI?
+sa3: Give one reason a company should tell users how their data is used to train AI models. | For example: people have a right to know and to choose, and being open builds trust and lets users say no if they do not want their personal data used.
+hint: Think about privacy and consent.
+
+unit: Algorithm complexity | 13 | cs_13
+
+lesson: Big O basics
+mc1: What does Big O notation describe? | How an algorithm's running time or memory grows as the input size grows | The exact number of seconds a program takes on every computer | The size of the code file | How many bugs a program has
+hint: Think about what happens as n gets very large.
+mc1: What is the time complexity of reading nums[5] from a Python list? | O(1) | O(n) | O(log n) | O(n^2)
+hint: Does the work depend on how long the list is?
+mc1: What is the tightest Big O for the worst case of linear search? | O(n) | O(1) | O(log n) | O(n^2)
+hint: In the worst case, every item is checked once.
+mc1: What is the tightest Big O for the worst case of binary search on a sorted array? | O(log n) | O(n) | O(1) | O(n log n)
+hint: The part still being searched is halved at each step.
+mc1: What is the worst-case time complexity of bubble sort? | O(n^2) | O(n) | O(log n) | O(n log n)
+hint: Up to n passes, each comparing up to n pairs.
+mc1: What is the time complexity of merge sort? | O(n log n) | O(n^2) | O(n) | O(log n)
+hint: About log n levels of splitting, with about n work to merge at each level.
+
+lesson: Counting steps exactly
+num2: for i in range(n): print(i). How many times does print run when n = 50? | 50
+hint: The loop body runs once for each value of i.
+num2: A loop for i in range(n) contains a second loop for j in range(n), and the inner loop's body is print(i, j). How many times does print run when n = 10? | 100
+hint: The inner loop runs all the way through on every pass of the outer loop.
+num2: A loop for i in range(n) contains a second loop for j in range(i), and the inner loop's body is print(j). How many times does print run when n = 5? | 10
+hint: Add the inner loop counts for i = 0, 1, 2, 3 and 4.
+num2: The variable i starts at 1, and then the loop while i < 64: i = i * 2 runs. How many times does the loop body run? | 6
+hint: List the value of i after each pass.
+mc2: Which of these grows fastest as n gets large? | n^2 | n log n | n | log n
+hint: Try n = 1,000 in each one.
+mc2: A function runs one loop over n items and then a second, separate loop over the same n items. What is its tightest Big O time complexity? | O(n) | O(n^2) | O(log n) | O(2^n)
+hint: Add the steps of the two loops, then drop constant factors.
+
+lesson: Best, worst and average cases
+num2: Linear search looks for a target in a list of 200 items. In the best case, how many items are checked? | 1
+hint: Where would the target have to be for the search to end right away?
+num2: Insertion sort runs on a list of 10 items that is already sorted, so it compares each new item only with the item just to its left. How many comparisons does it make in total? | 9
+hint: The first item needs no comparison.
+mc2: What is the best-case time complexity of insertion sort? | O(n) | O(n^2) | O(1) | O(log n)
+hint: Think about an already sorted list.
+num2: Selection sort on n items always makes (n - 1) + (n - 2) + ... + 1 comparisons. How many comparisons does it make on 6 items? | 15
+hint: Start at n - 1 and add every whole number down to 1.
+mc2: Why do computer scientists often focus on the worst case? | It is a guarantee: the algorithm never takes longer than that | The worst case always happens | The best case cannot be worked out | It is the only case with an answer
+hint: Think about planning for the busiest possible day.
+num2: An algorithm takes n^2 steps. If n doubles from 100 to 200, how many times as many steps does it take? | 4
+hint: Compare 200^2 with 100^2.
+
+lesson: Comparing growth
+num2: An O(n) algorithm takes 1,000 steps when n = 1,000. About how many steps does it take when n = 5,000? | 5000
+hint: Linear means the steps grow in proportion to n.
+num2: An algorithm takes log2(n) steps. How many steps does it take when n = 1,024? | 10
+hint: 2 to what power is 1,024?
+num2: For n = 16, how many more steps does n^2 take than n log2 n? | 192
+hint: log2 16 is 4. Work out each expression first.
+mc2: Which statement is correct? | For large inputs, an O(n log n) sort beats an O(n^2) sort | An O(n^2) algorithm is always faster than an O(n) one | O(1) means the algorithm takes exactly one second | O(log n) grows faster than O(n)
+hint: Compare the two growth rates for n = 1,000,000.
+mc2: An algorithm takes 3n^2 + 5n + 100 steps. What is its tightest Big O? | O(n^2) | O(n) | O(1) | O(n^3)
+hint: Keep the fastest-growing term and drop constant factors.
+mc2: An algorithm always takes 1,000,000 steps, no matter how large the input is. What is its tightest Big O? | O(1) | O(n) | O(n^2) | O(log n)
+hint: Does the step count change as n grows?
+
+lesson: Complexity in practice
+mc3: A program checks whether a list of n items has two equal items by comparing every pair. What is its time complexity? | O(n^2) | O(n) | O(log n) | O(1)
+hint: Roughly how many pairs are there?
+num3: How many comparisons does it take to compare every pair of 100 items exactly once, counting each unordered pair one time? | 4950
+hint: Each of the 100 items pairs with 99 others, but counting that way counts each pair twice.
+mc3: To check a list of n items for duplicates, a program adds the items one at a time to a hash set, first checking whether each item is already there. If each check and each add take O(1) time on average, what is the total average time complexity? | O(n) | O(n^2) | O(log n) | O(n log n)
+hint: How many items are handled, and what does each one cost?
+num3: An O(n^2) algorithm takes 2 seconds when n = 1,000. About how many seconds would it take when n = 10,000? | 200
+hint: n grows 10 times. How much does n^2 grow?
+mc3: A program must search the same list of 1,000,000 items many thousands of times. Which plan is usually best? | Sort it once in O(n log n), then use an O(log n) binary search each time | Use linear search every time | Sort the list again before every search | Sort it once with bubble sort, then use linear search each time
+hint: Pay a one-time cost that makes every later search cheap.
+sa3: Explain why Big O ignores constant factors, for example writing O(n) instead of O(2n). | Big O describes how the running time grows as n gets very large; constant factors depend on the computer and the coding details and do not change the shape of the growth.
+hint: Think about what matters most when n is huge.
+
+unit: Graph algorithms | 13 | cs_13_n1
+
+lesson: Graph words
+mc1: In a graph, what is a vertex? | A point or node, such as a city on a map | A line connecting two points | The weight of a path | A sorting method
+hint: Think of the dots in a dot-and-line drawing.
+mc1: In a graph, what is an edge? | A connection between two vertices | A vertex with no neighbors | The first vertex in a list | A loop in code
+hint: Think of the roads between cities.
+mc1: What is a weighted graph? | A graph in which each edge has a number, such as a distance or a cost | A graph with many vertices | A graph drawn with thick lines | A graph with no edges
+hint: Think of a road map that shows how long each road is.
+mc1: What is a directed graph? | A graph whose edges point one way, like one-way streets | A graph with exactly one vertex | A graph where every edge has weight 1 | A graph with no cycles
+hint: Think of following someone online who does not follow you back.
+mc1: Which algorithm explores a graph level by level, visiting all of a vertex's neighbors before going deeper? | Breadth-first search | Depth-first search | Dijkstra's algorithm | Bubble sort
+hint: It spreads out widely before going farther.
+mc1: Which algorithm finds shortest paths in a weighted graph with no negative edge weights? | Dijkstra's algorithm | Depth-first search | Binary search | Merge sort
+hint: It grows outward from the start, always finalizing the closest unvisited vertex next.
+
+lesson: Reading small graphs
+num2: An undirected graph has the edges A-B, A-C, B-D, C-D and D-E. How many edges touch vertex D? | 3
+hint: Count the edges that include D.
+num2: An undirected graph has 5 vertices and the edges A-B, A-C, B-D, C-D and D-E. What is the sum of the degrees of all the vertices? | 10
+hint: Each edge adds 1 to the degree of each of its two ends.
+mc2: A directed graph has the edges A to B, B to C and C to A. Can you get from C to B by following the arrows? | Yes, by going C to A and then A to B | No, because there is no edge from C to B | Only if every edge is reversed | No, because directed graphs never have paths
+hint: Follow the arrows one step at a time, starting at C.
+num2: A tree has 6 vertices. How many edges does it have? | 5
+hint: A tree is connected and has no cycles. Each vertex after the first is joined by one new edge.
+mc2: Which of these graphs is a tree? | A connected graph with 4 vertices, 3 edges and no cycles | A graph with 4 vertices and 4 edges that form a loop | A graph with 4 vertices and no edges | A graph made of two separate pieces
+hint: A tree must be connected and have no cycles.
+num2: A weighted graph has an edge A-B with weight 4, B-C with weight 3 and C-D with weight 5. What is the total weight of the path A, B, C, D? | 12
+hint: Add the weights of the edges along the path.
+
+lesson: Breadth-first and depth-first search
+mc2: An undirected graph has the edges A-B, A-C, B-D, C-E and D-F. Breadth-first search starts at A and visits neighbors in alphabetical order. What is the visit order? | A, B, C, D, E, F | A, B, D, F, C, E | A, C, E, B, D, F | A, B, C, F, D, E
+hint: Finish all of A's neighbors before moving on to their neighbors.
+mc2: An undirected graph has the edges A-B, A-C, B-D, C-E and D-F. Depth-first search starts at A and always moves to the alphabetically first unvisited neighbor. What is the visit order? | A, B, D, F, C, E | A, B, C, D, E, F | A, C, E, B, D, F | A, B, D, C, E, F
+hint: Go as deep as you can before backing up.
+mc2: Which data structure does breadth-first search usually use to keep track of the vertices to visit next? | A queue | A stack | A dictionary only | A sorted array
+hint: The vertex discovered first should be explored first.
+mc2: Which data structure does depth-first search use, either directly or through recursion? | A stack | A queue | A sorted array | A dictionary only
+hint: The vertex discovered most recently is explored first.
+num2: An unweighted, undirected graph has the edges A-B, B-C, C-D, A-E and E-D. Breadth-first search from A finds the fewest edges needed to reach D. How many edges is that? | 2
+hint: List the vertices 1 edge away from A, then the vertices 2 edges away.
+mc2: Why does breadth-first search find the path with the fewest edges in an unweighted graph? | It visits every vertex 1 edge away, then every vertex 2 edges away, and so on, so it reaches each vertex by a shortest route first | It always picks the vertex with the smallest name | It tries every path and picks one at random | It goes as deep as possible first
+hint: Think about the order in which distances from the start are explored.
+
+lesson: Dijkstra's shortest paths
+num2: A weighted undirected graph has the edges A-B 4, A-C 1, C-B 2, B-D 1 and C-D 5. What is the length of the shortest path from A to D? | 4
+hint: Compare every route from A to D, adding the weights along each one.
+num2: A weighted undirected graph has the edges S-A 2, S-B 6, A-B 3, A-C 7 and B-C 1. What is the shortest distance from S to C? | 6
+hint: Find the shortest distance to B first, then extend it.
+mc2: Dijkstra's algorithm starts at S with distance 0. At each step, which vertex does it finalize next? | The unvisited vertex with the smallest known distance | The vertex with the most edges | The vertex with the largest known distance | A random unvisited vertex
+hint: It is a greedy algorithm: it always takes whatever looks closest.
+mc2: Why can Dijkstra's algorithm give wrong answers on graphs with negative edge weights? | It assumes a finalized distance can never get smaller, and a negative edge can break that | It cannot add numbers | Negative weights make the graph undirected | It only works on trees
+hint: What does it assume once a vertex is finalized?
+num2: Dijkstra's algorithm runs from A on a weighted undirected graph with the edges A-B 3, A-C 8, B-C 2, C-D 1 and B-D 7. What final distance does it record for C? | 5
+hint: Check whether going through B beats the direct edge.
+mc2: In Dijkstra's algorithm, what does it mean to relax an edge from U to V? | Check whether the path through U gives V a shorter distance, and update V's distance if it does | Delete the edge | Set the edge's weight to zero | Always visit V before U
+hint: Relaxing may lower a vertex's best-known distance.
+
+lesson: Graphs in the real world
+mc3: A map app finds the quickest driving route, and each road has its own travel time. Which algorithm fits best? | Dijkstra's algorithm | Breadth-first search that ignores travel times | Depth-first search | Binary search
+hint: The edges have different weights.
+mc3: In a social network, you want to find everyone within 2 friend-links of Zara. Which approach fits best? | Breadth-first search from Zara, stopping after level 2 | Depth-first search to the friend farthest away | Dijkstra's algorithm with random weights | Merge sort on all the names
+hint: Which search goes level by level?
+num3: A delivery robot moves on a weighted undirected graph with the edges Depot-X 5, Depot-Y 2, Y-X 2, X-Z 3 and Y-Z 7. What is the shortest distance from Depot to Z? | 7
+hint: Work out the best distance to X before going on to Z.
+mc3: A student must take Algebra before Calculus, Calculus before Physics II, and Algebra before Statistics. These form a directed graph with no cycles. Which algorithm gives an order in which to take the courses? | Topological sort | Dijkstra's algorithm | Binary search | Bubble sort by course name
+hint: The goal is an order that respects every "before" arrow.
+num3: A network of 10 computers is wired as a tree, so there is exactly one path between any two computers. How many cables (edges) does it use? | 9
+hint: How many edges does a tree with n vertices have?
+sa3: Explain why breadth-first search is not enough to find the fastest route on a road map where roads take different amounts of time. | Breadth-first search counts edges, not weights, so a route with fewer roads could still take longer; Dijkstra's algorithm adds up the travel times and finds the least total time.
+hint: What does breadth-first search count, and what does the driver really care about?

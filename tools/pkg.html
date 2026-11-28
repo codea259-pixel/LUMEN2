@@ -26,6 +26,8 @@
 .storycard h3{margin:0 0 4px;color:#fff}.storycard p{margin:0;color:#D7D9F5}.storycard .regs{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
 .storycard .regs span{font-size:.8rem;font-weight:700;padding:3px 10px;border-radius:99px;background:rgba(255,255,255,.14)}.storycard .regs span.ok{background:#3DD9B4;color:#0B3B30}
 
+.replink button{background:none;border:0;box-shadow:none;color:var(--mute);font-size:.85rem;font-weight:400;padding:6px 0 0;text-decoration:underline;cursor:pointer}
+.replink .chip{margin:4px 4px 0 0}
 </style>
 <script type="text/x-lumen">
 /* ===== The implementation package (Part 2 and Week 2/4 items) =====
@@ -142,20 +144,37 @@ const _rJn=render;render=function(){_rJn();if(BOOT.local||ME.role!=='student')re
   h.insertAdjacentHTML('afterend',`<div class="card rise" id="djoin" style="margin:0 0 16px;display:flex;gap:16px;align-items:center;flex-wrap:wrap"><div style="flex:1;min-width:240px"><h3 style="margin:0 0 4px">🏫 Join your class</h3><p class="sol" style="margin:0">Enter the class code your teacher gave you to see your assignments and your class.</p></div><div class="row" style="margin:0"><input id="djc" placeholder="Class code" aria-label="Class code" maxlength="8" style="text-transform:uppercase;width:150px" onkeydown="if(event.key==='Enter')joinFromDash()"><button class="lamp" onclick="joinFromDash()">Join</button></div></div>`)};
 
 /* ---------- The lesson library: every course lesson's classwork, searchable and practicable by any learner ----------
-   lessons.json holds only practice items (quizzes and unit tests stay teacher-only). Search shows them under the skills. */
-let LIB=null,LIBP=null,CL=null;
-const SUBL={math:'Math',ela:'Reading & writing',sci:'Science',soc:'Social studies'};
-function libLoad(){if(LIB)return Promise.resolve(LIB);if(!LIBP)LIBP=fetch('lessons.json').then(r=>r.json()).then(j=>{LIB=j.lessons.map(l=>({...l,ix:skNorm(l.n+' '+l.u+' '+(SUBL[l.s]||'')),tx:skNorm(l.it.map(it=>it.q).join(' '))}));return LIB}).catch(()=>{LIBP=null;return []});return LIBP}
-function libFind(q){if(!LIB)return [];const ws=skNorm(q).split(' ').filter(w=>w.length>1);if(!ws.length)return [];const g=myGrade(),out=[];
-  const stem=w=>w.length>4&&/ies$/.test(w)?w.slice(0,-3)+'y':w.length>3&&/(ches|shes|xes|ses)$/.test(w)?w.slice(0,-2):w.length>3&&/s$/.test(w)&&!/ss$/.test(w)?w.slice(0,-1):w;
-  for(const l of LIB){let sc=0;const n=skNorm(l.n);for(const w0 of ws){const w=stem(w0);if(n.includes(w))sc+=n.startsWith(w)||n.includes(' '+w)?8:5;else if(l.ix.includes(w))sc+=3;else if(w.length>3&&l.tx.includes(w))sc+=1;else{sc=-1;break}}if(sc>0)out.push([sc-Math.min(4,Math.abs(l.g-g))*.5,l])}
+   lessons.json holds only practice items (quizzes and unit tests stay teacher-only). Search shows them under the skills.
+   It also holds links: for each Learn skill, the lessons that teach it (its course units, tools/assess-src/links.json and
+   the Learn-only units in tools/lessons-src). A skill's page lists them, and searching for the skill shows them first. */
+let LIB=null,LIBP=null,CL=null,LINKS={},LIBID={};
+const SUBL={math:'Math',ela:'Reading & writing',sci:'Science',soc:'Social studies',cs:'Computer science',fin:'Financial literacy',es:'Spanish'};
+function libLoad(){if(LIB)return Promise.resolve(LIB);if(!LIBP)LIBP=fetch('lessons.json').then(r=>r.json()).then(j=>{LIB=j.lessons.map(l=>({...l,ix:skNorm(l.n+' '+l.u+' '+(SUBL[l.s]||'')),tx:skNorm(l.it.map(it=>it.q).join(' '))}));LINKS=j.links||{};LIBID={};LIB.forEach(l=>LIBID[l.id]=l);return LIB}).catch(()=>{LIBP=null;return []});return LIBP}
+/* Words children search for that the content names differently */
+const SYN=[[/\brock ?hound(s|ing)?\b/g,'rocks'],[/\btimes tables?\b/g,'multiplication'],[/\btake ?aways?\b/g,'subtracting'],[/\bcomputer coding\b/g,'coding']];
+const skSyn=q=>SYN.reduce((s,[re,to])=>s.replace(re,to),String(q).toLowerCase());
+const _skF=skFind;skFind=q=>_skF(skSyn(q));
+const libStem=w=>w.length>4&&/ies$/.test(w)?w.slice(0,-3)+'y':w.length>3&&/(ches|shes|xes|ses)$/.test(w)?w.slice(0,-2):w.length>3&&/s$/.test(w)&&!/ss$/.test(w)?w.slice(0,-1):w;
+function libFind(q){if(!LIB)return [];const ws=skNorm(skSyn(q)).split(' ').filter(w=>w.length>1);if(!ws.length)return [];const g=myGrade(),out=[];
+  for(const l of LIB){let sc=0;const n=skNorm(l.n);for(const w0 of ws){const w=libStem(w0);if(n.includes(w))sc+=n.startsWith(w)||n.includes(' '+w)?8:5;else if(l.ix.includes(w))sc+=3;else if(w.length>3&&l.tx.includes(w))sc+=1;else{sc=-1;break}}if(sc>0)out.push([sc-Math.min(4,Math.abs(l.g-g))*.5,l])}
   return out.sort((a,b)=>b[0]-a[0]).map(x=>x[1])}
+/* The lessons linked to a skill, in teaching order */
+const skLessons=k=>(LINKS[k]||[]).map(id=>LIBID[id]).filter(Boolean);
+/* Skills whose name has every word of the search (up to 3): their linked lessons come first in the results */
+function libLinked(q){const ws=skNorm(skSyn(q)).split(' ').filter(w=>w.length>1).map(libStem);if(!ws.length)return [];
+  return skFind(q).filter(k=>{const n=skNorm(SK[k].n);return ws.every(w=>n.includes(w))}).slice(0,3).flatMap(skLessons)}
 const LIBMAX=10;
 const _skS=skSearch;skSearch=function(v){_skS(v);const q=v.trim(),r=$('sksr'),n=$('sksn');if(!r||!q)return;
   if(!LIB){libLoad().then(()=>{const i=$('sksq');if(i&&i.value.trim()===q)skSearch(q)});return}
-  const all=libFind(q);if(!all.length)return;const top=all.slice(0,LIBMAX);
-  if(n)n.textContent=(n.textContent.startsWith('No skills')?'':n.textContent+' ')+`${all.length} course lesson${all.length===1?'':'s'} found${all.length>LIBMAX?`, showing ${LIBMAX}`:''}.`;
-  r.insertAdjacentHTML('beforeend',`<p class="clh">📚 Course lessons</p><ul>${top.map(l=>`<li><button class="skr" onclick="clOpen('${l.id}')" onkeydown="skKey(event)"><b>${esc(l.n)}</b><span>${esc(SUBL[l.s]||'')} · ${GLAB(l.g)} · ${esc(l.u)} · Lesson ${l.i} of ${l.of}</span><span class="skl">${l.it.length} practice</span></button></li>`).join('')}</ul>`)};
+  const lk=libLinked(q),lkIds=new Set(lk.map(l=>l.id)),fd=libFind(q),seen=new Set();
+  const all=[...fd.filter(l=>lkIds.has(l.id)),...lk,...fd].filter(l=>!seen.has(l.id)&&seen.add(l.id));if(!all.length)return;const top=all.slice(0,LIBMAX);
+  if(n)n.textContent=(n.textContent.startsWith('No skills')?'':n.textContent+' ')+`${all.length} lesson${all.length===1?'':'s'} found${all.length>LIBMAX?`, showing ${LIBMAX}`:''}.`;
+  r.insertAdjacentHTML('beforeend',`<p class="clh">📚 Lessons</p><ul>${top.map(l=>`<li><button class="skr" onclick="clOpen('${l.id}')" onkeydown="skKey(event)"><b>${esc(l.n)}</b><span>${esc(SUBL[l.s]||'')} · ${GLAB(l.g)} · ${esc(l.u)} · Lesson ${l.i} of ${l.of}</span><span class="skl">${l.it.length} practice</span></button></li>`).join('')}</ul>`)};
+/* A skill's page: its lessons, in order, before or after practice */
+const _rLk=render;render=function(){_rLk();if(tab!=='learn'||view!=='lesson'||!sel||!SK[sel])return;const P=$('panel');if(!P||P.querySelector('.sklessons'))return;
+  if(!LIB){const k=sel;libLoad().then(()=>{if(view==='lesson'&&sel===k&&tab==='learn')render()});return}
+  const ls=skLessons(sel);if(!ls.length)return;
+  P.insertAdjacentHTML('beforeend',`<details class="card sklessons" style="margin-top:14px" open><summary><b>📚 ${ls.length} lessons for this skill</b></summary><p class="sol" style="margin:6px 0">Short lessons with practice and hints, easiest first. Try them before or after practising the skill.</p><ol style="margin:0;padding-left:22px">${ls.map(l=>`<li style="margin:4px 0"><a href="#" onclick="clOpen('${l.id}');return false">${esc(l.n)}</a> <span class="sol">· ${GLAB(l.g)} · ${esc(l.u)}</span></li>`).join('')}</ol></details>`)};
 const clAns=s=>String(s).replace(/\{year\}/g,String(new Date().getFullYear()));
 function clNum(v){v=clAns(String(v)).replace(/[$,\s]+(?=\d)|,/g,'').replace(/[^0-9./\- ]/g,' ').trim();if(/^\d{4}-\d+$/.test(v)){const [a,b]=v.split('-');return +a-+b}
   let m=v.match(/^(-?\d+)\s+(\d+)\/(\d+)$/);if(m)return +m[1]+(m[1].startsWith('-')?-1:1)*(+m[2]/+m[3]);m=v.match(/^(-?\d+(?:\.\d+)?)\/(\d+(?:\.\d+)?)$/);if(m)return +m[1]/+m[2];const x=parseFloat(v);return isNaN(x)?null:x}
@@ -173,6 +192,31 @@ VIEWS.lesson=function(){if(!CL)return '<p class="sol">Search for a topic on the 
     else body=S.done?`<p>Your answer: ${esc(S.pick)}</p><div class="tutor"><div class="tx"><b>A sample answer</b>${esc(clAns(it.ans||''))}</div></div><p class="sol">Compare: did you include the same key ideas?</p>`:`<textarea id="cla${i}" rows="3" style="width:100%" aria-label="Your answer"></textarea><div class="row"><button onclick="clShow(${i})">Compare with a sample answer</button></div>`;
     const fb=!S.done||S.ok===null?'':S.ok?'<p class="fb ok">✓ Correct!</p>':`<p class="fb no">Not quite. The answer is ${esc(clAns(it.t==='mc'?it.ch[0]:it.a))}.</p>`;
     return `<div class="clitem"><p class="sol" style="margin:0 0 4px">Question ${i+1} of ${l.it.length}</p>${it.p?`<details><summary>Read: ${esc(it.p.t||'the passage')}</summary><p>${esc(String(it.p.x||'').replace(/ \/\/ /g,'\n\n'))}</p></details>`:''}<p class="qq">${q}</p>${body}${fb}
-      ${it.h&&!S.done?(S.hint?`<div class="tutor"><div class="tx"><b>💡 Lumi's hint</b>${esc(clAns(it.h))}</div></div>`:`<button class="alt" style="margin-top:10px" onclick="CL.st[${i}].hint=1;r2()">💡 Hint</button>`):''}</div>`}).join('')}
+      ${it.h&&!S.done?(S.hint?`<div class="tutor"><div class="tx"><b>💡 Lumi's hint</b>${esc(clAns(it.h))}</div></div>`:`<button class="alt" style="margin-top:10px" onclick="CL.st[${i}].hint=1;r2()">💡 Hint</button>`):''}${repLink(l.id+':'+(i+1),clAns(it.q)+(it.t==='mc'?' Key: '+clAns(it.ch[0]):it.t==='num'?' Key: '+clAns(it.a):''))}</div>`}).join('')}
   <div class="clnav">${sib.filter(x=>x.i===l.i-1).map(x=>`<button class="alt" onclick="clOpen('${x.id}')">← Lesson ${x.i}: ${esc(x.n)}</button>`).join('')}${sib.filter(x=>x.i===l.i+1).map(x=>`<button class="lamp" onclick="clOpen('${x.id}')">Lesson ${x.i}: ${esc(x.n)} →</button>`).join('')}<button class="alt" onclick="showTab('learn')">Back to Learn</button></div>`};
+/* ---------- Report a problem with a question: what and why, never who reported it ----------
+   Learners and teachers can flag a question on a lesson page or in practice. The owner console lists the reports,
+   marks them fixed or not a mistake, and shows how long fixes take (the independent review asked us to track this). */
+const REPWHY=[['wrong answer','The answer is wrong'],['confusing','It is confusing'],['typo','A spelling or typing mistake'],['other','Something else']];
+const repOK=()=>!BOOT.local&&!!(ME&&ME.role);
+function repLink(ref,q){return repOK()?`<div class="replink" data-ref="${esc(ref)}" data-q="${esc(String(q).replace(/\s+/g,' ').trim().slice(0,400))}"><button onclick="repOpen(this)">⚑ Report a problem with this question</button></div>`:''}
+function repOpen(b){const box=b.parentNode;box.innerHTML=`<span class="sol">What is wrong with it?</span><br>${REPWHY.map(([w,t])=>`<button class="chip" onclick="repSend(this,'${w}')">${t}</button>`).join('')}`}
+function repSend(b,why){const box=b.closest('.replink');box.querySelectorAll('button').forEach(x=>x.disabled=true);
+  api('POST','/api/reports',{ref:box.dataset.ref,q:box.dataset.q,why}).then(()=>{box.innerHTML='<span class="sol">Thank you! We will check this question and fix it if it is wrong.</span>'},e=>{box.querySelectorAll('button').forEach(x=>x.disabled=false);msg(e.message||'Could not send the report. Please try again.')})}
+const _rRep=render;render=function(){_rRep();if(tab!=='learn'||view!=='practice'||!cur||!cur.q||!cur.k)return;const P=$('panel');if(!P||P.querySelector('.replink'))return;
+  const q=cur.q,txt=String(q.q).replace(/<[^>]+>/g,' ')+(q.choices?' Choices: '+q.choices.map(String).join(', '):'')+' Key: '+fmtA(q);P.insertAdjacentHTML('beforeend',repLink('skill:'+cur.k,txt))};
+let OREP=null;
+function repSet(ids,status){Promise.all(ids.map(id=>api('POST',`/api/owner/reports/${encodeURIComponent(id)}`,{status}))).then(()=>{OREP=null;r2()},e=>msg(e.message))}
+function repGo(ref){const [a,b]=ref.split(':');if(a==='skill'&&SK[b])goSkill(b);else clOpen(a)}
+O.reports=function(){if(OREP===null){OREP=[];api('GET','/api/owner/reports').then(r=>{OREP=r.reports||[];r2()},e=>msg(e.message))}
+  const g={};for(const r of OREP){const k=[r.ref,r.q,r.why,r.status].join('|');const x=g[k]=g[k]||{...r,ids:[],n:0};x.ids.push(r.id);x.n+=r.n||1;x.ts=Math.min(x.ts,r.ts)}
+  const L=Object.values(g).sort((a,b)=>(a.status==='open'?0:1)-(b.status==='open'?0:1)||b.ts-a.ts),open=L.filter(r=>r.status==='open'),now=Date.now();
+  const fixed=OREP.filter(r=>r.status==='fixed'&&r.closed&&r.closed>now-90*864e5).map(r=>(r.closed-r.ts)/864e5).sort((a,b)=>a-b);
+  const med=fixed.length?(fixed[Math.floor((fixed.length-1)/2)]+fixed[Math.ceil((fixed.length-1)/2)])/2:null,oldest=open.length?Math.floor((now-Math.min(...open.map(r=>r.ts)))/864e5):0;
+  const d=n=>n<1?'under a day':`${Math.round(n)} day${Math.round(n)===1?'':'s'}`;
+  return `<div class="card"><h3>⚑ Reported mistakes</h3><p class="sol">Learners and teachers can report a question from a lesson or practice page. Reports say what and why, never who. Check each one against the source (tools/assess-src, tools/lessons-src or the skill in tools/base.html), fix it there, then mark it fixed. Aim to fix real mistakes within 2 days.</p>
+    <div class="meter"><span>Open</span><b>${open.length}${open.length?` · oldest ${d(oldest)}`:''}</b><span>Fixed in the last 90 days</span><b>${fixed.length}${med!=null?` · typical fix: ${d(med)}`:''}</b></div>
+    ${L.length?`<div class="tbl"><table class="vs"><tr><th>Reported</th><th>Why</th><th>Question</th><th>Status</th><th></th></tr>${L.slice(0,200).map(r=>`<tr><td>${new Date(r.ts).toLocaleDateString()}${r.n>1?` · ${r.n} reports`:''}</td><td>${esc(r.why)}</td><td><a href="#" onclick="repGo('${esc(r.ref)}');return false">${esc(r.ref)}</a><br><span class="sol">${esc(r.q)}</span></td><td>${esc(r.status)}${r.closed?` · ${new Date(r.closed).toLocaleDateString()}`:''}</td>
+      <td>${r.status==='open'?`<button class="alt" onclick='repSet(${JSON.stringify(r.ids)},"fixed")'>Fixed</button> <button class="alt" onclick='repSet(${JSON.stringify(r.ids)},"dismissed")'>Not a mistake</button>`:`<button class="alt" onclick='repSet(${JSON.stringify(r.ids)},"open")'>Reopen</button>`}</td></tr>`).join('')}</table></div>`:'<p>No reports yet.</p>'}</div>`};
+const _ovR=VIEWS.owner;VIEWS.owner=function(){const h=_ovR(),k='</div><div style="margin-top:16px">';return h.replace(k,`<button class="chip ${ST.ot==='reports'?'on':''}" onclick="ST.ot='reports';OREP=null;r2()">⚑ Reports</button>`+k)};
 </script>

@@ -39,9 +39,31 @@ def _lessons():
                     if 'p' in it and isinstance(it['p'], int) and it['p'] < len(ps): x['p'] = ps[it['p']]
                     items.append(x)
                 out.append({'id': f"{u['id']}-L{i + 1}", 's': sub, 'g': int(g), 'u': u['name'], 'n': l['name'], 'std': l.get('std', []), 'i': i + 1, 'of': len(u['lessons']), 'it': items})
-    _j.dump({'v': 1, 'lessons': out}, open(os.path.join(R, 'public', 'lessons.json'), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
-    return len(out)
-print('lesson library:', _lessons(), 'lessons')
+            for k in u.get('skills') or []: links.setdefault(k, []).extend(f"{u['id']}-L{i + 1}" for i in range(len(u['lessons'])))
+    # Knowledge-map links (tools/assess-src/links.json): more units that teach a Learn skill. They are kept apart from a
+    # unit's own skills list, which also feeds generated questions into teachers' classwork.
+    uids = {u['id']: len(u['lessons']) for c in B['cells'].values() for u in c['units']}
+    SK = _j.load(open(os.path.join(D, 'assess-src', 'skills.json'), encoding='utf-8'))
+    for k, us in _j.load(open(os.path.join(D, 'assess-src', 'links.json'), encoding='utf-8')).items():
+        if k not in SK: sys.exit(f'assess-src/links.json: unknown Learn skill {k}')
+        for uid in us:
+            if uid not in uids: sys.exit(f'assess-src/links.json: unknown unit {uid} for {k}')
+            links.setdefault(k, []).extend(f'{uid}-L{i + 1}' for i in range(uids[uid]) if f'{uid}-L{i + 1}' not in links.get(k, []))
+    # Learn-only lessons (tools/lessons-src): practice lessons for skills that have no test-bank unit
+    sys.dont_write_bytecode = True
+    import build_lessons as _bl
+    lu = _bl.lesson_units()
+    if _bl.BA.errors: print('\n'.join(_bl.BA.errors[:200])); print(f'{len(_bl.BA.errors)} problem(s) in tools/lessons-src'); sys.exit(1)
+    for u in lu:
+        for i, l in enumerate(u['lessons']):
+            out.append({'id': f"{u['id']}-L{i + 1}", 's': u['s'], 'g': u['g'], 'u': u['name'], 'n': l['name'], 'std': [], 'i': i + 1, 'of': len(u['lessons']),
+                        'it': [{k: it[k] for k in ('t', 'q', 'ch', 'a', 'ans', 'h') if k in it} for it in l['practice']]})
+        for k in u['skills']: links.setdefault(k, []).extend(f"{u['id']}-L{i + 1}" for i in range(len(u['lessons'])))
+    # links: Learn skill id -> the lessons that teach it, so a skill's page and a search for it list them in order
+    _j.dump({'v': 1, 'lessons': out, 'links': links}, open(os.path.join(R, 'public', 'lessons.json'), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
+    return len(out), len(lu)
+links = {}
+print('lesson library: %s lessons (%s Learn-only units)' % _lessons())
 
 # Keep the lesson and question counts on the home page and the one-page school overview in step with the content
 def _counts():

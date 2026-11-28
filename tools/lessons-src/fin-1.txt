@@ -1,0 +1,781 @@
+@subject fin
+# Financial literacy, Learn-only lessons: coins (K) through paying for college (grade 13).
+# Numbers are round, made-up examples. Rates are examples only, never current facts.
+
+unit: Coins and counting money | K | fin_0
+
+lesson: Meet the coins
+mc1: Lily has a coin worth 1 cent. Which coin is it? | penny | nickel | dime | quarter
+hint: It is the copper-colored coin.
+mc1: Omar has a coin worth 5 cents. Which coin is it? | nickel | penny | dime | quarter
+hint: Five pennies trade for this one coin.
+mc1: Ana has a coin worth 10 cents. Which coin is it? | dime | nickel | penny | quarter
+hint: Two nickels trade for this one coin.
+mc1: Kenji has a coin worth 25 cents. Which coin is it? | quarter | dime | nickel | penny
+hint: It is the biggest of these four coins.
+mc1: Which coin is the smallest in size? | dime | penny | nickel | quarter
+hint: Size and value are not the same. Look for the tiny silver coin.
+mc1: What do we call paper money that is worth 100 cents? | dollar | dime | penny | quarter
+hint: It is paper, not a coin.
+
+lesson: Which is worth more?
+mc1: Which coin is worth the most? | quarter | dime | nickel | penny
+hint: Think about how many cents each coin is worth.
+mc1: Which coin is worth the least? | penny | nickel | dime | quarter
+hint: Find the coin worth just one cent.
+num1: How many cents is a nickel worth? | 5
+hint: Count the pennies it takes to make one.
+num1: How many cents is a dime worth? | 10
+hint: Count by fives two times.
+num1: How many pennies make 1 nickel? | 5
+hint: Hold up one hand. Count your fingers.
+mc1: A nickel is bigger than a dime. Which coin is worth more? | dime | nickel | they are equal | you cannot tell
+hint: Bigger does not always mean worth more. Think about the cents.
+
+lesson: Counting pennies and nickels
+num1: You have 3 pennies. How many cents is that? | 3
+hint: Each penny is one cent. Count them.
+num1: You have 2 nickels. How many cents is that? | 10
+hint: Count by fives.
+num1: You have 1 nickel and 2 pennies. How many cents is that? | 7
+hint: Start at 5. Then count on 1 for each penny.
+num1: You have 3 nickels. How many cents is that? | 15
+hint: Count by fives three times.
+mc1: Which group is worth 6 cents? | 1 nickel and 1 penny | 6 nickels | 1 dime and 1 penny | 2 nickels
+hint: Start at 5 and count on.
+num1: How many cents are 10 pennies? | 10
+hint: Count each penny as one.
+
+lesson: Counting dimes
+num1: You have 2 dimes. How many cents is that? | 20
+hint: Count by tens.
+num1: You have 1 dime and 1 nickel. How many cents is that? | 15
+hint: Start at 10. Count on 5 more.
+num1: You have 1 dime and 3 pennies. How many cents is that? | 13
+hint: Start at 10. Count on 1 for each penny.
+num1: You have 3 dimes. How many cents is that? | 30
+hint: Count by tens three times.
+mc1: Which group is worth 10 cents? | 2 nickels | 2 pennies | 1 nickel | 1 quarter
+hint: Count by fives.
+num1: How many nickels make 1 dime? | 2
+hint: Count by fives until you reach 10.
+
+lesson: Buying with coins
+mc1: A sticker costs 5 cents. Which one coin pays exactly? | nickel | penny | dime | quarter
+hint: Find the coin worth the same as the price.
+num1: An eraser costs 10 cents. You have 1 nickel. How many more cents do you need? | 5
+hint: Start at 5. Count up to 10.
+num1: You have 10 cents. You spend 4 cents. How many cents are left? | 6
+hint: Take 4 away from 10.
+mc1: Which coin is worth the same as 25 pennies? | quarter | dime | nickel | dollar
+hint: Find the coin worth 25 cents.
+mc1: Mia has 1 quarter. Leo has 1 dime. Who has more money? | Mia | Leo | they have the same | you cannot tell
+hint: Think about how many cents each coin is worth.
+num1: You have 2 dimes and 1 nickel. How many cents is that? | 25
+hint: Count by tens, then count on 5.
+
+unit: Earning, saving and spending | 2 | fin_2
+
+lesson: Money words
+mc1: What do we call money you earn by doing work? | income | savings | expense | goal
+hint: Think about money that comes in to you.
+mc1: What is saving? | keeping money to use later | spending all your money now | borrowing money from a friend | giving money away
+hint: Think about the word later.
+mc1: What is spending? | using money to buy things | putting money in a bank | earning money at a job | keeping money for later
+hint: Think about what happens at a store.
+mc1: What is a savings goal? | something you are saving money to buy | money you already spent | money you earn each week | the price tag on a toy
+hint: A goal is something you are working toward.
+mc1: Where can people keep money safe and earn a little extra on it? | a bank | a toy box | a coat pocket | a shopping bag
+hint: Which place pays you a small amount for keeping your money there?
+
+lesson: Needs and wants
+mc1: Which is a need? | food to eat | a video game | a new toy car | candy
+hint: A need is something you must have to live and be healthy.
+mc1: Which is a want? | a toy robot | a warm coat in winter | water to drink | a place to live
+hint: A want is nice to have, but you can live without it.
+mc1: Which of these is a need? | a safe place to live | a bigger TV | a second bike | a movie ticket
+hint: Which one keeps you safe and healthy?
+mc2: Sam wants new shoes with lights, but his old shoes still fit well. The light-up shoes are a ___. | want | need | savings | income
+hint: Does Sam have to have them to be safe and healthy?
+mc2: Why should a family pay for needs before wants? | needs keep people healthy and safe | wants always cost more | needs are always cheaper | wants are not allowed
+hint: Think about what could happen if a need was not paid for.
+sa2: Name one need and one want, and tell how they are different. | Food is a need because I must eat to stay healthy. A toy is a want because it is fun to have, but I can live without it.
+
+lesson: Saving up for a goal
+num1: Kai saves 2 dollars each week. How many dollars does he have after 5 weeks? | 10
+hint: Count by twos five times.
+num1: A ball costs 8 dollars. Lina has 5 dollars. How many more dollars does she need? | 3
+hint: Count up from 5 to 8.
+num2: A book costs 12 dollars. Omar saves 3 dollars each week. How many weeks will it take him to save 12 dollars? | 4
+hint: Count by threes until you reach 12. How many jumps did you make?
+num1: Priya has 20 dollars. She spends 6 dollars on a kite. How many dollars are left? | 14
+hint: Take 6 away from 20.
+num2: Jamal earns 10 dollars and saves half of it. How many dollars does he save? | 5
+hint: Half means two equal parts.
+mc2: Rosa wants a 15 dollar game. She has 9 dollars. What is a good plan? | save more each week until she has 15 dollars | buy the game today with her 9 dollars | spend her 9 dollars on snacks | stop saving because she does not have enough yet
+hint: She does not have enough yet. How can she get closer to her goal?
+
+lesson: Piggy bank or bank?
+mc1: What does a bank pay you for keeping your money in a savings account? | interest | a fee | a tax | a bill
+hint: It is a small extra amount the bank adds to your savings.
+mc2: Why might a family keep money in a bank instead of a piggy bank? | the bank keeps it safe and can add interest | a piggy bank pays more interest | a bank never lets you take money out | a bank doubles your money every day
+hint: Think about safety and about money growing.
+mc1: What is one good thing about a piggy bank? | it is easy to use at home | it pays you interest each month | it makes your money grow by itself | it keeps money safer than a bank
+hint: Think about where a piggy bank is kept.
+mc2: Leah puts 100 dollars in a savings account. A year later she has 102 dollars, and she did not add any money. Where did the extra 2 dollars come from? | interest paid by the bank | money she spent | a fee the bank charged | a loan she took out
+hint: What does a bank pay savers?
+num1: Ben's piggy bank has 7 dollars. He puts in 4 more dollars. How many dollars are in it now? | 11
+hint: Add the new dollars to the dollars already there.
+mc1: Putting money into a bank account is called making a ___. | deposit | withdrawal | price | want
+hint: It is the opposite of taking money out.
+
+lesson: Smart money choices
+mc2: Tia gets 10 dollars for her birthday. She is saving for a 20 dollar bike. Which choice helps her reach her goal fastest? | save all 10 dollars | spend 6 dollars on a toy and save 4 dollars | spend all 10 dollars on toys | buy a snack and a toy
+hint: Which choice puts the most money toward the bike?
+num2: Tia has 10 dollars. She buys a 6 dollar toy and saves the rest. How many dollars does she save? | 4
+hint: Take the toy money away from 10.
+mc2: When you choose to buy one thing, what do you give up? | the chance to buy something else with that money | nothing at all | the money you earn next week | the money already in the bank
+hint: Money spent on one thing cannot be spent again.
+num2: Diego earns 3 dollars a week for chores. He wants a 15 dollar puzzle. How many weeks of chores will it take to earn 15 dollars? | 5
+hint: Count by threes until you reach 15.
+num2: Nia had 18 dollars. She spent 5 dollars on lunch and 4 dollars on a book. How many dollars does she have left? | 9
+hint: Take away one amount, then take away the other.
+sa3: Your friend spends all her money as soon as she gets it. What advice would you give her? | I would tell her to save some money each time she gets it, think about whether she needs something or just wants it, and pick a goal to save for.
+
+unit: Paying and making change | 3 | fin_3_n1, fin_0
+
+lesson: Adding prices
+num1: A sandwich costs $4 and a juice costs $2. What is the total in dollars? | 6
+hint: Add the two prices.
+num1: A pencil costs $1.25 and an eraser costs $0.50. What is the total in dollars? | 1.75
+hint: Add the dollars, then add the cents.
+num1: A notebook costs $2.50 and a pen costs $1.25. What is the total in dollars? | 3.75
+hint: 50 cents and 25 cents make how many cents?
+num1: Three stickers cost $0.25 each. What is the total in dollars? | 0.75
+hint: Count by quarters three times.
+mc1: A toy costs $3.40 and a ball costs $1.30. What is the total? | $4.70 | $5.70 | $2.10 | $3.70
+hint: Add dollars to dollars and cents to cents.
+num2: An apple costs $0.60 and a banana costs $0.35. What is the total in dollars? | 0.95
+hint: How many cents is 60 plus 35?
+
+lesson: Paying with bills
+mc1: Which of these is enough money to pay for a $7 book? | one $10 bill | one $5 bill | four $1 bills | one $5 bill and one $1 bill
+hint: Find the amount that is $7 or more.
+num1: How many $1 bills are worth the same as one $5 bill? | 5
+hint: Count by ones up to 5.
+num1: How many $5 bills are worth the same as one $20 bill? | 4
+hint: Count by fives up to 20.
+num1: You pay with two $10 bills and one $5 bill. How many dollars did you pay? | 25
+hint: Count by tens, then count on 5.
+mc2: What is the smallest single bill that can pay for a $13 game? | $20 bill | $10 bill | $5 bill | $100 bill
+hint: The bill must be worth at least $13. Which of those is the least?
+num1: How many quarters are worth the same as $1? | 4
+hint: Count by 25s up to 100 cents.
+
+lesson: Counting up to make change
+num1: A cap costs $6. You pay with a $10 bill. How many dollars of change do you get? | 4
+hint: Count up from 6 to 10.
+num2: A lunch costs $3.75. You pay with a $5 bill. What is your change in dollars? | 1.25
+hint: Count up from $3.75 to $4, then from $4 to $5.
+num2: A movie snack costs $8.50. You pay with a $10 bill. What is your change in dollars? | 1.5
+hint: Count up from $8.50 to $9, then to $10.
+num2: A shirt costs $12. You pay with a $20 bill. How many dollars of change do you get? | 8
+hint: Count up from 12 to 20.
+mc2: A snack costs $0.65. You pay with $1. Which coins make the right change? | 1 quarter and 1 dime | 3 dimes | 1 quarter and 1 nickel | 1 quarter, 1 dime and 1 penny
+hint: First find how many cents you get back. Count up from 65 to 100.
+num2: A bottle of glue costs $2.80. You pay with a $5 bill. What is your change in dollars? | 2.2
+hint: Count up from $2.80 to $3, then to $5.
+
+lesson: Change mistakes to watch for
+mc2: Jo buys a $4.25 lunch and pays with $5. She thinks her change is $1.25. What is the correct change? | $0.75 | $1.25 | $0.25 | $1.75
+hint: Count up from $4.25 to the next whole dollar. Is it more than $1?
+num2: What is the fewest number of coins that make 40 cents? | 3
+hint: Start with the biggest coin that is not worth more than 40 cents.
+num2: You buy a $2.35 notebook and a $1.40 pen. You pay with a $5 bill. What is your change in dollars? | 1.25
+hint: Add the prices first. Then count up to $5.
+mc2: What is a good way to check your change? | add the change to the price and see if you get the amount you paid | subtract the change from the price | count only the bills | multiply the price by the change
+hint: Price plus change should equal something you already know.
+num2: A toy costs $7.99. You pay with a $10 bill. What is your change in dollars? | 2.01
+hint: Count up 1 cent to $8, then count up to $10.
+num2: Three juice boxes cost $1.20 each. What is the total in dollars? | 3.6
+hint: Add $1.20 three times.
+
+lesson: A shopping trip
+num3: Marisol has $20. She buys a book for $8.50 and a puzzle for $6.25. How many dollars does she have left? | 5.25
+hint: Find the total cost first, then subtract it from $20.
+num2: Kenji buys 2 sandwiches for $4.50 each. He pays with a $10 bill. How many dollars of change does he get? | 1
+hint: Two sandwiches cost how much together?
+mc3: Ayesha has a $10 bill. She wants a $3.75 kite, a $2.50 ball and a $4 game. Can she buy all three? | No, they cost $10.25, which is more than $10 | Yes, they cost $9.25 in all | Yes, they cost exactly $10 | No, they cost $11.25 in all
+hint: Add the three prices carefully. Then compare the total with $10.
+num3: Pencils cost $0.30 each. What is the greatest number of pencils you can buy with $2? | 6
+hint: Count by 30 cents. Stop before you go over 200 cents.
+num3: Pedro pays for a $6.40 meal with a $10 bill. The cashier gives him three $1 bills and some coins. How many cents are in coins? | 60
+hint: Find the full change first. Then take away the bills.
+sa3: Explain how to count up to find the change when you pay $5 for a $2.65 item. | Start at $2.65. Add a dime to get $2.75, then a quarter to get $3.00, then two $1 bills to get $5.00. The change is $2.35.
+
+unit: Budgets | 4 | fin_4
+
+lesson: Budget words
+mc1: What is a budget? | a plan for how to use your money | a list of things you already bought | money a bank lends you | a store receipt
+hint: You make it before you spend, not after.
+mc1: In a budget, what is income? | money coming in | money going out | money left over | money you owe
+hint: Think of pay from a job or an allowance.
+mc1: In a budget, what are expenses? | money you spend | money you earn | money you get as a gift | money you have left over
+hint: Think of rent, food and bus fare.
+mc1: When income is more than expenses, the extra money is called a ___. | surplus | deficit | debt | loss
+hint: Think of having money to spare.
+mc1: When expenses are more than income, the shortfall is called a ___. | deficit | surplus | profit | savings
+hint: Think of spending more than you have.
+mc2: When is a budget balanced? | when money coming in equals money going out, including savings | when expenses are more than income | when you spend no money at all | when income is zero
+hint: Balanced means both sides are equal.
+
+lesson: Fixed and variable expenses
+mc1: What is a fixed expense? | a cost that stays the same each month | a cost that changes from month to month | money you earn | a one-time gift
+hint: Fixed means it does not change.
+mc2: Which is usually a fixed expense? | rent that is the same every month | groceries | gas for a car | movie tickets
+hint: Which cost is the same amount every month?
+mc2: Which is usually a variable expense? | the grocery bill | a set monthly rent | a phone plan with the same price each month | a car payment that never changes
+hint: Which cost can go up or down from month to month?
+mc2: A family's electric bill was $80 in May and $120 in July. What kind of expense is it? | variable | fixed | income | savings
+hint: Did the amount stay the same?
+mc2: A gym charges the same $25 fee every month. What kind of expense is it? | fixed | variable | income | surplus
+hint: Does the fee change from month to month?
+sa2: Why are variable expenses harder to plan for than fixed expenses? | Variable expenses change each month, so you have to estimate them. A good plan uses an average amount and leaves some extra room in case the cost is higher.
+
+lesson: Making a simple budget
+num1: Rafael earns $50 a month. He spends $30. How many dollars are left? | 20
+hint: Subtract what goes out from what comes in.
+num2: Hana's income is $120 a month. She spends $45 on food, $30 on fun and $25 on a bus pass. How many dollars are left to save? | 20
+hint: Add all the expenses first. Then subtract the total from her income.
+num2: A club earns $200 at a bake sale. It plans to spend $75 on supplies and $60 on a trip. How many dollars are left? | 65
+hint: Find the total the club plans to spend.
+num2: Noor gets a $40 allowance and saves 1/4 of it. How many dollars does she save? | 10
+hint: Split 40 into 4 equal parts.
+num2: Eli earns $60 and wants to save $15. How many dollars can he spend? | 45
+hint: Take the savings out first.
+mc2: Tomas has $80 of income. He plans $50 of expenses and $30 of savings. Is his budget balanced? | Yes, 50 plus 30 equals 80 | No, he has a $30 surplus | No, he has a $30 deficit | No, savings should not be part of a budget
+hint: Add his expenses and savings. Compare with his income.
+
+lesson: Fixing budget mistakes
+num2: Ming's income is $80, but his expenses are $95. How many dollars is his deficit? | 15
+hint: How much more goes out than comes in?
+mc2: Lucia's income is $100. Her expenses add up to $110. What could she do to balance her budget? | cut $10 from a want, such as snacks | add $10 more to fun | ignore the extra $10 | borrow $10 every month
+hint: Balancing means making expenses fit inside income.
+num2: Ruth's income is $150. Her expenses are $40 for food, $35 for travel, $25 for her phone and $20 for fun. How many dollars of surplus does she have? | 30
+hint: Add the four expenses, then compare with income.
+mc2: Dev's income is $90. His expenses are $40 and $30. He says he has $30 left. What is the truth? | He has $20 left, not $30 | He has $50 left | He has $60 left | He is right, he has $30 left
+hint: Add his two expenses, then subtract from 90.
+num2: Mei's family spends $12 on lunch every school day. How many dollars is that for 5 school days? | 60
+hint: Add $12 five times, or multiply.
+mc2: Why should a budget include some savings even when money is tight? | saving a little helps pay for emergencies and goals | savings are a fixed bill from the bank | saving makes expenses disappear | savings count as a deficit
+hint: Think about a surprise cost, such as a broken bike.
+
+lesson: Planning a real budget
+num3: Amara earns $15 a week walking dogs. Over 4 weeks she plans to save $20 and spend $25 on a gift. How many dollars are left for fun? | 15
+hint: Find her income for 4 weeks first.
+num3: A family's monthly income is $3,000. Rent is $1,200, food is $600, transportation is $400 and other bills are $500. How many dollars can they save each month? | 300
+hint: Add all the expenses. Then subtract from the income.
+num3: Jin wants a $90 bike. He earns $25 a week and spends $10 a week. How many weeks will it take him to save $90? | 6
+hint: How much does he keep each week?
+mc3: Aiyana's income is $200. Her budget shows a $20 deficit. What were her expenses? | $220 | $180 | $200 | $20
+hint: In a deficit, do expenses come out higher or lower than income?
+num3: A class has an $80 party budget. Pizzas cost $12 each. The class buys 5 pizzas and $15 of drinks. How many dollars are left? | 5
+hint: Find the cost of the pizzas, add the drinks, then subtract from 80.
+sa3: Your class has $100 for a party. Make a simple budget and explain how you know it is balanced. | Food $50, decorations $20, games $20 and $10 saved for surprises. 50 + 20 + 20 + 10 = 100, which equals the $100 we have, so the budget is balanced.
+
+unit: Interest and borrowing | 6 | fin_5_n1, fin_6
+
+lesson: Loan words
+mc1: What is the principal of a loan? | the amount of money borrowed | the extra cost of borrowing | the yearly percent charged | the date the loan ends
+hint: It is the starting amount.
+mc1: What is interest on a loan? | the extra money paid for borrowing | the amount of money borrowed | money the borrower earns at work | the date the first payment is due
+hint: A borrower pays back more than was borrowed. What is that extra?
+mc1: What is an interest rate? | the percent of the principal charged as interest each year | the total amount borrowed | the number of years of the loan | the size of each monthly payment
+hint: It is written with a percent sign.
+mc1: In a loan, who is the lender? | the person or bank that gives the money | the person who borrows the money | the store that sells the item | the person who pays the loan back
+hint: To lend means to let someone use your money for a while.
+mc1: In the simple interest formula I = P x r x t, what does t stand for? | the time in years | the total paid | the tax | the rate
+hint: Think about how long the money is borrowed.
+mc2: Why do lenders charge interest? | they are paid for letting someone else use their money | to make the loan smaller | because the borrower asks them to | interest is a tax paid to the government
+hint: What does the lender give up while the money is gone?
+
+lesson: Simple interest for one year
+num1: How many dollars of simple interest does $400 earn in 1 year at 5%? | 20
+hint: 5% means 5 out of every 100. How many hundreds are in 400?
+num1: How many dollars of simple interest does $600 earn in 1 year at 10%? | 60
+hint: Ten percent is one tenth.
+num2: How many dollars of simple interest does $250 earn in 1 year at 4%? | 10
+hint: Multiply 250 by 0.04.
+num1: Write 6% as a decimal. | 0.06
+hint: Percent means out of 100. Divide 6 by 100.
+num2: How many dollars of simple interest does $800 earn in 1 year at 3%? | 24
+hint: Find 1% of 800 first, then multiply by 3.
+mc2: Which calculation gives the interest on $300 at 7% for 1 year? | 300 x 0.07 | 300 x 7 | 300 + 0.07 | 300 / 7
+hint: Change the percent to a decimal before you multiply.
+
+lesson: More than one year
+num2: Find the simple interest on $500 at 4% for 3 years. | 60
+hint: Use I = P x r x t with r written as a decimal.
+num2: Ben borrows $1,000 at 5% simple interest for 2 years. How many dollars must he repay in all? | 1100
+hint: Find the interest, then add it to the principal.
+num2: Find the simple interest on $200 at 6% for 4 years. | 48
+hint: Find one year of interest, then multiply by the number of years.
+num2: Sofia borrows $1,200 and repays $1,320 in all. How many dollars of interest did she pay? | 120
+hint: Interest is the extra above the principal.
+mc2: Diana borrows $2,000 at 3% simple interest for 5 years. How much interest does she pay? | $300 | $30 | $3,000 | $2,300
+hint: Multiply principal, rate as a decimal and time.
+num2: A $900 loan has no interest and is repaid in 12 equal monthly payments. How many dollars is each payment? | 75
+hint: Share the total equally among the months.
+
+lesson: Interest mistakes to watch for
+mc2: Leo says the simple interest on $500 at 2% for 3 years is $3,000. What mistake did he make? | he used 2 instead of 0.02 for the rate | he forgot to multiply by the time | he added the numbers instead of multiplying | he used months instead of years
+hint: Try 500 x 2 x 3 and see what you get.
+num2: Find the simple interest on $1,500 at 4% for 6 months. | 30
+hint: Six months is what part of a year?
+mc2: Sara borrows $400 at 5% simple interest for 2 years. She says she must repay $40. What did she actually find? | only the interest, not the $440 total | the total she must repay | the principal | her monthly payment
+hint: What does the borrower pay back: just the extra, or the principal plus the extra?
+num2: A loan of $600 costs $30 of simple interest in 1 year. What is the interest rate in percent? | 5
+hint: What part of 600 is 30? Write it out of 100.
+mc2: The interest rate on a loan goes up, but the principal and time stay the same. What happens to the interest? | it goes up | it goes down | it stays the same | it becomes zero
+hint: Look at I = P x r x t. What happens to I when r gets bigger?
+num2: A $300 loan at 4% simple interest costs $36 of interest in all. For how many years was the money borrowed? | 3
+hint: Find the interest for one year first.
+
+lesson: Comparing loans
+mc3: Loan A is $1,000 at 5% for 2 years. Loan B is $1,000 at 4% for 3 years. Both use simple interest. Which costs less interest? | Loan A, with $100 of interest | Loan B, with $120 of interest | Loan B, because its rate is lower | They cost the same
+hint: Work out the interest for each loan. Do not judge by the rate alone.
+num3: Ahmed borrows $600 at 5% simple interest for 2 years. He repays it all in 24 equal monthly payments. How many dollars is each payment? | 27.5
+hint: Find the total he must repay first, then share it among the months.
+num3: Two loans of $2,000 last 3 years each. One charges 6% simple interest and the other charges 4%. How many dollars of interest does the lower rate save? | 120
+hint: Work out the interest for both loans, then subtract.
+mc3: Why can a loan with a lower interest rate still cost more interest in all? | it may last for more years | lower rates always cost less | the principal never matters | interest is charged only in the first year
+hint: Look at all three parts of I = P x r x t.
+num3: A store lets you pay $300 now for a bike, or $30 a month for 12 months. How many more dollars does the monthly plan cost? | 60
+hint: Find the total of the 12 payments.
+sa3: Your cousin wants to borrow money for a bike. Name two things she should compare between loans, and explain why. | She should compare the interest rate and how long the loan lasts, because together with the amount borrowed they decide the total interest she pays. She should also check that the monthly payment fits her budget.
+
+unit: Banking basics | 7 | fin_7_n1
+
+lesson: Checking and savings
+mc1: Which kind of account is mainly for everyday spending and paying bills? | checking account | savings account | retirement account | loan account
+hint: This account is used with a debit card and checks.
+mc1: Which kind of account is mainly for money you plan to keep and let grow? | savings account | checking account | loan account | credit card account
+hint: It is for money you are setting aside.
+mc1: What is the balance of a bank account? | the amount of money in it right now | the money you spent last month | the fee the bank charges | the interest rate
+hint: Think of what you would see if you checked your account today.
+mc1: Putting your paycheck into your account is an example of a ___. | deposit | withdrawal | transfer fee | overdraft
+hint: Money is going into the account.
+mc1: Taking $40 out of your account at an ATM is a ___. | withdrawal | deposit | interest payment | balance
+hint: Money is leaving the account.
+mc2: Which usually pays more interest, a savings account or a checking account? | a savings account | a checking account | they always pay the same | neither can ever pay interest
+hint: Banks reward people for leaving money alone.
+
+lesson: Cards and checks
+mc1: When you pay with a debit card, where does the money come from? | your checking account, right away | a loan you repay later | the store's account | the bank's own money, for free
+hint: A debit card uses money you already have.
+mc2: How is a debit card different from a credit card? | debit uses your own money, while credit borrows money you must repay | they are exactly the same | credit uses your own money, while debit borrows | debit cards charge interest on every purchase
+hint: Which card is connected straight to your account?
+mc1: What is a PIN? | a secret number that protects your card | the number printed on every check | the bank's street address | your account balance
+hint: You should never share it with anyone.
+mc2: What should you do if you lose your debit card? | tell the bank right away so it can lock the card | wait a month to see if it turns up | nothing, because a lost card cannot be used | only tell the store where you last used it
+hint: Who can stop a stranger from using the card?
+mc2: What is an overdraft? | spending more money than is in your account | putting too much money in your account | earning interest on savings | closing an account
+hint: Think about a balance going below zero.
+mc1: What does writing a check do? | tells your bank to pay someone from your account | adds money to your account | borrows money from a store | shows your credit score
+hint: A check is a written order to your bank.
+
+lesson: Reading an account register
+num1: An account has a balance of $200. You deposit $50. What is the new balance in dollars? | 250
+hint: A deposit adds to the balance.
+num1: An account has a balance of $300. You withdraw $75. What is the new balance in dollars? | 225
+hint: A withdrawal takes money away.
+num2: A register starts at $150. Next comes a $100 deposit, then a $40 debit card purchase. What is the balance in dollars? | 210
+hint: Add deposits and subtract purchases, in order.
+num2: A register starts at $500. Then comes a $120 check, a $60 deposit and an $80 withdrawal. What is the balance in dollars? | 360
+hint: Go line by line: subtract, add, subtract.
+mc2: In an account register, which entry makes the balance go down? | a debit card purchase | a paycheck deposit | interest earned | a cash deposit
+hint: Which entry is money leaving the account?
+num2: Kim's balance is $85. She spends $30 on groceries and $25 on gas with her debit card. What is her balance in dollars? | 30
+hint: Subtract both purchases.
+
+lesson: Register mistakes to watch for
+mc2: Aisha's register started at $400. She deposited $100 but subtracted it by mistake and wrote $300. What is her correct balance? | $500 | $300 | $400 | $100
+hint: Does a deposit add or subtract?
+num2: Ray has $60 in checking and makes a $75 debit card purchase. The bank charges, for example, a $35 overdraft fee. What is his balance in dollars now? | -50
+hint: Subtract the purchase, then subtract the fee. The balance can go below zero.
+mc2: Why should you record every debit card purchase? | so you know your real balance and avoid overdrafts | because the bank requires a paper register by law | because it raises your interest rate | so the store can see your balance
+hint: What could happen if you think you have more money than you do?
+num2: An account charges, for example, a $5 fee every month. How many dollars in fees is that over 12 months? | 60
+hint: Multiply the monthly fee by the number of months.
+mc2: Your register says $320, but your bank statement says $300. You find a $20 purchase you forgot to write down. What is your true balance? | $300 | $320 | $340 | $280
+hint: Subtract the missing purchase from your register.
+num2: A savings account holds $1,000 and pays, for example, 2% simple interest a year. How many dollars of interest does it earn in 1 year? | 20
+hint: Find 1% of 1,000, then double it.
+
+lesson: Banking in real life
+num3: Carlos starts the month with $250. He deposits two paychecks of $180 each, pays a $45 phone bill and spends $120 on groceries. What is his balance in dollars? | 445
+hint: Add both paychecks, then subtract both expenses.
+mc3: Imani has $50 in checking and $500 in savings. A $120 bill will be paid from checking tomorrow. What is the best move? | move at least $70 from savings to checking | let the bill go through and accept an overdraft | pay only $50 of the bill and ignore the rest | withdraw $120 in cash from checking
+hint: How much is checking short?
+num3: Ava has $100 in savings and adds $25 every week. How many dollars will she have after 8 weeks? | 300
+hint: Find how much she adds in 8 weeks, then add the starting amount.
+num3: A register shows a balance of $640. Then come checks for $210 and $95 and a $150 deposit. What is the balance in dollars? | 485
+hint: Subtract both checks and add the deposit.
+mc3: Which is the safest way to use an ATM? | cover the keypad when you type your PIN | tell the person behind you your PIN | write your PIN on the back of your card | let a stranger help you use your card
+hint: Who should be able to see or know your PIN?
+sa3: Explain why someone might keep money in both a checking account and a savings account. | Checking is for everyday spending and paying bills. Savings keeps money for goals and emergencies separate, so it is not spent by accident, and it usually earns more interest.
+
+unit: Paychecks and taxes | 8 | fin_8
+
+lesson: Paycheck words
+mc1: Ravi earned $500 before anything was taken out of his paycheck. What is this $500 called? | gross pay | net pay | income tax | a deduction
+hint: It is the full amount earned before anything is subtracted.
+mc1: What is net pay often called? | take-home pay | gross pay | overtime pay | a bonus
+hint: It is the amount that actually reaches your bank account or pocket.
+mc1: What is a deduction on a paycheck? | money taken out of pay, such as taxes | extra pay for working late | a gift from a boss | the number of hours worked
+hint: To deduct means to subtract.
+mc1: What is an hourly wage? | the pay earned for each hour of work | a tax on things you buy | money taken out for insurance | money a worker borrows
+hint: Look at the word hourly.
+mc1: What is a salary? | a set amount of pay for a year of work | pay that changes with each hour worked | a tax on property | a refund from the government
+hint: Many teachers and office workers are paid this way, no matter how many hours they work in a week.
+mc2: Why do people pay taxes? | to pay for public services such as roads, schools and fire departments | to give money to private stores | to raise prices at the store | to pay their own rent
+hint: Think about things a whole community shares.
+
+lesson: Hourly wages and overtime
+num1: Amir earns $12 an hour and works 10 hours. What is his gross pay in dollars? | 120
+hint: Multiply the hourly wage by the hours.
+num1: Grace earns $15 an hour and works 20 hours. What is her gross pay in dollars? | 300
+hint: Multiply 15 by 20.
+num2: A worker's regular wage is $10 an hour. Overtime is paid at 1.5 times the regular wage. What is the overtime wage in dollars per hour? | 15
+hint: Find half of 10 and add it to 10.
+num2: A worker earns $16 an hour. Overtime is paid at 1.5 times that wage. What is the overtime wage in dollars per hour? | 24
+hint: Multiply 16 by 1.5.
+num2: Yusuf earns $10 an hour. He works 40 regular hours and 4 overtime hours paid at $15 an hour. What is his gross pay in dollars? | 460
+hint: Find regular pay and overtime pay separately, then add.
+mc2: Job A pays $14 an hour for a 20-hour week. Job B pays $300 for the same week. Which pays more? | Job B | Job A | they pay the same | you cannot tell
+hint: Find the weekly pay for Job A first.
+
+lesson: From gross pay to net pay
+num2: Lin's gross pay is $600. Her deductions total $90. What is her net pay in dollars? | 510
+hint: Net pay is what is left after deductions.
+num2: Tomas earns $800 gross. For example, 10% is held back for income tax. How many dollars is held back? | 80
+hint: Ten percent is one tenth.
+num2: Zara earns $1,000 gross. For example, 10% is taken for income tax and 8% for other deductions. What is her net pay in dollars? | 820
+hint: Add the two percents, find that part of 1,000, then subtract.
+mc2: A paycheck shows gross pay of $500 and net pay of $410. What were the total deductions? | $90 | $410 | $910 | $50
+hint: Deductions are the difference between the two.
+num2: Malik earns $15 an hour for 30 hours. For example, 20% of his pay is deducted. What is his net pay in dollars? | 360
+hint: Find gross pay first, then take away 20% of it.
+mc1: On a normal paycheck, which amount is the largest? | gross pay | net pay | total deductions | income tax
+hint: Which amount comes before anything is subtracted?
+
+lesson: Paycheck mistakes to watch for
+mc2: Kofi worked 44 hours at $20 an hour. Hours over 40 are paid at 1.5 times his wage. He says he earned $880. What did he forget? | to pay the 4 extra hours at 1.5 times his wage | to pay all 44 hours at $30 an hour | that overtime is paid at 2 times the wage | to subtract the extra hours
+hint: Check 44 x 20. Did any hours earn a higher rate?
+num2: Ella earns $12 an hour. Hours over 40 are paid at 1.5 times her wage. She works 42 hours. What is her gross pay in dollars? | 516
+hint: Pay 40 hours at the regular wage and 2 hours at the overtime wage.
+mc2: A sales tax of, for example, 7% is charged when you ___. | buy something at a store | earn a paycheck | own a house | open a bank account
+hint: Think about where you see tax added to a receipt.
+num2: A jacket costs $50. The sales tax is, for example, 8%. What is the total cost in dollars? | 54
+hint: Find 8% of 50, then add it to the price.
+mc2: Why is net pay smaller than gross pay? | deductions such as taxes are taken out | the boss keeps a tip | gross pay includes your savings account | net pay counts only overtime
+hint: What happens between earning pay and receiving it?
+num2: Rosa earns $25 an hour and works 8 hours a day for 5 days. What is her gross pay in dollars? | 1000
+hint: Find her total hours first.
+
+lesson: Paychecks in real life
+num3: Lena earns $20 an hour. She works 45 hours, and hours over 40 are paid at 1.5 times her wage. For example, 20% of her gross pay is deducted. What is her net pay in dollars? | 760
+hint: Find regular pay, overtime pay, the total, then take away 20%.
+mc3: Job A pays $15 an hour for 30 hours a week. Job B pays $420 a week. Which pays more each week, and by how much? | Job A, by $30 | Job B, by $30 | Job A, by $15 | They pay the same
+hint: Find Job A's weekly pay first.
+num3: Jada earns $16 an hour. For example, 15% of her pay is deducted. How many hours must she work to take home exactly $340? | 25
+hint: If 15% is taken out, what percent does she keep? What gross pay leaves $340?
+num3: A worker earns a salary of $52,000 a year, paid weekly for 52 weeks. What is the gross pay each week in dollars? | 1000
+hint: Divide the yearly salary by the number of weeks.
+mc2: Which paycheck deduction is not a tax? | a payment for a health insurance plan | federal income tax | state income tax | Social Security tax
+hint: Taxes go to a government. Which payment goes somewhere else?
+sa3: Name two public services that taxes help pay for, and explain why sharing the cost makes sense. | Taxes help pay for public schools and roads. Everyone uses them, and most people could not pay for a whole school or highway alone, so sharing the cost lets the community have them.
+
+unit: Insurance and managing risk | 9 | fin_9_n1
+
+lesson: Insurance words
+mc1: What is an insurance premium? | the amount you pay regularly to keep your insurance | the amount you pay for a loss before insurance pays | the most the insurer will ever pay | a request for payment after a loss
+hint: You pay it whether or not anything goes wrong.
+mc1: What is a deductible? | the amount you pay for a loss before insurance starts to pay | the regular payment that keeps the insurance active | the insurance company's profit | the full list of what the policy covers
+hint: It comes out of your own pocket first, when you have a loss.
+mc1: In insurance, what is coverage? | the losses and costs a policy will pay for | the price you pay each month | the amount you pay first | the company's office
+hint: Think of what the policy protects you against.
+mc1: What is an insurance claim? | a request asking the insurer to pay for a loss | the bill you pay every month | a kind of savings account | a car loan
+hint: You file one after something goes wrong.
+mc1: What is an insurance policy? | the contract that explains what the insurance covers and costs | a promise from the government | a bank statement | a warranty from a store
+hint: It is the written agreement between you and the insurer.
+mc2: What is the main idea behind insurance? | many people pay small amounts so the few who have a big loss can be helped | each person saves only for themselves | the government pays for every accident | a bank lends money for every emergency
+hint: Think about sharing risk across a large group.
+
+lesson: Kinds of insurance
+mc1: Mateo breaks his arm and goes to the hospital. Which insurance helps pay the bill? | health insurance | car insurance | renters insurance | life insurance
+hint: Which kind is about doctors and hospitals?
+mc1: A renter's laptop is stolen from her apartment. Which insurance may help replace it? | renters insurance | health insurance | car insurance | disability insurance
+hint: Which kind protects the belongings of someone who does not own the building?
+mc2: Does renters insurance pay to fix the roof of an apartment building? | no, the building owner's insurance covers the building | yes, renters insurance covers the whole building | yes, health insurance covers it | no, a roof can never be insured
+hint: Who owns the building?
+mc2: Which risk does life insurance help with? | a family losing income after a person dies | car repairs after a crash | a broken phone screen | regular doctor visits
+hint: The money is paid to the people who depended on someone.
+mc2: Which insurance replaces part of your income if an injury keeps you from working for a long time? | disability insurance | renters insurance | car insurance | life insurance
+hint: It is for someone who is alive but cannot work.
+mc1: A driver backs into a fence and damages it. Which insurance helps pay for the fence? | car insurance | health insurance | renters insurance | life insurance
+hint: The damage happened while driving.
+
+lesson: Premiums and deductibles
+num2: An insurance premium is $100 a month. How many dollars is that for a whole year? | 1200
+hint: How many months are in a year?
+num2: A car repair costs $2,000. The deductible is $500, and the policy covers the rest. How many dollars does the insurance pay? | 1500
+hint: The driver pays the deductible first. Insurance pays the rest.
+num2: A plan has a $1,000 deductible. A hospital bill is $600. How many dollars does the patient pay? | 600
+hint: Has the bill gone past the deductible yet?
+num2: A bill is $1,500 and the deductible is $250. The policy covers everything after the deductible. How many dollars does the policy holder pay? | 250
+hint: Who pays the first part of the bill, and how big is that part?
+mc2: Plan A costs $50 a month. Plan B costs $90 a month. Which has the lower premium cost for a year, and what is it? | Plan A, $600 | Plan B, $1,080 | Plan A, $50 | Plan B, $90
+hint: Multiply each monthly premium by 12.
+num2: Renters insurance costs, for example, $15 a month. How many dollars is that for a year? | 180
+hint: Multiply by the number of months in a year.
+
+lesson: Managing risk
+mc2: Usually, a plan with a higher deductible has a ___ premium. | lower | higher | equal | zero
+hint: If you agree to pay more of each loss yourself, does the insurer take on more risk or less?
+mc2: Jun had no accidents this year. He says his car insurance was a waste. What is the best reply? | the premium paid for protection from a big loss that could have happened | he should have had an accident to use it | insurance pays back all premiums each year | he should have skipped the deductible
+hint: What were his premiums buying?
+mc2: Why do many people keep savings even when they have insurance? | to pay the deductible and costs insurance does not cover | insurance pays every cost | savings make the premium zero | savings replace the need for a policy
+hint: What part of a loss does insurance not pay?
+num2: After the deductible is paid, a plan pays, for example, 80% of the rest. A bill is $1,500 and the deductible is $500. How many dollars does the plan pay? | 800
+hint: Subtract the deductible first, then find 80% of what is left.
+mc2: Wearing a seat belt and driving carefully is an example of ___. | reducing risk | transferring risk to an insurer | ignoring risk | raising the deductible
+hint: These actions make an accident or injury less likely or less serious.
+mc2: Buying insurance is an example of ___. | transferring risk to an insurer | avoiding all risk | making a loss impossible | keeping all of the risk yourself
+hint: Who takes on the big cost if a covered loss happens?
+
+lesson: Choosing coverage
+num3: Plan A costs $40 a month with a $2,000 deductible. Plan B costs $80 a month with a $500 deductible. Suppose you have one $2,000 loss this year. How many dollars does the plan with the lower total cost save? | 1020
+hint: For each plan, add a year of premiums to what you pay for the loss.
+num3: Fixing a cracked phone costs $250 without protection. A protection plan costs $8 a month for 12 months, and each repair has a $50 deductible. If the phone needs one repair this year, how many dollars does the plan save? | 104
+hint: Find the plan's yearly cost plus the deductible, then compare with $250.
+num3: In a group, 1,000 people each pay a premium of $200 a year. How many dollars are in the shared pool? | 200000
+hint: Multiply the number of people by each premium.
+num3: Home insurance costs $1,200 a year if paid all at once, or $105 a month. How many more dollars a year does paying monthly cost? | 60
+hint: Find the yearly cost of the monthly plan first.
+mc3: Nadia is healthy, rarely sees a doctor and has $3,000 in savings. Which plan choice could make sense for her? | a lower premium with a deductible she could pay from savings | no insurance, because healthy people never get hurt | the highest premium, because higher prices mean better care | a plan whose deductible is far more than she could pay
+hint: Think about what she could afford if something went wrong.
+sa3: Explain how insurance spreads risk, using a group of 100 people as an example. | Suppose 100 people each pay $50, making a $5,000 pool. If one person has a $4,000 loss, the pool pays it. Each person paid a small amount, and no one had to face a big loss alone.
+
+unit: Investing and retirement | 10 | fin_10, fin_11_n1
+
+lesson: Investing words
+mc1: Buying a share of stock means you ___. | own a small part of a company | lend money to a company | open a savings account | buy insurance
+hint: Shareholders are part owners.
+mc1: What is a bond? | a loan you make to a company or government that pays interest | part ownership of a company | a type of bank card | a retirement account
+hint: The buyer is the lender.
+mc1: What is a mutual fund? | a pool of money from many investors used to buy many investments | one company's stock | a bank loan | a single savings bond
+hint: Mutual means shared.
+mc1: What is an index fund? | a fund that tries to match a market index by holding the investments in it | a fund that buys only one stock | a savings account | a bond from one city
+hint: An index tracks a whole group of investments.
+mc1: What is a dividend? | a share of a company's profit paid to shareholders | interest paid on a loan | a fee for buying stock | a tax on income
+hint: It goes to the owners of a company.
+mc2: What is the return on an investment? | the money gained or lost on it | the amount you first put in | the fee to open the account | the date you sell it
+hint: It tells how the investment turned out.
+
+lesson: Risk and return
+mc2: Usually, investments that can earn higher returns over time also have ___. | more risk | less risk | no risk | a guaranteed return
+hint: Bigger possible rewards usually come with bigger possible swings.
+mc2: Which is usually the lowest-risk place for money? | a savings account at an insured bank | stock in one new company | a fund made only of stocks | a loan to a stranger
+hint: Which one is least likely to lose value?
+mc2: What is diversification? | spreading money across many different investments | putting all your money into one stock | keeping only cash | buying whatever rose most last year
+hint: Think of the saying about not keeping all your eggs in one basket.
+mc2: Why does diversification lower risk? | if one investment falls, others may hold steady or rise | it promises a profit | all investments rise together | it removes all fees
+hint: What happens when one part of a mix does badly?
+mc2: Prices rise, for example, 3% a year while savings earn 1% a year. What happens to what the savings can buy? | it goes down | it goes up | it stays the same | it doubles
+hint: Compare how fast prices grow with how fast the savings grow.
+num2: A share of stock was bought for $40 and is now worth $50. What is the percent gain? | 25
+hint: Find the gain in dollars, then divide by the starting price.
+
+lesson: Retirement accounts
+mc1: What is a 401(k)? | a retirement savings plan offered through an employer | an account for college savings | a government benefit for everyone | a credit card
+hint: You get it through a job.
+mc1: What is an IRA? | a retirement account a person can open on their own | a retirement plan run only by an employer | a savings plan for college | a type of credit card
+hint: The I stands for individual.
+mc2: What is an employer match? | money an employer adds to your retirement plan based on what you put in | a boss matching your work hours | a tax on your paycheck | a loan from your employer
+hint: The employer adds to what you save.
+num2: Kenji's salary is $50,000. He puts 4% of it into his retirement plan, and his employer matches it dollar for dollar. How many dollars does the employer add? | 2000
+hint: Find 4% of 50,000.
+num2: Ana puts $3,000 a year into her retirement plan. Her employer matches 50% of what she puts in. How many dollars does the employer add? | 1500
+hint: Fifty percent means half.
+mc2: In a Roth IRA, money taken out in retirement under the rules is ___. | tax-free | taxed twice | never allowed | paid by an employer
+hint: The money put into this account was already taxed.
+
+lesson: Long-term thinking
+mc2: Why is starting to save for retirement early so powerful? | the money has more years to grow | early savings are never taxed | the law lets early savers stop working sooner | stocks only rise for young people
+hint: What does time do for money that earns a return?
+num2: Leila puts $2,000 a year into a retirement account for 40 years. How many dollars does she put in, not counting growth? | 80000
+hint: Multiply the yearly amount by the number of years.
+mc2: A stock fund falls 20% in one month. What is the best way for a long-term investor to think about it? | markets rise and fall, so stick to a long-term plan | sell everything right away in a panic | the fund is now worthless forever | it is certain to rise next month
+hint: Think about the difference between one month and many years.
+mc2: Jake puts all his savings into one company's stock because it rose last year. What is the biggest problem? | his money is not diversified | stocks never go up | he will owe no taxes | it is too safe
+hint: What happens to him if that one company does badly?
+num2: A share of stock falls from $80 to $60. What is the percent loss? | 25
+hint: Divide the drop in dollars by the starting price.
+mc2: Why is it usually costly to take money out of a retirement plan long before retirement? | there can be taxes and penalties, and the money stops growing | the bank keeps all of it | the employer takes back your salary | the money is lost forever
+hint: Think about rules for retirement plans and about lost growth.
+
+lesson: Planning for the future
+num3: Priya earns $60,000 a year. She puts 5% into her retirement plan, and her employer matches dollar for dollar up to 5%. How many dollars go into the plan in one year in all? | 6000
+hint: Find her part, then add the same amount from the employer.
+num3: An investment of $1,000 grows to $1,500. What is the percent gain? | 50
+hint: Divide the gain by the starting amount.
+mc3: Which choice is the most diversified? | a fund holding hundreds of companies plus some bonds | stock in two companies in the same business | all of the money in one company | a bond from just one city
+hint: Which one spreads money across the most different investments?
+mc3: Maya is 22 and will not need her retirement money for more than 40 years. Why might she accept more ups and downs than someone retiring next year? | she has many years to recover from drops | young people cannot lose money | stocks are guaranteed to rise over long periods | she has no other choice
+hint: How long does she have before she needs the money?
+num3: A fund charges, for example, a yearly fee of 1% of the money invested. How many dollars is the fee on $20,000 for one year? | 200
+hint: Find one hundredth of 20,000.
+sa3: Explain why an employer match is sometimes called free money, and what a worker must do to get it. | The employer adds extra money to the worker's retirement plan without lowering the worker's pay. To get it, the worker usually has to put some of their own pay into the plan, often at least the amount the employer will match.
+
+unit: Compound interest and credit | 12 | fin_12, g13ci
+
+lesson: Simple and compound interest
+mc1: Which statement describes compound interest? | interest is added to the balance, and later interest is figured on that larger balance | interest is figured only on the original deposit every year | the interest rate goes up each year | interest is paid only once, at the end
+hint: Think about interest earning interest.
+mc1: In A = P(1 + r)^t, what does A stand for? | the amount after t years | the yearly rate | the starting amount | the number of years
+hint: It is the result you are trying to find.
+mc1: What is APR? | the yearly cost of borrowing written as a percent | the monthly payment | the credit limit | the total debt
+hint: The A stands for annual.
+mc2: $1,000 earns 10% a year for 2 years. Which earns more, simple interest or interest compounded yearly? | compound, $210 compared with $200 | simple, $200 compared with $210 | they earn the same | compound, $2,000 compared with $200
+hint: In the second year, what balance is compound interest figured on?
+mc1: In A = P(1 + r)^t, how is a rate of 6% written as r? | 0.06 | 6 | 0.6 | 1.06
+hint: Percent means out of 100.
+num2: $1,000 earns 10% interest compounded yearly. What is the amount after 1 year in dollars? | 1100
+hint: Multiply by 1.10.
+
+lesson: Using the compound interest formula
+num2: $1,000 earns 10% interest compounded yearly. What is the amount after 2 years in dollars? | 1210
+hint: Multiply 1,000 by 1.1 two times.
+num2: $2,000 earns 5% interest compounded yearly. What is the amount after 2 years in dollars? | 2205
+hint: Find 2,000 x 1.05, then multiply by 1.05 again.
+num2: $500 earns 20% interest compounded yearly. What is the amount after 2 years in dollars? | 720
+hint: 1.2 x 1.2 = 1.44.
+num2: $1,000 earns 10% interest compounded yearly. What is the amount after 3 years in dollars? | 1331
+hint: Find 1.1 to the third power.
+num2: $4,000 earns 10% interest compounded yearly for 2 years. How many dollars of interest does it earn in all? | 840
+hint: Find the final amount, then subtract the starting amount.
+mc2: Which expression gives the amount when $3,000 earns 4% compounded yearly for 5 years? | 3000(1.04)^5 | 3000(1.4)^5 | 3000(0.04)^5 | 3000 x 1.04 x 5
+hint: Write the rate as a decimal and add it to 1. The exponent is the number of years.
+
+lesson: The rule of 72
+num2: Using the rule of 72, about how many years does money take to double at 8% compounded yearly? | 9
+hint: Divide 72 by the rate.
+num2: Using the rule of 72, about how many years does money take to double at 6% compounded yearly? | 12
+hint: Divide 72 by the percent.
+num2: Using the rule of 72, about what yearly percent rate doubles money in 6 years? | 12
+hint: The rate times the years is about 72.
+mc2: What does the rule of 72 give you? | an estimate of how long money takes to double | the exact time for money to double | the interest for one year | the monthly payment on a loan
+hint: Is it exact, or a quick mental shortcut?
+num3: Using the rule of 72, about how many dollars will $5,000 grow to in 16 years at 9% compounded yearly? | 20000
+hint: Find the doubling time, then count how many times the money doubles.
+num2: A debt grows at 18% a year with no payments. Using the rule of 72, about how many years until it doubles? | 4
+hint: The rule works for debt as well as savings.
+
+lesson: Credit cards and credit scores
+mc1: What does a credit card let you do? | borrow up to a limit and repay later | take money straight out of checking | get money you never repay | earn interest like a savings account
+hint: A credit card is a kind of loan.
+mc2: What happens if you pay only the minimum payment on a credit card each month? | the debt takes much longer to pay off and costs more interest | the debt disappears | no interest is charged | the credit limit doubles
+hint: Most of a small payment can go to interest.
+mc2: What is a credit score? | a number lenders use to judge how likely a person is to repay | the balance in a bank account | a person's yearly income | a grade on a school test
+hint: Lenders look at it before they lend.
+mc2: Which habit helps build a good credit score? | paying bills on time | missing payments | using the full credit limit every month | opening many new cards at once
+hint: Lenders like borrowers who are reliable.
+num2: A credit card has an APR of, for example, 24%, which is 2% a month. How many dollars of interest does a $1,000 balance cost for one month? | 20
+hint: Find 2% of 1,000.
+mc2: Paying the full statement balance by the due date every month usually means ___. | no interest is charged on purchases | the APR doubles | the credit score drops | the card is closed
+hint: Interest is charged on balances that are carried over.
+
+lesson: Credit and growth in real life
+num3: A credit card balance is $2,000, and the interest is, for example, 1.5% a month. The card holder makes a $40 payment after one month of interest. How many dollars of the payment go toward lowering the balance? | 10
+hint: Find one month of interest first. The rest of the payment lowers the balance.
+num3: $5,000 earns 8% for 2 years. How many more dollars does interest compounded yearly earn than simple interest? | 32
+hint: Find the final amount both ways, then subtract.
+mc3: Amina invests $1,000 at 6% compounded yearly for 24 years. Using the rule of 72, about how much will she have? | about $4,000 | about $2,000 | about $2,440 | about $8,000
+hint: Find the doubling time, then count the doublings in 24 years.
+num3: A $600 TV is bought on a credit card that charges, for example, 2% interest a month, compounded monthly. No payments are made for 2 months. What is the balance in dollars after 2 months? | 624.24
+hint: Use 600 x 1.02^2.
+mc3: Kwame has a $1,000 credit limit and a $900 balance. Which change would most likely help his credit score? | paying the balance down | spending up to his limit | missing a payment | opening five new cards in one week
+hint: Lenders look at how much of your limit you use.
+sa3: Explain why compound interest helps savers but hurts borrowers who carry a balance. | For savers, interest is added to the balance and then earns interest itself, so savings grow faster over time. For borrowers, unpaid interest is added to the debt and then charged interest too, so the debt grows faster and costs more to pay off.
+
+unit: Paying for college | 13 | fin_13
+
+lesson: College aid words
+mc1: What is the FAFSA? | a form students fill out to apply for federal student aid | a type of student loan | a scholarship for athletes | a college entrance exam
+hint: Its full name begins with the words Free Application.
+mc1: What is a grant? | aid for school that usually does not have to be repaid and is often based on need | money borrowed for school | a part-time campus job | a placement test
+hint: It is a kind of gift aid.
+mc1: What is a scholarship? | money for school that does not have to be repaid, often awarded for merit, talent or other criteria | a loan with a low rate | a job on campus | a tax on tuition
+hint: Students often compete for it with grades, essays or skills.
+mc1: What is a student loan? | borrowed money for school that must be repaid, usually with interest | free money for school | pay from a campus job | a discount from a college
+hint: Think about what the word loan always means.
+mc1: What is work-study? | a program that offers part-time jobs to help students earn money for school costs | free tuition for working adults | a loan paid by an employer | a class about careers
+hint: Students earn this aid by doing something.
+mc2: Which kind of aid must be paid back? | a student loan | a grant | a scholarship | work-study earnings
+hint: Which one is borrowed?
+
+lesson: Cost of attendance
+mc1: What does the cost of attendance include? | tuition, housing, food, books and other costs of a school year | only tuition | only books and supplies | only the application fee
+hint: It is meant to show the full cost of a year at school.
+num2: A college lists tuition of $10,000, housing and food of $8,000, books of $1,000 and other costs of $1,000. What is the cost of attendance in dollars? | 20000
+hint: Add all four amounts.
+num2: The cost of attendance is $25,000. A student gets $9,000 in grants and $4,000 in scholarships. How many dollars of cost remain? | 12000
+hint: Subtract all of the gift aid.
+mc2: What is the net price of college? | the cost of attendance minus grants and scholarships | tuition plus loans | the listed sticker price | the total amount of loans
+hint: Net means what is left after something is taken away.
+num2: A college's sticker price is $30,000. A student gets $18,000 in grants and scholarships. What is the net price in dollars? | 12000
+hint: Subtract the gift aid from the sticker price.
+mc2: Why might a college with a higher sticker price cost a family less? | it may give more grants and scholarships | it never charges tuition | its loans are free | its sticker price already includes all aid
+hint: Compare net prices, not sticker prices.
+
+lesson: Kinds of aid
+mc2: Which is gift aid? | a grant | a student loan | a work-study job | a parent loan
+hint: Gift aid does not have to be paid back.
+mc2: Which kind of aid is earned by working? | work-study | a grant | a scholarship | a loan
+hint: Which one comes with a part-time job?
+num2: An aid offer lists a $5,000 scholarship, a $3,000 grant, a $4,000 loan and $2,000 of work-study. How many dollars of aid never have to be repaid or earned? | 8000
+hint: Add only the gift aid.
+num2: An aid offer lists a $5,000 scholarship, a $3,000 grant, a $4,000 loan and $2,000 of work-study. How many dollars of aid does it offer in all? | 14000
+hint: Add every line of the offer.
+mc2: Why is a loan in an aid offer not the same as a discount? | it must be repaid later, often with interest | it is free money | it lowers tuition forever | the college pays it back for you
+hint: Think about what happens after graduation.
+mc2: For a subsidized federal student loan, who generally pays the interest while the student is in school at least half-time? | the government | the student | the college | no one, because the interest doubles instead
+hint: Subsidized means someone else helps with the cost.
+
+lesson: Comparing aid offers
+num3: College A costs $30,000 and offers $15,000 in grants and a $5,000 loan. College B costs $24,000 and offers $6,000 in grants and an $8,000 loan. How many dollars lower is College A's net price? | 3000
+hint: Only gift aid lowers the net price. Loans do not.
+mc3: College X costs $30,000 and offers $20,000 in aid: $5,000 in grants and $15,000 in loans. College Y costs $30,000 and offers $12,000 in aid, all grants. Which has the lower net price? | College Y, because only grants lower the price | College X, because its total aid is larger | They have the same net price | College X, because loans count as free money
+hint: Subtract only the grants from each cost.
+mc2: How often must a student fill out the FAFSA to keep getting federal aid? | each school year | only once, before the first year | only after graduating | only if they change colleges
+hint: Family money can change from year to year.
+num3: A student loan of $10,000 charges, for example, 5% simple interest. How many dollars of interest build up in 1 year? | 500
+hint: Multiply the loan by 0.05.
+mc2: Which is a warning sign that a scholarship offer may be a scam? | it asks you to pay a fee to receive the money | it comes from your school's aid office | it asks for an essay | it has a deadline
+hint: Real scholarships give money. Do they ask for money first?
+num2: A college's net price is $12,000 a year. How many dollars is that for 4 years, if the price stays the same? | 48000
+hint: Multiply by the number of years.
+
+lesson: Making a college money plan
+num3: Ravi borrows $6,000 each year for 4 years. Ignoring interest, how many dollars a month would he pay to repay it all in 10 years? | 200
+hint: Find the total borrowed and the number of months in 10 years.
+num3: Plan A is 4 years at a net price of $20,000 a year. Plan B is 2 years at $5,000 a year, then 2 years at $20,000 a year. How many dollars does Plan B save? | 30000
+hint: Find the total cost of each plan.
+num3: A cost of attendance is $22,000. A student gets a $7,000 grant, a $3,000 scholarship and $2,000 of work-study, and the family can pay $6,000. How many dollars are still needed? | 4000
+hint: Add everything that is covered, then subtract from the cost.
+num3: A student has a $2,400 work-study award for the year. She works 10 hours a week at $15 an hour. How many weeks does it take to earn the full award? | 16
+hint: Find her pay for one week first.
+mc3: Why should a student compare a future monthly loan payment with the pay they expect after college? | so the payment can fit in a budget with rent and other costs | because lenders forbid working while repaying | because the loan amount is set by the pay you expect | because the payment shrinks each year by law
+hint: Think about all the bills a new graduate has.
+sa3: Explain how to compare two college aid offers fairly. | Find each school's full cost of attendance. Subtract only grants and scholarships to find the net price. Then look at how much of the rest would be loans that must be repaid, and how much is work-study, and compare the totals.

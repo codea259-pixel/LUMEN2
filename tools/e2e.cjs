@@ -106,6 +106,15 @@ const errs = [];
   await q.click('#mydata summary'); await q.fill('#dl1', 'DELETE'); await q.fill('#dl2', 'norapass12'); await q.click('#mydata button:has-text("Delete my account forever")'); await q.waitForSelector('#af'); step('account deleted: ' + await q.textContent('#ae'));
   await q.evaluate(() => { document.getElementById('ae').textContent = '' }); await q.fill('[name=username]', 'nora15'); await q.fill('[name=password]', 'norapass12'); await q.click('#af button'); await q.waitForFunction(() => document.getElementById('ae').textContent); step('signing in again: ' + await q.textContent('#ae'));
 
+  // Reported mistakes: stored without who sent them; only the owner can list them and mark them fixed
+  const rep = await o.evaluate(async () => { await api('POST', '/api/reports', { ref: 'math-3-1-L1:1', q: 'Which shows 3 groups of 4? Key: 4 + 4 + 4', why: 'wrong answer' });
+    const bad = await api('POST', '/api/reports', { ref: 'math-3-1-L1:1', q: 'x', why: 'spam' }).then(() => 'accepted', () => 'refused');
+    const r = (await api('GET', '/api/owner/reports')).reports.find(x => x.ref === 'math-3-1-L1:1'); await api('POST', `/api/owner/reports/${r.id}`, { status: 'fixed' });
+    const after = (await api('GET', '/api/owner/reports')).reports.find(x => x.id === r.id); return { keys: Object.keys(r).sort().join(','), bad, status: after.status, closed: !!after.closed } });
+  if (/user|author|uid/.test(rep.keys) || rep.bad !== 'refused' || rep.status !== 'fixed' || !rep.closed) throw new Error('reports: ' + JSON.stringify(rep));
+  const anon = await (await fetch(B + '/api/reports', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ ref: 'a:1', q: 'xx', why: 'typo' }) })).status;
+  if (anon < 400) throw new Error('reports: accepted without signing in'); step(`reported mistake stored without who (${rep.keys}), marked fixed; bad reason and signed-out reports refused`);
+
   await br.close();
   console.log(errs.length ? 'ERRORS:\n' + errs.join('\n') : 'no browser errors');
 })().catch(async e => { console.error('FAIL', e.message); console.log(errs.join('\n')); process.exit(1) });

@@ -278,6 +278,23 @@ const errs = [], ok = s => console.log('✓', s);
   ok('owner deletes under-13 accounts unused for two years: ' + JSON.stringify(await o.evaluate(() => FBM.api('POST', '/api/owner/delete-inactive', {}))) + ', active learner kept: ' + await db(o, async u => (await firebase.app().firestore().collection('users').doc(u).get()).exists, z));
   await k3.reload(); await k3.waitForSelector('#cbe', { timeout: 20000 }); await k3.fill('#cbe', 'parent3@example.com'); await k3.click('#cban button'); await k3.waitForFunction(() => /Waiting/.test(document.getElementById('cban').textContent), null, { timeout: 15000 }); ok('learner asks again: ' + (await k3.textContent('#cban')).replace(/\s+/g, ' ').slice(0, 60));
 
+  // The consent record: events with a one-way code, no names or emails; nobody but the owner can read it, and nobody can change it
+  { const cl = await o.evaluate(async () => { const s = await firebase.app().firestore().collection('consentLog').get(), d = s.docs.map(x => x.data());
+      return { n: d.length, events: [...new Set(d.map(x => x.event))].sort().join(','), keys: [...new Set(d.flatMap(x => Object.keys(x)))].sort().join(','), noEmail: !JSON.stringify(d).includes('@') } });
+    const kr = await k3.evaluate(async () => { const db = firebase.app().firestore(), out = {}; const tryIt = async (k, fn) => { try { await fn(); out[k] = 'ALLOWED' } catch (e) { out[k] = 'blocked' } };
+      await tryIt('read', () => db.collection('consentLog').get()); await tryIt('owner-only event', () => db.collection('consentLog').add({ k: '0123456789abcdef', event: 'expired', at: Date.now(), policy: 'x' }));
+      await tryIt('extra field', () => db.collection('consentLog').add({ k: '0123456789abcdef', event: 'asked', at: Date.now(), policy: 'x', email: 'a@b.c' })); return out });
+    if (!cl.n || !/asked/.test(cl.events) || !/expired/.test(cl.events) || cl.keys !== 'at,event,k,policy' || !cl.noEmail || Object.values(kr).some(v => v !== 'blocked')) throw new Error('consent log: ' + JSON.stringify({ cl, kr }));
+    ok(`consent record: ${cl.n} events (${cl.events}), fields ${cl.keys}, no emails; learner can't read it, add owner events or extra fields`) }
+  // Reported mistakes: a learner can send one (what and why only) but not read them; the owner lists them and marks them fixed
+  { const rr = await k3.evaluate(async () => { const out = {}; await FBM.api('POST', '/api/reports', { ref: 'math-3-1-L1:1', q: 'Which shows 3 groups of 4? Key: 4 + 4 + 4', why: 'wrong answer' }); out.sent = 'ok';
+      const db = firebase.app().firestore(); try { await db.collection('reports').get(); out.read = 'ALLOWED' } catch (e) { out.read = 'blocked' }
+      try { await db.collection('reports').add({ ref: 'a:1', q: 'xx', why: 'typo', ts: Date.now(), status: 'open', uid: FBM.uid() }); out.withWho = 'ALLOWED' } catch (e) { out.withWho = 'blocked' } return out });
+    const or = await o.evaluate(async () => { const L = (await FBM.api('GET', '/api/owner/reports')).reports, r = L.find(x => x.ref === 'math-3-1-L1:1'); await FBM.api('POST', '/api/owner/reports/' + r.id, { status: 'fixed' });
+      const a = (await FBM.api('GET', '/api/owner/reports')).reports.find(x => x.id === r.id); return { keys: Object.keys(r).sort().join(','), status: a.status, closed: !!a.closed } });
+    if (rr.read !== 'blocked' || rr.withWho !== 'blocked' || or.status !== 'fixed' || !or.closed || /uid|user|author/.test(or.keys)) throw new Error('reports: ' + JSON.stringify({ rr, or }));
+    ok(`reported mistake: learner sent it (${or.keys}), can't read reports or add who; owner marked it fixed`) }
+
   // 7. Owner console: verify the teacher, lock an account
   await menu(o, 'Owner console'); await o.waitForSelector('.vs', { timeout: 15000 }); ok('owner sees ' + ((await o.$$('.vs tr')).length - 1) + ' users');
   await o.click('tr:has-text("Ms Alvarez") button:has-text("Verify teacher")'); await o.waitForSelector('tr:has-text("Ms Alvarez") >> text=Unverify', { timeout: 10000 }); ok('owner verified the teacher');

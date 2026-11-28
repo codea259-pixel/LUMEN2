@@ -46,6 +46,10 @@ const FBM=(()=>{
     pHint=mask(r.parentEmail);return r.parentEmail&&r.requested?'pending':'ask'};
   const waiting=()=>consent==='pending'||consent==='ask';
   const askParent=(email,uid)=>auth.sendSignInLinkToEmail(email,{url:location.origin+location.pathname+'?parent='+uid,handleCodeInApp:true});
+  /* A record of parent-permission events (the independent review asked for one): what happened, when, and under which policy
+     version, with a one-way code for the account instead of a name or email. Only the owner can read it; kept 3 years. */
+  const ckey=async uid=>{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode('bose-consent:'+uid));return [...new Uint8Array(b)].slice(0,8).map(x=>x.toString(16).padStart(2,'0')).join('')};
+  const clog=(uid,event)=>ckey(uid).then(k=>db.collection('consentLog').add({k,event,at:now(),policy:POLICY})).catch(e=>console.warn('consent log',e));
   const LK=()=>'lumen_wait_'+me.uid,lget=()=>{try{return JSON.parse(localStorage.getItem(LK())||'null')}catch(e){return null}};
   const userOut=()=>({id:me.uid,username:profile.username,display:profile.display,role:isOwner()?'owner':profile.role,verified:!!profile.verified,under13:!!profile.under13});
 
@@ -81,7 +85,7 @@ const FBM=(()=>{
     await doc('users',uid).set({username,display,role,verified:false,locked:false,under13,created:now()});
     await doc('state',uid).set({json:'{}',updated:now(),readers:[]});
     if(email||parentEmail||schoolEmail)await doc('private',uid).set({...(parentEmail?{parentEmail}:{}),...(email?{email}:{}),...(schoolEmail?{schoolEmail}:{})});
-    let sent=false;if(parentEmail)try{await askParent(parentEmail,uid);await doc('private',uid).update({requested:now()});sent=true}catch(e){console.warn(e)}
+    let sent=false;if(parentEmail)try{await askParent(parentEmail,uid);await doc('private',uid).update({requested:now()});sent=true;clog(uid,'asked')}catch(e){console.warn(e)}
     return{ok:true,sent}});
   route('POST','/api/login',async b=>{const u=String(b.username||'').trim().toLowerCase();if(!/^[a-z0-9_]{3,20}$/.test(u))throw new E(401,'Wrong username or password.');
     await auth.signInWithEmailAndPassword(emailOf(u),String(b.password||''));
@@ -97,7 +101,7 @@ const FBM=(()=>{
     const username=((me.email||'user').split('@')[0].toLowerCase().replace(/[^a-z0-9_]/g,'').slice(0,14)||'user')+rand(3,'23456789');
     await doc('users',me.uid).set({username,display,role,verified:false,locked:false,under13,created:now(),google:true});
     await doc('state',me.uid).set({json:'{}',updated:now(),readers:[]},{merge:true});if(me.email||parentEmail)await doc('private',me.uid).set({...(me.email?{email:me.email}:{}),...(parentEmail?{parentEmail}:{})});
-    let sent=false;if(parentEmail)try{await askParent(parentEmail,me.uid);await doc('private',me.uid).update({requested:now()});sent=true}catch(e){console.warn(e)}
+    let sent=false;if(parentEmail)try{await askParent(parentEmail,me.uid);await doc('private',me.uid).update({requested:now()});sent=true;clog(me.uid,'asked')}catch(e){console.warn(e)}
     return{ok:true,sent}});
   route('POST','/api/logout',async()=>{await auth.signOut();return{ok:true}});
   route('PATCH','/api/me',async b=>{need();const d=str(b.display,2,20,'Display names');await doc('users',me.uid).update({display:d});profile.display=d;return{display:d}});
@@ -310,7 +314,7 @@ const FBM=(()=>{
     try{await b.commit()}catch(e){try{await ref.set(data)}catch(e2){throw new E(429,'That wasn’t posted. Wait 20 seconds between posts, and keep it kind.')}}lastPost=Date.now();return ref}
   route('GET','/api/owner/backup',async()=>{need(isOwner());const rows=q=>q.docs.map(d=>({id:d.id,...d.data()})),all=async c=>{try{return rows(await db.collection(c).get())}catch(e){return{error:'Could not read '+c}}},one=async p=>{try{const d=await db.doc(p).get();return d.exists?d.data():null}catch(e){return null}};
     const out={site:await one('config/site'),stats:await one('stats/global')};
-    for(const c of ['users','private','consents','state','qvers','joinCodes','posts','replies','groups','certs'])out[c]=await all(c);
+    for(const c of ['users','private','consents','state','qvers','joinCodes','posts','replies','groups','certs','reports','consentLog'])out[c]=await all(c);
     const cls=await db.collection('classes').get();out.classes=[];
     for(const d of cls.docs){const c={id:d.id,...d.data()};for(const sub of ['assignments','board','maps','awards'])try{c[sub]=rows(await d.ref.collection(sub).get())}catch(e){c[sub]=[]}
       try{const ts=await d.ref.collection('tests').get();c.tests=[];for(const t of ts.docs){c.tests.push({id:t.id,...t.data(),key:rows(await t.ref.collection('key').get()),subs:rows(await t.ref.collection('subs').get())})}}catch(e){c.tests=[]}
@@ -333,7 +337,7 @@ const FBM=(()=>{
     const pr=doc('private',me.uid),pd=await pr.get(),r=pd.exists?pd.data():{};
     const email=b.parentEmail?str(b.parentEmail,5,100,'Email').toLowerCase():r.parentEmail;if(!email||!/^\S+@\S+\.\S+$/.test(email))throw new E(400,"Enter your parent or guardian's email.");
     if(r.requested&&now()-r.requested<60000)throw new E(429,'We just sent it. Please wait a minute before sending it again.');
-    await pr.set({parentEmail:email},{merge:true});await askParent(email,me.uid);await pr.update({requested:now()});
+    await pr.set({parentEmail:email},{merge:true});await askParent(email,me.uid);await pr.update({requested:now()});clog(me.uid,'asked');
     consent='pending';pHint=mask(email);return{ok:true,status:consent,hint:pHint}});
 
   /* Everything stored about one learner: for "Download my data" and for parents */
@@ -369,19 +373,28 @@ const FBM=(()=>{
         practiced:V.filter(v=>v&&v.att).length,mastered:V.filter(v=>lvl(v)===4).length,minutes:Math.round((st.secs||0)/60)})}
     return{email:em,kids}});
   route('POST','/api/parent/kids/:id/consent',async(b,p)=>{const em=await kidOf(p.id);
-    await doc('consents',p.id).set({decision:'yes',parentUid:me.uid,parentEmail:em,at:now(),method:'email link',policy:POLICY});return{ok:true}});
+    await doc('consents',p.id).set({decision:'yes',parentUid:me.uid,parentEmail:em,at:now(),method:'email link',policy:POLICY});await clog(p.id,'granted');return{ok:true}});
   route('GET','/api/parent/kids/:id/export',async(b,p)=>{await kidOf(p.id);return exportOf(p.id)});
-  route('DELETE','/api/parent/kids/:id',async(b,p)=>{await kidOf(p.id);await wipe(p.id);return{ok:true}});
+  route('DELETE','/api/parent/kids/:id',async(b,p)=>{await kidOf(p.id);await wipe(p.id);await clog(p.id,'deleted by parent');return{ok:true}});
 
   /* Owner: remove parent emails whose request was never answered within 14 days */
   route('POST','/api/owner/expire-consents',async()=>{need(isOwner());const q=await db.collection('users').where('under13','==',true).limit(1000).get();let n=0;
     for(const d of q.docs){if(d.data().managedBy)continue;const c=await doc('consents',d.id).get();if(c.exists&&c.data().decision==='yes')continue;
-      const pd=await doc('private',d.id).get(),r=pd.exists?pd.data():null;if(r&&r.parentEmail&&(!r.requested||now()-r.requested>=WAIT)){await pd.ref.update({parentEmail:FV.delete(),requested:FV.delete()});n++}}
-    return{removed:n}});
+      const pd=await doc('private',d.id).get(),r=pd.exists?pd.data():null;if(r&&r.parentEmail&&(!r.requested||now()-r.requested>=WAIT)){await pd.ref.update({parentEmail:FV.delete(),requested:FV.delete()});await clog(d.id,'expired');n++}}
+    let old=0;try{for(const d of (await db.collection('consentLog').where('at','<',now()-3*365*864e5).limit(500).get()).docs){await d.ref.delete();old++}}catch(e){}
+    return{removed:n,oldRecords:old}});
   /* Owner: delete accounts of learners under 13 that nobody has used for two years (the privacy policy's retention rule) */
   route('POST','/api/owner/delete-inactive',async()=>{need(isOwner());const q=await db.collection('users').where('under13','==',true).limit(1000).get(),cut=now()-730*864e5;let n=0;
-    for(const d of q.docs){const st=await doc('state',d.id).get(),last=Math.max(d.data().created||0,st.exists?st.data().updated||0:0);if(last<cut){await wipe(d.id);n++}}
+    for(const d of q.docs){const st=await doc('state',d.id).get(),last=Math.max(d.data().created||0,st.exists?st.data().updated||0:0);if(last<cut){await wipe(d.id);await clog(d.id,'deleted inactive');n++}}
     return{deleted:n}});
+  /* Reported mistakes in questions: what and why, never who (firestore.rules allows only those fields) */
+  const REPORT_WHY=['wrong answer','confusing','typo','other'];
+  route('POST','/api/reports',async b=>{need();const ref=str(b.ref,2,80),q=str(b.q,2,400),why=String(b.why||'');
+    if(!/^[\w.:-]+$/.test(ref)||!REPORT_WHY.includes(why))throw new E(400,'Choose what is wrong.');
+    await db.collection('reports').add({ref,q,why,ts:now(),status:'open'});return{ok:true}});
+  route('GET','/api/owner/reports',async()=>{need(isOwner());try{for(const d of (await db.collection('reports').where('closed','<',now()-365*864e5).limit(200).get()).docs)await d.ref.delete()}catch(e){}const s=await db.collection('reports').orderBy('ts','desc').limit(500).get();return{reports:s.docs.map(d=>({id:d.id,n:1,...d.data()}))}});
+  route('POST','/api/owner/reports/:id',async(b,p)=>{need(isOwner());const st=String(b.status||'');if(!['open','fixed','dismissed'].includes(st))throw new E(400,'Unknown status.');
+    await doc('reports',p.id).update({status:st,closed:st==='open'?null:now()});return{ok:true}});
   route('POST','/api/tutor',async()=>{throw new E(503,'The AI tutor needs the hosted version of the site.')});
 
   async function api(method,path,body){for(const [m,re,fn] of R){if(m!==method)continue;const mt=re.exec(path);if(!mt)continue;
