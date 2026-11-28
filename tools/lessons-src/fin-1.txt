@@ -5,74 +5,74 @@
 unit: Coins and counting money | K | fin_0
 
 lesson: Meet the coins
-mc1: Lily has a coin worth 1 cent. Which coin is it? | penny | nickel | dime | quarter
-hint: It is the copper-colored coin.
-mc1: Omar has a coin worth 5 cents. Which coin is it? | nickel | penny | dime | quarter
-hint: Five pennies trade for this one coin.
-mc1: Ana has a coin worth 10 cents. Which coin is it? | dime | nickel | penny | quarter
-hint: Two nickels trade for this one coin.
-mc1: Kenji has a coin worth 25 cents. Which coin is it? | quarter | dime | nickel | penny
-hint: It is the biggest of these four coins.
-mc1: Which coin is the smallest in size? | dime | penny | nickel | quarter
-hint: Size and value are not the same. Look for the tiny silver coin.
-mc1: What do we call paper money that is worth 100 cents? | dollar | dime | penny | quarter
-hint: It is paper, not a coin.
+mc1: Which coin is copper colored, not silver? | penny | nickel | dime | quarter
+hint: Three of these coins look silver. Find the one that looks brown.
+mc1: Which coin is the smallest? | dime | penny | nickel | quarter
+hint: Small does not mean worth less. Look for the tiny silver coin.
+mc1: Which coin is the biggest? | quarter | nickel | penny | dime
+hint: Put the coins in a line from small to big. Which one is at the end?
+mc1: This silver coin is bigger than a penny and smaller than a quarter. Which coin is it? | nickel | dime | penny | quarter
+hint: Which silver coin is in the middle in size?
+mc1: Which coin is small and silver, with bumpy lines around its edge? | dime | nickel | penny | quarter
+hint: Run a finger around the edge of each coin. Which small one feels bumpy?
+mc1: Coins are made of metal. What do we call money made of paper? | bill | coin | penny | dime
+hint: Think of the money a grown-up folds into a wallet.
 
-lesson: Which is worth more?
-mc1: Which coin is worth the most? | quarter | dime | nickel | penny
-hint: Think about how many cents each coin is worth.
-mc1: Which coin is worth the least? | penny | nickel | dime | quarter
-hint: Find the coin worth just one cent.
+lesson: How much is each coin?
+num1: How many cents is a penny worth? | 1
+hint: It is the coin worth the least of all.
 num1: How many cents is a nickel worth? | 5
-hint: Count the pennies it takes to make one.
+hint: Count the pennies it takes to trade for one.
 num1: How many cents is a dime worth? | 10
-hint: Count by fives two times.
+hint: Hold up both hands. Count all your fingers.
+mc1: Which coin is worth 25 cents? | quarter | dime | nickel | penny
+hint: It is the biggest of the four coins.
+mc1: A dime is smaller than a nickel. Which one is worth more? | dime | nickel | the same | cannot tell
+hint: Bigger does not always mean worth more. Think about the cents.
+mc1: Which coin is worth the least? | penny | nickel | dime | quarter
+hint: Find the coin worth just 1 cent.
+
+lesson: Counting pennies
+num1: You have 3 pennies. How many cents is that? | 3
+hint: Each penny is 1 cent. Touch each one as you count.
+num1: You have 6 pennies. How many cents is that? | 6
+hint: Count 1 cent for each penny.
+num1: Ana has 4 pennies. She finds 1 more penny. How many cents does she have now? | 5
+hint: Start at 4. Count on 1.
+num1: How many pennies make 10 cents? | 10
+hint: Each penny is worth 1 cent.
+mc1: Which coins are worth 2 cents? | 2 pennies | 2 nickels | 1 nickel | 1 dime
+hint: Which coin is worth 1 cent? Count 1 for each of those coins.
+num1: Omar has 8 pennies. He gives 2 pennies to his sister. How many cents does he have left? | 6
+hint: Start at 8. Count back 2.
+
+lesson: Counting nickels by fives
+num1: You have 2 nickels. How many cents is that? | 10
+hint: Each nickel is 5 cents. Count by fives.
+num1: You have 3 nickels. How many cents is that? | 15
+hint: Say one number for each nickel: 5, then keep counting by fives.
+num1: You have 4 nickels. How many cents is that? | 20
+hint: Count by fives four times.
 num1: How many pennies make 1 nickel? | 5
 hint: Hold up one hand. Count your fingers.
-mc1: A nickel is bigger than a dime. Which coin is worth more? | dime | nickel | they are equal | you cannot tell
-hint: Bigger does not always mean worth more. Think about the cents.
+mc1: Which coins are worth 10 cents? | 2 nickels | 2 pennies | 10 nickels | 1 nickel
+hint: Each nickel is 5 cents. Count by fives.
+mc1: Sam counts his nickels: 5, 10, 15. What number does he say next? | 20 | 16 | 25 | 11
+hint: Each nickel adds 5 more cents.
 
-lesson: Counting pennies and nickels
-num1: You have 3 pennies. How many cents is that? | 3
-hint: Each penny is one cent. Count them.
-num1: You have 2 nickels. How many cents is that? | 10
-hint: Count by fives.
-num1: You have 1 nickel and 2 pennies. How many cents is that? | 7
-hint: Start at 5. Then count on 1 for each penny.
-num1: You have 3 nickels. How many cents is that? | 15
-hint: Count by fives three times.
-mc1: Which group is worth 6 cents? | 1 nickel and 1 penny | 6 nickels | 1 dime and 1 penny | 2 nickels
-hint: Start at 5 and count on.
-num1: How many cents are 10 pennies? | 10
-hint: Count each penny as one.
-
-lesson: Counting dimes
-num1: You have 2 dimes. How many cents is that? | 20
-hint: Count by tens.
-num1: You have 1 dime and 1 nickel. How many cents is that? | 15
-hint: Start at 10. Count on 5 more.
-num1: You have 1 dime and 3 pennies. How many cents is that? | 13
-hint: Start at 10. Count on 1 for each penny.
-num1: You have 3 dimes. How many cents is that? | 30
-hint: Count by tens three times.
-mc1: Which group is worth 10 cents? | 2 nickels | 2 pennies | 1 nickel | 1 quarter
-hint: Count by fives.
-num1: How many nickels make 1 dime? | 2
-hint: Count by fives until you reach 10.
-
-lesson: Buying with coins
-mc1: A sticker costs 5 cents. Which one coin pays exactly? | nickel | penny | dime | quarter
+lesson: Piggy banks and stickers
+num1: A sticker costs 5 cents. How many pennies do you need to pay for it? | 5
+hint: Each penny is 1 cent. Count up to the price.
+mc1: A sticker costs 5 cents. Which one coin pays the exact price? | nickel | penny | dime | quarter
 hint: Find the coin worth the same as the price.
-num1: An eraser costs 10 cents. You have 1 nickel. How many more cents do you need? | 5
-hint: Start at 5. Count up to 10.
-num1: You have 10 cents. You spend 4 cents. How many cents are left? | 6
-hint: Take 4 away from 10.
-mc1: Which coin is worth the same as 25 pennies? | quarter | dime | nickel | dollar
-hint: Find the coin worth 25 cents.
-mc1: Mia has 1 quarter. Leo has 1 dime. Who has more money? | Mia | Leo | they have the same | you cannot tell
-hint: Think about how many cents each coin is worth.
-num1: You have 2 dimes and 1 nickel. How many cents is that? | 25
-hint: Count by tens, then count on 5.
+num1: Mia has 7 pennies in her piggy bank. She puts in 3 more pennies. How many cents are in the piggy bank now? | 10
+hint: Start at 7. Count on 3.
+num1: Ravi has 3 pennies. A sticker costs 5 cents. How many more pennies does he need? | 2
+hint: Start at 3. Count up to 5.
+num1: Leo has 9 pennies. He pays 5 pennies for a sticker. How many pennies does he have left? | 4
+hint: Start at 9. Count back 5.
+num1: A pencil costs 10 cents. How many nickels pay for it? | 2
+hint: Count by fives until you reach 10.
 
 unit: Earning, saving and spending | 2 | fin_2
 
@@ -147,16 +147,16 @@ unit: Paying and making change | 3 | fin_3_n1, fin_0
 lesson: Adding prices
 num1: A sandwich costs $4 and a juice costs $2. What is the total in dollars? | 6
 hint: Add the two prices.
-num1: A pencil costs $1.25 and an eraser costs $0.50. What is the total in dollars? | 1.75
-hint: Add the dollars, then add the cents.
-num1: A notebook costs $2.50 and a pen costs $1.25. What is the total in dollars? | 3.75
-hint: 50 cents and 25 cents make how many cents?
-num1: Three stickers cost $0.25 each. What is the total in dollars? | 0.75
-hint: Count by quarters three times.
-mc1: A toy costs $3.40 and a ball costs $1.30. What is the total? | $4.70 | $5.70 | $2.10 | $3.70
-hint: Add dollars to dollars and cents to cents.
-num2: An apple costs $0.60 and a banana costs $0.35. What is the total in dollars? | 0.95
-hint: How many cents is 60 plus 35?
+num1: A pencil costs 35 cents and an eraser costs 40 cents. What is the total in cents? | 75
+hint: Add the tens, then add the ones.
+num1: A book costs $8, a bookmark costs $1 and a pen costs $3. What is the total of all three in dollars? | 12
+hint: Add two of the prices first. Then add the third.
+num1: Three stickers cost 25 cents each. What is the total in cents? | 75
+hint: Count by 25s three times.
+mc1: A toy costs $14 and a ball costs $5. What is the total in dollars? | $19 | $9 | $18 | $20
+hint: Start at 14 and count on 5.
+num2: An apple costs 60 cents and a banana costs 35 cents. What is the total in cents? | 95
+hint: Add 60 and 30 first. Then add the 5.
 
 lesson: Paying with bills
 mc1: Which of these is enough money to pay for a $7 book? | one $10 bill | one $5 bill | four $1 bills | one $5 bill and one $1 bill
@@ -175,43 +175,43 @@ hint: Count by 25s up to 100 cents.
 lesson: Counting up to make change
 num1: A cap costs $6. You pay with a $10 bill. How many dollars of change do you get? | 4
 hint: Count up from 6 to 10.
-num2: A lunch costs $3.75. You pay with a $5 bill. What is your change in dollars? | 1.25
-hint: Count up from $3.75 to $4, then from $4 to $5.
-num2: A movie snack costs $8.50. You pay with a $10 bill. What is your change in dollars? | 1.5
-hint: Count up from $8.50 to $9, then to $10.
+num2: A lunch costs $7. You pay with a $20 bill. How many dollars of change do you get? | 13
+hint: Count up from 7 to 10. Then count up from 10 to 20. Add the two jumps.
+num2: A snack costs 80 cents. You pay with a 1 dollar bill, which is 100 cents. How many cents of change do you get? | 20
+hint: Count up by tens from 80 to 100.
 num2: A shirt costs $12. You pay with a $20 bill. How many dollars of change do you get? | 8
 hint: Count up from 12 to 20.
-mc2: A snack costs $0.65. You pay with $1. Which coins make the right change? | 1 quarter and 1 dime | 3 dimes | 1 quarter and 1 nickel | 1 quarter, 1 dime and 1 penny
-hint: First find how many cents you get back. Count up from 65 to 100.
-num2: A bottle of glue costs $2.80. You pay with a $5 bill. What is your change in dollars? | 2.2
-hint: Count up from $2.80 to $3, then to $5.
+mc2: A snack costs 65 cents. You pay with a 1 dollar bill. Which coins make the right change? | 1 quarter and 1 dime | 3 dimes | 1 quarter and 1 nickel | 1 quarter, 1 dime and 1 penny
+hint: First find how many cents you get back. Count up from 65 cents to 100 cents.
+num2: A bottle of glue costs 45 cents. You pay with a 1 dollar bill. How many cents of change do you get? | 55
+hint: Count up 5 cents to 50 cents. Then count up from 50 cents to 100 cents.
 
 lesson: Change mistakes to watch for
-mc2: Jo buys a $4.25 lunch and pays with $5. She thinks her change is $1.25. What is the correct change? | $0.75 | $1.25 | $0.25 | $1.75
-hint: Count up from $4.25 to the next whole dollar. Is it more than $1?
+mc2: Jo buys a 75 cent juice and pays with a 1 dollar bill. She says her change is 35 cents. What is the correct change in cents? | 25 cents | 35 cents | 75 cents | 15 cents
+hint: Count up from 75 cents to 100 cents. Did Jo count too far?
 num2: What is the fewest number of coins that make 40 cents? | 3
 hint: Start with the biggest coin that is not worth more than 40 cents.
-num2: You buy a $2.35 notebook and a $1.40 pen. You pay with a $5 bill. What is your change in dollars? | 1.25
-hint: Add the prices first. Then count up to $5.
+num2: You buy a $6 book and a $3 pen. You pay with a $10 bill. How many dollars of change do you get? | 1
+hint: Add the prices first. Then count up to 10.
 mc2: What is a good way to check your change? | add the change to the price and see if you get the amount you paid | subtract the change from the price | count only the bills | multiply the price by the change
 hint: Price plus change should equal something you already know.
-num2: A toy costs $7.99. You pay with a $10 bill. What is your change in dollars? | 2.01
-hint: Count up 1 cent to $8, then count up to $10.
-num2: Three juice boxes cost $1.20 each. What is the total in dollars? | 3.6
-hint: Add $1.20 three times.
+num2: A pencil case costs 99 cents. You pay with a 1 dollar bill. How many cents of change do you get? | 1
+hint: How far is 99 from 100?
+mc2: Ken pays for a $5 game with a $20 bill. The cashier gives him one $10 bill back. Is that the right change in dollars? | No, he should get $15 | Yes, $10 is right | No, he should get $25 | No, he should get $5
+hint: Count up from 5 to 20. Compare that with what the cashier gave.
 
 lesson: A shopping trip
-num3: Marisol has $20. She buys a book for $8.50 and a puzzle for $6.25. How many dollars does she have left? | 5.25
-hint: Find the total cost first, then subtract it from $20.
-num2: Kenji buys 2 sandwiches for $4.50 each. He pays with a $10 bill. How many dollars of change does he get? | 1
+num3: Marisol has $20. She buys a book for $8 and a puzzle for $7. How many dollars does she have left? | 5
+hint: Find the total cost first, then subtract it from 20.
+num2: Kenji buys 2 sandwiches for $4 each. He pays with a $10 bill. How many dollars of change does he get? | 2
 hint: Two sandwiches cost how much together?
-mc3: Ayesha has a $10 bill. She wants a $3.75 kite, a $2.50 ball and a $4 game. Can she buy all three? | No, they cost $10.25, which is more than $10 | Yes, they cost $9.25 in all | Yes, they cost exactly $10 | No, they cost $11.25 in all
+mc3: Ayesha has a $10 bill. She wants a $4 kite, a $3 ball and a $5 game. Can she buy all three? | No, they cost $12, which is more than $10 | Yes, they cost $9 in all | Yes, they cost exactly $10 | No, they cost $11 in all
 hint: Add the three prices carefully. Then compare the total with $10.
-num3: Pencils cost $0.30 each. What is the greatest number of pencils you can buy with $2? | 6
-hint: Count by 30 cents. Stop before you go over 200 cents.
-num3: Pedro pays for a $6.40 meal with a $10 bill. The cashier gives him three $1 bills and some coins. How many cents are in coins? | 60
-hint: Find the full change first. Then take away the bills.
-sa3: Explain how to count up to find the change when you pay $5 for a $2.65 item. | Start at $2.65. Add a dime to get $2.75, then a quarter to get $3.00, then two $1 bills to get $5.00. The change is $2.35.
+num3: Pencils cost 30 cents each. What is the greatest number of pencils you can buy with a 1 dollar bill, which is 100 cents? | 3
+hint: Count by 30 cents. Stop before you go over 100 cents.
+num3: Pedro buys a $6 meal and pays with a $20 bill. The cashier gives him one $10 bill and some $1 bills. How many $1 bills does he get? | 4
+hint: Find the full change first. Then take away the $10 bill.
+sa3: Explain how to count up to find the change in cents when you pay with a 1 dollar bill for a 55 cent item. | Start at 55 cents. Add two dimes to get 75 cents, then a quarter to get 100 cents, which is 1 dollar. The change is 2 dimes and 1 quarter, which is 45 cents.
 
 unit: Budgets | 4 | fin_4
 
