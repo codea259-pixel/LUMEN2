@@ -5,69 +5,69 @@ unit: Colors and numbers | TK | es_pk, es_0
 
 lesson: Color words
 mc1: How do you say red in Spanish? | rojo | azul | verde | negro
-hint: Listen for the color word that starts with a rolling 'r' sound.
+hint: Point to something red. Say each word out loud. Which one do you remember for that color?
 mc1: How do you say blue in Spanish? | azul | rojo | amarillo | blanco
-hint: Think of the sky on a sunny day. Which short word ends with an 'l' sound?
+hint: Picture the sky. Say each color word out loud. Which one did you learn for it?
 mc1: How do you say green in Spanish? | verde | rojo | negro | azul
-hint: Grass and leaves are this color. Listen for the word that starts with a 'v' sound.
+hint: Picture grass and leaves. Say each word out loud. Which one did you learn for that color?
 mc1: How do you say yellow in Spanish? | amarillo | verde | blanco | rojo
-hint: The sun is this color. Listen for the longest word.
+hint: Picture the sun. Say each word slowly. Which one is the color word you know for it?
 mc1: What color is 'rojo'? | red | blue | green | yellow
-hint: 'Rojo' starts with the same sound as the English color word.
+hint: Say 'rojo' out loud. Do you remember it from a color song or game?
 mc1: What color is 'verde'? | green | yellow | red | black
-hint: A frog and a leaf in spring are 'verde'.
+hint: Close your eyes and say 'verde'. What color do you picture?
 
 lesson: More colors
 mc1: How do you say black in Spanish? | negro | blanco | gris | azul
-hint: The night sky with no stars is this color. Listen for the word that starts with an 'n' sound.
+hint: Picture the night sky. Say each word out loud. Which color word fits?
 mc1: How do you say white in Spanish? | blanco | negro | rojo | verde
-hint: Snow is this color. Listen for the word that starts with a 'bl' sound.
+hint: Picture snow. Which of these color words do you know for it?
 mc1: How do you say purple in Spanish? | morado | rojo | azul | amarillo
-hint: Grapes are often this color. Listen for the word that starts with an 'm' sound.
+hint: Say each word slowly. Which one did you learn for purple?
 mc1: How do you say gray in Spanish? | gris | negro | blanco | verde
-hint: A rain cloud is this color. The Spanish word starts with the same sound as the English word.
+hint: Picture a rain cloud. Say each word out loud. Which color word fits?
 mc1: What color is 'blanco'? | white | black | blue | red
-hint: Milk and snow are 'blanco'.
+hint: Think of the color words you know. Say 'blanco' and picture the color it names.
 mc1: What color is 'amarillo'? | yellow | purple | white | red
-hint: A lemon and a baby chick are 'amarillo'.
+hint: Close your eyes and say 'amarillo' slowly. What color do you see?
 
 lesson: Numbers 1 to 10
 num1: What number is 'tres'? | 3
-hint: Hold up one finger for each word as you count: uno, dos, tres.
+hint: Count in Spanish from 'uno', holding up one finger for each number, until you say 'tres'.
 mc1: How do you say five in Spanish? | cinco | cuatro | seis | dos
 hint: Count on your fingers: uno, dos, tres, cuatro. What comes next?
 mc1: How do you say eight in Spanish? | ocho | seis | siete | nueve
 hint: Count: seis, siete, and then the next number.
 num1: What number is 'diez'? | 10
-hint: Count all of your fingers on both hands.
+hint: Count in Spanish on your fingers, starting with 'uno'. How many fingers do you need to reach 'diez'?
 mc1: Which number comes after 'seis'? | siete | cinco | ocho | nueve
 hint: 'Seis' means six. What number comes after six?
 num1: What number is 'nueve'? | 9
-hint: 'Nueve' comes right before 'diez', which is ten.
+hint: Count in Spanish from 'uno', one finger at a time. Stop when you say 'nueve'.
 
 lesson: Numbers 11 to 20
 mc1: How do you say eleven in Spanish? | once | doce | uno | diez
 hint: Eleven comes right after 'diez'.
 num1: What number is 'quince'? | 15
-hint: Count on from 'diez': once, doce, trece, catorce, and then one more.
+hint: Count on from 'diez' in Spanish, one finger at a time, until you reach 'quince'.
 mc1: How do you say twelve in Spanish? | doce | dos | once | trece
 hint: Twelve comes right after 'once'.
 num1: What number is 'veinte'? | 20
-hint: It comes right after 'diecinueve', which is nineteen.
+hint: Count up in Spanish from 'diez', one finger or toe at a time, until you reach 'veinte'.
 mc1: How do you say sixteen in Spanish? | dieciséis | seis | diecisiete | quince
-hint: Sixteen is ten and six. Listen for the word that sounds like 'ten' and 'six' put together.
+hint: Sixteen is ten and six. Which word sounds like the Spanish words for ten and six put together?
 num1: What number is 'trece'? | 13
 hint: 'Trece' sounds a little like 'tres', but it comes right after 'doce'.
 
 lesson: Colors and numbers together
 num1: Mia has 'cuatro' crayons. How many crayons does Mia have? | 4
-hint: 'Cuatro' comes right after 'tres'.
+hint: Count the crayons in Spanish, one finger at a time, until you say 'cuatro'.
 mc1: A frog is 'verde'. What color is the frog? | green | red | blue | black
-hint: Think of the color of grass.
+hint: Think of the color words you have learned. Which English color goes with 'verde'?
 mc2: Which number is the biggest? | ocho | seis | dos | tres
 hint: Change each word into a number first.
 num2: Leo sees 'dos' red balls and 'tres' blue balls. How many balls does he see in all? | 5
-hint: 'Dos' is 2 and 'tres' is 3. Put them together.
+hint: Change each Spanish number into a number you know. Then add them.
 mc2: Count: uno, dos, tres, ___. Which number comes next? | cuatro | cinco | seis | dos
 hint: What number comes after three?
 mc2: Which word is a color, not a number? | rojo | dos | cinco | ocho
@@ -77,45 +77,45 @@ unit: Food words | 1 | es_1_n1
 
 lesson: Fruits
 mc1: How do you say apple in Spanish? | manzana | naranja | uva | pera
-hint: Apples can be red or green. Listen for the word that starts with an 'm' sound.
+hint: Say each fruit word out loud. Which one have you heard for apple?
 mc1: How do you say grape in Spanish? | uva | pera | manzana | naranja
-hint: Grapes are small and grow in bunches. The Spanish word is very short.
+hint: Picture a bunch of grapes. Which Spanish fruit word have you learned for it?
 mc1: How do you say pear in Spanish? | pera | uva | papa | pan
-hint: The Spanish word sounds a lot like the English word.
+hint: Be careful: 'papa' and 'pan' are foods, but they are not fruits.
 mc1: What does 'naranja' mean? | orange | apple | grape | lemon
-hint: This fruit has the same name as its color.
+hint: Say 'naranja' out loud. Think of where you have heard it, maybe at a market or in a song.
 mc1: What does 'sandía' mean? | watermelon | strawberry | pineapple | cherry
-hint: This big fruit is green on the outside and red on the inside.
+hint: The accent mark tells you which part to say strongly: san-DÍ-a. Say it out loud. Have you heard this fruit's name before?
 mc1: How do you say lemon in Spanish? | limón | melón | mango | queso
-hint: It is a sour yellow fruit. The Spanish word starts with the same sound as the English word.
+hint: Two choices rhyme but name different fruits. Say each one slowly and think of the one you learned.
 
 lesson: Foods and drinks
 mc1: How do you say bread in Spanish? | pan | papa | pollo | sopa
-hint: Toast and sandwiches are made from it. The Spanish word has only three letters.
+hint: Several choices start with p. Say each one out loud and think of the word you learned.
 mc1: How do you say milk in Spanish? | leche | agua | jugo | queso
-hint: Cows give us this white drink. Listen for the word that starts with an 'l' sound.
+hint: Say each word out loud. Which one is the drink word you learned for milk?
 mc1: How do you say water in Spanish? | agua | leche | jugo | arroz
-hint: It is a clear drink. Its Spanish name ends with the letter a.
+hint: Say each choice out loud. Which one is the drink word you learned for water?
 mc1: What does 'queso' mean? | cheese | milk | eggs | butter
-hint: It is made from milk, and people often put it on pizza.
+hint: Say 'queso' out loud: the 'qu' sounds like a 'k'. Think of a menu where you have seen this word.
 mc1: What does 'arroz' mean? | rice | bread | soup | beans
-hint: It is made of tiny white grains that you cook in water.
+hint: Say 'arroz' and roll the rr. Have you heard it in the name of a dish at a restaurant?
 mc1: What does 'pollo' mean? | chicken | fish | egg | potato
-hint: This meat comes from a farm bird that says 'cluck'.
+hint: Say 'pollo' out loud: the double l sounds like a 'y'. Which food have you heard called that?
 
 lesson: Meals of the day
 mc1: How do you say breakfast in Spanish? | desayuno | cena | almuerzo | leche
-hint: It is the meal you eat in the morning. Listen for the word that starts with a 'd' sound.
+hint: Say each meal word out loud. Which one have you heard people use in the morning?
 mc1: How do you say dinner in Spanish? | cena | desayuno | almuerzo | pan
-hint: It is the meal you eat in the evening. It is a short word.
+hint: Be careful: one choice is a food, not a meal. Which meal word do you hear in the evening?
 mc1: How do you say lunch in Spanish? | almuerzo | desayuno | cena | jugo
-hint: It is the meal you eat in the middle of the day. Listen for the word that starts with an 'a' sound.
+hint: One choice is a drink, not a meal. Which meal word is for noon?
 mc1: What does 'jugo' mean? | juice | soup | milk | water
-hint: You can make it by squeezing oranges.
+hint: In Spanish, j sounds like an English h. Say 'jugo' out loud and think of where you have heard it.
 mc2: Carlos eats eggs and toast at 7 in the morning. Which meal is he eating? | desayuno | cena | almuerzo | sopa
 hint: Which meal do you eat soon after you wake up?
 mc1: What does 'sopa' mean? | soup | rice | juice | salad
-hint: It is a hot food that you eat with a spoon from a bowl.
+hint: On a menu, 'sopa' is often listed with the foods you eat at the start of a meal. Which choice is it?
 
 lesson: El and la
 mc1: Which words mean 'the apple'? | la manzana | el manzana | las manzana | lo manzana
@@ -133,7 +133,7 @@ hint: Look at the last letter of 'huevo'.
 
 lesson: Me gusta and no me gusta
 mc1: What does 'me gusta' mean? | I like | I want | I eat | I do not like
-hint: People say 'me gusta' about a food they enjoy.
+hint: Is there a 'no' in this phrase? That rules out one choice. Then think of a sentence you know with 'me gusta'.
 mc1: Sofia says, 'No me gusta el queso.' What does Sofia mean? | She does not like cheese. | She likes cheese. | She wants cheese. | She does not like milk.
 hint: What does the little word 'no' change in 'me gusta'?
 mc2: How do you say 'I like bread' in Spanish? | Me gusta el pan. | No me gusta el pan. | Me gusta la pan. | Me gusta el agua.
@@ -147,15 +147,15 @@ unit: Animals | 2 | es_2
 
 lesson: Pets
 mc1: How do you say dog in Spanish? | perro | gato | pato | pez
-hint: This pet barks. Its Spanish name has a rolled 'rr' sound in the middle.
+hint: Be careful: 'gato' and 'pato' rhyme. Say each word out loud. Which one is the pet that barks?
 mc1: How do you say cat in Spanish? | gato | pato | perro | ratón
 hint: This pet says 'miau' in Spanish.
 mc1: How do you say fish (a live fish in a fish bowl) in Spanish? | pez | pan | paz | pato
 hint: This pet swims. Be careful: one short choice means peace and another means bread.
 mc1: What does 'pájaro' mean? | bird | frog | cat | rabbit
-hint: This animal has feathers and wings.
+hint: Say 'pájaro' with a strong first part: PÁ-ja-ro. Have you heard it in a song or story?
 mc1: What does 'conejo' mean? | rabbit | mouse | turtle | dog
-hint: This pet has long ears and hops.
+hint: Say 'conejo' slowly: co-NE-jo. The j sounds like an English h. Have you heard this pet's name before?
 mc1: How do you say turtle in Spanish? | tortuga | tortilla | conejo | ratón
 hint: This slow animal carries its shell. Be careful: one choice is a food.
 
@@ -165,27 +165,27 @@ hint: This farm animal gives milk and says 'mu'.
 mc1: How do you say horse in Spanish? | caballo | cabello | vaca | cerdo
 hint: Two choices look almost the same. One is an animal, and the other means hair.
 mc1: What does 'oveja' mean? | sheep | goat | cow | pig
-hint: Its soft wool can be made into warm sweaters.
+hint: Say 'oveja' out loud: o-VE-ja. Think of a farm song or story where you heard it.
 mc1: What does 'gallina' mean? | hen | duck | turkey | horse
-hint: This farm bird lays the eggs many people eat for breakfast.
+hint: Say 'gallina' out loud. The double l sounds like a 'y': ga-YI-na. Which farm animal have you heard called this?
 mc1: How do you say duck in Spanish? | pato | gato | pavo | pez
 hint: This bird swims in ponds and says 'cuac'.
 mc1: What does 'cerdo' mean? | pig | sheep | bear | cow
-hint: This pink farm animal likes to roll in the mud.
+hint: Say 'cerdo' out loud. In Latin America, c before e sounds like s. Which farm animal have you heard called this?
 
 lesson: Wild animals
 mc1: How do you say lion in Spanish? | león | tigre | oso | mono
-hint: The Spanish word looks a lot like the English word, but it has an accent mark.
+hint: The accent mark shows which part to say strongly. Say each choice out loud and think of the one you learned.
 mc1: What does 'oso' mean? | bear | monkey | wolf | snake
-hint: This big furry animal sleeps through the winter in a cave.
+hint: Say 'oso' out loud. It starts and ends with the same vowel. Think of an animal story where you heard it.
 mc1: What does 'mono' mean? | monkey | bear | mouse | lion
-hint: This animal swings from tree to tree.
+hint: Be careful: in English words, 'mono-' means one, but the Spanish word 'mono' names an animal. Which one?
 mc1: How do you say elephant in Spanish? | elefante | jirafa | serpiente | tigre
 hint: This huge gray animal has a long trunk.
 mc1: What does 'serpiente' mean? | snake | lizard | turtle | spider
-hint: This animal has no legs and slides along the ground.
+hint: Break it into parts: ser-PIEN-te. Say it slowly and think of where you have heard it.
 mc1: What does 'jirafa' mean? | giraffe | zebra | elephant | horse
-hint: Say the word out loud. It sounds like the English name of the tallest animal.
+hint: In Spanish, j sounds like an English h. Say 'jirafa' out loud with that sound and think of the animal it names.
 
 lesson: El, la and plurals
 mc2: How do you say 'the dogs' in Spanish? | los perros | las perros | los perro | el perros
@@ -205,7 +205,7 @@ lesson: Simple sentences about animals
 mc2: Which sentence means 'The dog is big'? | El perro es grande. | El perro es pequeño. | La perro es grande. | El perro son grande.
 hint: Check three parts: 'the dog', 'is' and 'big'.
 mc2: What does 'La tortuga es lenta' mean? | The turtle is slow. | The turtle is fast. | The turtle is green. | The rabbit is slow.
-hint: First find the animal. Then think about how that animal moves.
+hint: Find the animal word first. Then check 'lenta': in music, a part marked 'lento' is played at a certain speed. Which speed?
 mc2: Which word completes the sentence? Los gatos ___ negros. | son | es | está | soy
 hint: 'Los gatos' means more than one cat. Which word means 'are'?
 mc3: Which sentence is correct? | Las vacas son blancas. | Las vacas son blancos. | Las vacas es blancas. | La vacas son blancas.
@@ -222,53 +222,53 @@ hint: You write with it, and you can erase what it writes.
 mc1: How do you say backpack in Spanish? | mochila | mesa | silla | cuaderno
 hint: You carry your books in it on your back.
 mc1: What does 'cuaderno' mean? | notebook | book | desk | ruler
-hint: It has blank or lined pages that you write on.
+hint: Be careful: 'libro' is the word for book. 'Cuaderno' is something else you carry to class.
 mc1: What does 'silla' mean? | chair | table | window | door
-hint: You sit on it at your desk.
+hint: Say 'silla' out loud: the double l sounds like a 'y'. Think of the classroom furniture words you know.
 mc1: How do you say window in Spanish? | ventana | puerta | pared | silla
 hint: You look through it to see outside.
 mc1: What does 'regla' mean in a classroom? | ruler | scissors | glue | paper
-hint: You use it to measure and to draw straight lines.
+hint: Say 'regla' out loud. Think of the tools in your pencil box. Which one have you heard called this?
 
 lesson: People and places at school
 mc1: What does 'la maestra' mean? | the teacher | the student | the principal | the nurse
-hint: She teaches the class.
+hint: 'La' tells you this person is a woman. Think of the people you see at school and the word you learned for each.
 mc1: How do you say student in Spanish? | estudiante | maestro | director | escuela
 hint: This person goes to school to learn.
 mc2: What does 'biblioteca' mean? | library | bookstore | lunchroom | gym
-hint: Be careful: 'librería' is the word for a store that sells books. This place lends books.
+hint: Be careful: 'librería' is a false friend that names a kind of store. 'Biblioteca' names a different place.
 mc1: How do you say principal (the leader of a school) in Spanish? | director | maestro | estudiante | doctor
 hint: This person is in charge of the whole school.
 mc1: What does 'la cafetería' mean at school? | the lunchroom | the classroom | the library | the playground
-hint: Say it out loud. It sounds like an English word for a place where people eat.
+hint: Many Spanish place words end in -ería, like 'panadería' (bakery). Say 'cafetería' out loud and think of the room in a school it names.
 mc1: What does 'el patio' mean at school? | the schoolyard | the gym | the hallway | the office
-hint: Students play outside here at recess.
+hint: Say 'el patio' out loud. Think of where you have heard this word used at school.
 
 lesson: School subjects
 mc1: How do you say math in Spanish? | matemáticas | ciencias | historia | música
-hint: It looks like the long English word 'mathematics'.
+hint: Many school subjects in Spanish look like their English names. Say each choice out loud and compare.
 mc1: What does 'ciencias' mean? | science | history | art | reading
-hint: In this class you do experiments and study plants and animals.
+hint: Say 'ciencias' out loud. In Latin America, c before e or i sounds like s. Which subject have you heard called this?
 mc1: How do you say music class in Spanish? | la clase de música | la clase de arte | la clase de inglés | la clase de ciencias
 hint: In this class you sing and play instruments.
 mc2: What does 'educación física' mean? | P.E. (gym class) | science | health | art
-hint: In this class you run, jump and play sports.
+hint: Translate each word on its own. Then think of the short name students use for that class.
 mc2: Which is written correctly in Spanish? | Tengo clase de inglés. | Tengo clase de Inglés. | Tengo clase de ingles. | Tengo clase de Ingles.
 hint: Check two things: capital letters and accent marks. Spanish does not capitalize the names of languages.
 mc1: What does 'historia' mean as a school subject? | history | math | science | music
-hint: In this class you learn about people and events from long ago.
+hint: Think of the subjects on a school schedule. Which one have you heard called 'historia'?
 
 lesson: Classroom phrases
 mc2: What does '¿Puedo ir al baño?' mean? | May I go to the bathroom? | Where is the bathroom? | I am going home. | Can you help me?
-hint: 'Puedo' means 'can I' or 'may I'. What would a student ask before leaving the room?
+hint: Look at each part: 'puedo' comes from poder, 'ir' means to go and 'al baño' names a room. Who is going?
 mc2: The teacher says, 'Abran los libros.' What should the students do? | Open their books. | Close their books. | Put away their books. | Read out loud.
-hint: What do you have to do to a book before you can read it?
+hint: 'Abran' is a command form of abrir. What does abrir mean?
 mc2: How do you tell your teacher 'I do not understand'? | No entiendo. | No tengo. | No sé dónde. | Entiendo.
 hint: Look for the sentence with 'no' and a verb that means to understand.
 mc2: What does "¿Cómo se dice 'book' en español?" mean? | How do you say 'book' in Spanish? | What does 'book' mean? | Where is the book? | Do you have a book?
-hint: 'Dice' comes from 'decir', which means to say.
+hint: Which verb is 'dice' a form of? Think about what that verb means.
 mc2: The teacher says, 'Levanten la mano.' What should the students do? | Raise their hands. | Wash their hands. | Sit down. | Stand in line.
-hint: 'La mano' means the hand. What do you do with your hand when you want to speak in class?
+hint: 'La mano' means the hand. The verb 'levantar' is also in 'levantarse', which people say about getting out of bed.
 mc2: How do you say 'Please repeat' to your teacher? | Repita, por favor. | Gracias, maestra. | Repita, de nada. | Escriba, por favor.
 hint: Find the polite word for 'please' and a verb that means to say again.
 
@@ -282,32 +282,32 @@ hint: 'Lápiz' is masculine. Which word for 'a' goes with it?
 mc3: Which sentence means 'Where is the library?' | ¿Dónde está la biblioteca? | ¿Dónde está la librería? | ¿Qué es la biblioteca? | ¿Dónde está el gimnasio?
 hint: One choice uses the word for a bookstore. Which word means a place that lends books?
 mc2: Malik has math class in the morning and art class after lunch. Which sentence is true? | Malik tiene arte por la tarde. | Malik tiene arte por la mañana. | Malik tiene matemáticas por la tarde. | Malik tiene música por la tarde.
-hint: 'Por la mañana' means in the morning and 'por la tarde' means in the afternoon.
+hint: Find when Malik has art. Then check which Spanish time phrase names that part of the day.
 sa2: Write two Spanish words for things you can find in a backpack. Use 'un' or 'una' with each one. | Possible answers: un libro, un cuaderno, un lápiz, una regla.
 
 unit: Family | 4 | es_4
 
 lesson: Family members
 mc1: How do you say mother in Spanish? | madre | padre | abuela | hermana
-hint: This word starts with the same letter as 'mamá'.
+hint: Two choices rhyme: one names a woman and one names a man. Think of a sentence you know about a family.
 mc1: What does 'hermano' mean? | brother | sister | cousin | uncle
 hint: Family words that end in -o usually name a male.
 mc1: What does 'abuelo' mean? | grandfather | grandmother | uncle | father
-hint: 'Abuela' means grandmother. What is the male word?
+hint: Family words that end in -o usually name a male. Which male relative is it?
 mc1: How do you say aunt in Spanish? | tía | tío | prima | madre
 hint: This person is your mother's or father's sister. Look for the female ending.
 mc1: What does 'primo' mean? | cousin (a boy) | brother | nephew | grandson
-hint: This person is the son of your aunt or uncle.
+hint: Think of a family tree. Which relative have you heard called 'primo' or 'prima'?
 mc2: What does 'los padres' usually mean? | the parents | the brothers | the grandparents | the uncles
-hint: 'Padre' is father. In Spanish, a masculine plural can name a group of men and women together.
+hint: In Spanish, a masculine plural can name a group of men and women together.
 
 lesson: More relatives
 mc1: What does 'hija' mean? | daughter | son | sister | aunt
-hint: 'Hijo' means son. What is the female form?
+hint: Family words that end in -a usually name a female. Which female relative is it?
 mc1: How do you say uncle in Spanish? | tío | tía | primo | abuelo
 hint: This man is your parent's brother. Look for the male ending.
 mc2: What does 'mis abuelos' mean? | my grandparents | my parents | my uncles | my cousins
-hint: 'Abuelo' is grandfather and 'abuela' is grandmother. A group with both uses the masculine plural.
+hint: In Spanish, a group of men and women uses the masculine plural. Which relative does 'abuelo' name?
 mc2: Your father's sister has a daughter. What is she to you in Spanish? | prima | tía | hermana | sobrina
 hint: First decide who your father's sister is to you. Then think about her daughter.
 mc2: Your mother's father is your ___. | abuelo | tío | padre | primo
@@ -349,7 +349,7 @@ hint: Height is a trait. Which form of ser goes with one person?
 mc2: Which sentence is correct? | Mis primas son simpáticas. | Mis primas son simpáticos. | Mis primas es simpáticas. | Mi primas son simpáticas.
 hint: Every word must match 'primas', which is feminine and plural.
 mc2: What does 'Mi abuelo es muy trabajador' mean? | My grandfather is very hardworking. | My grandfather is very tired. | My grandmother is very hardworking. | My grandfather is not a worker.
-hint: 'Trabajador' comes from 'trabajar', to work. Which family member is it about?
+hint: Find the family word first. Then think: which verb is 'trabajador' built from?
 mc3: Read: 'Tengo una hermana. Ella tiene doce años y es muy divertida.' Which is true? | The sister is 12 and fun. | The sister is 2 and fun. | The sister is 12 and tired. | The brother is 12 and fun.
 hint: 'Doce' is a number, and 'divertida' describes personality.
 mc2: How do you tell a friend 'Your parents are nice'? | Tus padres son simpáticos. | Tu padres son simpáticos. | Tus padres es simpáticos. | Tus padres son simpático.
@@ -376,13 +376,13 @@ lesson: Months of the year
 mc1: How do you say January in Spanish? | enero | junio | febrero | julio
 hint: It is the first month of the year.
 mc1: What month is 'agosto'? | August | April | October | June
-hint: Say it out loud. Which English month sounds like it?
+hint: Say the Spanish months in order, starting with 'enero', and count on your fingers until you reach 'agosto'.
 mc1: Which month comes after 'junio'? | julio | mayo | agosto | enero
 hint: 'Junio' is June.
 mc2: How do you say 'in December' in Spanish? | en diciembre | en Diciembre | en deciembre | a diciembre
 hint: Months are lowercase in Spanish. Also check the spelling of the vowels.
 mc1: What month is 'abril'? | April | August | May | March
-hint: It is the fourth month of the year.
+hint: Be careful: two choices start with A. Say the Spanish months in order to find where 'abril' falls.
 mc2: Which list of months is in the right order? | marzo, abril, mayo | mayo, abril, marzo | abril, marzo, mayo | marzo, mayo, abril
 hint: Find the third, fourth and fifth months of the year.
 
@@ -390,11 +390,11 @@ lesson: Seasons
 mc1: How do you say summer in Spanish? | verano | invierno | otoño | primavera
 hint: It is the hottest season, when many schools are on vacation.
 mc1: What season is 'invierno'? | winter | spring | summer | fall
-hint: It is the coldest season of the year.
+hint: 'Invierno' and 'verano' look alike, but they name opposite seasons. Think of a sentence you know with one of them.
 mc1: How do you say fall (autumn) in Spanish? | otoño | verano | invierno | primavera
-hint: It is the season when leaves change color. Its Spanish name has an ñ.
+hint: Picture the trees when their leaves change color. Which season word did you learn for that time?
 mc1: What does 'primavera' mean? | spring | summer | fall | winter
-hint: It is the season when flowers start to bloom.
+hint: Think of the four season words: invierno, primavera, verano, otoño. Match the ones you know first. Which season is left?
 mc2: In most of the United States, July is in which season? | el verano | el invierno | la primavera | el otoño
 hint: Is July usually hot or cold in most of the United States?
 mc3: Chile is in the Southern Hemisphere, where the seasons are the opposite of the seasons in the United States. Which season is it in Chile in December? | el verano | el invierno | el otoño | la primavera
@@ -404,9 +404,9 @@ lesson: Saying the date
 mc2: How do you say 'May 5' in Spanish? | el cinco de mayo | el mayo cinco | el cinco mayo | mayo de cinco
 hint: Does Spanish put the day or the month first? Is there a small word in between?
 mc2: What date is 'el veinticinco de diciembre'? | December 25 | December 15 | November 25 | December 20
-hint: 'Veinte' is 20 and 'cinco' is 5.
+hint: Break the long number word into two parts. What does each part mean?
 mc2: How do you ask 'What is today's date?' in Spanish? | ¿Cuál es la fecha de hoy? | ¿Qué hora es? | ¿Cuántos días hay? | ¿Cuántos años tienes?
-hint: 'La fecha' means the date.
+hint: Be careful: '¿Qué hora es?' asks about the clock. Which question asks about the calendar?
 mc2: How do you say 'January 1' in Spanish? | el primero de enero | el primero enero | enero el primero | el primer de enero
 hint: Remember the pattern: el, then the day, then de, then the month.
 mc2: Spanish speakers usually write dates with the day first. How would they write October 12 with numbers? | 12/10 | 10/12 | 12/12 | 10/10
@@ -424,14 +424,14 @@ hint: Go back one day on a calendar.
 mc3: Which sentence is written correctly? | El examen es el martes 4 de marzo. | El examen es el Martes 4 de Marzo. | El examen es el martes 4 de Marzo. | El examen es el Martes 4 de marzo.
 hint: Check the capital letters on the day and on the month.
 num2: Read: 'La fiesta es el veintiuno de junio.' On what day of the month is the party? | 21
-hint: 'Veinte' is 20. What does 'uno' add?
+hint: Break 'veintiuno' into two parts and put them together.
 sa3: Write the date of your birthday in Spanish. Then write a sentence that names the season it falls in. | Example: Mi cumpleaños es el diez de octubre. Es en otoño.
 
 unit: Greetings and conversations | 6 | es_6
 
 lesson: Hello and good morning
 mc1: What does 'hola' mean? | hello | goodbye | please | thank you
-hint: People say it when they first see someone.
+hint: Say 'hola' out loud. In Spanish, the h is silent. Have you heard people say it?
 mc1: How do you say 'good afternoon' in Spanish? | buenas tardes | buenos días | buenas noches | hasta luego
 hint: Which part of the day comes after lunch? Find the greeting that names it.
 mc2: It is 8 in the morning. Which greeting fits best? | Buenos días | Buenas noches | Buenas tardes | Hasta mañana
@@ -447,27 +447,27 @@ lesson: How are you?
 mc1: What does '¿Cómo estás?' mean? | How are you? | What is your name? | Where are you from? | How old are you?
 hint: 'Estás' comes from estar, a verb used for feelings.
 mc2: A friend asks, '¿Cómo estás?' Which answer makes sense? | Bien, gracias. ¿Y tú? | Me llamo Ana. | Soy de Chile. | Tengo doce años.
-hint: The question asks how you feel.
+hint: Translate each answer. Which one would fit a question that uses 'estás'?
 mc1: What does 'más o menos' mean as an answer to '¿Cómo estás?' | so-so | very well | very bad | more and more
-hint: 'Más' means more and 'menos' means less. Put them together.
+hint: Translate the three words one at a time. Then think how that phrase would answer '¿Cómo estás?'
 mc1: What does '¿Qué tal?' mean? | How's it going? | What time is it? | What is that? | Who are you?
-hint: It is a friendly, casual way to ask about someone's day.
+hint: This phrase cannot be translated word for word. Think of a conversation you know where someone says '¿Qué tal?'
 mc2: Your friend says, 'Estoy muy cansado.' How does your friend feel? | very tired | very happy | very sick | very bored
-hint: Think about how you feel after a long day of sports.
+hint: 'Muy' means very. To work out 'cansado', think of the sentence 'Estoy cansado y quiero dormir.'
 mc2: Which reply to '¿Cómo estás?' fits if you feel bad? | Estoy mal. | Estoy bien. | Soy mal. | Es mal.
 hint: Feelings use a form of estar for 'I am'. Then find the word for bad.
 
 lesson: Introducing yourself
 mc1: What does 'Me llamo Sofía' mean? | My name is Sofía. | I call Sofía. | I like Sofía. | I am from Sofía.
-hint: People say this when they meet someone new.
+hint: Do not translate word for word. Think of the question '¿Cómo te llamas?' and how people answer it.
 mc2: How do you ask a classmate 'What is your name?' | ¿Cómo te llamas? | ¿Cómo estás? | ¿Cómo se llama él? | ¿Dónde estás?
 hint: A classmate is your age, so use the friendly tú form.
 mc1: What does 'Mucho gusto' mean? | Nice to meet you. | Thank you very much. | I like it a lot. | See you soon.
-hint: People say it right after they learn someone's name.
+hint: This is a set phrase, so do not translate it word for word. Think of the moment in a conversation when people say it.
 mc2: Someone says, 'Mucho gusto.' Which reply is best? | Igualmente. | De nada. | Hasta luego. | Más o menos.
-hint: Which word sends the same nice wish back to the speaker?
+hint: Think about what each reply means and when people use it. Which one makes sense right after you meet someone?
 mc2: What does '¿De dónde eres?' mean? | Where are you from? | Where are you going? | Where do you live? | Where is it?
-hint: 'Dónde' means where, and 'eres' comes from ser, which is used for origin.
+hint: Every choice asks 'where'. Which verb is 'eres' a form of, and what does that verb show when it is used with 'de'?
 mc2: Kenji is meeting a new classmate. What should he say? | Hola, me llamo Kenji. ¿Cómo te llamas? | Adiós, me llamo Kenji. ¿Cómo te llamas? | Hola, te llamas Kenji. ¿Cómo me llamo? | Hasta luego, Kenji. Mucho gusto.
 hint: Start with a greeting, give your own name, and then ask for theirs.
 
@@ -536,7 +536,7 @@ hint: 'De Colombia' tells origin. Who is 'Ana y yo'?
 mc2: Choose the correct verb: ___ la una de la tarde. | Es | Son | Está | Están
 hint: Telling time uses ser. Is 'la una' singular or plural?
 mc2: Why do we say 'Mi hermana es alta' and not 'Mi hermana está alta'? | Height is a trait that describes her. | She is tall only today. | She is in a tall place. | Height is a feeling.
-hint: Ser describes what someone is like, not how they feel or where they are.
+hint: Think about what each verb is used for. Would her height change from one day to the next?
 mc2: Choose the correct verb: La mesa ___ de madera. | es | está | son | hay
 hint: 'De madera' tells what something is made of, which is part of what it is.
 
@@ -575,11 +575,11 @@ hint: Think of the English word 'scribble'.
 mc1: How do you say 'to read' in Spanish? | leer | ver | oír | escribir
 hint: You do this with a book. Think about which verb is about words, not sights or sounds.
 mc1: What does 'aprender' mean? | to learn | to teach | to speak | to forget
-hint: Students do this at school when they gain new knowledge.
+hint: Be careful: 'enseñar' means to teach and 'hablar' means to speak. Which of the other two meanings fits?
 mc1: How do you say 'to run' in Spanish? | correr | caminar | comer | cerrar
 hint: You do this fast in a race.
 mc1: What does 'escuchar' mean? | to listen | to look | to write | to speak
-hint: You do this with your ears.
+hint: Be careful: 'mirar' means to look and 'hablar' means to speak. Which of the other two meanings fits?
 mc2: Which verb is an -ir verb? | vivir | beber | bailar | aprender
 hint: Look at the last two letters of each verb.
 
@@ -681,6 +681,20 @@ mc2: Choose the preterite: Mis abuelos ___ (estar) en Perú el verano pasado. | 
 hint: Estar uses an irregular stem, like tener. Which ending goes with ellos?
 mc2: What does 'Fue un día increíble' mean? | It was an incredible day. | He went to an incredible day. | It is an incredible day. | I was an incredible day.
 hint: 'Fue' can come from ir or from ser. Which meaning makes sense with 'un día'?
+
+lesson: The imperfect: forms and uses
+mc1: Choose the imperfect: Mi abuelo ___ (caminar) al trabajo todas las mañanas. | caminaba | caminó | camina | caminía
+hint: 'Todas las mañanas' tells you this was a habit in the past. Which imperfect ending goes with an -ar verb?
+mc2: Choose the imperfect: De pequeños, nosotros ___ (vivir) cerca del mar. | vivíamos | vivimos | vivábamos | viviremos
+hint: -er and -ir verbs share one set of imperfect endings. Be careful: one choice uses the -ar ending.
+mc2: Choose the imperfect of ser: De niña, mi abuela ___ muy tímida. | era | fue | eraba | iba
+hint: Ser is one of only three verbs that are irregular in the imperfect, so it does not add a regular ending. Be careful: one choice is the preterite.
+mc2: Choose the imperfect: Todos los veranos, mis primos ___ (ir) a la playa. | iban | fueron | ían | van
+hint: 'Todos los veranos' shows a habit in the past. Ir is irregular in the imperfect. Which form goes with ellos?
+mc2: Choose the imperfect of ver: De niño, yo ___ las estrellas todas las noches desde mi ventana. | veía | vía | vi | veo
+hint: Most -er verbs drop the whole -er before adding the imperfect ending, but ver is different. Which past form keeps more of its infinitive?
+mc2: Which English sentence would most likely use the imperfect in Spanish? | When I was little, I used to walk to school every day. | Yesterday I walked to school at 7:30. | Suddenly, the phone rang. | Last night I finished my homework.
+hint: Ask of each sentence: did the action happen once and end, or did it happen again and again over a long time?
 
 lesson: Preterite or imperfect
 mc2: Choose the verb that fits: Cuando era niño, yo ___ (jugar) en el parque todos los días. | jugaba | jugué | juego | jugaré
@@ -784,17 +798,17 @@ unit: Connecting words | 13 | es_13
 
 lesson: Common connecting words
 mc1: What does 'pero' mean? | but | because | although | so
-hint: It joins two ideas that contrast in a simple, everyday way.
+hint: Try it in a sentence: 'Quiero ir al cine, pero tengo tarea.' How do the two parts relate?
 mc1: What does 'porque' mean? | because | why | but | although
-hint: It introduces a reason. The question word '¿por qué?' is written differently.
+hint: Try it in a sentence: 'Estudio porque tengo un examen.' What job does the second part do?
 mc1: What does 'sin embargo' mean? | however | therefore | moreover | meanwhile
-hint: It introduces an idea that goes against what was just said.
+hint: Try it in a sentence: 'Estaba cansado; sin embargo, terminé la tarea.' How do the two parts relate?
 mc1: What does 'además' mean? | in addition | instead | although | then
-hint: It adds another point to what was already said.
+hint: Try it in a sentence: 'La casa es grande y, además, tiene un jardín.' What does it do between the two ideas?
 mc1: What does 'por eso' mean? | that is why | instead | however | even so
-hint: It introduces a result of what was just said.
+hint: Try it in a sentence: 'Tenía hambre; por eso, comí temprano.' How is the second part linked to the first?
 mc1: What does 'aunque' mean? | although | therefore | unless | because
-hint: It introduces a fact that does not stop the main action from happening.
+hint: Try it in a sentence: 'Aunque llovía, salimos a caminar.' Did the rain stop the walk?
 
 lesson: Sorting connecting words
 mc2: Which connector shows a result? | por lo tanto | aunque | además | mientras
