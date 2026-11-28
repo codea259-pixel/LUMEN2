@@ -72,6 +72,10 @@ def _counts():
     units = [u for c in B['cells'].values() for u in c['units']]
     nl = sum(len(u['lessons']) for u in units)
     nq = sum(len(u['test']) + sum(len(l['practice']) + len(l['quiz']) for l in u['lessons']) for u in units)
+    # plus the Learn-only practice lessons (tools/lessons-src)
+    LJ = _j.load(open(os.path.join(R, 'public', 'lessons.json'), encoding='utf-8'))
+    extra = [l for l in LJ['lessons'] if '-x' in l['id']]
+    nl += len(extra); nq += sum(len(l['it']) for l in extra)
     for name in ('index.html', 'pitch.html'):
         p = os.path.join(R, 'public', name); t = open(p, encoding='utf-8').read()
         t2 = _re.sub(r'<b>[\d,]+</b>((?:</?span>|\s)*)lessons', lambda m: f'<b>{nl:,}</b>' + m.group(1) + 'lessons', t)
